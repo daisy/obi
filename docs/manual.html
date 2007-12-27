@@ -76,25 +76,25 @@
               <a href="#id18836">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19104">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19080">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19144">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19120">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19251">Strips menu (<code>Alt+S</code>)</a>
+              <a href="#id19227">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19356">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19332">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19466">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id19442">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id19548">Tools menu</a>
+              <a href="#id19524">Tools menu</a>
             </li>
             <li>
-              <a href="#id19551">Help menu</a>
+              <a href="#id19527">Help menu</a>
             </li>
           </ul>
         </li>
@@ -272,40 +272,43 @@ unmodified.</li>
 cut or copy operation restores the previous value of the clipboard.</p>
     <ul>
       <li>
-        <p><strong>Cut</strong> (<code>Ctrl+X</code>): copy then delete the selected item. See description for
-both commands below.</p>
+        <p><strong>Cut</strong> (<code>Ctrl+X</code>): delete the selected item (strip, section, block or audio)
+and place it in the clipboard. <span class="todo">TODO</span>: works for text as well, but only through
+shortcut; not well integrated.</p>
       </li>
       <li>
-        <p><strong>Copy</strong> (<code>Ctrl+C</code>): copy the selected item into the clipboard. When a section
-is selected, all of its subsections are also copied, but when a strip is
-selected, this strip only is selected.</p>
+        <p><strong>Copy</strong> (<code>Ctrl+C</code>): copy the selected item (strip, section, block or audio)
+and place it in the clipboard. <span class="todo">TODO</span>: works for text as well, but only through
+shortcut; not well integrated.</p>
+      </li>
+      <li>
+        <p><strong>Paste</strong> (<code>Ctrl+V</code>): paste the item from the clipboard in or after the
+selection.</p>
         <ul>
-          <li><span class="todo">TODO</span>: copy a chunk of audio data.</li>
-          <li><span class="todo">TODO</span>: copy text.</li>
-          <li><span class="todo">TODO</span>: copy metadata (how exactly?)</li>
+          <li>If the clipboard contains a section node, it can be pasted after the
+selected section in the TOC view or the selected strip in the strip view.</li>
+          <li>If the clipboard contains a block, it can be pasted after the selected
+block, at the end of the selected strip, or at the selection point inside
+a strip. If the selection is a waveform cursor, then the audio of the block
+is inserted at that point; if it is a waveform selection, then the audio
+of the block is pasted in place of the selection.</li>
+          <li>If the clipboard contains audio, the audio can be pasted as a new block
+in the selected strip or at the selected point inside a strip, or at the
+end of the selected block. If the selection is a waveform cursor, then the
+audio is inserted at that point; if it is a waveform selection, then the
+audio is pasted in place of the selection.</li>
+          <li><span class="todo">TODO</span>: text, yada yada.</li>
         </ul>
       </li>
       <li>
-        <p><strong>Paste</strong> (<code>Ctrl+V</code>): paste the item in the clipboard in the current context.</p>
-        <ul>
-          <li>When the clipboard contains a strip or section (<em>i.e.</em> a section and
-possibly subsections)...
-<ul><li>... and a section is selected: paste a copy of the section in the
-clipboard as the next sibling of the selected section.</li><li>... and a strip is selected: paste strips right after the selected
-strip; the pasted section is at the same level as the section of the
-selected strip.</li><li>... and a block is selected: same as if the strip in which the block is
-was selected (<span class="todo">TODO</span>)</li></ul></li>
-          <li>When the clipboard contains a block...
-<ul><li>... and a section or strip is selected: paste a copy of the block at
-the end of the strip (or the strip for the section.)</li><li>... and a block is selected: paste a copy of the block in the clipboard
-after the selected block.</li></ul></li>
-          <li><span class="todo">TODO</span>: impement dummy section in the TOC view to always have a selected
-item to paste after, and being able to paste at the beginning.</li>
-          <li><span class="todo">TODO</span>: implement dummy strip.</li>
-          <li><span class="todo">TODO</span>: implement dummy block.</li>
-          <li><span class="todo">TODO</span>: paste text.</li>
-          <li><span class="todo">TODO</span>: paste audio data.</li>
-        </ul>
+        <p><strong>Paste before</strong> (<code>Ctrl+Alt+V</code>): when a section is selected and a section is
+in the clipboard, paste the section from the clipbaord before the selected
+section and at the same level.</p>
+      </li>
+      <li>
+        <p><strong>Paste inside</strong> (<code>Ctrl+Shift+V</code>): when a section is selected and a section
+is in the clipboard, paste the section from the clipboard as a subsection of
+the selected section. The child is added last.</p>
       </li>
       <li>
         <p><strong>Delete</strong> (<code>Del</code>): delete the selected item. If it is a section, then all
@@ -337,7 +340,7 @@ of section titles, the strip corresponding to the section is selected.)</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19104">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19080">View menu (<code>Alt+V</code>)</h3>
     <ul>
       <li>
         <p><strong>Focus on Strips view</strong> (<code>F6</code>)</p>
@@ -351,7 +354,7 @@ release version.</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19144">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19120">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -394,7 +397,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19251">Strips menu (<code>Alt+S</code>)</h3>
+    <h3 id="id19227">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
       <li>
         <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
@@ -434,7 +437,7 @@ subsection; <em>i.e.</em> if the operation affects only the selected strip. The
 contents of the strip are affected as well.</p>
       </li>
     </ul>
-    <h3 id="id19356">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19332">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
@@ -476,7 +479,7 @@ the block is currently used. Selecting this item toggles the used status of
 the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
-    <h3 id="id19466">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id19442">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -503,7 +506,7 @@ if a cursor is positionned inside a block, until the end of the block.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id19548">Tools menu</h3>
-    <h3 id="id19551">Help menu</h3>
+    <h3 id="id19524">Tools menu</h3>
+    <h3 id="id19527">Help menu</h3>
   </body>
 </html>

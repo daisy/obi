@@ -26,6 +26,8 @@ Main form
     + [C] Cut ....................... Ctrl+X
     + [Y] Copy ...................... Ctrl+C
     + [P] Paste ..................... Ctrl+V
+    + [B] Paste before .............. Ctrl+Alt+V
+    + [I] Paste inside .............. Ctrl+Shift+V
     + [D] Delete .................... Del
     + [S] Select nothing ............ (None)
     ----------------------------------------------
@@ -173,6 +175,8 @@ Index of shortcuts
   + Alt+Shift+U ........ View > Show status bar
   + Ctrl+U ............. FREE
   + Ctrl+V ............. Edit > Paste
+  + Ctrl+Alt+V ......... Edit > Paste before
+  + Ctrl+Shift+V ....... Edit > Paste inside
   + Ctrl+W ............. File > Close project
   + Ctrl+X ............. Edit > Cut
   + Alt+Shift+Y ........ View > Synchronize views

@@ -186,37 +186,37 @@ a new command is executed, the redo stack is cleared.
 Obi maintains a clipboard that contains the last cut or copied item. Undoing a
 cut or copy operation restores the previous value of the clipboard.
 
-* __Cut__ (`Ctrl+X`): copy then delete the selected item. See description for
-  both commands below.
+* __Cut__ (`Ctrl+X`): delete the selected item (strip, section, block or audio)
+  and place it in the clipboard. TODO: works for text as well, but only through
+  shortcut; not well integrated.
 
-* __Copy__ (`Ctrl+C`): copy the selected item into the clipboard. When a section
-  is selected, all of its subsections are also copied, but when a strip is
-  selected, this strip only is selected.
-  * TODO: copy a chunk of audio data.
-  * TODO: copy text.
-  * TODO: copy metadata (how exactly?)
+* __Copy__ (`Ctrl+C`): copy the selected item (strip, section, block or audio)
+  and place it in the clipboard. TODO: works for text as well, but only through
+  shortcut; not well integrated.
 
-* __Paste__ (`Ctrl+V`): paste the item in the clipboard in the current context.
-  * When the clipboard contains a strip or section (_i.e._ a section and
-    possibly subsections)...
-      * ... and a section is selected: paste a copy of the section in the
-      clipboard as the next sibling of the selected section.
-      * ... and a strip is selected: paste strips right after the selected
-      strip; the pasted section is at the same level as the section of the
-      selected strip.
-      * ... and a block is selected: same as if the strip in which the block is
-      was selected (TODO)
-  * When the clipboard contains a block...
-      * ... and a section or strip is selected: paste a copy of the block at
-      the end of the strip (or the strip for the section.)
-      * ... and a block is selected: paste a copy of the block in the clipboard
-      after the selected block.
-  * TODO: impement dummy section in the TOC view to always have a selected
-  item to paste after, and being able to paste at the beginning.
-  * TODO: implement dummy strip.
-  * TODO: implement dummy block.
-  * TODO: paste text.
-  * TODO: paste audio data.
+* __Paste__ (`Ctrl+V`): paste the item from the clipboard in or after the
+  selection.
+  * If the clipboard contains a section node, it can be pasted after the
+    selected section in the TOC view or the selected strip in the strip view.
+  * If the clipboard contains a block, it can be pasted after the selected
+    block, at the end of the selected strip, or at the selection point inside
+    a strip. If the selection is a waveform cursor, then the audio of the block
+    is inserted at that point; if it is a waveform selection, then the audio
+    of the block is pasted in place of the selection.
+  * If the clipboard contains audio, the audio can be pasted as a new block
+    in the selected strip or at the selected point inside a strip, or at the
+    end of the selected block. If the selection is a waveform cursor, then the
+    audio is inserted at that point; if it is a waveform selection, then the
+    audio is pasted in place of the selection.
+  * TODO: text, yada yada.
+
+* __Paste before__ (`Ctrl+Alt+V`): when a section is selected and a section is
+  in the clipboard, paste the section from the clipbaord before the selected
+  section and at the same level.
+
+* __Paste inside__ (`Ctrl+Shift+V`): when a section is selected and a section
+  is in the clipboard, paste the section from the clipboard as a subsection of
+  the selected section. The child is added last.
 
 * __Delete__ (`Del`): delete the selected item. If it is a section, then all
   subsections are deleted as well. If it is a strip, then only this strip is
