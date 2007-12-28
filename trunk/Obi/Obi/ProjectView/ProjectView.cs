@@ -10,12 +10,14 @@ namespace Obi.ProjectView
 {
     public partial class ProjectView : UserControl
     {
-        private bool mEnableTooltips;            // tooltips flag
-        private Presentation mPresentation;      // presentation
-        private NodeSelection mSelection;        // currently selected node
-        private Clipboard mClipboard;            // the clipboard
-        private bool mSynchronizeViews;          // synchronize views flag
-        private ObiForm mForm;                   // parent form
+        private bool mEnableTooltips;        // tooltips flag
+        private Presentation mPresentation;  // presentation
+        private NodeSelection mSelection;    // currently selected node
+        private Clipboard mClipboard;        // the clipboard
+        private bool mSynchronizeViews;      // synchronize views flag
+        private ObiForm mForm;               // parent form
+        private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
+        private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -154,7 +156,7 @@ namespace Obi.ProjectView
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
-        
+
         /// <summary>
         /// Contents of the clipboard
         /// </summary>
@@ -299,6 +301,25 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Show or hide the Metadata view.
+        /// </summary>
+        public bool MetadataViewVisible
+        {
+            get { return mMetadataViewVisible; }
+            set
+            {
+                mMetadataViewVisible = value;
+                if (value)
+                {
+                    mTOCSplitter.Panel1Collapsed = false;
+                    mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
+                }
+                else if (!value && !TOCViewVisible) mTOCSplitter.Panel1Collapsed = true;
+                mMetadataSplitter.Panel2Collapsed = !value;
+            }
+        }
+
+        /// <summary>
         /// Move the selected section node in.
         /// </summary>
         public void MoveSelectedSectionIn()
@@ -323,7 +344,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
-        public int NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); }  }
+        public int NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); } }
 
         /// <summary>
         /// The parent form as an Obi form.
@@ -529,6 +550,29 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Show or hide the TOC view.
+        /// </summary>
+        public bool TOCViewVisible
+        {
+            get { return mTOCViewVisible; }
+            set
+            {
+                mTOCViewVisible = value;
+                if (value)
+                {
+                    mTOCSplitter.Panel1Collapsed = false;
+                    mMetadataSplitter.Panel2Collapsed = !MetadataViewVisible;
+                }
+                else
+                {
+                    if (mSelection != null && mSelection.Control == mTOCView) Selection = null;
+                    if (!MetadataViewVisible) mTOCSplitter.Panel1Collapsed = true;
+                }
+                mMetadataSplitter.Panel1Collapsed = !value;
+            }
+        }
+
+        /// <summary>
         /// Get the transport bar for this project view.
         /// </summary>
         public TransportBar TransportBar { get { return mTransportBar; } }
@@ -591,51 +635,9 @@ namespace Obi.ProjectView
 
 
 
-        private bool mTOCViewVisible;  // keep track of the TOC view visibility (don't reopen it accidentally)
 
-        /// <summary>
-        /// Show or hide the TOC view.
-        /// </summary>
-        public bool TOCViewVisible
-        {
-            get { return mTOCViewVisible; }
-            set
-            {
-                mTOCViewVisible = value;
-                if (value)
-                {
-                    mTOCSplitter.Panel1Collapsed = false;
-                    mMetadataSplitter.Panel2Collapsed = !MetadataViewVisible;
-                }
-                else
-                {
-                    if (mSelection != null && mSelection.Control == mTOCView) Selection = null;
-                    if (!MetadataViewVisible) mTOCSplitter.Panel1Collapsed = true;
-                }
-                mMetadataSplitter.Panel1Collapsed = !value;
-            }
-        }
 
-        private bool mMetadataViewVisible;  // keep track of the Metadata view visibility
 
-        /// <summary>
-        /// Show or hide the Metadata view.
-        /// </summary>
-        public bool MetadataViewVisible
-        {
-            get { return mMetadataViewVisible; }
-            set
-            {
-                mMetadataViewVisible = value;
-                if (value)
-                {
-                    mTOCSplitter.Panel1Collapsed = false;
-                    mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
-                }
-                else if (!value && !TOCViewVisible) mTOCSplitter.Panel1Collapsed = true;
-                mMetadataSplitter.Panel2Collapsed = !value;
-            }
-        }
 
         /// <summary>
         /// Show or hide the search bar.
@@ -643,7 +645,7 @@ namespace Obi.ProjectView
         public bool FindInTextVisible
         {
             get { return !mFindInTextSplitter.Panel2Collapsed; }
-            set 
+            set
             {
                 bool isVisible = !mFindInTextSplitter.Panel2Collapsed;
                 if (isVisible != value) mFindInTextSplitter.Panel2Collapsed = !value;
@@ -677,7 +679,7 @@ namespace Obi.ProjectView
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
-        
+
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
         public bool IsStripUsed { get { return mStripsView.IsStripUsed; } }
 
@@ -905,7 +907,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool CanSetPageNumber { get { return IsBlockSelected; } } 
+        public bool CanSetPageNumber { get { return IsBlockSelected; } }
 
         /// <summary>
         /// Set the page number on the selected block and optionally renumber subsequent blocks.
@@ -980,22 +982,22 @@ namespace Obi.ProjectView
         /// <summary>
         /// Apply phrase detection on selected audio block by computing silence threshold from a silence block
         ///  nearest  preceding silence block is  used
-                /// </summary>
+        /// </summary>
         public void ApplyPhraseDetection()
         {
-                        PhraseNode SilenceNode= null ;
+            PhraseNode SilenceNode = null;
 
             //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
-                        ObiNode IterationNode = SelectedNodeAs<EmptyNode> () ;
+            ObiNode IterationNode = SelectedNodeAs<EmptyNode>();
 
-            while (IterationNode!= null)
+            while (IterationNode != null)
             {
-                if ( IterationNode is EmptyNode    &&     ((EmptyNode)  IterationNode).NodeKind == EmptyNode.Kind.Silence)
+                if (IterationNode is EmptyNode && ((EmptyNode)IterationNode).NodeKind == EmptyNode.Kind.Silence)
                 {
-                    SilenceNode =(PhraseNode)   IterationNode;
+                    SilenceNode = (PhraseNode)IterationNode;
                     break;
                 }
-                IterationNode = IterationNode.PrecedingNode  ;
+                IterationNode = IterationNode.PrecedingNode;
             }
 
 
@@ -1005,10 +1007,8 @@ namespace Obi.ProjectView
             {
                 mPresentation.UndoRedoManager.execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
             }
-
-                }// end of function
-
-            }
+        }
+    }
 
     public class ImportingFileEventArgs
     {

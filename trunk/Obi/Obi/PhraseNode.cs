@@ -94,5 +94,10 @@ namespace Obi
         {
             if (NodeAudioChanged != null) NodeAudioChanged(sender, new NodeEventArgs<PhraseNode>(this));
         }
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1}", base.ToString(), Audio.getDuration().ToString());
+        }
     }
 }

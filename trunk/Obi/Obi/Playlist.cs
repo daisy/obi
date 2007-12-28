@@ -214,9 +214,8 @@ namespace Obi
             {
                 bool playing = mPlaylistState == AudioPlayerState.Playing;
                 if (playing) Stop();
-                int i;
-                for (i = 0; i < mPhrases.Count && mPhrases[i] != value; ++i) { }
-                if (i < mPhrases.Count) CurrentIndexStart = i;
+                int index = mPhrases.IndexOf(value);
+                if (index >= 0) CurrentIndexStart = index;
                 if (playing) Play();
             }
         }

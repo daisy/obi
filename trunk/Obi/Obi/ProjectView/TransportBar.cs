@@ -479,23 +479,40 @@ namespace Obi.ProjectView
 
 
         // Find the phrase to play from from the selected one in the project panel.
+        // When there is a selection, this is the first phrase of the selection
+        // (or after the selection in the case of the strip cursor selection);
+        // when there is none, this is the first phrase of the master playlist.
         private PhraseNode InitialPhrase
         {
             get
             {
-                if (mView != null)
+                if (mView == null) return null;
+                if (mView.Selection is StripCursorSelection)
                 {
-                    if (mView.Selection != null && mView.Selection.Node != null && mView.Selection.Node.Used)
-                    {
-                        return mView.Selection.Node.FirstUsedPhrase;
-                    }
-                    return mCurrentPlaylist.FirstPhrase;
+                    // TODO this doesn't handle unused nodes/end of the book well.
+                    return FirstPhraseNodeAfter((SectionNode)mView.Selection.Node, ((StripCursorSelection)mView.Selection).Index);
+                }
+                else if (mView.Selection != null && mView.Selection.Node.Used)
+                {
+                    return mView.Selection.Node.FirstUsedPhrase;
                 }
                 else
                 {
-                    return null;
+                    return mMasterPlaylist.FirstPhrase;
                 }
             }
+        }
+
+        // Get the first phrase node after the given index in the given section.
+        // This can be a phrase of the section, or the first used phrase after the following section.
+        private PhraseNode FirstPhraseNodeAfter(SectionNode section, int index)
+        {
+            ObiNode from = index < section.PhraseChildCount ? (ObiNode)section.PhraseChild(index) :
+                section.PhraseChildCount > 0 ? section.PhraseChild(section.PhraseChildCount - 1).FollowingNode :
+                section.SectionChildCount > 0 ? section.SectionChild(0).FollowingNode :
+                section.FollowingNode;
+            while (from != null && !(from is PhraseNode)) from = from.FollowingNode;
+            return from as PhraseNode;
         }
 
         /// <summary>
