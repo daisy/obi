@@ -450,8 +450,12 @@ namespace Obi.ProjectView
                 mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                 // Avn: condition added on 13 may 2007
                 if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
-
+                
                 if (mView.Selection is AudioSelection
+                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor
+                    && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+                    mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                else if (mView.Selection is AudioSelection
                     && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
                     mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
                 else
