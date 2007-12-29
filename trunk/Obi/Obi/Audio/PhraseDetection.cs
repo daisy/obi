@@ -239,7 +239,7 @@ namespace Obi.Audio
             long AverageValue = 0;
 
             // number of samples from which peak is selected
-                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.getPCMFormat ().getSampleRate () / 3000 ) ;
+                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.getPCMFormat ().getSampleRate () / 2000 ) ;
 
             // number of blocks iterated
             long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount ) ;
