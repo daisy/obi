@@ -75,7 +75,12 @@ namespace Obi
         {
             mPlayer = player;
             Reset(false);
+
+            if (selection.Control is Obi.ProjectView.TOCView)
+                AddPhraseNodes(selection.Node);
+            else
             AddPhraseNodesFromStripOrPhrase(selection.Node);
+
             if (selection is AudioSelection && ((AudioSelection)selection).AudioRange.HasCursor)
             {
                 mPlaybackStartTime = ((AudioSelection)selection).AudioRange.CursorTime;
