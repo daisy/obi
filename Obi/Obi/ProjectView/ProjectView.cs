@@ -249,6 +249,26 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Delete all unused nodes.
+        /// </summary>
+        public void DeleteUnused()
+        {
+            urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
+            mPresentation.RootNode.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode node)
+                {
+                    if (node is ObiNode && !((ObiNode)node).Used)
+                    {
+                        command.append(new Commands.Node.Delete(this, (ObiNode)node));
+                        return false;
+                    }
+                    return true;
+                }, delegate(urakawa.core.TreeNode node) { }
+            );
+            if (command.getCount() > 0) mPresentation.UndoRedoManager.execute(command);
+        }
+
+        /// <summary>
         /// Enable/disable tooltips in the view (currently mostly disabled.)
         /// </summary>
         public bool EnableTooltips
@@ -677,6 +697,7 @@ namespace Obi.ProjectView
         public bool CanShowInTOCView { get { return IsStripSelected; } }
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
+        public bool CanMarkStripUnused { get { return !mStripsView.CanSetStripUsedStatus || mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
         public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
 

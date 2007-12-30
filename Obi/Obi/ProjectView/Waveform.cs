@@ -170,6 +170,7 @@ namespace Obi.ProjectView
                         g.DrawLine(Channel2Pen, new Point(x, ymin), new Point(x, ymax));
                     }
                 }
+                audio.Close();
             }
         }
 

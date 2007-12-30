@@ -271,11 +271,12 @@ namespace Obi
         /// <summary>
         /// Add a new channel with the given name to the presentation's channel manager.
         /// </summary>
-        private void AddChannel(string name)
+        private Channel AddChannel(string name)
         {
             Channel channel = getChannelFactory().createChannel();
             channel.setName(name);
             getChannelsManager().addChannel(channel);
+            return channel;
         }
 
         /// <summary>
@@ -370,6 +371,7 @@ namespace Obi
             }
             return PhraseList ;
         }
+
         /// <summary>
         /// During recording of a phrase, its audio may/should be updated.
         /// </summary>
@@ -378,31 +380,24 @@ namespace Obi
             ((PhraseNode)phrase).Audio = media;
         }
 
+        /// <summary>
+        /// Export the project as DAISY to a directory.
+        /// </summary>
         public void ExportToZed(Uri destinationDirectory)
         {
-            //these delegates help filter the nodes
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
             TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
-            
-            //add a channel to hold the published audio media
-            AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
-            Channel publishChannel = GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
-
-            //this visitor should make one audio file per section in the destination channel
             PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
+            Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
             visitor.setDestinationChannel(publishChannel);
             visitor.setSourceChannel(AudioChannel);
             visitor.setDestinationDirectory(destinationDirectory);
             RootNode.acceptDepthFirst(visitor);
-
-            //get the XUK source as a string.
-            System.Text.StringBuilder srcstr = new System.Text.StringBuilder();
-            //write to disk for testing
-            //XmlWriter writer = XmlWriter.Create(destinationDirectory.LocalPath + "testoutput.xml");
-            XmlWriter writer = XmlWriter.Create(srcstr);
+            visitor.writeCurrentAudioFile();
+            XmlWriter writer = XmlWriter.Create(new System.Text.StringBuilder());
             getProject().saveXUK(writer, null);
             writer.Close();
-            
+            getChannelsManager().removeChannel(publishChannel);
         }
 
         /// <summary>
