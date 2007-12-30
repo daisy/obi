@@ -31,7 +31,7 @@ namespace Obi.ProjectView
 
 
         private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
-        private bool m_IsAppendOnlyRecording;
+        private bool mIsAppendOnlyRecording;
         RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
         public bool IsInlineRecording
         { get { return (inlineRecordingSession != null); } }
@@ -81,7 +81,7 @@ namespace Obi.ProjectView
         // TODO be more clever about this.
         void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (IsActive) Stop();
+            if (IsPlayerActive) Stop();
         }
 
         // Stop when the tree is modified.
@@ -107,19 +107,19 @@ namespace Obi.ProjectView
             SetPlaylistEvents(mMasterPlaylist);
             mCurrentPlaylist = mMasterPlaylist;
             mDisplayBox.SelectedIndex = ElapsedTotal;
-                        mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mVUMeterPanel.VuMeter = mVuMeter;
 
             // Append recording flag: to be updated from settings. Put to false for time being.
-            m_IsAppendOnlyRecording = false;
+            mIsAppendOnlyRecording = false;
 
-            ComboFastPlateRate.Items.Add("1.0");
-            ComboFastPlateRate.Items.Add("1.125");
-            ComboFastPlateRate.Items.Add("1.25");
-            ComboFastPlateRate.Items.Add("1.5");
-            ComboFastPlateRate.Items.Add("1.75");
-            ComboFastPlateRate.Items.Add("2.0");
-            ComboFastPlateRate.SelectedIndex = 0;
+            mFastPlayRateCombobox.Items.Add("1.0");
+            mFastPlayRateCombobox.Items.Add("1.125");
+            mFastPlayRateCombobox.Items.Add("1.25");
+            mFastPlayRateCombobox.Items.Add("1.5");
+            mFastPlayRateCombobox.Items.Add("1.75");
+            mFastPlayRateCombobox.Items.Add("2.0");
+            mFastPlayRateCombobox.SelectedIndex = 0;
         }
 
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
@@ -179,9 +179,9 @@ namespace Obi.ProjectView
                 /// </summary>
         public bool AppendOnlyRecording
         {
-            get { return m_IsAppendOnlyRecording ; }
-            set { m_IsAppendOnlyRecording = value ; }
-                    }
+            get { return mIsAppendOnlyRecording; }
+            set { mIsAppendOnlyRecording = value; }
+        }
 
         public Playlist CurrentPlaylist { get { return mCurrentPlaylist; } }
 
@@ -194,12 +194,7 @@ namespace Obi.ProjectView
             get { return base.Enabled; }
             set
             {
-                if (base.Enabled && !value &&
-                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
-                    mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused))
-                {
-                    Stop();
-                }
+                if (base.Enabled && !value && IsActive) Stop();
                 base.Enabled = value;
             }
         }
@@ -549,7 +544,7 @@ namespace Obi.ProjectView
             mPreviousPageButton.Enabled = false;
             mFastForwardButton.Enabled = false;
             mRewindButton.Enabled = false;
-            ComboFastPlateRate.Enabled = false;
+            mFastPlayRateCombobox.Enabled = false;
 
         }
         PhraseNode m_ResumerecordingPhrase ;
@@ -754,7 +749,7 @@ namespace Obi.ProjectView
                 {
                     if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening)
                     {
-                        mTimeDisplayBox.Text = "Listening";
+                        mTimeDisplayBox.Text = "--:--:--";
                     }
                     else if (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
                     {
@@ -808,10 +803,10 @@ namespace Obi.ProjectView
 
         public bool FastPlayRateStepUp()
         {
-            if (ComboFastPlateRate.SelectedIndex < ComboFastPlateRate.Items.Count - 1)
+            if (mFastPlayRateCombobox.SelectedIndex < mFastPlayRateCombobox.Items.Count - 1)
             {
-                ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex + 1;
-                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+                mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex + 1;
+                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
             }
             return false;
@@ -819,10 +814,10 @@ namespace Obi.ProjectView
 
         public bool  FastPlayRateStepDown()
         {
-            if (ComboFastPlateRate.SelectedIndex > 0)
+            if (mFastPlayRateCombobox.SelectedIndex > 0)
             {
-                ComboFastPlateRate.SelectedIndex = ComboFastPlateRate.SelectedIndex - 1;
-                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+                mFastPlayRateCombobox.SelectedIndex = mFastPlayRateCombobox.SelectedIndex - 1;
+                mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
                 return true;
             }
             return false;
@@ -830,21 +825,20 @@ namespace Obi.ProjectView
 
         public bool FastPlayRateNormalise()
         {
-            ComboFastPlateRate.SelectedIndex = 0;
-            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+            mFastPlayRateCombobox.SelectedIndex = 0;
+            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
             return true;
-                    }
+        }
 
         private void ComboFastPlateRate_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(ComboFastPlateRate.SelectedItem.ToString());
+            mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
         }
 
         public bool FastPlayNormaliseWithLapseBack()
         {
             mCurrentPlaylist.FastPlayNormaliseWithLapseBack(1500);
-            ComboFastPlateRate.SelectedIndex = 0;
-
+            mFastPlayRateCombobox.SelectedIndex = 0;
             return true;
         }
 
@@ -855,19 +849,16 @@ namespace Obi.ProjectView
         {
             get
             {
-                if (mView.Selection != null
+                return mView.Selection != null
                     && mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                    return true;
-                else
-                    return false;
+                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor;
             }
         }
         
         public bool MarkSelectionBeginTime ()
         {
-            if ( IsInPhraseSelectionMarked )
-                            {
+            if (IsInPhraseSelectionMarked)
+            {
                 ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
                 return true;
             }
@@ -990,7 +981,7 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                    if ( !m_IsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
+                    if ( !mIsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
                     {
                         if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
                             && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
@@ -1147,7 +1138,7 @@ namespace Obi.ProjectView
                 mPreviousPageButton.Enabled = true;
                 mFastForwardButton.Enabled = true;
                 mRewindButton.Enabled = true;
-                ComboFastPlateRate.Enabled = true;
+                mFastPlayRateCombobox.Enabled = true;
             }
         }
 
