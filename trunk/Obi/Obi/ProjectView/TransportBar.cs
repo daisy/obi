@@ -389,6 +389,26 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// checks if play selection should be initialised from PlayAll function
+                /// </summary>
+        private bool IsPlaySelection
+        {
+            get
+            {
+                if (mView.Selection != null // if nothing is selected
+&&
+((mView.Selection.Control is TOCView) || (mView.Selection.Control is StripsView && ((StripsView)mView.Selection.Control).IsStripCursorSelected == false)) // if keyboard is in TOC view or if strip cursor is selected
+                                        &&
+(mView.Selection.Node is EmptyNode 
+                    || mView.Selection.Node is SectionNode
+                    || !(mView.Selection is AudioSelection))) // if time cursor is not selected
+                    return true ;
+                else
+                    return false;
+            }
+        }
+
+        /// <summary>
         /// Play the master playlist, starting from the selected phrase, or the first phrase of
         /// the selected section or the beginning of the project.
         /// </summary>
@@ -399,19 +419,26 @@ namespace Obi.ProjectView
             if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
             if (CanPlay)
             {
-                mPlayingFrom = mView.Selection;
-                mCurrentPlaylist = mMasterPlaylist;
-                mCurrentPlaylist.CurrentPhrase = InitialPhrase;
-                if (mCurrentPlaylist.CurrentPhrase != null)
+                    if ( IsPlaySelection )
                 {
-                    mIsSerialPlaying = true;
-                    if (mView.Selection is AudioSelection
-                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                                                                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
-                                        else
-                        mCurrentPlaylist.Play();
+                                                            Play(mView.Selection.Node);
+                }
+                else
+                {
+                                                                mPlayingFrom = mView.Selection;
+                    mCurrentPlaylist = mMasterPlaylist;
+                    mCurrentPlaylist.CurrentPhrase = InitialPhrase;
+                    if (mCurrentPlaylist.CurrentPhrase != null)
+                    {
+                        mIsSerialPlaying = true;
+                        if (mView.Selection is AudioSelection
+                            && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                            mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                        else
+                            mCurrentPlaylist.Play();
 
-                    mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                        mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                    }
                 }
             }
             else if (CanResume)
