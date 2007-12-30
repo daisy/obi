@@ -5,35 +5,37 @@ $Id$
 Main form
 
   + [F] File
-    + [N] New project ............... Ctrl+N
-    + [W] New project from import ... Ctrl+Shift+N
-    + [O] Open project .............. Ctrl+O
-    + [R] Open recent project ....... (None)
-    ----------------------------------------------
-    + [S] Save project .............. Ctrl+S
-    + [A] Save project as ........... Ctrl+Shift+S
-    + [C] Close project ............. Ctrl+W
-    ----------------------------------------------
-    + [L] Clean project ............. (None)
-    + [E] Export as DAISY ........... Ctrl+E
-    ----------------------------------------------
-    + [X] Exit ...................... Alt+F4
+    + [N] New project ................ Ctrl+N
+    + [W] New project from import .... Ctrl+Shift+N
+    + [O] Open project ............... Ctrl+O
+    + [R] Open recent project ........ (None)
+    -----------------------------------------------
+    + [S] Save project ............... Ctrl+S
+    + [A] Save project as ............ Ctrl+Shift+S
+    + [C] Close project .............. Ctrl+W
+    -----------------------------------------------
+    + [L] Clean unreferenced audio ... Ctrl+L
+    + [E] Export as DAISY ............ Ctrl+E
+    -----------------------------------------------
+    + [X] Exit ....................... Alt+F4
 
   + [E] Edit
-    + [U] Undo ...................... Ctrl+Z
-    + [R] Redo ...................... Ctrl+Y
-    ----------------------------------------------
-    + [C] Cut ....................... Ctrl+X
-    + [Y] Copy ...................... Ctrl+C
-    + [P] Paste ..................... Ctrl+V
-    + [B] Paste before .............. Ctrl+Alt+V
-    + [I] Paste inside .............. Ctrl+Shift+V
-    + [D] Delete .................... Del
-    + [S] Select nothing ............ (None)
-    ----------------------------------------------
-    + [F] Find ...................... Ctrl+F
-    + [N] Find next ................. F3
-    + [V] Find previous ............. Shift+F3
+    + [U] Undo ....................... Ctrl+Z
+    + [R] Redo ....................... Ctrl+Y
+    -----------------------------------------------
+    + [C] Cut ........................ Ctrl+X
+    + [Y] Copy ....................... Ctrl+C
+    + [P] Paste ...................... Ctrl+V
+    + [B] Paste before ............... Ctrl+Alt+V
+    + [I] Paste inside ............... Ctrl+Shift+V
+    + [D] Delete ..................... Del
+    + [S] Select nothing ............. (None)
+    -----------------------------------------------
+    + [ ] Delete unused data ......... Ctrl+Shift+L
+    -----------------------------------------------
+    + [F] Find ....................... Ctrl+F
+    + [N] Find next .................. F3
+    + [V] Find previous .............. Shift+F3
 
   + [V] View
     + [T] Show TOC view ............. Alt+Shift+T
@@ -153,7 +155,8 @@ Index of shortcuts
   + Ctrl+K ............. Block > Block is used
   + Ctrl+K ............. Strips > Strip is used
   + Ctrl+K ............. TOC > Section is used
-  + Ctrl+L ............. Clean
+  + Ctrl+L ............. File > Clean project
+  + Ctrl+Shift+L ....... Edit > Delete unused data
   + Ctrl+M ............. Blocks > Merge block with next
   + Alt+Shift+M ........ View > Show metadata view
   + Ctrl+Shift+M ....... Strips > Merge with next strip

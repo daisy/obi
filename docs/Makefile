@@ -11,7 +11,7 @@ HTML_FILES =	blocks.html events.html index.html manual.html plan.html\
 		recording.html keyboarding.html
 TODO_HTML =	todo.html
 
-all:	$(HTML_FILES) todo
+all:	$(HTML_FILES) #todo
 
 %.html:	%.txt
 	echo "<markdown>" > $@.markdown && \
