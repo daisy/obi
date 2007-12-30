@@ -872,16 +872,19 @@ Error text: {1}</value>
   <data name="mark_strip_used" xml:space="preserve">
     <value>mark strip as {0}</value>
   </data>
-  <data name="clean_caption" xml:space="preserve">
-    <value>Really clean project?</value>
-  </data>
   <data name="clean_failed_caption" xml:space="preserve">
     <value>Failed to clean project</value>
   </data>
   <data name="clean_failed_text" xml:space="preserve">
     <value>Obi failed to clean the current project, apparently for the following reason: {0}</value>
   </data>
-  <data name="clean_text" xml:space="preserve">
-    <value>Do you really want to clean the current project? All unused audio data will be deleted and the undo stack will be cleared.</value>
+  <data name="clean_save_caption" xml:space="preserve">
+    <value>Save after cleaning?</value>
+  </data>
+  <data name="clean_save_text" xml:space="preserve">
+    <value>It is strongly recommended that you save your project after cleaning was done. Do you want to save after cleaning?</value>
+  </data>
+  <data name="delete_unused" xml:space="preserve">
+    <value>delete unused data</value>
   </data>
 </root>

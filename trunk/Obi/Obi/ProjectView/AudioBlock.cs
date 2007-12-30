@@ -65,6 +65,7 @@ namespace Obi.ProjectView
         
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
+            UpdateLabel();
             SetWaveform((PhraseNode)Node);
         }
 
@@ -92,25 +93,31 @@ namespace Obi.ProjectView
             }
         }
 
-        private void mWaveform_Click(object sender, EventArgs e) { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
+        private void mWaveform_Click(object sender, EventArgs e)
+        {
+            if (CanSelectInWaveform) Strip.SelectTimeInBlock(this, mWaveform.Selection);
+        }
 
         private void mWaveform_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                mWaveform.CursorPosition = e.X;
-                Strip.SelectTimeInBlock(this, mWaveform.Selection);
+                if (CanSelectInWaveform)
+                {
+                    mWaveform.CursorPosition = e.X;
+                    Strip.SelectTimeInBlock(this, mWaveform.Selection);
+                }
             }
         }
 
         private void mWaveform_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;
         }    
 
         private void mWaveform_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;
         }
 
         public void SetCursorTime(double time)

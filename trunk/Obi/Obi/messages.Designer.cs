@@ -358,15 +358,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Really clean project?.
-        /// </summary>
-        internal static string clean_caption {
-            get {
-                return ResourceManager.GetString("clean_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to clean project.
         /// </summary>
         internal static string clean_failed_caption {
@@ -385,11 +376,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to clean the current project? All unused audio data will be deleted and the undo stack will be cleared..
+        ///   Looks up a localized string similar to Save after cleaning?.
         /// </summary>
-        internal static string clean_text {
+        internal static string clean_save_caption {
             get {
-                return ResourceManager.GetString("clean_text", resourceCulture);
+                return ResourceManager.GetString("clean_save_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is strongly recommended that you save your project after cleaning was done. Do you want to save after cleaning?.
+        /// </summary>
+        internal static string clean_save_text {
+            get {
+                return ResourceManager.GetString("clean_save_text", resourceCulture);
             }
         }
         
@@ -689,6 +689,15 @@ namespace Obi {
         internal static string delete_strip_command {
             get {
                 return ResourceManager.GetString("delete_strip_command", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete unused data.
+        /// </summary>
+        internal static string delete_unused {
+            get {
+                return ResourceManager.GetString("delete_unused", resourceCulture);
             }
         }
         
