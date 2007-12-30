@@ -65,7 +65,7 @@ namespace Obi
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
             mSaveProjectAsToolStripMenuItem.Enabled = false;  // mSession.HasProject;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
-            mCleanProjectToolStripMenuItem.Enabled = false; // currently disabled
+            mCleanProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;  // currently disabled
             mExitToolStripMenuItem.Enabled = true;
         }
@@ -77,9 +77,29 @@ namespace Obi
         private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
         private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
         private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
-        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e) { Cleanup(); }
+        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
         private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e) { Export(); }
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
+
+        private void CleanProject()
+        {
+            if (MessageBox.Show(Localizer.Message("clean_text"),
+                    Localizer.Message("clean_caption"),
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    mSession.Presentation.cleanup();
+                    mSession.Presentation.UndoRedoManager.flushCommands();
+                    UpdateObi();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("clean_failed_text"), e.Message),
+                        Localizer.Message("clean_failed_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         // Create a new project if the current one was closed properly, or if none was open.
         private void NewProject()
@@ -638,48 +658,6 @@ namespace Obi
 
         #region File menu event handlers
 
-
-        /// <summary>
-        /// Open a project from a XUK file by prompting the user for a file location.
-        /// Try to close a possibly open project first.
-        /// </summary>
-
-
-
-
-
-        private void Cleanup()
-        {            /*
-            if (mProject != null)
-            {
-                mProjectView.TransportBar.Enabled = false;
-                this.Cursor = Cursors.WaitCursor;
-
-                try
-                {
-                    mProject.CleanProjectAssets();
-                }
-                catch (Exception x)
-                {
-                    //report an error and exit the function
-                    MessageBox.Show(String.Format(Localizer.Message("didnt_clean_project_text"), x.Message),
-                            Localizer.Message("didnt_clean_project_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    this.Cursor = Cursors.Default;
-                    mProjectView.TransportBar.Enabled = true;
-                    return;
-                }
-
-                //report success
-                MessageBox.Show(Localizer.Message("cleaned_project_text"), Localizer.Message("cleaned_project_caption"),
-                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.Cursor = Cursors.Default;
-                mProjectView.TransportBar.Enabled = true;
-            }
-             */
-
-        }
 
         /// <summary>
         /// Export makes an in-memory copy of the project tree and export it as a Daisy book

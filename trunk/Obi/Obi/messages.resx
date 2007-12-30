@@ -602,12 +602,6 @@ Do you want to replace the project contained in this file?</value>
   <data name="unmark_section_heading_command_label" xml:space="preserve">
     <value>unmark audio block as section heading</value>
   </data>
-  <data name="cleaned_project_caption" xml:space="preserve">
-    <value>Project cleaned up</value>
-  </data>
-  <data name="cleaned_project_text" xml:space="preserve">
-    <value>The project has been cleaned up successfully.</value>
-  </data>
   <data name="didnt_clean_project_caption" xml:space="preserve">
     <value>Error cleaning up project</value>
   </data>
@@ -877,5 +871,17 @@ Error text: {1}</value>
   </data>
   <data name="mark_strip_used" xml:space="preserve">
     <value>mark strip as {0}</value>
+  </data>
+  <data name="clean_caption" xml:space="preserve">
+    <value>Really clean project?</value>
+  </data>
+  <data name="clean_failed_caption" xml:space="preserve">
+    <value>Failed to clean project</value>
+  </data>
+  <data name="clean_failed_text" xml:space="preserve">
+    <value>Obi failed to clean the current project, apparently for the following reason: {0}</value>
+  </data>
+  <data name="clean_text" xml:space="preserve">
+    <value>Do you really want to clean the current project? All unused audio data will be deleted and the undo stack will be cleared.</value>
   </data>
 </root>

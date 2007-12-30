@@ -358,20 +358,38 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project cleaned up.
+        ///   Looks up a localized string similar to Really clean project?.
         /// </summary>
-        internal static string cleaned_project_caption {
+        internal static string clean_caption {
             get {
-                return ResourceManager.GetString("cleaned_project_caption", resourceCulture);
+                return ResourceManager.GetString("clean_caption", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The project has been cleaned up successfully..
+        ///   Looks up a localized string similar to Failed to clean project.
         /// </summary>
-        internal static string cleaned_project_text {
+        internal static string clean_failed_caption {
             get {
-                return ResourceManager.GetString("cleaned_project_text", resourceCulture);
+                return ResourceManager.GetString("clean_failed_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obi failed to clean the current project, apparently for the following reason: {0}.
+        /// </summary>
+        internal static string clean_failed_text {
+            get {
+                return ResourceManager.GetString("clean_failed_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to clean the current project? All unused audio data will be deleted and the undo stack will be cleared..
+        /// </summary>
+        internal static string clean_text {
+            get {
+                return ResourceManager.GetString("clean_text", resourceCulture);
             }
         }
         
