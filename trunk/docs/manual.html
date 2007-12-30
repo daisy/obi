@@ -73,28 +73,28 @@
               <a href="#id18793">File menu (<code>Alt+F</code>)</a>
             </li>
             <li>
-              <a href="#id18836">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id18867">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19080">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19134">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19120">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19174">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19227">Strips menu (<code>Alt+S</code>)</a>
+              <a href="#id19281">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19332">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19386">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19442">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id19496">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id19524">Tools menu</a>
+              <a href="#id19577">Tools menu</a>
             </li>
             <li>
-              <a href="#id19527">Help menu</a>
+              <a href="#id19581">Help menu</a>
             </li>
           </ul>
         </li>
@@ -249,7 +249,20 @@ a location for saving the project. <span class="todo">TODO</span>: better error 
 undo the import.)</p>
       </li>
     </ul>
-    <h3 id="id18836">Edit menu (<code>Alt+E</code>)</h3>
+    <p>(Missing commands)</p>
+    <ul>
+      <li><strong>Clean unreferenced audio</strong> (<code>Ctrl+L</code>): clean unreferenced audio from the
+project. Obi keeps unused audio data so that changes can be undone, but
+sometime there is audio data in the project that is not referenced anywhere
+(<em>i.e.</em>, there is no phrase with this audio data, nor any command in the
+undo stack that concerns this data.) In order to save disk space, it is
+possible to clean the project by removing all this data. It is recommended
+to save right after cleaning the project, otherwise there may be problems
+when reopening the project. Cleaning the project at the beginning of the
+session makes sure that all of the data not referenced in the project itself
+has been removed.</li>
+    </ul>
+    <h3 id="id18867">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -324,6 +337,12 @@ TOC is preserved.</p>
         </ul>
       </li>
     </ul>
+    <p>In addition to cleaning up unreferenced audio data, it is possible to also
+clean up <em>unused</em> data from the project.</p>
+    <ul>
+      <li><strong>Delete unused data</strong> (<code>Ctrl+Shift+L</code>): delete all sections and phrases
+marked as being unused. This can be undone, just like any deletion in Obi.</li>
+    </ul>
     <p>Athough Obi is an audio editing tool, a large project can still contain a non
 trivial amount of text (section headings, metadata, annotations) so a search
 function is provided.</p>
@@ -340,7 +359,7 @@ of section titles, the strip corresponding to the section is selected.)</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19080">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19134">View menu (<code>Alt+V</code>)</h3>
     <ul>
       <li>
         <p><strong>Focus on Strips view</strong> (<code>F6</code>)</p>
@@ -354,7 +373,7 @@ release version.</p>
         </ul>
       </li>
     </ul>
-    <h3 id="id19120">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19174">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -397,7 +416,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19227">Strips menu (<code>Alt+S</code>)</h3>
+    <h3 id="id19281">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
       <li>
         <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
@@ -437,7 +456,7 @@ subsection; <em>i.e.</em> if the operation affects only the selected strip. The
 contents of the strip are affected as well.</p>
       </li>
     </ul>
-    <h3 id="id19332">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19386">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
@@ -479,7 +498,7 @@ the block is currently used. Selecting this item toggles the used status of
 the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
-    <h3 id="id19442">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id19496">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -506,7 +525,7 @@ if a cursor is positionned inside a block, until the end of the block.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id19524">Tools menu</h3>
-    <h3 id="id19527">Help menu</h3>
+    <h3 id="id19577">Tools menu</h3>
+    <h3 id="id19581">Help menu</h3>
   </body>
 </html>
