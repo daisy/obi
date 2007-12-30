@@ -44,7 +44,7 @@ namespace Obi.ProjectView
             this.mFastForwardButton = new System.Windows.Forms.Button();
             this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
             this.mDisplayBox = new System.Windows.Forms.ComboBox();
-            this.ComboFastPlateRate = new System.Windows.Forms.ComboBox();
+            this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mCustomClassMarkButton = new System.Windows.Forms.Button();
@@ -245,17 +245,17 @@ namespace Obi.ProjectView
             // 
             // ComboFastPlateRate
             // 
-            this.ComboFastPlateRate.AccessibleName = "Fast Play Rate";
-            this.ComboFastPlateRate.AllowDrop = true;
-            this.ComboFastPlateRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboFastPlateRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboFastPlateRate.FormattingEnabled = true;
-            this.ComboFastPlateRate.ItemHeight = 15;
-            this.ComboFastPlateRate.Location = new System.Drawing.Point(740, 6);
-            this.ComboFastPlateRate.Name = "ComboFastPlateRate";
-            this.ComboFastPlateRate.Size = new System.Drawing.Size(62, 23);
-            this.ComboFastPlateRate.TabIndex = 15;
-            this.ComboFastPlateRate.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
+            this.mFastPlayRateCombobox.AccessibleName = "Fast Play Rate";
+            this.mFastPlayRateCombobox.AllowDrop = true;
+            this.mFastPlayRateCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mFastPlayRateCombobox.FormattingEnabled = true;
+            this.mFastPlayRateCombobox.ItemHeight = 15;
+            this.mFastPlayRateCombobox.Location = new System.Drawing.Point(740, 6);
+            this.mFastPlayRateCombobox.Name = "ComboFastPlateRate";
+            this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
+            this.mFastPlayRateCombobox.TabIndex = 15;
+            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
             // 
             // mNextPageButton
             // 
@@ -309,7 +309,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mCustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
-            this.Controls.Add(this.ComboFastPlateRate);
+            this.Controls.Add(this.mFastPlayRateCombobox);
             this.Controls.Add(this.mFastForwardButton);
             this.Controls.Add(this.mRewindButton);
             this.Controls.Add(this.mVUMeterPanel);
@@ -347,7 +347,7 @@ namespace Obi.ProjectView
         private Obi.UserControls.TextVUMeterPanel mVUMeterPanel;
         private System.Windows.Forms.Button mRewindButton;
         private System.Windows.Forms.Button mFastForwardButton;
-        private System.Windows.Forms.ComboBox ComboFastPlateRate;
+        private System.Windows.Forms.ComboBox mFastPlayRateCombobox;
         private System.Windows.Forms.Button mNextPageButton;
         private System.Windows.Forms.Button mPreviousPageButton;
         private System.Windows.Forms.Button mCustomClassMarkButton;
