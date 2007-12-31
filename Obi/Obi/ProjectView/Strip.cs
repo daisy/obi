@@ -36,7 +36,7 @@ namespace Obi.ProjectView
             Label = mNode.Label;
             mParentView = parent;
             UpdateColors();
-            mLabel.AccessibleName = this.Label + " - level " + node.Level ;
+            mLabel.AccessibleName = this.Label + " - depth " + node.Level ;
             AddCursor(0);
         }
 
@@ -225,7 +225,7 @@ namespace Obi.ProjectView
         {
             mLabel.Editable = true;
             mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, Label);
-            mLabel.AccessibleName = this.Label + " - level " + mNode.Level ;
+            mLabel.AccessibleName = this.Label + " - depth " + mNode.Level ;
         }
 
         /// <summary>
