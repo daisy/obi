@@ -4,8 +4,11 @@
 
 <div id="toc">Table of contents</div>
 
-Now this is really the reference section. If you're a user and not a
-developper, you can ignore the items marked as TODO.
+This is a reference manual for Obi, and for the moment a placeholder for the
+final documentation. If you are a user and not a developer, you can ignore the
+TODO items below. This manual describes version 1.0 Alpha at the moment and
+may still be incomplete.
+
 
 ## Views
 
@@ -30,6 +33,8 @@ of the strips view and has two parts:
 
 2. a sequence of zero or more blocks.
 
+TODO: fix the strip width.
+
 #### Blocks
 
 A _block_ is used to represent an unit of content in the strips view. A block
@@ -42,8 +47,7 @@ the amount of audio that a block may contain.
 
 * _Empty blocks_ are blocks that contain no audio. They can be used as
   placeholders for adding audio at a later time. An empty block only contains
-  an information label. TODO: describe contents of label; something like "block
-  _n_ of _m_."
+  an information label.
 
 * _Plain blocks_ are blocks that contain audio. In addition to the information
   label, the waveform of the audio is displayed.
@@ -53,6 +57,11 @@ the amount of audio that a block may contain.
   associated with the block. Example: page number 42 in the book can be
   represented by a page block bearing the number 42 and the phrase "page
   42." In the exported DAISY book, a page block will be skippable.
+
+* _Heading blocks_ are used to mark the heading of a section. By default, this
+  is the first used block in the section, but any other can be chosen. There
+  can be at most one heading block per section. TODO: maintain this when
+  merging sections.
 
 * _Silence blocks_ are used for phrase detection; see below.
 
@@ -78,7 +87,7 @@ in the TOC view.
 
 The _metadata view_ shows the metadata of the book: information such as title,
 narrator, date of publication, etc. Metadata entries can be edited in this
-view.
+view. TODO: the metadata view is currently not functional!
 
 ### Transport bar and peak meter
 
@@ -106,9 +115,14 @@ to select (see keyboard navigation below.)
     editable.
   * A position inside a strip is selectable. The position can be before the
     first block, after the last block, or between two blocks.
-  * A block inside a strip is selectable.
+  * A block inside a strip is selectable. To select a block, click on its label
+    or its outer edge.
   * The waveform in a block is selectable; either a position or a range of
-    audio.
+    audio. To select a position in the waveform, click once; to select a range,
+    click then drag.
+    * TODO: shift+click for a range.
+    * TODO: dragging outside of the block kills the selection.
+    * TODO: select all audio from a block.
 * In the TOC view:
   * A section is selectable.
   * The text label of a section is selectable. When selected, it becomes
@@ -118,12 +132,14 @@ to select (see keyboard navigation below.)
   * The text inside a metadata entry is selectable (TODO). When selected, it
     becomes editable.
 
+
 ### Label editing
 
 The label of a strip or a section, and the value of a metadata entry (TODO) can
 be directly edited by clicking them. When typing `Enter`, the new name is
 committed; typing `Esc` cancels the edit. Strips also have an `OK` and `Cancel`
 button which achieve the same effects.
+
 
 ## Transport bar and peak meter
 
@@ -147,10 +163,148 @@ selected node in tree view.
 
 * __Stop button__: stop playback or recording which ever is active.
 
+### Unedited notes
+
+This is a temporary write up for transport bar which should be copied to main manual.
+The write up contains description about transportbar buttons and other transport bar functions which are to be invoked through drop down menus and keyboard shortcuts.
+
+Description about buttons:
+1. Play button.
+This button gives Play All command while starting playback from currently selected block in strip view or currently selected node in tree view.
+1.1. If there is no in phrase selection, ( technically  termed as audio selection ) this button starts playback from starting of selected block or selected tree node.
+1.2. If there is Audio selection and cursor has a position marked inside phrase, this button starts playback from this cursor position.
+Keyboard shortcut: Control+Space.
+
+2. Pause button:
+- It pauses both playback as well as recording ( which ever is active ). 
+- Pause position and cursor position are synchronised with each other so pause position also acts as cursor position for operations like split and insert recording.
+Keyboard shortcut: Space bar.
+
+3. Stop button:
+- It stops playback or recording which ever is active.
+Keyboard shortcut: control + T 
+
+4. Rewind: It plays small  dhunks of audio while jumping backward in time.
+- Rewind continues across phrase boundaries.
+
+5. FastForward button:
+It plays small chunks of audio while  jumping forward in time.
+- FastForward continues across phrase  boundaries.
+
+6. Prev phrase, prev section, prev page buttons:
+Currently these buttons work only while playback and move to prev phrase, prev section, prev page phrase nodes in playlist.
+
+7. Next phrase, Next section, Next page buttons:
+During playback:
+These buttons move to next phrase, next section , next page phrase nodes in current playlist.
+
+During recording:
+These buttons become markup buttons i.e.
+Next Phrase button create a new phrase on the fly.
+Next section button creates a new section, creates a new phrase in this new section and continue recording in this new phrase.
+The rules for  creating new section is same as that of creating a new section in TOC view.
+Next Page creates a new phrase and marks custom page class on this new phrase on the fly. The numbering of pages is automatic i.e. an increment of previous page number and "1" if there is no preceding phrase block.
+
+8. Custom class mark button:
+While recording it is used for marking custom class on currently recording phrase on the fly. The default name used is "Custom".
+It creats a new audio block and mark custom class on it.
+These custom blocks can later on be reclassed.
+In all other conditions, this button mark custom class on currently selected audio block.
+
+
+9. Fast play rate combobox:
+This combobox increases playback rate above the normal playback rate for quick navigation / editting purpose and proof reading purpose.
+It contains valuse upto 2.0 times which is twice the normal playback rate.
+It works both on the fly with playback and also off the fly.
+The  strips view keyboard shortcuts for this combobox are:
+1. F: Increses FastPlay rate by one combobox value.
+2. S: decreases FastPlay rate by one combobox value.
+3. D: moves back to normal playback rate.
+4. E: Move back to normal playback rate with 1.5 seconds of rewind. This is helpfull in determining exact splitting position while  playing at higher speeds.
+
+
+10. Record button:
+Pressing this button first time starts listening and displays input values of microphone in graphical peak meter as well in text peak meter. Recording starts when this button is pressed second time.
+However user can start direct recording and bypass listening state by pressing 
+Control + shift + R.
+or selecting  direct recording sub menu item for record menu item of transport drop down menu.
+Recording can be done in normal mode or in append only mode.
+User can check or uncheck Append only sub menu item from recording item of transport drop down menu.
+10.1 In append only mode, recording is non distructive i.e. a new recording is appended to selected block or filled in a null audio block without inserting or overwriting existing recordings.
+10.2. In normal mode recording works as follows:
+- If selected block do not contain any audio e.g. empty page blocks, recording fills audio inside these blocks.
+- If there is a single point in-phrase selection, recording splits the selected block at cursor position and inserts new blocks between two splitted blocks.
+- If there is a part of audio selected  inside a phrase using  in-phrase Selection Start and in-phrase Selection End commands then the selected block is split in three blocks and the middle one is replaced by newly recorded blocks.
+
+Pausing recording:
+Recording can be paused at any time using pause button. When recording is paused, user can use playback to verify recording.
+Recording will resume by pressing record button again ( no listening stage will be there while resuming paused recording ).
+
+
+
+Other transport bar functions  operatable from drop down menus and keyboard shortcuts.
+11. Preview playback:
+It includes three functions.
+1.1. Preview from current position:
+provides 1.5 seconds of playback starting from current cursor position.
+Strips View shortcut: V
+
+1.2. Preview upto current position:
+Provides playback of duration of 1.5 seconds starting from 1.5 seconds before current position so that playback ends at current position.
+Strips view shortcut: X
+
+1.3. Preview selected audio:
+It provides playback of audio chumk lying between two audio mark points. 
+Strips view Shortcut: C
+
+12. Play selection: 
+It starts playback of currently selected blocks As Obi currently can select only one block at a time so in current senario it plays selected block in strips view or selected tree node in TOC view.
+- If there is no in-phrase selection i.e. cursor is not active, playback starts from begining of phrase 
+- if there is a in-phrase selection i.e. cursor is active, then playback starts from the cursor position.
+Keyboard shortcut: Space bar.
+This shortcut is same as pause. As it toggles between play selection and pause and also pauses play all command.
+
+13. Time display:
+Transport bar has a time display which displays both playback as well as recording time.
+13.1. Playback time.
+The display of playback time is configurable with an adjusant combobox. The available options are:
+13.1.1. Elapsed: This displays elapsed selection time.
+13.1.2. Elapsed (total): This displays elapsed time with respect to whole book.
+13.1.3. Remaining: This displays remaining time for current selection.
+13.1.4. Remaining (Total): This displays remaining time with respect to whole book.
+
+13.2. Recording time:
+This displays time of recording since it was started i.e. recording session time.
+
+
+14. Text Peak Meter:
+This control displays numerical values for peak meter which can be captured by screenreader.
+It has two textboxes for left and right channels. 
+Keyboard shortcuts:
+Focus Left channel value: Alt+l
+Focus right channel value: Alt+i
+The value displayed is relative to the peak value of audio with upper range of 0 db.
+
+Whenever overload is reached,  the "OL" tag appears before numerical value of that particular channel.
+This tag remains in text display of respective channel till reset button on text meter is pressed. 
+Remark: reset button is not visible till  overload is reached.
+
 
 ### Peak meter
 
+The peak meter allows to monitor the input sound level (while recording) or
+output level (while playing back), and especially shows when overload occurs.
+Overload should be avoided while recording because the recorded audio is
+clipped. When overload occurs, the red box above the channel while turn red
+with a number indicating the number of occurrences. Users can modify their
+audio settings (getting further away from the microphone or turning its volume
+down) to reach an acceptable audio level. Clicking on a red overload box will
+reset it.
+
+
 ## Menus
+
+This is a description of the main menubar in Obi.
 
 ### File menu (`Alt+F`)
 
@@ -164,10 +318,31 @@ Creating and opening projects:
 * __New project from import__ (`Ctrl+Shift+N`): create a new project by
  importing an XHTML file containing the structure of the project. You will
  have to choose a title (if different from the one given in the file) and
- a location for saving the project. TODO: better error handling (completely
- undo the import.)
+ a location for saving the project.
+  * TODO: better error handling (completely undo the import.)
+  * TODO: the expected input format must be documented.
 
-(Missing commands)
+* __Open project__ (`Ctrl+O`): bring up a file chooser and select a project
+  to open. Obi projects are normally named with a `.obi` suffix, although Obi
+  normally saves project inside a directory along with another directory
+  containing audio data.
+
+* __Open recent project__: a list of recently opened project allows the user
+  to choose between different recent projects. TODO: remove projects that
+  failed to be opend from the list.
+  * __Clear list__: clear the list of recent projects. This cannot be undone.
+
+Saving projects:
+
+* __Save project__ (`Ctrl+S`): save the project and its data.
+
+* __Save project as__ (`Ctrl+Shift+S`): save the project under a different name
+  and switch to the new copy. TODO: this is currently disabled.
+
+* __Close project__ (`Ctrl+W`): close the current project. If there are
+  unsaved changes, the user is given the choice to save or not, or cancel.
+
+Clenanig and exporting to DAISY:
 
 * __Clean unreferenced audio__ (`Ctrl+L`): clean unreferenced audio from the
   project. Obi keeps unused audio data so that changes can be undone, but
@@ -178,7 +353,19 @@ Creating and opening projects:
   to save right after cleaning the project, otherwise there may be problems
   when reopening the project. Cleaning the project at the beginning of the
   session makes sure that all of the data not referenced in the project itself
-  has been removed.
+  has been removed. TODO: check that files are indeed removed?
+
+* __Export as DAISY__ (`Ctrl+E`): export the project to DAISY 3. The user can
+  choose a directory to export to. The directory should be new or empty; if it
+  contains files already (_e.g._, from a previous export), those can be
+  deleted before export. TODO: this currently only exports audio data, one file
+  per section, named in book order.
+
+Quitting Obi:
+
+* __Exit__ (`Alt+F4`): quit Obi. If there is a project with unsaved changes
+  currently opened, changes can be saved before quitting, or quitting can be
+  cancelled. Quitting can also be achieved by closing the main Obi window.
 
 
 ### Edit menu (`Alt+E`)
@@ -221,7 +408,7 @@ cut or copy operation restores the previous value of the clipboard.
     end of the selected block. If the selection is a waveform cursor, then the
     audio is inserted at that point; if it is a waveform selection, then the
     audio is pasted in place of the selection.
-  * TODO: text, yada yada.
+  * TODO: text.
 
 * __Paste before__ (`Ctrl+Alt+V`): when a section is selected and a section is
   in the clipboard, paste the section from the clipbaord before the selected
@@ -237,8 +424,7 @@ cut or copy operation restores the previous value of the clipboard.
   is moved to the level of the deleted section so that the consistency of the
   TOC is preserved.
 
-* __Select nothing__ (`Alt+N`): deselect any item that was selected.
-  * TODO: change the keyboard shortcut.
+* __Select nothing__: deselect any item that was selected.
 
 In addition to cleaning up unreferenced audio data, it is possible to also
 clean up _unused_ data from the project.
@@ -250,23 +436,54 @@ Athough Obi is an audio editing tool, a large project can still contain a non
 trivial amount of text (section headings, metadata, annotations) so a search
 function is provided.
 
-* __Find__ (`F3`): bring the search bar in focus and let the user type some
+* __Find__ (`Ctrl+F`): bring the search bar in focus and let the user type some
   text to find. The first item containing this text is selected (in the case
   of section titles, the strip corresponding to the section is selected.)
 
-  * TODO: quick find with `/` as in `vi`.
-  * TODO: search metadata.
-  * TODO: buttons in the search bar (previous, next?)
-  * TODO: replace?
+* __Find next__ (`F3`): find the next item. TODO: more details.
+
+* __Find previous__ (`Shift+F3`): find the previous item. TODO: more details.
+
 
 ### View menu (`Alt+V`)
 
-* __Focus on Strips view__ (`F6`)
+Various views can be shown or hidden. By default, all are shown, except for the
+search bar which only appears when searching. Each menu item has a checkbox
+that indicate the visibility of the corresponding view (checked meaning
+visible.) TODO: all the shortcuts will change as they interfere with screen
+readers.
+
+* __Show TOC view__ (`Alt+Shift+T`): show or hide the TOC view.
+
+* __Show metadata view__ (`Alt+Shift+M`): show or hide the metadata view.
+
+* __Show search bar__ (`Alt+Shift+S`): show or hide the search bar.
+
+* __Show transport bar__ (`Alt+Shift+B`): show or hide the transport bar.
+
+* __Show status bar__ (`Alt+Shift+U`): show or hide the status bar.
+
+For easy navigation, there are some shortcuts to move to the main views.
+
+* __Focus on TOC view__ (`F6`): move the focus to the TOC view. If there was
+  a selection in the strips view, the corresponding section is selected. TODO:
+  there is a display bug so the section doesn't appear as being selected, but
+  it is.
+
+* __Focus on Strips view__ (`F7`): move the focus to the strips view. If a
+  section is selected in the TOC view, its strip gets selected in the strips
+  view.
+
+* __Focus on Transport bar__ (`F8*`): not yet implemented (TODO).
+
+Obi also has external views which open in different windows. Again, shortcuts
+are subject to change.
+
+* __Show peak meter__ (`Alt+Shift+P`): show or hide the peak meter view.
 
 * __Show source view__ (`Alt+R`): show the source of the XUK file for this
   project. This is mainly useful for debugging and may be removed from the
   release version.
-  * TODO: change keyboard shortcut.
 
 
 ### TOC menu (`Alt+C`)
@@ -303,7 +520,7 @@ The TOC menu provides operations on the table of contents.
   When the used status of the section changes, all subsections change to the
   same status as well. The status of a section can only be changed if its
   parent section is used (or if it is a top-level section), as there cannot
-  be used subsections of unused sections.
+  be used subsections of unused sections. TODO: this is currently disabled.
 
 
 ### Strips menu (`Alt+S`)
@@ -337,7 +554,7 @@ The TOC menu provides operations on the table of contents.
   used status of the strip (from used to unused, and from unused to used.)
   This operation can only be executed if the corresponding section has no
   subsection; _i.e._ if the operation affects only the selected strip. The
-  contents of the strip are affected as well.
+  contents of the strip are affected as well. TODO: this is currently disabled.
 
 
 ### Blocks menu (`Alt+B`)
@@ -370,8 +587,10 @@ The TOC menu provides operations on the table of contents.
 * __Block is used__ (`Ctrl+K`): when a block is selected, the menu item shows
   whether the block is used or not with a checkbox. The checkbox is checked if
   the block is currently used. Selecting this item toggles the used status of
-  the block (from used to unused, and from unused to used.)
+  the block (from used to unused, and from unused to used.) TODO: this is
+  currently disabled.
 
+TODO: update the rest of the document!
 
 ### Transport menu (`Alt+R`)
 
