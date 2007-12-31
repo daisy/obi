@@ -13,22 +13,27 @@ namespace Obi.Dialogs
         public About()
         {
             InitializeComponent();
-            // setup the version string (so that the designed leaves us alone...)
-            labelObiVersion.Text = System.String.Format("{0} v{1}",
-                System.Reflection.Assembly.GetExecutingAssembly().GetName().Name,
-                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
-            // setup the link data for following the link
-            linkLabel1.Links[0].LinkData = linkLabel1.Text;
+            mWebBrowser.Url = new System.Uri(System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("about_file_name")));
         }
 
-        /// <summary>
-        /// Follow a link (opens a browser externally.)
-        /// </summary>
-        /// <param name="sender">Sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        // Catch links going outside to open in a different browser
+        private void mWebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            System.Diagnostics.Process.Start((string)e.Link.LinkData);
+            if (e.Url.Scheme != "file")
+            {
+                System.Diagnostics.Process.Start(e.Url.ToString());
+                e.Cancel = true;
+            }
+        }
+
+        private void mWebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            mWebBrowser.Document.GetElementById("info-version").InnerText = System.String.Format("{0} v{1}",
+                Application.ProductName, Application.ProductVersion);
+            mWebBrowser.Document.GetElementById("real-version").InnerText =
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }
