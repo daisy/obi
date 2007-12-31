@@ -887,4 +887,7 @@ Error text: {1}</value>
   <data name="delete_unused" xml:space="preserve">
     <value>delete unused data</value>
   </data>
+  <data name="about_file_name" xml:space="preserve">
+    <value>about_en.html</value>
+  </data>
 </root>

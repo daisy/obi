@@ -70,6 +70,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to about_en.html.
+        /// </summary>
+        internal static string about_file_name {
+            get {
+                return ResourceManager.GetString("about_file_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add empty block.
         /// </summary>
         internal static string add_empty_block {
