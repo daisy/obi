@@ -132,6 +132,7 @@ namespace Obi.ProjectView
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio; } }
+        public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
         public bool CanInsertSection { get { return mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
@@ -280,6 +281,28 @@ namespace Obi.ProjectView
                 // mStripManagerPanel.EnableTooltips = value;
                 // mTOCPanel.EnableTooltips = value;
                 // mTransportBar.EnableTooltips = value;
+            }
+        }
+
+        /// <summary>
+        /// Show the selection (if any) in the TOC view, and focus on this view.
+        /// </summary>
+        public void FocusOnTOCView()
+        {
+            if (CanFocusOnTOCView)
+            {
+                SectionNode node = mSelection == null ? null :
+                    mSelection.Node is SectionNode ? (SectionNode)mSelection.Node :
+                    mSelection.Node.AncestorAs<SectionNode>();
+                if (node != null)
+                {
+                    Selection = new NodeSelection(node, mTOCView);
+                }
+                else
+                {
+                    TOCViewVisible = true;
+                    mTOCView.Focus();
+                }
             }
         }
 
@@ -731,22 +754,6 @@ namespace Obi.ProjectView
         public void SetStripVisibilityForSection(SectionNode section, bool visible)
         {
             if (mSynchronizeViews) mStripsView.SetStripVisibilityForSection(section, visible);
-        }
-
-        /// <summary>
-        /// Show (select) the section node for the current selection
-        /// </summary>
-        public void ShowSelectedSectionInTOCView()
-        {
-            if (CanShowInTOCView)
-            {
-                Selection = new NodeSelection(mSelection.Node, mTOCView);
-            }
-            else
-            {
-                TOCViewVisible = true;
-                mTOCView.Focus();
-            }
         }
 
         /// <summary>

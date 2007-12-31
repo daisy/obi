@@ -27,12 +27,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0BF7D9BC6AB14E07BEF8345AE13C57A7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0D0652AF33114FC2B6DFBD57DF2FF296"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,12 +34,6 @@
         "Entry"
         {
         "MsmKey" = "8:_1CB17C26CE1940A5B39598BA9EAE0193"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_20BC86FD052F469C85939F7D905EA295"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,24 +51,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3695E15F397849EFB22CAE22553B05D9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_458763B4886A4AB9A76E4E3A8E5632D7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_48EC9C1AD8004B6A8065D9C2CEE745A8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_51ED6C0D4BD346D58B85CA6E4637335C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,18 +58,6 @@
         "Entry"
         {
         "MsmKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_60C547F2CA384057AE8BC34EF1FE878F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6966DA9E98BD421AB44E800B796A419B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -123,25 +81,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6B1037557C564393AF96FC777A49E884"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7003342262364F5A8A1560328681724E"
+        "MsmKey" = "8:_827508A28B554BABB8F40933CA886CC8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_837EC87997044F77930CFDC75ADF4A05"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_89EFD3D587EA4496AAA1767C9FA64842"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,30 +105,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_96FEC3498FBF4852B35346478C52FB18"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_97678C322CB64B34B3BC6F69276094D0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AACA331BD8544A1BA6F614A5C2E9011"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AD6EF9CC8D84057B9EF63D0335AACCA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -195,12 +117,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_ACAC4279C4A5484799788897BBC116EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -208,12 +124,6 @@
         "Entry"
         {
         "MsmKey" = "8:_B1EDC1CD1F204974884D62AA71221F2D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B3C3B23328D14309B510D15630934875"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -250,12 +160,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F7A18EE9882A4A128C31D712D367AAFD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F87DB30E49224DB78DC8BD1A10F23117"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -395,7 +299,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.19132, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.33078, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_020E765E81AB7190548EE8511E3685F1"
@@ -453,26 +357,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0BF7D9BC6AB14E07BEF8345AE13C57A7"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_heading.png"
-            "TargetName" = "8:manual_heading.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D0652AF33114FC2B6DFBD57DF2FF296"
             {
             "SourcePath" = "8:..\\Obi\\images\\obird256.png"
@@ -499,26 +383,6 @@
             "TargetName" = "8:help_en.html"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20BC86FD052F469C85939F7D905EA295"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_userprofile.png"
-            "TargetName" = "8:manual_userprofile.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -584,112 +448,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3695E15F397849EFB22CAE22553B05D9"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_metadata.png"
-            "TargetName" = "8:manual_metadata.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_458763B4886A4AB9A76E4E3A8E5632D7"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_preferences_audio.png"
-            "TargetName" = "8:manual_preferences_audio.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_48EC9C1AD8004B6A8065D9C2CEE745A8"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\obird_bobi.png"
-            "TargetName" = "8:obird_bobi.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51ED6C0D4BD346D58B85CA6E4637335C"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-seek-forward.png"
             "TargetName" = "8:media-seek-forward.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_60C547F2CA384057AE8BC34EF1FE878F"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_toceditoptions.png"
-            "TargetName" = "8:manual_toceditoptions.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6966DA9E98BD421AB44E800B796A419B"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_preferences_project.png"
-            "TargetName" = "8:manual_preferences_project.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -735,32 +499,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B1037557C564393AF96FC777A49E884"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_827508A28B554BABB8F40933CA886CC8"
             {
-            "SourcePath" = "8:..\\Obi\\images\\manual_stripeditoptions.png"
-            "TargetName" = "8:manual_stripeditoptions.png"
+            "SourcePath" = "8:..\\Obi\\about_en.html"
+            "TargetName" = "8:about_en.html"
             "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7003342262364F5A8A1560328681724E"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_phrasedetection.png"
-            "TargetName" = "8:manual_phrasedetection.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -781,26 +525,6 @@
             "TargetName" = "8:media-playback-start.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_89EFD3D587EA4496AAA1767C9FA64842"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_importaudio.png"
-            "TargetName" = "8:manual_importaudio.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -877,86 +601,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96FEC3498FBF4852B35346478C52FB18"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_newproject.png"
-            "TargetName" = "8:manual_newproject.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97678C322CB64B34B3BC6F69276094D0"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\oballoon_blue_256.png"
-            "TargetName" = "8:oballoon_blue_256.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AACA331BD8544A1BA6F614A5C2E9011"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\obird32.png"
-            "TargetName" = "8:obird32.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AD6EF9CC8D84057B9EF63D0335AACCA"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_record.png"
-            "TargetName" = "8:manual_record.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C20083F5AC541BB9A68D0CA14309F6D"
             {
             "SourcePath" = "8:..\\..\\images\\obi.ico"
@@ -997,26 +641,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4EB93BEC58F4B1A82EE9320D2BF4AAC"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_audioblockeditoptions.png"
-            "TargetName" = "8:manual_audioblockeditoptions.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-record.png"
@@ -1043,26 +667,6 @@
             "TargetName" = "8:go-down.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3C3B23328D14309B510D15630934875"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_mainwindow.png"
-            "TargetName" = "8:manual_mainwindow.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1183,26 +787,6 @@
             "TargetName" = "8:go-previous.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F87DB30E49224DB78DC8BD1A10F23117"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\manual_splitdialog.png"
-            "TargetName" = "8:manual_splitdialog.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"

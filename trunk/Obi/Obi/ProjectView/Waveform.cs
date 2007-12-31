@@ -137,7 +137,7 @@ namespace Obi.ProjectView
             {
                 ushort channels = format.getNumberOfChannels();
                 ushort frameSize = format.getBlockAlign();
-                int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width);
+                int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
                 int bytesPerPixel = samplesPerPixel * frameSize / channels;
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];

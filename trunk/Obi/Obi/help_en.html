@@ -1,714 +1,775 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>Obi User Manual version 0.8.5.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Reference manual for Obi 1.0</title>
     <style type="text/css">
-      body { color: black; background-color: white; font-family: Helvetica, Arial, sans-serif; margin: 3em; text-align: justify }
-      ul.toc { margin-left: 0em; padding-left:0em }
-      ul.toc li, ul.toc li ul li { list-style-type: none}      
-      .infobox { border: 1px solid rgb(25, 100, 25); background-color: rgb(210, 250, 210); padding: 1em; margin: 1em 0 }
-      .obirdbox { border: 1px solid rgb(25, 100, 25); background-color: rgb(190, 255, 190); padding: 0 1em 0 56px; margin: 1em 0; background-image: url("images/obird32.png"); background-repeat: no-repeat; background-position: 12px 12px; }  
-      .obirdbox .hd, h1.title .hd { display:none } 
-      .todo { border: 1px solid red; padding: 1em; margin: 1em 0; color: red }
-      .icon { float: left; margin-right: 1em; }
-      td { border: 1px solid gray; }
-      tr.hd td {font-weight: bold;}  
-      dt { font-weight: bold;}
-      h1,h2,h3,h4,h5,h6 {color:rgb(5,80,5);} 
-      h2,h3{border-bottom: 1px rgb(25,100,25) dotted;}  
-      h1,h2 {margin-top: 3em}
-      h3,h4 {margin-top: 2em}
-      h5,h6 {margin-top: 1em}
-      img { border: 0 }
-      .obivisible {}
-      .wwwvisible {display: none;}
+      .todo { background-color: yellow; font-weight: bold }
     </style>
   </head>
-
   <body>
-
-    <div id="www_version" style="display: none;">
-      <div style="float: right;">
-        <img src="__$strRootHttpDir__images/obird_bobi.png" alt="The Obi logo"/>
-      </div>
-      <p>This is the user manual for <strong>Obi v0.8.5.1 (17 May 2007)</strong></p>
+    <div id="top">
+      <h1>Reference manual for Obi 1.0</h1>
     </div>
-
-    <h1 class="title">
-      <span class="hd">Obi User Manual version 0.8.5.1</span>
-      <img alt="" src="images/obird_bobi.png"/>
-    </h1>
-
-    <p>This is the manual for Obi v0.8.5.1 (17 May 2007)</p>
-
-
-    <div id="www_table-of-contents">
-	    <h2 class="obivisible" id="toc">Table of contents</h2>
-	
-      <ul class="toc">
-        <li><a href="#what">What is Obi?</a></li>
-        <li><a href="#work-area">The work area</a>
-        <ul>
-          <li><a href="#toc-view">The table of contents view</a></li>
-          <li><a href="#strips-view">The strips view</a></li>
-          <li><a href="#transport-bar">The transport bar</a></li>
-        </ul>
+    <p>
+      <code>$Id: manual.html 2786 2007-12-31 10:07:40Z julienq $</code>
+    </p>
+    <div id="toc">
+      <h2>Table of contents</h2>
+      <ul>
+        <li>
+          <a href="#id18412">Views</a>
+          <ul>
+            <li>
+              <a href="#id18421">Strips view</a>
+              <ul>
+                <li>
+                  <a href="#id18435">Strips</a>
+                </li>
+                <li>
+                  <a href="#id18468">Blocks</a>
+                </li>
+                <li>
+                  <a href="#id18487">Different kinds of blocks</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#id18565">TOC view</a>
+            </li>
+            <li>
+              <a href="#id18589">Metadata view</a>
+            </li>
+            <li>
+              <a href="#id18603">Transport bar and peak meter</a>
+            </li>
+          </ul>
         </li>
-        <li><a href="#authoring">Authoring in Obi</a>
-        <ul>
-          <li><a href="#creating-opening">Creating and opening projects</a></li>
-          <li><a href="#project-metadata">Project metadata</a></li>
-          <li><a href="#editing-toc">Editing the table of contents</a>
+        <li>
+          <a href="#id18618">Selection</a>
           <ul>
-            <li><a href="#creating-sections">Creating sections</a></li>
-            <li><a href="#renaming-section">Renaming a section</a></li>
-            <li><a href="#change-level">Changing the level of a section</a></li>
-            <li><a href="#edit-toc">Cut, copy, paste and delete</a></li>
-            <li><a href="#used-sections">Used and unused sections</a></li>
+            <li>
+              <a href="#id18634">What is selectable?</a>
+            </li>
+            <li>
+              <a href="#id18713">Label editing</a>
+            </li>
           </ul>
-          </li>
-          <li><a href="#editing-strips">Editing the audio contents: section strips</a>
-          <ul>
-            <li><a href="#creating-strips">Creating strips</a></li>
-            <li><a href="#renaming-strip">Renaming a strip</a></li>
-            <li><a href="#edit-strips">Cut, copy, paste and delete</a></li>
-          </ul>
-          </li>
-          <li><a href="#editing-blocks">Editing the audio contents: audio blocks</a>
-          <ul>
-            <li><a href="#importing-audio">Importing audio</a></li>
-            <li><a href="#split-merge">Splitting and merging audio blocks</a></li>
-            <li><a href="#phrase-detection">Phrase detection</a></li>
-            <li><a href="#edit-audio-blocks">Cut, copy, paste, delete and move</a></li>
-            <li><a href="#unused-blocks">Used and unused audio blocks</a></li>
-            <li><a href="#section-headings">Section headings</a></li>
-            <li><a href="#page-numbers">Page numbers</a></li>
-            <li><a href="#annotations">Annotations</a></li>
-          </ul>
-          </li>
-          <li><a href="#oops">Oops! Using <q>undo</q> et <q>redo</q></a>
-          <ul>
-            <li><a href="#undo">Undo</a></li>
-            <li><a href="#redo">Redo</a></li>
-          </ul>
-          </li>
-          <li><a href="#transport">Audio playback, recording and navigation</a>
-          <ul>
-            <li><a href="#playback">Playback</a></li>
-            <li><a href="#record">Record</a></li>
-            <li><a href="#nav-phrases">Navigating through phrases</a></li>
-            <li><a href="#nav-sections">Navigating through sections</a></li>
-            <li><a href="#nav-time">Navigating through time</a></li>
-          </ul>
-          </li>
-          <li><a href="#saving">Saving</a></li>
-          <li><a href="#exporting">Exporting to DAISY</a></li>
-          <li><a href="#closing">Closing and exitting</a></li>
-        </ul>
         </li>
-        <li><a href="#preferences">Setting your preferences</a></li>
-        <li><a href="#contributing">Contributing to Obi</a></li>
-        <li><a href="#glossary">Glossary</a></li>
+        <li>
+          <a href="#id18738">Transport bar and peak meter</a>
+          <ul>
+            <li>
+              <a href="#id18742">Transport bar buttons</a>
+            </li>
+            <li>
+              <a href="#id18810">Unedited notes</a>
+            </li>
+            <li>
+              <a href="#id19039">Peak meter</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#id19045">Menus</a>
+          <ul>
+            <li>
+              <a href="#id19053">File menu (<code>Alt+F</code>)</a>
+            </li>
+            <li>
+              <a href="#id19249">Edit menu (<code>Alt+E</code>)</a>
+            </li>
+            <li>
+              <a href="#id19501">View menu (<code>Alt+V</code>)</a>
+            </li>
+            <li>
+              <a href="#id19651">TOC menu (<code>Alt+C</code>)</a>
+            </li>
+            <li>
+              <a href="#id19758">Strips menu (<code>Alt+S</code>)</a>
+            </li>
+            <li>
+              <a href="#id19864">Blocks menu (<code>Alt+B</code>)</a>
+            </li>
+            <li>
+              <a href="#id19978">Transport menu (<code>Alt+R</code>)</a>
+            </li>
+            <li>
+              <a href="#id20060">Tools menu</a>
+            </li>
+            <li>
+              <a href="#id20063">Help menu</a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
-      <p class="todo">TODO: An index would be nice, and an update to the menu reference.</p>
-
-
-    <div id="www_what-is-obi">
-    <div id="what">
-      <h2 class="obivisible">What is Obi?</h2>
-      <p>Obi is a <a href="http://en.wikipedia.org/wiki/Free_software">free software</a> <a href="#def-daisy-niso">DAISY/NISO</a> <a href="#gls_dtb">Digital Talking Book</a> (DTB) production tool.</p>
-      <p class="todo">Free to use, internationalized, accessible; audio-only; DAISY 3 export, etc.</p>
-      <p>Obi is being developed as part of the Urakawa project, where tools are developed to help developers build accessible multimedia applications. Please visit <a href="http://urakawa.sf.net">the Urakawa project website</a> to find out more.</p>
-    </div>
-    </div>
-
-
-
-
-
-
-	<div id="www_the-work-area">
-    <div id="work-area">
-      <h2 class="obivisible">The work area</h2>
-      <p>The image below shows the work area of Obi when a project is open. It consists of three parts: on the left-hand side is the <em>table of contents view</em>, or TOC view for short, where the table of contents for the project is shown; on the right-hand size is the <em>strips view</em> where the actual contents of the book are edited; and on the bottom is the <em>transport bar</em> that controls playback, recording and navigation of the audio in the project.</p>
-      <p class="obivisible"><img src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></p>
-      <p class="wwwvisible"><a href="images/manual_mainwindow.png" title="full-size screenshot" rel="external"><img style="width:400px;height:269px;" src="images/manual_mainwindow.png" alt="the main window, with the TOC tree view at the left, and the strip view at the right" /></a></p>
-      <div id="toc-view">
-        <h3>The table of contents view</h3>
-        <p>Using the TOC view you can navigate in the major structural elements of the project. Typically, this means that you move your current position to a certain section (or chapter if you will) of the DAISY <a href='#gls_dtb'>DTB</a> being recorded.</p>
-        <p>The TOC View is a tree, which means that a section (a node in the tree) can have children. In DTB terminology, this feature is used to describe that a certain section is a sub-section (or a child) of another section.</p> 
-        <p>The TOC View also allows section editing, such as adding and removing sections.</p>
-      </div>
-      <div id="strips-view">
-        <h3>The strips view</h3>
-        <p>The strips view contains <a href='#gls_strip'>strips</a>. A strip represents a section in the DTB. This also means that each strip in the strips view corresponds to one section in the TOC view.</p>
-        <p>The strips view provides a more detailed view of the project. Here, you can navigate not only between the major sections of the book, but also at a much more detailed level, namely among the <a href='#gls_block'>blocks</a> that are contained within each strip. We will learn more about blocks later.</p>
-      </div>
-      <div id="transport-bar">
-        <h3>The transport bar</h3>
-        <p>The transport bar is used to playback the contents of the project and to record new audio. It has controls similar to those found on hardware or software audio players and recorders such as play, pause, stop, record, fast forward and rewind as well as more specific navigation options such as next phrase or previous section. The transport bar also displays time information and a text-version of the VU meter which can be picked up by screen readers.</p>
-      </div>
-    </div>
-    </div>
-
-
-
-    <div id="www_authoring-in-obi">
-    <div id="authoring">	
-      <h2 class="obivisible">Authoring in Obi</h2>
-      <p>Without further ado, let's see how to use Obi to author a new project or complete a project in progress.</p>
-      <div id="creating-opening">
-        <h3>Creating and opening projects</h3>
-        <p>A project in Obi contains all of the audio data and structure information necesary to create a DAISY/NISO books. When you start Obi for the first time, no project will be open, so you will need to create a new project, or open an existing one.</p>
-        <div>
-          <h4>Creating a new project</h4>
-          <p>To create a new project, select <q>New project</q> from the <q>File</q> menu, or press Ctrl+N. A dialog will appear as shown below:</p>
-          <p class="obivisible"><img src="images/manual_newproject.png" alt="the new project dialog" /></p>
-          <p class="wwwvisible"> <a rel="external" href="images/manual_newproject.png" title="full-size screenshot"><img style="width:400px;height:155px;" src="images/manual_newproject.png" alt="the new project dialog" /></a></p>
-          <dl>
-            <dt>Title</dt>
-            <dd>The title of your project.</dd>
-            <dt>Automatically create a title section with this title</dt>
-            <dd>If you check this option, then the project will be created with a top-level section with this title. Otherwise, a completely empty project will be created.</dd>
-            <dt>File</dt>
-            <dd>The location on your hard drive where your project will be saved. You can type in a location or click on the <q>Select</q> button to bring the file browser and select a location.</dd>
-          </dl>
-          <div class="obirdbox">
-            <div class="hd">Obird suggestion</div> 
-            <p>Are you wondering what a XUK file is? I suggest that you read about the <a href='#def-xuk'>XUK File format</a> in the glossary!</p>
-          </div>
-        </div>
-        <div>
-          <h4>Opening an existing project</h4>
-          <p>To open an existing project that was created previously with Obi, select <q>Open project</q> in the <q>File</q> menu, or press Ctrl+O. You will be presented with the familiar Windows file browser where you can select a <code>.xuk</code> Obi project file.</p>
-          <p>Obi remembers the projects that you have previously worked on, so you can also select <q>Open recent project</q> in the <q>File</q> menu to choose from a list of the projects recently opened.</p>
-          <p>Finally, Obi can be set to start automatically with the last open project; see <a href="#preferences">Setting your preferences</a> below.</p>
-        </div>
-      </div>
-      <div id="project-metadata">
-        <h3>Project metadata</h3>
-        <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
-        <p>To view or edit the metadata of your project, select <q>Metadata</q> in the <q>Edit</q> menu, or press Alt+M to bring up the dialog shown below:</p>
-        <p class="obivisible"><img src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></p>
-        <p class="wwwvisible"><a rel="external" href="images/manual_metadata.png" title="full-size screenshot"><img style="width:400px;height:223px;" src="images/manual_metadata.png" alt="screenshot of the metadata dialog" /></a></p>
-        <dl>
-          <dt>Title</dt>
-          <dd>A name given to the resource. Typically, Title will be a name by which the resource is formally known.</dd>
-          <dt>Author</dt>
-          <dd>An entity primarily responsible for making the content of the resource. Examples of Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity.</dd>
-          <dt>Publisher</dt>
-          <dd>An entity responsible for making the resource available. Examples of Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity.</dd>
-          <dt>Identifier</dt>
-          <dd>An unambiguous reference to the resource within a given context.</dd>
-          <dt>Language</dt>
-          <dd>A language of the intellectual content of the resource.</dd> 
-        </dl>
-        <div class="obirdbox">
-          <div class="hd">Obird suggestion</div>  
-          <p>DAISY DTB metadata uses the Dublin Core metadata standard. You may want to learn more about <a href="http://www.daisy.org/dkn">Dublin Core at the DAISY Knowledge Network</a> and about <a href="http://dublincore.org/documents/dces/">Dublin Core at the Dublin Core Metadata Initiative</a>.</p>
-        </div>
-        <p>There is another dialog to edit metadata which allows you to add and remove more metadata items. Select <q>Full metadata</q> in the <q>Edit menu</q> to edit this dialog.</p>
-        <p class="todo">There is a lot of work going on in this dialog. It will also be merged with the the simple view to create a single dialog for all the metadata editing in the project. A screenshot will be provided when the design is more stable.</p>          
-      </div>
-      <div id="editing-toc">
-        <h3>Editing the table of contents</h3>
-        <p class="todo">Explain sections, subsections. Deep edits: changes made to a section are made to all subsections. No audio in this part, audio sync is done in strips view.</p>
-        <p>
-            In Obi, the content is structured in sections, where each section can contain phrases
-            and other sections. Only the sections are displayed in the table of contents. By
-            nesting sections in each other, a deep navigation structure can be created.
-            By having all the sections in the table of contents expanded (this being the default),
-            you can see the entire structure of the project, and quickly navigate to any part
-            of it.</p>
-          <p>
-              When modifying sections in the table of contents, the entire tree of sections and
-              phrases that are contained within it is affected. This means that deleting a section
-              with a lot of subsections can quickly remove a lot of content, and thus should only
-              be done with care. Also, remember that "Undo" (CTRL+Z) will restore the projects
-              in most cases.</p>
-          <p>
-              Each section in the table of contents corresponds one strip in the strips view.
-              Performing modifications on a section in the TOC also affect the corresponding strip.
-              Since operations in the TOC affect the entire subtree of the presentation, the strips
-              representing any subsections will also be affected by operations on their "parent"
-              section.</p>
-          <p class="obivisible">
-              <img src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move" id="IMG1"/></p>
-        <p class="wwwvisible"><a rel="external" href="images/manual_toceditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 250px;" src="images/manual_toceditoptions.png" alt="the TOC context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
-        <div id="creating-sections">
-          <h4>Creating sections</h4>
-            <p>
-                There are two ways of adding sections in Obi: as sections on the same level as the
-                current section, or as subsections of the currently selected section. A newly created
-                section is named "Untitled section", and should likely be renamed. A section cannot
-                have no name.</p>
-
-            <h5>Insert section (CTRL+A)</h5>
-            <p>
-                Insert section will generally add a new section to the presentation just before
-                whatever is currently selected. If nothing is selected, a new section will be created
-                at the end of the presentation.</p>
-
-            <h5>
-                Add sub-section (CTRL+B)</h5>
-            <p>
-                Add sub-section will add a new sub-section as the last child of the currently selected section.
-            </p>
-        </div>
-        <div id="renaming-section">
-          <h4>Renaming a section</h4>
-          <p>To modify the name of a section, select a section in the TOC view and choose <q>Rename section</q> in the <q>TOC</q> menu, or press F2. The label for the section will be selected and you can edit it. You can also simply click on the label of the section that you want to edit until the label gets selected. Note that double-clicking the section will navigate to
-              the matching strip, instead of enabling renaming.</p>
-        </div>
-        <div id="change-level">
-          <h4>Changing the level of a section</h4>
-            <p>
-                A section may as mentioned contain other sections, that may again contain further
-                sections. This nested structure of sections may be edited, by moving a section into
-                or out of another section. Moving sections in or out in this manner does no affect
-                the playback order of the presentation.</p>
-            <h5>Move in</h5>
-            <p>
-                To move a section in, select it and press CTRL+SHIFT+RightArrow. This causes the
-                selected section (and any subsection it might have) to be moved 1 level deeper (to
-                the right)
-                in the TOC, and makes the selected section a child of it's former preceding sibling.
-                For this to work, the selected section must have a preceding sibling. This makes
-                it impossible to move the first sub-section of a section further in (to the right).</p>
-            <h5>Move out.</h5>
-            <p>
-                To move a section out, select it and press CTRL+SHIFT+LeftArrow. A section can never
-                be moved more out (to the left) than the first section of the presentation.</p>
-        </div>
-        <div id="edit-toc">
-          <h4>Cut, copy, paste and delete</h4>
-          <p>The familiar editing operations are available when you are working in the TOC panel (<em>i.e.</em>, when a section is selected in the TOC panel) from the <q>Edit</q> menu. All edits are <em>deep</em>, so that they affect not only the section that was selected, but all of its subsections as well.</p>
-          <h5>Cut section (Ctrl+X)</h5>
-          <p>The selected section is removed from the project and stored in the clipboard to be pasted later.</p>
-          <h5>Copy section (Ctrl+C)</h5>
-          <p>
-              A copy of the selected section is stored in the clipboard, allowing it to be pasted later.</p>
-          <h5>Paste section (Ctrl+V)</h5>
-          <p>When the clipboard contains a section (which was previously cut or copied), it can be pasted as a child of the selected section, along with all of its contents (subsections and recorded audio). Note that "Paste section" and "Insert section" are two very
-              different concepts in Obi.</p>
-          <h5>Delete section (Del)</h5>
-          <p>The selected section is deleted from the project.</p>
-        </div>
-        <div id="used-sections">
-          <h4>Used and unused sections</h4>
-          <p>While editing your project, you may want to keep some parts that are not ready or necessary for the final book but may still come handy later on. You can then mark some parts of the project as being <em>unused</em>, so that these parts will not be exported or played back. To mark a selected section as being unused, choose "<q>Mark section as unused"</q> in the <q>TOC</q> menu, or press Ctrl+K. The section will be grayed-out to show its status.</p>
-          <p>Similarly, you can turn a selected unused section back to <em>used</em> status again by choosing "<q>Mark section as used"</q> in the <q>TOC</q> menu, or pressing Ctrl+K.</p>
-          <h4>Navigating the TOC</h4>
-            <p>
-                The TOC can be navigated using the arrow keys. </p>
-            <p>
-                The "Right" arrow key generally moves focus deeper into the tree. When focus is on a collapsed section,
-                the first press of "Right" will expand the section, and the second press of "Right"
-                will move focus to the first child section. Correspondingly, the "Left" arrow key
-                will move focus to the parent of the currently selected element. The seconds press
-                of "Left" will collapse this section of the tree, hiding the section that previously
-                had focus.</p>
-            <p>
-                The "Up" and "Down" arrow keys generally
-                move to the preceding or following section,
-                ignoring depth, skipping any collapsed items. 
-            </p>
-        </div>
-      </div>
-      <div id="editing-strips">
-        <h3>Editing the audio contents: section strips</h3>
-        <p class="todo">Strips introduction. Correspond to one section (but not subsections!) Has content in the form of audio blocks.</p>
-          <p>
-              The strips view is the detailed graphical representation of your project. In this
-              area, it is possible to work with strips and blocks. Each strip represents the container
-              for the audio within a section. Each block within a strip represent one navigable
-              length of audio.</p>
-          <p>
-              It the strips view, the sections are shown without their nesting. The depth of the
-              sections are hinted at by the size of the caption on the strip, but any modifications
-              done to the strip will not affect the contents of strips that in effect are children
-              of the matching section.</p>
-
-          <h4>Keyboard navigation of the strips view</h4>
-          <p>
-              When in focus, the strips view can be navigated using the arrow keys.
-          </p>
-          <p>
-              Pressing the "Up" key select the preceding section. If focus is currently on a block
-              of audio, the containing section will get focus.</p>
-          <p>
-              Pressing the "Down" key selects the following section.</p>
-          <p>
-              Pressing "Right" will select the next audio block. When focus is on the last audio
-              block of a strip, focus will be moved to the next section, or the first audio block
-              of the next section if any such exists.</p>
-          <p>
-              Pressing "Left" works in the same manner as pressing "Right", except that the direction
-              is reversed.</p>
-          <p>
-              In the image below, the first strip has been selected. Note the red border around
-              it.</p>
-
-          <h4>Mouse navigation of the strips view</h4>
-          <p>
-              You can select the audio blocks or strips of the strips view by clicking them. Right-clicking
-              brings up a menu. The contents of the right click menu depends on what was selected
-              before right clicking, so be sure to have focus on the correct element in advance.
-              The annotation blocks (light blue in the image below) cannot be selected directly.
-              These blocks are implicitly selected when the audio block just below it is in focus.</p>
-          <p>
-              Once the project grows larger, scroll bars wil appear at right side of the view
-              for vertical scrolling, and a similar bar will appear at the bottom for horizontal
-              scrolling.</p>
-              
-        <p class="obivisible"><img src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
-        <p class="wwwvisible"><a rel="external" href="images/manual_stripeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 242px;" src="images/manual_stripeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
-        <div id="creating-strips">
-          <h4>Creating strips</h4>
-          <p>To add a new strip to the strips view, choose <q>Insert strip</q> in the <q>Strips</q> menu, or press Ctrl+A. A new strip will be inserted before, and at the same level as, the selected strip, or at the top level and at the end of the project if no
-              strip is selected.</p>
-          <p>The new strip has a default title that can be edited straight away. Press enter to validate the title, or escape if you do not want to change it.</p>
-        </div>
-        <div id="renaming-strip">
-          <h4>Renaming a strip</h4>
-          <p class="todo">BTW we should explain selection somewhere. Selecting in strip view or TOC view, audio block or strip.</p>
-          <p>To rename a selected strip, choose <q>Rename strip</q> in the <q>Strips</q> menu, or press F2. The strip title (which corresponds to the section title) can be edited. Press enter to validate the new name or escape to cancel.</p>
-        </div>
-        <div id="edit-strips">
-          <h4>Cut, copy, paste and delete</h4>
-          <p class="todo">Shallow operations only on the selected strip. Explain releveling of sections when changes happen.</p>
-          <h5>Cut strip (Ctrl+X)</h5>
-          <p>The selected strip is removed from the project and stored in the clipboard, allowing
-              it to be pasted later.</p>
-          <h5>Copy strip (Ctrl+C)</h5>
-          <p>
-              A copy of the selected strip is stored in the clipboard, allowing it to be pasted later.</p>
-          <h5>Paste strip (Ctrl+V)</h5>
-          <p>When the clipboard contains a strip (which was previously cut or copied), it can be pasted as the first child of the section corresponding to the selected strip. When the clipboard contains a section with subsections, all of the subsections are pasted as strips as well.</p>
-          <p class="todo">Reword this and check that this is correct behavior</p>
-          <h5>Delete strip (Del)</h5>
-          <p>The selected strip is deleted from the project.</p>
-        </div>
-      </div>
-      <div id="editing-blocks">
-        <h3>Editing the audio contents: audio blocks</h3>
-        <p class="todo">Audio blocks inside strips.</p>
-        <p class="obivisible"><img src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></p>
-        <p class="wwwvisible"><a rel="external" href="images/manual_audioblockeditoptions.png" title="full-size screenshot"><img style="width: 400px; height: 282px;" src="images/manual_audioblockeditoptions.png" alt="the audio block context menu, showing editing operations such as add, cut, copy, delete, rename and move"/></a></p>
-        <div id="importing-audio">
-          <h4>Importing audio</h4>
-          <p>The first way to add content is to import existing audio files to your project. Obi supports only uncompressed RIFF/WAVE files, which are usually named <code>.wav</code>.</p>
-          <p>To import audio, select a strip or an audio block, then choose <q>Import audio files</q> from the <q>Strips</q> menu. This will bring up the Windows file chooser where you can choose one or more files to import. A new audio block will be created for every audio file that you import.</p>
-          <p>If a strip was selected, the new audio blocks are added at the end of the strip. If an audio block was selected, the new audio blocks are added before the selected block. The first of the new blocks is selected so that they can easily be listened to for verification.</p>
-          <div class="obirdbox">
-            <div class="hd">Obird suggestion</div>
-            <p>Of course you can also record your own audio directly from Obi! Have a look in the <a href="#record">Record</a> section to learn more.</p>
-          </div>
-        </div>
-        <div id="split-merge">
-          <p class="todo">BTW, it would be nice to have before/after screenshots for all these...</p>
-          <h4>Splitting and merging audio blocks</h4>
-          <p>Splitting and merging are the two most useful operations for fine audio editing as they will let you change the contents of the audio blocks in the project.</p>
-          <h5>Splitting an audio block</h5>
-          <p>An audio block can be split into two audio blocks by selecting a time in the audio of the block at which the separation should occur. This can be used to separate several phrases that were part of a single audio files or were not correctly separated.</p>
-          <p class="todo">Basically write the description of the dialog. Also, update the screen shot when the dialog is cleaned-up...</p>
-          <p class="obivisible"><img src="images/manual_splitdialog.png" alt="the split dialog"/></p>
-          <p class="wwwvisible"><a rel="external" href="images/manual_splitdialog.png" title="full-size screenshot"><img src="images/manual_splitdialog.png" alt="the split dialog"/></a></p>
-          <h5>Quick-split</h5>
-          <p>Quick-split works like split, except that it happens on the fly while audio is playing. When playback is in progress, select <q>Quick split audio block</q> from the <q>Strips</q> menu, or press Ctrl+Shift+P. The currently playing block will be split at the time when the command was issued, and playback will continue.</p> 
-          <h5>Merging two audio blocks</h5>
-          <p>Merging two audio blocks simply merge the audio contained in two consecutive blocks into a single block, so that two phrases become just one. This is useful if a phrase was mistakenly split in two, or if a split was done at an incorrect time.</p>
-          <p>To merge two audio blocks, select a block that follows another block, then choose <q>Merge with previous audio block</q> from the <q>Strips</q> menu, or press Ctrl+M. The selected block and the one before will be merged.</p>
-        </div>
-      </div>
-      <div id="phrase-detection">
-        <h4>Phrase detection</h4>
-        <p class="todo">Phrase detection: detect silence between phrases of a certain length below a certain amplitude threshold. Leave leading silence before every sentence. Need a silence phrase (currently must be the first one in the whole project) of a few seconds of ambient noise. Dialog takes time to appear as level must be computed first, then splitting takes time if long asset to split.</p>
-        <p class="obivisible"><img src="images/manual_phrasedetection.png" alt="the phrase detection dialog"/></p>
-        <p class="wwwvisible"><a rel="external" href="images/manual_phrasedetection.png" title="full-size screenshot"><img src="images/manual_splitdialog.png" alt="the phrase detection dialog"/></a></p>
-      </div>
-      <div id="edit-audio-blocks">
-        <h4>Cut, copy, paste, delete and move</h4>
-          <h5>Cut audio block (Ctrl+X)</h5>
-          <p>The selected audio block is removed from the project and stored in the clipboard to be pasted later.</p>
-          <h5>Copy audio block (Ctrl+C)</h5>
-          <p>The selected audio block is stored in the clipboard to be pasted later.</p>
-          <h5>Paste audio block (Ctrl+V)</h5>
-          <p>When the clipboard contains an audio block (which was previously cut or copied), it can be pasted in at the end of the selected strip, or before the selected audio block.</p>
-          <h5>Delete audio block (Del, the delete key)</h5>
-          <p>The selected audio block is deleted from the project.</p>
-          <h5>Move audio blocks (Ctrl+Shift+Left arrow key, Ctrl+Shift+Right arrow key)</h5>
-          <p>Audio blocks can be quickly moved inside their strip using two move commands, for moving them forward and backward. A block cannot move to a different strip in this way; it has to be cut and then pasted.</p>
-        </div>
-        <div id="unused-blocks">
-          <h4>Used and unused audio blocks</h4>
-          <p>We have seen how to mark sections as being unused, now you can do the same for audio blocks. To mark a selected audio block as being unused, choose <q>Mark audio block as unused</q> in the <q>Strips</q> menu, or press Ctrl+K. The block will turn gray to show its status. The block will not play when playing back the contents of the book, and will not be exported to DAISY.</p>
-          <p>Similarly, you can turn a selected unused audio block back to <em>used</em> status again by choosing <q>Mark audio block as used</q> in the <q>Strips</q> menu, or pressing Ctrl+K.</p>
-        </div>
-        <div id="section-headings">
-          <h4>Section headings</h4>
-          <p>The section heading is the audio block corresponding to the title of the section. This is the audio label for a section in the table of contents.</p>
-          <p>By default, Obi picks the first used audio block as the heading; but this can be set to a different block (which must be part of the current section though) by choosing <q>Mark audio block as section heading</q> in the <q>Strips</q> menu, or pressing Ctrl+F. There can be only one heading per section, so a possible previous heading is unmarked.</p>
-          <p>An audio block that is marked as a section heading can also be unmarked by choosing <q>Unmark audio block as section heading</q> in the <q>Strips</q> menu, or pressing Ctrl+F. The section will then have the first used audio block as a heading.</p>
-          <p>The figure below shows the detail of a section strip where the section audio block was marked as a heading. It is shown in green yellow, compared to the pink color of regular audio blocks (notice that the preceding block is a page.)</p>
-          <p class="obivisible"><img src="images/manual_heading.png" alt="A section heading block" /></p>
-          <p class="wwwvisible"> <a rel="external" href="images/manual_heading.png" title="full-size screenshot"><img src="images/manual_heading.png" alt="A section heading block" /></a></p>
-
-        </div>
-        <div id="page-numbers">
-          <h4>Page numbers</h4>
-          <p>Page numbers can be set on any audio block. Obi manages page numbers automatically; if you add a page number mark to an audio block in your project, page numbering will be updated so that the page numbers are in the sequence of the audio blocks in the project, starting from page number 1. Future versions of Obi will give more control about page numbering.</p>
-          <p>To set a page number mark on a selected audio block, choose <q>Set page number</q> in the <q>Strips</q> menu, or press Ctrl+G. The audio block will then show a page number.</p>
-          <p>To remove a page number from a selected audio block, choose <q>Remove page number</q> in the <q>Strips</q> menu, or press Ctrl+Del (the delete key.) The page number will disappear from the block.</p>
-          <p>When your project has page numbers, you can quickly move to any block with a page number using <q>Go to page</q> from the <q>Strips</q> menu, or pressing Alt+G. You will be presented with a list of all the pages in your book; if you select one, the selection will move to the corresponding audio block.</p>
-          <p class="todo">Add screenshot of the goto page dialog</p>
-        </div>
-        <div id="annotations">
-          <h4>Annotations</h4>
-          <p>Annotations are small text notes that are used only by Obi and are not exported to DAISY. These can be used for any purpose, for instance for marking parts that still need to be edited. Annotations are represented by annotation blocks similar to audio blocks but they cannot be selected; all operations on annotations are done by selecting the audio block that under the annotation.</p>
-          <p>To edit the annotation for a selected audio block, choose <q>Edit annotation</q> from the <q>Strips</q> menu, or press F2. You can then edit the annotation by typing directly in the text field; press return to when you are finished or escape to cancel the change.</p>
-          <p>To remove an annotation on a selected audio block, choose <q>Remove annotation</q> from the <q>Strips</q> menu, or press Ctrl+Del (the delete key.) You can also edit the annotation and clear all the text.</p>
-          <p>Because annotations are not selectable, an option is given for user of assistive technologies such as screen readers to force the focus on the annotation so that the text can be accessed. To do so, choose <q>Focus on annotation</q> from the <q>Strips</q> menu, or press Alt+Shift+A.</p>
-        </div>
-      </div>
-      <div id="oops">
-        <h3>Oops! Using <q>undo</q> et <q>redo</q></h3>
-        <p class="todo">Describe virtual edits, no changes to files made until saved.</p>
-        <div id="undo">
-          <h4>Undo</h4>
-          <p><em>Undo</em> is a very important command as it allows you to undo the last change that you made. When undo is enabled, the actual menu item will describe exactly what is to be undone, for instance if you delete a section, then the menu item will read <em>undo delete section</em>. Undo will restore your project to the same state that it was in just before you did this action (in this case, the section will be undeleted and restored exactly where it used to be.)</p>
-          <p>To undo the last operation, choose <q>Undo</q> from the <q>Edit</q> menu, or press Ctrl+Z.</p>
-          <p>Obi will remember all the changes that you have made since you last saved (or since you created) your project, so that undoing twice will undo the last two commands, and so on. You can then undo every change and your project will be restored to its unmodified state. Remember this shortcut, it is very handy!</p>
-        </div>
-        <div id="redo">
-          <h4>Redo</h4>
-          <p>If you have undone a command, you can redo it. Obi will also remember the commands that you have undone so that you can recreate all changes that you have made. Be careful however; once you make a new change to the project, all the undone commands are discarded so you won't be able to redo them anymore (this is because your project is now in a different state that it was before you made that change, and therefore the context of undone commands may be inconsistent.)</p>
-          <p>To redo the last undone operation, choose <q>Redo</q> from the <q>Edit</q> menu, or press Ctrl+Y.</p>
-        </div>
-      </div>
-      <div id="transport">
-        <h3>Audio playback, recording and navigation</h3>
-        <p>Obi is audio playback and recording tool and has basic playback, recording and navigation features that you can use when editing your project, but also to listen to a completed or in-progress project to test what the final result will sound like to your future readers.</p>
-        <div id="playback">
-          <h4>Playback</h4>
-          <h5>Play (Space)</h5>
-
-          <p><img src="images/icons/media-playback-start.png" alt="play icon" class="icon"/>To start playing the audio in the project, press the play button in the transport bar or press the spacebar. If nothing is selected, playback will start from the beginning. If a section or a strip is selected, it will start from the first audio block in the selected section or strip. If an audio block is selected, it will start from this audio block.</p>
-          <p>All audio blocks will be played in the order of the project until the last block has played, or until interrupted. Every time playback moves to a new block, the currently playing block is selected. Unused sections and audio blocks will be skipped.</p>
-          <p>You can also play a single block, or a single strip, <em>including</em> unused blocks, by choosing <q>Play selection</q> in the <q>Transport</q> menu, or pressing Ctrl+Shift+Space. You can also do the same by double-clicking a block or a strip.</p>
-          <p>Most editing operations are disabled while playing audio; an exception being quick-split so that splitting long blocks can be easily done on-the-fly. To make an edit at the currently playing point in the project, please pause first (see below.)</p>
-          <h5 style="clear:both">Pause (Alt+Shift+Space)</h5>
-          <p><img src="images/icons/media-playback-pause.png" alt="pause icon" class="icon"/>Playback can be paused at anytime by pressing the pause button. The audio block that was currently playing stays selected, so that it serves as context for editing. When an edit is done while paused, playback will generally stop (see below.)</p>
-          <h5 style="clear:both">Stop (Esc, the escape key)</h5>
-          <p><img src="images/icons/media-playback-stop.png" alt="stop icon" class="icon"/>To stop playback, press the stop button. The selection is restored to what it was before playback started. If you stop when not playing, any selected object gets deselected.</p>
-        </div>
-        <div style="clear:both" id="record">
-          <h4>Record</h4>
-          <p><img src="images/icons/media-record.png" alt="record icon" class="icon"/>New audio can be recorded by Obi. To record new audio, first select an audio block <em>before</em> which to record (new audio blocks will be created before the selected block), or a strip at the end of which to record (new audio blocks will be created at the end of the selected strip.) If no selection is made before recording, a new section will be created automatically.</p>
-          <p>Once the selection is made, press the record button, or Ctrl+R. This will bring up the record dialog shown below:</p>
-          <p style="clear:both" class="obivisible"><img src="images/manual_record.png" alt="the record dialog"/></p>
-          <p class="wwwvisible"><a rel="external" href="images/manual_record.png" title="full-size screenshot"><img src="images/manual_record.png" alt="the record dialog"/></a></p>
-        </div>
-        <p class="todo">Describe the dialog. Start listening, press record to record. Create a new phrase with phrase button, new page with page. Explain VU meter too btw.</p>
-          <p>
-              Obi has 3 recording modes to choose from: Dialog based recording, inline recording
-              with insertion and inline recording with truncation. You select the recording mode
-              that you want to use in the dropdown list to the far right of the transport bar.</p>
-          <p>
-              The selection in the strips
-              view determine where recording starts. If a section
-              is selected, the recorded audio will be appended to this section. If an audio block
-              is selected, the new audio will be created at this position, pushing the selected
-              audio block back. When nothing is selected, a new section will be created at the
-              end of the presentation for the recorded audio.</p>
-          <h4>
-              Dialog based recording.</h4>
-          <p>
-              The default setting of Obi is to open a new dialog when recording. This dialog is
-              modal, meaning that no other Obi functions are available while the dialog is shown.
-          </p>
-          <p>
-              To activate this form of recording, you have to make sure that Obi is not playing.
-              Should Obi be playing when this form of recording is selected, all clicks on the
-              red Record button are ignored.</p>
-          <p>
-              When first opening
-              this dialog, it is in listen mode. This means that the record button on this form
-              has to be activated before the actual recording begins.
-              Once recording is active, you have a few options for creating new audio blocks beyond
-              the first.</p>
-          <h6>
-              Pause</h6>
-          <p>
-              The Pause button replaces the Record button once recording has been started. Pressing
-              the Pause button hides the Record button, and also stops recording to the current
-              audio block. If Record is pressed again, a new audio block is begun.</p>
-          <h6>
-              Next phrase</h6>
-          <p>
-              Pressing Next Phrase during recording stop recording to the current audio block,
-              and starts recording of a new audio block.</p>
-          <h6>
-              Page Mark</h6>
-          <p>
-              Pressing Page Mark accomplises the same as pressing Next Phrase, and marks the finished
-              audio block as a page maker.</p>
-          <h6>
-              Begin</h6>
-          <p>
-              Begin currently does nothing.</p>
-          <h6>
-              Stop/Close</h6>
-          <p>
-              Stop/Close hides the recording dialog. If the dialog was recording, the audio block
-              is finished in a similar manner as pressing Pause first would accomplish.</p>
-          <h5>
-              Record by inserting.</h5>
-          <p>
-              By selecting "Record by insertion", you can bypass the record dialog. This selection
-              changes the behavior of the buttons on the transport bar.</p>
-          <p>
-              Pressing the red "Record" button will start recording an once. While recording,
-              many of Obi's functions are diabled. Recording will continue untill you press the
-              "Stop" button. If "Next Phrase" is pressed during recording, Obi will finish the
-              audio block it is currently recording to and begin a new one.</p>
-          <p>
-              If Obi is playing when "Record is pressed, the playing audio block will be split
-              at the current playback position, and any newly recorded audio blocks will appear
-              between the created parts.</p>
-          <h5>
-              Record by overwriting</h5>
-          <p>
-              Selecting "Record by overwriting" allows you to break into a recorded section at
-              some point, and replace the recorded audio after that point. This recording mode
-              works in much the same manner as "Record by inserting". The only difference is that
-              any audio that might be in the section after the selection will be deleted when
-              "Record" is pressed. This manner of recording is sometimes referred to as "punch-in
-              recording".</p>
-        <div id="nav-phrases">
-          <h4>Navigating through phrases</h4>
-          <p><img src="images/icons/go-previous.png" alt="move to previous phrase icon" class="icon"/><img src="images/icons/go-next.png" alt="move to next phrase icon" class="icon"/>You can move from phrase to phrase in the book, <em>i.e.</em> from audio block to audio block, using the <q>previous phrase</q> and <q>next phrase</q> buttons in the transport bar, or the left and right arrow keys.</p>
-          <p class="todo">Moving backward to beginning of current block vs. previous block. Start when stopped, but not when paused?</p>
-        </div>
-        <div id="nav-sections">
-          <h4>Navigating through sections</h4>
-          <p><img src="images/icons/go-up.png" alt="move to previous section icon" class="icon"/><img src="images/icons/go-down.png" alt="move to next section icon" class="icon"/>You can move from section to section in the book, <em>i.e.</em> from strip to strip, using the <q>previous section</q> and <q>next section</q> buttons in the transport bar, or the up and down arrow keys.</p>
-          <p class="todo">Moving backward to beginning of current block vs. previous block. Start when stopped, but not when paused?</p>
-        </div>
-        <div id="nav-time">
-          <h4>Navigating through time</h4>
-          <p><img src="images/icons/media-seek-backward.png" alt="rewind icon" class="icon"/><img src="images/icons/media-seek-forward.png" alt="fast forward icon" class="icon"/>You can playback faster both forward and backward to navigate through long audio blocks using the fast forward and rewind buttons. When clicked, these buttons will increase and change the direction of the playback speed. To go back to normal playback, press pause or play.</p>
-        </div>
-      </div>
-      <div id="saving">
-        <h4>Saving</h4>
-        <p>Remember to save your project often! All unsaved changes will be lost if you quit Obi withouth saving (or, unfortunately, if Obi crashes.) To save your project, choose <q>Save project</q> from the <q>File</q> menu, or press Ctrl+S. When your project is saved, all changes to the audio files are committed to disk, so it is not possible to undo your changes anymore.</p>
-        <p>You can also save your project to a different name or a different location, by choosing <q>Save project as</q> from the <q>File</q> menu, or pressing Ctrl+Shift+S. You will have to choose a location for your new file.</p>
-        <p>You may also want to cancel all of the changes that you made since you last saved. This can be done quickly by choosing <q>Discard changes</q> from the <q>File</q> menu or pressing Ctrl+D. Be careful as this cannot be undoe.</p>
-      </div>
-      <div id="exporting">
-        <h4>Exporting</h4>
-        <p>When your project is ready to be distributed as a DAISY book, or you want to test it in a DAISY player, you can export it to a DAISY book by choosing <q>Export as DAISY</q> from the <q>File</q> menu, or pressing Ctrl+E. You will have to choose a directory in which to export your book. Note that changes to audio files need to be saved before export can take place, so if you don't want to save your project just yet, you shouldn't export it right now.</p>
-      </div>
-      <div id="closing">
-        <h4>Closing and exitting</h4>
-        <p>Obi can work with a single project open at once at the moment. If you want to work on a different project, you need to close the current project, by choosing <q>Close project</q> in the <q>File</q> menu, or pressing Ctrl+W. If changes were made, you will be asked if you want to save them before closing. Note that if you want to open a different project, you can do so directly without having to close the current project first.</p>
-        <p>Lastly, when you are done with Obi, you can qui by choose <q>Exit</q> from the <q>File</q> menu, or pressing Alt+F4. Once again, you will be given the change to save changes to the current project if there were any.</p>
-      </div>
-
-</div>
-
-
-
-
-    <div id="www_setting-your-preferences">
-    <div id="preferences">	
-	      <h2 class="obivisible">Setting your preferences</h2>
-      <p>Let's do a little bit of bookkeeping first. Because DAISY books are usually meant to be part of a larger library of books, it is important to add some <em>metadata</em>, that is information about the book, so that it can be found later on.</p>
-      <p class="todo">Audio preferences (used for recording, but set once audio is already present); project preferences (locations, enable/disable tooltips, open last project on startup); user profile (name, organization, language.)</p>
-    </div>
-    </div>
-
-
-
-
-<div id="www_contributing-to-obi">
-    <div id="contributing">    	
-	      <h2 class="obivisible">Contributing to Obi</h2>
-      <p>Please help by reporting bugs! When you notice something wrong, please choose <q>Report bug</q> in the <q>Help</q> menu, or press Ctrl+Shift+R. If you are connected to the Internet, you will be taken to the Sourceforge bug tracker for Obi where you can file a new bug. You may want to browse existing bugs first to see if this issue was reported before. Please select the <q>Obi</q> category in the <q>Category</q> combo box, then give a brief description in the <q>Summary</q> text box, and a detailed description of the problem, including steps to reproduce the bug, expected outcome, and observed outcome.</p>
-    </div>
-    </div>
-
-
- 
-
-
-    <div id="www_obi-glossary">
-	    <div id="glossary">
-		     <h2 class="obivisible">Glossary</h2>
-<div class="obirdbox">
-  <div class="hd">Obird suggestion</div>  
-  <p>If the word you are looking for does not exist in this glossary, I suggest that you have a look in the <a href="http://www.daisy.org/dkn">DAISY Knowledge Network</a>.</p>
-</div>
-
-<dl>
-  <dt id="gls_audioblock">Audio Block</dt>
-  <dd>
-  A term used in Obi to describe segments of audio. See also <a href='#gls_block'>Block</a> and <a href='#gls_phrase'>Phrase</a>.
-  </dd>
-  
-  <dt id="gls_block">Block</dt>
-  <dd>
-  A term used in Obi to describe the smallest content unit of the <a href='#gls_dtb'>DTB</a> being produced.<br/> 
-  A block can for example be an <a href='#gls_audioblock'>Audio Block</a>, in which case it is equivalent to a <a href='#gls_phrase'>phrase</a>.<br/>
-  Blocks are organised in <a href='#gls_strip'></a>Strips.  
-  </dd>
-  
-  <dt>DAISY</dt>
-  <dd>
-  An acronym that stands for Digital Accessible Information SYstem.<br/> 
-  Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
-  </dd>
-  
-  <dt id="def-daisy-niso">DAISY/NISO</dt>
-  <dd>
-  A name used to describe the <em>type</em> of <a href='#gls_dtb'>DTB</a> produced by Obi, in other words, the particular standard specification used.<br/> 
-  Read more at <a href="http://www.daisy.org/z3986/">daisy.org standards area</a> and the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
-  </dd>
-  
-  <dt id="gls_dtb">DTB</dt>
-  <dd>
-  An acronym that stands for Digital Talking Book. 
-  Read more at the <a href="http://www.daisy.org/about_us/">daisy.org introduction area</a>.
-  </dd>
-  
-  <dt>Obird <img src="images/obird32.png" alt="obird logo"/> </dt>
-  <dd>Obird is the Obi mascot. The Obird logo consists of a picture of Obird's green head, where she is wearing a headset with a microphone. Although Obird is a Parakeet, she can narrate very well.</dd>
-    
-  <dt>Phrase</dt>
-  <dd>
-  A term used to describe a small segment of audio within a DAISY DTB.<br/> 
-  A phrase is typically equivalent to a spoken sentence, or a part of a spoken sentence.<br/> 
-  In Obi, a phrase is equivalent to an <a href='#gls_audioblock'>Audio Block</a>.
-  </dd>
-  
-  <dt id="gls_section">Section</dt>
-  <dd>
-  A structural unit in the DTB being produced.<br/> 
-  A section typically corresponds to a book <em>chapter</em>.<br/> 
-  In Obi, sections are displayed and edited in the <a href='#ctrl_tocview'>TOC View</a> and in the <a href='#ctrl_stripview'>Strip View</a>.</dd>
-  
-  <dt id="gls_strip">Strip</dt>
-  <dd>A concept used in Obi to display the contents of a DTB <a href='#gls_section'>section</a>. Strips occur in the <a href='#ctrl_stripview'>Strip View</a> of the Obi main window.</dd>
-  
-  <dt id="def-xuk">XUK File Format</dt>
-  <dd>XUK is an acronym that stands for XML for Urakawa. This is a file format used while the <a href='#gls_dtb'>DTB</a> is under production. When you save the project, by default a XUK file is created. Once the DTB is ready for publishing, the XUK file format is converted into a DTB. Note that the XUK file is only the description of the project; all audio data is contained in a separate directory.</dd>
-</dl>
-
-</div>
-</div>
-</body>
+    <p>This is a reference manual for Obi, and for the moment a placeholder for the
+final documentation. If you are a user and not a developer, you can ignore the
+<span class="todo">TODO</span> items below. This manual describes version 1.0 Alpha at the moment and
+may still be incomplete.</p>
+    <h2 id="id18412">Views</h2>
+    <p>The work area of Obi is composed of several views, as described below. All
+views (except for the strips view) can be shown or hidden as necessary.</p>
+    <h3 id="id18421">Strips view</h3>
+    <p>The main view is the <em>strips view</em>. This is the view in which the contents of
+the book are edited. There is a strip for every section in the book and they
+appear in book order in the strips view. Inside each strip the actual contents
+appear as blocks.</p>
+    <h4 id="id18435">Strips</h4>
+    <p>A <em>strip</em> represents a section and its contents. Subsections are represented as
+other strips that follow in the strip view. Contents are represented as blocks
+which are shown in book order inside the strip. A strip fills the entire width
+of the strips view and has two parts:</p>
+    <ol>
+      <li>
+        <p>an editable label showing the title of the section;</p>
+      </li>
+      <li>
+        <p>a sequence of zero or more blocks.</p>
+      </li>
+    </ol>
+    <p><span class="todo">TODO</span>: fix the strip width.</p>
+    <h4 id="id18468">Blocks</h4>
+    <p>A <em>block</em> is used to represent an unit of content in the strips view. A block
+can be empty or contain audio. The audio content of a block is called a
+<em>phrase</em> as it allows for the reader to skip easily from phrase to phrase
+when the book is exported to DAISY. Obi does not impose any limitations on
+the amount of audio that a block may contain.</p>
+    <h4 id="id18487">Different kinds of blocks</h4>
+    <ul>
+      <li>
+        <p><em>Empty blocks</em> are blocks that contain no audio. They can be used as
+placeholders for adding audio at a later time. An empty block only contains
+an information label.</p>
+      </li>
+      <li>
+        <p><em>Plain blocks</em> are blocks that contain audio. In addition to the information
+label, the waveform of the audio is displayed.</p>
+      </li>
+      <li>
+        <p><em>Page blocks</em> are blocks that represent a page number. The corresponding
+phrase is usually a reading of the page number. An actual number is
+associated with the block. Example: page number 42 in the book can be
+represented by a page block bearing the number 42 and the phrase "page
+42." In the exported DAISY book, a page block will be skippable.</p>
+      </li>
+      <li>
+        <p><em>Heading blocks</em> are used to mark the heading of a section. By default, this
+is the first used block in the section, but any other can be chosen. There
+can be at most one heading block per section. <span class="todo">TODO</span>: maintain this when
+merging sections.</p>
+      </li>
+      <li>
+        <p><em>Silence blocks</em> are used for phrase detection; see below.</p>
+      </li>
+      <li>
+        <p><em>Custom blocks</em> are blocks that have some additional property in the current
+book (such as producer notes, side bars, etc.) These can be defined by the
+producer of the book as needed. In the exported DAISY book, custom blocks
+will be skippable.</p>
+      </li>
+    </ul>
+    <p><strong>Note:</strong> future versions of Obi will have <em>container blocks</em> that can hold
+other blocks to create escapable structures, such as lists or audio tables,
+but they are not included in the current release of Obi.</p>
+    <h3 id="id18565">TOC view</h3>
+    <p>The <em>table of contents view</em> (<em>TOC view</em> for short) shows the table of contents
+of the book in a hierarchical way. Each entry in the table of contents is
+called a <em>section</em>; this is a generic Obi term, and can be a book part,
+chapter, section, subsection, etc. The level of each section is shown by its
+indentation. As noted above, there is a corresponding strip for every section
+in the TOC view.</p>
+    <h3 id="id18589">Metadata view</h3>
+    <p>The <em>metadata view</em> shows the metadata of the book: information such as title,
+narrator, date of publication, etc. Metadata entries can be edited in this
+view. <span class="todo">TODO</span>: the metadata view is currently not functional!</p>
+    <h3 id="id18603">Transport bar and peak meter</h3>
+    <p>The <em>transport bar</em> is used for recording and playback of the book. It has
+buttons such as play, record, or stop; a time display; and a textual peak
+meter. In addition to the transport bar, an external peak meter can also be
+shown alongside Obi's main window.</p>
+    <h2 id="id18618">Selection</h2>
+    <p>All edits in Obi are based on the current selection. In the current version of
+Obi, only a single selection can be made at once (future versions of Obi will
+have multiple selection.)</p>
+    <p class="indent">In general, selection is performed by clicking (and possibly dragging) on the
+object or area to select; keyboard users can navigate to the desired region
+to select (see keyboard navigation below.)</p>
+    <h3 id="id18634">What is selectable?</h3>
+    <ul>
+      <li>In the strips view:
+<ul><li>A strip is selectable.</li><li>The label of a strip is selectable. When selected, the label becomes
+editable.</li><li>A position inside a strip is selectable. The position can be before the
+first block, after the last block, or between two blocks.</li><li>A block inside a strip is selectable. To select a block, click on its label
+or its outer edge.</li><li>The waveform in a block is selectable; either a position or a range of
+audio. To select a position in the waveform, click once; to select a range,
+click then drag.</li><li><span class="todo">TODO</span>: shift+click for a range.</li><li><span class="todo">TODO</span>: dragging outside of the block kills the selection.</li><li><span class="todo">TODO</span>: select all audio from a block.</li></ul></li>
+      <li>In the TOC view:
+<ul><li>A section is selectable.</li><li>The text label of a section is selectable. When selected, it becomes
+editable.</li></ul></li>
+      <li>In the metadata view:
+<ul><li>A metadata entry in the metadata view is selectable (<span class="todo">TODO</span>).</li><li>The text inside a metadata entry is selectable (<span class="todo">TODO</span>). When selected, it
+becomes editable.</li></ul></li>
+    </ul>
+    <h3 id="id18713">Label editing</h3>
+    <p>The label of a strip or a section, and the value of a metadata entry (<span class="todo">TODO</span>) can
+be directly edited by clicking them. When typing <code>Enter</code>, the new name is
+committed; typing <code>Esc</code> cancels the edit. Strips also have an <code>OK</code> and <code>Cancel</code>
+button which achieve the same effects.</p>
+    <h2 id="id18738">Transport bar and peak meter</h2>
+    <h3 id="id18742">Transport bar buttons</h3>
+    <ul>
+      <li>
+        <p><strong>Play button</strong> (<code>Ctrl+Space</code>): this button gives Play All command while
+starting playback from currently selected block in strip view or currently
+selected node in tree view.</p>
+        <ul>
+          <li>If there is no in phrase selection, (technically  termed as audio
+selection) this button starts playback from starting of selected block or
+selected tree node.</li>
+          <li>If there is Audio selection and cursor has a position marked inside
+phrase, this button starts playback from this cursor position.</li>
+          <li><span class="todo">TODO</span>: <code>Ctrl+Space</code> doesn't seem to work? And should play all;
+<code>Ctrl+Shift+Space</code> to play selection (see menu)?</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Pause button</strong> (<code>Space</code>): pause both playback as well as recording (which
+ever is active). Pause position and cursor position are synchronised with
+each other so pause position also acts as cursor position for operations
+like split and insert recording.</p>
+      </li>
+      <li>
+        <p><strong>Stop button</strong>: stop playback or recording which ever is active.</p>
+      </li>
+    </ul>
+    <h3 id="id18810">Unedited notes</h3>
+    <p>This is a temporary write up for transport bar which should be copied to main manual.
+The write up contains description about transportbar buttons and other transport bar functions which are to be invoked through drop down menus and keyboard shortcuts.</p>
+    <p class="indent">Description about buttons:
+1. Play button.
+This button gives Play All command while starting playback from currently selected block in strip view or currently selected node in tree view.
+1.1. If there is no in phrase selection, ( technically  termed as audio selection ) this button starts playback from starting of selected block or selected tree node.
+1.2. If there is Audio selection and cursor has a position marked inside phrase, this button starts playback from this cursor position.
+Keyboard shortcut: Control+Space.</p>
+    <ol>
+      <li>Pause button:</li>
+      <li>It pauses both playback as well as recording ( which ever is active ). </li>
+      <li>
+        <p>Pause position and cursor position are synchronised with each other so pause position also acts as cursor position for operations like split and insert recording.
+Keyboard shortcut: Space bar.</p>
+      </li>
+      <li>
+        <p>Stop button:</p>
+      </li>
+      <li>
+        <p>It stops playback or recording which ever is active.
+Keyboard shortcut: control + T </p>
+      </li>
+      <li>
+        <p>Rewind: It plays small  dhunks of audio while jumping backward in time.</p>
+      </li>
+      <li>
+        <p>Rewind continues across phrase boundaries.</p>
+      </li>
+      <li>
+        <p>FastForward button:
+It plays small chunks of audio while  jumping forward in time.</p>
+      </li>
+      <li>
+        <p>FastForward continues across phrase  boundaries.</p>
+      </li>
+      <li>
+        <p>Prev phrase, prev section, prev page buttons:
+Currently these buttons work only while playback and move to prev phrase, prev section, prev page phrase nodes in playlist.</p>
+      </li>
+      <li>
+        <p>Next phrase, Next section, Next page buttons:
+During playback:
+These buttons move to next phrase, next section , next page phrase nodes in current playlist.</p>
+      </li>
+    </ol>
+    <p>During recording:
+These buttons become markup buttons i.e.
+Next Phrase button create a new phrase on the fly.
+Next section button creates a new section, creates a new phrase in this new section and continue recording in this new phrase.
+The rules for  creating new section is same as that of creating a new section in TOC view.
+Next Page creates a new phrase and marks custom page class on this new phrase on the fly. The numbering of pages is automatic i.e. an increment of previous page number and "1" if there is no preceding phrase block.</p>
+    <ol>
+      <li>
+        <p>Custom class mark button:
+While recording it is used for marking custom class on currently recording phrase on the fly. The default name used is "Custom".
+It creats a new audio block and mark custom class on it.
+These custom blocks can later on be reclassed.
+In all other conditions, this button mark custom class on currently selected audio block.</p>
+      </li>
+      <li>
+        <p>Fast play rate combobox:
+This combobox increases playback rate above the normal playback rate for quick navigation / editting purpose and proof reading purpose.
+It contains valuse upto 2.0 times which is twice the normal playback rate.
+It works both on the fly with playback and also off the fly.
+The  strips view keyboard shortcuts for this combobox are:</p>
+      </li>
+      <li>F: Increses FastPlay rate by one combobox value.</li>
+      <li>S: decreases FastPlay rate by one combobox value.</li>
+      <li>D: moves back to normal playback rate.</li>
+      <li>
+        <p>E: Move back to normal playback rate with 1.5 seconds of rewind. This is helpfull in determining exact splitting position while  playing at higher speeds.</p>
+      </li>
+      <li>
+        <p>Record button:
+Pressing this button first time starts listening and displays input values of microphone in graphical peak meter as well in text peak meter. Recording starts when this button is pressed second time.
+However user can start direct recording and bypass listening state by pressing 
+Control + shift + R.
+or selecting  direct recording sub menu item for record menu item of transport drop down menu.
+Recording can be done in normal mode or in append only mode.
+User can check or uncheck Append only sub menu item from recording item of transport drop down menu.
+10.1 In append only mode, recording is non distructive i.e. a new recording is appended to selected block or filled in a null audio block without inserting or overwriting existing recordings.
+10.2. In normal mode recording works as follows:</p>
+      </li>
+      <li>If selected block do not contain any audio e.g. empty page blocks, recording fills audio inside these blocks.</li>
+      <li>If there is a single point in-phrase selection, recording splits the selected block at cursor position and inserts new blocks between two splitted blocks.</li>
+      <li>If there is a part of audio selected  inside a phrase using  in-phrase Selection Start and in-phrase Selection End commands then the selected block is split in three blocks and the middle one is replaced by newly recorded blocks.</li>
+    </ol>
+    <p>Pausing recording:
+Recording can be paused at any time using pause button. When recording is paused, user can use playback to verify recording.
+Recording will resume by pressing record button again ( no listening stage will be there while resuming paused recording ).</p>
+    <p class="indent">Other transport bar functions  operatable from drop down menus and keyboard shortcuts.
+11. Preview playback:
+It includes three functions.
+1.1. Preview from current position:
+provides 1.5 seconds of playback starting from current cursor position.
+Strips View shortcut: V</p>
+    <p class="indent">1.2. Preview upto current position:
+Provides playback of duration of 1.5 seconds starting from 1.5 seconds before current position so that playback ends at current position.
+Strips view shortcut: X</p>
+    <p class="indent">1.3. Preview selected audio:
+It provides playback of audio chumk lying between two audio mark points. 
+Strips view Shortcut: C</p>
+    <ol>
+      <li>Play selection: 
+It starts playback of currently selected blocks As Obi currently can select only one block at a time so in current senario it plays selected block in strips view or selected tree node in TOC view.</li>
+      <li>If there is no in-phrase selection i.e. cursor is not active, playback starts from begining of phrase </li>
+      <li>
+        <p>if there is a in-phrase selection i.e. cursor is active, then playback starts from the cursor position.
+Keyboard shortcut: Space bar.
+This shortcut is same as pause. As it toggles between play selection and pause and also pauses play all command.</p>
+      </li>
+      <li>
+        <p>Time display:
+Transport bar has a time display which displays both playback as well as recording time.
+13.1. Playback time.
+The display of playback time is configurable with an adjusant combobox. The available options are:
+13.1.1. Elapsed: This displays elapsed selection time.
+13.1.2. Elapsed (total): This displays elapsed time with respect to whole book.
+13.1.3. Remaining: This displays remaining time for current selection.
+13.1.4. Remaining (Total): This displays remaining time with respect to whole book.</p>
+      </li>
+    </ol>
+    <p>13.2. Recording time:
+This displays time of recording since it was started i.e. recording session time.</p>
+    <ol>
+      <li>Text Peak Meter:
+This control displays numerical values for peak meter which can be captured by screenreader.
+It has two textboxes for left and right channels. 
+Keyboard shortcuts:
+Focus Left channel value: Alt+l
+Focus right channel value: Alt+i
+The value displayed is relative to the peak value of audio with upper range of 0 db.</li>
+    </ol>
+    <p>Whenever overload is reached,  the "OL" tag appears before numerical value of that particular channel.
+This tag remains in text display of respective channel till reset button on text meter is pressed. 
+Remark: reset button is not visible till  overload is reached.</p>
+    <h3 id="id19039">Peak meter</h3>
+    <p>The peak meter allows to monitor the input sound level (while recording) or
+output level (while playing back), and especially shows when overload occurs.
+Overload should be avoided while recording because the recorded audio is
+clipped. When overload occurs, the red box above the channel while turn red
+with a number indicating the number of occurrences. Users can modify their
+audio settings (getting further away from the microphone or turning its volume
+down) to reach an acceptable audio level. Clicking on a red overload box will
+reset it.</p>
+    <h2 id="id19045">Menus</h2>
+    <p>This is a description of the main menubar in Obi.</p>
+    <h3 id="id19053">File menu (<code>Alt+F</code>)</h3>
+    <p>Creating and opening projects:</p>
+    <ul>
+      <li>
+        <p><strong>New project</strong> (<code>Ctrl+N</code>): create a new project. If there is a project
+currently open, Obi will attempt to close it first. A dialog is shown where
+the user can enter a title for the project and choose a location for saving
+it. <span class="todo">TODO</span>: add instructions in the dialog.</p>
+      </li>
+      <li>
+        <p><strong>New project from import</strong> (<code>Ctrl+Shift+N</code>): create a new project by
+importing an XHTML file containing the structure of the project. You will
+have to choose a title (if different from the one given in the file) and
+a location for saving the project.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: better error handling (completely undo the import.)</li>
+          <li><span class="todo">TODO</span>: the expected input format must be documented.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Open project</strong> (<code>Ctrl+O</code>): bring up a file chooser and select a project
+to open. Obi projects are normally named with a <code>.obi</code> suffix, although Obi
+normally saves project inside a directory along with another directory
+containing audio data.</p>
+      </li>
+      <li>
+        <p><strong>Open recent project</strong>: a list of recently opened project allows the user
+to choose between different recent projects. <span class="todo">TODO</span>: remove projects that
+failed to be opend from the list.</p>
+        <ul>
+          <li><strong>Clear list</strong>: clear the list of recent projects. This cannot be undone.</li>
+        </ul>
+      </li>
+    </ul>
+    <p>Saving projects:</p>
+    <ul>
+      <li>
+        <p><strong>Save project</strong> (<code>Ctrl+S</code>): save the project and its data.</p>
+      </li>
+      <li>
+        <p><strong>Save project as</strong> (<code>Ctrl+Shift+S</code>): save the project under a different name
+and switch to the new copy. <span class="todo">TODO</span>: this is currently disabled.</p>
+      </li>
+      <li>
+        <p><strong>Close project</strong> (<code>Ctrl+W</code>): close the current project. If there are
+unsaved changes, the user is given the choice to save or not, or cancel.</p>
+      </li>
+    </ul>
+    <p>Clenanig and exporting to DAISY:</p>
+    <ul>
+      <li>
+        <p><strong>Clean unreferenced audio</strong> (<code>Ctrl+L</code>): clean unreferenced audio from the
+project. Obi keeps unused audio data so that changes can be undone, but
+sometime there is audio data in the project that is not referenced anywhere
+(<em>i.e.</em>, there is no phrase with this audio data, nor any command in the
+undo stack that concerns this data.) In order to save disk space, it is
+possible to clean the project by removing all this data. It is recommended
+to save right after cleaning the project, otherwise there may be problems
+when reopening the project. Cleaning the project at the beginning of the
+session makes sure that all of the data not referenced in the project itself
+has been removed. <span class="todo">TODO</span>: check that files are indeed removed?</p>
+      </li>
+      <li>
+        <p><strong>Export as DAISY</strong> (<code>Ctrl+E</code>): export the project to DAISY 3. The user can
+choose a directory to export to. The directory should be new or empty; if it
+contains files already (<em>e.g.</em>, from a previous export), those can be
+deleted before export. <span class="todo">TODO</span>: this currently only exports audio data, one file
+per section, named in book order.</p>
+      </li>
+    </ul>
+    <p>Quitting Obi:</p>
+    <ul>
+      <li><strong>Exit</strong> (<code>Alt+F4</code>): quit Obi. If there is a project with unsaved changes
+currently opened, changes can be saved before quitting, or quitting can be
+cancelled. Quitting can also be achieved by closing the main Obi window.</li>
+    </ul>
+    <h3 id="id19249">Edit menu (<code>Alt+E</code>)</h3>
+    <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
+undone later. All commands executed since the current project was loaded are
+stored so an unlimited number of commands can be undone. Undone commands are
+also stored in a <em>redo stack</em> so that an undone command can be redone. Whenever
+a new command is executed, the redo stack is cleared.</p>
+    <ul>
+      <li>
+        <p><strong>Undo</strong> (<code>Ctrl+Z</code>): undo the last executed command.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: save the undo stack in the XUK file.</li>
+          <li><span class="todo">TODO</span>: when the project reverts to the last saved state, mark it as
+unmodified.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Redo</strong> (<code>Ctrl+Y</code>): redo the last undone command.</p>
+      </li>
+    </ul>
+    <p>Obi maintains a clipboard that contains the last cut or copied item. Undoing a
+cut or copy operation restores the previous value of the clipboard.</p>
+    <ul>
+      <li>
+        <p><strong>Cut</strong> (<code>Ctrl+X</code>): delete the selected item (strip, section, block or audio)
+and place it in the clipboard. <span class="todo">TODO</span>: works for text as well, but only through
+shortcut; not well integrated.</p>
+      </li>
+      <li>
+        <p><strong>Copy</strong> (<code>Ctrl+C</code>): copy the selected item (strip, section, block or audio)
+and place it in the clipboard. <span class="todo">TODO</span>: works for text as well, but only through
+shortcut; not well integrated.</p>
+      </li>
+      <li>
+        <p><strong>Paste</strong> (<code>Ctrl+V</code>): paste the item from the clipboard in or after the
+selection.</p>
+        <ul>
+          <li>If the clipboard contains a section node, it can be pasted after the
+selected section in the TOC view or the selected strip in the strip view.</li>
+          <li>If the clipboard contains a block, it can be pasted after the selected
+block, at the end of the selected strip, or at the selection point inside
+a strip. If the selection is a waveform cursor, then the audio of the block
+is inserted at that point; if it is a waveform selection, then the audio
+of the block is pasted in place of the selection.</li>
+          <li>If the clipboard contains audio, the audio can be pasted as a new block
+in the selected strip or at the selected point inside a strip, or at the
+end of the selected block. If the selection is a waveform cursor, then the
+audio is inserted at that point; if it is a waveform selection, then the
+audio is pasted in place of the selection.</li>
+          <li><span class="todo">TODO</span>: text.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Paste before</strong> (<code>Ctrl+Alt+V</code>): when a section is selected and a section is
+in the clipboard, paste the section from the clipbaord before the selected
+section and at the same level.</p>
+      </li>
+      <li>
+        <p><strong>Paste inside</strong> (<code>Ctrl+Shift+V</code>): when a section is selected and a section
+is in the clipboard, paste the section from the clipboard as a subsection of
+the selected section. The child is added last.</p>
+      </li>
+      <li>
+        <p><strong>Delete</strong> (<code>Del</code>): delete the selected item. If it is a section, then all
+subsections are deleted as well. If it is a strip, then only this strip is
+deleted. If the corresponding section has subsection, the first subsection
+is moved to the level of the deleted section so that the consistency of the
+TOC is preserved.</p>
+      </li>
+      <li>
+        <p><strong>Select nothing</strong>: deselect any item that was selected.</p>
+      </li>
+    </ul>
+    <p>In addition to cleaning up unreferenced audio data, it is possible to also
+clean up <em>unused</em> data from the project.</p>
+    <ul>
+      <li><strong>Delete unused data</strong> (<code>Ctrl+Shift+L</code>): delete all sections and phrases
+marked as being unused. This can be undone, just like any deletion in Obi.</li>
+    </ul>
+    <p>Athough Obi is an audio editing tool, a large project can still contain a non
+trivial amount of text (section headings, metadata, annotations) so a search
+function is provided.</p>
+    <ul>
+      <li>
+        <p><strong>Find</strong> (<code>Ctrl+F</code>): bring the search bar in focus and let the user type some
+text to find. The first item containing this text is selected (in the case
+of section titles, the strip corresponding to the section is selected.)</p>
+      </li>
+      <li>
+        <p><strong>Find next</strong> (<code>F3</code>): find the next item. <span class="todo">TODO</span>: more details.</p>
+      </li>
+      <li>
+        <p><strong>Find previous</strong> (<code>Shift+F3</code>): find the previous item. <span class="todo">TODO</span>: more details.</p>
+      </li>
+    </ul>
+    <h3 id="id19501">View menu (<code>Alt+V</code>)</h3>
+    <p>Various views can be shown or hidden. By default, all are shown, except for the
+search bar which only appears when searching. Each menu item has a checkbox
+that indicate the visibility of the corresponding view (checked meaning
+visible.) <span class="todo">TODO</span>: all the shortcuts will change as they interfere with screen
+readers.</p>
+    <ul>
+      <li>
+        <p><strong>Show TOC view</strong> (<code>Alt+Shift+T</code>): show or hide the TOC view.</p>
+      </li>
+      <li>
+        <p><strong>Show metadata view</strong> (<code>Alt+Shift+M</code>): show or hide the metadata view.</p>
+      </li>
+      <li>
+        <p><strong>Show search bar</strong> (<code>Alt+Shift+S</code>): show or hide the search bar.</p>
+      </li>
+      <li>
+        <p><strong>Show transport bar</strong> (<code>Alt+Shift+B</code>): show or hide the transport bar.</p>
+      </li>
+      <li>
+        <p><strong>Show status bar</strong> (<code>Alt+Shift+U</code>): show or hide the status bar.</p>
+      </li>
+    </ul>
+    <p>For easy navigation, there are some shortcuts to move to the main views.</p>
+    <ul>
+      <li>
+        <p><strong>Focus on TOC view</strong> (<code>F6</code>): move the focus to the TOC view. If there was
+a selection in the strips view, the corresponding section is selected. <span class="todo">TODO</span>:
+there is a display bug so the section doesn't appear as being selected, but
+it is.</p>
+      </li>
+      <li>
+        <p><strong>Focus on Strips view</strong> (<code>F7</code>): move the focus to the strips view. If a
+section is selected in the TOC view, its strip gets selected in the strips
+view.</p>
+      </li>
+      <li>
+        <p><strong>Focus on Transport bar</strong> (<code>F8*</code>): not yet implemented (<span class="todo">TODO</span>).</p>
+      </li>
+    </ul>
+    <p>Obi also has external views which open in different windows. Again, shortcuts
+are subject to change.</p>
+    <ul>
+      <li>
+        <p><strong>Show peak meter</strong> (<code>Alt+Shift+P</code>): show or hide the peak meter view.</p>
+      </li>
+      <li>
+        <p><strong>Show source view</strong> (<code>Alt+R</code>): show the source of the XUK file for this
+project. This is mainly useful for debugging and may be removed from the
+release version.</p>
+      </li>
+    </ul>
+    <h3 id="id19651">TOC menu (<code>Alt+C</code>)</h3>
+    <p>The TOC menu provides operations on the table of contents.</p>
+    <ul>
+      <li>
+        <p><strong>Add section</strong> (<code>Ctrl+A</code>): add a new section after the selected section
+and at the same level. If no section is selected, then add a new section at
+the top level and at the end.</p>
+      </li>
+      <li>
+        <p><strong>Ad sub-section</strong> (<code>Ctrl+Shift+A</code>): add a new section as the last child of
+the selected section.</p>
+      </li>
+      <li>
+        <p><strong>Insert section</strong> (<code>Ctrl+Alt+A</code>): insert a new section before the selected
+section and at the same level.</p>
+      </li>
+      <li>
+        <p><strong>Rename section</strong> (<code>F2</code>): start editing the label of the section. The new
+name cannot be empty. The change is committed when pressing <code>Return</code> or
+cancelled when pressing <code>Esc</code>.</p>
+      </li>
+      <li>
+        <p><strong>Move section in</strong> (<code>Ctrl+Shift+Left</code>): increase the level of the section
+by one. The section becomes the first subsection of its previous sibling
+section; as a consequence, the first subsection of a section cannot be
+moved in. Only the section moves, not its subsections.</p>
+      </li>
+      <li>
+        <p><strong>Move section out</strong> (<code>Ctrl+Shift+Right</code>): decrease the level of the section
+by one. Only sections without subsections can be moved out. Top-level
+sections can obviously not be moved out.</p>
+      </li>
+      <li>
+        <p><strong>Section is used</strong> (<code>Ctrl+K</code>): when a section is selected, the menu
+item shows whether the section is used or not with a checkbox. The checkbox
+is checked if the section is currently used. Selecting this item toggles the
+used status of the section (from used to unused, and from unused to used.)
+When the used status of the section changes, all subsections change to the
+same status as well. The status of a section can only be changed if its
+parent section is used (or if it is a top-level section), as there cannot
+be used subsections of unused sections. <span class="todo">TODO</span>: this is currently disabled.</p>
+      </li>
+    </ul>
+    <h3 id="id19758">Strips menu (<code>Alt+S</code>)</h3>
+    <ul>
+      <li>
+        <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
+corresponding section will be at the same level as the section of the
+selected strip. If the section of the selected strip had subsections, they
+become subsections of the new section.</p>
+      </li>
+      <li>
+        <p><strong>Insert strip</strong> (<code>Ctrl+Alt+A</code>): insert a new strip before the selected
+strip.</p>
+      </li>
+      <li>
+        <p><strong>Rename strip</strong> (<code>F2</code>): start editing the label of the strip. The new name
+cannot be empty. The change is committed when pressing <code>Return</code> or cancelled
+when pressing <code>Esc</code>.</p>
+      </li>
+      <li>
+        <p><strong>Split strip</strong> (<code>Ctrl+Shift+P</code>): split the strip at the selected position
+in the strip, or from the selected block. The new strip has the same label
+and level as the original strip, and all the blocks starting from the split
+position. If the first block or position is selected, there is no effect.</p>
+      </li>
+      <li>
+        <p><strong>Merge strip with next</strong> (<code>Ctrl+Shift+M</code>): merge the selected strip with the
+next one; that is, all the blocks in the following strip are appended to the
+selected strip. The following strip is then removed from the project. If the
+following strip has a lower level than the selected strip, merging is not
+possible.</p>
+      </li>
+      <li>
+        <p><strong>Strip is used</strong> (<code>Ctrl+K</code>): when a strip is selected, the menu
+item shows whether the strip is used or not with a checkbox. The checkbox
+is checked if the strip is currently used. Selecting this item toggles the
+used status of the strip (from used to unused, and from unused to used.)
+This operation can only be executed if the corresponding section has no
+subsection; <em>i.e.</em> if the operation affects only the selected strip. The
+contents of the strip are affected as well. <span class="todo">TODO</span>: this is currently disabled.</p>
+      </li>
+    </ul>
+    <h3 id="id19864">Blocks menu (<code>Alt+B</code>)</h3>
+    <ul>
+      <li>
+        <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
+selected strip, or after the selected item in the strip.</p>
+      </li>
+      <li>
+        <p><strong>Add empty page blocks</strong> (<code>Ctrl+Shift+B</code>): add one or more empty blocks
+with a page number.  A dialog opens where the user can choose the page
+number for the first block, the number of blocks to add, and whether to
+renumber subsequent page blocks automatically. The page number increases by
+one for each block (<em>e.g.</em> if three pages are added starting at page number
+4, the three page blocks will be numbered 4, 5 and 6) and for subsequent
+pages if the user chooses to renumber them (<em>e.g.</em> following pages would be
+renumbered 7, 8, 9, etc.)</p>
+      </li>
+      <li>
+        <p><strong>Split block</strong> (<code>Ctrl+P</code>): split the block at the current cursor position.
+The block is split in two blocks, one with all the audio data before the
+cursor position, followed by one with the all the audio data after the cursor
+position.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: handle different kinds gracefully.</li>
+          <li><span class="todo">TODO</span>: how to split nested blocks?</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Merge block with next</strong> (<code>Ctrl+M</code>): merge this audio block with the
+following block. The two blocks are replaced with a block that contains
+the audio of both blocks.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: if the blocks were of a different kind, the kind of the first block
+is kept. This means that page numbers may disappear, etc.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Block is used</strong> (<code>Ctrl+K</code>): when a block is selected, the menu item shows
+whether the block is used or not with a checkbox. The checkbox is checked if
+the block is currently used. Selecting this item toggles the used status of
+the block (from used to unused, and from unused to used.) <span class="todo">TODO</span>: this is
+currently disabled.</p>
+      </li>
+    </ul>
+    <p><span class="todo">TODO</span>: update the rest of the document!</p>
+    <h3 id="id19978">Transport menu (<code>Alt+R</code>)</h3>
+    <ul>
+      <li>
+        <p><strong>Play</strong>: playback sub-menu.</p>
+        <ul>
+          <li><strong>Play all</strong> (Ctrl+Space): play from the current selection, or the
+beginning of the book if nothing is selected, until the end of the book is
+reached.</li>
+          <li><strong>Play selection</strong> (<code>Ctrl+Shift+Space</code>): play the current selection, or
+if a cursor is positionned inside a block, until the end of the block.</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>Pause/Resume</strong>: pause or resume playback.</p>
+      </li>
+      <li>
+        <p><strong>Stop</strong>: stop playback.</p>
+      </li>
+      <li>
+        <p><strong>Record</strong>: recording sub-menu.</p>
+        <ul>
+          <li><strong>Start listening</strong>:</li>
+          <li><strong>Start recording</strong>:</li>
+          <li><strong>Allow overwrite</strong>:</li>
+        </ul>
+      </li>
+    </ul>
+    <h3 id="id20060">Tools menu</h3>
+    <h3 id="id20063">Help menu</h3>
+  </body>
 </html>
