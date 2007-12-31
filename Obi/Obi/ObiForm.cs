@@ -311,8 +311,8 @@ namespace Obi
             mShowSearchBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
+            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
             mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
-            mFocusOnTOCViewToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
@@ -343,14 +343,14 @@ namespace Obi
             mStatusStrip.Visible = mShowStatusBarToolStripMenuItem.Checked;
         }
 
+        private void mFocusOnTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.FocusOnTOCView();
+        }
+
         private void mFocusOnStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ShowSelectedSectionInStripsView();
-        }
-
-        private void mFocusOnTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ShowSelectedSectionInTOCView();
         }
 
         private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -1192,8 +1192,9 @@ namespace Obi
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
             mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
-            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
-            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            mSectionIsUsedToolStripMenuItem.Enabled = false;
+            // mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
+            // mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
         }
 
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
@@ -1204,7 +1205,7 @@ namespace Obi
         private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionIn(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
+            // mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
         }
         private void mListenToSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
 
@@ -1217,7 +1218,7 @@ namespace Obi
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
             mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            mStripIsUsedToolStripMenuItem.Visible = false;
+            mStripIsUsedToolStripMenuItem.Enabled = false;
             // mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
             // mStripIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkStripUnused;
         }
@@ -1229,7 +1230,7 @@ namespace Obi
         private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
         private void mStripIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
+            // mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
         }
 
         // Blocks menu
@@ -1242,8 +1243,9 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
-            mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mBlockIsUsedToolStripMenuItem.Enabled = false;
+            // mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            // mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -1256,7 +1258,7 @@ namespace Obi
         private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
         private void mBlockIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            mProjectView.SetSelectedNodeUsedStatus(mBlockIsUsedToolStripMenuItem.Checked);
+            // mProjectView.SetSelectedNodeUsedStatus(mBlockIsUsedToolStripMenuItem.Checked);
         }
 
 

@@ -58,6 +58,8 @@ namespace Obi
             this.mPasteInsideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSelectNothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mDeleteUnusedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,8 +71,8 @@ namespace Obi
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,8 +142,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mDeleteUnusedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -401,6 +402,20 @@ namespace Obi
             this.mSelectNothingToolStripMenuItem.Text = "&Select nothing";
             this.mSelectNothingToolStripMenuItem.Click += new System.EventHandler(this.mSelectNothingToolStripMenuItem_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(232, 6);
+            // 
+            // mDeleteUnusedDataToolStripMenuItem
+            // 
+            this.mDeleteUnusedDataToolStripMenuItem.Name = "mDeleteUnusedDataToolStripMenuItem";
+            this.mDeleteUnusedDataToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.L)));
+            this.mDeleteUnusedDataToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.mDeleteUnusedDataToolStripMenuItem.Text = "D&elete unused data";
+            this.mDeleteUnusedDataToolStripMenuItem.Click += new System.EventHandler(this.mDeleteUnusedDataToolStripMenuItem_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -439,8 +454,9 @@ namespace Obi
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
             this.toolStripSeparator12,
-            this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTOCViewToolStripMenuItem,
+            this.mFocusOnStripsViewToolStripMenuItem,
+            this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
@@ -514,21 +530,21 @@ namespace Obi
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(237, 6);
             // 
-            // mFocusOnStripsViewToolStripMenuItem
-            // 
-            this.mFocusOnStripsViewToolStripMenuItem.Name = "mFocusOnStripsViewToolStripMenuItem";
-            this.mFocusOnStripsViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.mFocusOnStripsViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.mFocusOnStripsViewToolStripMenuItem.Text = "Focus on stri&ps view";
-            this.mFocusOnStripsViewToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnStripsViewToolStripMenuItem_Click);
-            // 
             // mFocusOnTOCViewToolStripMenuItem
             // 
             this.mFocusOnTOCViewToolStripMenuItem.Name = "mFocusOnTOCViewToolStripMenuItem";
-            this.mFocusOnTOCViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.mFocusOnTOCViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
             this.mFocusOnTOCViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mFocusOnTOCViewToolStripMenuItem.Text = "Focus on TO&C view";
             this.mFocusOnTOCViewToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnTOCViewToolStripMenuItem_Click);
+            // 
+            // mFocusOnStripsViewToolStripMenuItem
+            // 
+            this.mFocusOnStripsViewToolStripMenuItem.Name = "mFocusOnStripsViewToolStripMenuItem";
+            this.mFocusOnStripsViewToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.mFocusOnStripsViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.mFocusOnStripsViewToolStripMenuItem.Text = "Focus on stri&ps view";
+            this.mFocusOnStripsViewToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnStripsViewToolStripMenuItem_Click);
             // 
             // mSynchronizeViewsToolStripMenuItem
             // 
@@ -1115,19 +1131,12 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mDeleteUnusedDataToolStripMenuItem
+            // mFocusOnTransportBarToolStripMenuItem
             // 
-            this.mDeleteUnusedDataToolStripMenuItem.Name = "mDeleteUnusedDataToolStripMenuItem";
-            this.mDeleteUnusedDataToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.L)));
-            this.mDeleteUnusedDataToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.mDeleteUnusedDataToolStripMenuItem.Text = "Delete unused data";
-            this.mDeleteUnusedDataToolStripMenuItem.Click += new System.EventHandler(this.mDeleteUnusedDataToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(232, 6);
+            this.mFocusOnTransportBarToolStripMenuItem.Name = "mFocusOnTransportBarToolStripMenuItem";
+            this.mFocusOnTransportBarToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.mFocusOnTransportBarToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.mFocusOnTransportBarToolStripMenuItem.Text = "Focus on tr&ansport bar";
             // 
             // ObiForm
             // 
@@ -1268,6 +1277,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPasteInsideToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mDeleteUnusedDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFocusOnTransportBarToolStripMenuItem;
     }
 }
 
