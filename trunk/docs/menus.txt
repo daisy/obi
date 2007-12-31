@@ -31,7 +31,7 @@ Main form
     + [D] Delete ..................... Del
     + [S] Select nothing ............. (None)
     -----------------------------------------------
-    + [ ] Delete unused data ......... Ctrl+Shift+L
+    + [E] Delete unused data ......... Ctrl+Shift+L
     -----------------------------------------------
     + [F] Find ....................... Ctrl+F
     + [N] Find next .................. F3
@@ -44,8 +44,9 @@ Main form
     + [B] Show transport bar ........ Alt+Shift+B
     + [U] Show status bar ........... Alt+Shift+U
     ----------------------------------------------
-    + [P] Focus on strips view ...... F6
-    + [C] Focus on TOC view ......... F7
+    + [C] Focus on TOC view ......... F6
+    + [P] Focus on strips view ...... F7
+    + [A] Focus on transport bar .... F8
     + [Y] Synchronize views ......... Alt+Shift+Y
     ----------------------------------------------
     + [P] Show peak meter ........... Alt+Shift+P
