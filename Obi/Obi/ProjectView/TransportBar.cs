@@ -383,6 +383,9 @@ namespace Obi.ProjectView
         {
             if (Enabled)
             {
+                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+                    Play();
+
                 mIsSerialPlaying = true;
                 mCurrentPlaylist.Rewind();
             }
@@ -671,6 +674,9 @@ namespace Obi.ProjectView
         {
             if (Enabled && !IsInlineRecording)
             {
+                if ( mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped )
+                    Play();
+
                 mIsSerialPlaying = true;
                 mCurrentPlaylist.FastForward();
             }
@@ -815,7 +821,7 @@ namespace Obi.ProjectView
                 mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 1;
                             else if ( mDisplayBox.SelectedIndex == mDisplayBox.Items.Count - 1 )
             {
-                mDisplayBox.SelectedIndex = mDisplayBox.SelectedIndex - 2;
+                mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 2;
                                             }
 
             UpdateTimeDisplay();
