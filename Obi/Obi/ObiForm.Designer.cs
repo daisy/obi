@@ -979,36 +979,46 @@ namespace Obi
             this.previousSectionToolStripMenuItem.Name = "previousSectionToolStripMenuItem";
             this.previousSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.previousSectionToolStripMenuItem.Text = "Previous section";
+            this.previousSectionToolStripMenuItem.Click += new System.EventHandler(previousSectionToolStripMenuItem_Click);
+            this.previousSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Up )));
             // 
             // previousPageToolStripMenuItem
             // 
             this.previousPageToolStripMenuItem.Name = "previousPageToolStripMenuItem";
             this.previousPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.previousPageToolStripMenuItem.Text = "Previous page";
+            this.previousPageToolStripMenuItem.Click +=new System.EventHandler(previousPageToolStripMenuItem_Click);
             // 
             // previousPhraseToolStripMenuItem
             // 
             this.previousPhraseToolStripMenuItem.Name = "previousPhraseToolStripMenuItem";
             this.previousPhraseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.previousPhraseToolStripMenuItem.Text = "Previous phrase";
+            this.previousPhraseToolStripMenuItem.Click += new System.EventHandler(previousPhraseToolStripMenuItem_Click);
+            this.previousPhraseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Left )));
             // 
             // nextPhraseToolStripMenuItem
             // 
             this.nextPhraseToolStripMenuItem.Name = "nextPhraseToolStripMenuItem";
             this.nextPhraseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nextPhraseToolStripMenuItem.Text = "Next phrase";
+            this.nextPhraseToolStripMenuItem.Click += new System.EventHandler(nextPhraseToolStripMenuItem_Click);
+            this.nextPhraseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Right )));
             // 
             // nextPageToolStripMenuItem
             // 
             this.nextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
             this.nextPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nextPageToolStripMenuItem.Text = "Next page";
+            this.nextPageToolStripMenuItem.Click +=new System.EventHandler(nextPageToolStripMenuItem_Click);
             // 
             // nextSectionToolStripMenuItem
             // 
             this.nextSectionToolStripMenuItem.Name = "nextSectionToolStripMenuItem";
             this.nextSectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.nextSectionToolStripMenuItem.Text = "Next section";
+            this.nextSectionToolStripMenuItem.Click += new System.EventHandler(nextSectionToolStripMenuItem_Click);
+            this.nextSectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Down )));
             // 
             // rewindToolStripMenuItem
             // 
