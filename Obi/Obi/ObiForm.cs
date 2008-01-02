@@ -1480,5 +1480,28 @@ namespace Obi
         {
             if (mProjectView.CanStop) mProjectView.TransportBar.Stop();
         }
+
+        private void mStartListeningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.Record();
+        }
+
+        private void mStartRecordingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.StartRecordingDirectly();
+        }
+
+        private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.Rewind();
+        }
+
+        private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastForward();
+        }
+
+
+
     }
 }

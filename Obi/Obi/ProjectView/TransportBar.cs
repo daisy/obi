@@ -969,6 +969,19 @@ namespace Obi.ProjectView
             }
         }
 
+
+        /// <summary>
+        /// Start recording directly without going through listening
+                /// </summary>
+        public void StartRecordingDirectly()
+        {
+            if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing)
+            {
+                PrepareForRecording(true, null);
+            }
+        }
+
+
         private urakawa.undo.CompositeCommand CreateRecordingCommand()
         {
             urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
