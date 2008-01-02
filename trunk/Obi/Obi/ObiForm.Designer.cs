@@ -937,12 +937,16 @@ namespace Obi
             this.mStartListeningToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
             this.mStartListeningToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.mStartListeningToolStripMenuItem.Text = "Start &listening";
+            this.mStartListeningToolStripMenuItem.Click += new System.EventHandler(mStartListeningToolStripMenuItem_Click);
+            this.mStartListeningToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             // 
             // mStartRecordingToolStripMenuItem
             // 
             this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
             this.mStartRecordingToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.mStartRecordingToolStripMenuItem.Text = "Start &recording";
+            this.mStartRecordingToolStripMenuItem.Click += new System.EventHandler(mStartRecordingToolStripMenuItem_Click);
+            this.mStartRecordingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.R)));
             // 
             // allowOverwriteToolStripMenuItem
             // 
@@ -1011,12 +1015,14 @@ namespace Obi
             this.rewindToolStripMenuItem.Name = "rewindToolStripMenuItem";
             this.rewindToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.rewindToolStripMenuItem.Text = "Re&wind";
+            this.rewindToolStripMenuItem.Click += new System.EventHandler(rewindToolStripMenuItem_Click);
             // 
             // fastForwardToolStripMenuItem
             // 
             this.fastForwardToolStripMenuItem.Name = "fastForwardToolStripMenuItem";
             this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.fastForwardToolStripMenuItem.Text = "&Fast forward";
+            this.fastForwardToolStripMenuItem.Click += new System.EventHandler(fastForwardToolStripMenuItem_Click);
             // 
             // mToolsToolStripMenuItem
             // 
