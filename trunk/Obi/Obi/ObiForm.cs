@@ -1501,6 +1501,35 @@ namespace Obi
             mProjectView.TransportBar.FastForward();
         }
 
+        private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PrevSection();
+        }
+
+        private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PrevPhrase();
+        }
+
+        private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PreviousPage();
+        }
+
+        private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextPhrase();
+        }
+
+        private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextSection(); 
+        }
+
+        private void nextPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextPage();
+        }
 
 
     }
