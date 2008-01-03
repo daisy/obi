@@ -119,10 +119,10 @@ to select (see keyboard navigation below.)
     or its outer edge.
   * The waveform in a block is selectable; either a position or a range of
     audio. To select a position in the waveform, click once; to select a range,
-    click then drag.
-    * TODO: shift+click for a range.
-    * TODO: dragging outside of the block kills the selection.
-    * TODO: select all audio from a block.
+    click then drag, or press shift then click after a position or a range was
+    already selected. Finally, double-clicking will select all the audio from
+    the block.
+    * TODO: keyboard alternative.
 * In the TOC view:
   * A section is selectable.
   * The text label of a section is selectable. When selected, it becomes

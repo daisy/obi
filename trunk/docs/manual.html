@@ -51,53 +51,53 @@
               <a href="#id18634">What is selectable?</a>
             </li>
             <li>
-              <a href="#id18713">Label editing</a>
+              <a href="#id18707">Label editing</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id18738">Transport bar and peak meter</a>
+          <a href="#id18732">Transport bar and peak meter</a>
           <ul>
             <li>
-              <a href="#id18742">Transport bar buttons</a>
+              <a href="#id18736">Transport bar buttons</a>
             </li>
             <li>
-              <a href="#id18810">Unedited notes</a>
+              <a href="#id18804">Unedited notes</a>
             </li>
             <li>
-              <a href="#id19039">Peak meter</a>
+              <a href="#id19033">Peak meter</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id19045">Menus</a>
+          <a href="#id19040">Menus</a>
           <ul>
             <li>
-              <a href="#id19053">File menu (<code>Alt+F</code>)</a>
+              <a href="#id19047">File menu (<code>Alt+F</code>)</a>
             </li>
             <li>
-              <a href="#id19249">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id19243">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19501">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19496">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19651">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19645">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19758">Strips menu (<code>Alt+S</code>)</a>
+              <a href="#id19752">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19864">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19858">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id19978">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id19972">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id20060">Tools menu</a>
+              <a href="#id20054">Tools menu</a>
             </li>
             <li>
-              <a href="#id20063">Help menu</a>
+              <a href="#id20057">Help menu</a>
             </li>
           </ul>
         </li>
@@ -203,7 +203,9 @@ editable.</li><li>A position inside a strip is selectable. The position can be b
 first block, after the last block, or between two blocks.</li><li>A block inside a strip is selectable. To select a block, click on its label
 or its outer edge.</li><li>The waveform in a block is selectable; either a position or a range of
 audio. To select a position in the waveform, click once; to select a range,
-click then drag.</li><li><span class="todo">TODO</span>: shift+click for a range.</li><li><span class="todo">TODO</span>: dragging outside of the block kills the selection.</li><li><span class="todo">TODO</span>: select all audio from a block.</li></ul></li>
+click then drag, or press shift then click after a position or a range was
+already selected. Finally, double-clicking will select all the audio from
+the block.</li><li><span class="todo">TODO</span>: keyboard alternative.</li></ul></li>
       <li>In the TOC view:
 <ul><li>A section is selectable.</li><li>The text label of a section is selectable. When selected, it becomes
 editable.</li></ul></li>
@@ -211,13 +213,13 @@ editable.</li></ul></li>
 <ul><li>A metadata entry in the metadata view is selectable (<span class="todo">TODO</span>).</li><li>The text inside a metadata entry is selectable (<span class="todo">TODO</span>). When selected, it
 becomes editable.</li></ul></li>
     </ul>
-    <h3 id="id18713">Label editing</h3>
+    <h3 id="id18707">Label editing</h3>
     <p>The label of a strip or a section, and the value of a metadata entry (<span class="todo">TODO</span>) can
 be directly edited by clicking them. When typing <code>Enter</code>, the new name is
 committed; typing <code>Esc</code> cancels the edit. Strips also have an <code>OK</code> and <code>Cancel</code>
 button which achieve the same effects.</p>
-    <h2 id="id18738">Transport bar and peak meter</h2>
-    <h3 id="id18742">Transport bar buttons</h3>
+    <h2 id="id18732">Transport bar and peak meter</h2>
+    <h3 id="id18736">Transport bar buttons</h3>
     <ul>
       <li>
         <p><strong>Play button</strong> (<code>Ctrl+Space</code>): this button gives Play All command while
@@ -243,7 +245,7 @@ like split and insert recording.</p>
         <p><strong>Stop button</strong>: stop playback or recording which ever is active.</p>
       </li>
     </ul>
-    <h3 id="id18810">Unedited notes</h3>
+    <h3 id="id18804">Unedited notes</h3>
     <p>This is a temporary write up for transport bar which should be copied to main manual.
 The write up contains description about transportbar buttons and other transport bar functions which are to be invoked through drop down menus and keyboard shortcuts.</p>
     <p class="indent">Description about buttons:
@@ -380,7 +382,7 @@ The value displayed is relative to the peak value of audio with upper range of 0
     <p>Whenever overload is reached,  the "OL" tag appears before numerical value of that particular channel.
 This tag remains in text display of respective channel till reset button on text meter is pressed. 
 Remark: reset button is not visible till  overload is reached.</p>
-    <h3 id="id19039">Peak meter</h3>
+    <h3 id="id19033">Peak meter</h3>
     <p>The peak meter allows to monitor the input sound level (while recording) or
 output level (while playing back), and especially shows when overload occurs.
 Overload should be avoided while recording because the recorded audio is
@@ -389,9 +391,9 @@ with a number indicating the number of occurrences. Users can modify their
 audio settings (getting further away from the microphone or turning its volume
 down) to reach an acceptable audio level. Clicking on a red overload box will
 reset it.</p>
-    <h2 id="id19045">Menus</h2>
+    <h2 id="id19040">Menus</h2>
     <p>This is a description of the main menubar in Obi.</p>
-    <h3 id="id19053">File menu (<code>Alt+F</code>)</h3>
+    <h3 id="id19047">File menu (<code>Alt+F</code>)</h3>
     <p>Creating and opening projects:</p>
     <ul>
       <li>
@@ -467,7 +469,7 @@ per section, named in book order.</p>
 currently opened, changes can be saved before quitting, or quitting can be
 cancelled. Quitting can also be achieved by closing the main Obi window.</li>
     </ul>
-    <h3 id="id19249">Edit menu (<code>Alt+E</code>)</h3>
+    <h3 id="id19243">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -561,7 +563,7 @@ of section titles, the strip corresponding to the section is selected.)</p>
         <p><strong>Find previous</strong> (<code>Shift+F3</code>): find the previous item. <span class="todo">TODO</span>: more details.</p>
       </li>
     </ul>
-    <h3 id="id19501">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19496">View menu (<code>Alt+V</code>)</h3>
     <p>Various views can be shown or hidden. By default, all are shown, except for the
 search bar which only appears when searching. Each menu item has a checkbox
 that indicate the visibility of the corresponding view (checked meaning
@@ -613,7 +615,7 @@ project. This is mainly useful for debugging and may be removed from the
 release version.</p>
       </li>
     </ul>
-    <h3 id="id19651">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19645">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -656,7 +658,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections. <span class="todo">TODO</span>: this is currently disabled.</p>
       </li>
     </ul>
-    <h3 id="id19758">Strips menu (<code>Alt+S</code>)</h3>
+    <h3 id="id19752">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
       <li>
         <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
@@ -696,7 +698,7 @@ subsection; <em>i.e.</em> if the operation affects only the selected strip. The
 contents of the strip are affected as well. <span class="todo">TODO</span>: this is currently disabled.</p>
       </li>
     </ul>
-    <h3 id="id19864">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19858">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
@@ -740,7 +742,7 @@ currently disabled.</p>
       </li>
     </ul>
     <p><span class="todo">TODO</span>: update the rest of the document!</p>
-    <h3 id="id19978">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id19972">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -767,7 +769,7 @@ if a cursor is positionned inside a block, until the end of the block.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id20060">Tools menu</h3>
-    <h3 id="id20063">Help menu</h3>
+    <h3 id="id20054">Tools menu</h3>
+    <h3 id="id20057">Help menu</h3>
   </body>
 </html>
