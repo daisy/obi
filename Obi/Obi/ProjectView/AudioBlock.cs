@@ -10,7 +10,8 @@ namespace Obi.ProjectView
 {
     public partial class AudioBlock : Block
     {
-        private static readonly float AUDIO_SCALE = 0.01f;
+        private bool mShift;                                // track the shift key
+        private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
         public AudioBlock(PhraseNode node, Strip strip)
             : base(node, strip)
@@ -18,6 +19,7 @@ namespace Obi.ProjectView
             this.InitializeComponent();
             SetWaveform((PhraseNode)Node);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
+            mShift = false;
         }
 
 
@@ -93,28 +95,53 @@ namespace Obi.ProjectView
             }
         }
 
+        // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
         {
             if (CanSelectInWaveform) Strip.SelectTimeInBlock(this, mWaveform.Selection);
         }
 
-        private void mWaveform_MouseDown(object sender, MouseEventArgs e)
+        // Track down the shift key for selection
+        private void mWaveform_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShift = true; }
+        private void mWaveform_KeyUp(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShift = false; }
+
+        // Double clicking on the waveform selects all.
+        private void mWaveform_DoubleClick(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (CanSelectInWaveform)
             {
-                if (CanSelectInWaveform)
-                {
-                    mWaveform.CursorPosition = e.X;
-                    Strip.SelectTimeInBlock(this, mWaveform.Selection);
-                }
+                mWaveform.Selection = new AudioRange(0.0, ((PhraseNode)mNode).Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+                Strip.SelectTimeInBlock(this, mWaveform.Selection);
             }
         }
 
+        // Update the selection position on mouse down...
+        private void mWaveform_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && CanSelectInWaveform)
+            {
+                if (mShift && mWaveform.Selection != null)
+                {
+                    mWaveform.FinalSelectionPosition = e.X;
+                }
+                else
+                {
+                    mWaveform.CursorPosition = e.X;
+                }
+                Strip.SelectTimeInBlock(this, mWaveform.Selection);
+            }
+        }
+
+        // ... and commit it (select) on mouse up outside of the waveform (otherwise the click event is not registered ?!)
         private void mWaveform_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && CanSelectInWaveform)
+            {
+                if (e.X < 0 || e.X > mWaveform.Width) Strip.SelectTimeInBlock(this, mWaveform.Selection);
+            }
         }    
 
+        // Update the audio range selection when moving the mouse.
         private void mWaveform_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;

@@ -40,10 +40,13 @@ namespace Obi.ProjectView
             this.mWaveform.Size = new System.Drawing.Size(98, 98);
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
+            this.mWaveform.DoubleClick += new System.EventHandler(this.mWaveform_DoubleClick);
             this.mWaveform.Click += new System.EventHandler(this.mWaveform_Click);
             this.mWaveform.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseDown);
             this.mWaveform.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseMove);
+            this.mWaveform.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mWaveform_KeyUp);
             this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
+            this.mWaveform.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mWaveform_KeyDown);
             // 
             // AudioBlock
             // 

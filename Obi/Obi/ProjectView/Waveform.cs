@@ -36,19 +36,15 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// Set the cursor position for selection.
-        /// When playback is active, don't do anything.
+        /// Cursor position for selection.
         /// </summary>
         public int CursorPosition
         {
             get { return XFromTime(mSelection.CursorTime); }
             set
             {
-                if (((AudioBlock)Parent).CanSelectInWaveform)
-                {
-                    mSelection = new AudioRange(TimeFromX(value));
-                    Invalidate();
-                }
+                mSelection = new AudioRange(TimeFromX(value));
+                Invalidate();
             }
         }
 
@@ -82,22 +78,20 @@ namespace Obi.ProjectView
             get { return XFromTime(mSelection.SelectionEndTime); }
             set
             {
-                if (((AudioBlock)Parent).CanSelectInWaveform)
+                int x = value < 0 ? 0 : value > Width ? Width : value;
+                double start = mSelection.CursorTime;
+                double end = TimeFromX(x);
+                if (start == end)
                 {
-                    double start = mSelection.CursorTime;
-                    double end = TimeFromX(value);
-                    if (start == end)
-                    {
-                        mSelection.HasCursor = true;
-                    }
-                    else
-                    {
-                        mSelection.HasCursor = false;
-                        mSelection.SelectionBeginTime = Math.Min(start, end);
-                        mSelection.SelectionEndTime = Math.Max(start, end);
-                    }
-                    Invalidate();
+                    mSelection.HasCursor = true;
                 }
+                else
+                {
+                    mSelection.HasCursor = false;
+                    mSelection.SelectionBeginTime = Math.Min(start, end);
+                    mSelection.SelectionEndTime = Math.Max(start, end);
+                }
+                Invalidate();
             }
         }
 
@@ -124,7 +118,11 @@ namespace Obi.ProjectView
         public AudioRange Selection
         {
             get { return mSelection; }
-            set { mSelection = value; }
+            set
+            {
+                mSelection = value;
+                Invalidate();
+            }
         }
 
 
@@ -180,16 +178,37 @@ namespace Obi.ProjectView
             if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
             if (mSelection != null)
             {
-                if (mSelection.HasCursor)
+                if (CheckCursor)
                 {
                     pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                 }
-                else
+                else if (CheckRange)
                 {
                     pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
                 }
             }
             base.OnPaint(pe);
+        }
+
+        private bool CheckCursor
+        {
+            get
+            {
+                return mSelection.HasCursor &&
+                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+            }
+        }
+
+        private bool CheckRange
+        {
+            get
+            {
+                double d = mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                return !mSelection.HasCursor &&
+                    mSelection.SelectionBeginTime >= 0.0 && mSelection.SelectionBeginTime <= d &&
+                    mSelection.SelectionEndTime >= 0.0 && mSelection.SelectionEndTime <= d &&
+                    mSelection.SelectionBeginTime < mSelection.SelectionEndTime;
+            }
         }
 
         // Convert a pixel position into a time (in ms.)
