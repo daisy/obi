@@ -32,6 +32,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             mTOCView.ProjectView = this;
             mStripsView.ProjectView = this;
+            mMetadataView.ProjectView = this;
             mFindInText.ProjectView = this;
             mTransportBar.ProjectView = this;
             mTransportBar.Enabled = false;

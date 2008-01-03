@@ -318,10 +318,15 @@ namespace Obi.ProjectView
         // Handle resizing of the layout panel: all strips are resized to be at least as wide.
         private void mLayoutPanel_SizeChanged(object sender, EventArgs e)
         {
-            foreach (Control c in mLayoutPanel.Controls)
+            if (mLayoutPanel.Controls.Count > 0)
             {
-                int w = mLayoutPanel.Width - c.Location.X - c.Margin.Right;
-                c.Size = new Size(w, c.Height);
+                Control last = mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1];
+                int scrollbarW = last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth : 0;
+                foreach (Control c in mLayoutPanel.Controls)
+                {
+                    int w = mLayoutPanel.Width - c.Location.X - c.Margin.Right - scrollbarW;
+                    c.Size = new Size(w, c.Height);
+                }
             }
         }
 

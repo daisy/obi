@@ -253,6 +253,12 @@
     <Compile Include="ProjectView\ContainerBlock.Designer.cs">
       <DependentUpon>ContainerBlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\MetadataPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\MetadataPanel.Designer.cs">
+      <DependentUpon>MetadataPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\StripCursor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -440,6 +446,10 @@
     <EmbeddedResource Include="ProjectView\EditableLabel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditableLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\MetadataPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MetadataPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.resx">
       <SubType>Designer</SubType>
