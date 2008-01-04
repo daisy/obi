@@ -355,10 +355,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void PrevSection()
         {
-            if (!IsInlineRecording)
+            if ( Enabled     &&     mRecordingSession == null )
             {
                 mIsSerialPlaying = true;
-                if (Enabled) mCurrentPlaylist.NavigateToPreviousSection();
+                 mCurrentPlaylist.NavigateToPreviousSection();
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
@@ -368,10 +368,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void PrevPhrase()
         {
-            if (!IsInlineRecording)
+            if ( Enabled    &&    mRecordingSession == null )
             {
                 if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = true;
-                if (Enabled) mCurrentPlaylist.NavigateToPreviousPhrase();
+                 mCurrentPlaylist.NavigateToPreviousPhrase();
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
@@ -381,15 +381,15 @@ namespace Obi.ProjectView
         /// </summary>
         public void Rewind()
         {
-            if (Enabled)
+            if (Enabled && mRecordingSession == null)
             {
-                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
-                    Play();
+                    if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
+                        Play();
 
-                mIsSerialPlaying = true;
-                mCurrentPlaylist.Rewind();
-            }
-        }
+                    mIsSerialPlaying = true;
+                    mCurrentPlaylist.Rewind();
+                }
+                    }
 
         /// <summary>
         /// checks if play selection should be initialised from PlayAll function
@@ -672,7 +672,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void FastForward()
         {
-            if (Enabled && !IsInlineRecording)
+            if (Enabled && mRecordingSession == null )
             {
                 if ( mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped )
                     Play();
@@ -1216,10 +1216,10 @@ namespace Obi.ProjectView
 
         public void PreviousPage()
         {
-                        if ( mRecordingSession == null )
+                        if ( Enabled     &&     mRecordingSession == null )
                 {
             mIsSerialPlaying = true;
-            if (Enabled) mCurrentPlaylist.NavigateToPreviousPage();
+            mCurrentPlaylist.NavigateToPreviousPage();
             if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
                 }
         }
