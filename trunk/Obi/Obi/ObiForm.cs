@@ -1571,5 +1571,24 @@ namespace Obi
             mProjectView.ApplyPhraseDetection();
         }
 
+        private void BeginInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionBeginTime();
+        }
+
+        private void EndInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionEndTime();
+                    }
+
+        private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.Selection is AudioSelection)
+            {
+                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime = 0;
+                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
+            }
+        }
+
     }
 }
