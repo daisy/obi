@@ -1531,7 +1531,45 @@ namespace Obi
             mProjectView.TransportBar.NextPage();
         }
 
+        private void NormalSpeedtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateNormalise();
+        }
 
+        private void SpeedUptoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateStepUp();
+        }
+
+        private void SpeedDowntoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateStepDown();
+        }
+
+        private void ElapseBacktoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayNormaliseWithLapseBack();
+        }
+
+        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewFromCurrentPosition();
+        }
+
+        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewUptoCurrentPosition() ;
+        }
+
+        private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewSelectedFragment();
+        }
+
+        private void PhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ApplyPhraseDetection();
+        }
 
     }
 }
