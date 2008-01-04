@@ -4,8 +4,15 @@ The write up contains description about transportbar buttons and other transport
 Description about buttons:
 1. Play button.
 This button gives Play All command while starting playback from currently selected block in strip view or currently selected node in tree view.
-1.1. If there is no in phrase selection, ( technically  termed as audio selection ) this button starts playback from starting of selected block or selected tree node.
-1.2. If there is Audio selection and cursor has a position marked inside phrase, this button starts playback from this cursor position.
+1.1. If strip curser is selected, this button starts playback from starting of selected block or selected tree node and plays whole book. 
+1.2. If there is Audio selection and cursor has a position marked inside phrase, this button starts playback from this cursor position and
+plays whole book. 
+1.3. If nothing is selected, this buttons plays whole book starting from first phrase. 
+1.4.If an audio block is selected ( without any
+in phrase selection ), this button plays only the current audio block. 
+1.5. If a part of audio is selected within an audio block, only this selected part
+is played. 
+
 Keyboard shortcut: Control+Space.
 
 2. Pause button:
