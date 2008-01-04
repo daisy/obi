@@ -117,6 +117,15 @@ namespace Obi
             this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FastPlaytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NormalSpeedtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SpeedUptoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SpeedDowntoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ElapseBacktoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayPreviewtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PreviewSelectedAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartListeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,7 +140,6 @@ namespace Obi
             this.nextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FastPlaytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,14 +153,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.PlayPreviewtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SpeedUptoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NormalSpeedtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SpeedDowntoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ElapseBacktoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PreviewSelectedAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -883,6 +883,7 @@ namespace Obi
             this.PhraseDetectionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.PhraseDetectionToolStripMenuItem.Text = "Apply P&hrase Detection";
             this.PhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
+            this.PhraseDetectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             // 
             // transportToolStripMenuItem
             // 
@@ -948,6 +949,79 @@ namespace Obi
             this.mStopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mStopToolStripMenuItem.Text = "&Stop";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
+            // 
+            // FastPlaytoolStripMenuItem
+            // 
+            this.FastPlaytoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NormalSpeedtoolStripMenuItem,
+            this.SpeedUptoolStripMenuItem,
+            this.SpeedDowntoolStripMenuItem,
+            this.ElapseBacktoolStripMenuItem});
+            this.FastPlaytoolStripMenuItem.Name = "FastPlaytoolStripMenuItem";
+            this.FastPlaytoolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.FastPlaytoolStripMenuItem.Text = "Fast P&lay";
+            // 
+            // NormalSpeedtoolStripMenuItem
+            // 
+            this.NormalSpeedtoolStripMenuItem.Name = "NormalSpeedtoolStripMenuItem";
+            this.NormalSpeedtoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.NormalSpeedtoolStripMenuItem.Text = "&Normal Speed";
+            this.NormalSpeedtoolStripMenuItem.Click += new System.EventHandler(this.NormalSpeedtoolStripMenuItem_Click);
+            this.NormalSpeedtoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift |  System.Windows.Forms.Keys.D )));
+            // 
+            // SpeedUptoolStripMenuItem
+            // 
+            this.SpeedUptoolStripMenuItem.Name = "SpeedUptoolStripMenuItem";
+            this.SpeedUptoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.SpeedUptoolStripMenuItem.Text = "Speed &Up";
+            this.SpeedUptoolStripMenuItem.Click += new System.EventHandler(this.SpeedUptoolStripMenuItem_Click);
+            this.SpeedUptoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F)));
+            // 
+            // SpeedDowntoolStripMenuItem
+            // 
+            this.SpeedDowntoolStripMenuItem.Name = "SpeedDowntoolStripMenuItem";
+            this.SpeedDowntoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.SpeedDowntoolStripMenuItem.Text = "Speed &Down";
+            this.SpeedDowntoolStripMenuItem.Click += new System.EventHandler(this.SpeedDowntoolStripMenuItem_Click);
+            // 
+            // ElapseBacktoolStripMenuItem
+            // 
+            this.ElapseBacktoolStripMenuItem.Name = "ElapseBacktoolStripMenuItem";
+            this.ElapseBacktoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.ElapseBacktoolStripMenuItem.Text = "Normal Speed with &Elapse back";
+            this.ElapseBacktoolStripMenuItem.Click += new System.EventHandler(this.ElapseBacktoolStripMenuItem_Click);
+            // 
+            // PlayPreviewtoolStripMenuItem
+            // 
+            this.PlayPreviewtoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PreviewFromtoolStripMenuItem,
+            this.PreviewUptotoolStripMenuItem,
+            this.PreviewSelectedAudiotoolStripMenuItem});
+            this.PlayPreviewtoolStripMenuItem.Name = "PlayPreviewtoolStripMenuItem";
+            this.PlayPreviewtoolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.PlayPreviewtoolStripMenuItem.Text = "Play Pre&view";
+            // 
+            // PreviewFromtoolStripMenuItem
+            // 
+            this.PreviewFromtoolStripMenuItem.Name = "PreviewFromtoolStripMenuItem";
+            this.PreviewFromtoolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.PreviewFromtoolStripMenuItem.Text = "Preview &From";
+            this.PreviewFromtoolStripMenuItem.Click += new System.EventHandler(this.PreviewFromtoolStripMenuItem_Click);
+            this.PreviewFromtoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
+            // 
+            // PreviewUptotoolStripMenuItem
+            // 
+            this.PreviewUptotoolStripMenuItem.Name = "PreviewUptotoolStripMenuItem";
+            this.PreviewUptotoolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.PreviewUptotoolStripMenuItem.Text = "Preview &Upto";
+            this.PreviewUptotoolStripMenuItem.Click += new System.EventHandler(this.PreviewUptotoolStripMenuItem_Click);
+            // 
+            // PreviewSelectedAudiotoolStripMenuItem
+            // 
+            this.PreviewSelectedAudiotoolStripMenuItem.Name = "PreviewSelectedAudiotoolStripMenuItem";
+            this.PreviewSelectedAudiotoolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.PreviewSelectedAudiotoolStripMenuItem.Text = "Preview &Selected";
+            this.PreviewSelectedAudiotoolStripMenuItem.Click += new System.EventHandler(this.PreviewSelectedAudiotoolStripMenuItem_Click);
             // 
             // recordToolStripMenuItem
             // 
@@ -1062,17 +1136,6 @@ namespace Obi
             this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             this.fastForwardToolStripMenuItem.Click += new System.EventHandler(this.fastForwardToolStripMenuItem_Click);
             // 
-            // FastPlaytoolStripMenuItem
-            // 
-            this.FastPlaytoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NormalSpeedtoolStripMenuItem,
-            this.SpeedUptoolStripMenuItem,
-            this.SpeedDowntoolStripMenuItem,
-            this.ElapseBacktoolStripMenuItem});
-            this.FastPlaytoolStripMenuItem.Name = "FastPlaytoolStripMenuItem";
-            this.FastPlaytoolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.FastPlaytoolStripMenuItem.Text = "Fast P&lay";
-            // 
             // mToolsToolStripMenuItem
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1185,65 +1248,6 @@ namespace Obi
             this.mProjectView.TabIndex = 4;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // PlayPreviewtoolStripMenuItem
-            // 
-            this.PlayPreviewtoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PreviewFromtoolStripMenuItem,
-            this.PreviewUptotoolStripMenuItem,
-            this.PreviewSelectedAudiotoolStripMenuItem});
-            this.PlayPreviewtoolStripMenuItem.Name = "PlayPreviewtoolStripMenuItem";
-            this.PlayPreviewtoolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.PlayPreviewtoolStripMenuItem.Text = "Play Pre&view";
-            // 
-            // SpeedUptoolStripMenuItem
-            // 
-            this.SpeedUptoolStripMenuItem.Name = "SpeedUptoolStripMenuItem";
-            this.SpeedUptoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.SpeedUptoolStripMenuItem.Text = "Speed &Up";
-            this.SpeedUptoolStripMenuItem.Click += new System.EventHandler(SpeedUptoolStripMenuItem_Click);
-            // 
-            // NormalSpeedtoolStripMenuItem
-            // 
-            this.NormalSpeedtoolStripMenuItem.Name = "NormalSpeedtoolStripMenuItem";
-            this.NormalSpeedtoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.NormalSpeedtoolStripMenuItem.Text = "&Normal Speed";
-            this.NormalSpeedtoolStripMenuItem.Click += new System.EventHandler(NormalSpeedtoolStripMenuItem_Click);
-            // 
-            // SpeedDowntoolStripMenuItem
-            // 
-            this.SpeedDowntoolStripMenuItem.Name = "SpeedDowntoolStripMenuItem";
-            this.SpeedDowntoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.SpeedDowntoolStripMenuItem.Text = "Speed &Down";
-            this.SpeedDowntoolStripMenuItem.Click += new System.EventHandler(SpeedDowntoolStripMenuItem_Click);
-            // 
-            // ElapseBacktoolStripMenuItem
-            // 
-            this.ElapseBacktoolStripMenuItem.Name = "ElapseBacktoolStripMenuItem";
-            this.ElapseBacktoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.ElapseBacktoolStripMenuItem.Text = "Normal Speed with &Elapse back";
-            this.ElapseBacktoolStripMenuItem.Click += new System.EventHandler(ElapseBacktoolStripMenuItem_Click);
-            // 
-            // PreviewFromtoolStripMenuItem
-            // 
-            this.PreviewFromtoolStripMenuItem.Name = "PreviewFromtoolStripMenuItem";
-            this.PreviewFromtoolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.PreviewFromtoolStripMenuItem.Text = "Preview &From";
-            this.PreviewFromtoolStripMenuItem.Click += new System.EventHandler(PreviewFromtoolStripMenuItem_Click);
-            // 
-            // PreviewUptotoolStripMenuItem
-            // 
-            this.PreviewUptotoolStripMenuItem.Name = "PreviewUptotoolStripMenuItem";
-            this.PreviewUptotoolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.PreviewUptotoolStripMenuItem.Text = "Preview &Upto";
-            this.PreviewUptotoolStripMenuItem.Click += new System.EventHandler(PreviewUptotoolStripMenuItem_Click);
-            // 
-            // PreviewSelectedAudiotoolStripMenuItem
-            // 
-            this.PreviewSelectedAudiotoolStripMenuItem.Name = "PreviewSelectedAudiotoolStripMenuItem";
-            this.PreviewSelectedAudiotoolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.PreviewSelectedAudiotoolStripMenuItem.Text = "Preview &Selected";
-            this.PreviewSelectedAudiotoolStripMenuItem.Click += new System.EventHandler(PreviewSelectedAudiotoolStripMenuItem_Click);
             // 
             // ObiForm
             // 
