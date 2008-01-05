@@ -1250,7 +1250,41 @@ namespace Obi
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
+
+            UpdateAudioSelectionBlockMenuItems();
         }
+
+        private void UpdateAudioSelectionBlockMenuItems()
+        {
+            string AudioSelectionStatusMessage = "";
+            if (mProjectView.Selection is AudioSelection)
+            {
+                BeginInPhraseSelectionToolStripMenuItem.Enabled = true;
+
+                if (((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
+                {
+                    EndInPhraseSelectionToolStripMenuItem.Enabled = true;
+                }
+
+                if (((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime > 0)
+                {
+                    DeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
+                    AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
+                    //Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+                }
+                else
+                {
+                    DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                    AudioSelectionStatusMessage = "";
+                }
+                                }
+            else
+            {
+                BeginInPhraseSelectionToolStripMenuItem.Enabled = false;
+                EndInPhraseSelectionToolStripMenuItem.Enabled = false;
+                DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+            }
+                    }
 
         private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
@@ -1574,11 +1608,13 @@ namespace Obi
         private void BeginInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.TransportBar.MarkSelectionBeginTime();
+            UpdateAudioSelectionBlockMenuItems();
         }
 
         private void EndInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.TransportBar.MarkSelectionEndTime();
+            UpdateAudioSelectionBlockMenuItems();
                     }
 
         private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1588,6 +1624,7 @@ namespace Obi
                 ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime = 0;
                 ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
             }
+            UpdateAudioSelectionBlockMenuItems();
         }
 
     }
