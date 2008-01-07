@@ -1046,7 +1046,7 @@ namespace Obi
             this.mStartListeningToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
             this.mStartListeningToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.mStartListeningToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.mStartListeningToolStripMenuItem.Text = "Start &listening";
+            this.mStartListeningToolStripMenuItem.Text = "&Start listening";
             this.mStartListeningToolStripMenuItem.Click += new System.EventHandler(this.mStartListeningToolStripMenuItem_Click);
             // 
             // mStartRecordingToolStripMenuItem

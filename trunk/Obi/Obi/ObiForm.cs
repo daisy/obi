@@ -484,8 +484,9 @@ namespace Obi
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
             mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
             mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
+            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
         }
-
+        
         // Open the project at the given path; warn the user on error.
         private void OpenProject(string path)
         {
@@ -679,7 +680,7 @@ namespace Obi
         /// <summary>
         /// Show the state of the transport bar in the status bar.
         /// </summary>
-        void TransportBar_StateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        void TransportBar_StateChanged(object sender, EventArgs e )
         {
             Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()));
             UpdateTransportMenu();
@@ -1488,6 +1489,20 @@ namespace Obi
                 mResumeToolStripMenuItem.Visible = false;
             }
             mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
+            mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
+            if (mProjectView.TransportBar.IsListening)
+                mStartListeningToolStripMenuItem.Text = "&Start Recording";
+            else if (mProjectView.TransportBar.IsRecorderActive)
+            {
+                mStartListeningToolStripMenuItem.Text = "&Start Listening";
+                mStartListeningToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                mStartListeningToolStripMenuItem.Text = "&Start Listening";
+                mStartListeningToolStripMenuItem.Enabled = true;
+                mStartRecordingToolStripMenuItem.Enabled = true;
+            }
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
