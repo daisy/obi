@@ -940,20 +940,21 @@ namespace Obi
             this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mPauseToolStripMenuItem.Text = "Pa&use";
             this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
-            // 
+                        // 
             // mResumeToolStripMenuItem
             // 
             this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
             this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mResumeToolStripMenuItem.Text = "Res&ume";
             this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
-            // 
+                        // 
             // mStopToolStripMenuItem
             // 
             this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
             this.mStopToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mStopToolStripMenuItem.Text = "&Stop";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
+            this.mStopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T ))) ;
             // 
             // FastPlaytoolStripMenuItem
             // 
