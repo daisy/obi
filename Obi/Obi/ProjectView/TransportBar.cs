@@ -1233,7 +1233,7 @@ namespace Obi.ProjectView
             }
         }
 
-        private bool IsListening
+        public bool IsListening
         {
             get
             {
@@ -1246,7 +1246,7 @@ namespace Obi.ProjectView
         private bool IsPlaying { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Playing; } }
         private bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
-        private bool IsRecorderActive { get { return IsListening || IsRecording; } }
+        public bool IsRecorderActive { get { return IsListening || IsRecording; } }
 
         private void mCustomClassMarkButton_Click(object sender, EventArgs e) { MarkCustomClass(); }
 
