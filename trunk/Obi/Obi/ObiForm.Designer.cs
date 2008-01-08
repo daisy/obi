@@ -1138,6 +1138,7 @@ namespace Obi
             this.previousPageToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.previousPageToolStripMenuItem.Text = "Previous page";
             this.previousPageToolStripMenuItem.Click += new System.EventHandler(this.previousPageToolStripMenuItem_Click);
+            //this.previousPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.PageUp;
             // 
             // previousPhraseToolStripMenuItem
             // 
@@ -1146,6 +1147,7 @@ namespace Obi
             this.previousPhraseToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.previousPhraseToolStripMenuItem.Text = "Previous phrase";
             this.previousPhraseToolStripMenuItem.Click += new System.EventHandler(this.previousPhraseToolStripMenuItem_Click);
+            this.previousPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.PageUp ));
             // 
             // nextPhraseToolStripMenuItem
             // 
@@ -1161,6 +1163,7 @@ namespace Obi
             this.nextPageToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.nextPageToolStripMenuItem.Text = "Next page";
             this.nextPageToolStripMenuItem.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click);
+            this.nextPageToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.PageDown ));
             // 
             // nextSectionToolStripMenuItem
             // 
@@ -1176,6 +1179,7 @@ namespace Obi
             this.rewindToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.rewindToolStripMenuItem.Text = "Re&wind";
             this.rewindToolStripMenuItem.Click += new System.EventHandler(this.rewindToolStripMenuItem_Click);
+            this.rewindToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemcomma));
             // 
             // fastForwardToolStripMenuItem
             // 
@@ -1183,6 +1187,7 @@ namespace Obi
             this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             this.fastForwardToolStripMenuItem.Click += new System.EventHandler(this.fastForwardToolStripMenuItem_Click);
+            this.fastForwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemPeriod ));
                         // 
             // mToolsToolStripMenuItem
             // 

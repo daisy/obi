@@ -671,7 +671,7 @@ namespace Obi
                 int NextPagePhraseIndex = mCurrentPhraseIndex + 1;
                 PhraseNode n = mPhrases[NextPagePhraseIndex];
 
-                while (NextPagePhraseIndex < mPhrases.Count
+                while (NextPagePhraseIndex < mPhrases.Count - 1
                     && n.NodeKind != EmptyNode.Kind.Page)
                 {
                     ++NextPagePhraseIndex;
