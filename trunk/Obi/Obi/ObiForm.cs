@@ -286,6 +286,7 @@ namespace Obi
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
+            mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry;
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
@@ -299,6 +300,7 @@ namespace Obi
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
         private void mDeleteUnusedDataToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
+        private void mAddMetadataEntryToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddMetadataEntry(); }
 
         #endregion
 
@@ -1673,6 +1675,5 @@ namespace Obi
             }
             UpdateAudioSelectionBlockMenuItems();
         }
-
     }
 }

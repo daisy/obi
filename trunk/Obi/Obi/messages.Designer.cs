@@ -97,6 +97,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add metadata entry.
+        /// </summary>
+        internal static string add_metadata_entry {
+            get {
+                return ResourceManager.GetString("add_metadata_entry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add audio block.
         /// </summary>
         internal static string add_phrase_command_label {
@@ -671,6 +680,15 @@ namespace Obi {
         internal static string delete_menu_label {
             get {
                 return ResourceManager.GetString("delete_menu_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete metadata entry.
+        /// </summary>
+        internal static string delete_metadata_entry {
+            get {
+                return ResourceManager.GetString("delete_metadata_entry", resourceCulture);
             }
         }
         

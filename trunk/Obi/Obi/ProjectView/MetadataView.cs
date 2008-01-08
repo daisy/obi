@@ -32,13 +32,41 @@ namespace Obi.ProjectView
             {
                 foreach (urakawa.metadata.Metadata m in mView.Presentation.getListOfMetadata())
                 {
-                    MetadataPanel panel = new MetadataPanel(this);
-                    panel.EntryName = m.getName();
-                    panel.EntryContent = m.getContent();
+                    MetadataPanel panel = new MetadataPanel(this, m);
                     mLayout.Controls.Add(panel);
                 }
                 UpdatePanelSizes();
+                mView.Presentation.MetadataEntryAdded += new MetadataEventHandler(Presentation_MetadataEntryAdded);
+                mView.Presentation.MetadataEntryDeleted += new MetadataEventHandler(Presentation_MetadataEntryDeleted);
             }
+        }
+
+        /// <summary>
+        /// A metadata entry can be removed if it is selected. TODO: check that it is not mandatory!
+        /// </summary>
+        public bool CanRemoveMetadata { get { return mSelection != null; } }
+
+
+        // Add a new entry to the view
+        private void Presentation_MetadataEntryAdded(object sender, MetadataEventArgs e)
+        {
+            MetadataPanel panel = new MetadataPanel(this, e.Entry);
+            mLayout.Controls.Add(panel);
+        }
+
+        // Remove an entry from the view
+        private void Presentation_MetadataEntryDeleted(object sender, MetadataEventArgs e)
+        {
+            Control panel = null;
+            foreach (Control c in mLayout.Controls)
+            {
+                if (c is MetadataPanel && ((MetadataPanel)c).Entry == e.Entry)
+                {
+                    panel = c;
+                    break;
+                }
+            }
+            if (panel != null) mLayout.Controls.Remove(panel);
         }
 
         /// <summary>
