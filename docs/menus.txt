@@ -129,13 +129,15 @@ Index of shortcuts
   + F3 ................. Edit > Find next
   + Shift+F3 ........... Edit > Find previous
   + Alt+F4 ............. File > Exit
-  + F6 ................. View > Focus on strips view
-  + F7 ................. View > Focus on TOC view
+
+  + F6 ................. View > Focus on TOC view
+  + F7 ................. View > Focus on strips view
++ F8 ... Focus on transport bar if enabled
   + Ctrl+Shift+Left .... TOC > Move section out
   + Ctrl+Shift+Right ... TOC > Move section in
   + Ctrl+Space ......... Transport > Play > Play all
-  + Ctrl+Shift+Space ... Transport > Play > Play selection
-  + Space .............. Transport bar > play button
+  + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
+  + Space .............. Transport bar > play / pause in strip view
 
   + Ctrl+A ............. TOC > Add section
   + Ctrl+A ............. Strips > Add strip
@@ -150,7 +152,7 @@ Index of shortcuts
   + Ctrl+E ............. File > Export as DAISY
   + Ctrl+F ............. Edit > Find
   + Ctrl+G ............. FREE
-  + Ctrl+H ............. FREE
+  + Ctrl+H ............. Apply Phrase detection :Avn
   + Ctrl+I ............. Blocks > Import audio files
   + Ctrl+J ............. FREE
   + Ctrl+K ............. Block > Block is used
@@ -159,7 +161,7 @@ Index of shortcuts
   + Ctrl+L ............. File > Clean project
   + Ctrl+Shift+L ....... Edit > Delete unused data
   + Ctrl+M ............. Blocks > Merge block with next
-  + Alt+Shift+M ........ View > Show metadata view
+  + Alt+Control+M ........ View > Show metadata view : Avn: Changed from Alt+Shift combination
   + Ctrl+Shift+M ....... Strips > Merge with next strip
   + Ctrl+N ............. File > New project
   + Ctrl+Shift+N ....... File > New project from import
@@ -168,14 +170,14 @@ Index of shortcuts
   + Ctrl+P ............. Blocks > Split block
   + Ctrl+Shift+P ....... Strips > Split strip
   + Ctrl+Q ............. FREE
-  + Alt+Shift+R ........ View > Show source view
-  + Ctrl+R ............. FREE
-  + Ctrl+Shift+R ....... Help > Report bug
-  + Alt+Shift+S ........ View > Show search bar
+  + Control+Alt+O ........ View > Show source view    : Avn... changed from   + Alt+Shift+R
+  + Ctrl+R ............. Start listening/Start recording
+  + Ctrl+Alt+R ....... Help > Report bug   : Avn... changed from   + Ctrl+Shift+R 
+//  + Alt+Shift+S ........ View > Show search bar : Avn . This can be eliminated as Control+F is used for it.
   + Ctrl+S ............. File > Save project
-  + Ctrl+Shift+S ....... File > Save project as
++ F12....... File > Save project as :Avn: changed from Control+Shift+S
   + Alt+Shift+T ........ View > Show TOC view
-  + Ctrl+T ............. FREE
+  + Ctrl+T ............. Stop  :Avn
   + Alt+Shift+U ........ View > Show status bar
   + Ctrl+U ............. FREE
   + Ctrl+V ............. Edit > Paste
