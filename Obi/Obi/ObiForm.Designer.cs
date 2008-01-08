@@ -566,6 +566,7 @@ namespace Obi
             this.mFocusOnTransportBarToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.mFocusOnTransportBarToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mFocusOnTransportBarToolStripMenuItem.Text = "Focus on tr&ansport bar";
+            this.mFocusOnTransportBarToolStripMenuItem.Click += new System.EventHandler(mFocusOnTransportBarToolStripMenuItem_Click);
             // 
             // mSynchronizeViewsToolStripMenuItem
             // 
