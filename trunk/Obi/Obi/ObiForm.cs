@@ -353,6 +353,12 @@ namespace Obi
             mProjectView.ShowSelectedSectionInStripsView();
         }
 
+        private void mFocusOnTransportBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.Enabled)
+                mProjectView.TransportBar.Focus();
+        }
+
         private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;

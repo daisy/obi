@@ -298,6 +298,7 @@ namespace Obi.ProjectView
                 if (node != null)
                 {
                     Selection = new NodeSelection(node, mTOCView);
+                    mTOCView.Focus();
                 }
                 else
                 {
