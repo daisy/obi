@@ -890,4 +890,10 @@ Error text: {1}</value>
   <data name="about_file_name" xml:space="preserve">
     <value>about_en.html</value>
   </data>
+  <data name="add_metadata_entry" xml:space="preserve">
+    <value>add metadata entry</value>
+  </data>
+  <data name="delete_metadata_entry" xml:space="preserve">
+    <value>delete metadata entry</value>
+  </data>
 </root>

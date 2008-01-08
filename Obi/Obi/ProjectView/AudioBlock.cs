@@ -122,7 +122,25 @@ namespace Obi.ProjectView
             {
                 if (mShift && mWaveform.Selection != null)
                 {
-                    mWaveform.FinalSelectionPosition = e.X;
+                    int begin = mWaveform.CursorPosition;
+                    if (begin < e.X)
+                    {
+                        mWaveform.FinalSelectionPosition = e.X;
+                    }
+                    else
+                    {
+                        if (mWaveform.Selection.HasCursor)
+                        {
+                            mWaveform.CursorPosition = e.X;
+                            mWaveform.FinalSelectionPosition = begin;
+                        }
+                        else
+                        {
+                            int end = mWaveform.FinalSelectionPosition;
+                            mWaveform.CursorPosition = e.X;
+                            mWaveform.FinalSelectionPosition = end;
+                        }
+                    }
                 }
                 else
                 {

@@ -12,19 +12,28 @@ namespace Obi.ProjectView
     {
         private MetadataView mView;  // parent view
         private bool mSelected;      // selected flag
+        private urakawa.metadata.Metadata mEntry;  // corresponding entry
 
         /// <summary>
         /// Create a new metadata panel.
         /// </summary>
-        public MetadataPanel(MetadataView view): this()
+        public MetadataPanel(MetadataView view, urakawa.metadata.Metadata entry): this()
         {
             mView = view;
+            mEntry = entry;
+            EntryName = entry.getName();
+            EntryContent = entry.getContent();
             mNameComboBox.Items.AddRange(MetadataEntryDescription.GetDAISYEntries().ToArray());
             mSelected = false;
         }
 
         public MetadataPanel() { InitializeComponent(); }
 
+
+        /// <summary>
+        /// The metadata entry for this panel.
+        /// </summary>
+        public urakawa.metadata.Metadata Entry { get { return mEntry; } }
 
         /// <summary>
         /// Name for this panel.

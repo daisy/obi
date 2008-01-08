@@ -35,8 +35,28 @@ namespace Obi
         public event NodeEventHandler<ObiNode> UsedStatusChanged;       // triggered after a node used status changed
         public event CustomClassEventHandler CustomClassAddded;         // triggered after a custom class was added
         public event CustomClassEventHandler CustomClassRemoved;        // triggered after a custom class was removed
+        public event MetadataEventHandler MetadataEntryAdded;           // triggered after a metadata entry was added
+        public event MetadataEventHandler MetadataEntryDeleted;         // triggered after a metadata entry was deleted
 
-               
+
+        /// <summary>
+        /// Add a new metadata entry (with event.)
+        /// </summary>
+        public void AddMetadata(urakawa.metadata.Metadata entry)
+        {
+            addMetadata(entry);
+            if (MetadataEntryAdded != null) MetadataEntryAdded(this, new MetadataEventArgs(entry));
+        }
+
+        /// <summary>
+        /// Delete a metadata entry (with event.)
+        /// </summary>
+        public void DeleteMetadata(urakawa.metadata.Metadata entry)
+        {
+            deleteMetadata(entry);
+            if (MetadataEntryDeleted != null) MetadataEntryDeleted(this, new MetadataEventArgs(entry));
+        }
+
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
@@ -436,4 +456,13 @@ namespace Obi
     }
 
     public delegate void CustomClassEventHandler(object sender, CustomClassEventArgs e);
+
+    public class MetadataEventArgs : EventArgs
+    {
+        private urakawa.metadata.Metadata mEntry;
+        public MetadataEventArgs(urakawa.metadata.Metadata entry) : base() { mEntry = entry; }
+        public urakawa.metadata.Metadata Entry { get { return mEntry; } }
+    }
+
+    public delegate void MetadataEventHandler(object sender, MetadataEventArgs e);
 }

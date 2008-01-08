@@ -110,6 +110,10 @@ namespace Obi
             this.mEditRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mClearRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeselectInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,10 +157,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.InPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeselectInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddMetadataEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -333,7 +335,9 @@ namespace Obi
             this.toolStripSeparator4,
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
-            this.mFindPreviousToolStripMenuItem});
+            this.mFindPreviousToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.mAddMetadataEntryToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "&Edit";
@@ -566,7 +570,7 @@ namespace Obi
             this.mFocusOnTransportBarToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.mFocusOnTransportBarToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mFocusOnTransportBarToolStripMenuItem.Text = "Focus on tr&ansport bar";
-            this.mFocusOnTransportBarToolStripMenuItem.Click += new System.EventHandler(mFocusOnTransportBarToolStripMenuItem_Click);
+            this.mFocusOnTransportBarToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnTransportBarToolStripMenuItem_Click);
             // 
             // mSynchronizeViewsToolStripMenuItem
             // 
@@ -891,6 +895,39 @@ namespace Obi
             this.PhraseDetectionToolStripMenuItem.Text = "Apply P&hrase Detection";
             this.PhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
             // 
+            // InPhraseSelectionToolStripMenuItem
+            // 
+            this.InPhraseSelectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BeginInPhraseSelectionToolStripMenuItem,
+            this.EndInPhraseSelectionToolStripMenuItem,
+            this.DeselectInPhraseSelectionToolStripMenuItem});
+            this.InPhraseSelectionToolStripMenuItem.Name = "InPhraseSelectionToolStripMenuItem";
+            this.InPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.InPhraseSelectionToolStripMenuItem.Text = "In-ph&rase audio selection";
+            // 
+            // BeginInPhraseSelectionToolStripMenuItem
+            // 
+            this.BeginInPhraseSelectionToolStripMenuItem.Name = "BeginInPhraseSelectionToolStripMenuItem";
+            this.BeginInPhraseSelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemOpenBrackets)));
+            this.BeginInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(314, 22);
+            this.BeginInPhraseSelectionToolStripMenuItem.Text = "&Begin in-phrase selection";
+            this.BeginInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.BeginInPhraseSelectionToolStripMenuItem_Click);
+            // 
+            // EndInPhraseSelectionToolStripMenuItem
+            // 
+            this.EndInPhraseSelectionToolStripMenuItem.Name = "EndInPhraseSelectionToolStripMenuItem";
+            this.EndInPhraseSelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oem6)));
+            this.EndInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(314, 22);
+            this.EndInPhraseSelectionToolStripMenuItem.Text = "&End in-phrase selection";
+            this.EndInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.EndInPhraseSelectionToolStripMenuItem_Click);
+            // 
+            // DeselectInPhraseSelectionToolStripMenuItem
+            // 
+            this.DeselectInPhraseSelectionToolStripMenuItem.Name = "DeselectInPhraseSelectionToolStripMenuItem";
+            this.DeselectInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(314, 22);
+            this.DeselectInPhraseSelectionToolStripMenuItem.Text = "&Deselect in-phrase selection";
+            this.DeselectInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.DeselectInPhraseSelectionToolStripMenuItem_Click);
+            // 
             // transportToolStripMenuItem
             // 
             this.transportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -941,21 +978,21 @@ namespace Obi
             this.mPauseToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mPauseToolStripMenuItem.Text = "Pa&use";
             this.mPauseToolStripMenuItem.Click += new System.EventHandler(this.mPauseToolStripMenuItem_Click);
-                        // 
+            // 
             // mResumeToolStripMenuItem
             // 
             this.mResumeToolStripMenuItem.Name = "mResumeToolStripMenuItem";
             this.mResumeToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mResumeToolStripMenuItem.Text = "Res&ume";
             this.mResumeToolStripMenuItem.Click += new System.EventHandler(this.mResumeToolStripMenuItem_Click);
-                        // 
+            // 
             // mStopToolStripMenuItem
             // 
             this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
+            this.mStopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.mStopToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.mStopToolStripMenuItem.Text = "&Stop";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
-            this.mStopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T ))) ;
             // 
             // FastPlaytoolStripMenuItem
             // 
@@ -1259,39 +1296,17 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // InPhraseSelectionToolStripMenuItem
+            // mAddMetadataEntryToolStripMenuItem
             // 
-            this.InPhraseSelectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BeginInPhraseSelectionToolStripMenuItem,
-            this.EndInPhraseSelectionToolStripMenuItem,
-            this.DeselectInPhraseSelectionToolStripMenuItem});
-            this.InPhraseSelectionToolStripMenuItem.Name = "InPhraseSelectionToolStripMenuItem";
-            this.InPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.InPhraseSelectionToolStripMenuItem.Text = "In-ph&rase audio selection";
+            this.mAddMetadataEntryToolStripMenuItem.Name = "mAddMetadataEntryToolStripMenuItem";
+            this.mAddMetadataEntryToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.mAddMetadataEntryToolStripMenuItem.Text = "Add &metadata entry";
+            this.mAddMetadataEntryToolStripMenuItem.Click += new System.EventHandler(this.mAddMetadataEntryToolStripMenuItem_Click);
             // 
-            // BeginInPhraseSelectionToolStripMenuItem
+            // toolStripSeparator8
             // 
-            this.BeginInPhraseSelectionToolStripMenuItem.Name = "BeginInPhraseSelectionToolStripMenuItem";
-            this.BeginInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.BeginInPhraseSelectionToolStripMenuItem.Text = "&Begin in-phrase selection";
-            this.BeginInPhraseSelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemOpenBrackets )));
-            this.BeginInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.BeginInPhraseSelectionToolStripMenuItem.Click +=new System.EventHandler(BeginInPhraseSelectionToolStripMenuItem_Click);
-                            // 
-            // EndInPhraseSelectionToolStripMenuItem
-            // 
-            this.EndInPhraseSelectionToolStripMenuItem.Name = "EndInPhraseSelectionToolStripMenuItem";
-            this.EndInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.EndInPhraseSelectionToolStripMenuItem.Text = "&End in-phrase selection";
-            this.EndInPhraseSelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemCloseBrackets )));
-            this.EndInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(EndInPhraseSelectionToolStripMenuItem_Click);
-            // 
-            // DeselectInPhraseSelectionToolStripMenuItem
-            // 
-            this.DeselectInPhraseSelectionToolStripMenuItem.Name = "DeselectInPhraseSelectionToolStripMenuItem";
-            this.DeselectInPhraseSelectionToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.DeselectInPhraseSelectionToolStripMenuItem.Text = "&Deselect in-phrase selection";
-            this.DeselectInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(DeselectInPhraseSelectionToolStripMenuItem_Click);
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(232, 6);
             // 
             // ObiForm
             // 
@@ -1447,6 +1462,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem BeginInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EndInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeselectInPhraseSelectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem mAddMetadataEntryToolStripMenuItem;
     }
 }
 

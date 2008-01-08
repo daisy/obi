@@ -101,6 +101,8 @@
     <Compile Include="Commands\Audio\Delete.cs" />
     <Compile Include="Commands\Audio\Paste.cs" />
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\Metadata\AddEntry.cs" />
+    <Compile Include="Commands\Metadata\DeleteEntry.cs" />
     <Compile Include="Commands\Node\AddNewSection.cs" />
     <Compile Include="Commands\Node\AddNode.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />

@@ -60,6 +60,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Add a new metadata entry to the project
+        /// </summary>
+        public void AddMetadataEntry()
+        {
+            if (CanAddMetadataEntry) mPresentation.UndoRedoManager.execute(new Commands.Metadata.AddEntry(this));
+        }
+
+        /// <summary>
         /// Add a new section.
         /// </summary>
         public void AddSection()
@@ -121,6 +129,7 @@ namespace Obi.ProjectView
         }
 
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
+        public bool CanAddMetadataEntry { get { return mPresentation != null; } }
         public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
@@ -132,7 +141,7 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanCut { get { return CanDelete; } }
-        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio; } }
+        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata; } }
         public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
         public bool CanInsertSection { get { return mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
@@ -147,6 +156,7 @@ namespace Obi.ProjectView
         public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
+        public bool CanRemoveMetadata { get { return mMetadataView.CanRemoveMetadata; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResume; } }
@@ -247,6 +257,10 @@ namespace Obi.ProjectView
             else if (CanRemoveAudio)
             {
                 mPresentation.UndoRedoManager.execute(new Commands.Audio.Delete(this));
+            }
+            else if (CanRemoveMetadata)
+            {
+                mPresentation.UndoRedoManager.execute(new Commands.Metadata.DeleteEntry(this));
             }
         }
 
@@ -1038,6 +1052,7 @@ namespace Obi.ProjectView
                 mPresentation.UndoRedoManager.execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
             }
         }
+
     }
 
     public class ImportingFileEventArgs
