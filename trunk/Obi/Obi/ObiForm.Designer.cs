@@ -269,9 +269,8 @@ namespace Obi
             // mSaveProjectAsToolStripMenuItem
             // 
             this.mSaveProjectAsToolStripMenuItem.Name = "mSaveProjectAsToolStripMenuItem";
-            this.mSaveProjectAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.S)));
-            this.mSaveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.mSaveProjectAsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12 ;
+                                    this.mSaveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.mSaveProjectAsToolStripMenuItem.Text = "Save project &as";
             this.mSaveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.mSaveProjectAsToolStripMenuItem_Click);
             // 
@@ -501,7 +500,7 @@ namespace Obi
             this.mShowMetadataViewToolStripMenuItem.CheckOnClick = true;
             this.mShowMetadataViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mShowMetadataViewToolStripMenuItem.Name = "mShowMetadataViewToolStripMenuItem";
-            this.mShowMetadataViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+            this.mShowMetadataViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Control )
                         | System.Windows.Forms.Keys.M)));
             this.mShowMetadataViewToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mShowMetadataViewToolStripMenuItem.Text = "Show &metadata view";
@@ -601,8 +600,8 @@ namespace Obi
             // mShowSourceToolStripMenuItem
             // 
             this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
-            this.mShowSourceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.R)));
+            this.mShowSourceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt )
+                        | System.Windows.Forms.Keys.O )));
             this.mShowSourceToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.mShowSourceToolStripMenuItem.Text = "Show sou&rce view";
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
@@ -1029,6 +1028,8 @@ namespace Obi
             this.SpeedDowntoolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.SpeedDowntoolStripMenuItem.Text = "Speed &Down";
             this.SpeedDowntoolStripMenuItem.Click += new System.EventHandler(this.SpeedDowntoolStripMenuItem_Click);
+            this.SpeedDowntoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.S )));
             // 
             // ElapseBacktoolStripMenuItem
             // 
@@ -1182,7 +1183,7 @@ namespace Obi
             this.fastForwardToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.fastForwardToolStripMenuItem.Text = "&Fast forward";
             this.fastForwardToolStripMenuItem.Click += new System.EventHandler(this.fastForwardToolStripMenuItem_Click);
-            // 
+                        // 
             // mToolsToolStripMenuItem
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1247,7 +1248,7 @@ namespace Obi
             // mReportBugToolStripMenuItem
             // 
             this.mReportBugToolStripMenuItem.Name = "mReportBugToolStripMenuItem";
-            this.mReportBugToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+            this.mReportBugToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt )
                         | System.Windows.Forms.Keys.R)));
             this.mReportBugToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
             this.mReportBugToolStripMenuItem.Text = "&Report bug";

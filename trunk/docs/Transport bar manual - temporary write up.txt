@@ -33,7 +33,7 @@ Playback follows following rules:
 1.2.3. If a part of audio inside a phrase is selected, only this selected part is played.
 
 Transport bar control: None
-Global Shortcut: Control+Shift+Space
+Global Shortcut: Control+Shift+Space (It is also Play/pause toggle(
 SV shortcut: Space
 Remark: If play All command with its playback rules come out to be completely sufficient, this command may be elimanated in future.
 
@@ -42,7 +42,8 @@ Remark: If play All command with its playback rules come out to be completely su
 - It pauses both playback as well as recording ( which ever is active ). 
 - Pause position and cursor position are synchronised with each other so pause position also acts as cursor position for operations like split and insert recording.
 Transport bar control: Pause button
-Keyboard shortcut: Space bar.
+Global shortcut: Control+Shift+Space ( It is play/pause toggle shortcut )
+SV shortcut: Space ( It is play/pause toggle shortcut )
 
 3. Stop: 
 - It stops playback or recording which ever is active.
