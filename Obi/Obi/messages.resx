@@ -896,4 +896,7 @@ Error text: {1}</value>
   <data name="delete_metadata_entry" xml:space="preserve">
     <value>delete metadata entry</value>
   </data>
+  <data name="AudioSelected" xml:space="preserve">
+    <value> Selected:</value>
+  </data>
 </root>

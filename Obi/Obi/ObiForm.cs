@@ -1278,8 +1278,11 @@ namespace Obi
                 if (((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime > 0)
                 {
                     DeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
-                    AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
-                    //Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+                    string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
+                    string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
+                    //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
+                    AudioSelectionStatusMessage = string.Concat( Localizer.Message ("AudioSelected") , BeginTime, " - ", EndTime , "s" );
+                    
                 }
                 else
                 {
@@ -1292,8 +1295,11 @@ namespace Obi
                 BeginInPhraseSelectionToolStripMenuItem.Enabled = false;
                 EndInPhraseSelectionToolStripMenuItem.Enabled = false;
                 DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                AudioSelectionStatusMessage = "";
             }
-                    }
+            if ( AudioSelectionStatusMessage != "" )
+            Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+                            }
 
         private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
