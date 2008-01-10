@@ -300,8 +300,7 @@ namespace Obi
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
         private void mDeleteUnusedDataToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
-        private void mAddMetadataEntryToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddMetadataEntry(); }
-
+        
         #endregion
 
         #region View menu
@@ -1680,6 +1679,22 @@ namespace Obi
                 ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
             }
             UpdateAudioSelectionBlockMenuItems();
+        }
+
+        private void mAddMetadataEntryToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            mAddMetadataEntryToolStripMenuItem.DropDownItems.Clear();
+            foreach (string name in mProjectView.AddableMetadataNames)
+            {
+                string n = name;
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = n;
+                item.Click += new EventHandler(delegate(object _sender, EventArgs _e)
+                {
+                    mProjectView.AddMetadataEntry(n);
+                });
+                mAddMetadataEntryToolStripMenuItem.DropDownItems.Add(item);
+            }
         }
     }
 }

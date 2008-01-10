@@ -60,11 +60,35 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Get the list of names of currently addable metadata entries.
+        /// </summary>
+        public List<string> AddableMetadataNames
+        {
+            get
+            {
+                List<string> addable = new List<string>();
+                foreach (MetadataEntryDescription d in MetadataEntryDescription.GetDAISYEntries().Values)
+                {
+                    if (mMetadataView.CanAdd(d)) addable.Add(d.Name);
+                }
+                return addable;
+            }
+        }
+
+        /// <summary>
         /// Add a new metadata entry to the project
         /// </summary>
         public void AddMetadataEntry()
         {
             if (CanAddMetadataEntry) mPresentation.UndoRedoManager.execute(new Commands.Metadata.AddEntry(this));
+        }
+
+        /// <summary>
+        /// Add a new metadata entry to the project
+        /// </summary>
+        public void AddMetadataEntry(string name)
+        {
+            mPresentation.UndoRedoManager.execute(new Commands.Metadata.AddEntry(this, name));
         }
 
         /// <summary>
@@ -168,6 +192,8 @@ namespace Obi.ProjectView
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
+
+        public bool CanAddMetadata(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
 
         /// <summary>
         /// Contents of the clipboard

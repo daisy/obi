@@ -15,6 +15,12 @@ namespace Obi.Commands.Metadata
             Label = Localizer.Message("add_metadata_entry");
         }
 
+        public AddEntry(ProjectView.ProjectView view, string name)
+            : this(view)
+        {
+            mEntry.setName(name);
+        }
+
         public override void execute()
         {
             View.Presentation.AddMetadata(mEntry);

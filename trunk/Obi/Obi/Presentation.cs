@@ -37,6 +37,8 @@ namespace Obi
         public event CustomClassEventHandler CustomClassRemoved;        // triggered after a custom class was removed
         public event MetadataEventHandler MetadataEntryAdded;           // triggered after a metadata entry was added
         public event MetadataEventHandler MetadataEntryDeleted;         // triggered after a metadata entry was deleted
+        public event MetadataEventHandler MetadataEntryContentChanged;  // triggered after the content of a metadata entry changed
+        public event MetadataEventHandler MetadataEntryNameChanged;     // triggered after the name of a metadata entry changed
 
 
         /// <summary>
@@ -55,6 +57,18 @@ namespace Obi
         {
             deleteMetadata(entry);
             if (MetadataEntryDeleted != null) MetadataEntryDeleted(this, new MetadataEventArgs(entry));
+        }
+
+        public void SetMetadataEntryContent(urakawa.metadata.Metadata entry, string content)
+        {
+            entry.setContent(content);
+            if (MetadataEntryContentChanged != null) MetadataEntryContentChanged(this, new MetadataEventArgs(entry));
+        }
+
+        public void SetMetadataEntryName(urakawa.metadata.Metadata entry, string name)
+        {
+            entry.setName(name);
+            if (MetadataEntryNameChanged != null) MetadataEntryNameChanged(this, new MetadataEventArgs(entry));
         }
 
         /// <summary>
