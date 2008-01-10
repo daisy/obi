@@ -66,6 +66,7 @@ namespace Obi
             this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mAddMetadataEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.placeholderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -159,7 +160,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.placeholderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -477,6 +478,12 @@ namespace Obi
             this.mAddMetadataEntryToolStripMenuItem.Text = "Add &metadata entry";
             this.mAddMetadataEntryToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAddMetadataEntryToolStripMenuItem_DropDownOpening);
             // 
+            // placeholderToolStripMenuItem
+            // 
+            this.placeholderToolStripMenuItem.Name = "placeholderToolStripMenuItem";
+            this.placeholderToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.placeholderToolStripMenuItem.Text = "(placeholder)";
+            // 
             // mViewToolStripMenuItem
             // 
             this.mViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -740,7 +747,7 @@ namespace Obi
             // 
             this.mSplitStripToolStripMenuItem.Name = "mSplitStripToolStripMenuItem";
             this.mSplitStripToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.P)));
+                        | System.Windows.Forms.Keys.Q)));
             this.mSplitStripToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.mSplitStripToolStripMenuItem.Text = "&Split strip";
             this.mSplitStripToolStripMenuItem.Click += new System.EventHandler(this.mSplitStripToolStripMenuItem_Click);
@@ -779,6 +786,7 @@ namespace Obi
             this.mEditRolesToolStripMenuItem,
             this.mClearRoleToolStripMenuItem,
             this.PhraseDetectionToolStripMenuItem,
+            this.MarkDefaultCustomClassToolStripMenuItem,
             this.InPhraseSelectionToolStripMenuItem});
             this.blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
             this.blocksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -812,7 +820,7 @@ namespace Obi
             // mSplitBlockToolStripMenuItem
             // 
             this.mSplitBlockToolStripMenuItem.Name = "mSplitBlockToolStripMenuItem";
-            this.mSplitBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.mSplitBlockToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.mSplitBlockToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.mSplitBlockToolStripMenuItem.Text = "&Split block";
             this.mSplitBlockToolStripMenuItem.Click += new System.EventHandler(this.mSplitBlockToolStripMenuItem_Click);
@@ -1316,11 +1324,13 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // placeholderToolStripMenuItem
+            // MarkDefaultCustomClassToolStripMenuItem
             // 
-            this.placeholderToolStripMenuItem.Name = "placeholderToolStripMenuItem";
-            this.placeholderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.placeholderToolStripMenuItem.Text = "(placeholder)";
+            this.MarkDefaultCustomClassToolStripMenuItem.Name = "MarkDefaultCustomClassToolStripMenuItem";
+            this.MarkDefaultCustomClassToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U    )) ;
+            this.MarkDefaultCustomClassToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.MarkDefaultCustomClassToolStripMenuItem.Text = "Mark default c&ustom class";
+            this.MarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(MarkDefaultCustomClassToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1479,6 +1489,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mAddMetadataEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem placeholderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MarkDefaultCustomClassToolStripMenuItem;
     }
 }
 

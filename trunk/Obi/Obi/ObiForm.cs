@@ -1681,6 +1681,13 @@ namespace Obi
             UpdateAudioSelectionBlockMenuItems();
         }
 
+        private void MarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.Enabled)
+                mProjectView.TransportBar.MarkCustomClass();
+        }
+
+
         private void mAddMetadataEntryToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             mAddMetadataEntryToolStripMenuItem.DropDownItems.Clear();
