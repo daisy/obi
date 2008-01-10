@@ -38,14 +38,38 @@ namespace Obi.ProjectView
                 UpdatePanelSizes();
                 mView.Presentation.MetadataEntryAdded += new MetadataEventHandler(Presentation_MetadataEntryAdded);
                 mView.Presentation.MetadataEntryDeleted += new MetadataEventHandler(Presentation_MetadataEntryDeleted);
+                mView.Presentation.MetadataEntryContentChanged += new MetadataEventHandler(Presentation_MetadataEntryContentChanged);
+                mView.Presentation.MetadataEntryNameChanged += new MetadataEventHandler(Presentation_MetadataEntryNameChanged);
             }
+        }
+
+        /// <summary>
+        /// A new entry of the given kind can be added if this is not readonly, and if it is repeatable
+        /// or there is not yet any occurrence of it.
+        /// </summary>
+        public bool CanAdd(MetadataEntryDescription d)
+        {
+            return !d.ReadOnly && (d.Repeatable || mView.Presentation.getListOfMetadata(d.Name).Count == 0); 
+        }
+
+        /// <summary>
+        /// A particular entry can be removed if it is not readonly and not the only occurrence in case of a required entry. 
+        /// </summary>
+        public bool CanRemove(MetadataEntryDescription d)
+        {
+            return !d.ReadOnly && (d.Occurrence != MetadataOccurrence.Required || mView.Presentation.getListOfMetadata(d.Name).Count > 1);
         }
 
         /// <summary>
         /// A metadata entry can be removed if it is selected. TODO: check that it is not mandatory!
         /// </summary>
-        public bool CanRemoveMetadata { get { return mSelection != null; } }
-
+        public bool CanRemoveMetadata
+        {
+            get
+            {
+                return mSelection != null && CanRemove(((MetadataSelection)mSelection).Panel.Description);
+            }
+        }
 
         // Add a new entry to the view
         private void Presentation_MetadataEntryAdded(object sender, MetadataEventArgs e)
@@ -54,19 +78,31 @@ namespace Obi.ProjectView
             mLayout.Controls.Add(panel);
         }
 
+        // Modify the content of an entry
+        private void Presentation_MetadataEntryContentChanged(object sender, MetadataEventArgs e)
+        {
+            FindPanel(e.Entry).EntryContent = e.Entry.getContent();
+        }
+
+        // The name of a metadata entry changed.
+        void Presentation_MetadataEntryNameChanged(object sender, MetadataEventArgs e)
+        {
+            FindPanel(e.Entry).EntryName = e.Entry.getName();
+        }
+
         // Remove an entry from the view
         private void Presentation_MetadataEntryDeleted(object sender, MetadataEventArgs e)
         {
-            Control panel = null;
+            mLayout.Controls.Remove(FindPanel(e.Entry) as Control);
+        }
+
+        private MetadataPanel FindPanel(urakawa.metadata.Metadata entry)
+        {
             foreach (Control c in mLayout.Controls)
             {
-                if (c is MetadataPanel && ((MetadataPanel)c).Entry == e.Entry)
-                {
-                    panel = c;
-                    break;
-                }
+                if (c is MetadataPanel && ((MetadataPanel)c).Entry == entry) return (MetadataPanel)c;
             }
-            if (panel != null) mLayout.Controls.Remove(panel);
+            return null;
         }
 
         /// <summary>
@@ -108,6 +144,25 @@ namespace Obi.ProjectView
                 Control last = mLayout.Controls[mLayout.Controls.Count - 1];
                 int w = mLayout.Width - (last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth : 0);
                 foreach (Control c in mLayout.Controls) c.Size = new Size(w, c.Height);
+            }
+        }
+
+        /// <summary>
+        /// Called from panels to modify the content of an entry
+        /// </summary>
+        public void ModifiedEntryContent(urakawa.metadata.Metadata entry, string content)
+        {
+            if (entry.getContent() != content) 
+            {
+                mView.Presentation.UndoRedoManager.execute(new Commands.Metadata.ModifyContent(mView, entry, content));
+            }
+        }
+
+        public void ModifiedEntryName(urakawa.metadata.Metadata entry, string name)
+        {
+            if (entry.getName() != name)
+            {
+                mView.Presentation.UndoRedoManager.execute(new Commands.Metadata.ModifyName(mView, entry, name));
             }
         }
     }

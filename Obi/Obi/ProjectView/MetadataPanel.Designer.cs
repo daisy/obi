@@ -44,6 +44,9 @@ namespace Obi.ProjectView
             this.mNameComboBox.Name = "mNameComboBox";
             this.mNameComboBox.Size = new System.Drawing.Size(354, 23);
             this.mNameComboBox.TabIndex = 0;
+            this.mNameComboBox.SelectionChangeCommitted += new System.EventHandler(this.mNameComboBox_SelectionChangeCommitted);
+            this.mNameComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mNameComboBox_KeyDown);
+            this.mNameComboBox.DropDown += new System.EventHandler(this.mNameComboBox_DropDown);
             // 
             // mContentBox
             // 
@@ -55,6 +58,7 @@ namespace Obi.ProjectView
             this.mContentBox.Name = "mContentBox";
             this.mContentBox.Size = new System.Drawing.Size(354, 21);
             this.mContentBox.TabIndex = 1;
+            this.mContentBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mContentBox_KeyDown);
             // 
             // MetadataPanel
             // 
