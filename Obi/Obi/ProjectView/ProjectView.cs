@@ -545,7 +545,7 @@ namespace Obi.ProjectView
             {
                 System.Diagnostics.Debug.Print("Selection: `{0}' >>> `{1}'", mSelection, value);
                 // Selection is disabled when the transport bar is active.
-                if (mSelection != value && !mTransportBar.IsActive)
+                if (mSelection != value )
                 {
                     // deselect if there was a selection in a different control
                     if (mSelection != null && (value == null || mSelection.Control != value.Control))

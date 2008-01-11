@@ -67,6 +67,32 @@ namespace Obi.ProjectView
         // Right now, selection is ignored when the transport bar is active
         private void View_SelectionChanged(object sender, EventArgs e)
         {
+            
+            if (Enabled 
+                && mRecordingSession == null
+                &&    mView.Selection.Node != mCurrentPlaylist.CurrentPhrase )
+            {
+                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                                        if (mCurrentPlaylist == mMasterPlaylist)
+                    {
+                        mPlayingFrom = mView.Selection;
+                                                mCurrentPlaylist.Stop();
+                                                PlayMasterPlaylist();
+                    }
+                    else
+                    {
+                        mCurrentPlaylist.Stop () ;
+                        Play ( mView.Selection.Node ) ;
+                                            }
+                }
+                else
+                {
+                    mCurrentPlaylist.Stop () ;
+                    mIsSerialPlaying = false ;
+                }
+                            }
+             
         }
 
         public void NewPresentation()
@@ -428,27 +454,39 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                                                                mPlayingFrom = mView.Selection;
-                    mCurrentPlaylist = mMasterPlaylist;
-                    mCurrentPlaylist.CurrentPhrase = InitialPhrase;
-                    if (mCurrentPlaylist.CurrentPhrase != null)
-                    {
-                        mIsSerialPlaying = true;
-                        if (mView.Selection is AudioSelection
-                            && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                            mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
-                        else
-                            mCurrentPlaylist.Play();
-
-                        mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
-                    }
+                    PlayMasterPlaylist();                                                   
                 }
             }
             else if (CanResume)
             {
                 mIsSerialPlaying = true;
+
+                if (mView.Selection is AudioSelection)
+                    mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                
                 mCurrentPlaylist.Resume();
                 mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+            }
+        }
+
+        private void PlayMasterPlaylist()
+        {
+            if (CanPlay)
+            {
+                mPlayingFrom = mView.Selection;
+                mCurrentPlaylist = mMasterPlaylist;
+                mCurrentPlaylist.CurrentPhrase = InitialPhrase;
+                if (mCurrentPlaylist.CurrentPhrase != null)
+                {
+                    mIsSerialPlaying = true;
+                    if (mView.Selection is AudioSelection
+                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                    else
+                        mCurrentPlaylist.Play();
+
+                    mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                }
             }
         }
 
@@ -492,6 +530,10 @@ namespace Obi.ProjectView
             {
                 // Avn: condition added on 13 may 2007
                 if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+
+                if (mView.Selection is AudioSelection)
+                    mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                
                 mCurrentPlaylist.Resume();
                 mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
             }
