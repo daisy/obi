@@ -67,8 +67,12 @@ namespace Obi.ProjectView
         // Right now, selection is ignored when the transport bar is active
         private void View_SelectionChanged(object sender, EventArgs e)
         {
-            
-            if (Enabled 
+            if (mView.Selection == null)
+            {
+                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
+                    mCurrentPlaylist.Stop();
+            }
+            else if (Enabled 
                 && mRecordingSession == null
                 &&    mView.Selection.Node != mCurrentPlaylist.CurrentPhrase )
             {

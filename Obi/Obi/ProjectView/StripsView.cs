@@ -706,10 +706,18 @@ namespace Obi.ProjectView
 
         private bool SelectPreviousStrip()
         {
-            Strip strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
+            Strip strip ;
+            if ( mView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
+                &&    this.mPlaybackBlock.ObiNode.Index == 0 )  
+            {
+                 strip = StripBefore(StripFor(mSelectedItem)) ;
+                            }
+            else
+            strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
+
             if (strip != null)
             {
-                mView.Selection = new NodeSelection(strip.Node, this);
+                mView.Selection = new NodeSelection(strip.Node, this );
                 return true;
             }
             return false;
