@@ -87,7 +87,7 @@ in the TOC view.
 
 The _metadata view_ shows the metadata of the book: information such as title,
 narrator, date of publication, etc. Metadata entries can be edited in this
-view. TODO: the metadata view is currently not functional!
+view.
 
 ### Transport bar and peak meter
 
@@ -128,9 +128,9 @@ to select (see keyboard navigation below.)
   * The text label of a section is selectable. When selected, it becomes
     editable.
 * In the metadata view:
-  * A metadata entry in the metadata view is selectable (TODO).
-  * The text inside a metadata entry is selectable (TODO). When selected, it
-    becomes editable.
+  * A metadata entry in the metadata view is selectable. 
+  * The text inside a metadata entry is selectable. When selected, it becomes
+    editable.
 
 
 ### Label editing
@@ -302,6 +302,22 @@ down) to reach an acceptable audio level. Clicking on a red overload box will
 reset it.
 
 
+## Metadata editing
+
+Metadata editing is done in the metadata view. For adding and deleting entries,
+see the `Edit` menu below. There are two simple tasks that can be executed in
+the metadata view:
+
+1. Editing the content of an entry. The content is treated as a simple text
+string. TODO: some entries should check for validity of content, and allow
+extra attributes.
+
+2. Changing the name of an entry. This can be done by selecting an existing
+name from the combo box, or by typing a new name. Note that some names are not
+available if an entry of this kind cannot be added, and if an entry cannot be
+removed, it also cannot be renamed.
+
+
 ## Menus
 
 This is a description of the main menubar in Obi.
@@ -408,6 +424,8 @@ cut or copy operation restores the previous value of the clipboard.
     end of the selected block. If the selection is a waveform cursor, then the
     audio is inserted at that point; if it is a waveform selection, then the
     audio is pasted in place of the selection.
+  * Note: metadata entries cannot be cut, copied or pasted. The text inside
+    entries (content) can be copied.
   * TODO: text.
 
 * __Paste before__ (`Ctrl+Alt+V`): when a section is selected and a section is
@@ -422,7 +440,9 @@ cut or copy operation restores the previous value of the clipboard.
   subsections are deleted as well. If it is a strip, then only this strip is
   deleted. If the corresponding section has subsection, the first subsection
   is moved to the level of the deleted section so that the consistency of the
-  TOC is preserved.
+  TOC is preserved. If it is a metadata entry, it can only be deleted if the
+  deletion of the entry does not render the project invalid (for instance, the
+  project _must_ have a `dc:Title` entry so the last one cannot be deleted.)
 
 * __Select nothing__: deselect any item that was selected.
 
@@ -443,6 +463,17 @@ function is provided.
 * __Find next__ (`F3`): find the next item. TODO: more details.
 
 * __Find previous__ (`Shift+F3`): find the previous item. TODO: more details.
+
+New metadata entries can be created through this menu.
+
+* __Add metadata entry__ (no shortcut): this menu opens a submenu where the
+  user can choose which kind of entry they want to add. Only user-modifiable
+  entries, as well as entries that can be added at this point are shown. (For
+  example, if the project already has a `dtb:sourceTitle` entry, another such
+  entry cannot be added as it is not repeatable.)
+  * TODO: add a custom kind (like block roles.)
+  * TODO: delete custom kinds (like block roles.)
+  * TODO: focus on the entry so that content can be added (like sections.)
 
 
 ### View menu (`Alt+V`)

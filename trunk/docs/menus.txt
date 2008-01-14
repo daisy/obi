@@ -36,6 +36,8 @@ Main form
     + [F] Find ....................... Ctrl+F
     + [N] Find next .................. F3
     + [V] Find previous .............. Shift+F3
+    -----------------------------------------------
+    + [M] Add metadata entry ......... (None)
 
   + [V] View
     + [T] Show TOC view ............. Alt+Shift+T
