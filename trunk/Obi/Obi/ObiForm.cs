@@ -286,7 +286,7 @@ namespace Obi
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
-            mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry;
+            mAddMetadataEntryToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry();
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }

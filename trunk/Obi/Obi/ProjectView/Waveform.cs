@@ -218,7 +218,7 @@ namespace Obi.ProjectView
         }
 
         // Redraw the waveform to fit the available size.
-        public void UpdateWaveform()
+        private void UpdateWaveform()
         {
             if (Width > 0 && Height > 0)
             {

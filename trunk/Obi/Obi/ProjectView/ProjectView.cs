@@ -24,6 +24,7 @@ namespace Obi.ProjectView
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
 
+
         /// <summary>
         /// Create a new project view with no project yet.
         /// </summary>
@@ -80,7 +81,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddMetadataEntry()
         {
-            if (CanAddMetadataEntry) mPresentation.UndoRedoManager.execute(new Commands.Metadata.AddEntry(this));
+            if (CanAddMetadataEntry()) mPresentation.UndoRedoManager.execute(new Commands.Metadata.AddEntry(this));
         }
 
         /// <summary>
@@ -153,7 +154,8 @@ namespace Obi.ProjectView
         }
 
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
-        public bool CanAddMetadataEntry { get { return mPresentation != null; } }
+        public bool CanAddMetadataEntry() { return mPresentation != null; }
+        public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
         public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
@@ -192,8 +194,6 @@ namespace Obi.ProjectView
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
-
-        public bool CanAddMetadata(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
 
         /// <summary>
         /// Contents of the clipboard
@@ -1088,5 +1088,4 @@ namespace Obi.ProjectView
     }
 
     public delegate void ImportingFileEventHandler(object sender, ImportingFileEventArgs e);
-
 }
