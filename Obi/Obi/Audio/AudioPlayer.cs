@@ -438,8 +438,8 @@ namespace Obi.Audio
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
                 m_StartPosition = 0;
-                
-                if ( asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
+
+                if (asset != null       &&   asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
                     InitPlay(asset ,  0, 0);
                 else
                     SimulateEmptyAssetPlaying();
@@ -460,7 +460,7 @@ namespace Obi.Audio
                         // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                                if (asset != null    &&     asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
                     long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
                     lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.getPCMFormat().getBlockAlign());
@@ -491,7 +491,7 @@ namespace Obi.Audio
             // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                if (   asset!= null    &&    asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
                     long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
                     lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
@@ -529,7 +529,7 @@ namespace Obi.Audio
             // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                if (asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                if (   asset != null  &&    asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
                     long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
                     lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
@@ -566,6 +566,7 @@ namespace Obi.Audio
                 }
             }
         }
+
         /// <summary>
         ///  convenience function to start playback of an asset
         ///  first initialise player with asset followed by starting playback using PlayAssetStream function
@@ -862,10 +863,12 @@ private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPos
         ///
         private void SimulateEmptyAssetPlaying()
         {
-            
-            m_Channels = mCurrentAudio.getPCMFormat ().getNumberOfChannels ()  ;
-            m_FrameSize = mCurrentAudio.getPCMFormat ().getNumberOfChannels ()  * (mCurrentAudio.getPCMFormat ().getBitDepth ()  / 8);
-            m_SamplingRate = (int)  mCurrentAudio.getPCMFormat ().getSampleRate () ;
+            if (mCurrentAudio != null)
+            {
+                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
+                m_FrameSize = mCurrentAudio.getPCMFormat().getNumberOfChannels() * (mCurrentAudio.getPCMFormat().getBitDepth() / 8);
+                m_SamplingRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+            } 
 
             Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Playing;
