@@ -113,6 +113,7 @@ namespace Obi
             this.mEditRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mClearRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,7 +161,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.MarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTodoClasstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -855,6 +856,7 @@ namespace Obi
             this.mSetAsHeadingToolStripMenuItem,
             this.mPageToolStripMenuItem,
             this.mSilenceToolStripMenuItem,
+            this.mTodoClasstoolStripMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mAddRoleToolStripTextBox});
             this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
@@ -916,6 +918,14 @@ namespace Obi
             this.PhraseDetectionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.PhraseDetectionToolStripMenuItem.Text = "Apply P&hrase Detection";
             this.PhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
+            // 
+            // MarkDefaultCustomClassToolStripMenuItem
+            // 
+            this.MarkDefaultCustomClassToolStripMenuItem.Name = "MarkDefaultCustomClassToolStripMenuItem";
+            this.MarkDefaultCustomClassToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.MarkDefaultCustomClassToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.MarkDefaultCustomClassToolStripMenuItem.Text = "Mark default c&ustom class";
+            this.MarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(this.MarkDefaultCustomClassToolStripMenuItem_Click);
             // 
             // InPhraseSelectionToolStripMenuItem
             // 
@@ -1324,13 +1334,13 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // MarkDefaultCustomClassToolStripMenuItem
+            // mTodoClasstoolStripMenuItem
             // 
-            this.MarkDefaultCustomClassToolStripMenuItem.Name = "MarkDefaultCustomClassToolStripMenuItem";
-            this.MarkDefaultCustomClassToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U    )) ;
-            this.MarkDefaultCustomClassToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.MarkDefaultCustomClassToolStripMenuItem.Text = "Mark default c&ustom class";
-            this.MarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(MarkDefaultCustomClassToolStripMenuItem_Click);
+            this.mTodoClasstoolStripMenuItem.Name = "mTodoClasstoolStripMenuItem";
+            this.mTodoClasstoolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.mTodoClasstoolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mTodoClasstoolStripMenuItem.Text = "To Do";
+            this.mTodoClasstoolStripMenuItem.Click += new System.EventHandler(mTodoClasstoolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1490,6 +1500,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mAddMetadataEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem placeholderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MarkDefaultCustomClassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
     }
 }
 
