@@ -1687,6 +1687,23 @@ namespace Obi
                 mProjectView.TransportBar.MarkCustomClass();
         }
 
+        private void mTodoClasstoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.Enabled
+                && mProjectView.TransportBar.IsActive)
+            {
+                mProjectView.TransportBar.MarkTodoClass();
+                            }
+            else 
+            {
+                                EmptyNode node = mProjectView.SelectedNodeAs<EmptyNode>();
+                                if (node != null)
+                                {
+                                    mProjectView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mProjectView, node,
+                                    EmptyNode.Kind.Custom, Localizer.Message("CustomClass_Todo_Name")));
+                                                                    }
+                                                                        }
+        }
 
         private void mAddMetadataEntryToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
