@@ -1320,20 +1320,27 @@ namespace Obi.ProjectView
         public void MarkTodoClass()
         {
             EmptyNode node;
+                        if ( IsPlaying)
+                            Pause();
+            
             if (IsRecording)
             {
                                 node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
                                 mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
-                                EmptyNode.Kind.Custom, Localizer.Message("CustomClass_Todo_Name")));
+                                EmptyNode.Kind.To_Do ));
                 NextPhrase();
             }
-            else
+            else 
             {
                 node = mView.SelectedNodeAs<EmptyNode>();
-                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
-                EmptyNode.Kind.Custom, Localizer.Message("CustomClass_Todo_Name")));
             }
-                    }
+
+            if ( node != null )
+            {
+                                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
+                EmptyNode.Kind.To_Do ));
+                            }
+                                                }
 
 
         #endregion
