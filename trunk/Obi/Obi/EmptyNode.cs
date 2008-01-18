@@ -27,7 +27,7 @@ namespace Obi
         /// Silence is a silence node for phrase detection.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Kind { Plain, Page, Heading, Silence, Custom };
+        public enum Kind { Plain, Page, Heading, Silence, To_Do, Custom };
 
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
