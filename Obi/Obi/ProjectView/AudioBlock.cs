@@ -192,5 +192,10 @@ namespace Obi.ProjectView
         public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
 
         public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
+
+        private void AudioBlock_Enter(object sender, EventArgs e)
+        {
+            mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString ()  ;
+        }
     }
 }

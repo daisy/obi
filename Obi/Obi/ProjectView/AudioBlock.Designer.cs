@@ -53,6 +53,7 @@ namespace Obi.ProjectView
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.mWaveform);
             this.Name = "AudioBlock";
+            this.Enter += new System.EventHandler(this.AudioBlock_Enter);
             this.Controls.SetChildIndex(this.mWaveform, 0);
             this.Controls.SetChildIndex(this.mLabel, 0);
             this.ResumeLayout(false);
