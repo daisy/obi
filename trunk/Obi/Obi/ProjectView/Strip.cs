@@ -368,5 +368,11 @@ namespace Obi.ProjectView
             w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
+
+
+        public void FocusStripLabel()
+        {
+            mLabel.Focus();
+        }
     }
 }
