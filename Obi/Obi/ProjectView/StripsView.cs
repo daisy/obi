@@ -718,6 +718,7 @@ namespace Obi.ProjectView
             if (strip != null)
             {
                 mView.Selection = new NodeSelection(strip.Node, this );
+                strip.FocusStripLabel();
                 return true;
             }
             return false;
@@ -918,7 +919,7 @@ namespace Obi.ProjectView
                #endregion
 
         public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
-
+        
         public void GetFocus()
         {
             if (mSelection == null)
