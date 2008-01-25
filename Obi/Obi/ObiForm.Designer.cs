@@ -614,7 +614,7 @@ namespace Obi
             // mShowPeakMeterMenuItem
             // 
             this.mShowPeakMeterMenuItem.Name = "mShowPeakMeterMenuItem";
-            this.mShowPeakMeterMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Shift)
+            this.mShowPeakMeterMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Control )
                         | System.Windows.Forms.Keys.P)));
             this.mShowPeakMeterMenuItem.Size = new System.Drawing.Size(235, 22);
             this.mShowPeakMeterMenuItem.Text = "Show &peak meter";
@@ -914,7 +914,7 @@ namespace Obi
             // PhraseDetectionToolStripMenuItem
             // 
             this.PhraseDetectionToolStripMenuItem.Name = "PhraseDetectionToolStripMenuItem";
-            this.PhraseDetectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.PhraseDetectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.P )));
             this.PhraseDetectionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.PhraseDetectionToolStripMenuItem.Text = "Apply P&hrase Detection";
             this.PhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
@@ -1084,9 +1084,8 @@ namespace Obi
             // PreviewFromtoolStripMenuItem
             // 
             this.PreviewFromtoolStripMenuItem.Name = "PreviewFromtoolStripMenuItem";
-            this.PreviewFromtoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt)
-                        | System.Windows.Forms.Keys.P)));
-            this.PreviewFromtoolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.PreviewFromtoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P));
+                                    this.PreviewFromtoolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.PreviewFromtoolStripMenuItem.Text = "Preview &From";
             this.PreviewFromtoolStripMenuItem.Click += new System.EventHandler(this.PreviewFromtoolStripMenuItem_Click);
             // 
