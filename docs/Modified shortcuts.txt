@@ -145,8 +145,8 @@ Index of shortcuts
 + Control+comma ... Rewind.
 + control+period ....FastForward.
 
-  + Ctrl+A ............. TOC > Add section
-  + Ctrl+A ............. Strips > Add strip
+  + Ctrl+A ............. TOC > Add section  :Add strip  -:Avn - highly conflicting shortcut, marked for change
+  + Ctrl+A ............. Strips >  :Add strip  -: Avn - highly conflicting shortcut, marked for change
   + Ctrl+Alt+A ......... TOC > Insert section
   + Ctrl+Alt+A ......... Strips > Insert strip
   + Ctrl+Shift+A ....... TOC > Add sub-section
@@ -158,7 +158,6 @@ Index of shortcuts
   + Ctrl+E ............. File > Export as DAISY
   + Ctrl+F ............. Edit > Find
   + Ctrl+G ............. FREE
-  + Ctrl+H ............. Apply Phrase detection :Avn
   + Ctrl+I ............. Blocks > Import audio files
   + Ctrl+J ............. FREE
   + Ctrl+K ............. Block > Block is used
@@ -172,7 +171,9 @@ Index of shortcuts
   + Ctrl+N ............. File > New project
   + Ctrl+Shift+N ....... File > New project from import
   + Ctrl+O ............. File > Open
-  + Alt+Shift+P ........ View > Show peak meter
++control + P.... Play preview from current position   : Avn
+  + Ctrl+Shift+P ............. Apply Phrase detection :Avn
+  + control +Alt+P ........ View > Show peak meter  :Avn: changed from Alt+Shift+P
 + control+shift+Q .... strip > Split strip : Avn... changed from Ctrl+Shift+p
   + Ctrl+Q ............. Split block   :Avn.. changed from control+p
   + Control+Alt+O ........ View > Show source view    : Avn... changed from   + Alt+Shift+R
