@@ -14,6 +14,8 @@ namespace Obi
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
 
+        private static string XSLT_FILE = "XukToZed.xslt";
+
         /// <summary>
         /// Create an uninitialized presentation.
         /// </summary>
@@ -287,7 +289,7 @@ namespace Obi
         /// </summary>
         public void SetSingleMetadataItem(string name, string content)
         {
-            deleteMetadata(name);
+            foreach (urakawa.metadata.Metadata entry in getListOfMetadata(name)) DeleteMetadata(entry);
             AddMetadata(name, content);
         }
 
@@ -324,7 +326,7 @@ namespace Obi
                 urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
                 meta.setName(name);
                 meta.setContent(value);
-                addMetadata(meta);
+                AddMetadata(meta);
                 return meta;
             }
             else
@@ -397,13 +399,12 @@ namespace Obi
 
         public List <PhraseNode> CreatePhraseNodesFromAudioAssetList(List<ManagedAudioMedia> AssetList)
         {
-            List<PhraseNode> PhraseList = new List<PhraseNode> () ;
-
+            List<PhraseNode> PhraseList = new List<PhraseNode>();
             for (int i = 0; i < AssetList.Count; i++)
             {
-                PhraseList.Add ( CreatePhraseNode(AssetList[i]) ) ;
+                PhraseList.Add(CreatePhraseNode(AssetList[i]));
             }
-            return PhraseList ;
+            return PhraseList;
         }
 
         /// <summary>
@@ -417,8 +418,9 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to a directory.
         /// </summary>
-        public void ExportToZed(Uri destinationDirectory)
+        public void ExportToZed(Uri destinationDirectory, string xukPath)
         {
+            UpdatePublicationMetadata();
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
             TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
             PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
@@ -432,7 +434,80 @@ namespace Obi
             getProject().saveXUK(writer, null);
             writer.Close();
             getChannelsManager().removeChannel(publishChannel);
+            ConvertXukToZed("export", destinationDirectory.PathAndQuery, xukPath);
         }
+
+        // Update metadata before exporting
+        private void UpdatePublicationMetadata()
+        {
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            urakawa.metadata.Metadata producedDate = GetFirstMetadataItem(Metadata.DTB_PRODUCED_DATE);
+            urakawa.metadata.Metadata revision = GetFirstMetadataItem(Metadata.DTB_REVISION);
+            urakawa.metadata.Metadata revisionDate = GetFirstMetadataItem(Metadata.DTB_REVISION_DATE);
+            if (producedDate == null)
+            {
+                System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);
+                SetSingleMetadataItem(Metadata.DTB_PRODUCED_DATE, date);
+            }
+            else
+            {
+                if (revision != null)
+                {
+                    System.Diagnostics.Debug.Assert(revisionDate != null);
+                    int rev = Int32.Parse(revision.getContent()) + 1;
+                    SetMetadataEntryContent(revision, rev.ToString());
+                    SetMetadataEntryContent(revisionDate, date);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Assert(revisionDate == null);
+                    SetSingleMetadataItem(Metadata.DTB_REVISION, "1");
+                    SetSingleMetadataItem(Metadata.DTB_REVISION_DATE, date);
+                }
+            }
+        }
+
+        /// <summary>
+        /// XUK as a string.
+        /// </summary>
+        public string XukString
+        {
+            get
+            {
+                System.Text.StringBuilder srcstr = new System.Text.StringBuilder();
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.IndentChars = "  ";
+                XmlWriter writer = XmlWriter.Create(srcstr, settings);
+                getProject().saveXUK(writer, null);
+                writer.Close();
+                return srcstr.ToString();
+            }
+        }
+
+        private void ConvertXukToZed(string safeProjectName, string outputFolder, string xukPath)
+        {
+            XukToZed.XukToZed x2z = new XukToZed.XukToZed(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), XSLT_FILE));
+            x2z.OuputDir = outputFolder;
+            x2z.contextFolderName = Path.GetDirectoryName(xukPath);
+            string tmpPackageName = safeProjectName + ".opf";
+            x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);
+            string tmpNcxName = safeProjectName + ".ncx";
+            x2z.TransformationArguments.AddParam("ncxFilename", "", tmpNcxName);
+            System.Xml.XmlReaderSettings readSettings = new System.Xml.XmlReaderSettings();
+            readSettings.XmlResolver = null;
+            StringReader xukStream = new StringReader(XukString);
+            System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(xukStream);
+            x2z.WriteZed(xukDatasource);
+            xukDatasource.Close();
+            xukStream.Close();
+            if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
+                !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
+            {
+                throw new Exception(Localizer.Message("error_exporting_daisy"));
+            }
+        }
+
 
         /// <summary>
         /// Get the page number for this node. If the node already has a page number, return it.

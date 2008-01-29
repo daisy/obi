@@ -30,19 +30,6 @@ namespace Obi.Dialogs
         private void Presentation_CommandUnexecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
         private void Presentation_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
 
-        // Return the XUK source as a string.
-        private string GetXUKSource()
-        {
-            StringBuilder srcstr = new StringBuilder();
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.IndentChars = "  ";
-            XmlWriter writer = XmlWriter.Create(srcstr, settings);
-            mView.Presentation.getProject().saveXUK(writer, null);
-            writer.Close();
-            return srcstr.ToString();
-        }
-
         // Unregister the listener when the window closes.
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -56,7 +43,7 @@ namespace Obi.Dialogs
         // Update the source view.
         private void UpdateView()
         {
-            sourceBox.Text = GetXUKSource();
+            sourceBox.Text = mView.Presentation.XukString;
             sourceBox.Select(0, 0);
             sourceBox.ScrollToCaret();
         }
