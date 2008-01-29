@@ -223,7 +223,7 @@ namespace Obi
                     // need the trailing slash -- otherwise exported data ends up in a folder one level higher than our selection
                     string path = dialog.SelectedPath;
                     if (!path.EndsWith("/")) path += "/";
-                    mSession.Presentation.ExportToZed(new System.Uri(path));
+                    mSession.Presentation.ExportToZed(new System.Uri(path), mSession.Path);
                     MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
                        Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
