@@ -29,7 +29,7 @@ namespace Obi.Dialogs
         {
             if (!mCustomRolesList.Items.Contains(role)) mCustomRolesList.Items.Add(role);
             Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, role);
-            mPresentation.UndoRedoManager.execute(cmd);
+            mPresentation.getUndoRedoManager().execute(cmd);
             mNumberOfCommandsSinceOpened++;
         }
 
@@ -49,7 +49,7 @@ namespace Obi.Dialogs
             urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
             command.setShortDescription("remove_custom_class");
             foreach (EmptyNode node in nodes) command.append(new Commands.Node.ChangeCustomType(mProjectView, node, EmptyNode.Kind.Plain));
-            mPresentation.UndoRedoManager.execute(command);
+            mPresentation.getUndoRedoManager().execute(command);
             ++mNumberOfCommandsSinceOpened;
             return true;
         }
@@ -95,7 +95,7 @@ namespace Obi.Dialogs
         private void mCancel_Click(object sender, EventArgs e)
         {
             //undo anything we've done since this dialog has been open
-            for (int i = 0; i < mNumberOfCommandsSinceOpened; i++) mPresentation.UndoRedoManager.undo();
+            for (int i = 0; i < mNumberOfCommandsSinceOpened; i++) mPresentation.getUndoRedoManager().undo();
             //end the dialog
             this.DialogResult = DialogResult.Cancel;
             this.Close();

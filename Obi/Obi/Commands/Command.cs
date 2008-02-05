@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using urakawa;
+using urakawa.events;
+using urakawa.events.undo;
 using urakawa.media.data;
 using urakawa.undo;
 
@@ -15,8 +17,13 @@ namespace Obi.Commands
 
         public bool UpdateSelection;             // flag to set the selection update
 
+        public event EventHandler<ExecutedEventArgs> executed;
+        public event EventHandler<UnExecutedEventArgs> unExecuted;
+        public event EventHandler<DataModelChangedEventArgs> changed;
+
+
         /// <summary>
-        /// Create a new command for a view.
+        /// Create a new command for a view with a label.
         /// </summary>
         public Command(ProjectView.ProjectView view, string label)
         {
@@ -27,7 +34,13 @@ namespace Obi.Commands
             UpdateSelection = true;
         }
 
+        /// <summary>
+        /// Create a new command for a view with no label.
+        /// </summary>
         public Command(ProjectView.ProjectView view) : this(view, "") { }
+
+        
+        public abstract void execute();
 
         /// <summary>
         /// Set the label for the command (if not using default.)
@@ -39,10 +52,6 @@ namespace Obi.Commands
         /// </summary>
         public ProjectView.ProjectView View { get { return mView; } }
 
-        /// <summary>
-        /// Execute and set the redo flag. If you need to use the redo flag, call base.execute() at the end of execute()!
-        /// </summary>
-        public abstract void execute();
 
         /// <summary>
         /// Reset the selection to what it was before the command was executed.

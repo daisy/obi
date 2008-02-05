@@ -1041,15 +1041,15 @@ namespace Obi.ProjectView
         private EmptyNode mRecordingEmptyNode = null;
 
         // Prepare for recording and return the corresponding recording command.
-        private void PrepareForRecording(bool startRecording, ObiNode selected )
+        private void PrepareForRecording(bool startRecording, ObiNode selected)
         {
-                        if (!CanRecord) return;
+            if (!CanRecord) return;
             mRecordingCommand = CreateRecordingCommand();
             mRecordingEmptyNode = null;
 
-            if ( selected == null )
-            selected = mView.SelectedNodeAs<ObiNode>();
-                        
+            if (selected == null)
+                selected = mView.SelectedNodeAs<ObiNode>();
+
             // If nothing is selected, create a new section to record in.
             if (selected == null)
             {
@@ -1073,43 +1073,42 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                    if ( !mIsAppendOnlyRecording    &&     IsInPhraseSelectionMarked )
+                if (!mIsAppendOnlyRecording && IsInPhraseSelectionMarked)
+                {
+                    if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
+                        && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
                     {
-                        if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
-                            && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
-                        {
-                            mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudioSelection(mView));
-                            mView.Presentation.UndoRedoManager.execute(new Commands.Node.Delete(mView, mView.Selection.Node));
-                                                    }
-                        else
-                        mView.Presentation.UndoRedoManager.execute(new Commands.Node.SplitAudio(mView ));
-                       
+                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.SplitAudioSelection(mView));
+                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.Delete(mView, mView.Selection.Node));
                     }
-                    if (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused)
-                        mCurrentPlaylist.Stop();        
-                
-                mRecordingInitPhraseIndex =  1 + selected.Index;
+                    else
+                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(mView));
+
+                }
+                if (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused)
+                    mCurrentPlaylist.Stop();
+
+                mRecordingInitPhraseIndex = 1 + selected.Index;
             }
             else if (selected is EmptyNode)
             {
                 EmptyNode ENode = (EmptyNode)selected;
                 mRecordingSection = ENode.ParentAs<SectionNode>();
-                                mRecordingInitPhraseIndex = selected.Index;
-                                mRecordingEmptyNode = ENode;
+                mRecordingInitPhraseIndex = selected.Index;
+                mRecordingEmptyNode = ENode;
             }
 
 
 
             Settings settings = mView.ObiForm.Settings;
-            mRecordingSession = new RecordingSession(mView.Presentation, mRecorder,
-                settings.AudioChannels, settings.SampleRate, settings.BitDepth);
+            mRecordingSession = new RecordingSession(mView.Presentation, mRecorder);
             mRecordingSession.StartingPhrase += new Events.Audio.Recorder.StartingPhraseHandler(
                 delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
                     PhraseNode phrase = mView.Presentation.CreatePhraseNode(_e.Audio);
                     if (_e.PhraseIndex > 0)
                     {
-                        mView.Presentation.UndoRedoManager.execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
                             mRecordingInitPhraseIndex + _e.PhraseIndex));
                     }
                     else
@@ -1123,20 +1122,20 @@ namespace Obi.ProjectView
                             mRecordingCommand.append(new Commands.Node.Delete(mView, mRecordingEmptyNode));
                             mRecordingEmptyNode = null;
                         }
-                        mView.Presentation.UndoRedoManager.execute(mRecordingCommand);
+                        mView.Presentation.getUndoRedoManager().execute(mRecordingCommand);
                     }
                 });
             mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(
-                delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)   
+                delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
                     PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(_e.PhraseIndex + mRecordingInitPhraseIndex);
                     phrase.SignalAudioChanged(this, _e.Audio);
                 });
-            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
+            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
                 delegate(object _sender, Obi.Events.Audio.Recorder.PhraseEventArgs _e)
                 {
                     SetPageNumberWhileRecording(_e);
-                                                                            });
+                });
             if (startRecording)
             {
                 StartRecording();
@@ -1313,7 +1312,7 @@ namespace Obi.ProjectView
             {
                 node = mView.SelectedNodeAs<EmptyNode>();
             }
-            mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
+            mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                 EmptyNode.Kind.Custom, Localizer.Message("default_custom_class_name")));
         }
 
@@ -1326,7 +1325,7 @@ namespace Obi.ProjectView
             if (IsRecording)
             {
                 node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
-                mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                 EmptyNode.Kind.To_Do));
                 NextPhrase();
             }
@@ -1336,11 +1335,10 @@ namespace Obi.ProjectView
 
                 if (node != null)
                 {
-                    mView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mView, node,
-    EmptyNode.Kind.To_Do));
+                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
+                        EmptyNode.Kind.To_Do));
                 }
             }
-
         }
 
         #endregion
