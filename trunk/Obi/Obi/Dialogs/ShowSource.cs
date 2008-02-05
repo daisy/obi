@@ -23,20 +23,23 @@ namespace Obi.Dialogs
             mView = view;
             Text = String.Format("{0} - {1}", Text, mView.Presentation.Title);
             UpdateView();
-            mView.Presentation.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
-            mView.Presentation.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(Presentation_CommandUnexecuted);
+            mView.Presentation.getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
+            mView.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
+            mView.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
         }
 
-        private void Presentation_CommandUnexecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
-        private void Presentation_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e) { UpdateView(); }
+        private void ShowSource_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { UpdateView(); }
+        private void ShowSource_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { UpdateView(); }
+        private void ShowSource_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { UpdateView(); }
 
         // Unregister the listener when the window closes.
         private void SourceView_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (mView.Presentation != null)
             {
-                mView.Presentation.CommandExecuted -= new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
-                mView.Presentation.CommandUnexecuted -= new Obi.Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
+                mView.Presentation.getUndoRedoManager().commandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
+                mView.Presentation.getUndoRedoManager().commandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
+                mView.Presentation.getUndoRedoManager().commandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
             }
         }
 

@@ -31,8 +31,6 @@ namespace Obi
         public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
 
 
-        public event Commands.UndoRedoEventHandler CommandExecuted;     // triggered when a command was executed
-        public event Commands.UndoRedoEventHandler CommandUnexecuted;   // triggered when a command was unexecuted
         public event NodeEventHandler<SectionNode> RenamedSectionNode;  // triggered after a section was renamed
         public event NodeEventHandler<ObiNode> UsedStatusChanged;       // triggered after a node used status changed
         public event CustomClassEventHandler CustomClassAddded;         // triggered after a custom class was added
@@ -174,12 +172,6 @@ namespace Obi
         }
 
         /// <summary>
-        /// The Undo/redo manager for this presentation (with the correct type.)
-        /// </summary>
-        public Commands.UndoRedoManager UndoRedoManager { get { return (Commands.UndoRedoManager)getUndoRedoManager(); } }
-
-
-        /// <summary>
         /// Create a phrase node belonging to this presentation.
         /// </summary>
         public PhraseNode CreatePhraseNode()
@@ -228,8 +220,6 @@ namespace Obi
             mInitialized = true;
             Uri uri = new Uri(session.Path);
             if (getRootUri() != uri) setRootUri(uri);
-            UndoRedoManager.CommandExecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandExecuted);
-            UndoRedoManager.CommandUnexecuted += new Obi.Commands.UndoRedoEventHandler(undo_CommandUnexecuted);
         }
 
         /// <summary>
@@ -253,16 +243,6 @@ namespace Obi
         /// True if the presentation was initialized.
         /// </summary>
         public bool Initialized { get { return mInitialized; } }
-
-        void undo_CommandExecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
-        {
-            if (CommandExecuted != null) CommandExecuted(this, e);
-        }
-
-        void undo_CommandUnexecuted(object sender, Obi.Commands.UndoRedoEventArgs e)
-        {
-            if (CommandUnexecuted != null) CommandUnexecuted(this, e);
-        }
 
         /// <summary>
         /// Get a single metadata item by name; return null if not found.

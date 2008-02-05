@@ -57,16 +57,5 @@ namespace Obi
             return namespaceUri == NS && localName == typeof(ObiNodeFactory).Name ?
                 new ObiNodeFactory() : base.createTreeNodeFactory(localName, namespaceUri);
         }
-
-        public override urakawa.undo.UndoRedoManager createUndoRedoManager()
-        {
-            return createUndoRedoManager(typeof(Commands.UndoRedoManager).Name, NS);
-        }
-
-        public override urakawa.undo.UndoRedoManager createUndoRedoManager(string localName, string namespaceUri)
-        {
-            return namespaceUri == NS && localName == typeof(Commands.UndoRedoManager).Name ?
-                new Commands.UndoRedoManager() : base.createUndoRedoManager(localName, namespaceUri);
-        }
     }
 }

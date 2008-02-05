@@ -439,10 +439,15 @@ namespace Obi
         {
             mProjectView.Presentation = mSession.Presentation;
             UpdateObi();
-            mSession.Presentation.CommandExecuted += new Commands.UndoRedoEventHandler(Presentation_CommandExecuted);
-            mSession.Presentation.CommandUnexecuted += new Commands.UndoRedoEventHandler(Presentation_CommandUnexecuted);
+            mSession.Presentation.getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
+            mSession.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
+            mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
             UpdateCustomClassMenu();
         }
+
+        private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(); }
+        private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { ProjectHasChanged(); }
+        private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { ProjectHasChanged(); }
 
         // Catch problems with initialization and report them.
         private void InitializeObi()
@@ -529,7 +534,7 @@ namespace Obi
         // Redo
         private void Redo()
         {
-            if (mSession.CanRedo) mSession.Presentation.UndoRedoManager.redo();
+            if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager().redo();
         }
 
         // Show a new source view window or give focus back to the previously opened one.
@@ -593,7 +598,7 @@ namespace Obi
         // Undo
         private void Undo()
         {
-            if (mSession.CanUndo) mSession.Presentation.UndoRedoManager.undo();
+            if (mSession.CanUndo) mSession.Presentation.getUndoRedoManager().undo();
         }
 
         /// <summary>
@@ -642,8 +647,6 @@ namespace Obi
 
         #region Event handlers
 
-        private void Presentation_CommandUnexecuted(object sender, Commands.UndoRedoEventArgs e) { ProjectHasChanged(); }
-        private void Presentation_CommandExecuted(object sender, Commands.UndoRedoEventArgs e) { ProjectHasChanged(); }
         private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
 
         private void ProjectView_FindInTextVisibilityChanged(object sender, EventArgs e)
@@ -1693,16 +1696,16 @@ namespace Obi
                 && mProjectView.TransportBar.IsActive)
             {
                 mProjectView.TransportBar.MarkTodoClass();
-                            }
-            else 
+            }
+            else
             {
-                                EmptyNode node = mProjectView.SelectedNodeAs<EmptyNode>();
-                                if (node != null)
-                                {
-                                    mProjectView.Presentation.UndoRedoManager.execute(new Commands.Node.ChangeCustomType(mProjectView, node,
-                                    EmptyNode.Kind.To_Do ));
-                                                                    }
-                                                                        }
+                EmptyNode node = mProjectView.SelectedNodeAs<EmptyNode>();
+                if (node != null)
+                {
+                    mProjectView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mProjectView, node,
+                       EmptyNode.Kind.To_Do));
+                }
+            }
         }
 
         private void mAddMetadataEntryToolStripMenuItem_DropDownOpening(object sender, EventArgs e)

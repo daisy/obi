@@ -37,7 +37,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanRedo { get { return mProject != null && Presentation.UndoRedoManager.canRedo(); } }
+        public bool CanRedo { get { return mProject != null && Presentation.getUndoRedoManager().canRedo(); } }
 
         /// <summary>
         /// True if the project has unsaved changes.
@@ -47,7 +47,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanUndo { get { return mProject != null && Presentation.UndoRedoManager.canUndo(); } }
+        public bool CanUndo { get { return mProject != null && Presentation.getUndoRedoManager().canUndo(); } }
 
         /// <summary>
         /// True if there is a project currently open.
@@ -67,12 +67,12 @@ namespace Obi
         /// <summary>
         /// Get the description of the top redo command.
         /// </summary>
-        public string RedoLabel { get { return Presentation.UndoRedoManager.getRedoShortDescription(); } }
+        public string RedoLabel { get { return Presentation.getUndoRedoManager().getRedoShortDescription(); } }
 
         /// <summary>
         /// Get the description of the top undo command.
         /// </summary>
-        public string UndoLabel { get { return Presentation.UndoRedoManager.getUndoShortDescription(); } }
+        public string UndoLabel { get { return Presentation.getUndoRedoManager().getUndoShortDescription(); } }
 
 
         /// <summary>
@@ -121,6 +121,8 @@ namespace Obi
             mProject.openXUK(new Uri(path));
             mPath = path;
             Presentation.Initialize(this);
+            // Hack to ignore the empty commands saved by the default undo/redo manager
+            Presentation.getUndoRedoManager().flushCommands();
             if (ProjectOpened != null) ProjectOpened(this, null);
         }
 

@@ -17,7 +17,7 @@ namespace Obi
     /// </summary>
     public class RecordingSession
     {
-                private Presentation m_Presentation;
+                private Presentation mPresentation;
         private AudioRecorder mRecorder;                    // the actual recorder
 
         private int mChannels;                              // number of channels of audio to record
@@ -42,19 +42,16 @@ namespace Obi
         /// </summary>
         /// <param name="project">The project in which we are recording.</param>
         /// <param name="recorder">The audio recorder from the project.</param>
-        /// <param name="channels">Number of channels of audio to record.</param>
-        /// <param name="sampleRate">Sample rate of audio to record.</param>
-        /// <param name="bitDepth">Bit depth of audio to record.</param>
-        public RecordingSession(Presentation presentation, AudioRecorder recorder, int channels, int sampleRate, int bitDepth)
+        public RecordingSession(Presentation presentation, AudioRecorder recorder)
         {
-                        m_Presentation = presentation;
+            mPresentation = presentation;
             mRecorder = recorder;
-            mRecorder.AssetsDirectory = ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
-            if (!Directory.Exists(mRecorder.AssetsDirectory))
-                Directory.CreateDirectory(mRecorder.AssetsDirectory);
-            mChannels = channels;
-            mSampleRate = sampleRate;
-            mBitDepth = bitDepth;
+            mRecorder.AssetsDirectory =
+                ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
+            if (!Directory.Exists(mRecorder.AssetsDirectory)) Directory.CreateDirectory(mRecorder.AssetsDirectory);
+            mChannels = presentation.getMediaDataManager().getDefaultPCMFormat().getNumberOfChannels();
+            mSampleRate = (int)presentation.getMediaDataManager().getDefaultPCMFormat().getSampleRate();
+            mBitDepth = presentation.getMediaDataManager().getDefaultPCMFormat().getBitDepth();
             mSessionOffset = 0;
             mPhraseMarks = new List<double>();
             mSectionMarks = new List<int>();
@@ -92,7 +89,7 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Idle)
             {
-                                                AudioMediaData ToolkitAsset = (AudioMediaData)m_Presentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
+                                                AudioMediaData ToolkitAsset = (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
                 mRecorder.StartListening(ToolkitAsset); // for tk
             }
         }
@@ -108,8 +105,8 @@ namespace Obi
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
  
-                AudioMediaData ToolkitAsset = (AudioMediaData)m_Presentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
-mSessionMedia                 = (ManagedAudioMedia)m_Presentation.getMediaFactory().createAudioMedia ()  ;
+                AudioMediaData ToolkitAsset = (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
+mSessionMedia                 = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia ()  ;
                                     mSessionMedia.setMediaData(ToolkitAsset ); // tk
                                                 mRecorder.StartRecording(ToolkitAsset); // tk
                  StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk

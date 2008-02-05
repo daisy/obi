@@ -154,7 +154,7 @@ namespace Obi.ProjectView
         {
             if (entry.getContent() != content) 
             {
-                mView.Presentation.UndoRedoManager.execute(new Commands.Metadata.ModifyContent(mView, entry, content));
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(mView, entry, content));
             }
         }
 
@@ -162,7 +162,7 @@ namespace Obi.ProjectView
         {
             if (entry.getName() != name)
             {
-                mView.Presentation.UndoRedoManager.execute(new Commands.Metadata.ModifyName(mView, entry, name));
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyName(mView, entry, name));
             }
         }
     }
