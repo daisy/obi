@@ -879,10 +879,10 @@ Error text: {1}</value>
     <value>Obi failed to clean the current project, apparently for the following reason: {0}</value>
   </data>
   <data name="clean_save_caption" xml:space="preserve">
-    <value>Save after cleaning?</value>
+    <value>Save after cleaning</value>
   </data>
   <data name="clean_save_text" xml:space="preserve">
-    <value>It is strongly recommended that you save your project after cleaning was done. Do you want to save after cleaning?</value>
+    <value>Your project will be saved after cleaning. Do you want to continue?</value>
   </data>
   <data name="delete_unused" xml:space="preserve">
     <value>delete unused data</value>
