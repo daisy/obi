@@ -186,26 +186,57 @@ namespace Obi
         }
 
         // Clean unwanted audio from the project.
-        // Before continuing, the user is given the choice to
-        // save, not save, or cancel.
+        // Before continuing, the user is given the choice to save or cancel.
         private void CleanProject()
         {
             DialogResult result = MessageBox.Show(Localizer.Message("clean_save_text"),
                 Localizer.Message("clean_save_caption"),
-                MessageBoxButtons.YesNoCancel,
+                MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes || result == DialogResult.No)
+            if (result == DialogResult.OK)
             {
                 try
                 {
                     mSession.Presentation.cleanup();
+                    DeleteExtraFiles();
                     mSession.PresentationHasChanged();
-                    if (result == DialogResult.Yes) mSession.Save();
+                    mSession.Save();
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(String.Format(Localizer.Message("clean_failed_text"), e.Message),
                         Localizer.Message("clean_failed_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Delete extra files in the data directory (or directories)
+        private void DeleteExtraFiles()
+        {
+            Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>>();
+            foreach (urakawa.media.data.FileDataProvider provider in
+                ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager()).
+                getListOfManagedFileDataProviders())
+            {
+                string path = provider.getDataFileFullPath();
+                string dir = Path.GetDirectoryName(path);
+                if (!dirs.ContainsKey(dir)) dirs.Add(dir, new Dictionary<string, bool>());
+                dirs[dir].Add(path, true);
+            }
+            foreach (string dir in dirs.Keys)
+            {
+                System.Diagnostics.Debug.Print("--- Cleaning up in {0}", dir);
+                foreach (string path in Directory.GetFiles(dir))
+                {
+                    if (dirs[dir].ContainsKey(path))
+                    {
+                        System.Diagnostics.Debug.Print("=== Keeping {0}", path);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Print("--- Deleting {0}", path);
+                        File.Delete(path);
+                    }
                 }
             }
         }
@@ -512,6 +543,7 @@ namespace Obi
                 // if opening failed, no project is open and we don't try to open it again next time.
                 MessageBox.Show(e.Message, Localizer.Message("open_project_error_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RemoveRecentProject(path);
                 mSettings.LastOpenProject = "";
                 mSession.Close();
             }
