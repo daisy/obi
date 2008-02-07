@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Urakawa Project (DAISY Consortium, CWI, INRIA, NRCD)")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright © 2005-2007 The Urakawa Project")]
+[assembly: AssemblyCopyright("Copyright © 2005-2008 The Urakawa Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.10.2.*")]
+[assembly: AssemblyVersion("0.10.3.*")]
 
 // There is a warning about this but it is harmless (1607)
 [assembly: AssemblyInformationalVersion("1.0 alpha")]
