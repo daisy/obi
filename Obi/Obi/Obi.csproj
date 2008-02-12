@@ -75,10 +75,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
-    <Reference Include="XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\implementation\XukToZed\XukToZed\bin\Debug\XukToZed.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioDevice.cs" />
@@ -218,6 +214,8 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
+    <Compile Include="Export\XslResolver.cs" />
+    <Compile Include="Export\Z.cs" />
     <Compile Include="ImportStructure.cs" />
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
@@ -406,6 +404,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\About.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
@@ -433,6 +435,10 @@
     <EmbeddedResource Include="Dialogs\TransportRecord.resx">
       <SubType>Designer</SubType>
       <DependentUpon>TransportRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObiForm.fr.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Block.resx">
       <SubType>Designer</SubType>
@@ -505,6 +511,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about_en.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Export\package.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Export\Z.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="images\obird256.png">

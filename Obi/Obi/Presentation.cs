@@ -14,8 +14,6 @@ namespace Obi
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
 
-        private static string XSLT_FILE = "XukToZed.xslt";
-
         /// <summary>
         /// Create an uninitialized presentation.
         /// </summary>
@@ -396,9 +394,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Export the project as DAISY to a directory.
+        /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZed(Uri destinationDirectory, string xukPath)
+        public void ExportToZ(string exportPath, string xukPath)
         {
             UpdatePublicationMetadata();
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
@@ -407,14 +405,14 @@ namespace Obi
             Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
             visitor.setDestinationChannel(publishChannel);
             visitor.setSourceChannel(AudioChannel);
-            visitor.setDestinationDirectory(destinationDirectory);
+            visitor.setDestinationDirectory(new Uri(exportPath));
             RootNode.acceptDepthFirst(visitor);
             visitor.writeCurrentAudioFile();
             XmlWriter writer = XmlWriter.Create(new System.Text.StringBuilder());
             getProject().saveXUK(writer, null);
             writer.Close();
             getChannelsManager().removeChannel(publishChannel);
-            ConvertXukToZed("export", destinationDirectory.PathAndQuery, xukPath);
+            ConvertXukToZed(exportPath, xukPath);
         }
 
         // Update metadata before exporting
@@ -465,11 +463,18 @@ namespace Obi
             }
         }
 
-        private void ConvertXukToZed(string safeProjectName, string outputFolder, string xukPath)
+        private void ConvertXukToZed(string outputDir, string xukPath)
         {
-            XukToZed.XukToZed x2z = new XukToZed.XukToZed(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), XSLT_FILE));
-            x2z.OuputDir = outputFolder;
-            x2z.contextFolderName = Path.GetDirectoryName(xukPath);
+            Export.Z z = new Export.Z();
+            z.ExportPath = outputDir;
+            z.ProjectPath = Path.GetDirectoryName(xukPath);
+            z.TotalTime = TotalTime;
+            System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(XukString));
+            z.WriteFileset(xuk);
+            
+            //z.OutputDir = outputDir;
+            //z.ContextFolder = Path.GetDirectoryName(xukPath);
+            /* XukToZed.XukToZed x2z = new XukToZed.XukToZed(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), XSLT_FILE));
             string tmpPackageName = safeProjectName + ".opf";
             x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);
             string tmpNcxName = safeProjectName + ".ncx";
@@ -485,7 +490,7 @@ namespace Obi
                 !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
             {
                 throw new Exception(Localizer.Message("error_exporting_daisy"));
-            }
+            }*/
         }
 
 
@@ -504,6 +509,23 @@ namespace Obi
                 ObiNode n = node.PrecedingNode;
                 while (n != null && !(n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)) n = n.PrecedingNode;
                 return n != null ? ((EmptyNode)n).PageNumber + 1 : 1;
+            }
+        }
+
+        // Get the total time of the book in milliseconds
+        private double TotalTime
+        {
+            get
+            {
+                double time = 0.0;
+                RootNode.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is PhraseNode) time += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
+                return time;
             }
         }
     }

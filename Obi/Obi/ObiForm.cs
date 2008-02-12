@@ -214,6 +214,7 @@ namespace Obi
         private void DeleteExtraFiles()
         {
             Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>>();
+            // Get the list of files used by the asset manager
             foreach (urakawa.media.data.FileDataProvider provider in
                 ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager()).
                 getListOfManagedFileDataProviders())
@@ -223,6 +224,9 @@ namespace Obi
                 if (!dirs.ContainsKey(dir)) dirs.Add(dir, new Dictionary<string, bool>());
                 dirs[dir].Add(path, true);
             }
+            // Go through each directory and remove files not used by the data manager
+            // TODO at the moment, this removes everything; if we have other files that we need
+            // (e.g. images of waveforms?) we need to be careful not to throw them away.
             foreach (string dir in dirs.Keys)
             {
                 System.Diagnostics.Debug.Print("--- Cleaning up in {0}", dir);
@@ -251,10 +255,11 @@ namespace Obi
             {
                 try
                 {
-                    // need the trailing slash -- otherwise exported data ends up in a folder one level higher than our selection
-                    string path = dialog.SelectedPath;
-                    if (!path.EndsWith("/")) path += "/";
-                    mSession.Presentation.ExportToZed(new System.Uri(path), mSession.Path);
+                    // Need the trailing slash, otherwise exported data ends up in a folder one level
+                    // higher than our selection.
+                    string exportPath = dialog.SelectedPath;
+                    if (!exportPath.EndsWith("/")) exportPath += "/";
+                    mSession.Presentation.ExportToZ(exportPath, mSession.Path);
                     MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
                        Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
