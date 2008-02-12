@@ -9,6 +9,7 @@ namespace Obi
     /// </summary>
     public class Metadata
     {
+        public static readonly string DC_DATE = "dc:Date";
         public static readonly string DC_IDENTIFIER = "dc:Identifier";
         public static readonly string DC_LANGUAGE = "dc:Language";
         public static readonly string DC_PUBLISHER = "dc:Publisher";
@@ -148,8 +149,8 @@ namespace Obi
                 MetadataOccurrence.Required,
                 Localizer.Message("dc_publisher_description"),
                 true, false);
-            DAISY_ENTRIES["dc:Date"] = new MetadataEntryDescription(
-                "dc:Date",
+            DAISY_ENTRIES[Metadata.DC_DATE] = new MetadataEntryDescription(
+                Metadata.DC_DATE,
                 MetadataOccurrence.Required,
                 Localizer.Message("missing_description"),
                 true, false);
