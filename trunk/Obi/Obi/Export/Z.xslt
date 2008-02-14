@@ -2,13 +2,22 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xuk="http://www.daisy.org/urakawa/xuk/1.0"
+  xmlns:obi="http://www.daisy.org/urakawa/obi" 
+  xmlns:ext="http://www.daisy.org/urakawa/obi/xslt-extensions" 
   exclude-result-prefixes="xuk">
   <xsl:output method="xml"/>
+
+  <!-- Total time of the book in milliseconds -->
   <xsl:param name="total-time"/>
-  <xsl:param name="uid"/>
+  
+  <!-- Name of the UID element -->
+  <xsl:param name="uid">UID</xsl:param>
+  
+  
   <xsl:template match="*">
     <!-- wrapper for the whole fileset -->
     <z>
+      
       <!-- the package file -->
       <package xmlns="http://openebook.org/namespaces/oeb-package/1.0/"
         unique-identifier="{$uid}">
@@ -38,12 +47,20 @@
           </x-metadata>
         </metadata>
         <manifest>
-          
+          <item href="{ext:RelativePath('.opf')}" media-type="text/xml"/>
+          <item href="{ext:RelativePath('.ncx')}" media-type="application/x-dtbncx+xml"/>
+          <xsl:for-each select="//xuk:ExternalAudioMedia">
+            <xsl:variable name="src" select="@src"/>
+            <xsl:if test="not(preceding::xuk:ExternalAudioMedia[@src=$src])">
+              <item href="{ext:RelativePathForUri($src)}" media-type="audio/x-wav"/>
+            </xsl:if>
+          </xsl:for-each>
         </manifest>
         <spine>
           
         </spine>
       </package>
+      
     </z>
   </xsl:template>
 </xsl:stylesheet>
