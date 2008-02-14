@@ -407,12 +407,11 @@ namespace Obi
             visitor.setSourceChannel(AudioChannel);
             visitor.setDestinationDirectory(new Uri(exportPath));
             RootNode.acceptDepthFirst(visitor);
+            // TODO check that there is an audio file to write
             visitor.writeCurrentAudioFile();
-            XmlWriter writer = XmlWriter.Create(new System.Text.StringBuilder());
-            getProject().saveXUK(writer, null);
-            writer.Close();
+            System.Diagnostics.Debug.Print("EXPORT=[[[{0}]]]", XukString);
+            ConvertXukToZed(exportPath, xukPath, XukString);
             getChannelsManager().removeChannel(publishChannel);
-            ConvertXukToZed(exportPath, xukPath);
         }
 
         // Update metadata before exporting
@@ -463,13 +462,13 @@ namespace Obi
             }
         }
 
-        private void ConvertXukToZed(string outputDir, string xukPath)
+        private void ConvertXukToZed(string outputDir, string xukPath, string exported)
         {
             Export.Z z = new Export.Z();
             z.ExportPath = outputDir;
             z.ProjectPath = Path.GetDirectoryName(xukPath);
             z.TotalTime = TotalTime;
-            System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(XukString));
+            System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(exported));
             z.WriteFileset(xuk);
             
             //z.OutputDir = outputDir;
