@@ -409,7 +409,6 @@ namespace Obi
             RootNode.acceptDepthFirst(visitor);
             // TODO check that there is an audio file to write
             visitor.writeCurrentAudioFile();
-            System.Diagnostics.Debug.Print("EXPORT=[[[{0}]]]", XukString);
             ConvertXukToZed(exportPath, xukPath, XukString);
             getChannelsManager().removeChannel(publishChannel);
         }
@@ -467,29 +466,9 @@ namespace Obi
             Export.Z z = new Export.Z();
             z.ExportPath = outputDir;
             z.ProjectPath = Path.GetDirectoryName(xukPath);
-            z.TotalTime = TotalTime;
+            z.ElapsedTimes = ElapsedTimes;
             System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(exported));
             z.WriteFileset(xuk);
-            
-            //z.OutputDir = outputDir;
-            //z.ContextFolder = Path.GetDirectoryName(xukPath);
-            /* XukToZed.XukToZed x2z = new XukToZed.XukToZed(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), XSLT_FILE));
-            string tmpPackageName = safeProjectName + ".opf";
-            x2z.TransformationArguments.AddParam("packageFilename", "", tmpPackageName);
-            string tmpNcxName = safeProjectName + ".ncx";
-            x2z.TransformationArguments.AddParam("ncxFilename", "", tmpNcxName);
-            System.Xml.XmlReaderSettings readSettings = new System.Xml.XmlReaderSettings();
-            readSettings.XmlResolver = null;
-            StringReader xukStream = new StringReader(XukString);
-            System.Xml.XmlReader xukDatasource = System.Xml.XmlReader.Create(xukStream);
-            x2z.WriteZed(xukDatasource);
-            xukDatasource.Close();
-            xukStream.Close();
-            if (!System.IO.File.Exists(x2z.OuputDir + "/" + tmpNcxName) ||
-                !System.IO.File.Exists(x2z.OuputDir + "/" + tmpPackageName))
-            {
-                throw new Exception(Localizer.Message("error_exporting_daisy"));
-            }*/
         }
 
 
@@ -511,20 +490,24 @@ namespace Obi
             }
         }
 
-        // Get the total time of the book in milliseconds
-        private double TotalTime
+        // Get the elapsed time at the beginning of each section
+        // (last section has the total time.)
+        private List<double> ElapsedTimes
         {
             get
             {
+                List<double> times = new List<double>();
                 double time = 0.0;
                 RootNode.acceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
                         if (n is PhraseNode) time += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        else if (n is SectionNode) times.Add(time);
                         return true;
                     },
                     delegate(urakawa.core.TreeNode n) { });
-                return time;
+                times.Add(time);
+                return times;
             }
         }
     }
