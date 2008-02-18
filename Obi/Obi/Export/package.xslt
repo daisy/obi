@@ -8,7 +8,7 @@
 
   <xsl:output method="xml" indent="yes"
     doctype-public="+//ISBN 0-9673008-1-9//DTD OEB 1.2 Package//EN"
-    doctype-system="oebpkg12.dtd"/>
+    doctype-system="http://openebook.org/dtds/oeb-1.2/oebpkg12.dtd"/>
 
   <xsl:template match="opf:dc-metadata">
     <dc-metadata xmlns="http://openebook.org/namespaces/oeb-package/1.0/" 
