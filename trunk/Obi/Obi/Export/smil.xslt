@@ -5,15 +5,26 @@
 
   <!-- Output a SMIL file from the monolithic z file -->
 
-  <xsl:output method="xml"
+  <!-- ID of the SMIL element to match (one smil element per file) -->
+  <xsl:param name="id"/>
+
+  <xsl:output method="xml" indent="yes"
     doctype-public="-//NISO//DTD dtbsmil 2005-1//EN"
     doctype-system="http://www.daisy.org/z3986/2005/dtbsmil-2005-1.dtd"/>
 
-  <xsl:template match="smil:*">
-    <xsl:copy>
+  <xsl:template match="smil:smil">
+    <xsl:if test="@id=$id">
+      <xsl:apply-templates mode="copy" select="."/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="text()"/>
+
+  <xsl:template match="smil:*" mode="copy">
+    <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
       <xsl:copy-of select="@*"/>
-      <xsl:apply-templates/>
-    </xsl:copy>
+      <xsl:apply-templates mode="copy"/>
+    </xsl:element>
   </xsl:template>
 
 </xsl:stylesheet>

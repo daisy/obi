@@ -94,15 +94,15 @@ namespace Obi.Export
         {
             System.IO.StringWriter writer = new System.IO.StringWriter();
             System.Xml.XmlWriter output = System.Xml.XmlWriter.Create(writer);
-            //mTransformer.Transform(input, mTransformationArguments, output);
-            //System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
+            mTransformer.Transform(input, mTransformationArguments, output);
+            System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
 
-            System.Xml.XmlWriter zFile = System.Xml.XmlWriter.Create(FullPath(".zzz"), mTransformer.OutputSettings);
-            mTransformer.Transform(input, mTransformationArguments, zFile);
+            //System.Xml.XmlWriter zFile = System.Xml.XmlWriter.Create(FullPath(".zzz"), mTransformer.OutputSettings);
+            //mTransformer.Transform(input, mTransformationArguments, zFile);
             
-            //WritePackageFile(z);
-            //WriteSMILFiles(z);
-            //WriteNCX(z);
+            WritePackageFile(z);
+            WriteSMILFiles(z);
+            WriteNCX(z);
         }
 
         // Write the package file from the Z composite document
