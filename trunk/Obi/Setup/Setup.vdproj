@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_020E765E81AB7190548EE8511E3685F1"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_08E90A85C087A8E87AC7D546E48D9CE8"
+        "MsmKey" = "8:_01278A6965C227E561A274E1E0D50066"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -99,12 +93,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_956E4CA1D2500E6365469C0F7282490E"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -113,6 +101,12 @@
         {
         "MsmKey" = "8:_A312DCD7F0F7454B8EBAD7FD60A52383"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A85046C63552DA81A6A561E630915FC4"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,19 +184,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_956E4CA1D2500E6365469C0F7282490E"
+        "OwnerKey" = "8:_01278A6965C227E561A274E1E0D50066"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_020E765E81AB7190548EE8511E3685F1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08E90A85C087A8E87AC7D546E48D9CE8"
+        "OwnerKey" = "8:_A85046C63552DA81A6A561E630915FC4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -289,51 +277,20 @@
                 "Message" = "8:[VSDNETMSG]"
                 "Version" = "8:2.0.50727"
                 "AllowLaterVersions" = "11:FALSE"
-                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
+                "InstallUrl" = "8:http://download.microsoft.com/download/5/6/7/567758a3-759e-473e-bf8f-52154438565a/dotnetfx.exe"
                 }
             }
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_020E765E81AB7190548EE8511E3685F1"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_01278A6965C227E561A274E1E0D50066"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.30598, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2918.27249, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_020E765E81AB7190548EE8511E3685F1"
-                    {
-                    "Name" = "8:urakawa.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:urakawa.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08E90A85C087A8E87AC7D546E48D9CE8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2897.24541, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_08E90A85C087A8E87AC7D546E48D9CE8"
+                    "_01278A6965C227E561A274E1E0D50066"
                     {
                     "Name" = "8:AudioEngine.PPMeter.dll"
                     "Attributes" = "3:512"
@@ -570,37 +527,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_956E4CA1D2500E6365469C0F7282490E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XukToZed, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_956E4CA1D2500E6365469C0F7282490E"
-                    {
-                    "Name" = "8:XukToZed.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:XukToZed.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C20083F5AC541BB9A68D0CA14309F6D"
             {
             "SourcePath" = "8:..\\..\\images\\obi.ico"
@@ -639,6 +565,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A85046C63552DA81A6A561E630915FC4"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.27566, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A85046C63552DA81A6A561E630915FC4"
+                    {
+                    "Name" = "8:urakawa.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:urakawa.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
@@ -900,9 +857,24 @@
         }
         "LaunchCondition"
         {
+            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_8D274B8F588342E38B13CAB137EB0917"
+            {
+            "Name" = "8:DirectX"
+            "Condition" = "8:( (DXVERSION << \"4.09.00.09\" Or DXVERSION << \"4.09.0000.09\")   And    (Not DXVERSION >> \"02\")    And    (Not DXVERSION >> \"01\")    And    (Not DXVERSION >> \"00\") )"
+            "Message" = "8:<ErrRequired  DirectX version not found. Do you want to download it from Internet?"
+            "InstallUrl" = "8:http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3"
+            }
         }
         "Locator"
         {
+            "{CF66B7F7-B7DA-4B08-A67A-233430638C9C}:_989C8A7DEA34490FB8161689559C7244"
+            {
+            "Name" = "8:DirectXVersion"
+            "Root" = "2:1"
+            "RegKey" = "8:SOFTWARE\\Microsoft\\DirectX"
+            "Value" = "8:Version"
+            "Property" = "8:DXVERSION"
+            }
         }
         "MsiBootstrapper"
         {
@@ -913,7 +885,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 0.10.3"
         "ProductCode" = "8:{AB2AF6B3-B1C5-419C-AB4C-382BBEA69962}"
-        "PackageCode" = "8:{4E4F1F60-5B11-4509-8FAB-0145FDCB9D00}"
+        "PackageCode" = "8:{C54A75AF-ADCA-4811-AAD8-C24FA5A38881}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1487,6 +1459,9 @@
                 {
                 }
             }
+        }
+        "VJSharpPlugin"
+        {
         }
     }
 }
