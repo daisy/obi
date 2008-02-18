@@ -26,6 +26,7 @@ namespace Obi.Export
         private static readonly string XSLT_FILE = "Export/Z.xslt";           // name of the main stylesheet (relative to the assembly)
         private static readonly string PACKAGE_XSLT = "Export/package.xslt";  // name of the package file XSLT
         private static readonly string SMIL_XSLT = "Export/smil.xslt";        // name of the SMIL XSLT
+        private static readonly string NCX_XSLT = "Export/ncx.xslt";          // name of the NCX XSLT
 
         public Z()
         {
@@ -35,7 +36,7 @@ namespace Obi.Export
             Type t = GetType();
             mResolver = new XslResolver(t);
             mAssemblyLocation = System.IO.Path.GetDirectoryName(t.Assembly.Location);
-            mTransformer.Load(System.IO.Path.Combine(mAssemblyLocation, XSLT_FILE), null, mResolver);            
+            mTransformer.Load(System.IO.Path.Combine(mAssemblyLocation, XSLT_FILE), null, mResolver);
         }
 
 
@@ -93,11 +94,15 @@ namespace Obi.Export
         {
             System.IO.StringWriter writer = new System.IO.StringWriter();
             System.Xml.XmlWriter output = System.Xml.XmlWriter.Create(writer);
-            mTransformer.Transform(input, mTransformationArguments, output);
-            System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
-            WritePackageFile(z);
-            WriteSMILFiles(z);
-            WriteNCX(z);
+            //mTransformer.Transform(input, mTransformationArguments, output);
+            //System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
+
+            System.Xml.XmlWriter zFile = System.Xml.XmlWriter.Create(FullPath(".zzz"), mTransformer.OutputSettings);
+            mTransformer.Transform(input, mTransformationArguments, zFile);
+            
+            //WritePackageFile(z);
+            //WriteSMILFiles(z);
+            //WriteNCX(z);
         }
 
         // Write the package file from the Z composite document
@@ -132,6 +137,10 @@ namespace Obi.Export
         // Write the NCX file from the Z composite document
         private void WriteNCX(System.Xml.XPath.XPathDocument z)
         {
+            System.Xml.Xsl.XslCompiledTransform ncxXslt = new System.Xml.Xsl.XslCompiledTransform(true);
+            ncxXslt.Load(System.IO.Path.Combine(mAssemblyLocation, NCX_XSLT), null, mResolver);
+            System.Xml.XmlWriter ncxFile = System.Xml.XmlWriter.Create(FullPath(".ncx"), ncxXslt.OutputSettings);
+            ncxXslt.Transform(z, ncxFile);
         }
     }
 }
