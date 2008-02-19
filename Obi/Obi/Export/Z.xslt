@@ -18,7 +18,7 @@
 
   <!-- IDs of the various channels -->
   <xsl:variable name="text-channel" select="//xuk:mChannelItem[xuk:Channel[@name='obi.text']]/@uid"/>
-  <xsl:variable name="audio-channel" select="//xuk:mChannelItem[xuk:Channel[@name='obi.publish.audio']]/@uid"/>
+  <xsl:variable name="publish-channel" select="//xuk:mChannelItem[xuk:Channel[@name='obi.publish.audio']]/@uid"/>
 
   <xsl:template match="/">
     <!-- wrapper for the whole fileset -->
@@ -54,8 +54,8 @@
           </x-metadata>
         </metadata>
         <manifest>
-          <item href="{ext:RelativePath('.opf')}" media-type="text/xml"/>
-          <item href="{ext:RelativePath('.ncx')}" media-type="application/x-dtbncx+xml"/>
+          <item href="{ext:RelativePath('.opf')}" id="OPF"  media-type="text/xml"/>
+          <item href="{ext:RelativePath('.ncx')}" id="NCX" media-type="application/x-dtbncx+xml"/>
           <xsl:for-each select="//obi:section">
             <item href="{ext:RelativePath('.smil', generate-id())}" id="{generate-id()}"
               media-type="application/smil"/>
@@ -63,7 +63,7 @@
           <xsl:for-each select="//xuk:ExternalAudioMedia">
             <xsl:variable name="src" select="@src"/>
             <xsl:if test="not(preceding::xuk:ExternalAudioMedia[@src=$src])">
-              <item href="{ext:RelativePathForUri($src)}" media-type="audio/x-wav"/>
+              <item href="{ext:RelativePathForUri($src)}" id="{generate-id()}" media-type="audio/x-wav"/>
             </xsl:if>
           </xsl:for-each>
         </manifest>
@@ -73,28 +73,6 @@
           </xsl:for-each>
         </spine>
       </package>
-
-      <!-- The smil files; one per section -->
-      <xsl:for-each select="//obi:section">
-        <smil:smil id="{generate-id()}">
-          <smil:head>
-            <smil:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
-            <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
-            <smil:meta name="dtb:totalElapsedTime" content="{ext:TotalElapsedTime(position()-1)}ms"/>
-            <!-- Keep track of which section this SMIL file is for -->
-            <smil:meta name="obi:section" content="{.//xuk:mChannelMapping[@channel=$text-channel]/xuk:TextMedia/xuk:mText}"/>
-          </smil:head>
-          <smil:body>
-            <smil:seq>
-              <xsl:for-each select="xuk:mChildren/obi:phrase//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia">
-                <smil:par id="{generate-id()}">
-                  <smil:audio src="{ext:RelativePathForUri(@src)}" clipBegin="{@clipBegin}" clipEnd="{@clipEnd}"/>
-                </smil:par>
-              </xsl:for-each>
-            </smil:seq>
-          </smil:body>
-        </smil:smil>
-      </xsl:for-each>
 
       <!-- The NCX -->
       <ncx:ncx version="2005-1" xml:lang="{//xuk:Metadata[@name='dc:Language']/@content}">
@@ -107,10 +85,10 @@
             </xsl:if>
           </xsl:for-each>
           <ncx:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
-          <ncx:meta name="dtb:totalPageCount" content="{count(//obi:phrase[@page])}"/>
+          <ncx:meta name="dtb:totalPageCount" content="{count(//obi:phrase[@kind='Page'])}"/>
           <xsl:choose>
-            <xsl:when test="//obi:phrase[@page]">
-              <xsl:for-each select="//obi:phrase[@page]">
+            <xsl:when test="//obi:phrase[@kind='Page']">
+              <xsl:for-each select="//obi:phrase[@kind='Page']">
                 <xsl:sort order="descending" select="@page"/>
                 <xsl:if test="position()=1">
                   <ncx:meta name="dtb:maxPageNumber" content="{@page}"/>
@@ -135,13 +113,35 @@
           <xsl:apply-templates select="//obi:phrase[@kind='Page']"/>      
         </ncx:pageList>
       </ncx:ncx>
-      
+
+      <!-- The smil files; one per section -->
+      <xsl:for-each select="//obi:section">
+        <smil:smil id="{generate-id()}">
+          <smil:head>
+            <smil:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
+            <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
+            <smil:meta name="dtb:totalElapsedTime" content="{ext:TotalElapsedTime(position()-1)}ms"/>
+            <!-- Keep track of which section this SMIL file is for -->
+            <smil:meta name="obi:section" content="{.//xuk:mChannelMapping[@channel=$text-channel]/xuk:TextMedia/xuk:mText}"/>
+          </smil:head>
+          <smil:body>
+            <smil:seq id="{generate-id(xuk:mChildren)}">
+              <xsl:for-each select="xuk:mChildren/obi:phrase//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia">
+                <smil:par id="{generate-id()}">
+                  <smil:audio src="{ext:RelativePathForUri(@src)}" clipBegin="{@clipBegin}" clipEnd="{@clipEnd}"/>
+                </smil:par>
+              </xsl:for-each>
+            </smil:seq>
+          </smil:body>
+        </smil:smil>
+      </xsl:for-each>
+
     </z>
   </xsl:template>
 
   <!-- Navigation point for section -->
   <xsl:template match="obi:section" mode="navPoint">
-    <ncx:navPoint
+    <ncx:navPoint id="{generate-id()}" 
       playOrder="{1+count(ancestor::obi:section|preceding::obi:section|ancestor::obi:phrase[@kind='Page']|preceding::obi:phrase[@kind='Page'])}">
       <ncx:navLabel>
         <ncx:text>
@@ -151,17 +151,17 @@
         <!-- The audio heading is the phrase with the "heading" role or the first one -->
         <xsl:choose>
           <xsl:when test="xuk:mChildren/obi:phrase[@kind='Heading']">
-            <xsl:variable name="h" select="xuk:mChildren/obi:phrase[@kind='Heading']//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia"/>
+            <xsl:variable name="h" select="xuk:mChildren/obi:phrase[@kind='Heading']//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
             <ncx:audio src="{ext:RelativePathForUri($h/@src)}" clipBegin="{$h/@clipBegin}" clipEnd="{$h/@clipEnd}"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:variable name="p" select="xuk:mChildren/obi:phrase[1]//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia"/>
+            <xsl:variable name="p" select="xuk:mChildren/obi:phrase[1]//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
             <ncx:audio src="{ext:RelativePathForUri($p/@src)}" clipBegin="{$p/@clipBegin}" clipEnd="{$p/@clipEnd}"/>
           </xsl:otherwise>
         </xsl:choose>
       </ncx:navLabel>
       <ncx:content
-        src="{ext:RelativePath('.smil', generate-id())}#{generate-id(xuk:mChildren/obi:phrase[1]//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia)}"/>
+        src="{ext:RelativePath('.smil', generate-id())}#{generate-id(xuk:mChildren/obi:phrase[1]//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia)}"/>
       <xsl:apply-templates mode="navPoint"/>
     </ncx:navPoint>
   </xsl:template>
@@ -174,14 +174,14 @@
         <ncx:text>
           <xsl:value-of select="@page"/>
         </ncx:text>
-        <xsl:variable name="p" select=".//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia"/>
+        <xsl:variable name="p" select=".//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
         <ncx:audio src="{ext:RelativePathForUri($p/@src)}" clipBegin="{$p/@clipBegin}" clipEnd="{$p/@clipEnd}"/>
       </ncx:navLabel>
-      <ncx:content src="{ext:RelativePath('.smil', generate-id(ancestor::obi:section[1]))}#{generate-id(.//xuk:mChannelMapping[@channel=$audio-channel]/xuk:ExternalAudioMedia)}"/>
+      <ncx:content src="{ext:RelativePath('.smil', generate-id(ancestor::obi:section[1]))}#{generate-id(.//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia)}"/>
     </ncx:pageTarget>
   </xsl:template>
 
   <xsl:template match="text()"/>
   <xsl:template match="text()" mode="navPoint"/>
-
+  
 </xsl:stylesheet>
