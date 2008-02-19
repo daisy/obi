@@ -4,23 +4,25 @@ using System.Text;
 
 namespace Obi.Export
 {
+    /// <summary>
+    /// The Z class encapsulates the stylesheets and utility functions
+    /// necessary to convert an obi/xuk project to a Z fileset.
+    /// </summary>
     class Z
     {
-        private System.Xml.Xsl.XslCompiledTransform mTransformer;
-        private XslResolver mResolver;
-        private string mAssemblyLocation;
-        private System.Xml.Xsl.XsltArgumentList mTransformationArguments;
-
-        // Path (and corresponding uri) to the export directory
-        private string mExportPath;
-        private Uri mExportUri;
-
-        private List<double> mElapsedTimes;
-
         /// <summary>
         /// Path to the original project.
         /// </summary>
         public string ProjectPath;
+
+        private System.Xml.Xsl.XslCompiledTransform mTransformer;          // the xuk/obi to z transformer (intermediary form)
+        private System.Xml.Xsl.XsltArgumentList mTransformationArguments;  // arguments to the main stylesheet
+        private XslResolver mResolver;                                     // the resolver that finds stylesheets in the assembly
+        private string mAssemblyLocation;                                  // current location of the assembly
+
+        private string mExportPath;          // path to the export directory
+        private Uri mExportUri;              // corresponding URI to the export directory
+        private List<double> mElapsedTimes;  // elapsed time at the beginning of each section (and at the end of the book) in ms.
 
         private static readonly string BASE_NAME = "obi_dtb";                 // base name of the exported files (e.g. "obi_dtb.ncx")
         private static readonly string XSLT_FILE = "Export/Z.xslt";           // name of the main stylesheet (relative to the assembly)
@@ -28,6 +30,10 @@ namespace Obi.Export
         private static readonly string SMIL_XSLT = "Export/smil.xslt";        // name of the SMIL XSLT
         private static readonly string NCX_XSLT = "Export/ncx.xslt";          // name of the NCX XSLT
 
+
+        /// <summary>
+        /// Create the Z export instance. Don't forget to set the parameters afterwards.
+        /// </summary>
         public Z()
         {
             mTransformer = new System.Xml.Xsl.XslCompiledTransform(true);
@@ -45,6 +51,9 @@ namespace Obi.Export
         /// </summary>
         public List<double> ElapsedTimes { set { mElapsedTimes = value; } }
 
+        /// <summary>
+        /// Set the export path.
+        /// </summary>
         public string ExportPath
         {
             set
@@ -53,11 +62,6 @@ namespace Obi.Export
                 mExportUri = new Uri(value);
             }
         }
-
-        /// <summary>
-        /// Allow read-only access to the transformation arguments list.
-        /// </summary>
-        public System.Xml.Xsl.XsltArgumentList TransformationArguments { get { return mTransformationArguments; } }
 
         /// <summary>
         /// Get the relative path of a file for a given extension. 
@@ -73,10 +77,7 @@ namespace Obi.Export
         /// <summary>
         /// Get the relative path for an URI (passed as a string from XSLT.)
         /// </summary>
-        public string RelativePathForUri(string uri)
-        {
-            return mExportUri.MakeRelativeUri(new Uri(uri)).ToString();
-        }
+        public string RelativePathForUri(string uri) { return mExportUri.MakeRelativeUri(new Uri(uri)).ToString(); }
 
         /// <summary>
         /// Get the total elapsed time for a given section.
@@ -96,22 +97,17 @@ namespace Obi.Export
             System.Xml.XmlWriter output = System.Xml.XmlWriter.Create(writer);
             mTransformer.Transform(input, mTransformationArguments, output);
             System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
-
-            //System.Xml.XmlWriter zFile = System.Xml.XmlWriter.Create(FullPath(".zzz"), mTransformer.OutputSettings);
-            //mTransformer.Transform(input, mTransformationArguments, zFile);
-            
-            WritePackageFile(z);
+            WriteXSLT(z, PACKAGE_XSLT, ".opf");
+            WriteXSLT(z, NCX_XSLT, ".ncx");
             WriteSMILFiles(z);
-            WriteNCX(z);
         }
 
-        // Write the package file from the Z composite document
-        private void WritePackageFile(System.Xml.XPath.XPathDocument z)
+        private void WriteXSLT(System.Xml.XPath.XPathDocument z, string stylesheet, string suffix)
         {
-            System.Xml.Xsl.XslCompiledTransform packageXslt = new System.Xml.Xsl.XslCompiledTransform(true);
-            packageXslt.Load(System.IO.Path.Combine(mAssemblyLocation, PACKAGE_XSLT), null, mResolver);
-            System.Xml.XmlWriter packageFile = System.Xml.XmlWriter.Create(FullPath(".opf"), packageXslt.OutputSettings);
-            packageXslt.Transform(z, packageFile);
+            System.Xml.Xsl.XslCompiledTransform transform = new System.Xml.Xsl.XslCompiledTransform(true);
+            transform.Load(System.IO.Path.Combine(mAssemblyLocation, stylesheet), null, mResolver);
+            System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(FullPath(suffix), transform.OutputSettings);
+            transform.Transform(z, writer);
         }
 
         // Write the SMIL files from the Z composite document
@@ -132,15 +128,6 @@ namespace Obi.Export
                     smilXslt.OutputSettings);
                 smilXslt.Transform(z, args, smilFile);
             }
-        }
-
-        // Write the NCX file from the Z composite document
-        private void WriteNCX(System.Xml.XPath.XPathDocument z)
-        {
-            System.Xml.Xsl.XslCompiledTransform ncxXslt = new System.Xml.Xsl.XslCompiledTransform(true);
-            ncxXslt.Load(System.IO.Path.Combine(mAssemblyLocation, NCX_XSLT), null, mResolver);
-            System.Xml.XmlWriter ncxFile = System.Xml.XmlWriter.Create(FullPath(".ncx"), ncxXslt.OutputSettings);
-            ncxXslt.Transform(z, ncxFile);
         }
     }
 }
