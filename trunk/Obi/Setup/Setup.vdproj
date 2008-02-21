@@ -15,14 +15,20 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_01278A6965C227E561A274E1E0D50066"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmKey" = "8:_0D0652AF33114FC2B6DFBD57DF2FF296"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_0D0652AF33114FC2B6DFBD57DF2FF296"
+        "MsmKey" = "8:_0FCAEAC788B449168F394B95251F04E8"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_101AAF3A741863AEDD826E32246A540E"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_837EC87997044F77930CFDC75ADF4A05"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -166,6 +178,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0FCAEAC788B449168F394B95251F04E8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_29B0073336FEECBE1DA769C44A87F89B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -184,13 +208,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_01278A6965C227E561A274E1E0D50066"
+        "OwnerKey" = "8:_A85046C63552DA81A6A561E630915FC4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A85046C63552DA81A6A561E630915FC4"
+        "OwnerKey" = "8:_101AAF3A741863AEDD826E32246A540E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -260,6 +284,34 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_96DD92C1757F4C349123EBB413F2DC80"
+            {
+            "Name" = "8:DirectX_Check"
+            "Condition" = "8:"
+            "Object" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
+            "FileType" = "3:1"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_330E5CBD_5BA2_4AE7_BA41_692BFF509FE1"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9AB903975A074D68BE30778C0A2775AC"
+            {
+            "Name" = "8:DirectX_Check"
+            "Condition" = "8:"
+            "Object" = "8:_0FCAEAC788B449168F394B95251F04E8"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_AFD6B9E9_E2A9_4A79_8417_92660257A895"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -283,14 +335,65 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_01278A6965C227E561A274E1E0D50066"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D0652AF33114FC2B6DFBD57DF2FF296"
+            {
+            "SourcePath" = "8:..\\Obi\\images\\obird256.png"
+            "TargetName" = "8:obird256.png"
+            "Tag" = "8:"
+            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FCAEAC788B449168F394B95251F04E8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0FCAEAC788B449168F394B95251F04E8"
+                    {
+                    "Name" = "8:CheckDX.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CustomActions\\CheckDX.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_101AAF3A741863AEDD826E32246A540E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2918.27249, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_01278A6965C227E561A274E1E0D50066"
+                    "_101AAF3A741863AEDD826E32246A540E"
                     {
                     "Name" = "8:AudioEngine.PPMeter.dll"
                     "Attributes" = "3:512"
@@ -312,26 +415,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D0652AF33114FC2B6DFBD57DF2FF296"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\obird256.png"
-            "TargetName" = "8:obird256.png"
-            "Tag" = "8:"
-            "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CB17C26CE1940A5B39598BA9EAE0193"
@@ -482,6 +565,37 @@
             "TargetName" = "8:media-playback-start.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C5FC7AA375B45D8A47EF3187B9B063C"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8C5FC7AA375B45D8A47EF3187B9B063C"
+                    {
+                    "Name" = "8:CheckDX.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CustomActions\\CheckDX.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -860,7 +974,7 @@
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_8D274B8F588342E38B13CAB137EB0917"
             {
             "Name" = "8:DirectX"
-            "Condition" = "8:( (DXVERSION << \"4.09.00.09\" Or DXVERSION << \"4.09.0000.09\")   And    (Not DXVERSION >> \"02\")    And    (Not DXVERSION >> \"01\")    And    (Not DXVERSION >> \"00\") )"
+            "Condition" = "8:( (DXVERSION << \"4.09.00.09\" Or DXVERSION << \"4.09.0000.09\")   And    Not (DXVERSION >> \"02\")    And    Not (DXVERSION >> \"01\")    And    Not (DXVERSION >> \"00\") )"
             "Message" = "8:<ErrRequired  DirectX version not found. Do you want to download it from Internet?"
             "InstallUrl" = "8:http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3"
             }
@@ -885,7 +999,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 0.10.3"
         "ProductCode" = "8:{AB2AF6B3-B1C5-419C-AB4C-382BBEA69962}"
-        "PackageCode" = "8:{C54A75AF-ADCA-4811-AAD8-C24FA5A38881}"
+        "PackageCode" = "8:{D491FF9C-6C08-4220-8364-EEF587D13707}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
