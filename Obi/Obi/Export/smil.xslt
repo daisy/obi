@@ -13,7 +13,7 @@
     doctype-system="http://www.daisy.org/z3986/2005/dtbsmil-2005-1.dtd"/>
 
   <xsl:template match="smil:smil">
-    <xsl:if test="@id=$id">
+    <xsl:if test="smil:body/smil:seq[@id=$id]">
       <xsl:apply-templates mode="copy" select="."/>
     </xsl:if>
   </xsl:template>

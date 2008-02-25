@@ -9,8 +9,9 @@
   exclude-result-prefixes="xuk obi"
   extension-element-prefixes="ext">
   <xsl:output method="xml" indent="yes"/>
-
+  
   <!-- Total time of the book in milliseconds -->
+  <!-- TODO: format the time string -->
   <xsl:param name="total-time"/>
 
   <!-- Name of the UID element -->
@@ -30,6 +31,8 @@
         <metadata>
           <dc-metadata>
             <xsl:for-each select="//xuk:Metadata[starts-with(@name,'dc:')]">
+              <!-- This is a bit convoluted, but it works with the package
+              stylesheet to output the right namespace declarations -->
               <xsl:element name="{substring-after(@name,'dc:')}" namespace="http://purl.org/dc/elements/1.1/">
                 <xsl:if test="@name='dc:Identifier'">
                   <xsl:attribute name="id">
@@ -40,13 +43,28 @@
                 <xsl:value-of select="@content"/>
               </xsl:element>
             </xsl:for-each>
+            <xsl:if test="not(//xuk:Metadata[@name='dc:Date'])">
+              <Date xmlns="http://purl.org/dc/elements/1.1/">
+                <xsl:choose>
+                  <xsl:when test="//xuk:Metadata[@name='dtb:revisionDate']">
+                    <xsl:value-of select="//xuk:Metadata[@name='dtb:revisionDate']/@content"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="//xuk:Metadata[@name='dtb:producedDate']/@content"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </Date>
+            </xsl:if>
+            <!-- These are always fixed for Obi. -->
             <Format xmlns="http://purl.org/dc/elements/1.1/">ANSI/NISO Z39.86-2005</Format>
             <Type xmlns="http://purl.org/dc/elements/1.1/">Sound</Type>
           </dc-metadata>
           <x-metadata>
-            <xsl:for-each select="//xuk:Metadata[not(starts-with(@name,'dc:'))]">
+            <!-- There's no dtb:generator for package files for some reason. -->
+            <xsl:for-each select="//xuk:Metadata[not(starts-with(@name,'dc:') or @name='dtb:generator')]">
               <meta name="{@name}" content="{@content}"/>
             </xsl:for-each>
+            <!-- These are always fixed for Obi. -->
             <meta name="dtb:multimediaType" content="audioNCX"/>
             <meta name="dtb:multimediaContent" content="audio"/>
             <meta name="dtb:totalTime" content="{ext:TotalElapsedTime(count(//obi:section))}ms"/>
@@ -54,8 +72,8 @@
           </x-metadata>
         </metadata>
         <manifest>
-          <item href="{ext:RelativePath('.opf')}" id="OPF"  media-type="text/xml"/>
-          <item href="{ext:RelativePath('.ncx')}" id="NCX" media-type="application/x-dtbncx+xml"/>
+          <item href="{ext:RelativePath('.opf')}" id="opf"  media-type="text/xml"/>
+          <item href="{ext:RelativePath('.ncx')}" id="ncx" media-type="application/x-dtbncx+xml"/>
           <xsl:for-each select="//obi:section">
             <item href="{ext:RelativePath('.smil', generate-id())}" id="{generate-id()}"
               media-type="application/smil"/>
@@ -116,7 +134,7 @@
 
       <!-- The smil files; one per section -->
       <xsl:for-each select="//obi:section">
-        <smil:smil id="{generate-id()}">
+        <smil:smil>
           <smil:head>
             <smil:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
             <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
@@ -125,7 +143,7 @@
             <smil:meta name="obi:section" content="{.//xuk:mChannelMapping[@channel=$text-channel]/xuk:TextMedia/xuk:mText}"/>
           </smil:head>
           <smil:body>
-            <smil:seq id="{generate-id(xuk:mChildren)}">
+            <smil:seq id="{generate-id()}">
               <xsl:for-each select="xuk:mChildren/obi:phrase//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia">
                 <smil:par id="{generate-id()}">
                   <smil:audio src="{ext:RelativePathForUri(@src)}" clipBegin="{@clipBegin}" clipEnd="{@clipEnd}"/>
@@ -168,7 +186,7 @@
 
   <!-- Page target -->
   <xsl:template match="obi:phrase[@kind='Page']">
-    <ncx:pageTarget value="{@page}" type="normal"
+    <ncx:pageTarget value="{@page}" type="normal" id="{generate-id()}" 
       playOrder="{1+count(ancestor::obi:section|preceding::obi:section|ancestor::obi:phrase[@kind='Page']|preceding::obi:phrase[@kind='Page'])}">
       <ncx:navLabel>
         <ncx:text>
@@ -183,5 +201,5 @@
 
   <xsl:template match="text()"/>
   <xsl:template match="text()" mode="navPoint"/>
-  
+
 </xsl:stylesheet>
