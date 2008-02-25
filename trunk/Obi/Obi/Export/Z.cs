@@ -118,7 +118,7 @@ namespace Obi.Export
             System.Xml.XPath.XPathNavigator navigator = z.CreateNavigator();
             System.Xml.XmlNamespaceManager nsmgr = new System.Xml.XmlNamespaceManager(navigator.NameTable);
             nsmgr.AddNamespace("smil", "http://www.w3.org/2001/SMIL20/");
-            System.Xml.XPath.XPathNodeIterator it = navigator.Select("/z/smil:smil", nsmgr);
+            System.Xml.XPath.XPathNodeIterator it = navigator.Select("/z/smil:smil/smil:body/smil:seq", nsmgr);
             while (it.MoveNext())
             {
                 System.Xml.Xsl.XsltArgumentList args = new System.Xml.Xsl.XsltArgumentList();
