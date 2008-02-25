@@ -159,8 +159,9 @@
 
   <!-- Navigation point for section -->
   <xsl:template match="obi:section" mode="navPoint">
-    <ncx:navPoint id="{generate-id()}" 
-      playOrder="{1+count(ancestor::obi:section|preceding::obi:section|ancestor::obi:phrase[@kind='Page']|preceding::obi:phrase[@kind='Page'])}">
+    <ncx:navPoint id="{generate-id()}"
+      playOrder="{1+count(preceding::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)]|
+                          ancestor::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)])}">
       <ncx:navLabel>
         <ncx:text>
           <!-- The section node has text media -->
@@ -187,7 +188,8 @@
   <!-- Page target -->
   <xsl:template match="obi:phrase[@kind='Page']">
     <ncx:pageTarget value="{@page}" type="normal" id="{generate-id()}" 
-      playOrder="{1+count(ancestor::obi:section|preceding::obi:section|ancestor::obi:phrase[@kind='Page']|preceding::obi:phrase[@kind='Page'])}">
+      playOrder="{1+count(preceding::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)]|
+                          ancestor::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)])}">
       <ncx:navLabel>
         <ncx:text>
           <xsl:value-of select="@page"/>
