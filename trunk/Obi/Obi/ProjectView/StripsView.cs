@@ -856,18 +856,20 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private bool TogglePlayPause()
         {
-            if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped
-                || mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused)
-            {
-                mView.TransportBar.Play(mView.Selection.Node);
-                return true;
-            }
-            else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
-            {
-                mView.TransportBar.Pause();
-                return true;
-            }
-            return false;
+                            if (!mView.TransportBar.IsRecorderActive
+                    && 
+                    (  mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped
+                    || mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused) )
+                {
+                    mView.TransportBar.Play(mView.Selection.Node);
+                    return true;
+                }
+                else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing ) 
+                                    {
+                    mView.TransportBar.Pause();
+                    return true;
+                }
+                        return false;
         }
 
 

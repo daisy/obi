@@ -296,9 +296,12 @@ namespace Obi.Audio
 
             //AnimationComputation();
             ComputePeakDbValue();
-            
-                if (ThreadTriggerPeakEventWithDelay != null && ThreadTriggerPeakEventWithDelay.IsAlive)
-                    ThreadTriggerPeakEventWithDelay.Abort();
+
+            if (ThreadTriggerPeakEventWithDelay != null && ThreadTriggerPeakEventWithDelay.IsAlive)
+            {
+                ThreadTriggerPeakEventWithDelay.Abort();
+                ThreadTriggerPeakEventWithDelay = null;
+                            }
 
                 ThreadTriggerPeakEventWithDelay = new Thread(new ThreadStart(TriggerPeakEventForSecondHalf));
                 ThreadTriggerPeakEventWithDelay.IsBackground = true;
