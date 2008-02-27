@@ -1,186 +1,123 @@
-# Plan for Obi - August to December 2007
+# Plan for Obi - 2008
 
 `$Id$`
 
 <div id="toc">Table of contents</div>
 
-This is a tentative plan that will change after the Copenhagen meeting. The
-current Obi team is Julien (~0.8 FTE), Avneesh (1 FTE), and Marisa (~0.2 FTE)
-*i.e.* about 2 FTE. See [the Obi tasklist](tasklist.html) for a description of
-most of the items listed here. The required features list is mostly covered,
-although some features (including a few marked as "essential") are moved to
-"iffy" status, *i.e.* probably won't be implemented by version 1.0.
+During 2008, Obi will undergo testing, internal at first, then public. This
+will lead to the eventual release of version 1.0, at which point the Obi team
+will switch to ``maintenance mode,'' where it will concentrate on fixing bugs
+reported by users, improve usability and accessibility, and add minor features.
 
 
-## August
+## Rough timeline
 
-Version 0.9 is the first version that includes the new toolkit, *i.e.* version
-1.0 of the SDK. Version 0.9 can be used for testing late August/early
-September.
+### Internal testing (Q1)
 
-* Fix remaining audio issues from toolkit migration <span class="who">Avneesh
-with help from Ole for debugging the SDK</span> along with cleaning up audio
-player/recorder.
+Obi has reached a so-called ``alpha'' status in early 2008, and after initial
+setbacks with regard to internal testing, is scheduled to undergo extensive
+testing at NAB in New Delhi, India, under the supervision of Avneesh Singh.
+The goal of this testing period is to make sure that Obi can be used to author
+NCX-only audio books meeting the needs of an actual producing organization,
+as well as test its actual accessibility.
 
-* Some regression testing? <span class="who">Marisa taking over from
-Laust</span> We need to identify things not working anymore since the SDK
-upgrade, write some tests to ensure that our fixes are permanent, and mark
-the issues as fix (immediatly) or redesign (later) For instance, asset
-related issues should be fixed, command related bugs could wait for
-redesign.
+### Public/beta testing (Q2)
 
-* Fix issues marked as fix (all) and release 0.9 <span
-class="who">Julien</span>
+After successful completion of internal testing at NAB, a beta version of Obi
+will be released early Q2 and be widely distributed. The beta version will
+be almost feature-complete; feedback from the users is expected to help track
+remaining bugs and updates will be released to distribute improvements. The
+beta version is expected to feature:
 
-## September
+* a user-friendly, accessible installer;
+* text documentation (see below);
+* full accessibility across all functionality, meaning that at least:
+  * all controls should be adequately understood by screen-readers;
+  * all functionality, including waveform editing, can be controlled by the
+    keyboard;
+* valid ANSI/NISO Z39.86 export, which can be played back in AMIS;
+* projects created with Obi 1.0 can be opened with future versions;
+* high-contrast version of the interface is available when changing the system
+  setting;
+* robust audio engine (recording and playback);
+* integrated QA playback.
 
-Version 0.10 will be the main development version of Obi between September
-and December. It will include a redesign of front end as well as back end
-elements. We will need better tester support and try to have a weekly
-release schedule.
+### Release and maintenance (Q3/Q4)
 
-* Redesign of the audio backend and playback. <span class="who">Avneesh</span>
+Maintenance of Obi will consist of fixing bugs found after the release of
+version 1.0; translating Obi to other languages (see below); and adding minor
+features from the list below. Although feedback from users will be considered,
+especially for the sake of improving usability, addition of new features should
+be constrained by the following list as well as the progress on Tobi (_i.e._,
+a complex new feature shouldn't be added if it would be best handled by Tobi.)
 
-* New blocks design: remove annotation blocks; show waveform in blocks;
-have more types of blocks (pages, headings, etc. need a complete
-taxonomy from the spec plus a container block for consecutive blocks sharing
-the same properties.) Review section strip display (e.g. use entire width
-available; use indenting?) <span class="who">Julien</span>
 
-* New project panel design: add an additional panel for metadata, probably
-one for recording, and possibly one for source view. Panels can be open in
-different, but not modal windows? In this manner, undo/redo works for all
-operations. Include views synchronization (with preference.)
+## Improvements and new features
 
-* Review command manager, use new one from SDK or redo our own <span
-class="who">Julien, Marisa</span>
+This lists the main points where we foresee improvements in the future. This
+list does not go into precise details of some of the features (for instance,
+exact behavior of nested blocks is not defined here) and there is still room
+for new additions based on public reaction to the first release of Obi and its
+use by individuals and organizations.
 
-* Review cleanup, import (structure) and export (Z) <span class="who">Marisa
-with Avneesh/Ole</span>
+### Usability and accessibility
 
-* Usability issue: fix insert/append issue for new elements and edit
-operations for real.  <span class="who">all</span>
+* Scalable interface: the overall size of text and controls can be embiggened.
 
-* Organize a coding workshop for November/December; <span
-class="who">Dipendra</span> to inquire about India and <span
-class="who">Julien</span> about Japan.
+* Color schemes: new color schemes can be chosen by the user, indepently from
+  setting high contrast in the system.
 
-## October
+* Editing of multiple projects within a single Obi session, and better
+  clipboard support both within Obi (copying and pasting between different
+  projects) and between Obi and the system.
 
-* Waveform editing (mouse <span class="who">Julien</span> and keyboard <span
-class="who">Avneesh</span>) in phrase blocks.
+### Import and export
 
-* Page numbering: support manual numbering, front/main/back numbers,
-renumbering on demand. <span class="who">Julien</span>
+* Better Z support:
+  * finer metadata management (additional attributes for metadata elements);
+  * further NCX support (audio labels for title and author; special pages);
+  * nested blocks will allow for escapable items and footnotes (also audio
+    tables).
 
-* Search text <span class="who">Marisa</span> in annotations and headings
+* Export to DAISY 2.02, either directly from Obi or (more likely) by
+  downgrading Z output to 2.02 with the DAISY Pipeline.
 
-* Maintain a list of producer marks (such as TODO, FIXME, etc.) that can
-easily be set while recording and found <span class="who">Avneesh</span>
+* Import of DAISY 2.02 and Z content through the Pipeline. All content beyond
+  Obi's capabilities (_e.g._, text) is discarded.
 
-* Recording modes <span class="who">Avneesh taking over from Laust</span>,
-as well as recording improvements (to be specified; at least some simple
-punch-in mechanism.)
+* Seamless integration of the DAISY Pipeline: can be called directly from a
+  menu.
 
-* VU Meter improvements <span class="who">Avneesh</span>.
+### Documentation and examples
 
-## November
+* A user manual in XHTML format is currently being edited and will be
+  completed for the beta release. It will be updated with each new release
+  to reflect changes in functionality.
 
-By November we should have a good look and evaluate whether we're on track
-for delivering with the desired feature set. Feature cuts may be necessary
-at this time to make a more solid application; but we really need those:
+* An abridged, NCX-only DAISY book will be produced with Obi itself and made
+  available both as a Z book (readable with AMIS for instance), and as an
+  Obi project.
 
-* Configurable and colors and default profiles (high contrast), font/widget
-size <span class="who">Julien and Avneesh</span>
+* Testing periods will allow to create sample content that will be made
+  available, either as part of Obi's normal distribution or through the Web.
+    * Short project demonstrating Obi's basics;
+    * Short project demonstrating Obi's features;
+    * Full-scale project (e.g. public domain book) demonstrating Obi's
+      capabilities.
 
-* Skippable and escapable items <span class="who">Julien</span>
+### Localization
 
-Then, if all goes well:
+* Availability of the new DAISY Lion localization framework will allow
+  translation of Obi in different languages. It is expected that the standard
+  Obi distribution will include all existing translations, so the availability
+  of new localizations will result in new releases.
 
-* Multiple selection <span class="who">Julien with Marisa</span>.
+* Possible localizations, both on-site and remotely:
+  * Hindi (with NAB);
+  * Japanese (with ATDO);
+  * Chinese (to coincide with WWW2008 in Beijing);
+  * European languages, done remotely by volunteers.
 
-* Phrase detection: more testing, automatic detection? <span
-class="who">Avneesh</span> 
-
-* Better user preferences/profile (save undo/redo state with project, window
-sizes and position, lastmark, etc.) <span class="who">Julien</span>
-
-Otherwise:
-
-* Cut what sucks <span class="who">all</span>
-
-* Make the rest really not suck <span class="who">all</span>
-
-## December
-
-Version 1.0 should come out late December. We may still call the december
-release a candidate release, and have testers and early adopters submit bug
-reports to reach a real 1.0 version in the following weeks.
-
-* Testing <span class="who">all</span>
-
-* Improve installer <span class="who">Julien</span>
-
-* Release <span class="who">Julien</span>
-
-## Post-december bucket
-
-### Desirable features and tasks
-
-* Usability testing
-
-* Developer documentation (not just autogenerated doc, but guidelines for
-new developers)
-
-* Inter-project copy and editing several projects
-
-* Images in section heading: can add a thumbnail in the view.
-
-* Links and footnotes
-
-* Pauses
-
-* Bookmarks
-
-* Resources
-
-* DAISY Pipeline interface and XUK/DTB transformers
-
-* Audio counter
-
-* Customizable views for the strip manager (e.g. pages, tables, sidebars)
-and possibly custom navigation lists
-
-* MP3 support: let the pipeline handle that. Although having MP3 import
-would really be helpful (even though the MP3 would be converted back to
-RIFF/WAV) as well as other formats supported by DAISY.
-
-### Iffy features
-
-* Studio lights
-
-* Indenting and collapsing of strips: this is not in the feature list
-although it would fit in the interface redesign. But this is not a priority.
-
-* Non-contiguous strip content: mixing phrase and section children for a
-section. Currently Obi supports only phrase children followed by section
-children.
-
-## Further comments
-
-### Additional resources
-
-The schedule is probably overly optimistic and additional resources are
-necessary to meet it.
-
-### F2F
-
-F2F meetings have been very beneficial so far in Obi development and another
-one should happen. I see two opportunities right now:
-
-* A design meeting in September could be really useful, possibly in
-conjunction with a Tobi design meeting, but it seems tricky to organize
-although a couple days around the SMIL F2F in Amsterdam could work.
-
-* A late November/early December coding workshop, to be held in India or
-Japan for around two weeks (Marisa's involvment could be shorter.)
+* Right-to-left language support (_e.g._, Arabic, Hebrew, Urdu...) can be
+  implemented when adequate technical support has been identified; localization
+  proper can then follow using the DAISY Lion.

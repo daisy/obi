@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>Plan for Obi - August to December 2007</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="obi.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Plan for Obi - 2008</title>
+    <link rel="stylesheet" type="text/css" href="obi.css" />
   </head>
   <body>
     <div id="top">
-      <h1>Plan for Obi - August to December 2007</h1>
+      <h1>Plan for Obi - 2008</h1>
     </div>
     <p>
       <code>$Id$</code>
@@ -17,259 +17,165 @@
       <h2>Table of contents</h2>
       <ul>
         <li>
-          <a href="#id53321">August</a>
-        </li>
-        <li>
-          <a href="#id53374">September</a>
-        </li>
-        <li>
-          <a href="#id53466">October</a>
-        </li>
-        <li>
-          <a href="#id53542">November</a>
-        </li>
-        <li>
-          <a href="#id53638">December</a>
-        </li>
-        <li>
-          <a href="#id53678">Post-december bucket</a>
+          <a href="#id18412">Rough timeline</a>
           <ul>
             <li>
-              <a href="#id53681">Desirable features and tasks</a>
+              <a href="#id18416">Internal testing (Q1)</a>
             </li>
             <li>
-              <a href="#id53752">Iffy features</a>
+              <a href="#id18430">Public/beta testing (Q2)</a>
+            </li>
+            <li>
+              <a href="#id18491">Release and maintenance (Q3/Q4)</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#id53777">Further comments</a>
+          <a href="#id18509">Improvements and new features</a>
           <ul>
             <li>
-              <a href="#id53780">Additional resources</a>
+              <a href="#id18522">Usability and accessibility</a>
             </li>
             <li>
-              <a href="#id53789">F2F</a>
+              <a href="#id18549">Import and export</a>
+            </li>
+            <li>
+              <a href="#id18599">Documentation and examples</a>
+            </li>
+            <li>
+              <a href="#id18643">Localization</a>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <p>This is a tentative plan that will change after the Copenhagen meeting. The
-current Obi team is Julien (~0.8 FTE), Avneesh (1 FTE), and Marisa (~0.2 FTE)
-<em>i.e.</em> about 2 FTE. See <a href="tasklist.html">the Obi tasklist</a> for a description of
-most of the items listed here. The required features list is mostly covered,
-although some features (including a few marked as "essential") are moved to
-"iffy" status, <em>i.e.</em> probably won't be implemented by version 1.0.</p>
-    <h2 id="id53321">August</h2>
-    <p>Version 0.9 is the first version that includes the new toolkit, <em>i.e.</em> version
-1.0 of the SDK. Version 0.9 can be used for testing late August/early
-September.</p>
+    <p>During 2008, Obi will undergo testing, internal at first, then public. This
+will lead to the eventual release of version 1.0, at which point the Obi team
+will switch to ``maintenance mode,'' where it will concentrate on fixing bugs
+reported by users, improve usability and accessibility, and add minor features.</p>
+    <h2 id="id18412">Rough timeline</h2>
+    <h3 id="id18416">Internal testing (Q1)</h3>
+    <p>Obi has reached a so-called ``alpha'' status in early 2008, and after initial
+setbacks with regard to internal testing, is scheduled to undergo extensive
+testing at NAB in New Delhi, India, under the supervision of Avneesh Singh.
+The goal of this testing period is to make sure that Obi can be used to author
+NCX-only audio books meeting the needs of an actual producing organization,
+as well as test its actual accessibility.</p>
+    <h3 id="id18430">Public/beta testing (Q2)</h3>
+    <p>After successful completion of internal testing at NAB, a beta version of Obi
+will be released early Q2 and be widely distributed. The beta version will
+be almost feature-complete; feedback from the users is expected to help track
+remaining bugs and updates will be released to distribute improvements. The
+beta version is expected to feature:</p>
+    <ul>
+      <li>a user-friendly, accessible installer;</li>
+      <li>text documentation (see below);</li>
+      <li>full accessibility across all functionality, meaning that at least:
+<ul><li>all controls should be adequately understood by screen-readers;</li><li>all functionality, including waveform editing, can be controlled by the
+keyboard;</li></ul></li>
+      <li>valid ANSI/NISO Z39.86 export, which can be played back in AMIS;</li>
+      <li>projects created with Obi 1.0 can be opened with future versions;</li>
+      <li>high-contrast version of the interface is available when changing the system
+setting;</li>
+      <li>robust audio engine (recording and playback);</li>
+      <li>integrated QA playback.</li>
+    </ul>
+    <h3 id="id18491">Release and maintenance (Q3/Q4)</h3>
+    <p>Maintenance of Obi will consist of fixing bugs found after the release of
+version 1.0; translating Obi to other languages (see below); and adding minor
+features from the list below. Although feedback from users will be considered,
+especially for the sake of improving usability, addition of new features should
+be constrained by the following list as well as the progress on Tobi (<em>i.e.</em>,
+a complex new feature shouldn't be added if it would be best handled by Tobi.)</p>
+    <h2 id="id18509">Improvements and new features</h2>
+    <p>This lists the main points where we foresee improvements in the future. This
+list does not go into precise details of some of the features (for instance,
+exact behavior of nested blocks is not defined here) and there is still room
+for new additions based on public reaction to the first release of Obi and its
+use by individuals and organizations.</p>
+    <h3 id="id18522">Usability and accessibility</h3>
     <ul>
       <li>
-        <p>Fix remaining audio issues from toolkit migration <span class="who">Avneesh
-with help from Ole for debugging the SDK</span> along with cleaning up audio
-player/recorder.</p>
+        <p>Scalable interface: the overall size of text and controls can be embiggened.</p>
       </li>
       <li>
-        <p>Some regression testing? <span class="who">Marisa taking over from
-Laust</span> We need to identify things not working anymore since the SDK
-upgrade, write some tests to ensure that our fixes are permanent, and mark
-the issues as fix (immediatly) or redesign (later) For instance, asset
-related issues should be fixed, command related bugs could wait for
-redesign.</p>
+        <p>Color schemes: new color schemes can be chosen by the user, indepently from
+setting high contrast in the system.</p>
       </li>
       <li>
-        <p>Fix issues marked as fix (all) and release 0.9 <span class="who">Julien</span></p>
+        <p>Editing of multiple projects within a single Obi session, and better
+clipboard support both within Obi (copying and pasting between different
+projects) and between Obi and the system.</p>
       </li>
     </ul>
-    <h2 id="id53374">September</h2>
-    <p>Version 0.10 will be the main development version of Obi between September
-and December. It will include a redesign of front end as well as back end
-elements. We will need better tester support and try to have a weekly
-release schedule.</p>
+    <h3 id="id18549">Import and export</h3>
     <ul>
       <li>
-        <p>Redesign of the audio backend and playback. <span class="who">Avneesh</span></p>
+        <p>Better Z support:</p>
+        <ul>
+          <li>finer metadata management (additional attributes for metadata elements);</li>
+          <li>further NCX support (audio labels for title and author; special pages);</li>
+          <li>nested blocks will allow for escapable items and footnotes (also audio
+tables).</li>
+        </ul>
       </li>
       <li>
-        <p>New blocks design: remove annotation blocks; show waveform in blocks;
-have more types of blocks (pages, headings, etc. need a complete
-taxonomy from the spec plus a container block for consecutive blocks sharing
-the same properties.) Review section strip display (e.g. use entire width
-available; use indenting?) <span class="who">Julien</span></p>
+        <p>Export to DAISY 2.02, either directly from Obi or (more likely) by
+downgrading Z output to 2.02 with the DAISY Pipeline.</p>
       </li>
       <li>
-        <p>New project panel design: add an additional panel for metadata, probably
-one for recording, and possibly one for source view. Panels can be open in
-different, but not modal windows? In this manner, undo/redo works for all
-operations. Include views synchronization (with preference.)</p>
+        <p>Import of DAISY 2.02 and Z content through the Pipeline. All content beyond
+Obi's capabilities (<em>e.g.</em>, text) is discarded.</p>
       </li>
       <li>
-        <p>Review command manager, use new one from SDK or redo our own <span class="who">Julien, Marisa</span></p>
-      </li>
-      <li>
-        <p>Review cleanup, import (structure) and export (Z) <span class="who">Marisa
-with Avneesh/Ole</span></p>
-      </li>
-      <li>
-        <p>Usability issue: fix insert/append issue for new elements and edit
-operations for real.  <span class="who">all</span></p>
-      </li>
-      <li>
-        <p>Organize a coding workshop for November/December; <span class="who">Dipendra</span> to inquire about India and <span class="who">Julien</span> about Japan.</p>
+        <p>Seamless integration of the DAISY Pipeline: can be called directly from a
+menu.</p>
       </li>
     </ul>
-    <h2 id="id53466">October</h2>
+    <h3 id="id18599">Documentation and examples</h3>
     <ul>
       <li>
-        <p>Waveform editing (mouse <span class="who">Julien</span> and keyboard <span class="who">Avneesh</span>) in phrase blocks.</p>
+        <p>A user manual in XHTML format is currently being edited and will be
+completed for the beta release. It will be updated with each new release
+to reflect changes in functionality.</p>
       </li>
       <li>
-        <p>Page numbering: support manual numbering, front/main/back numbers,
-renumbering on demand. <span class="who">Julien</span></p>
+        <p>An abridged, NCX-only DAISY book will be produced with Obi itself and made
+available both as a Z book (readable with AMIS for instance), and as an
+Obi project.</p>
       </li>
       <li>
-        <p>Search text <span class="who">Marisa</span> in annotations and headings</p>
-      </li>
-      <li>
-        <p>Maintain a list of producer marks (such as <span class="todo">TODO</span>, FIXME, etc.) that can
-easily be set while recording and found <span class="who">Avneesh</span></p>
-      </li>
-      <li>
-        <p>Recording modes <span class="who">Avneesh taking over from Laust</span>,
-as well as recording improvements (to be specified; at least some simple
-punch-in mechanism.)</p>
-      </li>
-      <li>
-        <p>VU Meter improvements <span class="who">Avneesh</span>.</p>
+        <p>Testing periods will allow to create sample content that will be made
+available, either as part of Obi's normal distribution or through the Web.</p>
+        <ul>
+          <li>Short project demonstrating Obi's basics;</li>
+          <li>Short project demonstrating Obi's features;</li>
+          <li>Full-scale project (e.g. public domain book) demonstrating Obi's
+capabilities.</li>
+        </ul>
       </li>
     </ul>
-    <h2 id="id53542">November</h2>
-    <p>By November we should have a good look and evaluate whether we're on track
-for delivering with the desired feature set. Feature cuts may be necessary
-at this time to make a more solid application; but we really need those:</p>
+    <h3 id="id18643">Localization</h3>
     <ul>
       <li>
-        <p>Configurable and colors and default profiles (high contrast), font/widget
-size <span class="who">Julien and Avneesh</span></p>
+        <p>Availability of the new DAISY Lion localization framework will allow
+translation of Obi in different languages. It is expected that the standard
+Obi distribution will include all existing translations, so the availability
+of new localizations will result in new releases.</p>
       </li>
       <li>
-        <p>Skippable and escapable items <span class="who">Julien</span></p>
-      </li>
-    </ul>
-    <p>Then, if all goes well:</p>
-    <ul>
-      <li>
-        <p>Multiple selection <span class="who">Julien with Marisa</span>.</p>
-      </li>
-      <li>
-        <p>Phrase detection: more testing, automatic detection? <span class="who">Avneesh</span> </p>
+        <p>Possible localizations, both on-site and remotely:</p>
+        <ul>
+          <li>Hindi (with NAB);</li>
+          <li>Japanese (with ATDO);</li>
+          <li>Chinese (to coincide with WWW2008 in Beijing);</li>
+          <li>European languages, done remotely by volunteers.</li>
+        </ul>
       </li>
       <li>
-        <p>Better user preferences/profile (save undo/redo state with project, window
-sizes and position, lastmark, etc.) <span class="who">Julien</span></p>
-      </li>
-    </ul>
-    <p>Otherwise:</p>
-    <ul>
-      <li>
-        <p>Cut what sucks <span class="who">all</span></p>
-      </li>
-      <li>
-        <p>Make the rest really not suck <span class="who">all</span></p>
-      </li>
-    </ul>
-    <h2 id="id53638">December</h2>
-    <p>Version 1.0 should come out late December. We may still call the december
-release a candidate release, and have testers and early adopters submit bug
-reports to reach a real 1.0 version in the following weeks.</p>
-    <ul>
-      <li>
-        <p>Testing <span class="who">all</span></p>
-      </li>
-      <li>
-        <p>Improve installer <span class="who">Julien</span></p>
-      </li>
-      <li>
-        <p>Release <span class="who">Julien</span></p>
-      </li>
-    </ul>
-    <h2 id="id53678">Post-december bucket</h2>
-    <h3 id="id53681">Desirable features and tasks</h3>
-    <ul>
-      <li>
-        <p>Usability testing</p>
-      </li>
-      <li>
-        <p>Developer documentation (not just autogenerated doc, but guidelines for
-new developers)</p>
-      </li>
-      <li>
-        <p>Inter-project copy and editing several projects</p>
-      </li>
-      <li>
-        <p>Images in section heading: can add a thumbnail in the view.</p>
-      </li>
-      <li>
-        <p>Links and footnotes</p>
-      </li>
-      <li>
-        <p>Pauses</p>
-      </li>
-      <li>
-        <p>Bookmarks</p>
-      </li>
-      <li>
-        <p>Resources</p>
-      </li>
-      <li>
-        <p>DAISY Pipeline interface and XUK/DTB transformers</p>
-      </li>
-      <li>
-        <p>Audio counter</p>
-      </li>
-      <li>
-        <p>Customizable views for the strip manager (e.g. pages, tables, sidebars)
-and possibly custom navigation lists</p>
-      </li>
-      <li>
-        <p>MP3 support: let the pipeline handle that. Although having MP3 import
-would really be helpful (even though the MP3 would be converted back to
-RIFF/WAV) as well as other formats supported by DAISY.</p>
-      </li>
-    </ul>
-    <h3 id="id53752">Iffy features</h3>
-    <ul>
-      <li>
-        <p>Studio lights</p>
-      </li>
-      <li>
-        <p>Indenting and collapsing of strips: this is not in the feature list
-although it would fit in the interface redesign. But this is not a priority.</p>
-      </li>
-      <li>
-        <p>Non-contiguous strip content: mixing phrase and section children for a
-section. Currently Obi supports only phrase children followed by section
-children.</p>
-      </li>
-    </ul>
-    <h2 id="id53777">Further comments</h2>
-    <h3 id="id53780">Additional resources</h3>
-    <p>The schedule is probably overly optimistic and additional resources are
-necessary to meet it.</p>
-    <h3 id="id53789">F2F</h3>
-    <p>F2F meetings have been very beneficial so far in Obi development and another
-one should happen. I see two opportunities right now:</p>
-    <ul>
-      <li>
-        <p>A design meeting in September could be really useful, possibly in
-conjunction with a Tobi design meeting, but it seems tricky to organize
-although a couple days around the SMIL F2F in Amsterdam could work.</p>
-      </li>
-      <li>
-        <p>A late November/early December coding workshop, to be held in India or
-Japan for around two weeks (Marisa's involvment could be shorter.)</p>
+        <p>Right-to-left language support (<em>e.g.</em>, Arabic, Hebrew, Urdu...) can be
+implemented when adequate technical support has been identified; localization
+proper can then follow using the DAISY Lion.</p>
       </li>
     </ul>
   </body>
