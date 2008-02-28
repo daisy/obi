@@ -4,19 +4,27 @@
 
 <div id="toc">Table of contents</div>
 
-During 2008, Obi will undergo testing, internal at first, then public. This
-will lead to the eventual release of version 1.0, at which point the Obi team
+Obi is a DAISY/NISO NCX-Only Digital Talking Book production tool, based on the Urakawa SDK.
+
+Obi is designed to be a powerful yet user-friendly audio-centric authoring environment, 
+which is easy to learn and use, fully accessible and internationalized.
+
+Late 2007,  the first alpha of Obi 1.0 was released. During Q1 and Q2 2008, Obi will undergo 
+extensive testing, internal at first, then public. This will lead to the eventual late 
+Q2/early Q3 release of version 1.0, at which point the Obi team
 will switch to ``maintenance mode,'' where it will concentrate on fixing bugs
-reported by users, improve usability and accessibility, and add minor features.
+reported by users, improve usability and accessibility, and add select features based on 
+input from the user community.
 
 
-## Rough timeline
+## Timeline
 
 ### Internal testing (Q1)
 
-Obi has reached a so-called ``alpha'' status in early 2008, and after initial
-setbacks with regard to internal testing, is scheduled to undergo extensive
-testing at NAB in New Delhi, India, under the supervision of Avneesh Singh.
+Obi has reached a so-called ``alpha'' status in early 2008. Under the supervision 
+of Avneesh Singh, a testing team has been built at NAB in New Delhi, India, and 
+during March and April, Obi will undergo extensive structured testing. 
+
 The goal of this testing period is to make sure that Obi can be used to author
 NCX-only audio books meeting the needs of an actual producing organization,
 as well as test its actual accessibility.
@@ -44,11 +52,14 @@ beta version is expected to feature:
 
 ### Release and maintenance (Q3/Q4)
 
+As Obi 1.0 is released in late Q2/early Q3, the current Obi Development Team will 
+be replaced by the Obi Maintenance and Support Team, lead by Avneesh Singh. 
+
 Maintenance of Obi will consist of fixing bugs found after the release of
-version 1.0; translating Obi to other languages (see below); and adding minor
+version 1.0; translating Obi to other languages (see below); and adding 
 features from the list below. Although feedback from users will be considered,
-especially for the sake of improving usability, addition of new features should
-be constrained by the following list as well as the progress on Tobi (_i.e._,
+especially for the sake of improving usability, addition of new features will
+initially be constrained by the following list as well as the progress of Tobi (_i.e._,
 a complex new feature shouldn't be added if it would be best handled by Tobi.)
 
 
@@ -73,7 +84,7 @@ use by individuals and organizations.
 
 ### Import and export
 
-* Better Z support:
+* Better Z39.86 support:
   * finer metadata management (additional attributes for metadata elements);
   * further NCX support (audio labels for title and author; special pages);
   * nested blocks will allow for escapable items and footnotes (also audio
@@ -82,11 +93,12 @@ use by individuals and organizations.
 * Export to DAISY 2.02, either directly from Obi or (more likely) by
   downgrading Z output to 2.02 with the DAISY Pipeline.
 
-* Import of DAISY 2.02 and Z content through the Pipeline. All content beyond
-  Obi's capabilities (_e.g._, text) is discarded.
+* Import of DAISY 2.02 and Z39.86 content through the Pipeline. 
 
 * Seamless integration of the DAISY Pipeline: can be called directly from a
-  menu.
+  menu. This will allow to use the DTB validation and DTB distribution 
+  functionality suites within the Pipeline.
+   
 
 ### Documentation and examples
 
@@ -121,3 +133,22 @@ use by individuals and organizations.
 * Right-to-left language support (_e.g._, Arabic, Hebrew, Urdu...) can be
   implemented when adequate technical support has been identified; localization
   proper can then follow using the DAISY Lion.
+
+## Staffing Summary
+### Q1/Q2 (until release of 1.0)
+* Julien Quint (Obi Development Team Lead) 90% FTE
+* Avneesh Singh 90% FTE
+* Markus Gylling 10% FTE
+* Prashant Ranjan Verma (NAB Delhi Testing Team) 50% FTE 
+* Sandeep Kaler (NAB Delhi Testing Team) 25% FTE
+* Nand Kishore (NAB Delhi Testing Team) 25% FTE
+
+### Q3/Q4 (Maintenance and Support phase)
+* Avneesh Singh (Obi Maintenance and Support Team Lead) 90% FTE
+* Julien Quint  60% FTE
+* Marisa DeMeglio (20%) FTE
+* Markus Gylling 10% FTE
+* Prashant Ranjan Verma (NAB Delhi Testing Team) 25% FTE 
+* Sandeep Kaler (NAB Delhi Testing Team) 25% FTE
+* Nand Kishore (NAB Delhi Testing Team) 25% FTE
+  
