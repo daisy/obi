@@ -1273,6 +1273,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to modify metadata entry name.
+        /// </summary>
+        internal static string modify_metadata_name {
+            get {
+                return ResourceManager.GetString("modify_metadata_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mono.
         /// </summary>
         internal static string mono {

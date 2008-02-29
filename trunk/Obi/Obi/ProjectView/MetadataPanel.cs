@@ -61,8 +61,13 @@ namespace Obi.ProjectView
                 mNameComboBox.Items.Clear();
                 mNameComboBox.Items.Add(mDescription);
                 mNameComboBox.SelectedItem = mDescription;
-                mNameComboBox.Enabled = mView.CanRemove(mDescription);
+                mNameComboBox.AccessibleName = mDescription.Name;
+                mNameComboBox.SelectedValueChanged += new EventHandler(mNameComboBox_SelectedValueChanged);
             }
+        }
+
+        void mNameComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
         }
 
         /// <summary>
@@ -113,25 +118,55 @@ namespace Obi.ProjectView
         {
             if (e.KeyCode == Keys.Enter)
             {
-                mView.ModifiedEntryName(mEntry, mNameComboBox.Text);
+                if (mView.CanRemove(mDescription))
+                {
+                    UpdateEntryName();
+                }
+                else
+                {
+                    EntryName = mDescription.Name;
+                }
             }
             else if (e.KeyCode == Keys.Escape)
             {
-                EntryName = mEntry.getName();
+                EntryName = mDescription.Name;
             }
         }
 
         private void mNameComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            mView.ModifiedEntryName(mEntry, mNameComboBox.SelectedItem.ToString());
+            if (mView.CanRemove(mDescription))
+            {
+                UpdateEntryName();
+            }
+            else
+            {
+                EntryName = mDescription.Name;
+            }
+        }
+
+        private void UpdateEntryName()
+        {
+            mNameComboBox.AccessibleName = mNameComboBox.Text;
+            mView.ModifiedEntryName(mEntry, mNameComboBox.Text);
         }
 
         private void mNameComboBox_DropDown(object sender, EventArgs e)
         {
             mNameComboBox.Items.Clear();
-            foreach (MetadataEntryDescription d in MetadataEntryDescription.GetDAISYEntries().Values)
+            if (mView.CanRemove(mDescription))
             {
-                if ((d == mDescription) || (!d.ReadOnly && d.Repeatable)) mNameComboBox.Items.Add(d);
+                List<MetadataEntryDescription> descriptions = new List<MetadataEntryDescription>();
+                foreach (MetadataEntryDescription d in MetadataEntryDescription.GetDAISYEntries().Values)
+                {
+                    if ((d == mDescription) || (!d.ReadOnly && d.Repeatable)) descriptions.Add(d);
+                }
+                descriptions.Sort(delegate(MetadataEntryDescription d, MetadataEntryDescription d_) { return d.Name.CompareTo(d_.Name); });
+                mNameComboBox.Items.AddRange(descriptions.ToArray());
+            }
+            else
+            {
+                mNameComboBox.Items.Add(mDescription);
             }
         }
     }

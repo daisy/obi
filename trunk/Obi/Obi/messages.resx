@@ -902,4 +902,7 @@ Error text: {1}</value>
   <data name="AudioSelected" xml:space="preserve">
     <value> Selected:</value>
   </data>
+  <data name="modify_metadata_name" xml:space="preserve">
+    <value>modify metadata entry name</value>
+  </data>
 </root>
