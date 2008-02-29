@@ -62,12 +62,7 @@ namespace Obi.ProjectView
                 mNameComboBox.Items.Add(mDescription);
                 mNameComboBox.SelectedItem = mDescription;
                 mNameComboBox.AccessibleName = mDescription.Name;
-                mNameComboBox.SelectedValueChanged += new EventHandler(mNameComboBox_SelectedValueChanged);
             }
-        }
-
-        void mNameComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
         }
 
         /// <summary>
@@ -76,7 +71,11 @@ namespace Obi.ProjectView
         public string EntryContent
         {
             get { return mContentBox.Text; }
-            set { mContentBox.Text = value; }
+            set
+            {
+                mContentBox.Text = value;
+                mContentBox.AccessibleName = value;
+            }
         }
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace Obi.ProjectView
         {
             if (e.KeyCode == Keys.Enter)
             {
-                mView.ModifiedEntryContent(mEntry, mContentBox.Text);
+                UpdateEntryContent();
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -149,6 +148,12 @@ namespace Obi.ProjectView
         {
             mNameComboBox.AccessibleName = mNameComboBox.Text;
             mView.ModifiedEntryName(mEntry, mNameComboBox.Text);
+        }
+
+        private void UpdateEntryContent()
+        {
+            mContentBox.AccessibleName = mContentBox.Text;
+            mView.ModifiedEntryContent(mEntry, mContentBox.Text);
         }
 
         private void mNameComboBox_DropDown(object sender, EventArgs e)
