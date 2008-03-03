@@ -167,13 +167,13 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanCut { get { return CanDelete; } }
+        public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata; } }
         public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
+        public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
-        public bool CanMoveSectionIn { get { return mTOCView.CanMoveSectionIn; } }
-        public bool CanMoveSectionOut { get { return mTOCView.CanMoveSectionOut; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
         public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
@@ -405,22 +405,22 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Move the selected section node in.
+        /// Increase the level of the selected section (was "move in.")
         /// </summary>
-        public void MoveSelectedSectionIn()
+        public void IncreaseSelectedSectionNodeLevel()
         {
-            if (CanMoveSectionIn)
+            if (CanIncreaseLevel)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
             }
         }
 
         /// <summary>
-        /// Move the selected section node out.
+        /// Decrease the level of the selected section (was "move out.")
         /// </summary>
-        public void MoveSelectedSectionOut()
+        public void DecreaseSelectedSectionLevel()
         {
-            if (CanMoveSectionOut)
+            if (CanDecreaseLevel)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
             }

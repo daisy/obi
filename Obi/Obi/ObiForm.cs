@@ -1238,8 +1238,8 @@ namespace Obi
             mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
             mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-            mMoveOutToolStripMenuItem.Enabled = mProjectView.CanMoveSectionOut;
-            mMoveInToolStripMenuItem.Enabled = mProjectView.CanMoveSectionIn;
+            mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
+            mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
             mSectionIsUsedToolStripMenuItem.Enabled = false;
             // mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
             // mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
@@ -1249,13 +1249,12 @@ namespace Obi
         private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
         private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
-        private void mMoveOutToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionOut(); }
-        private void mMoveInToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MoveSelectedSectionIn(); }
+        private void mDecreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DecreaseSelectedSectionLevel(); }
+        private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             // mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
         }
-        private void mListenToSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ListenToSelection(); }
 
         // Strips menu
 

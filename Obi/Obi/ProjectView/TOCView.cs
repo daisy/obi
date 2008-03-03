@@ -31,9 +31,9 @@ namespace Obi.ProjectView
         public bool CanCopySection { get { return IsSectionSelected; } }
 
         /// <summary>
-        /// True if there is a selected section and it can be moved out (i.e. decrease its level)
+        /// True if there is a selected section and it can be moved in (i.e. increase its level)
         /// </summary>
-        public bool CanMoveSectionIn
+        public bool CanIncreaseLevel
         {
             get { return IsSectionSelected && Commands.TOC.MoveSectionIn.CanMoveNode((SectionNode)mSelection.Node); }
         }
@@ -41,7 +41,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if there is a selected section and it can be moved out (i.e. decrease its level)
         /// </summary>
-        public bool CanMoveSectionOut
+        public bool CanDecreaseLevel
         {
             get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
         }
