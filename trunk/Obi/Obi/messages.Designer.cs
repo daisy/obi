@@ -1318,7 +1318,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to move section in.
+        ///   Looks up a localized string similar to increase section level.
         /// </summary>
         internal static string move_section_in_command {
             get {
@@ -1327,7 +1327,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to move section out.
+        ///   Looks up a localized string similar to decrease section level.
         /// </summary>
         internal static string move_section_out_command {
             get {
