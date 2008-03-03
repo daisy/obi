@@ -59,8 +59,8 @@ Main form
     + [S] Add sub-section ........... Ctrl+Shift+A
     + [I] Insert section ............ Ctrl+Alt+A
     + [M] Rename section ............ F2
-    + [O] Move section out .......... Ctrl+Shift+Left
-    + [I] Move section in ........... Ctrl+Sfhit+Right
+    + [D] Decrease section level .... Ctrl+Shift+Left
+    + [N] Increase section level .... Ctrl+shift+Right
     + [U] Section is used ........... Ctrl+K
 
   + [S] Strips
@@ -134,9 +134,9 @@ Index of shortcuts
 
   + F6 ................. View > Focus on TOC view
   + F7 ................. View > Focus on strips view
-+ F8 ... Focus on transport bar if enabled
-  + Ctrl+Shift+Left .... TOC > Move section out
-  + Ctrl+Shift+Right ... TOC > Move section in
+  + F8 ................. View > Focus on transport bar
+  + Ctrl+Shift+Left .... TOC > Decrease section level
+  + Ctrl+Shift+Right ... TOC > Increase section level
   + Ctrl+Space ......... Transport > Play > Play all
   + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
   + Space .............. Transport bar > play / pause in strip view
