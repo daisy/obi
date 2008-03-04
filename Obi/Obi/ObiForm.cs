@@ -49,7 +49,7 @@ namespace Obi
             mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             mClearListToolStripMenuItem.Enabled = true;
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
-            mSaveProjectAsToolStripMenuItem.Enabled = false;  // mSession.HasProject;
+            mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mCleanProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;
@@ -156,6 +156,8 @@ namespace Obi
         private void SaveAs()
         {
             SaveFileDialog dialog = new SaveFileDialog();
+            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(mSession.Path));
+            dialog.FileName = Localizer.Message("default_project_filename");
             dialog.Filter = Localizer.Message("obi_filter");
             if (dialog.ShowDialog() == DialogResult.OK)
             {

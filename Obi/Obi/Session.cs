@@ -142,10 +142,28 @@ namespace Obi
         }
 
         /// <summary>
-        /// Save as. Not sure yet about it.
+        /// Save as: save the project under a different location,
+        /// and edit the newly saved project.
         /// </summary>
         public void SaveAs(string path)
         {
+            try
+            {
+                System.IO.FileStream file = System.IO.File.Create(path);
+                file.Close();
+                Presentation.setRootUri(new Uri(path));
+                mPath = path;
+                ForceSave();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    String.Format(Localizer.Message("cannot_create_file_text"), path, e.Message),
+                    Localizer.Message("cannot_create_file_caption"),
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
+            }
+
         }
     }
 
