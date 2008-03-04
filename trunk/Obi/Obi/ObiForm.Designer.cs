@@ -38,7 +38,6 @@ namespace Obi
             this.mOpenRecentProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openrecentSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mClearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mSaveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSaveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCloseProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -162,6 +161,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -187,14 +187,14 @@ namespace Obi
             this.mNewProjectToolStripMenuItem,
             this.mNewProjectFromImportToolStripMenuItem,
             this.mOpenProjectToolStripMenuItem,
-            this.mOpenRecentProjectToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.mSaveProjectToolStripMenuItem,
-            this.mSaveProjectAsToolStripMenuItem,
             this.mCloseProjectToolStripMenuItem,
             this.toolStripSeparator9,
+            this.mSaveProjectToolStripMenuItem,
+            this.mSaveProjectAsToolStripMenuItem,
             this.mCleanProjectToolStripMenuItem,
             this.mExportAsDAISYToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.mOpenRecentProjectToolStripMenuItem,
             this.toolStripSeparator3,
             this.mExitToolStripMenuItem});
             this.mFileToolStripMenuItem.Name = "mFileToolStripMenuItem";
@@ -236,11 +236,6 @@ namespace Obi
             this.mClearListToolStripMenuItem.Name = "mClearListToolStripMenuItem";
             resources.ApplyResources(this.mClearListToolStripMenuItem, "mClearListToolStripMenuItem");
             this.mClearListToolStripMenuItem.Click += new System.EventHandler(this.mClearListToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // mSaveProjectToolStripMenuItem
             // 
@@ -1106,6 +1101,11 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1204,7 +1204,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mOpenRecentProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator openrecentSeparator;
         private System.Windows.Forms.ToolStripMenuItem mClearListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mSaveProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSaveProjectAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCloseProjectToolStripMenuItem;
@@ -1262,6 +1261,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem placeholderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MarkDefaultCustomClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
