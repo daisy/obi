@@ -10,7 +10,7 @@ namespace Obi
         private DataModelFactory mDataModelFactory;  // the Obi data model factory (see below)
         private urakawa.Project mProject;            // the current project (as of now 1 presentation = 1 project)
         private string mPath;                        // path of the XUK file to save to
-        private bool mHasUnsavedChanges;             // true when the project has unsaved changes
+        private int mChangesCount;                   // changes since (or before) last save
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
@@ -25,14 +25,14 @@ namespace Obi
             mDataModelFactory = new DataModelFactory();
             mProject = null;
             mPath = null;
-            mHasUnsavedChanges = false;
+            mChangesCount = 0;
         }
 
 
         /// <summary>
         /// True if the project can be safely closed.
         /// </summary>
-        public bool CanClose { get { return !mHasUnsavedChanges; } }
+        public bool CanClose { get { return mChangesCount == 0; } }
 
         /// <summary>
         /// True if the redo stack is non-empty.
@@ -42,7 +42,7 @@ namespace Obi
         /// <summary>
         /// True if the project has unsaved changes.
         /// </summary>
-        public bool CanSave { get { return mHasUnsavedChanges; } }
+        public bool CanSave { get { return mChangesCount != 0; } }
 
         /// <summary>
         /// True if the redo stack is non-empty.
@@ -87,7 +87,7 @@ namespace Obi
                 Presentation presentation = null;
                 try { presentation = Presentation; } catch(Exception) {}
                 mProject = null;
-                mHasUnsavedChanges = false;
+                mChangesCount = 0;
                 if (ProjectClosed != null) ProjectClosed(this, new ProjectClosedEventArgs(presentation));
             }
         }
@@ -95,7 +95,7 @@ namespace Obi
         /// <summary>
         /// Notify the session that the presentation has changed.
         /// </summary>
-        public void PresentationHasChanged() { mHasUnsavedChanges = true; }
+        public void PresentationHasChanged(int change) { mChangesCount += change; }
 
         /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
@@ -106,7 +106,7 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
-            mHasUnsavedChanges = true;
+            mChangesCount = 0;
             Presentation.Initialize(this, title, createTitleSection, id, settings);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
@@ -129,14 +129,16 @@ namespace Obi
         /// <summary>
         /// Save the current presentation to XUK.
         /// </summary>
-        public void Save()
+        public void Save() { if (CanSave) ForceSave(); }
+
+        /// <summary>
+        /// Always save, regardless of changes.
+        /// </summary>
+        public void ForceSave()
         {
-            if (CanSave)
-            {
-                mProject.saveXUK(new Uri(mPath));
-                mHasUnsavedChanges = false;
-                if (ProjectSaved != null) ProjectSaved(this, null);
-            }
+            mProject.saveXUK(new Uri(mPath));
+            mChangesCount = 0;
+            if (ProjectSaved != null) ProjectSaved(this, null);
         }
 
         /// <summary>

@@ -199,8 +199,7 @@ namespace Obi
                 {
                     mSession.Presentation.cleanup();
                     DeleteExtraFiles();
-                    mSession.PresentationHasChanged();
-                    mSession.Save();
+                    mSession.ForceSave();
                 }
                 catch (Exception e)
                 {
@@ -481,9 +480,9 @@ namespace Obi
             UpdateCustomClassMenu();
         }
 
-        private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(); }
-        private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { ProjectHasChanged(); }
-        private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { ProjectHasChanged(); }
+        private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(1); }
+        private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { ProjectHasChanged(-1); }
+        private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { ProjectHasChanged(1); }
 
         // Catch problems with initialization and report them.
         private void InitializeObi()
@@ -555,9 +554,9 @@ namespace Obi
         }
 
         // The project was modified.
-        private void ProjectHasChanged()
+        private void ProjectHasChanged(int change)
         {
-            mSession.PresentationHasChanged();
+            mSession.PresentationHasChanged(change);
             UpdateObi();
         }
 
