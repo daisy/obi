@@ -8,14 +8,14 @@ Main form
     + [N] New project ................ Ctrl+N
     + [W] New project from import .... Ctrl+Shift+N
     + [O] Open project ............... Ctrl+O
-    + [R] Open recent project ........ (None)
+    + [C] Close project .............. Ctrl+W
     -----------------------------------------------
     + [S] Save project ............... Ctrl+S
     + [A] Save project as ............ Ctrl+Shift+S
-    + [C] Close project .............. Ctrl+W
-    -----------------------------------------------
     + [L] Clean unreferenced audio ... Ctrl+L
     + [E] Export as DAISY ............ Ctrl+E
+    -----------------------------------------------
+    + [R] Recent projects ............ (None)
     -----------------------------------------------
     + [X] Exit ....................... Alt+F4
 
