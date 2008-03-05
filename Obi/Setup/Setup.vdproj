@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_01278A6965C227E561A274E1E0D50066"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0D0652AF33114FC2B6DFBD57DF2FF296"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,8 +33,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_101AAF3A741863AEDD826E32246A540E"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmKey" = "8:_1C42BFD5812648B88124CC6C79F662AD"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -46,6 +52,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3660B24393B948C9A8128071CAEFF204"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B7ECD98981F47919D717BCC603FACEE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,6 +147,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B343E653C75540D48FFEB7B81BFF6291"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B87AB11A986143448A9CAE4FE871D6F9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,6 +166,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C3C3A325B2664DDAA0DB38FB168DD767"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CFD3ECE6E05A4932A46596C36FE58F64"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,13 +202,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0FCAEAC788B449168F394B95251F04E8"
+        "OwnerKey" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
+        "OwnerKey" = "8:_0FCAEAC788B449168F394B95251F04E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,13 +232,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A85046C63552DA81A6A561E630915FC4"
+        "OwnerKey" = "8:_01278A6965C227E561A274E1E0D50066"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_101AAF3A741863AEDD826E32246A540E"
+        "OwnerKey" = "8:_A85046C63552DA81A6A561E630915FC4"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -284,23 +308,9 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_96DD92C1757F4C349123EBB413F2DC80"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_8C8D538C4D5E40278301E7AE0453E942"
             {
-            "Name" = "8:DirectX_Check"
-            "Condition" = "8:"
-            "Object" = "8:_8C5FC7AA375B45D8A47EF3187B9B063C"
-            "FileType" = "3:1"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_330E5CBD_5BA2_4AE7_BA41_692BFF509FE1"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9AB903975A074D68BE30778C0A2775AC"
-            {
-            "Name" = "8:DirectX_Check"
+            "Name" = "8:CheckDX.dll"
             "Condition" = "8:"
             "Object" = "8:_0FCAEAC788B449168F394B95251F04E8"
             "FileType" = "3:1"
@@ -308,7 +318,21 @@
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_AFD6B9E9_E2A9_4A79_8417_92660257A895"
+            "Identifier" = "8:_9D54602E_D0E0_4988_89CD_F130894B7967"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_EAC63E9B34614B82ADD0EFD79E7D4982"
+            {
+            "Name" = "8:CheckDX.dll"
+            "Condition" = "8:"
+            "Object" = "8:_0FCAEAC788B449168F394B95251F04E8"
+            "FileType" = "3:1"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_D88B6C75_3E49_4AA4_B2DC_74BD7AF8CF78"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -335,6 +359,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_01278A6965C227E561A274E1E0D50066"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2918.27249, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_01278A6965C227E561A274E1E0D50066"
+                    {
+                    "Name" = "8:AudioEngine.PPMeter.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AudioEngine.PPMeter.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D0652AF33114FC2B6DFBD57DF2FF296"
             {
             "SourcePath" = "8:..\\Obi\\images\\obird256.png"
@@ -386,23 +441,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_101AAF3A741863AEDD826E32246A540E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C42BFD5812648B88124CC6C79F662AD"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2918.27249, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_101AAF3A741863AEDD826E32246A540E"
-                    {
-                    "Name" = "8:AudioEngine.PPMeter.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AudioEngine.PPMeter.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\ncx.xslt"
+            "TargetName" = "8:ncx.xslt"
             "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -414,7 +458,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CB17C26CE1940A5B39598BA9EAE0193"
@@ -474,6 +518,26 @@
             "TargetName" = "8:media-skip-forward.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B7ECD98981F47919D717BCC603FACEE"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\package.xslt"
+            "TargetName" = "8:package.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -685,7 +749,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.27566, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.18108, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A85046C63552DA81A6A561E630915FC4"
@@ -752,6 +816,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B343E653C75540D48FFEB7B81BFF6291"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\smil.xslt"
+            "TargetName" = "8:smil.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B87AB11A986143448A9CAE4FE871D6F9"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-seek-backward.png"
@@ -798,6 +882,26 @@
             "TargetName" = "8:go-next.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFD3ECE6E05A4932A46596C36FE58F64"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\Z.xslt"
+            "TargetName" = "8:Z.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -955,6 +1059,17 @@
                             }
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_49D619D5B2BA490E997ED649933DD3C6"
+                    {
+                    "Name" = "8:Export"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_77474AB183904A5BA9432BFCF5A9930F"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_A0FF443BF076437FA90B350077F79878"
@@ -999,7 +1114,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 0.10.3"
         "ProductCode" = "8:{AB2AF6B3-B1C5-419C-AB4C-382BBEA69962}"
-        "PackageCode" = "8:{D491FF9C-6C08-4220-8364-EEF587D13707}"
+        "PackageCode" = "8:{0226B206-F354-4144-AA21-CF4A929194CE}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
