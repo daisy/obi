@@ -79,28 +79,28 @@
               <a href="#id19079">File menu (<code>Alt+F</code>)</a>
             </li>
             <li>
-              <a href="#id19275">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id19284">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19580">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19585">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19729">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19734">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19836">Strips menu (<code>Alt+S</code>)</a>
+              <a href="#id19841">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19942">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19947">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id20056">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id20061">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id20138">Tools menu</a>
+              <a href="#id20143">Tools menu</a>
             </li>
             <li>
-              <a href="#id20141">Help menu</a>
+              <a href="#id20146">Help menu</a>
             </li>
           </ul>
         </li>
@@ -213,7 +213,7 @@ the block.</li><li><span class="todo">TODO</span>: keyboard alternative.</li></u
 <ul><li>A section is selectable.</li><li>The text label of a section is selectable. When selected, it becomes
 editable.</li></ul></li>
       <li>In the metadata view:
-<ul><li>A metadata entry in the metadata view is selectable. </li><li>The text inside a metadata entry is selectable. When selected, it becomes
+<ul><li>A metadata entry in the metadata view is selectable.</li><li>The text inside a metadata entry is selectable. When selected, it becomes
 editable.</li></ul></li>
     </ul>
     <h3 id="id18706">Label editing</h3>
@@ -439,12 +439,8 @@ normally saves project inside a directory along with another directory
 containing audio data.</p>
       </li>
       <li>
-        <p><strong>Open recent project</strong>: a list of recently opened project allows the user
-to choose between different recent projects. <span class="todo">TODO</span>: remove projects that
-failed to be opend from the list.</p>
-        <ul>
-          <li><strong>Clear list</strong>: clear the list of recent projects. This cannot be undone.</li>
-        </ul>
+        <p><strong>Close project</strong> (<code>Ctrl+W</code>): close the current project. If there are
+unsaved changes, the user is given the choice to save or not, or cancel.</p>
       </li>
     </ul>
     <p>Saving projects:</p>
@@ -454,11 +450,7 @@ failed to be opend from the list.</p>
       </li>
       <li>
         <p><strong>Save project as</strong> (<code>Ctrl+Shift+S</code>): save the project under a different name
-and switch to the new copy. <span class="todo">TODO</span>: this is currently disabled.</p>
-      </li>
-      <li>
-        <p><strong>Close project</strong> (<code>Ctrl+W</code>): close the current project. If there are
-unsaved changes, the user is given the choice to save or not, or cancel.</p>
+and switch to the new copy.</p>
       </li>
     </ul>
     <p>Clenanig and exporting to DAISY:</p>
@@ -473,15 +465,20 @@ possible to clean the project by removing all this data. It is recommended
 to save right after cleaning the project, otherwise there may be problems
 when reopening the project. Cleaning the project at the beginning of the
 session makes sure that all of the data not referenced in the project itself
-has been removed. <span class="todo">TODO</span>: check that files are indeed removed?</p>
+has been removed.</p>
       </li>
       <li>
         <p><strong>Export as DAISY</strong> (<code>Ctrl+E</code>): export the project to DAISY 3. The user can
 choose a directory to export to. The directory should be new or empty; if it
 contains files already (<em>e.g.</em>, from a previous export), those can be
-deleted before export. <span class="todo">TODO</span>: this currently only exports audio data, one file
-per section, named in book order.</p>
+deleted before export.</p>
       </li>
+    </ul>
+    <p>Opening recent projects:</p>
+    <ul>
+      <li><strong>Recent project</strong>: a list of recently opened project allows the user
+to choose between different recent projects.
+<ul><li><strong>Clear list</strong>: clear the list of recent projects. This cannot be undone.</li></ul></li>
     </ul>
     <p>Quitting Obi:</p>
     <ul>
@@ -489,7 +486,7 @@ per section, named in book order.</p>
 currently opened, changes can be saved before quitting, or quitting can be
 cancelled. Quitting can also be achieved by closing the main Obi window.</li>
     </ul>
-    <h3 id="id19275">Edit menu (<code>Alt+E</code>)</h3>
+    <h3 id="id19284">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -500,8 +497,6 @@ a new command is executed, the redo stack is cleared.</p>
         <p><strong>Undo</strong> (<code>Ctrl+Z</code>): undo the last executed command.</p>
         <ul>
           <li><span class="todo">TODO</span>: save the undo stack in the XUK file.</li>
-          <li><span class="todo">TODO</span>: when the project reverts to the last saved state, mark it as
-unmodified.</li>
         </ul>
       </li>
       <li>
@@ -596,7 +591,7 @@ example, if the project already has a <code>dtb:sourceTitle</code> entry, anothe
 entry cannot be added as it is not repeatable.)
 <ul><li><span class="todo">TODO</span>: add a custom kind (like block roles.)</li><li><span class="todo">TODO</span>: delete custom kinds (like block roles.)</li><li><span class="todo">TODO</span>: focus on the entry so that content can be added (like sections.)</li></ul></li>
     </ul>
-    <h3 id="id19580">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19585">View menu (<code>Alt+V</code>)</h3>
     <p>Various views can be shown or hidden. By default, all are shown, except for the
 search bar which only appears when searching. Each menu item has a checkbox
 that indicate the visibility of the corresponding view (checked meaning
@@ -648,7 +643,7 @@ project. This is mainly useful for debugging and may be removed from the
 release version.</p>
       </li>
     </ul>
-    <h3 id="id19729">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19734">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -691,7 +686,7 @@ parent section is used (or if it is a top-level section), as there cannot
 be used subsections of unused sections. <span class="todo">TODO</span>: this is currently disabled.</p>
       </li>
     </ul>
-    <h3 id="id19836">Strips menu (<code>Alt+S</code>)</h3>
+    <h3 id="id19841">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
       <li>
         <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
@@ -731,7 +726,7 @@ subsection; <em>i.e.</em> if the operation affects only the selected strip. The
 contents of the strip are affected as well. <span class="todo">TODO</span>: this is currently disabled.</p>
       </li>
     </ul>
-    <h3 id="id19942">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19947">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
@@ -775,7 +770,7 @@ currently disabled.</p>
       </li>
     </ul>
     <p><span class="todo">TODO</span>: update the rest of the document!</p>
-    <h3 id="id20056">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id20061">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -802,7 +797,7 @@ if a cursor is positionned inside a block, until the end of the block.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id20138">Tools menu</h3>
-    <h3 id="id20141">Help menu</h3>
+    <h3 id="id20143">Tools menu</h3>
+    <h3 id="id20146">Help menu</h3>
   </body>
 </html>

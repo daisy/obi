@@ -128,7 +128,7 @@ to select (see keyboard navigation below.)
   * The text label of a section is selectable. When selected, it becomes
     editable.
 * In the metadata view:
-  * A metadata entry in the metadata view is selectable. 
+  * A metadata entry in the metadata view is selectable.
   * The text inside a metadata entry is selectable. When selected, it becomes
     editable.
 
@@ -343,20 +343,15 @@ Creating and opening projects:
   normally saves project inside a directory along with another directory
   containing audio data.
 
-* __Open recent project__: a list of recently opened project allows the user
-  to choose between different recent projects. TODO: remove projects that
-  failed to be opend from the list.
-  * __Clear list__: clear the list of recent projects. This cannot be undone.
+* __Close project__ (`Ctrl+W`): close the current project. If there are
+  unsaved changes, the user is given the choice to save or not, or cancel.
 
 Saving projects:
 
 * __Save project__ (`Ctrl+S`): save the project and its data.
 
 * __Save project as__ (`Ctrl+Shift+S`): save the project under a different name
-  and switch to the new copy. TODO: this is currently disabled.
-
-* __Close project__ (`Ctrl+W`): close the current project. If there are
-  unsaved changes, the user is given the choice to save or not, or cancel.
+  and switch to the new copy.
 
 Clenanig and exporting to DAISY:
 
@@ -369,13 +364,18 @@ Clenanig and exporting to DAISY:
   to save right after cleaning the project, otherwise there may be problems
   when reopening the project. Cleaning the project at the beginning of the
   session makes sure that all of the data not referenced in the project itself
-  has been removed. TODO: check that files are indeed removed?
+  has been removed.
 
 * __Export as DAISY__ (`Ctrl+E`): export the project to DAISY 3. The user can
   choose a directory to export to. The directory should be new or empty; if it
   contains files already (_e.g._, from a previous export), those can be
-  deleted before export. TODO: this currently only exports audio data, one file
-  per section, named in book order.
+  deleted before export.
+
+Opening recent projects:
+
+* __Recent project__: a list of recently opened project allows the user
+  to choose between different recent projects.
+  * __Clear list__: clear the list of recent projects. This cannot be undone.
 
 Quitting Obi:
 
@@ -394,8 +394,6 @@ a new command is executed, the redo stack is cleared.
 
 * __Undo__ (`Ctrl+Z`): undo the last executed command.
   * TODO: save the undo stack in the XUK file.
-  * TODO: when the project reverts to the last saved state, mark it as
-    unmodified.
 
 * __Redo__ (`Ctrl+Y`): redo the last undone command.
 
