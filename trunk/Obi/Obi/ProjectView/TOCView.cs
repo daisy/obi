@@ -104,8 +104,12 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
-                    mSelection = value;
-                    TreeNode n = value == null ? null : FindTreeNode((SectionNode)value.Node);
+                    // Avn: condition added to prevent exception in case node selection contains phrase node as TOC has only SectionNodes
+                    if (value != null && value.Node.GetType() == typeof(PhraseNode) && value.Control == this)
+                        mSelection = new NodeSelection(value.Node.ParentAs<SectionNode>(), value.Control);
+                    else
+                        mSelection = value;
+                    TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // ignore the select event, since we were asked to change the selection;
                     // but allow the selection not coming from the user
                     mTOCTree.AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
