@@ -676,40 +676,43 @@ namespace Obi.ProjectView
         /// </summary>
         public void Stop()
         {
-                        if (mRecordingSession != null &&
-                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            if (mRecordingSession != null &&
+    (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
                 StopRecording();
             }
-            if (IsInlineRecording)
+            else
             {
-                inlineRecordingSession.Stop();
-                //if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAudio.Count == 0)
-                //    this.mProjectPanel.ParentObiForm.UndoLast();
+                if (IsInlineRecording)
+                {
+                    inlineRecordingSession.Stop();
+                    //if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAudio.Count == 0)
+                    //    this.mProjectPanel.ParentObiForm.UndoLast();
 
-                for (int i = 0; i < inlineRecordingSession.RecordedAudio.Count; ++i)
-                {
-                    // mProjectPanel.StripManager.UpdateAudioForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAudio[i]);
+                    for (int i = 0; i < inlineRecordingSession.RecordedAudio.Count; ++i)
+                    {
+                        // mProjectPanel.StripManager.UpdateAudioForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAudio[i]);
+                    }
+
+                    inlineRecordingSession = null;
+                    UpdateInlineRecordingState();
                 }
-                
-                inlineRecordingSession = null;
-                UpdateInlineRecordingState();
-            }
-            else if (Enabled)
-            {
-                // Stopping again deselects everything
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                else if (Enabled)
                 {
-                    mView.Selection = null;
+                    // Stopping again deselects everything
+                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                    {
+                        mView.Selection = null;
+                    }
+                    else
+                    {
+                        mCurrentPlaylist.Stop();
+                        mView.Selection = mPlayingFrom;
+                    }
+                    mPlayingFrom = null;
+                    mIsSerialPlaying = false;
                 }
-                else
-                {
-                    mCurrentPlaylist.Stop();
-                    mView.Selection = mPlayingFrom;
-                }
-                mPlayingFrom = null;
-                mIsSerialPlaying = false;
-            }
+            }// end recording if
         }
 
 
