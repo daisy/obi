@@ -74,6 +74,7 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// True if the used state of the selected section can be changed
+        /// (a section is selected and its parent is used.)
         /// </summary>
         public bool CanSetSectionUsedStatus
         {

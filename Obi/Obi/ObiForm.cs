@@ -1241,9 +1241,9 @@ namespace Obi
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
             mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
-            mSectionIsUsedToolStripMenuItem.Enabled = false;
-            // mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
-            // mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            // mSectionIsUsedToolStripMenuItem.Enabled = false;
+            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
+            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
         }
 
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
@@ -1254,7 +1254,7 @@ namespace Obi
         private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            // mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
+            mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
         }
 
         // Strips menu
@@ -1266,9 +1266,8 @@ namespace Obi
             mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
             mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            mStripIsUsedToolStripMenuItem.Enabled = false;
-            // mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
-            // mStripIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkStripUnused;
+            mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
+            mStripIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkStripUnused;
         }
 
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddStrip(); }
@@ -1278,7 +1277,7 @@ namespace Obi
         private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
         private void mStripIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            // mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
+            mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
         }
 
         // Blocks menu
@@ -1292,8 +1291,8 @@ namespace Obi
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mBlockIsUsedToolStripMenuItem.Enabled = false;
-            // mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
-            // mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -1346,7 +1345,7 @@ namespace Obi
         private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
         private void mBlockIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            // mProjectView.SetSelectedNodeUsedStatus(mBlockIsUsedToolStripMenuItem.Checked);
+            mProjectView.SetSelectedNodeUsedStatus(mBlockIsUsedToolStripMenuItem.Checked);
         }
 
 
