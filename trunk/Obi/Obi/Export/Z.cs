@@ -15,6 +15,7 @@ namespace Obi.Export
         /// </summary>
         public string ProjectPath;
 
+        private System.Xml.Xsl.XslCompiledTransform mFilter;               // filter to the main stylesheet
         private System.Xml.Xsl.XslCompiledTransform mTransformer;          // the xuk/obi to z transformer (intermediary form)
         private System.Xml.Xsl.XsltArgumentList mTransformationArguments;  // arguments to the main stylesheet
         private XslResolver mResolver;                                     // the resolver that finds stylesheets in the assembly
@@ -25,7 +26,8 @@ namespace Obi.Export
         private List<double> mElapsedTimes;  // elapsed time at the beginning of each section (and at the end of the book) in ms.
 
         private static readonly string BASE_NAME = "obi_dtb";                 // base name of the exported files (e.g. "obi_dtb.ncx")
-        private static readonly string XSLT_FILE = "Export/Z.xslt";           // name of the main stylesheet (relative to the assembly)
+        private static readonly string FILTER_FILE = "Export/filter.xslt";    // name of the filter stylesheet
+        private static readonly string XSLT_FILE = "Export/Z.xslt";           // name of the main stylesheet
         private static readonly string PACKAGE_XSLT = "Export/package.xslt";  // name of the package file XSLT
         private static readonly string SMIL_XSLT = "Export/smil.xslt";        // name of the SMIL XSLT
         private static readonly string NCX_XSLT = "Export/ncx.xslt";          // name of the NCX XSLT
@@ -36,12 +38,14 @@ namespace Obi.Export
         /// </summary>
         public Z()
         {
+            mFilter = new System.Xml.Xsl.XslCompiledTransform(true);
             mTransformer = new System.Xml.Xsl.XslCompiledTransform(true);
             mTransformationArguments = new System.Xml.Xsl.XsltArgumentList();
             mTransformationArguments.AddExtensionObject("http://www.daisy.org/urakawa/obi/xslt-extensions", this);
             Type t = GetType();
             mResolver = new XslResolver(t);
             mAssemblyLocation = System.IO.Path.GetDirectoryName(t.Assembly.Location);
+            mFilter.Load(System.IO.Path.Combine(mAssemblyLocation, FILTER_FILE), null, mResolver);
             mTransformer.Load(System.IO.Path.Combine(mAssemblyLocation, XSLT_FILE), null, mResolver);
         }
 
@@ -95,7 +99,13 @@ namespace Obi.Export
         {
             System.IO.StringWriter writer = new System.IO.StringWriter();
             System.Xml.XmlWriter output = System.Xml.XmlWriter.Create(writer);
-            mTransformer.Transform(input, mTransformationArguments, output);
+            mFilter.Transform(input, output);
+            System.Xml.XPath.XPathDocument filtered = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
+            output.Close();
+            writer.Close();
+            writer = new System.IO.StringWriter();
+            output = System.Xml.XmlWriter.Create(writer);
+            mTransformer.Transform(filtered, mTransformationArguments, output);
             System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
             WriteXSLT(z, PACKAGE_XSLT, ".opf");
             WriteXSLT(z, NCX_XSLT, ".ncx");
