@@ -73,34 +73,34 @@
           <a href="#id19038">Metadata editing</a>
         </li>
         <li>
-          <a href="#id19071">Menus</a>
+          <a href="#id19072">Menus</a>
           <ul>
             <li>
-              <a href="#id19079">File menu (<code>Alt+F</code>)</a>
+              <a href="#id19080">File menu (<code>Alt+F</code>)</a>
             </li>
             <li>
-              <a href="#id19284">Edit menu (<code>Alt+E</code>)</a>
+              <a href="#id19301">Edit menu (<code>Alt+E</code>)</a>
             </li>
             <li>
-              <a href="#id19585">View menu (<code>Alt+V</code>)</a>
+              <a href="#id19602">View menu (<code>Alt+V</code>)</a>
             </li>
             <li>
-              <a href="#id19734">TOC menu (<code>Alt+C</code>)</a>
+              <a href="#id19752">TOC menu (<code>Alt+C</code>)</a>
             </li>
             <li>
-              <a href="#id19841">Strips menu (<code>Alt+S</code>)</a>
+              <a href="#id19858">Strips menu (<code>Alt+S</code>)</a>
             </li>
             <li>
-              <a href="#id19947">Blocks menu (<code>Alt+B</code>)</a>
+              <a href="#id19964">Blocks menu (<code>Alt+B</code>)</a>
             </li>
             <li>
-              <a href="#id20061">Transport menu (<code>Alt+R</code>)</a>
+              <a href="#id20077">Transport menu (<code>Alt+R</code>)</a>
             </li>
             <li>
-              <a href="#id20143">Tools menu</a>
+              <a href="#id20159">Tools menu</a>
             </li>
             <li>
-              <a href="#id20146">Help menu</a>
+              <a href="#id20162">Help menu</a>
             </li>
           </ul>
         </li>
@@ -402,7 +402,7 @@ the metadata view:</p>
       <li>
         <p>Editing the content of an entry. The content is treated as a simple text
 string. <span class="todo">TODO</span>: some entries should check for validity of content, and allow
-extra attributes.</p>
+extra attributes. TODO: add some text for how this is changed.</p>
       </li>
       <li>
         <p>Changing the name of an entry. This can be done by selecting an existing
@@ -411,9 +411,9 @@ available if an entry of this kind cannot be added, and if an entry cannot be
 removed, it also cannot be renamed.</p>
       </li>
     </ol>
-    <h2 id="id19071">Menus</h2>
+    <h2 id="id19072">Menus</h2>
     <p>This is a description of the main menubar in Obi.</p>
-    <h3 id="id19079">File menu (<code>Alt+F</code>)</h3>
+    <h3 id="id19080">File menu (<code>Alt+F</code>)</h3>
     <p>Creating and opening projects:</p>
     <ul>
       <li>
@@ -443,18 +443,19 @@ containing audio data.</p>
 unsaved changes, the user is given the choice to save or not, or cancel.</p>
       </li>
     </ul>
-    <p>Saving projects:</p>
+    <p>Saving projects, cleaning and exporting:</p>
     <ul>
       <li>
-        <p><strong>Save project</strong> (<code>Ctrl+S</code>): save the project and its data.</p>
+        <p><strong>Save project</strong> (<code>Ctrl+S</code>): save the project and its data. The project is
+saved under the location specified when the project was first created. Saving
+is possible only when a change was made (as shown in the titlebar by an
+asterisk * following the project title.)</p>
       </li>
       <li>
-        <p><strong>Save project as</strong> (<code>Ctrl+Shift+S</code>): save the project under a different name
-and switch to the new copy.</p>
+        <p><strong>Save project as</strong> (<code>Ctrl+Shift+S</code>): save the project under a different
+location and switch to the new copy. The original project is <strong>not</strong> saved.
+It is always possible to save a project under a new location.</p>
       </li>
-    </ul>
-    <p>Clenanig and exporting to DAISY:</p>
-    <ul>
       <li>
         <p><strong>Clean unreferenced audio</strong> (<code>Ctrl+L</code>): clean unreferenced audio from the
 project. Obi keeps unused audio data so that changes can be undone, but
@@ -471,7 +472,13 @@ has been removed.</p>
         <p><strong>Export as DAISY</strong> (<code>Ctrl+E</code>): export the project to DAISY 3. The user can
 choose a directory to export to. The directory should be new or empty; if it
 contains files already (<em>e.g.</em>, from a previous export), those can be
-deleted before export.</p>
+deleted before export. A note about exporting: a section is exported if and
+only if its corresponding strip has at least one used, non-empty block. If
+a section has no such content, then it is not exported, and neither are its
+subsections, even if <em>those</em> have content.</p>
+        <ul>
+          <li><span class="todo">TODO</span>: find a way to warn about sections that are not exported.</li>
+        </ul>
       </li>
     </ul>
     <p>Opening recent projects:</p>
@@ -486,7 +493,7 @@ to choose between different recent projects.
 currently opened, changes can be saved before quitting, or quitting can be
 cancelled. Quitting can also be achieved by closing the main Obi window.</li>
     </ul>
-    <h3 id="id19284">Edit menu (<code>Alt+E</code>)</h3>
+    <h3 id="id19301">Edit menu (<code>Alt+E</code>)</h3>
     <p>Obi stores all executed commands in an <em>undo stack</em> so that commands can be
 undone later. All commands executed since the current project was loaded are
 stored so an unlimited number of commands can be undone. Undone commands are
@@ -591,7 +598,7 @@ example, if the project already has a <code>dtb:sourceTitle</code> entry, anothe
 entry cannot be added as it is not repeatable.)
 <ul><li><span class="todo">TODO</span>: add a custom kind (like block roles.)</li><li><span class="todo">TODO</span>: delete custom kinds (like block roles.)</li><li><span class="todo">TODO</span>: focus on the entry so that content can be added (like sections.)</li></ul></li>
     </ul>
-    <h3 id="id19585">View menu (<code>Alt+V</code>)</h3>
+    <h3 id="id19602">View menu (<code>Alt+V</code>)</h3>
     <p>Various views can be shown or hidden. By default, all are shown, except for the
 search bar which only appears when searching. Each menu item has a checkbox
 that indicate the visibility of the corresponding view (checked meaning
@@ -643,7 +650,7 @@ project. This is mainly useful for debugging and may be removed from the
 release version.</p>
       </li>
     </ul>
-    <h3 id="id19734">TOC menu (<code>Alt+C</code>)</h3>
+    <h3 id="id19752">TOC menu (<code>Alt+C</code>)</h3>
     <p>The TOC menu provides operations on the table of contents.</p>
     <ul>
       <li>
@@ -683,10 +690,10 @@ used status of the section (from used to unused, and from unused to used.)
 When the used status of the section changes, all subsections change to the
 same status as well. The status of a section can only be changed if its
 parent section is used (or if it is a top-level section), as there cannot
-be used subsections of unused sections. <span class="todo">TODO</span>: this is currently disabled.</p>
+be used subsections of unused sections.</p>
       </li>
     </ul>
-    <h3 id="id19841">Strips menu (<code>Alt+S</code>)</h3>
+    <h3 id="id19858">Strips menu (<code>Alt+S</code>)</h3>
     <ul>
       <li>
         <p><strong>Add strip</strong> (<code>Ctrl+A</code>): add a new strip after the selected strip. The
@@ -723,10 +730,10 @@ is checked if the strip is currently used. Selecting this item toggles the
 used status of the strip (from used to unused, and from unused to used.)
 This operation can only be executed if the corresponding section has no
 subsection; <em>i.e.</em> if the operation affects only the selected strip. The
-contents of the strip are affected as well. <span class="todo">TODO</span>: this is currently disabled.</p>
+contents of the strip are affected as well.</p>
       </li>
     </ul>
-    <h3 id="id19947">Blocks menu (<code>Alt+B</code>)</h3>
+    <h3 id="id19964">Blocks menu (<code>Alt+B</code>)</h3>
     <ul>
       <li>
         <p><strong>Add empty block</strong> (<code>Ctrl+B</code>): add a new empty block at the end of the
@@ -765,12 +772,11 @@ is kept. This means that page numbers may disappear, etc.</li>
         <p><strong>Block is used</strong> (<code>Ctrl+K</code>): when a block is selected, the menu item shows
 whether the block is used or not with a checkbox. The checkbox is checked if
 the block is currently used. Selecting this item toggles the used status of
-the block (from used to unused, and from unused to used.) <span class="todo">TODO</span>: this is
-currently disabled.</p>
+the block (from used to unused, and from unused to used.)</p>
       </li>
     </ul>
     <p><span class="todo">TODO</span>: update the rest of the document!</p>
-    <h3 id="id20061">Transport menu (<code>Alt+R</code>)</h3>
+    <h3 id="id20077">Transport menu (<code>Alt+R</code>)</h3>
     <ul>
       <li>
         <p><strong>Play</strong>: playback sub-menu.</p>
@@ -797,7 +803,7 @@ if a cursor is positionned inside a block, until the end of the block.</li>
         </ul>
       </li>
     </ul>
-    <h3 id="id20143">Tools menu</h3>
-    <h3 id="id20146">Help menu</h3>
+    <h3 id="id20159">Tools menu</h3>
+    <h3 id="id20162">Help menu</h3>
   </body>
 </html>

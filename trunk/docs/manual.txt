@@ -310,7 +310,7 @@ the metadata view:
 
 1. Editing the content of an entry. The content is treated as a simple text
 string. TODO: some entries should check for validity of content, and allow
-extra attributes.
+extra attributes. TODO: add some text for how this is changed.
 
 2. Changing the name of an entry. This can be done by selecting an existing
 name from the combo box, or by typing a new name. Note that some names are not
@@ -346,14 +346,16 @@ Creating and opening projects:
 * __Close project__ (`Ctrl+W`): close the current project. If there are
   unsaved changes, the user is given the choice to save or not, or cancel.
 
-Saving projects:
+Saving projects, cleaning and exporting:
 
-* __Save project__ (`Ctrl+S`): save the project and its data.
+* __Save project__ (`Ctrl+S`): save the project and its data. The project is
+  saved under the location specified when the project was first created. Saving
+  is possible only when a change was made (as shown in the titlebar by an
+  asterisk * following the project title.)
 
-* __Save project as__ (`Ctrl+Shift+S`): save the project under a different name
-  and switch to the new copy.
-
-Clenanig and exporting to DAISY:
+* __Save project as__ (`Ctrl+Shift+S`): save the project under a different
+  location and switch to the new copy. The original project is __not__ saved.
+  It is always possible to save a project under a new location.
 
 * __Clean unreferenced audio__ (`Ctrl+L`): clean unreferenced audio from the
   project. Obi keeps unused audio data so that changes can be undone, but
@@ -369,7 +371,11 @@ Clenanig and exporting to DAISY:
 * __Export as DAISY__ (`Ctrl+E`): export the project to DAISY 3. The user can
   choose a directory to export to. The directory should be new or empty; if it
   contains files already (_e.g._, from a previous export), those can be
-  deleted before export.
+  deleted before export. A note about exporting: a section is exported if and
+  only if its corresponding strip has at least one used, non-empty block. If
+  a section has no such content, then it is not exported, and neither are its
+  subsections, even if _those_ have content.
+  * TODO: find a way to warn about sections that are not exported.
 
 Opening recent projects:
 
@@ -549,7 +555,7 @@ The TOC menu provides operations on the table of contents.
   When the used status of the section changes, all subsections change to the
   same status as well. The status of a section can only be changed if its
   parent section is used (or if it is a top-level section), as there cannot
-  be used subsections of unused sections. TODO: this is currently disabled.
+  be used subsections of unused sections.
 
 
 ### Strips menu (`Alt+S`)
@@ -583,7 +589,7 @@ The TOC menu provides operations on the table of contents.
   used status of the strip (from used to unused, and from unused to used.)
   This operation can only be executed if the corresponding section has no
   subsection; _i.e._ if the operation affects only the selected strip. The
-  contents of the strip are affected as well. TODO: this is currently disabled.
+  contents of the strip are affected as well.
 
 
 ### Blocks menu (`Alt+B`)
@@ -616,8 +622,7 @@ The TOC menu provides operations on the table of contents.
 * __Block is used__ (`Ctrl+K`): when a block is selected, the menu item shows
   whether the block is used or not with a checkbox. The checkbox is checked if
   the block is currently used. Selecting this item toggles the used status of
-  the block (from used to unused, and from unused to used.) TODO: this is
-  currently disabled.
+  the block (from used to unused, and from unused to used.)
 
 TODO: update the rest of the document!
 
