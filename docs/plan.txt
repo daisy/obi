@@ -82,6 +82,9 @@ use by individuals and organizations.
   clipboard support both within Obi (copying and pasting between different
   projects) and between Obi and the system.
 
+* Multiple selection: currently only one item can be selected at once. Having
+  multiple selection will help improve productivity.
+
 ### Import and export
 
 * Better Z39.86 support:
