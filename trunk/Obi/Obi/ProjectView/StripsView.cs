@@ -920,7 +920,11 @@ namespace Obi.ProjectView
 
                #endregion
 
-        public void SelectAtCurrentTime() { mPlaybackBlock.SelectAtCurrentTime(); }
+        public void SelectAtCurrentTime() 
+        { 
+            if ( mPlaybackBlock != null )
+            mPlaybackBlock.SelectAtCurrentTime(); 
+        }
         
         public void GetFocus()
         {
