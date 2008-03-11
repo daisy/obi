@@ -1527,8 +1527,8 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
-            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay && !mProjectView.TransportBar.IsRecorderActive ;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection&& !mProjectView.TransportBar.IsRecorderActive ;
             if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;

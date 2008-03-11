@@ -447,35 +447,39 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play()
         {
-            //Avn: for instantly playing MasterPlaylist, check if current playlist is local
-            // and stop if this LocalPlaylist not in stop state
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
-            if (CanPlay)
+            // play if recorder is not active
+            if (!IsRecorderActive)
             {
-                    if ( IsPlaySelection )
+                //Avn: for instantly playing MasterPlaylist, check if current playlist is local
+                // and stop if this LocalPlaylist not in stop state
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
+                if (CanPlay)
                 {
-                                                            Play(mView.Selection.Node);
+                    if (IsPlaySelection)
+                    {
+                        Play(mView.Selection.Node);
+                    }
+                    else
+                    {
+                        PlayMasterPlaylist();
+                    }
                 }
-                else
+                else if (CanResume)
                 {
-                    PlayMasterPlaylist();                                                   
-                }
-            }
-            else if (CanResume)
-            {
-                mIsSerialPlaying = true;
+                    mIsSerialPlaying = true;
 
-                if (mView.Selection is AudioSelection)
-                    mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                
-                mCurrentPlaylist.Resume();
-                mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
-            }
+                    if (mView.Selection is AudioSelection)
+                        mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+
+                    mCurrentPlaylist.Resume();
+                    mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                }
+            } // recorder if ends
         }
 
         private void PlayMasterPlaylist()
         {
-            if (CanPlay)
+                        if (CanPlay)
             {
                 mPlayingFrom = mView.Selection;
                 mCurrentPlaylist = mMasterPlaylist;
@@ -499,57 +503,61 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play(ObiNode node)
         {
-            // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
-            // and if this MasterPlaylist is not in stopped state, stop it.
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
-                && mCurrentPlaylist == mMasterPlaylist)
+            // play if recorder is not active
+            if (!IsRecorderActive)
             {
-                // Avn: if keyboard focus is in toc panel, assign node to section as PlaySelection
-                // command in TOC panel plays a section
-                // if (mProjectPanel.TOCPanel.ContainsFocus) node = mCurrentPlayingSection;
-                StopInternal();
-            }
-            if (CanPlay)
-            {
-                mPlayingFrom = mView.Selection;
-                LocalPlaylist = new Playlist(mPlayer, mView.Selection);
-                mCurrentPlaylist = mLocalPlaylist;
-                mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
-                // Avn: condition added on 13 may 2007
-                if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
-                
-                if (mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor
-                    && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
-                    mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
-                else if (mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
-                else
-                    mCurrentPlaylist.Play();
+                // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
+                // and if this MasterPlaylist is not in stopped state, stop it.
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
+                    && mCurrentPlaylist == mMasterPlaylist)
+                {
+                    // Avn: if keyboard focus is in toc panel, assign node to section as PlaySelection
+                    // command in TOC panel plays a section
+                    // if (mProjectPanel.TOCPanel.ContainsFocus) node = mCurrentPlayingSection;
+                    StopInternal();
+                }
+                if (CanPlay)
+                {
+                    mPlayingFrom = mView.Selection;
+                    LocalPlaylist = new Playlist(mPlayer, mView.Selection);
+                    mCurrentPlaylist = mLocalPlaylist;
+                    mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
+                    // Avn: condition added on 13 may 2007
+                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
 
-                mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
-            }
-            else if (CanResume)
-            {
-                // Avn: condition added on 13 may 2007
-                if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+                    if (mView.Selection is AudioSelection
+                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor
+                        && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+                        mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                    else if (mView.Selection is AudioSelection
+                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                    else
+                        mCurrentPlaylist.Play();
 
-                if (mView.Selection is AudioSelection)
-                    mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                
-                mCurrentPlaylist.Resume();
-                mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
-            }
-            else if (mCurrentPlaylist != mMasterPlaylist)
-            {
-                Stop();
-                // Avn: following line replaced by next line as this function also work in toc panel
-                //mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
-                node = mView.Selection.Node;
-                if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
-                Play(node);
-            }
+                    mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                }
+                else if (CanResume)
+                {
+                    // Avn: condition added on 13 may 2007
+                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+
+                    if (mView.Selection is AudioSelection)
+                        mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+
+                    mCurrentPlaylist.Resume();
+                    mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
+                }
+                else if (mCurrentPlaylist != mMasterPlaylist)
+                {
+                    Stop();
+                    // Avn: following line replaced by next line as this function also work in toc panel
+                    //mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
+                    node = mView.Selection.Node;
+                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+                    Play(node);
+                }
+            }// recorder if ends
         }
 
 
