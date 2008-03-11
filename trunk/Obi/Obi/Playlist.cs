@@ -240,7 +240,10 @@ namespace Obi
         /// <summary>
         /// The section in which the currently playing phrase is.
         /// </summary>
-        public SectionNode CurrentSection { get { return mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(); } }
+        public SectionNode CurrentSection 
+        { 
+            get { return  mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(): null; }
+                    }
 
         /// <summary>
         /// Index of the first phrase of the next section, or number of phrases if there is no next section.
