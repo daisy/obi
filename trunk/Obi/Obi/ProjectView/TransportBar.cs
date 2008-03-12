@@ -165,7 +165,10 @@ namespace Obi.ProjectView
 
         public bool CanPlay
         {
-            get { return Enabled && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped && !IsInlineRecording; }
+            get { return Enabled 
+                && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped 
+                && !IsInlineRecording
+                && !IsRecorderActive; }
         }
 
         public bool CanRecord
@@ -181,13 +184,24 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool CanResume
+        public bool CanResumePlayback
         {
             get
             {
                 return Enabled &&
-                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused &&
-                    !IsInlineRecording;
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused
+                   && !IsInlineRecording
+                   
+                   && !IsRecorderActive;
+            }
+        }
+
+        public bool CanResumeRecording
+        {
+            get
+            {
+                return mRecordingSession != null
+                && m_ResumerecordingPhrase != null;
             }
         }
 
@@ -447,10 +461,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play()
         {
-            // play if recorder is not active
-            if (!IsRecorderActive)
-            {
-                //Avn: for instantly playing MasterPlaylist, check if current playlist is local
+                            //Avn: for instantly playing MasterPlaylist, check if current playlist is local
                 // and stop if this LocalPlaylist not in stop state
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
                 if (CanPlay)
@@ -464,7 +475,7 @@ namespace Obi.ProjectView
                         PlayMasterPlaylist();
                     }
                 }
-                else if (CanResume)
+                else if (CanResumePlayback)
                 {
                     mIsSerialPlaying = true;
 
@@ -474,8 +485,7 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.Resume();
                     mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                 }
-            } // recorder if ends
-        }
+                    }
 
         private void PlayMasterPlaylist()
         {
@@ -503,10 +513,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play(ObiNode node)
         {
-            // play if recorder is not active
-            if (!IsRecorderActive)
-            {
-                // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
+                            // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
                 // and if this MasterPlaylist is not in stopped state, stop it.
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
                     && mCurrentPlaylist == mMasterPlaylist)
@@ -537,7 +544,7 @@ namespace Obi.ProjectView
 
                     mCurrentPlayingSection = mCurrentPlaylist.CurrentSection;
                 }
-                else if (CanResume)
+                else if (CanResumePlayback)
                 {
                     // Avn: condition added on 13 may 2007
                     if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
@@ -557,8 +564,7 @@ namespace Obi.ProjectView
                     if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
                     Play(node);
                 }
-            }// recorder if ends
-        }
+                    }
 
 
         // Find the phrase to play from from the selected one in the project panel.
@@ -603,17 +609,20 @@ namespace Obi.ProjectView
         /// </summary>
         public void Pause()
         {
-            if (mRecordingSession != null &&
-                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
-            {
-                PauseRecording();
-            }
             if (Enabled)
             {
-                mCurrentPlaylist.Pause();
-                mDisplayTimer.Stop();
-                mView.SelectAtCurrentTime();
-                mIsSerialPlaying = false;
+                if (mRecordingSession != null &&
+                    (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+                {
+                    PauseRecording();
+                }
+                else if ( mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing )
+                {
+                    mCurrentPlaylist.Pause();
+                    mDisplayTimer.Stop();
+                    mView.SelectAtCurrentTime();
+                    mIsSerialPlaying = false;
+                }
             }
         }
 

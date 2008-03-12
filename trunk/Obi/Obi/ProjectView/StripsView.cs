@@ -864,7 +864,8 @@ namespace Obi.ProjectView
                     mView.TransportBar.Play(mView.Selection.Node);
                     return true;
                 }
-                else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing ) 
+                else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing 
+                                || mView.TransportBar.IsRecorderActive) 
                                     {
                     mView.TransportBar.Pause();
                     return true;

@@ -1527,9 +1527,9 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay && !mProjectView.TransportBar.IsRecorderActive ;
-            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection&& !mProjectView.TransportBar.IsRecorderActive ;
-            if (mProjectView.CanResume)
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay ;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            if (mProjectView.CanResume && mProjectView.TransportBar.CanResumeRecording)
             {
                 mPauseToolStripMenuItem.Visible = false;
                 mResumeToolStripMenuItem.Visible = true;
@@ -1560,7 +1560,7 @@ namespace Obi
 
             // update play/pause shortcuts
                         
-                        if (mProjectView.TransportBar.CanResume)
+                        if (mProjectView.TransportBar.CanResumePlayback )
             {
                 mPauseToolStripMenuItem.ShortcutKeys = Keys.None;
                 mPlaySelectionToolStripMenuItem.ShortcutKeys = Keys.None;
