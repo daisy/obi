@@ -178,14 +178,14 @@ namespace Obi.ProjectView
         public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
         public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
-        public bool CanPlay { get { return mTransportBar.CanPlay || mTransportBar.CanResume; } }
+        public bool CanPlay { get { return mTransportBar.CanPlay || mTransportBar.CanResumePlayback; } }
         public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection); } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveMetadata { get { return mMetadataView.CanRemoveMetadata; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
-        public bool CanResume { get { return mTransportBar.CanResume; } }
+        public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
         public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
