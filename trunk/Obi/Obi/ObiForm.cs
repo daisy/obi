@@ -1529,7 +1529,7 @@ namespace Obi
         {
             mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay ;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
-            if (mProjectView.CanResume && mProjectView.TransportBar.CanResumeRecording)
+            if (mProjectView.CanResume )
             {
                 mPauseToolStripMenuItem.Visible = false;
                 mResumeToolStripMenuItem.Visible = true;
