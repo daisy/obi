@@ -40,6 +40,7 @@ namespace Obi
 
         public override string getXukNamespaceUri() { return DataModelFactory.NS; }
 
+        // Override getPresentation() to return an Obi-specific presentation
         private Presentation Presentation { get { return (Presentation)getPresentation(); } }
     }
 }

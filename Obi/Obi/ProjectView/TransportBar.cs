@@ -1346,7 +1346,7 @@ namespace Obi.ProjectView
             {
                 node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                EmptyNode.Kind.To_Do));
+                EmptyNode.Kind.TODO));
                 NextPhrase();
             }
             else
@@ -1356,7 +1356,7 @@ namespace Obi.ProjectView
                 if (node != null)
                 {
                     mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                        EmptyNode.Kind.To_Do));
+                        EmptyNode.Kind.TODO));
                 }
             }
         }
