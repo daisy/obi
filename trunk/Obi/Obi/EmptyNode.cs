@@ -25,9 +25,10 @@ namespace Obi
         /// Page is a page node with a page number.
         /// Heading is the audio heading for a section.
         /// Silence is a silence node for phrase detection.
+        /// TODO is a mark for producers.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Kind { Plain, Page, Heading, Silence, To_Do, Custom };
+        public enum Kind { Plain, Page, Heading, Silence, TODO, Custom };
 
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
@@ -39,6 +40,7 @@ namespace Obi
         /// This event is sent when the page number changes on a node (for a node which previously had a page number.)
         /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedPageNumber;
+
 
         /// <summary>
         /// Create a new empty node of a given kind in a presentation.
@@ -69,7 +71,6 @@ namespace Obi
         /// <summary>
         /// Copy node kind/custom class and page number from another node to this node.
         /// </summary>
-        /// <param name="node"></param>
         public void CopyKind(EmptyNode node)
         {
             mKind = node.mKind;

@@ -56,7 +56,6 @@ namespace Obi
     {
         public ObiNode Node;                   // the selected node
         public IControlWithSelection Control;  // control in which it is selected
-        public bool Soft;                      // soft selection flag
 
         /// <summary>
         /// Create a new selection object.
@@ -65,13 +64,12 @@ namespace Obi
         {
             Node = node;
             Control = control;
-            Soft = false;
         }
 
         /// <summary>
         /// Stringify the selection for debug printing.
         /// </summary>
-        public override string ToString() { return String.Format("{2}{0} in {1}", Node, Control, Soft ? "~" : ""); }
+        public override string ToString() { return String.Format("{0} in {1}", Node, Control); }
 
         public SectionNode Section { get { return Node as SectionNode; } }
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }

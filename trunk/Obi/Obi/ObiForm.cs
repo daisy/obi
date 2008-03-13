@@ -1742,7 +1742,7 @@ namespace Obi
                 if (node != null)
                 {
                     mProjectView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mProjectView, node,
-                       EmptyNode.Kind.To_Do));
+                       EmptyNode.Kind.TODO));
                 }
             }
         }

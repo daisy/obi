@@ -243,7 +243,7 @@ namespace Obi.ProjectView
             this.mDisplayBox.TabIndex = 14;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             // 
-            // ComboFastPlateRate
+            // mFastPlayRateCombobox
             // 
             this.mFastPlayRateCombobox.AccessibleName = "Fast Play Rate";
             this.mFastPlayRateCombobox.AllowDrop = true;
@@ -252,7 +252,7 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.FormattingEnabled = true;
             this.mFastPlayRateCombobox.ItemHeight = 15;
             this.mFastPlayRateCombobox.Location = new System.Drawing.Point(740, 6);
-            this.mFastPlayRateCombobox.Name = "ComboFastPlateRate";
+            this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
             this.mFastPlayRateCombobox.TabIndex = 15;
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
@@ -260,35 +260,38 @@ namespace Obi.ProjectView
             // mNextPageButton
             // 
             this.mNextPageButton.AccessibleName = "Next Page";
+            this.mNextPageButton.FlatAppearance.BorderSize = 0;
             this.mNextPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mNextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mNextPageButton.Image")));
             this.mNextPageButton.Location = new System.Drawing.Point(380, 0);
             this.mNextPageButton.Name = "mNextPageButton";
             this.mNextPageButton.Size = new System.Drawing.Size(32, 35);
             this.mNextPageButton.TabIndex = 10;
-            this.mNextPageButton.Text = "P";
             this.mNextPageButton.UseVisualStyleBackColor = true;
             this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
             // 
             // mPreviousPageButton
             // 
             this.mPreviousPageButton.AccessibleName = "Previous Page";
+            this.mPreviousPageButton.FlatAppearance.BorderSize = 0;
             this.mPreviousPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mPreviousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mPreviousPageButton.Image")));
             this.mPreviousPageButton.Location = new System.Drawing.Point(38, 0);
             this.mPreviousPageButton.Name = "mPreviousPageButton";
             this.mPreviousPageButton.Size = new System.Drawing.Size(32, 35);
             this.mPreviousPageButton.TabIndex = 1;
-            this.mPreviousPageButton.Text = "p";
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
             // mCustomClassMarkButton
             // 
+            this.mCustomClassMarkButton.FlatAppearance.BorderSize = 0;
             this.mCustomClassMarkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCustomClassMarkButton.Image = ((System.Drawing.Image)(resources.GetObject("mCustomClassMarkButton.Image")));
             this.mCustomClassMarkButton.Location = new System.Drawing.Point(456, 0);
             this.mCustomClassMarkButton.Name = "mCustomClassMarkButton";
             this.mCustomClassMarkButton.Size = new System.Drawing.Size(32, 35);
             this.mCustomClassMarkButton.TabIndex = 12;
-            this.mCustomClassMarkButton.Text = "C";
             this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
             // 

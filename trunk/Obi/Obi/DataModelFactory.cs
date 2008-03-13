@@ -7,11 +7,11 @@ namespace Obi
     /// </summary>
     public class DataModelFactory : urakawa.DataModelFactory
     {
-        public static readonly string NS = "http://www.daisy.org/urakawa/obi";
-        public static readonly string XUK_VERSION = "xuk/obi;pre-2";
+        public static readonly string NS = "http://www.daisy.org/urakawa/obi";  // Obi-specific namespace
+        public static readonly string XUK_VERSION = "xuk/obi;pre-2";            // versioning for Obi XUK files
 
         /// <summary>
-        /// Generator string for XUK export
+        /// The generator string for XUK export identifies the version of Obi and of the toolkit used.
         /// </summary>
         public static string Generator
         {
@@ -24,6 +24,11 @@ namespace Obi
                     System.Reflection.Assembly.GetAssembly(typeof(urakawa.Project)).GetName().Version);
             }
         }
+
+
+        // Custom factories for: asset manager, presentations, and tree nodes.
+        // For consistency, override both methods without parameters and with
+        // localname/nsuri parameters.
 
         public override urakawa.media.data.MediaDataManager createMediaDataManager()
         {
