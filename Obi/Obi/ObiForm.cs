@@ -1244,9 +1244,10 @@ namespace Obi
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
             mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
-            // mSectionIsUsedToolStripMenuItem.Enabled = false;
             mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
+            mSectionIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
             mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
         }
 
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
@@ -1270,7 +1271,9 @@ namespace Obi
             mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
             mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
+            mStripIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mStripIsUsedToolStripMenuItem_CheckedChanged);
             mStripIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkStripUnused;
+            mStripIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mStripIsUsedToolStripMenuItem_CheckedChanged);
         }
 
         private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddStrip(); }
@@ -1293,9 +1296,10 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
             mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mBlockIsUsedToolStripMenuItem.Enabled = false;
             mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            mBlockIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mBlockIsUsedToolStripMenuItem_CheckedChanged);
             mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mBlockIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mBlockIsUsedToolStripMenuItem_CheckedChanged);
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
