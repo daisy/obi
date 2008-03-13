@@ -625,11 +625,14 @@ namespace Obi
 					mPeakMeter.StartPosition = FormStartPosition.Manual;
 				}
                 mPeakMeter.Show();
+                mShowPeakMeterMenuItem.Checked = true;
             }
             else
             {
-                mPeakMeter.Focus();
-            }
+                mPeakMeter.Close();
+                mPeakMeter = null;
+                mShowPeakMeterMenuItem.Checked = false;
+                            }
             this.Ready();
         }
 

@@ -15,6 +15,14 @@ namespace Obi.Audio
 			InitializeComponent();
 		}
 
+        /// <summary>
+        /// Property overridden to show peak meter without moving keyboard focus to it
+                /// </summary>
+        protected override bool ShowWithoutActivation
+        {
+            get            {                 return true;             }
+        }
+
 		public VuMeter SourceVuMeter
 		{
 			get
