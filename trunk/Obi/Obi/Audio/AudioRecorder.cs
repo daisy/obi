@@ -35,6 +35,7 @@ namespace Obi.Audio
         private string sProjectDirectory;  //the directory to hold the recorded files
         InputDevice mDevice;
         private const int NumberRecordNotifications = 16; // number of notifications in capture buffer 
+        private System.Windows.Forms.Timer CaptureTimer = new System.Windows.Forms.Timer();
 
 
         // member variables which change whenever recording of a new asset starts
@@ -73,7 +74,10 @@ namespace Obi.Audio
                         PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];
             Capturing = false;
             SampleCount = 0;
-                                    
+
+            CaptureTimer.Enabled = false;
+            CaptureTimer.Interval = 200;
+            CaptureTimer.Tick += new EventHandler(CaptureTimer_Tick);
 		}
 
 		public int SampleRate
@@ -478,6 +482,22 @@ namespace Obi.Audio
             mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
 }
 
+int m_PrevBufferPos = 0;
+long m_PrevSampleCount = 0;
+
+void CaptureTimer_Tick(object sender, EventArgs e)
+{
+
+    if (m_PrevSampleCount == SampleCount
+        && mState == AudioRecorderState.Recording)
+    {
+        RecordCapturedData();
+        //System.Media.SystemSounds.Asterisk.Play();
+    }
+    m_PrevSampleCount = SampleCount;
+}
+
+
 		private long GetCurrentPositioninBytes
 		{
 			get
@@ -540,9 +560,12 @@ namespace Obi.Audio
                 m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
 
+                m_PrevSampleCount = 0;
+                CaptureTimer.Start();
 			}
 			else
 			{
+                CaptureTimer.Stop();
                 				applicationBuffer.Stop();
 				RecordCapturedData();
 
@@ -582,7 +605,7 @@ namespace Obi.Audio
             // reset VuMeter
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Recorder.UpdateVuMeterEventArgs());
-		}
+            		}
 
         public void SetDevice(Control handle, string name)
         {
