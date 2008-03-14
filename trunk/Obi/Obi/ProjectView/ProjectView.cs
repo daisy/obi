@@ -61,6 +61,20 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Add new empty pages.
+        ///
+        /// </summary>
+        public void AddEmptyPages()
+        {
+            if (CanAddEmptyBlock)
+            {
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, false, true);
+                if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
+            }
+        }
+
+
+        /// <summary>
         /// Get the list of names of currently addable metadata entries.
         /// </summary>
         public List<string> AddableMetadataNames
