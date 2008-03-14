@@ -46,44 +46,40 @@ Main form
     + [U] Show status bar ........... Ctrl+Alt+U
     --------------------------------------------
     + [C] Focus on TOC view ......... F6
-    + [P] Focus on strips view ...... F7
+    + [N] Focus on content view ..... F7
     + [A] Focus on transport bar .... F8
     + [Y] Synchronize views ......... Ctrl+Alt+Y
     --------------------------------------------
     + [P] Show peak meter ........... Ctrl+Alt+P
     + [R] Show source view .......... Ctrl+Alt+O
 
-  + [C] TOC
-    + [A] Add section ............... !!! Ctrl+A
-    + [S] Add sub-section ........... !!! Ctrl+Shift+A
-    + [I] Insert section ............ !!! Ctrl+Alt+A
+  + [S] Sections
+    + [A] Add section ............... Ctrl+J
+    + [S] Add subsection ............ Ctrl+Shift+J
+    + [I] Insert section ............ Ctrl+Alt+J
     + [M] Rename section ............ F2
+    --------------------------------------------------
     + [D] Decrease section level .... Ctrl+Shift+Left
-    + [N] Increase section level .... Ctrl+shift+Right
+    + [N] Increase section level .... Ctrl+Shift+Right
+    + [P] Split section ............. Ctrl+Shift+Q
+    + [G] Merge with next section ... Ctrl+Shift+M
+    --------------------------------------------------
     + [U] Section is used ........... Ctrl+K
 
-  + [S] Strips
-    + [A] Add strip ................. !!! Ctrl+A
-    + [I] Insert strip .............. !!! Ctrl+Alt+A
-    + [M] Rename strip .............. F2
-    + [S] Split strip ............... Ctrl+Shift+Q
-    + [G] Merge with next strip ..... Ctrl+Shift+M
-    + [U] Strip is used ............. Ctrl+K
-
-  + [B] Blocks
-    + [E] Add empty block ........... Ctrl+B
-    + [P] Add empty page blocks ..... Ctrl+Shift+B
-    + [I] Import audio files ........ Ctrl+I
-    + [S] Split block ............... Ctrl+Q
-    + [M] Merge block with next ..... Ctrl+M
-    + [U] Block is used ............. Ctrl+K
-    --------------------------------------
-    + [A] Assign role ............... (None)
-      + [H] Heading ................. (None)
-      + [P] Page .................... (None)
-      + [S] Silence ................. (None)
-      + [T] TODO .................... F4
-      -------------------------------------
+  + [P] Phrases
+    + [B] Add blank phrase .............. Ctrl+B
+    + [P] Add blank pages ............... Ctrl+Shift+B
+    + [I] Import audio files ............ Ctrl+I
+    + [S] Split phrase .................. Ctrl+Q
+    + [M] Merge phrase with next ........ Ctrl+M
+    + [U] Phrase is used ................ Ctrl+K
+    --------------------------------------------------
+    + [A] Assign role ................... (None)
+      + [H] Heading ..................... (None)
+      + [P] Page ........................ (None)
+      + [S] Silence ..................... (None)
+      + [T] TODO ........................ F4
+      ------------------------------------------------
       + (Add role) ...................... (None)
     + [D] Edit roles... ................. (None)
     + [C] Clear role .................... (None)
@@ -141,62 +137,62 @@ Index of shortcuts
   + Del ................ Edit > Delete
   + F1 ................. Help > Contents
   + Shift+F1 ........... Help > View help in external browser
-  + F2 ................. TOC > Rename section
-  + F2 ................. Strips > Rename strip
+  + F2 ................. Sections > Rename section
   + F3 ................. Edit > Find next
   + Shift+F3 ........... Edit > Find previous
-  + F4 ................. Blocks > Assign role > TODO
+  + F4 ................. Phrases > Assign role > TODO
   + Alt+F4 ............. File > Exit
   + F6 ................. View > Focus on TOC view
-  + F7 ................. View > Focus on strips view
+  + F7 ................. View > Focus on content view
   + F8 ................. View > Focus on transport bar
   + Alt+Up ............. Transport > Navigation > Previous section
   + Alt+PgUp ........... Transport > Navigation > Previous page
   + Alt+Dn ............. Transport > Navigation > Next section
   + Alt+PgDn ........... Transport > Navigation > Next page
-  + Ctrl+Shift+Left .... TOC > Decrease section level
+  + Ctrl+Shift+Left .... Sections > Decrease section level
   + Alt+Left ........... Transport > Navigation > Previous phrase
-  + Ctrl+Shift+Right ... TOC > Increase section level
+  + Ctrl+Shift+Right ... Sections > Increase section level
   + Alt+Right .......... Transport > Navigation > Next phrase
   + Ctrl+Space ......... Transport > Play > Play all
   + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
-  + Ctrl+[ ............. Blocks > In-phrase audio selection > Begin...
-  + Ctrl+] ............. Blocks > In-phrase audio selection > End...
+  + Ctrl+[ ............. Phrases > In-phrase audio selection > Begin...
+  + Ctrl+] ............. Phrases > In-phrase audio selection > End...
   + Ctrl+0 ............. Transport > Fast play > Normal speed
   + Ctrl++ ............. Transport > Fast play > Speed up
   + Ctrl+- ............. Transport > Fast play > Speed down
   + Ctrl+, ............. Transport > Rewind
   + Ctrl+. ............. Transport > Fast forward
 
-  + Ctrl+A ............. [Reserved for select all]
-  + Ctrl+B ............. Blocks > Add empty block
+  + Ctrl+A ............. FREE [Reserved for select all]
+  + Ctrl+B ............. Phrases > Add blank phrase
   + Ctrl+Alt+B ......... View > Show transport bar
-  + Ctrl+Shift+B ....... Blocks > Add empty page blocks
+  + Ctrl+Shift+B ....... Phrases > Add empty pages 
   + Ctrl+C ............. Edit > Copy
   + Ctrl+D ............. FREE
   + Ctrl+E ............. File > Export as DAISY
   + Ctrl+F ............. Edit > Find
   + Ctrl+G ............. FREE
   + Ctrl+H ............. FREE
-  + Ctrl+I ............. Blocks > Import audio files
-  + Ctrl+J ............. FREE
-  + Ctrl+K ............. Block > Block is used
-  + Ctrl+K ............. Strips > Strip is used
-  + Ctrl+K ............. TOC > Section is used
+  + Ctrl+I ............. Phrases > Import audio files
+  + Ctrl+J ............. Sections > Add section
+  + Ctrl+Shift+J ....... Sections > Add subsection
+  + Ctrl+Alt+J ......... Sections > Insert section
+  + Ctrl+K ............. Phrases > Phrase is used
+  + Ctrl+K ............. Sections > Section is used
   + Ctrl+L ............. File > Clean project
   + Ctrl+Shift+L ....... Edit > Delete unused data
-  + Ctrl+M ............. Blocks > Merge block with next
+  + Ctrl+M ............. Phrases > Merge phrase with next
   + Ctrl+Alt+M ......... View > Show metadata view
-  + Ctrl+Shift+M ....... Strips > Merge with next strip
+  + Ctrl+Shift+M ....... Sections > Merge with next section
   + Ctrl+N ............. File > New project
   + Ctrl+Shift+N ....... File > New project from import
   + Ctrl+O ............. File > Open
   + Ctrl+Alt+O ......... View > Show source view
   + Ctrl+P ............. Transport > Preview > Preview from...
-  + Ctrl+Shift+P ....... Blocks > Apply phrase detection
+  + Ctrl+Shift+P ....... Phrases > Apply phrase detection
   + Ctrl+Alt+P ......... View > Show peak meter
-  + Ctrl+Q ............. Blocks > Split block
-  + Ctrl+Shift+Q ....... Strips > Split strip
+  + Ctrl+Q ............. Phrases > Split phrase
+  + Ctrl+Shift+Q ....... Sections > Split section
   + Ctrl+R ............. Transport > Record > Start monitoring
   + Ctrl+Shift+R ....... Transport > Record > Start recording
   + Ctrl+Alt+R ......... Help > Report bug
@@ -204,7 +200,7 @@ Index of shortcuts
   + Ctrl+Shift+S ....... File > Save project as...
   + Ctrl+T ............. Transport > Stop
   + Ctrl+Alt+T ......... View > Show TOC view
-  + Ctrl+U ............. Blocks > Mark default custom class
+  + Ctrl+U ............. Phrases > Mark default custom class
   + Ctrl+Alt+U ......... View > Show status bar
   + Ctrl+V ............. Edit > Paste
   + Ctrl+Alt+V ......... Edit > Paste before

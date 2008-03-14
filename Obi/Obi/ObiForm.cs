@@ -1278,15 +1278,15 @@ namespace Obi
         // Update the status of the blocks menu item with the current selection and tree.
         private void UpdateBlocksMenu()
         {
-            mAddEmptyBlockToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
-            mAddEmptyPageBlocksToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-            mSplitBlockToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
-            mMergeBlockWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mBlockIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
-            mBlockIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mBlockIsUsedToolStripMenuItem_CheckedChanged);
-            mBlockIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
-            mBlockIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mBlockIsUsedToolStripMenuItem_CheckedChanged);
+            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
+            mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
+            mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -1333,13 +1333,14 @@ namespace Obi
             Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
                             }
 
-        private void mAddEmptyBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
+        private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
+        private void mAddEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
-        private void mSplitBlockToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
-        private void mMergeBlockWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
-        private void mBlockIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
+        private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+        private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            mProjectView.SetSelectedNodeUsedStatus(mBlockIsUsedToolStripMenuItem.Checked);
+            mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
         }
 
 
@@ -1368,15 +1369,6 @@ namespace Obi
         void mProjectView_FinishedImportingFiles(object sender, EventArgs e)
         {
             Disable(false);
-        }
-
-        private void mAddEmptyPageBlocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanAddEmptyBlock)
-            {
-                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, true);
-                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
-            }
         }
 
         private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1486,7 +1478,7 @@ namespace Obi
             if (e.KeyCode == Keys.Enter)
             {
                 mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
-                blocksToolStripMenuItem.DropDown.Close();
+                mPhrasesToolStripMenuItem.DropDown.Close();
                 mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
             }
         }
