@@ -70,7 +70,6 @@ namespace Obi
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowSearchBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -428,7 +427,6 @@ namespace Obi
             this.mViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mShowTOCViewToolStripMenuItem,
             this.mShowMetadataViewToolStripMenuItem,
-            this.mShowSearchBarToolStripMenuItem,
             this.mShowTransportBarToolStripMenuItem,
             this.mShowStatusBarToolStripMenuItem,
             this.toolStripSeparator12,
@@ -459,15 +457,6 @@ namespace Obi
             this.mShowMetadataViewToolStripMenuItem.Name = "mShowMetadataViewToolStripMenuItem";
             resources.ApplyResources(this.mShowMetadataViewToolStripMenuItem, "mShowMetadataViewToolStripMenuItem");
             this.mShowMetadataViewToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowMetadataViewToolStripMenuItem_CheckedChanged);
-            // 
-            // mShowSearchBarToolStripMenuItem
-            // 
-            this.mShowSearchBarToolStripMenuItem.Checked = true;
-            this.mShowSearchBarToolStripMenuItem.CheckOnClick = true;
-            this.mShowSearchBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mShowSearchBarToolStripMenuItem.Name = "mShowSearchBarToolStripMenuItem";
-            resources.ApplyResources(this.mShowSearchBarToolStripMenuItem, "mShowSearchBarToolStripMenuItem");
-            this.mShowSearchBarToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowSearchBarToolStripMenuItem_CheckedChanged);
             // 
             // mShowTransportBarToolStripMenuItem
             // 
@@ -1175,7 +1164,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem mShowStatusBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowTransportBarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowSearchBarToolStripMenuItem;
         private Obi.ProjectView.ProjectView mProjectView;
         private System.Windows.Forms.ToolStripMenuItem mSelectNothingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
