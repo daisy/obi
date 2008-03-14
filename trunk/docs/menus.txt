@@ -6,12 +6,12 @@ Main form
 
   + [F] File
     + [N] New project ................ Ctrl+N
-    + [W] New project from import .... Ctrl+Shift+N
+    + [I] New project from import .... Ctrl+Shift+N
     + [O] Open project ............... Ctrl+O
     + [C] Close project .............. Ctrl+W
     -----------------------------------------------
     + [S] Save project ............... Ctrl+S
-    + [A] Save project as ............ Ctrl+Shift+S
+    + [A] Save project as... ......... Ctrl+Shift+S
     + [L] Clean unreferenced audio ... Ctrl+L
     + [E] Export as DAISY ............ Ctrl+E
     -----------------------------------------------
@@ -40,34 +40,33 @@ Main form
     + [M] Add metadata entry ......... (None)
 
   + [V] View
-    + [T] Show TOC view ............. Alt+Shift+T
-    + [M] Show metadata view ........ Alt+Shift+M
-    + [S] Show search bar ........... Alt+Shift+S
-    + [B] Show transport bar ........ Alt+Shift+B
-    + [U] Show status bar ........... Alt+Shift+U
-    ----------------------------------------------
+    + [T] Show TOC view ............. Ctrl+Alt+T
+    + [M] Show metadata view ........ Ctrl+Alt+M
+    + [B] Show transport bar ........ Ctrl+Alt+B
+    + [U] Show status bar ........... Ctrl+Alt+U
+    --------------------------------------------
     + [C] Focus on TOC view ......... F6
     + [P] Focus on strips view ...... F7
     + [A] Focus on transport bar .... F8
-    + [Y] Synchronize views ......... Alt+Shift+Y
-    ----------------------------------------------
-    + [P] Show peak meter ........... Alt+Shift+P
-    + [R] Show source view .......... Alt+Shift+R
+    + [Y] Synchronize views ......... Ctrl+Alt+Y
+    --------------------------------------------
+    + [P] Show peak meter ........... Ctrl+Alt+P
+    + [R] Show source view .......... Ctrl+Alt+O
 
   + [C] TOC
-    + [A] Add section ............... Ctrl+A
-    + [S] Add sub-section ........... Ctrl+Shift+A
-    + [I] Insert section ............ Ctrl+Alt+A
+    + [A] Add section ............... !!! Ctrl+A
+    + [S] Add sub-section ........... !!! Ctrl+Shift+A
+    + [I] Insert section ............ !!! Ctrl+Alt+A
     + [M] Rename section ............ F2
     + [D] Decrease section level .... Ctrl+Shift+Left
     + [N] Increase section level .... Ctrl+shift+Right
     + [U] Section is used ........... Ctrl+K
 
   + [S] Strips
-    + [A] Add strip ................. Ctrl+A
-    + [I] Insert strip .............. Ctrl+Alt+A
+    + [A] Add strip ................. !!! Ctrl+A
+    + [I] Insert strip .............. !!! Ctrl+Alt+A
     + [M] Rename strip .............. F2
-    + [S] Split strip ............... Ctrl+Shift+P
+    + [S] Split strip ............... Ctrl+Shift+Q
     + [G] Merge with next strip ..... Ctrl+Shift+M
     + [U] Strip is used ............. Ctrl+K
 
@@ -75,7 +74,7 @@ Main form
     + [E] Add empty block ........... Ctrl+B
     + [P] Add empty page blocks ..... Ctrl+Shift+B
     + [I] Import audio files ........ Ctrl+I
-    + [S] Split block ............... Ctrl+P
+    + [S] Split block ............... Ctrl+Q
     + [M] Merge block with next ..... Ctrl+M
     + [U] Block is used ............. Ctrl+K
     --------------------------------------
@@ -83,12 +82,19 @@ Main form
       + [H] Heading ................. (None)
       + [P] Page .................... (None)
       + [S] Silence ................. (None)
+      + [T] TODO .................... F4
       -------------------------------------
-      + (Add role) .................. (None)
-    + Edit roles... ................. (None)
-    + [C] Clear role ................ (None)
+      + (Add role) ...................... (None)
+    + [D] Edit roles... ................. (None)
+    + [C] Clear role .................... (None)
+    + [H] Apply phrase detection ........ Ctrl+Shift+P
+    + [K] Mark default custom class ..... Ctrl+U
+    + [R] In-phrase audio selection ..... (None)
+      + [B] Begin in-phrase selection ... Ctrl+[
+      + [E] End in-phrase selection ..... Ctrl+]
+      + [D] Deselect .................... (None)
 
-  + [R] Transport
+  + [R] Transport !!!TODO
     + [P] Play ............................ (None)
       + [A] Play all ...................... Ctrl+Space
       + [S] Play selection ................ Ctrl+Shift+Space
@@ -106,13 +112,16 @@ Main form
       + [ ] Next phrase ................... (None)
       + [ ] Next page ..................... (None)
       + [ ] Next section .................. (None)
-
-  + [T] Tools
+  
+  + [T] Tools !!!TODO replace with single dialog ("Preferences")
+    + [U] User profile .................... Alt+U
+    + [P] Project preferences ............. Alt+P
+    + [A] Audio preferences ............... Alt+A
 
   + [H] Help
     + [C] Contents ........................ F1
     + [V] View help in external browser ... Shift+F1
-    + [R] Report bug ...................... Ctrl+Shift+R
+    + [R] Report bug ...................... Ctrl+Alt+R
     + [A] About Obi ....................... (None)
 
 
@@ -130,63 +139,65 @@ Index of shortcuts
   + F2 ................. Strips > Rename strip
   + F3 ................. Edit > Find next
   + Shift+F3 ........... Edit > Find previous
+  + F4 ................. Blocks > Assign role > TODO
   + Alt+F4 ............. File > Exit
-
   + F6 ................. View > Focus on TOC view
   + F7 ................. View > Focus on strips view
   + F8 ................. View > Focus on transport bar
   + Ctrl+Shift+Left .... TOC > Decrease section level
   + Ctrl+Shift+Right ... TOC > Increase section level
-  + Ctrl+Space ......... Transport > Play > Play all
-  + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
-  + Space .............. Transport bar > play / pause in strip view
+  + Ctrl+[ ............. Blocks > In-phrase audio selection > Begin...
+  + Ctrl+] ............. Blocks > In-phrase audio selection > End...
 
-  + Ctrl+A ............. TOC > Add section
-  + Ctrl+A ............. Strips > Add strip
-  + Ctrl+Alt+A ......... TOC > Insert section
-  + Ctrl+Alt+A ......... Strips > Insert strip
-  + Ctrl+Shift+A ....... TOC > Add sub-section
+  + Ctrl+A ............. [Reserved for select all]
   + Ctrl+B ............. Blocks > Add empty block
+  + Ctrl+Alt+B ......... View > Show transport bar
   + Ctrl+Shift+B ....... Blocks > Add empty page blocks
-  + Alt+Shift+B ........ View > Show transport bar
   + Ctrl+C ............. Edit > Copy
-  + Ctrl+D ............. FREE
   + Ctrl+E ............. File > Export as DAISY
   + Ctrl+F ............. Edit > Find
-  + Ctrl+G ............. FREE
-  + Ctrl+H ............. Apply Phrase detection :Avn
   + Ctrl+I ............. Blocks > Import audio files
-  + Ctrl+J ............. FREE
   + Ctrl+K ............. Block > Block is used
   + Ctrl+K ............. Strips > Strip is used
   + Ctrl+K ............. TOC > Section is used
   + Ctrl+L ............. File > Clean project
   + Ctrl+Shift+L ....... Edit > Delete unused data
   + Ctrl+M ............. Blocks > Merge block with next
-  + Alt+Control+M ........ View > Show metadata view : Avn: Changed from Alt+Shift combination
+  + Ctrl+Alt+M ......... View > Show metadata view
   + Ctrl+Shift+M ....... Strips > Merge with next strip
   + Ctrl+N ............. File > New project
   + Ctrl+Shift+N ....... File > New project from import
   + Ctrl+O ............. File > Open
-  + Alt+Shift+P ........ View > Show peak meter
-  + Ctrl+P ............. Blocks > Split block
-  + Ctrl+Shift+P ....... Strips > Split strip
-  + Ctrl+Q ............. FREE
-  + Control+Alt+O ........ View > Show source view    : Avn... changed from   + Alt+Shift+R
-  + Ctrl+R ............. Start listening/Start recording
-  + Ctrl+Alt+R ....... Help > Report bug   : Avn... changed from   + Ctrl+Shift+R 
-//  + Alt+Shift+S ........ View > Show search bar : Avn . This can be eliminated as Control+F is used for it.
+  + Ctrl+Alt+O ......... View > Show source view
+  + Ctrl+Shift+P ....... Blocks > Apply phrase detection
+  + Ctrl+Alt+P ......... View > Show peak meter
+  + Ctrl+Q ............. Blocks > Split block
+  + Ctrl+Shift+Q ....... Strips > Split strip
+  + Ctrl+Alt+R ......... Help > Report bug
   + Ctrl+S ............. File > Save project
-+ F12....... File > Save project as :Avn: changed from Control+Shift+S
-  + Alt+Shift+T ........ View > Show TOC view
-  + Ctrl+T ............. Stop  :Avn
-  + Alt+Shift+U ........ View > Show status bar
-  + Ctrl+U ............. FREE
+  + Ctrl+Shift+S ....... File > Save project as...
+  + Ctrl+Alt+T ......... View > Show TOC view
+  + Ctrl+U ............. Blocks > Mark default custom class
+  + Ctrl+Alt+U ......... View > Show status bar
   + Ctrl+V ............. Edit > Paste
   + Ctrl+Alt+V ......... Edit > Paste before
   + Ctrl+Shift+V ....... Edit > Paste inside
   + Ctrl+W ............. File > Close project
   + Ctrl+X ............. Edit > Cut
-  + Alt+Shift+Y ........ View > Synchronize views
   + Ctrl+Y ............. Edit > Redo
+  + Ctrl+Alt+Y ......... View > Synchronize views
   + Ctrl+Z ............. Edit > Undo
+
+---
+  + Ctrl+Space ......... Transport > Play > Play all
+  + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
+  + Space .............. Transport bar > play / pause in strip view
+  + Ctrl+D ............. FREE
+  + Ctrl+G ............. FREE
+  + Ctrl+H ............. Apply Phrase detection :Avn
+  + Ctrl+J ............. FREE
+  + Ctrl+Q ............. FREE
+  + Ctrl+R ............. Start listening/Start recording
++ F12....... File > Save project as :Avn: changed from Control+Shift+S
+  + Ctrl+T ............. Stop  :Avn
+  + Ctrl+U ............. FREE
