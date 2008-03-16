@@ -856,6 +856,9 @@ namespace Obi
         /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+
+            if ( mProjectView != null )  mProjectView.TransportBar.Stop();
+
             if (DidCloseProject())
             {
                 try
@@ -868,7 +871,7 @@ namespace Obi
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 mProjectView.SelectionChanged -= new EventHandler(ProjectView_SelectionChanged);
-                mProjectView.TransportBar.Stop();
+                
                 Application.Exit();
 
                 // unhook User preferences system events 
