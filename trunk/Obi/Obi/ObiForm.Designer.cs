@@ -80,33 +80,18 @@ namespace Obi
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addsubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.renameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.decreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.increaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.sectionIsusedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mAddSubSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInsertSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRenameSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.mDecreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSplitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mStripsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mAddStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mInsertStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mRenameStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mSplitStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMergeWithNextStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mStripIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddBlankPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -184,9 +169,7 @@ namespace Obi
             this.mFileToolStripMenuItem,
             this.toolStripMenuItem1,
             this.mViewToolStripMenuItem,
-            this.sectionsToolStripMenuItem,
-            this.mTocToolStripMenuItem,
-            this.mStripsToolStripMenuItem,
+            this.mSectionsToolStripMenuItem,
             this.mPhrasesToolStripMenuItem,
             this.transportToolStripMenuItem,
             this.mToolsToolStripMenuItem,
@@ -539,90 +522,22 @@ namespace Obi
             resources.ApplyResources(this.mShowSourceToolStripMenuItem, "mShowSourceToolStripMenuItem");
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
             // 
-            // sectionsToolStripMenuItem
+            // mSectionsToolStripMenuItem
             // 
-            this.sectionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addSectionToolStripMenuItem,
-            this.addsubsectionToolStripMenuItem,
-            this.insertSectionToolStripMenuItem,
-            this.renameSectionToolStripMenuItem,
-            this.toolStripSeparator11,
-            this.decreaseSectionLevelToolStripMenuItem,
-            this.increaseSectionLevelToolStripMenuItem,
-            this.splitSectionToolStripMenuItem,
-            this.mergeSectionWithNextToolStripMenuItem,
-            this.toolStripSeparator13,
-            this.sectionIsusedToolStripMenuItem});
-            this.sectionsToolStripMenuItem.Name = "sectionsToolStripMenuItem";
-            resources.ApplyResources(this.sectionsToolStripMenuItem, "sectionsToolStripMenuItem");
-            // 
-            // addSectionToolStripMenuItem
-            // 
-            this.addSectionToolStripMenuItem.Name = "addSectionToolStripMenuItem";
-            resources.ApplyResources(this.addSectionToolStripMenuItem, "addSectionToolStripMenuItem");
-            // 
-            // addsubsectionToolStripMenuItem
-            // 
-            this.addsubsectionToolStripMenuItem.Name = "addsubsectionToolStripMenuItem";
-            resources.ApplyResources(this.addsubsectionToolStripMenuItem, "addsubsectionToolStripMenuItem");
-            // 
-            // insertSectionToolStripMenuItem
-            // 
-            this.insertSectionToolStripMenuItem.Name = "insertSectionToolStripMenuItem";
-            resources.ApplyResources(this.insertSectionToolStripMenuItem, "insertSectionToolStripMenuItem");
-            // 
-            // renameSectionToolStripMenuItem
-            // 
-            this.renameSectionToolStripMenuItem.Name = "renameSectionToolStripMenuItem";
-            resources.ApplyResources(this.renameSectionToolStripMenuItem, "renameSectionToolStripMenuItem");
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
-            // 
-            // decreaseSectionLevelToolStripMenuItem
-            // 
-            this.decreaseSectionLevelToolStripMenuItem.Name = "decreaseSectionLevelToolStripMenuItem";
-            resources.ApplyResources(this.decreaseSectionLevelToolStripMenuItem, "decreaseSectionLevelToolStripMenuItem");
-            // 
-            // increaseSectionLevelToolStripMenuItem
-            // 
-            this.increaseSectionLevelToolStripMenuItem.Name = "increaseSectionLevelToolStripMenuItem";
-            resources.ApplyResources(this.increaseSectionLevelToolStripMenuItem, "increaseSectionLevelToolStripMenuItem");
-            // 
-            // splitSectionToolStripMenuItem
-            // 
-            this.splitSectionToolStripMenuItem.Name = "splitSectionToolStripMenuItem";
-            resources.ApplyResources(this.splitSectionToolStripMenuItem, "splitSectionToolStripMenuItem");
-            // 
-            // mergeSectionWithNextToolStripMenuItem
-            // 
-            this.mergeSectionWithNextToolStripMenuItem.Name = "mergeSectionWithNextToolStripMenuItem";
-            resources.ApplyResources(this.mergeSectionWithNextToolStripMenuItem, "mergeSectionWithNextToolStripMenuItem");
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
-            // 
-            // sectionIsusedToolStripMenuItem
-            // 
-            this.sectionIsusedToolStripMenuItem.Name = "sectionIsusedToolStripMenuItem";
-            resources.ApplyResources(this.sectionIsusedToolStripMenuItem, "sectionIsusedToolStripMenuItem");
-            // 
-            // mTocToolStripMenuItem
-            // 
-            this.mTocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mSectionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddSectionToolStripMenuItem,
-            this.mAddSubSectionToolStripMenuItem,
+            this.mAddSubsectionToolStripMenuItem,
             this.mInsertSectionToolStripMenuItem,
             this.mRenameSectionToolStripMenuItem,
+            this.toolStripSeparator11,
             this.mDecreaseSectionLevelToolStripMenuItem,
             this.mIncreaseSectionLevelToolStripMenuItem,
+            this.mSplitSectionToolStripMenuItem,
+            this.mMergeSectionWithNextToolStripMenuItem,
+            this.toolStripSeparator13,
             this.mSectionIsUsedToolStripMenuItem});
-            this.mTocToolStripMenuItem.Name = "mTocToolStripMenuItem";
-            resources.ApplyResources(this.mTocToolStripMenuItem, "mTocToolStripMenuItem");
+            this.mSectionsToolStripMenuItem.Name = "mSectionsToolStripMenuItem";
+            resources.ApplyResources(this.mSectionsToolStripMenuItem, "mSectionsToolStripMenuItem");
             // 
             // mAddSectionToolStripMenuItem
             // 
@@ -630,11 +545,11 @@ namespace Obi
             resources.ApplyResources(this.mAddSectionToolStripMenuItem, "mAddSectionToolStripMenuItem");
             this.mAddSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSectionToolStripMenuItem_Click);
             // 
-            // mAddSubSectionToolStripMenuItem
+            // mAddSubsectionToolStripMenuItem
             // 
-            this.mAddSubSectionToolStripMenuItem.Name = "mAddSubSectionToolStripMenuItem";
-            resources.ApplyResources(this.mAddSubSectionToolStripMenuItem, "mAddSubSectionToolStripMenuItem");
-            this.mAddSubSectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSubSectionToolStripMenuItem_Click);
+            this.mAddSubsectionToolStripMenuItem.Name = "mAddSubsectionToolStripMenuItem";
+            resources.ApplyResources(this.mAddSubsectionToolStripMenuItem, "mAddSubsectionToolStripMenuItem");
+            this.mAddSubsectionToolStripMenuItem.Click += new System.EventHandler(this.mAddSubsectionToolStripMenuItem_Click);
             // 
             // mInsertSectionToolStripMenuItem
             // 
@@ -648,6 +563,11 @@ namespace Obi
             resources.ApplyResources(this.mRenameSectionToolStripMenuItem, "mRenameSectionToolStripMenuItem");
             this.mRenameSectionToolStripMenuItem.Click += new System.EventHandler(this.mRenameSectionToolStripMenuItem_Click);
             // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
+            // 
             // mDecreaseSectionLevelToolStripMenuItem
             // 
             this.mDecreaseSectionLevelToolStripMenuItem.Name = "mDecreaseSectionLevelToolStripMenuItem";
@@ -660,6 +580,23 @@ namespace Obi
             resources.ApplyResources(this.mIncreaseSectionLevelToolStripMenuItem, "mIncreaseSectionLevelToolStripMenuItem");
             this.mIncreaseSectionLevelToolStripMenuItem.Click += new System.EventHandler(this.mIncreaseSectionLevelToolStripMenuItem_Click);
             // 
+            // mSplitSectionToolStripMenuItem
+            // 
+            this.mSplitSectionToolStripMenuItem.Name = "mSplitSectionToolStripMenuItem";
+            resources.ApplyResources(this.mSplitSectionToolStripMenuItem, "mSplitSectionToolStripMenuItem");
+            this.mSplitSectionToolStripMenuItem.Click += new System.EventHandler(this.mSplitSectionToolStripMenuItem_Click);
+            // 
+            // mMergeSectionWithNextToolStripMenuItem
+            // 
+            this.mMergeSectionWithNextToolStripMenuItem.Name = "mMergeSectionWithNextToolStripMenuItem";
+            resources.ApplyResources(this.mMergeSectionWithNextToolStripMenuItem, "mMergeSectionWithNextToolStripMenuItem");
+            this.mMergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeSectionWithNextToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
+            // 
             // mSectionIsUsedToolStripMenuItem
             // 
             this.mSectionIsUsedToolStripMenuItem.Checked = true;
@@ -668,57 +605,6 @@ namespace Obi
             this.mSectionIsUsedToolStripMenuItem.Name = "mSectionIsUsedToolStripMenuItem";
             resources.ApplyResources(this.mSectionIsUsedToolStripMenuItem, "mSectionIsUsedToolStripMenuItem");
             this.mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSectionIsUsedToolStripMenuItem_CheckedChanged);
-            // 
-            // mStripsToolStripMenuItem
-            // 
-            this.mStripsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mAddStripToolStripMenuItem,
-            this.mInsertStripToolStripMenuItem,
-            this.mRenameStripToolStripMenuItem,
-            this.mSplitStripToolStripMenuItem,
-            this.mMergeWithNextStripToolStripMenuItem,
-            this.mStripIsUsedToolStripMenuItem});
-            this.mStripsToolStripMenuItem.Name = "mStripsToolStripMenuItem";
-            resources.ApplyResources(this.mStripsToolStripMenuItem, "mStripsToolStripMenuItem");
-            // 
-            // mAddStripToolStripMenuItem
-            // 
-            this.mAddStripToolStripMenuItem.Name = "mAddStripToolStripMenuItem";
-            resources.ApplyResources(this.mAddStripToolStripMenuItem, "mAddStripToolStripMenuItem");
-            this.mAddStripToolStripMenuItem.Click += new System.EventHandler(this.mAddStripToolStripMenuItem_Click);
-            // 
-            // mInsertStripToolStripMenuItem
-            // 
-            this.mInsertStripToolStripMenuItem.Name = "mInsertStripToolStripMenuItem";
-            resources.ApplyResources(this.mInsertStripToolStripMenuItem, "mInsertStripToolStripMenuItem");
-            this.mInsertStripToolStripMenuItem.Click += new System.EventHandler(this.mInsertStripToolStripMenuItem_Click);
-            // 
-            // mRenameStripToolStripMenuItem
-            // 
-            this.mRenameStripToolStripMenuItem.Name = "mRenameStripToolStripMenuItem";
-            resources.ApplyResources(this.mRenameStripToolStripMenuItem, "mRenameStripToolStripMenuItem");
-            this.mRenameStripToolStripMenuItem.Click += new System.EventHandler(this.mRenameStripToolStripMenuItem_Click);
-            // 
-            // mSplitStripToolStripMenuItem
-            // 
-            this.mSplitStripToolStripMenuItem.Name = "mSplitStripToolStripMenuItem";
-            resources.ApplyResources(this.mSplitStripToolStripMenuItem, "mSplitStripToolStripMenuItem");
-            this.mSplitStripToolStripMenuItem.Click += new System.EventHandler(this.mSplitStripToolStripMenuItem_Click);
-            // 
-            // mMergeWithNextStripToolStripMenuItem
-            // 
-            this.mMergeWithNextStripToolStripMenuItem.Name = "mMergeWithNextStripToolStripMenuItem";
-            resources.ApplyResources(this.mMergeWithNextStripToolStripMenuItem, "mMergeWithNextStripToolStripMenuItem");
-            this.mMergeWithNextStripToolStripMenuItem.Click += new System.EventHandler(this.mMergeWithNextStripToolStripMenuItem_Click);
-            // 
-            // mStripIsUsedToolStripMenuItem
-            // 
-            this.mStripIsUsedToolStripMenuItem.Checked = true;
-            this.mStripIsUsedToolStripMenuItem.CheckOnClick = true;
-            this.mStripIsUsedToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mStripIsUsedToolStripMenuItem.Name = "mStripIsUsedToolStripMenuItem";
-            resources.ApplyResources(this.mStripIsUsedToolStripMenuItem, "mStripIsUsedToolStripMenuItem");
-            this.mStripIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mStripIsUsedToolStripMenuItem_CheckedChanged);
             // 
             // mPhrasesToolStripMenuItem
             // 
@@ -1217,18 +1103,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTocToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mStripsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAddSubSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mRenameStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAudioPreferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutObiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mIncreaseSectionLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mDecreaseSectionLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mViewHelpInExternalBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mReportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -1248,8 +1126,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem mFindInTextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSplitStripToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mMergeWithNextStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mImportAudioFileToolStripMenuItem;
         private System.Windows.Forms.Timer mStatusTimer;
@@ -1258,7 +1134,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mShowTransportBarToolStripMenuItem;
         private Obi.ProjectView.ProjectView mProjectView;
         private System.Windows.Forms.ToolStripMenuItem mSelectNothingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAssignRoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator mCustomRoleToolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem mClearRoleToolStripMenuItem;
@@ -1313,11 +1188,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem nextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rewindToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fastForwardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mInsertSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAddStripToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mInsertStripToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteBeforeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mStripIsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteInsideToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mDeleteUnusedDataToolStripMenuItem;
@@ -1343,18 +1214,18 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem sectionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addsubsectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem insertSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem renameSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAddSubsectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mInsertSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRenameSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripMenuItem decreaseSectionLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem increaseSectionLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem splitSectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mergeSectionWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDecreaseSectionLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mIncreaseSectionLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSplitSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMergeSectionWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
-        private System.Windows.Forms.ToolStripMenuItem sectionIsusedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
     }
 }
 

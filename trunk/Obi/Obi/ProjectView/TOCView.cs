@@ -21,7 +21,7 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// This needs to be refined when the dummy section is implemented.
+        /// 
         /// </summary>
         public bool CanAddSection { get { return !(mSelection is TextSelection); } }
 

@@ -107,11 +107,15 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Add a new section.
+        /// Add a new section or strip.
         /// </summary>
         public void AddSection()
         {
-            if (CanAddSection)
+            if (mStripsView.CanAddStrip)
+            {
+                AddStrip();
+            }
+            else if (CanAddSection)
             {
                 Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mTOCView);
                 AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
@@ -121,23 +125,20 @@ namespace Obi.ProjectView
         /// <summary>
         /// Add a new strip to the project.
         /// </summary>
-        public void AddStrip()
+        private void AddStrip()
         {
-            if (CanAddStrip)
+            Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mStripsView);
+            urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
+            SectionNode selected = (SectionNode)mStripsView.Selection.Node;
+            for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
-                Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mStripsView);
-                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
-                SectionNode selected = (SectionNode)mStripsView.Selection.Node;
-                for (int i = selected.SectionChildCount - 1; i >= 0; --i)
-                {
-                    SectionNode child = selected.SectionChild(i);
-                    command.append(new Commands.Node.Delete(this, child));
-                    command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
-                }
-                command.append(add);
-                if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
-                mPresentation.getUndoRedoManager().execute(command);
+                SectionNode child = selected.SectionChild(i);
+                command.append(new Commands.Node.Delete(this, child));
+                command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
             }
+            command.append(add);
+            if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
+            mPresentation.getUndoRedoManager().execute(command);
         }
 
         /// <summary>
@@ -170,8 +171,7 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
-        public bool CanAddSection { get { return mTOCView.CanAddSection && !CanAddStrip; } }
-        public bool CanAddStrip { get { return mStripsView.CanAddStrip; } }
+        public bool CanAddSection { get { return mTOCView.CanAddSection || mStripsView.CanAddStrip; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
@@ -185,7 +185,7 @@ namespace Obi.ProjectView
         public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata; } }
         public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
-        public bool CanInsertSection { get { return mTOCView.Selection != null; } }
+        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
@@ -200,7 +200,7 @@ namespace Obi.ProjectView
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
-        public bool CanRenameSection { get { return mTOCView.CanRenameSection; } }
+        public bool CanRenameSection { get { return CanRenameStrip || mTOCView.CanRenameSection; } }
         public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
@@ -367,19 +367,12 @@ namespace Obi.ProjectView
         /// </summary>
         public void InsertSection()
         {
-            if (CanInsertSection)
+            if (CanInsertStrip)
             {
                 Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
                 AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
             }
-        }
-
-        /// <summary>
-        /// Insert a new strip before the selected one at the same level.
-        /// </summary>
-        public void InsertStrip()
-        {
-            if (CanInsertStrip)
+            else if (CanInsertSection)
             {
                 Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
                 AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
@@ -606,15 +599,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenamingSelectedSection()
         {
-            if (CanRenameSection) mTOCView.SelectAndRename(SelectedNodeAs<SectionNode>());
-        }
-
-        /// <summary>
-        /// Select the label of the strip and start editing it.
-        /// </summary>
-        public void StartRenamingSelectedStrip()
-        {
-            if (CanRenameStrip) mStripsView.SelectAndRename(mStripsView.Selection.Section);
+            if (CanRenameStrip)
+            {
+                mStripsView.SelectAndRename(mStripsView.Selection.Section);
+            }
+            else if (CanRenameSection)
+            {
+                mTOCView.SelectAndRename(SelectedNodeAs<SectionNode>());
+            }
         }
 
         /// <summary>

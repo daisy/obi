@@ -660,8 +660,7 @@ namespace Obi
             UpdateFileMenu();
             UpdateEditMenu();
             UpdateViewMenu();
-            UpdateTOCMenu();
-            UpdateStripsMenu();
+            UpdateSectionsMenu();
             UpdateBlocksMenu();
             UpdateTransportMenu();
         }
@@ -884,15 +883,6 @@ namespace Obi
                 e.Cancel = true;
                 Ready();
             }
-        }
-
-        /// <summary>
-        /// Update the TOC menu when a tree node is (de)selected.
-        /// </summary>
-        private void TOCPanel_SelectedTreeNode(object sender, Events.Node.SelectedEventArgs e)
-        {
-            mAddSubSectionToolStripMenuItem.Enabled = e.Selected;
-            mRenameSectionToolStripMenuItem.Enabled = e.Selected;
         }
 
         /// <summary>
@@ -1224,16 +1214,18 @@ namespace Obi
         }
 
 
-        // TOC menu
+        // Sections menu
 
-        private void UpdateTOCMenu()
+        private void UpdateSectionsMenu()
         {
             mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubSectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
             mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
             mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
+            mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
             mSectionIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
             mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
@@ -1241,42 +1233,17 @@ namespace Obi
         }
 
         private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
-        private void mAddSubSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
+        private void mAddSubsectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
         private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
         private void mDecreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DecreaseSelectedSectionLevel(); }
         private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
+        private void mSplitSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
+        private void mMergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
         }
-
-        // Strips menu
-
-        private void UpdateStripsMenu()
-        {
-            mAddStripToolStripMenuItem.Enabled = mProjectView.CanAddStrip;
-            mInsertStripToolStripMenuItem.Enabled = mProjectView.CanInsertStrip;
-            mRenameStripToolStripMenuItem.Enabled = mProjectView.CanRenameStrip;
-            mSplitStripToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeWithNextStripToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            mStripIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetStripUsedStatus;
-            mStripIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mStripIsUsedToolStripMenuItem_CheckedChanged);
-            mStripIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkStripUnused;
-            mStripIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mStripIsUsedToolStripMenuItem_CheckedChanged);
-        }
-
-        private void mAddStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddStrip(); }
-        private void mInsertStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertStrip(); }
-        private void mRenameStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedStrip(); }
-        private void mSplitStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
-        private void mMergeWithNextStripToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
-        private void mStripIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            mProjectView.SetSelectedNodeUsedStatus(mStripIsUsedToolStripMenuItem.Checked);
-        }
-
-        // Blocks menu
 
         // Update the status of the blocks menu item with the current selection and tree.
         private void UpdateBlocksMenu()
