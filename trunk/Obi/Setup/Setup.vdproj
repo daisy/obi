@@ -57,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3660B24393B948C9A8128071CAEFF204"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3B7ECD98981F47919D717BCC603FACEE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -123,19 +117,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A312DCD7F0F7454B8EBAD7FD60A52383"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_ACAC4279C4A5484799788897BBC116EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AE7A114E43344E479439D139E4C3829E"
+        "MsmKey" = "8:_AD3849E7C60A45C3B7F374CFCC3B597E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,6 +166,24 @@
         "Entry"
         {
         "MsmKey" = "8:_D4909E9CFA644DA89683EAF723E33F3B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D6A5D2CE3EA14865950EBCAECD4BF99C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD9352CE2474474589A1F7FFD8907821"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E26ACF7318854BC0B2362EAC15576AE5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -537,26 +543,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3660B24393B948C9A8128071CAEFF204"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\icons\\media-skip-forward.png"
-            "TargetName" = "8:media-skip-forward.png"
-            "Tag" = "8:"
-            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B7ECD98981F47919D717BCC603FACEE"
             {
             "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\package.xslt"
@@ -719,26 +705,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A312DCD7F0F7454B8EBAD7FD60A52383"
-            {
-            "SourcePath" = "8:..\\Obi\\images\\icons\\media-skip-backward.png"
-            "TargetName" = "8:media-skip-backward.png"
-            "Tag" = "8:"
-            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACAC4279C4A5484799788897BBC116EE"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-record.png"
@@ -759,7 +725,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE7A114E43344E479439D139E4C3829E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD3849E7C60A45C3B7F374CFCC3B597E"
             {
             "SourcePath" = "8:..\\Obi\\Export\\filter.xslt"
             "TargetName" = "8:filter.xslt"
@@ -903,6 +869,66 @@
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-playback-stop.png"
             "TargetName" = "8:media-playback-stop.png"
+            "Tag" = "8:"
+            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6A5D2CE3EA14865950EBCAECD4BF99C"
+            {
+            "SourcePath" = "8:..\\Obi\\images\\icons\\bookmark-new.png"
+            "TargetName" = "8:bookmark-new.png"
+            "Tag" = "8:"
+            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD9352CE2474474589A1F7FFD8907821"
+            {
+            "SourcePath" = "8:..\\Obi\\images\\icons\\go-first.png"
+            "TargetName" = "8:go-first.png"
+            "Tag" = "8:"
+            "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E26ACF7318854BC0B2362EAC15576AE5"
+            {
+            "SourcePath" = "8:..\\Obi\\images\\icons\\go-last.png"
+            "TargetName" = "8:go-last.png"
             "Tag" = "8:"
             "Folder" = "8:_53D7B6575F284B4A885B84E2D69DDE71"
             "Condition" = "8:"
@@ -1095,9 +1121,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 0.10.4"
+        "ProductName" = "8:Obi 0.10.5"
         "ProductCode" = "8:{AB2AF6B3-B1C5-419C-AB4C-382BBEA69962}"
-        "PackageCode" = "8:{45E6F916-5F87-49DE-B692-C637331C45C6}"
+        "PackageCode" = "8:{73AE02E0-CB84-47C4-9DD8-897FAD83834B}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1218,7 +1244,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.10.4"
+            "Name" = "8:Obi 0.10.5"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1232,7 +1258,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 0.10.4"
+            "Name" = "8:Obi 0.10.5"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
