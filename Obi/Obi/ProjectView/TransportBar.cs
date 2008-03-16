@@ -200,9 +200,9 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mRecordingSession != null
-                && m_ResumerecordingPhrase != null;
-            }
+                                return                   m_ResumerecordingPhrase != null
+                && m_ResumerecordingPhrase.IsRooted ;
+                            }
         }
 
         public bool CanStop
@@ -1024,10 +1024,11 @@ namespace Obi.ProjectView
                     StartRecording();
                 }
                             }
-                            else if (m_ResumerecordingPhrase != null)
+                            //else if (m_ResumerecordingPhrase != null)
+                            else if ( CanResumeRecording)
                             {
                                 PrepareForRecording(true, m_ResumerecordingPhrase);
-                            }
+                                                            }
             else
             {
                                                 PrepareForRecording(false , null );

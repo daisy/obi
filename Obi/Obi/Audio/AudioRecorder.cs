@@ -375,7 +375,8 @@ namespace Obi.Audio
 			//Create a thread to monitor the notify events
 			if (null == NotifyThread)
 			{
-				NotifyThread = new Thread(new ThreadStart(WaitThread));										 			
+				NotifyThread = new Thread(new ThreadStart(WaitThread));
+                NotifyThread.Priority = ThreadPriority.Highest;
 				Capturing = true;
 				
 				// Create a notification event, for when the sound stops playing
