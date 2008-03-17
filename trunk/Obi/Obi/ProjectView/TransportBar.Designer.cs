@@ -62,7 +62,7 @@ namespace Obi.ProjectView
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(32, 35);
             this.mPlayButton.TabIndex = 4;
-            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback or recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback.");
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
@@ -107,7 +107,7 @@ namespace Obi.ProjectView
             this.mNextPhrase.Name = "mNextPhrase";
             this.mNextPhrase.Size = new System.Drawing.Size(32, 35);
             this.mNextPhrase.TabIndex = 9;
-            this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Move to the next phrase.");
+            this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Go to the following phrase.");
             this.mNextPhrase.UseVisualStyleBackColor = true;
             this.mNextPhrase.Click += new System.EventHandler(this.mNextPhrase_Click);
             // 
@@ -122,7 +122,7 @@ namespace Obi.ProjectView
             this.mPrevPhraseButton.Name = "mPrevPhraseButton";
             this.mPrevPhraseButton.Size = new System.Drawing.Size(32, 35);
             this.mPrevPhraseButton.TabIndex = 2;
-            this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Move to the previous phrase.");
+            this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Go to the preceding phrase.");
             this.mPrevPhraseButton.UseVisualStyleBackColor = true;
             this.mPrevPhraseButton.Click += new System.EventHandler(this.mPrevPhraseButton_Click);
             // 
@@ -137,7 +137,7 @@ namespace Obi.ProjectView
             this.mNextSectionButton.Name = "mNextSectionButton";
             this.mNextSectionButton.Size = new System.Drawing.Size(32, 35);
             this.mNextSectionButton.TabIndex = 11;
-            this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Move to the next section.");
+            this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Go to the following section.");
             this.mNextSectionButton.UseVisualStyleBackColor = true;
             this.mNextSectionButton.Click += new System.EventHandler(this.mNextSectionButton_Click);
             // 
@@ -152,7 +152,7 @@ namespace Obi.ProjectView
             this.mPrevSectionButton.Name = "mPrevSectionButton";
             this.mPrevSectionButton.Size = new System.Drawing.Size(32, 35);
             this.mPrevSectionButton.TabIndex = 0;
-            this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Move to the previous section.");
+            this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Go to the preceding section.");
             this.mPrevSectionButton.UseVisualStyleBackColor = true;
             this.mPrevSectionButton.Click += new System.EventHandler(this.mPrevSectionButton_Click);
             // 
@@ -168,7 +168,7 @@ namespace Obi.ProjectView
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(32, 35);
             this.mRecordButton.TabIndex = 7;
-            this.mTransportBarTooltip.SetToolTip(this.mRecordButton, "Start listening or recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mRecordButton, "Start monitoring or recording.");
             this.mRecordButton.UseVisualStyleBackColor = true;
             this.mRecordButton.Click += new System.EventHandler(this.mRecordButton_Click);
             // 
@@ -201,13 +201,13 @@ namespace Obi.ProjectView
             this.mRewindButton.Name = "mRewindButton";
             this.mRewindButton.Size = new System.Drawing.Size(32, 35);
             this.mRewindButton.TabIndex = 3;
-            this.mTransportBarTooltip.SetToolTip(this.mRewindButton, "Move to the next section.");
+            this.mTransportBarTooltip.SetToolTip(this.mRewindButton, "Play backward at faster speed.");
             this.mRewindButton.UseVisualStyleBackColor = true;
             this.mRewindButton.Click += new System.EventHandler(this.mRewindButton_Click);
             // 
             // mFastForwardButton
             // 
-            this.mFastForwardButton.AccessibleName = "Fast Forward";
+            this.mFastForwardButton.AccessibleName = "Fast forward";
             this.mFastForwardButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mFastForwardButton.FlatAppearance.BorderSize = 0;
             this.mFastForwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -216,7 +216,7 @@ namespace Obi.ProjectView
             this.mFastForwardButton.Name = "mFastForwardButton";
             this.mFastForwardButton.Size = new System.Drawing.Size(32, 35);
             this.mFastForwardButton.TabIndex = 8;
-            this.mTransportBarTooltip.SetToolTip(this.mFastForwardButton, "Move to the next section.");
+            this.mTransportBarTooltip.SetToolTip(this.mFastForwardButton, "Play forward at faster speed.");
             this.mFastForwardButton.UseVisualStyleBackColor = true;
             this.mFastForwardButton.Click += new System.EventHandler(this.mFastForwardButton_Click);
             // 
@@ -259,7 +259,7 @@ namespace Obi.ProjectView
             // 
             // mNextPageButton
             // 
-            this.mNextPageButton.AccessibleName = "Next Page";
+            this.mNextPageButton.AccessibleName = "Next page";
             this.mNextPageButton.FlatAppearance.BorderSize = 0;
             this.mNextPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mNextPageButton.Image")));
@@ -267,12 +267,13 @@ namespace Obi.ProjectView
             this.mNextPageButton.Name = "mNextPageButton";
             this.mNextPageButton.Size = new System.Drawing.Size(32, 35);
             this.mNextPageButton.TabIndex = 10;
+            this.mTransportBarTooltip.SetToolTip(this.mNextPageButton, "Go to the following page.");
             this.mNextPageButton.UseVisualStyleBackColor = true;
             this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
             // 
             // mPreviousPageButton
             // 
-            this.mPreviousPageButton.AccessibleName = "Previous Page";
+            this.mPreviousPageButton.AccessibleName = "Previous page";
             this.mPreviousPageButton.FlatAppearance.BorderSize = 0;
             this.mPreviousPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPreviousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mPreviousPageButton.Image")));
@@ -280,11 +281,13 @@ namespace Obi.ProjectView
             this.mPreviousPageButton.Name = "mPreviousPageButton";
             this.mPreviousPageButton.Size = new System.Drawing.Size(32, 35);
             this.mPreviousPageButton.TabIndex = 1;
+            this.mTransportBarTooltip.SetToolTip(this.mPreviousPageButton, "Go to the preceding page.");
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
             // mCustomClassMarkButton
             // 
+            this.mCustomClassMarkButton.AccessibleName = "Mark phrase";
             this.mCustomClassMarkButton.FlatAppearance.BorderSize = 0;
             this.mCustomClassMarkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCustomClassMarkButton.Image = ((System.Drawing.Image)(resources.GetObject("mCustomClassMarkButton.Image")));
@@ -292,6 +295,7 @@ namespace Obi.ProjectView
             this.mCustomClassMarkButton.Name = "mCustomClassMarkButton";
             this.mCustomClassMarkButton.Size = new System.Drawing.Size(32, 35);
             this.mCustomClassMarkButton.TabIndex = 12;
+            this.mTransportBarTooltip.SetToolTip(this.mCustomClassMarkButton, "Add a phrase marker while recording.");
             this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
             // 
