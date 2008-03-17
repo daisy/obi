@@ -96,8 +96,12 @@ namespace Obi.ProjectView
                     mIsSerialPlaying = false ;
                 }
                             }
-             
-        }
+                                                            m_IsSelectionMarked = false;
+                                    }
+
+        //Avn:  a temprorary flag introduced as a work around till support for setting waveform selection externally is added
+        // flag is turned true when selection end is marked and is turned false whenever selection changes
+        private bool m_IsSelectionMarked = false;
 
         public void NewPresentation()
         {
@@ -513,7 +517,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Play(ObiNode node)
         {
-                            // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
+                                        // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
                 // and if this MasterPlaylist is not in stopped state, stop it.
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
                     && mCurrentPlaylist == mMasterPlaylist)
@@ -531,9 +535,9 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
                     // Avn: condition added on 13 may 2007
                     if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
-
+                    
                     if (mView.Selection is AudioSelection
-                        && ((AudioSelection)mView.Selection).AudioRange.HasCursor
+                        && ( !((AudioSelection)mView.Selection).AudioRange.HasCursor || m_IsSelectionMarked )
                         && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
                         mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                     else if (mView.Selection is AudioSelection
@@ -949,8 +953,8 @@ namespace Obi.ProjectView
             get
             {
                 return mView.Selection != null
-                    && mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor;
+                    && mView.Selection is AudioSelection;
+                    //&& !((AudioSelection)mView.Selection).AudioRange.HasCursor;
             }
         }
         
@@ -970,7 +974,8 @@ namespace Obi.ProjectView
                                 && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime )
             {
                 ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
-                return true;
+                m_IsSelectionMarked = true;
+                                                return true;
             }
             return false;
         }
@@ -988,8 +993,8 @@ namespace Obi.ProjectView
 
         public bool PlayPreviewSelectedFragment()
         {
-                                    if ( IsInPhraseSelectionMarked
-                            &&    ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime )
+                                                if ( IsInPhraseSelectionMarked
+                                                                    &&    ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime )
             {
                 mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime );
                 return true;
