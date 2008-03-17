@@ -36,12 +36,14 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mDetectedPhrases = mPresentation.CreatePhraseNodesFromAudioAssetList(Obi.Audio.PhraseDetection.Apply(mOriginalPhrase.Audio.copy () , mThreshold, mGap, mBeforePhraseSilence));
-            //mOriginalPhrase.Detach();
+            
             for (int i = 0; i < mDetectedPhrases.Count; i++)
             {
                 mParentSection.Insert(mDetectedPhrases[i], mOriginalPhraseIndex + i);
             }
-        }
+            if (View.Selection != null) View.Selection = new NodeSelection(mParentSection.PhraseChild(mOriginalPhraseIndex), View.Selection.Control);
+            mOriginalPhrase.Detach();
+                    }
 
         public override void unExecute()
         {
