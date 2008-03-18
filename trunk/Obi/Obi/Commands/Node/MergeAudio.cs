@@ -17,16 +17,14 @@ namespace Obi.Commands.Node
             mSplitPoint = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
             // Selection could be an audio selection?
             mSelection = new NodeSelection(mNode, view.Selection.Control);
-            Label = Localizer.Message("merge_block_with_next");
+            Label = Localizer.Message("merge_phrase_with_next");
         }
 
         /// <summary>
-        /// Merge the selected (phrase) node with the following (phrase) node.
+        /// Merge the selected (empty) node with the following (empty) node.
         /// </summary>
         public MergeAudio(ProjectView.ProjectView view):
-            this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1))
-        {
-        }
+            this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1)) {}
 
         public static void Merge(PhraseNode node, PhraseNode next)
         {

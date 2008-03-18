@@ -92,7 +92,7 @@ namespace Obi.Commands.Node
         public InsertSectionNode(ProjectView.ProjectView view)
             : base(view, (IControlWithRenamableSelection)view.Selection.Control)
         {
-            Label = Localizer.Message(view.Selection.Control is ProjectView.TOCView ? "insert_section" : "insert_strip");
+            Label = Localizer.Message("insert_section");
         }
 
         // Set parent and index for the new node

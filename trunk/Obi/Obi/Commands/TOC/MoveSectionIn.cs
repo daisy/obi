@@ -38,7 +38,7 @@ namespace Obi.Commands.TOC
             }
         }
 
-        public override string getShortDescription() { return Localizer.Message("move_section_in_command"); }
+        public override string getShortDescription() { return Localizer.Message("move_section_in"); }
 
         public override void execute()
         {

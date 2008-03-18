@@ -34,9 +34,9 @@ namespace Obi.ProjectView
         // Generate the label string for this block.
         protected virtual void UpdateLabel()
         {
-            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("empty_block") :
+            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
                 mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
-                String.Format(Localizer.Message("kind_block"),
+                String.Format(Localizer.Message("kind_phrase"),
                     mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
             mLabel.Text = name;
             Size = new Size(LabelFullWidth, Height);
