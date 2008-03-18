@@ -90,7 +90,9 @@ namespace Obi.ProjectView
             get
             {
                 EmptyNode node = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
-                return node != null && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
+                return node != null
+                    && node is PhraseNode && node.FollowingNode is PhraseNode 
+                    && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
         }
 
