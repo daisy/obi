@@ -73,7 +73,7 @@ namespace Obi
             Dialogs.NewProject dialog = new Dialogs.NewProject(
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
+                Localizer.Message("obi_filter"),
                 Localizer.Message("default_project_title"));
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -94,7 +94,7 @@ namespace Obi
             Dialogs.NewProject dialog = new Dialogs.NewProject(
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_project_extension"),
+                Localizer.Message("obi_filter"),
                 ImportStructure.grabTitle(new Uri(openFile.FileName)));
             dialog.DisableAutoTitleCheckbox();
             dialog.Text = Localizer.Message("create_new_project_from_import");
@@ -513,8 +513,8 @@ namespace Obi
                 System.IO.StreamWriter tmpErrorLogStream = System.IO.File.CreateText(path);
                 tmpErrorLogStream.WriteLine(e.ToString());
                 tmpErrorLogStream.Close();
-                MessageBox.Show(String.Format(Localizer.Message("init_error"), path, e.ToString()),
-                    Localizer.Message("init_error_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(String.Format(Localizer.Message("init_error_text"), path, e.ToString()),
+                    Localizer.Message("init_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -959,7 +959,7 @@ namespace Obi
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_html")))).ToString());
+                Localizer.Message("help_file_name")))).ToString());
         }
 
         private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1144,7 +1144,7 @@ namespace Obi
         private static bool DidCreateDirectory(string path)
         {
             if (MessageBox.Show(
-                String.Format(Localizer.Message("create_directory_query"), path),
+                String.Format(Localizer.Message("create_directory_text"), path),
                 Localizer.Message("create_directory_caption"),
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1157,8 +1157,8 @@ namespace Obi
                 catch (Exception e)
                 {
                     MessageBox.Show(
-                        String.Format(Localizer.Message("create_directory_failure"), path, e.Message),
-                        Localizer.Message("error"),
+                        String.Format(Localizer.Message("cannot_create_directory_text"), path, e.Message),
+                        Localizer.Message("cannot_create_directory_caption"),
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return false;  // couldn't create the directory

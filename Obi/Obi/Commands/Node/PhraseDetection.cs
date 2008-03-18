@@ -30,7 +30,7 @@ namespace Obi.Commands.Node
             mBeforePhraseSilence = before;
         }
 
-        public override string getShortDescription() { return Localizer.Message("PhraseDetectionCommand_Label"); }
+        public override string getShortDescription() { return Localizer.Message("phrase_detection"); }
 
 
         public override void execute()

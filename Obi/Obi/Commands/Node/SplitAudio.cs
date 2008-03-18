@@ -13,7 +13,7 @@ namespace Obi.Commands.Node
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
             mSplitPoint = new Time(((AudioSelection)view.Selection).AudioRange.CursorTime);
-            Label = Localizer.Message("split_block");
+            Label = Localizer.Message("split_phrase");
         }
 
         public override void execute()

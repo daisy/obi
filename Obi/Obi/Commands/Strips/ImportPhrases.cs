@@ -30,7 +30,7 @@ namespace Obi.Commands.Strips
             mPhrases = phrases;
         }
 
-        public override string getShortDescription() { return Localizer.Message("import_phrases_command"); }
+        public override string getShortDescription() { return Localizer.Message("import_phrases"); }
 
         public override void execute()
         {

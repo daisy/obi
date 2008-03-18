@@ -40,7 +40,7 @@ namespace Obi.Commands.TOC
             sibling.ParentAs<ObiNode>().InsertAfter(section, sibling);
         }
 
-        public override string getShortDescription() { return Localizer.Message("move_section_out_command"); }
+        public override string getShortDescription() { return Localizer.Message("move_section_out"); }
 
         public override void execute()
         {

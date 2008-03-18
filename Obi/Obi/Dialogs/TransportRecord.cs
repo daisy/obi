@@ -61,13 +61,13 @@ namespace Obi.Dialogs
             if (mPauseButton.Enabled)
             {
                 mTimeDisplay.Enabled = false;
-                mTimeDisplayBox.Text = Localizer.Message("listening");
+                mTimeDisplayBox.Text = Localizer.Message("monitoring");
                 mRecordingSession.Stop();
                 mRecordingSession.Listen();
                 mRecordButton.Visible = mRecordButton.Enabled = true;
                 if (mPauseButton.Focused) mRecordButton.Focus();
                 mPauseButton.Visible = mPauseButton.Enabled = false;
-                Text = Localizer.Message("listening");
+                Text = Localizer.Message("monitoring");
             }
         }
 
@@ -135,7 +135,7 @@ namespace Obi.Dialogs
             mRecordingSession.Listen();
                         
             mTimeDisplay.Enabled = false;
-            mTimeDisplayBox.Text = "Listening";
+            mTimeDisplayBox.Text = Localizer.Message("monitoring_short");
         }
 
         private void TransportRecord_FormClosing(object sender, FormClosingEventArgs e)

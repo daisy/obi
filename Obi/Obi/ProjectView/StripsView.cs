@@ -129,7 +129,7 @@ namespace Obi.ProjectView
 
         private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
         {
-            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_strip_command"));
+            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_section_shallow"));
             if (section.SectionChildCount > 0)
             {
                 urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
@@ -181,7 +181,7 @@ namespace Obi.ProjectView
             if (CanMergeStripWithNext)
             {
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("merge_strips"));
+                command.setShortDescription(Localizer.Message("merge_sections"));
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
                 if (!section.Used) mView.AppendMakeUnused(command, next);
@@ -287,7 +287,7 @@ namespace Obi.ProjectView
                     mSelection.Node.PhraseChild(((StripCursorSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
                 SectionNode section = node.ParentAs<SectionNode>();
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("split_strip"));
+                command.setShortDescription(Localizer.Message("split_section"));
                 SectionNode sibling = mView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label;
                 Commands.Node.AddNode add = new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
@@ -590,8 +590,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Right] = SelectFollowingBlock;
             mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
             mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
-            mShortcutKeys[Keys.PageDown ] = SelectNextPageNode ;
-            mShortcutKeys[Keys.PageUp ] = SelectPreviousPageNode;
+            mShortcutKeys[Keys.PageDown] = SelectNextPageNode ;
+            mShortcutKeys[Keys.PageUp] = SelectPrecedingPageNode;
             mShortcutKeys[Keys.Control | Keys.PageDown ] = SelectNextSpecialRoleNode ;
             mShortcutKeys[ Keys.Control |  Keys.PageUp] = SelectPreviousSpecialRoleNode ;
 
@@ -771,30 +771,32 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// Moves keyboard focus to previous page node while in strips view
+        /// Moves keyboard focus to preceding page node.
         /// </summary>
-        public bool SelectPreviousPageNode()
+        public bool SelectPrecedingPageNode()
         {
-            return  SelectNodeOfSpecificRole ( EmptyNode.Kind.Page , false ) ;
-        }
-
-        public bool SelectNodeOfSpecificRole(EmptyNode.Kind NodeKind , bool Next )
-        {
-            if (Next)
+            if (mView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == NodeKind )
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return true;
-                    }
+                    }   
                 }
-                return false;
             }
-            else
+            return false;
+        }
+
+        /// <summary>
+        /// Moves keyboard focus to the following page node.
+        /// </summary>
+        public bool SelectNextPageNode()
+        {
+            if (mView.SelectedNodeAs<EmptyNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                     {
@@ -802,16 +804,8 @@ namespace Obi.ProjectView
                         return true;
                     }
                 }
-                return false;
             }
-        }
-
-        /// <summary>
-        /// Moves keyboard focus to next page node while in strips view
-        /// </summary>
-        public bool SelectNextPageNode()
-        {
-            return  SelectNodeOfSpecificRole  ( EmptyNode.Kind.Page , true ) ;
+            return false;
         }
 
         /// <summary>

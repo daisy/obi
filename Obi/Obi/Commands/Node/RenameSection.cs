@@ -22,7 +22,7 @@ namespace Obi.Commands.Node
             mNewLabel = label;
         }
 
-        public override string getShortDescription() { return Localizer.Message("rename_section_command"); }
+        public override string getShortDescription() { return Localizer.Message("rename_section"); }
 
         public override void execute()
         {

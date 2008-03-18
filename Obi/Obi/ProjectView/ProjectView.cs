@@ -229,11 +229,11 @@ namespace Obi.ProjectView
             }
             else if (CanCopyStrip)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_strip")));
+                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_section_shallow")));
             }
             else if (CanCopyBlock)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_block")));
+                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_phrase")));
             }
             else if (CanCopyAudio)
             {
@@ -250,7 +250,7 @@ namespace Obi.ProjectView
             {
                 bool isSection = mSelection.Control is TOCView;
                 urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
-                    Localizer.Message(isSection ? "cut_section" : "cut_strip"));
+                    Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
                 command.append(new Commands.Node.Copy(this, isSection));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
                 mPresentation.getUndoRedoManager().execute(command);
@@ -258,7 +258,7 @@ namespace Obi.ProjectView
             else if (CanRemoveBlock)
             {
                 urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(Localizer.Message("cut_block"));
+                command.setShortDescription(Localizer.Message("cut_phrase"));
                 command.append(new Commands.Node.Copy(this, true));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
                 mPresentation.getUndoRedoManager().execute(command);
@@ -292,7 +292,7 @@ namespace Obi.ProjectView
             else if (CanRemoveBlock)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
-                    Localizer.Message("delete_block")));
+                    Localizer.Message("delete_phrase")));
             }
             else if (CanRemoveAudio)
             {
@@ -580,8 +580,7 @@ namespace Obi.ProjectView
             if (CanSetSelectedNodeUsedStatus && mSelection.Node.Used != used)
             {
                 urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(String.Format(
-                    Localizer.Message(mSelection.Node is SectionNode ?
-                        mSelection.Control is TOCView ? "mark_section_used" : "mark_strip_used" : "mark_block_used"),
+                    Localizer.Message(mSelection.Node is SectionNode ? "mark_section_used" : "mark_phrase_used"),
                     Localizer.Message(mSelection.Node.Used ? "unused" : "used")));
                 mSelection.Node.acceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
@@ -1023,7 +1022,7 @@ namespace Obi.ProjectView
             if (CanAddEmptyBlock)
             {
                 urakawa.undo.CompositeCommand cmd =
-                    Presentation.CreateCompositeCommand(Localizer.Message("add_empty_page_blocks"));
+                    Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
                 int index = -1;
                 ObiNode parent = null;
                 // For every page, add a new empty block and give it a number.

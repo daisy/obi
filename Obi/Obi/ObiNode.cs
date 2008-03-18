@@ -67,7 +67,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// First leadt from a given node.
+        /// First leaf from a given node.
         /// </summary>
         public ObiNode FirstLeaf
         {

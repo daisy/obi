@@ -61,15 +61,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A section.
-        /// </summary>
-        internal static string a_section {
-            get {
-                return ResourceManager.GetString("a_section", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to about_en.html.
         /// </summary>
         internal static string about_file_name {
@@ -79,20 +70,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add empty block.
+        ///   Looks up a localized string similar to add blank pages.
         /// </summary>
-        internal static string add_empty_block {
+        internal static string add_blank_pages {
             get {
-                return ResourceManager.GetString("add_empty_block", resourceCulture);
+                return ResourceManager.GetString("add_blank_pages", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add empty page blocks.
+        ///   Looks up a localized string similar to add blank phrase.
         /// </summary>
-        internal static string add_empty_page_blocks {
+        internal static string add_blank_phrase {
             get {
-                return ResourceManager.GetString("add_empty_page_blocks", resourceCulture);
+                return ResourceManager.GetString("add_blank_phrase", resourceCulture);
             }
         }
         
@@ -102,15 +93,6 @@ namespace Obi {
         internal static string add_metadata_entry {
             get {
                 return ResourceManager.GetString("add_metadata_entry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to add audio block.
-        /// </summary>
-        internal static string add_phrase_command_label {
-            get {
-                return ResourceManager.GetString("add_phrase_command_label", resourceCulture);
             }
         }
         
@@ -133,65 +115,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add strip.
-        /// </summary>
-        internal static string add_strip {
-            get {
-                return ResourceManager.GetString("add_strip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to add subsection.
         /// </summary>
         internal static string add_subsection {
             get {
                 return ResourceManager.GetString("add_subsection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to all phrases.
-        /// </summary>
-        internal static string all_phrases {
-            get {
-                return ResourceManager.GetString("all_phrases", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An annotation.
-        /// </summary>
-        internal static string an_annotation {
-            get {
-                return ResourceManager.GetString("an_annotation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This annotation is useful during production, but it does not appear in the exported presentation..
-        /// </summary>
-        internal static string annotation_tooltip {
-            get {
-                return ResourceManager.GetString("annotation_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to apply phrase detection.
-        /// </summary>
-        internal static string apply_phrase_detection_command_label {
-            get {
-                return ResourceManager.GetString("apply_phrase_detection_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to asset_{0}.
-        /// </summary>
-        internal static string asset_name {
-            get {
-                return ResourceManager.GetString("asset_name", resourceCulture);
             }
         }
         
@@ -205,42 +133,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio block.
-        /// </summary>
-        internal static string audio_block {
-            get {
-                return ResourceManager.GetString("audio_block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Audio block {0} of {1}.
-        /// </summary>
-        internal static string audio_block_default_label {
-            get {
-                return ResourceManager.GetString("audio_block_default_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The duration of this audio segment.
-        /// </summary>
-        internal static string audio_block_duration_tooltip {
-            get {
-                return ResourceManager.GetString("audio_block_duration_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A segment of audio..
-        /// </summary>
-        internal static string audio_block_tooltip {
-            get {
-                return ResourceManager.GetString("audio_block_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to WAVE file (*.wav)|*.wav|Any file|*.*.
         /// </summary>
         internal static string audio_file_filter {
@@ -250,29 +142,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Selected:.
+        ///   Looks up a localized string similar to Blank phrase.
         /// </summary>
-        internal static string AudioSelected {
+        internal static string blank_phrase {
             get {
-                return ResourceManager.GetString("AudioSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to block.
-        /// </summary>
-        internal static string block {
-            get {
-                return ResourceManager.GetString("block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancelled.
-        /// </summary>
-        internal static string cancelled {
-            get {
-                return ResourceManager.GetString("cancelled", resourceCulture);
+                return ResourceManager.GetString("blank_phrase", resourceCulture);
             }
         }
         
@@ -322,24 +196,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot delete required metadata item.
-        /// </summary>
-        internal static string cannot_delete_metadata_caption {
-            get {
-                return ResourceManager.GetString("cannot_delete_metadata_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot delete metadata item &quot;{0}&quot;: it is required for the publication to be valid..
-        /// </summary>
-        internal static string cannot_delete_metadata_text {
-            get {
-                return ResourceManager.GetString("cannot_delete_metadata_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file {0} cannot be deleted. Press OK to continue or Cancel to abort. (Reason given: {1}).
         /// </summary>
         internal static string cannot_delete_text {
@@ -376,11 +232,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find channel named &quot;{0}&quot;..
+        ///   Looks up a localized string similar to Choose import file.
         /// </summary>
-        internal static string channel_not_found {
+        internal static string choose_import_file {
             get {
-                return ResourceManager.GetString("channel_not_found", resourceCulture);
+                return ResourceManager.GetString("choose_import_file", resourceCulture);
             }
         }
         
@@ -477,16 +333,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to copy block.
+        ///   Looks up a localized string similar to copy phrase.
         /// </summary>
-        internal static string copy_block {
+        internal static string copy_phrase {
             get {
-                return ResourceManager.GetString("copy_block", resourceCulture);
+                return ResourceManager.GetString("copy_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to copy section.
+        ///   Looks up a localized string similar to copy section (deep).
         /// </summary>
         internal static string copy_section {
             get {
@@ -495,16 +351,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to copy strip.
+        ///   Looks up a localized string similar to copy section (shallow).
         /// </summary>
-        internal static string copy_strip {
+        internal static string copy_section_shallow {
             get {
-                return ResourceManager.GetString("copy_strip", resourceCulture);
+                return ResourceManager.GetString("copy_section_shallow", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Directory.
+        ///   Looks up a localized string similar to Create directory?.
         /// </summary>
         internal static string create_directory_caption {
             get {
@@ -513,20 +369,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The directory {0} could not be created: {1}.
-        /// </summary>
-        internal static string create_directory_failure {
-            get {
-                return ResourceManager.GetString("create_directory_failure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The directory {0} does not exist. Do you want to create it?.
         /// </summary>
-        internal static string create_directory_query {
+        internal static string create_directory_text {
             get {
-                return ResourceManager.GetString("create_directory_query", resourceCulture);
+                return ResourceManager.GetString("create_directory_text", resourceCulture);
             }
         }
         
@@ -558,16 +405,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cut block.
+        ///   Looks up a localized string similar to cut phrase.
         /// </summary>
-        internal static string cut_block {
+        internal static string cut_phrase {
             get {
-                return ResourceManager.GetString("cut_block", resourceCulture);
+                return ResourceManager.GetString("cut_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cut section.
+        ///   Looks up a localized string similar to cut section (deep).
         /// </summary>
         internal static string cut_section {
             get {
@@ -576,11 +423,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cut strip.
+        ///   Looks up a localized string similar to cut section (shallow).
         /// </summary>
-        internal static string cut_strip {
+        internal static string cut_section_shallow {
             get {
-                return ResourceManager.GetString("cut_strip", resourceCulture);
+                return ResourceManager.GetString("cut_section_shallow", resourceCulture);
             }
         }
         
@@ -599,15 +446,6 @@ namespace Obi {
         internal static string dc_title_description {
             get {
                 return ResourceManager.GetString("dc_title_description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move section out.
-        /// </summary>
-        internal static string decrease_section_level_command_label {
-            get {
-                return ResourceManager.GetString("decrease_section_level_command_label", resourceCulture);
             }
         }
         
@@ -675,24 +513,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete block.
-        /// </summary>
-        internal static string delete_block {
-            get {
-                return ResourceManager.GetString("delete_block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Delete{0}.
-        /// </summary>
-        internal static string delete_menu_label {
-            get {
-                return ResourceManager.GetString("delete_menu_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to delete metadata entry.
         /// </summary>
         internal static string delete_metadata_entry {
@@ -702,16 +522,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete audio block.
+        ///   Looks up a localized string similar to delete phrase.
         /// </summary>
-        internal static string delete_phrase_command_label {
+        internal static string delete_phrase {
             get {
-                return ResourceManager.GetString("delete_phrase_command_label", resourceCulture);
+                return ResourceManager.GetString("delete_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete section.
+        ///   Looks up a localized string similar to delete section (deep).
         /// </summary>
         internal static string delete_section {
             get {
@@ -720,11 +540,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete strip.
+        ///   Looks up a localized string similar to delete section (shallow).
         /// </summary>
-        internal static string delete_strip_command {
+        internal static string delete_section_shallow {
             get {
-                return ResourceManager.GetString("delete_strip_command", resourceCulture);
+                return ResourceManager.GetString("delete_section_shallow", resourceCulture);
             }
         }
         
@@ -734,24 +554,6 @@ namespace Obi {
         internal static string delete_unused {
             get {
                 return ResourceManager.GetString("delete_unused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error cleaning up project.
-        /// </summary>
-        internal static string didnt_clean_project_caption {
-            get {
-                return ResourceManager.GetString("didnt_clean_project_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Could not clean up project. Reason given: {0}.
-        /// </summary>
-        internal static string didnt_clean_project_text {
-            get {
-                return ResourceManager.GetString("didnt_clean_project_text", resourceCulture);
             }
         }
         
@@ -774,53 +576,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discarding changes to a modified project.
-        /// </summary>
-        internal static string discard_changes_caption {
-            get {
-                return ResourceManager.GetString("discard_changes_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you really want to discard all modifications made to this
-        ///project and revert it to its last saved state?
-        ///You cannot undo this operation..
-        /// </summary>
-        internal static string discard_changes_text {
-            get {
-                return ResourceManager.GetString("discard_changes_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (add new node).
-        /// </summary>
-        internal static string dummy_section {
-            get {
-                return ResourceManager.GetString("dummy_section", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to edit annotation.
-        /// </summary>
-        internal static string edit_annotation_command_label {
-            get {
-                return ResourceManager.GetString("edit_annotation_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Empty block.
-        /// </summary>
-        internal static string empty_block {
-            get {
-                return ResourceManager.GetString("empty_block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exporting to a non-empty directory.
         /// </summary>
         internal static string empty_directory_caption {
@@ -835,42 +590,6 @@ namespace Obi {
         internal static string empty_directory_text {
             get {
                 return ResourceManager.GetString("empty_directory_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Empty label.
-        /// </summary>
-        internal static string empty_label_warning_caption {
-            get {
-                return ResourceManager.GetString("empty_label_warning_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} cannot have an empty label..
-        /// </summary>
-        internal static string empty_label_warning_text {
-            get {
-                return ResourceManager.GetString("empty_label_warning_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        internal static string error {
-            get {
-                return ResourceManager.GetString("error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred during DAISY export..
-        /// </summary>
-        internal static string error_exporting_daisy {
-            get {
-                return ResourceManager.GetString("error_exporting_daisy", resourceCulture);
             }
         }
         
@@ -907,33 +626,6 @@ namespace Obi {
         internal static string export_directory_browser {
             get {
                 return ResourceManager.GetString("export_directory_browser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exporting project with unsaved changes.
-        /// </summary>
-        internal static string export_unsaved_caption {
-            get {
-                return ResourceManager.GetString("export_unsaved_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are about to export a project with unsaved changes. The project will be automatically saved before export if you click OK. Press cancel to cancel export (your project will not be saved.).
-        /// </summary>
-        internal static string export_unsaved_text {
-            get {
-                return ResourceManager.GetString("export_unsaved_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A normalized form of the contents suitable for machine processing..
-        /// </summary>
-        internal static string file_as_description {
-            get {
-                return ResourceManager.GetString("file_as_description", resourceCulture);
             }
         }
         
@@ -983,15 +675,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Heading.
-        /// </summary>
-        internal static string Heading {
-            get {
-                return ResourceManager.GetString("Heading", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to help_en.html.
         /// </summary>
         internal static string help_file_name {
@@ -1001,47 +684,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to help_en.html.
-        /// </summary>
-        internal static string help_html {
-            get {
-                return ResourceManager.GetString("help_html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide &amp;table of contents.
-        /// </summary>
-        internal static string hide_toc_label {
-            get {
-                return ResourceManager.GetString("hide_toc_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide &amp;VU meter.
-        /// </summary>
-        internal static string hide_vu_meter {
-            get {
-                return ResourceManager.GetString("hide_vu_meter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Import failed: .
         /// </summary>
         internal static string import_failed {
             get {
                 return ResourceManager.GetString("import_failed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose a file to import from.
-        /// </summary>
-        internal static string import_from_file {
-            get {
-                return ResourceManager.GetString("import_from_file", resourceCulture);
             }
         }
         
@@ -1066,9 +713,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to import audio files.
         /// </summary>
-        internal static string import_phrases_command {
+        internal static string import_phrases {
             get {
-                return ResourceManager.GetString("import_phrases_command", resourceCulture);
+                return ResourceManager.GetString("import_phrases", resourceCulture);
             }
         }
         
@@ -1082,11 +729,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to move section in.
+        ///   Looks up a localized string similar to Obi initialization error.
         /// </summary>
-        internal static string increase_section_level_command_label {
+        internal static string init_error_caption {
             get {
-                return ResourceManager.GetString("increase_section_level_command_label", resourceCulture);
+                return ResourceManager.GetString("init_error_caption", resourceCulture);
             }
         }
         
@@ -1095,18 +742,9 @@ namespace Obi {
         ///Please Submit a bug report, including the contents of {0}
         ///Error text: {1}.
         /// </summary>
-        internal static string init_error {
+        internal static string init_error_text {
             get {
-                return ResourceManager.GetString("init_error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Obi initialization error.
-        /// </summary>
-        internal static string init_error_title {
-            get {
-                return ResourceManager.GetString("init_error_title", resourceCulture);
+                return ResourceManager.GetString("init_error_text", resourceCulture);
             }
         }
         
@@ -1120,56 +758,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert strip.
+        ///   Looks up a localized string similar to {0} phrase.
         /// </summary>
-        internal static string insert_strip {
+        internal static string kind_phrase {
             get {
-                return ResourceManager.GetString("insert_strip", resourceCulture);
+                return ResourceManager.GetString("kind_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} block.
+        ///   Looks up a localized string similar to mark phrase as {0}.
         /// </summary>
-        internal static string kind_block {
+        internal static string mark_phrase_used {
             get {
-                return ResourceManager.GetString("kind_block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to last command.
-        /// </summary>
-        internal static string last_command {
-            get {
-                return ResourceManager.GetString("last_command", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Listening....
-        /// </summary>
-        internal static string listening {
-            get {
-                return ResourceManager.GetString("listening", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mark block as {0}.
-        /// </summary>
-        internal static string mark_block_used {
-            get {
-                return ResourceManager.GetString("mark_block_used", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to mark audio block as section heading.
-        /// </summary>
-        internal static string mark_section_heading_command_label {
-            get {
-                return ResourceManager.GetString("mark_section_heading_command_label", resourceCulture);
+                return ResourceManager.GetString("mark_phrase_used", resourceCulture);
             }
         }
         
@@ -1183,74 +785,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mark strip as {0}.
+        ///   Looks up a localized string similar to merge phrase with next.
         /// </summary>
-        internal static string mark_strip_used {
+        internal static string merge_phrase_with_next {
             get {
-                return ResourceManager.GetString("mark_strip_used", resourceCulture);
+                return ResourceManager.GetString("merge_phrase_with_next", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mar&amp;k {0} as {1}.
+        ///   Looks up a localized string similar to merge section.
         /// </summary>
-        internal static string mark_x_as_y {
+        internal static string merge_sections {
             get {
-                return ResourceManager.GetString("mark_x_as_y", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to merge block with next.
-        /// </summary>
-        internal static string merge_block_with_next {
-            get {
-                return ResourceManager.GetString("merge_block_with_next", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to merge blocks.
-        /// </summary>
-        internal static string merge_phrases_command_label {
-            get {
-                return ResourceManager.GetString("merge_phrases_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to merge strips.
-        /// </summary>
-        internal static string merge_strips {
-            get {
-                return ResourceManager.GetString("merge_strips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Names of primary author or creator of the intellectual content of the publication..
-        /// </summary>
-        internal static string meta_dc_creator {
-            get {
-                return ResourceManager.GetString("meta_dc_creator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The title of the DTB, including any subtitles..
-        /// </summary>
-        internal static string meta_dc_title {
-            get {
-                return ResourceManager.GetString("meta_dc_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Could not find path to asset directory..
-        /// </summary>
-        internal static string missing_asset_path {
-            get {
-                return ResourceManager.GetString("missing_asset_path", resourceCulture);
+                return ResourceManager.GetString("merge_sections", resourceCulture);
             }
         }
         
@@ -1282,6 +830,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monitoring audio input....
+        /// </summary>
+        internal static string monitoring {
+            get {
+                return ResourceManager.GetString("monitoring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitoring.
+        /// </summary>
+        internal static string monitoring_short {
+            get {
+                return ResourceManager.GetString("monitoring_short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mono.
         /// </summary>
         internal static string mono {
@@ -1291,119 +857,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to move audio block.
-        /// </summary>
-        internal static string move_phrase_command_label {
-            get {
-                return ResourceManager.GetString("move_phrase_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move section down.
-        /// </summary>
-        internal static string move_section_down_command_label {
-            get {
-                return ResourceManager.GetString("move_section_down_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move strip down.
-        /// </summary>
-        internal static string move_section_down_linear_command_label {
-            get {
-                return ResourceManager.GetString("move_section_down_linear_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to increase section level.
         /// </summary>
-        internal static string move_section_in_command {
+        internal static string move_section_in {
             get {
-                return ResourceManager.GetString("move_section_in_command", resourceCulture);
+                return ResourceManager.GetString("move_section_in", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to decrease section level.
         /// </summary>
-        internal static string move_section_out_command {
+        internal static string move_section_out {
             get {
-                return ResourceManager.GetString("move_section_out_command", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move section up.
-        /// </summary>
-        internal static string move_section_up_command_label {
-            get {
-                return ResourceManager.GetString("move_section_up_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to move strip up.
-        /// </summary>
-        internal static string move_section_up_linear_command_label {
-            get {
-                return ResourceManager.GetString("move_section_up_linear_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name already exists.
-        /// </summary>
-        internal static string name_already_exists_caption {
-            get {
-                return ResourceManager.GetString("name_already_exists_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Could not rename item `{0}&apos; as this name is already in use in the project..
-        /// </summary>
-        internal static string name_already_exists_text {
-            get {
-                return ResourceManager.GetString("name_already_exists_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DAISY 3 NCX file (*.ncx)|*.ncx.
-        /// </summary>
-        internal static string ncx_filter {
-            get {
-                return ResourceManager.GetString("ncx_filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New project.
-        /// </summary>
-        internal static string new_project {
-            get {
-                return ResourceManager.GetString("new_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New strip.
-        /// </summary>
-        internal static string new_strip_label {
-            get {
-                return ResourceManager.GetString("new_strip_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to no.
-        /// </summary>
-        internal static string no {
-            get {
-                return ResourceManager.GetString("no", resourceCulture);
+                return ResourceManager.GetString("move_section_out", resourceCulture);
             }
         }
         
@@ -1426,15 +893,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No project is currently open..
-        /// </summary>
-        internal static string no_open_project {
-            get {
-                return ResourceManager.GetString("no_open_project", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No audio output device found.
         /// </summary>
         internal static string no_output_device_caption {
@@ -1453,29 +911,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to page ....
+        ///   Looks up a localized string similar to No preceding silent phrase for reference; using default values..
         /// </summary>
-        internal static string no_page_label {
+        internal static string no_preceding_silent_phrase {
             get {
-                return ResourceManager.GetString("no_page_label", resourceCulture);
+                return ResourceManager.GetString("no_preceding_silent_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No preceding silence block for reference. Setting default value for  threshold.
+        ///   Looks up a localized string similar to Phrase.
         /// </summary>
-        internal static string No_Preceding_SilenceBlock {
+        internal static string normal_phrase {
             get {
-                return ResourceManager.GetString("No_Preceding_SilenceBlock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No project..
-        /// </summary>
-        internal static string no_project {
-            get {
-                return ResourceManager.GetString("no_project", resourceCulture);
+                return ResourceManager.GetString("normal_phrase", resourceCulture);
             }
         }
         
@@ -1498,15 +947,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Playback is not ready..
-        /// </summary>
-        internal static string NotReady {
-            get {
-                return ResourceManager.GetString("NotReady", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Obi.
         /// </summary>
         internal static string obi {
@@ -1521,15 +961,6 @@ namespace Obi {
         internal static string obi_filter {
             get {
                 return ResourceManager.GetString("obi_filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
-        /// </summary>
-        internal static string obi_project_extension {
-            get {
-                return ResourceManager.GetString("obi_project_extension", resourceCulture);
             }
         }
         
@@ -1561,25 +992,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace project?.
-        /// </summary>
-        internal static string overwrite_file_caption {
-            get {
-                return ResourceManager.GetString("overwrite_file_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file {0} already exists.
-        ///Do you want to replace the project contained in this file?.
-        /// </summary>
-        internal static string overwrite_file_text {
-            get {
-                return ResourceManager.GetString("overwrite_file_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to page {0}.
         /// </summary>
         internal static string page_number {
@@ -1598,11 +1010,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to paste block.
+        ///   Looks up a localized string similar to paste phrase.
         /// </summary>
-        internal static string paste_block {
+        internal static string paste_phrase {
             get {
-                return ResourceManager.GetString("paste_block", resourceCulture);
+                return ResourceManager.GetString("paste_phrase", resourceCulture);
             }
         }
         
@@ -1616,92 +1028,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to paste strip.
+        ///   Looks up a localized string similar to phrase detection.
         /// </summary>
-        internal static string paste_strip {
+        internal static string phrase_detection {
             get {
-                return ResourceManager.GetString("paste_strip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to paste strips.
-        /// </summary>
-        internal static string paste_strips {
-            get {
-                return ResourceManager.GetString("paste_strips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Pause.
-        /// </summary>
-        internal static string pause {
-            get {
-                return ResourceManager.GetString("pause", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to P&amp;ause.
-        /// </summary>
-        internal static string pause_all {
-            get {
-                return ResourceManager.GetString("pause_all", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paused..
-        /// </summary>
-        internal static string Paused {
-            get {
-                return ResourceManager.GetString("Paused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to phrase.
-        /// </summary>
-        internal static string phrase {
-            get {
-                return ResourceManager.GetString("phrase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Phrase Detection Command.
-        /// </summary>
-        internal static string PhraseDetectionCommand_Label {
-            get {
-                return ResourceManager.GetString("PhraseDetectionCommand_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &amp;Play.
-        /// </summary>
-        internal static string play {
-            get {
-                return ResourceManager.GetString("play", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Play &amp;all.
-        /// </summary>
-        internal static string play_all {
-            get {
-                return ResourceManager.GetString("play_all", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Play &amp;selection.
-        /// </summary>
-        internal static string play_selection {
-            get {
-                return ResourceManager.GetString("play_selection", resourceCulture);
+                return ResourceManager.GetString("phrase_detection", resourceCulture);
             }
         }
         
@@ -1715,24 +1046,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Playing..
-        /// </summary>
-        internal static string Playing {
-            get {
-                return ResourceManager.GetString("Playing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Playing on device {0}.
-        /// </summary>
-        internal static string playing_on_device {
-            get {
-                return ResourceManager.GetString("playing_on_device", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please enter some text..
         /// </summary>
         internal static string please_enter_some_text {
@@ -1742,38 +1055,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not create project directory {0}..
-        /// </summary>
-        internal static string project_directory_creation_error {
-            get {
-                return ResourceManager.GetString("project_directory_creation_error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         internal static string ready {
             get {
                 return ResourceManager.GetString("ready", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete required metadata item?.
-        /// </summary>
-        internal static string really_delete_required_metadata_item_caption {
-            get {
-                return ResourceManager.GetString("really_delete_required_metadata_item_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This metadata item is required. Are you sure that you want to delete it?.
-        /// </summary>
-        internal static string really_delete_required_metadata_item_text {
-            get {
-                return ResourceManager.GetString("really_delete_required_metadata_item_text", resourceCulture);
             }
         }
         
@@ -1801,24 +1087,6 @@ namespace Obi {
         internal static string record {
             get {
                 return ResourceManager.GetString("record", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recording error.
-        /// </summary>
-        internal static string recorder_error_caption {
-            get {
-                return ResourceManager.GetString("recorder_error_caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred while recording. Sorry :(.
-        /// </summary>
-        internal static string recorder_error_text {
-            get {
-                return ResourceManager.GetString("recorder_error_text", resourceCulture);
             }
         }
         
@@ -1859,47 +1127,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to remove annotation.
-        /// </summary>
-        internal static string remove_annotation_command_label {
-            get {
-                return ResourceManager.GetString("remove_annotation_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to remove page number.
-        /// </summary>
-        internal static string remove_page_command_label {
-            get {
-                return ResourceManager.GetString("remove_page_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to rename section.
         /// </summary>
-        internal static string rename_command_label {
+        internal static string rename_section {
             get {
-                return ResourceManager.GetString("rename_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to rename audio block.
-        /// </summary>
-        internal static string rename_phrase_command_label {
-            get {
-                return ResourceManager.GetString("rename_phrase_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to rename section.
-        /// </summary>
-        internal static string rename_section_command {
-            get {
-                return ResourceManager.GetString("rename_section_command", resourceCulture);
+                return ResourceManager.GetString("rename_section", resourceCulture);
             }
         }
         
@@ -1909,15 +1141,6 @@ namespace Obi {
         internal static string report_delete_error {
             get {
                 return ResourceManager.GetString("report_delete_error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to resize strip.
-        /// </summary>
-        internal static string resize_strip {
-            get {
-                return ResourceManager.GetString("resize_strip", resourceCulture);
             }
         }
         
@@ -1979,33 +1202,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to section.
-        /// </summary>
-        internal static string section {
-            get {
-                return ResourceManager.GetString("section", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This is the section&apos;s name.
-        /// </summary>
-        internal static string section_strip_name_tooltip {
-            get {
-                return ResourceManager.GetString("section_strip_name_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This strip represents a single section. Audio phrases are shown inside a strip. Right-click for more options..
-        /// </summary>
-        internal static string section_strip_tooltip {
-            get {
-                return ResourceManager.GetString("section_strip_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
         internal static string set_page_number_ {
@@ -2015,56 +1211,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show &amp;table of contents.
+        ///   Looks up a localized string similar to split phrase.
         /// </summary>
-        internal static string show_toc_label {
+        internal static string split_phrase {
             get {
-                return ResourceManager.GetString("show_toc_label", resourceCulture);
+                return ResourceManager.GetString("split_phrase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show &amp;VU meter.
+        ///   Looks up a localized string similar to split section.
         /// </summary>
-        internal static string show_vu_meter {
+        internal static string split_section {
             get {
-                return ResourceManager.GetString("show_vu_meter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Silence.
-        /// </summary>
-        internal static string Silence {
-            get {
-                return ResourceManager.GetString("Silence", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to split block.
-        /// </summary>
-        internal static string split_block {
-            get {
-                return ResourceManager.GetString("split_block", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to split block.
-        /// </summary>
-        internal static string split_phrase_command_label {
-            get {
-                return ResourceManager.GetString("split_phrase_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to split strip.
-        /// </summary>
-        internal static string split_strip {
-            get {
-                return ResourceManager.GetString("split_strip", resourceCulture);
+                return ResourceManager.GetString("split_section", resourceCulture);
             }
         }
         
@@ -2078,24 +1238,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hiding table of contents..
-        /// </summary>
-        internal static string status_toc_hidden {
-            get {
-                return ResourceManager.GetString("status_toc_hidden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Showing table of contents..
-        /// </summary>
-        internal static string status_toc_shown {
-            get {
-                return ResourceManager.GetString("status_toc_shown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Stereo.
         /// </summary>
         internal static string stereo {
@@ -2105,56 +1247,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stopped..
-        /// </summary>
-        internal static string Stopped {
-            get {
-                return ResourceManager.GetString("Stopped", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to strip.
-        /// </summary>
-        internal static string strip {
-            get {
-                return ResourceManager.GetString("strip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to strips.
-        /// </summary>
-        internal static string strips {
-            get {
-                return ResourceManager.GetString("strips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For showing a page number.
-        /// </summary>
-        internal static string structure_block_tooltip {
-            get {
-                return ResourceManager.GetString("structure_block_tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0}{1} - {2}.
         /// </summary>
         internal static string title_bar {
             get {
                 return ResourceManager.GetString("title_bar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Section names are shown nested in this view.  You can rename and reorder sections. Right-click for more options..
-        /// </summary>
-        internal static string toc_view_tooltip {
-            get {
-                return ResourceManager.GetString("toc_view_tooltip", resourceCulture);
             }
         }
         
@@ -2177,56 +1274,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to unmark audio block as section heading.
-        /// </summary>
-        internal static string unmark_section_heading_command_label {
-            get {
-                return ResourceManager.GetString("unmark_section_heading_command_label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to unused.
-        /// </summary>
-        internal static string unused {
-            get {
-                return ResourceManager.GetString("unused", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to used.
-        /// </summary>
-        internal static string used {
-            get {
-                return ResourceManager.GetString("used", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to XHTML | *.html.
         /// </summary>
         internal static string xhtml_filter {
             get {
                 return ResourceManager.GetString("xhtml_filter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version of XUK file is not the current version (expected &quot;{0}&quot; but got &quot;{1}&quot; instead.).
-        /// </summary>
-        internal static string xuk_version_mismatch {
-            get {
-                return ResourceManager.GetString("xuk_version_mismatch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to yes.
-        /// </summary>
-        internal static string yes {
-            get {
-                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }
