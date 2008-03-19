@@ -389,7 +389,7 @@ namespace Obi.ProjectView
         private void mPrevSectionButton_Click(object sender, EventArgs e) { PrevSection(); }
         private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
         private void mRewindButton_Click(object sender, EventArgs e) { Rewind(); }
-        private void mPlayButton_Click(object sender, EventArgs e) { Play(); }
+        private void mPlayButton_Click(object sender, EventArgs e) { Play(mView.Selection.Node); }
         private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
         private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
         private void mStopButton_Click(object sender, EventArgs e) { Stop(); }
@@ -470,14 +470,14 @@ namespace Obi.ProjectView
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped && mCurrentPlaylist == mLocalPlaylist) StopInternal();
                 if (CanPlay)
                 {
-                    if (IsPlaySelection)
-                    {
-                        Play(mView.Selection.Node);
-                    }
-                    else
-                    {
+                    //if (IsPlaySelection)
+                    //{
+                        //Play(mView.Selection.Node);
+                    //}
+                    //else
+                    //{
                         PlayMasterPlaylist();
-                    }
+                    //}
                 }
                 else if (CanResumePlayback)
                 {
