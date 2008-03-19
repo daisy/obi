@@ -25,10 +25,9 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            NodeSelection AfterDeleteSelection = PostDeleteSelection();
+            NodeSelection after = PostDeleteSelection;
             mNode.Detach();
-            //if (UpdateSelection) View.Selection = null;
-            if (UpdateSelection) View.Selection = AfterDeleteSelection;
+            if (UpdateSelection) View.Selection = after;
         }
 
         public override void unExecute()
@@ -37,39 +36,39 @@ namespace Obi.Commands.Node
             base.unExecute();
         }
 
-        // Avn: function to determine selection after delete.
-        private NodeSelection PostDeleteSelection()
+        // Determine what the selection will be after deletion
+        private NodeSelection PostDeleteSelection
         {
-            ObiNode AfterDeleteSelectionNode = null;
-            if (mNode is SectionNode) // if selected node is section select appropriate section after delete
+            get
             {
-                SectionNode node = (SectionNode)mNode;
-                AfterDeleteSelectionNode = node.NextSection;
-
-                if (AfterDeleteSelectionNode == null)
-                    AfterDeleteSelectionNode = node.PrecedingSection; // bugg in proceeding section property, sometimes triggeres out of range index exception
-            }
-            else // else selected node is empty node or phrase node so after delete select appropriate  empty/phrase node or parent section if there are no children left.
-            {
-                EmptyNode ENode = (EmptyNode)mNode;
-                SectionNode Parent = ENode.ParentAs<SectionNode>();
-                int PhraseIndex = ENode.Index;
-                if (Parent.PhraseChildCount >= PhraseIndex + 2) // atleast one node is  there after deleted node so select it
-                    AfterDeleteSelectionNode = Parent.PhraseChild(PhraseIndex + 1);
-                else if (Parent.PhraseChildCount > 1) // no node after deleted node but there are some nodes before deleted node so select previous phrase
+                ObiNode node = null;
+                if (mNode is SectionNode)
                 {
-                    AfterDeleteSelectionNode = Parent.PhraseChild(PhraseIndex - 1);
+                    if (View.Selection.Control is ProjectView.StripsView && ((SectionNode)mNode).PhraseChildCount > 0)
+                    {
+                        node = mNode.PhraseChild(0);
+                    }
+                    else
+                    {
+                        ObiNode parent = mNode.ParentAs<ObiNode>();
+                        int index = mNode.Index;
+                        node = index < parent.SectionChildCount - 1 ?
+                            (ObiNode)parent.SectionChild(index + 1) :
+                            index > 0 ? (ObiNode)parent.SectionChild(index - 1) :
+                            parent is RootNode ? null : parent;
+                    }
                 }
-                else // there is no phrase in section, move selection to parent section
+                else
                 {
-                    AfterDeleteSelectionNode = Parent;
+                    SectionNode parent = mNode.ParentAs<SectionNode>();
+                    int index = mNode.Index;
+                    node = index < parent.PhraseChildCount - 1 ?
+                        (ObiNode)parent.PhraseChild(index + 1) :
+                        index > 0 ? (ObiNode)parent.PhraseChild(index - 1) :
+                        (ObiNode)parent;
                 }
+                return node == null ? null : new NodeSelection(node, View.Selection.Control);
             }
-            if (AfterDeleteSelectionNode != null)
-                return new NodeSelection(AfterDeleteSelectionNode, View.Selection.Control);
-            else
-                return null;
         }
-
     }
 }
