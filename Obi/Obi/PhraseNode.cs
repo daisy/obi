@@ -53,7 +53,6 @@ namespace Obi
         /// <summary>
         /// Merge the audio of this phrase with the audio of another phrase and notify that audio has changed.
         /// </summary>
-        /// <param name="audio"></param>
         public void MergeAudioWith(ManagedAudioMedia audio)
         {
             Audio.mergeWith(audio);
