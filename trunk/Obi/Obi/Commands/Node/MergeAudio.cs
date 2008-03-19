@@ -4,10 +4,10 @@ namespace Obi.Commands.Node
 {
     class MergeAudio: Command
     {
-        private PhraseNode mNode;
-        private PhraseNode mNextNode;
-        private Time mSplitPoint;
-        private NodeSelection mSelection;
+        private PhraseNode mNode;          // the selected phrase
+        private PhraseNode mNextNode;      // the following phrase to merge with
+        private Time mSplitPoint;          // the split point of the new merged node
+        private NodeSelection mSelection;  // the selection
 
         public MergeAudio(ProjectView.ProjectView view, PhraseNode next)
             : base(view)
@@ -21,7 +21,7 @@ namespace Obi.Commands.Node
         }
 
         /// <summary>
-        /// Merge the selected (empty) node with the following (empty) node.
+        /// Merge the selected phrase with the following phrase.
         /// </summary>
         public MergeAudio(ProjectView.ProjectView view):
             this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1)) {}

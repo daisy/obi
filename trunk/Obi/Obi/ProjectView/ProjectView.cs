@@ -927,9 +927,34 @@ namespace Obi.ProjectView
             if (CanSplitBlock) mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
         }
 
+        /// <summary>
+        /// Merge the selected block with the following one.
+        /// </summary>
         public void MergeBlockWithNext()
         {
-            if (CanMergeBlockWithNext) mPresentation.getUndoRedoManager().execute(new Commands.Node.MergeAudio(this));
+            if (CanMergeBlockWithNext)
+            {
+                EmptyNode selected = SelectedNodeAs<EmptyNode>();
+                EmptyNode next = (EmptyNode)selected.FollowingNode;
+                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("merge_phrase_with_next"));
+                // Merge roles, then the audio of the two phrase nodes, or delete the first empty node.
+                if (selected.NodeKind == EmptyNode.Kind.Plain && next.NodeKind != EmptyNode.Kind.Plain)
+                {
+                    if (next.NodeKind == EmptyNode.Kind.Custom)
+                    {
+                        command.append(new Commands.Node.ChangeCustomType(this, selected, next.CustomClass));
+                    }
+                    else
+                    {
+                        command.append(new Commands.Node.ChangeCustomType(this, selected, next.NodeKind));
+                    }
+                }
+                command.append(selected is PhraseNode ?
+                    next is PhraseNode ? (Commands.Command)new Commands.Node.MergeAudio(this) :
+                        (Commands.Command)new Commands.Node.Delete(this, next) :
+                    new Commands.Node.Delete(this, selected));
+                mPresentation.getUndoRedoManager().execute(command);
+            }
         }
 
         public void MakeSelectedBlockIntoSilencePhrase()
