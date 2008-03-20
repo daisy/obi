@@ -72,32 +72,32 @@ namespace Obi.ProjectView
                 if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
                     mCurrentPlaylist.Stop();
             }
-            else if (Enabled 
+            else if (Enabled
                 && mRecordingSession == null
-                &&    mView.Selection.Node != mCurrentPlaylist.CurrentPhrase )
+                && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
             {
                 if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
                 {
-                                        if (mCurrentPlaylist == mMasterPlaylist)
+                    if (mCurrentPlaylist == mMasterPlaylist)
                     {
                         mPlayingFrom = mView.Selection;
-                                                mCurrentPlaylist.Stop();
-                                                PlayMasterPlaylist();
+                        mCurrentPlaylist.Stop();
+                        PlayMasterPlaylist();
                     }
                     else
                     {
-                        mCurrentPlaylist.Stop () ;
-                        Play ( mView.Selection.Node ) ;
-                                            }
+                        mCurrentPlaylist.Stop();
+                        Play(mView.Selection.Node);
+                    }
                 }
                 else
                 {
-                    mCurrentPlaylist.Stop () ;
-                    mIsSerialPlaying = false ;
+                    mCurrentPlaylist.Stop();
+                    mIsSerialPlaying = false;
                 }
-                            }
-                                                            m_IsSelectionMarked = false;
-                                    }
+            }
+            m_IsSelectionMarked = false;
+        }
 
         //Avn:  a temprorary flag introduced as a work around till support for setting waveform selection externally is added
         // flag is turned true when selection end is marked and is turned false whenever selection changes
