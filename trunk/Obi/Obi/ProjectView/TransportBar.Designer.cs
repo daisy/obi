@@ -42,12 +42,12 @@ namespace Obi.ProjectView
             this.mTransportBarTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.mRewindButton = new System.Windows.Forms.Button();
             this.mFastForwardButton = new System.Windows.Forms.Button();
-            this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
-            this.mDisplayBox = new System.Windows.Forms.ComboBox();
-            this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
             this.mNextPageButton = new System.Windows.Forms.Button();
             this.mPreviousPageButton = new System.Windows.Forms.Button();
             this.mCustomClassMarkButton = new System.Windows.Forms.Button();
+            this.mDisplayTimer = new System.Windows.Forms.Timer(this.components);
+            this.mDisplayBox = new System.Windows.Forms.ComboBox();
+            this.mFastPlayRateCombobox = new System.Windows.Forms.ComboBox();
             this.mVUMeterPanel = new Obi.UserControls.TextVUMeterPanel();
             this.SuspendLayout();
             // 
@@ -220,43 +220,6 @@ namespace Obi.ProjectView
             this.mFastForwardButton.UseVisualStyleBackColor = true;
             this.mFastForwardButton.Click += new System.EventHandler(this.mFastForwardButton_Click);
             // 
-            // mDisplayTimer
-            // 
-            this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
-            // 
-            // mDisplayBox
-            // 
-            this.mDisplayBox.AllowDrop = true;
-            this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mDisplayBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mDisplayBox.FormattingEnabled = true;
-            this.mDisplayBox.Items.AddRange(new object[] {
-            "elapsed",
-            "elapsed (total)",
-            "remaining",
-            "remaining (total)",
-            "Recording Time"});
-            this.mDisplayBox.Location = new System.Drawing.Point(618, 6);
-            this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
-            this.mDisplayBox.TabIndex = 14;
-            this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
-            // 
-            // mFastPlayRateCombobox
-            // 
-            this.mFastPlayRateCombobox.AccessibleName = "Fast Play Rate";
-            this.mFastPlayRateCombobox.AllowDrop = true;
-            this.mFastPlayRateCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mFastPlayRateCombobox.FormattingEnabled = true;
-            this.mFastPlayRateCombobox.ItemHeight = 15;
-            this.mFastPlayRateCombobox.Location = new System.Drawing.Point(740, 6);
-            this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
-            this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
-            this.mFastPlayRateCombobox.TabIndex = 15;
-            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
-            // 
             // mNextPageButton
             // 
             this.mNextPageButton.AccessibleName = "Next page";
@@ -299,12 +262,49 @@ namespace Obi.ProjectView
             this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
             // 
+            // mDisplayTimer
+            // 
+            this.mDisplayTimer.Tick += new System.EventHandler(this.mDisplayTimer_Tick);
+            // 
+            // mDisplayBox
+            // 
+            this.mDisplayBox.AllowDrop = true;
+            this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mDisplayBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mDisplayBox.FormattingEnabled = true;
+            this.mDisplayBox.Items.AddRange(new object[] {
+            "elapsed",
+            "elapsed (total)",
+            "remaining",
+            "remaining (total)",
+            "Recording Time"});
+            this.mDisplayBox.Location = new System.Drawing.Point(618, 6);
+            this.mDisplayBox.Name = "mDisplayBox";
+            this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
+            this.mDisplayBox.TabIndex = 14;
+            this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
+            // 
+            // mFastPlayRateCombobox
+            // 
+            this.mFastPlayRateCombobox.AccessibleName = "Fast Play Rate";
+            this.mFastPlayRateCombobox.AllowDrop = true;
+            this.mFastPlayRateCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mFastPlayRateCombobox.FormattingEnabled = true;
+            this.mFastPlayRateCombobox.ItemHeight = 15;
+            this.mFastPlayRateCombobox.Location = new System.Drawing.Point(740, 6);
+            this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
+            this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
+            this.mFastPlayRateCombobox.TabIndex = 15;
+            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
+            // 
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
             this.mVUMeterPanel.Location = new System.Drawing.Point(808, 3);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
-            this.mVUMeterPanel.Size = new System.Drawing.Size(204, 44);
+            this.mVUMeterPanel.Size = new System.Drawing.Size(175, 31);
             this.mVUMeterPanel.TabIndex = 16;
             this.mVUMeterPanel.VuMeter = null;
             // 

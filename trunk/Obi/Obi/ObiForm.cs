@@ -662,7 +662,6 @@ namespace Obi
             UpdateViewMenu();
             UpdateSectionsMenu();
             UpdateBlocksMenu();
-            UpdateTransportMenu();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
@@ -675,7 +674,6 @@ namespace Obi
             if (mStatusTimer.Enabled) mStatusTimer.Enabled = false;
             mStatusTimer.Enabled = true;
         }
-
 
         #region Event handlers
 
@@ -988,87 +986,6 @@ namespace Obi
             // BackColor = UserControls.Colors.ObiBackGround;
             // mProject.Touch();
         }
-
-        /// <summary>
-        ///  move keyboard focus amung TOC view, Strip view, Transport Bar
-        /// <see cref=""/>
-        /// </summary>
-        /// <param name="Clockwise">
-        ///  true for clockwise movement
-        /// </param>
-        private void MoveToNextPanel(bool Clockwise)
-        {
-
-            /*
-                        mProjectView.TransportBar.PlayOnFocusEnabled = false;
-                        if (mProjectView.CurrentSelection != null)
-                        {
-                            if (mProjectView.TOCPanel.ContainsFocus)
-                            {
-                                if (Clockwise)
-                                {
-                                    NodeSelection TempnodeSelection = mProjectView.CurrentSelection;
-                                    mProjectView.StripManager.Focus();
-                                    mProjectView.CurrentSelection = new NodeSelection(TempnodeSelection.Node, mProjectView.StripManager);
-                                }
-                                else
-                                    mProjectView.TransportBar.Focus();
-                            }
-                            else if (mProjectView.StripManager.ContainsFocus)
-                            {
-                                if (Clockwise)
-                                    mProjectView.TransportBar.Focus();
-                                else
-                                    FocusTOCPanel();
-                            }
-                            else if (mProjectView.TransportBar.ContainsFocus)
-                            {
-                                if (Clockwise)
-                                    FocusTOCPanel();
-                                else
-                                {
-                                    NodeSelection TempnodeSelection = mProjectView.CurrentSelection;
-                                    mProjectView .StripManager.Focus();
-                                    mProjectView.CurrentSelection = new NodeSelection(TempnodeSelection.Node , mProjectView.StripManager);
-                                                                    }
-                            }
-                        }
-                        else
-                            mProjectView.TOCPanel.Focus();
-            mProjectView.TransportBar.PlayOnFocusEnabled = true;
-             * */
-        }
-
-
-        /// <summary>
-        ///  convenience function to be used in MoveToNextPanel ()
-        /// <see cref=""/>
-        /// </summary>
-        private void FocusTOCPanel()
-        {
-            /*
-            if (mProjectView.CurrentSelectionNode.GetType().Name == "PhraseNode")
-            {
-                PhraseNode TempPhraseNode = mProjectView.CurrentSelectionNode as PhraseNode;
-                mProjectView.CurrentSelection = new NodeSelection(TempPhraseNode.ParentAs<SectionNode>(), mProjectView.TOCPanel);
-                mProjectView.TOCPanel.Focus();
-            }
-            else
-                mProjectView.StripManager.ShowInTOCPanel();
-            */
-        }
-
-        //added by med june 4 2007
-        /// <summary>
-        /// Import an XHTML file and build the project structure from it.
-        /// The requirements for the file to import are:
-        /// 1. it is well-formed
-        /// 2. the headings are ordered properly (i.e. h2 comes between h1 and h3)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-
 
         /// <summary>
         /// Remove a project from the recent projects list
