@@ -532,7 +532,7 @@ namespace Obi.ProjectView
                     mPlayingFrom = mView.Selection;
                     LocalPlaylist = new Playlist(mPlayer, mView.Selection);
                     mCurrentPlaylist = mLocalPlaylist;
-                    mCurrentPlaylist.CurrentPhrase = mLocalPlaylist.FirstPhrase;
+                    mCurrentPlaylist.CurrentPhrase = InitialPhrase;
                     // Avn: condition added on 13 may 2007
                     if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
                     
