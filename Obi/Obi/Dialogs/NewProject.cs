@@ -76,19 +76,20 @@ namespace Obi.Dialogs
         }
 
 
-        /// <summary>
-        /// Generate the file name for the project.
-        /// </summary>
+        // Update the file box to generate a filename for the project
         private void GenerateFileName()
         {
-            if (!mUserSetLocation)
-            {
-                mFileBox.Text = String.Format("{0}{1}{2}{1}{3}",
-                    mBasepath,
-                    System.IO.Path.DirectorySeparatorChar,
-                    SafeName(mTitleBox.Text),
-                    mFilename);
-            }
+            if (!mUserSetLocation) mFileBox.Text = GetFileName(mBasepath, mFilename);
+        }
+
+        // Get a filename for a given path/title
+        private string GetFileName(string path, string filename)
+        {
+            return String.Format("{0}{1}{2}{1}{3}",
+                path,
+                System.IO.Path.DirectorySeparatorChar,
+                SafeName(mTitleBox.Text),
+                filename);
         }
 
         /// <summary>
@@ -107,11 +108,35 @@ namespace Obi.Dialogs
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
+            dialog.FileName = mFilename;
             dialog.Filter = mExtension;
             dialog.AddExtension = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                mFileBox.Text = dialog.FileName;
+                string path = dialog.FileName;
+                string dir = System.IO.Path.GetDirectoryName(dialog.FileName);
+                if (System.IO.Directory.Exists(dir) &&
+                    (System.IO.Directory.GetFiles(dir).Length > 0 ||
+                    System.IO.Directory.GetDirectories(dir).Length > 0))
+                {
+                    // If trying to create a project in a non-empty directory,
+                    // propose a new path to the user in this directory.
+                    string p_path = GetFileName(dir, System.IO.Path.GetFileName(path));
+                    DialogResult result = MessageBox.Show(
+                        String.Format(Localizer.Message("propose_directory_text"), p_path),
+                        Localizer.Message("propose_directory_caption"),
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        path = p_path;
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }   
+                mFileBox.Text = path;
                 mUserSetLocation = true;
             }
         }
