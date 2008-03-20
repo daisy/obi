@@ -884,7 +884,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not select and audio input device: node found. Sorry :(.
+        ///   Looks up a localized string similar to Could not select and audio input device: none found..
         /// </summary>
         internal static string no_input_device_text {
             get {
@@ -902,7 +902,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not select an audio output device: none found. Sorry :(.
+        ///   Looks up a localized string similar to Could not select an audio output device: none found..
         /// </summary>
         internal static string no_output_device_text {
             get {
@@ -1051,6 +1051,24 @@ namespace Obi {
         internal static string please_enter_some_text {
             get {
                 return ResourceManager.GetString("please_enter_some_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non-empty directory for new project.
+        /// </summary>
+        internal static string propose_directory_caption {
+            get {
+                return ResourceManager.GetString("propose_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory that you selected to save your new project is not empty. Would you prefer to select the following location for your new project: &quot;{0}&quot;?.
+        /// </summary>
+        internal static string propose_directory_text {
+            get {
+                return ResourceManager.GetString("propose_directory_text", resourceCulture);
             }
         }
         

@@ -207,7 +207,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="no_output_device_text" xml:space="preserve">
-    <value>Could not select an audio output device: none found. Sorry :(</value>
+    <value>Could not select an audio output device: none found.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="create_directory_caption" xml:space="preserve">
@@ -227,7 +227,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
-    <value>Could not select and audio input device: node found. Sorry :(</value>
+    <value>Could not select and audio input device: none found.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="record" xml:space="preserve">
@@ -663,5 +663,13 @@ Error text: {1}</value>
   <data name="monitoring_short" xml:space="preserve">
     <value>Monitoring</value>
     <comment>Transport bar display</comment>
+  </data>
+  <data name="propose_directory_caption" xml:space="preserve">
+    <value>Non-empty directory for new project</value>
+    <comment>Warning dialog</comment>
+  </data>
+  <data name="propose_directory_text" xml:space="preserve">
+    <value>The directory that you selected to save your new project is not empty. Would you prefer to select the following location for your new project: "{0}"?</value>
+    <comment>Warning dialog</comment>
   </data>
 </root>

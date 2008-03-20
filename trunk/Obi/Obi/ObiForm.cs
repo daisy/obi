@@ -1119,7 +1119,8 @@ namespace Obi
         /// <param name="checkEmpty">Actually check.</param>
         private static bool CheckEmpty(string path, bool checkEmpty)
         {
-            if (checkEmpty && Directory.GetFiles(path).Length > 0)
+            if (checkEmpty &&
+                (Directory.GetFiles(path).Length > 0 || Directory.GetDirectories(path).Length > 0))
             {
                 DialogResult result = MessageBox.Show(
                     String.Format(Localizer.Message("really_use_directory_text"), path),
