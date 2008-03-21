@@ -389,8 +389,12 @@ namespace Obi.ProjectView
         private void mPrevSectionButton_Click(object sender, EventArgs e) { PrevSection(); }
         private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
         private void mRewindButton_Click(object sender, EventArgs e) { Rewind(); }
-        private void mPlayButton_Click(object sender, EventArgs e) {  if ( mView.CanPlaySelection )  Play(mView.Selection.Node); }
-        private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
+        private void mPlayButton_Click(object sender, EventArgs e)
+        {
+            if (mView.CanPlaySelection) Play(mView.Selection.Node);
+            else Play();
+        }
+                private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
         private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
         private void mStopButton_Click(object sender, EventArgs e) { Stop(); }
         private void mFastForwardButton_Click(object sender, EventArgs e) { FastForward(); }
