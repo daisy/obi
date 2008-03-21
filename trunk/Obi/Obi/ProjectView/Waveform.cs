@@ -55,6 +55,7 @@ namespace Obi.ProjectView
         {
             set
             {
+                if ( mSelection != null )
                 mSelection.CursorTime = value;
                 Invalidate();
             }
