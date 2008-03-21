@@ -18,8 +18,6 @@ namespace Obi
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
 		private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
 
-        private int STATUS_TIMER_DELAY_IN_SECONDS = 30;  // amount of time status messages stay on
-
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
         /// </summary>
@@ -350,6 +348,7 @@ namespace Obi
             mShowStatusBarToolStripMenuItem.Enabled = true;
             mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
             mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
+            //mFocusOnTransportBarToolStripMenuItem.Enabled =
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
@@ -498,11 +497,9 @@ namespace Obi
                 InitialiseHighContrastSettings();
                 InitializeEventHandlers();
                 UpdateMenus();
-                mStatusTimer.Interval = STATUS_TIMER_DELAY_IN_SECONDS * 1000;
-                mStatusTimer.Tick += new EventHandler(delegate(object sender, EventArgs e) { Ready(); });
                 // these should be stored in settings
                 mShowTOCViewToolStripMenuItem.Checked = mProjectView.TOCViewVisible = true;
-                mShowMetadataViewToolStripMenuItem.Checked = mProjectView.MetadataViewVisible = true;
+                mShowMetadataViewToolStripMenuItem.Checked = mProjectView.MetadataViewVisible = false;
                 mShowTransportBarToolStripMenuItem.Checked = mProjectView.TransportBarVisible = true;
                 mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
                 Ready();
@@ -557,7 +554,6 @@ namespace Obi
         // Update the status bar to say "Ready."
         private void Ready()
         {
-            mStatusTimer.Enabled = false;
             Status(Localizer.Message("ready"));
         }
 
@@ -671,8 +667,6 @@ namespace Obi
                 String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
                     (mSession.CanSave ? "*" : ""), Localizer.Message("obi")) :
                 Localizer.Message("obi");
-            if (mStatusTimer.Enabled) mStatusTimer.Enabled = false;
-            mStatusTimer.Enabled = true;
         }
 
         #region Event handlers
@@ -687,12 +681,12 @@ namespace Obi
 
         private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
         {
-            UpdateObi();
             if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
             {
                 Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             }
             mProjectView.Presentation = null;
+            UpdateObi();
             if (mSourceView != null) mSourceView.Close();
         }
 
@@ -1268,46 +1262,6 @@ namespace Obi
             }
         }
 
-
-        #region OLD
-
-        // TODO: merge full and simple metadata editing into a single dialog with two tabs
-        private void mFullMetadataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*FullMetadata dialog = new FullMetadata(mProject);
-            List<urakawa.metadata.Metadata> affected = new List<urakawa.metadata.Metadata>();
-            foreach (object o in mProject.getPresentation().getMetadataList())
-            {
-                urakawa.metadata.Metadata meta = (urakawa.metadata.Metadata)o;
-                if (MetadataEntryDescription.GetDAISYEntries().Find(delegate(MetadataEntryDescription entry)
-                    { return entry.Name == meta.getName(); }) != null)
-                {
-                    affected.Add(meta);
-                    dialog.AddPanel(meta.getName(), meta.getContent());
-                }
-            }
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                foreach (urakawa.metadata.Metadata m in affected) mProject.getPresentation().deleteMetadata(m.getName());
-                foreach (UserControls.MetadataPanel p in dialog.MetadataPanels)
-                {
-                    if (p.CanSetName)
-                    {
-                        urakawa.metadata.Metadata m = (urakawa.metadata.Metadata)mProject.getPresentation().getMetadataFactory().createMetadata();
-                        m.setName(p.EntryName);
-                        m.setContent(p.EntryContent);
-                        mProject.getPresentation().appendMetadata(m);
-                    }
-                    else
-                    {
-                        MessageBox.Show(String.Format(Localizer.Message("error_metadata_name_message"), p.EntryName),
-                            Localizer.Message("error_metadata_name_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                mProject.Touch();
-            }*/
-        }
-        #endregion
 
         // Update the custom class menu with the classes from the new project
         private void UpdateCustomClassMenu()

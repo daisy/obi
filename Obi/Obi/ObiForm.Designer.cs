@@ -28,7 +28,6 @@ namespace Obi
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObiForm));
             this.mMenuStrip = new System.Windows.Forms.MenuStrip();
             this.mFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +156,6 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mStatusTimer = new System.Windows.Forms.Timer(this.components);
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1128,7 +1126,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFindInTextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mImportAudioFileToolStripMenuItem;
-        private System.Windows.Forms.Timer mStatusTimer;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem mShowStatusBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowTransportBarToolStripMenuItem;
