@@ -45,7 +45,7 @@ namespace Obi.Dialogs
             else
             {
                 MessageBox.Show(Localizer.Message("no_preceding_silent_phrase"));
-                mThresholdBox.Text = "0";
+                mThresholdBox.Text = "280";
             }
             mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
             mLeadingSilenceBox.Text = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE.ToString();

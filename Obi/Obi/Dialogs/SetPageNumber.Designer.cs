@@ -103,8 +103,10 @@ namespace Obi.Dialogs
             // 
             // SetPageNumber
             // 
+            this.AcceptButton = this.mOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(292, 151);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.mNumberOfPagesBox);
