@@ -4,7 +4,7 @@ $Id$
 
 Main form
 
-  + [F] File
+  + [F] File ......................... Alt+F
     + [N] New project ................ Ctrl+N
     + [I] New project from import .... Ctrl+Shift+N
     + [O] Open project ............... Ctrl+O
@@ -19,7 +19,7 @@ Main form
     -----------------------------------------------
     + [X] Exit ....................... Alt+F4
 
-  + [E] Edit
+  + [E] Edit ......................... Alt+E
     + [U] Undo ....................... Ctrl+Z
     + [R] Redo ....................... Ctrl+Y
     -----------------------------------------------
@@ -39,7 +39,7 @@ Main form
     -----------------------------------------------
     + [M] Add metadata entry ......... (None)
 
-  + [V] View
+  + [V] View ........................ Alt+V
     + [T] Show TOC view ............. Ctrl+Alt+T
     + [M] Show metadata view ........ Ctrl+Alt+M
     + [B] Show transport bar ........ Ctrl+Alt+B
@@ -53,7 +53,7 @@ Main form
     + [P] Show peak meter ........... Ctrl+Alt+P
     + [R] Show source view .......... Ctrl+Alt+O
 
-  + [S] Sections
+  + [S] Sections .................... Alt+S
     + [A] Add section ............... Ctrl+J
     + [S] Add subsection ............ Ctrl+Shift+J
     + [I] Insert section ............ Ctrl+Alt+J
@@ -66,7 +66,7 @@ Main form
     --------------------------------------------------
     + [U] Section is used ........... Ctrl+K
 
-  + [P] Phrases
+  + [P] Phrases ......................... Alt+P
     + [B] Add blank phrase .............. Ctrl+B
     + [P] Add blank pages ............... Ctrl+Shift+B
     + [I] Import audio files ............ Ctrl+I
@@ -90,7 +90,7 @@ Main form
       + [E] End in-phrase selection ..... Ctrl+]
       + [D] Deselect .................... (None)
 
-  + [R] Transport
+  + [R] Transport ......................... Alt+A
     + [P] Play ............................ (None)
       + [A] Play all ...................... Ctrl+Space
       + [S] Play selection ................ Ctrl+Shift+Space
@@ -120,16 +120,30 @@ Main form
     + [W] Rewind .......................... Ctrl+,
     + [F] Fast forward .................... Ctrl+.
   
-  + [T] Tools !!!TODO replace with single dialog ("Preferences")
-    + [U] User profile .................... Alt+U
-    + [P] Project preferences ............. Alt+P
-    + [A] Audio preferences ............... Alt+A
+  + [T] Tools ............................. Alt+T
+    + [U] User profile .................... Ctrl+Alt+S
+    + [P] Project preferences ............. Ctrl+Alt+C
+    + [A] Audio preferences ............... Ctrl+Alt+A
 
-  + [H] Help
+  + [H] Help .............................. Alt+H
     + [C] Contents ........................ F1
     + [V] View help in external browser ... Shift+F1
     + [R] Report bug ...................... Ctrl+Alt+R
     + [A] About Obi ....................... (None)
+
+
+Transport bar
+
+  + C .................. Preview selected fragment
+  + D .................. Return to normal speed
+  + E .................. Return to normal speed with lapse back !!!
+  + F .................. Increase fast play rate
+  + S .................. Decrease fast play rate
+  + Space .............. Play/pause !!!
+  + V .................. Preview from current position
+  + X .................. Preview up to current position
+  + [ .................. Selection begin mark
+  + ] .................. Selection end mark
 
 
 Index of shortcuts
@@ -163,15 +177,21 @@ Index of shortcuts
   + Ctrl+, ............. Transport > Rewind
   + Ctrl+. ............. Transport > Fast forward
 
+  + Alt+A .............. Transport menu
   + Ctrl+A ............. FREE [Reserved for select all]
+  + Ctrl+Alt+A ......... Tools > Audio preferences
   + Ctrl+B ............. Phrases > Add blank phrase
   + Ctrl+Alt+B ......... View > Show transport bar
   + Ctrl+Shift+B ....... Phrases > Add empty pages 
   + Ctrl+C ............. Edit > Copy
+  + Ctrl+Alt+C ......... Tools > Ctrl+Alt+C
   + Ctrl+D ............. FREE
+  + Alt+E .............. Edit menu
   + Ctrl+E ............. File > Export as DAISY
+  + Alt+F .............. File menu
   + Ctrl+F ............. Edit > Find
   + Ctrl+G ............. FREE
+  + Alt+H .............. Help menu
   + Ctrl+H ............. FREE
   + Ctrl+I ............. Phrases > Import audio files
   + Ctrl+J ............. Sections > Add section
@@ -179,6 +199,7 @@ Index of shortcuts
   + Ctrl+Alt+J ......... Sections > Insert section
   + Ctrl+K ............. Phrases > Phrase is used
   + Ctrl+K ............. Sections > Section is used
+  + Alt+L .............. Transport bar > Text VU meter left channel
   + Ctrl+L ............. File > Clean project
   + Ctrl+Shift+L ....... Edit > Delete unused data
   + Ctrl+M ............. Phrases > Merge phrase with next
@@ -188,20 +209,26 @@ Index of shortcuts
   + Ctrl+Shift+N ....... File > New project from import
   + Ctrl+O ............. File > Open
   + Ctrl+Alt+O ......... View > Show source view
+  + Alt+P .............. Phrases menu
   + Ctrl+P ............. Transport > Preview > Preview from...
   + Ctrl+Shift+P ....... Phrases > Apply phrase detection
   + Ctrl+Alt+P ......... View > Show peak meter
   + Ctrl+Q ............. Phrases > Split phrase
   + Ctrl+Shift+Q ....... Sections > Split section
+  + Alt+R .............. Transport bar > Text VU meter right channel
   + Ctrl+R ............. Transport > Record > Start monitoring
   + Ctrl+Shift+R ....... Transport > Record > Start recording
   + Ctrl+Alt+R ......... Help > Report bug
+  + Alt+S .............. Sections menu
   + Ctrl+S ............. File > Save project
+  + Ctrl+Alt+S ......... Tools > User profile
   + Ctrl+Shift+S ....... File > Save project as...
+  + Alt+T .............. Tools menu
   + Ctrl+T ............. Transport > Stop
   + Ctrl+Alt+T ......... View > Show TOC view
   + Ctrl+U ............. Phrases > Mark default custom class
   + Ctrl+Alt+U ......... View > Show status bar
+  + Alt+V .............. View menu
   + Ctrl+V ............. Edit > Paste
   + Ctrl+Alt+V ......... Edit > Paste before
   + Ctrl+Shift+V ....... Edit > Paste inside

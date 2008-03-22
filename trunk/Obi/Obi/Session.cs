@@ -109,6 +109,7 @@ namespace Obi
             mChangesCount = 0;
             Presentation.Initialize(this, title, createTitleSection, id, settings);
             if (ProjectCreated != null) ProjectCreated(this, null);
+            ForceSave();
         }
 
         /// <summary>
