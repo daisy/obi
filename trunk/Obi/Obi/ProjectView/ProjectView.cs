@@ -1085,29 +1085,36 @@ namespace Obi.ProjectView
         /// </summary>
         public void ApplyPhraseDetection()
         {
-            PhraseNode SilenceNode = null;
-
-            //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
-            ObiNode IterationNode = SelectedNodeAs<EmptyNode>();
-
-            while (IterationNode != null)
+            // first check if selected node is phrase node.
+            if (this.Selection != null && this.Selection.Node is PhraseNode)
             {
-                if (IterationNode is EmptyNode && ((EmptyNode)IterationNode).NodeKind == EmptyNode.Kind.Silence)
+                PhraseNode SilenceNode = null;
+
+                //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
+                ObiNode IterationNode = SelectedNodeAs<EmptyNode>();
+
+                while (IterationNode != null)
                 {
-                    SilenceNode = (PhraseNode)IterationNode;
-                    break;
+                    if (IterationNode is EmptyNode && ((EmptyNode)IterationNode).NodeKind == EmptyNode.Kind.Silence)
+                    {
+                        SilenceNode = (PhraseNode)IterationNode;
+                        break;
+                    }
+                    IterationNode = IterationNode.PrecedingNode;
                 }
-                IterationNode = IterationNode.PrecedingNode;
-            }
 
 
-            Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection(SilenceNode);
-            PhraseDetectionDialog.ShowDialog();
-            if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
-            {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
-            }
-        }
+                Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection(SilenceNode);
+                PhraseDetectionDialog.ShowDialog();
+                if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
+                {
+                    mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
+                }
+            }// check for phrase node ends
+            else
+                System.Media.SystemSounds.Beep.Play();
+                    }
+
 
     }
 
