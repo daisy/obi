@@ -1121,15 +1121,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 0.10.5"
-        "ProductCode" = "8:{AB2AF6B3-B1C5-419C-AB4C-382BBEA69962}"
-        "PackageCode" = "8:{73AE02E0-CB84-47C4-9DD8-897FAD83834B}"
+        "ProductName" = "8:Obi 0.10.6"
+        "ProductCode" = "8:{85A99D0A-5FF6-4CC7-A480-101BF4E080F0}"
+        "PackageCode" = "8:{53B81F95-1CD7-4674-9481-AE26CEAAF8F9}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.10.3"
+        "ProductVersion" = "8:0.10.6"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1244,7 +1244,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.10.5"
+            "Name" = "8:Obi 0.10.6"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1258,7 +1258,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 0.10.5"
+            "Name" = "8:Obi 0.10.6"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
