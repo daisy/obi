@@ -6,27 +6,56 @@ using System.Xml;
 namespace Obi
 {
     /// <summary>
-    /// Import an external file (XHTML) and use it to fill in the sections in a newly-created project
+    /// Import an external file (XHTML) and use it to fill in the sections in a newly-created project.
     /// </summary>
     class ImportStructure
     {
-        private Obi.Presentation mPresentation;
-        private SectionNode mLastSection;
-        private Obi.ProjectView.ProjectView mView;
+        private Obi.Presentation mPresentation;            // target presentation
 
-        //these are section nodes that could accept children
-        private System.Collections.Generic.Stack <Obi.SectionNode> mOpenSectionNodes;
+        private SectionNode mCurrentSection;               // section currently populated
+        private Stack<Obi.SectionNode> mOpenSectionNodes;  // these are section nodes that could accept children
+
         
-        public ImportStructure(){}
+        /// <summary>
+        /// Simple constructor.
+        /// </summary>
+        public ImportStructure() {}
 
-        //this first pass will translate h1-h6 elements to SectionNodes
-        public void ImportFromXHTML(String xhtmlDocument, Obi.Presentation presentation, Obi.ProjectView.ProjectView view)
-        {            
+
+        /// <summary>
+        /// Grab the title element to seed the title info.
+        /// </summary>
+        public static String GrabTitle(Uri fileUri)
+        {
+            /*try
+            {
+                System.Xml.XPath.XPathDocument document = new System.Xml.XPath.XPathDocument(fileUri.ToString());
+                System.Xml.XPath.XPathNavigator navigator = document.CreateNavigator();
+                XmlNamespaceManager nsmngr = new XmlNamespaceManager(navigator.NameTable);
+                nsmngr.AddNamespace("xhtml", "http://www.w3.org/1999/xhtml");
+                return navigator.Evaluate("string(//xhtml:title[1])", nsmngr).ToString();
+            }
+            catch (Exception)
+            {
+                return "";
+            }*/
+            XmlTextReader source = GetXmlReader(fileUri);
+            source.WhitespaceHandling = WhitespaceHandling.Significant;
+            String title = source.ReadToFollowing("title") ? source.ReadString() : "";
+            source.Close();
+            return title;
+        }
+
+        /// <summary>
+        /// Populate the presentation from an XHTML file.
+        /// </summary>
+        public void ImportFromXHTML(string xhtml_path, Obi.Presentation presentation)
+        {
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             mPresentation = presentation;
-            mView = view;
-            LoadFromXHTML(new Uri(xhtmlDocument));
+            LoadFromXHTML(new Uri(xhtml_path));
         }
+
 
         // Get an XML reader without a resolver so that the DTD is skipped
         private static XmlTextReader GetXmlReader(Uri uri)
@@ -36,32 +65,13 @@ namespace Obi
             return reader;
         }
 
-        /// <summary>
-        /// Utility function to grab the text of the <title> element
-        /// </summary>
-        /// <param name="fileUri"></param>
-        /// <returns></returns>
-        public static String grabTitle(Uri fileUri)
-        {
-            XmlTextReader source = GetXmlReader(fileUri);
-            source.WhitespaceHandling = WhitespaceHandling.Significant;
-            
-            String title = "";
-            if (!source.ReadToFollowing("title")) title = "";
-            else title = source.ReadString();
-
-            source.Close();
-            return title;
-        }
-
-        //starts the process of creating SectionNode's from h1...h6 elements
+        // Starts the process of creating SectionNode's from h1...h6 elements
         private void LoadFromXHTML(Uri fileUri)
         {
             XmlTextReader source = GetXmlReader(fileUri);
             source.WhitespaceHandling = WhitespaceHandling.Significant;
             bool foundHeadings = false;
-            mLastSection = null;
-
+            mCurrentSection = null;
             try
             {
                 while (source.Read())
@@ -72,9 +82,9 @@ namespace Obi
                             source.LocalName == "h4" || source.LocalName == "h5" || source.LocalName == "h6")
                         {
                             foundHeadings = true;
-                            Obi.SectionNode node = createSectionNode(source);
+                            Obi.SectionNode node = CreateSectionNode(source);
                             if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
-                            mLastSection = node;
+                            mCurrentSection = node;
                         }
                         else if ((source.LocalName == "p" || source.LocalName == "span") && 
                             source.GetAttribute("class") == "page")
@@ -95,24 +105,23 @@ namespace Obi
 
         private void addPage(XmlTextReader source)
         {
-            if (mLastSection == null) throw new Exception("Error adding page number: no parent section found");
+            if (mCurrentSection == null) throw new Exception("Error adding page number: no parent section found");
             
             int pageNumber;
-            string pageNumberString = getElementText(source);
+            string pageNumberString = GetTextContent(source);
             if (!int.TryParse(pageNumberString, out pageNumber)) return;
             EmptyNode node = new EmptyNode(mPresentation);
-            mLastSection.AppendChild(node);
+            mCurrentSection.AppendChild(node);
             node.PageNumber = pageNumber;
         }
 
-        //source points to a heading element (h1 through h6)
-        private SectionNode createSectionNode(XmlTextReader source)
+        // Create a section node for a heading element (where the XML reader currently is)
+        private SectionNode CreateSectionNode(XmlTextReader source)
         {
-            //get the level of this node.  
             int level = int.Parse(source.LocalName.Substring(1));
             SectionNode parent = getAvailableParent(level);
             SectionNode section = mPresentation.CreateSectionNode();
-            section.Label = getElementText(source);
+            section.Label = GetTextContent(source);
             //if no parent was found, then we must be an h1 sibling or first node
             if (parent == null)
             {
@@ -140,12 +149,13 @@ namespace Obi
             return null;
         }
 
-        private string getElementText(XmlTextReader source)
+        // Get the text content of an element
+        private string GetTextContent(XmlTextReader source)
         {
             string elementName = source.Name;
             string allText = "";
             allText += source.ReadString();
-            //wait for the end tag; acculumate the text inside
+            // wait for the end tag; acculumate the text inside
             while (!(source.NodeType == XmlNodeType.EndElement && source.Name == elementName))
             {
                 allText += source.ReadString();

@@ -93,15 +93,14 @@ namespace Obi
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
                 Localizer.Message("obi_filter"),
-                ImportStructure.grabTitle(new Uri(openFile.FileName)));
+                ImportStructure.GrabTitle(new Uri(openFile.FileName)));
             dialog.DisableAutoTitleCheckbox();
             dialog.Text = Localizer.Message("create_new_project_from_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
             CreateNewProject(dialog.Path, dialog.Title, false);
             try
             {
-                ImportStructure importer = new ImportStructure();
-                importer.ImportFromXHTML(openFile.FileName, mSession.Presentation, mProjectView);
+                (new ImportStructure()).ImportFromXHTML(openFile.FileName, mSession.Presentation);
             }
             catch (Exception e)
             {
@@ -141,14 +140,7 @@ namespace Obi
         }
 
         // Save the current project
-        private void Save()
-        {
-            if (mSession.CanSave)
-            {
-                mSession.Save();
-                AddRecentProject(mSession.Path);
-            }
-        }
+        private void Save() { mSession.Save(); }
 
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
@@ -160,7 +152,6 @@ namespace Obi
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 mSession.SaveAs(dialog.FileName);
-                AddRecentProject(dialog.FileName);
             }
             else
             {
@@ -699,6 +690,7 @@ namespace Obi
         private void Session_ProjectSaved(object sender, EventArgs e)
         {
             UpdateObi();
+            AddRecentProject(mSession.Path);
             Status(String.Format(Localizer.Message("saved_project"), mSession.Path));
         }
 

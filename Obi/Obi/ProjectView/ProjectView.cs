@@ -944,6 +944,10 @@ namespace Obi.ProjectView
                     {
                         command.append(new Commands.Node.ChangeCustomType(this, selected, next.CustomClass));
                     }
+                    else if (next.NodeKind == EmptyNode.Kind.Page)
+                    {
+                        command.append(new Commands.Node.SetPageNumber(this, selected, next.PageNumber));
+                    }
                     else
                     {
                         command.append(new Commands.Node.ChangeCustomType(this, selected, next.NodeKind));
