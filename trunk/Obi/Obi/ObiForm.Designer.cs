@@ -908,6 +908,7 @@ namespace Obi
             this.allowOverwriteToolStripMenuItem.Checked = true;
             this.allowOverwriteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.allowOverwriteToolStripMenuItem.Name = "allowOverwriteToolStripMenuItem";
+            this.allowOverwriteToolStripMenuItem.Click += new System.EventHandler(allowOverwriteToolStripMenuItem_Click);
             resources.ApplyResources(this.allowOverwriteToolStripMenuItem, "allowOverwriteToolStripMenuItem");
             // 
             // toolStripSeparator5
@@ -1092,6 +1093,8 @@ namespace Obi
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
 

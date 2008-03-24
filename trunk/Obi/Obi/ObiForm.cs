@@ -34,6 +34,9 @@ namespace Obi
         {
             InitializeObi();
             OpenProject(path);
+
+            // Avn: following line is temprorary till this goes into settings
+            mProjectView.TransportBar.AllowOverriteRecording = allowOverwriteToolStripMenuItem.Checked;
         }
 
 
@@ -1438,6 +1441,17 @@ namespace Obi
         {
             mProjectView.TransportBar.StartRecordingDirectly();
         }
+
+        void allowOverwriteToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (allowOverwriteToolStripMenuItem.Checked)
+                allowOverwriteToolStripMenuItem.Checked = false;
+            else
+                allowOverwriteToolStripMenuItem.Checked = true ;
+
+                        mProjectView.TransportBar.AllowOverriteRecording =  allowOverwriteToolStripMenuItem.Checked;
+        }
+
 
         private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
         {

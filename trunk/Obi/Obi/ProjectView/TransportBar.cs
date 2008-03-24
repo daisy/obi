@@ -31,7 +31,7 @@ namespace Obi.ProjectView
 
 
         private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
-        private bool mIsAppendOnlyRecording;
+        private bool m_AllowOverwriteRecording  = true ;
         RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
         public bool IsInlineRecording
         { get { return (inlineRecordingSession != null); } }
@@ -144,9 +144,7 @@ namespace Obi.ProjectView
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mVUMeterPanel.VuMeter = mVuMeter;
 
-            // Append recording flag: to be updated from settings. Put to false for time being.
-            mIsAppendOnlyRecording = false;
-
+            
             mFastPlayRateCombobox.Items.Add("1.0");
             mFastPlayRateCombobox.Items.Add("1.125");
             mFastPlayRateCombobox.Items.Add("1.25");
@@ -225,10 +223,10 @@ namespace Obi.ProjectView
         /// <summary>
         ///  flag to enable / disable append only recording mode for less skilled users
                 /// </summary>
-        public bool AppendOnlyRecording
+        public bool  AllowOverriteRecording
         {
-            get { return mIsAppendOnlyRecording; }
-            set { mIsAppendOnlyRecording = value; }
+            get { return m_AllowOverwriteRecording ; }
+            set { m_AllowOverwriteRecording = value; }
         }
 
         public Playlist CurrentPlaylist { get { return mCurrentPlaylist; } }
@@ -1103,7 +1101,7 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                if (!mIsAppendOnlyRecording && IsInPhraseSelectionMarked)
+                if (m_AllowOverwriteRecording  && IsInPhraseSelectionMarked)
                 {
                     if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
                         && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
