@@ -96,6 +96,15 @@ namespace Obi.ProjectView
                     mIsSerialPlaying = false;
                 }
             }
+
+            // playback block updated in case it drops on selection change. This is for now, will be changed with new implementation of selection
+            if ( mView.Selection != null
+                && mView.Selection.Node is PhraseNode    &&    !(mView.Selection is AudioSelection) 
+                && mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
+            {
+                mView.PlaybackBlock = (PhraseNode)mView.Selection.Node;
+                                            }
+
             m_IsSelectionMarked = false;
         }
 
