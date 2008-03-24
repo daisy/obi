@@ -171,7 +171,7 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
-        public bool CanAddSection { get { return mTOCView.CanAddSection || mStripsView.CanAddStrip; } }
+        public bool CanAddSection { get { return mPresentation != null && (  mTOCView.CanAddSection || mStripsView.CanAddStrip ) ; } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
