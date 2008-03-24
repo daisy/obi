@@ -672,4 +672,7 @@ Error text: {1}</value>
     <value>The directory that you selected to save your new project is not empty. Would you prefer to select the following location for your new project: "{0}"?</value>
     <comment>Warning dialog</comment>
   </data>
+  <data name="Accessible_Label_Unused" xml:space="preserve">
+    <value>, unused</value>
+  </data>
 </root>

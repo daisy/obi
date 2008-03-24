@@ -36,8 +36,24 @@ namespace Obi.ProjectView
             Label = mNode.Label;
             mParentView = parent;
             UpdateColors();
-            mLabel.AccessibleName = this.Label + " - depth " + node.Level ;
+            SetAccessibleName();
             AddCursor(0);
+        }
+
+
+        private void SetAccessibleName()
+        {
+            string Unused_Tag = "";
+
+            if (mNode != null)
+            {
+                if (!mNode.Used)
+                    Unused_Tag = Localizer.Message("Accessible_Label_Unused");
+
+                mLabel.AccessibleName = this.Label + " - depth " + mNode.Level + Unused_Tag ;
+            }
+            else
+                mLabel.AccessibleName = this.Label;
         }
 
 
@@ -121,7 +137,7 @@ namespace Obi.ProjectView
                 if (value != null && value != "")
                 {
                     mLabel.Label = value;
-                    if ( mNode != null ) mLabel.AccessibleName = this.Label + " - depth " + mNode.Level;                    
+                    SetAccessibleName();
                 }
                 int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
                 if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
@@ -229,7 +245,7 @@ namespace Obi.ProjectView
         {
             mLabel.Editable = true;
             mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, Label);
-            mLabel.AccessibleName = this.Label + " - depth " + mNode.Level ;
+            SetAccessibleName();
         }
 
         /// <summary>
