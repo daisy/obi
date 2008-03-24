@@ -57,20 +57,20 @@ namespace Obi.Dialogs
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Location = new System.Drawing.Point(205, 116);
+            this.mOKButton.Location = new System.Drawing.Point(123, 116);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(75, 23);
-            this.mOKButton.TabIndex = 5;
+            this.mOKButton.TabIndex = 4;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
             // 
             // mCancelButton
             // 
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Location = new System.Drawing.Point(124, 116);
+            this.mCancelButton.Location = new System.Drawing.Point(204, 116);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.mCancelButton.TabIndex = 4;
+            this.mCancelButton.TabIndex = 5;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
