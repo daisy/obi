@@ -195,7 +195,11 @@ namespace Obi.ProjectView
 
         private void AudioBlock_Enter(object sender, EventArgs e)
         {
-            mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString ()  ;
+            string Unused_Tag = "";
+            if (!mNode.Used)
+                Unused_Tag = Localizer.Message("Accessible_Label_Unused");
+
+            mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString () + Unused_Tag ;
         }
     }
 }
