@@ -208,6 +208,7 @@ namespace Obi.ProjectView
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
+        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode; } }
 
         /// <summary>
         /// Contents of the clipboard
@@ -1090,7 +1091,7 @@ namespace Obi.ProjectView
         public void ApplyPhraseDetection()
         {
             // first check if selected node is phrase node.
-            if (this.Selection != null && this.Selection.Node is PhraseNode)
+            if (CanApplyPhraseDetection )
             {
                 PhraseNode SilenceNode = null;
 

@@ -1165,6 +1165,7 @@ namespace Obi
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
+            PhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
 
             UpdateAudioSelectionBlockMenuItems();
         }
