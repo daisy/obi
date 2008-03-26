@@ -58,9 +58,6 @@ namespace Obi.ProjectView
 
 
         private bool m_AllowOverwriteRecording  = true ;
-        RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
-        public bool IsInlineRecording
-        { get { return (inlineRecordingSession != null); } }
         
 
         // constants from the display combo box
@@ -177,7 +174,6 @@ namespace Obi.ProjectView
             {
                 return Enabled 
                     && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped 
-                    && !IsInlineRecording
                     && !IsRecorderActive;
             }
         }
@@ -201,8 +197,6 @@ namespace Obi.ProjectView
             {
                 return Enabled &&
                     mCurrentPlaylist.State == Audio.AudioPlayerState.Paused
-                   && !IsInlineRecording
-                   
                    && !IsRecorderActive;
             }
         }
@@ -691,27 +685,14 @@ namespace Obi.ProjectView
 
         public void UpdateInlineRecordingState()
         {
-            if (IsInlineRecording)
-            {
-                mPrevPhraseButton.Enabled = false;
-                mPrevSectionButton.Enabled = false;
-                mRewindButton.Enabled = false;
-                mPlayButton.Enabled = false;
-                mFastForwardButton.Enabled = false;
-                mNextSectionButton.Enabled = false;
-                mPauseButton.Enabled = false;
-                            }
-            else
-            {
-                mPrevPhraseButton.Enabled = this.Enabled;
-                mPrevSectionButton.Enabled = this.Enabled;
-                mRewindButton.Enabled = this.Enabled;
-                mFastForwardButton.Enabled = this.Enabled;
-                mPlayButton.Enabled = CanPlay;
-                mNextPhrase.Enabled = this.Enabled;
-                mNextSectionButton.Enabled = this.Enabled;
-                mPauseButton.Enabled = this.Enabled;
-                            }
+            mPrevPhraseButton.Enabled = this.Enabled;
+            mPrevSectionButton.Enabled = this.Enabled;
+            mRewindButton.Enabled = this.Enabled;
+            mFastForwardButton.Enabled = this.Enabled;
+            mPlayButton.Enabled = CanPlay;
+            mNextPhrase.Enabled = this.Enabled;
+            mNextSectionButton.Enabled = this.Enabled;
+            mPauseButton.Enabled = this.Enabled;
         }
 
 
@@ -728,21 +709,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (IsInlineRecording)
-                {
-                    inlineRecordingSession.Stop();
-                    //if(mDidCreateSectionForRecording && inlineRecordingSession.RecordedAudio.Count == 0)
-                    //    this.mProjectPanel.ParentObiForm.UndoLast();
-
-                    for (int i = 0; i < inlineRecordingSession.RecordedAudio.Count; ++i)
-                    {
-                        // mProjectPanel.StripManager.UpdateAudioForPhrase(mRecordingToSection.PhraseChild(mRecordingStartIndex + i), inlineRecordingSession.RecordedAudio[i]);
-                    }
-
-                    inlineRecordingSession = null;
-                    UpdateInlineRecordingState();
-                }
-                else if (Enabled)
+                if (Enabled)
                 {
                     // Stopping again deselects everything
                     if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
@@ -757,7 +724,7 @@ namespace Obi.ProjectView
                     mPlayingFrom = null;
                     mIsSerialPlaying = false;
                 }
-            }// end recording if
+            }
         }
 
 
