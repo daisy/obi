@@ -184,7 +184,6 @@ namespace Obi.ProjectView
             this.mTransportBar.LocalPlaylist = null;
             this.mTransportBar.Location = new System.Drawing.Point(0, 0);
             this.mTransportBar.Name = "mTransportBar";
-            this.mTransportBar.PlayOnFocusEnabled = true;
             this.mTransportBar.Selection = null;
             this.mTransportBar.Size = new System.Drawing.Size(1060, 35);
             this.mTransportBar.TabIndex = 0;

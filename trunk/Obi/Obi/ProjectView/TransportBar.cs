@@ -11,16 +11,33 @@ namespace Obi.ProjectView
     public partial class TransportBar : UserControl
     {
         private ProjectView mView;                   // the parent project view
+        
         private Audio.AudioPlayer mPlayer;           // the audio player
         private Audio.AudioRecorder mRecorder;       // the audio recorder
         private Audio.VuMeter mVuMeter;              // VU meter
+
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;           // playlist currently playing
         private RecordingSession mRecordingSession;  // current recording session
-        private NodeSelection mPlayingFrom;          // selection before playback started
-        private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
+
         private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
+        private bool mIsSerialPlaying;               // true when playing a sequence of phrases.
+
+        private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
+        private NodeSelection mPlayingFrom;          // selection before playback started >>> TO BE REMOVED <<<
+        private bool m_AllowOverwriteRecording = true;
+
+
+        // Constants from the display combo box
+        private static readonly int ELAPSED_INDEX = 0;
+        private static readonly int ELAPSED_TOTAL_INDEX = 1;
+        private static readonly int REMAIN_INDEX = 2;
+
+
+        // Pass the state change and playback rate change events from the playlist
+        public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event EventHandler PlaybackRateChanged;
 
 
         /// <summary>
@@ -30,45 +47,18 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             mView = null;
-            mPlayer = new Audio.AudioPlayer();
-            mRecorder = new Obi.Audio.AudioRecorder();
-            mVuMeter = new Obi.Audio.VuMeter(mPlayer, mRecorder);
-            mVuMeter.SetEventHandlers();
-            mLocalPlaylist = null;
-            mMasterPlaylist = new Playlist(mPlayer);
-            SetPlaylistEvents(mMasterPlaylist);
-            mCurrentPlaylist = mMasterPlaylist;
-            mDisplayBox.SelectedIndex = ElapsedTotal;
+            InitAudio();
+            InitPlaylists();
+            mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-            mVUMeterPanel.VuMeter = mVuMeter;
             mFastPlayRateCombobox.SelectedIndex = 0;
         }
+
 
         /// <summary>
         /// Set preview duration.
         /// </summary>
         public int PreviewDuration { set { mPreviewDuration = value; } }
-
-        // A  non fluctuating flag to be set till playing of assets in serial is continued
-        // it is true while a series of assets are being played but false when only single asset is played
-        // so it is true for play all command and true for play node command when node is section
-        // for Playing playlist state of serial play of asset it is true while for pause and stop state during serial play, it is false
-        private bool mIsSerialPlaying = false;
-        private bool m_PlayOnFocusEnabled = true;     // Avn: for controlling triggering of OnFocus playback.
-
-
-        private bool m_AllowOverwriteRecording  = true ;
-        
-
-        // constants from the display combo box
-        private static readonly int Elapsed = 0;
-        private static readonly int ElapsedTotal = 1;
-        private static readonly int Remain = 2;
-        // private static readonly int RemainTotal = 3;
-
-        // Pass the state change and playback rate change events from the playlist
-        public event Events.Audio.Player.StateChangedHandler StateChanged;
-        public event EventHandler PlaybackRateChanged;
 
         /// <summary>
         /// The parent project view. Should be set ASAP, and only once.
@@ -86,8 +76,27 @@ namespace Obi.ProjectView
             }
         }
 
-        // TODO: Update what's playing when the selection changes
-        // Right now, selection is ignored when the transport bar is active
+
+        // Initialize audio (player, recorder, VU meter.)
+        private void InitAudio()
+        {
+            mPlayer = new Audio.AudioPlayer();
+            mRecorder = new Obi.Audio.AudioRecorder();
+            mVuMeter = new Obi.Audio.VuMeter(mPlayer, mRecorder);
+            mVuMeter.SetEventHandlers();
+            mVUMeterPanel.VuMeter = mVuMeter;
+        }
+
+        // Initialize playlists
+        private void InitPlaylists()
+        {
+            mMasterPlaylist = new Playlist(mPlayer);
+            mLocalPlaylist = null;
+            mCurrentPlaylist = mMasterPlaylist;
+            SetPlaylistEvents(mMasterPlaylist);
+        }
+
+        // Effect of changing selection. TODO: don't be affected by changes in selection!
         private void View_SelectionChanged(object sender, EventArgs e)
         {
             if (mView.Selection == null)
@@ -119,6 +128,30 @@ namespace Obi.ProjectView
                     mIsSerialPlaying = false;
                 }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
 
             // playback block updated in case it drops on selection change. This is for now, will be changed with new implementation of selection
             if ( mView.Selection != null
@@ -314,22 +347,6 @@ namespace Obi.ProjectView
             return mCurrentPlaylist != null && mCurrentPlaylist.ContainsPhrase(node as PhraseNode);
         }
 
-        /// <summary>
-        ///  Controls triggering of On Focus Playback
-        /// <see cref=""/>
-        /// </summary>
-        public bool PlayOnFocusEnabled
-        {
-            get
-            {
-                return m_PlayOnFocusEnabled;
-            }
-            set
-            {
-                m_PlayOnFocusEnabled = value;
-            }
-        }
-
 
         #endregion
 
@@ -337,6 +354,7 @@ namespace Obi.ProjectView
 
         #region playlist events
 
+        // Initialize events for a new playlist.
         private void SetPlaylistEvents(Playlist playlist)
         {
             playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Play_MovedToPhrase);
@@ -781,27 +799,6 @@ namespace Obi.ProjectView
         }
 
 
-        // <> function added for play on focus 12 May 2007
-        /// <summary>
-        ///  Plays a single phrase when keyboard focus arrives on a audio block
-        /// <see cref=""/>
-        /// </summary>
-        /// <param name="node"></param>
-        public void PlayPhraseOnFocus(ObiNode node)
-        {            
-            if (mCurrentPlaylist != null
-                && Enabled
-                && PlayOnFocusEnabled )
-            {
-                //execute on checking if play all is not active in playing state
-                if (!IsSeriallyPlaying )
-                {
-                    StopInternal();
-                    Play(node);
-                }// serial play  if ends
-            }
-        }
-
         /// <summary>
         /// Stops playlist without returning focus
         ///  to be used locally inside this class
@@ -857,11 +854,11 @@ namespace Obi.ProjectView
                     {
                         mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
                         mTimeDisplayBox.Text =
-                            mDisplayBox.SelectedIndex == Elapsed ?
+                            mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
                                 ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTimeInAsset) :
-                            mDisplayBox.SelectedIndex == ElapsedTotal ?
+                            mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
                                 ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.CurrentTime) :
-                            mDisplayBox.SelectedIndex == Remain ?
+                            mDisplayBox.SelectedIndex == REMAIN_INDEX ?
                                 ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTimeInAsset) :
                                 ObiForm.FormatTime_hh_mm_ss(mCurrentPlaylist.RemainingTime);
                     }
