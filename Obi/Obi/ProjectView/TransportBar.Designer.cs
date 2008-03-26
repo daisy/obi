@@ -293,6 +293,13 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mFastPlayRateCombobox.FormattingEnabled = true;
             this.mFastPlayRateCombobox.ItemHeight = 15;
+            this.mFastPlayRateCombobox.Items.AddRange(new object[] {
+            "1",
+            "1.125",
+            "1.25",
+            "1.5",
+            "1.75",
+            "2"});
             this.mFastPlayRateCombobox.Location = new System.Drawing.Point(740, 6);
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);

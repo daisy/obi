@@ -24,12 +24,12 @@ namespace Obi
         public string DefaultPath;        // default location
         public bool EnableTooltips;       // enable or disable tooltips
         public float FontSize;            // global font size (all font sizes must be relative to this one)
-        public string IdTemplate;         // identifier template
         public string LastInputDevice;    // the name of the last input device selected by the user
         public string LastOpenProject;    // path to the last open project
         public string LastOutputDevice;   // the name of the last output device selected by the user
         public Size ObiFormSize;          // size of the form (for future sessions) 
         public bool OpenLastProject;      // open the last open project at startup
+        public int PreviewDuration;       // playback preview duration in milliseconds
         public bool SynchronizeViews;     // keep views synchronized
         public ArrayList RecentProjects;  // paths to projects recently opened
         public int SampleRate;            // sample rate in Hertz
@@ -37,23 +37,6 @@ namespace Obi
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
-        /// <summary>
-        /// An ID generated from the pattern in the settings.
-        /// </summary>
-        public string GeneratedID
-        {
-            get
-            {
-                string id = IdTemplate;
-                Random rand = new Random();
-                Regex regex = new Regex("#");
-                while (id.Contains("#"))
-                {
-                    id = regex.Replace(id, String.Format("{0}", rand.Next(0, 10)), 1);
-                }
-                return id;
-            }
-        }
 
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
@@ -64,9 +47,8 @@ namespace Obi
             Settings settings = new Settings();
             settings.RecentProjects = new ArrayList();
             settings.UserProfile = new UserProfile();
-            settings.IdTemplate = "obi_####";
-            settings.DefaultPath = Environment.CurrentDirectory;
-            settings.DefaultExportPath = Environment.CurrentDirectory;
+            settings.DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            settings.DefaultExportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             settings.LastOpenProject = "";
             settings.LastOutputDevice = "";
             settings.LastInputDevice = "";
@@ -78,6 +60,7 @@ namespace Obi
             settings.OpenLastProject = false;
             settings.SynchronizeViews = true;
             settings.ObiFormSize = new Size(0, 0);
+            settings.PreviewDuration = 1500;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {

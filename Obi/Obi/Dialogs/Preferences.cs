@@ -34,8 +34,6 @@ namespace Obi.Dialogs
         public Preferences(Settings settings, Presentation presentation, ProjectView.TransportBar transportbar)
         {
             InitializeComponent();
-            mIdTemplate = settings.IdTemplate;
-            mTemplateBox.Text = mIdTemplate;
             mDefaultXUKDirectory = settings.DefaultPath;
             mDefaultDAISYDirectory = settings.DefaultExportPath;
             mDirectoryBox.Text = mDefaultXUKDirectory;
@@ -52,10 +50,6 @@ namespace Obi.Dialogs
                 mAudioChannels = settings.AudioChannels;
                 mBitDepth = settings.BitDepth;
                 mCanChangeAudioSettings = true;
-                //mSampleRate = presentation.SampleRate;
-                //mAudioChannels = presentation.AudioChannels;
-                //mBitDepth = presentation.BitDepth;
-                //mCanChangeAudioSettings = presentation.CanChangeAudioSettings;
             }
             else
             {
@@ -153,7 +147,6 @@ namespace Obi.Dialogs
         /// </summary>
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mIdTemplate = mTemplateBox.Text;
             //mg: rewrite of the above to try to make sure dir exists
             //only if the value changed since showdialog...
             if (mDefaultXUKDirectory != mDirectoryBox.Text)                

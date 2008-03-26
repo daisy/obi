@@ -20,7 +20,34 @@ namespace Obi.ProjectView
         private RecordingSession mRecordingSession;  // current recording session
         private NodeSelection mPlayingFrom;          // selection before playback started
         private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
-        
+        private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
+
+
+        /// <summary>
+        /// Initialize the transport bar.
+        /// </summary>
+        public TransportBar()
+        {
+            InitializeComponent();
+            mView = null;
+            mPlayer = new Audio.AudioPlayer();
+            mRecorder = new Obi.Audio.AudioRecorder();
+            mVuMeter = new Obi.Audio.VuMeter(mPlayer, mRecorder);
+            mVuMeter.SetEventHandlers();
+            mLocalPlaylist = null;
+            mMasterPlaylist = new Playlist(mPlayer);
+            SetPlaylistEvents(mMasterPlaylist);
+            mCurrentPlaylist = mMasterPlaylist;
+            mDisplayBox.SelectedIndex = ElapsedTotal;
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+            mVUMeterPanel.VuMeter = mVuMeter;
+            mFastPlayRateCombobox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Set preview duration.
+        /// </summary>
+        public int PreviewDuration { set { mPreviewDuration = value; } }
 
         // A  non fluctuating flag to be set till playing of assets in serial is continued
         // it is true while a series of assets are being played but false when only single asset is played
@@ -30,7 +57,6 @@ namespace Obi.ProjectView
         private bool m_PlayOnFocusEnabled = true;     // Avn: for controlling triggering of OnFocus playback.
 
 
-        private int m_PreviewDuration = 1500; // duration of preview playback, to be  included in settings.
         private bool m_AllowOverwriteRecording  = true ;
         RecordingSession inlineRecordingSession = null; // LNN: hack for doing non-dialog recording.
         public bool IsInlineRecording
@@ -134,35 +160,6 @@ namespace Obi.ProjectView
             if (IsActive) Stop();
         }
 
-        /// <summary>
-        /// Initialize the transport bar.
-        /// </summary>
-        public TransportBar()
-        {
-            InitializeComponent();
-            mView = null;
-            mPlayer = new Audio.AudioPlayer();
-            mRecorder = new Obi.Audio.AudioRecorder();
-            mVuMeter = new Obi.Audio.VuMeter(mPlayer, mRecorder);
-            mVuMeter.SetEventHandlers();
-            mLocalPlaylist = null;
-            mMasterPlaylist = new Playlist(mPlayer);
-            SetPlaylistEvents(mMasterPlaylist);
-            mCurrentPlaylist = mMasterPlaylist;
-            mDisplayBox.SelectedIndex = ElapsedTotal;
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-            mVUMeterPanel.VuMeter = mVuMeter;
-
-            
-            mFastPlayRateCombobox.Items.Add("1.0");
-            mFastPlayRateCombobox.Items.Add("1.125");
-            mFastPlayRateCombobox.Items.Add("1.25");
-            mFastPlayRateCombobox.Items.Add("1.5");
-            mFastPlayRateCombobox.Items.Add("1.75");
-            mFastPlayRateCombobox.Items.Add("2.0");
-            mFastPlayRateCombobox.SelectedIndex = 0;
-        }
-
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
         public bool CanPause
@@ -176,10 +173,13 @@ namespace Obi.ProjectView
 
         public bool CanPlay
         {
-            get { return Enabled 
-                && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped 
-                && !IsInlineRecording
-                && !IsRecorderActive; }
+            get
+            {
+                return Enabled 
+                    && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped 
+                    && !IsInlineRecording
+                    && !IsRecorderActive;
+            }
         }
 
         public bool CanRecord
@@ -393,10 +393,14 @@ namespace Obi.ProjectView
 
         #region buttons
 
+        private void mPlayButton_Click(object sender, EventArgs e) { if (mView.CanPlaySelection) Play(mView.Selection.Node); }
+
+
+
+
         private void mPrevSectionButton_Click(object sender, EventArgs e) { PrevSection(); }
         private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
         private void mRewindButton_Click(object sender, EventArgs e) { Rewind(); }
-        private void mPlayButton_Click(object sender, EventArgs e) { if (mView.CanPlaySelection) Play(mView.Selection.Node); }
                     
                 private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
         private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
@@ -521,20 +525,31 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Play: if there is a selection, play what is selected; otherwise, play all.
+        /// </summary>
+        public void ___Play()
+        {
+            if (CanPlay)
+            {
+                                
+            }
+        }
+
+        /// <summary>
         /// Play a single node (phrase or section).
         /// </summary>
         public void Play(ObiNode node)
         {
-                                        // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
-                // and if this MasterPlaylist is not in stopped state, stop it.
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
-                    && mCurrentPlaylist == mMasterPlaylist)
-                {
-                    // Avn: if keyboard focus is in toc panel, assign node to section as PlaySelection
-                    // command in TOC panel plays a section
-                    // if (mProjectPanel.TOCPanel.ContainsFocus) node = mCurrentPlayingSection;
-                    StopInternal();
-                }
+            // Avn: For instantly playing LocalPlaylist check if current playlist is MasterPlaylist
+            // and if this MasterPlaylist is not in stopped state, stop it.
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped
+                && mCurrentPlaylist == mMasterPlaylist)
+            {
+                // Avn: if keyboard focus is in toc panel, assign node to section as PlaySelection
+                // command in TOC panel plays a section
+                // if (mProjectPanel.TOCPanel.ContainsFocus) node = mCurrentPlayingSection;
+                StopInternal();
+            }
                 if (CanPlay)
                 {
                     mPlayingFrom = mView.Selection;
@@ -706,7 +721,8 @@ namespace Obi.ProjectView
         public void Stop()
         {
             if (mRecordingSession != null &&
-    (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
+                mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
                 StopRecording();
             }
@@ -989,11 +1005,14 @@ namespace Obi.ProjectView
         }
 
 
+        /// <summary>
+        /// Preview from the current position.
+        /// </summary>
         public bool PlayPreviewFromCurrentPosition()
         {
-            if ( IsInPhraseSelectionMarked )
-                            {
-                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, m_PreviewDuration);
+            if (IsInPhraseSelectionMarked)
+            {
+                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, mPreviewDuration);
                 return true;
             }
             return false;
@@ -1010,11 +1029,14 @@ namespace Obi.ProjectView
             return false;
         }
 
+        /// <summary>
+        /// Preview up to the current position.
+        /// </summary>
         public bool PlayPreviewUptoCurrentPosition()
         {
-            if ( IsInPhraseSelectionMarked )
-                            {
-                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime ,  m_PreviewDuration);
+            if (IsInPhraseSelectionMarked)
+            {
+                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, mPreviewDuration);
                 return true;
             }
             return false;

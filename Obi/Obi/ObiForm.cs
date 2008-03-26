@@ -820,7 +820,6 @@ namespace Obi
         /// </summary>
         private void UpdateSettings(Dialogs.Preferences dialog)
         {
-            if (dialog.IdTemplate.Contains("#")) mSettings.IdTemplate = dialog.IdTemplate;
             if (Directory.Exists(dialog.DefaultXUKDirectory)) mSettings.DefaultPath = dialog.DefaultXUKDirectory;
             if (Directory.Exists(dialog.DefaultDAISYDirectory)) mSettings.DefaultExportPath = dialog.DefaultDAISYDirectory;
             mSettings.OpenLastProject = dialog.OpenLastProject;
@@ -938,6 +937,8 @@ namespace Obi
             }
             // Synchronize views
             SynchronizeViews = mSettings.SynchronizeViews;
+            // Transport bar settings
+            mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
         }
 
         
@@ -1593,6 +1594,11 @@ namespace Obi
                 });
                 mAddMetadataEntryToolStripMenuItem.DropDownItems.Add(item);
             }
+        }
+
+        private void mProjectView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
