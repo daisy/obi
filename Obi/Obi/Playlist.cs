@@ -632,7 +632,7 @@ namespace Obi
         /// </summary>
         public void NavigateToPreviousSection()
         {
-            NavigateToPhrase(PreviousSectionIndex);
+            if ( mPhrases.Count > 0 ) NavigateToPhrase(PreviousSectionIndex);
         }
 
         /// <summary>
@@ -642,9 +642,12 @@ namespace Obi
         /// </summary>
         public void NavigateToPreviousPhrase()
         {
-            double currentTime = mPlayer.State == AudioPlayerState.Playing ? mPlayer.CurrentTimePosition : 0.0;
-            NavigateToPhrase(mCurrentPhraseIndex -
-                (currentTime > InitialThreshold || mCurrentPhraseIndex == 0 ? 0 : 1));
+            if (mPhrases.Count > 0)
+            {
+                double currentTime = mPlayer.State == AudioPlayerState.Playing ? mPlayer.CurrentTimePosition : 0.0;
+                NavigateToPhrase(mCurrentPhraseIndex -
+                    (currentTime > InitialThreshold || mCurrentPhraseIndex == 0 ? 0 : 1));
+            }
         }
 
         /// <summary>
@@ -652,7 +655,7 @@ namespace Obi
         /// </summary>
         public void NavigateToNextPhrase()
         {
-            if (mCurrentPhraseIndex < mPhrases.Count - 1) NavigateToPhrase(mCurrentPhraseIndex + 1);
+            if ( mPhrases.Count > 0    &&    mCurrentPhraseIndex < mPhrases.Count - 1) NavigateToPhrase(mCurrentPhraseIndex + 1);
         }
 
         /// <summary>
@@ -661,7 +664,7 @@ namespace Obi
         public void NavigateToNextSection()
         {
             int next = NextSectionIndex;
-            if (next != mCurrentPhraseIndex && next < mPhrases.Count) NavigateToPhrase(NextSectionIndex);
+            if ( mPhrases.Count > 0      &&    next != mCurrentPhraseIndex && next < mPhrases.Count) NavigateToPhrase(NextSectionIndex);
         }
 
         /// <summary>
@@ -681,7 +684,7 @@ namespace Obi
                     n = (PhraseNode)mPhrases[NextPagePhraseIndex];
                 }
 
-                if (NextPagePhraseIndex > mCurrentPhraseIndex && NextPagePhraseIndex < mPhrases.Count
+                if ( NextPagePhraseIndex > mCurrentPhraseIndex && NextPagePhraseIndex < mPhrases.Count
                     &&     n.NodeKind == EmptyNode.Kind.Page )
                     NavigateToPhrase(NextPagePhraseIndex);
             }
@@ -696,20 +699,23 @@ namespace Obi
         /// <param name="index">The index of the phrase to navigate to.</param>
         private void NavigateToPhrase(int index)
         {
-            System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
-            if (mPlaylistState == AudioPlayerState.Playing)
+            if (mPhrases.Count > 0)
             {
-                mPlayer.Stop();
-                PlayPhrase(index);
-            }
-            else if (mPlaylistState == AudioPlayerState.Paused)
-            {
-                SkipToPhrase(index);
-            }
-            else if (mPlaylistState == AudioPlayerState.Stopped)
-            {
-                PlayPhrase(index);
-            }
+                System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
+                if (mPlaylistState == AudioPlayerState.Playing)
+                {
+                    mPlayer.Stop();
+                    PlayPhrase(index);
+                }
+                else if (mPlaylistState == AudioPlayerState.Paused)
+                {
+                    SkipToPhrase(index);
+                }
+                else if (mPlaylistState == AudioPlayerState.Stopped)
+                {
+                    PlayPhrase(index);
+                }
+            } // end of check for phrase list count
         }
 
         /// <summary>
