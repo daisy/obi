@@ -20,13 +20,15 @@ namespace Obi.ProjectView
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null)
         private Playlist mCurrentPlaylist;           // playlist currently playing
         private RecordingSession mRecordingSession;  // current recording session
+        private bool mAllowOverwrite;                // if true, recording can overwrite data
 
         private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
         private bool mIsSerialPlaying;               // true when playing a sequence of phrases.
+        private PhraseNode mResumerecordingPhrase;   // last phrase recorded (?)
 
         private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
         private NodeSelection mPlayingFrom;          // selection before playback started >>> TO BE REMOVED <<<
-        private bool m_AllowOverwriteRecording = true;
+        private bool mIsSelectionMarked = false;     // this should probably go I think
 
 
         // Constants from the display combo box
@@ -52,8 +54,118 @@ namespace Obi.ProjectView
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
+            mAllowOverwrite = true;
         }
 
+
+        /// <summary>
+        /// Flag to enable/disable overwrite during recording.
+        /// </summary>
+        public bool AllowOverrite { set { mAllowOverwrite = value; } }
+
+        /// <summary>
+        /// Get the audio player used by the transport bar.
+        /// </summary>
+        public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
+
+        /// <summary>
+        /// True if pause is enabled (both during playback or recording.)
+        /// </summary>
+        public bool CanPause
+        {
+            get
+            {
+                // Can pause if either playback or recording is going on.
+                return Enabled &&
+                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording);
+            }
+        }
+
+        /// <summary>
+        /// True if playback can be initiated.
+        /// </summary>
+        public bool CanPlay
+        {
+            get
+            {
+                // Can play if both playback and recording are stopped.
+                return Enabled &&
+                    !IsRecorderActive &&
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped;
+            }
+        }
+
+        /// <summary>
+        /// True if recording can be initiated.
+        /// </summary>
+        public bool CanRecord
+        {
+            get
+            {
+                // Can record if playback is stopped or paused, and no recording is going on.
+                return Enabled &&
+                    !IsRecorderActive &&
+                    (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped ||
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused);
+            }
+        }
+
+        /// <summary>
+        /// True if playback can be resumed (after being paused.)
+        /// </summary>
+        public bool CanResumePlayback
+        {
+            get
+            {
+                // The player must be paused, with no recording going on.
+                return Enabled &&
+                    !IsRecorderActive &&
+                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused;
+            }
+        }
+
+        /// <summary>
+        /// True if recording can be resumed (after being paused.)
+        /// </summary>
+        public bool CanResumeRecording
+        {
+            get
+            {
+                return mResumerecordingPhrase != null
+                    && mResumerecordingPhrase.IsRooted;
+            }
+        }
+
+        /// <summary>
+        /// True if there is something going on that can be stopped,
+        /// or if there is something to deselect by stopping again.
+        /// </summary>
+        public bool CanStop
+        {
+            get
+            {
+                // Can stop if playback is going on or paused; or recording is going on or paused.
+                // Or something is selected and it can be deselected by stopping again.
+                return Enabled &&
+                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording ||
+                    mRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
+                    mView.Selection != null);
+            }
+        }
+
+        /// <summary>
+        /// The presentation in the project view has changed, so update playlists and event handlers accordingly.
+        /// </summary>
+        public void NewPresentation()
+        {
+            mPlayingFrom = null;
+            mMasterPlaylist.Presentation = mView.Presentation;
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+        }
 
         /// <summary>
         /// Set preview duration.
@@ -69,10 +181,6 @@ namespace Obi.ProjectView
             {
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
-                if (mView != null)
-                {
-                    mView.SelectionChanged += new EventHandler(View_SelectionChanged);
-                }
             }
         }
 
@@ -96,174 +204,39 @@ namespace Obi.ProjectView
             SetPlaylistEvents(mMasterPlaylist);
         }
 
-        // Effect of changing selection. TODO: don't be affected by changes in selection!
-        private void View_SelectionChanged(object sender, EventArgs e)
-        {
-            if (mView.Selection == null)
-            {
-                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
-                    mCurrentPlaylist.Stop();
-            }
-            else if (Enabled
-                && mRecordingSession == null
-                && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
-            {
-                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing)
-                {
-                    if (mCurrentPlaylist == mMasterPlaylist)
-                    {
-                        mPlayingFrom = mView.Selection;
-                        mCurrentPlaylist.Stop();
-                        PlayMasterPlaylist();
-                    }
-                    else
-                    {
-                        mCurrentPlaylist.Stop();
-                        Play(mView.Selection.Node);
-                    }
-                }
-                else
-                {
-                    mCurrentPlaylist.Stop();
-                    mIsSerialPlaying = false;
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-            // playback block updated in case it drops on selection change. This is for now, will be changed with new implementation of selection
-            if ( mView.Selection != null
-                && mView.Selection.Node is PhraseNode    &&    !(mView.Selection is AudioSelection) 
-                && mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
-            {
-                mView.PlaybackBlock = (PhraseNode)mView.Selection.Node;
-                                            }
-
-            m_IsSelectionMarked = false;
-        }
-
-        //Avn:  a temprorary flag introduced as a work around till support for setting waveform selection externally is added
-        // flag is turned true when selection end is marked and is turned false whenever selection changes
-        private bool m_IsSelectionMarked = false;
-
-        public void NewPresentation()
-        {
-            mPlayingFrom = null;
-            mMasterPlaylist.Presentation = mView.Presentation;
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
-            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
-        }
-
         // Stop when the tree is modified.
         // TODO be more clever about this.
-        void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
             if (IsPlayerActive) Stop();
         }
 
         // Stop when the tree is modified.
         // TODO be more clever about this.
-        void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
         {
             if (IsActive) Stop();
         }
 
-        public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
-
-        public bool CanPause
-        {
-            get
-            {
-                return Enabled && (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
-                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording);
-            }
-        }
-
-        public bool CanPlay
-        {
-            get
-            {
-                return Enabled 
-                    && mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped 
-                    && !IsRecorderActive;
-            }
-        }
-
-        public bool CanRecord
-        {
-            get
-            {
-                return Enabled &&
-                    (
-                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped )
-                        ||
-                        (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused )
-                    );
-            }
-        }
-
-        public bool CanResumePlayback
-        {
-            get
-            {
-                return Enabled &&
-                    mCurrentPlaylist.State == Audio.AudioPlayerState.Paused
-                   && !IsRecorderActive;
-            }
-        }
-
-        public bool CanResumeRecording
-        {
-            get
-            {
-                                return                   m_ResumerecordingPhrase != null
-                && m_ResumerecordingPhrase.IsRooted ;
-                            }
-        }
-
-        public bool CanStop
-        {
-            get
-            {
-                return Enabled && (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing ||
-                    mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused ||
-                    mRecorder.State == Obi.Audio.AudioRecorderState.Recording ||
-                    mRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
-                    mView.Selection != null);
-            }
-        }
 
 
-        /// <summary>
-        ///  flag to enable / disable append only recording mode for less skilled users
-                /// </summary>
-        public bool  AllowOverriteRecording
-        {
-            get { return m_AllowOverwriteRecording ; }
-            set { m_AllowOverwriteRecording = value; }
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public Playlist CurrentPlaylist { get { return mCurrentPlaylist; } }
 
@@ -572,7 +545,7 @@ namespace Obi.ProjectView
                     if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
                     
                     if (mView.Selection is AudioSelection
-                        && ( !((AudioSelection)mView.Selection).AudioRange.HasCursor || m_IsSelectionMarked )
+                        && ( !((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked )
                         && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
                         mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                     else if (mView.Selection is AudioSelection
@@ -679,7 +652,6 @@ namespace Obi.ProjectView
             mFastPlayRateCombobox.Enabled = false;
 
         }
-        PhraseNode m_ResumerecordingPhrase ;
         void PauseRecording()
         {
             ResetTimeDisplayForFinishedRecording();
@@ -691,7 +663,7 @@ namespace Obi.ProjectView
                     mRecordingSession.RecordedAudio[i]);
             }
             // TODO check this!!!
-            m_ResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
+            mResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
             mRecordingSession = null;
             //mRecordingSession.Listen();
             mRecordButton.Enabled = true;
@@ -962,7 +934,7 @@ namespace Obi.ProjectView
                                 && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime )
             {
                 ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
-                m_IsSelectionMarked = true;
+                mIsSelectionMarked = true;
                                                 return true;
             }
             return false;
@@ -1026,7 +998,7 @@ namespace Obi.ProjectView
                             //else if (m_ResumerecordingPhrase != null)
                             else if ( CanResumeRecording)
                             {
-                                PrepareForRecording(true, m_ResumerecordingPhrase);
+                                PrepareForRecording(true, mResumerecordingPhrase);
                                                             }
             else
             {
@@ -1093,7 +1065,7 @@ namespace Obi.ProjectView
             {
                 mRecordingSection = selected.ParentAs<SectionNode>();
 
-                if (m_AllowOverwriteRecording  && IsInPhraseSelectionMarked)
+                if (mAllowOverwrite  && IsInPhraseSelectionMarked)
                 {
                     if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
                         && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
@@ -1240,7 +1212,7 @@ namespace Obi.ProjectView
                 mRecordButton.Enabled = true;
                 mRecordButton.AccessibleName = Localizer.Message("record");
                 mRecordingSession = null;
-                m_ResumerecordingPhrase = null;
+                mResumerecordingPhrase = null;
 
                 // enable playback controls
                 mPlayButton.Enabled = true;
