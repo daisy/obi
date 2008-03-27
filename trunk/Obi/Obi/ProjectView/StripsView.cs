@@ -857,7 +857,7 @@ namespace Obi.ProjectView
                     (  mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped
                     || mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused) )
                 {
-                    if (mView.CanPlaySelection ) mView.TransportBar.Play(mView.Selection.Node);
+                    if (mView.CanPlaySelection ) mView.TransportBar.PlayOrResume(mView.Selection.Node);
                                             return true;
                 }
                 else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing 

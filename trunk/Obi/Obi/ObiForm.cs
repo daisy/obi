@@ -36,7 +36,7 @@ namespace Obi
             OpenProject(path);
 
             // Avn: following line is temprorary till this goes into settings
-            mProjectView.TransportBar.AllowOverrite = mAllowOverwriteToolStripMenuItem.Checked;
+            mProjectView.TransportBar.AllowOverwrite = mAllowOverwriteToolStripMenuItem.Checked;
         }
 
 
@@ -941,11 +941,12 @@ namespace Obi
             AllowOverwrite = mSettings.AllowOverwrite;
         }
 
+        // Set the allow overwrite preference and the corresponding property in the transport bar.
         private bool AllowOverwrite
         {
             set
             {
-                mProjectView.TransportBar.AllowOverrite = value;
+                mProjectView.TransportBar.AllowOverwrite = value;
                 mAllowOverwriteToolStripMenuItem.Checked = value;
                 mSettings.AllowOverwrite = value;
             }
@@ -1420,12 +1421,12 @@ namespace Obi
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanPlay) mProjectView.TransportBar.Play();
+            if (mProjectView.CanPlay) mProjectView.TransportBar.PlayOrResume();
         }
 
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.Play(mProjectView.Selection.Node);
+            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
         }
 
         private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1435,7 +1436,7 @@ namespace Obi
 
         private void mResumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanResume) mProjectView.TransportBar.Play();
+            if (mProjectView.CanResume) mProjectView.TransportBar.PlayOrResume();
         }
 
         private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
