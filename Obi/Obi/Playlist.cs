@@ -75,22 +75,23 @@ namespace Obi
         {
             mPlayer = player;
             Reset(false);
-
             if (selection.Control is Obi.ProjectView.TOCView)
-                AddPhraseNodes(selection.Node);
-            else
-            AddPhraseNodesFromStripOrPhrase(selection.Node);
-
-            if (selection is AudioSelection && ((AudioSelection)selection).AudioRange.HasCursor)
             {
-                mPlaybackStartTime = ((AudioSelection)selection).AudioRange.CursorTime;
+                AddPhraseNodes(selection.Node);
+            }
+            else
+            {
+                AddPhraseNodesFromStripOrPhrase(selection.Node);
+            }
+            if (selection is AudioSelection)
+            {
+                AudioSelection s = (AudioSelection)selection;
+                mPlaybackStartTime = s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime;
             }
         }
 
-        // Avn: added to expose list of phrases
         /// <summary>
-        ///  exposes list of phrases in PlayList
-        /// <see cref=""/>
+        /// Get the list of phrases in the playlist, in playback order.
         /// </summary>
         public List<PhraseNode> PhraseList { get { return mPhrases; } }
 
