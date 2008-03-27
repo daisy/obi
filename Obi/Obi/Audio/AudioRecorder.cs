@@ -459,7 +459,15 @@ namespace Obi.Audio
                     FileInfo fi = new FileInfo(m_sFileName);
                     if (fi.Exists)
                     {
-                        BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
+                        BinaryWriter Writer = null;
+                        try
+                        {
+                            Writer = new BinaryWriter(File.OpenWrite(fi.FullName));
+                        }
+                        catch (System.Exception ex)
+                        {
+                            return;
+                        }
                         // Write the data into the wav file");	   
                         Writer.BaseStream.Position = (long)(fi.Length);
                         //Writer.Seek(0, SeekOrigin.End);			
