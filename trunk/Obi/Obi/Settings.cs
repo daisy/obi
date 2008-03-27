@@ -17,6 +17,7 @@ namespace Obi
     [Serializable()]
     public class Settings
     {
+        public bool AllowOverwrite;       // allow/disallow overwriting audio when recording
         public int AudioChannels;         // number of channels for recording
         public int BitDepth;              // sample bit depth
         public bool CreateTitleSection;   // defaulf for "create title section" in new project
@@ -55,6 +56,7 @@ namespace Obi
             settings.AudioChannels = 1;
             settings.SampleRate = 44100;
             settings.BitDepth = 16;
+            settings.AllowOverwrite = false;
             settings.FontSize = 10.0f;
             settings.EnableTooltips = true;
             settings.OpenLastProject = false;

@@ -36,7 +36,7 @@ namespace Obi
             OpenProject(path);
 
             // Avn: following line is temprorary till this goes into settings
-            mProjectView.TransportBar.AllowOverriteRecording = allowOverwriteToolStripMenuItem.Checked;
+            mProjectView.TransportBar.AllowOverrite = mAllowOverwriteToolStripMenuItem.Checked;
         }
 
 
@@ -342,7 +342,6 @@ namespace Obi
             mShowStatusBarToolStripMenuItem.Enabled = true;
             mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
             mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
-            //mFocusOnTransportBarToolStripMenuItem.Enabled =
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
@@ -939,9 +938,20 @@ namespace Obi
             SynchronizeViews = mSettings.SynchronizeViews;
             // Transport bar settings
             mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
+            AllowOverwrite = mSettings.AllowOverwrite;
         }
 
+        private bool AllowOverwrite
+        {
+            set
+            {
+                mProjectView.TransportBar.AllowOverrite = value;
+                mAllowOverwriteToolStripMenuItem.Checked = value;
+                mSettings.AllowOverwrite = value;
+            }
+        }
         
+
         // Various utility functions
 
         private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1443,16 +1453,6 @@ namespace Obi
             mProjectView.TransportBar.StartRecordingDirectly();
         }
 
-        void allowOverwriteToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            if (allowOverwriteToolStripMenuItem.Checked)
-                allowOverwriteToolStripMenuItem.Checked = false;
-            else
-                allowOverwriteToolStripMenuItem.Checked = true ;
-
-                        mProjectView.TransportBar.AllowOverriteRecording =  allowOverwriteToolStripMenuItem.Checked;
-        }
-
 
         private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1596,9 +1596,9 @@ namespace Obi
             }
         }
 
-        private void mProjectView_Load(object sender, EventArgs e)
+        private void mAllowOverwriteToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-
+            AllowOverwrite = mAllowOverwriteToolStripMenuItem.Checked;
         }
     }
 }
