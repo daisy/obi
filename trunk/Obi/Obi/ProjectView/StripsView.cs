@@ -814,14 +814,17 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectPreviousSpecialRoleNode()
         {
-            for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+            if (mView.SelectedNodeAs<EmptyNode>() != null)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain )
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    mView.Selection = new NodeSelection(n, this);
-                    return true;
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
                 }
-            }
+            } // check end for empty node
             return false;
         }
 
@@ -832,14 +835,17 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectNextSpecialRoleNode()
         {
-            for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+            if (mView.SelectedNodeAs<EmptyNode>() != null)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain  )
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
-                    mView.Selection = new NodeSelection(n, this);
-                    return true;
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
                 }
-            }
+            }// check ends for empty node
             return false;
         }
 
