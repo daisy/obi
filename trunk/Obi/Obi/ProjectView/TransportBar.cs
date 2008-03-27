@@ -28,7 +28,6 @@ namespace Obi.ProjectView
         private SectionNode mCurrentPlayingSection;  // holds section currently being played for highlighting it in TOC view while playing
         private NodeSelection mPlayingFrom;          // selection before playback started >>> TO BE REMOVED <<<
         private bool mIsSelectionMarked = false;     // this should probably go I think
-        private bool mIsSerialPlaying;               // this can go too?
 
 
         // Constants from the display combo box
@@ -55,7 +54,6 @@ namespace Obi.ProjectView
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
             mAllowOverwrite = true;
-            UpdateButtons();
         }
 
 
@@ -208,6 +206,7 @@ namespace Obi.ProjectView
             mMasterPlaylist.Presentation = mView.Presentation;
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+            UpdateButtons();
         }
 
         /// <summary>
@@ -224,6 +223,7 @@ namespace Obi.ProjectView
             {
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
+                UpdateButtons();
             }
         }
 
@@ -307,10 +307,16 @@ namespace Obi.ProjectView
             playlist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(Playlist_PlaybackRateChanged);
         }
 
+        // Update visibility and enabledness of buttons depending on the state of the recorder
         private void UpdateButtons()
         {
             mPauseButton.Visible = CanPause;
             mPlayButton.Visible = !mPauseButton.Visible;
+            mPlayButton.Enabled = CanPlay || CanResumePlayback;
+            mRecordButton.Enabled = CanRecord || CanResumeRecording;
+            mRecordButton.AccessibleName = Localizer.Message(mRecorder.State == Obi.Audio.AudioRecorderState.Listening ? "start_recording":
+                "start_monitoring");
+            mStopButton.Enabled = CanStop;
         }
 
         /// <summary>
@@ -381,9 +387,10 @@ namespace Obi.ProjectView
 
         #endregion
 
+
         // Buttons
 
-        // Play
+        // Play/Resume
 
         private void mPlayButton_Click(object sender, EventArgs e) { PlayOrResume(); }
 
@@ -434,7 +441,77 @@ namespace Obi.ProjectView
             mCurrentPlaylist.Play();
         }
 
+        // Pause
 
+        private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
+
+        /// <summary>
+        /// Pause playback or recording
+        /// </summary>
+        public void Pause()
+        {
+            if (CanPause)
+            {
+                mDisplayTimer.Stop();
+                if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+                {
+                    PauseRecording();
+                }
+                else if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                    mCurrentPlaylist.Pause();
+                }
+                UpdateButtons();
+            }
+        }
+
+        // Pause recording
+        private void PauseRecording()
+        {
+            mRecordingSession.Stop();
+            for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+            {
+                mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
+                    mRecordingSession.RecordedAudio[i]);
+            }
+            mResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
+            mRecordingSession = null;
+            UpdateTimeDisplay();
+        }
+
+        // Stop
+
+        private void mStopButton_Click(object sender, EventArgs e) { Stop(); }
+
+        /// <summary>
+        /// The stop button. Stopping twice deselects all.
+        /// </summary>
+        public void Stop()
+        {
+            if (mRecordingSession != null &&
+                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
+                mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            {
+                StopRecording();
+            }
+            else
+            {
+                if (Enabled)
+                {
+                    // Stopping again deselects everything
+                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                    {
+                        mView.Selection = null;
+                    }
+                    else
+                    {
+                        mCurrentPlaylist.Stop();
+                        mView.Selection = mPlayingFrom;
+                    }
+                    mPlayingFrom = null;
+                }
+            }
+        }
 
 
 
@@ -469,9 +546,8 @@ namespace Obi.ProjectView
         private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
         private void mRewindButton_Click(object sender, EventArgs e) { Rewind(); }
                     
-                private void mPauseButton_Click(object sender, EventArgs e) { Pause(); }
+                
         private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
-        private void mStopButton_Click(object sender, EventArgs e) { Stop(); }
         private void mFastForwardButton_Click(object sender, EventArgs e) { FastForward(); }
         private void mNextPhrase_Click(object sender, EventArgs e) { NextPhrase(); }
         private void mNextSectionButton_Click(object sender, EventArgs e) { NextSection(); }
@@ -484,9 +560,7 @@ namespace Obi.ProjectView
         {
             if ( Enabled     &&     mRecordingSession == null )
             {
-                mIsSerialPlaying = true;
                  mCurrentPlaylist.NavigateToPreviousSection();
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
 
@@ -497,9 +571,7 @@ namespace Obi.ProjectView
         {
             if ( Enabled    &&    mRecordingSession == null )
             {
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = true;
                  mCurrentPlaylist.NavigateToPreviousPhrase();
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
 
@@ -512,8 +584,6 @@ namespace Obi.ProjectView
             {
                     if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped)
                         PlayOrResume();
-
-                    mIsSerialPlaying = true;
                     mCurrentPlaylist.Rewind();
                 }
                     }
@@ -561,7 +631,6 @@ namespace Obi.ProjectView
                 }
                 else if (CanResumePlayback)
                 {
-                    mIsSerialPlaying = true;
 
                     if (mView.Selection is AudioSelection)
                         mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
@@ -580,7 +649,6 @@ namespace Obi.ProjectView
                 mCurrentPlaylist.CurrentPhrase = InitialPhrase;
                 if (mCurrentPlaylist.CurrentPhrase != null)
                 {
-                    mIsSerialPlaying = true;
                     if (mView.Selection is AudioSelection
                         && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
                         mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
@@ -614,7 +682,7 @@ namespace Obi.ProjectView
                     mCurrentPlaylist = mLocalPlaylist;
                     mCurrentPlaylist.CurrentPhrase = InitialPhrase;
                     // Avn: condition added on 13 may 2007
-                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+                    //if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
                     
                     if (mView.Selection is AudioSelection
                         && ( !((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked )
@@ -631,7 +699,7 @@ namespace Obi.ProjectView
                 else if (CanResumePlayback)
                 {
                     // Avn: condition added on 13 may 2007
-                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
+                    //if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
 
                     if (mView.Selection is AudioSelection)
                         mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
@@ -645,7 +713,6 @@ namespace Obi.ProjectView
                     // Avn: following line replaced by next line as this function also work in toc panel
                     //mProjectPanel.CurrentSelection = new NodeSelection(node, mProjectPanel.StripManager);
                     node = mView.Selection.Node;
-                    if (mCurrentPlaylist.PhraseList.Count > 1) mIsSerialPlaying = true;
                     PlayOrResume(node);
                 }
                     }
@@ -688,28 +755,6 @@ namespace Obi.ProjectView
             return from as PhraseNode;
         }
 
-        /// <summary>
-        /// Pause playback.
-        /// </summary>
-        public void Pause()
-        {
-            if (Enabled)
-            {
-                if (mRecordingSession != null &&
-                    (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening || mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
-                {
-                    PauseRecording();
-                }
-                else if ( mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing )
-                {
-                    mCurrentPlaylist.Pause();
-                    mDisplayTimer.Stop();
-                    mView.SelectAtCurrentTime();
-                    mIsSerialPlaying = false;
-                }
-            }
-        }
-
         int mRecordingInitPhraseIndex ;
         SectionNode mRecordingSection; // Section in which we are recording
 
@@ -722,24 +767,6 @@ namespace Obi.ProjectView
             mFastForwardButton.Enabled = false;
             mRewindButton.Enabled = false;
             mFastPlayRateCombobox.Enabled = false;
-
-        }
-        void PauseRecording()
-        {
-            ResetTimeDisplayForFinishedRecording();
-
-            mRecordingSession.Stop();
-            for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-            {
-                mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
-                    mRecordingSession.RecordedAudio[i]);
-            }
-            // TODO check this!!!
-            mResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1 );
-            mRecordingSession = null;
-            //mRecordingSession.Listen();
-            mRecordButton.Enabled = true;
-            mRecordButton.AccessibleName = "Start Recording";
 
         }
 
@@ -758,37 +785,6 @@ namespace Obi.ProjectView
         }
 
 
-        /// <summary>
-        /// The stop button. Stopping twice deselects all.
-        /// </summary>
-        public void Stop()
-        {
-            if (mRecordingSession != null &&
-                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
-                mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
-            {
-                StopRecording();
-            }
-            else
-            {
-                if (Enabled)
-                {
-                    // Stopping again deselects everything
-                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
-                    {
-                        mView.Selection = null;
-                    }
-                    else
-                    {
-                        mCurrentPlaylist.Stop();
-                        mView.Selection = mPlayingFrom;
-                    }
-                    mPlayingFrom = null;
-                    mIsSerialPlaying = false;
-                }
-            }
-        }
-
 
         /// <summary>
         /// Play faster.
@@ -800,7 +796,6 @@ namespace Obi.ProjectView
                 if ( mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped )
                     PlayOrResume();
 
-                mIsSerialPlaying = true;
                 mCurrentPlaylist.FastForward();
             }
         }
@@ -816,9 +811,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                mIsSerialPlaying = true;
                 if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
 
@@ -836,9 +829,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                mIsSerialPlaying = true;
                 if (Enabled) mCurrentPlaylist.NavigateToNextSection();
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
             }
         }
 
@@ -852,7 +843,6 @@ namespace Obi.ProjectView
         {
             mCurrentPlaylist.Stop();
             mPlayingFrom = null;
-            mIsSerialPlaying = false;
         }
 
 
@@ -1188,13 +1178,6 @@ namespace Obi.ProjectView
                         mDisplayTimer.Start();
         }
 
-        public void ResetTimeDisplayForFinishedRecording()
-        {
-            mDisplayTimer.Stop();
-            mDisplayBox.SelectedIndex = 0;
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-            mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0);
-        }
 
         // Start listening
         private void StartListening()
@@ -1229,7 +1212,7 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
-                ResetTimeDisplayForFinishedRecording();
+                //ResetTimeDisplayForFinishedRecording();
                                                                 
 
                 mRecordingSession.Stop();
@@ -1261,20 +1244,18 @@ namespace Obi.ProjectView
             
         }
 
-        public void NextPage ()
+        public void NextPage()
         {
             if (mRecordingSession != null
                 && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
             {
                 mRecordingSession.MarkPage();
             }
-            else if ( mRecordingSession == null )
+            else if (mRecordingSession == null)
             {
-                    mIsSerialPlaying = true;
-            if (Enabled) mCurrentPlaylist.NavigateToNextPage ();
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
-                    }
-                }
+                if (Enabled) mCurrentPlaylist.NavigateToNextPage();
+            }
+        }
 
         private void mPreviousPageButton_Click(object sender, EventArgs e)
         {
@@ -1285,9 +1266,7 @@ namespace Obi.ProjectView
         {
                         if ( Enabled     &&     mRecordingSession == null )
                 {
-            mIsSerialPlaying = true;
             mCurrentPlaylist.NavigateToPreviousPage();
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mIsSerialPlaying = false;
                 }
         }
 

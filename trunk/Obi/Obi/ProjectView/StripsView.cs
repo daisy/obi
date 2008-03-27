@@ -844,29 +844,20 @@ namespace Obi.ProjectView
         }
 
 
-        /// <summary>
-        /// Toggles play selection and pause with spacebar
-        /// In this function Pause works both for play selection and Play all
-        /// <see cref=""/>
-        /// </summary>
-        /// <returns></returns>
+        // Toggle play/pause in the transport bar
         private bool TogglePlayPause()
         {
-                            if (!mView.TransportBar.IsRecorderActive
-                    && 
-                    (  mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped
-                    || mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Paused) )
-                {
-                    if (mView.CanPlaySelection ) mView.TransportBar.PlayOrResume(mView.Selection.Node);
-                                            return true;
-                }
-                else if (mView.TransportBar.CurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Playing 
-                                || mView.TransportBar.IsRecorderActive) 
-                                    {
-                    mView.TransportBar.Pause();
-                    return true;
-                }
-                        return false;
+            if (mView.TransportBar.CanPlay || mView.TransportBar.CanResumePlayback)
+            {
+                mView.TransportBar.PlayOrResume();
+                return true;
+            }
+            else if (mView.TransportBar.CanPause)
+            {
+                mView.TransportBar.Pause();
+                return true;
+            }
+            return false;
         }
 
 

@@ -675,4 +675,8 @@ Error text: {1}</value>
   <data name="Accessible_Label_Unused" xml:space="preserve">
     <value>, unused</value>
   </data>
+  <data name="start_monitoring" xml:space="preserve">
+    <value>Start monitoring</value>
+    <comment>Button label</comment>
+  </data>
 </root>
