@@ -650,7 +650,8 @@ namespace Obi
             UpdateEditMenu();
             UpdateViewMenu();
             UpdateSectionsMenu();
-            UpdateBlocksMenu();
+            UpdatePhrasesMenu();
+            UpdateTransportMenu();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
@@ -1165,7 +1166,7 @@ namespace Obi
         }
 
         // Update the status of the blocks menu item with the current selection and tree.
-        private void UpdateBlocksMenu()
+        private void UpdatePhrasesMenu()
         {
             mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
@@ -1363,7 +1364,7 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay ;
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
             if (mProjectView.CanResume )
             {
