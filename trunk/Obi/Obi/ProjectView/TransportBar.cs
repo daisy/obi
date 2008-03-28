@@ -1303,18 +1303,21 @@ namespace Obi.ProjectView
         /// </summary>
         public void MarkCustomClass()
         {
-            EmptyNode node;
-            if (IsRecording)
+            if (mView.Selection != null)
             {
-                NextPhrase();
-                node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                EmptyNode node;
+                if (IsRecording)
+                {
+                    NextPhrase();
+                    node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                }
+                else
+                {
+                    node = mView.SelectedNodeAs<EmptyNode>();
+                }
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
+                    EmptyNode.Kind.Custom, Localizer.Message("default_custom_class_name")));
             }
-            else
-            {
-                node = mView.SelectedNodeAs<EmptyNode>();
-            }
-            mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                EmptyNode.Kind.Custom, Localizer.Message("default_custom_class_name")));
         }
 
         public void MarkTodoClass()
