@@ -594,6 +594,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.PageUp] = SelectPrecedingPageNode;
             mShortcutKeys[Keys.Control | Keys.PageDown ] = SelectNextSpecialRoleNode ;
             mShortcutKeys[ Keys.Control |  Keys.PageUp] = SelectPreviousSpecialRoleNode ;
+            mShortcutKeys[Keys.Control | Keys.F4 ] = SelectNextTo_DoNode ;
+            mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F4] =  SelectPreviousTo_DoNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -840,6 +842,47 @@ namespace Obi.ProjectView
                 for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
+                }
+            }// check ends for empty node
+            return false;
+        }
+
+
+        /// <summary>
+        ///  Select previous to do node in contents view
+                /// </summary>
+        /// <returns></returns>
+        public bool SelectPreviousTo_DoNode ()
+        {
+            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            {
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind  == EmptyNode.Kind.TODO)
+                    {
+                        mView.Selection = new NodeSelection(n, this);
+                        return true;
+                    }
+                }
+            } // check end for empty node
+            return false;
+        }
+
+        /// <summary>
+        ///  Select  next To_Do node in contents view
+                /// </summary>
+        /// <returns></returns>
+        public bool SelectNextTo_DoNode ()
+        {
+            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            {
+                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                {
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO )
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return true;
