@@ -36,7 +36,7 @@ namespace Obi.Audio
         InputDevice mDevice;
         private const int NumberRecordNotifications = 16; // number of notifications in capture buffer 
         private System.Windows.Forms.Timer CaptureTimer = new System.Windows.Forms.Timer();
-
+        
 
         // member variables which change whenever recording of a new asset starts
         AudioMediaData mAsset; // Asset currently  being  recorded
@@ -54,6 +54,7 @@ namespace Obi.Audio
                 private BufferPositionNotify[] PositionNotify; // array containing notification  position in capture buffer
                 internal byte[] arUpdateVM; // array for updating VuMeter
         internal int m_UpdateVMArrayLength; // Length of Vumeter array
+        private Mutex m_MutexCaptureData; // Implement mutual exclusion in threads updating captured data
 
 
 // member variables  which are re assigned during recording
@@ -409,7 +410,8 @@ namespace Obi.Audio
 		
 		//  Copies data from the capture buffer to the output buffer 
 		public void RecordCapturedData( ) 
-		{	
+		{
+            m_MutexCaptureData.WaitOne();
 			int ReadPos ;
 			byte[] CaptureData = null;
 			int CapturePos ;
@@ -425,8 +427,11 @@ namespace Obi.Audio
 				LockSize += m_iCaptureBufferSize;
 			// Block align lock size so that we are always write on a boundary
 			LockSize -= (LockSize % m_iNotifySize);
-			if (0 == LockSize)
-				return;
+            if (0 == LockSize)
+            {
+                m_MutexCaptureData.ReleaseMutex();
+                return;
+            }
 
             //CaptureData = new byte [ LockSize ] ;
 
@@ -437,9 +442,9 @@ namespace Obi.Audio
             }
             catch (System.Exception)
             {
+                m_MutexCaptureData.ReleaseMutex();
                 return;
-                //MessageBox.Show( "Size" + ( m_iCaptureBufferSize.ToString () ) +  "Cap" + ( NextCaptureOffset.ToString () ) + "Log" + ( LockSize.ToString () ) + Ex.ToString());
-            }
+                            }
 
             // make update vumeter array length equal to CaptureData length
                 if (CaptureData.Length != arUpdateVM.Length
@@ -466,6 +471,7 @@ namespace Obi.Audio
                         }
                         catch (System.Exception ex)
                         {
+                            m_MutexCaptureData.ReleaseMutex();
                             return;
                         }
                         // Write the data into the wav file");	   
@@ -483,12 +489,11 @@ namespace Obi.Audio
 			// Move the capture offset along
 			NextCaptureOffset+= CaptureData.Length ; 
 			NextCaptureOffset %= m_iCaptureBufferSize; // Circular buffer
-            // Below lines commented to eliminate listen file on 2 Fev 2007
-            //long mLength = (long)fi.length ;
-            // instead of above line following line is used
+            
             long mLength = (long)SampleCount;
 
             mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
+            m_MutexCaptureData.ReleaseMutex();
 }
 
 int m_PrevBufferPos = 0;
@@ -560,6 +565,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
 
 			if(SRecording)
 			{
+                m_MutexCaptureData = new Mutex();
                 SampleCount = 0;
 				CreateCaptureBuffer();
 				applicationBuffer.Start(true);//it will set the looping till the stop is used
@@ -575,9 +581,9 @@ void CaptureTimer_Tick(object sender, EventArgs e)
 			else
 			{
                 CaptureTimer.Stop();
-                				applicationBuffer.Stop();
+                                				applicationBuffer.Stop();
 				RecordCapturedData();
-
+                m_MutexCaptureData.Close();
                 // condition for listening added to eleminate listen file on 2 Feb 2007
                 if (WasListening == false)
                 {
