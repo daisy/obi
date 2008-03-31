@@ -20,8 +20,7 @@ namespace CheckDX
         public override void Commit(System.Collections.IDictionary savedState)
         {
             base.Commit(savedState);
-                        //CheckForDirectXManaged();
-                        Check();
+                                                Check();
                     }
 
         /// <summary>
@@ -106,6 +105,9 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
             return DXPaths;
         }
 
+        /// <summary>
+        /// Checks DirectX version and opens download page if suitable version is not found on deployment machine
+                /// </summary>
         public void Check()
         {
             CheckForDirectXManaged ( ListDirectXAssemblies() );
@@ -113,7 +115,7 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
 
         /// <summary>
         /// check for right version of DirectX
-                /// </summary>
+                        /// </summary>
         /// <param name="DXList"></param>
         private void CheckForDirectXManaged(List<string> DXList)
         {
@@ -146,7 +148,9 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
 
         }//end function
 
-
+        /// <summary>
+        /// Old function for checking DirectX version: This uses depricated dotnet functions.
+                /// </summary>
         private void CheckForDirectXManaged()
         {
             string Version = "   ";
