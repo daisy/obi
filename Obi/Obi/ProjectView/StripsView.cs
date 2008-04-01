@@ -100,7 +100,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return StripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 ||
+                return StripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 &&
                     mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode>().SectionChildCount - 1);
             }
         }
