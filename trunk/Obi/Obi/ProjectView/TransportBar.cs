@@ -488,15 +488,13 @@ namespace Obi.ProjectView
         /// </summary>
         public void Stop()
         {
-            if (mRecordingSession != null &&
-                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Listening ||
-                mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+            if (Enabled)
             {
-                StopRecording();
-            }
-            else
-            {
-                if (Enabled)
+                if (IsRecorderActive)
+                {
+                    StopRecording();
+                }
+                else
                 {
                     // Stopping again deselects everything
                     if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
@@ -854,10 +852,7 @@ namespace Obi.ProjectView
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
-
-            // Avn: Temprorary condition to avoid crash till recording starts working with waveform
-            if ( mRecordingSession == null )
-            mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
         }
 
         private double mDisplayTime;

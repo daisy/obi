@@ -13,6 +13,7 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;        // tooltips flag
         private Presentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
+        private AudioSelection mCursor;      // audio cursor
         private Clipboard mClipboard;        // the clipboard
         private bool mSynchronizeViews;      // synchronize views flag
         private ObiForm mForm;               // parent form
@@ -41,6 +42,7 @@ namespace Obi.ProjectView
             mMetadataViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel2Collapsed;
             mPresentation = null;
             mSelection = null;
+            mCursor = null;
             mForm = null;
             mClipboard = null;
         }
@@ -72,7 +74,6 @@ namespace Obi.ProjectView
                 if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
         }
-
 
         /// <summary>
         /// Get the list of names of currently addable metadata entries.
@@ -239,6 +240,15 @@ namespace Obi.ProjectView
             else if (CanCopyAudio)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.Audio.Copy(this));
+            }
+        }
+
+        public AudioSelection Cursor
+        {
+            get { return mCursor; }
+            set
+            {
+                mCursor = value;
             }
         }
 

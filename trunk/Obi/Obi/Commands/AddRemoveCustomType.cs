@@ -53,6 +53,5 @@ namespace Obi.Commands
         {
             mPresentation.AddCustomClass(mCustomType, null);
         }
-
     }
 }
