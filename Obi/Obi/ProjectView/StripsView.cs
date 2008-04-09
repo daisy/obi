@@ -113,7 +113,7 @@ namespace Obi.ProjectView
             set
             {
                 mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
-                if (mPlaybackBlock != null) mPlaybackBlock.SetCursorTime(0.0);
+                if (mPlaybackBlock != null) mPlaybackBlock.InitCursor();
             }
         }
 

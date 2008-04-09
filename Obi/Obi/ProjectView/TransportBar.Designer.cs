@@ -62,7 +62,7 @@ namespace Obi.ProjectView
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(32, 35);
             this.mPlayButton.TabIndex = 4;
-            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback.");
+            this.mTransportBarTooltip.SetToolTip(this.mPlayButton, "Start or resume audio playback (Space)");
             this.mPlayButton.UseVisualStyleBackColor = true;
             this.mPlayButton.Click += new System.EventHandler(this.mPlayButton_Click);
             // 
@@ -77,7 +77,7 @@ namespace Obi.ProjectView
             this.mPauseButton.Name = "mPauseButton";
             this.mPauseButton.Size = new System.Drawing.Size(32, 35);
             this.mPauseButton.TabIndex = 5;
-            this.mTransportBarTooltip.SetToolTip(this.mPauseButton, "Pause audio playback or recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mPauseButton, "Pause audio playback or recording (Space)");
             this.mPauseButton.UseVisualStyleBackColor = true;
             this.mPauseButton.Click += new System.EventHandler(this.mPauseButton_Click);
             // 
@@ -338,7 +338,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.mPauseButton);
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(1051, 35);
+            this.Size = new System.Drawing.Size(945, 35);
             this.ResumeLayout(false);
             this.PerformLayout();
 

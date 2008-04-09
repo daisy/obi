@@ -14,29 +14,31 @@ namespace Obi.ProjectView
         private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
 
+        /// <summary>
+        /// Create a new audio block for a phrase node in a strip.
+        /// </summary>
         public AudioBlock(PhraseNode node, Strip strip)
             : base(node, strip)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             SetWaveform((PhraseNode)Node);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShift = false;
         }
 
+        
+        public void SetCursorTime(double time)
+        {
+            mWaveform.CursorTime = time;
+            Strip.SelectTimeInBlock(this, mWaveform.Selection);
+        }
 
+        public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
+
+        /// <summary>
+        /// True if selection in the waveform is enabled.
+        /// </summary>
         public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
-
-        /*
-        public void MarkSelectionBeginTime(double time)
-        {
-            if (CanSelectInWaveform) mWaveform.BeginSelectionTime = time;
-        }
-
-        public void MarkSelectionEndTime(double time)
-        {
-            if (CanSelectInWaveform) mWaveform.FinalSelectionTime = time;
-        }
-         * */
 
         /// <summary>
         /// Set the selected flag for the block.
@@ -63,9 +65,8 @@ namespace Obi.ProjectView
         }
 
 
-        /// <summary>
-        /// Set the waveform from the audio on a phrase node.
-        /// </summary>
+        // Set the waveform from the audio on a phrase node.
+        // Resize the block to fit both the whole waveform and its label.
         private void SetWaveform(PhraseNode node)
         {
             mWaveform.AccessibleName = AccessibleName;
@@ -140,7 +141,7 @@ namespace Obi.ProjectView
             {
                 if (mShift && mWaveform.Selection != null)
                 {
-                    int begin = mWaveform.CursorPosition;
+                    int begin = mWaveform.SelectionPointPosition;
                     if (begin < e.X)
                     {
                         mWaveform.FinalSelectionPosition = e.X;
@@ -149,20 +150,20 @@ namespace Obi.ProjectView
                     {
                         if (mWaveform.Selection.HasCursor)
                         {
-                            mWaveform.CursorPosition = e.X;
+                            mWaveform.SelectionPointPosition = e.X;
                             mWaveform.FinalSelectionPosition = begin;
                         }
                         else
                         {
                             int end = mWaveform.FinalSelectionPosition;
-                            mWaveform.CursorPosition = e.X;
+                            mWaveform.SelectionPointPosition = e.X;
                             mWaveform.FinalSelectionPosition = end;
                         }
                     }
                 }
                 else
                 {
-                    mWaveform.CursorPosition = e.X;
+                    mWaveform.SelectionPointPosition = e.X;
                 }
                 Strip.SelectTimeInBlock(this, mWaveform.Selection);
             }
@@ -183,13 +184,6 @@ namespace Obi.ProjectView
             if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;
         }
 
-        public void SetCursorTime(double time)
-        {
-            mWaveform.Selection = new AudioRange(time);
-            Strip.SelectTimeInBlock(this, mWaveform.Selection);
-        }
-
-        public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
 
         public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
 
@@ -200,6 +194,11 @@ namespace Obi.ProjectView
                 Unused_Tag = Localizer.Message("Accessible_Label_Unused");
 
             mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString () + Unused_Tag ;
+        }
+
+        public void InitCursor()
+        {
+            mWaveform.InitCursor();
         }
     }
 }
