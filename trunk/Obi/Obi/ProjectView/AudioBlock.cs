@@ -196,9 +196,7 @@ namespace Obi.ProjectView
             mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString () + Unused_Tag ;
         }
 
-        public void InitCursor()
-        {
-            mWaveform.InitCursor();
-        }
+        public void InitCursor() { mWaveform.InitCursor(); }
+        public void ClearCursor() { mWaveform.ClearCursor(); }
     }
 }
