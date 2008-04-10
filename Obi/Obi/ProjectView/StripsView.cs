@@ -112,6 +112,7 @@ namespace Obi.ProjectView
             get { return mPlaybackBlock.Node as PhraseNode; }
             set
             {
+                if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
                 mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
                 if (mPlaybackBlock != null) mPlaybackBlock.InitCursor();
             }

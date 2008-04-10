@@ -267,6 +267,7 @@ namespace Obi.ProjectView
         {
             if (mCurrentPlaylist.State == Audio.AudioPlayerState.Stopped)
             {
+
                 mDisplayTimer.Stop();
             }
             else if (mCurrentPlaylist.State == Audio.AudioPlayerState.Playing)
@@ -504,6 +505,7 @@ namespace Obi.ProjectView
                     else
                     {
                         mCurrentPlaylist.Stop();
+                        mView.PlaybackBlock = null;
                         mView.Selection = mPlayingFrom;
                     }
                     mPlayingFrom = null;
