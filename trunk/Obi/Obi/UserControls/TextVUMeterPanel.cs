@@ -16,7 +16,9 @@ namespace Obi.UserControls
                 private String m_StrLeftOverloadIndicator;
         private String m_StrRightOverloadIndicator;
         private bool m_BeepEnabled = false;
-
+        private bool m_ShowMaxMinValues;
+        private double m_MaxLeftDB;
+        private double m_MaxRightDB;
 
         public TextVUMeterPanel()
         {
@@ -24,7 +26,7 @@ namespace Obi.UserControls
                         mResetButton.Enabled = false;
             m_StrLeftOverloadIndicator = "";
             m_StrRightOverloadIndicator = "";
-
+            m_ShowMaxMinValues = false ;
 
         }
 
@@ -43,7 +45,23 @@ namespace Obi.UserControls
                     m_VuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent );
                     //m_VuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
                     m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
-                }
+                    m_MaxLeftDB = -100.00;
+                    m_MaxRightDB = -100.00;
+                    mResetButton.Enabled = m_ShowMaxMinValues;
+                                    }
+            }
+        }
+
+        public bool ShowMaxMinValues        
+        {
+            get { return m_ShowMaxMinValues; }
+            set
+            {
+                if (value != null)
+                    m_ShowMaxMinValues = value;
+
+                if (m_ShowMaxMinValues)
+                    mResetButton.Enabled = true;
             }
         }
 
@@ -69,10 +87,14 @@ namespace Obi.UserControls
                         RightDb = 0.0;
                                         
                 }
-                mLeftBox.Text = m_StrLeftOverloadIndicator + LeftDb.ToString();
-                mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
+                if (!m_ShowMaxMinValues)
+                {
+                    mLeftBox.Text = m_StrLeftOverloadIndicator + LeftDb.ToString();
+                    mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
+                }
+                else
+                SetExtremeValues(LeftDb, RightDb);
             }  
-             
             if (m_BeepEnabled)
             {
                 PlayBeep();
@@ -90,6 +112,33 @@ namespace Obi.UserControls
                 System.Media.SoundPlayer PlayBeep = new System.Media.SoundPlayer("Beep.wav");
                 PlayBeep.Play();
             }
+        }
+        
+        
+        private void SetExtremeValues( double LeftDB , double RightDB) 
+        {
+            // set textbox for left channel
+            if (LeftDB > m_MaxLeftDB)
+                m_MaxLeftDB = LeftDB;
+
+                            string strMaxLeftDB = m_MaxLeftDB.ToString();  
+            if ( strMaxLeftDB.Length > 5 )
+                strMaxLeftDB = strMaxLeftDB.Substring(0, 5);
+
+
+            mLeftBox.Text = m_StrLeftOverloadIndicator + strMaxLeftDB;
+            
+            // set text for right channel
+            if (RightDB > m_MaxRightDB)
+                m_MaxRightDB = RightDB;
+
+            string strMaxRightDB = m_MaxRightDB.ToString();
+            if (strMaxRightDB.Length > 5)
+                strMaxRightDB = strMaxRightDB.Substring(0, 5);
+
+
+            mRightBox.Text = m_StrRightOverloadIndicator+ strMaxRightDB ;
+            
         }
 
         void CatchPeakOverloadEvent(object sender, EventArgs e)
@@ -153,7 +202,9 @@ namespace Obi.UserControls
 
         private void mResetButton_Click(object sender, EventArgs e)
         {
-            mResetButton.Enabled = false;
+            if ( !m_ShowMaxMinValues )
+            mResetButton.Enabled = false ;
+
             m_StrLeftOverloadIndicator = "";
             m_StrRightOverloadIndicator = "";
 
@@ -161,13 +212,22 @@ namespace Obi.UserControls
             {
                 m_VuMeter.Reset();
             }
-            
+
+            if (m_ShowMaxMinValues)
+            {
+                mLeftBox.Text = "";
+                mRightBox.Text = "";
+                m_MaxLeftDB = -100.00;
+                m_MaxRightDB = -100.00;
+            }
         }
 
         private delegate  void   SetTextBoxCallBack  () ;
 
         private void VuMeter_ResetEvent( object sender  , EventArgs e )
         {
+            m_MaxLeftDB = -100.00 ;
+            
             SetResetText();
         }
 
