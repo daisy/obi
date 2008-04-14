@@ -938,7 +938,9 @@ namespace Obi
             // Synchronize views
             SynchronizeViews = mSettings.SynchronizeViews;
             // Transport bar settings
+            // TODO: first two items should have a preference setting
             mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
+            mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;
             AllowOverwrite = mSettings.AllowOverwrite;
         }
 

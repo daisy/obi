@@ -10,23 +10,21 @@ namespace Obi
 {
     /// <summary>
     /// The playlist is the list of phrases to be played. They are either the ones that were selected by the
-    /// user, or just the list of phrases. The playlist knows how to play itself thanks to the application's
-    /// audio player. It implements all the controls of the transport bar except for recording/start playing
-    /// in a new context.
+    /// user, or just the phrases from the book. The playlist knows how to play itself thanks to the application's
+    /// audio player. It implements all the controls of the transport bar except for recording.
     /// </summary>
     public class Playlist
     {
         private AudioPlayer mPlayer;              // audio player for actually playing
-        private List<PhraseNode> mPhrases;        // list of phrase nodes (from which we get the assets)
+        private List<PhraseNode> mPhrases;        // list of phrase nodes in playback order
         private List<double> mStartTimes;         // start time of every phrase
         private int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
-        private PlayBackState mPlayBackState;
+        private PlayBackState mPlayBackState;     // normal/forward/rewind
         private int mPlaybackRate;                // current playback rate (multiplier)
-
         private double mPlaybackStartTime;        // start time in first asset
 
         private enum PlayBackState { Normal, Forward, Rewind };
@@ -45,8 +43,7 @@ namespace Obi
         public delegate void EndOfPlaylistHandler(object sender, EventArgs e);
         public event EndOfPlaylistHandler EndOfPlaylist;
 
-        // Moved to a new phrase (while playing, or paused.)
-        // this is to notify Obi to select the current phrase.
+        // Moved to a new phrase (while playing, or paused), let Obi show it to the user.
         public delegate void MovedToPhraseHandler(object sender, Events.Node.PhraseNodeEventArgs e);
         public event MovedToPhraseHandler MovedToPhrase;
 
@@ -55,26 +52,25 @@ namespace Obi
         public event PlaybackRateChangedHandler PlaybackRateChanged;
 
         /// <summary>
-        /// Create an empty playlist (to be populated.)
+        /// Create an empty playlist (to be populated later) for a given player.
         /// </summary>
-        /// <param name="player">The audio player that will play the playlist.</param>
         public Playlist(AudioPlayer player)
         {
             mPlayer = player;
-            Reset(true);
+            Reset(MasterPlaylist);
         }
 
         /// <summary>
-        /// Create a playlist for a single (presumably selected) node.
-        /// If the node is a phrase, add this only phrase to the playlist.
-        /// If the node is a section, add all of its phrases to the playlist.
+        /// Create a playlist for a player and a selection.
+        /// If the selection has a phrase node, add only this node to the playlist.
+        /// If the selection has a section node, add all of its phrases to the playlist
+        /// (just the strip if selected in the content view; whole section from TOC view.)
+        /// If the selection is an audio selection, set start/stop times as well.
         /// </summary>
-        /// <param name="player">The audio player for this playlist.</param>
-        /// <param name="node">The phrase or section node in the playlist.</param>
         public Playlist(AudioPlayer player, NodeSelection selection)
         {
             mPlayer = player;
-            Reset(false);
+            Reset(LocalPlaylist);
             if (selection.Control is Obi.ProjectView.TOCView)
             {
                 AddPhraseNodes(selection.Node);
@@ -87,40 +83,40 @@ namespace Obi
             {
                 AudioSelection s = (AudioSelection)selection;
                 mPlaybackStartTime = s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime;
+                // if a range, should have an end time as well
             }
         }
 
-        /// <summary>
-        /// Get the list of phrases in the playlist, in playback order.
-        /// </summary>
-        public List<PhraseNode> PhraseList { get { return mPhrases; } }
 
         /// <summary>
-        /// Set a new presentation for this playlist; i.e. regenerate the master playlist for the presentation.
+        /// Get the audio player for the playlist. Useful for setting up event listeners.
+        /// </summary>
+        public AudioPlayer Audioplayer { get { return mPlayer; } }
+
+        /// <summary>
+        /// First phrase in the playlist, or null if empty.
+        /// </summary>
+        public PhraseNode FirstPhrase { get { return mPhrases.Count > 0 ? mPhrases[0] : null; } }
+
+        /// <summary>
+        /// Set a new presentation for this playlist; i.e., regenerate the master playlist for the presentation.
         /// </summary>
         public Presentation Presentation
         {
             set
             {
-                Reset(true);
+                Reset(MasterPlaylist);
                 if (value != null) AddPhraseNodes(value.RootNode);
-                value.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(value_changed);
+                value.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 value.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             }
         }
 
-        // React to addition and removal of tree nodes.
-        private void value_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
-        {
-            if (e is urakawa.events.core.ChildAddedEventArgs)
-            {
-                InsertNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
-            }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
-            {
-                RemoveNode(((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild);
-            }
-        }
+        /// <summary>
+        /// The state of the playlist, as opposed to that of the underlying player.
+        /// </summary>
+        public AudioPlayerState State { get { return mPlaylistState; } }
+
 
         // Insert new tree nodes in the right place in the playlist.
         private void InsertNode(urakawa.core.TreeNode node)
@@ -137,7 +133,6 @@ namespace Obi
                     if (n is PhraseNode && ((PhraseNode)n).Used)
                     {
                         double time = ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-                        System.Diagnostics.Debug.Print("PLAYLIST++ new phrase at index {0} ({1}ms)\n", index, time);
                         mPhrases.Insert(index, (PhraseNode)n);
                         mStartTimes.Add(0.0);
                         mStartTimes[index] = index == 0 ? 0.0 :
@@ -154,6 +149,36 @@ namespace Obi
             }
         }
 
+        // React to addition and removal of tree nodes in the presentation.
+        private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (e is urakawa.events.core.ChildAddedEventArgs)
+            {
+                InsertNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
+            }
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            {
+                RemoveNode(((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild);
+            }
+        }
+
+        // React to nodes being marked used or unused by adding or removing them from the playlist.
+        // What about section nodes?!
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        {
+            if (e.Node is PhraseNode)
+            {
+                if (e.Node.Used)
+                {
+                    InsertNode(e.Node);
+                }
+                else
+                {
+                    RemoveNode(e.Node);
+                }
+            }
+        }
+
         // Remove a node and all of its contents from the playlist
         private void RemoveNode(urakawa.core.TreeNode node)
         {
@@ -161,7 +186,7 @@ namespace Obi
             node.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
-                    if (n is PhraseNode && mPhrases.Contains((PhraseNode)n)) 
+                    if (n is PhraseNode && mPhrases.Contains((PhraseNode)n))
                     {
                         int index = mPhrases.IndexOf((PhraseNode)n);
                         if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
@@ -179,39 +204,52 @@ namespace Obi
             }
         }
 
-        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        private static readonly bool MasterPlaylist = true;  // value for Reset
+        private static readonly bool LocalPlaylist = false;  // value for Reset
+
+        // Reset the playlist.
+        private void Reset(bool isMaster)
         {
-            if (e.Node is PhraseNode)
-            {
-                if (e.Node.Used)
-                {
-                    InsertNode(e.Node);
-                }
-                else
-                {
-                    RemoveNode(e.Node);
-                }
-            }
+            mPhrases = new List<PhraseNode>();
+            mStartTimes = new List<double>();
+            mTotalTime = 0.0;
+            mPlaybackRate = 0;
+            mPlayBackState = PlayBackState.Normal;
+            mPlaylistState = mPlayer.State;
+            mIsMaster = isMaster;
+            mPlaybackStartTime = 0.0;
         }
 
-        /// <summary>
-        /// Get the audio player for the playlist. Useful for setting up event listeners.
-        /// </summary>
-        public AudioPlayer Audioplayer { get { return mPlayer; } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
-        /// First phrase in the playlist, or null if empty.
-        /// </summary>
-        public PhraseNode FirstPhrase { get { return mPhrases.Count > 0 ? mPhrases[0] : null; } }
-
-        /// <summary>
-        /// The state of the playlist, as opposed to that of the underlying player.
-        /// </summary>
-        public AudioPlayerState State { get { return mPlaylistState; } }
-
-        /// <summary>
-        /// Set the currently playing node directly (when not playing.)
-        /// If the phrase is not in the playlist, nothing happens.
+        /// Set the currently playing node directly.
+        /// If playing, move to the beginning of the phrase.
+        /// If the phrase is not in the playlist, stay on the same phrase.
         /// </summary>
         public PhraseNode CurrentPhrase
         {
@@ -221,30 +259,22 @@ namespace Obi
                 bool playing = mPlaylistState == AudioPlayerState.Playing;
                 if (playing) Stop();
                 int index = mPhrases.IndexOf(value);
-                if (index >= 0) CurrentIndexStart = index;
+                if (index >= 0)
+                {
+                    mCurrentPhraseIndex = index;
+                    mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                }
                 if (playing) Play();
-            }
-        }
-
-        /// <summary>
-        /// Set the current index at the start of a given index.
-        /// </summary>
-        private int CurrentIndexStart
-        {
-            set
-            {
-                mCurrentPhraseIndex = value;
-                mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             }
         }
 
         /// <summary>
         /// The section in which the currently playing phrase is.
         /// </summary>
-        public SectionNode CurrentSection 
-        { 
-            get { return  mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>(): null; }
-                    }
+        public SectionNode CurrentSection
+        {
+            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>() : null; }
+        }
 
         /// <summary>
         /// Index of the first phrase of the next section, or number of phrases if there is no next section.
@@ -377,25 +407,13 @@ namespace Obi
             get { return PlaybackRates[mPlaybackRate] * (mPlayBackState == PlayBackState.Rewind ? -1 : 1); }
         }
 
-        private void Reset(bool isMaster)
-        {
-            mPhrases = new List<PhraseNode>();
-            mStartTimes = new List<double>();
-            mTotalTime = 0.0;
-            mPlaybackRate = 0;
-            mPlayBackState = PlayBackState.Normal;
-            mPlaylistState = mPlayer.State;
-            mIsMaster = isMaster;
-            mPlaybackStartTime = 0.0;
-        }
-
         private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
             node.acceptDepthFirst
             (
                 // Add all phrase nodes underneath (and including) the starting node.
                 // A phrase is excluded if it is marked as unused and the playlist is
-                // is the master playlist.
+                // the master playlist.
                 delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))

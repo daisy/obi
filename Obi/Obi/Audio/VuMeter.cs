@@ -8,169 +8,56 @@ namespace Obi.Audio
 {
 	public class VuMeter
 	{
-		// public event Events.Audio.VuMeter.LevelTooLowHandler LevelTooLow;
-		public event Events.Audio.VuMeter.PeakOverloadHandler PeakOverload;
-		public event Events.Audio.VuMeter.ResetHandler ResetEvent;
-		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;
-        public event Events.Audio.VuMeter.UpdatePeakMeterHandler UpdatePeakMeter ;
+		public event Events.Audio.VuMeter.PeakOverloadHandler PeakOverload;        //
+		public event Events.Audio.VuMeter.ResetHandler ResetEvent;                 //
+		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;          //
+        public event Events.Audio.VuMeter.UpdatePeakMeterHandler UpdatePeakMeter;  //
 
-        private AudioPlayer mPlayer;
-        private AudioRecorder m_Recorder;
-        
+        private AudioPlayer mPlayer;      // associated player
+        private AudioRecorder mRecorder;  // associated recorder
+
+        private int mChannels;            // number of channels
+        private int mUpperThreshold;      // upper threshold (?)
+        private int mLowerThreshold;      // lower threshold (?)
+        private int mMeanValueLeft;       // left channel mean value
+        private int mMeanValueRight;      // right channel mean value
+
+
 		/// <summary>
 		/// Create the VU meter object.
 		/// </summary>
-        public VuMeter(AudioPlayer player , AudioRecorder recorder )
+        public VuMeter(AudioPlayer player, AudioRecorder recorder)
 		{
-            			SetSampleCount(m_SampleTimeLength);
+            SetSampleCount(m_SampleTimeLength);
             mPlayer = player;
-            m_Recorder = recorder;
-			// m_SampleArrayPosition = 0;
-		}
-        
-        /// <summary>
-        /// Set the VU meter to listen to the audio player and recorder.
-        /// </summary>
-        public void SetEventHandlers()
+            mRecorder = recorder;
+            SetEventHandlers();
+            mChannels = 2;
+            mUpperThreshold = 210;
+            mLowerThreshold = 15;
+        }
+
+
+        public int UpperThreshold { get { return mUpperThreshold; } }
+        public int LowerThreshold { get { return mLowerThreshold; } }
+        public int ChannelValueLeft { get { return mMeanValueLeft; } }
+        public int ChannelValue_Right { get { return mMeanValueRight; } }
+
+        // Set the event handlers for player and recorder.
+        private void SetEventHandlers()
         {
             mPlayer.UpdateVuMeter += new Events.Audio.Player.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
             mPlayer.ResetVuMeter += new Events.Audio.Player.ResetVuMeterHandler(CatchResetEvent );
-            m_Recorder.UpdateVuMeterFromRecorder += new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
-            m_Recorder.ResetVuMeter += new Events.Audio.Recorder.ResetVuMeterHandler(CatchResetEvent);
+            mRecorder.UpdateVuMeterFromRecorder += new Events.Audio.Recorder.UpdateVuMeterHandler(CatchUpdateVuMeterEvent);
+            mRecorder.ResetVuMeter += new Events.Audio.Recorder.ResetVuMeterHandler(CatchResetEvent);
         }
 
 		//Member variable used in properties
-		private int m_Channels =2 ;
 		private double m_ScaleFactor = 2 ;
 		private double m_SampleTimeLength = 500 ;
 		internal bool m_bOverload = false ;
-		private int m_UpperThreshold = 210 ;
-		private int m_LowerThreshold = 15  ;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
-		
-		public int Channels
-		{
-			get
-			{
-				return m_Channels ;
-			}
-			set
-			{
-				m_Channels = value ;
-			}
-		}
-
-		public object Stream
-		{
-			set
-			{
-			}
-		}
-		
-		public UserControl VisualControl
-		{
-			get
-			{
-				return null;
-			}
-			set
-			{
-			}
-		}
-
-		public UserControl TextControl
-		{
-			get
-			{
-				return null;
-			}
-			set
-			{
-			}
-		}
-
-		public int [] PeakValue
-		{
-			get
-			{
-				return arPeakOverloadValue ;
-			}
-		}
-
-		public bool[] Overloaded
-		{
-			get
-			{
-				return arPeakOverloadFlag ;
-			}
-		}
-
-		// properties added by app team india
-		public int UpperThreshold 
-		{
-			get
-			{
-				return m_UpperThreshold ;
-			}
-			set
-			{
-				m_UpperThreshold = value ;
-			}
-		}
-
-		public int LowerThreshold
-		{
-			get
-			{
-				return m_LowerThreshold ;
-			}
-			set
-			{
-				m_LowerThreshold = value ;
-			}
-		}
-
-		public double ScaleFactor
-		{
-			get
-			{
-				return m_ScaleFactor ;
-			}
-			set
-			{
-				m_ScaleFactor = value ;
-			}
-		}
-
-
-		public double SampleTimeLength
-		{
-			get
-			{
-				return m_SampleTimeLength ;
-			}
-			set
-			{
-				SetSampleCount (value) ;
-			}
-		}
-
-        public int ChannelValue_Left
-        {
-            get
-            {
-                return m_MeanValueLeft;
-            }
-        }
-
-        public int ChannelValue_Right
-        {
-            get
-            {
-                return m_MeanValueRight;
-            }
-        }
 
 
         public double[] PeakDbValue
@@ -198,18 +85,17 @@ namespace Obi.Audio
 				SampleArrayRight [i] = 0;
 			}
 			// m_SampleArrayPosition  = 0 ;
-			m_MeanValueLeft = 0 ;
-			m_MeanValueRight = 0 ;
+			mMeanValueLeft = 0 ;
+			mMeanValueRight = 0 ;
 
                         if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
 					}
 
 		// calculate and sets the count of samples to be read for computing RMS or mean value of amplitude
-		void SetSampleCount ( double TimeLengthArg ) 
+		private void SetSampleCount ( double TimeLengthArg ) 
 		{
 			m_SampleTimeLength  = TimeLengthArg ;
-//			m_SampleCount  = Convert.ToInt32 (TimeLengthArg / 50 ); // 50 is byte reading interval 
             m_SampleCount = Convert.ToInt32(TimeLengthArg / m_BufferReadInterval); 
 
 			SampleArrayLeft  = new int [ 2 * m_SampleCount] ;
@@ -231,8 +117,6 @@ namespace Obi.Audio
 		private AudioPlayer ob_AudioPlayer ;
 		private AudioRecorder  ob_AudioRecorder ;
 		private int  m_SampleCount    ;
-		private int m_MeanValueLeft ;
-		private int m_MeanValueRight  ;
 		private  int [] SampleArrayLeft ;
 		private int [] SampleArrayRight ;
 		// jq: removed a compiler warning
@@ -251,7 +135,7 @@ namespace Obi.Audio
 			boolPlayer = true ;
 			ob_AudioPlayer = sender as AudioPlayer;
 			m_FrameSize = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getBlockAlign ()  ;
-			m_Channels = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getNumberOfChannels ()   ;
+			mChannels = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getNumberOfChannels ()   ;
 			m_UpdateVMArrayLength = ob_AudioPlayer.arUpdateVM.Length  ;
 			m_arUpdatedVM  = new byte[m_UpdateVMArrayLength ] ;
 
@@ -277,7 +161,7 @@ namespace Obi.Audio
 			AudioRecorder Recorder = sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
-			m_Channels = Recorder.Channels ;
+			mChannels = Recorder.Channels ;
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
                         m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
 
@@ -314,8 +198,8 @@ namespace Obi.Audio
         /// </summary>
         private void ComputePeakDbValue()
         {
-            int bytesPerSample = m_FrameSize / m_Channels;
-            int noc = m_Channels;
+            int bytesPerSample = m_FrameSize / mChannels;
+            int noc = mChannels;
             double[] maxDbs = new double[noc];
             double full = Math.Pow(2, 8 * bytesPerSample);
             double halfFull = full / 2;
@@ -353,7 +237,7 @@ namespace Obi.Audio
         private void TriggerPeakEventForSecondHalf()
         {
             Thread.Sleep(66);
-            if (m_Recorder != null && m_RecorderArray.Length > m_arUpdatedVM.Length)
+            if (mRecorder != null && m_RecorderArray.Length > m_arUpdatedVM.Length)
             {
                 try
                 {
@@ -382,19 +266,19 @@ namespace Obi.Audio
             int[] AmpArray = new int[2];
             Array.Copy(AmplitudeValue(), AmpArray, 2);
 
-            m_MeanValueLeft = AmpArray[0];
-            m_MeanValueRight = AmpArray[1];
+            mMeanValueLeft = AmpArray[0];
+            mMeanValueRight = AmpArray[1];
 
             // update peak values if it is greater than previous value
-            if (m_PeakValueLeft < m_MeanValueLeft)
-                arPeakOverloadValue[0] = m_PeakValueLeft = m_MeanValueLeft;
+            if (m_PeakValueLeft < mMeanValueLeft)
+                arPeakOverloadValue[0] = m_PeakValueLeft = mMeanValueLeft;
 
-            if (m_PeakValueRight < m_MeanValueRight)
-                arPeakOverloadValue[1] = m_PeakValueRight = m_MeanValueRight;
+            if (m_PeakValueRight < mMeanValueRight)
+                arPeakOverloadValue[1] = m_PeakValueRight = mMeanValueRight;
 
 
             // Check for Peak Overload  and fire event if overloaded
-            if (m_MeanValueLeft > m_UpperThreshold)
+            if (mMeanValueLeft > mUpperThreshold)
             {
                 arPeakOverloadFlag[0] = true;
                 Events.Audio.VuMeter.PeakOverloadEventArgs e;
@@ -414,7 +298,7 @@ namespace Obi.Audio
                 arPeakOverloadFlag[0] = false;
             }
 
-            if (m_MeanValueRight > m_UpperThreshold)
+            if (mMeanValueRight > mUpperThreshold)
             {
                 m_bOverload = true;
 
@@ -480,7 +364,7 @@ namespace Obi.Audio
                         break;
 
                     case 2:
-                        switch (m_Channels)
+                        switch (mChannels)
                         {
                             case 1:
                                 short sCurVal = BitConverter.ToInt16(m_arUpdatedVM, i);
