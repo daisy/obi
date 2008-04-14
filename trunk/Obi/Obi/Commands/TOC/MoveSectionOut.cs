@@ -6,7 +6,7 @@ namespace Obi.Commands.TOC
 {
     public class MoveSectionOut: Command
     {
-        private SectionNode mSection;
+        private SectionNode mSection;         // section that changes level
 
         public MoveSectionOut(ProjectView.ProjectView view, SectionNode section)
             : base(view)
@@ -51,6 +51,7 @@ namespace Obi.Commands.TOC
         public override void unExecute()
         {
             MoveSectionIn.Move(mSection);
+            for (int i = 0; i < mSection.SectionChildCount; ++i) MoveSectionIn.Move(mSection.SectionChild(i));
             base.unExecute();
         }
     }

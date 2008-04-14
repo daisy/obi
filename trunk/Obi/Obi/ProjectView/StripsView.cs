@@ -135,7 +135,10 @@ namespace Obi.ProjectView
             {
                 urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(delete.getShortDescription());
-                command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(0)));
+                for (int i = 0; i < section.SectionChildCount; ++i)
+                {
+                    command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(i)));
+                }
                 command.append(delete);
                 return command;
             }
@@ -400,6 +403,14 @@ namespace Obi.ProjectView
         // Add a new strip for a section and all of its subsections
         private Strip AddStripForSection(ObiNode node)
         {
+            SuspendLayout();
+            Strip strip = AddStripForSection_(node);
+            ResumeLayout();
+            return strip;
+        }
+
+        private Strip AddStripForSection_(ObiNode node)
+        {
             Strip strip = null;
             if (node is SectionNode)
             {
@@ -409,7 +420,7 @@ namespace Obi.ProjectView
                 int w = mLayoutPanel.Width - strip.Location.X - strip.Margin.Right;
                 strip.Size = new Size(w, strip.Height);
             }
-            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
+            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection_(node.SectionChild(i));
             for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
             return strip;
         }
@@ -417,7 +428,14 @@ namespace Obi.ProjectView
         // Remove all strips for a section and its subsections
         private void RemoveStripsForSection(SectionNode section)
         {
-            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
+            SuspendLayout();
+            RemoveStripsForSection_(section);
+            ResumeLayout();
+        }
+
+        private void RemoveStripsForSection_(SectionNode section)
+        {
+            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection_(section.SectionChild(i));
             Strip strip = FindStrip(section);
             mLayoutPanel.Controls.Remove(strip);
         }

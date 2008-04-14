@@ -8,26 +8,35 @@ namespace Obi.Commands.Node
     /// </summary>
     public class Delete : Command
     {
-        private ObiNode mNode;        // the node to remove
-        private ObiNode mParent;      // its original parent node
-        private int mIndex;           // its original index
+        private ObiNode mNode;         // the node to remove
+        private ObiNode mParent;       // its original parent node
+        private NodeSelection mAfter;  // selection after deletion
+        private int mIndex;            // its original index
 
+
+        /// <summary>
+        /// Create a new delete section command from a view.
+        /// </summary>
         public Delete(ProjectView.ProjectView view, ObiNode node, string label)
             : base(view)
         {
             mNode = node;
             mParent = node.ParentAs<ObiNode>();
             mIndex = mNode.Index;
+            mAfter = GetPostDeleteSelection();
             Label = label;
         }
 
+        /// <summary>
+        /// Create a delete section command with no label.
+        /// </summary>
         public Delete(ProjectView.ProjectView view, ObiNode node) : this(view, node, "") { }
+
 
         public override void execute()
         {
-            NodeSelection after = PostDeleteSelection;
             mNode.Detach();
-            if (UpdateSelection) View.Selection = after;
+            if (UpdateSelection) View.Selection = mAfter;
         }
 
         public override void unExecute()
@@ -37,38 +46,41 @@ namespace Obi.Commands.Node
         }
 
         // Determine what the selection will be after deletion
-        private NodeSelection PostDeleteSelection
+        private NodeSelection GetPostDeleteSelection()
         {
-            get
+            ObiNode node = null;
+            if (mNode is SectionNode)
             {
-                ObiNode node = null;
-                if (mNode is SectionNode)
+                if (View.Selection.Control is ProjectView.StripsView)
                 {
-                    if (View.Selection.Control is ProjectView.StripsView && ((SectionNode)mNode).PhraseChildCount > 0)
-                    {
-                        node = mNode.PhraseChild(0);
-                    }
-                    else
-                    {
-                        ObiNode parent = mNode.ParentAs<ObiNode>();
-                        int index = mNode.Index;
-                        node = index < parent.SectionChildCount - 1 ?
-                            (ObiNode)parent.SectionChild(index + 1) :
-                            index > 0 ? (ObiNode)parent.SectionChild(index - 1) :
-                            parent is RootNode ? null : parent;
-                    }
+                    // Select the next strip; if there is no next strip, select the previous one.
+                    node = ((SectionNode)mNode).FollowingSection;
+                    if (node == null) node = ((SectionNode)mNode).PrecedingSection;
                 }
                 else
                 {
-                    SectionNode parent = mNode.ParentAs<SectionNode>();
+                    // TODO: review this.
+                    ObiNode parent = mNode.ParentAs<ObiNode>();
                     int index = mNode.Index;
-                    node = index < parent.PhraseChildCount - 1 ?
-                        (ObiNode)parent.PhraseChild(index + 1) :
-                        index > 0 ? (ObiNode)parent.PhraseChild(index - 1) :
-                        (ObiNode)parent;
+                    node = index < parent.SectionChildCount - 1 ?
+                        (ObiNode)parent.SectionChild(index + 1) :
+                        index > 0 ? (ObiNode)parent.SectionChild(index - 1) :
+                        parent is RootNode ? null : parent;
                 }
-                return node == null ? null : new NodeSelection(node, View.Selection.Control);
             }
+            else
+            {
+                SectionNode parent = mNode.ParentAs<SectionNode>();
+                int index = mNode.Index;
+                // Select the next sibling;
+                // if last child, select the previous sibling;
+                // if first child, select the parent.
+                node = index < parent.PhraseChildCount - 1 ?
+                    (ObiNode)parent.PhraseChild(index + 1) :
+                    index > 0 ? (ObiNode)parent.PhraseChild(index - 1) :
+                    (ObiNode)parent;
+            }
+            return node == null ? null : new NodeSelection(node, View.Selection.Control);
         }
     }
 }
