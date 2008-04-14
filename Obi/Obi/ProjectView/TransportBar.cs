@@ -239,11 +239,17 @@ namespace Obi.ProjectView
 
         // Adapt to changes in the presentation.
         // At the moment, simply stop.
-        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { Stop(); }
+        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (mState != State.Stopped) Stop();
+        }
 
         // Adapt to changes in used status.
         // At the moment, simply stop.
-        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e) { Stop(); }
+        private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
+        {
+            if (mState != State.Stopped) Stop();
+        }
 
         // Initialize events for a new playlist.
         private void SetPlaylistEvents(Playlist playlist)

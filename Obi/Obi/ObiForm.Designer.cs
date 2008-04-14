@@ -1081,6 +1081,7 @@ namespace Obi
             this.Controls.Add(this.mProjectView);
             this.Controls.Add(this.mStatusStrip);
             this.Controls.Add(this.mMenuStrip);
+            this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.mMenuStrip;
             this.Name = "ObiForm";

@@ -141,9 +141,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Next section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
+        /// Following section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
         /// </summary>
-        public SectionNode NextSection
+        public SectionNode FollowingSection
         {
             get
             {
