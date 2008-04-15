@@ -25,7 +25,9 @@ namespace Obi
         private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
         private PlayBackState mPlayBackState;     // normal/forward/rewind
         private int mPlaybackRate;                // current playback rate (multiplier)
+
         private double mPlaybackStartTime;        // start time in first asset
+        private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
 
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
@@ -92,11 +94,98 @@ namespace Obi
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
         public AudioPlayer Audioplayer { get { return mPlayer; } }
+        
+        /// <summary>
+        /// Set the currently playing phrase directly.
+        /// If playing, move to the beginning of the phrase.
+        /// If the phrase is not in the playlist, stay on the same phrase.
+        /// </summary>
+        public PhraseNode CurrentPhrase
+        {
+            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
+            set
+            {
+                bool playing = mPlaylistState == AudioPlayerState.Playing;
+                if (playing) Stop();
+                int index = mPhrases.IndexOf(value);
+                if (index >= 0)
+                {
+                    mCurrentPhraseIndex = index;
+                    mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+                }
+                if (playing) Play();
+            }
+        }
+
+        /// <summary>
+        /// The section in which the currently playing phrase is.
+        /// </summary>
+        public SectionNode CurrentSection
+        {
+            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>() : null; }
+        }
+
+        /// <summary>
+        /// Get/set the current playing time inside the playlist in milliseconds.
+        /// Setting the current time starts/continues playing from that position, or pauses at that position.
+        /// </summary>
+        public double CurrentTime
+        {
+            get { return mElapsedTime + CurrentTimeInAsset; }
+            set
+            {
+                if (value >= 0 && value < mTotalTime)
+                {
+                    int i;
+                    for (i = 0; i < mPhrases.Count && mStartTimes[i] <= value; ++i) { }
+                    if (i > 0) --i;
+                    NavigateToPhrase(i);
+                    CurrentTimeInAsset = value - mStartTimes[i];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Elapsed time in the current asset in milliseconds.
+        /// </summary>
+        public double CurrentTimeInAsset
+        {
+            get { return mPlayer.CurrentTimePosition; }
+            set
+            {
+                if (value >= 0 &&
+                    value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                {
+                    mPlayer.CurrentTimePosition = value;
+                }
+            }
+        }
 
         /// <summary>
         /// First phrase in the playlist, or null if empty.
         /// </summary>
         public PhraseNode FirstPhrase { get { return mPhrases.Count > 0 ? mPhrases[0] : null; } }
+
+        /// <summary>
+        /// Play from the current phrase.
+        /// </summary>
+        public void Play()
+        {
+            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
+            if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
+        }
+
+        public void Play(double from)
+        {
+            mPlaybackStartTime = from;
+            Play();
+        }
+
+        public void Play(double from, double to)
+        {
+            mPlaybackEndTime = to;
+            Play(from);
+        }
 
         /// <summary>
         /// Set a new presentation for this playlist; i.e., regenerate the master playlist for the presentation.
@@ -117,6 +206,45 @@ namespace Obi
         /// </summary>
         public AudioPlayerState State { get { return mPlaylistState; } }
 
+
+        // Add all phrase nodes underneath (and including) the starting node.
+        // In case of the master playlist, exclude unused nodes.
+        private void AddPhraseNodes(urakawa.core.TreeNode node)
+        {
+            node.acceptDepthFirst
+            (
+                delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                    {
+                        mPhrases.Add((PhraseNode)n);
+                        mStartTimes.Add(mTotalTime);
+                        mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                    }
+                    return true;
+                },
+                delegate(urakawa.core.TreeNode n) { }
+            );
+        }
+
+        // Add phrase nodes from a strip, or a single phrase.
+        // Shallow operation compared to AddPhraseNode which is deep.
+        private void AddPhraseNodesFromStripOrPhrase(ObiNode node)
+        {
+            if (node is PhraseNode)
+            {
+                mPhrases.Add((PhraseNode)node);
+                mStartTimes.Add(mTotalTime);
+                mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            }
+            else if (node is SectionNode)
+            {
+                for (int i = 0; i < ((SectionNode)node).PhraseChildCount; ++i)
+                {
+                    AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
+                }
+            }
+        }
 
         // Insert new tree nodes in the right place in the playlist.
         private void InsertNode(urakawa.core.TreeNode node)
@@ -147,6 +275,35 @@ namespace Obi
             {
                 mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
             }
+        }
+
+        // Play the current phrase
+        private void PlayCurrentPhrase()
+        {
+            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+            if (mPlaylistState == AudioPlayerState.Stopped)
+            {
+                mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+            }
+            mPlaylistState = AudioPlayerState.Playing;
+            double from = mCurrentPhraseIndex == 0 ? mPlaybackStartTime : 0.0;
+            if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
+            {
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from, mPlaybackEndTime);
+            }
+            else
+            {
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from);
+            }
+            // send the state change event if the state actually changed
+            if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
+        }
+
+        // Play the phrase at the given index in the list.
+        private void PlayPhrase(int index)
+        {
+            SkipToPhrase(index);
+            PlayCurrentPhrase();
         }
 
         // React to addition and removal of tree nodes in the presentation.
@@ -218,63 +375,48 @@ namespace Obi
             mPlaylistState = mPlayer.State;
             mIsMaster = isMaster;
             mPlaybackStartTime = 0.0;
+            mPlaybackEndTime = -1.0;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Set the currently playing node directly.
-        /// If playing, move to the beginning of the phrase.
-        /// If the phrase is not in the playlist, stay on the same phrase.
-        /// </summary>
-        public PhraseNode CurrentPhrase
+        // Skip to the beginning of a phrase at a given index, provided that it is in the playlist range.
+        private void SkipToPhrase(int index)
         {
-            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
-            set
-            {
-                bool playing = mPlaylistState == AudioPlayerState.Playing;
-                if (playing) Stop();
-                int index = mPhrases.IndexOf(value);
-                if (index >= 0)
-                {
-                    mCurrentPhraseIndex = index;
-                    mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-                }
-                if (playing) Play();
-            }
+            System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
+            mCurrentPhraseIndex = index;
+            mElapsedTime = mStartTimes[mCurrentPhraseIndex];
+            int mode = mPlayer.PlaybackFwdRwdRate;
+            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
+            mPlayer.Stop();
+            mPlayer.PlaybackFwdRwdRate = mode;
         }
 
-        /// <summary>
-        /// The section in which the currently playing phrase is.
-        /// </summary>
-        public SectionNode CurrentSection
-        {
-            get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex].ParentAs<SectionNode>() : null; }
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
 
         /// <summary>
         /// Index of the first phrase of the next section, or number of phrases if there is no next section.
@@ -315,42 +457,6 @@ namespace Obi
                     for (; previous >= 0 && mPhrases[previous].ParentAs<SectionNode>() == previousSection; --previous) { }
                     // we went back one too many
                     return previous + 1;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get/set the current playing time inside the playlist in milliseconds.
-        /// Setting the current time starts/continues playing from that position, or pauses at that position.
-        /// </summary>
-        public double CurrentTime
-        {
-            get { return mElapsedTime + CurrentTimeInAsset; }
-            set
-            {
-                if (value >= 0 && value < mTotalTime)
-                {
-                    int i;
-                    for (i = 0; i < mPhrases.Count && mStartTimes[i] <= value; ++i) { }
-                    if (i > 0) --i;
-                    NavigateToPhrase(i);
-                    CurrentTimeInAsset = value - mStartTimes[i];
-                }
-            }
-        }
-
-        /// <summary>
-        /// Elapsed time in the current asset in milliseconds.
-        /// </summary>
-        public double CurrentTimeInAsset
-        {
-            get { return mPlayer.CurrentTimePosition; }
-            set
-            {
-                if (value >= 0 &&
-                    value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
-                {
-                    mPlayer.CurrentTimePosition = value;
                 }
             }
         }
@@ -407,70 +513,12 @@ namespace Obi
             get { return PlaybackRates[mPlaybackRate] * (mPlayBackState == PlayBackState.Rewind ? -1 : 1); }
         }
 
-        private void AddPhraseNodes(urakawa.core.TreeNode node)
-        {
-            node.acceptDepthFirst
-            (
-                // Add all phrase nodes underneath (and including) the starting node.
-                // A phrase is excluded if it is marked as unused and the playlist is
-                // the master playlist.
-                delegate(urakawa.core.TreeNode n)
-                {
-                    if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
-                    {
-                        mPhrases.Add((PhraseNode)n);
-                        mStartTimes.Add(mTotalTime);
-                        mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-                    }
-                    return true;
-                },
-                // nothing to do in post-visit
-                delegate(urakawa.core.TreeNode n) { }
-            );
-        }
 
-        private void AddPhraseNodesFromStripOrPhrase(ObiNode node)
-        {
-            if (node is PhraseNode)
-            {
-                mPhrases.Add((PhraseNode)node);
-                mStartTimes.Add(mTotalTime);
-                mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-            }
-            else if (node is SectionNode)
-            {
-                for (int i = 0; i < ((SectionNode)node).PhraseChildCount; ++i)
-                {
-                    AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
-                }
-            }
-        }
 
-        /// <summary>
-        /// Play from stopped state.
-        /// </summary>
-        public void Play()
-        {
-            Play(0.0);
-        }
-        double mInPhrasePlayStartTime = 0;
-        /// <summary>
-        /// Play from an in phrase time position when in stopped state.
-        /// </summary>
-        /// <param name="StartTime"></param>
-        public void Play( double StartTime )
-        {
-            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
-            if (mCurrentPhraseIndex < mPhrases.Count)
-            {
-                mInPhrasePlayStartTime = StartTime;
-                PlayPhrase(mCurrentPhraseIndex);
-                // phrase start time should be put to 0.0 to avoid starting from same position again
-                mInPhrasePlayStartTime = 0;
-                // Avn": Following line commented for removing stuttering playback initialization problem.
-                //mPlayer.CurrentTimePosition = mPlaybackStartTime;
-            }
-        }
+
+
+        
+        
 
         /// <summary>
         /// Resume playing from current point.
@@ -737,49 +785,7 @@ namespace Obi
             } // end of check for phrase list count
         }
 
-        /// <summary>
-        /// Play the phrase at some index in the list.
-        /// </summary>
-        /// <param name="index">The index of the phrase to play.</param>
-        private void PlayPhrase(int index)
-        {
-            SkipToPhrase(index);
-            PlayCurrentPhrase();
-        }
 
-        /// <summary>
-        /// Play the current phrase.
-        /// </summary>
-        private void PlayCurrentPhrase()
-        {
-            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
-            if (mPlaylistState == AudioPlayerState.Stopped)
-            {
-                System.Diagnostics.Debug.Print("+++ end of audio asset handler set");
-                mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
-            }
-            mPlaylistState = AudioPlayerState.Playing;
-            mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData() , mInPhrasePlayStartTime );
-            mInPhrasePlayStartTime = 0;
-            // send the state change event if the state actually changed
-            if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
-        }
-
-        /// <summary>
-        /// Skip to the beginning of a phrase at a given index, provided that it is in the playlist range.
-        /// </summary>
-        /// <param name="index">Index of the phrase to skip to.</param>
-        private void SkipToPhrase(int index)
-        {
-            System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
-            mCurrentPhraseIndex = index;
-            mElapsedTime = mStartTimes[mCurrentPhraseIndex];
-            System.Diagnostics.Debug.Print(">>> Moved to phrase {0}", index);
-            int Mode = mPlayer.PlaybackFwdRwdRate; // Temporary fix to avoid reset to normal playback bugg invoked by following event
-            if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
-            mPlayer.Stop();
-            mPlayer.PlaybackFwdRwdRate = Mode;
-        }
 
         /// <summary>
         /// Add a new phrase node at the right spot in the (master) playlist.

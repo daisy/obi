@@ -223,6 +223,14 @@ namespace Obi.ProjectView
         {
             mState = mPlayer.State == Obi.Audio.AudioPlayerState.Paused ? State.Paused :
                 mPlayer.State == Obi.Audio.AudioPlayerState.Playing ? State.Playing : State.Stopped;
+            if (mState == State.Playing || mState == State.Recording)
+            {
+                mDisplayTimer.Start();
+            }
+            else if (mState == State.Stopped)
+            {
+                mDisplayTimer.Stop();
+            }
             if (StateChanged != null) StateChanged(this, e);
             UpdateTimeDisplay();
             UpdateButtons();
@@ -301,19 +309,15 @@ namespace Obi.ProjectView
             }
             else
             {
-                // ugly hack; how does it handle moving backward?!
-                if (mCurrentPlaylist.CurrentTimeInAsset > mDisplayTime)
-                {
-                    mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
-                    mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(
-                        mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
-                            mCurrentPlaylist.CurrentTimeInAsset :
-                        mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
-                            mCurrentPlaylist.CurrentTime :
-                        mDisplayBox.SelectedIndex == REMAIN_INDEX ?
-                            mCurrentPlaylist.RemainingTimeInAsset :
-                            mCurrentPlaylist.RemainingTime);
-                }
+                mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
+                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(
+                    mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
+                        mCurrentPlaylist.CurrentTimeInAsset :
+                    mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
+                        mCurrentPlaylist.CurrentTime :
+                    mDisplayBox.SelectedIndex == REMAIN_INDEX ?
+                        mCurrentPlaylist.RemainingTimeInAsset :
+                        mCurrentPlaylist.RemainingTime);
             }
         }
 
@@ -349,6 +353,7 @@ namespace Obi.ProjectView
             {
                 mCurrentPlaylist = mMasterPlaylist;
                 mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
+                mCurrentPlaylist.Play();
             }
             else if (node != null)
             {
@@ -361,7 +366,7 @@ namespace Obi.ProjectView
                     && (!((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked)
                     && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
                 {
-                    mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                 }
                 else if (mView.Selection is AudioSelection
                     && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
@@ -373,7 +378,6 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.Play();
                 }
             }
-            mCurrentPlaylist.Play();
         }
 
 

@@ -620,7 +620,7 @@ namespace Obi
         // Undo
         private void Undo()
         {
-            if (mSession.CanUndo) mSession.Presentation.getUndoRedoManager().undo();
+            if (mSession.CanUndo) { mSession.Presentation.getUndoRedoManager().undo(); }
         }
 
         /// <summary>
