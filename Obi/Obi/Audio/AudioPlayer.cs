@@ -480,37 +480,32 @@ namespace Obi.Audio
 
 
         /// <summary>
-        ///  Plays an asset from a specified time position upto another specified time position
-        /// <see cref=""/>
+        /// Play an asset from a specified time position upto another specified time position
         /// </summary>
-        /// <param name="asset"></param>
-        /// <param name="timeFrom"></param>
-        /// <param name="timeTo"></param>
-        public void Play(AudioMediaData asset, double timeFrom, double timeTo)
+        public void Play(AudioMediaData asset, double from, double to)
         {
-            // it is public function so API state will be used
-            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
+            System.Diagnostics.Debug.Assert(mState == AudioPlayerState.Stopped || mState == AudioPlayerState.Paused, "Already playing?!");
+            if (asset != null && asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
             {
-                if (   asset!= null    &&    asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                long startPosition =
+                    CalculationFunctions.ConvertTimeToByte(from, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                startPosition = CalculationFunctions.AdaptToFrame(startPosition, asset.getPCMFormat().getBlockAlign());
+                long endPosition =
+                    CalculationFunctions.ConvertTimeToByte(to, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
+                endPosition = CalculationFunctions.AdaptToFrame(endPosition, asset.getPCMFormat().getBlockAlign());
+                if (startPosition >= 0 && startPosition < endPosition && endPosition <= asset.getPCMLength())
                 {
-                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
-                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, asset.getPCMFormat().getBlockAlign());
-                    // check for valid arguments
-                    if (lStartPosition > 0 && lStartPosition < lEndPosition && lEndPosition <= asset.getPCMLength())
-                    {
-                        InitPlay(asset, lStartPosition, lEndPosition);
-                    }
-                    else
-                        throw new Exception("Start Position is out of bounds of Audio Asset");
+                    InitPlay(asset, startPosition, endPosition);
                 }
                 else
                 {
-                    SimulateEmptyAssetPlaying();
+                    throw new Exception("Start/end positions out of bounds of audio asset.");
                 }
             }
-
+            else
+            {
+                SimulateEmptyAssetPlaying();
+            }
         }
 
         /// <summary>

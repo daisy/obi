@@ -38,7 +38,8 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if selection in the waveform is enabled.
         /// </summary>
-        public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
+        // public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
+        public bool CanSelectInWaveform { get { return true; } }
 
         /// <summary>
         /// Set the selected flag for the block.
