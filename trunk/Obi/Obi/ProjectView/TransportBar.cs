@@ -214,7 +214,7 @@ namespace Obi.ProjectView
         // Move the audio cursor to the phrase currently playing.
         private void Playlist_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mView.PlaybackBlock = e.Node;
+            mView.PlaybackPhrase = e.Node;
             UpdateTimeDisplay();
         }
 
@@ -243,7 +243,7 @@ namespace Obi.ProjectView
         }
 
         // Update the transport bar once the player has stopped.
-        private void Playlist_PlayerStopped(object sender, EventArgs e) { mView.PlaybackBlock = null; }
+        private void Playlist_PlayerStopped(object sender, EventArgs e) { mView.PlaybackPhrase = null; }
 
         // Adapt to changes in the presentation.
         // At the moment, simply stop.
@@ -327,6 +327,16 @@ namespace Obi.ProjectView
         private void mPlayButton_Click(object sender, EventArgs e) { PlayOrResume(); }
 
         /// <summary>
+        /// Play all in the project. (Used when nothing is selected, or from the play all menu item.)
+        /// </summary>
+        public void PlayAll()
+        {
+            mCurrentPlaylist = mMasterPlaylist;
+            mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
+            mCurrentPlaylist.Play();
+        }
+
+        /// <summary>
         /// All-purpose play function for the play button.
         /// Play or resume if possible, otherwise do nothing.
         /// If there is a selection, play the selection; if there is no selection, play everything
@@ -351,9 +361,7 @@ namespace Obi.ProjectView
         {
             if (node == null && mPlayIfNoSelection)
             {
-                mCurrentPlaylist = mMasterPlaylist;
-                mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
-                mCurrentPlaylist.Play();
+                PlayAll();
             }
             else if (node != null)
             {
@@ -445,7 +453,7 @@ namespace Obi.ProjectView
                     else
                     {
                         mCurrentPlaylist.Stop();
-                        mView.PlaybackBlock = null;
+                        mView.PlaybackPhrase = null;
                     }
                 }
             }

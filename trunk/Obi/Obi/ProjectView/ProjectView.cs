@@ -493,7 +493,14 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the block currently playing back as a "light" selection.
         /// </summary>
-        public PhraseNode PlaybackBlock { set { mStripsView.PlaybackBlock = value; } }
+        public PhraseNode PlaybackPhrase
+        {
+            set 
+            {
+                mStripsView.PlaybackPhrase = value;
+                if (value != null) MakePhraseNodeVisible(value);
+            } 
+        }
 
         /// <summary>
         /// Set the presentation that the project view displays.
@@ -812,6 +819,16 @@ namespace Obi.ProjectView
         public void SetStripVisibilityForSection(SectionNode section, bool visible)
         {
             if (mSynchronizeViews) mStripsView.SetStripVisibilityForSection(section, visible);
+        }
+
+        /// <summary>
+        /// Make sure that a phrase node is visible in the contents view while it is playing,
+        /// and the corresponding section is also visible in the TOC view (if it is shown.)
+        /// </summary>
+        public void MakePhraseNodeVisible(PhraseNode phrase)
+        {
+            SectionNode section = phrase.AncestorAs<SectionNode>();
+            mTOCView.MakeTreeNodeVisibleForSection(section);
         }
 
         /// <summary>

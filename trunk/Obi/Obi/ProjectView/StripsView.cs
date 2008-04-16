@@ -107,14 +107,21 @@ namespace Obi.ProjectView
 
         public bool Focusing { get { return mFocusing; } }
 
-        public PhraseNode PlaybackBlock
+        public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
+        public Strip PlaybackStrip { get { return mPlaybackBlock == null ? null : mPlaybackBlock.Strip; } }
+
+        public PhraseNode PlaybackPhrase
         {
             get { return mPlaybackBlock.Node as PhraseNode; }
             set
             {
                 if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
                 mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
-                if (mPlaybackBlock != null) mPlaybackBlock.InitCursor();
+                if (mPlaybackBlock != null)
+                {
+                    mLayoutPanel.ScrollControlIntoView(mPlaybackBlock);
+                    mPlaybackBlock.InitCursor();
+                }
             }
         }
 

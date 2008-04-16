@@ -1424,12 +1424,12 @@ namespace Obi
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanPlay) mProjectView.TransportBar.PlayOrResume();
+            if (mProjectView.CanPlay) mProjectView.TransportBar.PlayAll();
         }
 
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
+            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume();
         }
 
         private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
