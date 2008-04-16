@@ -993,5 +993,11 @@ namespace Obi.ProjectView
                 Focus();
             }
         }
+
+        internal bool IsEnteringStripsView = false;
+        private void StripsView_Enter(object sender, EventArgs e)
+        {
+            IsEnteringStripsView = true;
+        }
     }
 }
