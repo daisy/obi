@@ -194,7 +194,7 @@ namespace Obi.ProjectView
         public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
-        public bool CanPlaySelection { get { return CanPlay && mSelection != null && !(mSelection is TextSelection || mSelection is MetadataSelection); } }
+        public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveMetadata { get { return mMetadataView.CanRemoveMetadata; } }

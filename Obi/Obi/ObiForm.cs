@@ -1429,7 +1429,7 @@ namespace Obi
 
         private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume();
+            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
         }
 
         private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1480,7 +1480,7 @@ namespace Obi
 
         private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.TransportBar.PreviousPage();
+            mProjectView.TransportBar.PrevPage();
         }
 
         private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e)

@@ -722,7 +722,7 @@ namespace Obi
         /// </summary>
         public void NavigateToNextPhrase()
         {
-            if ( mPhrases.Count > 0    &&    mCurrentPhraseIndex < mPhrases.Count - 1) NavigateToPhrase(mCurrentPhraseIndex + 1);
+            if (mCurrentPhraseIndex < mPhrases.Count - 1) NavigateToPhrase(mCurrentPhraseIndex + 1);
         }
 
         /// <summary>
@@ -766,23 +766,19 @@ namespace Obi
         /// <param name="index">The index of the phrase to navigate to.</param>
         private void NavigateToPhrase(int index)
         {
-            if (mPhrases.Count > 0)
+            if (mPlaylistState == AudioPlayerState.Playing)
             {
-                System.Diagnostics.Debug.Assert(mPlayer.State != AudioPlayerState.NotReady, "Player is not ready!");
-                if (mPlaylistState == AudioPlayerState.Playing)
-                {
-                    mPlayer.Stop();
-                    PlayPhrase(index);
-                }
-                else if (mPlaylistState == AudioPlayerState.Paused)
-                {
-                    SkipToPhrase(index);
-                }
-                else if (mPlaylistState == AudioPlayerState.Stopped)
-                {
-                    PlayPhrase(index);
-                }
-            } // end of check for phrase list count
+                mPlayer.Stop();
+                PlayPhrase(index);
+            }
+            else if (mPlaylistState == AudioPlayerState.Paused)
+            {
+                SkipToPhrase(index);
+            }
+            else if (mPlaylistState == AudioPlayerState.Stopped)
+            {
+                PlayPhrase(index);
+            }
         }
 
 

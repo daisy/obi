@@ -138,8 +138,15 @@ Transport bar
   + D .................. Return to normal speed
   + E .................. Return to normal speed with lapse back !!!
   + F .................. Increase fast play rate
+  + I .................. Navigate to previous section
+  + J .................. Navigate to previous phrase
+  + K .................. Navigate to next section
+  + L .................. Navigate to next phrase
+  + O .................. Navigate to next page
+  + P .................. Play/pause
   + S .................. Decrease fast play rate
-  + Space .............. Play/pause !!!
+  + Space .............. Play/pause
+  + U .................. Navigate to previous page
   + V .................. Preview from current position
   + X .................. Preview up to current position
   + [ .................. Selection begin mark
