@@ -21,17 +21,17 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// 
+        /// Can add a section as long as the selection is not a text selection.
         /// </summary>
         public bool CanAddSection { get { return !(mSelection is TextSelection); } }
 
         /// <summary>
-        /// An actual section must be selected to be copied (i.e. not the dummy section or the text of the section.)
+        /// An actual section must be selected to be copied (i.e. not the text of the section.)
         /// </summary>
         public bool CanCopySection { get { return IsSectionSelected; } }
 
         /// <summary>
-        /// True if there is a selected section and it can be moved in (i.e. increase its level)
+        /// True if there is a selected section and its level can be increased (it must not be the first child.)
         /// </summary>
         public bool CanIncreaseLevel
         {
@@ -39,7 +39,7 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// True if there is a selected section and it can be moved out (i.e. decrease its level)
+        /// True if there is a selected section and its level can be decreased (it must not be a top-level section.)
         /// </summary>
         public bool CanDecreaseLevel
         {
@@ -105,14 +105,10 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
-                    // Avn: condition added to prevent exception in case node selection contains phrase node as TOC has only SectionNodes
-                    if (value != null && value.Node.GetType() == typeof(PhraseNode) && value.Control == this)
-                        mSelection = new NodeSelection(value.Node.ParentAs<SectionNode>(), value.Control);
-                    else
-                        mSelection = value;
+                    mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
-                    // ignore the select event, since we were asked to change the selection;
-                    // but allow the selection not coming from the user
+                    // Ignore the select event, since we were asked to change the selection;
+                    // but allow the selection not coming from the user.
                     mTOCTree.AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
                     mTOCTree.BeforeSelect -= new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
                     mTOCTree.SelectedNode = n;
@@ -128,10 +124,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectAndRename(ObiNode node)
         {
-            DoToNewNode((SectionNode)node, delegate()
+            SectionNode section = (SectionNode)node;
+            DoToNewNode(section, delegate()
             {
-                mView.Selection = new TextSelection((SectionNode)node, this, ((SectionNode)node).Label);
-                FindTreeNode((SectionNode)node).BeginEdit();
+                mView.Selection = new TextSelection(section, this, section.Label);
+                FindTreeNode(section).BeginEdit();
             });
         }
 
@@ -145,18 +142,6 @@ namespace Obi.ProjectView
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
-        }
-
-        void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
-        {
-            if (e is urakawa.events.core.ChildAddedEventArgs)
-            {
-                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
-            }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
-            {
-                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
-            }
         }
 
         /// <summary>
@@ -279,6 +264,19 @@ namespace Obi.ProjectView
         private bool IsSectionSelected
         {
             get { return mSelection != null && mSelection.GetType() == typeof(NodeSelection); }
+        }
+
+        // Reflect changes in the presentation (added or deleted nodes)
+        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (e is urakawa.events.core.ChildAddedEventArgs)
+            {
+                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
+            }
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            {
+                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+            }
         }
 
         // When a node was renamed, show the new name in the tree.
