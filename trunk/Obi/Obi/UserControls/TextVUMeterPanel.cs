@@ -16,7 +16,7 @@ namespace Obi.UserControls
                 private String m_StrLeftOverloadIndicator;
         private String m_StrRightOverloadIndicator;
         private bool m_BeepEnabled = false;
-        private bool m_ShowMaxMinValues;
+        private bool mShowMaxMinValues;
         private double m_MaxLeftDB;
         private double m_MaxRightDB;
 
@@ -26,7 +26,7 @@ namespace Obi.UserControls
                         mResetButton.Enabled = false;
             m_StrLeftOverloadIndicator = "";
             m_StrRightOverloadIndicator = "";
-            m_ShowMaxMinValues = false ;
+            mShowMaxMinValues = false ;
 
         }
 
@@ -47,21 +47,18 @@ namespace Obi.UserControls
                     m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
                     m_MaxLeftDB = -100.00;
                     m_MaxRightDB = -100.00;
-                    mResetButton.Enabled = m_ShowMaxMinValues;
+                    mResetButton.Enabled = mShowMaxMinValues;
                                     }
             }
         }
 
         public bool ShowMaxMinValues        
         {
-            get { return m_ShowMaxMinValues; }
+            get { return mShowMaxMinValues; }
             set
             {
-                if (value != null)
-                    m_ShowMaxMinValues = value;
-
-                if (m_ShowMaxMinValues)
-                    mResetButton.Enabled = true;
+                mShowMaxMinValues = value;
+                if (value) mResetButton.Enabled = true;
             }
         }
 
@@ -87,7 +84,7 @@ namespace Obi.UserControls
                         RightDb = 0.0;
                                         
                 }
-                if (!m_ShowMaxMinValues)
+                if (!mShowMaxMinValues)
                 {
                     mLeftBox.Text = m_StrLeftOverloadIndicator + LeftDb.ToString();
                     mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
@@ -202,7 +199,7 @@ namespace Obi.UserControls
 
         private void mResetButton_Click(object sender, EventArgs e)
         {
-            if ( !m_ShowMaxMinValues )
+            if ( !mShowMaxMinValues )
             mResetButton.Enabled = false ;
 
             m_StrLeftOverloadIndicator = "";
@@ -213,7 +210,7 @@ namespace Obi.UserControls
                 m_VuMeter.Reset();
             }
 
-            if (m_ShowMaxMinValues)
+            if (mShowMaxMinValues)
             {
                 mLeftBox.Text = "";
                 mRightBox.Text = "";

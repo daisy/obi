@@ -462,9 +462,104 @@ namespace Obi.ProjectView
 
         // Record
 
+        // Navigation
 
+        private void mPrevSectionButton_Click(object sender, EventArgs e) { PrevSection(); }
+        private void mPreviousPageButton_Click(object sender, EventArgs e) { PrevPage(); }
+        private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
+        private void mNextPhrase_Click(object sender, EventArgs e) { NextPhrase(); }
+        private void mNextPageButton_Click(object sender, EventArgs e) { NextPage(); }
+        private void mNextSectionButton_Click(object sender, EventArgs e) { NextSection(); }
 
+        /// <summary>
+        /// Move to or play the previous page.
+        /// </summary>
+        public void PrevPage()
+        {
+            if (Enabled && mRecordingSession == null)
+            {
+                mCurrentPlaylist.NavigateToPreviousPage();
+            }
+        }
 
+        /// <summary>
+        /// Move to or play the previous phrase.
+        /// </summary>
+        public void PrevPhrase()
+        {
+            if (Enabled && mRecordingSession == null)
+            {
+                mCurrentPlaylist.NavigateToPreviousPhrase();
+            }
+        }
+
+        /// <summary>
+        /// Move to the previous section (i.e. first phrase of the previous section.)
+        /// </summary>
+        public void PrevSection()
+        {
+            if (Enabled && mRecordingSession == null)
+            {
+                mCurrentPlaylist.NavigateToPreviousSection();
+            }
+        }
+
+        /// <summary>
+        /// Go to the next page.
+        /// </summary>
+        public void NextPage()
+        {
+            if (Enabled)
+            {
+                if (mState == State.Recording)
+                {
+                    mRecordingSession.MarkPage();
+                }
+                else if (mState != State.Monitoring)
+                {
+                    mCurrentPlaylist.NavigateToNextPage();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Go to the next phrase.
+        /// </summary>
+        public void NextPhrase()
+        {
+            if (Enabled)
+            {
+                if (mState == State.Recording)
+                {
+                    mRecordingSession.NextPhrase();
+                }
+                else if (mState != State.Monitoring)
+                {
+                    mCurrentPlaylist.NavigateToNextPhrase();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Move to the next section (i.e. the first phrase of the next section)
+        /// </summary>
+        public void NextSection()
+        {
+            if (Enabled)
+            {
+                if (mState == State.Recording)
+                {
+                    // mark section
+                    PauseRecording();
+                    mView.AddSection();
+                    PrepareForRecording(true, null);
+                }
+                else
+                {
+                    mCurrentPlaylist.NavigateToNextSection();
+                }
+            }
+        }
 
 
 
@@ -488,37 +583,13 @@ namespace Obi.ProjectView
 
 
 
-        private void mPrevPhraseButton_Click(object sender, EventArgs e) { PrevPhrase(); }
         private void mRewindButton_Click(object sender, EventArgs e) { Rewind(); }
 
         private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
                 
         private void mFastForwardButton_Click(object sender, EventArgs e) { FastForward(); }
-        private void mNextPhrase_Click(object sender, EventArgs e) { NextPhrase(); }
-        private void mNextSectionButton_Click(object sender, EventArgs e) { NextSection(); }
 
 
-        /// <summary>
-        /// Move to the previous section (i.e. first phrase of the previous section.)
-        /// </summary>
-        public void PrevSection()
-        {
-            if ( Enabled     &&     mRecordingSession == null )
-            {
-                 mCurrentPlaylist.NavigateToPreviousSection();
-            }
-        }
-
-        /// <summary>
-        /// Move to or play the previous phrase.
-        /// </summary>
-        public void PrevPhrase()
-        {
-            if ( Enabled    &&    mRecordingSession == null )
-            {
-                 mCurrentPlaylist.NavigateToPreviousPhrase();
-            }
-        }
 
         /// <summary>
         /// Rewind (i.e. play faster backward)
@@ -744,39 +815,6 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Go to the next phrase.
-        /// </summary>
-        public void NextPhrase()
-        {
-            if ( mRecordingSession != null    &&     mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording )
-            {
-                mRecordingSession.NextPhrase();
-            }
-            else
-            {
-                if (Enabled) mCurrentPlaylist.NavigateToNextPhrase();
-            }
-        }
-
-        /// <summary>
-        /// Move to the next section (i.e. the first phrase of the next section)
-        /// </summary>
-        public void NextSection()
-        {
-            if (mRecordingSession != null && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
-            {
-                // mark section
-                PauseRecording();
-                mView.AddSection();
-                PrepareForRecording(true, null);
-            }
-            else
-            {
-                if (Enabled) mCurrentPlaylist.NavigateToNextSection();
-            }
-        }
-
 
 
         #endregion
@@ -927,7 +965,6 @@ namespace Obi.ProjectView
             }
             return false;
         }
-        private void mPrevSectionButton_Click(object sender, EventArgs e) { PrevSection(); }
 
 
         #region undoable recording
@@ -1169,37 +1206,7 @@ namespace Obi.ProjectView
             }
         }
 
-        private void mNextPageButton_Click(object sender, EventArgs e)
-        {
-            NextPage();
-            
-        }
 
-        public void NextPage()
-        {
-            if (mRecordingSession != null
-                && mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording)
-            {
-                mRecordingSession.MarkPage();
-            }
-            else if (mRecordingSession == null)
-            {
-                if (Enabled) mCurrentPlaylist.NavigateToNextPage();
-            }
-        }
-
-        private void mPreviousPageButton_Click(object sender, EventArgs e)
-        {
-            PreviousPage () ;
-        }
-
-        public void PreviousPage()
-        {
-                        if ( Enabled     &&     mRecordingSession == null )
-                {
-            mCurrentPlaylist.NavigateToPreviousPage();
-                }
-        }
 
         private bool IsRecording
         {

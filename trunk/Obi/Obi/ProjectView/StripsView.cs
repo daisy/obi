@@ -599,17 +599,24 @@ namespace Obi.ProjectView
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
             // playback shortcuts.
-            // Note: if these shortcuts are to be disabled till finalisation, just comment following five lines.
             mShortcutKeys[Keys.Space] = TogglePlayPause;
+            mShortcutKeys[Keys.P] = TogglePlayPause;
+            mShortcutKeys[Keys.J] = NavigatePrevPhrase;
+            mShortcutKeys[Keys.L] = NavigateNextPhrase;
+            mShortcutKeys[Keys.I] = NavigatePrevSection;
+            mShortcutKeys[Keys.K] = NavigateNextSection;
+            mShortcutKeys[Keys.U] = NavigatePrevPage;
+            mShortcutKeys[Keys.O] = NavigateNextPage;
+            
             mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
-            mShortcutKeys[Keys.OemOpenBrackets ] =MarkSelectionBeginTime  ;
-            mShortcutKeys[Keys.OemCloseBrackets ] =  MarkSelectionEndTime ;
-            mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition ;
-            mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment ;
-            mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition ;
+            mShortcutKeys[Keys.OemOpenBrackets] = MarkSelectionBeginTime;
+            mShortcutKeys[Keys.OemCloseBrackets] = MarkSelectionEndTime;
+            mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition;
+            mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment;
+            mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition;
 
             // Strips navigation
             mShortcutKeys[Keys.Left] = SelectPrecedingBlock;
@@ -919,20 +926,47 @@ namespace Obi.ProjectView
         }
 
 
+        private bool NavigateNextPage()
+        {
+            mView.TransportBar.NextPage();
+            return true;
+        }
+
+        private bool NavigateNextPhrase()
+        {
+            mView.TransportBar.NextPhrase();
+            return true;
+        }
+
+        private bool NavigateNextSection()
+        {
+            mView.TransportBar.NextSection();
+            return true;
+        }
+
+        private bool NavigatePrevPage()
+        {
+            mView.TransportBar.PrevPage();
+            return true;
+        }
+
+        private bool NavigatePrevPhrase()
+        {
+            mView.TransportBar.PrevPhrase();
+            return true;
+        }
+
+        private bool NavigatePrevSection()
+        {
+            mView.TransportBar.PrevSection();
+            return true;
+        }
+
         // Toggle play/pause in the transport bar
         private bool TogglePlayPause()
         {
-            if (mView.TransportBar.CanPlay || mView.TransportBar.CanResumePlayback)
-            {
-                mView.TransportBar.PlayOrResume();
-                return true;
-            }
-            else if (mView.TransportBar.CanPause)
-            {
-                mView.TransportBar.Pause();
-                return true;
-            }
-            return false;
+            mView.TransportBar.PlayOrResume();
+            return true;
         }
 
 
