@@ -679,4 +679,7 @@ Error text: {1}</value>
     <value>Start monitoring</value>
     <comment>Button label</comment>
   </data>
+  <data name="ContentsView_Label" xml:space="preserve">
+    <value>Contents View</value>
+  </data>
 </root>
