@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Obi.ProjectView
 {
@@ -375,6 +376,8 @@ namespace Obi.ProjectView
         // Select when tabbed into
         private void Strip_Enter(object sender, EventArgs e)
         {
+            AddContentsViewLabel();
+
             if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
         }
 
@@ -393,6 +396,30 @@ namespace Obi.ProjectView
         public void FocusStripLabel()
         {
             mLabel.Focus();
+
+        
+}
+
+
+        private void AddContentsViewLabel()
+        {
+                        if (ParentView.IsEnteringStripsView)
+            {
+                ParentView.IsEnteringStripsView = false;
+                SetAccessibleName();
+                mLabel.AccessibleName = string.Concat ( Localizer.Message ("ContentsView_Label") , " " , mLabel.AccessibleName) ;
+                Thread TrimAccessibleName = new Thread(new ThreadStart(TrimContentsViewAccessibleLabel));
+                TrimAccessibleName.Start();
+            }
+            else
+                SetAccessibleName();
         }
+
+        private void TrimContentsViewAccessibleLabel ()
+        {
+            Thread.Sleep(750);
+            SetAccessibleName();
+        }
+            
     }
 }

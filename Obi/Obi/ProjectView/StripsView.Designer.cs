@@ -52,6 +52,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLayoutPanel);
             this.Name = "StripsView";
             this.Size = new System.Drawing.Size(398, 297);
+            this.Enter += new System.EventHandler(this.StripsView_Enter);
             this.ResumeLayout(false);
 
         }
