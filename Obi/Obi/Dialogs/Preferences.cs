@@ -24,6 +24,7 @@ namespace Obi.Dialogs
         private int mSampleRate;                // preferred sample rate
         private int mBitDepth;                  // preferred bit depth
         private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
+        private Presentation mPresentation; // presentation of active project
 
         private Audio.AudioPlayer mPlayer;      // audio player
         private Audio.AudioRecorder mRecorder;  // Recorder instance
@@ -44,12 +45,14 @@ namespace Obi.Dialogs
             mRecorder = transportbar.Recorder;
             mInputDevice = mRecorder.InputDevice;
             mOutputDevice = mPlayer.OutputDevice;
-            if (presentation != null)
+            mPresentation = presentation;
+
+            if (presentation != null &&    presentation.getMediaDataManager().getListOfMediaData().Count > 0 )
             {
-                mSampleRate = settings.SampleRate;
-                mAudioChannels = settings.AudioChannels;
-                mBitDepth = settings.BitDepth;
-                mCanChangeAudioSettings = true;
+                mSampleRate = (int)  presentation.DataManager.getDefaultPCMFormat ().getSampleRate () ;
+                mAudioChannels = presentation.DataManager.getDefaultPCMFormat ().getNumberOfChannels () ;
+                mBitDepth = presentation.DataManager.getDefaultPCMFormat().getBitDepth() ;
+                mCanChangeAudioSettings = false ;
             }
             else
             {
@@ -170,8 +173,35 @@ namespace Obi.Dialogs
                 mAudioChannels = 2;
             mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
             mBitDepth = 16;
+
+            UpdatePresentationAudioProperties(mAudioChannels, mBitDepth, mSampleRate);
         }
 
+        private bool UpdatePresentationAudioProperties(int channels, int bitDepth, int samplingRate)
+        {
+            if (mPresentation != null && mCanChangeAudioSettings)
+            {
+                try
+                {
+                    mPresentation.DataManager.setDefaultNumberOfChannels((ushort)channels);
+                    mPresentation.DataManager.setDefaultBitDepth((ushort)bitDepth);
+                    mPresentation.DataManager.setDefaultSampleRate((uint)SampleRate);
+                    mPresentation.DataManager.setEnforceSinglePCMFormat(true);
+
+                    Settings.GetSettings().AudioChannels = channels;
+                    Settings.GetSettings().BitDepth = bitDepth;
+                    Settings.GetSettings().SampleRate = SampleRate;
+
+                    return true;
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                                    }
+                        }
+                        return false;
+        }
+        
         private void Preferences_Load(object sender, EventArgs e)
         {
             comboInputDevice.DataSource = mRecorder.InputDevices;
