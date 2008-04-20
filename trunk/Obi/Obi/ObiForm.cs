@@ -827,9 +827,21 @@ namespace Obi
             mProjectView.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
             mSettings.LastInputDevice = dialog.InputDevice.Name;
             mProjectView.TransportBar.Recorder.InputDevice = dialog.InputDevice;
-            mSettings.AudioChannels = dialog.AudioChannels;
-            mSettings.SampleRate = dialog.SampleRate;
-            mSettings.BitDepth = dialog.BitDepth;
+
+            // following audio properties in pref dialog are also used for setting project specific audio properties so 
+            //the change should go to settings only if no project is openned.
+            if (mProjectView.Presentation == null)
+            {
+                mSettings.AudioChannels = dialog.AudioChannels;
+                mSettings.SampleRate = dialog.SampleRate;
+                mSettings.BitDepth = dialog.BitDepth;
+            }
+            else
+            {
+                if ( dialog.CanChangeAudioSettings )
+                mProjectView.Presentation.UpdatePresentationAudioProperties(dialog.AudioChannels, dialog.BitDepth, dialog.SampleRate);
+            }
+
             // tooltips
             mSettings.EnableTooltips = dialog.EnableTooltips;
             mProjectView.EnableTooltips = dialog.EnableTooltips;
