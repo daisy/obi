@@ -74,6 +74,8 @@ namespace Obi.Dialogs
         /// </summary>
         public int BitDepth { get { return mBitDepth; } }
 
+        public bool CanChangeAudioSettings { get {return  mCanChangeAudioSettings;  } }
+
         /// <summary>
         /// Default directory for exported DAISY books
         /// </summary>
@@ -174,33 +176,8 @@ namespace Obi.Dialogs
             mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
             mBitDepth = 16;
 
-            UpdatePresentationAudioProperties(mAudioChannels, mBitDepth, mSampleRate);
         }
 
-        private bool UpdatePresentationAudioProperties(int channels, int bitDepth, int samplingRate)
-        {
-            if (mPresentation != null && mCanChangeAudioSettings)
-            {
-                try
-                {
-                    mPresentation.DataManager.setDefaultNumberOfChannels((ushort)channels);
-                    mPresentation.DataManager.setDefaultBitDepth((ushort)bitDepth);
-                    mPresentation.DataManager.setDefaultSampleRate((uint)SampleRate);
-                    mPresentation.DataManager.setEnforceSinglePCMFormat(true);
-
-                    Settings.GetSettings().AudioChannels = channels;
-                    Settings.GetSettings().BitDepth = bitDepth;
-                    Settings.GetSettings().SampleRate = SampleRate;
-
-                    return true;
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                                    }
-                        }
-                        return false;
-        }
         
         private void Preferences_Load(object sender, EventArgs e)
         {

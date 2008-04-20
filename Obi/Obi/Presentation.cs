@@ -490,6 +490,23 @@ namespace Obi
             }
         }
 
+        public bool UpdatePresentationAudioProperties( int channels  , int bitDepth , int samplingRate)
+        {
+                            try
+                {
+                    DataManager.setDefaultNumberOfChannels((ushort) channels);
+                    DataManager.setDefaultBitDepth((ushort) bitDepth);
+                    DataManager.setDefaultSampleRate((uint) samplingRate);
+                    DataManager.setEnforceSinglePCMFormat(true);
+                    return true;
+                }
+                catch 
+                {
+                    return false;
+                }
+                                }
+        
+
         // Get the elapsed time at the beginning of each section
         // (last section has the total time.)
         private List<double> ElapsedTimes
