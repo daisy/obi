@@ -46,6 +46,10 @@ namespace Obi.Dialogs
             this.mBrowseExportButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.m_txtBitDepth = new System.Windows.Forms.TextBox();
+            this.label_BitDepth = new System.Windows.Forms.Label();
+            this.m_txtChannels = new System.Windows.Forms.TextBox();
+            this.m_txtSamplingRate = new System.Windows.Forms.TextBox();
             this.comboChannels = new System.Windows.Forms.ComboBox();
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboSampleRate = new System.Windows.Forms.ComboBox();
@@ -228,6 +232,10 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_txtBitDepth);
+            this.mAudioTab.Controls.Add(this.label_BitDepth);
+            this.mAudioTab.Controls.Add(this.m_txtChannels);
+            this.mAudioTab.Controls.Add(this.m_txtSamplingRate);
             this.mAudioTab.Controls.Add(this.comboChannels);
             this.mAudioTab.Controls.Add(this.labelChannels);
             this.mAudioTab.Controls.Add(this.comboSampleRate);
@@ -243,6 +251,44 @@ namespace Obi.Dialogs
             this.mAudioTab.TabIndex = 1;
             this.mAudioTab.Text = "Audio";
             this.mAudioTab.UseVisualStyleBackColor = true;
+            // 
+            // m_txtBitDepth
+            // 
+            this.m_txtBitDepth.AccessibleName = "Bit Depth (fixed):";
+            this.m_txtBitDepth.Location = new System.Drawing.Point(121, 124);
+            this.m_txtBitDepth.Name = "m_txtBitDepth";
+            this.m_txtBitDepth.ReadOnly = true;
+            this.m_txtBitDepth.Size = new System.Drawing.Size(100, 20);
+            this.m_txtBitDepth.TabIndex = 20;
+            // 
+            // label_BitDepth
+            // 
+            this.label_BitDepth.AutoSize = true;
+            this.label_BitDepth.Location = new System.Drawing.Point(30, 124);
+            this.label_BitDepth.Name = "label_BitDepth";
+            this.label_BitDepth.Size = new System.Drawing.Size(85, 13);
+            this.label_BitDepth.TabIndex = 19;
+            this.label_BitDepth.Text = "&Bit Depth (fixed):";
+            // 
+            // m_txtChannels
+            // 
+            this.m_txtChannels.AccessibleName = "Project channels:";
+            this.m_txtChannels.Location = new System.Drawing.Point(121, 91);
+            this.m_txtChannels.Name = "m_txtChannels";
+            this.m_txtChannels.ReadOnly = true;
+            this.m_txtChannels.Size = new System.Drawing.Size(100, 20);
+            this.m_txtChannels.TabIndex = 18;
+            this.m_txtChannels.Visible = false;
+            // 
+            // m_txtSamplingRate
+            // 
+            this.m_txtSamplingRate.AccessibleName = "Project sample rate:";
+            this.m_txtSamplingRate.Location = new System.Drawing.Point(121, 63);
+            this.m_txtSamplingRate.Name = "m_txtSamplingRate";
+            this.m_txtSamplingRate.ReadOnly = true;
+            this.m_txtSamplingRate.Size = new System.Drawing.Size(100, 20);
+            this.m_txtSamplingRate.TabIndex = 17;
+            this.m_txtSamplingRate.Visible = false;
             // 
             // comboChannels
             // 
@@ -331,5 +377,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mBrowseExportButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox mTooltipsCheckBox;
+        private System.Windows.Forms.TextBox m_txtChannels;
+        private System.Windows.Forms.TextBox m_txtSamplingRate;
+        private System.Windows.Forms.Label label_BitDepth;
+        private System.Windows.Forms.TextBox m_txtBitDepth;
     }
 }

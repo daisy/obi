@@ -193,13 +193,20 @@ namespace Obi.Dialogs
             mSample.Add("48000");
             comboSampleRate.DataSource = mSample;
             comboSampleRate.SelectedIndex = mSample.IndexOf(mSampleRate.ToString());
-            comboSampleRate.Enabled = mCanChangeAudioSettings;
+            comboSampleRate.Visible = mCanChangeAudioSettings;
+            m_txtSamplingRate.Text = mSampleRate.ToString();
+            m_txtSamplingRate.Visible = !mCanChangeAudioSettings;
+
             ArrayList mArrayChannels = new ArrayList();
             mArrayChannels.Add(Localizer.Message("mono"));
             mArrayChannels.Add(Localizer.Message("stereo"));
             comboChannels.DataSource = mArrayChannels;
             comboChannels.SelectedIndex = mArrayChannels.IndexOf(Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo"));
-            comboChannels.Enabled = mCanChangeAudioSettings;
+            comboChannels.Visible = mCanChangeAudioSettings;
+                        m_txtChannels.Text = Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo") ;
+            m_txtChannels.Visible = !mCanChangeAudioSettings;
+
+            m_txtBitDepth.Text = mBitDepth.ToString();
         }
  
         public void SelectProjectTab() { mTab.SelectedTab = mProjectTab; }
