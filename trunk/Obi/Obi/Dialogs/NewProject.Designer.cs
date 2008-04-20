@@ -77,6 +77,7 @@ namespace Obi.Dialogs
             this.mFileBox.Name = "mFileBox";
             this.mFileBox.Size = new System.Drawing.Size(426, 20);
             this.mFileBox.TabIndex = 4;
+            this.mFileBox.TextChanged += new System.EventHandler(this.mFileBox_TextChanged);
             // 
             // mSelectButton
             // 

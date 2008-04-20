@@ -174,5 +174,13 @@ namespace Obi.Dialogs
             safe = Regex.Replace(safe, "_$", "");
             return safe;
         }
+
+        private void mFileBox_TextChanged(object sender, EventArgs e)
+        {
+            if (mFileBox.Text.Trim() == "")
+                mOKButton.Enabled = false;
+            else
+                mOKButton.Enabled = true;
+        }
     }
 }
