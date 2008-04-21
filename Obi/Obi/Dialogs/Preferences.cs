@@ -47,12 +47,17 @@ namespace Obi.Dialogs
             mOutputDevice = mPlayer.OutputDevice;
             mPresentation = presentation;
 
-            if (presentation != null &&    presentation.getMediaDataManager().getListOfMediaData().Count > 0 )
+            if (presentation != null )
             {
                 mSampleRate = (int)  presentation.DataManager.getDefaultPCMFormat ().getSampleRate () ;
                 mAudioChannels = presentation.DataManager.getDefaultPCMFormat ().getNumberOfChannels () ;
                 mBitDepth = presentation.DataManager.getDefaultPCMFormat().getBitDepth() ;
+
+                // do not allow  change in audio properties if project contains any audio
+                if ( presentation.getMediaDataManager().getListOfMediaData().Count > 0  )
                 mCanChangeAudioSettings = false ;
+                else
+                mCanChangeAudioSettings = true ;
             }
             else
             {
