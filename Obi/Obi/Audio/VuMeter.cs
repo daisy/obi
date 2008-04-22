@@ -41,7 +41,7 @@ namespace Obi.Audio
         public int UpperThreshold { get { return mUpperThreshold; } }
         public int LowerThreshold { get { return mLowerThreshold; } }
         public int ChannelValueLeft { get { return mMeanValueLeft; } }
-        public int ChannelValue_Right { get { return mMeanValueRight; } }
+        public int ChannelValueRight { get { return mMeanValueRight; } }
 
         // Set the event handlers for player and recorder.
         private void SetEventHandlers()

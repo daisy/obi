@@ -277,13 +277,13 @@ namespace Obi.ProjectView
             "elapsed",
             "elapsed (total)",
             "remaining",
-            "remaining (total)",
-            "Recording Time"});
+            "remaining (total)"});
             this.mDisplayBox.Location = new System.Drawing.Point(580, 6);
             this.mDisplayBox.Name = "mDisplayBox";
             this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
             this.mDisplayBox.TabIndex = 14;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
+            this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
             // 
             // mFastPlayRateCombobox
             // 
@@ -311,6 +311,7 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
             this.mVUMeterPanel.Location = new System.Drawing.Point(770, 3);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
+            this.mVUMeterPanel.ShowMaxMinValues = false;
             this.mVUMeterPanel.Size = new System.Drawing.Size(175, 31);
             this.mVUMeterPanel.TabIndex = 16;
             this.mVUMeterPanel.VuMeter = null;
