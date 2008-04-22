@@ -1560,7 +1560,7 @@ namespace Obi
         {
             mProjectView.TransportBar.MarkSelectionEndTime();
             UpdateAudioSelectionBlockMenuItems();
-                    }
+        }
 
         private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -144,22 +144,44 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionBeginTime()
         {
-            if (IsInPhraseSelectionMarked)
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
             {
-                ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(mCurrentPlaylist.CurrentTimeInAsset));
                 return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Mark the end time of a selection.
+        /// </summary>
         public bool MarkSelectionEndTime()
         {
-            if (IsInPhraseSelectionMarked
-                                && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
             {
-                ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-                mIsSelectionMarked = true;
-                return true;
+                AudioSelection selection = mView.Selection as AudioSelection;
+                double begin = 0.0;
+                double end = 0.0;
+                if (selection != null && selection.Node == mCurrentPlaylist.CurrentPhrase)
+                {
+                    double now = mCurrentPlaylist.CurrentTimeInAsset;
+                    double cursor = selection.AudioRange.HasCursor ? selection.AudioRange.CursorTime :
+                        selection.AudioRange.SelectionBeginTime;
+                    begin = cursor < now ? cursor : now;
+                    end = cursor > now ? cursor : now;
+                }
+                if (begin != end)
+                {
+                    mView.Selection = new AudioSelection((PhraseNode)selection.Node, selection.Control, new AudioRange(begin, end));
+                    return true;
+                }
+                else
+                {
+                    // If nothing was set, behave as if we started a selection.
+                    return MarkSelectionBeginTime();
+                }
             }
             return false;
         }
@@ -957,11 +979,6 @@ namespace Obi.ProjectView
             {
                 PrepareForRecording(true, null);
             }
-        }
-        
-        void mRecordingSession_FinishingPhrase(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
-        {
-            throw new Exception("The method or operation is not implemented.");
         }
 
         private void SetPageNumberWhileRecording( Obi.Events.Audio.Recorder.PhraseEventArgs  e )
