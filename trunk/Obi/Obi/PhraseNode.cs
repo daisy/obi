@@ -16,6 +16,9 @@ namespace Obi
 
         public static new readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
+        /// <summary>
+        /// Create a phrase node.
+        /// </summary>
         public PhraseNode(Presentation presentation): base(presentation) {}
         public PhraseNode(Presentation presentation, EmptyNode.Kind kind) : base(presentation, kind) {} 
         public PhraseNode(Presentation presentation, string custom) : base(presentation, Kind.Custom) {}
@@ -74,6 +77,14 @@ namespace Obi
         }
 
         /// <summary>
+        /// Signal a change in the audio for this phrase (used during recording)
+        /// </summary>
+        public void SignalAudioChanged(object sender, ManagedAudioMedia media)
+        {
+            if (NodeAudioChanged != null) NodeAudioChanged(sender, new NodeEventArgs<PhraseNode>(this));
+        }
+
+        /// <summary>
         /// Split the audio of this phrase at the given position and notify that the 
         /// </summary>
         /// <returns>The other half of the split audio.</returns>
@@ -84,16 +95,14 @@ namespace Obi
             return newAudio;
         }
 
-        public override string getXukLocalName()
-        {
-            return XUK_ELEMENT_NAME;
-        }
+        /// <summary>
+        /// We use our own element name for XUK output.
+        /// </summary>
+        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
-        public void SignalAudioChanged(object sender, ManagedAudioMedia media)
-        {
-            if (NodeAudioChanged != null) NodeAudioChanged(sender, new NodeEventArgs<PhraseNode>(this));
-        }
-
+        /// <summary>
+        /// Short text description of the phrase, including audio duration.
+        /// </summary>
         public override string ToString()
         {
             return String.Format("{0} {1}", base.ToString(), Audio.getDuration().ToString());

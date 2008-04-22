@@ -513,9 +513,9 @@ namespace Obi
         {
             mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
             mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
             mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
-            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
         }
         
         // Open the project at the given path; warn the user on error.
@@ -706,7 +706,7 @@ namespace Obi
         /// </summary>
         void TransportBar_StateChanged(object sender, EventArgs e )
         {
-            Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()));
+            Status(Localizer.Message(mProjectView.TransportBar.CurrentState.ToString()));
             UpdateTransportMenu();
         }
 

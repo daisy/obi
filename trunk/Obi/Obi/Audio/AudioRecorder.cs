@@ -14,20 +14,21 @@ namespace Obi.Audio
     /// <summary>
     /// The three states of the audio recorder.
     /// NotReady: the recorder is not ready to record, for whatever reason.
-    /// Idle: the recorder is ready to record.
-    /// Listening: the recording is listening but not writing any data.
+    /// Stopped: the recorder is stopped and ready to record or monitor.
+    /// Monitoring: the recording is listening but not writing any data.
     /// Recording: sound is currently being recorded.
     /// </summary>
-    public enum AudioRecorderState { NotReady, Idle, Listening, Recording };
+    public enum AudioRecorderState { NotReady, Stopped, Monitoring, Recording };
 
 	public class AudioRecorder
 	{
+        private double mCurrentTime;  // Time in milliseconds
+        private int mChannels;        // number of channels
 
-        private double mCurrentTime; // Time in milliseconds
         
-        public event Events.Audio.Recorder.StateChangedHandler StateChanged;
-		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;
-        public event Events.Audio.Recorder.ResetVuMeterHandler ResetVuMeter ;
+        public event Events.Audio.Recorder.StateChangedHandler StateChanged;                // recorder state changed
+		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;  // send update to VU meter
+        public event Events.Audio.Recorder.ResetVuMeterHandler ResetVuMeter;                // reset the VU meter
 
 
 		//member variables
@@ -40,7 +41,6 @@ namespace Obi.Audio
 
         // member variables which change whenever recording of a new asset starts
         AudioMediaData mAsset; // Asset currently  being  recorded
-                private int m_Channels;
         private int m_bitDepth;
         private int m_SampleRate;
         private int m_FrameSize;
@@ -65,13 +65,14 @@ namespace Obi.Audio
 
         private int NextCaptureOffset; // Offset in DX capture buffer
         private long SampleCount ; // Count of total bytes being recorded at an instance of time
+
         private AutoResetEvent NotificationEvent = null;
         private Thread NotifyThread = null;
         
 		// constructor, made public by Avn
 		public AudioRecorder()
 		{
-                        mState = AudioRecorderState.Idle;
+                        mState = AudioRecorderState.Stopped;
                         PositionNotify = new BufferPositionNotify[NumberRecordNotifications + 1];
             Capturing = false;
             SampleCount = 0;
@@ -102,7 +103,7 @@ namespace Obi.Audio
 		{
 			get
 			{
-				return m_Channels;
+				return mChannels;
 			}
 		}
 				
@@ -149,13 +150,13 @@ namespace Obi.Audio
 		public void StartListening(AudioMediaData  asset)
 		{
             Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
-			mState = AudioRecorderState.Listening;
-			StateChanged(this, e);
+			mState = AudioRecorderState.Monitoring;
+			if (StateChanged != null) StateChanged(this, e);
 
-			m_Channels = asset.getPCMFormat ().getNumberOfChannels () ;
+			mChannels = asset.getPCMFormat ().getNumberOfChannels () ;
 			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
 			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
-            m_FrameSize = (m_bitDepth / 8) * m_Channels;
+            m_FrameSize = (m_bitDepth / 8) * mChannels;
             
             mAsset = asset;
 			InputFormat = GetInputFormat();
@@ -165,18 +166,20 @@ namespace Obi.Audio
 			InitRecording(true);
 		}
 		
-		//it will start actual recording, append if there is data 
-		//in the wave file through the RecordCaptureData()
-		public void StartRecording(AudioMediaData  asset)
-		{	
-            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
-			mState = AudioRecorderState.Recording;
-			StateChanged(this, e);
 
-			m_Channels = asset.getPCMFormat ().getNumberOfChannels () ;
+        /// <summary>
+        /// Start the recording process into the given asset.
+        /// </summary>
+        public void StartRecording(AudioMediaData asset)
+		{
+            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+	    	mState = AudioRecorderState.Recording;
+		    if (StateChanged != null) StateChanged(this, e);
+        
+            mChannels = asset.getPCMFormat().getNumberOfChannels();
 			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
 			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
-            m_FrameSize = (m_bitDepth / 8) * m_Channels;
+            m_FrameSize = (m_bitDepth / 8) * mChannels;
 
             mAsset = asset;
 					    InputFormat = GetInputFormat();
@@ -188,20 +191,24 @@ namespace Obi.Audio
 			InitRecording(true);
 		}
         bool WasListening = false;
-		// this is to stop the recording
+
+
+
+
+        // this is to stop the recording
 		// desc:  this will first check the condition and stops the recording and then capture any left  overs recorded data which is not saved
         public void StopRecording()
         {
-            if (mState == AudioRecorderState.Listening)
+            if (mState == AudioRecorderState.Monitoring)
                 WasListening = true;
             else
                 WasListening = false;
 
-            if (mState == AudioRecorderState.Recording || mState == AudioRecorderState.Listening)
+            if (mState == AudioRecorderState.Recording || mState == AudioRecorderState.Monitoring)
             {
                 Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
-                mState = AudioRecorderState.Idle;
-                StateChanged(this, e);
+                mState = AudioRecorderState.Stopped;
+                if (StateChanged != null) StateChanged(this, e);
                 if (null != NotificationEvent)
                 {
                     Capturing = false;
@@ -228,8 +235,8 @@ namespace Obi.Audio
         internal void EmergencyStop()
         {
             Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
-            mState = AudioRecorderState.Idle;
-            StateChanged(this, e);
+            mState = AudioRecorderState.Stopped;
+            if (StateChanged != null) StateChanged(this, e);
             if (null != NotificationEvent)
             {
                 Capturing = false;
@@ -254,7 +261,7 @@ namespace Obi.Audio
 		public WaveFormat GetInputFormat()
 		{				
             
-            InputFormat.Channels = Convert.ToInt16(m_Channels );
+            InputFormat.Channels = Convert.ToInt16(mChannels );
             InputFormat.SamplesPerSecond =  m_SampleRate ;
             InputFormat.BitsPerSample = Convert.ToInt16(m_bitDepth );
             InputFormat.AverageBytesPerSecond = m_SampleRate * m_FrameSize ;
@@ -457,9 +464,9 @@ namespace Obi.Audio
 
             // copy Capture data to an array and update it to VuMeter
                 Array.Copy( CaptureData , arUpdateVM, m_UpdateVMArrayLength);
-                UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
+                if (UpdateVuMeterFromRecorder != null) UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
 
-                if (mState != AudioRecorderState.Listening)
+                if (mState != AudioRecorderState.Monitoring)
                 {
                     FileInfo fi = new FileInfo(m_sFileName);
                     if (fi.Exists)
@@ -552,23 +559,24 @@ void CaptureTimer_Tick(object sender, EventArgs e)
         }
 
 
-		
-		public void InitRecording(bool SRecording)
-		{	
-			//if no device is set then it is informed then no device is set
-			//if(null == m_cApplicationDevice)
-			if (mDevice.Capture == null) throw new Exception("no device is set for recording");
-			//format of the capture buffer and the input format is compared
-			//if not sam2e then it is informed that formats do not match
-			if(applicationBuffer.Format.ToString() != InputFormat.ToString())
-				throw new Exception("formats do not match");
 
-			if(SRecording)
-			{
+
+        public void InitRecording(bool SRecording)
+        {
+            //if no device is set then it is informed then no device is set
+            //if(null == m_cApplicationDevice)
+            if (mDevice.Capture == null) throw new Exception("no device is set for recording");
+            //format of the capture buffer and the input format is compared
+            //if not sam2e then it is informed that formats do not match
+            if (applicationBuffer.Format.ToString() != InputFormat.ToString())
+                throw new Exception("formats do not match");
+
+            if (SRecording)
+            {
                 m_MutexCaptureData = new Mutex();
                 SampleCount = 0;
-				CreateCaptureBuffer();
-				applicationBuffer.Start(true);//it will set the looping till the stop is used
+                CreateCaptureBuffer();
+                applicationBuffer.Start(true);//it will set the looping till the stop is used
 
                 // following lines added to initialise and set array length forupdating VuMeter
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
@@ -577,50 +585,50 @@ void CaptureTimer_Tick(object sender, EventArgs e)
 
                 m_PrevSampleCount = 0;
                 CaptureTimer.Start();
-			}
-			else
-			{
+            }
+            else
+            {
                 CaptureTimer.Stop();
-                                				applicationBuffer.Stop();
-				RecordCapturedData();
+                applicationBuffer.Stop();
+                RecordCapturedData();
                 m_MutexCaptureData.Close();
                 // condition for listening added to eleminate listen file on 2 Feb 2007
-                if (WasListening == false)
+                if (!WasListening)
                 {
-				BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
-                FileInfo RecordedFile = new FileInfo(m_sFileName);
-//				long Audiolength = (long)(SampleCount+44);
-                long Audiolength = RecordedFile.Length - 8;
-				for (int i = 0; i<4 ; i++)
-				{
-					Writer.BaseStream.Position = i + 4 ;
-					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal (Audiolength)[i])) ;
-				}
-                Audiolength = Audiolength - 36;
-				for (int i = 0; i<4 ; i++)
-				{
-					Writer.BaseStream.Position = i + 40 ;
-					Writer.Write (Convert.ToByte (CalculationFunctions.ConvertFromDecimal ( Audiolength )[i])) ;
-				}
-				Writer.Close();	// Close the file now.
-				//Set the writer to null.
-				Writer = null;
-                Audiolength = 0;
-                ///-///
-                                mAsset.appendAudioDataFromRiffWave(m_sFileName);
+                    BinaryWriter Writer = new BinaryWriter(File.OpenWrite(m_sFileName));
+                    FileInfo RecordedFile = new FileInfo(m_sFileName);
+                    //				long Audiolength = (long)(SampleCount+44);
+                    long Audiolength = RecordedFile.Length - 8;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Writer.BaseStream.Position = i + 4;
+                        Writer.Write(Convert.ToByte(CalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
+                    }
+                    Audiolength = Audiolength - 36;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Writer.BaseStream.Position = i + 40;
+                        Writer.Write(Convert.ToByte(CalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
+                    }
+                    Writer.Close();	// Close the file now.
+                    //Set the writer to null.
+                    Writer = null;
+                    Audiolength = 0;
+                    ///-///
+                    mAsset.appendAudioDataFromRiffWave(m_sFileName);
 
                     // the file has been copied so it should be deleted.
-                    if ( File.Exists ( m_sFileName )  )
-                        File.Delete ( m_sFileName ) ;
-                                }
+                    if (File.Exists(m_sFileName))
+                        File.Delete(m_sFileName);
+                }
 
                 SampleCount = 0;
-                
-			}
+
+            }
             // reset VuMeter
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Recorder.UpdateVuMeterEventArgs());
-            		}
+        }
 
         public void SetDevice(Control handle, string name)
         {

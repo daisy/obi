@@ -87,7 +87,9 @@ namespace Obi.ProjectView
             mLabel.Text = String.Format("{0} ({1:0.00}s)",
                 Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("normal_phrase") : name,
                 ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-            AccessibleName = mLabel.Text;
+            AccessibleName = String.Format(Localizer.Message("audio_block_label"),
+                mLabel.Text, mNode.Index + 1, mNode.ParentAs<SectionNode>().PhraseChildCount,
+                mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));
             if (LabelFullWidth > WaveformDefaultWidth)
             {
                 if (mWaveform != null) mWaveform.Width = mLabel.Width;
@@ -187,15 +189,6 @@ namespace Obi.ProjectView
 
 
         public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
-
-        private void AudioBlock_Enter(object sender, EventArgs e)
-        {
-            string Unused_Tag = "";
-            if (!mNode.Used)
-                Unused_Tag = Localizer.Message("Accessible_Label_Unused");
-
-            mWaveform.AccessibleName = AccessibleName+ "  " + (mNode.Index + 1 ).ToString () + "of" + mNode.ParentAs<SectionNode>().PhraseChildCount.ToString () + Unused_Tag ;
-        }
 
         public void InitCursor() { mWaveform.InitCursor(); }
         public void ClearCursor() { mWaveform.ClearCursor(); }

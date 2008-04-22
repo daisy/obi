@@ -246,7 +246,7 @@ Oh well.</value>
     <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
-  <data name="monitoring" xml:space="preserve">
+  <data name="Monitoring" xml:space="preserve">
     <value>Monitoring audio input...</value>
     <comment>Status message</comment>
   </data>
@@ -282,7 +282,7 @@ Oh well.</value>
     <value>Playback rate x{0}</value>
     <comment>Status message</comment>
   </data>
-  <data name="recording" xml:space="preserve">
+  <data name="Recording" xml:space="preserve">
     <value>Recording...</value>
     <comment>Status message</comment>
   </data>
@@ -672,14 +672,31 @@ Error text: {1}</value>
     <value>The directory that you selected to save your new project is not empty. Would you prefer to select the following location for your new project: "{0}"?</value>
     <comment>Warning dialog</comment>
   </data>
-  <data name="Accessible_Label_Unused" xml:space="preserve">
-    <value>, unused</value>
-  </data>
   <data name="start_monitoring" xml:space="preserve">
     <value>Start monitoring</value>
     <comment>Button label</comment>
   </data>
   <data name="ContentsView_Label" xml:space="preserve">
     <value>Contents View</value>
+  </data>
+  <data name="audio_block_label" xml:space="preserve">
+    <value>{0} {1} of {2}{3}</value>
+    <comment>Audio block label of the form "audio block n of m(, unused)"</comment>
+  </data>
+  <data name="audio_block_label_unused" xml:space="preserve">
+    <value>, unused</value>
+    <comment>Audio block label additional information</comment>
+  </data>
+  <data name="Paused" xml:space="preserve">
+    <value>Paused</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Playing" xml:space="preserve">
+    <value>Playing audio</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Stopped" xml:space="preserve">
+    <value>Stopped</value>
+    <comment>Status message</comment>
   </data>
 </root>

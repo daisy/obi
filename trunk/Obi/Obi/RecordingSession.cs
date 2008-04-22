@@ -17,25 +17,21 @@ namespace Obi
     /// </summary>
     public class RecordingSession
     {
-                private Presentation mPresentation;
-        private AudioRecorder mRecorder;                    // the actual recorder
+        private Presentation mPresentation;                     // presentation to record in
+        private AudioRecorder mRecorder;                        // recorder for the session
 
-        private int mChannels;                              // number of channels of audio to record
-        private int mSampleRate;                            // sample rate of audio to record
-        private int mBitDepth;                              // bit depth of audio to record
+        private ManagedAudioMedia mSessionMedia;                // session asset (?)
+        private int mSessionOffset;                             // offset from end of last part of the session
+        private List<double> mPhraseMarks ;                     // list of phrase marks
+        private List<int> mSectionMarks;                        // list of section marks (necessary?)
+        private List<ManagedAudioMedia> mAudioList;             // list of assets created
+        private Timer mRecordingUpdateTimer;                    // timer to send regular "recording" messages
 
-        private ManagedAudioMedia mSessionMedia;              // session asset (?)
-        private int mSessionOffset;                         // offset from end of last part of the session
-        private List<double> mPhraseMarks ;                 // list of phrase marks
-        private List<int> mSectionMarks;                    // list of section marks (necessary?)
-        private List<ManagedAudioMedia> mAudioList;           // list of assets created
-        private Timer mRecordingUpdateTimer = new Timer();  // timer to send regular "recording" messages
+        public event StartingPhraseHandler StartingPhrase;      // start recording a new phrase
+        public event ContinuingPhraseHandler ContinuingPhrase;  // a new phrase is being recorded (time update)
+        public event FinishingPhraseHandler FinishingPhrase;    // finishing a phrase
+        public event FinishingPageHandler FinishingPage;        // finishing a page
 
-        // Record session events
-        public event StartingPhraseHandler StartingPhrase;
-        public event ContinuingPhraseHandler ContinuingPhrase;
-        public event FinishingPhraseHandler FinishingPhrase;
-        public event FinishingPageHandler FinishingPage;
 
         /// <summary>
         /// Create a recording session for a project starting from a given node.
@@ -49,95 +45,100 @@ namespace Obi
             mRecorder.AssetsDirectory =
                 ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
             if (!Directory.Exists(mRecorder.AssetsDirectory)) Directory.CreateDirectory(mRecorder.AssetsDirectory);
-            mChannels = presentation.getMediaDataManager().getDefaultPCMFormat().getNumberOfChannels();
-            mSampleRate = (int)presentation.getMediaDataManager().getDefaultPCMFormat().getSampleRate();
-            mBitDepth = presentation.getMediaDataManager().getDefaultPCMFormat().getBitDepth();
             mSessionOffset = 0;
-            mPhraseMarks = new List<double>();
-            mSectionMarks = new List<int>();
+            mPhraseMarks = null;
+            mSectionMarks = null;
             mAudioList = new List<ManagedAudioMedia>();
-            // set up event handlers
-            mRecorder.StateChanged +=
-                new StateChangedHandler(delegate(object sender, StateChangedEventArgs e) { });
-            mRecorder.UpdateVuMeterFromRecorder +=
-                new UpdateVuMeterHandler(delegate(object sender, UpdateVuMeterEventArgs e) { });
+            mRecordingUpdateTimer = new Timer();
             mRecordingUpdateTimer.Tick += new System.EventHandler(mRecordingUpdateTimer_tick);
             mRecordingUpdateTimer.Interval = 1000;
         }
 
+
         /// <summary>
         /// The audio recorder used by the recording session.
         /// </summary>
-        public Audio.AudioRecorder AudioRecorder
+        public Audio.AudioRecorder AudioRecorder { get { return mRecorder; } }
+
+        /// <summary>
+        /// Finish the currently recording phrase and continue recording into a new phrase.
+        /// The phrase that was just finished receives a page number as well (auto-generated.)
+        /// </summary>
+        public void MarkPage()
         {
-            get { return mRecorder; }
+            if (mRecorder.State == AudioRecorderState.Recording)
+            {
+                PhraseEventArgs e = FinishedPhrase();
+                if (StartingPhrase != null)
+                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
+                if (FinishingPage != null) FinishingPage(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Finish the currently recording phrase and continue recording into a new phrase.
+        /// </summary>
+        public void NextPhrase()
+        {
+            if (mRecorder.State == AudioRecorderState.Recording)
+            {
+                FinishedPhrase();
+                if (StartingPhrase != null)
+                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
+            }
+        }
+
+        /// <summary>
+        /// Start recording. Stop monitoring before starting recording.
+        /// </summary>
+        public void Record()
+        {
+            if (mRecorder.State == AudioRecorderState.Stopped)
+            {
+                mSessionOffset = mAudioList.Count;
+                mPhraseMarks = new List<double>();
+                mSectionMarks = new List<int>();
+                AudioMediaData asset =
+                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+                mSessionMedia = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia();
+                mSessionMedia.setMediaData(asset);
+                mRecorder.StartRecording(asset);
+                if (StartingPhrase != null)
+                    StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset, 0.0));
+                mRecordingUpdateTimer.Enabled = true;
+            }
         }
 
         /// <summary>
         /// The list of recorded asset, in the order in which they were recorded during the session.
         /// </summary>
-        public List<ManagedAudioMedia> RecordedAudio
-        {
-            get { return mAudioList; }
-        }
+        public List<ManagedAudioMedia> RecordedAudio { get { return mAudioList; } }
 
         /// <summary>
-        /// Listen. This may happen at the start of the seession, or after pause was pressed when we were recording.
+        /// Start monitoring the audio input.
+        /// This may happen at the beginning of the session,
+        /// or when recording is paused.
         /// Create a new asset to "record" in (it gets discarded anyway.)
         /// </summary>
-        public void Listen()
+        public void StartMonitoring()
         {
-            if (mRecorder.State == AudioRecorderState.Idle)
+            if (mRecorder.State == AudioRecorderState.Stopped)
             {
-                                                AudioMediaData ToolkitAsset = (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // for tk
-                mRecorder.StartListening(ToolkitAsset); // for tk
-            }
-        }
-        
-        /// <summary>
-        /// Start recording.
-        /// </summary>
-        public void Record()
-        {
-            if (mRecorder.State == AudioRecorderState.Idle)
-            {
-                mSessionOffset = mAudioList.Count;
-                mPhraseMarks = new List<double>();
-                mSectionMarks = new List<int>();
- 
-                AudioMediaData ToolkitAsset = (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData)); // tk
-mSessionMedia                 = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia ()  ;
-                                    mSessionMedia.setMediaData(ToolkitAsset ); // tk
-                                                mRecorder.StartRecording(ToolkitAsset); // tk
-                 StartingPhrase(this, new PhraseEventArgs( mSessionMedia , mSessionOffset, 0.0)); // tk
-                 mRecordingUpdateTimer.Enabled = true;
+                AudioMediaData asset =
+                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+                mRecorder.StartListening(asset);
             }
         }
 
         /// <summary>
-        /// Stop recording altogether.
+        /// Stop recording or monitoring.
         /// </summary>
         public void Stop()
         {
-            mRecordingUpdateTimer.Enabled = false;
-            StoppedRecording();
-        }
-
-        /// <summary>
-        /// Convenience function to stop recording.
-        /// </summary>
-        /// <returns>True if we were indeed recording.</returns>
-        /// <remarks>May throw an exception.</remarks>
-        private void StoppedRecording()
-        {
-            if (mRecorder.State != AudioRecorderState.Idle)
+            if (mRecorder.State == AudioRecorderState.Monitoring || mRecorder.State == AudioRecorderState.Recording)
             {
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
-                if (wasRecording)
-                {
-                    // Avn:mRecorder.TimeOfAsset used in this will return time without exceptions if used before stopping recording 
-                    FinishedPhrase();
-                }
+                if (wasRecording) FinishedPhrase();
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
@@ -151,38 +152,12 @@ mSessionMedia                 = (ManagedAudioMedia)mPresentation.getMediaFactory
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);
                 }
+                mRecordingUpdateTimer.Enabled = false;
             }
         }
 
-        /// <summary>
-        /// Finish the currently recording phrase and continue recording into a new phrase.
-        /// </summary>
-        public void NextPhrase()
-        {
-            if (mRecorder.State == AudioRecorderState.Recording)
-            {
-                FinishedPhrase();
-                StartingPhrase (this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
-            }
-        }
 
-        /// <summary>
-        /// Finish the currently recording phrase and continue recording into a new phrase.
-        /// The phrase that was just finished receives a page number as well (auto-generated.)
-        /// </summary>
-        public void MarkPage()
-        {
-            if (mRecorder.State == AudioRecorderState.Recording)
-            {
-                PhraseEventArgs e = FinishedPhrase();
-                StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
-                FinishingPage(this, e);
-                }
-        }
-
-        /// <summary>
-        /// Finish recording of the current phrase.
-        /// </summary>
+        // Finish recording of the current phrase.
         private PhraseEventArgs FinishedPhrase()
         {
             mPhraseMarks.Add(mRecorder.TimeOfAsset);
@@ -194,11 +169,13 @@ mSessionMedia                 = (ManagedAudioMedia)mPresentation.getMediaFactory
             return e;
         }
 
+        // Send recording update
         private void mRecordingUpdateTimer_tick(object sender, EventArgs e)
         {
             double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
             time = time - (time % 100);
-            if (ContinuingPhrase != null) ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time));
+            if (ContinuingPhrase != null)
+                ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time));
         }
     }
 }
