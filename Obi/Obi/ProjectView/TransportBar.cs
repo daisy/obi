@@ -28,6 +28,8 @@ namespace Obi.ProjectView
         private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
         private PhraseNode mResumerecordingPhrase;   // last phrase recorded (?)
 
+        private SectionNode mRecordingSection;       // Section in which we are recording
+        private int mRecordingInitPhraseIndex;       // Phrase child in which we are recording
         private bool mIsSelectionMarked = false;     // this should probably go I think
 
 
@@ -138,6 +140,31 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Mark the begin time/cursor of a selection.
+        /// </summary>
+        public bool MarkSelectionBeginTime()
+        {
+            if (IsInPhraseSelectionMarked)
+            {
+                ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                return true;
+            }
+            return false;
+        }
+
+        public bool MarkSelectionEndTime()
+        {
+            if (IsInPhraseSelectionMarked
+                                && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+            {
+                ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                mIsSelectionMarked = true;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Get the master playlist (automatically maintained.)
         /// </summary>
         public Playlist MasterPlaylist { get { return mMasterPlaylist; } }
@@ -197,14 +224,6 @@ namespace Obi.ProjectView
             mVUMeterPanel.VuMeter = mVuMeter;
         }
 
-        void Recorder_StateChanged(object sender, Obi.Events.Audio.Recorder.StateChangedEventArgs e)
-        {
-            mState = mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? State.Monitoring :
-                mRecorder.State == Obi.Audio.AudioRecorderState.Recording ? State.Recording : State.Stopped;
-            UpdateButtons();
-            UpdateTimeDisplay();
-        }
-
         // Initialize playlists
         private void InitPlaylists()
         {
@@ -212,6 +231,34 @@ namespace Obi.ProjectView
             mLocalPlaylist = null;
             mCurrentPlaylist = mMasterPlaylist;
             SetPlaylistEvents(mMasterPlaylist);
+        }
+
+        // Property set when the selection is an audio selection (range or cursor)
+        private bool IsInPhraseSelectionMarked
+        {
+            get
+            {
+                return mView.Selection != null && mView.Selection is AudioSelection;
+            }
+        }
+
+        // Synchronize accessible label of the the time display box.
+        private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
+        }
+
+        // Update the time display immediatly when the display mode changes.
+        private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateTimeDisplay();
+        }
+
+        // Periodically update the time display and the audio cursor.
+        private void mDisplayTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateTimeDisplay();
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
         }
 
         // Move the audio cursor to the phrase currently playing.
@@ -260,6 +307,15 @@ namespace Obi.ProjectView
         private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
         {
             if (mState != State.Stopped) Stop();
+        }
+
+        // Update state from the recorder.
+        private void Recorder_StateChanged(object sender, Obi.Events.Audio.Recorder.StateChangedEventArgs e)
+        {
+            mState = mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? State.Monitoring :
+                mRecorder.State == Obi.Audio.AudioRecorderState.Recording ? State.Recording : State.Stopped;
+            UpdateButtons();
+            UpdateTimeDisplay();
         }
 
         // Initialize events for a new playlist.
@@ -314,7 +370,6 @@ namespace Obi.ProjectView
             }
             else
             {
-                mDisplayTime = mCurrentPlaylist.CurrentTimeInAsset;
                 mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(
                     mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
                         mCurrentPlaylist.CurrentTimeInAsset :
@@ -504,26 +559,43 @@ namespace Obi.ProjectView
             }
             else if (selected is PhraseNode)
             {
-                // Record after the phrase node
+                // Record after or inside the phrase node
                 mRecordingSection = selected.ParentAs<SectionNode>();
+                mRecordingInitPhraseIndex = 1 + selected.Index;
                 if (mAllowOverwrite && IsInPhraseSelectionMarked)
                 {
-                    if (((AudioSelection)mView.Selection).AudioRange.SelectionEndTime != 0
-                        && ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime)
+                    AudioRange range = ((AudioSelection)mView.Selection).AudioRange;
+                    if (range.HasCursor)
                     {
-                        // command.append(new Commands.Node.SplitAudioSelection(mView));
-                        // command.append(new Commands.Node.Delete(mView, mView.Selection.Node));
-                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.SplitAudioSelection(mView));
-                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.Delete(mView, mView.Selection.Node));
+                        // Split the phrase at the cursor
+                        command.append(new Commands.Node.SplitAudio(mView));
+                    }
+                    else if (range.SelectionBeginTime == 0)
+                    {
+                        if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                        {
+                            // Split at the end of the selection (if there is something after the end...)
+                            command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
+                        }
+                        // ... and remove the first half.
+                        command.append(new Commands.Node.Delete(mView, mView.Selection.Node));
+                        // Now we must recorde *before* the selected node
+                        --mRecordingInitPhraseIndex;
                     }
                     else
                     {
-                        // command.append(new Commands.Node.SplitAudio(mView));
-                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(mView));
+                        if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                        {
+                            // Split at the end if necessary (do it first so that times are correct)
+                            command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
+                        }
+                        // Split at the beginning of the selection
+                        command.append(new Commands.Node.SplitAudio(mView, range.SelectionBeginTime));
+                        // ... and remove the split part.
+                        command.append(new Commands.Node.DeleteWithOffset(mView, selected, 1));
                     }
                 }
                 if (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
-                mRecordingInitPhraseIndex = 1 + selected.Index;
             }
             else if (selected is EmptyNode)
             {
@@ -758,14 +830,6 @@ namespace Obi.ProjectView
 
 
 
-        #region buttons
-
-
-
-
-
-
-                
 
 
 
@@ -773,110 +837,26 @@ namespace Obi.ProjectView
 
 
 
-        // Find the phrase to play from from the selected one in the project panel.
-        // When there is a selection, this is the first phrase of the selection
-        // (or after the selection in the case of the strip cursor selection);
-        // when there is none, this is the first phrase of the master playlist.
-        private PhraseNode InitialPhrase
-        {
-            get
-            {
-                if (mView == null) return null;
-                if (mView.Selection is StripCursorSelection)
-                {
-                    // TODO this doesn't handle unused nodes/end of the book well.
-                    return FirstPhraseNodeAfter((SectionNode)mView.Selection.Node, ((StripCursorSelection)mView.Selection).Index);
-                }
-                else if (mView.Selection != null && mView.Selection.Node.Used)
-                {
-                    return mView.Selection.Node.FirstUsedPhrase;
-                }
-                else
-                {
-                    return mMasterPlaylist.FirstPhrase;
-                }
-            }
-        }
-
-        // Get the first phrase node after the given index in the given section.
-        // This can be a phrase of the section, or the first used phrase after the following section.
-        private PhraseNode FirstPhraseNodeAfter(SectionNode section, int index)
-        {
-            ObiNode from = index < section.PhraseChildCount ? (ObiNode)section.PhraseChild(index) :
-                section.PhraseChildCount > 0 ? section.PhraseChild(section.PhraseChildCount - 1).FollowingNode :
-                section.SectionChildCount > 0 ? section.SectionChild(0).FollowingNode :
-                section.FollowingNode;
-            while (from != null && !(from is PhraseNode)) from = from.FollowingNode;
-            return from as PhraseNode;
-        }
-
-        int mRecordingInitPhraseIndex ;
-        SectionNode mRecordingSection; // Section in which we are recording
-
-        private void DisablePlaybackButtonsForRecording ()
-        {
-            mPlayButton.Enabled = false;
-            mPrevPhraseButton.Enabled = false;
-            mPrevSectionButton.Enabled = false;
-            mPreviousPageButton.Enabled = false;
-            mFastForwardButton.Enabled = false;
-            mRewindButton.Enabled = false;
-            mFastPlayRateCombobox.Enabled = false;
-
-        }
-
-
-
-        public void UpdateInlineRecordingState()
-        {
-            mPrevPhraseButton.Enabled = this.Enabled;
-            mPrevSectionButton.Enabled = this.Enabled;
-            mRewindButton.Enabled = this.Enabled;
-            mFastForwardButton.Enabled = this.Enabled;
-            mPlayButton.Enabled = CanPlay;
-            mNextPhrase.Enabled = this.Enabled;
-            mNextSectionButton.Enabled = this.Enabled;
-            mPauseButton.Enabled = this.Enabled;
-        }
 
 
 
 
 
 
-        #endregion
 
-        /// <summary>
-        /// Periodically update the time display.
-        /// </summary>
-        private void mDisplayTimer_Tick(object sender, EventArgs e)
-        {
-            UpdateTimeDisplay();
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
-        }
 
-        private double mDisplayTime;
 
-        /// <summary>
-        /// Update the time display immediatly when the display mode changes.
-        /// </summary>
-        private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (mRecordingSession != null)
-                mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 1;
-                            else if ( mDisplayBox.SelectedIndex == mDisplayBox.Items.Count - 1 )
-            {
-                mDisplayBox.SelectedIndex = mDisplayBox.Items.Count - 2;
-                                            }
 
-            UpdateTimeDisplay();
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-        }
 
-        public void FocusTimeDisplay()
-        {
-            mTimeDisplayBox.Focus();
-        }
+
+
+
+
+
+
+
+
+
 
 
         public bool FastPlayRateStepUp()
@@ -908,7 +888,7 @@ namespace Obi.ProjectView
             return true;
         }
 
-        private void ComboFastPlateRate_SelectionChangeCommitted(object sender, EventArgs e)
+        private void mFastPlayRateComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             mCurrentPlaylist.Audioplayer.FastPlayFactor = (float)Convert.ToDouble(mFastPlayRateCombobox.SelectedItem.ToString());
         }
@@ -923,37 +903,7 @@ namespace Obi.ProjectView
 
         // preview playback functions
 
-        private bool IsInPhraseSelectionMarked
-        {
-            get
-            {
-                return mView.Selection != null
-                    && mView.Selection is AudioSelection;
-                    //&& !((AudioSelection)mView.Selection).AudioRange.HasCursor;
-            }
-        }
         
-        public bool MarkSelectionBeginTime ()
-        {
-            if (IsInPhraseSelectionMarked)
-            {
-                ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
-                return true;
-            }
-            return false;
-        }
-
-        public bool MarkSelectionEndTime()
-        {
-            if ( IsInPhraseSelectionMarked
-                                && mCurrentPlaylist.CurrentTimeInAsset > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime )
-            {
-                ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime = ((AudioSelection)mView.Selection).AudioRange.CursorTime ;
-                mIsSelectionMarked = true;
-                                                return true;
-            }
-            return false;
-        }
 
 
         /// <summary>
@@ -1136,9 +1086,5 @@ namespace Obi.ProjectView
 
         #endregion
 
-        private void mDisplayBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
-        }
     }
 }

@@ -992,7 +992,7 @@ namespace Obi.ProjectView
 
         private bool MarkSelectionBeginTime()
         {
-                        return mView.TransportBar.MarkSelectionBeginTime();
+            return mView.TransportBar.MarkSelectionBeginTime();
         }
 
         private bool MarkSelectionEndTime()

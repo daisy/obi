@@ -304,7 +304,7 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
             this.mFastPlayRateCombobox.TabIndex = 15;
-            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.ComboFastPlateRate_SelectionChangeCommitted);
+            this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
             // 
             // mVUMeterPanel
             // 

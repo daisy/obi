@@ -83,4 +83,37 @@ namespace Obi.Commands.Node
             return node == null ? null : new NodeSelection(node, View.Selection.Control);
         }
     }
+
+    /// <summary>
+    /// Delete a node at an offset of the selected one.
+    /// Use this command when the node to delete does not exists yet.
+    /// </summary>
+    public class DeleteWithOffset : Command
+    {
+        private ObiNode mNode;     // node relative to which we delete
+        private ObiNode mParent;   // parent of both nodes
+        private ObiNode mDeleted;  // the deleted node
+        private int mIndex;        // index of the node that we actually want to delete
+
+        public DeleteWithOffset(ProjectView.ProjectView view, ObiNode node, int offset)
+            : base(view)
+        {
+            mNode = node;
+            mParent = node.ParentAs<ObiNode>();
+            mDeleted = null;
+            mIndex = mParent.indexOf(mNode) + offset;
+        }
+
+        public override void execute()
+        {
+            mDeleted = (ObiNode)mParent.getChild(mIndex);
+            mParent.removeChild(mIndex);
+        }
+
+        public override void unExecute()
+        {
+            mParent.Insert(mDeleted, mIndex);
+            base.unExecute();
+        }
+    }
 }
