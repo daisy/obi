@@ -9,10 +9,15 @@ namespace Obi.Commands.Node
         private PhraseNode mNewNode;       // node after split
         private Time mSplitPoint;          // split point
 
-        public SplitAudio(ProjectView.ProjectView view) : base(view)
+        public SplitAudio(ProjectView.ProjectView view) :
+            this(view, ((AudioSelection)view.Selection).AudioRange.CursorTime)
+        {
+        }
+
+        public SplitAudio(ProjectView.ProjectView view, double splitTime): base(view)
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
-            mSplitPoint = new Time(((AudioSelection)view.Selection).AudioRange.CursorTime);
+            mSplitPoint = new Time(splitTime);
             Label = Localizer.Message("split_phrase");
         }
 
