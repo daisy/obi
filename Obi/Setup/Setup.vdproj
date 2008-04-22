@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_108B34500EE74A668BFA6AA5EF98EF7C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1C42BFD5812648B88124CC6C79F662AD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -184,6 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E26ACF7318854BC0B2362EAC15576AE5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E82BB5C16F0445979C3ADFD70D7AED24"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -396,6 +408,26 @@
             "TargetName" = "8:obird256.png"
             "Tag" = "8:"
             "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_108B34500EE74A668BFA6AA5EF98EF7C"
+            {
+            "SourcePath" = "8:Licences\\lgpl.txt"
+            "TargetName" = "8:lgpl.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -945,6 +977,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E82BB5C16F0445979C3ADFD70D7AED24"
+            {
+            "SourcePath" = "8:Licences\\License.rtf"
+            "TargetName" = "8:License.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F2D4BC1F855740FFA36B1D872B3A7944"
             {
             "SourcePath" = "8:..\\Obi\\images\\icons\\media-playback-pause.png"
@@ -1123,7 +1175,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 0.10.6"
         "ProductCode" = "8:{85A99D0A-5FF6-4CC7-A480-101BF4E080F0}"
-        "PackageCode" = "8:{ADBA2411-FF6E-4543-9CEA-D4E175763AA3}"
+        "PackageCode" = "8:{3816FC4F-0599-4D14-9D57-40017D11D1DD}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1268,6 +1320,34 @@
             "Folder" = "8:_BF79706BAEEE421381CB56E45BBD7479"
             "WorkingFolder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DEE1BA39E7AA47E5AD9C3F7D7CD669A3"
+            {
+            "Name" = "8:License"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_108B34500EE74A668BFA6AA5EF98EF7C"
+            "Folder" = "8:_BF79706BAEEE421381CB56E45BBD7479"
+            "WorkingFolder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E589401193274ACA97B5625591EC947A"
+            {
+            "Name" = "8:License"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_BF79706BAEEE421381CB56E45BBD7479"
+            "Folder" = "8:_3CDB3BD0D5C747F6AEDB25A8E625AA31"
+            "WorkingFolder" = "8:_3CDB3BD0D5C747F6AEDB25A8E625AA31"
+            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
@@ -1600,6 +1680,53 @@
                             "Setting" = "3:1"
                             "Value" = "8:#1203"
                             "DefaultValue" = "8:#1203"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_7515F6B921C74B63A4DEA0B4B9D8DB81"
+                    {
+                    "Sequence" = "3:110"
+                    "DisplayName" = "8:License Agreement"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdLicenseDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "EulaText"
+                            {
+                            "Name" = "8:EulaText"
+                            "DisplayName" = "8:#1008"
+                            "Description" = "8:#1108"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_E82BB5C16F0445979C3ADFD70D7AED24"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
