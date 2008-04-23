@@ -614,6 +614,9 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
             mShortcutKeys[Keys.OemOpenBrackets] = MarkSelectionBeginTime;
             mShortcutKeys[Keys.OemCloseBrackets] = MarkSelectionEndTime;
+            mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
+            mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
+            mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition;
             mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment;
             mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition;
@@ -965,8 +968,17 @@ namespace Obi.ProjectView
         // Toggle play/pause in the transport bar
         private bool TogglePlayPause()
         {
-            mView.TransportBar.PlayOrResume();
-            return true;
+            if (mView.TransportBar.CanPause)
+            {
+                mView.TransportBar.Pause();
+                return true;
+            }
+            else if (mView.TransportBar.CanPlay || mView.TransportBar.CanResumePlayback)
+            {
+                mView.TransportBar.PlayOrResume();
+                return true;
+            }
+            return false;
         }
 
 
@@ -998,6 +1010,21 @@ namespace Obi.ProjectView
         private bool MarkSelectionEndTime()
         {
             return mView.TransportBar.MarkSelectionEndTime();
+        }
+
+        private bool MarkSelectionFromCursor()
+        {
+            return mView.TransportBar.MarkSelectionFromCursor();
+        }
+
+        private bool MarkSelectionToCursor()
+        {
+            return mView.TransportBar.MarkSelectionToCursor();
+        }
+
+        private bool MarkSelectionWholePhrase()
+        {
+            return mView.TransportBar.MarkSelectionWholePhrase();
         }
 
         private bool PlayPreviewFromCurrentPosition ()
