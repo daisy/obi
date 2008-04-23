@@ -186,6 +186,51 @@ namespace Obi.ProjectView
             return false;
         }
 
+        public bool MarkSelectionFromCursor()
+        {
+            if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
+                mCurrentPlaylist.CurrentTimeInAsset > 0.0)
+            {
+                mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentTimeInAsset));
+                return true;
+            }
+            return false;
+        }
+
+        public bool MarkSelectionToCursor()
+        {
+            if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
+                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+            {
+                mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(mCurrentPlaylist.CurrentTimeInAsset,
+                        mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                return true;
+            }
+            return false;
+        }
+
+        public bool MarkSelectionWholePhrase()
+        {
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
+            {
+                mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                return true;
+            }
+            else if (mState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
+            {
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Get the master playlist (automatically maintained.)
         /// </summary>

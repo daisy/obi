@@ -134,6 +134,7 @@ Main form
 
 Transport bar
 
+  + A .................. Select whole audio in phrase
   + C .................. Preview selected fragment
   + D .................. Return to normal speed
   + E .................. Return to normal speed with lapse back !!!
@@ -150,7 +151,9 @@ Transport bar
   + V .................. Preview from current position
   + X .................. Preview up to current position
   + [ .................. Selection begin mark
+  + Shift+[ ............ Select from beginning to audio cursor
   + ] .................. Selection end mark
+  + Shift+] ............ Select from audio cursor to end
 
 
 Index of shortcuts
