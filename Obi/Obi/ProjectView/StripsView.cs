@@ -600,13 +600,13 @@ namespace Obi.ProjectView
 
             // playback shortcuts.
             mShortcutKeys[Keys.Space] = TogglePlayPause;
-            mShortcutKeys[Keys.P] = TogglePlayPause;
+            //mShortcutKeys[Keys.P] = TogglePlayPause;
             mShortcutKeys[Keys.J] = NavigatePrevPhrase;
-            mShortcutKeys[Keys.L] = NavigateNextPhrase;
-            mShortcutKeys[Keys.I] = NavigatePrevSection;
-            mShortcutKeys[Keys.K] = NavigateNextSection;
-            mShortcutKeys[Keys.U] = NavigatePrevPage;
-            mShortcutKeys[Keys.O] = NavigateNextPage;
+            mShortcutKeys[Keys.K ] = NavigateNextPhrase;
+            mShortcutKeys[Keys.Shift    | Keys.H ] = NavigatePrevSection;
+            mShortcutKeys[Keys.H ] = NavigateNextSection;
+            mShortcutKeys[Keys.Shift    |  Keys.P ] = NavigatePrevPage;
+            mShortcutKeys[Keys.P ] = NavigateNextPage;
             
             mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
