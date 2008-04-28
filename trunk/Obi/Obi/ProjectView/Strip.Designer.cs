@@ -46,6 +46,7 @@ namespace Obi.ProjectView
             // 
             // mLabel
             // 
+            this.mLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;

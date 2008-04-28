@@ -53,7 +53,9 @@ namespace Obi.ProjectView
             // 
             // mPlayButton
             // 
+            this.mPlayButton.AccessibleDescription = "button";
             this.mPlayButton.AccessibleName = "Play";
+            this.mPlayButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPlayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPlayButton.FlatAppearance.BorderSize = 0;
             this.mPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -68,7 +70,9 @@ namespace Obi.ProjectView
             // 
             // mPauseButton
             // 
+            this.mPauseButton.AccessibleDescription = "button";
             this.mPauseButton.AccessibleName = "Pause";
+            this.mPauseButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPauseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPauseButton.FlatAppearance.BorderSize = 0;
             this.mPauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -83,7 +87,9 @@ namespace Obi.ProjectView
             // 
             // mStopButton
             // 
+            this.mStopButton.AccessibleDescription = "button";
             this.mStopButton.AccessibleName = "Stop";
+            this.mStopButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mStopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mStopButton.FlatAppearance.BorderSize = 0;
             this.mStopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -98,7 +104,9 @@ namespace Obi.ProjectView
             // 
             // mNextPhrase
             // 
+            this.mNextPhrase.AccessibleDescription = "button";
             this.mNextPhrase.AccessibleName = "Next phrase";
+            this.mNextPhrase.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextPhrase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mNextPhrase.FlatAppearance.BorderSize = 0;
             this.mNextPhrase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -113,7 +121,9 @@ namespace Obi.ProjectView
             // 
             // mPrevPhraseButton
             // 
+            this.mPrevPhraseButton.AccessibleDescription = "button";
             this.mPrevPhraseButton.AccessibleName = "Previous phrase";
+            this.mPrevPhraseButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPrevPhraseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPrevPhraseButton.FlatAppearance.BorderSize = 0;
             this.mPrevPhraseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -128,7 +138,9 @@ namespace Obi.ProjectView
             // 
             // mNextSectionButton
             // 
+            this.mNextSectionButton.AccessibleDescription = "button";
             this.mNextSectionButton.AccessibleName = "Next section";
+            this.mNextSectionButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextSectionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mNextSectionButton.FlatAppearance.BorderSize = 0;
             this.mNextSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -143,7 +155,9 @@ namespace Obi.ProjectView
             // 
             // mPrevSectionButton
             // 
+            this.mPrevSectionButton.AccessibleDescription = "button";
             this.mPrevSectionButton.AccessibleName = "Previous section";
+            this.mPrevSectionButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPrevSectionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mPrevSectionButton.FlatAppearance.BorderSize = 0;
             this.mPrevSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -158,7 +172,9 @@ namespace Obi.ProjectView
             // 
             // mRecordButton
             // 
+            this.mRecordButton.AccessibleDescription = "button";
             this.mRecordButton.AccessibleName = "Record";
+            this.mRecordButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mRecordButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mRecordButton.FlatAppearance.BorderSize = 0;
             this.mRecordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -192,7 +208,9 @@ namespace Obi.ProjectView
             // 
             // mRewindButton
             // 
+            this.mRewindButton.AccessibleDescription = "button";
             this.mRewindButton.AccessibleName = "Rewind";
+            this.mRewindButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mRewindButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mRewindButton.FlatAppearance.BorderSize = 0;
             this.mRewindButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -207,7 +225,9 @@ namespace Obi.ProjectView
             // 
             // mFastForwardButton
             // 
+            this.mFastForwardButton.AccessibleDescription = "button";
             this.mFastForwardButton.AccessibleName = "Fast forward";
+            this.mFastForwardButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mFastForwardButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.mFastForwardButton.FlatAppearance.BorderSize = 0;
             this.mFastForwardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -222,7 +242,9 @@ namespace Obi.ProjectView
             // 
             // mNextPageButton
             // 
+            this.mNextPageButton.AccessibleDescription = "button";
             this.mNextPageButton.AccessibleName = "Next page";
+            this.mNextPageButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mNextPageButton.FlatAppearance.BorderSize = 0;
             this.mNextPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mNextPageButton.Image")));
@@ -236,7 +258,9 @@ namespace Obi.ProjectView
             // 
             // mPreviousPageButton
             // 
+            this.mPreviousPageButton.AccessibleDescription = "button";
             this.mPreviousPageButton.AccessibleName = "Previous page";
+            this.mPreviousPageButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPreviousPageButton.FlatAppearance.BorderSize = 0;
             this.mPreviousPageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPreviousPageButton.Image = ((System.Drawing.Image)(resources.GetObject("mPreviousPageButton.Image")));
@@ -250,7 +274,9 @@ namespace Obi.ProjectView
             // 
             // mCustomClassMarkButton
             // 
+            this.mCustomClassMarkButton.AccessibleDescription = "button";
             this.mCustomClassMarkButton.AccessibleName = "Mark phrase";
+            this.mCustomClassMarkButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mCustomClassMarkButton.FlatAppearance.BorderSize = 0;
             this.mCustomClassMarkButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCustomClassMarkButton.Image = ((System.Drawing.Image)(resources.GetObject("mCustomClassMarkButton.Image")));
