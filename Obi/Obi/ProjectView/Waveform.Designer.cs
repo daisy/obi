@@ -32,6 +32,7 @@ namespace Obi.ProjectView
             // 
             // Waveform
             // 
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.SizeChanged += new System.EventHandler(this.Waveform_SizeChanged);
             this.ResumeLayout(false);
 
