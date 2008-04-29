@@ -726,6 +726,13 @@ namespace Obi
         }
 
         /// <summary>
+        /// Move to the next phrase from a given node.
+        /// </summary>
+        public void NavigateToNextPhrase(ObiNode node)
+        {
+        }
+
+        /// <summary>
         /// Move to the first phrase of the next section. Do nothing if we are already in the last section.
         /// </summary>
         public void NavigateToNextSection()

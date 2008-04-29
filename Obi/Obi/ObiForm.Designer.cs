@@ -142,6 +142,8 @@ namespace Obi
             this.nextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.mPlayOnNavigateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -925,7 +927,9 @@ namespace Obi
             this.previousPhraseToolStripMenuItem,
             this.nextPhraseToolStripMenuItem,
             this.nextPageToolStripMenuItem,
-            this.nextSectionToolStripMenuItem});
+            this.nextSectionToolStripMenuItem,
+            this.toolStripSeparator14,
+            this.mPlayOnNavigateToolStripMenuItem});
             this.navigationToolStripMenuItem.Name = "navigationToolStripMenuItem";
             resources.ApplyResources(this.navigationToolStripMenuItem, "navigationToolStripMenuItem");
             // 
@@ -964,6 +968,20 @@ namespace Obi
             this.nextSectionToolStripMenuItem.Name = "nextSectionToolStripMenuItem";
             resources.ApplyResources(this.nextSectionToolStripMenuItem, "nextSectionToolStripMenuItem");
             this.nextSectionToolStripMenuItem.Click += new System.EventHandler(this.nextSectionToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
+            // 
+            // mPlayOnNavigateToolStripMenuItem
+            // 
+            this.mPlayOnNavigateToolStripMenuItem.Checked = true;
+            this.mPlayOnNavigateToolStripMenuItem.CheckOnClick = true;
+            this.mPlayOnNavigateToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mPlayOnNavigateToolStripMenuItem.Name = "mPlayOnNavigateToolStripMenuItem";
+            resources.ApplyResources(this.mPlayOnNavigateToolStripMenuItem, "mPlayOnNavigateToolStripMenuItem");
+            this.mPlayOnNavigateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mPlayOnNavigateToolStripMenuItem_CheckedChanged);
             // 
             // rewindToolStripMenuItem
             // 
@@ -1060,6 +1078,7 @@ namespace Obi
             // 
             // mProjectView
             // 
+            this.mProjectView.AudioCursor = null;
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");
@@ -1228,6 +1247,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMergeSectionWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem mPlayOnNavigateToolStripMenuItem;
     }
 }
 

@@ -31,6 +31,7 @@ namespace Obi
         public Size ObiFormSize;          // size of the form (for future sessions) 
         public bool OpenLastProject;      // open the last open project at startup
         public bool PlayIfNoSelection;    // play all or nothing if no selection
+        public bool PlayOnNavigate;       // start playback when navigating, or just change the selection
         public int PreviewDuration;       // playback preview duration in milliseconds
         public bool SynchronizeViews;     // keep views synchronized
         public ArrayList RecentProjects;  // paths to projects recently opened
@@ -65,6 +66,7 @@ namespace Obi
             settings.ObiFormSize = new Size(0, 0);
             settings.PreviewDuration = 1500;
             settings.PlayIfNoSelection = true;
+            settings.PlayOnNavigate = true;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {

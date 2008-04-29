@@ -172,7 +172,7 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
-        public bool CanAddSection { get { return mPresentation != null && (  mTOCView.CanAddSection || mStripsView.CanAddStrip ) ; } }
+        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mStripsView.CanAddStrip); } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
@@ -243,7 +243,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public AudioSelection Cursor
+        public AudioSelection AudioCursor
         {
             get { return mCursor; }
             set
@@ -495,11 +495,11 @@ namespace Obi.ProjectView
         /// </summary>
         public PhraseNode PlaybackPhrase
         {
-            set 
+            set
             {
                 mStripsView.PlaybackPhrase = value;
                 if (value != null) MakePhraseNodeVisible(value);
-            } 
+            }
         }
 
         /// <summary>
@@ -570,7 +570,7 @@ namespace Obi.ProjectView
             {
                 System.Diagnostics.Debug.Print("Selection: `{0}' >>> `{1}'", mSelection, value);
                 // Selection is disabled when the transport bar is active.
-                if (mSelection != value )
+                if (mSelection != value)
                 {
                     // deselect if there was a selection in a different control
                     if (mSelection != null && (value == null || mSelection.Control != value.Control))
@@ -1118,7 +1118,7 @@ namespace Obi.ProjectView
         public void ApplyPhraseDetection()
         {
             // first check if selected node is phrase node.
-            if (CanApplyPhraseDetection )
+            if (CanApplyPhraseDetection)
             {
                 PhraseNode SilenceNode = null;
 
@@ -1145,9 +1145,18 @@ namespace Obi.ProjectView
             }// check for phrase node ends
             else
                 System.Media.SystemSounds.Beep.Play();
-                    }
+        }
 
 
+        /// <summary>
+        /// Select the phrase after the currently selected phrase in the same strip in the content view.
+        /// If no phrase is selected, select the first phrase of the currently selected strip.
+        /// If no strip is selected, select the first phrase of the first strip.
+        /// </summary>
+        public void SelectNextPhrase()
+        {
+            mStripsView.SelectNextPhrase(SelectedNodeAs<ObiNode>());
+        }
     }
 
     public class ImportingFileEventArgs
