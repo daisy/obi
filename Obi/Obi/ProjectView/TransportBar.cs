@@ -1156,8 +1156,8 @@ namespace Obi.ProjectView
             m_OriginalAccessibleName1 = mPrevSectionButton.AccessibleName;
             m_OriginalAccessibleName2 = mStopButton.AccessibleName;
 
-            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", mPrevSectionButton.AccessibleName);
-            mStopButton.AccessibleName = string.Concat ( Localizer.Message ("TransportBar_Label") , " " , mStopButton.AccessibleName ) ;
+            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
+            mStopButton.AccessibleName = string.Concat ( Localizer.Message ("TransportBar_Label") , " " , m_OriginalAccessibleName2) ;
             
             Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
             TrimAccessibleName.Start();
@@ -1169,6 +1169,42 @@ namespace Obi.ProjectView
             mPrevSectionButton.AccessibleName = m_OriginalAccessibleName1;
             mStopButton.AccessibleName = m_OriginalAccessibleName2;
         }
+
+        /// <summary>
+        ///  Process dialog key overridden to prevent tab  from  moving focus out of transportbar
+                /// </summary>
+        /// <param name="KeyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessDialogKey(Keys KeyData)
+        {
+            if (KeyData == Keys.Tab)
+            {
+                if (this.ActiveControl != null)
+                {
+                    Control c = this.ActiveControl;
+                    this.SelectNextControl(c, true, true, true, true);
+                    if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                        System.Media.SystemSounds.Beep.Play();
+                }
+            }
+            else if (KeyData == (Keys)(Keys.Shift | Keys.Tab))
+            {
+                if (this.ActiveControl != null)
+                {
+                    Control c = this.ActiveControl;
+                    this.SelectNextControl(c, false, true, true, true);
+                    if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                        System.Media.SystemSounds.Beep.Play();
+                }
+            }
+            else
+                return base.ProcessDialogKey(KeyData);
+
+            return true;
+        }
+
+        
+
 
     }
 }
