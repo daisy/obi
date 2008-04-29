@@ -653,6 +653,10 @@ namespace Obi.ProjectView
             if (CanUseKeys &&
                 ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
+
+            if (ProcessTabKeyInContentsView(key))
+                return true;
+
             return base.ProcessCmdKey(ref msg, key);
         }
 
@@ -1067,5 +1071,54 @@ namespace Obi.ProjectView
         {
             IsEnteringStripsView = true;
         }
+
+/// <summary>
+///  Function for processing tab key to preventing keyboard focus to move out of contents view with tabbing
+/// </summary>
+/// <param name="key"></param>
+/// <returns></returns>
+        private bool ProcessTabKeyInContentsView(Keys key)
+        {
+            if (key == Keys.Tab)
+            {
+                if (this.ActiveControl != null)
+                {
+                    Strip s = ((Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1]);
+                    if (s != null &&
+                        ((s.ContainsFocus && s.LastBlock == null)
+                                            || (s.LastBlock != null && s.LastBlock.ContainsFocus)))
+                    {
+                        SelectFirstStrip();
+                        System.Media.SystemSounds.Beep.Play();
+                        return true;
+                    }
+                }
+            }
+            else if (key == (Keys)(Keys.Shift | Keys.Tab))
+            {
+                if (this.ActiveControl != null)
+                {
+                    Strip s = ((Strip)mLayoutPanel.Controls[0]);
+                    if (s != null && s.Controls[0].ContainsFocus)
+                    {
+                        Strip LastStrip = mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1] :
+null;
+
+                        if (LastStrip != null)
+                        {
+                            System.Media.SystemSounds.Beep.Play();
+                            if (LastStrip.LastBlock != null)
+                                return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return LastStrip.LastBlock; });
+                            else
+                                return SelectLastStrip();
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
+
     }
 }
