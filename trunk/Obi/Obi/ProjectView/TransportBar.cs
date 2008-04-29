@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Threading;
 using urakawa.core;
 
 namespace Obi.ProjectView
@@ -1147,6 +1148,27 @@ namespace Obi.ProjectView
         }
 
         #endregion
+
+        string m_OriginalAccessibleName1;
+        string m_OriginalAccessibleName2;
+        private void TransportBar_Enter(object sender, EventArgs e)
+        {
+            m_OriginalAccessibleName1 = mPrevSectionButton.AccessibleName;
+            m_OriginalAccessibleName2 = mStopButton.AccessibleName;
+
+            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", mPrevSectionButton.AccessibleName);
+            mStopButton.AccessibleName = string.Concat ( Localizer.Message ("TransportBar_Label") , " " , mStopButton.AccessibleName ) ;
+            
+            Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
+            TrimAccessibleName.Start();
+        }
+
+        private void TrimTransportBarAccessibleLabel()
+        {
+            Thread.Sleep(750);
+            mPrevSectionButton.AccessibleName = m_OriginalAccessibleName1;
+            mStopButton.AccessibleName = m_OriginalAccessibleName2;
+        }
 
     }
 }

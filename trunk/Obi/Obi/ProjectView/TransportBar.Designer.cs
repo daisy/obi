@@ -366,6 +366,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPauseButton);
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(945, 35);
+            this.Enter += new System.EventHandler(this.TransportBar_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
