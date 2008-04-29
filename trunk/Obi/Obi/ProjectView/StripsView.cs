@@ -598,9 +598,12 @@ namespace Obi.ProjectView
         {
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
-            // playback shortcuts.
+            mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             mShortcutKeys[Keys.Space] = TogglePlayPause;
             //mShortcutKeys[Keys.P] = TogglePlayPause;
+
+
+            // playback shortcuts.
             mShortcutKeys[Keys.J] = NavigatePrevPhrase;
             mShortcutKeys[Keys.K ] = NavigateNextPhrase;
             mShortcutKeys[Keys.Shift    | Keys.H ] = NavigatePrevSection;
@@ -616,7 +619,6 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.OemCloseBrackets] = MarkSelectionEndTime;
             mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
             mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
-            mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition;
             mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment;
             mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition;
@@ -1120,5 +1122,23 @@ null;
 
 
 
+
+        public void SelectNextPhrase(ObiNode node)
+        {
+            if (mSelection != null)
+            {
+                SelectFollowingBlock();
+            }
+            else if (node is SectionNode)
+            {
+                mSelectedItem = FindStrip((SectionNode)node);
+                SelectFirstBlockInStrip();
+            }
+            else
+            {
+                SelectFirstStrip();
+                SelectFirstBlockInStrip();
+            }
+        }
     }
 }

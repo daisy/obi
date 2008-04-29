@@ -156,7 +156,9 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Mark the end time of a selection.
+        /// Mark the end time of a selection. If no begin time is set, add a cursor/begin time.
+        /// If a selection is already set, make a new selection from the beginning of said
+        /// selection and the current cursor position.
         /// </summary>
         public bool MarkSelectionEndTime()
         {
@@ -187,6 +189,9 @@ namespace Obi.ProjectView
             return false;
         }
 
+        /// <summary>
+        /// Mark a selection from the beginning of the waveform to the current cursor position.
+        /// </summary>
         public bool MarkSelectionFromCursor()
         {
             if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
@@ -200,6 +205,9 @@ namespace Obi.ProjectView
             return false;
         }
 
+        /// <summary>
+        /// Mark a selection from the current cursor position to the end of the cursor.
+        /// </summary>
         public bool MarkSelectionToCursor()
         {
             if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
@@ -214,6 +222,9 @@ namespace Obi.ProjectView
             return false;
         }
 
+        /// <summary>
+        /// Mark a selection for the whole phrase.
+        /// </summary>
         public bool MarkSelectionWholePhrase()
         {
             if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
@@ -818,6 +829,8 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Go to the next phrase.
+        /// If recording, create a new phrase to record in.
+        /// If playing or paused,
         /// </summary>
         public void NextPhrase()
         {
@@ -829,7 +842,22 @@ namespace Obi.ProjectView
                 }
                 else if (mState != State.Monitoring)
                 {
-                    mCurrentPlaylist.NavigateToNextPhrase();
+                    if (mState == State.Stopped)
+                    {
+                        if (mView.ObiForm.Settings.PlayOnNavigate)
+                        {
+                            mCurrentPlaylist.CurrentPhrase = mView.Selection.Node as PhraseNode;
+                            mCurrentPlaylist.NavigateToNextPhrase();
+                        }
+                        else
+                        {
+                            mView.SelectNextPhrase();
+                        }
+                    }
+                    else
+                    {
+                        mCurrentPlaylist.NavigateToNextPhrase();
+                    }
                 }
             }
         }

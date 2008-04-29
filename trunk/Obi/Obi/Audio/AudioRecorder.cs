@@ -476,7 +476,7 @@ namespace Obi.Audio
                         {
                             Writer = new BinaryWriter(File.OpenWrite(fi.FullName));
                         }
-                        catch (System.Exception ex)
+                        catch (Exception)
                         {
                             m_MutexCaptureData.ReleaseMutex();
                             return;

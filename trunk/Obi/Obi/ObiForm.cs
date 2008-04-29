@@ -954,6 +954,7 @@ namespace Obi
             mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
             mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;
             AllowOverwrite = mSettings.AllowOverwrite;
+            mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
         }
 
         // Set the allow overwrite preference and the corresponding property in the transport bar.
@@ -1380,11 +1381,11 @@ namespace Obi
         {
             mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
-            if (mProjectView.CanResume )
+            if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;
                 mResumeToolStripMenuItem.Visible = true;
-                            }
+            }
             else
             {
                 mPauseToolStripMenuItem.Visible = true;
@@ -1410,28 +1411,28 @@ namespace Obi
             }
 
             // update play/pause shortcuts
-                        
-                        if (mProjectView.TransportBar.CanResumePlayback )
+
+            if (mProjectView.TransportBar.CanResumePlayback)
             {
                 mPauseToolStripMenuItem.ShortcutKeys = Keys.None;
                 mPlaySelectionToolStripMenuItem.ShortcutKeys = Keys.None;
                 mResumeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
                         | System.Windows.Forms.Keys.Space)));
-                                            }
+            }
             else if (mProjectView.TransportBar.CanPause)
             {
                 mPlaySelectionToolStripMenuItem.ShortcutKeys = Keys.None;
                 mResumeToolStripMenuItem.ShortcutKeys = Keys.None;
                 mPauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
                         | System.Windows.Forms.Keys.Space)));
-                                            }
+            }
             else
             {
                 mPauseToolStripMenuItem.ShortcutKeys = Keys.None;
                 mResumeToolStripMenuItem.ShortcutKeys = Keys.None;
-                                mPlaySelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.Space)));
-                                            }
+                mPlaySelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+        | System.Windows.Forms.Keys.Space)));
+            }
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1615,6 +1616,14 @@ namespace Obi
         private void mAllowOverwriteToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             AllowOverwrite = mAllowOverwriteToolStripMenuItem.Checked;
+        }
+
+        private void mPlayOnNavigateToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mSettings.PlayOnNavigate != mPlayOnNavigateToolStripMenuItem.Checked)
+            {
+                mSettings.PlayOnNavigate = mPlayOnNavigateToolStripMenuItem.Checked;
+            }
         }
     }
 }
