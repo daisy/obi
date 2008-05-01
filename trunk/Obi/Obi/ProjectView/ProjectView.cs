@@ -32,7 +32,7 @@ namespace Obi.ProjectView
         public ProjectView()
         {
             InitializeComponent();
-            mTOCView.ProjectView = this;
+                        mTOCView.ProjectView = this;
             mStripsView.ProjectView = this;
             mMetadataView.ProjectView = this;
             mFindInText.ProjectView = this;
@@ -1163,9 +1163,7 @@ namespace Obi.ProjectView
         {
             if (key == (Keys)(Keys.Control | Keys.Tab) )
                             {
-                                
-                                //return true;
-                 if( SelectViewsInCycle ( true )  )
+                                                 if( SelectViewsInCycle ( true )  )
                 return true;
                              }
             else if (key == (Keys)(Keys.Control | Keys.Shift  |  Keys.Tab))
@@ -1181,10 +1179,13 @@ namespace Obi.ProjectView
         {
             List<Control> ViewList = new List<Control>();
             ViewList.Add(mTOCView);
-            ViewList.Add(mMetadataView);
-            //ViewList.Add(mTOCSplitter);
+                        ViewList.Add(mMetadataView);
+            ViewList.Add(mPanelInfoLabelButton);
             ViewList.Add(mStripsView);
-            ViewList.Add(mTransportBar);
+                        ViewList.Add(mTransportBar);
+
+                        if (mTOCSplitter.Focused)
+                            mPanelInfoLabelButton.Focus();
 
             Control FocussedView = null ;
             int FocussedViewIndex = -1; 
@@ -1205,7 +1206,7 @@ namespace Obi.ProjectView
                 if (clockwise)
                 {
                     NewFocussedIndex =  FocusNextView(ViewList, FocussedViewIndex);
-                    return true;
+                                        return true;
                     //if (NewFocussedIndex == 2) ObiForm.SelectNextControl(ObiForm.ActiveControl, true, true, true, true);
                 }
                 else
@@ -1232,7 +1233,7 @@ namespace Obi.ProjectView
                                 if (ViewList[Index].CanFocus)
                                 {
                                     ViewList[Index].Focus();
-                                    return Index;
+                                                                        return Index;
                                 }
             }
             return -1;
@@ -1257,6 +1258,16 @@ namespace Obi.ProjectView
                 }
             }
             return  -1 ;
+        }
+
+        private void  mPanelInfoLabelButton_Enter ( object sender  , EventArgs e   )
+        {
+            mPanelInfoLabelButton.Text = mPanelInfoLabelButton.AccessibleName;
+        }
+
+        private void  mPanelInfoLabelButton_Leave ( object sender  ,EventArgs e )
+        {
+            mPanelInfoLabelButton.Text = "";
         }
 
 

@@ -165,5 +165,35 @@ namespace Obi.ProjectView
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyName(mView, entry, name));
             }
         }
+        
+        protected override bool ProcessDialogKey(Keys KeyData)
+        {
+            if (KeyData == Keys.Tab
+                && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, true, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
+
+                return true;
+            }
+            else if (KeyData == (Keys)(Keys.Shift | Keys.Tab)
+                && this.ActiveControl != null)
+            {
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, false, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
+
+                return true;
+            }
+            else
+                return base.ProcessDialogKey(KeyData);
+        }
+
+        
+
+
     }
 }

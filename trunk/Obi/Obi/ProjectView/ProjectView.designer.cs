@@ -37,6 +37,7 @@ namespace Obi.ProjectView
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mStripsView = new Obi.ProjectView.StripsView();
             this.mFindInText = new Obi.ProjectView.FindInText();
+            mPanelInfoLabelButton = new System.Windows.Forms.Button ();
             this.mTransportBar = new Obi.ProjectView.TransportBar();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
@@ -104,6 +105,7 @@ namespace Obi.ProjectView
             // mTOCSplitter.Panel1
             // 
             this.mTOCSplitter.Panel1.Controls.Add(this.mMetadataSplitter);
+            this.mTOCSplitter.Panel1.Controls.Add(this.mPanelInfoLabelButton);
             // 
             // mTOCSplitter.Panel2
             // 
@@ -140,7 +142,21 @@ namespace Obi.ProjectView
             this.mNoProjectLabel.Size = new System.Drawing.Size(81, 20);
             this.mNoProjectLabel.TabIndex = 1;
             this.mNoProjectLabel.Text = "No project";
-            // 
+            //
+            this.mPanelInfoLabelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
+                        this.mPanelInfoLabelButton.AutoSize = true;
+            this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(0,0);
+            this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
+            this.mPanelInfoLabelButton.Size = new System.Drawing.Size(100, 20);
+            this.mPanelInfoLabelButton.TabIndex = 2;
+            this.mPanelInfoLabelButton.Text = "";
+            this.mPanelInfoLabelButton.AccessibleName = "Press tab to jump to Panel Splitter";
+            this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mPanelInfoLabelButton.Enter += new System.EventHandler(mPanelInfoLabelButton_Enter);
+            this.mPanelInfoLabelButton.Leave += new System.EventHandler(mPanelInfoLabelButton_Leave);
+                        // 
             // mTOCView
             // 
             this.mTOCView.AutoScroll = true;
@@ -226,6 +242,7 @@ namespace Obi.ProjectView
         private TOCView mTOCView;
         private MetadataView mMetadataView;
         private System.Windows.Forms.Label mNoProjectLabel;
+        private System.Windows.Forms.Button mPanelInfoLabelButton ;
 
 
     }
