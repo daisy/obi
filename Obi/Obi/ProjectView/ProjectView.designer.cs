@@ -96,6 +96,7 @@ namespace Obi.ProjectView
             // 
             // mTOCSplitter
             // 
+            this.mTOCSplitter.AccessibleName = "Panel Splitter";
             this.mTOCSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCSplitter.Location = new System.Drawing.Point(0, 0);
             this.mTOCSplitter.Name = "mTOCSplitter";
