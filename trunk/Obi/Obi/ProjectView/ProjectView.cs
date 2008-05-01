@@ -1157,6 +1157,109 @@ namespace Obi.ProjectView
         {
             mStripsView.SelectNextPhrase(SelectedNodeAs<ObiNode>());
         }
+
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys key)
+        {
+            if (key == (Keys)(Keys.Control | Keys.Tab) )
+                            {
+                                
+                                //return true;
+                 if( SelectViewsInCycle ( true )  )
+                return true;
+                             }
+            else if (key == (Keys)(Keys.Control | Keys.Shift  |  Keys.Tab))
+            {
+                if (  SelectViewsInCycle(false) )
+                return true;
+                                }
+                return base.ProcessCmdKey(ref  msg, key);
+            
+        }
+
+        private bool SelectViewsInCycle ( bool clockwise )
+        {
+            List<Control> ViewList = new List<Control>();
+            ViewList.Add(mTOCView);
+            ViewList.Add(mMetadataView);
+            //ViewList.Add(mTOCSplitter);
+            ViewList.Add(mStripsView);
+            ViewList.Add(mTransportBar);
+
+            Control FocussedView = null ;
+            int FocussedViewIndex = -1; 
+
+            for (int i = 0; i < ViewList.Count; i++)
+            {
+                if (ViewList[i].ContainsFocus)
+                {
+                    FocussedView = ViewList[i];
+                    FocussedViewIndex = i;
+                    break;
+                }
+            }
+
+            int NewFocussedIndex = -1;
+            if (FocussedViewIndex != -1)
+            {
+                if (clockwise)
+                {
+                    NewFocussedIndex =  FocusNextView(ViewList, FocussedViewIndex);
+                    return true;
+                    //if (NewFocussedIndex == 2) ObiForm.SelectNextControl(ObiForm.ActiveControl, true, true, true, true);
+                }
+                else
+                {
+                    NewFocussedIndex = FocusPreviousView(ViewList, FocussedViewIndex);
+                    return true;
+                }
+            }
+            else
+                return mTOCView.Focus();
+
+        }
+
+        private int  FocusNextView(List <Control> ViewList , int FocussedViewIndex)
+        {
+            int  Index = FocussedViewIndex ;
+                            for ( int i = 1 ; i <=  ViewList.Count ; i++ )
+                            {
+                                if (Index <= ViewList.Count - 2 )
+                                    Index = FocussedViewIndex + i ;
+                                else
+                                                                        Index = i - (  ViewList.Count - FocussedViewIndex ) ;
+                                //MessageBox.Show(Index.ToString());
+                                if (ViewList[Index].CanFocus)
+                                {
+                                    ViewList[Index].Focus();
+                                    return Index;
+                                }
+            }
+            return -1;
+        }
+
+
+        private int  FocusPreviousView(List<Control> ViewList, int FocussedViewIndex)
+        {
+            int Index = FocussedViewIndex;
+            
+            for (int i = 1; i <= ViewList.Count; i++)
+            {
+                if (Index >  0 )
+                    Index = FocussedViewIndex - i;
+                else
+                    Index = ViewList.Count - ( Math.Abs ( i- Index ) ) ;
+                
+                if (ViewList[Index].CanFocus)
+                {
+                    ViewList[Index].Focus();
+                    return Index;
+                }
+            }
+            return  -1 ;
+        }
+
+
     }
 
     public class ImportingFileEventArgs

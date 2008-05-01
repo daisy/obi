@@ -1205,30 +1205,28 @@ namespace Obi.ProjectView
         /// <returns></returns>
         protected override bool ProcessDialogKey(Keys KeyData)
         {
-            if (KeyData == Keys.Tab)
+            if (KeyData == Keys.Tab
+                &&     this.ActiveControl != null )
             {
-                if (this.ActiveControl != null)
-                {
                     Control c = this.ActiveControl;
                     this.SelectNextControl(c, true, true, true, true);
                     if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
                         System.Media.SystemSounds.Beep.Play();
-                }
+
+                    return true;
             }
-            else if (KeyData == (Keys)(Keys.Shift | Keys.Tab))
+            else if (KeyData == (Keys)(Keys.Shift | Keys.Tab)
+                &&    this.ActiveControl != null)
             {
-                if (this.ActiveControl != null)
-                {
                     Control c = this.ActiveControl;
                     this.SelectNextControl(c, false, true, true, true);
                     if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
                         System.Media.SystemSounds.Beep.Play();
-                }
+
+                    return true;
             }
             else
                 return base.ProcessDialogKey(KeyData);
-
-            return true;
         }
 
         

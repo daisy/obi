@@ -1081,7 +1081,7 @@ namespace Obi.ProjectView
 /// <returns></returns>
         private bool ProcessTabKeyInContentsView(Keys key)
         {
-            if (key == Keys.Tab)
+                        if (key == Keys.Tab)
             {
                 if (this.ActiveControl != null)
                 {
