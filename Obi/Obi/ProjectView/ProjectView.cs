@@ -1205,8 +1205,8 @@ namespace Obi.ProjectView
             {
                 if (clockwise)
                 {
-                    NewFocussedIndex =  FocusNextView(ViewList, FocussedViewIndex);
-                                        return true;
+                    NewFocussedIndex = FocusNextView(ViewList, FocussedViewIndex);
+                    return true;
                     //if (NewFocussedIndex == 2) ObiForm.SelectNextControl(ObiForm.ActiveControl, true, true, true, true);
                 }
                 else
@@ -1216,8 +1216,12 @@ namespace Obi.ProjectView
                 }
             }
             else
-                return mTOCView.Focus();
-
+            {
+                if (mTOCView.Focus())
+                    return true;
+                else
+                    return mPanelInfoLabelButton.Focus();
+            }
         }
 
         private int  FocusNextView(List <Control> ViewList , int FocussedViewIndex)
@@ -1225,11 +1229,10 @@ namespace Obi.ProjectView
             int  Index = FocussedViewIndex ;
                             for ( int i = 1 ; i <=  ViewList.Count ; i++ )
                             {
-                                if (Index <= ViewList.Count - 2 )
-                                    Index = FocussedViewIndex + i ;
-                                else
-                                                                        Index = i - (  ViewList.Count - FocussedViewIndex ) ;
-                                //MessageBox.Show(Index.ToString());
+                                                                    Index = FocussedViewIndex + i;
+                                    if (Index >= ViewList.Count)
+                                        Index = Index - ViewList.Count;
+                                
                                 if (ViewList[Index].CanFocus)
                                 {
                                     ViewList[Index].Focus();
@@ -1246,11 +1249,11 @@ namespace Obi.ProjectView
             
             for (int i = 1; i <= ViewList.Count; i++)
             {
-                if (Index >  0 )
-                    Index = FocussedViewIndex - i;
-                else
-                    Index = ViewList.Count - ( Math.Abs ( i- Index ) ) ;
-                
+                                Index = FocussedViewIndex - i;
+
+                if (Index < 0)
+                    Index = ViewList.Count + Index;
+
                 if (ViewList[Index].CanFocus)
                 {
                     ViewList[Index].Focus();
@@ -1262,11 +1265,15 @@ namespace Obi.ProjectView
 
         private void  mPanelInfoLabelButton_Enter ( object sender  , EventArgs e   )
         {
+            mPanelInfoLabelButton.Size = new Size(150, 20);
+            mPanelInfoLabelButton.BackColor = System.Drawing.SystemColors.ControlLight;
             mPanelInfoLabelButton.Text = mPanelInfoLabelButton.AccessibleName;
         }
 
         private void  mPanelInfoLabelButton_Leave ( object sender  ,EventArgs e )
         {
+            mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
+            mPanelInfoLabelButton.Size = new Size(1, 1);
             mPanelInfoLabelButton.Text = "";
         }
 
