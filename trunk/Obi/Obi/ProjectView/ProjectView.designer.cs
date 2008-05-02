@@ -149,7 +149,7 @@ namespace Obi.ProjectView
             this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mPanelInfoLabelButton.Location = new System.Drawing.Point(0,0);
             this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
-            this.mPanelInfoLabelButton.Size = new System.Drawing.Size(100, 20);
+            this.mPanelInfoLabelButton.Size = new System.Drawing.Size(1, 1);
             this.mPanelInfoLabelButton.TabIndex = 2;
             this.mPanelInfoLabelButton.Text = "";
             this.mPanelInfoLabelButton.AccessibleName = "Press tab to jump to Panel Splitter";
