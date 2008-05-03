@@ -68,6 +68,8 @@ namespace Obi.ProjectView
             mAllowOverwrite = true;
             mPlayIfNoSelection = true;
             mState = State.Stopped;
+
+            AddTransportBarAccessibleName();
         }
 
 
@@ -1179,15 +1181,28 @@ namespace Obi.ProjectView
 
         string m_OriginalAccessibleName1;
         string m_OriginalAccessibleName2;
-        private void TransportBar_Enter(object sender, EventArgs e)
+
+        private void TransportBar_Leave(object sender, EventArgs e)
+        {
+            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
+            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
+                            }
+
+        private void AddTransportBarAccessibleName()
         {
             m_OriginalAccessibleName1 = mPrevSectionButton.AccessibleName;
             m_OriginalAccessibleName2 = mStopButton.AccessibleName;
 
             mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
-            mStopButton.AccessibleName = string.Concat ( Localizer.Message ("TransportBar_Label") , " " , m_OriginalAccessibleName2) ;
-            
-            Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
+            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
+        }
+
+        private void TransportBar_Enter(object sender, EventArgs e)
+        {
+            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
+            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
+
+                        Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
             TrimAccessibleName.Start();
         }
 
@@ -1228,6 +1243,8 @@ namespace Obi.ProjectView
             else
                 return base.ProcessDialogKey(KeyData);
         }
+
+        
 
         
 
