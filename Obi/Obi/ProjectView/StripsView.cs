@@ -599,7 +599,7 @@ namespace Obi.ProjectView
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
             mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
-            mShortcutKeys[Keys.Space] = TogglePlayPause;
+            //mShortcutKeys[Keys.Space] = TogglePlayPause;
             //mShortcutKeys[Keys.P] = TogglePlayPause;
 
 
@@ -972,7 +972,7 @@ namespace Obi.ProjectView
         }
 
         // Toggle play/pause in the transport bar
-        private bool TogglePlayPause()
+        public bool TogglePlayPause()
         {
             if (mView.TransportBar.CanPause)
             {

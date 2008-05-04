@@ -1171,6 +1171,11 @@ namespace Obi.ProjectView
                 if (  SelectViewsInCycle(false) )
                 return true;
                                 }
+                                else if (key == Keys.Space)
+                                {
+                                    if (TogglePlayPause())
+                                        return true;
+                                }
                 return base.ProcessCmdKey(ref  msg, key);
             
         }
@@ -1261,6 +1266,29 @@ namespace Obi.ProjectView
                 }
             }
             return  -1 ;
+        }
+
+
+        // Toggle play/pause in the transport bar
+        public bool TogglePlayPause()
+        {
+            if ( !( mSelection is TextSelection ) &&
+                (mStripsView.ContainsFocus
+                || mTOCView.ContainsFocus
+                || mTransportBar.ContainsFocus) )
+            {
+                if (TransportBar.CanPause)
+                {
+                    TransportBar.Pause();
+                    return true;
+                }
+                else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)
+                {
+                    TransportBar.PlayOrResume();
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void  mPanelInfoLabelButton_Enter ( object sender  , EventArgs e   )
