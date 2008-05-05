@@ -164,11 +164,13 @@ Index of shortcuts
   + F2 ................. Sections > Rename section
   + F3 ................. Edit > Find next
   + Shift+F3 ........... Edit > Find previous
-  + F4 ................. Phrases > Assign role > TODO
   + Alt+F4 ............. File > Exit
   + F6 ................. View > Focus on TOC view
   + F7 ................. View > Focus on content view
   + F8 ................. View > Focus on transport bar
+  + F9 ................. Phrases > Assign role > TODO
++ Ctrl + F9 ... Move to next To do block.
++ Ctrl + Shift + F9 ... move to prev To do block
   + Alt+Up ............. Transport > Navigation > Previous section
   + Alt+PgUp ........... Transport > Navigation > Previous page
   + Alt+Dn ............. Transport > Navigation > Next section
@@ -177,8 +179,9 @@ Index of shortcuts
   + Alt+Left ........... Transport > Navigation > Previous phrase
   + Ctrl+Shift+Right ... Sections > Increase section level
   + Alt+Right .......... Transport > Navigation > Next phrase
-  + Ctrl+Space ......... Transport > Play > Play all
-  + Ctrl+Shift+Space ... Transport > Play > Play selection / pause
++ Space ...... transport> Play selection / pause
+  + Ctrl+Space ......... Transport > Play > Stop
+  + Ctrl+Shift+Space ... Transport > Play > Play all
   + Ctrl+[ ............. Phrases > In-phrase audio selection > Begin...
   + Ctrl+] ............. Phrases > In-phrase audio selection > End...
   + Ctrl+0 ............. Transport > Fast play > Normal speed
@@ -234,7 +237,6 @@ Index of shortcuts
   + Ctrl+Alt+S ......... Tools > User profile
   + Ctrl+Shift+S ....... File > Save project as...
   + Alt+T .............. Tools menu
-  + Ctrl+T ............. Transport > Stop
   + Ctrl+Alt+T ......... View > Show TOC view
   + Ctrl+U ............. Phrases > Mark default custom class
   + Ctrl+Alt+U ......... View > Show status bar
