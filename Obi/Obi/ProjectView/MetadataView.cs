@@ -12,14 +12,21 @@ namespace Obi.ProjectView
     {
         private ProjectView mView;         // parent project view
         private NodeSelection mSelection;  // current selection
+        private List<urakawa.metadata.Metadata> mMetadataNodeList = new List<urakawa.metadata.Metadata>();
 
         public MetadataView()
         {
             InitializeComponent();
             mView = null;
             mSelection = null;
+            AddListViewColumns();
         }
 
+        private void AddListViewColumns()
+        {
+            mMetadataListView.Columns.Add("Meta data Name", 100, HorizontalAlignment.Left);
+            mMetadataListView.Columns.Add("Content", 100, HorizontalAlignment.Left);
+        }
 
         /// <summary>
         /// The project view is showing a new presentation;
@@ -30,17 +37,49 @@ namespace Obi.ProjectView
             mLayout.Controls.Clear();
             if (mView.Presentation != null)
             {
+                AddMetadataToList();
+                /*
                 foreach (urakawa.metadata.Metadata m in mView.Presentation.getListOfMetadata())
                 {
                     MetadataPanel panel = new MetadataPanel(this, m);
                     mLayout.Controls.Add(panel);
                 }
+                 */ 
                 UpdatePanelSizes();
                 mView.Presentation.MetadataEntryAdded += new MetadataEventHandler(Presentation_MetadataEntryAdded);
                 mView.Presentation.MetadataEntryDeleted += new MetadataEventHandler(Presentation_MetadataEntryDeleted);
                 mView.Presentation.MetadataEntryContentChanged += new MetadataEventHandler(Presentation_MetadataEntryContentChanged);
                 mView.Presentation.MetadataEntryNameChanged += new MetadataEventHandler(Presentation_MetadataEntryNameChanged);
             }
+        }
+
+        private void AddMetadataToList()
+        {
+            string[] MetadataString = new string[2];
+            ListViewItem Item = null;
+            List<string> MetaDataNameCopy = new List<string>();
+            
+            foreach (urakawa.metadata.Metadata m in mView.Presentation.getListOfMetadata())
+            {
+                MetadataString[0] = m.getName();
+                MetaDataNameCopy.Add ( m.getName() );
+                MetadataString[1] = m.getContent();
+                Item = new ListViewItem(MetadataString);
+                mMetadataListView.Items.Add(Item);
+                Item.Checked = true;
+                mMetadataNodeList.Add(m);
+                            }
+            
+            foreach (string name in mView.AddableMetadataNames)
+            {
+                if (!MetaDataNameCopy.Contains(name))
+                {
+                    MetadataString[0] = name;
+                    MetadataString[1] = "";
+                    Item = new ListViewItem(MetadataString);
+                    mMetadataListView.Items.Add(Item);
+                }
+                        }
         }
 
         /// <summary>
@@ -152,7 +191,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void ModifiedEntryContent(urakawa.metadata.Metadata entry, string content)
         {
-            if (entry.getContent() != content) 
+            //if (entry.getContent() != content) 
+            
             {
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(mView, entry, content));
             }
@@ -192,7 +232,63 @@ namespace Obi.ProjectView
                 return base.ProcessDialogKey(KeyData);
         }
 
-        
+        private void mMetadataListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            ItemSelectionAction();
+        }
+
+        private void mMetadataListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            ItemSelectionAction();
+        }
+
+        private void ItemSelectionAction ()
+        {
+                        if (mMetadataListView.SelectedIndices.Count > 0)
+            {
+                                int FocussedIndex   = mMetadataListView.Items.IndexOf(mMetadataListView.FocusedItem);
+                
+            if (mMetadataListView.Items[FocussedIndex].Checked)
+            {
+                mMetadataTextbox.Enabled = true;
+                mCommitButton.Enabled = true;
+            }
+            else
+            {
+                mMetadataTextbox.Enabled = false;
+                mCommitButton.Enabled = false;
+            }
+            
+            mMetadataEntryTextbox.Text = mMetadataListView.Items[FocussedIndex].SubItems[0].Text + ":" ;
+            mMetadataEntryTextbox.TabStop = false;
+            mMetadataEntryTextbox.ReadOnly = true;
+            mMetadataTextbox.AccessibleName = mMetadataEntryTextbox.Text;
+                                                            } // index check ends
+else
+            {
+                // nothing selected
+                mMetadataEntryTextbox.Text = "Metadata :";
+                                mMetadataTextbox.AccessibleName = mMetadataEntryTextbox.Text;
+                mMetadataTextbox.Enabled = false;
+        }
+}
+
+        private void mAddNewButton_Click(object sender, EventArgs e)
+        {
+                        mMetadataTextbox.Visible = true;
+                        mMetadataTextbox.AccessibleName = "Metadata Content:";
+                        mMetadataEntryTextbox.TabStop = true;
+                        mMetadataEntryTextbox.ReadOnly = false;
+                        mMetadataEntryTextbox.AccessibleName = "Type Metadata entry:";
+                        mMetadataEntryTextbox.Focus();
+        }
+
+        private void mCommitButton_Click(object sender, EventArgs e)
+        {
+            mMetadataEntryTextbox.Visible = true;
+            mMetadataEntryTextbox.TabStop = false;
+            mMetadataEntryTextbox.ReadOnly = true;
+        }
 
 
     }
