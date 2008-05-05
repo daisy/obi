@@ -628,12 +628,12 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Right] = SelectFollowingBlock;
             mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
             mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
-            mShortcutKeys[Keys.PageDown] = SelectNextPageNode ;
-            mShortcutKeys[Keys.PageUp] = SelectPrecedingPageNode;
-            mShortcutKeys[Keys.Control | Keys.PageDown ] = SelectNextSpecialRoleNode ;
-            mShortcutKeys[ Keys.Control |  Keys.PageUp] = SelectPreviousSpecialRoleNode ;
-            mShortcutKeys[Keys.Control | Keys.F4 ] = SelectNextTo_DoNode ;
-            mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F4] =  SelectPreviousTo_DoNode;
+            mShortcutKeys[ Keys.Control | Keys.PageDown] = SelectNextPageNode ;
+            mShortcutKeys[Keys.Control |  Keys.PageUp] = SelectPrecedingPageNode;
+            mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode ;
+            mShortcutKeys[ Keys.Shift |  Keys.F4] = SelectPreviousSpecialRoleNode ;
+            mShortcutKeys[Keys.Control | Keys.F9 ] = SelectNextTo_DoNode ;
+            mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F9] =  SelectPreviousTo_DoNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;

@@ -1409,30 +1409,6 @@ namespace Obi
                 mStartListeningToolStripMenuItem.Enabled = true;
                 mStartRecordingToolStripMenuItem.Enabled = true;
             }
-
-            // update play/pause shortcuts
-
-            if (mProjectView.TransportBar.CanResumePlayback)
-            {
-                mPauseToolStripMenuItem.ShortcutKeys = Keys.None;
-                mPlaySelectionToolStripMenuItem.ShortcutKeys = Keys.None;
-                mResumeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.Space)));
-            }
-            else if (mProjectView.TransportBar.CanPause)
-            {
-                mPlaySelectionToolStripMenuItem.ShortcutKeys = Keys.None;
-                mResumeToolStripMenuItem.ShortcutKeys = Keys.None;
-                mPauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.Space)));
-            }
-            else
-            {
-                mPauseToolStripMenuItem.ShortcutKeys = Keys.None;
-                mResumeToolStripMenuItem.ShortcutKeys = Keys.None;
-                mPlaySelectionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-        | System.Windows.Forms.Keys.Space)));
-            }
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
