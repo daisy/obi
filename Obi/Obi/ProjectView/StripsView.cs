@@ -600,16 +600,14 @@ namespace Obi.ProjectView
 
             mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             //mShortcutKeys[Keys.Space] = TogglePlayPause;
-            //mShortcutKeys[Keys.P] = TogglePlayPause;
-
 
             // playback shortcuts.
             mShortcutKeys[Keys.J] = NavigatePrevPhrase;
-            mShortcutKeys[Keys.K ] = NavigateNextPhrase;
-            mShortcutKeys[Keys.Shift    | Keys.H ] = NavigatePrevSection;
-            mShortcutKeys[Keys.H ] = NavigateNextSection;
-            mShortcutKeys[Keys.Shift    |  Keys.P ] = NavigatePrevPage;
-            mShortcutKeys[Keys.P ] = NavigateNextPage;
+            mShortcutKeys[Keys.K] = NavigateNextPhrase;
+            mShortcutKeys[Keys.Shift | Keys.H] = NavigatePrevSection;
+            mShortcutKeys[Keys.H] = NavigateNextSection;
+            mShortcutKeys[Keys.Shift | Keys.P] = NavigatePrevPage;
+            mShortcutKeys[Keys.P] = NavigateNextPage;
             
             mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
@@ -639,6 +637,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
+
+            mShortcutKeys[Keys.Escape] = SelectUp;
 
             // Control + arrows moves the strip cursor
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
@@ -790,6 +790,26 @@ namespace Obi.ProjectView
                 return mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1] :
                     null;
             });
+        }
+
+        // Select the item above the currently selected item.
+        // E.g. from an audio selection a phrase, from a phrase a strip, from a strip nothing.
+        private bool SelectUp()
+        {
+            if (mSelection is AudioSelection)
+            {
+                return SelectBlockFor(delegate(Strip s, ISelectableInStripView item) { return FindBlock((EmptyNode)mSelection.Node); });
+            }
+            else if (mSelectedItem is Block)
+            {
+                return SelectStripFor(delegate(Strip s) { return ((Block)mSelectedItem).Strip; });
+            }
+            else if (mSelectedItem is Strip)
+            {
+                mView.Selection = null;
+                return true;
+            }
+            return false;
         }
 
         private Strip StripAfter(Strip strip)

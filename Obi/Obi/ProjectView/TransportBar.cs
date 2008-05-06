@@ -481,6 +481,7 @@ namespace Obi.ProjectView
         /// All-purpose play function for the play button.
         /// Play or resume if possible, otherwise do nothing.
         /// If there is a selection, play the selection; if there is no selection, play everything
+        /// (depending on the relevent preference setting.)
         /// </summary>
         public void PlayOrResume()
         {
@@ -506,8 +507,6 @@ namespace Obi.ProjectView
             }
             else if (node != null)
             {
-                // we need the selection to tell between a strip and a section
-                // maybe a deep flag would be better
                 mLocalPlaylist = new Playlist(mPlayer, mView.Selection);
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;

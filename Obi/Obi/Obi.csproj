@@ -167,12 +167,6 @@
     <Compile Include="Dialogs\ShowSource.designer.cs">
       <DependentUpon>ShowSource.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\Split.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\Split.Designer.cs">
-      <DependentUpon>Split.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\UserProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,10 +316,6 @@
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\Split.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Split.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UserProfile.resx">
       <SubType>Designer</SubType>
