@@ -30,7 +30,7 @@ namespace Obi.ProjectView
         {
             this.mLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.mMetadataListView = new System.Windows.Forms.ListView();
-            this.mMetadataTextbox = new System.Windows.Forms.TextBox();
+            this.mMetadataContentTextbox = new System.Windows.Forms.TextBox();
             this.mCommitButton = new System.Windows.Forms.Button();
             this.mAddNewButton = new System.Windows.Forms.Button();
             this.mMetadataEntryTextbox = new System.Windows.Forms.TextBox();
@@ -64,13 +64,13 @@ namespace Obi.ProjectView
             this.mMetadataListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.mMetadataListView_ItemChecked);
             this.mMetadataListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.mMetadataListView_ItemSelectionChanged);
             // 
-            // mMetadataTextbox
+            // mMetadataContentTextbox
             // 
-            this.mMetadataTextbox.AccessibleName = "Metadata Content:";
-            this.mMetadataTextbox.Location = new System.Drawing.Point(110, 115);
-            this.mMetadataTextbox.Name = "mMetadataTextbox";
-            this.mMetadataTextbox.Size = new System.Drawing.Size(100, 20);
-            this.mMetadataTextbox.TabIndex = 4;
+            this.mMetadataContentTextbox.AccessibleName = "Metadata Content:";
+            this.mMetadataContentTextbox.Location = new System.Drawing.Point(110, 115);
+            this.mMetadataContentTextbox.Name = "mMetadataContentTextbox";
+            this.mMetadataContentTextbox.Size = new System.Drawing.Size(100, 20);
+            this.mMetadataContentTextbox.TabIndex = 4;
             // 
             // mCommitButton
             // 
@@ -106,7 +106,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mMetadataEntryTextbox);
             this.Controls.Add(this.mAddNewButton);
             this.Controls.Add(this.mCommitButton);
-            this.Controls.Add(this.mMetadataTextbox);
+            this.Controls.Add(this.mMetadataContentTextbox);
             this.Controls.Add(this.mMetadataListView);
             this.Controls.Add(this.mLayout);
             this.Name = "MetadataView";
@@ -119,7 +119,7 @@ namespace Obi.ProjectView
 
         private System.Windows.Forms.FlowLayoutPanel mLayout;
         private System.Windows.Forms.ListView mMetadataListView;
-        private System.Windows.Forms.TextBox mMetadataTextbox;
+        private System.Windows.Forms.TextBox mMetadataContentTextbox;
         private System.Windows.Forms.Button mCommitButton;
         private System.Windows.Forms.Button mAddNewButton;
         private System.Windows.Forms.TextBox mMetadataEntryTextbox;
