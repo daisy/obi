@@ -98,9 +98,6 @@ namespace Obi.ProjectView
             BackColor = mSelected ? Color.Yellow : Parent.BackColor;
         }
 
-        // Click to select a panel
-        private void MetadataPanel_Click(object sender, EventArgs e) { mView.SelectedPanel = this; }
-
         private void mContentBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

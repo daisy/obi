@@ -268,15 +268,15 @@ namespace Obi
 
     public class MetadataSelection : NodeSelection
     {
-        private ProjectView.MetadataPanel mPanel;
+        private ProjectView.MetadataItemSelection mItem;
 
-        public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataPanel panel)
+        public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item)
             : base(node, control)
         {
-            mPanel = panel;
+            mItem = item;
         }
 
-        public ProjectView.MetadataPanel Panel { get { return mPanel; } }
+        public ProjectView.MetadataItemSelection Item { get { return mItem; } }
     }
 
     public class Clipboard

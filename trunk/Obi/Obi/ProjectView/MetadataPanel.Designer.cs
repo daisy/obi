@@ -70,7 +70,6 @@ namespace Obi.ProjectView
             this.Name = "MetadataPanel";
             this.Padding = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.Size = new System.Drawing.Size(369, 62);
-            this.Click += new System.EventHandler(this.MetadataPanel_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
