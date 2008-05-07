@@ -702,4 +702,128 @@ Error text: {1}</value>
   <data name="TransportBar_Label" xml:space="preserve">
     <value>Transport Bar</value>
   </data>
+  <data name="dc_contributor_description" xml:space="preserve">
+    <value>A party whose contribution to the publication is secondary to those named in dc:Creator.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_coverage_description" xml:space="preserve">
+    <value>The extent or scope of the content of the resource. Not expected to be used for DTBs.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_creator_description" xml:space="preserve">
+    <value>Names of primary author or creator of the intellectual content of the publication.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_date_description" xml:space="preserve">
+    <value>Date of publication of the DTB. (Compare dtb:sourceDate and dtb:producedDate.) In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_description_description" xml:space="preserve">
+    <value>Plain text describing the publication's content.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_format_description" xml:space="preserve">
+    <value>The standard or specification to which the DTB was produced.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_identifier_description" xml:space="preserve">
+    <value>A string or number identifying the DTB.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_language_description" xml:space="preserve">
+    <value>Language of the content of the publication. An [RFC 3066] language code. For Sweden: "sv" or "sv-SE"; for UK: "en" or "en-GB"; for US: "en" or "en-US"; etc.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_relation_description" xml:space="preserve">
+    <value>A reference to a related resource.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_rights_description" xml:space="preserve">
+    <value>Information about rights held in and over the DTB. (Compare dtb:sourceRights.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_source_description" xml:space="preserve">
+    <value>A reference to a resource (e.g., a print original, ebook, etc.) from which the DTB is derived. Best practice is to use the ISBN when available.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_subject_description" xml:space="preserve">
+    <value>The topic of the content of the publication.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dc_type_description" xml:space="preserve">
+    <value>The nature of the content of the DTB (i.e., sound, text, image). Best practice is to draw from the Dublin Core's enumerated list [DC-Type].</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_audio_format_description" xml:space="preserve">
+    <value>Total playing time of all SMIL files comprising the content of the DTB. Value is a Clock Value from SMIL 2.0 Timing and Synchronization Module</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_multimedia_content_description" xml:space="preserve">
+    <value>Summary of the general types of media used in the content of this DTB. Value is a comma-delimited list of the top-level media types defined in [RFC2046]. In the current version of this standard, the only applicable types will be audio, text, and image. Media types that are referenced only by NCX, Resource File, or distInfo must not be listed here.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_multimedia_type_description" xml:space="preserve">
+    <value>One of the six types of DTB defined in the Structure Guidelines. Values are: audioOnly, audioNCX, audioPartText, audioFullText, textPartAudio, textNCX.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_narrator_description" xml:space="preserve">
+    <value>Name of the person whose recorded voice is embodied in the DTB.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_produced_date_description" xml:space="preserve">
+    <value>Date of first generation of the complete DTB, i.e. Production completion date. (Compare dc:Date.) In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_producer_description" xml:space="preserve">
+    <value>Name of the organization/production unit that created the DTB. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_data_description" xml:space="preserve">
+    <value>Date associated with the specific dtb:revision. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_description" xml:space="preserve">
+    <value>Non-negative integer value of the specific version of the DTB. Incremented each time the DTB is revised.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_revision_description_description" xml:space="preserve">
+    <value>A string describing the changes introduced in a specific dtb:revision.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_date_description" xml:space="preserve">
+    <value>Date of publication of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. In format from [ISO8601]; the syntax is YYYY[-MM[-DD]] with a mandatory 4-digit year, an optional 2-digit month, and, if the month is present, an optional 2-digit day of month.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_edition_description" xml:space="preserve">
+    <value>A string describing the edition of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_publisher_description" xml:space="preserve">
+    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_rights_description" xml:space="preserve">
+    <value>The agency responsible for making available the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. (Compare dc:Publisher.)</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_source_title_description" xml:space="preserve">
+    <value>The title of the resource (e.g., a print original, ebook, etc.) from which the DTB is derived. To be used only if different from dc:Title.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="dtb_total_time_description" xml:space="preserve">
+    <value>Total playing time of all SMIL files comprising the content of the DTB. Value is a Clock Value from SMIL 2.0 Timing and Synchronization Module.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="generator_description" xml:space="preserve">
+    <value>Generator software for this DTB.</value>
+    <comment>Metadata description</comment>
+  </data>
+  <data name="modify_metadata_entry" xml:space="preserve">
+    <value>modify metadata entry</value>
+    <comment>Command</comment>
+  </data>
+  <data name="obi_xuk_version_description" xml:space="preserve">
+    <value>Obi/XUK version identifier.</value>
+    <comment>Metadata description</comment>
+  </data>
 </root>

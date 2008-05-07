@@ -323,7 +323,7 @@ namespace Obi
             SetSingleMetadataItem(Obi.Metadata.DC_IDENTIFIER, id);
             SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
             SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
-            SetSingleMetadataItem(Obi.Metadata.DTB_GENERATOR, DataModelFactory.Generator);
+            SetSingleMetadataItem(Obi.Metadata.GENERATOR, DataModelFactory.Generator);
             SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
         }
 
