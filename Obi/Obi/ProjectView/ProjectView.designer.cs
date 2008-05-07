@@ -32,13 +32,13 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter = new System.Windows.Forms.SplitContainer();
             this.mTOCSplitter = new System.Windows.Forms.SplitContainer();
             this.mMetadataSplitter = new System.Windows.Forms.SplitContainer();
-            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTOCView = new Obi.ProjectView.TOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
+            this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
             this.mStripsView = new Obi.ProjectView.StripsView();
             this.mFindInText = new Obi.ProjectView.FindInText();
-            mPanelInfoLabelButton = new System.Windows.Forms.Button ();
             this.mTransportBar = new Obi.ProjectView.TransportBar();
+            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
             this.mTransportBarSplitter.SuspendLayout();
@@ -132,31 +132,6 @@ namespace Obi.ProjectView
             this.mMetadataSplitter.SplitterDistance = 381;
             this.mMetadataSplitter.TabIndex = 0;
             // 
-            // mNoProjectLabel
-            // 
-            this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mNoProjectLabel.AutoSize = true;
-            this.mNoProjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mNoProjectLabel.Location = new System.Drawing.Point(442, 340);
-            this.mNoProjectLabel.Name = "mNoProjectLabel";
-            this.mNoProjectLabel.Size = new System.Drawing.Size(81, 20);
-            this.mNoProjectLabel.TabIndex = 1;
-            this.mNoProjectLabel.Text = "No project";
-            //
-            this.mPanelInfoLabelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
-                        this.mPanelInfoLabelButton.AutoSize = true;
-            this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(0,0);
-            this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
-            this.mPanelInfoLabelButton.Size = new System.Drawing.Size(1, 1);
-            this.mPanelInfoLabelButton.TabIndex = 2;
-            this.mPanelInfoLabelButton.Text = "";
-            this.mPanelInfoLabelButton.AccessibleName = "Press tab to jump to Panel Splitter";
-            this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.mPanelInfoLabelButton.Enter += new System.EventHandler(mPanelInfoLabelButton_Enter);
-            this.mPanelInfoLabelButton.Leave += new System.EventHandler(mPanelInfoLabelButton_Leave);
-                        // 
             // mTOCView
             // 
             this.mTOCView.AutoScroll = true;
@@ -169,12 +144,29 @@ namespace Obi.ProjectView
             // 
             // mMetadataView
             // 
-            this.mMetadataView.BackColor = System.Drawing.Color.PeachPuff;
+            this.mMetadataView.BackColor = System.Drawing.Color.Transparent;
             this.mMetadataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mMetadataView.Location = new System.Drawing.Point(0, 0);
             this.mMetadataView.Name = "mMetadataView";
+            this.mMetadataView.Selection = null;
             this.mMetadataView.Size = new System.Drawing.Size(271, 244);
             this.mMetadataView.TabIndex = 0;
+            // 
+            // mPanelInfoLabelButton
+            // 
+            this.mPanelInfoLabelButton.AccessibleName = "Press tab to jump to Panel Splitter";
+            this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mPanelInfoLabelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.mPanelInfoLabelButton.AutoSize = true;
+            this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
+            this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(-5, 0);
+            this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
+            this.mPanelInfoLabelButton.Size = new System.Drawing.Size(6, 6);
+            this.mPanelInfoLabelButton.TabIndex = 2;
+            this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
+            this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
+            this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
             // 
             // mStripsView
             // 
@@ -204,6 +196,17 @@ namespace Obi.ProjectView
             this.mTransportBar.Size = new System.Drawing.Size(1060, 35);
             this.mTransportBar.TabIndex = 0;
             // 
+            // mNoProjectLabel
+            // 
+            this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mNoProjectLabel.AutoSize = true;
+            this.mNoProjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mNoProjectLabel.Location = new System.Drawing.Point(442, 340);
+            this.mNoProjectLabel.Name = "mNoProjectLabel";
+            this.mNoProjectLabel.Size = new System.Drawing.Size(81, 20);
+            this.mNoProjectLabel.TabIndex = 1;
+            this.mNoProjectLabel.Text = "No project";
+            // 
             // ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +223,7 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter.Panel2.ResumeLayout(false);
             this.mFindInTextSplitter.ResumeLayout(false);
             this.mTOCSplitter.Panel1.ResumeLayout(false);
+            this.mTOCSplitter.Panel1.PerformLayout();
             this.mTOCSplitter.Panel2.ResumeLayout(false);
             this.mTOCSplitter.ResumeLayout(false);
             this.mMetadataSplitter.Panel1.ResumeLayout(false);

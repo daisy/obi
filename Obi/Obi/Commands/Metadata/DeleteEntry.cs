@@ -11,7 +11,7 @@ namespace Obi.Commands.Metadata
         public DeleteEntry(ProjectView.ProjectView view)
             : base(view)
         {
-            mEntry = ((MetadataSelection)view.Selection).Panel.Entry;
+            mEntry = ((MetadataSelection)view.Selection).Item.Entry;
             Label = Localizer.Message("delete_metadata_entry");
         }
 
