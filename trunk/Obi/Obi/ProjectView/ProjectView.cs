@@ -32,7 +32,7 @@ namespace Obi.ProjectView
         public ProjectView()
         {
             InitializeComponent();
-                        mTOCView.ProjectView = this;
+            mTOCView.ProjectView = this;
             mStripsView.ProjectView = this;
             mMetadataView.ProjectView = this;
             mFindInText.ProjectView = this;
@@ -1158,42 +1158,29 @@ namespace Obi.ProjectView
             mStripsView.SelectNextPhrase(SelectedNodeAs<ObiNode>());
         }
 
-        
+
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-            if (key == (Keys)(Keys.Control | Keys.Tab) )
-                            {
-                                                 if( SelectViewsInCycle ( true )  )
-                return true;
-                             }
-            else if (key == (Keys)(Keys.Control | Keys.Shift  |  Keys.Tab))
-            {
-                if (  SelectViewsInCycle(false) )
-                return true;
-                                }
-                                else if (key == Keys.Space)
-                                {
-                                    if (TogglePlayPause())
-                                        return true;
-                                }
-                return base.ProcessCmdKey(ref  msg, key);
-            
+            return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
+                (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
+                (key == Keys.Space) ||
+                base.ProcessCmdKey(ref msg, key);
         }
 
-        private bool SelectViewsInCycle ( bool clockwise )
+        private bool SelectViewsInCycle(bool clockwise)
         {
             List<Control> ViewList = new List<Control>();
             ViewList.Add(mTOCView);
-                        ViewList.Add(mMetadataView);
+            ViewList.Add(mMetadataView);
             ViewList.Add(mPanelInfoLabelButton);
             ViewList.Add(mStripsView);
-                        ViewList.Add(mTransportBar);
+            ViewList.Add(mTransportBar);
 
-                        if (mTOCSplitter.Focused)
-                            mPanelInfoLabelButton.Focus();
+            if (mTOCSplitter.Focused)
+                mPanelInfoLabelButton.Focus();
 
-            Control FocussedView = null ;
-            int FocussedViewIndex = -1; 
+            Control FocussedView = null;
+            int FocussedViewIndex = -1;
 
             for (int i = 0; i < ViewList.Count; i++)
             {

@@ -31,10 +31,9 @@ namespace Obi.ProjectView
             this.mMetadataListView = new System.Windows.Forms.ListView();
             this.mNameColumn = new System.Windows.Forms.ColumnHeader();
             this.mContentColumn = new System.Windows.Forms.ColumnHeader();
-            this.mMetadataContentTextbox = new System.Windows.Forms.TextBox();
+            this.mContentTextbox = new System.Windows.Forms.TextBox();
             this.mCommitButton = new System.Windows.Forms.Button();
-            this.mAddNewButton = new System.Windows.Forms.Button();
-            this.mMetadataEntryTextbox = new System.Windows.Forms.TextBox();
+            this.mNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -60,7 +59,6 @@ namespace Obi.ProjectView
             this.mMetadataListView.View = System.Windows.Forms.View.Details;
             this.mMetadataListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.mMetadataListView_ItemChecked);
             this.mMetadataListView.SelectedIndexChanged += new System.EventHandler(this.mMetadataListView_SelectedIndexChanged);
-            this.mMetadataListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.mMetadataListView_ItemSelectionChanged);
             // 
             // mNameColumn
             // 
@@ -72,16 +70,16 @@ namespace Obi.ProjectView
             this.mContentColumn.Text = "Content";
             this.mContentColumn.Width = 176;
             // 
-            // mMetadataContentTextbox
+            // mContentTextbox
             // 
-            this.mMetadataContentTextbox.AccessibleName = "Metadata Content:";
-            this.mMetadataContentTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.mContentTextbox.AccessibleName = "Metadata Content:";
+            this.mContentTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mMetadataContentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mMetadataContentTextbox.Location = new System.Drawing.Point(56, 292);
-            this.mMetadataContentTextbox.Name = "mMetadataContentTextbox";
-            this.mMetadataContentTextbox.Size = new System.Drawing.Size(225, 20);
-            this.mMetadataContentTextbox.TabIndex = 4;
+            this.mContentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mContentTextbox.Location = new System.Drawing.Point(56, 292);
+            this.mContentTextbox.Name = "mContentTextbox";
+            this.mContentTextbox.Size = new System.Drawing.Size(225, 20);
+            this.mContentTextbox.TabIndex = 4;
             // 
             // mCommitButton
             // 
@@ -95,27 +93,15 @@ namespace Obi.ProjectView
             this.mCommitButton.UseVisualStyleBackColor = true;
             this.mCommitButton.Click += new System.EventHandler(this.mCommitButton_Click);
             // 
-            // mAddNewButton
+            // mNameTextbox
             // 
-            this.mAddNewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mAddNewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mAddNewButton.Location = new System.Drawing.Point(125, 318);
-            this.mAddNewButton.Name = "mAddNewButton";
-            this.mAddNewButton.Size = new System.Drawing.Size(75, 25);
-            this.mAddNewButton.TabIndex = 6;
-            this.mAddNewButton.Text = "Edit Name";
-            this.mAddNewButton.UseVisualStyleBackColor = true;
-            this.mAddNewButton.Click += new System.EventHandler(this.mAddNewButton_Click);
-            // 
-            // mMetadataEntryTextbox
-            // 
-            this.mMetadataEntryTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.mNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mMetadataEntryTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mMetadataEntryTextbox.Location = new System.Drawing.Point(56, 266);
-            this.mMetadataEntryTextbox.Name = "mMetadataEntryTextbox";
-            this.mMetadataEntryTextbox.Size = new System.Drawing.Size(225, 20);
-            this.mMetadataEntryTextbox.TabIndex = 3;
+            this.mNameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mNameTextbox.Location = new System.Drawing.Point(56, 266);
+            this.mNameTextbox.Name = "mNameTextbox";
+            this.mNameTextbox.Size = new System.Drawing.Size(225, 20);
+            this.mNameTextbox.TabIndex = 3;
             // 
             // label1
             // 
@@ -144,10 +130,9 @@ namespace Obi.ProjectView
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mMetadataListView);
-            this.Controls.Add(this.mMetadataEntryTextbox);
+            this.Controls.Add(this.mNameTextbox);
             this.Controls.Add(this.mCommitButton);
-            this.Controls.Add(this.mAddNewButton);
-            this.Controls.Add(this.mMetadataContentTextbox);
+            this.Controls.Add(this.mContentTextbox);
             this.Name = "MetadataView";
             this.Size = new System.Drawing.Size(284, 346);
             this.ResumeLayout(false);
@@ -158,10 +143,9 @@ namespace Obi.ProjectView
         #endregion
 
         private System.Windows.Forms.ListView mMetadataListView;
-        private System.Windows.Forms.TextBox mMetadataContentTextbox;
+        private System.Windows.Forms.TextBox mContentTextbox;
         private System.Windows.Forms.Button mCommitButton;
-        private System.Windows.Forms.Button mAddNewButton;
-        private System.Windows.Forms.TextBox mMetadataEntryTextbox;
+        private System.Windows.Forms.TextBox mNameTextbox;
         private System.Windows.Forms.ColumnHeader mNameColumn;
         private System.Windows.Forms.ColumnHeader mContentColumn;
         private System.Windows.Forms.Label label1;

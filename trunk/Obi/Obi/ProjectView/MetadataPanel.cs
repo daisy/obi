@@ -100,19 +100,19 @@ namespace Obi.ProjectView
 
         private void mContentBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 UpdateEntryContent();
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 EntryContent = mEntry.getContent();
-            }
+            }*/
         }
 
         private void mNameComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 if (mView.CanRemove(mDescription))
                 {
@@ -126,32 +126,32 @@ namespace Obi.ProjectView
             else if (e.KeyCode == Keys.Escape)
             {
                 EntryName = mDescription.Name;
-            }
+            }*/
         }
 
         private void mNameComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (mView.CanRemove(mDescription))
+            /*if (mView.CanRemove(mDescription))
             {
                 UpdateEntryName();
             }
             else
             {
                 EntryName = mDescription.Name;
-            }
+            }*/
         }
 
-        private void UpdateEntryName()
+        /*private void UpdateEntryName()
         {
             mNameComboBox.AccessibleName = mNameComboBox.Text;
             mView.ModifiedEntryName(mEntry, mNameComboBox.Text);
-        }
+        }*/
 
-        private void UpdateEntryContent()
+        /*private void UpdateEntryContent()
         {
             mContentBox.AccessibleName = mContentBox.Text;
             mView.ModifiedEntryContent(mEntry, mContentBox.Text);
-        }
+        }*/
 
         private void mNameComboBox_DropDown(object sender, EventArgs e)
         {
