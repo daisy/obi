@@ -19,12 +19,13 @@ namespace Obi.ProjectView
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
+        private System.Windows.Forms.Timer TabbingTimer= null; 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
-
+        
 
         /// <summary>
         /// Create a new project view with no project yet.
@@ -47,7 +48,15 @@ namespace Obi.ProjectView
             mClipboard = null;
         }
 
-
+        void InitialiseTabbingTimer()
+        {
+            if ( TabbingTimer == null )
+            {
+            TabbingTimer = new System.Windows.Forms.Timer();
+            TabbingTimer.Tick += new System.EventHandler(this.TabbingTimer_Tick);
+            TabbingTimer.Interval = 500;
+            }
+        }
         /// <summary>
         /// Add a new empty block.
         /// </summary>
@@ -1283,6 +1292,17 @@ namespace Obi.ProjectView
             mPanelInfoLabelButton.Size = new Size(150, 20);
             mPanelInfoLabelButton.BackColor = System.Drawing.SystemColors.ControlLight;
             mPanelInfoLabelButton.Text = mPanelInfoLabelButton.AccessibleName;
+
+            InitialiseTabbingTimer();
+            TabbingTimer.Start () ;
+        }
+
+        private void TabbingTimer_Tick(object sender, EventArgs e)
+        {
+            if ( mPanelInfoLabelButton.ContainsFocus)
+            SendKeys.Send("{tab}");
+
+            TabbingTimer.Stop();
         }
 
         private void  mPanelInfoLabelButton_Leave ( object sender  ,EventArgs e )

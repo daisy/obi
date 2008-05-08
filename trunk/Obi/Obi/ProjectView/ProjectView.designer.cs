@@ -154,7 +154,7 @@ namespace Obi.ProjectView
             // 
             // mPanelInfoLabelButton
             // 
-            this.mPanelInfoLabelButton.AccessibleName = "Press tab to jump to Panel Splitter";
+                        this.mPanelInfoLabelButton.AccessibleName = "Panel Splitter";
             this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPanelInfoLabelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.mPanelInfoLabelButton.AutoSize = true;
