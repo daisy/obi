@@ -1336,20 +1336,6 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E589401193274ACA97B5625591EC947A"
-            {
-            "Name" = "8:License"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_BF79706BAEEE421381CB56E45BBD7479"
-            "Folder" = "8:_3CDB3BD0D5C747F6AEDB25A8E625AA31"
-            "WorkingFolder" = "8:_3CDB3BD0D5C747F6AEDB25A8E625AA31"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
         }
         "UserInterface"
         {
