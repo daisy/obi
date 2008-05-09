@@ -63,9 +63,6 @@ namespace Obi
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.mAddMetadataEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.placeholderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -302,9 +299,7 @@ namespace Obi
             this.toolStripSeparator4,
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
-            this.mFindPreviousToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.mAddMetadataEntryToolStripMenuItem});
+            this.mFindPreviousToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
@@ -400,24 +395,6 @@ namespace Obi
             this.mFindPreviousToolStripMenuItem.Name = "mFindPreviousToolStripMenuItem";
             resources.ApplyResources(this.mFindPreviousToolStripMenuItem, "mFindPreviousToolStripMenuItem");
             this.mFindPreviousToolStripMenuItem.Click += new System.EventHandler(this.mFindPreviousToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
-            // 
-            // mAddMetadataEntryToolStripMenuItem
-            // 
-            this.mAddMetadataEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.placeholderToolStripMenuItem});
-            this.mAddMetadataEntryToolStripMenuItem.Name = "mAddMetadataEntryToolStripMenuItem";
-            resources.ApplyResources(this.mAddMetadataEntryToolStripMenuItem, "mAddMetadataEntryToolStripMenuItem");
-            this.mAddMetadataEntryToolStripMenuItem.DropDownOpening += new System.EventHandler(this.mAddMetadataEntryToolStripMenuItem_DropDownOpening);
-            // 
-            // placeholderToolStripMenuItem
-            // 
-            this.placeholderToolStripMenuItem.Name = "placeholderToolStripMenuItem";
-            resources.ApplyResources(this.placeholderToolStripMenuItem, "placeholderToolStripMenuItem");
             // 
             // mViewToolStripMenuItem
             // 
@@ -1228,9 +1205,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem BeginInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EndInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeselectInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripMenuItem mAddMetadataEntryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem placeholderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MarkDefaultCustomClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

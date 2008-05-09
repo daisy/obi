@@ -1091,6 +1091,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to custom.
+        /// </summary>
+        internal static string metadata_custom {
+            get {
+                return ResourceManager.GetString("metadata_custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metadata name error.
+        /// </summary>
+        internal static string metadata_name_error_caption {
+            get {
+                return ResourceManager.GetString("metadata_name_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot change the name of this metadata entry to &quot;{0}&quot;..
+        /// </summary>
+        internal static string metadata_name_error_text {
+            get {
+                return ResourceManager.GetString("metadata_name_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The description for this metadata item is missing..
         /// </summary>
         internal static string missing_description {

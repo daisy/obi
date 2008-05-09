@@ -135,6 +135,14 @@ namespace Obi
             if (DAISY_ENTRIES.Count == 0) CreateDAISYEntries();
             return DAISY_ENTRIES;
         }
+
+        /// <summary>
+        /// Get an entry from the list of DAISY entries, or null if custom.
+        /// </summary>
+        public static MetadataEntryDescription GetDAISYEntry(string name)
+        {
+            return GetDAISYEntries().ContainsKey(name) ? GetDAISYEntries()[name] : null;
+        }
         
         /// <summary>
         /// Name of the entry.
