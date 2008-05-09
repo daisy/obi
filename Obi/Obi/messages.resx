@@ -826,4 +826,16 @@ Error text: {1}</value>
     <value>Obi/XUK version identifier.</value>
     <comment>Metadata description</comment>
   </data>
+  <data name="metadata_name_error_caption" xml:space="preserve">
+    <value>Metadata name error</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="metadata_name_error_text" xml:space="preserve">
+    <value>Cannot change the name of this metadata entry to "{0}".</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="metadata_custom" xml:space="preserve">
+    <value>custom</value>
+    <comment>Custom metadata name</comment>
+  </data>
 </root>

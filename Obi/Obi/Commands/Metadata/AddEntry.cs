@@ -21,6 +21,8 @@ namespace Obi.Commands.Metadata
             mEntry.setName(name);
         }
 
+        public urakawa.metadata.Metadata Entry { get { return mEntry; } }
+
         public override void execute()
         {
             View.Presentation.AddMetadata(mEntry);

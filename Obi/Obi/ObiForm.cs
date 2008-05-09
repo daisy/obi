@@ -315,7 +315,6 @@ namespace Obi
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
-            mAddMetadataEntryToolStripMenuItem.Enabled = mProjectView.CanAddMetadataEntry();
         }
 
         private void mUndoToolStripMenuItem_Click(object sender, EventArgs e) { Undo(); }
@@ -1570,22 +1569,6 @@ namespace Obi
                     mProjectView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mProjectView, node,
                        EmptyNode.Kind.TODO));
                 }
-            }
-        }
-
-        private void mAddMetadataEntryToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            mAddMetadataEntryToolStripMenuItem.DropDownItems.Clear();
-            foreach (string name in mProjectView.AddableMetadataNames)
-            {
-                string n = name;
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item.Text = n;
-                item.Click += new EventHandler(delegate(object _sender, EventArgs _e)
-                {
-                    mProjectView.AddMetadataEntry(n);
-                });
-                mAddMetadataEntryToolStripMenuItem.DropDownItems.Add(item);
             }
         }
 

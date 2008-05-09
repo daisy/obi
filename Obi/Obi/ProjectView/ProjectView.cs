@@ -111,9 +111,11 @@ namespace Obi.ProjectView
         /// <summary>
         /// Add a new metadata entry to the project
         /// </summary>
-        public void AddMetadataEntry(string name)
+        public urakawa.metadata.Metadata AddMetadataEntry(string name)
         {
-            mPresentation.getUndoRedoManager().execute(new Commands.Metadata.AddEntry(this, name));
+            Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(this, name);
+            mPresentation.getUndoRedoManager().execute(cmd);
+            return cmd.Entry;
         }
 
         /// <summary>
