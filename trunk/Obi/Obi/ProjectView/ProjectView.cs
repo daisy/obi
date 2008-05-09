@@ -1172,7 +1172,7 @@ namespace Obi.ProjectView
         {
             return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
                 (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
-                (key == Keys.Space) ||
+                (key == Keys.Space && TogglePlayPause()) ||
                 base.ProcessCmdKey(ref msg, key);
         }
 
