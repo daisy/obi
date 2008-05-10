@@ -13,13 +13,12 @@ namespace Obi.ProjectView
         private bool mEnableTooltips;        // tooltips flag
         private Presentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
-        private AudioSelection mCursor;      // audio cursor
         private Clipboard mClipboard;        // the clipboard
         private bool mSynchronizeViews;      // synchronize views flag
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
-        private System.Windows.Forms.Timer TabbingTimer= null; 
+        private Timer mTabbingTimer; 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -43,20 +42,11 @@ namespace Obi.ProjectView
             mMetadataViewVisible = !mTOCSplitter.Panel1Collapsed && !mMetadataSplitter.Panel2Collapsed;
             mPresentation = null;
             mSelection = null;
-            mCursor = null;
             mForm = null;
             mClipboard = null;
+            mTabbingTimer = null;
         }
 
-        void InitialiseTabbingTimer()
-        {
-            if ( TabbingTimer == null )
-            {
-            TabbingTimer = new System.Windows.Forms.Timer();
-            TabbingTimer.Tick += new System.EventHandler(this.TabbingTimer_Tick);
-            TabbingTimer.Interval = 500;
-            }
-        }
         /// <summary>
         /// Add a new empty block.
         /// </summary>
@@ -251,15 +241,6 @@ namespace Obi.ProjectView
             else if (CanCopyAudio)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.Audio.Copy(this));
-            }
-        }
-
-        public AudioSelection AudioCursor
-        {
-            get { return mCursor; }
-            set
-            {
-                mCursor = value;
             }
         }
 
@@ -798,7 +779,7 @@ namespace Obi.ProjectView
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return !mStripsView.CanSetStripUsedStatus || mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
-        public bool CanSplitBlock { get { return mSelection is AudioSelection; } }
+        public bool CanSplitBlock { get { return mTransportBar.CanSplitPhrase; } }
 
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
         public bool IsStripUsed { get { return mStripsView.IsStripUsed; } }
@@ -1289,32 +1270,38 @@ namespace Obi.ProjectView
             return false;
         }
 
-        private void  mPanelInfoLabelButton_Enter ( object sender  , EventArgs e   )
+        // Initialize timer for tabbing
+        private void InitialiseTabbingTimer()
+        {
+            if (mTabbingTimer == null)
+            {
+                mTabbingTimer = new System.Windows.Forms.Timer();
+                mTabbingTimer.Tick += new System.EventHandler(TabbingTimer_Tick);
+                mTabbingTimer.Interval = 500;
+            }
+        }
+
+        private void mPanelInfoLabelButton_Enter(object sender, EventArgs e)
         {
             mPanelInfoLabelButton.Size = new Size(150, 20);
             mPanelInfoLabelButton.BackColor = System.Drawing.SystemColors.ControlLight;
             mPanelInfoLabelButton.Text = mPanelInfoLabelButton.AccessibleName;
-
             InitialiseTabbingTimer();
-            TabbingTimer.Start () ;
+            mTabbingTimer.Start();
         }
 
         private void TabbingTimer_Tick(object sender, EventArgs e)
         {
-            if ( mPanelInfoLabelButton.ContainsFocus)
-            SendKeys.Send("{tab}");
-
-            TabbingTimer.Stop();
+            if (mPanelInfoLabelButton.ContainsFocus) SendKeys.Send("{tab}");
+            mTabbingTimer.Stop();
         }
 
-        private void  mPanelInfoLabelButton_Leave ( object sender  ,EventArgs e )
+        private void  mPanelInfoLabelButton_Leave(object sender, EventArgs e)
         {
             mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             mPanelInfoLabelButton.Size = new Size(1, 1);
             mPanelInfoLabelButton.Text = "";
         }
-
-
     }
 
     public class ImportingFileEventArgs

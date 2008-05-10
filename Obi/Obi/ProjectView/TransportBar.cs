@@ -68,7 +68,6 @@ namespace Obi.ProjectView
             mAllowOverwrite = true;
             mPlayIfNoSelection = true;
             mState = State.Stopped;
-
             AddTransportBarAccessibleName();
         }
 
@@ -99,6 +98,33 @@ namespace Obi.ProjectView
         public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring; } }
         public bool CanRewind { get { return Enabled && mRecordingSession == null; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
+        
+        /// <summary>
+        /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
+        /// </summary>
+        public bool CanSplitPhrase
+        {
+            get
+            {
+                return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
+                    mPlayer.State == Obi.Audio.AudioPlayerState.Playing ||
+                    mView.Selection is AudioSelection;
+            }
+        }
+
+        /// <summary>
+        /// Split time is either 
+        /// </summary>
+        public double SplitTime
+        {
+            get
+            {
+                return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
+                    mPlayer.State == Obi.Audio.AudioPlayerState.Playing ?
+                    mCurrentPlaylist.CurrentTimeInAsset :
+                    ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+            } 
+        }
 
         /// <summary>
         /// Get the current playlist.

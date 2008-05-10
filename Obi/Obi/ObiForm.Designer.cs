@@ -1055,7 +1055,6 @@ namespace Obi
             // 
             // mProjectView
             // 
-            this.mProjectView.AudioCursor = null;
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");

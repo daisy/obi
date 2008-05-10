@@ -10,7 +10,7 @@ namespace Obi.Commands.Node
         private Time mSplitPoint;          // split point
 
         public SplitAudio(ProjectView.ProjectView view) :
-            this(view, ((AudioSelection)view.Selection).AudioRange.CursorTime)
+            this(view, view.TransportBar.SplitTime)
         {
         }
 
