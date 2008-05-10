@@ -266,10 +266,6 @@ namespace Obi
         }
 
         #endregion
-
-
-
-        public bool IsTransportActive { get { return mProjectView.TransportBar.IsActive; } }
         
         /// <summary>
         /// Application settings.
@@ -706,6 +702,7 @@ namespace Obi
         void TransportBar_StateChanged(object sender, EventArgs e )
         {
             Status(Localizer.Message(mProjectView.TransportBar.CurrentState.ToString()));
+            UpdatePhrasesMenu();
             UpdateTransportMenu();
         }
 
@@ -1218,15 +1215,15 @@ namespace Obi
                     string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
                     string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
                     //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
-                    AudioSelectionStatusMessage = string.Concat( Localizer.Message ("AudioSelected") , BeginTime, " - ", EndTime , "s" );
-                    
+                    AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
+
                 }
                 else
                 {
                     DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
                     AudioSelectionStatusMessage = "";
                 }
-                                }
+            }
             else
             {
                 BeginInPhraseSelectionToolStripMenuItem.Enabled = false;
@@ -1234,9 +1231,9 @@ namespace Obi
                 DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
                 AudioSelectionStatusMessage = "";
             }
-            if ( AudioSelectionStatusMessage != "" )
-            Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
-                            }
+            if (AudioSelectionStatusMessage != "")
+                Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+        }
 
         private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
         private void mAddEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
