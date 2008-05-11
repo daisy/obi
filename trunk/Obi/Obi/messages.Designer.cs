@@ -594,7 +594,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom.
+        ///   Looks up a localized string similar to Marked.
         /// </summary>
         internal static string default_custom_class_name {
             get {

@@ -561,7 +561,7 @@ Error text: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="default_custom_class_name" xml:space="preserve">
-    <value>Custom</value>
+    <value>Marked</value>
     <comment>Role stuff</comment>
   </data>
   <data name="no_preceding_silent_phrase" xml:space="preserve">

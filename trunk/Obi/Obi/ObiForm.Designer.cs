@@ -106,7 +106,7 @@ namespace Obi
             this.mEditRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mClearRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -597,7 +597,7 @@ namespace Obi
             this.mEditRolesToolStripMenuItem,
             this.mClearRoleToolStripMenuItem,
             this.PhraseDetectionToolStripMenuItem,
-            this.MarkDefaultCustomClassToolStripMenuItem,
+            this.mMarkDefaultCustomClassToolStripMenuItem,
             this.InPhraseSelectionToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
@@ -712,11 +712,11 @@ namespace Obi
             resources.ApplyResources(this.PhraseDetectionToolStripMenuItem, "PhraseDetectionToolStripMenuItem");
             this.PhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
             // 
-            // MarkDefaultCustomClassToolStripMenuItem
+            // mMarkDefaultCustomClassToolStripMenuItem
             // 
-            this.MarkDefaultCustomClassToolStripMenuItem.Name = "MarkDefaultCustomClassToolStripMenuItem";
-            resources.ApplyResources(this.MarkDefaultCustomClassToolStripMenuItem, "MarkDefaultCustomClassToolStripMenuItem");
-            this.MarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(this.MarkDefaultCustomClassToolStripMenuItem_Click);
+            this.mMarkDefaultCustomClassToolStripMenuItem.Name = "mMarkDefaultCustomClassToolStripMenuItem";
+            resources.ApplyResources(this.mMarkDefaultCustomClassToolStripMenuItem, "mMarkDefaultCustomClassToolStripMenuItem");
+            this.mMarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(this.mMarkDefaultCustomClassToolStripMenuItem_Click);
             // 
             // InPhraseSelectionToolStripMenuItem
             // 
@@ -1204,7 +1204,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem BeginInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EndInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeselectInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MarkDefaultCustomClassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mMarkDefaultCustomClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem1;
