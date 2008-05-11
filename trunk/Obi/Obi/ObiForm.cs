@@ -674,6 +674,7 @@ namespace Obi
             {
                 Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             }
+            mProjectView.Selection = null;
             mProjectView.Presentation = null;
             UpdateObi();
             if (mSourceView != null) mSourceView.Close();
@@ -1377,6 +1378,9 @@ namespace Obi
         {
             mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            PlayPreviewtoolStripMenuItem.Enabled = mProjectView.CanPlay;
+            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay; 
+
             if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;
@@ -1391,6 +1395,7 @@ namespace Obi
             mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
 
             // update recording menu items
+            recordToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
             mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsListening)
                 mStartListeningToolStripMenuItem.Text = "&Start Recording";

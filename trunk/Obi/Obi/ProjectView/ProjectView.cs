@@ -194,7 +194,7 @@ namespace Obi.ProjectView
         public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
-        public bool CanDelete { get { return CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata; } }
+        public bool CanDelete { get { return Selection != null &&  ( CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata ) ; } }
         public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
@@ -212,8 +212,8 @@ namespace Obi.ProjectView
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
-        public bool CanRenameSection { get { return CanRenameStrip || mTOCView.CanRenameSection; } }
-        public bool CanRenameStrip { get { return mStripsView.CanRenameStrip; } }
+        public bool CanRenameSection { get { return Selection != null  && (CanRenameStrip || mTOCView.CanRenameSection) ; } }
+        public bool CanRenameStrip { get { return Selection != null  && ( mStripsView.CanRenameStrip ); } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
