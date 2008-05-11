@@ -13,6 +13,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckDX", "Setup\CustomActions\CheckDX\CheckDX\CheckDX.csproj", "{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{1553F3D3-A820-400E-9B98-BCCA970E1D58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A8E7FDE-EBBE-4757-BAD2-35CDB25D5138}.Debug|Any CPU.ActiveCfg = Debug
 		{3A8E7FDE-EBBE-4757-BAD2-35CDB25D5138}.Release|Any CPU.ActiveCfg = Release
+		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BFE0B9-BCF1-4B68-8FE9-828037A48F4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
