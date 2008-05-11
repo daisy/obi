@@ -1193,7 +1193,7 @@ namespace Obi
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
             PhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
-
+            mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
             UpdateAudioSelectionBlockMenuItems();
         }
 
@@ -1545,10 +1545,9 @@ namespace Obi
             UpdateAudioSelectionBlockMenuItems();
         }
 
-        private void MarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mMarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.Enabled)
-                mProjectView.TransportBar.MarkCustomClass();
+            if (mProjectView.TransportBar.Enabled) mProjectView.TransportBar.MarkCustomClass();
         }
 
         private void mTodoClasstoolStripMenuItem_Click(object sender, EventArgs e)

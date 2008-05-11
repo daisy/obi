@@ -84,7 +84,7 @@ namespace Obi.ProjectView
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
         public bool CanFastForward { get { return Enabled && mRecordingSession == null; } }
-        public bool CanMarkCustomClass { get { return Enabled && mState == State.Recording; } }
+        public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
         public bool CanNavigateNextPage { get { return Enabled; } }
         public bool CanNavigateNextPhrase { get { return Enabled; } }
         public bool CanNavigateNextSection { get { return Enabled; } }
@@ -102,13 +102,14 @@ namespace Obi.ProjectView
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
-        public bool CanSplitPhrase
+        public bool CanSplitPhrase { get { return HasAudioCursor || mView.Selection is AudioSelection; } }
+
+        public bool HasAudioCursor
         {
             get
             {
                 return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
-                    mPlayer.State == Obi.Audio.AudioPlayerState.Playing ||
-                    mView.Selection is AudioSelection;
+                    mPlayer.State == Obi.Audio.AudioPlayerState.Playing;
             }
         }
 
@@ -1156,11 +1157,11 @@ namespace Obi.ProjectView
         /// <summary>
         /// Mark custom class on current block with default name as "Custom"
         /// If recording, create new phrase and mark custom class this new phrase block
-        /// else mark on currently selected block
+        /// else mark on currently playing block; otherwise on selected block
         /// </summary>
         public void MarkCustomClass()
         {
-            if (mView.Selection != null)
+            if (mView.CanMarkPhrase)
             {
                 EmptyNode node;
                 if (IsRecording)
@@ -1170,10 +1171,18 @@ namespace Obi.ProjectView
                 }
                 else
                 {
-                    node = mView.SelectedNodeAs<EmptyNode>();
+                    if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
+                        mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
+                    {
+                        node = mCurrentPlaylist.CurrentPhrase;
+                    }
+                    else
+                    {
+                        node = mView.SelectedNodeAs<EmptyNode>();
+                    }
                 }
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                    EmptyNode.Kind.Custom, Localizer.Message("default_custom_class_name")));
+                    mView.MarkRole, mView.MarkCustomRole));
             }
         }
 

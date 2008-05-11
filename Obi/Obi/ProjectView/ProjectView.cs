@@ -18,7 +18,10 @@ namespace Obi.ProjectView
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
-        private Timer mTabbingTimer; 
+        private Timer mTabbingTimer;         // ???
+
+        private EmptyNode.Kind mMarkRole;    // role to use as the on-the-fly custom role mark
+        private string mMarkCustomRole;      // custom role (if applicable)
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -45,7 +48,14 @@ namespace Obi.ProjectView
             mForm = null;
             mClipboard = null;
             mTabbingTimer = null;
+
+            mMarkRole = EmptyNode.Kind.Custom;
+            mMarkCustomRole = Localizer.Message("default_custom_class_name");
         }
+
+
+        public EmptyNode.Kind MarkRole { get { return mMarkRole; } }
+        public string MarkCustomRole { get { return mMarkCustomRole; } }
 
         /// <summary>
         /// Add a new empty block.
@@ -211,6 +221,19 @@ namespace Obi.ProjectView
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode; } }
+
+        public bool CanMarkPhrase
+        {
+            get
+            {
+                EmptyNode node = mTransportBar.HasAudioCursor ?
+                    mTransportBar.CurrentPlaylist.CurrentPhrase :
+                    SelectedNodeAs<EmptyNode>();
+                return mTransportBar.CurrentState == TransportBar.State.Recording ||
+                    mTransportBar.CurrentState == TransportBar.State.Paused ||
+                    (node != null && (node.NodeKind != mMarkRole || node.CustomClass != mMarkCustomRole));
+            }
+        }        
 
         /// <summary>
         /// Contents of the clipboard
