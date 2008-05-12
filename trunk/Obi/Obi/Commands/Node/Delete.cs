@@ -12,6 +12,7 @@ namespace Obi.Commands.Node
         private ObiNode mParent;       // its original parent node
         private NodeSelection mAfter;  // selection after deletion
         private int mIndex;            // its original index
+        private ProjectView.ProjectView mView;
 
 
         /// <summary>
@@ -20,6 +21,7 @@ namespace Obi.Commands.Node
         public Delete(ProjectView.ProjectView view, ObiNode node, string label)
             : base(view)
         {
+            mView = view;
             mNode = node;
             mParent = node.ParentAs<ObiNode>();
             mIndex = mNode.Index;
@@ -35,6 +37,9 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
+            if (mView.TransportBar.IsActive)
+                mView.TransportBar.Stop();
+
             mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
         }
