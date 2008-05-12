@@ -338,6 +338,7 @@ namespace Obi
             mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
             mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowOnlySelectedSectionToolStripMenuItem.Enabled = mProjectView.CanShowOnlySelectedSection;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
         }
@@ -374,14 +375,22 @@ namespace Obi
 
         private void mFocusOnTransportBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.TransportBar.Enabled)
-                mProjectView.TransportBar.Focus();
+            if (mProjectView.TransportBar.Enabled) mProjectView.TransportBar.Focus();
         }
 
         private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;
         }
+
+        private void mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mProjectView.CanShowOnlySelectedSection)
+            {
+                mProjectView.ShowOnlySelectedSection = mShowOnlySelectedSectionToolStripMenuItem.Checked;
+            }
+        }
+
 
         private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
 
@@ -460,6 +469,7 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
             mSession.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
             mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
+            mShowOnlySelectedSectionToolStripMenuItem.Checked = false;
             UpdateCustomClassMenu();
         }
 

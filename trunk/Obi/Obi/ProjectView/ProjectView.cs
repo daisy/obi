@@ -14,6 +14,7 @@ namespace Obi.ProjectView
         private Presentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
         private Clipboard mClipboard;        // the clipboard
+        private bool mShowOnlySelected;      // show only selected section
         private bool mSynchronizeViews;      // synchronize views flag
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
@@ -218,6 +219,7 @@ namespace Obi.ProjectView
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
+        public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } } 
         public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode; } }
@@ -600,6 +602,7 @@ namespace Obi.ProjectView
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
                         mSelection.Control.Selection = value;
                     }
+                    UpdateShowOnlySelected(mSelection == null ? false : mShowOnlySelected);
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }
@@ -623,6 +626,27 @@ namespace Obi.ProjectView
                     }, delegate(urakawa.core.TreeNode n) { }
                 );
                 Presentation.getUndoRedoManager().execute(command);
+            }
+        }
+
+        public bool ShowOnlySelectedSection
+        {
+            set
+            {
+                mShowOnlySelected = value;
+                UpdateShowOnlySelected(value);
+            }
+        }
+
+        private void UpdateShowOnlySelected(bool showOnly)
+        {
+            if (showOnly)
+            {
+                mStripsView.ShowOnlySelectedSection(SelectedNodeAs<ObiNode>());
+            }
+            else
+            {
+                SynchronizeViews = mSynchronizeViews;
             }
         }
 
@@ -657,17 +681,20 @@ namespace Obi.ProjectView
             set
             {
                 mSynchronizeViews = value;
-                if (mSynchronizeViews)
+                if (!mShowOnlySelected || !CanShowOnlySelectedSection)
                 {
-                    mTOCView.ResyncViews();
-                    if (mSelection != null && mSelection.Control == mTOCView)
+                    if (mSynchronizeViews)
                     {
-                        mStripsView.MakeStripVisibleForSection(SelectedNodeAs<SectionNode>());
+                        mTOCView.ResyncViews();
+                        if (mSelection != null && mSelection.Control == mTOCView)
+                        {
+                            mStripsView.MakeStripVisibleForSection(SelectedNodeAs<SectionNode>());
+                        }
                     }
-                }
-                else
-                {
-                    mStripsView.UnsyncViews();
+                    else
+                    {
+                        mStripsView.UnsyncViews();
+                    }
                 }
             }
         }

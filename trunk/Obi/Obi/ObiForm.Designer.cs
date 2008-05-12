@@ -153,6 +153,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mShowOnlySelectedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -405,6 +406,7 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
+            this.mShowOnlySelectedSectionToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem});
@@ -1045,6 +1047,13 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mShowOnlySelectedSectionToolStripMenuItem
+            // 
+            this.mShowOnlySelectedSectionToolStripMenuItem.CheckOnClick = true;
+            this.mShowOnlySelectedSectionToolStripMenuItem.Name = "mShowOnlySelectedSectionToolStripMenuItem";
+            resources.ApplyResources(this.mShowOnlySelectedSectionToolStripMenuItem, "mShowOnlySelectedSectionToolStripMenuItem");
+            this.mShowOnlySelectedSectionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged);
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1196,6 +1205,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem mPlayOnNavigateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowOnlySelectedSectionToolStripMenuItem;
     }
 }
 
