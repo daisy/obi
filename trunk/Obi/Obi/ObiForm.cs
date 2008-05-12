@@ -548,6 +548,9 @@ namespace Obi
         // Redo
         private void Redo()
         {
+            if (mProjectView.TransportBar.IsActive)
+                mProjectView.TransportBar.Stop();
+
             if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager().redo();
         }
 
@@ -615,6 +618,9 @@ namespace Obi
         // Undo
         private void Undo()
         {
+            if (mProjectView.TransportBar.IsActive)
+                mProjectView.TransportBar.Stop();
+
             if (mSession.CanUndo) { mSession.Presentation.getUndoRedoManager().undo(); }
         }
 
