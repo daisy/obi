@@ -1160,5 +1160,15 @@ null;
                 SelectFirstBlockInStrip();
             }
         }
+
+        public void ShowOnlySelectedSection(ObiNode node)
+        {
+            // Show only one strip
+            SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode>();
+            foreach (Control c in mLayoutPanel.Controls)
+            {
+                if (c is Strip) c.Visible = ((Strip)c).Node == section;
+            }
+        }
     }
 }
