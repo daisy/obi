@@ -615,7 +615,7 @@ namespace Obi.ProjectView
                     // Stopping again deselects everything
                     if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                     {
-                        mView.Selection = null;
+                        //mView.Selection = null;
                     }
                     else
                     {
@@ -1146,7 +1146,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool IsActive { get { return IsPlayerActive || IsRecorderActive; } }
+        public bool IsActive { get { return Enabled && ( IsPlayerActive || IsRecorderActive ); } }
         private bool IsPlaying { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Playing; } }
         private bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
