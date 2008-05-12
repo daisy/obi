@@ -167,12 +167,6 @@
     <Compile Include="Dialogs\ShowSource.designer.cs">
       <DependentUpon>ShowSource.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\UserProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\UserProfile.Designer.cs">
-      <DependentUpon>UserProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="EmptyNode.cs" />
     <Compile Include="Events\Audio\Player\EndOfAudioDataEventArgs.cs" />
     <Compile Include="Events\Audio\Player\StateChangedEventArgs.cs" />
@@ -316,10 +310,6 @@
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\UserProfile.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>UserProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>

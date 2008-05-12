@@ -144,9 +144,6 @@ namespace Obi
             this.rewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mAudioPreferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -975,35 +972,15 @@ namespace Obi
             // mToolsToolStripMenuItem
             // 
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userSettingsToolStripMenuItem,
-            this.preferencesToolStripMenuItem,
-            this.mAudioPreferencesToolStripMenuItem,
             this.preferencesToolStripMenuItem1});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
-            // 
-            // userSettingsToolStripMenuItem
-            // 
-            this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            resources.ApplyResources(this.userSettingsToolStripMenuItem, "userSettingsToolStripMenuItem");
-            this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            resources.ApplyResources(this.preferencesToolStripMenuItem, "preferencesToolStripMenuItem");
-            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
-            // 
-            // mAudioPreferencesToolStripMenuItem
-            // 
-            this.mAudioPreferencesToolStripMenuItem.Name = "mAudioPreferencesToolStripMenuItem";
-            resources.ApplyResources(this.mAudioPreferencesToolStripMenuItem, "mAudioPreferencesToolStripMenuItem");
-            this.mAudioPreferencesToolStripMenuItem.Click += new System.EventHandler(this.mAudioPreferencesToolStripMenuItem_Click);
             // 
             // preferencesToolStripMenuItem1
             // 
             this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             resources.ApplyResources(this.preferencesToolStripMenuItem1, "preferencesToolStripMenuItem1");
+            this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1099,9 +1076,6 @@ namespace Obi
         private System.Windows.Forms.StatusStrip mStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel mStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem mToolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem userSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAudioPreferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutObiToolStripMenuItem;

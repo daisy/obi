@@ -490,22 +490,24 @@ namespace Obi
             }
         }
 
-        public bool UpdatePresentationAudioProperties( int channels  , int bitDepth , int samplingRate)
+        /// <summary>
+        /// Update the audio properties of the presentation, if possible. Return true on success.
+        /// </summary>
+        public bool UpdatePresentationAudioProperties(int channels, int bitDepth, int sampleRate)
         {
-                            try
-                {
-                    DataManager.setDefaultNumberOfChannels((ushort) channels);
-                    DataManager.setDefaultBitDepth((ushort) bitDepth);
-                    DataManager.setDefaultSampleRate((uint) samplingRate);
-                    DataManager.setEnforceSinglePCMFormat(true);
-                    return true;
-                }
-                catch 
-                {
-                    return false;
-                }
-                                }
-        
+            try
+            {
+                DataManager.setDefaultNumberOfChannels((ushort)channels);
+                DataManager.setDefaultBitDepth((ushort)bitDepth);
+                DataManager.setDefaultSampleRate((uint)sampleRate);
+                DataManager.setEnforceSinglePCMFormat(true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }        
 
         // Get the elapsed time at the beginning of each section
         // (last section has the total time.)
