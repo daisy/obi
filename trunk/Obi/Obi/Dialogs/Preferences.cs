@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
@@ -13,208 +14,161 @@ namespace Obi.Dialogs
 {
     public partial class Preferences : Form
     {
-        private string mIdTemplate;             // identifier template
-        private string mDefaultXUKDirectory;    // default project directory
-        private string mDefaultDAISYDirectory;  // default export directory
-        private bool mOpenLastProject;          // automatically open last project
-        private bool mEnableTooltips;           // enable/disable tooltips
-        private InputDevice mInputDevice;       // preferred input device
-        private OutputDevice mOutputDevice;     // preferred output device
-        private int mAudioChannels;             // preferred number of audio channels
-        private int mSampleRate;                // preferred sample rate
-        private int mBitDepth;                  // preferred bit depth
-        private bool mCanChangeAudioSettings;   // if the settings come from the project they cannot change
-        private Presentation mPresentation; // presentation of active project
+        private ObiForm mForm;                           // parent form
+        private Settings mSettings;                      // the settings to modify
+        private bool mCanChangeAudioSettings;            // if the settings come from the project they cannot change
+        private Presentation mPresentation;              // current presentation (may be null)
+        private ProjectView.TransportBar mTransportBar;  // application transport bar
 
-        private Audio.AudioPlayer mPlayer;      // audio player
-        private Audio.AudioRecorder mRecorder;  // Recorder instance
 
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences(Settings settings, Presentation presentation, ProjectView.TransportBar transportbar)
+        public Preferences(ObiForm form, Settings settings, Presentation presentation, ProjectView.TransportBar transportbar)
         {
             InitializeComponent();
-            mDefaultXUKDirectory = settings.DefaultPath;
-            mDefaultDAISYDirectory = settings.DefaultExportPath;
-            mDirectoryBox.Text = mDefaultXUKDirectory;
-            mExportBox.Text = mDefaultDAISYDirectory;
-            mLastOpenCheckBox.Checked = settings.OpenLastProject;
-            mTooltipsCheckBox.Checked = settings.EnableTooltips;
-            mPlayer = transportbar.AudioPlayer;
-            mRecorder = transportbar.Recorder;
-            mInputDevice = mRecorder.InputDevice;
-            mOutputDevice = mPlayer.OutputDevice;
+            mForm = form;
+            mSettings = settings;
             mPresentation = presentation;
+            mTransportBar = transportbar;
+            InitializeProjectTab();
+            InitializeAudioTab();
+            InitializeProfileTab();
+        }
 
-            if (presentation != null )
+        // Initialize the project tab
+        private void InitializeProjectTab()
+        {
+            mDirectoryTextbox.Text = mSettings.DefaultPath;
+            mExportTextbox.Text = mSettings.DefaultExportPath;
+            mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
+        }
+
+        // Initialize audio tab
+        private void InitializeAudioTab()
+        {
+            AudioRecorder recorder = mTransportBar.Recorder;
+            mInputDeviceCombo.DataSource = recorder.InputDevices;
+            mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf(recorder.InputDevice);
+
+            AudioPlayer player = mTransportBar.AudioPlayer;
+            mOutputDeviceCombo.DataSource = player.OutputDevices;
+            mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf(player.OutputDevice);
+
+            int sampleRate;
+            int audioChannels;
+            if (mPresentation != null)
             {
-                mSampleRate = (int)  presentation.DataManager.getDefaultPCMFormat ().getSampleRate () ;
-                mAudioChannels = presentation.DataManager.getDefaultPCMFormat ().getNumberOfChannels () ;
-                mBitDepth = presentation.DataManager.getDefaultPCMFormat().getBitDepth() ;
-
-                // do not allow  change in audio properties if project contains any audio
-                if ( presentation.getMediaDataManager().getListOfMediaData().Count > 0  )
-                mCanChangeAudioSettings = false ;
-                else
-                mCanChangeAudioSettings = true ;
+                sampleRate = (int)mPresentation.DataManager.getDefaultPCMFormat().getSampleRate();
+                audioChannels = mPresentation.DataManager.getDefaultPCMFormat().getNumberOfChannels();
+                mCanChangeAudioSettings = mPresentation.getMediaDataManager().getListOfMediaData().Count == 0;
             }
             else
             {
-                mSampleRate = settings.SampleRate;
-                mAudioChannels = settings.AudioChannels;
-                mBitDepth = settings.BitDepth;
+                sampleRate = mSettings.SampleRate;
+                audioChannels = mSettings.AudioChannels;
                 mCanChangeAudioSettings = true;
             }
+            ArrayList sampleRates = new ArrayList();
+            // TODO: replace this with a list obtained from the player or the device
+            sampleRates.Add("11025");
+            sampleRates.Add("22050");
+            sampleRates.Add("44100");
+            sampleRates.Add("48000");
+            mSampleRateCombo.DataSource = sampleRates;
+            mSampleRateCombo.SelectedIndex = sampleRates.IndexOf(sampleRate.ToString());
+            mSampleRateCombo.Visible = mCanChangeAudioSettings;
+            mSampleRateTextbox.Text = sampleRate.ToString();
+            mSampleRateTextbox.Visible = !mCanChangeAudioSettings;
+            ArrayList channels = new ArrayList();
+            channels.Add(Localizer.Message("mono"));
+            channels.Add(Localizer.Message("stereo"));
+            mChannelsCombo.DataSource = channels;
+            mChannelsCombo.SelectedIndex = channels.IndexOf(Localizer.Message(audioChannels == 1 ? "mono" : "stereo"));
+            mChannelsCombo.Visible = mCanChangeAudioSettings;
+            mChannelsTextbox.Text = Localizer.Message(audioChannels == 1 ? "mono" : "stereo");
+            mChannelsTextbox.Visible = !mCanChangeAudioSettings;
         }
 
-
-        /// <summary>
-        /// Current number of audio channels.
-        /// </summary>
-        public int AudioChannels { get { return mAudioChannels; } }
-
-        /// <summary>
-        /// Current bit depth.
-        /// </summary>
-        public int BitDepth { get { return mBitDepth; } }
-
-        public bool CanChangeAudioSettings { get {return  mCanChangeAudioSettings;  } }
-
-        /// <summary>
-        /// Default directory for exported DAISY books
-        /// </summary>
-        public string DefaultDAISYDirectory { get { return mDefaultDAISYDirectory; } }
-
-        /// <summary>
-        /// Default directory for new projects
-        /// </summary>
-        public string DefaultXUKDirectory { get { return mDefaultXUKDirectory; } }
-
-        /// <summary>
-        /// Enable or disable tooltips.
-        /// </summary>
-        public bool EnableTooltips { get { return mEnableTooltips; } }
-
-        /// <summary>
-        /// Identifier template for new projects
-        /// </summary>
-        public string IdTemplate { get { return mIdTemplate; } }
-
-        /// <summary>
-        /// The current input device.
-        /// </summary>
-        public InputDevice InputDevice { get { return mInputDevice; } }
-
-        /// <summary>
-        /// Automatically open last open project on startup.
-        /// </summary>
-        public bool OpenLastProject { get { return mOpenLastProject; } }
-
-        /// <summary>
-        /// The current output device.
-        /// </summary>
-        public OutputDevice OutputDevice { get { return mOutputDevice; } }
-
-        /// <summary>
-        /// Current sample rate.
-        /// </summary>
-        public int SampleRate { get { return mSampleRate; } }
+        // Initialize user profile preferences
+        private void InitializeProfileTab()
+        {
+            mFullNameTextbox.Text = mSettings.UserProfile.Name;
+            mOrganizationTextbox.Text = mSettings.UserProfile.Organization;
+            mCultureBox.Items.AddRange(CultureInfo.GetCultures(CultureTypes.AllCultures));
+            mCultureBox.SelectedItem = mSettings.UserProfile.Culture;
+        }
 
         /// <summary>
         /// Browse for a project directory.
         /// </summary>
         private void mBrowseButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.SelectedPath = mDefaultXUKDirectory;
-            dialog.Description = Localizer.Message("default_directory_browser");
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                mDefaultXUKDirectory = dialog.SelectedPath;
-                mDirectoryBox.Text = mDefaultXUKDirectory;
-            }
+            SelectFolder(mSettings.DefaultPath, "default_directory_browser", mDirectoryTextbox);
         }
-
 
         /// <summary>
         /// Browse for the export directory.
         /// </summary>
         private void mBrowseExportButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.SelectedPath = mDefaultXUKDirectory;
-            dialog.Description = Localizer.Message("export_directory_browser");
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                mDefaultDAISYDirectory = dialog.SelectedPath;
-                mExportBox.Text = mDefaultDAISYDirectory;
-            }
+            SelectFolder(mSettings.DefaultExportPath, "export_directory_browser", mExportTextbox);
         }
 
-        /// <summary>
-        /// Validate the changes.
-        /// </summary>
+        private void SelectFolder(string path, string description, TextBox textBox)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = path;
+            dialog.Description = Localizer.Message(description);
+            if (dialog.ShowDialog() == DialogResult.OK) textBox.Text = dialog.SelectedPath;
+        }
+
+        // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            //mg: rewrite of the above to try to make sure dir exists
-            //only if the value changed since showdialog...
-            if (mDefaultXUKDirectory != mDirectoryBox.Text)                
-            {
-                //...do we go through the test to avoid annyoing repeats
-                if (ObiForm.CanUseDirectory(mDirectoryBox.Text, false))
-                    mDefaultXUKDirectory = mDirectoryBox.Text;                
-            }
-            if (mDefaultDAISYDirectory != mExportBox.Text &&
-                ObiForm.CanUseDirectory(mExportBox.Text, false))
-            {
-                mDefaultDAISYDirectory = mExportBox.Text;
-            }
-            mOpenLastProject = mLastOpenCheckBox.Checked;
-            mEnableTooltips = mTooltipsCheckBox.Checked;
-            mInputDevice = (InputDevice)comboInputDevice.SelectedItem;
-            mOutputDevice = (OutputDevice)comboOutputDevice.SelectedItem;
-            if (comboChannels.SelectedItem.ToString() == "Mono")
-                mAudioChannels = 1;
-            else
-                mAudioChannels = 2;
-            mSampleRate = Convert.ToInt32(comboSampleRate.SelectedItem);
-            mBitDepth = 16;
-
+            UpdateProjectSettings();
+            UpdateAudioSettings();
+            UpdateUserProfile();
         }
 
-        
-        private void Preferences_Load(object sender, EventArgs e)
+        // Update project settings
+        private void UpdateProjectSettings()
         {
-            comboInputDevice.DataSource = mRecorder.InputDevices;
-            comboInputDevice.SelectedIndex =mRecorder.InputDevices.IndexOf(mInputDevice);
-            comboOutputDevice.DataSource = mPlayer.OutputDevices;
-            comboOutputDevice.SelectedIndex = mPlayer.OutputDevices.IndexOf(mOutputDevice);
-            ArrayList mSample = new ArrayList();
-            // TODO: replace this with a list obtained from the player or the device
-            mSample.Add("11025");
-            mSample.Add("22050");
-            mSample.Add("44100");
-            mSample.Add("48000");
-            comboSampleRate.DataSource = mSample;
-            comboSampleRate.SelectedIndex = mSample.IndexOf(mSampleRate.ToString());
-            comboSampleRate.Visible = mCanChangeAudioSettings;
-            m_txtSamplingRate.Text = mSampleRate.ToString();
-            m_txtSamplingRate.Visible = !mCanChangeAudioSettings;
-
-            ArrayList mArrayChannels = new ArrayList();
-            mArrayChannels.Add(Localizer.Message("mono"));
-            mArrayChannels.Add(Localizer.Message("stereo"));
-            comboChannels.DataSource = mArrayChannels;
-            comboChannels.SelectedIndex = mArrayChannels.IndexOf(Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo"));
-            comboChannels.Visible = mCanChangeAudioSettings;
-                        m_txtChannels.Text = Localizer.Message(mAudioChannels == 1 ? "mono" : "stereo") ;
-            m_txtChannels.Visible = !mCanChangeAudioSettings;
-
-            m_txtBitDepth.Text = mBitDepth.ToString();
+            if (ObiForm.CanUseDirectory(mDirectoryTextbox.Text, false))
+            {
+                mSettings.DefaultPath = mDirectoryTextbox.Text;
+            }
+            if (ObiForm.CanUseDirectory(mExportTextbox.Text, false))
+            {
+                mSettings.DefaultExportPath = mExportTextbox.Text;
+            }
+            mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         }
- 
-        public void SelectProjectTab() { mTab.SelectedTab = mProjectTab; }
-        public void SelectAudioTab() { mTab.SelectedTab = mAudioTab; }
+
+        // Update audio settings
+        private void UpdateAudioSettings()
+        {
+            mTransportBar.AudioPlayer.SetDevice(mForm, (OutputDevice)mOutputDeviceCombo.SelectedItem);
+            mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;
+            if (mCanChangeAudioSettings)
+            {
+                mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
+                mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
+                mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString() == Localizer.Message("mono") ? 1 : 2;
+                mSettings.SampleRate = Convert.ToInt32(mSampleRateCombo.SelectedItem);
+                if (mPresentation != null)
+                {
+                    mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate);
+                }
+            }
+        }
+
+        // Update user profile
+        private void UpdateUserProfile()
+        {
+            mSettings.UserProfile.Name = mFullNameTextbox.Text;
+            mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
+            mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+        }
     }
 }

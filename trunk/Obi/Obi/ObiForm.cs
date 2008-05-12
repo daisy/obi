@@ -782,72 +782,12 @@ namespace Obi
             MessageBox.Show(String.Format(Localizer.Message("report_delete_error"), path, message));
         }
 
-        /// <summary>
-        /// Edit the user profile through the user profile dialog.
-        /// </summary>
-        private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        // Open the preferences dialog
+        private void mPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialogs.UserProfile dialog = new Dialogs.UserProfile(mSettings.UserProfile);
-            dialog.ShowDialog();
+            Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation, mProjectView.TransportBar);
+            prefs.ShowDialog();
             Ready();
-        }
-
-        /// <summary>
-        /// Edit the preferences, starting from the Project tab. (JQ)
-        /// </summary>
-        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mSession.Presentation, mProjectView.TransportBar);
-            dialog.SelectProjectTab();
-            ShowPreferencesDialog(dialog);
-        }
-
-        private void ShowPreferencesDialog(Dialogs.Preferences dialog)
-        {
-            if (dialog.ShowDialog() == DialogResult.OK) UpdateSettings(dialog);
-            Ready();
-        }
-
-        /// <summary>
-        /// Edit the preferences, starting from the Audio tab. (JQ)
-        /// </summary>
-        private void mAudioPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.Preferences dialog = new Dialogs.Preferences(mSettings, mSession.Presentation, mProjectView.TransportBar);
-            dialog.SelectAudioTab();
-            ShowPreferencesDialog(dialog);
-        }
-
-        /// <summary>
-        /// Update the settings after the user has made some changes in the preferrences dialog. (JQ)
-        /// </summary>
-        private void UpdateSettings(Dialogs.Preferences dialog)
-        {
-            if (Directory.Exists(dialog.DefaultXUKDirectory)) mSettings.DefaultPath = dialog.DefaultXUKDirectory;
-            if (Directory.Exists(dialog.DefaultDAISYDirectory)) mSettings.DefaultExportPath = dialog.DefaultDAISYDirectory;
-            mSettings.OpenLastProject = dialog.OpenLastProject;
-            mSettings.LastOutputDevice = dialog.OutputDevice.Name;
-            mProjectView.TransportBar.AudioPlayer.SetDevice(this, dialog.OutputDevice);
-            mSettings.LastInputDevice = dialog.InputDevice.Name;
-            mProjectView.TransportBar.Recorder.InputDevice = dialog.InputDevice;
-
-            // following audio properties in pref dialog are also used for setting project specific audio properties so 
-            //the change should go to settings only if no project is openned.
-            if (mProjectView.Presentation == null)
-            {
-                mSettings.AudioChannels = dialog.AudioChannels;
-                mSettings.SampleRate = dialog.SampleRate;
-                mSettings.BitDepth = dialog.BitDepth;
-            }
-            else
-            {
-                if ( dialog.CanChangeAudioSettings )
-                mProjectView.Presentation.UpdatePresentationAudioProperties(dialog.AudioChannels, dialog.BitDepth, dialog.SampleRate);
-            }
-
-            // tooltips
-            mSettings.EnableTooltips = dialog.EnableTooltips;
-            mProjectView.EnableTooltips = dialog.EnableTooltips;
         }
 
         /// <summary>
