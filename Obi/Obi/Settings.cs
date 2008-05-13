@@ -37,8 +37,9 @@ namespace Obi
         public ArrayList RecentProjects;  // paths to projects recently opened
         public int SampleRate;            // sample rate in Hertz
         public UserProfile UserProfile;   // the user profile
+        public bool WrapStrips;           // wrapping in content view
 
-        private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
+        private static readonly string SETTINGS_FILE_NAME = "obi_settings_alpha8.xml";
 
 
         /// <summary>
@@ -67,6 +68,7 @@ namespace Obi
             settings.PreviewDuration = 1500;
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = true;
+            settings.WrapStrips = false;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {

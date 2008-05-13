@@ -73,6 +73,7 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mShowOnlySelectedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +154,8 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mShowOnlySelectedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -406,7 +408,9 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
+            this.toolStripSeparator8,
             this.mShowOnlySelectedSectionToolStripMenuItem,
+            this.mWrappingInContentViewToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem});
@@ -480,6 +484,13 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
             resources.ApplyResources(this.mSynchronizeViewsToolStripMenuItem, "mSynchronizeViewsToolStripMenuItem");
             this.mSynchronizeViewsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_CheckedChanged);
+            // 
+            // mShowOnlySelectedSectionToolStripMenuItem
+            // 
+            this.mShowOnlySelectedSectionToolStripMenuItem.CheckOnClick = true;
+            this.mShowOnlySelectedSectionToolStripMenuItem.Name = "mShowOnlySelectedSectionToolStripMenuItem";
+            resources.ApplyResources(this.mShowOnlySelectedSectionToolStripMenuItem, "mShowOnlySelectedSectionToolStripMenuItem");
+            this.mShowOnlySelectedSectionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator10
             // 
@@ -1047,12 +1058,19 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mShowOnlySelectedSectionToolStripMenuItem
+            // mWrappingInContentViewToolStripMenuItem
             // 
-            this.mShowOnlySelectedSectionToolStripMenuItem.CheckOnClick = true;
-            this.mShowOnlySelectedSectionToolStripMenuItem.Name = "mShowOnlySelectedSectionToolStripMenuItem";
-            resources.ApplyResources(this.mShowOnlySelectedSectionToolStripMenuItem, "mShowOnlySelectedSectionToolStripMenuItem");
-            this.mShowOnlySelectedSectionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged);
+            this.mWrappingInContentViewToolStripMenuItem.Checked = true;
+            this.mWrappingInContentViewToolStripMenuItem.CheckOnClick = true;
+            this.mWrappingInContentViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mWrappingInContentViewToolStripMenuItem.Name = "mWrappingInContentViewToolStripMenuItem";
+            resources.ApplyResources(this.mWrappingInContentViewToolStripMenuItem, "mWrappingInContentViewToolStripMenuItem");
+            this.mWrappingInContentViewToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mWrappingInContentViewToolStripMenuItem_CheckedChanged);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
             // ObiForm
             // 
@@ -1206,6 +1224,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem mPlayOnNavigateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mShowOnlySelectedSectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mWrappingInContentViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     }
 }
 

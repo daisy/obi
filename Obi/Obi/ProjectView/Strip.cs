@@ -392,6 +392,23 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
+        public void WrapToWidth(int width, bool wrap)
+        {
+            if (wrap)
+            {
+                MinimumSize = new Size(width, MinimumSize.Height);
+                Width = width;
+                mBlocksPanel.WrapContents = true;
+                mBlocksPanel.Width = width;
+                Height = mBlocksPanel.Height;
+            }
+            else
+            {
+                mBlocksPanel.WrapContents = false;
+                UpdateWidth();
+            }
+        }
+
 
         public void FocusStripLabel()
         {
@@ -420,6 +437,5 @@ namespace Obi.ProjectView
             Thread.Sleep(750);
             SetAccessibleName();
         }
-            
     }
 }

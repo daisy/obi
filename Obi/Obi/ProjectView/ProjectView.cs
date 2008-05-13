@@ -196,7 +196,8 @@ namespace Obi.ProjectView
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return Selection != null &&  ( CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata ) ; } }
-        public bool CanFocusOnTOCView { get { return !mTOCView.Focused && mTOCView.Selection == null; } }
+        public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused && mStripsView.Selection == null; } }
+        public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused && mTOCView.Selection == null; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
@@ -649,6 +650,8 @@ namespace Obi.ProjectView
                 SynchronizeViews = mSynchronizeViews;
             }
         }
+
+        public bool WrapStrips { set { mStripsView.WrapStrips = value; } }
 
         /// <summary>
         /// Select the name field of the selected section and start editing it.
