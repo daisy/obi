@@ -30,6 +30,7 @@ namespace Obi.ProjectView
         private PhraseNode mResumerecordingPhrase;   // last phrase recorded (?)
 
         private SectionNode mRecordingSection;       // Section in which we are recording
+        private PhraseNode mRecordingPhrase;         // Phrase which we are recording in (after start, before end)
         private int mRecordingInitPhraseIndex;       // Phrase child in which we are recording
         private bool mIsSelectionMarked = false;     // this should probably go I think
 
@@ -308,6 +309,7 @@ namespace Obi.ProjectView
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
                 UpdateButtons();
+                mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { UpdateButtons(); });
             }
         }
 
@@ -717,7 +719,8 @@ namespace Obi.ProjectView
                 delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
                 {
                     mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                    PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);                    
+                    PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
+                    mRecordingPhrase = phrase;
                     if (e.PhraseIndex > 0)
                     {
                         mView.Presentation.getUndoRedoManager().execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
@@ -743,6 +746,7 @@ namespace Obi.ProjectView
                 {
                     PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
                     phrase.SignalAudioChanged(this, e.Audio);
+                    mRecordingPhrase = null;
                 });
             mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
                 delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
@@ -1083,12 +1087,12 @@ namespace Obi.ProjectView
             }
         }
 
-        private void SetPageNumberWhileRecording( Obi.Events.Audio.Recorder.PhraseEventArgs  e )
+        private void SetPageNumberWhileRecording(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-                        int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex)) ;
-                                                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView,(EmptyNode)  mRecordingSection.PhraseChild (mRecordingInitPhraseIndex + e.PhraseIndex + 1 ) ,  PageNumber );
-                                                cmd.execute();
-                                }
+            int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex));
+            urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView, (EmptyNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex + 1), PageNumber);
+            cmd.execute();
+        }
 
 
 
@@ -1155,7 +1159,7 @@ namespace Obi.ProjectView
         private void mCustomClassMarkButton_Click(object sender, EventArgs e) { MarkCustomClass(); }
 
         /// <summary>
-        /// Mark custom class on current block with default name as "Custom"
+        /// Mark custom class on current block. Currently defaults to "TODO".
         /// If recording, create new phrase and mark custom class this new phrase block
         /// else mark on currently playing block; otherwise on selected block
         /// </summary>
@@ -1166,8 +1170,8 @@ namespace Obi.ProjectView
                 EmptyNode node;
                 if (IsRecording)
                 {
-                    NextPhrase();
-                    node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                    mRecordingSession.NextPhrase();
+                    node = mRecordingPhrase;
                 }
                 else
                 {
@@ -1189,9 +1193,6 @@ namespace Obi.ProjectView
         public void MarkTodoClass()
         {
             EmptyNode node;
-            if (IsPlaying)
-                Pause();
-
             if (IsRecording)
             {
                 node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);

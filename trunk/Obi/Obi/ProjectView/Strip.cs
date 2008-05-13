@@ -392,6 +392,9 @@ namespace Obi.ProjectView
             if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
         }
 
+        /// <summary>
+        /// Wrap or unwrap strip contents.
+        /// </summary>
         public void WrapToWidth(int width, bool wrap)
         {
             if (wrap)
@@ -400,7 +403,7 @@ namespace Obi.ProjectView
                 Width = width;
                 mBlocksPanel.WrapContents = true;
                 mBlocksPanel.Width = width;
-                Height = mBlocksPanel.Height;
+                Height = Padding.Top + mLabel.Height + mLabel.Margin.Bottom + mBlocksPanel.Height + Padding.Bottom;
             }
             else
             {

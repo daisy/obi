@@ -50,8 +50,10 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
 
-            mMarkRole = EmptyNode.Kind.Custom;
-            mMarkCustomRole = Localizer.Message("default_custom_class_name");
+            // mMarkRole = EmptyNode.Kind.Custom;
+            // mMarkCustomRole = Localizer.Message("default_custom_class_name");
+            mMarkRole = EmptyNode.Kind.TODO;
+            mMarkCustomRole = "";
         }
 
 
@@ -1354,6 +1356,16 @@ namespace Obi.ProjectView
             mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             mPanelInfoLabelButton.Size = new Size(1, 1);
             mPanelInfoLabelButton.Text = "";
+        }
+
+        public void SelectNextTODOPhrase()
+        {
+            mStripsView.SelectNextTODONode();
+        }
+
+        public void SelectPreviousTODOPhrase()
+        {
+            mStripsView.SelectPrecedingTODONode();
         }
     }
 

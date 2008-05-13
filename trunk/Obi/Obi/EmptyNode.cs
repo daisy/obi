@@ -171,7 +171,8 @@ namespace Obi
             if (kind != null) mKind = kind == Kind.Custom.ToString() ? Kind.Custom :
                                       kind == Kind.Heading.ToString() ? Kind.Heading :
                                       kind == Kind.Page.ToString() ? Kind.Page :
-                                      kind == Kind.Silence.ToString () ? Kind.Silence : Kind.Plain;
+                                      kind == Kind.Silence.ToString () ? Kind.Silence :
+                                      kind == Kind.TODO.ToString() ? Kind.TODO : Kind.Plain;
             if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
             mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
             if (mKind == Kind.Page) mPageNumber = SafeParsePageNumber(source.GetAttribute(XUK_ATTR_NAME_PAGE));

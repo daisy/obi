@@ -631,8 +631,8 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Control |  Keys.PageUp] = SelectPrecedingPageNode;
             mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode ;
             mShortcutKeys[ Keys.Shift |  Keys.F4] = SelectPreviousSpecialRoleNode ;
-            mShortcutKeys[Keys.Control | Keys.F9 ] = SelectNextTo_DoNode ;
-            mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F9] =  SelectPreviousTo_DoNode;
+            //mShortcutKeys[Keys.Control | Keys.F9 ] = SelectNextTo_DoNode ;
+            //mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F9] =  SelectPreviousTo_DoNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -916,44 +916,60 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        ///  Select previous to do node in contents view
-                /// </summary>
-        /// <returns></returns>
-        public bool SelectPreviousTo_DoNode ()
+        /// Select previous to do node in contents view
+        /// </summary>
+        public void SelectNextTODONode()
         {
-            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            if (mView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind  == EmptyNode.Kind.TODO)
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
                     {
                         mView.Selection = new NodeSelection(n, this);
-                        return true;
+                        return;
                     }
                 }
-            } // check end for empty node
-            return false;
+            }
+            for (ObiNode n = mView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                {
+                    mView.Selection = new NodeSelection(n, this);
+                    return;
+                }
+            }
         }
 
         /// <summary>
-        ///  Select  next To_Do node in contents view
-                /// </summary>
-        /// <returns></returns>
-        public bool SelectNextTo_DoNode ()
+        /// Select previous to do node in contents view
+        /// </summary>
+        public void SelectPrecedingTODONode()
         {
-            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            if (mView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO )
+                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
                     {
                         mView.Selection = new NodeSelection(n, this);
-                        return true;
+                        return;
                     }
                 }
-            }// check ends for empty node
-            return false;
+            }
+            for (ObiNode n = mView.Presentation.RootNode.LastLeaf; n != null; n = n.PrecedingNode)
+            {
+                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                {
+                    mView.Selection = new NodeSelection(n, this);
+                    return;
+                }
+            }
         }
+
+
+
+
 
 
         private bool NavigateNextPage()

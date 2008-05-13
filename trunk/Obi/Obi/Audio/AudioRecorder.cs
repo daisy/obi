@@ -503,8 +503,8 @@ namespace Obi.Audio
             m_MutexCaptureData.ReleaseMutex();
 }
 
-int m_PrevBufferPos = 0;
-long m_PrevSampleCount = 0;
+
+        long m_PrevSampleCount = 0;
 
 void CaptureTimer_Tick(object sender, EventArgs e)
 {

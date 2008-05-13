@@ -48,11 +48,11 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.HotPink;
             this.Controls.Add(this.mLabel);
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.Name = "Block";
             this.Size = new System.Drawing.Size(104, 104);
-            this.Enter += new System.EventHandler(this.Block_Enter);
             this.Click += new System.EventHandler(this.Block_Click);
+            this.Enter += new System.EventHandler(this.Block_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
