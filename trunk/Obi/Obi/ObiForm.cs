@@ -336,9 +336,11 @@ namespace Obi
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
             mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
-            mFocusOnStripsViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView;
+            mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowOnlySelectedSectionToolStripMenuItem.Enabled = mProjectView.CanShowOnlySelectedSection;
+            mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
         }
@@ -383,6 +385,7 @@ namespace Obi
             SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;
         }
 
+        // Check/uncheck "Show only selected section"
         private void mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             if (mProjectView.CanShowOnlySelectedSection)
@@ -391,6 +394,11 @@ namespace Obi
             }
         }
 
+        // Check/uncheck "Wrapping in content view"
+        private void mWrappingInContentViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            WrapStrips = mWrappingInContentViewToolStripMenuItem.Checked;
+        }
 
         private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
 
@@ -674,6 +682,17 @@ namespace Obi
                 Localizer.Message("obi");
         }
 
+        // Set wrapping strips
+        private bool WrapStrips
+        {
+            set
+            {
+                mSettings.WrapStrips = value;
+                mWrappingInContentViewToolStripMenuItem.Checked = value;
+                mProjectView.WrapStrips = value;
+            }
+        }
+
         #region Event handlers
 
         private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
@@ -902,8 +921,8 @@ namespace Obi
             }
             // Synchronize views
             SynchronizeViews = mSettings.SynchronizeViews;
+            WrapStrips = mSettings.WrapStrips;
             // Transport bar settings
-            // TODO: first two items should have a preference setting
             mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
             mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;
             AllowOverwrite = mSettings.AllowOverwrite;

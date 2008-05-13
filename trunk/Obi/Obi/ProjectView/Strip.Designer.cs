@@ -36,10 +36,12 @@ namespace Obi.ProjectView
             // 
             this.mBlocksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBlocksPanel.AutoSize = true;
+            this.mBlocksPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mBlocksPanel.BackColor = System.Drawing.Color.CornflowerBlue;
             this.mBlocksPanel.Location = new System.Drawing.Point(3, 25);
             this.mBlocksPanel.Name = "mBlocksPanel";
-            this.mBlocksPanel.Size = new System.Drawing.Size(284, 104);
+            this.mBlocksPanel.Size = new System.Drawing.Size(0, 0);
             this.mBlocksPanel.TabIndex = 0;
             this.mBlocksPanel.WrapContents = false;
             this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
@@ -67,6 +69,7 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mBlocksPanel);
@@ -74,9 +77,10 @@ namespace Obi.ProjectView
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(290, 132);
-            this.Enter += new System.EventHandler(this.Strip_Enter);
             this.Click += new System.EventHandler(this.Strip_Click);
+            this.Enter += new System.EventHandler(this.Strip_Enter);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

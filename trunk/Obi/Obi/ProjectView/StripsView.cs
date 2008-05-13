@@ -24,6 +24,7 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;                            // current selection
         private ISelectableInStripView mSelectedItem;                // the actual item for the selection
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
+        private bool mWrapStrips;                                    // wrapping of strips
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -1168,6 +1169,19 @@ null;
             foreach (Control c in mLayoutPanel.Controls)
             {
                 if (c is Strip) c.Visible = ((Strip)c).Node == section;
+            }
+        }
+
+        public bool WrapStrips
+        {
+            set
+            {
+                mWrapStrips = value;
+                foreach (Control c in mLayoutPanel.Controls)
+                {
+                    Strip strip = c as Strip;
+                    if (strip != null) strip.WrapToWidth(Width, mWrapStrips);
+                }
             }
         }
     }
