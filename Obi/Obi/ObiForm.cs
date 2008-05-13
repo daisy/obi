@@ -1169,7 +1169,8 @@ namespace Obi
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
             PhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
-            mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
+            // mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
+            mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
             UpdateAudioSelectionBlockMenuItems();
         }
 
@@ -1370,18 +1371,14 @@ namespace Obi
             mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
 
             // update recording menu items
-            recordToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+            mRecordToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
             mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-            if (mProjectView.TransportBar.IsListening)
-                mStartListeningToolStripMenuItem.Text = "&Start Recording";
-            else if (mProjectView.TransportBar.IsRecorderActive)
+            if (mProjectView.TransportBar.IsRecorderActive)
             {
-                mStartListeningToolStripMenuItem.Text = "&Start Listening";
                 mStartListeningToolStripMenuItem.Enabled = false;
             }
             else
             {
-                mStartListeningToolStripMenuItem.Text = "&Start Listening";
                 mStartListeningToolStripMenuItem.Enabled = true;
                 mStartRecordingToolStripMenuItem.Enabled = true;
             }
@@ -1559,6 +1556,16 @@ namespace Obi
             {
                 mSettings.PlayOnNavigate = mPlayOnNavigateToolStripMenuItem.Checked;
             }
+        }
+
+        private void mNextTODOPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SelectNextTODOPhrase();
+        }
+
+        private void mPreviousTODOPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SelectPreviousTODOPhrase();
         }
     }
 }

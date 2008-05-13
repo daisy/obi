@@ -73,7 +73,9 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowOnlySelectedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,7 +130,7 @@ namespace Obi
             this.PreviewFromtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PreviewUptotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PreviewSelectedAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartListeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,9 +155,10 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -485,12 +488,26 @@ namespace Obi
             resources.ApplyResources(this.mSynchronizeViewsToolStripMenuItem, "mSynchronizeViewsToolStripMenuItem");
             this.mSynchronizeViewsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_CheckedChanged);
             // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
+            // 
             // mShowOnlySelectedSectionToolStripMenuItem
             // 
             this.mShowOnlySelectedSectionToolStripMenuItem.CheckOnClick = true;
             this.mShowOnlySelectedSectionToolStripMenuItem.Name = "mShowOnlySelectedSectionToolStripMenuItem";
             resources.ApplyResources(this.mShowOnlySelectedSectionToolStripMenuItem, "mShowOnlySelectedSectionToolStripMenuItem");
             this.mShowOnlySelectedSectionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged);
+            // 
+            // mWrappingInContentViewToolStripMenuItem
+            // 
+            this.mWrappingInContentViewToolStripMenuItem.Checked = true;
+            this.mWrappingInContentViewToolStripMenuItem.CheckOnClick = true;
+            this.mWrappingInContentViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mWrappingInContentViewToolStripMenuItem.Name = "mWrappingInContentViewToolStripMenuItem";
+            resources.ApplyResources(this.mWrappingInContentViewToolStripMenuItem, "mWrappingInContentViewToolStripMenuItem");
+            this.mWrappingInContentViewToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mWrappingInContentViewToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator10
             // 
@@ -608,7 +625,8 @@ namespace Obi
             this.mClearRoleToolStripMenuItem,
             this.PhraseDetectionToolStripMenuItem,
             this.mMarkDefaultCustomClassToolStripMenuItem,
-            this.InPhraseSelectionToolStripMenuItem});
+            this.InPhraseSelectionToolStripMenuItem,
+            this.mGoToToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -764,7 +782,7 @@ namespace Obi
             this.mStopToolStripMenuItem,
             this.FastPlaytoolStripMenuItem,
             this.PlayPreviewtoolStripMenuItem,
-            this.recordToolStripMenuItem,
+            this.mRecordToolStripMenuItem,
             this.toolStripSeparator5,
             this.navigationToolStripMenuItem,
             this.rewindToolStripMenuItem,
@@ -871,14 +889,14 @@ namespace Obi
             resources.ApplyResources(this.PreviewSelectedAudiotoolStripMenuItem, "PreviewSelectedAudiotoolStripMenuItem");
             this.PreviewSelectedAudiotoolStripMenuItem.Click += new System.EventHandler(this.PreviewSelectedAudiotoolStripMenuItem_Click);
             // 
-            // recordToolStripMenuItem
+            // mRecordToolStripMenuItem
             // 
-            this.recordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mRecordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mStartListeningToolStripMenuItem,
             this.mStartRecordingToolStripMenuItem,
             this.mAllowOverwriteToolStripMenuItem});
-            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
-            resources.ApplyResources(this.recordToolStripMenuItem, "recordToolStripMenuItem");
+            this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
+            resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
             // 
             // mStartListeningToolStripMenuItem
             // 
@@ -1043,6 +1061,26 @@ namespace Obi
             this.mStatusLabel.Name = "mStatusLabel";
             resources.ApplyResources(this.mStatusLabel, "mStatusLabel");
             // 
+            // mGoToToolStripMenuItem
+            // 
+            this.mGoToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mNextTODOPhraseToolStripMenuItem,
+            this.mPreviousTODOPhraseToolStripMenuItem});
+            this.mGoToToolStripMenuItem.Name = "mGoToToolStripMenuItem";
+            resources.ApplyResources(this.mGoToToolStripMenuItem, "mGoToToolStripMenuItem");
+            // 
+            // mNextTODOPhraseToolStripMenuItem
+            // 
+            this.mNextTODOPhraseToolStripMenuItem.Name = "mNextTODOPhraseToolStripMenuItem";
+            resources.ApplyResources(this.mNextTODOPhraseToolStripMenuItem, "mNextTODOPhraseToolStripMenuItem");
+            this.mNextTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mNextTODOPhraseToolStripMenuItem_Click);
+            // 
+            // mPreviousTODOPhraseToolStripMenuItem
+            // 
+            this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
+            resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
+            this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
@@ -1057,20 +1095,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mWrappingInContentViewToolStripMenuItem
-            // 
-            this.mWrappingInContentViewToolStripMenuItem.Checked = true;
-            this.mWrappingInContentViewToolStripMenuItem.CheckOnClick = true;
-            this.mWrappingInContentViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mWrappingInContentViewToolStripMenuItem.Name = "mWrappingInContentViewToolStripMenuItem";
-            resources.ApplyResources(this.mWrappingInContentViewToolStripMenuItem, "mWrappingInContentViewToolStripMenuItem");
-            this.mWrappingInContentViewToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mWrappingInContentViewToolStripMenuItem_CheckedChanged);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
             // ObiForm
             // 
@@ -1172,7 +1196,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mResumeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartListeningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAllowOverwriteToolStripMenuItem;
@@ -1226,6 +1250,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mShowOnlySelectedSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mWrappingInContentViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem mGoToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
     }
 }
 
