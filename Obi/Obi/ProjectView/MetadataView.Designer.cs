@@ -32,7 +32,7 @@ namespace Obi.ProjectView
             this.mNameColumn = new System.Windows.Forms.ColumnHeader();
             this.mContentColumn = new System.Windows.Forms.ColumnHeader();
             this.mContentTextbox = new System.Windows.Forms.TextBox();
-            this.mCommitButton = new System.Windows.Forms.Button();
+            this.mUpdateButton = new System.Windows.Forms.Button();
             this.mNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,17 +81,17 @@ namespace Obi.ProjectView
             this.mContentTextbox.Size = new System.Drawing.Size(225, 20);
             this.mContentTextbox.TabIndex = 4;
             // 
-            // mCommitButton
+            // mUpdateButton
             // 
-            this.mCommitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCommitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCommitButton.Location = new System.Drawing.Point(206, 318);
-            this.mCommitButton.Name = "mCommitButton";
-            this.mCommitButton.Size = new System.Drawing.Size(75, 25);
-            this.mCommitButton.TabIndex = 5;
-            this.mCommitButton.Text = "&Commit";
-            this.mCommitButton.UseVisualStyleBackColor = true;
-            this.mCommitButton.Click += new System.EventHandler(this.mCommitButton_Click);
+            this.mUpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.mUpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mUpdateButton.Location = new System.Drawing.Point(206, 318);
+            this.mUpdateButton.Name = "mUpdateButton";
+            this.mUpdateButton.Size = new System.Drawing.Size(75, 25);
+            this.mUpdateButton.TabIndex = 5;
+            this.mUpdateButton.Text = "&Update";
+            this.mUpdateButton.UseVisualStyleBackColor = true;
+            this.mUpdateButton.Click += new System.EventHandler(this.mCommitButton_Click);
             // 
             // mNameTextbox
             // 
@@ -131,10 +131,11 @@ namespace Obi.ProjectView
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mMetadataListView);
             this.Controls.Add(this.mNameTextbox);
-            this.Controls.Add(this.mCommitButton);
+            this.Controls.Add(this.mUpdateButton);
             this.Controls.Add(this.mContentTextbox);
             this.Name = "MetadataView";
             this.Size = new System.Drawing.Size(284, 346);
+            this.VisibleChanged += new System.EventHandler(this.MetadataView_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,7 +145,7 @@ namespace Obi.ProjectView
 
         private System.Windows.Forms.ListView mMetadataListView;
         private System.Windows.Forms.TextBox mContentTextbox;
-        private System.Windows.Forms.Button mCommitButton;
+        private System.Windows.Forms.Button mUpdateButton;
         private System.Windows.Forms.TextBox mNameTextbox;
         private System.Windows.Forms.ColumnHeader mNameColumn;
         private System.Windows.Forms.ColumnHeader mContentColumn;

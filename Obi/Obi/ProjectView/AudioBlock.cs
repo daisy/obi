@@ -92,6 +92,8 @@ namespace Obi.ProjectView
                 mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));*/
             mLabel.Text = Node.BaseStringShort();
             AccessibleName = Node.BaseString();
+            if (mWaveform != null)
+                mWaveform.AccessibleName = AccessibleName;
             if (LabelFullWidth > WaveformDefaultWidth)
             {
                 if (mWaveform != null) mWaveform.Width = mLabel.Width;
