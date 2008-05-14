@@ -175,6 +175,10 @@ namespace Obi
                 if (result == DialogResult.Cancel) return false;
                 if (result == DialogResult.Yes) mSession.Save();
             }
+
+            if (mProjectView.TransportBar.IsActive)
+                mProjectView.TransportBar.Stop();
+
             mSession.Close();
             return true;
         }
