@@ -777,6 +777,7 @@ namespace Obi.ProjectView
         // creating the new section.)
         private ObiNode GetRecordingSection(ObiNode selected, urakawa.undo.CompositeCommand command)
         {
+            mView.SelectInContentView();
             if (selected == null) selected = mView.SelectedNodeAs<ObiNode>();
             if (selected == null)
             {
@@ -1078,7 +1079,7 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Start recording directly without going through listening
-                /// </summary>
+        /// </summary>
         public void StartRecordingDirectly()
         {
             if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing)

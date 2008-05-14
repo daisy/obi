@@ -262,11 +262,8 @@ namespace Obi.ProjectView
             return false;
         }
 
-        // True if a section (not dummy, or not its text) is selected.
-        private bool IsSectionSelected
-        {
-            get { return mSelection != null && mSelection.GetType() == typeof(NodeSelection); }
-        }
+        // True if a section (not its text) is selected.
+        private bool IsSectionSelected { get { return mSelection is NodeSelection; } }
 
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
