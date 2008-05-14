@@ -291,14 +291,9 @@ namespace Obi.ProjectView
 
         #region ISearchable Members
 
-        public bool Matches(string search)
+        public string ToMatch()
         {
-            return FindInText.Match(Label, search);
-        }
-
-        public void Replace(string search, string replace)
-        {
-            throw new Exception("The method or operation is not implemented.");
+            return Label.ToLowerInvariant();
         }
 
         #endregion
