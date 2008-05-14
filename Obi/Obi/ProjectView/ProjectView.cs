@@ -1367,6 +1367,19 @@ namespace Obi.ProjectView
         {
             mStripsView.SelectPrecedingTODONode();
         }
+
+        /// <summary>
+        /// Ensure that the selection is in the content view.
+        /// </summary>
+        public void SelectInContentView()
+        {
+            if (mSelection != null && mSelection.Control != mStripsView)
+            {
+                NodeSelection s = mSelection;
+                s.Control = mStripsView;
+                Selection = s;
+            }
+        }
     }
 
     public class ImportingFileEventArgs
