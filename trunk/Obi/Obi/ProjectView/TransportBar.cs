@@ -35,6 +35,10 @@ namespace Obi.ProjectView
         private bool mIsSelectionMarked = false;     // this should probably go I think
 
 
+        private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
+        private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
+
+
         // Constants from the display combo box
         private static readonly int ELAPSED_INDEX = 0;
         private static readonly int ELAPSED_TOTAL_INDEX = 1;
@@ -70,6 +74,24 @@ namespace Obi.ProjectView
             mPlayIfNoSelection = true;
             mState = State.Stopped;
             AddTransportBarAccessibleName();
+        }
+
+
+        /// <summary>
+        /// Get the phrase currently playing (or paused) if playback is active; null otherwise.
+        /// </summary>
+        public PhraseNode PlaybackPhrase
+        {
+            get { return IsPlayerActive ? mCurrentPlaylist.CurrentPhrase : null; }
+        }
+
+        // Set the accessible name of previous section/stop buttons (???)
+        private void AddTransportBarAccessibleName()
+        {
+            mPrevSectionAccessibleName = mPrevSectionButton.AccessibleName;
+            mStopButtonAccessibleName = mStopButton.AccessibleName;
+            mPrevSectionButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mPrevSectionAccessibleName);
+            mStopButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mStopButtonAccessibleName);
         }
 
 
@@ -1215,43 +1237,32 @@ namespace Obi.ProjectView
 
         #endregion
 
-        string m_OriginalAccessibleName1;
-        string m_OriginalAccessibleName2;
 
         private void TransportBar_Leave(object sender, EventArgs e)
         {
-            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
-            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
-                            }
-
-        private void AddTransportBarAccessibleName()
-        {
-            m_OriginalAccessibleName1 = mPrevSectionButton.AccessibleName;
-            m_OriginalAccessibleName2 = mStopButton.AccessibleName;
-
-            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
-            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
+            mPrevSectionButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mPrevSectionAccessibleName);
+            mStopButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mStopButtonAccessibleName);
         }
+
 
         private void TransportBar_Enter(object sender, EventArgs e)
         {
-            mPrevSectionButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName1);
-            mStopButton.AccessibleName = string.Concat(Localizer.Message("TransportBar_Label"), " ", m_OriginalAccessibleName2);
-
-                        Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
+            mPrevSectionButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mPrevSectionAccessibleName);
+            mStopButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mStopButtonAccessibleName);
+            Thread TrimAccessibleName = new Thread(new ThreadStart(TrimTransportBarAccessibleLabel));
             TrimAccessibleName.Start();
         }
 
         private void TrimTransportBarAccessibleLabel()
         {
             Thread.Sleep(750);
-            mPrevSectionButton.AccessibleName = m_OriginalAccessibleName1;
-            mStopButton.AccessibleName = m_OriginalAccessibleName2;
+            mPrevSectionButton.AccessibleName = mPrevSectionAccessibleName;
+            mStopButton.AccessibleName = mStopButtonAccessibleName;
         }
 
         /// <summary>
         ///  Process dialog key overridden to prevent tab  from  moving focus out of transportbar
-                /// </summary>
+        /// </summary>
         /// <param name="KeyData"></param>
         /// <returns></returns>
         protected override bool ProcessDialogKey(Keys KeyData)

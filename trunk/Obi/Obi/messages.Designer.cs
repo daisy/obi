@@ -1852,9 +1852,9 @@ namespace Obi {
         /// <summary>
         ///   Looks up a localized string similar to Transport Bar.
         /// </summary>
-        internal static string TransportBar_Label {
+        internal static string transport_bar {
             get {
-                return ResourceManager.GetString("TransportBar_Label", resourceCulture);
+                return ResourceManager.GetString("transport_bar", resourceCulture);
             }
         }
         

@@ -1172,7 +1172,7 @@ namespace Obi
             mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitBlock;
+            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
             mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
@@ -1229,7 +1229,7 @@ namespace Obi
         private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
         private void mAddEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
-        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitBlock(); }
+        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
         private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
         private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
