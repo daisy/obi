@@ -16,7 +16,7 @@ namespace Obi.Commands.Node
 
         public SplitAudio(ProjectView.ProjectView view, double splitTime): base(view)
         {
-            mNode = view.SelectedNodeAs<PhraseNode>();
+            mNode = view.GetNodeForSplit();
             mSplitPoint = new Time(splitTime);
             Label = Localizer.Message("split_phrase");
         }

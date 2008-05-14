@@ -695,7 +695,7 @@ Error text: {1}</value>
     <value>Stopped</value>
     <comment>Status message</comment>
   </data>
-  <data name="TransportBar_Label" xml:space="preserve">
+  <data name="transport_bar" xml:space="preserve">
     <value>Transport Bar</value>
   </data>
   <data name="dc_contributor_description" xml:space="preserve">

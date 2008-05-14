@@ -834,7 +834,7 @@ namespace Obi.ProjectView
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return !mStripsView.CanSetStripUsedStatus || mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
-        public bool CanSplitBlock { get { return mTransportBar.CanSplitPhrase; } }
+        public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
         public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
         public bool IsStripUsed { get { return mStripsView.IsStripUsed; } }
@@ -997,9 +997,9 @@ namespace Obi.ProjectView
             }
         }
 
-        public void SplitBlock()
+        public void SplitPhrase()
         {
-            if (CanSplitBlock) mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
+            if (CanSplitPhrase) mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
         }
 
         /// <summary>
@@ -1379,6 +1379,15 @@ namespace Obi.ProjectView
                 s.Control = mStripsView;
                 Selection = s;
             }
+        }
+
+        /// <summary>
+        /// Get the phrase node to split depending on the selection or the playback node.
+        /// </summary>
+        public PhraseNode GetNodeForSplit()
+        {
+            PhraseNode playing = mTransportBar.PlaybackPhrase;
+            return playing == null ? SelectedNodeAs<PhraseNode>() : playing;
         }
     }
 
