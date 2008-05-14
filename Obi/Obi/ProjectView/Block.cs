@@ -127,14 +127,9 @@ namespace Obi.ProjectView
 
         #region ISearchable Members
 
-        public bool Matches(string search)
+        public string ToMatch()
         {
-            return FindInText.Match(this.mLabel.Text, search);
-        }
-
-        public void Replace(string search, string replace)
-        {
-            throw new Exception("The method or operation is not implemented.");
+            return mLabel.Text.ToLowerInvariant();
         }
 
         #endregion

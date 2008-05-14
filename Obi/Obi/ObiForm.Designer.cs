@@ -114,6 +114,9 @@ namespace Obi
             this.BeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeselectInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,9 +158,6 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -773,6 +773,26 @@ namespace Obi
             resources.ApplyResources(this.DeselectInPhraseSelectionToolStripMenuItem, "DeselectInPhraseSelectionToolStripMenuItem");
             this.DeselectInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.DeselectInPhraseSelectionToolStripMenuItem_Click);
             // 
+            // mGoToToolStripMenuItem
+            // 
+            this.mGoToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mNextTODOPhraseToolStripMenuItem,
+            this.mPreviousTODOPhraseToolStripMenuItem});
+            this.mGoToToolStripMenuItem.Name = "mGoToToolStripMenuItem";
+            resources.ApplyResources(this.mGoToToolStripMenuItem, "mGoToToolStripMenuItem");
+            // 
+            // mNextTODOPhraseToolStripMenuItem
+            // 
+            this.mNextTODOPhraseToolStripMenuItem.Name = "mNextTODOPhraseToolStripMenuItem";
+            resources.ApplyResources(this.mNextTODOPhraseToolStripMenuItem, "mNextTODOPhraseToolStripMenuItem");
+            this.mNextTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mNextTODOPhraseToolStripMenuItem_Click);
+            // 
+            // mPreviousTODOPhraseToolStripMenuItem
+            // 
+            this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
+            resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
+            this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
+            // 
             // transportToolStripMenuItem
             // 
             this.transportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1060,26 +1080,6 @@ namespace Obi
             this.mStatusLabel.BackColor = System.Drawing.Color.Transparent;
             this.mStatusLabel.Name = "mStatusLabel";
             resources.ApplyResources(this.mStatusLabel, "mStatusLabel");
-            // 
-            // mGoToToolStripMenuItem
-            // 
-            this.mGoToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mNextTODOPhraseToolStripMenuItem,
-            this.mPreviousTODOPhraseToolStripMenuItem});
-            this.mGoToToolStripMenuItem.Name = "mGoToToolStripMenuItem";
-            resources.ApplyResources(this.mGoToToolStripMenuItem, "mGoToToolStripMenuItem");
-            // 
-            // mNextTODOPhraseToolStripMenuItem
-            // 
-            this.mNextTODOPhraseToolStripMenuItem.Name = "mNextTODOPhraseToolStripMenuItem";
-            resources.ApplyResources(this.mNextTODOPhraseToolStripMenuItem, "mNextTODOPhraseToolStripMenuItem");
-            this.mNextTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mNextTODOPhraseToolStripMenuItem_Click);
-            // 
-            // mPreviousTODOPhraseToolStripMenuItem
-            // 
-            this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
-            resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
-            this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
             // 
             // mProjectView
             // 

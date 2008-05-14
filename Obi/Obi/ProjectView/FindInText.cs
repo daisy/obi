@@ -14,18 +14,11 @@ namespace Obi.ProjectView
     public interface ISearchable
     {
         /// <summary>
-        /// True if there is text that matches the search string.
+        /// The string to match for this item.
         /// </summary>
-        bool Matches(string search);
-
-        /// <summary>
-        /// Replace the text that matched the search string with the replace string.
-        /// </summary>
-        /// <remarks>Throw an exception if the search doesn't match.</remarks>
-        void Replace(string search, string replace);
+        string ToMatch();
     }
 
-  
     /// <summary>
     /// Find text in searchable controls (right now this means that we search strip titles, block annotations)
     /// </summary>
@@ -57,7 +50,7 @@ namespace Obi.ProjectView
             mFoundFirst = false;
             InitializeComponent();
             mTimer = new Timer();
-            mTimer.Interval = 40000;
+            mTimer.Interval = 4000;
             mTimer.Tick += new EventHandler(mTimer_Tick);
         }
 
@@ -208,7 +201,8 @@ namespace Obi.ProjectView
                 }
 
                 mNumberSearched++;
-                if (mStripsView.Searchables[startIndex].Matches(mString.Text))
+                string to_match = mString.Text.ToLowerInvariant();
+                if (mStripsView.Searchables[startIndex].ToMatch().Contains(to_match))
                 {
                     SetSelection(mStripsView.Searchables[startIndex]);
                     found = true;
@@ -367,6 +361,21 @@ namespace Obi.ProjectView
         private void mString_Enter(object sender, EventArgs e)
         {
             mTimer.Stop();
+        }
+
+        private void mPreviousButton_Click(object sender, EventArgs e)
+        {
+            mProjectView.FindNextInText();
+        }
+
+        private void mNextButton_Click(object sender, EventArgs e)
+        {
+            mProjectView.FindPreviousInText();
+        }
+
+        private void mCloseButton_Click(object sender, EventArgs e)
+        {
+            mProjectView.FindInTextVisible = false;
         }
     }
 }
