@@ -100,12 +100,8 @@ namespace Obi
         /// </summary>
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
-        /// <summary>
-        /// Short text description of the phrase, including audio duration.
-        /// </summary>
-        public override string ToString()
-        {
-            return String.Format("{0} {1}", base.ToString(), Audio.getDuration().ToString());
-        }
+        public override string BaseString() { return base.BaseString(Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000.0); }
+        public override string BaseStringShort() { return base.BaseStringShort(Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000.0); }
+        public override double Duration { get { return Audio.getDuration().getTimeDeltaAsMillisecondFloat(); } }
     }
 }

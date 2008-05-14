@@ -30,6 +30,36 @@ namespace Obi
         /// </summary>
         public enum Kind { Plain, Page, Heading, Silence, TODO, Custom };
 
+        
+        public override string ToString() { return BaseString(); }
+
+        public virtual string BaseString(double duration)
+        {
+            return String.Format(Localizer.Message("phrase_to_string"),
+                Used ? "" : Localizer.Message("unused"),
+                IsRooted ? Index + 1 : 0,
+                IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
+                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("time_in_seconds"), duration),
+                mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
+                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber) :
+                    Localizer.Message("phrase_extra_" + mKind.ToString()));
+        }
+
+        public virtual string BaseString() { return BaseString(0.0); }
+
+        public virtual string BaseStringShort(double duration)
+        {
+            return String.Format(Localizer.Message("phrase_short_to_string"),
+                mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
+                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber) :
+                    Localizer.Message("phrase_short_" + mKind.ToString()),
+                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("time_in_seconds"), duration));
+        }
+
+        public virtual string BaseStringShort() { return BaseStringShort(0.0); }
+
+        public override double Duration { get { return 0.0; } }
+
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
         /// </summary>
@@ -147,12 +177,6 @@ namespace Obi
                 if (kind == Kind.Heading) AncestorAs<SectionNode>().Heading = this;
                 if (ChangedKind != null) ChangedKind(this, args);
             }
-        }
-
-        public override string ToString()
-        {
-            return String.Format("{0}[{1}] ({2})", GetType(), getParent() == null ? "detached" : Index.ToString(),
-                mKind == Kind.Custom ? mCustomClass : mKind.ToString());
         }
 
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }

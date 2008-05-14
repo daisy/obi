@@ -20,6 +20,8 @@ namespace Obi.ProjectView
         public TOCView() { InitializeComponent(); }
 
 
+        public override string ToString() { return Localizer.Message("toc_view_to_string"); }
+
         /// <summary>
         /// Can add a section as long as the selection is not a text selection.
         /// </summary>

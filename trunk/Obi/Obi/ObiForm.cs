@@ -640,10 +640,16 @@ namespace Obi
         // Undo
         private void Undo()
         {
-            if (mProjectView.TransportBar.IsActive)
-                mProjectView.TransportBar.Stop();
-
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             if (mSession.CanUndo) { mSession.Presentation.getUndoRedoManager().undo(); }
+        }
+
+        /// <summary>
+        /// Show the current selection in the status bar.
+        /// </summary>
+        private void ShowSelectionInStatusBar()
+        {
+            if (mProjectView.Selection != null) Status(mProjectView.Selection.ToString());
         }
 
         /// <summary>
@@ -699,7 +705,11 @@ namespace Obi
 
         #region Event handlers
 
-        private void ProjectView_SelectionChanged(object sender, EventArgs e) { UpdateMenus(); }
+        private void ProjectView_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateMenus();
+            ShowSelectionInStatusBar();
+        }
 
         private void Session_ProjectCreated(object sender, EventArgs e)
         {
@@ -1180,7 +1190,7 @@ namespace Obi
 
         private void UpdateAudioSelectionBlockMenuItems()
         {
-            string AudioSelectionStatusMessage = "";
+            //string AudioSelectionStatusMessage = "";
             if (mProjectView.Selection is AudioSelection)
             {
                 BeginInPhraseSelectionToolStripMenuItem.Enabled = true;
@@ -1196,13 +1206,13 @@ namespace Obi
                     string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
                     string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
                     //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
-                    AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
+                    //AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
 
                 }
                 else
                 {
                     DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                    AudioSelectionStatusMessage = "";
+                    //AudioSelectionStatusMessage = "";
                 }
             }
             else
@@ -1210,10 +1220,10 @@ namespace Obi
                 BeginInPhraseSelectionToolStripMenuItem.Enabled = false;
                 EndInPhraseSelectionToolStripMenuItem.Enabled = false;
                 DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                AudioSelectionStatusMessage = "";
+                //AudioSelectionStatusMessage = "";
             }
-            if (AudioSelectionStatusMessage != "")
-                Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+            //if (AudioSelectionStatusMessage != "")
+            //    Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
         }
 
         private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }

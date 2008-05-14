@@ -43,6 +43,8 @@ namespace Obi.ProjectView
         }
 
 
+        public override string ToString() { return Localizer.Message("strips_view_to_string"); }
+
         /// <summary>
         /// The parent project view. Should be set ASAP, and only once.
         /// </summary>
