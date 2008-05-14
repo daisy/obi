@@ -930,4 +930,16 @@ Error text: {1}</value>
     <value>unused </value>
     <comment>ToString()</comment>
   </data>
+  <data name="audio_selection_to_string" xml:space="preserve">
+    <value>Selected audio at {0} in {1} in {2}</value>
+    <comment>ToString() audio selection</comment>
+  </data>
+  <data name="strip_cursor_selection_to_string" xml:space="preserve">
+    <value>Selection position {0} in {1} in {2}</value>
+    <comment>ToString() strip cursor selection</comment>
+  </data>
+  <data name="text_selection_to_string" xml:space="preserve">
+    <value>Selected text in {0} in {1}: "{2}"</value>
+    <comment>ToString() text selection</comment>
+  </data>
 </root>

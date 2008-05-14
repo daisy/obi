@@ -44,7 +44,11 @@ namespace Obi
 
         public override string ToString()
         {
-            return HasCursor ? SelectionBeginTime.ToString() : String.Format("{0}-{1}", SelectionBeginTime, SelectionEndTime);
+            return HasCursor ?
+                String.Format(Localizer.Message("time_in_seconds"), CursorTime / 1000.0) :
+                String.Format("{0}-{1}",
+                    String.Format(Localizer.Message("time_in_seconds"), SelectionBeginTime / 1000.0),
+                    String.Format(Localizer.Message("time_in_seconds"), SelectionEndTime / 1000.0));
         }
     }
 
@@ -178,7 +182,7 @@ namespace Obi
 
         public override string ToString()
         {
-            return String.Format("\"{0}\" in {1}", mText, base.ToString());
+            return String.Format(Localizer.Message("text_selection_to_string"), Node.ToString(), Control.ToString(), mText);
         }
     }
 
@@ -216,7 +220,7 @@ namespace Obi
 
         public override string ToString()
         {
-            return String.Format("Audio<{0}> in {1}", AudioRange.ToString(), base.ToString());
+            return String.Format(Localizer.Message("audio_selection_to_string"), AudioRange.ToString(), Node.ToString(), Control.ToString());
         }
     }
 
@@ -265,7 +269,7 @@ namespace Obi
 
         public override string ToString()
         {
-            return String.Format("Index {0} in {1}", mIndex, base.ToString());
+            return String.Format(Localizer.Message("strip_cursor_selection_to_string"), mIndex, Node.ToString(), Control.ToString());
         }
     }
 
