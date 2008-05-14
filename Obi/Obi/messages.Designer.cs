@@ -151,6 +151,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected audio at {0} in {1} in {2}.
+        /// </summary>
+        internal static string audio_selection_to_string {
+            get {
+                return ResourceManager.GetString("audio_selection_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blank phrase.
         /// </summary>
         internal static string blank_phrase {
@@ -1814,11 +1823,29 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection position {0} in {1} in {2}.
+        /// </summary>
+        internal static string strip_cursor_selection_to_string {
+            get {
+                return ResourceManager.GetString("strip_cursor_selection_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to content view.
         /// </summary>
         internal static string strips_view_to_string {
             get {
                 return ResourceManager.GetString("strips_view_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected text in {0} in {1}: &quot;{2}&quot;.
+        /// </summary>
+        internal static string text_selection_to_string {
+            get {
+                return ResourceManager.GetString("text_selection_to_string", resourceCulture);
             }
         }
         
