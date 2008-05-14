@@ -80,7 +80,7 @@ namespace Obi.ProjectView
         // Update label and waveform when there is new information to display.
         protected override void UpdateLabel()
         {
-            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
+            /*string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
                 mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
                 String.Format(Localizer.Message("kind_phrase"),
                     mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
@@ -89,7 +89,9 @@ namespace Obi.ProjectView
                 ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
             AccessibleName = String.Format(Localizer.Message("audio_block_label"),
                 mLabel.Text, mNode.Index + 1, mNode.ParentAs<SectionNode>().PhraseChildCount,
-                mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));
+                mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));*/
+            mLabel.Text = Node.BaseStringShort();
+            AccessibleName = Node.BaseString();
             if (LabelFullWidth > WaveformDefaultWidth)
             {
                 if (mWaveform != null) mWaveform.Width = mLabel.Width;

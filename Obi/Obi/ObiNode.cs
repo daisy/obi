@@ -22,7 +22,6 @@ namespace Obi
             mUsed = true;
         }
 
-
         /// <summary>
         /// Get the nearest ancestor of the given type. This is useful to get the section ancestor of a phrase
         /// regardless of its nesting level.
@@ -126,6 +125,7 @@ namespace Obi
         public abstract int SectionChildCount { get; }
         public abstract EmptyNode PhraseChild(int index);
         public abstract int PhraseChildCount { get; }
+        public abstract double Duration { get; }
 
         public abstract PhraseNode FirstUsedPhrase { get; }
 
@@ -238,6 +238,21 @@ namespace Obi
         public override int SectionChildCount { get { return getChildCount(); } }
         public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }
+
+        public override double Duration
+        {
+            get
+            {
+                double duration = 0.0;
+                acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is SectionNode) duration += ((SectionNode)n).Duration;
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { });
+                return duration;
+            }
+        }
+
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
     }
 }

@@ -124,15 +124,6 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio {0} of {1}.
-        /// </summary>
-        internal static string audio_accessible_name {
-            get {
-                return ResourceManager.GetString("audio_accessible_name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} {1} of {2}{3}.
         /// </summary>
         internal static string audio_block_label {
@@ -855,6 +846,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to empty.
+        /// </summary>
+        internal static string empty {
+            get {
+                return ResourceManager.GetString("empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exporting to a non-empty directory.
         /// </summary>
         internal static string empty_directory_caption {
@@ -1244,6 +1244,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected {0} in {1}.
+        /// </summary>
+        internal static string node_selection_to_string {
+            get {
+                return ResourceManager.GetString("node_selection_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phrase.
         /// </summary>
         internal static string normal_phrase {
@@ -1375,6 +1384,141 @@ namespace Obi {
         internal static string phrase_detection {
             get {
                 return ResourceManager.GetString("phrase_detection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , {0}.
+        /// </summary>
+        internal static string phrase_extra_custom {
+            get {
+                return ResourceManager.GetString("phrase_extra_custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , heading.
+        /// </summary>
+        internal static string phrase_extra_Heading {
+            get {
+                return ResourceManager.GetString("phrase_extra_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , page number {0}.
+        /// </summary>
+        internal static string phrase_extra_page {
+            get {
+                return ResourceManager.GetString("phrase_extra_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string phrase_extra_Plain {
+            get {
+                return ResourceManager.GetString("phrase_extra_Plain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , silence.
+        /// </summary>
+        internal static string phrase_extra_Silence {
+            get {
+                return ResourceManager.GetString("phrase_extra_Silence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , TODO.
+        /// </summary>
+        internal static string phrase_extra_TODO {
+            get {
+                return ResourceManager.GetString("phrase_extra_TODO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to phrase (length: {0}).
+        /// </summary>
+        internal static string phrase_node_to_string {
+            get {
+                return ResourceManager.GetString("phrase_node_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;.
+        /// </summary>
+        internal static string phrase_short_custom {
+            get {
+                return ResourceManager.GetString("phrase_short_custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading.
+        /// </summary>
+        internal static string phrase_short_Heading {
+            get {
+                return ResourceManager.GetString("phrase_short_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page {0}.
+        /// </summary>
+        internal static string phrase_short_page {
+            get {
+                return ResourceManager.GetString("phrase_short_page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phrase.
+        /// </summary>
+        internal static string phrase_short_Plain {
+            get {
+                return ResourceManager.GetString("phrase_short_Plain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silence.
+        /// </summary>
+        internal static string phrase_short_Silence {
+            get {
+                return ResourceManager.GetString("phrase_short_Silence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}).
+        /// </summary>
+        internal static string phrase_short_to_string {
+            get {
+                return ResourceManager.GetString("phrase_short_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODO.
+        /// </summary>
+        internal static string phrase_short_TODO {
+            get {
+                return ResourceManager.GetString("phrase_short_TODO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}phrase {1} of {2} ({3}){4}.
+        /// </summary>
+        internal static string phrase_to_string {
+            get {
+                return ResourceManager.GetString("phrase_to_string", resourceCulture);
             }
         }
         
@@ -1571,6 +1715,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , level {0}.
+        /// </summary>
+        internal static string section_level_to_string {
+            get {
+                return ResourceManager.GetString("section_level_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , 1 phrase.
+        /// </summary>
+        internal static string section_one_phrase_to_string {
+            get {
+                return ResourceManager.GetString("section_one_phrase_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , {0} phrases.
+        /// </summary>
+        internal static string section_phrases_to_string {
+            get {
+                return ResourceManager.GetString("section_phrases_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}section &quot;{1}&quot; ({2}{3}{4}).
+        /// </summary>
+        internal static string section_to_string {
+            get {
+                return ResourceManager.GetString("section_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
         internal static string set_page_number_ {
@@ -1634,11 +1814,38 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to content view.
+        /// </summary>
+        internal static string strips_view_to_string {
+            get {
+                return ResourceManager.GetString("strips_view_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.00}s.
+        /// </summary>
+        internal static string time_in_seconds {
+            get {
+                return ResourceManager.GetString("time_in_seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} - {2}.
         /// </summary>
         internal static string title_bar {
             get {
                 return ResourceManager.GetString("title_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOC view.
+        /// </summary>
+        internal static string toc_view_to_string {
+            get {
+                return ResourceManager.GetString("toc_view_to_string", resourceCulture);
             }
         }
         
@@ -1666,6 +1873,15 @@ namespace Obi {
         internal static string undo_label {
             get {
                 return ResourceManager.GetString("undo_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unused .
+        /// </summary>
+        internal static string unused {
+            get {
+                return ResourceManager.GetString("unused", resourceCulture);
             }
         }
         

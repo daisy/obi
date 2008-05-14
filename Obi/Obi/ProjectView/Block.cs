@@ -34,20 +34,10 @@ namespace Obi.ProjectView
         // Generate the label string for this block.
         protected virtual void UpdateLabel()
         {
-            string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
-                mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
-                String.Format(Localizer.Message("kind_phrase"),
-                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
-            mLabel.Text = name;
+            mLabel.Text = Node.BaseStringShort();
+            mLabel.AccessibleName = Node.BaseString();
             Size = new Size(LabelFullWidth, Height);
-            AccessibleName = name;
         }
-
-        /*protected virtual void UpdateAccessibleName()
-        {
-            AccessibleName = mCustomClassLabel.Text + String.Format(Localizer.Message("audio_accessible_name"),
-                mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
-        }*/
 
         private void node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
         private void node_ChangedKind(object sender, ChangedKindEventArgs e) { UpdateLabel(); }

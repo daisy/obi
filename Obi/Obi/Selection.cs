@@ -67,9 +67,12 @@ namespace Obi
         }
 
         /// <summary>
-        /// Stringify the selection for debug printing.
+        /// Stringify the selection for showing in the status bar.
         /// </summary>
-        public override string ToString() { return String.Format("{0} in {1}", Node, Control); }
+        public override string ToString()
+        {
+            return String.Format(Localizer.Message("node_selection_to_string"), Node.ToString(), Control.ToString());
+        }
 
         public SectionNode Section { get { return Node as SectionNode; } }
         public SectionNode SectionOf { get { return Node is PhraseNode ? Node.ParentAs<SectionNode>() : Node as SectionNode; } }

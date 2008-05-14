@@ -520,10 +520,6 @@ Error text: {1}</value>
     <value>paste phrase</value>
     <comment>Command</comment>
   </data>
-  <data name="audio_accessible_name" xml:space="preserve">
-    <value>Audio {0} of {1}</value>
-    <comment>Accessible name</comment>
-  </data>
   <data name="add_role" xml:space="preserve">
     <value>(Add role)</value>
     <comment>For the custom types dropdown</comment>
@@ -837,5 +833,101 @@ Error text: {1}</value>
   <data name="metadata_custom" xml:space="preserve">
     <value>custom</value>
     <comment>Custom metadata name</comment>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>empty</value>
+    <comment>ToString() for empty phrases</comment>
+  </data>
+  <data name="node_selection_to_string" xml:space="preserve">
+    <value>Selected {0} in {1}</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_custom" xml:space="preserve">
+    <value>, {0}</value>
+    <comment>ToString() for custom class</comment>
+  </data>
+  <data name="phrase_extra_Heading" xml:space="preserve">
+    <value>, heading</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_page" xml:space="preserve">
+    <value>, page number {0}</value>
+    <comment>ToString() for page numbers</comment>
+  </data>
+  <data name="phrase_extra_Plain" xml:space="preserve">
+    <value />
+    <comment>ToString() (empty)</comment>
+  </data>
+  <data name="phrase_extra_Silence" xml:space="preserve">
+    <value>, silence</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_extra_TODO" xml:space="preserve">
+    <value>, TODO</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_node_to_string" xml:space="preserve">
+    <value>phrase (length: {0})</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="phrase_short_custom" xml:space="preserve">
+    <value>"{0}"</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Heading" xml:space="preserve">
+    <value>Heading</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_page" xml:space="preserve">
+    <value>Page {0}</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Plain" xml:space="preserve">
+    <value>Phrase</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_Silence" xml:space="preserve">
+    <value>Silence</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_short_to_string" xml:space="preserve">
+    <value>{0} ({1})</value>
+    <comment>ToStirng() short version for labels</comment>
+  </data>
+  <data name="phrase_short_TODO" xml:space="preserve">
+    <value>TODO</value>
+    <comment>ToString() short</comment>
+  </data>
+  <data name="phrase_to_string" xml:space="preserve">
+    <value>{0}phrase {1} of {2} ({3}){4}</value>
+    <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
+  </data>
+  <data name="section_level_to_string" xml:space="preserve">
+    <value>, level {0}</value>
+  </data>
+  <data name="section_one_phrase_to_string" xml:space="preserve">
+    <value>, 1 phrase</value>
+  </data>
+  <data name="section_phrases_to_string" xml:space="preserve">
+    <value>, {0} phrases</value>
+  </data>
+  <data name="section_to_string" xml:space="preserve">
+    <value>{0}section "{1}" ({2}{3}{4})</value>
+  </data>
+  <data name="strips_view_to_string" xml:space="preserve">
+    <value>content view</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="time_in_seconds" xml:space="preserve">
+    <value>{0:0.00}s</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="toc_view_to_string" xml:space="preserve">
+    <value>TOC view</value>
+    <comment>ToString()</comment>
+  </data>
+  <data name="unused" xml:space="preserve">
+    <value>unused </value>
+    <comment>ToString()</comment>
   </data>
 </root>

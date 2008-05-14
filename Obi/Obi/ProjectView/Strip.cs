@@ -42,21 +42,7 @@ namespace Obi.ProjectView
         }
 
 
-        private void SetAccessibleName()
-        {
-            string Unused_Tag = "";
-
-            if (mNode != null)
-            {
-                if (!mNode.Used)
-                    Unused_Tag = Localizer.Message("Accessible_Label_Unused");
-
-                mLabel.AccessibleName = this.Label + " - depth " + mNode.Level + Unused_Tag ;
-            }
-            else
-                mLabel.AccessibleName = this.Label;
-        }
-
+        private void SetAccessibleName() { mLabel.AccessibleName = mNode.ToString(); }
 
         /// <summary>
         /// Add a new block for a phrase node.

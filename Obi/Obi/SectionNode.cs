@@ -265,9 +265,28 @@ namespace Obi
         /// </summary>
         public override string ToString()
         {
-            return string.Format("SectionNode<{0}>\"{1}\"", IsRooted ? Level.ToString() : "unrooted", Label);
+            return string.Format(Localizer.Message("section_to_string"),
+                Used ? "" : Localizer.Message("unused"),
+                Label,
+                Duration == 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("time_in_seconds"), Duration / 1000.0),
+                string.Format(Localizer.Message("section_level_to_string"), IsRooted ? Level : 0),
+                PhraseChildCount == 0 ? "" :
+                    PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :
+                        string.Format(Localizer.Message("section_phrases_to_string"), PhraseChildCount));
         }
 
+        /// <summary>
+        /// Total duration of the section.
+        /// </summary>
+        public override double Duration
+        {
+            get
+            {
+                double duration = 0;
+                for (int i = 0; i < PhraseChildCount; ++i) duration += PhraseChild(i).Duration;
+                return duration;
+            }
+        }
 
         /// <summary>
         /// Copy the children of a section node.
