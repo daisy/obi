@@ -1371,8 +1371,7 @@ namespace Obi
             mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
 
             // update recording menu items
-            mRecordToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-            mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
+                        mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsRecorderActive)
             {
                 mStartListeningToolStripMenuItem.Enabled = false;
@@ -1382,6 +1381,8 @@ namespace Obi
                 mStartListeningToolStripMenuItem.Enabled = true;
                 mStartRecordingToolStripMenuItem.Enabled = true;
             }
+            mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+            mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
