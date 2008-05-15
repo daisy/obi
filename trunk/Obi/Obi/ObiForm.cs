@@ -34,9 +34,6 @@ namespace Obi
         {
             InitializeObi();
             OpenProject(path);
-
-            // Avn: following line is temprorary till this goes into settings
-            mProjectView.TransportBar.AllowOverwrite = mAllowOverwriteToolStripMenuItem.Checked;
         }
 
 
@@ -47,7 +44,7 @@ namespace Obi
             mNewProjectToolStripMenuItem.Enabled = true;
             mNewProjectFromImportToolStripMenuItem.Enabled = true;
             mOpenProjectToolStripMenuItem.Enabled = true;
-            mOpenRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
+            mRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
             mClearListToolStripMenuItem.Enabled = true;
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
             mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
@@ -133,12 +130,12 @@ namespace Obi
                     Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
-                while (mOpenRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
+                while (mRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
                 {
-                    mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
+                    mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
                 }
                 mSettings.RecentProjects.Clear();
-                mOpenRecentProjectToolStripMenuItem.Enabled = false;
+                mRecentProjectToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -270,23 +267,12 @@ namespace Obi
         }
 
         #endregion
-        
-        /// <summary>
-        /// Application settings.
-        /// </summary>
-        public Settings Settings { get { return mSettings; } }
-
-        /// <summary>
-        /// Display a message in the status bar.
-        /// </summary>
-        public void Status(string message) { mStatusLabel.Text = message; }
-
-
 
         #region Edit menu
 
         /// <summary>
         /// Explicitly update the find in text menu items
+        /// TODO: this should be handled by an event.
         /// </summary>
         public void UpdateFindInTextMenuItems()
         {
@@ -294,6 +280,7 @@ namespace Obi
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
         }
 
+        // Update the edit menu
         private void UpdateEditMenu()
         {
             mUndoToolStripMenuItem.Enabled = mSession.CanUndo;
@@ -328,7 +315,7 @@ namespace Obi
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
         private void mDeleteUnusedDataToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
-        
+
         #endregion
 
         #region View menu
@@ -408,6 +395,474 @@ namespace Obi
 
         #endregion
 
+        #region Sections menu
+
+        private void UpdateSectionsMenu()
+        {
+            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
+            mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
+            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
+            mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
+            mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
+            mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
+            mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
+            mSectionIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
+            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
+        }
+
+        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
+        private void mAddSubsectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
+        private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
+        private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
+        private void mDecreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DecreaseSelectedSectionLevel(); }
+        private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
+        private void mSplitSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
+        private void mMergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+        private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
+        }
+
+        #endregion
+
+        #region Phrases menu
+
+        // Update the status of the blocks menu item with the current selection and tree.
+        private void UpdatePhrasesMenu()
+        {
+            mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
+            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
+            mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
+            mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
+            mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
+            mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
+            mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
+            mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            // mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
+            mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
+            UpdateAudioSelectionBlockMenuItems();
+        }
+
+        private void UpdateAudioSelectionBlockMenuItems()
+        {
+            //string AudioSelectionStatusMessage = "";
+            if (mProjectView.Selection is AudioSelection)
+            {
+                mBeginInPhraseSelectionToolStripMenuItem.Enabled = true;
+
+                if (((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
+                {
+                    mEndInPhraseSelectionToolStripMenuItem.Enabled = true;
+                }
+
+                if (((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime > 0)
+                {
+                    mDeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
+                    string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
+                    string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
+                    //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
+                    //AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
+
+                }
+                else
+                {
+                    mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                    //AudioSelectionStatusMessage = "";
+                }
+            }
+            else
+            {
+                mBeginInPhraseSelectionToolStripMenuItem.Enabled = false;
+                mEndInPhraseSelectionToolStripMenuItem.Enabled = false;
+                mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                //AudioSelectionStatusMessage = "";
+            }
+            //if (AudioSelectionStatusMessage != "")
+            //    Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
+        }
+
+        private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
+        private void mAddEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
+        private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
+        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
+        private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+        private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
+        }
+
+
+        private delegate void DisableCallback(bool disable);
+
+        private void Disable(bool disable)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new DisableCallback(Disable), new object[] { disable });
+            }
+            else
+            {
+                Cursor = disable ? Cursors.WaitCursor : Cursors.Default;
+                mMenuStrip.Enabled = !disable;
+                mProjectView.Enabled = !disable;
+            }
+        }
+
+        void mProjectView_ImportingFile(object sender, Obi.ProjectView.ImportingFileEventArgs e)
+        {
+            Disable(true);
+            Status(String.Format(Localizer.Message("importing_file"), e.Path));
+        }
+
+        void mProjectView_FinishedImportingFiles(object sender, EventArgs e)
+        {
+            Disable(false);
+        }
+
+        private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanSetPageNumber)
+            {
+                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, false);
+                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
+            }
+        }
+
+
+        // Update the custom class menu with the classes from the new project
+        private void UpdateCustomClassMenu()
+        {
+            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomClassToMenu(customClass);
+            mSession.Presentation.CustomClassAddded += new CustomClassEventHandler(Presentation_CustomClassAddded);
+            mSession.Presentation.CustomClassRemoved += new CustomClassEventHandler(Presentation_CustomClassRemoved);
+        }
+
+        private void AddCustomClassToMenu(string customClass)
+        {
+            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
+            int index = items.IndexOf(mAddRoleToolStripTextBox);
+            // TODO find alphabetical spot for the new class
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = customClass;
+            item.Click += new EventHandler(delegate(object sender, EventArgs e)
+               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
+            items.Insert(index, item);
+        }
+        // Update the custom class menu
+        private void Presentation_CustomClassAddded(object sender, CustomClassEventArgs e)
+        {
+            AddCustomClassToMenu(e.CustomClass);
+        }
+
+        // Update the custom class menu to remove this class
+        void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
+        {
+            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
+            int index;
+            for (index = items.IndexOf(mCustomRoleToolStripSeparator); index < items.IndexOf(mAddRoleToolStripTextBox) &&
+                items[index].Text != e.CustomClass; ++index) ;
+            if (index < items.IndexOf(mAddRoleToolStripTextBox)) items.RemoveAt(index);
+        }
+
+        private void mClearRoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+        }
+
+        private void mSetAsHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MakeSelectedBlockIntoHeadingPhrase();
+        }
+
+        private void mSilenceToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MakeSelectedBlockIntoSilencePhrase(); }
+
+        private void mEditRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
+            dialog.ShowDialog();
+        }
+        private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
+                mPhrasesToolStripMenuItem.DropDown.Close();
+                mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
+            }
+        }
+
+        #endregion
+
+        #region Transport menu
+
+        // Update the transport manu
+        private void UpdateTransportMenu()
+        {
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            PlayPreviewtoolStripMenuItem.Enabled = mProjectView.CanPlay;
+            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
+
+            if (mProjectView.CanResume)
+            {
+                mPauseToolStripMenuItem.Visible = false;
+                mResumeToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                mPauseToolStripMenuItem.Visible = true;
+                mPauseToolStripMenuItem.Enabled = mProjectView.CanPause;
+                mResumeToolStripMenuItem.Visible = false;
+            }
+            mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
+
+            // update recording menu items
+            mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
+            if (mProjectView.TransportBar.IsRecorderActive)
+            {
+                mStartListeningToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                mStartListeningToolStripMenuItem.Enabled = true;
+                mStartRecordingToolStripMenuItem.Enabled = true;
+            }
+            mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+            mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+        }
+
+        private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPlay) mProjectView.TransportBar.PlayAll();
+        }
+
+        private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
+        }
+
+        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanPause) mProjectView.TransportBar.Pause();
+        }
+
+        private void mResumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanResume) mProjectView.TransportBar.PlayOrResume();
+        }
+
+        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanStop) mProjectView.TransportBar.Stop();
+        }
+
+        private void mStartListeningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.Record();
+        }
+
+        private void mStartRecordingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.StartRecordingDirectly();
+        }
+
+
+        private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.Rewind();
+        }
+
+        private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastForward();
+        }
+
+        private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PrevSection();
+        }
+
+        private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PrevPhrase();
+        }
+
+        private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PrevPage();
+        }
+
+        private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextPhrase();
+        }
+
+        private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextSection();
+        }
+
+        private void nextPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.NextPage();
+        }
+
+        private void NormalSpeedtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateNormalise();
+        }
+
+        private void SpeedUptoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateStepUp();
+        }
+
+        private void SpeedDowntoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayRateStepDown();
+        }
+
+        private void ElapseBacktoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.FastPlayNormaliseWithLapseBack();
+        }
+
+        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewFromCurrentPosition();
+        }
+
+        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewUptoCurrentPosition();
+        }
+
+        private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.PlayPreviewSelectedFragment();
+        }
+
+        private void PhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ApplyPhraseDetection();
+        }
+
+        private void BeginInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionBeginTime();
+            UpdateAudioSelectionBlockMenuItems();
+        }
+
+        private void EndInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionEndTime();
+            UpdateAudioSelectionBlockMenuItems();
+        }
+
+        private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.Selection is AudioSelection)
+            {
+                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime = 0;
+                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
+            }
+            UpdateAudioSelectionBlockMenuItems();
+        }
+
+        #endregion
+
+        #region Tools menu
+
+        // Open the preferences dialog
+        private void mPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation, mProjectView.TransportBar);
+            prefs.ShowDialog();
+            Ready();
+        }
+
+        #endregion
+
+        #region Help menu
+
+        // Show the HTML help page.
+        private void mContentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.Help help = new Dialogs.Help();
+            help.WebBrowser.Url = new Uri(Path.Combine(
+                Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_file_name")));
+            help.ShowDialog();
+        }
+
+        // Show the HTML help page in an external browser.
+        private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_file_name")))).ToString());
+        }
+
+        // Take the user to the Sourceforge bug page.
+        private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Uri url = new Uri("http://sourceforge.net/tracker/?func=add&group_id=149942&atid=776242");
+            System.Diagnostics.Process.Start(url.ToString());
+        }
+
+        // Show the About dialog
+        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Dialogs.About()).ShowDialog();
+        }
+        
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Application settings.
+        /// </summary>
+        public Settings Settings { get { return mSettings; } }
+
+        /// <summary>
+        /// Display a message in the status bar.
+        /// </summary>
+        public void Status(string message) { mStatusLabel.Text = message; }
+
+
+
+
+
 
         // Utility functions
 
@@ -423,7 +878,7 @@ namespace Obi
                 // the item was in the list so bump it up
                 int i = mSettings.RecentProjects.IndexOf(path);
                 mSettings.RecentProjects.RemoveAt(i);
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
             }
             AddRecentProjectsItem(path);
             mSettings.RecentProjects.Insert(0, path);
@@ -438,7 +893,7 @@ namespace Obi
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = path;
             item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
-            mOpenRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+            mRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
             return true;
         }
 
@@ -825,14 +1280,6 @@ namespace Obi
             MessageBox.Show(String.Format(Localizer.Message("report_delete_error"), path, message));
         }
 
-        // Open the preferences dialog
-        private void mPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation, mProjectView.TransportBar);
-            prefs.ShowDialog();
-            Ready();
-        }
-
         /// <summary>
         /// Save the settings when closing.
         /// </summary>
@@ -869,25 +1316,6 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Show the HTML help page.
-        /// </summary>
-        private void mHelpToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Dialogs.Help help = new Dialogs.Help();
-            help.WebBrowser.Url = new Uri(Path.Combine(
-                Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_file_name")));
-            help.ShowDialog();
-        }
-
-        /// <summary>
-        /// Show the help dialog.
-        /// </summary>
-        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new Dialogs.About()).ShowDialog();
-        }
 
 
 
@@ -957,18 +1385,6 @@ namespace Obi
 
         // Various utility functions
 
-        private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_file_name")))).ToString());
-        }
-
-        private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Uri url = new Uri("http://sourceforge.net/tracker/?func=add&group_id=149942&atid=776242");
-            System.Diagnostics.Process.Start(url.ToString());
-        }
-
 
         private void InitialiseHighContrastSettings()
         {
@@ -1002,7 +1418,7 @@ namespace Obi
             {
                 int i = mSettings.RecentProjects.IndexOf(path);
                 mSettings.RecentProjects.RemoveAt(i);
-                mOpenRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
             }
         }
 
@@ -1135,206 +1551,6 @@ namespace Obi
         }
 
 
-        // Sections menu
-
-        private void UpdateSectionsMenu()
-        {
-            mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
-            mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
-            mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
-            mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
-            mIncreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanIncreaseLevel;
-            mSplitSectionToolStripMenuItem.Enabled = mProjectView.CanSplitStrip;
-            mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
-            mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
-            mSectionIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
-            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
-            mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mSectionIsUsedToolStripMenuItem_CheckedChanged);
-        }
-
-        private void mAddSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
-        private void mAddSubsectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
-        private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
-        private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
-        private void mDecreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DecreaseSelectedSectionLevel(); }
-        private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
-        private void mSplitSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
-        private void mMergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
-        private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            mProjectView.SetSelectedNodeUsedStatus(mSectionIsUsedToolStripMenuItem.Checked);
-        }
-
-        // Update the status of the blocks menu item with the current selection and tree.
-        private void UpdatePhrasesMenu()
-        {
-            mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
-            mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
-            mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
-            mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
-            mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
-            mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
-            mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
-            mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
-            mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
-            mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
-            mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
-            PhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
-            // mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
-            mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
-            UpdateAudioSelectionBlockMenuItems();
-        }
-
-        private void UpdateAudioSelectionBlockMenuItems()
-        {
-            //string AudioSelectionStatusMessage = "";
-            if (mProjectView.Selection is AudioSelection)
-            {
-                BeginInPhraseSelectionToolStripMenuItem.Enabled = true;
-
-                if (((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
-                {
-                    EndInPhraseSelectionToolStripMenuItem.Enabled = true;
-                }
-
-                if (((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime > 0)
-                {
-                    DeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
-                    string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
-                    string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
-                    //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
-                    //AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
-
-                }
-                else
-                {
-                    DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                    //AudioSelectionStatusMessage = "";
-                }
-            }
-            else
-            {
-                BeginInPhraseSelectionToolStripMenuItem.Enabled = false;
-                EndInPhraseSelectionToolStripMenuItem.Enabled = false;
-                DeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                //AudioSelectionStatusMessage = "";
-            }
-            //if (AudioSelectionStatusMessage != "")
-            //    Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
-        }
-
-        private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
-        private void mAddEmptyPagesToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
-        private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
-        private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
-        private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
-        private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
-        }
-
-
-        private delegate void DisableCallback(bool disable);
-
-        private void Disable(bool disable)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new DisableCallback(Disable), new object[] { disable });
-            }
-            else
-            {
-                Cursor = disable ? Cursors.WaitCursor : Cursors.Default;
-                mMenuStrip.Enabled = !disable;
-                mProjectView.Enabled = !disable;
-            }
-        }
-
-        void mProjectView_ImportingFile(object sender, Obi.ProjectView.ImportingFileEventArgs e)
-        {
-            Disable(true);
-            Status(String.Format(Localizer.Message("importing_file"), e.Path));
-        }
-
-        void mProjectView_FinishedImportingFiles(object sender, EventArgs e)
-        {
-            Disable(false);
-        }
-
-        private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanSetPageNumber)
-            {
-                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, false);
-                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
-            }
-        }
-
-
-        // Update the custom class menu with the classes from the new project
-        private void UpdateCustomClassMenu()
-        {
-            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomClassToMenu(customClass);
-            mSession.Presentation.CustomClassAddded += new CustomClassEventHandler(Presentation_CustomClassAddded);
-            mSession.Presentation.CustomClassRemoved += new CustomClassEventHandler(Presentation_CustomClassRemoved);
-        }
-
-        private void AddCustomClassToMenu(string customClass)
-        {
-            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
-            int index = items.IndexOf(mAddRoleToolStripTextBox);
-            // TODO find alphabetical spot for the new class
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = customClass;
-            item.Click += new EventHandler(delegate(object sender, EventArgs e)
-               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
-            items.Insert(index, item);
-        }
-        // Update the custom class menu
-        private void Presentation_CustomClassAddded(object sender, CustomClassEventArgs e)
-        {
-            AddCustomClassToMenu(e.CustomClass);
-        }
-
-        // Update the custom class menu to remove this class
-        void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
-        {
-            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
-            int index;
-            for (index = items.IndexOf(mCustomRoleToolStripSeparator); index < items.IndexOf(mAddRoleToolStripTextBox) &&
-                items[index].Text != e.CustomClass; ++index);
-            if (index < items.IndexOf(mAddRoleToolStripTextBox)) items.RemoveAt(index);
-        }
-
-        private void mClearRoleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
-        }
-
-        private void mSetAsHeadingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MakeSelectedBlockIntoHeadingPhrase();
-        }
-
-        private void mSilenceToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MakeSelectedBlockIntoSilencePhrase(); }
-
-        private void mEditRolesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
-            dialog.ShowDialog();
-        }
-        private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
-                mPhrasesToolStripMenuItem.DropDown.Close();
-                mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
-            }
-        }
 
         private void mShowPeakMeterMenuItem_Click(object sender, EventArgs e)
         {
@@ -1363,179 +1579,6 @@ namespace Obi
             }
         }
 
-        // Update the transport manu
-        private void UpdateTransportMenu()
-        {
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
-            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
-            PlayPreviewtoolStripMenuItem.Enabled = mProjectView.CanPlay;
-            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay; 
-
-            if (mProjectView.CanResume)
-            {
-                mPauseToolStripMenuItem.Visible = false;
-                mResumeToolStripMenuItem.Visible = true;
-            }
-            else
-            {
-                mPauseToolStripMenuItem.Visible = true;
-                mPauseToolStripMenuItem.Enabled = mProjectView.CanPause;
-                mResumeToolStripMenuItem.Visible = false;
-            }
-            mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
-
-            // update recording menu items
-                        mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-            if (mProjectView.TransportBar.IsRecorderActive)
-            {
-                mStartListeningToolStripMenuItem.Enabled = false;
-            }
-            else
-            {
-                mStartListeningToolStripMenuItem.Enabled = true;
-                mStartRecordingToolStripMenuItem.Enabled = true;
-            }
-            mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-            mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-        }
-
-        private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanPlay) mProjectView.TransportBar.PlayAll();
-        }
-
-        private void mPlaySelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
-        }
-
-        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanPause) mProjectView.TransportBar.Pause();
-        }
-
-        private void mResumeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanResume) mProjectView.TransportBar.PlayOrResume();
-        }
-
-        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanStop) mProjectView.TransportBar.Stop();
-        }
-
-        private void mStartListeningToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Record();
-        }
-
-        private void mStartRecordingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.StartRecordingDirectly();
-        }
-
-
-        private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Rewind();
-        }
-
-        private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastForward();
-        }
-
-        private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevSection();
-        }
-
-        private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevPhrase();
-        }
-
-        private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevPage();
-        }
-
-        private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextPhrase();
-        }
-
-        private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextSection(); 
-        }
-
-        private void nextPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextPage();
-        }
-
-        private void NormalSpeedtoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastPlayRateNormalise();
-        }
-
-        private void SpeedUptoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastPlayRateStepUp();
-        }
-
-        private void SpeedDowntoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastPlayRateStepDown();
-        }
-
-        private void ElapseBacktoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastPlayNormaliseWithLapseBack();
-        }
-
-        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PlayPreviewFromCurrentPosition();
-        }
-
-        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PlayPreviewUptoCurrentPosition() ;
-        }
-
-        private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PlayPreviewSelectedFragment();
-        }
-
-        private void PhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.ApplyPhraseDetection();
-        }
-
-        private void BeginInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.MarkSelectionBeginTime();
-            UpdateAudioSelectionBlockMenuItems();
-        }
-
-        private void EndInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.MarkSelectionEndTime();
-            UpdateAudioSelectionBlockMenuItems();
-        }
-
-        private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.Selection is AudioSelection)
-            {
-                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime = 0;
-                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
-            }
-            UpdateAudioSelectionBlockMenuItems();
-        }
 
         private void mMarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
