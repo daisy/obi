@@ -526,8 +526,6 @@ namespace Obi.ProjectView
         {
             mCurrentPlaylist = mMasterPlaylist;
             PlayCurrentPlaylistFromSelection();
-            // mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
-            // mCurrentPlaylist.Play();
         }
 
         /// <summary>
@@ -575,13 +573,23 @@ namespace Obi.ProjectView
                 && (!((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked)
                 && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
             {
+                // Play the current selection
                 mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
-                mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                if (mCurrentPlaylist == mMasterPlaylist)
+                {
+                    // when "play all", ignore the end time
+                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime);
+                }
+                else
+                {
+                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                }
             }
             else if (mView.Selection is AudioSelection
                 && mView.Selection.Node is PhraseNode
                 && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
             {
+                // Play from the cursor
                 mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
                 mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
             }

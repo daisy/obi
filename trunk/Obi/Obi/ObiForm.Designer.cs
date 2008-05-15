@@ -1029,8 +1029,8 @@ namespace Obi
             // 
             // preferencesToolStripMenuItem1
             // 
-            this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             resources.ApplyResources(this.preferencesToolStripMenuItem1, "preferencesToolStripMenuItem1");
+            this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
@@ -1086,7 +1086,6 @@ namespace Obi
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
             this.mProjectView.Clipboard = null;
             resources.ApplyResources(this.mProjectView, "mProjectView");
-            this.mProjectView.EnableTooltips = false;
             this.mProjectView.FindInTextVisible = false;
             this.mProjectView.MetadataViewVisible = true;
             this.mProjectView.Name = "mProjectView";

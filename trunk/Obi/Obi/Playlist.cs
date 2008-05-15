@@ -286,7 +286,8 @@ namespace Obi
                 mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayerState.Playing;
-            double from = mCurrentPhraseIndex == 0 ? mPlaybackStartTime : 0.0;
+            double from = mPlaybackStartTime;
+            mPlaybackStartTime = 0.0;
             if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
             {
                 mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from, mPlaybackEndTime);
