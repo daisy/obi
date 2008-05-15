@@ -1173,9 +1173,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 0.10.7"
+        "ProductName" = "8:Obi 0.10.8"
         "ProductCode" = "8:{85A99D0A-5FF6-4CC7-A480-101BF4E080F0}"
-        "PackageCode" = "8:{3816FC4F-0599-4D14-9D57-40017D11D1DD}"
+        "PackageCode" = "8:{685FA0E0-A285-4B18-BD6A-350237A923FB}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1296,7 +1296,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.10.7"
+            "Name" = "8:Obi 0.10.8"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
