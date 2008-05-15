@@ -125,14 +125,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Clicking the label makes it editable.
-        /// </summary>
-        private void EditableLabel_Click(object sender, EventArgs e)
-        {
-            if (!mEditable) Editable = true;
-        }
-
-        /// <summary>
         /// Pressing enter is like pressing OK.
         /// Escape is like cancel.
         /// </summary>

@@ -40,7 +40,7 @@ namespace Obi.ProjectView
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(0, 13);
             this.mLabel.TabIndex = 2;
-            this.mLabel.Click += new System.EventHandler(this.mLabel_Click);
+            this.mLabel.Click += new System.EventHandler(this.Label_Click);
             // 
             // Block
             // 
