@@ -695,7 +695,7 @@ namespace Obi.ProjectView
                 mRecordingInitPhraseIndex = 1 + selected.Index;
                 if (mAllowOverwrite && (IsInPhraseSelectionMarked || mState == State.Paused))
                 { //1
-                    if (mState == State.Paused)
+                    if (mState == State.Paused && !(mView.Selection is AudioSelection))
                     { // 2
                         command.append(new Commands.Node.SplitAudio(mView , SplitTime));
                     } //-2
