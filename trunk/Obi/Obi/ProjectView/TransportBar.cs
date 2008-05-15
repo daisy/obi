@@ -520,12 +520,14 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Play all in the project. (Used when nothing is selected, or from the play all menu item.)
+        /// Start from the current selection, or from the first phrase.
         /// </summary>
         public void PlayAll()
         {
             mCurrentPlaylist = mMasterPlaylist;
-            mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
-            mCurrentPlaylist.Play();
+            PlayCurrentPlaylistFromSelection();
+            // mCurrentPlaylist.CurrentPhrase = mCurrentPlaylist.FirstPhrase;
+            // mCurrentPlaylist.Play();
         }
 
         /// <summary>
@@ -561,21 +563,40 @@ namespace Obi.ProjectView
                 mLocalPlaylist = new Playlist(mPlayer, mView.Selection);
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;
-                if (mView.Selection is AudioSelection
-                    && (!((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked)
-                    && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+                PlayCurrentPlaylistFromSelection();
+            }
+        }
+
+        // Play the current playlist from the current selection.
+        private void PlayCurrentPlaylistFromSelection()
+        {
+            if (mView.Selection is AudioSelection
+                && mView.Selection.Node is PhraseNode
+                && (!((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked)
+                && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+            {
+                mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
+                mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+            }
+            else if (mView.Selection is AudioSelection
+                && mView.Selection.Node is PhraseNode
+                && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+            {
+                mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
+                mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+            }
+            else if (mView.Selection is StripCursorSelection)
+            {
+                StripCursorSelection s = (StripCursorSelection)mView.Selection;
+                if (s.Index < s.Section.PhraseChildCount)
                 {
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                    mCurrentPlaylist.CurrentPhrase = (PhraseNode)s.Section.PhraseChild(s.Index);
                 }
-                else if (mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-                {
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
-                }
-                else
-                {
-                    mCurrentPlaylist.Play();
-                }
+                mCurrentPlaylist.Play();
+            }
+            else
+            {
+                mCurrentPlaylist.Play();
             }
         }
 
@@ -639,7 +660,7 @@ namespace Obi.ProjectView
                     // Stopping again deselects everything
                     if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
                     {
-                        //mView.Selection = null;
+                        mView.Selection = null;
                     }
                     else
                     {
@@ -1186,7 +1207,7 @@ namespace Obi.ProjectView
 
         public bool IsActive { get { return Enabled && ( IsPlayerActive || IsRecorderActive ); } }
         private bool IsPlaying { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Playing; } }
-        private bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
+        public bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
 

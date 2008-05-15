@@ -277,6 +277,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut()
         {
+            if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection || CanRemoveStrip)
             {
                 bool isSection = mSelection.Control is TOCView;
@@ -311,6 +312,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete()
         {
+            if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.Node.Delete(this, mTOCView.Selection.Section,
