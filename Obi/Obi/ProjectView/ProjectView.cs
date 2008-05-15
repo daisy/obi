@@ -198,8 +198,8 @@ namespace Obi.ProjectView
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return Selection != null &&  ( CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata ) ; } }
-        public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused && mStripsView.Selection == null; } }
-        public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused && mTOCView.Selection == null; } }
+        public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused; } }
+        public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
@@ -357,18 +357,16 @@ namespace Obi.ProjectView
             if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
         }
 
+
         /// <summary>
-        /// Enable/disable tooltips in the view (currently mostly disabled.)
+        /// Show (select) the strip for the current selection
         /// </summary>
-        public bool EnableTooltips
+        public void FocusOnContentView()
         {
-            get { return mEnableTooltips; }
-            set
+            if (CanFocusOnContentView)
             {
-                mEnableTooltips = value;
-                // mStripManagerPanel.EnableTooltips = value;
-                // mTOCPanel.EnableTooltips = value;
-                // mTransportBar.EnableTooltips = value;
+                if (mSelection != null && mSelection.Control is TOCView) Selection = new NodeSelection(mSelection.Node, mStripsView);
+                mStripsView.Focus();
             }
         }
 
@@ -382,16 +380,8 @@ namespace Obi.ProjectView
                 SectionNode node = mSelection == null ? null :
                     mSelection.Node is SectionNode ? (SectionNode)mSelection.Node :
                     mSelection.Node.AncestorAs<SectionNode>();
-                if (node != null)
-                {
-                    Selection = new NodeSelection(node, mTOCView);
-                    mTOCView.Focus();
-                }
-                else
-                {
-                    TOCViewVisible = true;
-                    mTOCView.Focus();
-                }
+                if (node != null) Selection = new NodeSelection(node, mTOCView);
+                mTOCView.Focus();
             }
         }
 
@@ -839,7 +829,6 @@ namespace Obi.ProjectView
         public bool CanDeselect { get { return mSelection != null; } }
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
-        public bool CanShowInTOCView { get { return IsStripSelected; } }
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return !mStripsView.CanSetStripUsedStatus || mSelection.Node.Used; } }
@@ -886,21 +875,6 @@ namespace Obi.ProjectView
         {
             SectionNode section = phrase.AncestorAs<SectionNode>();
             mTOCView.MakeTreeNodeVisibleForSection(section);
-        }
-
-        /// <summary>
-        /// Show (select) the strip for the current selection
-        /// </summary>
-        public void ShowSelectedSectionInStripsView()
-        {
-            if (CanShowInStripsView)
-            {
-                Selection = new NodeSelection(mSelection.Node, mStripsView);
-            }
-            else
-            {
-                mStripsView.GetFocus();
-            }
         }
 
         #region Find in Text

@@ -363,7 +363,7 @@ namespace Obi
 
         private void mFocusOnStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowSelectedSectionInStripsView();
+            mProjectView.FocusOnContentView();
         }
 
         private void mFocusOnTransportBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1351,8 +1351,6 @@ namespace Obi
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            // tooltips
-            mProjectView.EnableTooltips = mSettings.EnableTooltips;
             if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
             {
                 mSettings.ObiFormSize = Size;
