@@ -210,6 +210,8 @@ namespace Obi.ProjectView
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
+        public bool CanPreview { get { return mTransportBar.CanPreview; } }
+        public bool CanPreviewAudioSelection { get { return mTransportBar.CanPreviewAudioSelection; } }
         public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
         public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
         public bool CanRemoveMetadata { get { return mMetadataView.CanRemoveMetadata; } }

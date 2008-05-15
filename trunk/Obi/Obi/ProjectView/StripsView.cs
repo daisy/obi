@@ -640,9 +640,10 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.OemCloseBrackets] = MarkSelectionEndTime;
             mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
             mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
-            mShortcutKeys[Keys.X ] = PlayPreviewUptoCurrentPosition;
-            mShortcutKeys[Keys.C] = PlayPreviewSelectedFragment;
-            mShortcutKeys[Keys.V ] = PlayPreviewFromCurrentPosition;
+
+            mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
+            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(true); };
+            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(false); };
 
             // Strips navigation
             mShortcutKeys[Keys.Left] = SelectPrecedingBlock;
@@ -653,8 +654,6 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Control |  Keys.PageUp] = SelectPrecedingPageNode;
             mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode ;
             mShortcutKeys[ Keys.Shift |  Keys.F4] = SelectPreviousSpecialRoleNode ;
-            //mShortcutKeys[Keys.Control | Keys.F9 ] = SelectNextTo_DoNode ;
-            //mShortcutKeys[Keys.Control | Keys.Shift |  Keys.F9] =  SelectPreviousTo_DoNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -1091,20 +1090,6 @@ namespace Obi.ProjectView
         {
             return mView.TransportBar.MarkSelectionWholePhrase();
         }
-
-        private bool PlayPreviewFromCurrentPosition ()
-        {
-            return  mView.TransportBar.PlayPreviewFromCurrentPosition () ;
-                                }
-
-        private bool PlayPreviewSelectedFragment()
-        {
-            return mView.TransportBar.PlayPreviewSelectedFragment();
-        }
-        private bool PlayPreviewUptoCurrentPosition()
-        {
-            return mView.TransportBar.PlayPreviewUptoCurrentPosition () ;
-                    }
 
 
                #endregion

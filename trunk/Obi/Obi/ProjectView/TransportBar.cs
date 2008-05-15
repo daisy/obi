@@ -121,6 +121,23 @@ namespace Obi.ProjectView
         public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring; } }
         public bool CanRewind { get { return Enabled && mRecordingSession == null; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
+
+        public bool CanPreview
+        {
+            get
+            {
+                return Enabled && (IsPlayerActive || (mView.Selection is AudioSelection && !IsRecorderActive));
+            }
+        }
+        
+        public bool CanPreviewAudioSelection
+        {
+            get
+            {
+                return Enabled && mView.Selection is AudioSelection
+                    && !((AudioSelection)mView.Selection).AudioRange.HasCursor && !IsRecorderActive;
+            }
+        }
         
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
@@ -1098,41 +1115,65 @@ namespace Obi.ProjectView
 
 
         /// <summary>
-        /// Preview from the current position.
+        /// Preview from the current position; use the audio cursor, the selection cursor,
+        /// or the beginning position of a selection.
         /// </summary>
-        public bool PlayPreviewFromCurrentPosition()
+        public bool Preview(bool forward)
         {
-            if (IsInPhraseSelectionMarked)
+            if (mState == State.Paused || mState == State.Playing)
             {
-                mCurrentPlaylist.PreviewFromCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, mPreviewDuration);
+                // use the audio cursor
+                if (mState == State.Playing) Pause();
+                PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (forward ? 0.0 : mPreviewDuration),
+                    mPreviewDuration, forward);
+                return true;
+            }
+            else if (mState == State.Stopped && mView.Selection is AudioSelection)
+            {
+                AudioSelection s = (AudioSelection)mView.Selection;
+                double time = forward ? s.AudioRange.CursorTime :
+                    (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
+                PlayPreview((PhraseNode)s.Node, time, mPreviewDuration, forward);
                 return true;
             }
             return false;
         }
 
-        public bool PlayPreviewSelectedFragment()
-        {
-                                                if ( IsInPhraseSelectionMarked
-                                                                    &&    ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime < ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime )
-            {
-                mCurrentPlaylist.PreviewSelectedFragment(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime );
-                return true;
-            }
-            return false;
-        }
 
         /// <summary>
-        /// Preview up to the current position.
+        /// Preview the audio selection.
         /// </summary>
-        public bool PlayPreviewUptoCurrentPosition()
+        public bool PreviewAudioSelection()
         {
-            if (IsInPhraseSelectionMarked)
+            if (CanPreviewAudioSelection)
             {
-                mCurrentPlaylist.PreviewUptoCurrentPosition(((AudioSelection)mView.Selection).AudioRange.CursorTime, mPreviewDuration);
+                AudioSelection s = (AudioSelection)mView.Selection;
+                if (mState == State.Playing) Pause();
+                PlayPreview((PhraseNode)s.Node, s.AudioRange.SelectionBeginTime,
+                    s.AudioRange.SelectionEndTime - s.AudioRange.SelectionBeginTime, true);
                 return true;
             }
             return false;
         }
+
+        // Preview from a given time for a given duration inside a phrase.
+        private void PlayPreview(PhraseNode phrase, double from, double duration, bool forward)
+        {
+            urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.getMediaData();
+            if (from < 0.0)
+            {
+                duration += from;
+                from = 0.0;
+            }
+            double end = from + duration;
+            if (end > audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat())
+                end = audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+            mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
+        }
+
+
+
+
 
 
         #region undoable recording
