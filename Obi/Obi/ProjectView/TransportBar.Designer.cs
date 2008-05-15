@@ -364,10 +364,11 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mStopButton);
             this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.mPauseButton);
+            this.DoubleBuffered = true;
             this.Name = "TransportBar";
             this.Size = new System.Drawing.Size(945, 35);
-            this.Enter += new System.EventHandler(this.TransportBar_Enter);
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
+            this.Enter += new System.EventHandler(this.TransportBar_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

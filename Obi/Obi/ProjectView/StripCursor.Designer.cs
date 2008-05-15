@@ -33,7 +33,8 @@ namespace Obi.ProjectView
             // StripCursor
             // 
             this.AccessibleName = "Strip Cursor";
-            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.Size = new System.Drawing.Size(12, 104);
             this.TabStop = false;
             this.ResumeLayout(false);
 
