@@ -122,7 +122,7 @@
     <value>0, 0</value>
   </data>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>New project Ctrl+N</value>
+    <value />
   </data>
   <data name="mNewProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>New project Ctrl+N</value>
@@ -363,7 +363,7 @@
     <value>Previous &amp;section</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Previous page Alt+PgUp</value>
+    <value>Previous page Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
@@ -399,7 +399,7 @@
     <value>Next ph&amp;rase</value>
   </data>
   <data name="nextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Next page Alt+PgDn</value>
+    <value>Next page Alt+PageDown</value>
   </data>
   <data name="nextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgDn</value>
@@ -453,7 +453,7 @@
     <value>Re&amp;wind</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Fast forward Ctrl+.</value>
+    <value>Fast forward Ctrl+period</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -2442,5 +2442,11 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mStartListeningToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Start Monitoring ctrl+r</value>
+  </data>
+  <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Start Recording ctrl+shift+r</value>
   </data>
 </root>
