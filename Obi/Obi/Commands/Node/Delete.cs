@@ -37,10 +37,7 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            if (mView.TransportBar.IsActive)
-                mView.TransportBar.Stop();
-
-            mNode.Detach();
+                        mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
         }
 
