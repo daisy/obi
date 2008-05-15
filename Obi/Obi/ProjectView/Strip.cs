@@ -271,6 +271,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Clear the selection in the strip from its contents.
+        /// </summary>
+        public void UnselectInStrip()
+        {
+            mParentView.Selection = null;
+        }
+
+        /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
         public void UpdateColors()
@@ -343,8 +351,15 @@ namespace Obi.ProjectView
             mBlocksPanel.Controls.SetChildIndex(cursor, index);
             cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
                 {
-                    mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView,
-                        mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
+                    if (!cursor.Selected)
+                    {
+                        mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView,
+                            mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
+                    }
+                    else
+                    {
+                        mParentView.Selection = null;
+                    }
                 }
             );
         }
@@ -359,6 +374,12 @@ namespace Obi.ProjectView
                 Thread TrimAccessibleName = new Thread(new ThreadStart(TrimContentsViewAccessibleLabel));
                 TrimAccessibleName.Start();
             }
+        }
+
+        // Clicking on the label toggles the strip selection. Use "rename" to rename.
+        private void Label_Click(object sender, EventArgs e)
+        {
+            ToggleSelection();
         }
 
         // Select the label when it is clicked (i.e. made editable) by the user.
@@ -398,8 +419,14 @@ namespace Obi.ProjectView
         // Set verbose accessible name for the strip 
         private void SetAccessibleName() { mLabel.AccessibleName = mNode.ToString(); }
 
-        // Toggle selection
+        // Toggle selection when clicking
         private void Strip_Click(object sender, EventArgs e)
+        {
+            ToggleSelection();
+        }
+
+        // Toggle selection
+        private void ToggleSelection()
         {
             if (mSelected && !mEntering)
             {

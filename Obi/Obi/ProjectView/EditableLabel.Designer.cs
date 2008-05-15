@@ -43,7 +43,6 @@ namespace Obi.ProjectView
             this.mLabel.Size = new System.Drawing.Size(35, 13);
             this.mLabel.TabIndex = 0;
             this.mLabel.Text = "label1";
-            this.mLabel.Click += new System.EventHandler(this.EditableLabel_Click);
             // 
             // mTextBox
             // 
@@ -91,7 +90,6 @@ namespace Obi.ProjectView
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EditableLabel";
             this.Size = new System.Drawing.Size(150, 52);
-            this.Click += new System.EventHandler(this.EditableLabel_Click);
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();

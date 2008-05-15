@@ -901,26 +901,29 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    // record into to next phrase.
                     mRecordingSession.NextPhrase();
                 }
-                else if (mState != State.Monitoring)
+                else if (mState == State.Monitoring)
                 {
-                    if (mState == State.Stopped)
+                    // start recording
+
+                }
+                else if (mState == State.Stopped)
+                {
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
                     {
-                        if (mView.ObiForm.Settings.PlayOnNavigate)
-                        {
-                            mCurrentPlaylist.CurrentPhrase = mView.Selection.Node as PhraseNode;
-                            mCurrentPlaylist.NavigateToNextPhrase();
-                        }
-                        else
-                        {
-                            mView.SelectNextPhrase();
-                        }
+                        mCurrentPlaylist.CurrentPhrase = mView.Selection.Node as PhraseNode;
+                        mCurrentPlaylist.NavigateToNextPhrase();
                     }
                     else
                     {
-                        mCurrentPlaylist.NavigateToNextPhrase();
+                        mView.SelectNextPhrase();
                     }
+                }
+                else
+                {
+                    mCurrentPlaylist.NavigateToNextPhrase();
                 }
             }
         }
