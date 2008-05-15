@@ -517,8 +517,11 @@ namespace Obi.ProjectView
         {
             set
             {
-                mStripsView.PlaybackPhrase = value;
-                if (value != null) MakePhraseNodeVisible(value);
+                if (mStripsView != null)
+                {
+                    mStripsView.PlaybackPhrase = value;
+                    if (value != null) MakePhraseNodeVisible(value);
+                }
             }
         }
 
@@ -643,14 +646,19 @@ namespace Obi.ProjectView
 
         private void UpdateShowOnlySelected(bool showOnly)
         {
+            ObiNode node = SelectedNodeAs<ObiNode>();
+            node = node is SectionNode ? (SectionNode)node :
+                node == null || node is RootNode ? null :
+                node.AncestorAs<SectionNode>();
             if (showOnly)
             {
-                mStripsView.ShowOnlySelectedSection(SelectedNodeAs<ObiNode>());
+                mStripsView.ShowOnlySelectedSection(node);
             }
             else
             {
                 SynchronizeViews = mSynchronizeViews;
             }
+            mStripsView.MakeStripVisibleForSection((SectionNode)node);
         }
 
         public bool WrapStrips { set { mStripsView.WrapStrips = value; } }

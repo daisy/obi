@@ -36,15 +36,15 @@ namespace Obi.ProjectView
             // 
             this.mBlocksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBlocksPanel.AutoSize = true;
             this.mBlocksPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mBlocksPanel.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.mBlocksPanel.Location = new System.Drawing.Point(3, 25);
+            this.mBlocksPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.mBlocksPanel.Location = new System.Drawing.Point(3, 43);
             this.mBlocksPanel.Name = "mBlocksPanel";
-            this.mBlocksPanel.Size = new System.Drawing.Size(0, 0);
+            this.mBlocksPanel.Size = new System.Drawing.Size(300, 104);
             this.mBlocksPanel.TabIndex = 0;
             this.mBlocksPanel.WrapContents = false;
             this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
+            this.mBlocksPanel.SizeChanged += new System.EventHandler(this.BlocksPanel_SizeChanged);
             // 
             // mLabel
             // 
@@ -53,13 +53,13 @@ namespace Obi.ProjectView
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;
             this.mLabel.Editable = false;
-            this.mLabel.FontSize = 8.25F;
-            this.mLabel.Label = "*** NOT YET INITIALIZED ***";
+            this.mLabel.FontSize = 18F;
+            this.mLabel.Label = "Label";
             this.mLabel.Location = new System.Drawing.Point(3, 3);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.mLabel.MinimumSize = new System.Drawing.Size(150, 0);
+            this.mLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.mLabel.MinimumSize = new System.Drawing.Size(300, 0);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(284, 21);
+            this.mLabel.Size = new System.Drawing.Size(300, 37);
             this.mLabel.TabIndex = 0;
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
             this.mLabel.EditableChanged += new System.EventHandler(this.Label_EditableChanged);
@@ -76,11 +76,11 @@ namespace Obi.ProjectView
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(290, 132);
+            this.Size = new System.Drawing.Size(306, 150);
             this.Click += new System.EventHandler(this.Strip_Click);
             this.Enter += new System.EventHandler(this.Strip_Enter);
+            this.SizeChanged += new System.EventHandler(this.Strip_SizeChanged);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

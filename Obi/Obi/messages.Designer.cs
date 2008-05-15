@@ -342,11 +342,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contents View.
+        ///   Looks up a localized string similar to Content view.
         /// </summary>
-        internal static string ContentsView_Label {
+        internal static string content_view {
             get {
-                return ResourceManager.GetString("ContentsView_Label", resourceCulture);
+                return ResourceManager.GetString("content_view", resourceCulture);
             }
         }
         

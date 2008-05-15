@@ -42,7 +42,7 @@ namespace Obi.ProjectView
             this.mLayoutPanel.TabIndex = 0;
             this.mLayoutPanel.WrapContents = false;
             this.mLayoutPanel.Click += new System.EventHandler(this.mLayoutPanel_Click);
-            this.mLayoutPanel.SizeChanged += new System.EventHandler(this.mLayoutPanel_SizeChanged);
+            this.mLayoutPanel.SizeChanged += new System.EventHandler(this.LayoutPanel_SizeChanged);
             // 
             // StripsView
             // 

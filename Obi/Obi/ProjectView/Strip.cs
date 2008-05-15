@@ -14,6 +14,8 @@ namespace Obi.ProjectView
         private SectionNode mNode;       // the section node for this strip
         private bool mSelected;          // selected flag
         private StripsView mParentView;  // parent strip view
+        private bool mWrap;              // wrap contents
+        private bool mEntering;          // entering flag
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -21,9 +23,10 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
-            mLabel.FontSize = 18.0F;
             mNode = null;
             Selected = false;
+            mWrap = false;
+            mEntering = false;
         }
 
         /// <summary>
@@ -42,8 +45,6 @@ namespace Obi.ProjectView
         }
 
 
-        private void SetAccessibleName() { mLabel.AccessibleName = mNode.ToString(); }
-
         /// <summary>
         /// Add a new block for a phrase node.
         /// </summary>
@@ -53,14 +54,14 @@ namespace Obi.ProjectView
             block.Margin = new Padding(0, 0, 0, 0);
             mBlocksPanel.Controls.Add(block);
             mBlocksPanel.Controls.SetChildIndex(block, 1 + node.Index * 2);
-            UpdateWidth();
             AddCursor(2 * (1 + node.Index));
+            UpdateSize();
             return block;
         }
 
         /// <summary>
-        /// Return the block after the selected block or strip. In the case of a strip is the first block.
-        /// Return null if this the last block, there are no blocks, or nothing was selected in the first place.
+        /// Return the block after the selected block or strip. In the case of a strip it is the first block.
+        /// Return null if this is the last block, there are no blocks, or nothing was selected in the first place.
         /// This is used for arrow navigation.
         /// </summary>
         public Block BlockAfter(ISelectableInStripView item)
@@ -114,7 +115,12 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// The label of the strip (i.e. the title of the section; editable.)
+        /// Focus on the label.
+        /// </summary>
+        public void FocusStripLabel() { mLabel.Focus(); }
+
+        /// <summary>
+        /// The label of the strip where the title of the section can be edited.
         /// </summary>
         public string Label
         {
@@ -126,7 +132,7 @@ namespace Obi.ProjectView
                     mLabel.Label = value;
                     SetAccessibleName();
                 }
-                int w = mLabel.Location.X + mLabel.MinimumSize.Width + mLabel.Margin.Right;
+                int w = mLabel.MinimumSize.Width + mLabel.Margin.Left + mLabel.Margin.Right;
                 if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
             }
         }
@@ -142,6 +148,7 @@ namespace Obi.ProjectView
                     null;
             }
         }
+
         /// <summary>
         /// Get the tab index of the last control in the strip
         /// </summary>
@@ -155,15 +162,18 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// The section node for this strip.
+        /// Get the section node for this strip.
         /// </summary>
         public SectionNode Node { get { return mNode; } }
 
         /// <summary>
-        /// The (generic) node for this strip; used for selection.
+        /// Get the (generic) node for this strip; used for selection.
         /// </summary>
         public ObiNode ObiNode { get { return mNode; } }
 
+        /// <summary>
+        /// Get the strips view to which this strip belongs.
+        /// </summary>
         public StripsView ParentView { get { return mParentView; } }
 
         /// <summary>
@@ -177,7 +187,7 @@ namespace Obi.ProjectView
                 int index = mBlocksPanel.Controls.IndexOf(block);
                 mBlocksPanel.Controls.RemoveAt(index + 1);         // remove the cursor after the block
                 mBlocksPanel.Controls.RemoveAt(index);             // and the block itself
-                UpdateWidth();
+                UpdateSize();
             }
         }
 
@@ -245,7 +255,7 @@ namespace Obi.ProjectView
             int index = item is Strip ? 0 :
                         item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 :
                         item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 : -2;
-            return index < mBlocksPanel.Controls.Count ? index / 2: -1;
+            return index < mBlocksPanel.Controls.Count ? index / 2 : -1;
         }
 
         /// <summary>
@@ -267,11 +277,11 @@ namespace Obi.ProjectView
         {
             if (mNode != null)
             {
-                // Get colors from profile
-                mLabel.BackColor = mNode.Used ? Color.Thistle : Color.LightGray;
+                // TODO: get colors from profile
+                mLabel.BackColor =
                 BackColor = mBlocksPanel.BackColor =
                     mSelected ? Color.Yellow :
-                    mNode.Used ? Color.LightBlue : Color.LightGray;
+                    mNode.Used ? Color.LightSkyBlue : Color.LightGray;
             }
         }
 
@@ -289,6 +299,19 @@ namespace Obi.ProjectView
             return index;
         }
 
+        /// <summary>
+        /// Set the wrap parameter.
+        /// </summary>
+        public bool Wrap
+        {
+            set
+            {
+                mWrap = value;
+                UpdateSize();
+            }
+        }
+
+
         #region ISearchable Members
 
         public string ToMatch()
@@ -298,12 +321,12 @@ namespace Obi.ProjectView
 
         #endregion
 
-
         // Add a cursor at the end of the strip
         private void AddCursor(int index)
         {
             StripCursor cursor = new StripCursor(this);
             cursor.Size = new Size(12, mBlocksPanel.Height);
+            cursor.BackColor = Color.SkyBlue;
             mBlocksPanel.Controls.Add(cursor);
             mBlocksPanel.Controls.SetChildIndex(cursor, index);
             cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
@@ -312,6 +335,18 @@ namespace Obi.ProjectView
                         mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
                 }
             );
+        }
+
+        // Add content view label to the accessible name of the strip when entering.
+        private void AddContentsViewLabel()
+        {
+            SetAccessibleName();
+            if (mParentView.IsEnteringView)
+            {
+                mLabel.AccessibleName = string.Format("{0} {1}", Localizer.Message("content_view"), mLabel.AccessibleName);
+                Thread TrimAccessibleName = new Thread(new ThreadStart(TrimContentsViewAccessibleLabel));
+                TrimAccessibleName.Start();
+            }
         }
 
         // Select the label when it is clicked (i.e. made editable) by the user.
@@ -338,7 +373,7 @@ namespace Obi.ProjectView
             }
         }
 
-        // Resize the strip according to the editable label, whose size can change.
+        // Resize the strip according to the editable label, which size can change.
         // TODO since there are really two possible heights, we should cache these values.
         private void Label_SizeChanged(object sender, EventArgs e)
         {
@@ -348,78 +383,56 @@ namespace Obi.ProjectView
                 mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom);
         }
 
-        // The user clicked on this strip, so select it if it wasn't already selected
+        // Set verbose accessible name for the strip 
+        private void SetAccessibleName() { mLabel.AccessibleName = mNode.ToString(); }
+
+        // Toggle selection
         private void Strip_Click(object sender, EventArgs e)
         {
-            if (!mSelected) mParentView.SelectedNode = mNode;
+            if (mSelected && !mEntering)
+            {
+                mParentView.SelectionFromStrip = null;
+            }
+            else
+            {
+                mParentView.SelectedNode = mNode;
+            }
+            mEntering = false;
         }
 
         // Select when tabbed into
         private void Strip_Enter(object sender, EventArgs e)
         {
+            mEntering = true;
             AddContentsViewLabel();
-
             if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
         }
 
-        // Update the width of the strip to use the available width of the view
-        private void UpdateWidth()
-        {
-            int w = 0;
-            foreach (Control c in mBlocksPanel.Controls) w += c.Width + c.Margin.Right;
-            if (mBlocksPanel.Controls.Count > 0) w -= mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 1].Margin.Right;
-            if (w > mBlocksPanel.Width) mBlocksPanel.Size = new Size(w, mBlocksPanel.Height);
-            w += mBlocksPanel.Location.X + mBlocksPanel.Margin.Right;
-            if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
-        }
-
-        /// <summary>
-        /// Wrap or unwrap strip contents.
-        /// </summary>
-        public void WrapToWidth(int width, bool wrap)
-        {
-            if (wrap)
-            {
-                MinimumSize = new Size(width, MinimumSize.Height);
-                Width = width;
-                mBlocksPanel.WrapContents = true;
-                mBlocksPanel.Width = width;
-                Height = Padding.Top + mLabel.Height + mLabel.Margin.Bottom + mBlocksPanel.Height + Padding.Bottom;
-            }
-            else
-            {
-                mBlocksPanel.WrapContents = false;
-                UpdateWidth();
-            }
-        }
-
-
-        public void FocusStripLabel()
-        {
-            mLabel.Focus();
-
-        
-}
-
-
-        private void AddContentsViewLabel()
-        {
-                        if (ParentView.IsEnteringStripsView)
-            {
-                ParentView.IsEnteringStripsView = false;
-                SetAccessibleName();
-                mLabel.AccessibleName = string.Concat ( Localizer.Message ("ContentsView_Label") , " " , mLabel.AccessibleName) ;
-                Thread TrimAccessibleName = new Thread(new ThreadStart(TrimContentsViewAccessibleLabel));
-                TrimAccessibleName.Start();
-            }
-            else
-                SetAccessibleName();
-        }
-
-        private void TrimContentsViewAccessibleLabel ()
+        // Reset the accessible name after a short while.
+        private void TrimContentsViewAccessibleLabel()
         {
             Thread.Sleep(750);
             SetAccessibleName();
+        }
+
+        // Update the size of the strip to use the available width of the view
+        private void UpdateSize()
+        {
+            // Compute the minimum width of the block panel
+            int minBlockPanelWidth = 0;
+            foreach (Control c in mBlocksPanel.Controls) minBlockPanelWidth += c.Width;
+            MinimumSize = new Size(minBlockPanelWidth + mBlocksPanel.Margin.Left + mBlocksPanel.Margin.Right, MinimumSize.Height);
+            System.Diagnostics.Debug.Print(">-< Strip minimum size is " + MinimumSize);
+        }
+
+        private void Strip_SizeChanged(object sender, EventArgs e)
+        {
+            // System.Diagnostics.Debug.Print("<-> Resize strip to " + Size);
+        }
+
+        private void BlocksPanel_SizeChanged(object sender, EventArgs e)
+        {
+            // System.Diagnostics.Debug.Print("<---> Resize block panel to " + mBlocksPanel.Size);
         }
     }
 }

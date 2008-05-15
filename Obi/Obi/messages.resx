@@ -672,8 +672,8 @@ Error text: {1}</value>
     <value>Start monitoring</value>
     <comment>Button label</comment>
   </data>
-  <data name="ContentsView_Label" xml:space="preserve">
-    <value>Contents View</value>
+  <data name="content_view" xml:space="preserve">
+    <value>Content view</value>
   </data>
   <data name="audio_block_label" xml:space="preserve">
     <value>{0} {1} of {2}{3}</value>

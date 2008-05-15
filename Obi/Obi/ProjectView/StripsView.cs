@@ -25,6 +25,7 @@ namespace Obi.ProjectView
         private ISelectableInStripView mSelectedItem;                // the actual item for the selection
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
         private bool mWrapStrips;                                    // wrapping of strips
+        private bool mIsEnteringView;                                // flag set when entering the  view
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -40,9 +41,27 @@ namespace Obi.ProjectView
             mView = null;
             mSelection = null;
             mFocusing = false;
+            mIsEnteringView = false;
+            mWrapStrips = false;
+        }
+
+        /// <summary>
+        /// Get the entering flag; and turn down the flag immediatly.
+        /// </summary>
+        public bool IsEnteringView
+        {
+            get
+            {
+                bool isEntering = mIsEnteringView;
+                mIsEnteringView = false;
+                return isEntering;
+            }
         }
 
 
+        /// <summary>
+        /// String to be shown in the status bar.
+        /// </summary>
         public override string ToString() { return Localizer.Message("strips_view_to_string"); }
 
         /// <summary>
@@ -332,16 +351,16 @@ namespace Obi.ProjectView
         #region Event handlers
 
         // Handle resizing of the layout panel: all strips are resized to be at least as wide.
-        private void mLayoutPanel_SizeChanged(object sender, EventArgs e)
+        private void LayoutPanel_SizeChanged(object sender, EventArgs e)
         {
             if (mLayoutPanel.Controls.Count > 0)
             {
                 Control last = mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1];
-                int scrollbarW = last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth : 0;
+                int scrollbarW = last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth + Margin.Right : 0;
                 foreach (Control c in mLayoutPanel.Controls)
                 {
                     int w = mLayoutPanel.Width - c.Location.X - c.Margin.Right - scrollbarW;
-                    c.Size = new Size(w, c.Height);
+                    c.Width = w;
                 }
             }
         }
@@ -419,16 +438,17 @@ namespace Obi.ProjectView
             return strip;
         }
 
+        // Add a single strip for a section node
         private Strip AddStripForSection_(ObiNode node)
         {
             Strip strip = null;
             if (node is SectionNode)
             {
                 strip = new Strip((SectionNode)node, this);
+                strip.Wrap = mWrapStrips;
                 mLayoutPanel.Controls.Add(strip);
                 mLayoutPanel.Controls.SetChildIndex(strip, ((SectionNode)node).Position);
-                int w = mLayoutPanel.Width - strip.Location.X - strip.Margin.Right;
-                strip.Size = new Size(w, strip.Height);
+                strip.Width = Width;
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection_(node.SectionChild(i));
             for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
@@ -1107,10 +1127,9 @@ namespace Obi.ProjectView
             }
         }
 
-        internal bool IsEnteringStripsView = false;
         private void StripsView_Enter(object sender, EventArgs e)
         {
-            IsEnteringStripsView = true;
+            mIsEnteringView = true;
         }
 
 /// <summary>
@@ -1198,7 +1217,8 @@ null;
                 foreach (Control c in mLayoutPanel.Controls)
                 {
                     Strip strip = c as Strip;
-                    if (strip != null) strip.WrapToWidth(Width, mWrapStrips);
+                    if (strip != null) strip.Wrap = mWrapStrips;
+                    // if (strip != null) strip.WrapToWidth(Width, mWrapStrips);
                 }
             }
         }
