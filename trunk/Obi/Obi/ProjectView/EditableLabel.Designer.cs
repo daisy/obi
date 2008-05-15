@@ -60,7 +60,7 @@ namespace Obi.ProjectView
             // mOKButton
             // 
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(3, 29);
+            this.mOKButton.Location = new System.Drawing.Point(3, 26);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(35, 23);
             this.mOKButton.TabIndex = 2;
@@ -71,7 +71,7 @@ namespace Obi.ProjectView
             // mCancelButton
             // 
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(44, 29);
+            this.mCancelButton.Location = new System.Drawing.Point(44, 26);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(50, 23);
             this.mCancelButton.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EditableLabel";
-            this.Size = new System.Drawing.Size(150, 55);
+            this.Size = new System.Drawing.Size(150, 52);
             this.Click += new System.EventHandler(this.EditableLabel_Click);
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);

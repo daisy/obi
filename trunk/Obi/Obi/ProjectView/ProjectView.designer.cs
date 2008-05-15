@@ -92,7 +92,7 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter.Panel2.Controls.Add(this.mFindInText);
             this.mFindInTextSplitter.Panel2MinSize = 29;
             this.mFindInTextSplitter.Size = new System.Drawing.Size(964, 660);
-            this.mFindInTextSplitter.SplitterDistance = 629;
+            this.mFindInTextSplitter.SplitterDistance = 627;
             this.mFindInTextSplitter.TabIndex = 0;
             // 
             // mTOCSplitter
@@ -110,7 +110,7 @@ namespace Obi.ProjectView
             // mTOCSplitter.Panel2
             // 
             this.mTOCSplitter.Panel2.Controls.Add(this.mStripsView);
-            this.mTOCSplitter.Size = new System.Drawing.Size(964, 629);
+            this.mTOCSplitter.Size = new System.Drawing.Size(964, 627);
             this.mTOCSplitter.SplitterDistance = 271;
             this.mTOCSplitter.TabIndex = 0;
             // 
@@ -128,8 +128,8 @@ namespace Obi.ProjectView
             // mMetadataSplitter.Panel2
             // 
             this.mMetadataSplitter.Panel2.Controls.Add(this.mMetadataView);
-            this.mMetadataSplitter.Size = new System.Drawing.Size(271, 629);
-            this.mMetadataSplitter.SplitterDistance = 381;
+            this.mMetadataSplitter.Size = new System.Drawing.Size(271, 627);
+            this.mMetadataSplitter.SplitterDistance = 379;
             this.mMetadataSplitter.TabIndex = 0;
             // 
             // mPanelInfoLabelButton
@@ -140,7 +140,7 @@ namespace Obi.ProjectView
             this.mPanelInfoLabelButton.AutoSize = true;
             this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(-5, 0);
+            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(-5, -1);
             this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
             this.mPanelInfoLabelButton.Size = new System.Drawing.Size(6, 6);
             this.mPanelInfoLabelButton.TabIndex = 2;
@@ -162,11 +162,12 @@ namespace Obi.ProjectView
             // mTOCView
             // 
             this.mTOCView.AutoScroll = true;
+            this.mTOCView.BackColor = System.Drawing.Color.Transparent;
             this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCView.Location = new System.Drawing.Point(0, 0);
             this.mTOCView.Name = "mTOCView";
             this.mTOCView.Selection = null;
-            this.mTOCView.Size = new System.Drawing.Size(271, 381);
+            this.mTOCView.Size = new System.Drawing.Size(271, 379);
             this.mTOCView.TabIndex = 0;
             // 
             // mMetadataView
@@ -181,21 +182,21 @@ namespace Obi.ProjectView
             // 
             // mStripsView
             // 
-            this.mStripsView.BackColor = System.Drawing.Color.LightYellow;
+            this.mStripsView.BackColor = System.Drawing.Color.Transparent;
             this.mStripsView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mStripsView.Location = new System.Drawing.Point(0, 0);
             this.mStripsView.Name = "mStripsView";
             this.mStripsView.Selection = null;
-            this.mStripsView.Size = new System.Drawing.Size(689, 629);
+            this.mStripsView.Size = new System.Drawing.Size(689, 627);
             this.mStripsView.TabIndex = 0;
             // 
             // mFindInText
             // 
-            this.mFindInText.BackColor = System.Drawing.Color.Honeydew;
+            this.mFindInText.BackColor = System.Drawing.SystemColors.Control;
             this.mFindInText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mFindInText.Location = new System.Drawing.Point(0, 0);
             this.mFindInText.Name = "mFindInText";
-            this.mFindInText.Size = new System.Drawing.Size(964, 27);
+            this.mFindInText.Size = new System.Drawing.Size(964, 29);
             this.mFindInText.TabIndex = 0;
             // 
             // mTransportBar
