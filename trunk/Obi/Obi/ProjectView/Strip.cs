@@ -308,7 +308,20 @@ namespace Obi.ProjectView
             {
                 mWrap = value;
                 UpdateSize();
+                if (mWrap)
+                {
+                    mParentView.SizeChanged += new EventHandler(mParentView_SizeChanged);
+                }
+                else
+                {
+                    mParentView.SizeChanged -= new EventHandler(mParentView_SizeChanged);
+                }
             }
+        }
+
+        void mParentView_SizeChanged(object sender, EventArgs e)
+        {
+            UpdateSize();
         }
 
 
@@ -325,7 +338,6 @@ namespace Obi.ProjectView
         private void AddCursor(int index)
         {
             StripCursor cursor = new StripCursor(this);
-            cursor.Size = new Size(12, mBlocksPanel.Height);
             cursor.BackColor = Color.SkyBlue;
             mBlocksPanel.Controls.Add(cursor);
             mBlocksPanel.Controls.SetChildIndex(cursor, index);
@@ -418,11 +430,25 @@ namespace Obi.ProjectView
         // Update the size of the strip to use the available width of the view
         private void UpdateSize()
         {
-            // Compute the minimum width of the block panel
-            int minBlockPanelWidth = 0;
-            foreach (Control c in mBlocksPanel.Controls) minBlockPanelWidth += c.Width;
-            MinimumSize = new Size(minBlockPanelWidth + mBlocksPanel.Margin.Left + mBlocksPanel.Margin.Right, MinimumSize.Height);
-            System.Diagnostics.Debug.Print(">-< Strip minimum size is " + MinimumSize);
+            // System.Diagnostics.Debug.Print("<-> Update size");
+            if (mWrap)
+            {
+                MinimumSize = new Size(ParentView.Width, MinimumSize.Height);
+                Width = ParentView.Width;
+                mBlocksPanel.AutoSize = true;
+                mBlocksPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                mBlocksPanel.WrapContents = true;
+                Height = mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom;
+            }
+            else
+            {
+                mBlocksPanel.AutoSize = false;
+                mBlocksPanel.WrapContents = false;
+                // Compute the minimum width of the block panel
+                int minBlockPanelWidth = 0;
+                foreach (Control c in mBlocksPanel.Controls) minBlockPanelWidth += c.Width;
+                MinimumSize = new Size(minBlockPanelWidth + mBlocksPanel.Margin.Left + mBlocksPanel.Margin.Right, MinimumSize.Height);
+            }
         }
 
         private void Strip_SizeChanged(object sender, EventArgs e)

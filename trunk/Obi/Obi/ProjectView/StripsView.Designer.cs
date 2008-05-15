@@ -50,6 +50,7 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.mLayoutPanel);
+            this.DoubleBuffered = true;
             this.Name = "StripsView";
             this.Size = new System.Drawing.Size(398, 297);
             this.Enter += new System.EventHandler(this.StripsView_Enter);

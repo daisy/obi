@@ -54,6 +54,7 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.mTOCTree);
+            this.DoubleBuffered = true;
             this.Name = "TOCView";
             this.ResumeLayout(false);
 
