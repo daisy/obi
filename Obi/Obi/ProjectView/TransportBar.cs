@@ -693,39 +693,47 @@ namespace Obi.ProjectView
                 // Record after or inside the phrase node
                 mRecordingSection = selected.ParentAs<SectionNode>();
                 mRecordingInitPhraseIndex = 1 + selected.Index;
-                if (mAllowOverwrite && IsInPhraseSelectionMarked)
-                {
-                    AudioRange range = ((AudioSelection)mView.Selection).AudioRange;
-                    if (range.HasCursor)
-                    {
-                        // Split the phrase at the cursor
-                        command.append(new Commands.Node.SplitAudio(mView));
-                    }
-                    else if (range.SelectionBeginTime == 0)
-                    {
-                        if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
-                        {
-                            // Split at the end of the selection (if there is something after the end...)
-                            command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
-                        }
-                        // ... and remove the first half.
-                        command.append(new Commands.Node.Delete(mView, mView.Selection.Node));
-                        // Now we must recorde *before* the selected node
-                        --mRecordingInitPhraseIndex;
-                    }
-                    else
-                    {
-                        if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
-                        {
-                            // Split at the end if necessary (do it first so that times are correct)
-                            command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
-                        }
-                        // Split at the beginning of the selection
-                        command.append(new Commands.Node.SplitAudio(mView, range.SelectionBeginTime));
-                        // ... and remove the split part.
-                        command.append(new Commands.Node.DeleteWithOffset(mView, selected, 1));
-                    }
-                }
+                if (mAllowOverwrite && (IsInPhraseSelectionMarked || mState == State.Paused))
+                { //1
+                    if (mState == State.Paused)
+                    { // 2
+                        command.append(new Commands.Node.SplitAudio(mView , SplitTime));
+                    } //-2
+                    else if (mView.Selection is AudioSelection)
+                    { //2
+                        AudioRange range = ((AudioSelection)mView.Selection).AudioRange;
+                        if (range.HasCursor)
+                        { //3
+                            // Split the phrase at the cursor
+                            command.append(new Commands.Node.SplitAudio(mView));
+                        } //-3
+                        else if (range.SelectionBeginTime == 0)
+                        { //3
+                            if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                            { //4
+                                // Split at the end of the selection (if there is something after the end...)
+                                command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
+                            } //-4
+                            // ... and remove the first half.
+                            command.append(new Commands.Node.Delete(mView, mView.Selection.Node));
+                            // Now we must recorde *before* the selected node
+                            --mRecordingInitPhraseIndex;
+                        } //-3
+                        else
+                        { //3
+                            if (range.SelectionEndTime < ((PhraseNode)selected).Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                            { //4
+                                // Split at the end if necessary (do it first so that times are correct)
+                                command.append(new Commands.Node.SplitAudio(mView, range.SelectionEndTime));
+                            } //-4
+                            // Split at the beginning of the selection
+                            command.append(new Commands.Node.SplitAudio(mView, range.SelectionBeginTime));
+                            // ... and remove the split part.
+                            command.append(new Commands.Node.DeleteWithOffset(mView, selected, 1));
+                        } //-3
+                    } //-2
+                } //-1 overwrite if ends
+
                 if (mCurrentPlaylist.State == Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
             }
             else if (selected is EmptyNode)
