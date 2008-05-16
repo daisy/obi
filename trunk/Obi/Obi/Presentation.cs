@@ -138,7 +138,6 @@ namespace Obi
             if (!mCustomClasses.ContainsKey(customClass))
             {
                 mCustomClasses.Add(customClass, new List<EmptyNode>(1));
-                if (node != null) mCustomClasses.Add(customClass, new List<EmptyNode>());
                 if (CustomClassAddded != null) CustomClassAddded(this, new CustomClassEventArgs(customClass));
             }
             mCustomClasses[customClass].Add(node);
