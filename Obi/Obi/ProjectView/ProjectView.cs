@@ -198,12 +198,14 @@ namespace Obi.ProjectView
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return Selection != null &&  ( CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata ) ; } }
+        public bool CanFastForward { get { return mTransportBar.CanFastForward; } }
         public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
+        public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
         public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
@@ -220,6 +222,7 @@ namespace Obi.ProjectView
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
         public bool CanRenameSection { get { return Selection != null  && (CanRenameStrip || mTOCView.CanRenameSection) ; } }
         public bool CanRenameStrip { get { return Selection != null  && ( mStripsView.CanRenameStrip ); } }
+        public bool CanRewind { get { return mTransportBar.CanRewind; } }
         public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
@@ -1365,6 +1368,11 @@ namespace Obi.ProjectView
                 s.Control = mStripsView;
                 Selection = s;
             }
+        }
+
+        public void SelectPhraseInContentView(PhraseNode node)
+        {
+            Selection = new NodeSelection(node, mStripsView);
         }
 
         /// <summary>

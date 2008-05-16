@@ -118,7 +118,7 @@ namespace Obi
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlaySelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -796,7 +796,7 @@ namespace Obi
             // transportToolStripMenuItem
             // 
             this.transportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playToolStripMenuItem,
+            this.mPlayToolStripMenuItem,
             this.mPauseToolStripMenuItem,
             this.mResumeToolStripMenuItem,
             this.mStopToolStripMenuItem,
@@ -810,13 +810,13 @@ namespace Obi
             this.transportToolStripMenuItem.Name = "transportToolStripMenuItem";
             resources.ApplyResources(this.transportToolStripMenuItem, "transportToolStripMenuItem");
             // 
-            // playToolStripMenuItem
+            // mPlayToolStripMenuItem
             // 
-            this.playToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPlayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPlayAllToolStripMenuItem,
             this.mPlaySelectionToolStripMenuItem});
-            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
-            resources.ApplyResources(this.playToolStripMenuItem, "playToolStripMenuItem");
+            this.mPlayToolStripMenuItem.Name = "mPlayToolStripMenuItem";
+            resources.ApplyResources(this.mPlayToolStripMenuItem, "mPlayToolStripMenuItem");
             // 
             // mPlayAllToolStripMenuItem
             // 
@@ -1190,7 +1190,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem mExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPlayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlayAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPlaySelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPauseToolStripMenuItem;

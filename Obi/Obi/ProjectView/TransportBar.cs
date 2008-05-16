@@ -105,10 +105,9 @@ namespace Obi.ProjectView
         /// </summary>
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
-        public bool CanFastForward { get { return Enabled && mRecordingSession == null; } }
+        public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
         public bool CanNavigateNextPage { get { return Enabled; } }
-        public bool CanNavigateNextPhrase { get { return Enabled; } }
         public bool CanNavigateNextSection { get { return Enabled; } }
         public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
         public bool CanNavigatePrevPhrase { get { return Enabled && mRecordingSession == null; } }
@@ -118,8 +117,19 @@ namespace Obi.ProjectView
         public bool CanRecord { get { return Enabled && mState == State.Stopped; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring; } }
-        public bool CanRewind { get { return Enabled && mRecordingSession == null; } }
+        public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
+
+        public bool CanNavigateNextPhrase
+        {
+            get
+            {
+                return Enabled &&
+                    (IsRecorderActive ||
+                    (IsPlayerActive && mCurrentPlaylist.CanNavigateNextPhrase) ||
+                    CanPlay);
+            }
+        }
 
         public bool CanPreview
         {
@@ -692,7 +702,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Stop()
         {
-            if (Enabled)
+            if (CanStop)
             {
                 if (IsRecorderActive)
                 {
@@ -961,7 +971,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void NextPhrase()
         {
-            if (Enabled)
+            if (CanNavigateNextPhrase)
             {
                 if (mState == State.Recording)
                 {
@@ -971,18 +981,20 @@ namespace Obi.ProjectView
                 else if (mState == State.Monitoring)
                 {
                     // start recording
-
+                    mRecordingSession.Stop();
+                    mRecordingSession.Record();
                 }
                 else if (mState == State.Stopped)
                 {
                     if (mView.ObiForm.Settings.PlayOnNavigate)
                     {
-                        mCurrentPlaylist.CurrentPhrase = mView.Selection.Node as PhraseNode;
+                        PlayCurrentPlaylistFromSelection();
                         mCurrentPlaylist.NavigateToNextPhrase();
                     }
                     else
                     {
-                        mView.SelectNextPhrase();
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextPhrase(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
                     }
                 }
                 else
@@ -1024,9 +1036,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void FastForward()
         {
-            if (Enabled && mRecordingSession == null)
+            if (CanFastForward)
             {
-                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped) PlayOrResume();
+                if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.FastForward();
             }
         }
@@ -1036,9 +1048,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void Rewind()
         {
-            if (Enabled && mRecordingSession == null)
+            if (CanRewind)
             {
-                if (mCurrentPlaylist.Audioplayer.State == Obi.Audio.AudioPlayerState.Stopped) PlayOrResume();
+                if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.Rewind();
             }
         }
