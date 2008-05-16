@@ -626,6 +626,7 @@ namespace Obi
             mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewUpToToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewSelectedToolStripMenuItem.Enabled = mProjectView.CanPreviewAudioSelection;
+            mPreviousPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevPhrase;
             mNextPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigateNextPhrase;
             mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
             mRewindToolStripMenuItem.Enabled = mProjectView.CanRewind;
@@ -664,6 +665,7 @@ namespace Obi
         private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
         private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
         private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PreviewAudioSelection(); }
+        private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevPhrase(); }
         private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.NextPhrase(); }
 
         private void rewindToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Rewind(); }
@@ -690,10 +692,6 @@ namespace Obi
             mProjectView.TransportBar.PrevSection();
         }
 
-        private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevPhrase();
-        }
 
         private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
