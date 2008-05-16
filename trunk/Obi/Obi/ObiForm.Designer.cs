@@ -135,6 +135,7 @@ namespace Obi
             this.mPreviewSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartMonitoringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -159,7 +160,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -854,9 +854,9 @@ namespace Obi
             // 
             this.mFastPlaytoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NormalSpeedtoolStripMenuItem,
+            this.mElapseBacktoolStripMenuItem,
             this.SpeedUptoolStripMenuItem,
-            this.mSpeedDowntoolStripMenuItem,
-            this.mElapseBacktoolStripMenuItem});
+            this.mSpeedDowntoolStripMenuItem});
             this.mFastPlaytoolStripMenuItem.Name = "mFastPlaytoolStripMenuItem";
             resources.ApplyResources(this.mFastPlaytoolStripMenuItem, "mFastPlaytoolStripMenuItem");
             // 
@@ -921,11 +921,17 @@ namespace Obi
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
             resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
             // 
-            // mStartListeningToolStripMenuItem
+            // mStartMonitoringToolStripMenuItem
             // 
-            resources.ApplyResources(this.mStartMonitoringToolStripMenuItem, "mStartListeningToolStripMenuItem");
-            this.mStartMonitoringToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
+            resources.ApplyResources(this.mStartMonitoringToolStripMenuItem, "mStartMonitoringToolStripMenuItem");
+            this.mStartMonitoringToolStripMenuItem.Name = "mStartMonitoringToolStripMenuItem";
             this.mStartMonitoringToolStripMenuItem.Click += new System.EventHandler(this.mStartMonitoringToolStripMenuItem_Click);
+            // 
+            // mStartRecordingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mStartRecordingToolStripMenuItem, "mStartRecordingToolStripMenuItem");
+            this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
+            this.mStartRecordingToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingToolStripMenuItem_Click);
             // 
             // mStartRecordingDirectlyToolStripMenuItem
             // 
@@ -1098,12 +1104,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mStartRecordingToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mStartRecordingToolStripMenuItem, "mStartRecordingToolStripMenuItem");
-            this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
-            this.mStartRecordingToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
