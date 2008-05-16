@@ -124,7 +124,7 @@ namespace Obi
             this.mPauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mResumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FastPlaytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mFastPlaytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NormalSpeedtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SpeedUptoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSpeedDowntoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,8 +134,8 @@ namespace Obi
             this.mPreviewUpToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mStartListeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStartMonitoringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStartRecordingDirectlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAllowOverwriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.navigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -159,6 +159,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mStartRecordingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -179,7 +180,7 @@ namespace Obi
             // 
             // mFileToolStripMenuItem
             // 
-            resources.ApplyResources(this.mFileToolStripMenuItem, "mFileToolStripMenuItem");
+            this.mFileToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mNewProjectToolStripMenuItem,
             this.mNewProjectFromImportToolStripMenuItem,
@@ -195,6 +196,7 @@ namespace Obi
             this.toolStripSeparator3,
             this.mExitToolStripMenuItem});
             this.mFileToolStripMenuItem.Name = "mFileToolStripMenuItem";
+            resources.ApplyResources(this.mFileToolStripMenuItem, "mFileToolStripMenuItem");
             // 
             // mNewProjectToolStripMenuItem
             // 
@@ -800,7 +802,7 @@ namespace Obi
             this.mPauseToolStripMenuItem,
             this.mResumeToolStripMenuItem,
             this.mStopToolStripMenuItem,
-            this.FastPlaytoolStripMenuItem,
+            this.mFastPlaytoolStripMenuItem,
             this.mPreviewToolStripMenuItem,
             this.mRecordToolStripMenuItem,
             this.toolStripSeparator5,
@@ -848,15 +850,15 @@ namespace Obi
             this.mStopToolStripMenuItem.Name = "mStopToolStripMenuItem";
             this.mStopToolStripMenuItem.Click += new System.EventHandler(this.mStopToolStripMenuItem_Click);
             // 
-            // FastPlaytoolStripMenuItem
+            // mFastPlaytoolStripMenuItem
             // 
-            this.FastPlaytoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mFastPlaytoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NormalSpeedtoolStripMenuItem,
             this.SpeedUptoolStripMenuItem,
             this.mSpeedDowntoolStripMenuItem,
             this.mElapseBacktoolStripMenuItem});
-            this.FastPlaytoolStripMenuItem.Name = "FastPlaytoolStripMenuItem";
-            resources.ApplyResources(this.FastPlaytoolStripMenuItem, "FastPlaytoolStripMenuItem");
+            this.mFastPlaytoolStripMenuItem.Name = "mFastPlaytoolStripMenuItem";
+            resources.ApplyResources(this.mFastPlaytoolStripMenuItem, "mFastPlaytoolStripMenuItem");
             // 
             // NormalSpeedtoolStripMenuItem
             // 
@@ -912,23 +914,24 @@ namespace Obi
             // mRecordToolStripMenuItem
             // 
             this.mRecordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mStartListeningToolStripMenuItem,
+            this.mStartMonitoringToolStripMenuItem,
             this.mStartRecordingToolStripMenuItem,
+            this.mStartRecordingDirectlyToolStripMenuItem,
             this.mAllowOverwriteToolStripMenuItem});
             this.mRecordToolStripMenuItem.Name = "mRecordToolStripMenuItem";
             resources.ApplyResources(this.mRecordToolStripMenuItem, "mRecordToolStripMenuItem");
             // 
             // mStartListeningToolStripMenuItem
             // 
-            this.mStartListeningToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
-            resources.ApplyResources(this.mStartListeningToolStripMenuItem, "mStartListeningToolStripMenuItem");
-            this.mStartListeningToolStripMenuItem.Click += new System.EventHandler(this.mStartListeningToolStripMenuItem_Click);
+            resources.ApplyResources(this.mStartMonitoringToolStripMenuItem, "mStartListeningToolStripMenuItem");
+            this.mStartMonitoringToolStripMenuItem.Name = "mStartListeningToolStripMenuItem";
+            this.mStartMonitoringToolStripMenuItem.Click += new System.EventHandler(this.mStartMonitoringToolStripMenuItem_Click);
             // 
-            // mStartRecordingToolStripMenuItem
+            // mStartRecordingDirectlyToolStripMenuItem
             // 
-            this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
-            resources.ApplyResources(this.mStartRecordingToolStripMenuItem, "mStartRecordingToolStripMenuItem");
-            this.mStartRecordingToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingToolStripMenuItem_Click);
+            resources.ApplyResources(this.mStartRecordingDirectlyToolStripMenuItem, "mStartRecordingDirectlyToolStripMenuItem");
+            this.mStartRecordingDirectlyToolStripMenuItem.Name = "mStartRecordingDirectlyToolStripMenuItem";
+            this.mStartRecordingDirectlyToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingDirectlyToolStripMenuItem_Click);
             // 
             // mAllowOverwriteToolStripMenuItem
             // 
@@ -982,10 +985,10 @@ namespace Obi
             this.mNextPhraseToolStripMenuItem.Name = "mNextPhraseToolStripMenuItem";
             this.mNextPhraseToolStripMenuItem.Click += new System.EventHandler(this.nextPhraseToolStripMenuItem_Click);
             // 
-            // nextPageToolStripMenuItem
+            // mNextPageToolStripMenuItem
             // 
-            resources.ApplyResources(this.mNextPageToolStripMenuItem, "nextPageToolStripMenuItem");
-            this.mNextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
+            resources.ApplyResources(this.mNextPageToolStripMenuItem, "mNextPageToolStripMenuItem");
+            this.mNextPageToolStripMenuItem.Name = "mNextPageToolStripMenuItem";
             this.mNextPageToolStripMenuItem.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click);
             // 
             // mNextSectionToolStripMenuItem
@@ -1096,6 +1099,12 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mStartRecordingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mStartRecordingToolStripMenuItem, "mStartRecordingToolStripMenuItem");
+            this.mStartRecordingToolStripMenuItem.Name = "mStartRecordingToolStripMenuItem";
+            this.mStartRecordingToolStripMenuItem.Click += new System.EventHandler(this.mStartRecordingToolStripMenuItem_Click);
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1197,8 +1206,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mResumeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStopToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRecordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mStartListeningToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStartMonitoringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStartRecordingDirectlyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAllowOverwriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem navigationToolStripMenuItem;
@@ -1216,7 +1225,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mDeleteUnusedDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFocusOnTransportBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhraseDetectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem FastPlaytoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mFastPlaytoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NormalSpeedtoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SpeedUptoolStripMenuItem;
@@ -1253,6 +1262,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mGoToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
     }
 }
 

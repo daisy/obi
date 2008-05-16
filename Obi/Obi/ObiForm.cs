@@ -636,29 +636,29 @@ namespace Obi
             mRewindToolStripMenuItem.Enabled = mProjectView.CanRewind;
 
 
-            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
-
-
-            // update recording menu items
-            mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
+            mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
+            
+            mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsListening)
             {
-                mStartListeningToolStripMenuItem.Text = "Start Recording";
-                mStartListeningToolStripMenuItem.AccessibleName = "Start Recording  ctrl+r";
-                mStartRecordingToolStripMenuItem.Enabled = false;
+                mStartMonitoringToolStripMenuItem.Visible = false;
+                mStartRecordingToolStripMenuItem.Visible = true;
+                mStartRecordingToolStripMenuItem.Enabled = true;
+                mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
             }
             else if (mProjectView.TransportBar.IsRecorderActive) // actual recording is going on
             {
-                mStartListeningToolStripMenuItem.Enabled = false;
-                mStartRecordingToolStripMenuItem.Enabled = false;
+                mStartRecordingToolStripMenuItem.Visible = false;
+                mStartMonitoringToolStripMenuItem.Visible = true;
+                mStartMonitoringToolStripMenuItem.Enabled = false;
+                mStartRecordingDirectlyToolStripMenuItem.Enabled = false;
             }
             else // neither listening nor actual recording is going on
             {
-                mStartListeningToolStripMenuItem.Text = "Start Monitering";
-                mStartListeningToolStripMenuItem.AccessibleName = "Start Monitering ctrl+r";
-
-                mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-                mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+                mStartMonitoringToolStripMenuItem.Visible = true;
+                mStartMonitoringToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+                mStartRecordingToolStripMenuItem.Visible = false;
+                mStartRecordingDirectlyToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
             }
 
         }
@@ -674,6 +674,11 @@ namespace Obi
             if (mProjectView.CanResume) mProjectView.TransportBar.PlayOrResume();
         }
         private void mStopToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Stop(); }
+
+        private void mStartRecordingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Record(); }
+        private void mStartMonitoringToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Record(); }
+        private void mStartRecordingDirectlyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.StartRecordingDirectly(); }
+
 
         private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
         private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
@@ -692,15 +697,10 @@ namespace Obi
 
 
 
-        private void mStartListeningToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Record();
-        }
 
-        private void mStartRecordingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.StartRecordingDirectly();
-        }
+
+
+
 
 
 
