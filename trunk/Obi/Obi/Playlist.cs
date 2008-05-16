@@ -98,11 +98,13 @@ namespace Obi
         public bool CanNavigatePrevPhrase { get { return mCurrentPhraseIndex > 0; } }
         public bool CanNavigateNextPhrase { get { return mCurrentPhraseIndex < mPhrases.Count - 1; } }
         public bool CanNavigateNextSection { get { return NextSectionIndex < mPhrases.Count - 1; } }
+        public bool CanNavigateNextPage { get { return true; } }
 
-        public PhraseNode PrevPhrase(PhraseNode node)
+        public PhraseNode NextPage(PhraseNode node)
         {
-            int index = mPhrases.IndexOf(node) - 1;
-            return index >= 0 ? mPhrases[index] : null;
+            int index = mPhrases.IndexOf(node) + 1;
+            for (; index < mPhrases.Count && mPhrases[index].NodeKind != EmptyNode.Kind.Page; ++index) { }
+            return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
         }
 
         public PhraseNode NextPhrase(PhraseNode node)
@@ -121,6 +123,35 @@ namespace Obi
             return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
         }
 
+        public PhraseNode PrevPage(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node) - 1;
+            for (; index >= 0 && mPhrases[index].NodeKind != EmptyNode.Kind.Page; --index) { }
+            return index >= 0 ? mPhrases[index] : null;
+        }
+
+        public PhraseNode PrevPhrase(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node) - 1;
+            return index >= 0 ? mPhrases[index] : null;
+        }
+
+
+        public PhraseNode PrevSection(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node);
+            if (node != null)
+            {
+                for (; index >= 0 && mPhrases[index].AncestorAs<SectionNode>() == node.AncestorAs<SectionNode>(); --index) { }
+                if (index >= 0)
+                {
+                    SectionNode prev = mPhrases[index].AncestorAs<SectionNode>();
+                    for (; index >= 0 && mPhrases[index].AncestorAs<SectionNode>() == prev; --index) { }
+                    ++index;
+                }
+            }
+            return index >= 0 ? mPhrases[index] : null;
+        }
 
         /// <summary>
         /// Set the currently playing phrase directly.

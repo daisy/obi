@@ -107,7 +107,6 @@ namespace Obi.ProjectView
 
         public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
-        public bool CanNavigateNextPage { get { return Enabled; } }
         public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
         public bool CanNavigatePrevSection { get { return Enabled && mRecordingSession == null; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
@@ -132,6 +131,16 @@ namespace Obi.ProjectView
             {
                 return IsRecorderActive ||
                     (IsPlayerActive && mCurrentPlaylist.CanNavigateNextPhrase) ||
+                    CanPlay;
+            }
+        }
+
+        public bool CanNavigateNextPage
+        {
+            get
+            {
+                return IsRecorderActive ||
+                    (IsPlayerActive && mCurrentPlaylist.CanNavigateNextPage) ||
                     CanPlay;
             }
         }
@@ -929,43 +938,61 @@ namespace Obi.ProjectView
         private void mNextSectionButton_Click(object sender, EventArgs e) { NextSection(); }
 
         /// <summary>
-        /// Move to or play the previous page.
-        /// </summary>
-        public void PrevPage()
-        {
-            if (Enabled && mRecordingSession == null)
-            {
-                mCurrentPlaylist.NavigateToPreviousPage();
-            }
-        }
-
-        /// <summary>
         /// Move to the previous section (i.e. first phrase of the previous section.)
         /// </summary>
-        public void PrevSection()
+        public bool PrevSection()
         {
-            if (Enabled && mRecordingSession == null)
+            if (CanNavigatePrevSection)
             {
-                mCurrentPlaylist.NavigateToPreviousSection();
+                if (mState == State.Stopped)
+                {
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
+                    {
+                        PlayCurrentPlaylistFromSelection();
+                        mCurrentPlaylist.NavigateToPreviousSection();
+                    }
+                    else
+                    {
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevSection(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                    }
+                }
+                else
+                {
+                    mCurrentPlaylist.NavigateToPreviousSection();
+                }
+                return true;
             }
+            return false;
         }
 
         /// <summary>
-        /// Go to the next page.
+        /// Move to or play the previous page.
         /// </summary>
-        public void NextPage()
+        public bool PrevPage()
         {
-            if (Enabled)
+            if (CanNavigatePrevPage)
             {
-                if (mState == State.Recording)
+                if (mState == State.Stopped)
                 {
-                    mRecordingSession.MarkPage();
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
+                    {
+                        PlayCurrentPlaylistFromSelection();
+                        mCurrentPlaylist.NavigateToPreviousPage();
+                    }
+                    else
+                    {
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevPage(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                    }
                 }
-                else if (mState != State.Monitoring)
+                else
                 {
-                    mCurrentPlaylist.NavigateToNextPage();
+                    mCurrentPlaylist.NavigateToPreviousPage();
                 }
+                return true;
             }
+            return false;
         }
 
         /// <summary>
@@ -973,7 +1000,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool PrevPhrase()
         {
-            if (CanNavigateNextPhrase)
+            if (CanNavigatePrevPhrase)
             {
                 if (mState == State.Stopped)
                 {
@@ -1040,6 +1067,44 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Go to the next page.
+        /// </summary>
+        public bool NextPage()
+        {
+            if (CanNavigateNextPage)
+            {
+                if (mState == State.Recording)
+                {
+                    mRecordingSession.MarkPage();
+                }
+                else if (mState == State.Monitoring)
+                {
+                    return false;
+                }
+                else if (mState == State.Stopped)
+                {
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
+                    {
+                        PlayCurrentPlaylistFromSelection();
+                        mCurrentPlaylist.NavigateToNextPage();
+                    }
+                    else
+                    {
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextPage(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                    }
+                }
+
+                else if (mState != State.Monitoring)
+                {
+                    mCurrentPlaylist.NavigateToNextPage();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Move to the next section (i.e. the first phrase of the next section)
         /// </summary>
         public bool NextSection()
@@ -1052,6 +1117,10 @@ namespace Obi.ProjectView
                     PauseRecording();
                     mView.AddSection();
                     PrepareForRecording(true, null);
+                }
+                else if (mState == State.Monitoring)
+                {
+                    return false;
                 }
                 else if (mState == State.Stopped)
                 {
