@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </metadata>
+  </data>
   <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>New project Ctrl+N</value>
+    <value />
   </data>
   <data name="mNewProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>New project Ctrl+N</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mNewProjectToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -372,7 +372,7 @@
     <value>Re&amp;wind</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Fast forward Ctrl+.</value>
+    <value>Fast forward Ctrl+period</value>
   </data>
   <data name="mFastForwardToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+.</value>
@@ -1225,7 +1225,7 @@
     <value>Previous &amp;section</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Previous page Alt+PgUp</value>
+    <value>Previous page Alt+PageUp</value>
   </data>
   <data name="mPreviousPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgUp</value>
@@ -1261,7 +1261,7 @@
     <value>Next ph&amp;rase</value>
   </data>
   <data name="nextPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Next page Alt+PgDn</value>
+    <value>Next page Alt+PageDown</value>
   </data>
   <data name="nextPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+PgDn</value>
@@ -1347,9 +1347,9 @@
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About Obi</value>
   </data>
-  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>0, 606</value>
-  </metadata>
+  </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 606</value>
   </data>
@@ -1404,9 +1404,9 @@
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2439,5 +2439,11 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mStartListeningToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Start Monitering ctrl+r</value>
+  </data>
+  <data name="mStartRecordingToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Start Recording ctrl+shift+r</value>
   </data>
 </root>
