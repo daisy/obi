@@ -270,10 +270,10 @@ namespace Obi.ProjectView
                     if (s != null)
                     {
                         s.SelectionFromView = mSelection;
-                        mLayoutPanel.ScrollControlIntoView((Control)s);
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node.ParentAs<SectionNode>();
                         mView.MakeTreeNodeVisibleForSection(section);
+                        mLayoutPanel.ScrollControlIntoView((Control)s);
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus();
                         mFocusing = false;
