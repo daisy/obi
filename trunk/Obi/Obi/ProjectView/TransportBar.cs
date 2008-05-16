@@ -32,7 +32,6 @@ namespace Obi.ProjectView
         private SectionNode mRecordingSection;       // Section in which we are recording
         private PhraseNode mRecordingPhrase;         // Phrase which we are recording in (after start, before end)
         private int mRecordingInitPhraseIndex;       // Phrase child in which we are recording
-        private bool mIsSelectionMarked = false;     // this should probably go I think
 
 
         private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
@@ -541,8 +540,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void PlayAll()
         {
-            mCurrentPlaylist = mMasterPlaylist;
-            PlayCurrentPlaylistFromSelection();
+            if (CanPlay)
+            {
+                mCurrentPlaylist = mMasterPlaylist;
+                PlayCurrentPlaylistFromSelection();
+            }
         }
 
         /// <summary>
@@ -582,41 +584,57 @@ namespace Obi.ProjectView
             }
         }
 
+        // Find the node to start playback from.
+        private PhraseNode FindPlaybackStartNode(ObiNode node)
+        {
+            ObiNode n;
+            // start from this node (or the first leaf for a section)
+            // and go through every node to find the first one in the playlist.
+            for (n = node is SectionNode ? node.FirstLeaf : node;
+                n != null && !mCurrentPlaylist.ContainsPhrase(n as PhraseNode);
+                n = n.FollowingNode) { }
+            return n as PhraseNode;
+        }
+
         // Play the current playlist from the current selection.
         private void PlayCurrentPlaylistFromSelection()
         {
-            if (mView.Selection is AudioSelection
-                && mView.Selection.Node is PhraseNode
-                && (!((AudioSelection)mView.Selection).AudioRange.HasCursor || mIsSelectionMarked)
-                && ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime > ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime)
+            if (mView.Selection is AudioSelection)
             {
-                // Play the current selection
-                mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
-                if (mCurrentPlaylist == mMasterPlaylist)
+                if (!((AudioSelection)mView.Selection).AudioRange.HasCursor && mCurrentPlaylist != mMasterPlaylist)
                 {
-                    // when "play all", ignore the end time
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime);
+                    // Play the audio selection (only for local playlist; play all ignores the end of the selection.)
+                    mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
+                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
+                        ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                 }
                 else
                 {
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime, ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
+                    mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
+                    if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node)
+                    {
+                        // The selected node is in the playlist so play from the cursor
+                        mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                    }
+                    else
+                    {
+                        // The selected node is not in the playlist so play from the beginning
+                        mCurrentPlaylist.Play();
+                    }
                 }
-            }
-            else if (mView.Selection is AudioSelection
-                && mView.Selection.Node is PhraseNode
-                && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
-            {
-                // Play from the cursor
-                mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
-                mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
             }
             else if (mView.Selection is StripCursorSelection)
             {
+                // Play from the first phrase in the playlist following the strip cursor,
+                // or the beginning of the strip.
                 StripCursorSelection s = (StripCursorSelection)mView.Selection;
-                if (s.Index < s.Section.PhraseChildCount)
-                {
-                    mCurrentPlaylist.CurrentPhrase = (PhraseNode)s.Section.PhraseChild(s.Index);
-                }
+                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
+                    (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
+                mCurrentPlaylist.Play();
+            }
+            else if (mView.Selection is NodeSelection)
+            {
+                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
                 mCurrentPlaylist.Play();
             }
             else
