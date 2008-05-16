@@ -1369,9 +1369,7 @@ namespace Obi.ProjectView
         {
             if (mSelection != null && mSelection.Control != mStripsView)
             {
-                NodeSelection s = mSelection;
-                s.Control = mStripsView;
-                Selection = s;
+                Selection = new NodeSelection(mSelection.Node, mStripsView);
             }
         }
 

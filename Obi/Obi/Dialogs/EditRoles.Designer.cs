@@ -39,25 +39,32 @@ namespace Obi.Dialogs
             // 
             // mCustomRolesList
             // 
+            this.mCustomRolesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mCustomRolesList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mCustomRolesList.FormattingEnabled = true;
-            this.mCustomRolesList.Location = new System.Drawing.Point(6, 50);
+            this.mCustomRolesList.Location = new System.Drawing.Point(12, 52);
             this.mCustomRolesList.Name = "mCustomRolesList";
-            this.mCustomRolesList.Size = new System.Drawing.Size(179, 108);
+            this.mCustomRolesList.Size = new System.Drawing.Size(287, 132);
             this.mCustomRolesList.TabIndex = 2;
             this.mCustomRolesList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mCustomRolesList_KeyUp);
             // 
             // mNewCustomRole
             // 
-            this.mNewCustomRole.Location = new System.Drawing.Point(6, 20);
+            this.mNewCustomRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNewCustomRole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mNewCustomRole.Location = new System.Drawing.Point(12, 25);
             this.mNewCustomRole.Name = "mNewCustomRole";
-            this.mNewCustomRole.Size = new System.Drawing.Size(179, 20);
+            this.mNewCustomRole.Size = new System.Drawing.Size(287, 20);
             this.mNewCustomRole.TabIndex = 0;
             this.mNewCustomRole.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mNewCustomRole_KeyUp);
             // 
             // mInstructions
             // 
             this.mInstructions.AutoSize = true;
-            this.mInstructions.Location = new System.Drawing.Point(3, 4);
+            this.mInstructions.Location = new System.Drawing.Point(12, 9);
             this.mInstructions.Name = "mInstructions";
             this.mInstructions.Size = new System.Drawing.Size(187, 13);
             this.mInstructions.TabIndex = 3;
@@ -65,8 +72,10 @@ namespace Obi.Dialogs
             // 
             // mOk
             // 
+            this.mOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOk.Location = new System.Drawing.Point(11, 164);
+            this.mOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mOk.Location = new System.Drawing.Point(118, 220);
             this.mOk.Name = "mOk";
             this.mOk.Size = new System.Drawing.Size(75, 23);
             this.mOk.TabIndex = 4;
@@ -76,8 +85,10 @@ namespace Obi.Dialogs
             // 
             // mCancel
             // 
+            this.mCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancel.Location = new System.Drawing.Point(105, 164);
+            this.mCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCancel.Location = new System.Drawing.Point(199, 220);
             this.mCancel.Name = "mCancel";
             this.mCancel.Size = new System.Drawing.Size(75, 23);
             this.mCancel.TabIndex = 5;
@@ -87,7 +98,9 @@ namespace Obi.Dialogs
             // 
             // mAdd
             // 
-            this.mAdd.Location = new System.Drawing.Point(205, 20);
+            this.mAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mAdd.Location = new System.Drawing.Point(305, 22);
             this.mAdd.Name = "mAdd";
             this.mAdd.Size = new System.Drawing.Size(75, 23);
             this.mAdd.TabIndex = 1;
@@ -97,7 +110,9 @@ namespace Obi.Dialogs
             // 
             // mRemove
             // 
-            this.mRemove.Location = new System.Drawing.Point(205, 50);
+            this.mRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mRemove.Location = new System.Drawing.Point(305, 51);
             this.mRemove.Name = "mRemove";
             this.mRemove.Size = new System.Drawing.Size(75, 23);
             this.mRemove.TabIndex = 3;
@@ -109,7 +124,7 @@ namespace Obi.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(293, 189);
+            this.ClientSize = new System.Drawing.Size(392, 255);
             this.Controls.Add(this.mRemove);
             this.Controls.Add(this.mAdd);
             this.Controls.Add(this.mCancel);

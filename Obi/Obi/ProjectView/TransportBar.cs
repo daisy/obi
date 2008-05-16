@@ -735,7 +735,7 @@ namespace Obi.ProjectView
                 else
                 {
                     // Stopping again deselects everything
-                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Stopped)
+                    if (mState == State.Stopped)
                     {
                         mView.Selection = null;
                     }
@@ -858,8 +858,10 @@ namespace Obi.ProjectView
                     }
                     else
                     {
-                        command.append(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                            mRecordingInitPhraseIndex + e.PhraseIndex));
+                        Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                            mRecordingInitPhraseIndex + e.PhraseIndex);
+                        add.UpdateSelection = false;
+                        command.append(add);
                         if (emptyNode != null)
                         {
                             phrase.CopyKind(emptyNode);
