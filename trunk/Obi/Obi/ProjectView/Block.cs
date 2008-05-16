@@ -116,6 +116,7 @@ namespace Obi.ProjectView
         {
             mLabel.Text = Node.BaseStringShort();
             mLabel.AccessibleName = Node.BaseString();
+            AccessibleName = mLabel.AccessibleName;
             Size = new Size(LabelFullWidth, Height);
         }
 
