@@ -641,17 +641,26 @@ namespace Obi
 
             // update recording menu items
             mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-            if (mProjectView.TransportBar.IsRecorderActive)
+            if (mProjectView.TransportBar.IsListening)
+            {
+                mStartListeningToolStripMenuItem.Text = "Start Recording";
+                mStartListeningToolStripMenuItem.AccessibleName = "Start Recording  ctrl+r";
+                mStartRecordingToolStripMenuItem.Enabled = false;
+            }
+            else if (mProjectView.TransportBar.IsRecorderActive) // actual recording is going on
             {
                 mStartListeningToolStripMenuItem.Enabled = false;
+                mStartRecordingToolStripMenuItem.Enabled = false;
             }
-            else
+            else // neither listening nor actual recording is going on
             {
-                mStartListeningToolStripMenuItem.Enabled = true;
-                mStartRecordingToolStripMenuItem.Enabled = true;
+                mStartListeningToolStripMenuItem.Text = "Start Monitering";
+                mStartListeningToolStripMenuItem.AccessibleName = "Start Monitering ctrl+r";
+
+                mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+                mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
             }
-            mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-            mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
+
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PlayAll(); }
