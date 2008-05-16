@@ -626,8 +626,12 @@ namespace Obi
             mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewUpToToolStripMenuItem.Enabled = mProjectView.CanPreview;
             mPreviewSelectedToolStripMenuItem.Enabled = mProjectView.CanPreviewAudioSelection;
+            mPreviousSectionToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevSection;
+            mPreviousPageToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevPage;
             mPreviousPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigatePrevPhrase;
             mNextPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigateNextPhrase;
+            mNextPageToolStripMenuItem.Enabled = mProjectView.CanNavigateNextPage;
+            mNextSectionToolStripMenuItem.Enabled = mProjectView.CanNavigateNextSection;
             mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
             mRewindToolStripMenuItem.Enabled = mProjectView.CanRewind;
 
@@ -665,8 +669,12 @@ namespace Obi
         private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
         private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
         private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PreviewAudioSelection(); }
+        private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevSection(); }
+        private void previousPageToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevPage(); }
         private void previousPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevPhrase(); }
         private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.NextPhrase(); }
+        private void nextPageToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.NextPage(); }
+        private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.NextSection(); }
 
         private void rewindToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Rewind(); }
         private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.FastForward(); }
@@ -687,27 +695,11 @@ namespace Obi
 
 
 
-        private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevSection();
-        }
 
 
-        private void previousPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.PrevPage();
-        }
 
 
-        private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextSection();
-        }
 
-        private void nextPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextPage();
-        }
 
         private void NormalSpeedtoolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -166,7 +166,7 @@ namespace Obi.ProjectView
             this.mPrevSectionButton.Name = "mPrevSectionButton";
             this.mPrevSectionButton.Size = new System.Drawing.Size(32, 35);
             this.mPrevSectionButton.TabIndex = 0;
-            this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Go to the preceding section.");
+            this.mTransportBarTooltip.SetToolTip(this.mPrevSectionButton, "Go to the preceding section. (Shift+H)");
             this.mPrevSectionButton.UseVisualStyleBackColor = true;
             this.mPrevSectionButton.Click += new System.EventHandler(this.mPrevSectionButton_Click);
             // 
@@ -252,7 +252,7 @@ namespace Obi.ProjectView
             this.mNextPageButton.Name = "mNextPageButton";
             this.mNextPageButton.Size = new System.Drawing.Size(32, 35);
             this.mNextPageButton.TabIndex = 10;
-            this.mTransportBarTooltip.SetToolTip(this.mNextPageButton, "Go to the following page.");
+            this.mTransportBarTooltip.SetToolTip(this.mNextPageButton, "Go to the following page. (P)");
             this.mNextPageButton.UseVisualStyleBackColor = true;
             this.mNextPageButton.Click += new System.EventHandler(this.mNextPageButton_Click);
             // 
@@ -268,7 +268,7 @@ namespace Obi.ProjectView
             this.mPreviousPageButton.Name = "mPreviousPageButton";
             this.mPreviousPageButton.Size = new System.Drawing.Size(32, 35);
             this.mPreviousPageButton.TabIndex = 1;
-            this.mTransportBarTooltip.SetToolTip(this.mPreviousPageButton, "Go to the preceding page.");
+            this.mTransportBarTooltip.SetToolTip(this.mPreviousPageButton, "Go to the preceding page. (Shift+P)");
             this.mPreviousPageButton.UseVisualStyleBackColor = true;
             this.mPreviousPageButton.Click += new System.EventHandler(this.mPreviousPageButton_Click);
             // 
@@ -284,7 +284,7 @@ namespace Obi.ProjectView
             this.mCustomClassMarkButton.Name = "mCustomClassMarkButton";
             this.mCustomClassMarkButton.Size = new System.Drawing.Size(32, 35);
             this.mCustomClassMarkButton.TabIndex = 12;
-            this.mTransportBarTooltip.SetToolTip(this.mCustomClassMarkButton, "Add a phrase marker while recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mCustomClassMarkButton, "Add a TODO mark while recording. (F9)");
             this.mCustomClassMarkButton.UseVisualStyleBackColor = true;
             this.mCustomClassMarkButton.Click += new System.EventHandler(this.mCustomClassMarkButton_Click);
             // 

@@ -57,6 +57,7 @@ namespace Obi.Dialogs
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mOKButton.Location = new System.Drawing.Point(123, 116);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(75, 23);
@@ -67,6 +68,7 @@ namespace Obi.Dialogs
             // mCancelButton
             // 
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCancelButton.Location = new System.Drawing.Point(204, 116);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(75, 23);
@@ -77,9 +79,10 @@ namespace Obi.Dialogs
             // mRenumber
             // 
             this.mRenumber.AutoSize = true;
+            this.mRenumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mRenumber.Location = new System.Drawing.Point(12, 64);
             this.mRenumber.Name = "mRenumber";
-            this.mRenumber.Size = new System.Drawing.Size(151, 17);
+            this.mRenumber.Size = new System.Drawing.Size(148, 17);
             this.mRenumber.TabIndex = 3;
             this.mRenumber.Text = "&Renumber following pages";
             this.mRenumber.UseVisualStyleBackColor = true;

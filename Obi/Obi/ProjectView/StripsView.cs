@@ -621,20 +621,18 @@ namespace Obi.ProjectView
         {
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
+            mShortcutKeys[Keys.A] = delegate() { return mView.TransportBar.MarkSelectionWholePhrase(); };
             mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
             mShortcutKeys[Keys.H] = delegate() { return mView.TransportBar.NextSection(); };
+            mShortcutKeys[Keys.Shift | Keys.H] = delegate() { return mView.TransportBar.PrevSection(); };
             mShortcutKeys[Keys.J] = delegate() { return mView.TransportBar.PrevPhrase(); };
             mShortcutKeys[Keys.K] = delegate() { return mView.TransportBar.NextPhrase(); };
+            mShortcutKeys[Keys.P] = delegate() { return mView.TransportBar.NextPage(); };
+            mShortcutKeys[Keys.Shift | Keys.P] = delegate() { return mView.TransportBar.PrevPage(); };
             mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(true); };
             mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(false); };
-
-
-            mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             
             // playback shortcuts.
-            mShortcutKeys[Keys.Shift | Keys.H] = NavigatePrevSection;
-            mShortcutKeys[Keys.Shift | Keys.P] = NavigatePrevPage;
-            mShortcutKeys[Keys.P] = NavigateNextPage;
             
             mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
@@ -991,23 +989,7 @@ namespace Obi.ProjectView
 
 
 
-        private bool NavigateNextPage()
-        {
-            mView.TransportBar.NextPage();
-            return true;
-        }
 
-        private bool NavigatePrevPage()
-        {
-            mView.TransportBar.PrevPage();
-            return true;
-        }
-
-        private bool NavigatePrevSection()
-        {
-            mView.TransportBar.PrevSection();
-            return true;
-        }
 
         // Toggle play/pause in the transport bar
         public bool TogglePlayPause()
@@ -1066,10 +1048,6 @@ namespace Obi.ProjectView
             return mView.TransportBar.MarkSelectionToCursor();
         }
 
-        private bool MarkSelectionWholePhrase()
-        {
-            return mView.TransportBar.MarkSelectionWholePhrase();
-        }
 
 
                #endregion

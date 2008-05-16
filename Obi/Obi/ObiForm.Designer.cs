@@ -143,7 +143,7 @@ namespace Obi
             this.mPreviousPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.mPlayOnNavigateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -951,7 +951,7 @@ namespace Obi
             this.mPreviousPageToolStripMenuItem,
             this.mPreviousPhraseToolStripMenuItem,
             this.mNextPhraseToolStripMenuItem,
-            this.nextPageToolStripMenuItem,
+            this.mNextPageToolStripMenuItem,
             this.mNextSectionToolStripMenuItem,
             this.toolStripSeparator14,
             this.mPlayOnNavigateToolStripMenuItem});
@@ -984,9 +984,9 @@ namespace Obi
             // 
             // nextPageToolStripMenuItem
             // 
-            resources.ApplyResources(this.nextPageToolStripMenuItem, "nextPageToolStripMenuItem");
-            this.nextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
-            this.nextPageToolStripMenuItem.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click);
+            resources.ApplyResources(this.mNextPageToolStripMenuItem, "nextPageToolStripMenuItem");
+            this.mNextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
+            this.mNextPageToolStripMenuItem.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click);
             // 
             // mNextSectionToolStripMenuItem
             // 
@@ -1206,7 +1206,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPreviousPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextPhraseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nextPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mNextPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRewindToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFastForwardToolStripMenuItem;

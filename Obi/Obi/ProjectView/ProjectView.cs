@@ -205,8 +205,12 @@ namespace Obi.ProjectView
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
         public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
         public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
-        public bool CanNavigatePrevPhrase { get { return mTransportBar.CanNavigatePrevPhrase; } }
+        public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
+        public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
+        public bool CanNavigatePrevPage { get { return mTransportBar.CanNavigatePrevPage; } }
+        public bool CanNavigatePrevPhrase { get { return mTransportBar.CanNavigatePrevPhrase; } }
+        public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
         public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
         public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
         public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
@@ -1373,7 +1377,7 @@ namespace Obi.ProjectView
 
         public void SelectPhraseInContentView(PhraseNode node)
         {
-            Selection = node == null ? null : new NodeSelection(node, mStripsView);
+            if (node != null) Selection = new NodeSelection(node, mStripsView);
         }
 
         /// <summary>
