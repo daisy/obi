@@ -622,8 +622,7 @@ namespace Obi.ProjectView
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
             mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
-            //mShortcutKeys[Keys.Space] = TogglePlayPause;
-
+            
             // playback shortcuts.
             mShortcutKeys[Keys.J] = NavigatePrevPhrase;
             mShortcutKeys[Keys.K] = NavigateNextPhrase;
@@ -677,10 +676,7 @@ namespace Obi.ProjectView
             if (CanUseKeys &&
                 ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
-
-            if (ProcessTabKeyInContentsView(key))
-                return true;
-
+            if (ProcessTabKeyInContentsView(key)) return true;
             return base.ProcessCmdKey(ref msg, key);
         }
 

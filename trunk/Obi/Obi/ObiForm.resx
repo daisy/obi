@@ -287,10 +287,10 @@
   <data name="mPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Phrases</value>
   </data>
-  <data name="playToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPlayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
   </data>
-  <data name="playToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mPlayToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Play</value>
   </data>
   <data name="mPauseToolStripMenuItem.AccessibleName" xml:space="preserve">
@@ -334,30 +334,6 @@
   </data>
   <data name="FastPlaytoolStripMenuItem.Text" xml:space="preserve">
     <value>Fast p&amp;lay</value>
-  </data>
-  <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Preview from... Ctrl+P</value>
-  </data>
-  <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+P</value>
-  </data>
-  <data name="mPreviewFromToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview &amp;from...</value>
-  </data>
-  <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview &amp;up to...</value>
-  </data>
-  <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Preview &amp;selected</value>
   </data>
   <data name="mPreviewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
@@ -1188,6 +1164,30 @@
   <data name="mElapseBacktoolStripMenuItem.Text" xml:space="preserve">
     <value>Normal speed with &amp;elapse back</value>
   </data>
+  <data name="mPreviewFromToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Preview from... Ctrl+P</value>
+  </data>
+  <data name="mPreviewFromToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+P</value>
+  </data>
+  <data name="mPreviewFromToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="mPreviewFromToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview &amp;from...</value>
+  </data>
+  <data name="mPreviewUpToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="mPreviewUpToToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview &amp;up to...</value>
+  </data>
+  <data name="mPreviewSelectedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="mPreviewSelectedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Preview &amp;selected</value>
+  </data>
   <data name="mStartListeningToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+R</value>
   </data>
@@ -1396,7 +1396,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.10.8.43039, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.10.8.2461, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2200,10 +2200,10 @@
   <data name="&gt;&gt;transportToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;playToolStripMenuItem.Name" xml:space="preserve">
-    <value>playToolStripMenuItem</value>
+  <data name="&gt;&gt;mPlayToolStripMenuItem.Name" xml:space="preserve">
+    <value>mPlayToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;playToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPlayToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPlayAllToolStripMenuItem.Name" xml:space="preserve">

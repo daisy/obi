@@ -94,7 +94,15 @@ namespace Obi
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
         public AudioPlayer Audioplayer { get { return mPlayer; } }
-        
+
+        public bool CanNavigateNextPhrase { get { return mCurrentPhraseIndex < mPhrases.Count - 1; } }
+
+        public PhraseNode NextPhrase(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node) + 1;
+            return index < mPhrases.Count ? mPhrases[index] : null;
+        }
+
         /// <summary>
         /// Set the currently playing phrase directly.
         /// If playing, move to the beginning of the phrase.

@@ -607,17 +607,9 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
+            mPlayToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanPlaySelection;
             mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
             mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
-            mPreviewToolStripMenuItem.Enabled = mProjectView.CanPreview || mProjectView.CanPreviewAudioSelection;
-            mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
-            mPreviewUpToToolStripMenuItem.Enabled = mProjectView.CanPreview;
-            mPreviewSelectedToolStripMenuItem.Enabled = mProjectView.CanPreviewAudioSelection;
-
-
-            mPreviewToolStripMenuItem.Enabled = mProjectView.CanPlay;
-            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
-
             if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;
@@ -630,6 +622,17 @@ namespace Obi
                 mResumeToolStripMenuItem.Visible = false;
             }
             mStopToolStripMenuItem.Enabled = mProjectView.CanStop;
+            mPreviewToolStripMenuItem.Enabled = mProjectView.CanPreview || mProjectView.CanPreviewAudioSelection;
+            mPreviewFromToolStripMenuItem.Enabled = mProjectView.CanPreview;
+            mPreviewUpToToolStripMenuItem.Enabled = mProjectView.CanPreview;
+            mPreviewSelectedToolStripMenuItem.Enabled = mProjectView.CanPreviewAudioSelection;
+            mNextPhraseToolStripMenuItem.Enabled = mProjectView.CanNavigateNextPhrase;
+            mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
+            mRewindToolStripMenuItem.Enabled = mProjectView.CanRewind;
+
+
+            FastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
+
 
             // update recording menu items
             mStartRecordingToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
@@ -644,7 +647,6 @@ namespace Obi
             }
             mStartRecordingToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
             mStartListeningToolStripMenuItem.Enabled = mProjectView.TransportBar.Enabled;
-
         }
 
         private void mPlayAllToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PlayAll(); }
@@ -652,27 +654,24 @@ namespace Obi
         {
             if (mProjectView.CanPlaySelection) mProjectView.TransportBar.PlayOrResume(mProjectView.Selection.Node);
         }
-
-        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
-        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
-        private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PreviewAudioSelection(); }
-
-
-
-        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanPause) mProjectView.TransportBar.Pause();
-        }
-
+        private void mPauseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Pause(); }
         private void mResumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.CanResume) mProjectView.TransportBar.PlayOrResume();
         }
+        private void mStopToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Stop(); }
 
-        private void mStopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanStop) mProjectView.TransportBar.Stop();
-        }
+        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
+        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
+        private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PreviewAudioSelection(); }
+        private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.NextPhrase(); }
+
+        private void rewindToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Rewind(); }
+        private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.FastForward(); }
+
+
+
+
 
         private void mStartListeningToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -685,15 +684,6 @@ namespace Obi
         }
 
 
-        private void rewindToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.Rewind();
-        }
-
-        private void fastForwardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.FastForward();
-        }
 
         private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -710,10 +700,6 @@ namespace Obi
             mProjectView.TransportBar.PrevPage();
         }
 
-        private void nextPhraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.TransportBar.NextPhrase();
-        }
 
         private void nextSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
