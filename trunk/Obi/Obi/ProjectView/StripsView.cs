@@ -621,13 +621,18 @@ namespace Obi.ProjectView
         {
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
 
+            mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
+            mShortcutKeys[Keys.H] = delegate() { return mView.TransportBar.NextSection(); };
+            mShortcutKeys[Keys.J] = delegate() { return mView.TransportBar.PrevPhrase(); };
+            mShortcutKeys[Keys.K] = delegate() { return mView.TransportBar.NextPhrase(); };
+            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(true); };
+            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(false); };
+
+
             mShortcutKeys[Keys.A] = MarkSelectionWholePhrase;
             
             // playback shortcuts.
-            mShortcutKeys[Keys.J] = NavigatePrevPhrase;
-            mShortcutKeys[Keys.K] = NavigateNextPhrase;
             mShortcutKeys[Keys.Shift | Keys.H] = NavigatePrevSection;
-            mShortcutKeys[Keys.H] = NavigateNextSection;
             mShortcutKeys[Keys.Shift | Keys.P] = NavigatePrevPage;
             mShortcutKeys[Keys.P] = NavigateNextPage;
             
@@ -640,9 +645,6 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
             mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
 
-            mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
-            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(true); };
-            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(false); };
 
             // Strips navigation
             mShortcutKeys[Keys.Left] = SelectPrecedingBlock;
@@ -995,27 +997,9 @@ namespace Obi.ProjectView
             return true;
         }
 
-        private bool NavigateNextPhrase()
-        {
-            mView.TransportBar.NextPhrase();
-            return true;
-        }
-
-        private bool NavigateNextSection()
-        {
-            mView.TransportBar.NextSection();
-            return true;
-        }
-
         private bool NavigatePrevPage()
         {
             mView.TransportBar.PrevPage();
-            return true;
-        }
-
-        private bool NavigatePrevPhrase()
-        {
-            mView.TransportBar.PrevPhrase();
             return true;
         }
 

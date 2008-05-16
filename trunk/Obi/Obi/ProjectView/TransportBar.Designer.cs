@@ -98,7 +98,7 @@ namespace Obi.ProjectView
             this.mStopButton.Name = "mStopButton";
             this.mStopButton.Size = new System.Drawing.Size(32, 35);
             this.mStopButton.TabIndex = 6;
-            this.mTransportBarTooltip.SetToolTip(this.mStopButton, "Stop audio playback or recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mStopButton, "Stop audio playback or recording. (Ctrl+Space)");
             this.mStopButton.UseVisualStyleBackColor = true;
             this.mStopButton.Click += new System.EventHandler(this.mStopButton_Click);
             // 
@@ -115,7 +115,7 @@ namespace Obi.ProjectView
             this.mNextPhrase.Name = "mNextPhrase";
             this.mNextPhrase.Size = new System.Drawing.Size(32, 35);
             this.mNextPhrase.TabIndex = 9;
-            this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Go to the following phrase.");
+            this.mTransportBarTooltip.SetToolTip(this.mNextPhrase, "Go to the following phrase. (K)");
             this.mNextPhrase.UseVisualStyleBackColor = true;
             this.mNextPhrase.Click += new System.EventHandler(this.mNextPhrase_Click);
             // 
@@ -132,7 +132,7 @@ namespace Obi.ProjectView
             this.mPrevPhraseButton.Name = "mPrevPhraseButton";
             this.mPrevPhraseButton.Size = new System.Drawing.Size(32, 35);
             this.mPrevPhraseButton.TabIndex = 2;
-            this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Go to the preceding phrase.");
+            this.mTransportBarTooltip.SetToolTip(this.mPrevPhraseButton, "Go to the preceding phrase. (J)");
             this.mPrevPhraseButton.UseVisualStyleBackColor = true;
             this.mPrevPhraseButton.Click += new System.EventHandler(this.mPrevPhraseButton_Click);
             // 
@@ -149,7 +149,7 @@ namespace Obi.ProjectView
             this.mNextSectionButton.Name = "mNextSectionButton";
             this.mNextSectionButton.Size = new System.Drawing.Size(32, 35);
             this.mNextSectionButton.TabIndex = 11;
-            this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Go to the following section.");
+            this.mTransportBarTooltip.SetToolTip(this.mNextSectionButton, "Go to the following section. (H)");
             this.mNextSectionButton.UseVisualStyleBackColor = true;
             this.mNextSectionButton.Click += new System.EventHandler(this.mNextSectionButton_Click);
             // 
@@ -184,7 +184,7 @@ namespace Obi.ProjectView
             this.mRecordButton.Name = "mRecordButton";
             this.mRecordButton.Size = new System.Drawing.Size(32, 35);
             this.mRecordButton.TabIndex = 7;
-            this.mTransportBarTooltip.SetToolTip(this.mRecordButton, "Start monitoring or recording.");
+            this.mTransportBarTooltip.SetToolTip(this.mRecordButton, "Start monitoring or recording. (Ctrl+R)");
             this.mRecordButton.UseVisualStyleBackColor = true;
             this.mRecordButton.Click += new System.EventHandler(this.mRecordButton_Click);
             // 

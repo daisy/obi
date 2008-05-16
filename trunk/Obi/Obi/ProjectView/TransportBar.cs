@@ -108,9 +108,7 @@ namespace Obi.ProjectView
         public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
         public bool CanNavigateNextPage { get { return Enabled; } }
-        public bool CanNavigateNextSection { get { return Enabled; } }
         public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
-        public bool CanNavigatePrevPhrase { get { return Enabled && mRecordingSession == null; } }
         public bool CanNavigatePrevSection { get { return Enabled && mRecordingSession == null; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
@@ -120,14 +118,31 @@ namespace Obi.ProjectView
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
+        public bool CanNavigatePrevPhrase
+        {
+            get
+            {
+                return (IsPlayerActive && mCurrentPlaylist.CanNavigatePrevPhrase) || CanPlay;
+            }
+        }
+
         public bool CanNavigateNextPhrase
         {
             get
             {
-                return Enabled &&
-                    (IsRecorderActive ||
+                return IsRecorderActive ||
                     (IsPlayerActive && mCurrentPlaylist.CanNavigateNextPhrase) ||
-                    CanPlay);
+                    CanPlay;
+            }
+        }
+
+        public bool CanNavigateNextSection
+        {
+            get
+            {
+                return IsRecorderActive ||
+                    (IsPlayerActive && mCurrentPlaylist.CanNavigateNextSection) ||
+                    CanPlay;
             }
         }
 
@@ -925,17 +940,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Move to or play the previous phrase.
-        /// </summary>
-        public void PrevPhrase()
-        {
-            if (Enabled && mRecordingSession == null)
-            {
-                mCurrentPlaylist.NavigateToPreviousPhrase();
-            }
-        }
-
-        /// <summary>
         /// Move to the previous section (i.e. first phrase of the previous section.)
         /// </summary>
         public void PrevSection()
@@ -965,11 +969,40 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Move to or play the previous phrase.
+        /// </summary>
+        public bool PrevPhrase()
+        {
+            if (CanNavigateNextPhrase)
+            {
+                if (mState == State.Stopped)
+                {
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
+                    {
+                        PlayCurrentPlaylistFromSelection();
+                        mCurrentPlaylist.NavigateToPreviousPhrase();
+                    }
+                    else
+                    {
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.PrevPhrase(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                    }
+                }
+                else
+                {
+                    mCurrentPlaylist.NavigateToPreviousPhrase();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Go to the next phrase.
         /// If recording, create a new phrase to record in.
         /// If playing or paused,
         /// </summary>
-        public void NextPhrase()
+        public bool NextPhrase()
         {
             if (CanNavigateNextPhrase)
             {
@@ -1001,15 +1034,17 @@ namespace Obi.ProjectView
                 {
                     mCurrentPlaylist.NavigateToNextPhrase();
                 }
+                return true;
             }
+            return false;
         }
 
         /// <summary>
         /// Move to the next section (i.e. the first phrase of the next section)
         /// </summary>
-        public void NextSection()
+        public bool NextSection()
         {
-            if (Enabled)
+            if (CanNavigateNextSection)
             {
                 if (mState == State.Recording)
                 {
@@ -1018,11 +1053,26 @@ namespace Obi.ProjectView
                     mView.AddSection();
                     PrepareForRecording(true, null);
                 }
+                else if (mState == State.Stopped)
+                {
+                    if (mView.ObiForm.Settings.PlayOnNavigate)
+                    {
+                        PlayCurrentPlaylistFromSelection();
+                        mCurrentPlaylist.NavigateToNextSection();
+                    }
+                    else
+                    {
+                        mView.SelectPhraseInContentView(mCurrentPlaylist.NextSection(
+                            FindPlaybackStartNode(mView.Selection == null ? null : mView.Selection.Node)));
+                    }
+                }
                 else
                 {
                     mCurrentPlaylist.NavigateToNextSection();
                 }
+                return true;
             }
+            return false;
         }
 
 

@@ -95,13 +95,32 @@ namespace Obi
         /// </summary>
         public AudioPlayer Audioplayer { get { return mPlayer; } }
 
+        public bool CanNavigatePrevPhrase { get { return mCurrentPhraseIndex > 0; } }
         public bool CanNavigateNextPhrase { get { return mCurrentPhraseIndex < mPhrases.Count - 1; } }
+        public bool CanNavigateNextSection { get { return NextSectionIndex < mPhrases.Count - 1; } }
+
+        public PhraseNode PrevPhrase(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node) - 1;
+            return index >= 0 ? mPhrases[index] : null;
+        }
 
         public PhraseNode NextPhrase(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) + 1;
             return index < mPhrases.Count ? mPhrases[index] : null;
         }
+
+        public PhraseNode NextSection(PhraseNode node)
+        {
+            int index = mPhrases.IndexOf(node);
+            if (node != null)
+            {
+                for (; index < mPhrases.Count && mPhrases[index].AncestorAs<SectionNode>() == node.AncestorAs<SectionNode>(); ++index) { }
+            }
+            return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
+        }
+
 
         /// <summary>
         /// Set the currently playing phrase directly.
@@ -732,13 +751,6 @@ namespace Obi
         public void NavigateToNextPhrase()
         {
             if (mCurrentPhraseIndex < mPhrases.Count - 1) NavigateToPhrase(mCurrentPhraseIndex + 1);
-        }
-
-        /// <summary>
-        /// Move to the next phrase from a given node.
-        /// </summary>
-        public void NavigateToNextPhrase(ObiNode node)
-        {
         }
 
         /// <summary>
