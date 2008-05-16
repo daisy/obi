@@ -24,6 +24,9 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNewNode = View.Presentation.CreatePhraseNode(mNode.SplitAudio(mSplitPoint));
+            mNewNode.CustomClass = mNode.CustomClass;
+            mNewNode.NodeKind = mNode.NodeKind;
+            mNewNode.Used = mNode.Used;
             mNode.InsertAfterSelf(mNewNode);
             if (UpdateSelection) View.SelectedBlockNode = mNewNode;
         }

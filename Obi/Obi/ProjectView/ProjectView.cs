@@ -604,13 +604,13 @@ namespace Obi.ProjectView
                     }
                     // select in the control
                     mSelection = value;
+                    UpdateShowOnlySelected(mSelection == null ? false : mShowOnlySelected);
                     if (mSelection != null)
                     {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
                         mSelection.Control.Selection = value;
                     }
-                    UpdateShowOnlySelected(mSelection == null ? false : mShowOnlySelected);
                     if (SelectionChanged != null) SelectionChanged(this, new EventArgs());
                 }
             }
@@ -993,7 +993,7 @@ namespace Obi.ProjectView
 
         public void SplitPhrase()
         {
-            if (CanSplitPhrase) mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
+            if (CanSplitPhrase) { mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this)); }
         }
 
         /// <summary>

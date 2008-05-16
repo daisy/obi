@@ -851,8 +851,10 @@ namespace Obi.ProjectView
                     mRecordingPhrase = phrase;
                     if (e.PhraseIndex > 0)
                     {
-                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.AddNode(mView, phrase, mRecordingSection,
-                            mRecordingInitPhraseIndex + e.PhraseIndex));
+                        Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                            mRecordingInitPhraseIndex + e.PhraseIndex);
+                        add.UpdateSelection = false;
+                        mView.Presentation.getUndoRedoManager().execute(add);
                     }
                     else
                     {

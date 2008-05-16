@@ -95,7 +95,7 @@ namespace Obi
         /// </summary>
         public AudioPlayer Audioplayer { get { return mPlayer; } }
 
-        public bool CanNavigatePrevPhrase { get { return mCurrentPhraseIndex > 0; } }
+        public bool CanNavigatePrevPhrase { get { return true; } }
         public bool CanNavigateNextPhrase { get { return mCurrentPhraseIndex < mPhrases.Count - 1; } }
         public bool CanNavigateNextSection { get { return NextSectionIndex < mPhrases.Count - 1; } }
         public bool CanNavigateNextPage { get { return true; } }
