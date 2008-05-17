@@ -1165,5 +1165,13 @@ null;
                 }
             }
         }
+
+        public void UpdateBlocksLabelInStrip(SectionNode node)
+        {
+            Strip s = FindStrip(node);
+            if (s != null)
+                                            s.UpdateBlockLabelsInStrip();
+                                }
+
     }
 }

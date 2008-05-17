@@ -112,7 +112,7 @@ namespace Obi.ProjectView
 
         // Generate the label string for this block.
         // Since there is no content, the width is always that of the label's.
-        protected virtual void UpdateLabel()
+        public virtual void UpdateLabel()
         {
             mLabel.Text = Node.BaseStringShort();
             mLabel.AccessibleName = Node.BaseString();
