@@ -1182,7 +1182,11 @@ namespace Obi.ProjectView
                 if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
                 {
                     mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
-                }
+                    
+                    // update blocks labels such that error in label due to serial creation of phrases is removed
+                    if ( SelectedNodeAs<EmptyNode>() != null )
+                    mStripsView.UpdateBlocksLabelInStrip(SelectedNodeAs<EmptyNode>().ParentAs<SectionNode>() );
+                                    }
             }// check for phrase node ends
             else
                 System.Media.SystemSounds.Beep.Play();

@@ -78,7 +78,7 @@ namespace Obi.ProjectView
         }
 
         // Update label and waveform when there is new information to display.
-        protected override void UpdateLabel()
+        public override void UpdateLabel()
         {
             /*string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
                 mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
