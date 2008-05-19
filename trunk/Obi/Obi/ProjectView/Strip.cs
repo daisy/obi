@@ -376,12 +376,6 @@ namespace Obi.ProjectView
             }
         }
 
-        // Clicking on the label toggles the strip selection. Use "rename" to rename.
-        private void Label_Click(object sender, EventArgs e)
-        {
-            ToggleSelection();
-        }
-
         // Select the label when it is clicked (i.e. made editable) by the user.
         private void Label_EditableChanged(object sender, EventArgs e)
         {

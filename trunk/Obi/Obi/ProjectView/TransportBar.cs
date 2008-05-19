@@ -110,6 +110,7 @@ namespace Obi.ProjectView
         public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
         public bool CanNavigatePrevSection { get { return Enabled && mRecordingSession == null; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
+        public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
         public bool CanRecord { get { return Enabled && mState == State.Stopped; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
@@ -1262,32 +1263,74 @@ namespace Obi.ProjectView
         }
 
 
+        // nudge selection
+        public static readonly bool Forward = true;         // nudge forward
+        public static readonly bool Backward = false;       // nudge backward
+
+        // Nudge selection forward or backward.
+        public bool Nudge(bool forward)
+        {
+            double nudge = mView.ObiForm.Settings.NudgeTimeMs * (forward ? 1 : -1);
+            if (!IsRecorderActive && mState == State.Paused)
+            {
+                double time = mCurrentPlaylist.CurrentTimeInAsset + nudge;
+                if (time >= 0.0 && time < mCurrentPlaylist.CurrentPhrase.Duration)
+                {
+                    // Move selection to audio cursor, stop, and nudge the selection.
+                    mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                        new AudioRange(time));
+                    Stop();
+                    return true;
+                }
+            }
+            else if (mState == State.Stopped)
+            {
+                AudioSelection s = mView.Selection as AudioSelection;
+                if (s != null)
+                {
+                    double time = (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime) + nudge;
+                    if (time >= 0.0 && time < ((PhraseNode)s.Node).Duration)
+                    {
+                        mView.Selection = new AudioSelection((PhraseNode)s.Node, mView.Selection.Control, new AudioRange(time));
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         // preview playback functions
-
-        
-
+        public static readonly bool From = true;
+        public static readonly bool Upto = false;
+        public static readonly bool UseSelection = true;
+        public static readonly bool UseAudioCursor = false;
 
         /// <summary>
-        /// Preview from the current position; use the audio cursor, the selection cursor,
-        /// or the beginning position of a selection.
+        /// Preview from or upt the current position; use the audio cursor, the selection cursor,
+        /// or the beginning position of a selection. If the useSelection flag is set, use the
+        /// selection position; otherwise, use the audio cursor position (if set.)
         /// </summary>
-        public bool Preview(bool forward)
+        public bool Preview(bool from, bool useSelection)
         {
-            if (mState == State.Paused || mState == State.Playing)
+            if (!IsRecorderActive)
             {
-                // use the audio cursor
-                if (mState == State.Playing) Pause();
-                PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (forward ? 0.0 : mPreviewDuration),
-                    mPreviewDuration, forward);
-                return true;
-            }
-            else if (mState == State.Stopped && mView.Selection is AudioSelection)
-            {
-                AudioSelection s = (AudioSelection)mView.Selection;
-                double time = forward ? s.AudioRange.CursorTime :
-                    (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
-                PlayPreview((PhraseNode)s.Node, time, mPreviewDuration, forward);
-                return true;
+                if ((mState == State.Paused || mState == State.Playing) && !useSelection)
+                {
+                    // use the audio cursor
+                    if (mState == State.Playing) Pause();
+                    PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (from ? 0.0 : mPreviewDuration),
+                        mPreviewDuration, from);
+                    return true;
+                }
+                else if (mView.Selection is AudioSelection)
+                {
+                    AudioSelection s = (AudioSelection)mView.Selection;
+                    double time = from ? s.AudioRange.CursorTime :
+                        (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
+                    PlayPreview((PhraseNode)s.Node, time, mPreviewDuration, from);
+                    return true;
+                }
             }
             return false;
         }

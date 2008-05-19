@@ -1208,7 +1208,8 @@ namespace Obi.ProjectView
         {
             return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
                 (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
-                (key == Keys.Space && TogglePlayPause()) ||
+                (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
+                (key == Keys.Space && TogglePlayPause(UseAudioCursor)) || 
                 base.ProcessCmdKey(ref msg, key);
         }
 
@@ -1301,21 +1302,35 @@ namespace Obi.ProjectView
         }
 
 
-        // Toggle play/pause in the transport bar
-        public bool TogglePlayPause()
+        private static readonly bool UseSelection = true;
+        private static readonly bool UseAudioCursor = false;
+
+        // Toggle play/pause in the transport bar.
+        // If the useSelection flag is set, resume from the selection
+        // rather than from the audio cursor.
+        public bool TogglePlayPause(bool useSelection)
         {
-            if ( !( mSelection is TextSelection ) &&
+            if (!(mSelection is TextSelection) &&
                 (mStripsView.ContainsFocus
                 || mTOCView.ContainsFocus
-                || mTransportBar.ContainsFocus) )
+                || mTransportBar.ContainsFocus))
             {
-                if (TransportBar.CanPause)
+                if ((TransportBar.CanPausePlayback || TransportBar.CanResumePlayback) && useSelection)
                 {
+                    // Resume from selection, not from audio cursor
+                    TransportBar.Stop();
+                    TransportBar.PlayOrResume();
+                    return true;
+                }
+                else if (TransportBar.CanPause)
+                {
+                    // Pause playback or recording
                     TransportBar.Pause();
                     return true;
                 }
                 else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)
                 {
+                    // Start playback or resume from audio cursor
                     TransportBar.PlayOrResume();
                     return true;
                 }

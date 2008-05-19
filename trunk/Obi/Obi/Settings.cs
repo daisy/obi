@@ -25,6 +25,7 @@ namespace Obi
         public string DefaultPath;        // default location
         public bool EnableTooltips;       // enable or disable tooltips
         public float FontSize;            // global font size (all font sizes must be relative to this one)
+        public double NudgeTimeMs;        // nudge time in milliseconds
         public string LastInputDevice;    // the name of the last input device selected by the user
         public string LastOpenProject;    // path to the last open project
         public string LastOutputDevice;   // the name of the last output device selected by the user
@@ -39,7 +40,7 @@ namespace Obi
         public UserProfile UserProfile;   // the user profile
         public bool WrapStrips;           // wrapping in content view
 
-        private static readonly string SETTINGS_FILE_NAME = "obi_settings_alpha8.xml";
+        private static readonly string SETTINGS_FILE_NAME = "obi_settings_beta2.xml";
 
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace Obi
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = true;
             settings.WrapStrips = false;
+            settings.NudgeTimeMs = 100.0;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {

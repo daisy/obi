@@ -126,9 +126,9 @@ namespace Obi
             this.mStopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFastPlaytoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NormalSpeedtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mElapseBacktoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SpeedUptoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSpeedDowntoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mElapseBacktoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewFromToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviewUpToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -732,8 +732,8 @@ namespace Obi
             // 
             // mClearRoleToolStripMenuItem
             // 
-            this.mClearRoleToolStripMenuItem.Name = "mClearRoleToolStripMenuItem";
             resources.ApplyResources(this.mClearRoleToolStripMenuItem, "mClearRoleToolStripMenuItem");
+            this.mClearRoleToolStripMenuItem.Name = "mClearRoleToolStripMenuItem";
             this.mClearRoleToolStripMenuItem.Click += new System.EventHandler(this.mClearRoleToolStripMenuItem_Click);
             // 
             // mPhraseDetectionToolStripMenuItem
@@ -866,6 +866,12 @@ namespace Obi
             this.NormalSpeedtoolStripMenuItem.Name = "NormalSpeedtoolStripMenuItem";
             this.NormalSpeedtoolStripMenuItem.Click += new System.EventHandler(this.NormalSpeedtoolStripMenuItem_Click);
             // 
+            // mElapseBacktoolStripMenuItem
+            // 
+            this.mElapseBacktoolStripMenuItem.Name = "mElapseBacktoolStripMenuItem";
+            resources.ApplyResources(this.mElapseBacktoolStripMenuItem, "mElapseBacktoolStripMenuItem");
+            this.mElapseBacktoolStripMenuItem.Click += new System.EventHandler(this.ElapseBacktoolStripMenuItem_Click);
+            // 
             // SpeedUptoolStripMenuItem
             // 
             resources.ApplyResources(this.SpeedUptoolStripMenuItem, "SpeedUptoolStripMenuItem");
@@ -877,12 +883,6 @@ namespace Obi
             resources.ApplyResources(this.mSpeedDowntoolStripMenuItem, "mSpeedDowntoolStripMenuItem");
             this.mSpeedDowntoolStripMenuItem.Name = "mSpeedDowntoolStripMenuItem";
             this.mSpeedDowntoolStripMenuItem.Click += new System.EventHandler(this.SpeedDowntoolStripMenuItem_Click);
-            // 
-            // mElapseBacktoolStripMenuItem
-            // 
-            this.mElapseBacktoolStripMenuItem.Name = "mElapseBacktoolStripMenuItem";
-            resources.ApplyResources(this.mElapseBacktoolStripMenuItem, "mElapseBacktoolStripMenuItem");
-            this.mElapseBacktoolStripMenuItem.Click += new System.EventHandler(this.ElapseBacktoolStripMenuItem_Click);
             // 
             // mPreviewToolStripMenuItem
             // 
