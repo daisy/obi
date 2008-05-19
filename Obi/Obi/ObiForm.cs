@@ -680,8 +680,8 @@ namespace Obi
         private void mStartRecordingDirectlyToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.StartRecordingDirectly(); }
 
 
-        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(true); }
-        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(false); }
+        private void PreviewFromtoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(ProjectView.TransportBar.From, ProjectView.TransportBar.UseAudioCursor); }
+        private void PreviewUptotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.Preview(ProjectView.TransportBar.Upto, ProjectView.TransportBar.UseSelection); }
         private void PreviewSelectedAudiotoolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PreviewAudioSelection(); }
         private void previousSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevSection(); }
         private void previousPageToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.TransportBar.PrevPage(); }

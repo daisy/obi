@@ -627,10 +627,16 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Shift | Keys.H] = delegate() { return mView.TransportBar.PrevSection(); };
             mShortcutKeys[Keys.J] = delegate() { return mView.TransportBar.PrevPhrase(); };
             mShortcutKeys[Keys.K] = delegate() { return mView.TransportBar.NextPhrase(); };
+            mShortcutKeys[Keys.N] = delegate() { return mView.TransportBar.Nudge(TransportBar.Forward); };
+            mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mView.TransportBar.Nudge(TransportBar.Backward); };
+            mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mView.TransportBar.MarkSelectionBeginTime(); };
+            mShortcutKeys[Keys.OemCloseBrackets] = delegate() { return mView.TransportBar.MarkSelectionEndTime(); };
             mShortcutKeys[Keys.P] = delegate() { return mView.TransportBar.NextPage(); };
             mShortcutKeys[Keys.Shift | Keys.P] = delegate() { return mView.TransportBar.PrevPage(); };
-            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(true); };
-            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(false); };
+            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(TransportBar.From, TransportBar.UseAudioCursor); };
+            mShortcutKeys[Keys.Shift | Keys.V] = delegate() { return mView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
+            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
+            mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
             
             // playback shortcuts.
             
@@ -638,8 +644,6 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
-            mShortcutKeys[Keys.OemOpenBrackets] = MarkSelectionBeginTime;
-            mShortcutKeys[Keys.OemCloseBrackets] = MarkSelectionEndTime;
             mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
             mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
 
@@ -1026,16 +1030,6 @@ namespace Obi.ProjectView
         private bool FastPlayNormaliseWithLapseBack()
         {
             return mView.TransportBar.FastPlayNormaliseWithLapseBack();
-        }
-
-        private bool MarkSelectionBeginTime()
-        {
-            return mView.TransportBar.MarkSelectionBeginTime();
-        }
-
-        private bool MarkSelectionEndTime()
-        {
-            return mView.TransportBar.MarkSelectionEndTime();
         }
 
         private bool MarkSelectionFromCursor()
