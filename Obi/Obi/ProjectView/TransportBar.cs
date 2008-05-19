@@ -1389,7 +1389,9 @@ namespace Obi.ProjectView
 
         private void SetPageNumberWhileRecording(Obi.Events.Audio.Recorder.PhraseEventArgs e)
         {
-            int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex));
+            // argument e contains index of last phrase of just finished page 
+            //so index should be incremented by one to get page of newly created page.
+            int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex + 1 ));
             urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView, (EmptyNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex + 1), PageNumber);
             cmd.execute();
         }
