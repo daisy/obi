@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditRoles));
             this.mCustomRolesList = new System.Windows.Forms.ListBox();
             this.mNewCustomRole = new System.Windows.Forms.TextBox();
             this.mInstructions = new System.Windows.Forms.Label();
@@ -112,7 +113,7 @@ namespace Obi.Dialogs
             // 
             this.mRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mRemove.Location = new System.Drawing.Point(305, 51);
+            this.mRemove.Location = new System.Drawing.Point(305, 52);
             this.mRemove.Name = "mRemove";
             this.mRemove.Size = new System.Drawing.Size(75, 23);
             this.mRemove.TabIndex = 3;
@@ -132,9 +133,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mInstructions);
             this.Controls.Add(this.mNewCustomRole);
             this.Controls.Add(this.mCustomRolesList);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "EditRoles";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Edit roles";
             this.Load += new System.EventHandler(this.CustomRoles_Load);

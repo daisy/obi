@@ -34,6 +34,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mTitleBox.Text = title;
+            mIDBox.Text = Guid.NewGuid().ToString();
             mBasepath = basepath;
             mExtension = extension;
             mFilename = filename;
@@ -59,21 +60,20 @@ namespace Obi.Dialogs
         public void DisableAutoTitleCheckbox() { mAutoTitleCheckBox.Enabled = false; }
 
         /// <summary>
+        /// Generated or user-chosen ID for the project.
+        /// </summary>
+        public string ID { get { return mIDBox.Text; } }
+
+        /// <summary>
         /// The chosen path for the XUK project file; derived from the title or chosen
         /// by the user.
         /// </summary>
-        public string Path
-        {
-            get { return mFileBox.Text; }
-        }
+        public string Path { get { return mFileBox.Text; }}
 
         /// <summary>
         /// The chosen title for the project.
         /// </summary>
-        public string Title
-        {
-            get { return mTitleBox.Text; }
-        }
+        public string Title { get { return mTitleBox.Text; } }
 
 
         // Update the file box to generate a filename for the project
@@ -175,12 +175,7 @@ namespace Obi.Dialogs
             return safe;
         }
 
-        private void mFileBox_TextChanged(object sender, EventArgs e)
-        {
-            if (mFileBox.Text.Trim() == "")
-                mOKButton.Enabled = false;
-            else
-                mOKButton.Enabled = true;
-        }
+        // Generate a new GUID
+        private void mGenerateIDButton_Click(object sender, EventArgs e) { mIDBox.Text = Guid.NewGuid().ToString(); }
     }
 }
