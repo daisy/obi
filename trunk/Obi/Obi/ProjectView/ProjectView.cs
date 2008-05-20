@@ -1208,6 +1208,7 @@ namespace Obi.ProjectView
         {
             return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
                 (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
+                (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView ()) ||
                 (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
                 (key == Keys.Space && TogglePlayPause(UseAudioCursor)) || 
                 base.ProcessCmdKey(ref msg, key);
@@ -1369,6 +1370,21 @@ namespace Obi.ProjectView
             mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             mPanelInfoLabelButton.Size = new Size(1, 1);
             mPanelInfoLabelButton.Text = "";
+        }
+
+        public bool  ToggleFocusBTWTOCViewAndContentsView ()
+        {
+            if (mTOCView.ContainsFocus) 
+                FocusOnContentView();
+            else if (mStripsView.ContainsFocus) 
+                FocusOnTOCView();
+            else if (mTOCView.Visible) // if neither of views has focus then check if toc is visible, if visible  and focus on it
+                FocusOnTOCView();
+            else // if neither of view has focus and TOC is not visible, focus on contents view.
+                FocusOnContentView();
+
+
+            return true;
         }
 
         public void SelectNextTODOPhrase()
