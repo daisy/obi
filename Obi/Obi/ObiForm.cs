@@ -326,8 +326,8 @@ namespace Obi
             mShowMetadataViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
-            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView;
-            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView;
+            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView  &&  !mProjectView.CanToggleFocusToContentsView ;
+            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView   &&   mProjectView.CanToggleFocusToContentsView ;
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowOnlySelectedSectionToolStripMenuItem.Enabled = mProjectView.CanShowOnlySelectedSection;
@@ -358,12 +358,13 @@ namespace Obi
 
         private void mFocusOnTOCViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.FocusOnTOCView();
+            if (mProjectView != null) mProjectView.ToggleFocusBTWTOCViewAndContentsView();
         }
 
         private void mFocusOnStripsViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.FocusOnContentView();
+            if (mProjectView != null)
+                mProjectView.ToggleFocusBTWTOCViewAndContentsView();
         }
 
         private void mFocusOnTransportBarToolStripMenuItem_Click(object sender, EventArgs e)
