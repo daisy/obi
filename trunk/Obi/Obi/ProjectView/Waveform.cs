@@ -100,8 +100,8 @@ namespace Obi.ProjectView
             set
             {
                 int x = value < 0 ? 0 : value > Width ? Width : value;
-                double start = mSelection.CursorTime;
                 double end = TimeFromX(x);
+                double start = mSelection == null ? end : mSelection.CursorTime;
                 if (start == end)
                 {
                     mSelection.HasCursor = true;

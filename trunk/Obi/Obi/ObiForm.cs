@@ -76,7 +76,7 @@ namespace Obi
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection);
+                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Obi
             dialog.DisableAutoTitleCheckbox();
             dialog.Text = Localizer.Message("create_new_project_from_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
-            CreateNewProject(dialog.Path, dialog.Title, false);
+            CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
             try
             {
                 (new ImportStructure()).ImportFromXHTML(openFile.FileName, mSession.Presentation);
@@ -781,7 +781,7 @@ namespace Obi
             help.WebBrowser.Url = new Uri(Path.Combine(
                 Path.GetDirectoryName(GetType().Assembly.Location),
                 Localizer.Message("help_file_name")));
-            help.ShowDialog();
+            help.Show();
         }
 
         // Show the HTML help page in an external browser.
@@ -884,7 +884,7 @@ namespace Obi
         private void CloseAndOpenProject(string path) { if (DidCloseProject()) OpenProject(path); }
 
         // Try to create a new project with the given title at the given path.
-        private void CreateNewProject(string path, string title, bool createTitleSection)
+        private void CreateNewProject(string path, string title, bool createTitleSection, string id)
         {
             try
             {
@@ -894,7 +894,7 @@ namespace Obi
                 mSettings.CreateTitleSection = createTitleSection;
                 if (DidCloseProject())
                 {
-                    mSession.NewPresentation(path, title, createTitleSection, "(please set id)", mSettings);
+                    mSession.NewPresentation(path, title, createTitleSection, id, mSettings);
                 }
                 UpdateMenus();
             }
