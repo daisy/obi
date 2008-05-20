@@ -34,6 +34,8 @@ namespace Obi.Dialogs
                 Application.ProductName, Application.ProductVersion);
             mWebBrowser.Document.GetElementById("real-version").InnerText =
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            mWebBrowser.Document.GetElementById("website").InnerText = Localizer.Message("obi_url");
+            mWebBrowser.Document.GetElementById("website").SetAttribute("href", Localizer.Message("obi_url"));
         }
     }
 }

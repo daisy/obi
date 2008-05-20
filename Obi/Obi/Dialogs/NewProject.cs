@@ -30,16 +30,19 @@ namespace Obi.Dialogs
         /// <param name="filename">The actual file name for the project.</param>
         /// <param name="extension">The file extension (for a file dialog.)</param>
         /// <param name="title">The project title.</param>
-        public NewProject(string basepath, string filename, string extension, string title)
+        public NewProject(string basepath, string filename, string extension, string title, Size size)
         {
             InitializeComponent();
             mTitleBox.Text = title;
+            mTitleBox.SelectionStart = 0;
+            mTitleBox.SelectionLength = title.Length;
             mIDBox.Text = Guid.NewGuid().ToString();
             mBasepath = basepath;
             mExtension = extension;
             mFilename = filename;
             mCanClose = true;
             mUserSetLocation = false;
+            if (size.Width >= MinimumSize.Width && size.Height >= MinimumSize.Height) Size = size;
             GenerateFileName();
         }
 

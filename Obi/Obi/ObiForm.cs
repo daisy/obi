@@ -72,12 +72,15 @@ namespace Obi
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
                 Localizer.Message("obi_filter"),
-                Localizer.Message("default_project_title"));
+                Localizer.Message("default_project_title"),
+                mSettings.NewProjectDialogSize);
             dialog.CreateTitleSection = mSettings.CreateTitleSection;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID);
             }
+            mSettings.CreateTitleSection = dialog.CreateTitleSection;
+            mSettings.NewProjectDialogSize = dialog.Size;
         }
 
         // Create a new project by importing an XHTML file
@@ -93,7 +96,8 @@ namespace Obi
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
                 Localizer.Message("obi_filter"),
-                ImportStructure.GrabTitle(new Uri(openFile.FileName)));
+                ImportStructure.GrabTitle(new Uri(openFile.FileName)),
+                mSettings.NewProjectDialogSize);
             dialog.DisableAutoTitleCheckbox();
             dialog.Text = Localizer.Message("create_new_project_from_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
@@ -109,6 +113,7 @@ namespace Obi
                 File.Delete(dialog.Path);
                 return;
             }
+            mSettings.NewProjectDialogSize = dialog.Size;
         }
 
         // Open a new project from a file chosen by the user.
@@ -808,27 +813,23 @@ namespace Obi
         #endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /// <summary>
+        /// Add a project to the list of recent projects.
+        /// If the project was already in the list, promote it to the top of the list.
+        /// </summary>
+        private void AddRecentProject(string path)
+        {
+            if (mSettings.RecentProjects.Contains(path))
+            {
+                // the item was in the list so bump it up
+                int i = mSettings.RecentProjects.IndexOf(path);
+                mSettings.RecentProjects.RemoveAt(i);
+                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+            }
+            AddRecentProjectsItem(path);
+            mSettings.RecentProjects.Insert(0, path);
+            mSettings.LastOpenProject = path;
+        }
 
         /// <summary>
         /// Application settings.
@@ -848,23 +849,6 @@ namespace Obi
         // Utility functions
 
 
-        /// <summary>
-        /// Add a project to the list of recent projects.
-        /// If the project was already in the list, promote it to the top of the list.
-        /// </summary>
-        private void AddRecentProject(string path)
-        {
-            if (mSettings.RecentProjects.Contains(path))
-            {
-                // the item was in the list so bump it up
-                int i = mSettings.RecentProjects.IndexOf(path);
-                mSettings.RecentProjects.RemoveAt(i);
-                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
-            }
-            AddRecentProjectsItem(path);
-            mSettings.RecentProjects.Insert(0, path);
-            mSettings.LastOpenProject = path;
-        }
 
         /// <summary>
         /// Add an item in the recent projects list.
@@ -892,7 +876,6 @@ namespace Obi
                 // let's see if we can actually write the file that the user chose (bug #1679175)
                 FileStream file = File.Create(path);
                 file.Close();
-                mSettings.CreateTitleSection = createTitleSection;
                 if (DidCloseProject())
                 {
                     mSession.NewPresentation(path, title, createTitleSection, id, mSettings);
