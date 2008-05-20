@@ -1307,6 +1307,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://daisy-trac.cvsdude.com/obi.
+        /// </summary>
+        internal static string obi_url {
+            get {
+                return ResourceManager.GetString("obi_url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi/XUK version identifier..
         /// </summary>
         internal static string obi_xuk_version_description {
@@ -1913,7 +1922,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XHTML | *.html.
+        ///   Looks up a localized string similar to XHTML file (*.htm;*.html;*.xhtml)|*.htm;*.html;*.xhtml|Any file|*.*.
         /// </summary>
         internal static string xhtml_filter {
             get {
