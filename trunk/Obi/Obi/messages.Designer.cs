@@ -1460,7 +1460,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to phrase (length: {0}).
+        ///   Looks up a localized string similar to phrase (length: {1}).
         /// </summary>
         internal static string phrase_node_to_string {
             get {
@@ -1523,7 +1523,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO.
+        ///   Looks up a localized string similar to To do.
         /// </summary>
         internal static string phrase_short_TODO {
             get {
@@ -1532,7 +1532,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}phrase {1} of {2} ({3}){4}.
+        ///   Looks up a localized string similar to {0} {1} phrase {2} of {3} ({4}){5}.
         /// </summary>
         internal static string phrase_to_string {
             get {

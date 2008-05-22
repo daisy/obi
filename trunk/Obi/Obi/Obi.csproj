@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=1.0.0.21762, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SDK\core\obj\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\implementation\UrakawaToolkit\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +114,7 @@
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\SplitAudioSelection.cs" />
+    <Compile Include="Commands\Node\ToggleNodeTo_Do.cs" />
     <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />
     <Compile Include="Commands\TOC\MoveSectionIn.cs" />

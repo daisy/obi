@@ -867,7 +867,7 @@ Error text: {1}</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_node_to_string" xml:space="preserve">
-    <value>phrase (length: {0})</value>
+    <value>phrase (length: {1})</value>
     <comment>ToString()</comment>
   </data>
   <data name="phrase_short_custom" xml:space="preserve">
@@ -895,11 +895,11 @@ Error text: {1}</value>
     <comment>ToStirng() short version for labels</comment>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
-    <value>TODO</value>
+    <value>To do</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
-    <value>{0}phrase {1} of {2} ({3}){4}</value>
+    <value>{0} {1} phrase {2} of {3} ({4}){5}</value>
     <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
