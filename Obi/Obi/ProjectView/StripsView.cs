@@ -945,7 +945,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mView.SelectedNodeAs<ObiNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                    if (n is EmptyNode && ((EmptyNode)n).IsTo_Do)
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return;
@@ -954,7 +954,7 @@ namespace Obi.ProjectView
             }
             for (ObiNode n = mView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                if (n is EmptyNode && ((EmptyNode)n).IsTo_Do)
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return;
@@ -971,7 +971,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                    if (n is EmptyNode && ((EmptyNode)n).IsTo_Do )
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return;
@@ -980,7 +980,7 @@ namespace Obi.ProjectView
             }
             for (ObiNode n = mView.Presentation.RootNode.LastLeaf; n != null; n = n.PrecedingNode)
             {
-                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.TODO)
+                if (n is EmptyNode && ((EmptyNode)n).IsTo_Do)
                 {
                     mView.Selection = new NodeSelection(n, this);
                     return;

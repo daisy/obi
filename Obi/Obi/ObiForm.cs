@@ -1557,12 +1557,15 @@ namespace Obi
             }
             else
             {
+                mProjectView.ToggleEmptyNodeTo_DoMark();
+                /*
                 EmptyNode node = mProjectView.SelectedNodeAs<EmptyNode>();
                 if (node != null)
                 {
                     mProjectView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mProjectView, node,
                        EmptyNode.Kind.TODO));
                 }
+                 */ 
             }
         }
 
