@@ -903,7 +903,7 @@ Error text: {1}</value>
     <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
-    <value>, level {0}</value>
+    <value>, depth {0}</value>
   </data>
   <data name="section_one_phrase_to_string" xml:space="preserve">
     <value>, 1 phrase</value>
