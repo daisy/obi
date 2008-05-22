@@ -34,6 +34,7 @@ namespace Obi.Commands.Node
         {
             View.Presentation.RenameSectionNode(mNode, mOldLabel);
             base.unExecute();
+            View.Selection = new NodeSelection(mNode, SelectionBefore.Control);
         }
     }
 }
