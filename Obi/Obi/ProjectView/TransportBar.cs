@@ -27,7 +27,7 @@ namespace Obi.ProjectView
         private bool mPlayIfNoSelection;             // play all when no selection if true; play nothing otherwise
 
         private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
-        private PhraseNode mResumerecordingPhrase;   // last phrase recorded (?)
+        private PhraseNode mResumeRecordingPhrase;   // last phrase recorded (?)
 
         private SectionNode mRecordingSection;       // Section in which we are recording
         private PhraseNode mRecordingPhrase;         // Phrase which we are recording in (after start, before end)
@@ -188,7 +188,8 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Split time is either 
+        /// Split time is either the current playback position,
+        /// or when stopped, the selection position.
         /// </summary>
         public double SplitTime
         {
@@ -712,7 +713,7 @@ namespace Obi.ProjectView
                 mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
                     mRecordingSession.RecordedAudio[i]);
             }
-            mResumerecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
+            mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             mRecordingSession = null;
             UpdateTimeDisplay();
         }
@@ -766,19 +767,138 @@ namespace Obi.ProjectView
             }
             else if (CanResumeRecording)
             {
-                PrepareForRecording(true, mResumerecordingPhrase);
+                SetupRecording(Recording);
+                // PrepareForRecording(true, mResumeRecordingPhrase);
             }
             else
             {
-                PrepareForRecording(false, null);
+                SetupRecording(Monitoring);
+                // PrepareForRecording(false, null);
             }
         }
 
-        // Prepare for recording and return the corresponding recording command.
-        private void PrepareForRecording(bool startRecording, ObiNode selected)
+
+        // Parameters for StartRecordingOrMonitoring
+        private static readonly bool Recording = true;
+        private static readonly bool Monitoring = false;
+
+        // Setup recording and start recording or monitoring
+        private void SetupRecording(bool recording)
         {
             urakawa.undo.CompositeCommand command = CreateRecordingCommand();
-            selected = GetRecordingSection(selected, command);
+            ObiNode node = GetRecordingNode(command);
+            InitRecordingSectionAndPhraseIndex(node, mView.ObiForm.Settings.AllowOverwrite, command);
+            // Set events
+            mRecordingSession = new RecordingSession(mView.Presentation, mRecorder);
+            mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(
+                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
+                {
+                    RecordingPhraseStarted(e, command, (EmptyNode)(node.GetType() == typeof(EmptyNode) ? node : null));
+                });            
+            mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(
+                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e) { RecordingPhraseEnded(e); });
+            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
+                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e) { RecordingPage(e); });
+            // Actually start monitoring or recording
+            if (recording)
+            {
+                StartRecording();
+            }
+            else
+            {
+                mRecordingSession.StartMonitoring();
+            }
+        }
+
+        // Create a new recording command.
+        private urakawa.undo.CompositeCommand CreateRecordingCommand()
+        {
+            urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+            command.setShortDescription(Localizer.Message("recording_command"));
+            return command;
+        }
+
+        // Initialize recording section/phrase index depending on the
+        // context node for recording and the settings.
+        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.undo.CompositeCommand command)
+        {
+            if (node is SectionNode)
+            {
+                // Record at the end of the section, or after the cursor
+                // in case of a cursor selection in the section.
+                mRecordingSection = (SectionNode)node;
+                mRecordingInitPhraseIndex = mView.Selection is StripCursorSelection ?
+                    ((StripCursorSelection)mView.Selection).Index : mRecordingSection.PhraseChildCount;
+            }
+            else if (node is PhraseNode)
+            {
+                // Record in or after the phrase node, depending on overwrite settings.
+                mRecordingSection = node.AncestorAs<SectionNode>();
+                mRecordingInitPhraseIndex = 1 + node.Index;
+                if (overwrite && (mState == State.Paused ||
+                    (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+                {
+                    // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
+                    command.append(new Commands.Node.SplitAudio(mView, SplitTime));
+                }
+            }
+            else if (node is EmptyNode)
+            {
+                // Record inside the empty node
+                mRecordingSection = node.AncestorAs<SectionNode>();
+                mRecordingInitPhraseIndex = node.Index;
+            }
+        }
+
+        // Start recording a phrase, possibly replacing an empty node (only for the first one.)
+        private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
+            urakawa.undo.CompositeCommand command, EmptyNode emptyNode)
+        {
+            // Suspend presentation change handler so that we don't stop when new nodes are added.
+            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
+            mRecordingPhrase = phrase;
+            Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
+                mRecordingInitPhraseIndex + e.PhraseIndex);
+            //add.UpdateSelection = false;
+            if (e.PhraseIndex == 0)
+            {
+                command.append(add);
+                if (emptyNode != null && e.PhraseIndex == 0)
+                {
+                    phrase.CopyKind(emptyNode);
+                    phrase.Used = emptyNode.Used;
+                    command.append(new Commands.Node.Delete(mView, emptyNode));
+                }
+                mView.Presentation.getUndoRedoManager().execute(command);
+            }
+            else
+            {
+                mView.Presentation.getUndoRedoManager().execute(add);
+            }
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+        }
+
+        // Stop recording a phrase
+        private void RecordingPhraseEnded(Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        {
+            PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
+            phrase.SignalAudioChanged(this, e.Audio);
+            mRecordingPhrase = null;
+        }
+
+        // Start recording a new page, set the right page number
+        private void RecordingPage(Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        {
+            PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
+            phrase.PageNumber = mView.Presentation.PageNumberFor(phrase);
+        }
+
+        // Prepare for recording and return the corresponding recording command.
+        private void __PrepareForRecording(bool startRecording, ObiNode selected)
+        {
+            urakawa.undo.CompositeCommand command = CreateRecordingCommand();
+            selected = __GetRecordingSection(selected, command);
             EmptyNode emptyNode = null;  // empty node to record in
             // TODO: record at the position in the block, or replace the waveform selection
             if (selected is SectionNode)
@@ -884,7 +1004,7 @@ namespace Obi.ProjectView
             mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
                 delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
                 {
-                    SetPageNumberWhileRecording(e);
+                    RecordingPage(e);
                 });
             if (startRecording)
             {
@@ -896,19 +1016,11 @@ namespace Obi.ProjectView
             }
         }
 
-        // Create a new recording command.
-        private urakawa.undo.CompositeCommand CreateRecordingCommand()
-        {
-            urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
-            command.setShortDescription(Localizer.Message("recording_command"));
-            return command;
-        }
-
         // Get the recording section from the initial selection argument.
         // If the argument is null, get the selection, otherwise add a new
         // top-level section to record in (so the recording command includes
         // creating the new section.)
-        private ObiNode GetRecordingSection(ObiNode selected, urakawa.undo.CompositeCommand command)
+        private ObiNode __GetRecordingSection(ObiNode selected, urakawa.undo.CompositeCommand command)
         {
             mView.SelectInContentView();
             if (selected == null) selected = mView.SelectedNodeAs<ObiNode>();
@@ -923,6 +1035,28 @@ namespace Obi.ProjectView
                 selected = section;
             }
             return selected;
+        }
+
+        // Get a node to record in. If we are resuming, this is the node to resume from;
+        // otherwise the selected node (section or phrase) for node selection, audio selection
+        // or strip cursor selection. If there is no node, add to the recording command a
+        // command to create a new section to record in.
+        public ObiNode GetRecordingNode(urakawa.undo.CompositeCommand command)
+        {
+            ObiNode node = mResumeRecordingPhrase == null ?
+                mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripCursorSelection ?
+                    mView.Selection.Node : null :
+                mResumeRecordingPhrase;
+            if (node == null)
+            {
+                SectionNode section = mView.Presentation.CreateSectionNode();
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
+                    mView.Presentation.RootNode.SectionChildCount);
+                add.UpdateSelection = false;
+                command.append(add);
+                node = section;
+            }
+            return node;
         }
 
         // Start recording
@@ -1118,10 +1252,10 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
-                    // mark section
                     PauseRecording();
                     mView.AddSection();
-                    PrepareForRecording(true, null);
+                    SetupRecording(Recording);
+                    // PrepareForRecording(true, null);
                 }
                 else if (mState == State.Monitoring)
                 {
@@ -1383,17 +1517,9 @@ namespace Obi.ProjectView
         {
             if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing)
             {
-                PrepareForRecording(true, null);
+                SetupRecording(Recording);
+                //PrepareForRecording(true, null);
             }
-        }
-
-        private void SetPageNumberWhileRecording(Obi.Events.Audio.Recorder.PhraseEventArgs e)
-        {
-            // argument e contains index of last phrase of just finished page 
-            //so index should be incremented by one to get page of newly created page.
-            int PageNumber = mView.Presentation.PageNumberFor(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex + 1 ));
-            urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(mView, (EmptyNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + e.PhraseIndex + 1), PageNumber);
-            cmd.execute();
         }
 
 
@@ -1406,9 +1532,6 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ||
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
-                //ResetTimeDisplayForFinishedRecording();
-                                                                
-
                 mRecordingSession.Stop();
                 // update phrases with audio assets
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
@@ -1416,19 +1539,24 @@ namespace Obi.ProjectView
                     mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
                         mRecordingSession.RecordedAudio[i]);
                 }
-                mRecordButton.Enabled = true;
-                mRecordButton.AccessibleName = Localizer.Message("record");
+                UpdateButtons();
+                /*if (mRecordingSession.RecordedAudio.Count > 0)
+                {
+                    mView.SelectPhraseInContentView((PhraseNode)
+                        mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1));
+                }*/
                 mRecordingSession = null;
-                mResumerecordingPhrase = null;
-
+                mResumeRecordingPhrase = null;
                 // enable playback controls
+                /* mRecordButton.Enabled = true;
+                mRecordButton.AccessibleName = Localizer.Message("record");
                 mPlayButton.Enabled = true;
                 mPrevPhraseButton.Enabled = true;
                 mPrevSectionButton.Enabled = true;
                 mPreviousPageButton.Enabled = true;
                 mFastForwardButton.Enabled = true;
                 mRewindButton.Enabled = true;
-                mFastPlayRateCombobox.Enabled = true;
+                mFastPlayRateCombobox.Enabled = true; */
             }
         }
 

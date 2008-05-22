@@ -1437,6 +1437,12 @@ namespace Obi.ProjectView
             PhraseNode playing = mTransportBar.PlaybackPhrase;
             return playing == null ? SelectedNodeAs<PhraseNode>() : playing;
         }
+
+        private void ProjectView_Layout(object sender, LayoutEventArgs e)
+        {
+            System.Diagnostics.Debug.Print("LAYOUT form ProjectView: control={0}, component={1}, property={2}",
+                e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
+        }
     }
 
     public class ImportingFileEventArgs

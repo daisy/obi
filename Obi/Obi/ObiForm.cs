@@ -101,10 +101,12 @@ namespace Obi
             dialog.DisableAutoTitleCheckbox();
             dialog.Text = Localizer.Message("create_new_project_from_import");
             if (dialog.ShowDialog() != DialogResult.OK) return;
+            mSettings.NewProjectDialogSize = dialog.Size;
             CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
             try
             {
                 (new ImportStructure()).ImportFromXHTML(openFile.FileName, mSession.Presentation);
+                mSession.ForceSave();
             }
             catch (Exception e)
             {
@@ -113,7 +115,6 @@ namespace Obi
                 File.Delete(dialog.Path);
                 return;
             }
-            mSettings.NewProjectDialogSize = dialog.Size;
         }
 
         // Open a new project from a file chosen by the user.

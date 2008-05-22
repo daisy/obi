@@ -396,9 +396,6 @@ namespace Obi.ProjectView
             else
                 return base.ProcessDialogKey(KeyData);
         }
-        
-        
-
     }
 
     /// <summary>
