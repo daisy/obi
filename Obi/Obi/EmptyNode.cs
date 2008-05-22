@@ -13,11 +13,13 @@ namespace Obi
         private Kind mKind;           // this node's kind
         private string mCustomClass;  // custom class name
         private int mPageNumber;      // page number
+        private bool m_ToDo;
 
         public static readonly string XUK_ELEMENT_NAME = "empty";        // name of the element in the XUK file
         private static readonly string XUK_ATTR_NAME_KIND = "kind";      // name of the kind attribute
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";  // name of the custom attribute
         private static readonly string XUK_ATTR_NAME_PAGE = "page";      // name of the page attribute
+        private static readonly string To_Do_ATTR_NAME = "To_Do";  // name of the To Do attribute
 
         /// <summary>
         /// Different kinds of content nodes.
@@ -36,8 +38,9 @@ namespace Obi
         public virtual string BaseString(double duration)
         {
             return String.Format(Localizer.Message("phrase_to_string"),
+                IsTo_Do ? Localizer.Message ("phrase_short_TODO") : "",
                 Used ? "" : Localizer.Message("unused"),
-                IsRooted ? Index + 1 : 0,
+                                IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
                 duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("time_in_seconds"), duration),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
@@ -70,6 +73,7 @@ namespace Obi
         /// This event is sent when the page number changes on a node (for a node which previously had a page number.)
         /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedPageNumber;
+        public event NodeEventHandler<EmptyNode> ChangedTo_DoStatus;
 
 
         /// <summary>
@@ -127,6 +131,12 @@ namespace Obi
             set { SetKind(Kind.Custom, value); }
         }
 
+        public bool IsTo_Do
+        {
+            get { return m_ToDo; }
+            set { m_ToDo = value;  }
+        }
+
         /// <summary>
         /// Has no audio so is never a used phrase.
         /// </summary>
@@ -179,6 +189,13 @@ namespace Obi
             }
         }
 
+        public void AssignTo_DoMark( bool Val )
+        {
+            IsTo_Do = Val;
+            if ( ChangedTo_DoStatus != null )
+                ChangedTo_DoStatus(this, new NodeEventArgs<EmptyNode>(this));
+        }
+
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
         public override SectionNode SectionChild(int index) { throw new Exception("Empty nodes have no children."); }
         public override int SectionChildCount { get { return 0; } }
@@ -188,7 +205,7 @@ namespace Obi
 
 
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
-
+        
         protected override void xukInAttributes(System.Xml.XmlReader source)
         {
             string kind = source.GetAttribute(XUK_ATTR_NAME_KIND);
@@ -214,7 +231,14 @@ namespace Obi
             }
             // add it to the presentation
             Presentation.AddCustomClass(mCustomClass, this);
-            base.xukInAttributes(source);
+
+            string ToDo = source.GetAttribute(To_Do_ATTR_NAME);
+            if (ToDo != null)
+            {
+                if (ToDo == "True") m_ToDo = true;
+                else m_ToDo = false;
+            }
+                        base.xukInAttributes(source);
         }
 
         protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
@@ -222,6 +246,7 @@ namespace Obi
             if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
             if (mKind == Kind.Page) wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ToString());
+                        if (m_ToDo) wr.WriteAttributeString(To_Do_ATTR_NAME, "True");
             base.xukOutAttributes(wr, baseUri);
         }
 

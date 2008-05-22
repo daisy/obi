@@ -30,6 +30,7 @@ namespace Obi.ProjectView
             mEntering = false;
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
+            node.ChangedTo_DoStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTo_DoStatus);
             UpdateColors();
             UpdateLabel();
         }
@@ -142,6 +143,8 @@ namespace Obi.ProjectView
         // Update the label when the role of the node changes
         private void Node_ChangedKind(object sender, ChangedKindEventArgs e) { UpdateLabel(); }
 
+        // update label when to do status changes
+        private void Node_ChangedTo_DoStatus(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
         // Toggle selection when clicking.
         private void ToggleSelection()
         {

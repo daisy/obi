@@ -1059,6 +1059,16 @@ namespace Obi.ProjectView
             }
         }
 
+        public void ToggleEmptyNodeTo_DoMark()
+        {
+            if (Selection.Node is EmptyNode)
+            {
+                                EmptyNode node = (EmptyNode)Selection.Node;
+                Commands.Node.ToggleNodeTo_Do command = new Commands.Node.ToggleNodeTo_Do(this, node);
+                Presentation.getUndoRedoManager().execute(command);
+            }
+        }
+
         public void UpdateCursorPosition(double time) { mStripsView.UpdateCursorPosition(time); }
         public void SelectAtCurrentTime() { mStripsView.SelectAtCurrentTime(); }
 
@@ -1206,7 +1216,7 @@ namespace Obi.ProjectView
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-            return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
+                        return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
                 (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
                 (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView() ) ||
                                 (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
