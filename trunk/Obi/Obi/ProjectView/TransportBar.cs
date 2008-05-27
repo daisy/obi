@@ -1625,9 +1625,11 @@ namespace Obi.ProjectView
             EmptyNode node;
             if (IsRecording)
             {
-                node = mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
-                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                EmptyNode.Kind.TODO));
+                node =(EmptyNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+
+                 mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTo_Do(mView , node) );
+                                //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
+                //EmptyNode.Kind.TODO));
                 NextPhrase();
             }
             else
@@ -1636,8 +1638,10 @@ namespace Obi.ProjectView
 
                 if (node != null)
                 {
-                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                        EmptyNode.Kind.TODO));
+                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
+
+                    //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
+                        //EmptyNode.Kind.TODO));
                 }
             }
         }
