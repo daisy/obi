@@ -383,7 +383,10 @@ namespace Obi.ProjectView
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
                 UpdateButtons();
-                mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { UpdateButtons(); });
+                mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
+                    UpdateButtons();
+                    PlaybackOnSelectionChange();
+                });
             }
         }
 
@@ -1678,6 +1681,59 @@ namespace Obi.ProjectView
                 }
             }
         }
+
+
+        private void PlaybackOnSelectionChange ()
+        {
+            if ( mView.Selection != null  )
+            {
+                if (mState != State.Stopped)
+                {
+                    ObiNode node = mView.Selection.Node;
+                    PhraseNode PNode = null;
+
+                    if (node is PhraseNode)
+                        PNode = (PhraseNode)node;
+                    else if (node is SectionNode)
+                    {
+                        if (((SectionNode)node).PhraseChildCount > 0
+                            && ((SectionNode)node).PhraseChild(0) is PhraseNode)
+                            PNode = (PhraseNode)((SectionNode)node).PhraseChild(0);
+                    }
+
+                    if (PNode != null && mCurrentPlaylist.ContainsPhrase(PNode))
+                    {
+                        if (PNode != mCurrentPlaylist.CurrentPhrase)
+                        {
+                            if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
+                            mCurrentPlaylist.CurrentPhrase = PNode;
+                        }
+                    }
+                    if (mCurrentPlaylist != mMasterPlaylist
+                        && !mCurrentPlaylist.ContainsPhrase(PNode))
+                    {
+                        if (mState == State.Playing)
+                        {
+                            mView.PlaybackPhrase = null;
+                            mCurrentPlaylist.Stop();
+                            PlayOrResume();
+                        }
+                        else
+                        {
+                            mView.PlaybackPhrase = null;
+                            mCurrentPlaylist.Stop();
+                        }
+                    }
+                }
+                 if (mView.ObiForm.Settings.PlayOnNavigate
+                     && 
+                     (mState == State.Paused || mState == State.Stopped ) 
+                     &&  mView.Selection.Node is PhraseNode )
+                PlayOrResume () ;
+                                        }// end of selection null check
+
+        }
+
 
         #endregion
 
