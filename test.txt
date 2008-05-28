@@ -1,4 +1,4 @@
-testing commit...
+Testing commit...
 Hello world !
-Hello 2
 test again..
+Daniel was here.
