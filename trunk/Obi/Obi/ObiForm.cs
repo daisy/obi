@@ -614,9 +614,9 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
-            mPlayToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanPlaySelection;
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay;
-            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection;
+            mPlayToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanPlaySelection ||  mProjectView.CanResume ;
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay ||  mProjectView.CanResume;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume ;
             if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;
