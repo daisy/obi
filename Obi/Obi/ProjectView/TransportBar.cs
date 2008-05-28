@@ -576,12 +576,24 @@ namespace Obi.ProjectView
         /// </summary>
         public void PlayAll()
         {
-            if (CanPlay)
+                        if (CanPlay)
             {
                 mCurrentPlaylist = mMasterPlaylist;
                 PlayCurrentPlaylistFromSelection();
             }
-        }
+            else if (CanResumePlayback)
+            {
+                if (mCurrentPlaylist != mMasterPlaylist) // if this is local playlist, start playing master playlist from the point where local playlist has paused
+                {
+                    UpdateSelectionForPlayModeTransition();
+                    Thread.Sleep(200);
+                    mCurrentPlaylist = mMasterPlaylist;
+                    PlayCurrentPlaylistFromSelection();
+                }
+                else
+                    mCurrentPlaylist.Resume();
+            }
+                    }
 
         /// <summary>
         /// All-purpose play function for the play button.
@@ -591,14 +603,35 @@ namespace Obi.ProjectView
         /// </summary>
         public void PlayOrResume()
         {
-            if (CanPlay)
+            if (CanPlay  )
             {
-                PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
+                                PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
             }
             else if (CanResumePlayback)
             {
+                                if (mCurrentPlaylist == mMasterPlaylist) // if this is master playlist, start playing local playlist from the point where master playlist is paused
+                {
+                    UpdateSelectionForPlayModeTransition();
+                    Thread.Sleep(200);
+                    PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
+                }
+                else
                 mCurrentPlaylist.Resume();
             }
+        }
+
+
+        /// <summary>
+        ///  Select currently playing phrase with current time and stops current playlist for transition to other playlist
+                /// </summary>
+        private void UpdateSelectionForPlayModeTransition()
+        {
+            PhraseNode PlaybackStartNode = mCurrentPlaylist.CurrentPhrase;
+            double StartTime = mCurrentPlaylist.CurrentTimeInAsset;
+            mCurrentPlaylist.Stop();
+            mView.SelectedBlockNode = PlaybackStartNode;
+            mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                new AudioRange(StartTime));
         }
 
         /// <summary>
