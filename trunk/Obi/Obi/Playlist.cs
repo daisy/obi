@@ -91,6 +91,23 @@ namespace Obi
 
 
         /// <summary>
+        /// If phrase node is passed as parameter, adds this phrase in playlist
+        ///  else if section node is passed, add phrases of this section excluding child section to playlist
+        ///  This is done independent of current selection
+                /// </summary>
+        /// <param name="player"></param>
+        /// <param name="node"></param>
+        public Playlist(AudioPlayer player,ObiNode node )
+        {
+            mPlayer = player;
+            Reset(LocalPlaylist);
+                            AddPhraseNodes(node);
+                                }
+
+
+
+
+        /// <summary>
         /// Get the audio player for the playlist. Useful for setting up event listeners.
         /// </summary>
         public AudioPlayer Audioplayer { get { return mPlayer; } }

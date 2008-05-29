@@ -1718,6 +1718,8 @@ namespace Obi.ProjectView
                             mCurrentPlaylist.Stop();
                             //if (mView.Selection.Node is PhraseNode)
                                 //PlayOrResume();
+                            if (mView.Selection.Node is SectionNode && mView.ObiForm.Settings.PlayOnNavigate)
+                                PlayHeadingPhrase(mView.SelectedNodeAs<SectionNode>());
                         }
                         else
                         {
@@ -1726,11 +1728,15 @@ namespace Obi.ProjectView
                         }
                     }
                 }
-                 if (mView.ObiForm.Settings.PlayOnNavigate
-                     && 
-                     (mState == State.Paused || mState == State.Stopped ) 
-                     &&  mView.Selection.Node is PhraseNode )
-                PlayOrResume () ;
+                if (mView.ObiForm.Settings.PlayOnNavigate
+                    &&
+                    (mState == State.Paused || mState == State.Stopped))
+                {
+                    if (mView.Selection.Node is SectionNode)
+                        PlayHeadingPhrase(mView.SelectedNodeAs<SectionNode>());
+                    else if (mView.Selection.Node is PhraseNode)
+                        PlayOrResume();
+                }
                                         }// end of selection null check
 
         }
@@ -1746,14 +1752,18 @@ namespace Obi.ProjectView
                     if (((EmptyNode)node.PhraseChild(i)).NodeKind == EmptyNode.Kind.Heading)
                     {
                         ENode = node.PhraseChild(i);
-                        System.Media.SystemSounds.Asterisk.Play();
-                        break;
+                                                break;
                     }
                                     }
 
                                     if (ENode is PhraseNode)
                                     {
-                                                                                PlayOrResume(node.PhraseChild(0));
+                                        mLocalPlaylist = new Playlist(mPlayer, ENode);
+                                        SetPlaylistEvents(mLocalPlaylist);
+                                        mCurrentPlaylist = mLocalPlaylist;
+                                        mCurrentPlaylist.CurrentPhrase = (PhraseNode) ENode ;
+                                        mCurrentPlaylist.Play();
+                                                                                //PlayOrResume(node.PhraseChild(0));
                                     }
             }
         }
