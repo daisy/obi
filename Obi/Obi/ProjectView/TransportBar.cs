@@ -1687,7 +1687,7 @@ namespace Obi.ProjectView
         {
             if ( mView.Selection != null  )
             {
-                if (mState != State.Stopped)
+                if (mState == State.Playing || mState == State.Paused)
                 {
                     ObiNode node = mView.Selection.Node;
                     PhraseNode PNode = null;
@@ -1716,7 +1716,8 @@ namespace Obi.ProjectView
                         {
                             mView.PlaybackPhrase = null;
                             mCurrentPlaylist.Stop();
-                            PlayOrResume();
+                            //if (mView.Selection.Node is PhraseNode)
+                                //PlayOrResume();
                         }
                         else
                         {
@@ -1734,6 +1735,28 @@ namespace Obi.ProjectView
 
         }
 
+        private void PlayHeadingPhrase( SectionNode node     )
+        {
+            if ( node != null  && node.PhraseChildCount > 0  )
+            {
+                EmptyNode ENode = node.PhraseChild(0);
+                    
+                for (int i = 0; i < node.PhraseChildCount ; i++)
+                {
+                    if (((EmptyNode)node.PhraseChild(i)).NodeKind == EmptyNode.Kind.Heading)
+                    {
+                        ENode = node.PhraseChild(i);
+                        System.Media.SystemSounds.Asterisk.Play();
+                        break;
+                    }
+                                    }
+
+                                    if (ENode is PhraseNode)
+                                    {
+                                                                                PlayOrResume(node.PhraseChild(0));
+                                    }
+            }
+        }
 
         #endregion
 
