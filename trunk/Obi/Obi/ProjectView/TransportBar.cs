@@ -1703,12 +1703,18 @@ namespace Obi.ProjectView
 
                     if (PNode != null && mCurrentPlaylist.ContainsPhrase(PNode))
                     {
-                        if (PNode != mCurrentPlaylist.CurrentPhrase)
+                        if (PNode != mCurrentPlaylist.CurrentPhrase) // if selected node is not currently playing phrase
                         {
                             if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
+                            
                             mCurrentPlaylist.CurrentPhrase = PNode;
+                            mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                         }
+                        else if (mView.Selection is AudioSelection &&   ((AudioSelection)mView.Selection).AudioRange.HasCursor) // clicked on the same phrase
+                            mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                     }
+
+
                     if (mCurrentPlaylist != mMasterPlaylist
                         && !mCurrentPlaylist.ContainsPhrase(PNode))
                     {
