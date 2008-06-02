@@ -375,7 +375,13 @@ namespace Obi.ProjectView
         {
             if (CanFocusOnContentView)
             {
-                if (mSelection != null && mSelection.Control is TOCView) Selection = new NodeSelection(mSelection.Node, mStripsView);
+                if (mSelection != null && mSelection.Control is TOCView)
+                {
+if ( TransportBar.IsPlayerActive )
+    Selection = new NodeSelection(mStripsView.PlaybackPhrase , mStripsView);
+    else
+    Selection = new NodeSelection(mSelection.Node, mStripsView);                
+                                    }
                 mStripsView.Focus();
             }
         }
