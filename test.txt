@@ -1,4 +1,4 @@
 Testing commit...
 Hello world !
 test again..
-Daniel was here.
+Daniel^H^H^H^H^H^HJulien was here.
