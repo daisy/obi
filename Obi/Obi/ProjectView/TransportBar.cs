@@ -1705,10 +1705,14 @@ namespace Obi.ProjectView
                     {
                         if (PNode != mCurrentPlaylist.CurrentPhrase ) // if selected node is not currently playing phrase
                                                     {
-                            if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
-                            
-                            mCurrentPlaylist.CurrentPhrase = PNode;
-                            if (mView.Selection is AudioSelection )  mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                                        if (mView.Selection.Control.GetType() != typeof(TOCView)
+                                                            || mCurrentPlaylist.CurrentPhrase.ParentAs <SectionNode> () != PNode.ParentAs <SectionNode> () ) // bypass if selection is in TOC and playing section is same as selected section
+                                                        {
+                                                            if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
+
+                                                            mCurrentPlaylist.CurrentPhrase = PNode;
+                                                            if (mView.Selection is AudioSelection) mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                                                        }
                         }   
                         else if (mView.Selection is AudioSelection &&   ((AudioSelection)mView.Selection).AudioRange.HasCursor) // clicked on the same phrase
                             mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
