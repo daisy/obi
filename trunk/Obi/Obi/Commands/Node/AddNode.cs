@@ -19,7 +19,11 @@ namespace Obi.Commands.Node
             mNode = node;
             mParent = parent;
             mIndex = index;
-            mSelection = view.Selection == null ? null : new NodeSelection(mNode, view.Selection.Control);
+
+            if (view.Selection != null && view.Selection.Control.GetType() == typeof(ProjectView.StripsView))
+                mSelection = new NodeSelection(mNode, view.Selection.Control);
+            else
+                mSelection = view.Selection;
         }
 
         public AddNode(ProjectView.ProjectView view, ObiNode node)
