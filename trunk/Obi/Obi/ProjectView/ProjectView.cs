@@ -448,10 +448,16 @@ if ( TransportBar.IsPlayerActive )
                 if (value)
                 {
                     mTOCSplitter.Panel1Collapsed = false;
-                    mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
+                                        mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
                 }
                 else if (!value && !TOCViewVisible) mTOCSplitter.Panel1Collapsed = true;
                 mMetadataSplitter.Panel2Collapsed = !value;
+                if (!mMetadataView.Visible)
+                {
+                    FocusOnTOCView();
+                    if (!mTOCView.Focused)
+                        FocusOnContentView();
+                }
             }
         }
 
