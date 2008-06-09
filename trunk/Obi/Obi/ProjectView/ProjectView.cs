@@ -148,11 +148,8 @@ namespace Obi.ProjectView
             if (mStripsView.Selection.Node is SectionNode)
                 selected = (SectionNode)mStripsView.Selection.Node;
             else
-            {
-                System.Media.SystemSounds.Asterisk.Play();
                 selected = (SectionNode)mStripsView.Selection.Node.ParentAs<SectionNode>();
-            }
-
+            
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
                 SectionNode child = selected.SectionChild(i);

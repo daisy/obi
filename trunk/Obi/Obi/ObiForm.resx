@@ -447,7 +447,7 @@
     <value>Show &amp;TOC view</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Show metata view Ctrl+Alt+M</value>
+    <value>Show meta data view Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Alt+M</value>
