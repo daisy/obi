@@ -82,7 +82,7 @@ namespace Obi.ProjectView
 
         private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
 
-        public bool CanAddStrip { get { return StripSelected; } }
+        public bool CanAddStrip { get { return StripSelected || BlockOrWaveformSelected || Selection is StripCursorSelection ; } }
 
         public bool CanCopyAudio { get { return IsAudioRangeSelected; } }
         public bool CanCopyBlock { get { return BlockSelected; } }
