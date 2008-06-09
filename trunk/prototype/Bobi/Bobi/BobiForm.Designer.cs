@@ -56,6 +56,7 @@ namespace Bobi
             this.audio_ImportAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.projectView = new Bobi.View.ProjectView();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -91,7 +92,7 @@ namespace Bobi
             // 
             this.file_NewMenuItem.Name = "file_NewMenuItem";
             this.file_NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.file_NewMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_NewMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_NewMenuItem.Text = "&New";
             this.file_NewMenuItem.Click += new System.EventHandler(this.file_NewMenuItem_Click);
             // 
@@ -99,7 +100,7 @@ namespace Bobi
             // 
             this.file_OpenMenuItem.Name = "file_OpenMenuItem";
             this.file_OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.file_OpenMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_OpenMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_OpenMenuItem.Text = "&Open";
             this.file_OpenMenuItem.Click += new System.EventHandler(this.file_OpenMenuItem_Click);
             // 
@@ -107,7 +108,7 @@ namespace Bobi
             // 
             this.file_CloseMenuItem.Name = "file_CloseMenuItem";
             this.file_CloseMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.file_CloseMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_CloseMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_CloseMenuItem.Text = "&Close";
             this.file_CloseMenuItem.Click += new System.EventHandler(this.file_CloseMenuItem_Click);
             // 
@@ -115,20 +116,20 @@ namespace Bobi
             // 
             this.file_SaveMenuItem.Name = "file_SaveMenuItem";
             this.file_SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.file_SaveMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_SaveMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_SaveMenuItem.Text = "&Save";
             this.file_SaveMenuItem.Click += new System.EventHandler(this.file_SaveMenuItem_Click);
             // 
             // separator1
             // 
             this.separator1.Name = "separator1";
-            this.separator1.Size = new System.Drawing.Size(139, 6);
+            this.separator1.Size = new System.Drawing.Size(149, 6);
             // 
             // file_ExitMenuItem
             // 
             this.file_ExitMenuItem.Name = "file_ExitMenuItem";
             this.file_ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.file_ExitMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_ExitMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_ExitMenuItem.Text = "E&xit";
             this.file_ExitMenuItem.Click += new System.EventHandler(this.file_ExitMenuItem_Click);
             // 
@@ -288,7 +289,8 @@ namespace Bobi
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
+            this.statusLabel,
+            this.statusProgressBar});
             this.statusStrip.Location = new System.Drawing.Point(0, 431);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(632, 22);
@@ -298,8 +300,15 @@ namespace Bobi
             // statusLabel
             // 
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(77, 17);
+            this.statusLabel.Size = new System.Drawing.Size(515, 17);
+            this.statusLabel.Spring = true;
             this.statusLabel.Text = "Current status";
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // statusProgressBar
+            // 
+            this.statusProgressBar.Name = "statusProgressBar";
+            this.statusProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // projectView
             // 
@@ -324,7 +333,6 @@ namespace Bobi
             this.MainMenuStrip = this.menuStrip;
             this.Name = "BobiForm";
             this.Text = "Bobi";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BobiForm_Paint);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BobiForm_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -366,6 +374,7 @@ namespace Bobi
         private System.Windows.Forms.ToolStripSeparator separator3;
         private System.Windows.Forms.ToolStripMenuItem edit_SelectAllMenuItem;
         private System.Windows.Forms.ToolStripMenuItem edit_SelectNothingMenuItem;
+        private System.Windows.Forms.ToolStripProgressBar statusProgressBar;
     }
 }
 
