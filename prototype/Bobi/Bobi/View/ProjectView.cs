@@ -33,7 +33,7 @@ namespace Bobi.View
             get { return this.project; }
             set
             {
-                Controls.Clear();
+                ClearProject();
                 this.project = value;
                 if (value != null)
                 {
@@ -67,6 +67,40 @@ namespace Bobi.View
             base.OnPaint(pe);
         }
 
+
+        // Add a new track to the project (thread-safe)
+        private void AddTrack()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new AddTrackDelegate(AddTrack));
+            }
+            else
+            {
+                Track t = new Track();
+                t.Zoom = this.zoom;
+                Controls.Add(t);
+                SetFlowBreak(t, true);
+            }
+        }
+
+        private delegate void AddTrackDelegate();
+
+        // Clear the project (thread-safe)
+        private void ClearProject()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ClearProjectDelegate(ClearProject));
+            }
+            else
+            {
+                Controls.Clear();
+            }
+        }
+
+        private delegate void ClearProjectDelegate();
+
         // React to changes in the project
         private void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
@@ -76,10 +110,7 @@ namespace Bobi.View
             }
             else if (e is urakawa.events.core.ChildAddedEventArgs)
             {
-                Track t = new Track();
-                t.Zoom = this.zoom;
-                Controls.Add(t);
-                SetFlowBreak(t, true);
+                AddTrack();
             }
             else if (e is urakawa.events.core.ChildRemovedEventArgs)
             {

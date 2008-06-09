@@ -16,7 +16,7 @@ namespace Bobi
         public BobiForm()
         {
             InitializeComponent();
-            this.projectView.Paint += new PaintEventHandler(projectView_Paint);
+            HideStatusProgressBar();
             Project = new Project();
         }
 
@@ -32,39 +32,52 @@ namespace Bobi
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "XUK files (*.xuk)|*.xuk";
-            if (CanClose() && dialog.ShowDialog() == DialogResult.OK) Project = new Project(new Uri(dialog.FileName));
-        }
-
-        private void projectView_Paint(object sender, PaintEventArgs e)
-        {
-            System.Diagnostics.Debug.Print("Paint from project view; initialized project ? {0}.",
-                Project != null && Project.Initialized ? "yes" : "no");
-            if (Project != null && !Project.Initialized)
+            if (CanClose() && dialog.ShowDialog() == DialogResult.OK)
             {
+                bool opened = false;
+                Project = new Project(new Uri(dialog.FileName));
                 Cursor c = Cursor;
                 Cursor = Cursors.WaitCursor;
-                this.projectView.Paint -= new PaintEventHandler(projectView_Paint);
                 Invalidate(true);
                 Update();
-                this.projectView.Paint += new PaintEventHandler(projectView_Paint);
                 this.projectView.SuspendLayout();
-                try
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += new DoWorkEventHandler(delegate(object _sender, DoWorkEventArgs _e)
                 {
-                    Project.Open();
-                    this.statusLabel.Text = string.Format("Opened project \"{0}\".", Project.Path);
-                }
-                catch (Exception x)
+                    try
+                    {
+                        Project.Open();
+                        opened = !worker.CancellationPending;
+                    }
+                    catch (Exception x)
+                    {
+                        MessageBox.Show(string.Format("Error opening file {0}: {1}", Project.Path, x.Message),
+                            "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                });
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object _sender, RunWorkerCompletedEventArgs _e)
                 {
-                    MessageBox.Show(string.Format("Error opening file {0}: {1}", Project.Path, x.Message),
-                        "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Project = null;
-                }
-                finally
-                {
-                    Cursor = c;
+                    if (!opened) Project = null;
+                    UpdateStatus();
+                    HideStatusProgressBar();
+                    if (opened) this.statusLabel.Text = string.Format("Opened project \"{0}\".", Project.Path);
                     this.projectView.ResumeLayout();
-                }
+                    Cursor = c;
+                });
+                worker.WorkerReportsProgress = false;
+                worker.WorkerSupportsCancellation = true;
+                this.statusLabel.Text = string.Format("Opening project \"{0}\"...", dialog.FileName);
+                this.statusProgressBar.Visible = true;
+                this.statusProgressBar.Style = ProgressBarStyle.Marquee;
+                worker.RunWorkerAsync();
             }
+        }
+
+        private void HideStatusProgressBar()
+        {
+            this.statusProgressBar.Style = ProgressBarStyle.Blocks;
+            this.statusProgressBar.Value = 0;
+            this.statusProgressBar.Visible = false;
         }
 
         // &File > &Close (Ctrl+W)
@@ -206,60 +219,65 @@ namespace Bobi
             {
                 this.projectView.Project = value;
                 Text = "Bobi";
-                if (value == null)
+                UpdateStatus();
+            }
+        }
+
+        private void UpdateStatus()
+        {
+            if (Project == null || !Project.Initialized)
+            {
+                this.statusLabel.Text = "No project.";
+                this.file_CloseMenuItem.Enabled = false;
+                this.file_SaveMenuItem.Enabled = false;
+                this.edit_UndoMenuItem.Enabled = false;
+                this.edit_RedoMenuItem.Enabled = false;
+                this.edit_CutMenuItem.Enabled = false;
+                this.edit_CopyMenuItem.Enabled = false;
+                this.edit_PasteMenuItem.Enabled = false;
+                this.edit_DeleteMenuItem.Enabled = false;
+                this.edit_SelectAllMenuItem.Enabled = false;
+                this.edit_SelectNothingMenuItem.Enabled = false;
+                this.view_ZoomInMenuItem.Enabled = false;
+                this.view_ZoomOutMenuItem.Enabled = false;
+                this.view_NormalSizeMenuItem.Enabled = false;
+                this.audio_NewTrackMenuItem.Enabled = false;
+                this.audio_ImportAudioMenuItem.Enabled = false;
+            }
+            else
+            {
+                Project.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(project_changed);
+                if (Project.getNumberOfPresentations() == 0)
                 {
-                    this.statusLabel.Text = "No project.";
-                    this.file_CloseMenuItem.Enabled = false;
-                    this.file_SaveMenuItem.Enabled = false;
-                    this.edit_UndoMenuItem.Enabled = false;
-                    this.edit_RedoMenuItem.Enabled = false;
-                    this.edit_CutMenuItem.Enabled = false;
-                    this.edit_CopyMenuItem.Enabled = false;
-                    this.edit_PasteMenuItem.Enabled = false;
-                    this.edit_DeleteMenuItem.Enabled = false;
-                    this.edit_SelectAllMenuItem.Enabled = false;
-                    this.edit_SelectNothingMenuItem.Enabled = false;
-                    this.view_ZoomInMenuItem.Enabled = false;
-                    this.view_ZoomOutMenuItem.Enabled = false;
-                    this.view_NormalSizeMenuItem.Enabled = false;
-                    this.audio_NewTrackMenuItem.Enabled = false;
-                    this.audio_ImportAudioMenuItem.Enabled = false;
+                    Project.presentationAdded +=
+                        new EventHandler<urakawa.events.project.PresentationAddedEventArgs>(project_presentationAdded);
                 }
                 else
                 {
-                    value.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(project_changed);
-                    if (value.getNumberOfPresentations() == 0)
-                    {
-                        value.presentationAdded +=
-                            new EventHandler<urakawa.events.project.PresentationAddedEventArgs>(project_presentationAdded);
-                    }
-                    else
-                    {
-                        SetPresentationEvents(value.getPresentation(0));
-                    }
-                    this.statusLabel.Text = "New project.";
-                    this.file_CloseMenuItem.Enabled = true;
-                    this.file_SaveMenuItem.Enabled = false;
-                    this.edit_UndoMenuItem.Enabled = false;
-                    this.edit_RedoMenuItem.Enabled = false;
-                    this.edit_CutMenuItem.Enabled = false;
-                    this.edit_CopyMenuItem.Enabled = false;
-                    this.edit_PasteMenuItem.Enabled = false;
-                    this.edit_DeleteMenuItem.Enabled = false;
-                    this.edit_SelectAllMenuItem.Enabled = false;
-                    this.edit_SelectNothingMenuItem.Enabled = false;
-                    this.view_ZoomInMenuItem.Enabled = true;
-                    this.view_ZoomOutMenuItem.Enabled = true;
-                    this.view_NormalSizeMenuItem.Enabled = true;
-                    this.audio_NewTrackMenuItem.Enabled = true;
-                    this.audio_ImportAudioMenuItem.Enabled = false;
+                    SetPresentationEvents(Project.getPresentation(0));
                 }
+                this.statusLabel.Text = "New project.";
+                this.file_CloseMenuItem.Enabled = true;
+                this.file_SaveMenuItem.Enabled = false;
+                this.edit_UndoMenuItem.Enabled = false;
+                this.edit_RedoMenuItem.Enabled = false;
+                this.edit_CutMenuItem.Enabled = false;
+                this.edit_CopyMenuItem.Enabled = false;
+                this.edit_PasteMenuItem.Enabled = false;
+                this.edit_DeleteMenuItem.Enabled = false;
+                this.edit_SelectAllMenuItem.Enabled = false;
+                this.edit_SelectNothingMenuItem.Enabled = false;
+                this.view_ZoomInMenuItem.Enabled = true;
+                this.view_ZoomOutMenuItem.Enabled = true;
+                this.view_NormalSizeMenuItem.Enabled = true;
+                this.audio_NewTrackMenuItem.Enabled = true;
+                this.audio_ImportAudioMenuItem.Enabled = false;
             }
         }
 
         void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (Project.Initialized)
+            if (Project != null && Project.Initialized)
             {
                 Text = string.Format("Bobi{0}", Project.HasChanges ? "*" : "");
                 this.file_SaveMenuItem.Enabled = Project.HasChanges;
@@ -329,11 +347,6 @@ namespace Bobi
                 }
             }
             return false;
-        }
-
-        private void BobiForm_Paint(object sender, PaintEventArgs e)
-        {
-            System.Diagnostics.Debug.Print("Paint from {0} = {1}", sender, e.ClipRectangle);
         }
     }
 }
