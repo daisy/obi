@@ -144,7 +144,15 @@ namespace Obi.ProjectView
         {
             Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mStripsView);
             urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
-            SectionNode selected = (SectionNode)mStripsView.Selection.Node;
+            SectionNode selected = null;
+            if (mStripsView.Selection.Node is SectionNode)
+                selected = (SectionNode)mStripsView.Selection.Node;
+            else
+            {
+                System.Media.SystemSounds.Asterisk.Play();
+                selected = (SectionNode)mStripsView.Selection.Node.ParentAs<SectionNode>();
+            }
+
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
                 SectionNode child = selected.SectionChild(i);

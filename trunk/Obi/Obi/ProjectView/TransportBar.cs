@@ -1289,6 +1289,7 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     PauseRecording();
+                    mResumeRecordingPhrase = null;
                     mView.AddSection();
                     SetupRecording(Recording);
                     // PrepareForRecording(true, null);
