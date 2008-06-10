@@ -10,8 +10,9 @@ namespace Bobi.View
 {
     public partial class ProjectView : FlowLayoutPanel
     {
-        private Project project;
-        private double zoom;
+        private Project project;      // current project (may be null)
+        private Selection selection;  // current selection
+        private double zoom;          // current zoom factor
 
         /// <summary>
         /// New project view
@@ -21,12 +22,13 @@ namespace Bobi.View
             InitializeComponent();
             DoubleBuffered = true;
             Project = null;
+            this.selection = null;
             Zoom = 1.0;
         }
 
 
         /// <summary>
-        /// Set the project for this view.
+        /// The project for this view.
         /// </summary>
         public Project Project
         {
@@ -43,7 +45,54 @@ namespace Bobi.View
         }
 
         /// <summary>
-        /// Zoom factor for the view
+        /// Select (or deselect) the control corresponding to the given node.
+        /// </summary>
+        public void SelectControlForNode(urakawa.core.TreeNode node, bool selected)
+        {
+            Track track = FindTrack(node);
+            if (track != null) track.Selected = selected;
+        }
+
+        /// <summary>
+        /// Get the current selection; set it using SelectFromBelow or SelectFromTop.
+        /// </summary>
+        public Selection Selection { get { return this.selection; } }
+
+        /// <summary>
+        /// Select all tracks in the view (called from the form.)
+        /// </summary>
+        public void SelectAllFromAbove()
+        {
+            if (this.selection != null) this.selection.Deselect();
+            this.selection = new NodeSelection(this);
+            foreach (Control c in Controls)
+            {
+                if (c is Track) ((NodeSelection)this.selection).AddNode(((Track)c).Node);
+            }
+        }
+
+        public void SelectFromAbove(Selection selection)
+        {
+            if (this.selection != null) this.selection.Deselect();
+            this.selection = selection;
+            if (this.selection != null) this.selection.SelectControls();
+        }
+
+        /// <summary>
+        /// Select a single track from below (i.e. from the track.)
+        /// </summary>
+        public void SelectFromBelow(urakawa.core.TreeNode node)
+        {
+            if (this.selection != null)
+            {
+                this.selection.Deselect();
+                // send event
+            }
+            this.selection = new NodeSelection(this, node);
+        }
+
+        /// <summary>
+        /// Zoom factor for the view.
         /// </summary>
         public double Zoom
         {
@@ -59,6 +108,15 @@ namespace Bobi.View
         }
 
 
+        private Track FindTrack(urakawa.core.TreeNode node)
+        {
+            foreach (Control c in Controls)
+            {
+                if (c is Track && ((Track)c).Node == node) return (Track)c;
+            }
+            return null;
+        }
+
         // Let's custom paint
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -69,22 +127,22 @@ namespace Bobi.View
 
 
         // Add a new track to the project (thread-safe)
-        private void AddTrack()
+        private void AddTrack(urakawa.core.TreeNode node)
         {
             if (InvokeRequired)
             {
-                Invoke(new AddTrackDelegate(AddTrack));
+                Invoke(new AddTrackDelegate(AddTrack), node);
             }
             else
             {
-                Track t = new Track();
+                Track t = new Track(node);
                 t.Zoom = this.zoom;
                 Controls.Add(t);
                 SetFlowBreak(t, true);
             }
         }
 
-        private delegate void AddTrackDelegate();
+        private delegate void AddTrackDelegate(urakawa.core.TreeNode node);
 
         // Clear the project (thread-safe)
         private void ClearProject()
@@ -100,7 +158,7 @@ namespace Bobi.View
         }
 
         private delegate void ClearProjectDelegate();
-
+        
         // React to changes in the project
         private void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
@@ -110,7 +168,7 @@ namespace Bobi.View
             }
             else if (e is urakawa.events.core.ChildAddedEventArgs)
             {
-                AddTrack();
+                AddTrack(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
             }
             else if (e is urakawa.events.core.ChildRemovedEventArgs)
             {

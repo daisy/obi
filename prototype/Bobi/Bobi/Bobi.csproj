@@ -46,6 +46,7 @@
     <Compile Include="BobiForm.Designer.cs">
       <DependentUpon>BobiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\ISelectionAfter.cs" />
     <Compile Include="Commands\NewTrack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
@@ -63,6 +64,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>ProjectView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Track.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Track.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -76,6 +81,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Selection.cs" />
     <Compile Include="View\ProjectView.cs">
       <SubType>Component</SubType>
     </Compile>

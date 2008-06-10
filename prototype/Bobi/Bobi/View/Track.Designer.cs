@@ -28,7 +28,14 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Track
+            // 
+            this.Click += new System.EventHandler(this.Track_Click);
+            this.Enter += new System.EventHandler(this.Track_Enter);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

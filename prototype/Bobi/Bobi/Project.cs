@@ -44,14 +44,6 @@ namespace Bobi
         public bool Initialized { get { return this.initialized; } }
 
         /// <summary>
-        /// Append a new track to the project.
-        /// </summary>
-        public void NewTrack()
-        {
-            getPresentation(0).getUndoRedoManager().execute(new Commands.NewTrack(getPresentation(0)));
-        }
-
-        /// <summary>
         /// Get the number of tracks in the current project.
         /// </summary>
         public int NumberOfTracks { get { return getPresentation(0).getRootNode().getChildCount(); } }
@@ -66,14 +58,18 @@ namespace Bobi
             this.initialized = true;
         }
 
-        // Redo the last undone change.
+        /// <summary>
+        /// Redo the last undone change.
+        /// </summary>
         public void Redo()
         {
             urakawa.undo.UndoRedoManager redo = getPresentation(0).getUndoRedoManager();
             if (redo.canRedo()) redo.redo();
         }
 
-        // Save changes to the current path (only if set.)
+        /// <summary>
+        /// Save changes to the current path (if set.)
+        /// </summary>
         public void Save()
         {
             if (Path != null)
@@ -83,7 +79,9 @@ namespace Bobi
             }
         }
 
-        // Undo the last change.
+        /// <summary>
+        /// Undo the last change.
+        /// </summary>
         public void Undo()
         {
             urakawa.undo.UndoRedoManager undo = getPresentation(0).getUndoRedoManager();
@@ -101,10 +99,12 @@ namespace Bobi
             }
         }
 
+        // Send changes events when commands are executed or undone.
         private void Project_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { Changes(+1); }
         private void Project_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { Changes(+1); }
         private void Project_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { Changes(-1); }
 
+        // Set undo/redo events once the project is initialized.
         private void SetUndoRedoEvents()
         {
             getPresentation(0).getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(Project_commandDone);
