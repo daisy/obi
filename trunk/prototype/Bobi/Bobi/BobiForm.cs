@@ -32,52 +32,7 @@ namespace Bobi
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "XUK files (*.xuk)|*.xuk";
-            if (CanClose() && dialog.ShowDialog() == DialogResult.OK)
-            {
-                bool opened = false;
-                Project = new Project(new Uri(dialog.FileName));
-                Cursor c = Cursor;
-                Cursor = Cursors.WaitCursor;
-                Invalidate(true);
-                Update();
-                this.projectView.SuspendLayout();
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += new DoWorkEventHandler(delegate(object _sender, DoWorkEventArgs _e)
-                {
-                    try
-                    {
-                        Project.Open();
-                        opened = !worker.CancellationPending;
-                    }
-                    catch (Exception x)
-                    {
-                        MessageBox.Show(string.Format("Error opening file {0}: {1}", Project.Path, x.Message),
-                            "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                });
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object _sender, RunWorkerCompletedEventArgs _e)
-                {
-                    if (!opened) Project = null;
-                    UpdateStatus();
-                    HideStatusProgressBar();
-                    if (opened) this.statusLabel.Text = string.Format("Opened project \"{0}\".", Project.Path);
-                    this.projectView.ResumeLayout();
-                    Cursor = c;
-                });
-                worker.WorkerReportsProgress = false;
-                worker.WorkerSupportsCancellation = true;
-                this.statusLabel.Text = string.Format("Opening project \"{0}\"...", dialog.FileName);
-                this.statusProgressBar.Visible = true;
-                this.statusProgressBar.Style = ProgressBarStyle.Marquee;
-                worker.RunWorkerAsync();
-            }
-        }
-
-        private void HideStatusProgressBar()
-        {
-            this.statusProgressBar.Style = ProgressBarStyle.Blocks;
-            this.statusProgressBar.Value = 0;
-            this.statusProgressBar.Visible = false;
+            if (CanClose() && dialog.ShowDialog() == DialogResult.OK) Open(dialog.FileName);
         }
 
         // &File > &Close (Ctrl+W)
@@ -148,7 +103,7 @@ namespace Bobi
         // &Edit > Select &all (Ctrl+A)
         private void edit_SelectAllMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.projectView.SelectAllFromAbove();
         }
 
         // &Edit > Select &nothing (Ctrl+Shift+A)
@@ -180,7 +135,7 @@ namespace Bobi
         // &Audio > New &track (Ctrl+T)
         private void audio_NewTrackMenuItem_Click(object sender, EventArgs e)
         {
-            if (Project != null) Project.NewTrack();
+            if (Project != null) NewTrack();
         }
 
         // &Audio > &Import audio (Ctrl+I)
@@ -197,6 +152,7 @@ namespace Bobi
         }
 
 
+
         // Check whether the project can be closed. If there is a project
         // with unsaved changes, then ask whether the user wants to save.
         private bool CanClose()
@@ -204,11 +160,83 @@ namespace Bobi
             bool can = Project == null || !Project.HasChanges;
             if (!can)
             {
-                DialogResult results = MessageBox.Show("Do you want to save your changes before closing? Press \"Yes\" to save changes, \"No\" to close without saving, and \"Cancel\" to not close at all.",
+                DialogResult results = MessageBox.Show(
+                    "Do you want to save your changes before closing? Press \"Yes\" to save changes, \"No\" to close without saving, and \"Cancel\" to not close at all.",
                     "Save before closing?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 can = results == DialogResult.Yes ? SavedProject() : results == DialogResult.No;
             }
             return can;
+        }
+
+        /// <summary>
+        /// Update status and selection after a command was executed (done or redone.)
+        /// </summary>
+        private void ExecutedCommand(urakawa.undo.ICommand command)
+        {
+            statusLabel.Text = command.getLongDescription();
+            if (command is Commands.ISelectionAfter && ((Commands.ISelectionAfter)command).UpdateSelection)
+            {
+                this.projectView.SelectFromAbove(((Commands.ISelectionAfter)command).SelectionAfter);
+            }
+        }
+
+        // Hide the status progress bar
+        private void HideStatusProgressBar()
+        {
+            this.statusProgressBar.Style = ProgressBarStyle.Blocks;
+            this.statusProgressBar.Value = 0;
+            this.statusProgressBar.Visible = false;
+        }
+
+        // Open a file while showing progress.
+        // If something goes wrong catch the exception and show an error message.
+        private void Open(string path)
+        {
+            bool opened = false;
+            Project = new Project(new Uri(path));
+            Cursor c = Cursor;
+            Cursor = Cursors.WaitCursor;
+            Invalidate(true);
+            Update();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(delegate(object _sender, DoWorkEventArgs _e)
+            {
+                try
+                {
+                    Project.Open();
+                    opened = !worker.CancellationPending;
+                }
+                catch (Exception x)
+                {
+                    MessageBox.Show(string.Format("Error opening file {0}: {1}", path, x.Message),
+                        "Error opening file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object _sender, RunWorkerCompletedEventArgs _e)
+            {
+                if (!opened) Project = null;
+                UpdateStatus();
+                HideStatusProgressBar();
+                if (opened) this.statusLabel.Text = string.Format("Opened project \"{0}\".", path);
+                this.projectView.ResumeLayout();
+                Cursor = c;
+            });
+            worker.WorkerReportsProgress = false;
+            worker.WorkerSupportsCancellation = true;
+            this.statusLabel.Text = string.Format("Opening project \"{0}\"...", path);
+            StartStatusProgressBar();
+            this.projectView.SuspendLayout();
+            worker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Append a new track to the project.
+        /// </summary>
+        public void NewTrack()
+        {
+            Commands.NewTrack command = new Commands.NewTrack(this.projectView, Project.getPresentation(0));
+            command.UpdateSelection = true;
+            Project.getPresentation(0).getUndoRedoManager().execute(command);
         }
 
         // Set a new or null project in the current view.
@@ -223,6 +251,94 @@ namespace Bobi
             }
         }
 
+        void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (Project != null && Project.Initialized)
+            {
+                Text = string.Format("Bobi{0}", Project.HasChanges ? "*" : "");
+                this.file_SaveMenuItem.Enabled = Project.HasChanges;
+                // Undo and redo displays the command that can be un/redone
+                urakawa.undo.UndoRedoManager undo = Project.getPresentation(0).getUndoRedoManager();
+                this.edit_UndoMenuItem.Enabled = undo.canUndo();
+                this.edit_UndoMenuItem.Text = string.Format("&Undo{0}",
+                    this.edit_UndoMenuItem.Enabled ? " " + undo.getUndoShortDescription() : "");
+                this.edit_RedoMenuItem.Enabled = Project.getPresentation(0).getUndoRedoManager().canRedo();
+                this.edit_RedoMenuItem.Text = string.Format("&Redo{0}",
+                    this.edit_RedoMenuItem.Enabled ? " " + undo.getRedoShortDescription() : "");
+                this.edit_SelectAllMenuItem.Enabled = Project.NumberOfTracks > 0;
+                this.edit_SelectNothingMenuItem.Enabled = this.projectView.Selection != null;
+            }
+        }
+
+        private void project_commandDone(object sender, urakawa.events.undo.DoneEventArgs e)
+        {
+            ExecutedCommand(e.DoneCommand);
+        }
+
+        private void project_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
+        {
+            ExecutedCommand(e.ReDoneCommand);
+        }
+
+        private void project_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e)
+        {
+            statusLabel.Text = string.Format("Undid {0}", e.UnDoneCommand.getShortDescription());
+            if (e.UnDoneCommand is Commands.ISelectionAfter)
+            {
+                this.projectView.SelectFromAbove(((Commands.ISelectionAfter)e.UnDoneCommand).SelectionBefore);
+            }
+        }
+
+        private void project_presentationAdded(object sender, urakawa.events.project.PresentationAddedEventArgs e)
+        {
+            SetPresentationEvents(e.AddedPresentation);
+        }
+
+        // Save the project to its current path, or try a different path.
+        // Return true on success.
+        private bool SavedProject()
+        {
+            if (Project.Path == null)
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.AddExtension = true;
+                dialog.Filter = "XUK files (*.xuk)|*.xuk";
+                if (dialog.ShowDialog() == DialogResult.OK) Project.Path = new Uri(dialog.FileName);
+            }
+            if (Project.Path != null)
+            {
+                try
+                {
+                    Project.Save();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not save to " + Project.Path + ": " + ex.Message);
+                    Project.Path = null;
+                }
+            }
+            return false;
+        }
+
+        // Set events once a presentation is added to the project
+        // (after creating an empty presentation or opening a XUK file.)
+        private void SetPresentationEvents(urakawa.Presentation presentation)
+        {
+            urakawa.undo.UndoRedoManager undo = presentation.getUndoRedoManager();
+            undo.commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(project_commandDone);
+            undo.commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(project_commandUnDone);
+            undo.commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(project_commandReDone);
+        }
+
+        // Show and start the status progress bar animation
+        private void StartStatusProgressBar()
+        {
+            this.statusProgressBar.Visible = true;
+            this.statusProgressBar.Style = ProgressBarStyle.Marquee;
+        }
+
+        // Update the status of the application (mostly menus)
         private void UpdateStatus()
         {
             if (Project == null || !Project.Initialized)
@@ -273,80 +389,6 @@ namespace Bobi
                 this.audio_NewTrackMenuItem.Enabled = true;
                 this.audio_ImportAudioMenuItem.Enabled = false;
             }
-        }
-
-        void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
-        {
-            if (Project != null && Project.Initialized)
-            {
-                Text = string.Format("Bobi{0}", Project.HasChanges ? "*" : "");
-                this.file_SaveMenuItem.Enabled = Project.HasChanges;
-                // Undo and redo displays the command that can be un/redone
-                urakawa.undo.UndoRedoManager undo = Project.getPresentation(0).getUndoRedoManager();
-                this.edit_UndoMenuItem.Enabled = undo.canUndo();
-                this.edit_UndoMenuItem.Text = string.Format("&Undo{0}",
-                    this.edit_UndoMenuItem.Enabled ? " " + undo.getUndoShortDescription() : "");
-                this.edit_RedoMenuItem.Enabled = Project.getPresentation(0).getUndoRedoManager().canRedo();
-                this.edit_RedoMenuItem.Text = string.Format("&Redo{0}",
-                    this.edit_RedoMenuItem.Enabled ? " " + undo.getRedoShortDescription() : "");
-            }
-        }
-
-        private void project_commandDone(object sender, urakawa.events.undo.DoneEventArgs e)
-        {
-            statusLabel.Text = e.DoneCommand.getLongDescription();
-        }
-
-        private void project_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
-        {
-            statusLabel.Text = e.ReDoneCommand.getLongDescription();
-        }
-
-        private void project_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e)
-        {
-            statusLabel.Text = string.Format("Undid {0}", e.UnDoneCommand.getShortDescription());
-        }
-
-        private void project_presentationAdded(object sender, urakawa.events.project.PresentationAddedEventArgs e)
-        {
-            SetPresentationEvents(e.AddedPresentation);
-        }
-
-        // Set events once a presentation is added to the project
-        // (after creating an empty presentation or opening a XUK file.)
-        private void SetPresentationEvents(urakawa.Presentation presentation)
-        {
-            urakawa.undo.UndoRedoManager undo = presentation.getUndoRedoManager();
-            undo.commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(project_commandDone);
-            undo.commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(project_commandUnDone);
-            undo.commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(project_commandReDone);
-        }
-
-        // Save the project to its current path, or try a different path.
-        // Return true on success.
-        private bool SavedProject()
-        {
-            if (Project.Path == null)
-            {
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.AddExtension = true;
-                dialog.Filter = "XUK files (*.xuk)|*.xuk";
-                if (dialog.ShowDialog() == DialogResult.OK) Project.Path = new Uri(dialog.FileName);
-            }
-            if (Project.Path != null)
-            {
-                try
-                {
-                    Project.Save();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Could not save to " + Project.Path + ": " + ex.Message);
-                    Project.Path = null;
-                }
-            }
-            return false;
         }
     }
 }

@@ -4,15 +4,21 @@ using System.Text;
 
 namespace Bobi.Commands
 {
-    class NewTrack : urakawa.undo.ICommand
+    class NewTrack : urakawa.undo.ICommand, ISelectionAfter
     {
         private urakawa.Presentation presentation;  // presentation in which the track is added
         private urakawa.core.TreeNode node;         // node for the new track
+        private NodeSelection selectionAfter;       // selection after the node is added
+        private Selection selectionBefore;          // selection before the command is executed
+        private bool updateSelection;               // update selection flag
 
-        public NewTrack(urakawa.Presentation presentation)
+        public NewTrack(View.ProjectView view, urakawa.Presentation presentation)
         {
             this.presentation = presentation;
             this.node = this.presentation.getTreeNodeFactory().createNode();
+            this.updateSelection = false;
+            this.selectionAfter = new NodeSelection(view, this.node);
+            this.selectionBefore = view.Selection;
         }
 
         #region ICommand Members
@@ -65,6 +71,19 @@ namespace Bobi.Commands
         #region IChangeNotifier Members
 
         public event EventHandler<urakawa.events.DataModelChangedEventArgs> changed;
+
+        #endregion
+
+        #region ISelectionAfter Members
+
+        public Selection SelectionAfter { get { return this.selectionAfter; } }
+        public Selection SelectionBefore { get { return this.selectionBefore; } }
+
+        public bool UpdateSelection
+        {
+            get { return this.updateSelection; }
+            set { this.updateSelection = value; }
+        }
 
         #endregion
     }

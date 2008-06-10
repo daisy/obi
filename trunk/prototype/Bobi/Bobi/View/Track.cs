@@ -10,19 +10,36 @@ namespace Bobi.View
 {
     public partial class Track : Control
     {
-        private Size baseSize;  // size at zoom factor 1
-        private double zoom;    // zoom factor
+        private Size baseSize;               // size at zoom factor 1
+        private urakawa.core.TreeNode node;  // node for this track
+        private bool selected;               // selected flag
+        private double zoom;                 // zoom factor
 
+        /// <summary>
+        /// Create a new, empty track.
+        /// </summary>
         public Track()
         {
             InitializeComponent();
             DoubleBuffered = true;
             this.baseSize = new Size(512, 144);
-            this.BackColor = Color.AliceBlue;
+            Selected = false;
             Zoom = 1.0;
+            this.node = null;
         }
 
-        [Browsable(true)]
+        /// <summary>
+        /// Create a new track for a node.
+        /// </summary>
+        /// <param name="node"></param>
+        public Track(urakawa.core.TreeNode node): this()
+        {
+            this.node = node;
+        }
+
+        /// <summary>
+        /// Base size (at zoom factor 1.)
+        /// </summary>
         public Size BaseSize
         {
             get { return this.baseSize; }
@@ -33,7 +50,24 @@ namespace Bobi.View
             }
         }
 
-        [Browsable(true)]
+        /// <summary>
+        /// Node for this track.
+        /// </summary>
+        public urakawa.core.TreeNode Node { get { return this.node; } }
+
+        public bool Selected
+        {
+            get { return this.selected; }
+            set
+            {
+                this.selected = value;
+                BackColor = this.selected ? Color.Aquamarine : Color.AliceBlue;
+            }
+        }
+
+        /// <summary>
+        /// Zoom factor.
+        /// </summary>
         public double Zoom
         {
             get { return this.zoom; }
@@ -50,5 +84,19 @@ namespace Bobi.View
             // Calling the base class OnPaint
             base.OnPaint(pe);
         }
+
+        // Propagate selection upward
+        private void SelectUp()
+        {
+            ProjectView view = Parent as ProjectView;
+            if (view != null)
+            {
+                Selected = true;
+                view.SelectFromBelow(this.node);
+            }
+        }
+
+        private void Track_Click(object sender, EventArgs e) { SelectUp(); }
+        private void Track_Enter(object sender, EventArgs e) { SelectUp(); }
     }
 }
