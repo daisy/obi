@@ -697,6 +697,7 @@ namespace Obi
             // mPageToolStripMenuItem
             // 
             this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
+            mPageToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.G);
             resources.ApplyResources(this.mPageToolStripMenuItem, "mPageToolStripMenuItem");
             this.mPageToolStripMenuItem.Click += new System.EventHandler(this.mPageToolStripMenuItem_Click);
             // 
