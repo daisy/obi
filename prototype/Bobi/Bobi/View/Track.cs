@@ -64,9 +64,17 @@ namespace Bobi.View
             set
             {
                 this.selected = value;
-                BackColor = this.selected ? Color.Blue : Color.Gray;
+                if (Parent is ProjectView) SetColorScheme(((ProjectView)Parent).ColorScheme);
                 if (this.selected && Parent is ProjectView) ((ProjectView)Parent).ScrollControlIntoView(this);
             }
+        }
+
+        /// <summary>
+        /// Set the colors for this track.
+        /// </summary>
+        public void SetColorScheme(ColorSettings scheme)
+        {
+            BackColor = this.selected ? scheme.TrackSelectedBackColor : scheme.TrackBackColor;
         }
 
         /// <summary>
@@ -104,5 +112,10 @@ namespace Bobi.View
         }
 
         private void Track_Click(object sender, EventArgs e) { SelectUp(); }
+
+        private void Track_ParentChanged(object sender, EventArgs e)
+        {
+            if (Parent is ProjectView) SetColorScheme(((ProjectView)Parent).ColorScheme);
+        }
     }
 }

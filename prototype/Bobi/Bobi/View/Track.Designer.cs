@@ -33,6 +33,7 @@ namespace Bobi.View
             // Track
             // 
             this.Click += new System.EventHandler(this.Track_Click);
+            this.ParentChanged += new System.EventHandler(this.Track_ParentChanged);
             this.ResumeLayout(false);
 
         }

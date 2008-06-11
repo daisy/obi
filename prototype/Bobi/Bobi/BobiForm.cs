@@ -20,7 +20,8 @@ namespace Bobi
         {
             InitializeComponent();
             this.settings = new Settings();
-            SetColorScheme(this.settings.ColorScheme);
+            SetColorScheme(SystemInformation.HighContrast ? this.settings.ColorScheme_HighContrast : this.settings.ColorScheme);
+            Microsoft.Win32.SystemEvents.UserPreferenceChanged += new Microsoft.Win32.UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
             this.projectView.SelectionSet += new SelectionSetEventHandler(projectView_SelectionSet);
             HideStatusProgressBar();
             Project = new Project();
@@ -364,6 +365,11 @@ namespace Bobi
         {
             this.statusProgressBar.Visible = true;
             this.statusProgressBar.Style = ProgressBarStyle.Marquee;
+        }
+
+        private void SystemEvents_UserPreferenceChanged(object sender, Microsoft.Win32.UserPreferenceChangedEventArgs e)
+        {
+            SetColorScheme(SystemInformation.HighContrast ? this.settings.ColorScheme_HighContrast : this.settings.ColorScheme);
         }
 
         // Update the status of the application (mostly menus)

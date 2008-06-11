@@ -38,6 +38,11 @@ namespace Bobi.View
         public Clipboard Clipboard { get { return this.clipboard; } }
 
         /// <summary>
+        /// Color scheme of the parent form.
+        /// </summary>
+        public ColorSettings ColorScheme { get { return ((BobiForm)Parent).ColorScheme; } }
+
+        /// <summary>
         /// True if there is at least one track that is not selected.
         /// </summary>
         public bool HasUnselectedTrack
@@ -120,6 +125,7 @@ namespace Bobi.View
         public void SetColorScheme(ColorSettings scheme)
         {
             BackColor = scheme.ProjectViewBackColor;
+            foreach (Control c in Controls) if (c is Track) ((Track)c).SetColorScheme(scheme);
         }
 
         /// <summary>
