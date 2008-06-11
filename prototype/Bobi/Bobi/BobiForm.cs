@@ -10,12 +10,18 @@ namespace Bobi
 {
     public partial class BobiForm : Form
     {
+        private Settings settings;
+        private ColorSettings colorScheme;
+
         /// <summary>
         /// Initialize a new form for the application.
         /// </summary>
         public BobiForm()
         {
             InitializeComponent();
+            this.settings = new Settings();
+            SetColorScheme(this.settings.ColorScheme);
+            this.projectView.SelectionSet += new SelectionSetEventHandler(projectView_SelectionSet);
             HideStatusProgressBar();
             Project = new Project();
         }
@@ -104,12 +110,14 @@ namespace Bobi
         private void edit_SelectAllMenuItem_Click(object sender, EventArgs e)
         {
             this.projectView.SelectAllFromAbove();
+            UpdateStatusForNewSelection(this.projectView.Selection);
         }
 
         // &Edit > Select &nothing (Ctrl+Shift+A)
         private void edit_SelectNothingMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.projectView.SelectFromAbove(null);
+            UpdateStatusForNewSelection(null);
         }
 
 
@@ -169,6 +177,11 @@ namespace Bobi
         }
 
         /// <summary>
+        /// Current color scheme for the whole application.
+        /// </summary>
+        public ColorSettings ColorScheme { get { return this.colorScheme; } }
+
+        /// <summary>
         /// Update status and selection after a command was executed (done or redone.)
         /// </summary>
         private void ExecutedCommand(urakawa.undo.ICommand command)
@@ -177,6 +190,7 @@ namespace Bobi
             if (command is Commands.ISelectionAfter && ((Commands.ISelectionAfter)command).UpdateSelection)
             {
                 this.projectView.SelectFromAbove(((Commands.ISelectionAfter)command).SelectionAfter);
+                UpdateStatusForNewSelection(this.projectView.Selection);
             }
         }
 
@@ -251,6 +265,14 @@ namespace Bobi
             }
         }
 
+        private void SetColorScheme(ColorSettings scheme)
+        {
+            this.colorScheme = scheme;
+            this.projectView.SetColorScheme(scheme);
+        }
+
+        public Settings Settings { get { return this.settings; } }
+
         void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
             if (Project != null && Project.Initialized)
@@ -286,12 +308,18 @@ namespace Bobi
             if (e.UnDoneCommand is Commands.ISelectionAfter)
             {
                 this.projectView.SelectFromAbove(((Commands.ISelectionAfter)e.UnDoneCommand).SelectionBefore);
+                UpdateStatusForNewSelection(this.projectView.Selection);
             }
         }
 
         private void project_presentationAdded(object sender, urakawa.events.project.PresentationAddedEventArgs e)
         {
             SetPresentationEvents(e.AddedPresentation);
+        }
+
+        private void projectView_SelectionSet(object sender, SelectionSetEventArgs e)
+        {
+            UpdateStatusForNewSelection(e.Selection);
         }
 
         // Save the project to its current path, or try a different path.
@@ -389,6 +417,18 @@ namespace Bobi
                 this.audio_NewTrackMenuItem.Enabled = true;
                 this.audio_ImportAudioMenuItem.Enabled = false;
             }
+        }
+
+        // Update status when the selection has changed
+        private void UpdateStatusForNewSelection(Selection selection)
+        {
+            this.edit_CutMenuItem.Enabled = selection != null;
+            this.edit_CopyMenuItem.Enabled = selection != null;
+            this.edit_PasteMenuItem.Enabled = this.projectView.Clipboard != null && this.projectView.Clipboard.CanPaste(selection);
+            this.edit_DeleteMenuItem.Enabled = selection != null;
+            this.edit_SelectAllMenuItem.Enabled = this.projectView.HasUnselectedTrack;
+            this.edit_SelectNothingMenuItem.Enabled = selection != null;
+            this.audio_ImportAudioMenuItem.Enabled = selection is NodeSelection && selection.ItemsInSelection == 1;
         }
     }
 }

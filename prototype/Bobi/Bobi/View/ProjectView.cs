@@ -10,9 +10,13 @@ namespace Bobi.View
 {
     public partial class ProjectView : FlowLayoutPanel
     {
+        private Clipboard clipboard;  // clipboard
         private Project project;      // current project (may be null)
         private Selection selection;  // current selection
         private double zoom;          // current zoom factor
+
+        public event SelectionSetEventHandler SelectionSet;  // selection was set from this control, or below
+
 
         /// <summary>
         /// New project view
@@ -22,10 +26,28 @@ namespace Bobi.View
             InitializeComponent();
             DoubleBuffered = true;
             Project = null;
+            this.clipboard = null;
             this.selection = null;
             Zoom = 1.0;
         }
 
+
+        /// <summary>
+        /// Get the view's clipboard.
+        /// </summary>
+        public Clipboard Clipboard { get { return this.clipboard; } }
+
+        /// <summary>
+        /// True if there is at least one track that is not selected.
+        /// </summary>
+        public bool HasUnselectedTrack
+        {
+            get
+            {
+                foreach (Control c in Controls) if (c is Track && !((Track)c).Selected) return true;
+                return false;
+            }
+        }
 
         /// <summary>
         /// The project for this view.
@@ -69,8 +91,12 @@ namespace Bobi.View
             {
                 if (c is Track) ((NodeSelection)this.selection).AddNode(((Track)c).Node);
             }
+            this.selection.SelectControls();
         }
 
+        /// <summary>
+        /// Set a selection from above.
+        /// </summary>
         public void SelectFromAbove(Selection selection)
         {
             if (this.selection != null) this.selection.Deselect();
@@ -86,9 +112,14 @@ namespace Bobi.View
             if (this.selection != null)
             {
                 this.selection.Deselect();
-                // send event
             }
             this.selection = new NodeSelection(this, node);
+            if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
+        }
+
+        public void SetColorScheme(ColorSettings scheme)
+        {
+            BackColor = scheme.ProjectViewBackColor;
         }
 
         /// <summary>
@@ -108,6 +139,7 @@ namespace Bobi.View
         }
 
 
+        // Find the track for a given node
         private Track FindTrack(urakawa.core.TreeNode node)
         {
             foreach (Control c in Controls)
@@ -117,7 +149,7 @@ namespace Bobi.View
             return null;
         }
 
-        // Let's custom paint
+        // Let's custom paint (or more acurately, let's not.)
         protected override void OnPaint(PaintEventArgs pe)
         {
             // TODO: Add custom paint code here
@@ -174,6 +206,13 @@ namespace Bobi.View
             {
                 Controls.RemoveAt(((urakawa.events.core.ChildRemovedEventArgs)e).RemovedPosition);
             }
+        }
+
+        private void ProjectView_Click(object sender, EventArgs e)
+        {
+            if (this.selection != null) this.selection.Deselect();
+            this.selection = null;
+            if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
         }
     }
 }

@@ -55,13 +55,17 @@ namespace Bobi.View
         /// </summary>
         public urakawa.core.TreeNode Node { get { return this.node; } }
 
+        /// <summary>
+        /// Get or set the selected flag for this track.
+        /// </summary>
         public bool Selected
         {
             get { return this.selected; }
             set
             {
                 this.selected = value;
-                BackColor = this.selected ? Color.Aquamarine : Color.AliceBlue;
+                BackColor = this.selected ? Color.Blue : Color.Gray;
+                if (this.selected && Parent is ProjectView) ((ProjectView)Parent).ScrollControlIntoView(this);
             }
         }
 
@@ -88,15 +92,17 @@ namespace Bobi.View
         // Propagate selection upward
         private void SelectUp()
         {
-            ProjectView view = Parent as ProjectView;
-            if (view != null)
+            if (!this.selected)
             {
-                Selected = true;
-                view.SelectFromBelow(this.node);
+                ProjectView view = Parent as ProjectView;
+                if (view != null)
+                {
+                    Selected = true;
+                    view.SelectFromBelow(this.node);
+                }
             }
         }
 
         private void Track_Click(object sender, EventArgs e) { SelectUp(); }
-        private void Track_Enter(object sender, EventArgs e) { SelectUp(); }
     }
 }
