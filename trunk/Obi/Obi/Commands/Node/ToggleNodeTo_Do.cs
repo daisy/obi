@@ -26,7 +26,7 @@ namespace Obi.Commands.Node
 
         public override void unExecute()
         {
-            mNode.AssignTo_DoMark(!mOriginalStatus);
+            mNode.AssignTo_DoMark(mOriginalStatus);
             base.unExecute();
         }
 
