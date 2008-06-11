@@ -107,7 +107,7 @@ namespace Obi.ProjectView
 
         public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
-        public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
+                public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
         public bool CanNavigatePrevSection { get { return Enabled && mRecordingSession == null; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
@@ -1628,7 +1628,13 @@ namespace Obi.ProjectView
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
 
-        private void mCustomClassMarkButton_Click(object sender, EventArgs e) { MarkCustomClass(); }
+        private void mCustomClassMarkButton_Click(object sender, EventArgs e) 
+        {
+            // add check for preferences flag for  marking T_do phrase or custom phrase
+            // currently commenting custom phrase because it do not have good accessibility
+            MarkTodoClass();
+            //MarkCustomClass(); 
+        }
 
         /// <summary>
         /// Mark custom class on current block. Currently defaults to "TODO".
@@ -1666,7 +1672,7 @@ namespace Obi.ProjectView
 
         public void MarkTodoClass()
         {
-                        EmptyNode node;
+                                    EmptyNode node = null ;
             if (IsRecording)
             {
                 node =(EmptyNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
@@ -1679,7 +1685,10 @@ namespace Obi.ProjectView
                 NextPhrase();
             }
             else
-            {
+                        {
+                            if (mState == State.Playing || mState == State.Paused)
+                                node =(EmptyNode)  mCurrentPlaylist.CurrentPhrase;
+                            else if ( mView.Selection != null && mView.Selection.Node is EmptyNode)
                 node = mView.SelectedNodeAs<EmptyNode>();
 
                 if (node != null)
