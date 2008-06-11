@@ -23,7 +23,10 @@ namespace Obi.Commands.Node
             mNode = node;
             mParent = node.ParentAs<ObiNode>();
             mIndex = mNode.Index;
-            mAfter = GetPostDeleteSelection();
+            if (view.Selection != null && view.Selection.Node == node)
+                mAfter = GetPostDeleteSelection();
+            else
+                mAfter = view.Selection;
             Label = label;
         }
 
