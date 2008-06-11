@@ -1078,7 +1078,7 @@ if ( TransportBar.IsPlayerActive )
 
         public void ToggleEmptyNodeTo_DoMark()
         {
-            if (Selection.Node is EmptyNode)
+            if ( Selection != null &&  Selection.Node is EmptyNode)
             {
                                 EmptyNode node = (EmptyNode)Selection.Node;
                 Commands.Node.ToggleNodeTo_Do command = new Commands.Node.ToggleNodeTo_Do(this, node);

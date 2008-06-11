@@ -910,8 +910,6 @@ namespace Obi.ProjectView
                     command.append(add);
 
                 mView.Presentation.getUndoRedoManager().execute(command);
-                //if (mView.Selection.Control.GetType() == typeof(StripsView) && mView.Selection.Node != phrase)
-                    //mView.Selection = new NodeSelection(phrase, mView.Selection.Control);
             }
             else
             {
