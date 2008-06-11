@@ -899,14 +899,19 @@ namespace Obi.ProjectView
             //add.UpdateSelection = false;
             if (e.PhraseIndex == 0)
             {
-                command.append(add);
-                if (emptyNode != null && e.PhraseIndex == 0)
+                                if (emptyNode != null && e.PhraseIndex == 0)
                 {
                     phrase.CopyKind(emptyNode);
                     phrase.Used = emptyNode.Used;
                     command.append(new Commands.Node.Delete(mView, emptyNode));
+                    command.append(add);
                 }
+                else
+                    command.append(add);
+
                 mView.Presentation.getUndoRedoManager().execute(command);
+                //if (mView.Selection.Control.GetType() == typeof(StripsView) && mView.Selection.Node != phrase)
+                    //mView.Selection = new NodeSelection(phrase, mView.Selection.Control);
             }
             else
             {
