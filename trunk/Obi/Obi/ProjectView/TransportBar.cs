@@ -1652,19 +1652,23 @@ namespace Obi.ProjectView
                         node = mView.SelectedNodeAs<EmptyNode>();
                     }
                 }
+                mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                     mView.MarkRole, mView.MarkCustomRole));
+                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             }
         }
 
         public void MarkTodoClass()
         {
-            EmptyNode node;
+                        EmptyNode node;
             if (IsRecording)
             {
                 node =(EmptyNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
 
+                mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                  mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTo_Do(mView , node) );
+                 mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                                 //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                 //EmptyNode.Kind.TODO));
                 NextPhrase();
@@ -1675,13 +1679,14 @@ namespace Obi.ProjectView
 
                 if (node != null)
                 {
+                    mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
-
+                    mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                         //EmptyNode.Kind.TODO));
                 }
             }
-        }
+                    }
 
 
         private void PlaybackOnSelectionChange ()
