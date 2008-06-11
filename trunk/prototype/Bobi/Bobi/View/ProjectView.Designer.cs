@@ -33,6 +33,7 @@ namespace Bobi.View
             // ProjectView
             // 
             this.AutoScroll = true;
+            this.Click += new System.EventHandler(this.ProjectView_Click);
             this.ResumeLayout(false);
 
         }

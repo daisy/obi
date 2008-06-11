@@ -123,4 +123,29 @@
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>125, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAA
+        AABQPJ+jXkmvy2hUt9FvW73VdF/B13RfwddyX8DXblu80WlVt8thTLDDWkWosU06mYc8KoElAAAAAQAA
+        AAEAAAABZVC12a+b//+vm///r5v//6+b//+vm///r5v//6+b//+vm///r5v//6iU9/+Tf+D/W0atyTko
+        ehMAAAABAAAAAWpVudevm///r5v//6+b//+vm///r5v//6+b//+vm///r5v//6+b//+vm///r5v//2ZR
+        tdVAK4gxAAAAAQAAAAFpVbjXr5v//6+b//+vm///r5v//6+b//+vm///p5Tz+5aF2/FxZKTdIh4yy52L
+        5PdpVbrbIyZdZwAAAAEAAAABala82a+b//+tmv//n4zm+aKQ6vukkvH5Z1uW3WBVjN1zZqffeWuw4Ssm
+        PsuWgdTpY1zB6RVAdt0ILUmXCRwwFW1ZwNutmv//bFBO5WVGGONmRxvlSTc735SD2fGvm///r5v//6+b
+        //+vm///tpv//19Zv+caguH3GHzO+w0zV7tuWr3bnInf+XBPE+X6wwD/+sMA/3VUGueYhdP3rpr//6yX
+        //+wnP/5rJj//7ab//9cV73lGXnU9xJcmuUNMVLHa1e82Z6L5f1yURbn+MIA//XAAP+RaxHpjnew77Wk
+        /PHZ1enVs7K60d7Y+N20mf3/Ukut5QwwU8sHIDNpCRwwDWZRutGtmv//emJx63JRE+V/WgDhZkgo56eS
+        +P/e1vzdIiIi5QAAAP9bW1vVx7r18WNOts8mJF4lAAAAAQAAAAFfSrHJr5v//6uZ//9wVE3lcU8E54Jt
+        l+2rlv//2tH+4ygoKOEAAAD/MjIy48C26u9fSbO5AAAAAQAAAAEAAAABV0Kpu6iU9/+smf//fWJd55Rt
+        AemEbIztrZr//7ak//XNytnXdXV10cjGz9Wij+j3VUClmQAAAAEAAAABAAAAAU87np+TgOL9rJr//39j
+        YOmUbQDpgWmE666a//+umv//s6H/+ci6/+m0ovz3iHPW70czkXEAAAABAAAAAQAAAAE+K4VRbVnA4a2a
+        //+AZmvpiWQF54Vtke2umv//r5v//6+b//+tmP//rpr//2dSt9s9KoM5AAAAAQAAAAEAAAABAAAAAVM/
+        qKuQfdj9hWtz6YhjBueFbpPtrpr//6+b//+vm///r5v//4t32flRPKKtAAAAAQAAAAEAAAABAAAAAQAA
+        AAE5KHoVWESsr2VLWumLZgTrhm6U7a6a//+vm///qJX4/3xpyu9UP6fBOyl/GQAAAAEAAAABAAAAAQAA
+        AAEAAAABAAAAATkpgAlDLUl1TzMCxWJLkddzX8TZZlG1z1ZBp71HM5KBOSh6DwAAAAEAAAABAAAAAQAA
+        AAEAAAABAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA
+        //8AAP//AAD//w==
+</value>
+  </data>
 </root>

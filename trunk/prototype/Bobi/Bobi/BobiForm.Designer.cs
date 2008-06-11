@@ -28,6 +28,7 @@ namespace Bobi
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BobiForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.file_NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +93,7 @@ namespace Bobi
             // 
             this.file_NewMenuItem.Name = "file_NewMenuItem";
             this.file_NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.file_NewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.file_NewMenuItem.Size = new System.Drawing.Size(142, 22);
             this.file_NewMenuItem.Text = "&New";
             this.file_NewMenuItem.Click += new System.EventHandler(this.file_NewMenuItem_Click);
             // 
@@ -100,7 +101,7 @@ namespace Bobi
             // 
             this.file_OpenMenuItem.Name = "file_OpenMenuItem";
             this.file_OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.file_OpenMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.file_OpenMenuItem.Size = new System.Drawing.Size(142, 22);
             this.file_OpenMenuItem.Text = "&Open";
             this.file_OpenMenuItem.Click += new System.EventHandler(this.file_OpenMenuItem_Click);
             // 
@@ -108,7 +109,7 @@ namespace Bobi
             // 
             this.file_CloseMenuItem.Name = "file_CloseMenuItem";
             this.file_CloseMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.file_CloseMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.file_CloseMenuItem.Size = new System.Drawing.Size(142, 22);
             this.file_CloseMenuItem.Text = "&Close";
             this.file_CloseMenuItem.Click += new System.EventHandler(this.file_CloseMenuItem_Click);
             // 
@@ -116,20 +117,20 @@ namespace Bobi
             // 
             this.file_SaveMenuItem.Name = "file_SaveMenuItem";
             this.file_SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.file_SaveMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.file_SaveMenuItem.Size = new System.Drawing.Size(142, 22);
             this.file_SaveMenuItem.Text = "&Save";
             this.file_SaveMenuItem.Click += new System.EventHandler(this.file_SaveMenuItem_Click);
             // 
             // separator1
             // 
             this.separator1.Name = "separator1";
-            this.separator1.Size = new System.Drawing.Size(149, 6);
+            this.separator1.Size = new System.Drawing.Size(139, 6);
             // 
             // file_ExitMenuItem
             // 
             this.file_ExitMenuItem.Name = "file_ExitMenuItem";
             this.file_ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.file_ExitMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.file_ExitMenuItem.Size = new System.Drawing.Size(142, 22);
             this.file_ExitMenuItem.Text = "E&xit";
             this.file_ExitMenuItem.Click += new System.EventHandler(this.file_ExitMenuItem_Click);
             // 
@@ -313,6 +314,7 @@ namespace Bobi
             // projectView
             // 
             this.projectView.AutoScroll = true;
+            this.projectView.BackColor = System.Drawing.Color.White;
             this.projectView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projectView.Location = new System.Drawing.Point(0, 24);
             this.projectView.Name = "projectView";
@@ -330,6 +332,7 @@ namespace Bobi
             this.Controls.Add(this.projectView);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "BobiForm";
             this.Text = "Bobi";

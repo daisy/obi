@@ -35,7 +35,7 @@ namespace Bobi.Commands
                 ((Project)this.presentation.getProject()).NumberOfTracks);
         }
         
-        public string getShortDescription() { return "new track"; }
+        public string getShortDescription() { return "add new track"; }
 
         public void execute()
         {

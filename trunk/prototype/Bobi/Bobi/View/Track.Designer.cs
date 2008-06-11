@@ -33,7 +33,6 @@ namespace Bobi.View
             // Track
             // 
             this.Click += new System.EventHandler(this.Track_Click);
-            this.Enter += new System.EventHandler(this.Track_Enter);
             this.ResumeLayout(false);
 
         }
