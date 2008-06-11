@@ -1668,6 +1668,9 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+                /// </summary>
+                ///  apply to do mark on empty nodes 
         public void MarkTodoClass()
         {
                                     EmptyNode node = null ;
@@ -1678,9 +1681,7 @@ namespace Obi.ProjectView
                 mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                  mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTo_Do(mView , node) );
                  mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                                //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                //EmptyNode.Kind.TODO));
-                NextPhrase();
+                                NextPhrase();
             }
             else
                         {
@@ -1694,10 +1695,9 @@ namespace Obi.ProjectView
                     mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
                     mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                    //mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                        //EmptyNode.Kind.TODO));
-                }
+                                                            }
             }
+
                     }
 
 
