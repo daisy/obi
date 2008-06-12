@@ -56,11 +56,13 @@ namespace Obi.Commands.Node
         {
             mParent.Insert(mCopy, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
+            View.UpdateBlocksLabelInStrip( (SectionNode) mParent);
         }
 
         public override void unExecute()
         {
             mCopy.Detach();
+            View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.unExecute();
         }
     }

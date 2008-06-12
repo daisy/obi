@@ -40,11 +40,13 @@ namespace Obi.Commands.Node
         {
             mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
+            if (mNode is EmptyNode ) View.UpdateBlocksLabelInStrip((SectionNode) mParent);
         }
 
         public override void unExecute()
         {
             mParent.Insert(mNode, mIndex);
+            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.unExecute();
         }
 

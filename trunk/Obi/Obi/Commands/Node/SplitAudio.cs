@@ -29,11 +29,13 @@ namespace Obi.Commands.Node
             mNewNode.Used = mNode.Used;
             mNode.InsertAfterSelf(mNewNode);
             if (UpdateSelection) View.SelectedBlockNode = mNewNode;
+            if (mNewNode != null) View.UpdateBlocksLabelInStrip(mNewNode.ParentAs<SectionNode>());
         }
 
         public override void unExecute()
         {
             MergeAudio.Merge(mNode, mNewNode);
+            if (mNode != null) View.UpdateBlocksLabelInStrip(mNode.ParentAs<SectionNode>());
             base.unExecute();
         }
     }

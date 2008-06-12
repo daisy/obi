@@ -16,6 +16,7 @@ namespace Obi.ProjectView
         private StripsView mParentView;  // parent strip view
         private bool mWrap;              // wrap contents
         private bool mEntering;          // entering flag
+        private Mutex m_MutexUpdateThread;
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -27,6 +28,8 @@ namespace Obi.ProjectView
             Selected = false;
             mWrap = false;
             mEntering = false;
+
+            m_MutexUpdateThread = new Mutex();
         }
 
         /// <summary>
@@ -490,21 +493,24 @@ namespace Obi.ProjectView
         {
             // System.Diagnostics.Debug.Print("<---> Resize block panel to " + mBlocksPanel.Size);
         }
+        
 
-        public void UpdateBlockLabelsInStrip()
+                public void UpdateBlockLabelsInStrip()
         {
-            int BlocksCount = mBlocksPanel.Controls.Count;
+            m_MutexUpdateThread.WaitOne();
+                        int BlocksCount = mBlocksPanel.Controls.Count;
             Control BlockControl = null ;
-
-            for (int i = 0; i < BlocksCount; i++)
+            
+            for (int i = 0 ; i < BlocksCount; i++)
             {
                 BlockControl = mBlocksPanel.Controls[i] ;
                 if (BlockControl is Block )
                                     {
                                                                                 ((Block)BlockControl).UpdateLabel();
                 }
+            }// end loop
 
-            }
+            m_MutexUpdateThread.ReleaseMutex();
         }
 
     }

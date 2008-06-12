@@ -43,12 +43,15 @@ namespace Obi.Commands.Node
             }
             if (View.Selection != null) View.Selection = new NodeSelection(mParentSection.PhraseChild(mOriginalPhraseIndex), View.Selection.Control);
             mOriginalPhrase.Detach();
+            View.UpdateBlocksLabelInStrip(mParentSection);
                     }
 
         public override void unExecute()
         {
             for (int i = 0; i < mDetectedPhrases.Count; i++) mDetectedPhrases[i].Detach();
             mParentSection.Insert(mOriginalPhrase, mOriginalPhraseIndex);
+
+            View.UpdateBlocksLabelInStrip(mParentSection);
             base.unExecute();
         }
 

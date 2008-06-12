@@ -6,6 +6,7 @@ namespace Obi.Commands.Node
     {
         private PhraseNode mNode;          // the selected phrase
         private PhraseNode mNextNode;      // the following phrase to merge with
+        private SectionNode mParentNode;
         private Time mSplitPoint;          // the split point of the new merged node
         private NodeSelection mSelection;  // the selection
 
@@ -36,12 +37,15 @@ namespace Obi.Commands.Node
         {
             Merge(mNode, mNextNode);
             if (UpdateSelection) View.Selection = mSelection;
-        }
+            View.UpdateBlocksLabelInStrip(mParentNode);
+                    }
 
         public override void unExecute()
         {
             mNextNode.Audio = mNode.SplitAudio(mSplitPoint);
             mNode.InsertAfterSelf(mNextNode);
+
+            View.UpdateBlocksLabelInStrip(mParentNode);
             base.unExecute();
         }
     }

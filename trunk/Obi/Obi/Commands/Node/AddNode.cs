@@ -33,11 +33,13 @@ namespace Obi.Commands.Node
         {
             mParent.Insert(mNode, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
+            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
 
         public override void unExecute()
         {
             mNode.Detach();
+            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.unExecute();
         }
     }
@@ -57,6 +59,6 @@ namespace Obi.Commands.Node
         {
             base.execute();
             View.Selection = new NodeSelection(mNode, mControl);
-        }
+                    }
     }
 }
