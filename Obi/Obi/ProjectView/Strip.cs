@@ -495,22 +495,21 @@ namespace Obi.ProjectView
         }
         
 
-                public void UpdateBlockLabelsInStrip()
+                public void UpdateBlockLabelsInStrip( object sender  , DoWorkEventArgs e)
         {
             m_MutexUpdateThread.WaitOne();
                         int BlocksCount = mBlocksPanel.Controls.Count;
             Control BlockControl = null ;
-            
-            for (int i = 0 ; i < BlocksCount; i++)
+                    
+                        for (int i = 0 ; i < BlocksCount; i++)
             {
                 BlockControl = mBlocksPanel.Controls[i] ;
                 if (BlockControl is Block )
                                     {
-                                                                                ((Block)BlockControl).UpdateLabel();
+                                                                                ((Block)BlockControl).UpdateLabelsText();
                 }
             }// end loop
-
-            m_MutexUpdateThread.ReleaseMutex();
+                                             m_MutexUpdateThread.ReleaseMutex();
         }
 
     }

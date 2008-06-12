@@ -90,16 +90,22 @@ namespace Obi.ProjectView
             AccessibleName = String.Format(Localizer.Message("audio_block_label"),
                 mLabel.Text, mNode.Index + 1, mNode.ParentAs<SectionNode>().PhraseChildCount,
                 mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));*/
-            mLabel.Text = Node.BaseStringShort();
-            AccessibleName = Node.BaseString();
-            if (mWaveform != null)
-                mWaveform.AccessibleName = AccessibleName;
+
+            UpdateLabelsText();
             if (LabelFullWidth > WaveformDefaultWidth)
             {
                 if (mWaveform != null) mWaveform.Width = mLabel.Width;
                 Size = new Size(LabelFullWidth, Height);
             }
         }
+
+        public override void UpdateLabelsText()
+        {
+            mLabel.Text = Node.BaseStringShort();
+            AccessibleName = Node.BaseString();
+            if (mWaveform != null)
+                mWaveform.AccessibleName = AccessibleName;
+                    }
 
         // Fill (current) width of the waveform.
         protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }

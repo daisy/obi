@@ -71,7 +71,7 @@ namespace Obi.ProjectView
                 ObiNode parent = mStripsView.Selection.ParentForNewNode(node);
                 AddUnusedAndExecute(new Commands.Node.AddEmptyNode(this, node, parent, mStripsView.Selection.IndexForNewNode(node)),
                     node, parent);
-            }
+                            }
         }
 
         /// <summary>
@@ -1021,7 +1021,14 @@ if ( TransportBar.IsPlayerActive )
 
         public void SplitPhrase()
         {
-            if (CanSplitPhrase) { mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this)); }
+                        if (CanSplitPhrase) 
+            {
+                TransportBar.SelectionChangedPlaybackEnabled = false;
+                                            mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
+                                            if (ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume( mSelection.Node);
+                TransportBar.SelectionChangedPlaybackEnabled = true;
+            }
+            
         }
 
         /// <summary>
@@ -1219,7 +1226,9 @@ if ( TransportBar.IsPlayerActive )
                 PhraseDetectionDialog.ShowDialog();
                 if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
                 {
+                    TransportBar.SelectionChangedPlaybackEnabled = false;
                     mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
+                    TransportBar.SelectionChangedPlaybackEnabled = true;
                                                         }
             }// check for phrase node ends
             else

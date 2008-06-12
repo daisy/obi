@@ -26,6 +26,7 @@ namespace Obi.ProjectView
         private bool mAllowOverwrite;                // if true, recording can overwrite data
         private bool mPlayIfNoSelection;             // play all when no selection if true; play nothing otherwise
 
+        private bool m_SelectionChangedPlayEnable; // flag for enabling / disabling playback on change of selection
         private int mPreviewDuration;                // duration of preview playback in milliseconds (from the settings)
         private PhraseNode mResumeRecordingPhrase;   // last phrase recorded (?)
 
@@ -72,6 +73,7 @@ namespace Obi.ProjectView
             mAllowOverwrite = true;
             mPlayIfNoSelection = true;
             mState = State.Stopped;
+            m_SelectionChangedPlayEnable = true;
             AddTransportBarAccessibleName();
         }
 
@@ -99,6 +101,12 @@ namespace Obi.ProjectView
         /// Set from an Obi preference.
         /// </summary>
         public bool AllowOverwrite { set { mAllowOverwrite = value; } }
+
+        public bool SelectionChangedPlaybackEnabled
+        {
+            get { return m_SelectionChangedPlayEnable; }
+            set { m_SelectionChangedPlayEnable = value; }
+                    }
 
         /// <summary>
         /// Get the audio player used by the transport bar.
@@ -385,7 +393,7 @@ namespace Obi.ProjectView
                 UpdateButtons();
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
                     UpdateButtons();
-                    PlaybackOnSelectionChange();
+                    if (Enabled && m_SelectionChangedPlayEnable )   PlaybackOnSelectionChange();
                 });
             }
         }
@@ -796,21 +804,25 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-            if (mState == State.Monitoring)
+            if (mView.Presentation != null)
             {
-                mRecordingSession.Stop();
-                StartRecording();
-            }
-            else if (CanResumeRecording)
-            {
-                SetupRecording(Recording);
-                // PrepareForRecording(true, mResumeRecordingPhrase);
-            }
-            else
-            {
-                SetupRecording(Monitoring);
-                // PrepareForRecording(false, null);
-            }
+                if (mState == State.Monitoring)
+                {
+                    mRecordingSession.Stop();
+                    StartRecording();
+                }
+                else if (CanResumeRecording)
+                {
+                    SetupRecording(Recording);
+                    // PrepareForRecording(true, mResumeRecordingPhrase);
+                }
+                else
+                {
+                    SetupRecording(Monitoring);
+                    // PrepareForRecording(false, null);
+                }
+
+            } // presentation check ends
         }
 
 

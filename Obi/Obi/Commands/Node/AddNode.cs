@@ -34,7 +34,7 @@ namespace Obi.Commands.Node
             mParent.Insert(mNode, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
             if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
-        }
+                    }
 
         public override void unExecute()
         {
