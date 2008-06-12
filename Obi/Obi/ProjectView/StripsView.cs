@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Obi.ProjectView
 {
@@ -1160,11 +1161,22 @@ null;
             }
         }
 
-        public void UpdateBlocksLabelInStrip(SectionNode node)
+        public void UpdateBlocksLabelInStrip(SectionNode node )
         {
             Strip s = FindStrip(node);
             if (s != null)
-                                            s.UpdateBlockLabelsInStrip();
+            {
+                try 
+                    {
+                Thread UpdateStripThread = new Thread(new ThreadStart(s.UpdateBlockLabelsInStrip));
+                UpdateStripThread.IsBackground = true;
+                UpdateStripThread.Start();
+                    }
+                    catch ( System.Exception )
+                {
+                        return ;
+                    }
+                            }
                                 }
 
     }
