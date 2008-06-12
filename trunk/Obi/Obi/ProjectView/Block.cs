@@ -115,11 +115,16 @@ namespace Obi.ProjectView
         // Since there is no content, the width is always that of the label's.
         public virtual void UpdateLabel()
         {
+            UpdateLabelsText();
+            Size = new Size(LabelFullWidth, Height);
+        }
+
+        public virtual void UpdateLabelsText()
+        {
             mLabel.Text = Node.BaseStringShort();
             mLabel.AccessibleName = Node.BaseString();
             AccessibleName = mLabel.AccessibleName;
-            Size = new Size(LabelFullWidth, Height);
-        }
+                    }
 
         // Select/deselect on click
         private void Block_Click(object sender, EventArgs e) { ToggleSelection(); }

@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 0</value>
+  </metadata>
+  <data name="mFileToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>File</value>
   </data>
   <data name="mNewProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>New project Ctrl+N</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mNewProjectToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -789,19 +792,22 @@
     <value>250, 6</value>
   </data>
   <data name="mSetAsHeadingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="mSetAsHeadingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Heading</value>
   </data>
+  <data name="mPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+G</value>
+  </data>
   <data name="mPageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="mPageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Page</value>
   </data>
   <data name="mSilenceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="mSilenceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Silence</value>
@@ -810,13 +816,13 @@
     <value>F9</value>
   </data>
   <data name="mTodoClasstoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="mTodoClasstoolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;TODO</value>
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
+    <value>164, 6</value>
   </data>
   <data name="mAddRoleToolStripTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -1368,9 +1374,9 @@
   <data name="&gt;&gt;mMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 606</value>
-  </data>
+  </metadata>
   <data name="mStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
@@ -1417,7 +1423,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.24956, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.43125, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1425,9 +1431,9 @@
   <data name="&gt;&gt;mProjectView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2469,9 +2475,5 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="mPageToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value />
-    <comment>page ctrl+shift+g</comment>
   </data>
 </root>

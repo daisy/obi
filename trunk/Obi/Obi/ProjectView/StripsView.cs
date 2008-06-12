@@ -1168,10 +1168,10 @@ null;
             {
                 try 
                     {
-                Thread UpdateStripThread = new Thread(new ThreadStart(s.UpdateBlockLabelsInStrip));
-                UpdateStripThread.IsBackground = true;
-                UpdateStripThread.Start();
-                    }
+                                                BackgroundWorker UpdateStripThread = new BackgroundWorker();
+                        UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
+                        UpdateStripThread.RunWorkerAsync();
+                                                        }
                     catch ( System.Exception )
                 {
                         return ;
