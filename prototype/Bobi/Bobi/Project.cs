@@ -6,7 +6,7 @@ namespace Bobi
 {
     public class Project : urakawa.Project
     {
-        public Uri Path;           // path to .xuk file
+        private Uri path;          // path to .xuk file
         private int changes;       // changes since last save
         private bool initialized;  // flag set once the project is properly initialized
 
@@ -16,9 +16,13 @@ namespace Bobi
         /// </summary>
         public Project() : base()
         {
-            Path = null;
+            this.path = null;
             this.changes = 0;
+            setDataModelFactory(new DataModelFactory());
             setPresentation(getDataModelFactory().createPresentation(), 0);
+            urakawa.property.channel.Channel audioChannel = getPresentation(0).getChannelFactory().createChannel();
+            audioChannel.setName("bobi.audio");
+            getPresentation(0).getChannelsManager().addChannel(audioChannel);
             SetUndoRedoEvents();
             this.initialized = true;
         }
@@ -29,9 +33,39 @@ namespace Bobi
         public Project(Uri path) : base()
         {
             Path = path;
+            this.changes = 0;
             this.initialized = false;
+            setDataModelFactory(new DataModelFactory());
         }
 
+
+        /// <summary>
+        /// Create a new audio node by importing data from a file.
+        /// </summary>
+        public urakawa.core.TreeNode CreateAudioNode(string filename)
+        {
+            urakawa.Presentation p = getPresentation(0);
+            urakawa.core.TreeNode node = p.getTreeNodeFactory().createNode(typeof(AudioNode).Name, DataModelFactory.NS);
+            // Update the media data manager to accept this type of file
+            if (!p.getMediaDataManager().getEnforceSinglePCMFormat())
+            {
+                System.IO.FileStream audioStream = System.IO.File.OpenRead(filename);
+                urakawa.media.data.audio.PCMDataInfo info = urakawa.media.data.audio.PCMDataInfo.parseRiffWaveHeader(audioStream);
+                audioStream.Close();
+                p.getMediaDataManager().setDefaultPCMFormat(info);
+                p.getMediaDataManager().setEnforceSinglePCMFormat(true);
+            }
+            // I'll go ahead and not comment this part
+            urakawa.media.data.audio.AudioMediaData audio = p.getMediaDataFactory().createAudioMediaData();
+            audio.appendAudioDataFromRiffWave(filename);
+            urakawa.media.data.audio.ManagedAudioMedia media =
+                (urakawa.media.data.audio.ManagedAudioMedia)p.getMediaFactory().createAudioMedia();
+            media.setMediaData(audio);
+            urakawa.property.channel.ChannelsProperty prop = p.getPropertyFactory().createChannelsProperty();
+            prop.setMedia(FindChannel("bobi.audio"), media);
+            node.addProperty(prop);
+            return node;
+        }
 
         /// <summary>
         /// True if there are changes since the last time the project was saved (or created.)
@@ -56,6 +90,16 @@ namespace Bobi
             openXUK(Path);
             SetUndoRedoEvents();
             this.initialized = true;
+        }
+
+        public Uri Path
+        {
+            get { return this.path; }
+            set
+            {
+                this.path = value;
+                if (this.path != null && getNumberOfPresentations() > 0) getPresentation(0).setRootUri(this.path);
+            }
         }
 
         /// <summary>
@@ -97,6 +141,21 @@ namespace Bobi
                 this.changes += n;
                 notifyChanged(new urakawa.events.DataModelChangedEventArgs(this));
             }
+        }
+
+        // Find a channel by name and return it. Return null when not found.
+        public urakawa.property.channel.Channel FindChannel(string name)
+        {
+            urakawa.property.channel.Channel channel = null;
+            foreach (urakawa.property.channel.Channel ch in getPresentation(0).getChannelsManager().getListOfChannels())
+            {
+                if (ch.getName() == name)
+                {
+                    channel = ch;
+                    break;
+                }
+            }
+            return channel;
         }
 
         // Send changes events when commands are executed or undone.

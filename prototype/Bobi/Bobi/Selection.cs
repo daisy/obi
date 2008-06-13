@@ -73,6 +73,18 @@ namespace Bobi
         }
 
         /// <summary>
+        /// Get the only selected node. Throw an exception if there is no or more than one node selected.
+        /// </summary>
+        public urakawa.core.TreeNode SingleNode
+        {
+            get
+            {
+                if (nodes.Count != 1) throw new Exception(string.Format("Expected a single node in selection, but got {0}.", nodes.Count));
+                return nodes[0];
+            }
+        }
+
+        /// <summary>
         /// Get the view in which the selection is made.
         /// </summary>
         public override View.ProjectView View { get { return this.view; } }

@@ -21,12 +21,23 @@ namespace Bobi
             InitializeComponent();
             this.settings = new Settings();
             SetColorScheme(SystemInformation.HighContrast ? this.settings.ColorScheme_HighContrast : this.settings.ColorScheme);
-            Microsoft.Win32.SystemEvents.UserPreferenceChanged += new Microsoft.Win32.UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
+            Microsoft.Win32.SystemEvents.UserPreferenceChanged +=
+                new Microsoft.Win32.UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
             this.projectView.SelectionSet += new SelectionSetEventHandler(projectView_SelectionSet);
             HideStatusProgressBar();
             Project = new Project();
         }
 
+
+        /// <summary>
+        /// Current color scheme for the whole application.
+        /// </summary>
+        public ColorSettings ColorScheme { get { return this.colorScheme; } }
+
+        /// <summary>
+        /// Current settings.
+        /// </summary>
+        public Settings Settings { get { return this.settings; } }
 
         // &File > &New (Ctrl+N)
         private void file_NewMenuItem_Click(object sender, EventArgs e)
@@ -150,16 +161,16 @@ namespace Bobi
         // &Audio > &Import audio (Ctrl+I)
         private void audio_ImportAudioMenuItem_Click(object sender, EventArgs e)
         {
-            if (Project != null)
+            if (this.projectView.Selection is NodeSelection && 
+                ((NodeSelection)this.projectView.Selection).ItemsInSelection == 1)
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Title = "Import audio";
                 dialog.Filter = "WAV files (*.wav)|*.wav|Any file|*.*";
                 dialog.Multiselect = true;
-                if (dialog.ShowDialog() == DialogResult.OK) { }
+                if (dialog.ShowDialog() == DialogResult.OK) foreach (string filename in dialog.FileNames) ImportAudio(filename);
             }
         }
-
 
 
         // Check whether the project can be closed. If there is a project
@@ -178,9 +189,19 @@ namespace Bobi
         }
 
         /// <summary>
-        /// Current color scheme for the whole application.
+        /// Clean up any resources being used.
         /// </summary>
-        public ColorSettings ColorScheme { get { return this.colorScheme; } }
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            Microsoft.Win32.SystemEvents.UserPreferenceChanged -=
+                new Microsoft.Win32.UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
+            base.Dispose(disposing);
+        }
 
         /// <summary>
         /// Update status and selection after a command was executed (done or redone.)
@@ -188,9 +209,9 @@ namespace Bobi
         private void ExecutedCommand(urakawa.undo.ICommand command)
         {
             statusLabel.Text = command.getLongDescription();
-            if (command is Commands.ISelectionAfter && ((Commands.ISelectionAfter)command).UpdateSelection)
+            if (command is Commands.Command && ((Commands.Command)command).UpdateSelection)
             {
-                this.projectView.SelectFromAbove(((Commands.ISelectionAfter)command).SelectionAfter);
+                this.projectView.SelectFromAbove(((Commands.Command)command).SelectionAfter);
                 UpdateStatusForNewSelection(this.projectView.Selection);
             }
         }
@@ -201,6 +222,19 @@ namespace Bobi
             this.statusProgressBar.Style = ProgressBarStyle.Blocks;
             this.statusProgressBar.Value = 0;
             this.statusProgressBar.Visible = false;
+        }
+
+        // Append a new track to the project.
+        private void NewTrack()
+        {
+            Project.getPresentation(0).getUndoRedoManager().execute(new Commands.NewTrack(this.projectView));
+        }
+
+        // Import an audio file in the selected track
+        private void ImportAudio(string filename)
+        {
+            Project.getPresentation(0).getUndoRedoManager().execute(new Commands.ImportAudio(this.projectView,
+                ((NodeSelection)this.projectView.Selection).SingleNode, filename));
         }
 
         // Open a file while showing progress.
@@ -244,16 +278,6 @@ namespace Bobi
             worker.RunWorkerAsync();
         }
 
-        /// <summary>
-        /// Append a new track to the project.
-        /// </summary>
-        public void NewTrack()
-        {
-            Commands.NewTrack command = new Commands.NewTrack(this.projectView, Project.getPresentation(0));
-            command.UpdateSelection = true;
-            Project.getPresentation(0).getUndoRedoManager().execute(command);
-        }
-
         // Set a new or null project in the current view.
         private Project Project
         {
@@ -266,13 +290,12 @@ namespace Bobi
             }
         }
 
+        // Set the color scheme for the project view
         private void SetColorScheme(ColorSettings scheme)
         {
             this.colorScheme = scheme;
             this.projectView.SetColorScheme(scheme);
         }
-
-        public Settings Settings { get { return this.settings; } }
 
         void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
@@ -306,9 +329,9 @@ namespace Bobi
         private void project_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e)
         {
             statusLabel.Text = string.Format("Undid {0}", e.UnDoneCommand.getShortDescription());
-            if (e.UnDoneCommand is Commands.ISelectionAfter)
+            if (e.UnDoneCommand is Commands.Command)
             {
-                this.projectView.SelectFromAbove(((Commands.ISelectionAfter)e.UnDoneCommand).SelectionBefore);
+                this.projectView.SelectFromAbove(((Commands.Command)e.UnDoneCommand).SelectionBefore);
                 UpdateStatusForNewSelection(this.projectView.Selection);
             }
         }
