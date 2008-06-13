@@ -164,12 +164,38 @@ namespace Bobi.View
         }
 
 
+        private void AddedNode(urakawa.core.TreeNode node)
+        {
+            if (node is TrackNode)
+            {
+                AddTrack(node);
+            }
+            else if (node is AudioNode)
+            {
+                AddAudioBlock(node);
+            }
+        }
+
+        // Add a new audio block to the project (thread-safe)
+        private void AddAudioBlock(urakawa.core.TreeNode node)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new AddDelegate(AddAudioBlock), node);
+            }
+            else
+            {
+                Track track = FindTrack(node.getParent());
+                track.AddAudioBlock(new AudioBlock((AudioNode)node));
+            }
+        }
+
         // Add a new track to the project (thread-safe)
         private void AddTrack(urakawa.core.TreeNode node)
         {
             if (InvokeRequired)
             {
-                Invoke(new AddTrackDelegate(AddTrack), node);
+                Invoke(new AddDelegate(AddTrack), node);
             }
             else
             {
@@ -180,7 +206,7 @@ namespace Bobi.View
             }
         }
 
-        private delegate void AddTrackDelegate(urakawa.core.TreeNode node);
+        private delegate void AddDelegate(urakawa.core.TreeNode node);
 
         // Clear the project (thread-safe)
         private void ClearProject()
@@ -206,7 +232,7 @@ namespace Bobi.View
             }
             else if (e is urakawa.events.core.ChildAddedEventArgs)
             {
-                AddTrack(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
+                AddedNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
             }
             else if (e is urakawa.events.core.ChildRemovedEventArgs)
             {

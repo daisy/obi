@@ -46,8 +46,11 @@
     <Compile Include="BobiForm.Designer.cs">
       <DependentUpon>BobiForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\ISelectionAfter.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\ImportAudio.cs" />
     <Compile Include="Commands\NewTrack.cs" />
+    <Compile Include="DataModelFactory.cs" />
+    <Compile Include="Nodes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +86,12 @@
     </Compile>
     <Compile Include="Selection.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\AudioBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AudioBlock.Designer.cs">
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ProjectView.cs">
       <SubType>Component</SubType>
     </Compile>

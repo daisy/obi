@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Bobi.View
 {
-    public partial class Track : Control
+    public partial class Track : FlowLayoutPanel
     {
         private Size baseSize;               // size at zoom factor 1
         private urakawa.core.TreeNode node;  // node for this track
@@ -35,6 +35,15 @@ namespace Bobi.View
         public Track(urakawa.core.TreeNode node): this()
         {
             this.node = node;
+        }
+
+
+        /// <summary>
+        /// Add a new audio block to the track.
+        /// </summary>
+        public void AddAudioBlock(AudioBlock block)
+        {
+            Controls.Add(block);
         }
 
         /// <summary>
