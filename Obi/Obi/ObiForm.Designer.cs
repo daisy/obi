@@ -180,7 +180,7 @@ namespace Obi
             // 
             // mFileToolStripMenuItem
             // 
-            this.mFileToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
+            resources.ApplyResources(this.mFileToolStripMenuItem, "mFileToolStripMenuItem");
             this.mFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mNewProjectToolStripMenuItem,
             this.mNewProjectFromImportToolStripMenuItem,
@@ -196,7 +196,6 @@ namespace Obi
             this.toolStripSeparator3,
             this.mExitToolStripMenuItem});
             this.mFileToolStripMenuItem.Name = "mFileToolStripMenuItem";
-            resources.ApplyResources(this.mFileToolStripMenuItem, "mFileToolStripMenuItem");
             // 
             // mNewProjectToolStripMenuItem
             // 
@@ -696,8 +695,8 @@ namespace Obi
             // 
             // mPageToolStripMenuItem
             // 
+            this.mPageToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
-            mPageToolStripMenuItem.ShortcutKeys = (System.Windows.Forms.Keys)(System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.G);
             resources.ApplyResources(this.mPageToolStripMenuItem, "mPageToolStripMenuItem");
             this.mPageToolStripMenuItem.Click += new System.EventHandler(this.mPageToolStripMenuItem_Click);
             // 
