@@ -31,7 +31,19 @@ namespace Bobi.View
         public AudioBlock(AudioNode node): this()
         {
             this.node = node;
+            this.node.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(node_changed);
+            this.waveformCanvas.Audio = node.Audio;
             this.selected = false;
+        }
+
+        private void node_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (e is urakawa.events.media.MediaEventArgs &&
+                ((urakawa.events.media.MediaEventArgs)e).SourceMedia is urakawa.media.data.audio.ManagedAudioMedia)
+            {
+                this.waveformCanvas.Audio = 
+                    ((urakawa.media.data.audio.ManagedAudioMedia)((urakawa.events.media.MediaEventArgs)e).SourceMedia).getMediaData();
+            }
         }
 
 

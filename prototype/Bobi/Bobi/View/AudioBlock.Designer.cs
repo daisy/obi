@@ -28,12 +28,24 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.waveformCanvas = new Bobi.WaveformCanvas();
             this.SuspendLayout();
+            // 
+            // waveformCanvas
+            // 
+            this.waveformCanvas.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.waveformCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.waveformCanvas.Location = new System.Drawing.Point(0, 0);
+            this.waveformCanvas.Name = "waveformCanvas";
+            this.waveformCanvas.Size = new System.Drawing.Size(115, 115);
+            this.waveformCanvas.TabIndex = 0;
+            this.waveformCanvas.Text = "waveformCanvas1";
             // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.waveformCanvas);
             this.Name = "AudioBlock";
             this.Size = new System.Drawing.Size(115, 115);
             this.ResumeLayout(false);
@@ -41,5 +53,7 @@ namespace Bobi.View
         }
 
         #endregion
+
+        private WaveformCanvas waveformCanvas;
     }
 }
