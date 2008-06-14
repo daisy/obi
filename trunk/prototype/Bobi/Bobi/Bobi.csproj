@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Track.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\WaveformCanvas.resx">
+      <DependentUpon>WaveformCanvas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -107,6 +111,12 @@
     </Compile>
     <Compile Include="View\Track.Designer.cs">
       <DependentUpon>Track.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\WaveformCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\WaveformCanvas.designer.cs">
+      <DependentUpon>WaveformCanvas.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

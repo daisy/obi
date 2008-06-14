@@ -51,5 +51,23 @@ namespace Bobi
     public class AudioNode : Node
     {
         public AudioNode(urakawa.Presentation presentation) : base(presentation) { }
+
+        public urakawa.media.data.audio.AudioMediaData Audio
+        {
+            get
+            {
+                urakawa.property.channel.ChannelsProperty prop = getProperty<urakawa.property.channel.ChannelsProperty>();
+                if (prop != null)
+                {
+                    urakawa.media.data.audio.ManagedAudioMedia media = (urakawa.media.data.audio.ManagedAudioMedia)
+                        prop.getMedia(((Project)getPresentation().getProject()).FindChannel("bobi.audio"));
+                    return (urakawa.media.data.audio.AudioMediaData)media.getMediaData();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
