@@ -63,6 +63,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AudioBlock.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AudioBlock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ProjectView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectView.cs</DependentUpon>
@@ -99,7 +103,7 @@
       <DependentUpon>ProjectView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Track.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Track.Designer.cs">
       <DependentUpon>Track.cs</DependentUpon>

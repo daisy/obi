@@ -28,16 +28,48 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.label = new System.Windows.Forms.Label();
+            this.layoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(3, 0);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(43, 16);
+            this.label.TabIndex = 0;
+            this.label.Text = "Track";
+            this.label.Click += new System.EventHandler(this.Track_Click);
+            // 
+            // layoutPanel
+            // 
+            this.layoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.layoutPanel.Location = new System.Drawing.Point(3, 19);
+            this.layoutPanel.Name = "layoutPanel";
+            this.layoutPanel.Size = new System.Drawing.Size(506, 122);
+            this.layoutPanel.TabIndex = 1;
+            this.layoutPanel.WrapContents = false;
+            this.layoutPanel.Click += new System.EventHandler(this.Track_Click);
             // 
             // Track
             // 
+            this.Controls.Add(this.layoutPanel);
+            this.Controls.Add(this.label);
+            this.Name = "Track";
+            this.Size = new System.Drawing.Size(512, 144);
             this.Click += new System.EventHandler(this.Track_Click);
-            this.ParentChanged += new System.EventHandler(this.Track_ParentChanged);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.FlowLayoutPanel layoutPanel;
     }
 }

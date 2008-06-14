@@ -10,18 +10,68 @@ namespace Bobi.View
 {
     public partial class AudioBlock : UserControl
     {
-        private AudioNode node;
+        private Size baseSize;      // base height
+        private double zoom;        // zoom factor
+        private double audioScale;  // audio zoom
+        private AudioNode node;     // audio node
+        private bool selected;      // selection flag
+
 
         public AudioBlock()
         {
             InitializeComponent();
+            DoubleBuffered = true;
+            this.selected = false;
+            this.node = null;
+            this.baseSize = Size;
+            this.zoom = 1.0;
+            this.audioScale = 1.0;
         }
 
-        public AudioBlock(AudioNode node): base()
+        public AudioBlock(AudioNode node): this()
         {
             this.node = node;
+            this.selected = false;
         }
 
+
+        /// <summary>
+        /// Update colors for this track and its children.
+        /// </summary>
+        public ColorSettings Colors
+        {
+            set
+            {
+                BackColor = value.AudioBlockBackColor;
+            }
+        }
+
+        /// <summary>
+        /// Audio node for this block.
+        /// </summary>
         public AudioNode Node { get { return this.node; } }
+
+        /// <summary>
+        /// Block selection.
+        /// </summary>
+        public bool Selected
+        {
+            get { return this.selected; }
+            set
+            {
+                this.selected = value;
+                if (Parent is Track) Colors = ((Track)Parent).Colors;
+            }
+        }
+
+        /// <summary>
+        /// Zoom to fit the new height.
+        /// </summary>
+        public void Zoom(int height)
+        {
+            height -= (Margin.Top + Margin.Bottom);
+            this.zoom = (double)height / baseSize.Height;
+            Size = new Size((int)Math.Round(this.zoom * baseSize.Width), height);
+        }
     }
 }
