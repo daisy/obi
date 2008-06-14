@@ -25,6 +25,10 @@ namespace Bobi
         public Color ProjectViewBackColor;
         public Color TrackBackColor;
         public Color TrackSelectedBackColor;
+        public Color TrackForeColor;
+        public Color TrackSelectedForeColor;
+        public Color TrackLayoutBackColor;
+        public Color AudioBlockBackColor;
 
         public static ColorSettings DefaultColorScheme()
         {
@@ -32,6 +36,10 @@ namespace Bobi
             scheme.ProjectViewBackColor = Color.White;
             scheme.TrackBackColor = Color.CornflowerBlue;
             scheme.TrackSelectedBackColor = Color.Yellow;
+            scheme.TrackForeColor = Color.Black;
+            scheme.TrackSelectedForeColor = Color.Red;
+            scheme.TrackLayoutBackColor = Color.LightBlue;
+            scheme.AudioBlockBackColor = Color.Violet;
             return scheme;
         }
 
@@ -41,6 +49,10 @@ namespace Bobi
             scheme.ProjectViewBackColor = Color.Black;
             scheme.TrackBackColor = Color.White;
             scheme.TrackSelectedBackColor = Color.Green;
+            scheme.TrackForeColor = Color.Black;
+            scheme.TrackSelectedForeColor = Color.White;
+            scheme.TrackLayoutBackColor = Color.LightBlue;
+            scheme.AudioBlockBackColor = Color.Orange;
             return scheme;
         }
     }

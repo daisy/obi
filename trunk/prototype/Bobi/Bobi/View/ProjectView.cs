@@ -38,9 +38,21 @@ namespace Bobi.View
         public Clipboard Clipboard { get { return this.clipboard; } }
 
         /// <summary>
+        /// Set the colors for a color scheme.
+        /// </summary>
+        public ColorSettings Colors
+        {
+            set
+            {
+                BackColor = value.ProjectViewBackColor;
+                foreach (Control c in Controls) if (c is Track) ((Track)c).Colors = value;
+            }
+        }
+
+        /// <summary>
         /// Color scheme of the parent form.
         /// </summary>
-        public ColorSettings ColorScheme { get { return ((BobiForm)Parent).ColorScheme; } }
+        public ColorSettings ColorSettings { get { return ((BobiForm)Parent).ColorSettings; } }
 
         /// <summary>
         /// True if there is at least one track that is not selected.
@@ -122,12 +134,6 @@ namespace Bobi.View
             if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
         }
 
-        public void SetColorScheme(ColorSettings scheme)
-        {
-            BackColor = scheme.ProjectViewBackColor;
-            foreach (Control c in Controls) if (c is Track) ((Track)c).SetColorScheme(scheme);
-        }
-
         /// <summary>
         /// Zoom factor for the view.
         /// </summary>
@@ -185,8 +191,7 @@ namespace Bobi.View
             }
             else
             {
-                Track track = FindTrack(node.getParent());
-                track.AddAudioBlock(new AudioBlock((AudioNode)node));
+                FindTrack(node.getParent()).AddAudioBlock(new AudioBlock((AudioNode)node));
             }
         }
 
@@ -201,6 +206,7 @@ namespace Bobi.View
             {
                 Track t = new Track(node);
                 t.Zoom = this.zoom;
+                t.Colors = ColorSettings;
                 Controls.Add(t);
                 SetFlowBreak(t, true);
             }
@@ -240,6 +246,7 @@ namespace Bobi.View
             }
         }
 
+        // Click to deselect.
         private void ProjectView_Click(object sender, EventArgs e)
         {
             if (this.selection != null) this.selection.Deselect();

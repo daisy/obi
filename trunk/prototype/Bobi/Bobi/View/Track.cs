@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 namespace Bobi.View
 {
-    public partial class Track : FlowLayoutPanel
+    public partial class Track : UserControl
     {
         private Size baseSize;               // size at zoom factor 1
+        private float baseFontSize;          // font size at zoom factor 1
         private urakawa.core.TreeNode node;  // node for this track
         private bool selected;               // selected flag
         private double zoom;                 // zoom factor
+
 
         /// <summary>
         /// Create a new, empty track.
@@ -22,7 +24,8 @@ namespace Bobi.View
         {
             InitializeComponent();
             DoubleBuffered = true;
-            this.baseSize = new Size(512, 144);
+            this.baseSize = Size;
+            this.baseFontSize = this.label.Font.SizeInPoints;
             Selected = false;
             Zoom = 1.0;
             this.node = null;
@@ -43,19 +46,22 @@ namespace Bobi.View
         /// </summary>
         public void AddAudioBlock(AudioBlock block)
         {
-            Controls.Add(block);
+            block.Colors = ((ProjectView)Parent).ColorSettings;
+            layoutPanel.Controls.Add(block);
         }
 
         /// <summary>
-        /// Base size (at zoom factor 1.)
+        /// Update colors for this track and its children.
         /// </summary>
-        public Size BaseSize
+        public ColorSettings Colors
         {
-            get { return this.baseSize; }
+            get { return ((ProjectView)Parent).ColorSettings; }
             set
             {
-                this.baseSize = value;
-                Zoom = this.Zoom;  // resize the window using the current zoom factor
+                BackColor = this.selected ? value.TrackSelectedBackColor : value.TrackBackColor;
+                ForeColor = this.selected ? value.TrackSelectedForeColor : value.TrackForeColor;
+                this.layoutPanel.BackColor = value.TrackLayoutBackColor;
+                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Colors = value;
             }
         }
 
@@ -73,17 +79,12 @@ namespace Bobi.View
             set
             {
                 this.selected = value;
-                if (Parent is ProjectView) SetColorScheme(((ProjectView)Parent).ColorScheme);
-                if (this.selected && Parent is ProjectView) ((ProjectView)Parent).ScrollControlIntoView(this);
+                if (Parent is ProjectView)
+                {
+                    Colors = ((ProjectView)Parent).ColorSettings;
+                    if (this.selected) ((ProjectView)Parent).ScrollControlIntoView(this);
+                }
             }
-        }
-
-        /// <summary>
-        /// Set the colors for this track.
-        /// </summary>
-        public void SetColorScheme(ColorSettings scheme)
-        {
-            BackColor = this.selected ? scheme.TrackSelectedBackColor : scheme.TrackBackColor;
         }
 
         /// <summary>
@@ -95,15 +96,14 @@ namespace Bobi.View
             set
             {
                 this.zoom = value;
+                int ydiff = this.label.Height;
+                this.label.Font = new Font(this.label.Font.FontFamily, 10.0f * (float)this.zoom);
+                ydiff = this.label.Height - ydiff;
                 this.Size = new Size((int)Math.Round(baseSize.Width * value), (int)Math.Round(baseSize.Height * value));
+                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, this.layoutPanel.Location.Y + ydiff);
+                this.layoutPanel.Height -= ydiff;
+                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom(this.layoutPanel.Height);
             }
-        }
-
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            // TODO: Add custom paint code here
-            // Calling the base class OnPaint
-            base.OnPaint(pe);
         }
 
         // Propagate selection upward
@@ -120,11 +120,7 @@ namespace Bobi.View
             }
         }
 
+        // Select the track by clicking it.
         private void Track_Click(object sender, EventArgs e) { SelectUp(); }
-
-        private void Track_ParentChanged(object sender, EventArgs e)
-        {
-            if (Parent is ProjectView) SetColorScheme(((ProjectView)Parent).ColorScheme);
-        }
     }
 }

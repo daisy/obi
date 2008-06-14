@@ -32,7 +32,7 @@ namespace Bobi
         /// <summary>
         /// Current color scheme for the whole application.
         /// </summary>
-        public ColorSettings ColorScheme { get { return this.colorScheme; } }
+        public ColorSettings ColorSettings { get { return this.colorScheme; } }
 
         /// <summary>
         /// Current settings.
@@ -294,7 +294,7 @@ namespace Bobi
         private void SetColorScheme(ColorSettings scheme)
         {
             this.colorScheme = scheme;
-            this.projectView.SetColorScheme(scheme);
+            this.projectView.Colors = scheme;
         }
 
         void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
