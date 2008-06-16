@@ -151,6 +151,24 @@ namespace Bobi
             this.projectView.Zoom = 1.0f; 
         }
 
+        // &View > Audio &zoom in (Ctrl+Shift++)
+        private void view_AudioZoomInMenuItem_Click(object sender, EventArgs e)
+        {
+            this.projectView.AudioScale *= 1.25;
+        }
+
+        // &View > Audio zoom o&ut (Ctrl+Shift+-)
+        private void view_AudioZoomOutMenuItem_Click(object sender, EventArgs e)
+        {
+            this.projectView.AudioScale /= 1.25;
+        }
+
+        // &View > Audio normal &size (Ctrl+Shift+0)
+        private void view_AudioNormalSizeMenuItem_Click(object sender, EventArgs e)
+        {
+            this.projectView.AudioScale = 1.0;
+        }
+
 
         // &Audio > New &track (Ctrl+T)
         private void audio_NewTrackMenuItem_Click(object sender, EventArgs e)
