@@ -195,30 +195,30 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
-        public bool CanCopy { get { return CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio; } }
-        public bool CanCopyAudio { get { return mStripsView.CanCopyAudio; } }
-        public bool CanCopySection { get { return mTOCView.CanCopySection; } }
-        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip; } }
-        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock; } }
+        public bool CanCopy { get { return mPresentation != null && ( CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio ) && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyAudio { get { return mStripsView.CanCopyAudio && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopySection { get { return mTOCView.CanCopySection && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock && !TransportBar.IsRecorderActive ; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
-        public bool CanDelete { get { return Selection != null &&  ( CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata ) ; } }
+        public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive; } }
         public bool CanFastForward { get { return mTransportBar.CanFastForward; } }
         public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
-        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null; } }
-        public bool CanInsertStrip { get { return mStripsView.Selection != null; } }
-        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext; } }
+        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null && !TransportBar.IsRecorderActive ; } }
+        public bool CanInsertStrip { get { return mStripsView.Selection != null && !TransportBar.IsRecorderActive ; } }
+        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext && !TransportBar.IsRecorderActive ; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
         public bool CanNavigatePrevPage { get { return mTransportBar.CanNavigatePrevPage; } }
         public bool CanNavigatePrevPhrase { get { return mTransportBar.CanNavigatePrevPhrase; } }
         public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
-        public bool CanPaste { get { return mSelection != null && mSelection.CanPaste(mClipboard); } }
-        public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard); } }
-        public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard); } }
+        public bool CanPaste { get { return mPresentation != null &&  mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive ; } }
+        public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive ; } }
+        public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive ; } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -238,9 +238,9 @@ namespace Obi.ProjectView
         public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } } 
-        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip; } }
+        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip && !TransportBar.IsRecorderActive ; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
-        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode; } }
+        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive ; } }
 
         public bool CanMarkPhrase
         {
