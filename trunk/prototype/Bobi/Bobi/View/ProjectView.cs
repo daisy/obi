@@ -10,6 +10,7 @@ namespace Bobi.View
 {
     public partial class ProjectView : FlowLayoutPanel
     {
+        private double audioScale;    // current audio scale (zoom)
         private Clipboard clipboard;  // clipboard
         private Project project;      // current project (may be null)
         private Selection selection;  // current selection
@@ -28,9 +29,23 @@ namespace Bobi.View
             Project = null;
             this.clipboard = null;
             this.selection = null;
+            AudioScale = 1.0;
             Zoom = 1.0;
         }
 
+
+        /// <summary>
+        /// Project-wide audio scale.
+        /// </summary>
+        public double AudioScale
+        {
+            get { return this.audioScale; }
+            set
+            {
+                this.audioScale = value;
+                foreach (Control c in Controls) if (c is Track) ((Track)c).AudioScale = value;
+            }
+        }
 
         /// <summary>
         /// Get the view's clipboard.

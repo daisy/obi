@@ -46,6 +46,10 @@ namespace Bobi
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.projectView = new Bobi.View.ProjectView();
+            this.separator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.view_AudioZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.view_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.view_AudioNormalSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +84,7 @@ namespace Bobi
             // 
             this.file_NewMenuItem.Name = "file_NewMenuItem";
             this.file_NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.file_NewMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_NewMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_NewMenuItem.Text = "&New";
             this.file_NewMenuItem.Click += new System.EventHandler(this.file_NewMenuItem_Click);
             // 
@@ -88,7 +92,7 @@ namespace Bobi
             // 
             this.file_OpenMenuItem.Name = "file_OpenMenuItem";
             this.file_OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.file_OpenMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_OpenMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_OpenMenuItem.Text = "&Open";
             this.file_OpenMenuItem.Click += new System.EventHandler(this.file_OpenMenuItem_Click);
             // 
@@ -96,7 +100,7 @@ namespace Bobi
             // 
             this.file_CloseMenuItem.Name = "file_CloseMenuItem";
             this.file_CloseMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
-            this.file_CloseMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_CloseMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_CloseMenuItem.Text = "&Close";
             this.file_CloseMenuItem.Click += new System.EventHandler(this.file_CloseMenuItem_Click);
             // 
@@ -104,20 +108,20 @@ namespace Bobi
             // 
             this.file_SaveMenuItem.Name = "file_SaveMenuItem";
             this.file_SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.file_SaveMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_SaveMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_SaveMenuItem.Text = "&Save";
             this.file_SaveMenuItem.Click += new System.EventHandler(this.file_SaveMenuItem_Click);
             // 
             // separator1
             // 
             this.separator1.Name = "separator1";
-            this.separator1.Size = new System.Drawing.Size(139, 6);
+            this.separator1.Size = new System.Drawing.Size(149, 6);
             // 
             // file_ExitMenuItem
             // 
             this.file_ExitMenuItem.Name = "file_ExitMenuItem";
             this.file_ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.file_ExitMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.file_ExitMenuItem.Size = new System.Drawing.Size(152, 22);
             this.file_ExitMenuItem.Text = "E&xit";
             this.file_ExitMenuItem.Click += new System.EventHandler(this.file_ExitMenuItem_Click);
             // 
@@ -218,7 +222,11 @@ namespace Bobi
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.view_ZoomInMenuItem,
             this.view_ZoomOutMenuItem,
-            this.view_NormalSizeMenuItem});
+            this.view_NormalSizeMenuItem,
+            this.separator4,
+            this.view_AudioZoomInMenuItem,
+            this.view_AudioZoomOutMenuItem,
+            this.view_AudioNormalSizeMenuItem});
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.Size = new System.Drawing.Size(41, 20);
             this.viewMenu.Text = "&View";
@@ -228,7 +236,7 @@ namespace Bobi
             this.view_ZoomInMenuItem.Name = "view_ZoomInMenuItem";
             this.view_ZoomInMenuItem.ShortcutKeyDisplayString = "Ctrl++";
             this.view_ZoomInMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.view_ZoomInMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.view_ZoomInMenuItem.Size = new System.Drawing.Size(225, 22);
             this.view_ZoomInMenuItem.Text = "Zoom &in";
             this.view_ZoomInMenuItem.Click += new System.EventHandler(this.view_ZoomInMenuItem_Click);
             // 
@@ -237,7 +245,7 @@ namespace Bobi
             this.view_ZoomOutMenuItem.Name = "view_ZoomOutMenuItem";
             this.view_ZoomOutMenuItem.ShortcutKeyDisplayString = "Ctrl+-";
             this.view_ZoomOutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-            this.view_ZoomOutMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.view_ZoomOutMenuItem.Size = new System.Drawing.Size(225, 22);
             this.view_ZoomOutMenuItem.Text = "Zoom &out";
             this.view_ZoomOutMenuItem.Click += new System.EventHandler(this.view_ZoomOutMenuItem_Click);
             // 
@@ -245,7 +253,7 @@ namespace Bobi
             // 
             this.view_NormalSizeMenuItem.Name = "view_NormalSizeMenuItem";
             this.view_NormalSizeMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-            this.view_NormalSizeMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.view_NormalSizeMenuItem.Size = new System.Drawing.Size(225, 22);
             this.view_NormalSizeMenuItem.Text = "&Normal size";
             this.view_NormalSizeMenuItem.Click += new System.EventHandler(this.view_NormalSizeMenuItem_Click);
             // 
@@ -311,6 +319,40 @@ namespace Bobi
             this.projectView.Text = "projectView1";
             this.projectView.Zoom = 1;
             // 
+            // separator4
+            // 
+            this.separator4.Name = "separator4";
+            this.separator4.Size = new System.Drawing.Size(222, 6);
+            // 
+            // view_AudioZoomInMenuItem
+            // 
+            this.view_AudioZoomInMenuItem.Name = "view_AudioZoomInMenuItem";
+            this.view_AudioZoomInMenuItem.ShortcutKeyDisplayString = "Ctrl+Shift++";
+            this.view_AudioZoomInMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.Oemplus)));
+            this.view_AudioZoomInMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.view_AudioZoomInMenuItem.Text = "Audio &zoom in";
+            this.view_AudioZoomInMenuItem.Click += new System.EventHandler(this.view_AudioZoomInMenuItem_Click);
+            // 
+            // view_AudioZoomOutMenuItem
+            // 
+            this.view_AudioZoomOutMenuItem.Name = "view_AudioZoomOutMenuItem";
+            this.view_AudioZoomOutMenuItem.ShortcutKeyDisplayString = "Ctrl+Shift+-";
+            this.view_AudioZoomOutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.OemMinus)));
+            this.view_AudioZoomOutMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.view_AudioZoomOutMenuItem.Text = "Audio zoom o&ut";
+            this.view_AudioZoomOutMenuItem.Click += new System.EventHandler(this.view_AudioZoomOutMenuItem_Click);
+            // 
+            // view_AudioNormalSizeMenuItem
+            // 
+            this.view_AudioNormalSizeMenuItem.Name = "view_AudioNormalSizeMenuItem";
+            this.view_AudioNormalSizeMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.D0)));
+            this.view_AudioNormalSizeMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.view_AudioNormalSizeMenuItem.Text = "Audio normal &size";
+            this.view_AudioNormalSizeMenuItem.Click += new System.EventHandler(this.view_AudioNormalSizeMenuItem_Click);
+            // 
             // BobiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +407,10 @@ namespace Bobi
         private System.Windows.Forms.ToolStripMenuItem edit_SelectAllMenuItem;
         private System.Windows.Forms.ToolStripMenuItem edit_SelectNothingMenuItem;
         private System.Windows.Forms.ToolStripProgressBar statusProgressBar;
+        private System.Windows.Forms.ToolStripSeparator separator4;
+        private System.Windows.Forms.ToolStripMenuItem view_AudioZoomInMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem view_AudioZoomOutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem view_AudioNormalSizeMenuItem;
     }
 }
 

@@ -69,31 +69,24 @@ namespace Bobi
             {
                 int read = au.Read(bytes, 0, bytesPerPixel);
                 Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                short min = short.MaxValue;
-                short max = short.MinValue;
-                for (int i = 0; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
-                {
-                    if (samples[i] < min) min = samples[i];
-                    if (samples[i] > max) max = samples[i];
-                }
-                int ymin = Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue);
-                int ymax = Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue);
-                g.DrawLine(Channel1Pen, new Point(x, ymin), new Point(x, ymax));
-                if (channels == 2)
-                {
-                    min = short.MaxValue;
-                    max = short.MinValue;
-                    for (int i = 1; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
-                    {
-                        if (samples[i] < min) min = samples[i];
-                        if (samples[i] > max) max = samples[i];
-                    }
-                    ymin = Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue);
-                    ymax = Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue);
-                    g.DrawLine(Channel2Pen, new Point(x, ymin), new Point(x, ymax));
-                }
+                DrawChannel(g, Channel1Pen, samples, x, read, frameSize, 0, channels);
+                if (channels == 2) DrawChannel(g, Channel2Pen, samples, x, read, frameSize, 1, channels);
             }
             au.Close();
+        }
+
+        // Draw one channel for a given x
+        private void DrawChannel(Graphics g, Pen pen, short[] samples, int x, int read, int frameSize, int channel, int channels)
+        {
+            short min = short.MaxValue;
+            short max = short.MinValue;
+            for (int i = channel; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
+            {
+                if (samples[i] < min) min = samples[i];
+                if (samples[i] > max) max = samples[i];
+            }
+            g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
         }
 
         // Repaint the waveform bitmap.

@@ -16,6 +16,8 @@ namespace Bobi.View
         private AudioNode node;     // audio node
         private bool selected;      // selection flag
 
+        private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
+
 
         public AudioBlock()
         {
@@ -25,14 +27,14 @@ namespace Bobi.View
             this.node = null;
             this.baseSize = Size;
             this.zoom = 1.0;
-            this.audioScale = 1.0;
+            this.audioScale = AUDIO_SCALE;
         }
 
         public AudioBlock(AudioNode node): this()
         {
             this.node = node;
             this.node.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(node_changed);
-            this.waveformCanvas.Audio = node.Audio;
+            SetAudio(node.Audio);
             this.selected = false;
         }
 
@@ -41,11 +43,21 @@ namespace Bobi.View
             if (e is urakawa.events.media.MediaEventArgs &&
                 ((urakawa.events.media.MediaEventArgs)e).SourceMedia is urakawa.media.data.audio.ManagedAudioMedia)
             {
-                this.waveformCanvas.Audio = 
-                    ((urakawa.media.data.audio.ManagedAudioMedia)((urakawa.events.media.MediaEventArgs)e).SourceMedia).getMediaData();
+                SetAudio(((urakawa.media.data.audio.ManagedAudioMedia)((urakawa.events.media.MediaEventArgs)e).SourceMedia).getMediaData());
             }
         }
 
+        /// <summary>
+        /// Set the audio scale for the block
+        /// </summary>
+        public double AudioScale
+        {
+            set 
+            {
+                this.audioScale = value * AUDIO_SCALE;
+                SetAudio(this.node.Audio);
+            }
+        }
 
         /// <summary>
         /// Update colors for this track and its children.
@@ -83,7 +95,30 @@ namespace Bobi.View
         {
             height -= (Margin.Top + Margin.Bottom);
             this.zoom = (double)height / baseSize.Height;
-            Size = new Size((int)Math.Round(this.zoom * baseSize.Width), height);
+            Height = height;
+            SetAudio(node.Audio);
+        }
+
+
+        private delegate void SetAudioDelegate(urakawa.media.data.audio.AudioMediaData audio);
+
+        private void SetAudio(urakawa.media.data.audio.AudioMediaData audio)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new SetAudioDelegate(SetAudio), audio);
+            }
+            else
+            {
+                Width = WidthForAudio(audio);
+                this.waveformCanvas.Audio = audio;
+            }
+        }
+
+        private int WidthForAudio(urakawa.media.data.audio.AudioMediaData audio)
+        {
+            return (int)Math.Round(this.zoom * (audio == null ? this.baseSize.Width :
+                this.audioScale * audio.getAudioDuration().getTimeDeltaAsMillisecondFloat()));
         }
     }
 }

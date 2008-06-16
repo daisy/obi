@@ -47,7 +47,18 @@ namespace Bobi.View
         public void AddAudioBlock(AudioBlock block)
         {
             block.Colors = ((ProjectView)Parent).ColorSettings;
-            layoutPanel.Controls.Add(block);
+            this.layoutPanel.Controls.Add(block);
+        }
+
+        /// <summary>
+        /// Set the audio scale for the audio blocks.
+        /// </summary>
+        public double AudioScale
+        {
+            set
+            {
+                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+            }
         }
 
         /// <summary>
