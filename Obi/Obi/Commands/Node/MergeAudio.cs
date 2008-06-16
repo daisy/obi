@@ -37,7 +37,7 @@ namespace Obi.Commands.Node
         {
             Merge(mNode, mNextNode);
             if (UpdateSelection) View.Selection = mSelection;
-            View.UpdateBlocksLabelInStrip(mParentNode);
+            if ( mNode is EmptyNode )  View.UpdateBlocksLabelInStrip(mParentNode);
                     }
 
         public override void unExecute()

@@ -55,8 +55,8 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mParent.Insert(mCopy, mIndex);
-            if (UpdateSelection) View.Selection = mSelection;
-            View.UpdateBlocksLabelInStrip( (SectionNode) mParent);
+                        if (UpdateSelection) View.Selection = mSelection;
+            if ( mParent != null &&  mParent is SectionNode )  View.UpdateBlocksLabelInStrip( (SectionNode) mParent);
         }
 
         public override void unExecute()
