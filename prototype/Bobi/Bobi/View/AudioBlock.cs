@@ -28,6 +28,7 @@ namespace Bobi.View
             this.baseSize = Size;
             this.zoom = 1.0;
             this.audioScale = AUDIO_SCALE;
+            this.cursorBar.BaseHeight = this.cursorBar.Height;
         }
 
         public AudioBlock(AudioNode node): this()
@@ -67,6 +68,8 @@ namespace Bobi.View
             set
             {
                 BackColor = value.AudioBlockBackColor;
+                cursorBar.BackColor = value.AudioBlockBackColor;
+                waveformCanvas.BackColor = value.AudioBlockBackColor;
             }
         }
 
@@ -91,10 +94,11 @@ namespace Bobi.View
         /// <summary>
         /// Zoom to fit the new height.
         /// </summary>
-        public void Zoom(int height)
+        public void SetHeight(int height)
         {
             height -= (Margin.Top + Margin.Bottom);
             this.zoom = (double)height / baseSize.Height;
+            this.cursorBar.Zoom = this.zoom;
             Height = height;
             SetAudio(node.Audio);
         }

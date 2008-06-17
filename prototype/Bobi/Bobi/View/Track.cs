@@ -113,7 +113,7 @@ namespace Bobi.View
                 this.Size = new Size((int)Math.Round(baseSize.Width * value), (int)Math.Round(baseSize.Height * value));
                 this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, this.layoutPanel.Location.Y + ydiff);
                 this.layoutPanel.Height -= ydiff;
-                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom(this.layoutPanel.Height);
+                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).SetHeight(this.layoutPanel.Height);
             }
         }
 

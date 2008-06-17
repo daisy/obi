@@ -118,7 +118,7 @@ namespace Bobi
             {
                 this.bitmap = new Bitmap(Width, Height);
                 Graphics g = Graphics.FromImage(this.bitmap);
-                g.Clear(Color.White);
+                g.Clear(BackColor);
                 g.DrawLine(Pens.BlueViolet, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
                 if (this.audio != null) DrawWaveform(g);
                 Invalidate();
