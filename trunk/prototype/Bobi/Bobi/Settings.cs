@@ -39,7 +39,7 @@ namespace Bobi
             scheme.TrackForeColor = Color.Black;
             scheme.TrackSelectedForeColor = Color.Red;
             scheme.TrackLayoutBackColor = Color.LightBlue;
-            scheme.AudioBlockBackColor = Color.Violet;
+            scheme.AudioBlockBackColor = Color.White;
             return scheme;
         }
 
