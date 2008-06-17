@@ -16,6 +16,8 @@ namespace Bobi.View
         private AudioNode node;     // audio node
         private bool selected;      // selection flag
 
+        private int selectionX;     // selection position
+
         private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
 
@@ -29,6 +31,7 @@ namespace Bobi.View
             this.zoom = 1.0;
             this.audioScale = AUDIO_SCALE;
             this.cursorBar.BaseHeight = this.cursorBar.Height;
+            SelectX(-1);
         }
 
         public AudioBlock(AudioNode node): this()
@@ -123,6 +126,13 @@ namespace Bobi.View
         {
             return (int)Math.Round(this.zoom * (audio == null ? this.baseSize.Width :
                 this.audioScale * audio.getAudioDuration().getTimeDeltaAsMillisecondFloat()));
+        }
+
+        public void SelectX(int x)
+        {
+            this.selectionX = x;
+            this.cursorBar.SelectX(x);
+            this.waveformCanvas.SelectX(x);
         }
     }
 }

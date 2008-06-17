@@ -30,9 +30,10 @@ namespace Bobi
         {
             this.SuspendLayout();
             // 
-            // Waveform
+            // WaveformCanvas
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WaveformCanvas_MouseClick);
             this.SizeChanged += new System.EventHandler(this.Waveform_SizeChanged);
             this.ResumeLayout(false);
 
