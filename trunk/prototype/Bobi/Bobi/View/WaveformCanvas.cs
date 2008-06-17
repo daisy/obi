@@ -14,6 +14,8 @@ namespace Bobi
     {
         private AudioMediaData audio;  // audio data to draw
         private Bitmap bitmap;         // cached bitmap of the waveform
+        private int selectionX;        // X selection
+
         // private AudioRange mSelection;  // selection in the waveform
         // private AudioRange mCursor;     // playback cursor (can be different from cursor)
 
@@ -34,6 +36,7 @@ namespace Bobi
             DoubleBuffered = true;
             this.audio = null;
             this.bitmap = null;
+            this.selectionX = -1;
             // mSelection = null;
             // mCursor = null;
         }
@@ -93,6 +96,7 @@ namespace Bobi
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (this.bitmap != null) pe.Graphics.DrawImage(this.bitmap, new Point(0, 0));
+            if (this.selectionX >= 0) pe.Graphics.DrawLine(Pens.Green, new Point(this.selectionX, 0), new Point(this.selectionX, Height - 1));
             /*if (mSelection != null)
             {
                 if (CheckCursor)
@@ -126,6 +130,11 @@ namespace Bobi
         }
 
         private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
+
+        private void WaveformCanvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (Parent is View.AudioBlock) ((View.AudioBlock)Parent).SelectX(e.X);
+        }
 
         /// <summary>
         /// Selection point (not range) position (in pixels).
@@ -261,5 +270,11 @@ namespace Bobi
         {
             return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
         }*/
+
+        public void SelectX(int x)
+        {
+            this.selectionX = x;
+            Invalidate();
+        }
     }
 }
