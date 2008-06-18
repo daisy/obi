@@ -25,15 +25,14 @@ namespace Bobi.View
         protected override void OnPaint(PaintEventArgs pe)
         {
             // TODO: Add custom paint code here
-            if (selectionX >= 0)
+            AudioBlock block = Parent as AudioBlock;
+            if (block != null)
             {
-                //int h = Height - 1;
-                pe.Graphics.FillRectangle(Brushes.Green, new Rectangle(this.selectionX - Height / 2, 0, Height, Height));
-                //int hh = Height / 2;
-                //pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                //pe.Graphics.DrawLine(Pens.Green, new Point(this.selectionX, 0), new Point(this.selectionX, h));
-                //pe.Graphics.DrawLine(Pens.Green, new Point(this.selectionX, 0), new Point(this.selectionX + hh, hh));
-                //pe.Graphics.DrawLine(Pens.Green, new Point(this.selectionX, h), new Point(this.selectionX + hh, hh));
+                if (block.SelectionX >= 0)
+                {
+                    pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
+                        new Rectangle(block.SelectionX - Height / 2, 0, Height, Height));
+                }
             }
             // Calling the base class OnPaint
             base.OnPaint(pe);

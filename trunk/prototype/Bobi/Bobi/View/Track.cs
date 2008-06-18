@@ -10,7 +10,6 @@ namespace Bobi.View
 {
     public partial class Track : UserControl
     {
-        private Size baseSize;               // size at zoom factor 1
         private float baseFontSize;          // font size at zoom factor 1
         private urakawa.core.TreeNode node;  // node for this track
         private bool selected;               // selected flag
@@ -24,7 +23,6 @@ namespace Bobi.View
         {
             InitializeComponent();
             DoubleBuffered = true;
-            this.baseSize = Size;
             this.baseFontSize = this.label.Font.SizeInPoints;
             Selected = false;
             Zoom = 1.0;
@@ -107,13 +105,35 @@ namespace Bobi.View
             set
             {
                 this.zoom = value;
-                int ydiff = this.label.Height;
                 this.label.Font = new Font(this.label.Font.FontFamily, 10.0f * (float)this.zoom);
-                ydiff = this.label.Height - ydiff;
-                this.Size = new Size((int)Math.Round(baseSize.Width * value), (int)Math.Round(baseSize.Height * value));
-                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, this.layoutPanel.Location.Y + ydiff);
-                this.layoutPanel.Height -= ydiff;
-                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).SetHeight(this.layoutPanel.Height);
+                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom = this.zoom;
+                UpdateSize();
+            }
+        }
+
+
+        public void UpdateSize()
+        {
+            int w = this.label.Margin.Left + this.label.Width + this.label.Margin.Right;
+            int h = this.label.Margin.Right + this.label.Height + this.label.Margin.Bottom;
+            if (this.layoutPanel.Controls.Count > 0)
+            {
+                int h_ = 0;
+                int w_ = this.layoutPanel.Controls[0].Margin.Left;
+                foreach (Control c in this.layoutPanel.Controls)
+                {
+                    int h__ = c.Margin.Top + c.Height + c.Margin.Bottom;
+                    if (h__ > h_) h_ = h__;
+                    w_ += c.Width + c.Margin.Right;
+                }
+                this.layoutPanel.Size = new Size(w_, h_);
+                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, h);
+                w_ = this.layoutPanel.Location.X + this.layoutPanel.Width + this.layoutPanel.Margin.Right;
+                Size = new Size(w_ > w ? w_ : w, h + h_ + this.layoutPanel.Margin.Bottom);
+            }
+            else
+            {
+                Size = new Size(w, h);
             }
         }
 

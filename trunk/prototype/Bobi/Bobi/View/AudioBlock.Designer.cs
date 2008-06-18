@@ -29,7 +29,7 @@ namespace Bobi.View
         private void InitializeComponent()
         {
             this.cursorBar = new Bobi.View.CursorBar();
-            this.waveformCanvas = new Bobi.WaveformCanvas();
+            this.waveformCanvas = new Bobi.View.WaveformCanvas();
             this.SuspendLayout();
             // 
             // cursorBar

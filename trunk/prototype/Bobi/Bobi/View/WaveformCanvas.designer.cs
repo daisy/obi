@@ -1,4 +1,4 @@
-namespace Bobi
+namespace Bobi.View
 {
     partial class WaveformCanvas
     {
