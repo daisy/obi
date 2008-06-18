@@ -8,13 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using urakawa.media.data.audio;
 
-namespace Bobi
+namespace Bobi.View
 {
     public partial class WaveformCanvas : Control
     {
         private AudioMediaData audio;  // audio data to draw
         private Bitmap bitmap;         // cached bitmap of the waveform
-        private int selectionX;        // X selection
 
         // private AudioRange mSelection;  // selection in the waveform
         // private AudioRange mCursor;     // playback cursor (can be different from cursor)
@@ -36,7 +35,6 @@ namespace Bobi
             DoubleBuffered = true;
             this.audio = null;
             this.bitmap = null;
-            this.selectionX = -1;
             // mSelection = null;
             // mCursor = null;
         }
@@ -96,7 +94,12 @@ namespace Bobi
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (this.bitmap != null) pe.Graphics.DrawImage(this.bitmap, new Point(0, 0));
-            if (this.selectionX >= 0) pe.Graphics.DrawLine(Pens.Green, new Point(this.selectionX, 0), new Point(this.selectionX, Height - 1));
+            AudioBlock block = Parent as AudioBlock;
+            if (block != null)
+            {
+                if (block.SelectionX >= 0) pe.Graphics.DrawLine(block.Colors.AudioSelectionPen,
+                    new Point(block.SelectionX, 0), new Point(block.SelectionX, Height - 1));
+            }
             /*if (mSelection != null)
             {
                 if (CheckCursor)
@@ -133,7 +136,7 @@ namespace Bobi
 
         private void WaveformCanvas_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Parent is View.AudioBlock) ((View.AudioBlock)Parent).SelectX(e.X);
+            if (Parent is View.AudioBlock) ((View.AudioBlock)Parent).SelectionX = e.X;
         }
 
         /// <summary>
@@ -270,11 +273,5 @@ namespace Bobi
         {
             return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
         }*/
-
-        public void SelectX(int x)
-        {
-            this.selectionX = x;
-            Invalidate();
-        }
     }
 }

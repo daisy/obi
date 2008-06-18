@@ -16,7 +16,7 @@ namespace Bobi.View
         private AudioNode node;     // audio node
         private bool selected;      // selection flag
 
-        private int selectionX;     // selection position
+        private double selectionMs;  // selection time in milliseconds
 
         private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
@@ -31,7 +31,7 @@ namespace Bobi.View
             this.zoom = 1.0;
             this.audioScale = AUDIO_SCALE;
             this.cursorBar.BaseHeight = this.cursorBar.Height;
-            SelectX(-1);
+            this.selectionMs = -1.0;
         }
 
         public AudioBlock(AudioNode node): this()
@@ -68,6 +68,7 @@ namespace Bobi.View
         /// </summary>
         public ColorSettings Colors
         {
+            get { return ((Track)Parent.Parent).Colors; }
             set
             {
                 BackColor = value.AudioBlockBackColor;
@@ -106,6 +107,17 @@ namespace Bobi.View
             SetAudio(node.Audio);
         }
 
+        public double Zoom
+        {
+            set
+            {
+                this.zoom = value;
+                this.cursorBar.Zoom = this.zoom;
+                Height = (int)Math.Round(baseSize.Height * this.zoom);
+                SetAudio(node.Audio);
+            }
+        }
+
 
         private delegate void SetAudioDelegate(urakawa.media.data.audio.AudioMediaData audio);
 
@@ -119,6 +131,7 @@ namespace Bobi.View
             {
                 Width = WidthForAudio(audio);
                 this.waveformCanvas.Audio = audio;
+                if (audio != null && Parent != null && Parent.Parent is Track) ((Track)Parent.Parent).UpdateSize();
             }
         }
 
@@ -128,11 +141,19 @@ namespace Bobi.View
                 this.audioScale * audio.getAudioDuration().getTimeDeltaAsMillisecondFloat()));
         }
 
-        public void SelectX(int x)
+        public int SelectionX
         {
-            this.selectionX = x;
-            this.cursorBar.SelectX(x);
-            this.waveformCanvas.SelectX(x);
+            get
+            {
+                return this.node.Audio == null ? -1 :
+                    (int)Math.Round(this.selectionMs / this.node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * this.waveformCanvas.Width);
+            }
+            set
+            {
+                this.selectionMs = value * this.node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / this.waveformCanvas.Width;
+                this.cursorBar.Invalidate();
+                this.waveformCanvas.Invalidate();
+            }
         }
     }
 }

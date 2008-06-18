@@ -45,22 +45,22 @@ namespace Bobi.View
             // 
             // layoutPanel
             // 
-            this.layoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.layoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.layoutPanel.Location = new System.Drawing.Point(3, 19);
             this.layoutPanel.Name = "layoutPanel";
-            this.layoutPanel.Size = new System.Drawing.Size(506, 137);
+            this.layoutPanel.Size = new System.Drawing.Size(0, 0);
             this.layoutPanel.TabIndex = 1;
             this.layoutPanel.WrapContents = false;
             this.layoutPanel.Click += new System.EventHandler(this.Track_Click);
             // 
             // Track
             // 
+            this.AutoScrollMargin = new System.Drawing.Size(3, 3);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.layoutPanel);
             this.Controls.Add(this.label);
             this.Name = "Track";
-            this.Size = new System.Drawing.Size(512, 159);
+            this.Size = new System.Drawing.Size(49, 22);
             this.Click += new System.EventHandler(this.Track_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

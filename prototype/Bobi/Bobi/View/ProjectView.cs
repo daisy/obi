@@ -158,10 +158,9 @@ namespace Bobi.View
             set
             {
                 this.zoom = value;
-                foreach (Control c in Controls)
-                {
-                    if (c is Track) ((Track)c).Zoom = value;
-                }
+                SuspendLayout();
+                foreach (Control c in Controls) if (c is Track) ((Track)c).Zoom = value;
+                ResumeLayout();
             }
         }
 
@@ -169,10 +168,7 @@ namespace Bobi.View
         // Find the track for a given node
         private Track FindTrack(urakawa.core.TreeNode node)
         {
-            foreach (Control c in Controls)
-            {
-                if (c is Track && ((Track)c).Node == node) return (Track)c;
-            }
+            foreach (Control c in Controls) if (c is Track && ((Track)c).Node == node) return (Track)c;
             return null;
         }
 
@@ -206,7 +202,9 @@ namespace Bobi.View
             }
             else
             {
-                FindTrack(node.getParent()).AddAudioBlock(new AudioBlock((AudioNode)node));
+                Track t = FindTrack(node.getParent());
+                t.AddAudioBlock(new AudioBlock((AudioNode)node));
+                t.Zoom = this.zoom;
             }
         }
 
@@ -219,11 +217,13 @@ namespace Bobi.View
             }
             else
             {
+                SuspendLayout();
                 Track t = new Track(node);
                 t.Zoom = this.zoom;
                 t.Colors = ColorSettings;
                 Controls.Add(t);
                 SetFlowBreak(t, true);
+                ResumeLayout();
             }
         }
 
