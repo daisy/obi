@@ -1583,5 +1583,11 @@ namespace Obi
         {
             mProjectView.SelectPreviousTODOPhrase();
         }
+
+        private void mEncodeToMp3toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm();
+            EncoderForm.Show();
+        }
     }
 }

@@ -1296,6 +1296,12 @@
   <data name="preferencesToolStripMenuItem1.Text" xml:space="preserve">
     <value>&amp;Preferences</value>
   </data>
+  <data name="mEncodeToMp3toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 22</value>
+  </data>
+  <data name="mEncodeToMp3toolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Encode DTB to mp3</value>
+  </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
@@ -1423,7 +1429,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.29644, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.32308, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2429,6 +2435,12 @@
     <value>preferencesToolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;preferencesToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mEncodeToMp3toolStripMenuItem.Name" xml:space="preserve">
+    <value>mEncodeToMp3toolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mEncodeToMp3toolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mHelpToolStripMenuItem.Name" xml:space="preserve">
