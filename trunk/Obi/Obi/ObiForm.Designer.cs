@@ -152,6 +152,7 @@ namespace Obi
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEncodeToMp3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1033,7 +1034,8 @@ namespace Obi
             // 
             this.mToolsToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferencesToolStripMenuItem1});
+            this.preferencesToolStripMenuItem1,
+            this.mEncodeToMp3toolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
             // 
@@ -1042,6 +1044,12 @@ namespace Obi
             resources.ApplyResources(this.preferencesToolStripMenuItem1, "preferencesToolStripMenuItem1");
             this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
+            // 
+            // mEncodeToMp3toolStripMenuItem
+            // 
+            this.mEncodeToMp3toolStripMenuItem.Name = "mEncodeToMp3toolStripMenuItem";
+            resources.ApplyResources(this.mEncodeToMp3toolStripMenuItem, "mEncodeToMp3toolStripMenuItem");
+            this.mEncodeToMp3toolStripMenuItem.Click += new System.EventHandler(this.mEncodeToMp3toolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1263,6 +1271,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEncodeToMp3toolStripMenuItem;
     }
 }
 
