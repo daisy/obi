@@ -97,24 +97,13 @@ namespace Bobi.View
             AudioBlock block = Parent as AudioBlock;
             if (block != null)
             {
-                if (block.SelectionX >= 0) pe.Graphics.DrawLine(block.Colors.AudioSelectionPen,
-                    new Point(block.SelectionX, 0), new Point(block.SelectionX, Height - 1));
-            }
-            /*if (mSelection != null)
-            {
-                if (CheckCursor)
+                AudioSelection selection = block.Selection as AudioSelection;
+                if (selection != null)
                 {
-                    pe.Graphics.DrawLine(SelectionPen, new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
-                }
-                else if (CheckRange)
-                {
-                    pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                    int x = block.XForTime(selection.From);
+                    pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(x, 0), new Point(x, Height - 1));
                 }
             }
-            if (mCursor != null)
-            {
-                pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
-            }*/
             base.OnPaint(pe);
         }
 
@@ -136,7 +125,7 @@ namespace Bobi.View
 
         private void WaveformCanvas_MouseClick(object sender, MouseEventArgs e)
         {
-            if (Parent is View.AudioBlock) ((View.AudioBlock)Parent).SelectionX = e.X;
+            if (Parent is AudioBlock) ((AudioBlock)Parent).SelectAtX(e.X);
         }
 
         /// <summary>

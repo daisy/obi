@@ -11,12 +11,10 @@ namespace Bobi.View
     public partial class CursorBar : Control
     {
         private int baseHeight;
-        private int selectionX;
 
         public CursorBar()
         {
             InitializeComponent();
-            this.selectionX = -1;
         }
 
         public int BaseHeight { set { this.baseHeight = value; } }
@@ -24,24 +22,20 @@ namespace Bobi.View
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            // TODO: Add custom paint code here
             AudioBlock block = Parent as AudioBlock;
             if (block != null)
             {
-                if (block.SelectionX >= 0)
+                AudioSelection selection = block.Selection as AudioSelection;
+                if (selection != null)
                 {
                     pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
-                        new Rectangle(block.SelectionX - Height / 2, 0, Height, Height));
+                        new Rectangle(block.XForTime(selection.From) - Height / 2, 0, Height, Height));
+                    pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
+                        new Rectangle(block.XForTime(selection.To) - Height / 2, 0, Height, Height));
                 }
             }
             // Calling the base class OnPaint
             base.OnPaint(pe);
-        }
-
-        public void SelectX(int x)
-        {
-            this.selectionX = x;
-            Invalidate();
         }
     }
 }

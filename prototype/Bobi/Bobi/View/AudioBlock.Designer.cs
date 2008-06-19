@@ -46,9 +46,7 @@ namespace Bobi.View
             // waveformCanvas
             // 
             this.waveformCanvas.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.waveformCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.waveformCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.waveformCanvas.Location = new System.Drawing.Point(0, 15);
             this.waveformCanvas.Name = "waveformCanvas";
             this.waveformCanvas.Size = new System.Drawing.Size(115, 115);

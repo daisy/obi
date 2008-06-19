@@ -18,6 +18,9 @@ namespace Bobi.View
 
         public event SelectionSetEventHandler SelectionSet;  // selection was set from this control, or below
 
+        private delegate void AddDelegate(urakawa.core.TreeNode node);  // delegate for thread-safe node addition
+        private delegate void ClearProjectDelegate();                   // delegate for thread-safe clearing
+
 
         /// <summary>
         /// New project view
@@ -43,7 +46,9 @@ namespace Bobi.View
             set
             {
                 this.audioScale = value;
+                SuspendLayout();
                 foreach (Control c in Controls) if (c is Track) ((Track)c).AudioScale = value;
+                ResumeLayout();
             }
         }
 
@@ -165,34 +170,6 @@ namespace Bobi.View
         }
 
 
-        // Find the track for a given node
-        private Track FindTrack(urakawa.core.TreeNode node)
-        {
-            foreach (Control c in Controls) if (c is Track && ((Track)c).Node == node) return (Track)c;
-            return null;
-        }
-
-        // Let's custom paint (or more acurately, let's not.)
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            // TODO: Add custom paint code here
-            // Calling the base class OnPaint
-            base.OnPaint(pe);
-        }
-
-
-        private void AddedNode(urakawa.core.TreeNode node)
-        {
-            if (node is TrackNode)
-            {
-                AddTrack(node);
-            }
-            else if (node is AudioNode)
-            {
-                AddAudioBlock(node);
-            }
-        }
-
         // Add a new audio block to the project (thread-safe)
         private void AddAudioBlock(urakawa.core.TreeNode node)
         {
@@ -202,9 +179,24 @@ namespace Bobi.View
             }
             else
             {
+                SuspendLayout();
                 Track t = FindTrack(node.getParent());
                 t.AddAudioBlock(new AudioBlock((AudioNode)node));
                 t.Zoom = this.zoom;
+                ResumeLayout();
+            }
+        }
+
+        // Add a new node (track or audio) to the view
+        private void AddNode(urakawa.core.TreeNode node)
+        {
+            if (node is TrackNode)
+            {
+                AddTrack(node);
+            }
+            else if (node is AudioNode)
+            {
+                AddAudioBlock(node);
             }
         }
 
@@ -227,8 +219,6 @@ namespace Bobi.View
             }
         }
 
-        private delegate void AddDelegate(urakawa.core.TreeNode node);
-
         // Clear the project (thread-safe)
         private void ClearProject()
         {
@@ -238,11 +228,18 @@ namespace Bobi.View
             }
             else
             {
+                SuspendLayout();
                 Controls.Clear();
+                ResumeLayout();
             }
         }
 
-        private delegate void ClearProjectDelegate();
+        // Find the track for a given node
+        private Track FindTrack(urakawa.core.TreeNode node)
+        {
+            foreach (Control c in Controls) if (c is Track && ((Track)c).Node == node) return (Track)c;
+            return null;
+        }
         
         // React to changes in the project
         private void project_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
@@ -250,10 +247,11 @@ namespace Bobi.View
             System.Diagnostics.Debug.Print(e.ToString());
             if (e is urakawa.events.presentation.RootNodeChangedEventArgs)
             {
+                // this is a stub
             }
             else if (e is urakawa.events.core.ChildAddedEventArgs)
             {
-                AddedNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
+                AddNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
             }
             else if (e is urakawa.events.core.ChildRemovedEventArgs)
             {
