@@ -97,6 +97,36 @@ namespace Bobi.View
         }
 
         /// <summary>
+        /// Update size after the contents or zoom factor have changed.
+        /// </summary>
+        public void UpdateSize()
+        {
+            int w = this.label.Margin.Left + this.label.Width + this.label.Margin.Right;
+            int h = this.label.Margin.Right + this.label.Height + this.label.Margin.Bottom;
+            if (this.layoutPanel.Controls.Count > 0)
+            {
+                int h_ = 0;
+                int w_ = 0; // this.layoutPanel.Controls[0].Margin.Left;
+                foreach (Control c in this.layoutPanel.Controls)
+                {
+                    int h__ = c.Margin.Top + c.Height + c.Margin.Bottom;
+                    if (h__ > h_) h_ = h__;
+                    w_ += c.Margin.Left + c.Width + c.Margin.Right;
+                }
+                this.layoutPanel.Size = new Size(w_, h_);
+                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, h);
+                w_ = this.layoutPanel.Location.X + this.layoutPanel.Width + this.layoutPanel.Margin.Right;
+                Size = new Size(w_ > w ? w_ : w, h + h_ + this.layoutPanel.Margin.Bottom);
+            }
+            else
+            {
+                Size = new Size(w, h);
+            }
+        }
+
+        public ProjectView View { get { return Parent as ProjectView; } }
+
+        /// <summary>
         /// Zoom factor.
         /// </summary>
         public double Zoom
@@ -108,32 +138,6 @@ namespace Bobi.View
                 this.label.Font = new Font(this.label.Font.FontFamily, 10.0f * (float)this.zoom);
                 foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom = this.zoom;
                 UpdateSize();
-            }
-        }
-
-
-        public void UpdateSize()
-        {
-            int w = this.label.Margin.Left + this.label.Width + this.label.Margin.Right;
-            int h = this.label.Margin.Right + this.label.Height + this.label.Margin.Bottom;
-            if (this.layoutPanel.Controls.Count > 0)
-            {
-                int h_ = 0;
-                int w_ = this.layoutPanel.Controls[0].Margin.Left;
-                foreach (Control c in this.layoutPanel.Controls)
-                {
-                    int h__ = c.Margin.Top + c.Height + c.Margin.Bottom;
-                    if (h__ > h_) h_ = h__;
-                    w_ += c.Width + c.Margin.Right;
-                }
-                this.layoutPanel.Size = new Size(w_, h_);
-                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, h);
-                w_ = this.layoutPanel.Location.X + this.layoutPanel.Width + this.layoutPanel.Margin.Right;
-                Size = new Size(w_ > w ? w_ : w, h + h_ + this.layoutPanel.Margin.Bottom);
-            }
-            else
-            {
-                Size = new Size(w, h);
             }
         }
 
