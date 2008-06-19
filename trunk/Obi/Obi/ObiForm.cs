@@ -259,6 +259,7 @@ namespace Obi
                     // higher than our selection.
                     string exportPath = dialog.SelectedPath;
                     if (!exportPath.EndsWith("/")) exportPath += "/";
+                    mSession.PrimaryExportPath = exportPath ;
                     mSession.Presentation.ExportToZ(exportPath, mSession.Path);
                     MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
                        Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1586,8 +1587,8 @@ namespace Obi
 
         private void mEncodeToMp3toolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm();
-            EncoderForm.Show();
+            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath);
+                        EncoderForm.Show();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Obi
         private DataModelFactory mDataModelFactory;  // the Obi data model factory (see below)
         private urakawa.Project mProject;            // the current project (as of now 1 presentation = 1 project)
         private string mPath;                        // path of the XUK file to save to
+        private string mPrimaryExportPath; // path of DTB manifest file created by export
         private int mChangesCount;                   // changes since (or before) last save
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
@@ -25,6 +26,7 @@ namespace Obi
             mDataModelFactory = new DataModelFactory();
             mProject = null;
             mPath = null;
+            mPrimaryExportPath = null;
             mChangesCount = 0;
         }
 
@@ -58,6 +60,12 @@ namespace Obi
         /// Get the path of the XUK file of the current presentation.
         /// </summary>
         public string Path { get { return mPath; } }
+
+        public string PrimaryExportPath
+        {
+            get { return mPrimaryExportPath; }
+            set { mPrimaryExportPath = value; }
+        }
 
         /// <summary>
         /// Get the current (Obi) presentation.

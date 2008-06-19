@@ -14,8 +14,9 @@ namespace PipelineInterface
 
         public Mp3Encoder()
         {
-            string relativeScriptPath = "PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
-            m_ScriptFilePath = Directory.GetParent(relativeScriptPath).ToString() + "\\" + "DTBAudioEncoder.taskScript";
+            string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
+            m_ScriptFilePath = AppDomain.CurrentDomain.BaseDirectory + relativeScriptPath;
+            
                         M_EncoderScriptParser = new ScriptParser(m_ScriptFilePath);
         }
         /// <summary>
