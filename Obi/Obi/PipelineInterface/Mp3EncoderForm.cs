@@ -16,12 +16,21 @@ namespace PipelineInterface
         public Mp3EncoderForm()
         {
             InitializeComponent();
-            folderBrowserDialog1.ShowNewFolderButton = true;
+                        m_Encoder = new Mp3Encoder();
+        }
+
+        public Mp3EncoderForm(string InputPath )
+        {
+            InitializeComponent();
             m_Encoder = new Mp3Encoder();
+            InputPath = InputPath + "\\obi_dtb.opf";
+            if ( InputPath != null  && File.Exists (InputPath) )
+            m_txtInputFile.Text = InputPath;
         }
 
         private void Mp3EncoderForm_Load(object sender, EventArgs e)
         {
+            folderBrowserDialog1.ShowNewFolderButton = true;
             //folderBrowserDialog1.SelectedPath = @"C:\Avi\Project\CurrentProjects\DaisyUra\TrialModules\PipelineCmd\Trial\Output";
             openFileDialog1.Filter = "DTB 3.0 Source files|*.opf|DTB2.02 Source Files|ncc.html";
 
