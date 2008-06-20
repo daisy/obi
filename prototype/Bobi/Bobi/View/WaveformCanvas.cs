@@ -15,9 +15,6 @@ namespace Bobi.View
         private AudioMediaData audio;  // audio data to draw
         private Bitmap bitmap;         // cached bitmap of the waveform
 
-        // private AudioRange mSelection;  // selection in the waveform
-        // private AudioRange mCursor;     // playback cursor (can be different from cursor)
-
         // Pens and brushes should be owned by someone above
         private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
         private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
@@ -35,8 +32,6 @@ namespace Bobi.View
             DoubleBuffered = true;
             this.audio = null;
             this.bitmap = null;
-            // mSelection = null;
-            // mCursor = null;
         }
 
         /// <summary>
@@ -109,6 +104,11 @@ namespace Bobi.View
                         pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(to, 0), new Point(to, Height - 1));
                     }
                     pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(from, 0), new Point(from, Height - 1));
+                }
+                if (block.Playing)
+                {
+                    int at = block.XForTime(block.PlayingTime);
+                    pe.Graphics.DrawLine(block.Colors.AudioPlaybackPen, new Point(at, 0), new Point(at, Height - 1));
                 }
             }
             base.OnPaint(pe);

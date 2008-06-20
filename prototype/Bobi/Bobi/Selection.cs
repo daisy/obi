@@ -183,6 +183,8 @@ namespace Bobi
 
         public override int ItemsInSelection { get { return 1; } }
 
+        public AudioNode Node { get { return this.node; } }
+
         public override void SelectControls()
         {
             View.SelectControlForNode(node, this);

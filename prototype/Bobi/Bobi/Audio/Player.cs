@@ -11,6 +11,19 @@ namespace Bobi.Audio
 {
     public enum PlayerState { Stopped, Playing, Paused };
 
+    public class StateChangedEventArgs: EventArgs
+    {
+        public Player Player;
+        public PlayerState PreviousState;
+        public StateChangedEventArgs(Player player, PlayerState previousState)
+        {
+            this.Player = player;
+            this.PreviousState = previousState;
+        }
+    }
+
+    public delegate void StateChangedEventHandler(object sender, StateChangedEventArgs e);
+
 	public class Player
 	{
         private Device device;                                  // output device
@@ -36,6 +49,8 @@ namespace Bobi.Audio
         private int bufferCheck;
         private int played;
 
+
+        public event StateChangedEventHandler StateChanged;
 
 
         public Player(Control handle)
@@ -74,6 +89,7 @@ namespace Bobi.Audio
                 this.pausePosition = GetCurrentBytePosition();
                 StopPlayback();
                 this.state = PlayerState.Paused;
+                if (StateChanged != null) StateChanged(this, new StateChangedEventArgs(this, PlayerState.Playing));
             }
         }
 
@@ -176,8 +192,9 @@ namespace Bobi.Audio
             if (this.state != PlayerState.Stopped)
             {
                 StopPlayback();
-                // Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                StateChangedEventArgs e = new StateChangedEventArgs(this, this.state);
                 this.state = PlayerState.Stopped;
+                if (StateChanged != null) StateChanged(this, e);
             }
         }
 
@@ -199,7 +216,7 @@ namespace Bobi.Audio
                             this.bufferStopPosition + this.soundBuffer.Caps.BufferBytes - playPosition;
                         currentPosition = this.audio.getPCMLength() - subtractor;
                     }
-                    else if (m_BufferCheck % 2 == 1)
+                    else if (this.bufferCheck % 2 == 1)
                     {   // takes the lPlayed position and subtract the part of buffer played from it
                         int subtractor = (2 * this.refreshLength) - playPosition;
                         currentPosition = this.played - subtractor;
@@ -283,93 +300,14 @@ namespace Bobi.Audio
             this.audioStream.Position = from;
             this.soundBuffer.Write(0, this.audioStream, this.bufferSize, 0);
             this.played = from + this.bufferSize;
-            // trigger events (modified JQ)
+            StateChangedEventArgs e = new StateChangedEventArgs(this, this.state);
             this.state = PlayerState.Playing;
+            if (StateChanged != null) StateChanged(this, e);
             this.soundBuffer.Play(0, BufferPlayFlags.Looping);
             this.bufferCheck = 1;
             this.refreshThread = new Thread(new ThreadStart(RefreshBuffer));
             this.refreshThread.Start();
         }
-
-        void SetCurrentBytePosition(int position)
-        {
-            if (position < 0) position = 0;
-            if (position > this.audio.getPCMLength()) position = this.audio.getPCMLength() - 100;
-            if (this.state == PlayerState.Playing)
-            {
-                Stop();
-                Thread.Sleep(30);
-                this.startPosition = position;
-                InitPlay(this.audio, position, 0);
-            }
-            else if (this.state == PlayerState.Paused)
-            {
-                this.startPosition = position;
-                this.pausePosition = position;
-            }
-        }
-
-        // Set the current time position
-        private void SetCurrentTimePosition(double position)
-        {
-            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(position, this.sampleRate, this.frameSize));
-        }
-
-        // Set the output device to the first one found.
-        private void SetDefaultOutputDevice(Control handle)
-        {
-            DevicesCollection devices = new DevicesCollection();
-            if (devices.Count == 0) throw new Exception("No output device found!");
-            this.device = new Device(devices[0].DriverGuid);
-            this.device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
-        }
-
-        /// <summary>
-        /// Stop the playback and revert to normal playback mode.
-        /// </summary>
-        private void StopPlayback()
-        {
-            this.soundBuffer.Stop();
-            if (this.refreshThread != null && this.refreshThread.IsAlive) this.refreshThread.Abort();
-            this.bufferStopPosition = -1;
-            this.audioStream.Close();
-        }
-
-
-
-
-
-
-        #region private members
-
-
-
-
-
-
-        // Member variables changed more than ones ( in one asset session ) by functions in AudioPlayer class
-        private bool mIsFwdRwd;                // flag indicating forward or rewind playback is going on
-        private int m_BufferCheck; // integer to indicate which part of buffer is to be refreshed front or rear, value is odd for refreshing front part and even for refreshing rear
-        private long m_lPlayed;         // Length of audio asset in bytes which had been played ( loadded to SoundBuffer )
-        private long m_lPausePosition; // holds pause position in bytes to allow play resume playback from there
-        private long m_lResumeToPosition; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
-        private bool m_IsEndOfAsset; // variable required to signal monitoring timer to trigger end of asset event, flag is set for a moment and again reset
-
-
-        #endregion
-
-
-
-
-
-
-
-
-
-
-
-       
-
 
         /// <summary>
         ///  Thread function which is responsible for refreshing half of sound buffer after every 0.5 second and also for stopping play at end of asset
@@ -405,12 +343,12 @@ namespace Bobi.Audio
             {
                 this.bufferStopPosition = Convert.ToInt32(this.bufferSize - diff);
             }
-            else if ((m_BufferCheck % 2) == 0)
+            else if ((this.bufferCheck % 2) == 0)
             {
                 // if last refresh is to Front, BufferCheck is even and stop position is at front of buffer.
                 this.bufferStopPosition = Convert.ToInt32(this.refreshLength - diff);
             }
-            else if ((m_BufferCheck % 2) == 1)
+            else if ((this.bufferCheck % 2) == 1)
             {
                 this.bufferStopPosition = Convert.ToInt32(this.bufferSize - diff);
             }
@@ -437,6 +375,50 @@ namespace Bobi.Audio
             this.state = PlayerState.Stopped;
             this.isEndOfAsset = true;
             // RefreshBuffer ends
+        }
+
+        void SetCurrentBytePosition(int position)
+        {
+            if (position < 0) position = 0;
+            if (position > this.audio.getPCMLength()) position = this.audio.getPCMLength() - 100;
+            if (this.state == PlayerState.Playing)
+            {
+                StopPlayback();
+                Thread.Sleep(30);
+                this.startPosition = position;
+                InitPlay(this.audio, position, 0);
+            }
+            else if (this.state == PlayerState.Paused)
+            {
+                this.startPosition = position;
+                this.pausePosition = position;
+            }
+        }
+
+        // Set the current time position
+        private void SetCurrentTimePosition(double position)
+        {
+            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(position, this.sampleRate, this.frameSize));
+        }
+
+        // Set the output device to the first one found.
+        private void SetDefaultOutputDevice(Control handle)
+        {
+            DevicesCollection devices = new DevicesCollection();
+            if (devices.Count == 0) throw new Exception("No output device found!");
+            this.device = new Device(devices[0].DriverGuid);
+            this.device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+        }
+
+        /// <summary>
+        /// Stop the playback and revert to normal playback mode.
+        /// </summary>
+        private void StopPlayback()
+        {
+            this.soundBuffer.Stop();
+            if (this.refreshThread != null && this.refreshThread.IsAlive) this.refreshThread.Abort();
+            this.bufferStopPosition = -1;
+            this.audioStream.Close();
         }
     }
 }

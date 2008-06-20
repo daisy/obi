@@ -41,6 +41,16 @@ namespace Bobi.View
                             new Rectangle(block.XForTime(selection.At) - Height / 2, 0, Height, Height));
                     }
                 }
+                if (block.Playing)
+                {
+                    int at = block.XForTime(block.PlayingTime);
+                    Point[] points = new Point[3];
+                    points[0] = new Point(at, 0);
+                    points[1] = new Point(at + Height / 2, Height / 2);
+                    points[2] = new Point(at, Height);
+                    pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    pe.Graphics.FillPolygon(block.Colors.AudioPlaybackBrush, points);
+                }
             }
             // Calling the base class OnPaint
             base.OnPaint(pe);

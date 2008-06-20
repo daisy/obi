@@ -32,6 +32,8 @@ namespace Bobi
         public Color AudioBlockSelectedBackColor;
         public Pen AudioSelectionPen;
         public SolidBrush AudioSelectionBrush;
+        public Pen AudioPlaybackPen;
+        public SolidBrush AudioPlaybackBrush;
 
         public static ColorSettings DefaultColorScheme()
         {
@@ -46,6 +48,8 @@ namespace Bobi
             scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
             scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 128, 255, 128));
             scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
+            scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 128, 128));
+            scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
             return scheme;
         }
 
