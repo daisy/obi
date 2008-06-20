@@ -39,6 +39,27 @@ namespace Bobi
         /// </summary>
         public Settings Settings { get { return this.settings; } }
 
+        /// <summary>
+        /// Play the selected audio.
+        /// </summary>
+        public void Play()
+        {
+            if (this.transportBar.Player != null && this.projectView.Selection is NodeSelection)
+            {
+                AudioNode node = ((NodeSelection)this.projectView.Selection).SingleNode as AudioNode;
+                if (node != null)
+                {
+                    this.transportBar.Player.Play(node.Audio);
+                }
+            }
+        }
+
+        public void Stop()
+        {
+            if (this.transportBar.Player != null) this.transportBar.Player.Stop();
+        }
+
+
         // &File > &New (Ctrl+N)
         private void file_NewMenuItem_Click(object sender, EventArgs e)
         {
