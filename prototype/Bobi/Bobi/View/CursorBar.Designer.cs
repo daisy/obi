@@ -28,7 +28,13 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CursorBar
+            // 
+            this.Click += new System.EventHandler(this.CursorBar_Click);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

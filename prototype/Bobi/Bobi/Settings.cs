@@ -29,6 +29,7 @@ namespace Bobi
         public Color TrackSelectedForeColor;
         public Color TrackLayoutBackColor;
         public Color AudioBlockBackColor;
+        public Color AudioBlockSelectedBackColor;
         public Pen AudioSelectionPen;
         public SolidBrush AudioSelectionBrush;
 
@@ -42,6 +43,7 @@ namespace Bobi
             scheme.TrackSelectedForeColor = Color.Red;
             scheme.TrackLayoutBackColor = Color.LightBlue;
             scheme.AudioBlockBackColor = Color.White;
+            scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
             scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 128, 255, 128));
             scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
             return scheme;

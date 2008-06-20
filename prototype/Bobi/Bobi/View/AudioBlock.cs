@@ -67,8 +67,7 @@ namespace Bobi.View
             get { return ((Track)Parent.Parent).Colors; }
             set
             {
-                BackColor = Color.Orange; // value.AudioBlockBackColor;
-                cursorBar.BackColor = value.AudioBlockBackColor;
+                cursorBar.BackColor = this.selection is NodeSelection ? value.AudioBlockSelectedBackColor : value.AudioBlockBackColor;
                 waveformCanvas.BackColor = value.AudioBlockBackColor;
             }
         }
@@ -77,6 +76,19 @@ namespace Bobi.View
         /// Get the audio node for this block.
         /// </summary>
         public AudioNode Node { get { return this.node; } }
+
+        /// <summary>
+        /// Select the block from below (e.g. the cursor bar.)
+        /// </summary>
+        public void SelectFromBelow()
+        {
+            Track track = Parent != null && Parent.Parent is Track ? (Track)Parent.Parent : null;
+            if (track.View != null)
+            {
+                Selection = new NodeSelection(track.View, this.node);
+                track.SelectFromBelow(this.selection);
+            }
+        }
 
         public void SelectFromXFromBelow(int x)
         {
@@ -115,7 +127,7 @@ namespace Bobi.View
             set
             {
                 this.selection = value;
-                if (Parent is Track) Colors = ((Track)Parent).Colors;
+                if (Parent != null && Parent.Parent is Track) Colors = ((Track)Parent.Parent).Colors;
                 this.cursorBar.Invalidate();
                 this.waveformCanvas.Invalidate();
             }

@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -40,6 +41,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\Player.cs" />
+    <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="BobiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +70,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CursorBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CursorBar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ProjectView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectView.cs</DependentUpon>
@@ -74,6 +81,10 @@
     <EmbeddedResource Include="View\Track.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Track.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TransportBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TransportBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\WaveformCanvas.resx">
       <DependentUpon>WaveformCanvas.cs</DependentUpon>
@@ -118,6 +129,12 @@
     <Compile Include="View\Track.Designer.cs">
       <DependentUpon>Track.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TransportBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TransportBar.Designer.cs">
+      <DependentUpon>TransportBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\WaveformCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -127,6 +144,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bobi.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\media-playback-pause.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\media-playback-start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="View\media-playback-stop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

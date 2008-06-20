@@ -45,5 +45,10 @@ namespace Bobi.View
             // Calling the base class OnPaint
             base.OnPaint(pe);
         }
+
+        private void CursorBar_Click(object sender, EventArgs e)
+        {
+            if (Parent is AudioBlock) ((AudioBlock)Parent).SelectFromBelow();
+        }
     }
 }
