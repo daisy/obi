@@ -75,6 +75,15 @@ namespace Bobi.View
         }
 
         /// <summary>
+        /// Find the audio block for the given audio node.
+        /// </summary>
+        public AudioBlock FindBlock(AudioNode node)
+        {
+            foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock && ((AudioBlock)c).Node == node) return (AudioBlock)c;
+            return null;
+        }
+
+        /// <summary>
         /// Node for this track.
         /// </summary>
         public urakawa.core.TreeNode Node { get { return this.node; } }
@@ -94,6 +103,15 @@ namespace Bobi.View
                     if (this.selected) ((ProjectView)Parent).ScrollControlIntoView(this);
                 }
             }
+        }
+
+        /// <summary>
+        /// Select from below (i.e. from a block.)
+        /// </summary>
+        public void SelectFromBelow(Selection selection)
+        {
+            Selected = false;
+            if (Parent is ProjectView) ((ProjectView)Parent).SelectFromBelow(selection);
         }
 
         /// <summary>
@@ -124,6 +142,9 @@ namespace Bobi.View
             }
         }
 
+        /// <summary>
+        /// Get the view that this track is in.
+        /// </summary>
         public ProjectView View { get { return Parent as ProjectView; } }
 
         /// <summary>

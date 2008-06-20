@@ -18,6 +18,8 @@ namespace Bobi.View
 
         private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
+        private delegate void SetAudioDelegate(urakawa.media.data.audio.AudioMediaData audio);  // delegate for Invoke()
+
 
         /// <summary>
         /// Create an empty audio block. (Normally this is used by the designer.)
@@ -76,10 +78,32 @@ namespace Bobi.View
         /// </summary>
         public AudioNode Node { get { return this.node; } }
 
-        public void SelectAtX(int x)
+        public void SelectFromXFromBelow(int x)
         {
-            ProjectView view = Parent != null && Parent.Parent is Track ? ((Track)Parent.Parent).View : null;
-            if (view != null) Selection = new AudioSelection(view, this.node, TimeForX(x));
+            Track track = Parent != null && Parent.Parent is Track ? (Track)Parent.Parent : null;
+            if (track.View != null)
+            {
+                Selection = new AudioSelection(track.View, this.node, TimeForX(x));
+                track.SelectFromBelow(this.selection);
+            }
+        }
+
+        public void SelectToXFromBelow(int x)
+        {
+            Track track = Parent != null && Parent.Parent is Track ? (Track)Parent.Parent : null;
+            if (track.View != null)
+            {
+                double to = TimeForX(x);
+                if (this.selection is AudioSelection)
+                {
+                    double from = ((AudioSelection)this.selection).From;
+                    if (from != to)
+                    {
+                        Selection = new AudioSelection(track.View, this.node, from, to);
+                        track.SelectFromBelow(this.selection);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -114,7 +138,7 @@ namespace Bobi.View
         }
 
         /// <summary>
-        /// 
+        /// Set the zoom factor for this block.
         /// </summary>
         public double Zoom
         {
@@ -132,8 +156,7 @@ namespace Bobi.View
         }
 
 
-        private delegate void SetAudioDelegate(urakawa.media.data.audio.AudioMediaData audio);
-
+        // Update the display when the node has new audio.
         private void SetAudio(urakawa.media.data.audio.AudioMediaData audio)
         {
             if (InvokeRequired)
@@ -156,7 +179,7 @@ namespace Bobi.View
             {
                 if (this.selection != null)
                 {
-                    this.selection.Deselect();
+                    this.selection.Deselect(null);
                     this.selection = null;
                 }
                 if (((urakawa.events.media.MediaEventArgs)e).SourceMedia is urakawa.media.data.audio.ManagedAudioMedia)
@@ -166,6 +189,7 @@ namespace Bobi.View
             }
         }
 
+        // Compute the necessary width for the amount of audio at the current audio scale.
         private int WidthForAudio(urakawa.media.data.audio.AudioMediaData audio)
         {
             return (int)Math.Round(this.zoom * (audio == null ? this.baseSize.Width :

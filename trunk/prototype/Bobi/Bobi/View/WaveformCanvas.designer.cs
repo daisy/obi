@@ -33,7 +33,10 @@ namespace Bobi.View
             // WaveformCanvas
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WaveformCanvas_MouseClick);
+            this.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WaveformCanvas_MouseMove);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WaveformCanvas_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WaveformCanvas_MouseUp);
             this.SizeChanged += new System.EventHandler(this.Waveform_SizeChanged);
             this.ResumeLayout(false);
 

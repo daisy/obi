@@ -106,10 +106,17 @@ namespace Bobi.View
         /// <summary>
         /// Select (or deselect) the control corresponding to the given node.
         /// </summary>
-        public void SelectControlForNode(urakawa.core.TreeNode node, bool selected)
+        public void SelectControlForNode(urakawa.core.TreeNode node, Selection selection)
         {
             Track track = FindTrack(node);
-            if (track != null) track.Selected = selected;
+            if (node is TrackNode)
+            {
+                track.Selected = selection != null;
+            }
+            else if (node is AudioNode)
+            {
+                track.FindBlock((AudioNode)node).Selection = selection;
+            }
         }
 
         /// <summary>
@@ -122,8 +129,8 @@ namespace Bobi.View
         /// </summary>
         public void SelectAllFromAbove()
         {
-            if (this.selection != null) this.selection.Deselect();
-            this.selection = new NodeSelection(this);
+            NodeSelection s = new NodeSelection(this);
+            if (this.selection != null) this.selection.Deselect(s);
             foreach (Control c in Controls)
             {
                 if (c is Track) ((NodeSelection)this.selection).AddNode(((Track)c).Node);
@@ -136,22 +143,30 @@ namespace Bobi.View
         /// </summary>
         public void SelectFromAbove(Selection selection)
         {
-            if (this.selection != null) this.selection.Deselect();
+            if (this.selection != null) this.selection.Deselect(selection);
             this.selection = selection;
             if (this.selection != null) this.selection.SelectControls();
         }
 
         /// <summary>
-        /// Select a single track from below (i.e. from the track.)
+        /// Select a single track from below (i.e. a the track.)
         /// </summary>
         public void SelectFromBelow(urakawa.core.TreeNode node)
         {
-            if (this.selection != null)
+            SelectFromBelow(new NodeSelection(this, node));
+        }
+
+        /// <summary>
+        /// Make a selection from below (i.e. from a track or a block.)
+        /// </summary>
+        public void SelectFromBelow(Selection selection)
+        {
+            if (this.selection != selection)
             {
-                this.selection.Deselect();
+                if (this.selection != null) this.selection.Deselect(selection);
+                this.selection = selection;
+                if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
             }
-            this.selection = new NodeSelection(this, node);
-            if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
         }
 
         /// <summary>
@@ -180,7 +195,7 @@ namespace Bobi.View
             else
             {
                 SuspendLayout();
-                Track t = FindTrack(node.getParent());
+                Track t = FindTrack(node);
                 t.AddAudioBlock(new AudioBlock((AudioNode)node));
                 t.Zoom = this.zoom;
                 ResumeLayout();
@@ -237,7 +252,8 @@ namespace Bobi.View
         // Find the track for a given node
         private Track FindTrack(urakawa.core.TreeNode node)
         {
-            foreach (Control c in Controls) if (c is Track && ((Track)c).Node == node) return (Track)c;
+            urakawa.core.TreeNode actual = node is AudioNode ? node.getParent() : node;
+            foreach (Control c in Controls) if (c is Track && ((Track)c).Node == actual) return (Track)c;
             return null;
         }
         
@@ -262,7 +278,7 @@ namespace Bobi.View
         // Click to deselect.
         private void ProjectView_Click(object sender, EventArgs e)
         {
-            if (this.selection != null) this.selection.Deselect();
+            if (this.selection != null) this.selection.Deselect(null);
             this.selection = null;
             if (SelectionSet != null) SelectionSet(this, new SelectionSetEventArgs(this.selection));
         }
