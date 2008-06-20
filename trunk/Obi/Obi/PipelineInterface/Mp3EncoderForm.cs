@@ -11,21 +11,51 @@ namespace PipelineInterface
 {
     public partial class Mp3EncoderForm : Form
     {
-        private Mp3Encoder m_Encoder;
+        
+        private ScriptParser M_ScriptParser; //instance of ScriptParser class
+        private string m_ScriptFilePath; // Path of DTBToAudioEncoder script file
+
 
         public Mp3EncoderForm()
         {
             InitializeComponent();
-                        m_Encoder = new Mp3Encoder();
-        }
+                                }
 
-        public Mp3EncoderForm(string InputPath )
+        public Mp3EncoderForm(string InputPath ):this    ()
         {
-            InitializeComponent();
-            m_Encoder = new Mp3Encoder();
+                        string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
+            m_ScriptFilePath = AppDomain.CurrentDomain.BaseDirectory + relativeScriptPath;
+            if (!File.Exists(m_ScriptFilePath))
+            {
+                MessageBox.Show("Pipeline script file not found");
+                return ;
+            }
+
+            M_ScriptParser = new ScriptParser(m_ScriptFilePath);
+
             InputPath = InputPath + "\\obi_dtb.opf";
             if ( InputPath != null  && File.Exists (InputPath) )
             m_txtInputFile.Text = InputPath;
+
+// associate script parameter objects
+        AssociateParameterObjectToControls();
+        }
+
+        /// <summary>
+        /// <summary></summary>
+        ///  Associate script parameter objects to their respective controls
+        /// </summary>
+        private void AssociateParameterObjectToControls()
+        {
+            foreach (ScriptParser.Parameter p in M_ScriptParser.ParameterList)
+            {
+                if (p.ParameterDiscriptiveName == "Input file")
+                    m_txtInputFile.Tag = p;
+                else if (p.ParameterDiscriptiveName == "Output directory")
+                    m_txtOutputDirectory.Tag = p;
+                else if (p.ParameterDiscriptiveName == "Bitrate")
+                    m_comboBitRate.Tag = p;
+            }
         }
 
         private void Mp3EncoderForm_Load(object sender, EventArgs e)
@@ -88,15 +118,14 @@ namespace PipelineInterface
                                 return;
                         }
 
-// write script file
-
+// execute script with input values
                         try
                         {
-                            m_Encoder.InputFilePath = m_txtInputFile.Text;
-                            m_Encoder.OutputDirectory = m_txtOutputDirectory.Text;
-                            m_Encoder.bitrate = m_comboBitRate.Items[m_comboBitRate.SelectedIndex].ToString();
-                            
-                            m_Encoder.ExecuteEncoder();
+                            ((ScriptParser.Parameter) m_txtInputFile.Tag).ParameterValue = m_txtInputFile.Text;
+                            ((ScriptParser.Parameter)m_txtOutputDirectory.Tag).ParameterValue  = m_txtOutputDirectory.Text;
+                            ((ScriptParser.Parameter)m_comboBitRate.Tag).ParameterValue = m_comboBitRate.Items[m_comboBitRate.SelectedIndex].ToString();
+
+                          M_ScriptParser.ExecuteScript();
                         }
                         catch (System.Exception ex)
                         {
