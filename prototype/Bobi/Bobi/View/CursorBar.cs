@@ -28,10 +28,18 @@ namespace Bobi.View
                 AudioSelection selection = block.Selection as AudioSelection;
                 if (selection != null)
                 {
-                    pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
-                        new Rectangle(block.XForTime(selection.From) - Height / 2, 0, Height, Height));
-                    pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
-                        new Rectangle(block.XForTime(selection.To) - Height / 2, 0, Height, Height));
+                    int from = block.XForTime(selection.From < selection.To ? selection.From : selection.To);
+                    int to = block.XForTime(selection.To > selection.From ? selection.To : selection.From);
+                    if (selection.IsRange)
+                    {
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(from, 0, Height, Height));
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(to - Height + 1, 0, Height, Height));
+                    }
+                    else
+                    {
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
+                            new Rectangle(block.XForTime(selection.At) - Height / 2, 0, Height, Height));
+                    }
                 }
             }
             // Calling the base class OnPaint

@@ -7,7 +7,8 @@ namespace Bobi
     public abstract class Selection
     {
         public abstract View.ProjectView View { get; }
-        public abstract void Deselect();
+        public abstract void Deselect(Selection newSelection);
+        public abstract bool ContainsNode(urakawa.core.TreeNode node);
         public abstract int ItemsInSelection { get; }
         public abstract void SelectControls();
     }
@@ -68,11 +69,26 @@ namespace Bobi
         }
 
         /// <summary>
+        /// Tell whether a node is part of the selection.
+        /// </summary>
+        public override bool ContainsNode(urakawa.core.TreeNode node)
+        {
+            return this.nodes.Contains(node);
+        }
+
+        /// <summary>
         /// Deselect all selected tracks.
         /// </summary>
-        public override void Deselect()
+        public override void Deselect(Selection newSelection)
         {
-            foreach (urakawa.core.TreeNode node in this.nodes) View.SelectControlForNode(node, false);
+            if (newSelection == null)
+            {
+                foreach (urakawa.core.TreeNode node in this.nodes) View.SelectControlForNode(node, null);
+            }
+            else
+            {
+                foreach (urakawa.core.TreeNode node in this.nodes) if (!newSelection.ContainsNode(node)) View.SelectControlForNode(node, null);
+            }
         }
 
         /// <summary>
@@ -85,7 +101,7 @@ namespace Bobi
         /// </summary>
         public override void SelectControls()
         {
-            foreach (urakawa.core.TreeNode node in this.nodes) View.SelectControlForNode(node, true);
+            foreach (urakawa.core.TreeNode node in this.nodes) View.SelectControlForNode(node, this);
         }
 
         /// <summary>
@@ -142,9 +158,14 @@ namespace Bobi
             }
         }
 
-        public override void Deselect()
+        public override bool ContainsNode(urakawa.core.TreeNode node)
         {
-            View.SelectControlForNode(node, false);
+            return this.node == node;
+        }
+
+        public override void Deselect(Selection newSelection)
+        {
+            if (newSelection == null || !newSelection.ContainsNode(this.node)) View.SelectControlForNode(this.node, null);
         }
 
         public double From
@@ -164,7 +185,7 @@ namespace Bobi
 
         public override void SelectControls()
         {
-            View.SelectControlForNode(node, true);
+            View.SelectControlForNode(node, this);
         }
 
         /// <summary>
@@ -186,16 +207,24 @@ namespace Bobi
         // Ensure that both times are within the range of the audio of the node
         private void EnsureTimesWithinRange()
         {
-            if (this.from > this.to)
+            /*if (this.from > this.to)
             {
                 double t = this.to;
                 this.to = this.from;
                 this.from = t;
-            }
+            }*/
             if (this.from < 0.0) this.from = 0.0;
-            if (node != null && node.Audio != null && this.to > node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat())
+            if (this.to < 0.0) this.to = 0.0;
+            if (node != null && node.Audio != null)
             {
-                this.to = node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                if (this.from > node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat())
+                {
+                    this.from = node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                }
+                if (this.to > node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat())
+                {
+                    this.to = node.Audio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                }
             }
         }
     }

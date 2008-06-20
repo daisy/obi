@@ -100,8 +100,15 @@ namespace Bobi.View
                 AudioSelection selection = block.Selection as AudioSelection;
                 if (selection != null)
                 {
-                    int x = block.XForTime(selection.From);
-                    pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(x, 0), new Point(x, Height - 1));
+                    int from = block.XForTime(selection.From);
+                    if (selection.IsRange)
+                    {
+                        int to = block.XForTime(selection.To);
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush,
+                            new Rectangle(from < to ? from : to, 0, from < to ? to - from : from - to, Height));
+                        pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(to, 0), new Point(to, Height - 1));
+                    }
+                    pe.Graphics.DrawLine(block.Colors.AudioSelectionPen, new Point(from, 0), new Point(from, Height - 1));
                 }
             }
             base.OnPaint(pe);
@@ -123,144 +130,19 @@ namespace Bobi.View
 
         private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
 
-        private void WaveformCanvas_MouseClick(object sender, MouseEventArgs e)
+        private void WaveformCanvas_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Parent is AudioBlock) ((AudioBlock)Parent).SelectAtX(e.X);
+            if (e.Button == MouseButtons.Left && Parent is AudioBlock) ((AudioBlock)Parent).SelectFromXFromBelow(e.X);
         }
 
-        /// <summary>
-        /// Selection point (not range) position (in pixels).
-        /// </summary>
-        /*public int SelectionPointPosition
+        private void WaveformCanvas_MouseUp(object sender, MouseEventArgs e)
         {
-            get { return XFromTime(mSelection.CursorTime); }
-            set
-            {
-                mSelection = new AudioRange(TimeFromX(value));
-                Invalidate();
-            }
-        }*/
+            if (e.Button == MouseButtons.Left && Parent is AudioBlock) ((AudioBlock)Parent).SelectToXFromBelow(e.X);
+        }
 
-        /// <summary>
-        /// Set the cursor time (during playback only.)
-        /// </summary>
-        /*public double CursorTime
+        private void WaveformCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            set
-            {
-                mCursor.CursorTime = value;
-                Invalidate();
-            }
-        }*/
-
-        /// <summary>
-        /// Clear the current selection in the waveform.
-        /// </summary>
-        /*public void Deselect()
-        {
-            mSelection = null;
-            Invalidate();
-        }*/
-
-        /// <summary>
-        /// Playback cursor leaves the waveform.
-        /// </summary>
-        /*public void ClearCursor()
-        {
-            mCursor = null;
-            Invalidate();
-        }*/
-
-        /// <summary>
-        /// Create a new cursor when playback starts.
-        /// </summary>
-        /*public void InitCursor()
-        {
-            mCursor = new AudioRange(0.0);
-        }*/
-
-        /// <summary>
-        /// Get or set the final position of the selection (in pixels.)
-        /// Ignored if the transport bar is active.
-        /// </summary>
-        /*public int FinalSelectionPosition
-        {
-            get { return XFromTime(mSelection.SelectionEndTime); }
-            set
-            {
-                int x = value < 0 ? 0 : value > Width ? Width : value;
-                double end = TimeFromX(x);
-                double start = mSelection == null ? end : mSelection.CursorTime;
-                if (start == end)
-                {
-                    mSelection.HasCursor = true;
-                }
-                else
-                {
-                    mSelection.HasCursor = false;
-                    mSelection.SelectionBeginTime = Math.Min(start, end);
-                    mSelection.SelectionEndTime = Math.Max(start, end);
-                }
-                Invalidate();
-            }
-        }*/
-
-        /// <summary>
-        /// Get the initial position of the selection (in pixels.)
-        /// </summary>
-        // public int InitialSelectionPosition { get { return XFromTime(mSelection.SelectionBeginTime); } }
-
-        /// <summary>
-        /// Get or set the audio range selection in the waveform.
-        /// </summary>
-        /*public AudioRange Selection
-        {
-            get { return mSelection; }
-            set
-            {
-                mSelection = value;
-                Invalidate();
-            }
-        }*/
-
-
-        // Get the position in pixels of the cursor (during playback only.)
-        /*private int CursorPosition
-        {
-            get { return XFromTime(mCursor.CursorTime); }
-        }*/
-
-        /*private bool CheckCursor
-        {
-            get
-            {
-                return mSelection.HasCursor &&
-                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
-            }
-        }*/
-
-        /*private bool CheckRange
-        {
-            get
-            {
-                double d = mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
-                return !mSelection.HasCursor &&
-                    mSelection.SelectionBeginTime >= 0.0 && mSelection.SelectionBeginTime <= d &&
-                    mSelection.SelectionEndTime >= 0.0 && mSelection.SelectionEndTime <= d &&
-                    mSelection.SelectionBeginTime < mSelection.SelectionEndTime;
-            }
-        }*/
-
-        // Convert a pixel position into a time (in ms.)
-        /*private double TimeFromX(int x)
-        {
-            return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
-        }*/
-
-        // Convert a time (in ms) to a pixel position.
-        /*private int XFromTime(double time)
-        {
-            return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
-        }*/
+            if (e.Button == MouseButtons.Left) if (Parent is AudioBlock) ((AudioBlock)Parent).SelectToXFromBelow(e.X);
+        }
     }
 }
