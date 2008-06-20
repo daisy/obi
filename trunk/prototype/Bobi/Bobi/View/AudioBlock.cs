@@ -15,6 +15,8 @@ namespace Bobi.View
         private double audioScale;    // audio zoom
         private AudioNode node;       // audio node
         private Selection selection;  // current selection (node or audio selection)
+        private bool playing;         // playing flag
+        private double playingTime;   // playing position
 
         private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
@@ -34,6 +36,7 @@ namespace Bobi.View
             this.zoom = 1.0;
             this.audioScale = AUDIO_SCALE;
             this.cursorBar.BaseHeight = this.cursorBar.Height;
+            this.playing = false;
         }
 
         /// <summary>
@@ -76,6 +79,29 @@ namespace Bobi.View
         /// Get the audio node for this block.
         /// </summary>
         public AudioNode Node { get { return this.node; } }
+
+        public bool Playing
+        {
+            get { return this.playing; }
+            set
+            {
+                this.playing = value;
+                cursorBar.Invalidate();
+                waveformCanvas.Invalidate();
+            }
+        }
+
+        public double PlayingTime
+        {
+            get { return this.playingTime; }
+            set
+            {
+                this.playing = true;
+                this.playingTime = value;
+                this.cursorBar.Invalidate();
+                this.waveformCanvas.Invalidate();
+            }
+        }
 
         /// <summary>
         /// Select the block from below (e.g. the cursor bar.)

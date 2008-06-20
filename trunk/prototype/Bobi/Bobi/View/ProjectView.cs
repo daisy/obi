@@ -10,11 +10,12 @@ namespace Bobi.View
 {
     public partial class ProjectView : FlowLayoutPanel
     {
-        private double audioScale;    // current audio scale (zoom)
-        private Clipboard clipboard;  // clipboard
-        private Project project;      // current project (may be null)
-        private Selection selection;  // current selection
-        private double zoom;          // current zoom factor
+        private double audioScale;         // current audio scale (zoom)
+        private Clipboard clipboard;       // clipboard
+        private AudioBlock playbackBlock;  // block currently playing
+        private Project project;           // current project (may be null)
+        private Selection selection;       // current selection
+        private double zoom;               // current zoom factor
 
         public event SelectionSetEventHandler SelectionSet;  // selection was set from this control, or below
 
@@ -32,6 +33,7 @@ namespace Bobi.View
             Project = null;
             this.clipboard = null;
             this.selection = null;
+            this.playbackBlock = null;
             AudioScale = 1.0;
             Zoom = 1.0;
         }
@@ -86,6 +88,15 @@ namespace Bobi.View
             }
         }
 
+        public AudioNode PlaybackNode
+        {
+            set
+            {
+                if (this.playbackBlock != null) playbackBlock.Playing = false;
+                this.playbackBlock = value == null ? null : FindTrack(value).FindBlock(value);
+            }
+        }
+
         /// <summary>
         /// The project for this view.
         /// </summary>
@@ -101,6 +112,11 @@ namespace Bobi.View
                     this.project.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(project_changed);
                 }
             }
+        }
+
+        public void ReportPlaybackPosition(double time)
+        {
+            if (this.playbackBlock != null) this.playbackBlock.PlayingTime = time;
         }
 
         /// <summary>

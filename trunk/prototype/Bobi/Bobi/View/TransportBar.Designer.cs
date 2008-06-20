@@ -28,15 +28,18 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransportBar));
             this.playButton = new System.Windows.Forms.Button();
             this.pauseButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.timeDisplay = new System.Windows.Forms.Label();
+            this.timeDisplayUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // playButton
             // 
+            this.playButton.FlatAppearance.BorderSize = 0;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Image = ((System.Drawing.Image)(resources.GetObject("playButton.Image")));
             this.playButton.Location = new System.Drawing.Point(3, 3);
@@ -48,6 +51,7 @@ namespace Bobi.View
             // 
             // pauseButton
             // 
+            this.pauseButton.FlatAppearance.BorderSize = 0;
             this.pauseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pauseButton.Image = ((System.Drawing.Image)(resources.GetObject("pauseButton.Image")));
             this.pauseButton.Location = new System.Drawing.Point(41, 3);
@@ -55,9 +59,11 @@ namespace Bobi.View
             this.pauseButton.Size = new System.Drawing.Size(32, 32);
             this.pauseButton.TabIndex = 1;
             this.pauseButton.UseVisualStyleBackColor = true;
+            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // stopButton
             // 
+            this.stopButton.FlatAppearance.BorderSize = 0;
             this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stopButton.Image = ((System.Drawing.Image)(resources.GetObject("stopButton.Image")));
             this.stopButton.Location = new System.Drawing.Point(79, 3);
@@ -76,6 +82,10 @@ namespace Bobi.View
             this.timeDisplay.Size = new System.Drawing.Size(103, 29);
             this.timeDisplay.TabIndex = 3;
             this.timeDisplay.Text = "00:00:00";
+            // 
+            // timeDisplayUpdateTimer
+            // 
+            this.timeDisplayUpdateTimer.Tick += new System.EventHandler(this.timeDisplayUpdateTimer_Tick);
             // 
             // TransportBar
             // 
@@ -99,5 +109,6 @@ namespace Bobi.View
         private System.Windows.Forms.Button pauseButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Label timeDisplay;
+        private System.Windows.Forms.Timer timeDisplayUpdateTimer;
     }
 }

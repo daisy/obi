@@ -19,6 +19,7 @@ namespace Bobi
         public BobiForm()
         {
             InitializeComponent();
+            this.transportBar.Player.StateChanged += new Bobi.Audio.StateChangedEventHandler(Player_StateChanged);
             this.settings = new Settings();
             SetColorScheme(SystemInformation.HighContrast ? this.settings.ColorScheme_HighContrast : this.settings.ColorScheme);
             Microsoft.Win32.SystemEvents.UserPreferenceChanged +=
@@ -39,24 +40,70 @@ namespace Bobi
         /// </summary>
         public Settings Settings { get { return this.settings; } }
 
+        public void Pause()
+        {
+            if (this.transportBar.Player != null && this.transportBar.Player.State == Audio.PlayerState.Playing)
+            {
+                this.transportBar.Player.Pause();
+            }
+        }
+
         /// <summary>
         /// Play the selected audio.
         /// </summary>
-        public void Play()
+        public void PlayOrResume()
         {
-            if (this.transportBar.Player != null && this.projectView.Selection is NodeSelection)
+            if (this.transportBar.Player != null)
             {
-                AudioNode node = ((NodeSelection)this.projectView.Selection).SingleNode as AudioNode;
-                if (node != null)
+                if (this.transportBar.Player.State == Audio.PlayerState.Paused)
                 {
-                    this.transportBar.Player.Play(node.Audio);
+                    this.transportBar.Player.Resume();
+                }
+                else if (this.transportBar.Player.State == Audio.PlayerState.Stopped)
+                {
+                    if (this.projectView.Selection is NodeSelection)
+                    {
+                        AudioNode node = ((NodeSelection)this.projectView.Selection).SingleNode as AudioNode;
+                        this.projectView.PlaybackNode = node;
+                        if (node != null)
+                        {
+                            this.transportBar.Player.Play(node.Audio);
+                        }
+                    }
+                    else if (this.projectView.Selection is AudioSelection)
+                    {
+                        AudioSelection selection = this.projectView.Selection as AudioSelection;
+                        this.projectView.PlaybackNode = selection.Node;
+                        if (selection.IsRange)
+                        {
+                            double from = selection.From < selection.To ? selection.From : selection.To;
+                            double to = selection.To > selection.From ? selection.To : selection.From;
+                            this.transportBar.Player.Play(selection.Node.Audio, from, to);
+                        }
+                        else
+                        {
+                            this.transportBar.Player.Play(selection.Node.Audio, selection.At);
+                        }
+                    }
                 }
             }
         }
 
+        /// <summary>
+        /// Report playback position in the currently playing block
+        /// </summary>
+        public void ReportPlaybackPosition(double time)
+        {
+            this.projectView.ReportPlaybackPosition(time);
+        }
+
         public void Stop()
         {
-            if (this.transportBar.Player != null) this.transportBar.Player.Stop();
+            if (this.transportBar.Player != null)
+            {
+                this.transportBar.Player.Stop();
+                this.projectView.PlaybackNode = null;
+            }
         }
 
 
@@ -315,6 +362,12 @@ namespace Bobi
             StartStatusProgressBar();
             this.projectView.SuspendLayout();
             worker.RunWorkerAsync();
+        }
+
+        // Show player state.
+        private void Player_StateChanged(object sender, Bobi.Audio.StateChangedEventArgs e)
+        {
+            this.statusLabel.Text = string.Format("{0} audio.", e.Player.State);
         }
 
         // Set a new or null project in the current view.
