@@ -65,7 +65,7 @@ namespace PipelineInterface
                         m_Value = value;
                         m_Required = true;
                     }
-                    else if ( m_Value == null || m_Value == "" )
+                    else if ( m_Required &&( m_Value == null || m_Value == "" ) )
                         m_Required = false;
                 }
             }
