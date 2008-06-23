@@ -15,6 +15,7 @@ namespace Bobi.View
         public CursorBar()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         public int BaseHeight { set { this.baseHeight = value; } }
@@ -32,8 +33,9 @@ namespace Bobi.View
                     int to = block.XForTime(selection.To > selection.From ? selection.To : selection.From);
                     if (selection.IsRange)
                     {
-                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(from, 0, Height, Height));
-                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(to - Height + 1, 0, Height, Height));
+                        int w = Height / 2;
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(from, 0, w, Height));
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(to - w + 1, 0, w, Height));
                     }
                     else
                     {

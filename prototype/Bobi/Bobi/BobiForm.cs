@@ -368,6 +368,7 @@ namespace Bobi
         private void Player_StateChanged(object sender, Bobi.Audio.StateChangedEventArgs e)
         {
             this.statusLabel.Text = string.Format("{0} audio.", e.Player.State);
+            if (e.Player.State == Audio.PlayerState.Stopped) this.projectView.PlaybackNode = null;
         }
 
         // Set a new or null project in the current view.

@@ -63,6 +63,11 @@ namespace Bobi
             scheme.TrackSelectedForeColor = Color.White;
             scheme.TrackLayoutBackColor = Color.LightBlue;
             scheme.AudioBlockBackColor = Color.Orange;
+            scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
+            scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 0, 255, 0));
+            scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
+            scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 0, 0));
+            scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
             return scheme;
         }
     }

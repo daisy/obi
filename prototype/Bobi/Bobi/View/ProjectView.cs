@@ -88,6 +88,9 @@ namespace Bobi.View
             }
         }
 
+        /// <summary>
+        /// The node currently playing.
+        /// </summary>
         public AudioNode PlaybackNode
         {
             set
