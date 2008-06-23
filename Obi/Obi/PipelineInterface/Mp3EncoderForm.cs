@@ -23,7 +23,8 @@ namespace PipelineInterface
 
         public Mp3EncoderForm(string InputPath ):this    ()
         {
-                        string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
+                        //string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
+            string relativeScriptPath = "\\PipelineLight\\scripts\\DTBAudioEncoder.taskScript";
             m_ScriptFilePath = AppDomain.CurrentDomain.BaseDirectory + relativeScriptPath;
             if (!File.Exists(m_ScriptFilePath))
             {
@@ -47,7 +48,7 @@ namespace PipelineInterface
         /// </summary>
         private void AssociateParameterObjectToControls()
         {
-            foreach (ScriptParser.Parameter p in M_ScriptParser.ParameterList)
+            foreach (ScriptParameter p in M_ScriptParser.ParameterList)
             {
                 if (p.ParameterDiscriptiveName == "Input file")
                     m_txtInputFile.Tag = p;
@@ -121,9 +122,9 @@ namespace PipelineInterface
 // execute script with input values
                         try
                         {
-                            ((ScriptParser.Parameter) m_txtInputFile.Tag).ParameterValue = m_txtInputFile.Text;
-                            ((ScriptParser.Parameter)m_txtOutputDirectory.Tag).ParameterValue  = m_txtOutputDirectory.Text;
-                            ((ScriptParser.Parameter)m_comboBitRate.Tag).ParameterValue = m_comboBitRate.Items[m_comboBitRate.SelectedIndex].ToString();
+                            ((ScriptParameter) m_txtInputFile.Tag).ParameterValue = m_txtInputFile.Text;
+                            ((ScriptParameter)m_txtOutputDirectory.Tag).ParameterValue  = m_txtOutputDirectory.Text;
+                            ((ScriptParameter)m_comboBitRate.Tag).ParameterValue = m_comboBitRate.Items[m_comboBitRate.SelectedIndex].ToString();
 
                           M_ScriptParser.ExecuteScript();
                         }
