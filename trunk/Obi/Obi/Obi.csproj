@@ -216,7 +216,6 @@
     <Compile Include="ObiNode.cs" />
     <Compile Include="ObiNodeFactory.cs" />
     <Compile Include="PhraseNode.cs" />
-    <Compile Include="PipelineInterface\Mp3Encoder.cs" />
     <Compile Include="PipelineInterface\Mp3EncoderForm.cs">
       <SubType>Form</SubType>
     </Compile>
