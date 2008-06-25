@@ -17,11 +17,16 @@ namespace Obi.Audio
         private AudioRecorder mRecorder;  // associated recorder
 
         private int mChannels;            // number of channels
+        private int m_SamplingRate; // sampling rate of asset
         private int mUpperThreshold;      // upper threshold (?)
         private int mLowerThreshold;      // lower threshold (?)
         private int mMeanValueLeft;       // left channel mean value
         private int mMeanValueRight;      // right channel mean value
 
+        // variables for detecting lower amplitude
+        private int m_LowAmplitudeSamplesCounts ;
+        private double[] m_arLowAmpSamples ;
+        private readonly int m_MaxLowAmpSamples = 10;
 
 		/// <summary>
 		/// Create the VU meter object.
@@ -35,6 +40,9 @@ namespace Obi.Audio
             mChannels = 2;
             mUpperThreshold = 210;
             mLowerThreshold = 15;
+
+            m_LowAmplitudeSamplesCounts = 0;
+            m_arLowAmpSamples = new double[m_MaxLowAmpSamples];
         }
 
 
@@ -88,6 +96,7 @@ namespace Obi.Audio
 			mMeanValueLeft = 0 ;
 			mMeanValueRight = 0 ;
 
+            m_LowAmplitudeSamplesCounts = 0;
                         if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
 					}
@@ -110,8 +119,8 @@ namespace Obi.Audio
 
 
 		// for position of graph which is centre of graph in Y and centre of left edges of two graph for x
-		private int m_GraphPositionX = 170 ;
-		private int m_GraphPositionY = 300 ;
+		//private int m_GraphPositionX = 170 ;
+		//private int m_GraphPositionY = 300 ;
 			
 
 		private AudioPlayer ob_AudioPlayer ;
@@ -136,6 +145,7 @@ namespace Obi.Audio
 			ob_AudioPlayer = sender as AudioPlayer;
 			m_FrameSize = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getBlockAlign ()  ;
 			mChannels = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getNumberOfChannels ()   ;
+            m_SamplingRate =(int) ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate ();
 			m_UpdateVMArrayLength = ob_AudioPlayer.arUpdateVM.Length  ;
 			m_arUpdatedVM  = new byte[m_UpdateVMArrayLength ] ;
 
@@ -162,6 +172,7 @@ namespace Obi.Audio
 			ob_AudioRecorder = Recorder ;
 			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
 			mChannels = Recorder.Channels ;
+            m_SamplingRate = Recorder.SampleRate;
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
                         m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
 
@@ -232,6 +243,7 @@ namespace Obi.Audio
                         DetectOverloadForPeakMeter();
         //System.IO.File.AppendAllText("c:\\1.txt", "\n");
         //System.IO.File.AppendAllText("c:\\1.txt", maxDbs[0].ToString());
+                        AnimationComputation();
         }
 
         private void TriggerPeakEventForSecondHalf()
@@ -254,21 +266,37 @@ namespace Obi.Audio
 
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
+
+        double m_MeanValueLeft = 0;
+        double m_MeanValueRight = 0;
 		void AnimationComputation ()
 		{
-            //Thread.Sleep (25) ;
-            // finds the origin i.e upper left corner of graph display rectangle
-            //origin is computed from centre position of graph
-            int OriginX = m_GraphPositionX - Convert.ToInt32((m_ScaleFactor * 60));
-            int OriginY = m_GraphPositionY - Convert.ToInt32(125 * m_ScaleFactor);
-
             // create an local array and fill the amplitude value of both channels from function
-            int[] AmpArray = new int[2];
-            Array.Copy(AmplitudeValue(), AmpArray, 2);
+            int[] TempAmpArray = new int[2];
+            Array.Copy(AmplitudeValue1(), TempAmpArray, 2);
 
-            mMeanValueLeft = AmpArray[0];
-            mMeanValueRight = AmpArray[1];
+            //find value in db
+            double MaxVal = (int)Math.Pow(2, 8 * (m_FrameSize / mChannels))/2;
 
+            
+            double left = Convert.ToDouble ( TempAmpArray [0] ) / MaxVal;
+            left = 20 * Math.Log10(left);
+            if (left < -45) left = -45;
+                                         double right = Convert.ToDouble ( TempAmpArray [1] ) / MaxVal;
+                                         right = 20 * Math.Log10(right);
+                                         if (right < -45) right = -45;
+
+                                         m_MeanValueLeft = m_MeanValueLeft == 0 ?  left: ((m_MeanValueLeft *19 ) + left ) / 20 ;
+                                         m_MeanValueRight = m_MeanValueRight == 0 ? right : ((m_MeanValueRight * 19) + right ) / 20; 
+                                         
+            //mMeanValueLeft = ( ( mMeanValueLeft * 19 ) + left ) /20 ;
+            //mMeanValueRight = AmpArray[1];
+
+                                         Debug_WriteToTextFile(m_MeanValueLeft.ToString() + "-" + m_MeanValueRight.ToString());
+                        //wr.WriteLine(left.ToString());
+            
+                        DetectLowAmplitude();
+            /*
             // update peak values if it is greater than previous value
             if (m_PeakValueLeft < mMeanValueLeft)
                 arPeakOverloadValue[0] = m_PeakValueLeft = mMeanValueLeft;
@@ -319,26 +347,81 @@ namespace Obi.Audio
             {
                 arPeakOverloadFlag[1] = false;
             }
-
-            // compute the cordinates of graph and animation
-            //DisplayGraph();
-
-            //int ThresholdFactor = 12500 / (m_UpperThreshold - m_LowerThreshold);
-            //int DisplayAmpLeft = (m_MeanValueLeft * ThresholdFactor) / 100;
-            //int DisplayAmpRight = (m_MeanValueRight * ThresholdFactor) / 100;
-            //int Offset = 65 - ((m_LowerThreshold * ThresholdFactor) / 100);
-            //DisplayAmpLeft = DisplayAmpLeft + Offset;
-            //DisplayAmpRight = DisplayAmpRight + Offset;
-
-            //Graph.EraserLeft = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpLeft));
-            //Graph.EraserRight = OriginY + Convert.ToInt32(m_ScaleFactor * (254 - DisplayAmpRight));
-
-            //Thread.Sleep (25) ;
-
+            */
             // Update ccurrent graph cordinates to VuMeter display
             if ( UpdateForms != null )
             UpdateForms(this, new Events.Audio.VuMeter.UpdateFormsEventArgs());
 		}
+
+        int[] AmplitudeValue1()
+        {
+                        // average value to return
+            int [] arAveragePeaks = new int    [2] ;
+            long Left = 0;
+            long Right = 0;
+            
+
+                        // number of samples from which peak is selected
+            uint PeakSampleCount = Convert.ToUInt32 (m_SamplingRate / 2000);
+
+            // number of blocks iterated
+            uint Count = Convert.ToUInt32 (m_arUpdatedVM.Length / PeakSampleCount );
+            if (Count * PeakSampleCount > m_arUpdatedVM.Length) Count--;
+
+            //System.IO.StreamWriter wr = System.IO.File.AppendText("c:\\2.txt");
+            //wr.WriteLine("Count" +  Count.ToString() + "-"+ "PeakSampleCount" + PeakSampleCount.ToString());
+            //wr.Close();
+
+             int   [] tempArray = new int  [2] ;
+                        for (uint i = 0; i < Count; i++)
+            {
+                GetSpeechFragmentPeak(PeakSampleCount, i * PeakSampleCount ).CopyTo(tempArray, 0);
+                Left += tempArray[0];
+                Right += tempArray[1];
+                                }
+                                arAveragePeaks[0] = Convert.ToInt32 ( Left / Count ) ;
+                                arAveragePeaks[1] = Convert.ToInt32 ( Right / Count ) ;
+
+                                return arAveragePeaks;
+        }
+
+        private int[] GetSpeechFragmentPeak(uint FragmentSize, uint StartIndex)
+        {
+            int [] arPeakVal = new int[2] ;
+            arPeakVal [0] =  0 ;
+            arPeakVal [1] = 0 ;
+                        
+            for (int i = 0; i < FragmentSize ; i = i + m_FrameSize)
+            {
+                int SampleLeft = 0;
+                int SampleRight = 0;
+                SampleLeft = m_arUpdatedVM[StartIndex + i];
+                if (m_FrameSize / mChannels == 2)
+                {
+                    SampleLeft += m_arUpdatedVM[StartIndex + i + 1] * 256;
+
+                                        if (SampleLeft > 32768)
+                        SampleLeft = SampleLeft - 65536;
+                }
+                if (mChannels == 2)
+                {
+                    SampleRight = m_arUpdatedVM[StartIndex + i + 2];
+                    if (m_FrameSize / mChannels == 2)
+                    {
+                        SampleRight += m_arUpdatedVM[StartIndex + i + 3] * 256;
+
+                        if (SampleRight > 32768)
+                            SampleRight = SampleRight - 65536;
+                    }
+                }
+
+                // Update peak values from fragment
+                if (SampleLeft > arPeakVal[0]) arPeakVal[0] = SampleLeft;
+                                if (SampleRight > arPeakVal[1]) arPeakVal[1] = SampleRight;
+                            }
+            
+                                                        return arPeakVal;
+        }
 
 		// calculates the amplitude of both channels from input taken from DirectX buffers
 		int [] AmplitudeValue()
@@ -448,28 +531,30 @@ namespace Obi.Audio
             return arSum;
 		}
 
+
+        
         private void DetectOverloadForPeakMeter()
         {
         // Check for Peak Overload  and fire event if overloaded
             if ( m_PeakDbValue.Length > 0 &&    m_PeakDbValue [0]  >= 0 )
             {
-                arPeakOverloadFlag[0] = true;
-                Events.Audio.VuMeter.PeakOverloadEventArgs e;
-                if (boolPlayer)
-                {
-                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1,
-                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
-                }
-                else
-                {
-                    e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1, 0, 0);
-                }
-                PeakOverload(this, e);
+                                                    arPeakOverloadFlag[0] = true;
+                    Events.Audio.VuMeter.PeakOverloadEventArgs e;
+                    if (boolPlayer)
+                    {
+                        e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1,
+                            ob_AudioPlayer.CurrentBytePosition, ob_AudioPlayer.CurrentTimePosition);
+                    }
+                    else
+                    {
+                        e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1, 0, 0);
+                    }
+                    PeakOverload(this, e);
             }
             else
             {
                 arPeakOverloadFlag[0] = false;
-            }
+                            }
 
             if (m_PeakDbValue.Length > 1    &&   m_PeakDbValue [1]   >=  0 )
             {
@@ -494,6 +579,63 @@ namespace Obi.Audio
             }
 
         }
+
+            
+        private void DetectLowAmplitude()
+        {
+            const int UBound = -32; // Upper bound
+            const int LBound = -36; // lower bound
+            double AmplitudeValue;
+            if (mChannels == 1) AmplitudeValue = m_MeanValueLeft;
+            else AmplitudeValue = (m_MeanValueLeft + m_MeanValueRight) / 2;
+
+            //if (m_MeanValueLeft > -32 || m_MeanValueLeft < -36 )
+                                if ( m_MeanValueLeft < UBound && m_MeanValueLeft > LBound )
+            {
+                m_arLowAmpSamples[m_LowAmplitudeSamplesCounts] = AmplitudeValue ;
+                m_LowAmplitudeSamplesCounts++;
+                                                                if (m_LowAmplitudeSamplesCounts >= m_MaxLowAmpSamples)
+                {
+                    double diff = 0;
+                    int LowIndex = 0 ;
+                    for (int i = 0 ; i < m_arLowAmpSamples.Length - 1 ; i++)
+                    {
+                        if (m_arLowAmpSamples[LowIndex] > m_arLowAmpSamples [i]) LowIndex = i;
+                        diff += m_arLowAmpSamples[i] - m_arLowAmpSamples[i + 1];
+                    }
+                    diff = diff /( m_MaxLowAmpSamples - 1) ;
+                    if (Math.Abs(diff) < 0.25)
+                    {
+                        if ( (LowIndex == 0 || LowIndex == 9 )
+                            && ( m_arLowAmpSamples[0] >  LBound && m_arLowAmpSamples[9] > LBound) ) 
+                                            {
+                            if ( System.IO.File.Exists ("low.wav") )
+                            {
+                                                System.Media.SoundPlayer BeepPlayer = new System.Media.SoundPlayer("low.wav");
+                                                BeepPlayer.Play();
+                            }
+                        Debug_WriteToTextFile("Low" + diff.ToString());
+                                            }
+                    }
+                    m_LowAmplitudeSamplesCounts = 0;
+                }
+            }
+else // values is either above UBound or below LBound
+                {
+                m_LowAmplitudeSamplesCounts = 0;
+        }
+        }
+
+        void Debug_WriteToTextFile(string s)
+        {
+            if ( System.IO.File.Exists ("c:\\222111.txt") )
+            {
+            System.IO.StreamWriter wr = System.IO.File.AppendText("c:\\222111.txt");
+            wr.WriteLine(s);
+            wr.Close();
+            }
+        }
+
 
 		 // end of class
 	}
