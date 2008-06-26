@@ -217,8 +217,8 @@ namespace Obi.ProjectView
         public bool CanNavigatePrevPhrase { get { return mTransportBar.CanNavigatePrevPhrase; } }
         public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
         public bool CanPaste { get { return mPresentation != null &&  mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive ; } }
-        public bool CanPasteBefore { get { return mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive ; } }
-        public bool CanPasteInside { get { return mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive ; } }
+        public bool CanPasteBefore { get { return mPresentation != null  && mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive ; } }
+        public bool CanPasteInside { get { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive ; } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
