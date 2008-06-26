@@ -9,6 +9,7 @@ namespace Obi.Audio
 	public class VuMeter
 	{
 		public event Events.Audio.VuMeter.PeakOverloadHandler PeakOverload;        //
+        public Events.Audio.VuMeter.LevelTooLowHandler LevelTooLowEvent; // event to notify low amplitude
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;                 //
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;          //
         public event Events.Audio.VuMeter.UpdatePeakMeterHandler UpdatePeakMeter;  //
@@ -17,13 +18,17 @@ namespace Obi.Audio
         private AudioRecorder mRecorder;  // associated recorder
 
         private int mChannels;            // number of channels
+        private int m_FrameSize;
         private int m_SamplingRate; // sampling rate of asset
         private int mUpperThreshold;      // upper threshold (?)
         private int mLowerThreshold;      // lower threshold (?)
         private int mMeanValueLeft;       // left channel mean value
         private int mMeanValueRight;      // right channel mean value
+        
 
         // variables for detecting lower amplitude
+        private double[] m_AverageValue; // array to hold average or RMS value
+        private bool m_IsLowAmplitude;
         private int m_LowAmplitudeSamplesCounts ;
         private double[] m_arLowAmpSamples ;
         private readonly int m_MaxLowAmpSamples = 10;
@@ -41,6 +46,9 @@ namespace Obi.Audio
             mUpperThreshold = 210;
             mLowerThreshold = 15;
 
+            m_AverageValue = new double[2];
+            m_AverageValue[0] = 0;
+            m_AverageValue[1] = 0;
             m_LowAmplitudeSamplesCounts = 0;
             m_arLowAmpSamples = new double[m_MaxLowAmpSamples];
         }
@@ -66,6 +74,7 @@ namespace Obi.Audio
 		internal bool m_bOverload = false ;
 		private int [] arPeakOverloadValue = new int [2] ;
 		private bool [] arPeakOverloadFlag = new bool [2] ;
+        private double[] m_PeakDbValue;
 
 
         public double[] PeakDbValue
@@ -76,6 +85,15 @@ namespace Obi.Audio
             }
         }
 
+        public double[] AverageAmplitudeDBValue
+        {
+            get { return m_AverageValue; }
+                        }
+
+        public bool IsLevelTooLow
+        {
+            get { return m_IsLowAmplitude; }
+        }
 
         public void CatchResetEvent(object sender, EventArgs e)
         {
@@ -96,6 +114,9 @@ namespace Obi.Audio
 			mMeanValueLeft = 0 ;
 			mMeanValueRight = 0 ;
 
+            m_IsLowAmplitude = false;
+            m_AverageValue[0] = 0;
+            m_AverageValue[1] = 0;
             m_LowAmplitudeSamplesCounts = 0;
                         if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
@@ -115,13 +136,7 @@ namespace Obi.Audio
 		// member variables for internal processing
 		private byte [] m_arUpdatedVM  ;
 		private int m_UpdateVMArrayLength ;
-		private int m_FrameSize ;
-
-
-		// for position of graph which is centre of graph in Y and centre of left edges of two graph for x
-		//private int m_GraphPositionX = 170 ;
-		//private int m_GraphPositionY = 300 ;
-			
+		
 
 		private AudioPlayer ob_AudioPlayer ;
 		private AudioRecorder  ob_AudioRecorder ;
@@ -130,8 +145,7 @@ namespace Obi.Audio
 		private int [] SampleArrayRight ;
 		// jq: removed a compiler warning
         // private int m_SampleArrayPosition = 0;
-        private double[] m_PeakDbValue;
-
+        
 
         // avn: added on 13 March 2007, Variable to hold value of time interval for reading bytes from Buffers
         private double  m_BufferReadInterval= 50  ;
@@ -267,8 +281,7 @@ namespace Obi.Audio
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
 
-        double m_MeanValueLeft = 0;
-        double m_MeanValueRight = 0;
+
 		void AnimationComputation ()
 		{
             // create an local array and fill the amplitude value of both channels from function
@@ -286,13 +299,13 @@ namespace Obi.Audio
                                          right = 20 * Math.Log10(right);
                                          if (right < -45) right = -45;
 
-                                         m_MeanValueLeft = m_MeanValueLeft == 0 ?  left: ((m_MeanValueLeft *19 ) + left ) / 20 ;
-                                         m_MeanValueRight = m_MeanValueRight == 0 ? right : ((m_MeanValueRight * 19) + right ) / 20; 
+                                         m_AverageValue[0] = m_AverageValue[0] == 0 ? left : ((m_AverageValue[0] * 19) + left) / 20;
+                                         m_AverageValue[1] = m_AverageValue[1] == 0 ? right : ((m_AverageValue[1] * 19) + right) / 20; 
                                          
             //mMeanValueLeft = ( ( mMeanValueLeft * 19 ) + left ) /20 ;
             //mMeanValueRight = AmpArray[1];
 
-                                         Debug_WriteToTextFile(m_MeanValueLeft.ToString() + "-" + m_MeanValueRight.ToString());
+                                         Debug_WriteToTextFile(m_AverageValue[0].ToString() + "-" + m_AverageValue[1].ToString());
                         //wr.WriteLine(left.ToString());
             
                         DetectLowAmplitude();
@@ -584,13 +597,13 @@ namespace Obi.Audio
         private void DetectLowAmplitude()
         {
             const int UBound = -32; // Upper bound
-            const int LBound = -36; // lower bound
+            const int LBound = -36 ; // lower bound
             double AmplitudeValue;
-            if (mChannels == 1) AmplitudeValue = m_MeanValueLeft;
-            else AmplitudeValue = (m_MeanValueLeft + m_MeanValueRight) / 2;
+            if (mChannels == 1) AmplitudeValue = m_AverageValue[0];
+            else AmplitudeValue = (m_AverageValue[0] + m_AverageValue[1] ) / 2;
 
             //if (m_MeanValueLeft > -32 || m_MeanValueLeft < -36 )
-                                if ( m_MeanValueLeft < UBound && m_MeanValueLeft > LBound )
+                                if ( AmplitudeValue< UBound && AmplitudeValue > LBound )
             {
                 m_arLowAmpSamples[m_LowAmplitudeSamplesCounts] = AmplitudeValue ;
                 m_LowAmplitudeSamplesCounts++;
@@ -609,6 +622,8 @@ namespace Obi.Audio
                         if ( (LowIndex == 0 || LowIndex == 9 )
                             && ( m_arLowAmpSamples[0] >  LBound && m_arLowAmpSamples[9] > LBound) ) 
                                             {
+                                                if (LevelTooLowEvent != null) LevelTooLowEvent(this , new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs( this , 0, 0) ) ;
+                                                m_IsLowAmplitude = true;
                             if ( System.IO.File.Exists ("low.wav") )
                             {
                                                 System.Media.SoundPlayer BeepPlayer = new System.Media.SoundPlayer("low.wav");
@@ -622,6 +637,7 @@ namespace Obi.Audio
             }
 else // values is either above UBound or below LBound
                 {
+                    m_IsLowAmplitude = false;
                 m_LowAmplitudeSamplesCounts = 0;
         }
         }
