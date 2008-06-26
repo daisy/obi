@@ -40,7 +40,7 @@ namespace Bobi.View
             this.cursorBar.Location = new System.Drawing.Point(0, 0);
             this.cursorBar.Margin = new System.Windows.Forms.Padding(0);
             this.cursorBar.Name = "cursorBar";
-            this.cursorBar.Size = new System.Drawing.Size(115, 15);
+            this.cursorBar.Size = new System.Drawing.Size(113, 15);
             this.cursorBar.TabIndex = 1;
             this.cursorBar.Text = "cursorBar1";
             // 
@@ -49,22 +49,24 @@ namespace Bobi.View
             this.waveformCanvas.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.waveformCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.waveformCanvas.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.waveformCanvas.Location = new System.Drawing.Point(0, 15);
+            this.waveformCanvas.Location = new System.Drawing.Point(0, 14);
             this.waveformCanvas.Margin = new System.Windows.Forms.Padding(0);
             this.waveformCanvas.Name = "waveformCanvas";
-            this.waveformCanvas.Size = new System.Drawing.Size(115, 115);
+            this.waveformCanvas.Size = new System.Drawing.Size(113, 115);
             this.waveformCanvas.TabIndex = 0;
             this.waveformCanvas.Text = "waveformCanvas1";
+            this.waveformCanvas.DoubleClick += new System.EventHandler(this.waveformCanvas_DoubleClick);
             // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.cursorBar);
             this.Controls.Add(this.waveformCanvas);
             this.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.Name = "AudioBlock";
-            this.Size = new System.Drawing.Size(115, 130);
+            this.Size = new System.Drawing.Size(113, 128);
             this.ResumeLayout(false);
 
         }

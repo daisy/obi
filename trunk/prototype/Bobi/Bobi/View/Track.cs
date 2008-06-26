@@ -11,7 +11,6 @@ namespace Bobi.View
     public partial class Track : UserControl
     {
         private float baseFontSize;   // font size at zoom factor 1
-        private int baseMargin;       // margins for blocks
         private TrackNode node;       // node for this track
         private Selection selection;  // current selection (whole track or track index)
         private double zoom;          // zoom factor
@@ -70,7 +69,7 @@ namespace Bobi.View
             {
                 BackColor = Selected ? value.TrackSelectedBackColor : value.TrackBackColor;
                 ForeColor = Selected ? value.TrackSelectedForeColor : value.TrackForeColor;
-                this.trackLayout.BackColor = value.TrackLayoutBackColor;
+                this.trackLayout.BackColor = BackColor; // value.TrackLayoutBackColor;
                 foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).Colors = value;
             }
         }

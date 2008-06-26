@@ -72,8 +72,9 @@ namespace Bobi.View
             get { return ((Track)Parent.Parent).Colors; }
             set
             {
-                cursorBar.BackColor = this.selection is NodeSelection ? value.AudioBlockSelectedBackColor : value.AudioBlockBackColor;
-                waveformCanvas.BackColor = value.AudioBlockBackColor;
+                this.cursorBar.BackColor = this.selection is NodeSelection ? value.AudioBlockSelectedBackColor : value.AudioBlockBackColor;
+                this.waveformCanvas.BackColor = this.cursorBar.BackColor;
+                //waveformCanvas.BackColor = value.AudioBlockBackColor;
             }
         }
 
@@ -104,6 +105,11 @@ namespace Bobi.View
                 this.waveformCanvas.Invalidate();
             }
         }
+
+        /// <summary>
+        /// True if the whole block is selected
+        /// </summary>
+        public bool Selected { get { return this.selection is NodeSelection && this.selection.ContainsNode(this.node); } }
 
         /// <summary>
         /// Select the block from below (e.g. the cursor bar.)
@@ -236,6 +242,11 @@ namespace Bobi.View
         {
             return (int)Math.Round(this.zoom * (audio == null ? this.baseSize.Width :
                 this.audioScale * audio.getAudioDuration().getTimeDeltaAsMillisecondFloat()));
+        }
+
+        private void waveformCanvas_DoubleClick(object sender, EventArgs e)
+        {
+            SelectFromBelow();
         }
     }
 }
