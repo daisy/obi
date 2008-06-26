@@ -117,6 +117,12 @@
     <Compile Include="View\CursorBar.Designer.cs">
       <DependentUpon>CursorBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\TrackLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\TrackLayout.Designer.cs">
+      <DependentUpon>TrackLayout.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ProjectView.cs">
       <SubType>Component</SubType>
     </Compile>

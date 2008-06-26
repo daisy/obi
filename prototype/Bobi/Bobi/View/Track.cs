@@ -10,10 +10,11 @@ namespace Bobi.View
 {
     public partial class Track : UserControl
     {
-        private float baseFontSize;          // font size at zoom factor 1
-        private urakawa.core.TreeNode node;  // node for this track
-        private bool selected;               // selected flag
-        private double zoom;                 // zoom factor
+        private float baseFontSize;   // font size at zoom factor 1
+        private int baseMargin;       // margins for blocks
+        private TrackNode node;       // node for this track
+        private Selection selection;  // current selection (whole track or track index)
+        private double zoom;          // zoom factor
 
 
         /// <summary>
@@ -24,7 +25,7 @@ namespace Bobi.View
             InitializeComponent();
             DoubleBuffered = true;
             this.baseFontSize = this.label.Font.SizeInPoints;
-            Selected = false;
+            Selection = null;
             Zoom = 1.0;
             this.node = null;
         }
@@ -33,7 +34,7 @@ namespace Bobi.View
         /// Create a new track for a node.
         /// </summary>
         /// <param name="node"></param>
-        public Track(urakawa.core.TreeNode node): this()
+        public Track(TrackNode node): this()
         {
             this.node = node;
         }
@@ -44,8 +45,8 @@ namespace Bobi.View
         /// </summary>
         public void AddAudioBlock(AudioBlock block)
         {
-            block.Colors = ((ProjectView)Parent).ColorSettings;
-            this.layoutPanel.Controls.Add(block);
+            block.Colors = ((ProjectView)Parent).Colors;
+            this.trackLayout.Controls.Add(block);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Bobi.View
         {
             set
             {
-                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+                foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
             }
         }
 
@@ -64,13 +65,13 @@ namespace Bobi.View
         /// </summary>
         public ColorSettings Colors
         {
-            get { return ((ProjectView)Parent).ColorSettings; }
+            get { return ((ProjectView)Parent).Colors; }
             set
             {
-                BackColor = this.selected ? value.TrackSelectedBackColor : value.TrackBackColor;
-                ForeColor = this.selected ? value.TrackSelectedForeColor : value.TrackForeColor;
-                this.layoutPanel.BackColor = value.TrackLayoutBackColor;
-                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Colors = value;
+                BackColor = Selected ? value.TrackSelectedBackColor : value.TrackBackColor;
+                ForeColor = Selected ? value.TrackSelectedForeColor : value.TrackForeColor;
+                this.trackLayout.BackColor = value.TrackLayoutBackColor;
+                foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).Colors = value;
             }
         }
 
@@ -79,7 +80,7 @@ namespace Bobi.View
         /// </summary>
         public AudioBlock FindBlock(AudioNode node)
         {
-            foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock && ((AudioBlock)c).Node == node) return (AudioBlock)c;
+            foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock && ((AudioBlock)c).Node == node) return (AudioBlock)c;
             return null;
         }
 
@@ -93,14 +94,21 @@ namespace Bobi.View
         /// </summary>
         public bool Selected
         {
-            get { return this.selected; }
+            get { return this.selection is NodeSelection && this.selection.ContainsNode(this.node); }
+        }
+
+        public Selection Selection
+        {
+            get { return this.selection; }
             set
             {
-                this.selected = value;
-                if (Parent is ProjectView)
+                this.selection = value;
+                trackLayout.Invalidate();
+                ProjectView view = Parent as ProjectView;
+                if (view != null)
                 {
-                    Colors = ((ProjectView)Parent).ColorSettings;
-                    if (this.selected) ((ProjectView)Parent).ScrollControlIntoView(this);
+                    Colors = view.Colors;
+                    if (Selected) view.ScrollControlIntoView(this);
                 }
             }
         }
@@ -110,7 +118,7 @@ namespace Bobi.View
         /// </summary>
         public void SelectFromBelow(Selection selection)
         {
-            Selected = false;
+            Selection = selection != null && selection.ContainsNode(this.node) ? selection : null;
             if (Parent is ProjectView) ((ProjectView)Parent).SelectFromBelow(selection);
         }
 
@@ -121,20 +129,20 @@ namespace Bobi.View
         {
             int w = this.label.Margin.Left + this.label.Width + this.label.Margin.Right;
             int h = this.label.Margin.Right + this.label.Height + this.label.Margin.Bottom;
-            if (this.layoutPanel.Controls.Count > 0)
+            if (this.trackLayout.Controls.Count > 0)
             {
                 int h_ = 0;
                 int w_ = 0; // this.layoutPanel.Controls[0].Margin.Left;
-                foreach (Control c in this.layoutPanel.Controls)
+                foreach (Control c in this.trackLayout.Controls)
                 {
                     int h__ = c.Margin.Top + c.Height + c.Margin.Bottom;
                     if (h__ > h_) h_ = h__;
                     w_ += c.Margin.Left + c.Width + c.Margin.Right;
                 }
-                this.layoutPanel.Size = new Size(w_, h_);
-                this.layoutPanel.Location = new Point(this.layoutPanel.Location.X, h);
-                w_ = this.layoutPanel.Location.X + this.layoutPanel.Width + this.layoutPanel.Margin.Right;
-                Size = new Size(w_ > w ? w_ : w, h + h_ + this.layoutPanel.Margin.Bottom);
+                this.trackLayout.Size = new Size(w_, h_);
+                this.trackLayout.Location = new Point(this.trackLayout.Location.X, h);
+                w_ = this.trackLayout.Location.X + this.trackLayout.Width + this.trackLayout.Margin.Right;
+                Size = new Size(w_ > w ? w_ : w, h + h_ + this.trackLayout.Margin.Bottom);
             }
             else
             {
@@ -157,7 +165,7 @@ namespace Bobi.View
             {
                 this.zoom = value;
                 this.label.Font = new Font(this.label.Font.FontFamily, 10.0f * (float)this.zoom);
-                foreach (Control c in this.layoutPanel.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom = this.zoom;
+                foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).Zoom = this.zoom;
                 UpdateSize();
             }
         }
@@ -165,18 +173,31 @@ namespace Bobi.View
         // Propagate selection upward
         private void SelectUp()
         {
-            if (!this.selected)
+            if (!Selected)
             {
                 ProjectView view = Parent as ProjectView;
                 if (view != null)
                 {
-                    Selected = true;
-                    view.SelectFromBelow(this.node);
+                    Selection = new NodeSelection(view, this.node);
+                    view.SelectFromBelow(this.selection);
                 }
             }
         }
 
-        // Select the track by clicking it.
+        private void layoutPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ProjectView view = Parent as ProjectView;
+                if (view != null)
+                {
+                    this.Selection = new TrackIndexSelection(view, this.node, trackLayout.IndexForX(e.X));
+                    this.trackLayout.Invalidate();
+                    view.SelectFromBelow(this.Selection);
+                }
+            }
+        }
+
         private void Track_Click(object sender, EventArgs e) { SelectUp(); }
     }
 }

@@ -64,17 +64,13 @@ namespace Bobi.View
         /// </summary>
         public ColorSettings Colors
         {
+            get { return ((BobiForm)Parent).ColorSettings; }
             set
             {
                 BackColor = value.ProjectViewBackColor;
                 foreach (Control c in Controls) if (c is Track) ((Track)c).Colors = value;
             }
         }
-
-        /// <summary>
-        /// Color scheme of the parent form.
-        /// </summary>
-        public ColorSettings ColorSettings { get { return ((BobiForm)Parent).ColorSettings; } }
 
         /// <summary>
         /// True if there is at least one track that is not selected.
@@ -130,7 +126,7 @@ namespace Bobi.View
             Track track = FindTrack(node);
             if (node is TrackNode)
             {
-                track.Selected = selection != null;
+                track.Selection = selection;
             }
             else if (node is AudioNode)
             {
@@ -243,13 +239,16 @@ namespace Bobi.View
             }
             else
             {
-                SuspendLayout();
-                Track t = new Track(node);
-                t.Zoom = this.zoom;
-                t.Colors = ColorSettings;
-                Controls.Add(t);
-                SetFlowBreak(t, true);
-                ResumeLayout();
+                if (node is TrackNode)
+                {
+                    SuspendLayout();
+                    Track t = new Track((TrackNode)node);
+                    t.Zoom = this.zoom;
+                    t.Colors = Colors;
+                    Controls.Add(t);
+                    SetFlowBreak(t, true);
+                    ResumeLayout();
+                }
             }
         }
 

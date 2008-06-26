@@ -36,6 +36,7 @@ namespace Bobi.View
             // 
             this.cursorBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.cursorBar.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.cursorBar.Location = new System.Drawing.Point(0, 0);
             this.cursorBar.Margin = new System.Windows.Forms.Padding(0);
             this.cursorBar.Name = "cursorBar";
@@ -47,7 +48,9 @@ namespace Bobi.View
             // 
             this.waveformCanvas.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.waveformCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.waveformCanvas.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.waveformCanvas.Location = new System.Drawing.Point(0, 15);
+            this.waveformCanvas.Margin = new System.Windows.Forms.Padding(0);
             this.waveformCanvas.Name = "waveformCanvas";
             this.waveformCanvas.Size = new System.Drawing.Size(115, 115);
             this.waveformCanvas.TabIndex = 0;
@@ -59,6 +62,7 @@ namespace Bobi.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cursorBar);
             this.Controls.Add(this.waveformCanvas);
+            this.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.Name = "AudioBlock";
             this.Size = new System.Drawing.Size(115, 130);
             this.ResumeLayout(false);

@@ -34,6 +34,10 @@ namespace Bobi
         public SolidBrush AudioSelectionBrush;
         public Pen AudioPlaybackPen;
         public SolidBrush AudioPlaybackBrush;
+        public Pen WaveformBaseLinePen;
+        public Pen WaveformChannel1Pen;
+        public Pen WaveformChannel2Pen;
+        public Brush TrackLayoutSelectedBrush;
 
         public static ColorSettings DefaultColorScheme()
         {
@@ -50,6 +54,10 @@ namespace Bobi
             scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
             scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 128, 128));
             scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
+            scheme.WaveformBaseLinePen = Pens.BlueViolet;
+            scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
+            scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
+            scheme.TrackLayoutSelectedBrush = Brushes.Yellow;
             return scheme;
         }
 
@@ -68,6 +76,10 @@ namespace Bobi
             scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
             scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 0, 0));
             scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
+            scheme.WaveformBaseLinePen = Pens.White;
+            scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 255, 255, 0));
+            scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 0));
+            scheme.TrackLayoutSelectedBrush = Brushes.Green;
             return scheme;
         }
     }

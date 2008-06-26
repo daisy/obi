@@ -11,6 +11,7 @@ namespace Bobi.View
     public partial class AudioBlock : UserControl
     {
         private Size baseSize;        // base height
+        private int baseMargin;       // base margins
         private double zoom;          // zoom factor
         private double audioScale;    // audio zoom
         private AudioNode node;       // audio node
@@ -33,6 +34,7 @@ namespace Bobi.View
             this.node = null;
             this.selection = null;
             this.baseSize = Size;
+            this.baseMargin = Margin.Left;
             this.zoom = 1.0;
             this.audioScale = AUDIO_SCALE;
             this.cursorBar.BaseHeight = this.cursorBar.Height;
@@ -183,6 +185,8 @@ namespace Bobi.View
             set
             {
                 this.zoom = value;
+                int margin = (int)Math.Round(baseMargin * this.zoom);
+                this.Margin = new Padding(margin, 0, margin, 0);
                 SuspendLayout();
                 this.cursorBar.Zoom = this.zoom;
                 Height = (int)Math.Round(baseSize.Height * this.zoom);
