@@ -103,8 +103,15 @@ namespace PipelineInterface
                         }
                         if (!Directory.Exists(m_txtOutputDirectory.Text))
                         {
-                            MessageBox.Show("Not able to find output directory", "Error!");
-                            return;
+                            DialogResult result =  MessageBox.Show("Not able to find output directory. \n Do you want to create it?", "Error!",MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
+                            {
+                                if (!Directory.CreateDirectory(m_txtOutputDirectory.Text).Exists)
+                                {
+                                    MessageBox.Show("Not able to create directory", "Error!");
+                                    return;
+                                }
+                            }
                         }
 
                         if (Directory.GetFiles(m_txtOutputDirectory.Text, "*.*",    SearchOption.AllDirectories).Length > 0)
