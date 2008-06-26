@@ -29,7 +29,7 @@ namespace Bobi.View
         private void InitializeComponent()
         {
             this.label = new System.Windows.Forms.Label();
-            this.layoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.trackLayout = new Bobi.View.TrackLayout();
             this.SuspendLayout();
             // 
             // label
@@ -43,21 +43,22 @@ namespace Bobi.View
             this.label.Text = "Track";
             this.label.Click += new System.EventHandler(this.Track_Click);
             // 
-            // layoutPanel
+            // trackLayout
             // 
-            this.layoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.layoutPanel.Location = new System.Drawing.Point(3, 19);
-            this.layoutPanel.Name = "layoutPanel";
-            this.layoutPanel.Size = new System.Drawing.Size(0, 0);
-            this.layoutPanel.TabIndex = 1;
-            this.layoutPanel.WrapContents = false;
-            this.layoutPanel.Click += new System.EventHandler(this.Track_Click);
+            this.trackLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.trackLayout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.trackLayout.Location = new System.Drawing.Point(3, 19);
+            this.trackLayout.Name = "trackLayout";
+            this.trackLayout.Size = new System.Drawing.Size(0, 0);
+            this.trackLayout.TabIndex = 1;
+            this.trackLayout.WrapContents = false;
+            this.trackLayout.MouseClick += new System.Windows.Forms.MouseEventHandler(this.layoutPanel_MouseClick);
             // 
             // Track
             // 
             this.AutoScrollMargin = new System.Drawing.Size(3, 3);
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.layoutPanel);
+            this.Controls.Add(this.trackLayout);
             this.Controls.Add(this.label);
             this.Name = "Track";
             this.Size = new System.Drawing.Size(49, 22);
@@ -70,6 +71,7 @@ namespace Bobi.View
         #endregion
 
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.FlowLayoutPanel layoutPanel;
+        private TrackLayout trackLayout;
+        //private System.Windows.Forms.FlowLayoutPanel layoutPanel;
     }
 }

@@ -33,9 +33,7 @@ namespace Bobi.View
                     int to = block.XForTime(selection.To > selection.From ? selection.To : selection.From);
                     if (selection.IsRange)
                     {
-                        int w = Height / 2;
-                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(from, 0, w, Height));
-                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(to - w + 1, 0, w, Height));
+                        pe.Graphics.FillRectangle(block.Colors.AudioSelectionBrush, new Rectangle(from, 0, to - from + 1, Height));
                     }
                     else
                     {
@@ -45,7 +43,7 @@ namespace Bobi.View
                 }
                 if (block.Playing)
                 {
-                    int at = block.XForTime(block.PlayingTime);
+                    int at = block.XForTime(block.PlayingTime) - 1;
                     Point[] points = new Point[3];
                     points[0] = new Point(at, 0);
                     points[1] = new Point(at + Height / 2, Height / 2);
@@ -58,9 +56,24 @@ namespace Bobi.View
             base.OnPaint(pe);
         }
 
-        private void CursorBar_Click(object sender, EventArgs e)
+        private void CursorBar_DoubleClick(object sender, EventArgs e)
         {
             if (Parent is AudioBlock) ((AudioBlock)Parent).SelectFromBelow();
+        }
+
+        private void CursorBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && Parent is AudioBlock) ((AudioBlock)Parent).SelectFromXFromBelow(e.X);
+        }
+
+        private void CursorBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && Parent is AudioBlock) ((AudioBlock)Parent).SelectToXFromBelow(e.X);
+        }
+
+        private void CursorBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) if (Parent is AudioBlock) ((AudioBlock)Parent).SelectToXFromBelow(e.X);
         }
     }
 }

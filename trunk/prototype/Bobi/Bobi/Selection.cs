@@ -39,6 +39,32 @@ namespace Bobi
         public override View.ProjectView View { get { return this.view; } }
     }
 
+    public class TrackIndexSelection : SingleNodeSelection
+    {
+        private TrackNode node;
+        private int index;
+
+        public TrackIndexSelection(View.ProjectView view, TrackNode node, int index)
+            : base(view)
+        {
+            this.node = node;
+            this.index = index;
+        }
+
+        public int Index { get { return this.index; } }
+
+        public override bool ContainsNode(urakawa.core.TreeNode node) { return this.node == node; }
+
+        public override void Deselect(Selection newSelection)
+        {
+            if (newSelection == null || !newSelection.ContainsNode(this.node)) View.SelectControlForNode(this.node, null);
+        }
+
+        public override int ItemsInSelection { get { return 1; } }
+
+        public override void SelectControls() { View.SelectControlForNode(this.node, this); }
+    }
+
     public class NodeSelection: SingleNodeSelection
     {
         protected List<urakawa.core.TreeNode> nodes;  // list of selected nodes

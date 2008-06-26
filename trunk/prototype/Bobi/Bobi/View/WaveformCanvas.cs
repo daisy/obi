@@ -15,13 +15,6 @@ namespace Bobi.View
         private AudioMediaData audio;  // audio data to draw
         private Bitmap bitmap;         // cached bitmap of the waveform
 
-        // Pens and brushes should be owned by someone above
-        private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
-        private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
-        private static readonly Pen SelectionPen = new Pen(Color.FromArgb(128, 0, 255, 255));
-        private static readonly SolidBrush SelectionBrush = new SolidBrush(Color.FromArgb(128, 0, 255, 0));
-        private static readonly Pen CursorPen = new Pen(Color.FromArgb(128, 255, 128, 128));
-
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -42,7 +35,7 @@ namespace Bobi.View
             set
             {
                 this.audio = value;
-                UpdateWaveform();
+                if (Parent is AudioBlock) UpdateWaveform((AudioBlock)Parent);
             }
         }
 
@@ -50,7 +43,7 @@ namespace Bobi.View
 
         // Draw the waveform in a graphics
         // TODO: handle other bit depths than 16 bit.
-        private void DrawWaveform(Graphics g)
+        private void DrawWaveform(Graphics g, AudioBlock block)
         {
             PCMFormatInfo format = this.audio.getPCMFormat();
             if (format.getBitDepth() != 16) throw new Exception("Cannot deal with bitdepth others than 16.");
@@ -65,8 +58,8 @@ namespace Bobi.View
             {
                 int read = au.Read(bytes, 0, bytesPerPixel);
                 Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                DrawChannel(g, Channel1Pen, samples, x, read, frameSize, 0, channels);
-                if (channels == 2) DrawChannel(g, Channel2Pen, samples, x, read, frameSize, 1, channels);
+                DrawChannel(g, block.Colors.WaveformChannel1Pen, samples, x, read, frameSize, 0, channels);
+                if (channels == 2) DrawChannel(g, block.Colors.WaveformChannel2Pen, samples, x, read, frameSize, 1, channels);
             }
             au.Close();
         }
@@ -115,20 +108,20 @@ namespace Bobi.View
         }
 
         // Redraw the waveform to fit the available size.
-        private void UpdateWaveform()
+        private void UpdateWaveform(AudioBlock block)
         {
-            if (Width > 0 && Height > 0)
+            if (Width > 0 && Height > 0 && block != null && block.Parent != null)
             {
                 this.bitmap = new Bitmap(Width, Height);
                 Graphics g = Graphics.FromImage(this.bitmap);
                 g.Clear(BackColor);
-                g.DrawLine(Pens.BlueViolet, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (this.audio != null) DrawWaveform(g);
+                g.DrawLine(block.Colors.WaveformBaseLinePen, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                if (this.audio != null) DrawWaveform(g, block);
                 Invalidate();
             }
         }
 
-        private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
+        private void Waveform_SizeChanged(object sender, EventArgs e) { if (Parent is AudioBlock) UpdateWaveform(Parent as AudioBlock); }
 
         private void WaveformCanvas_MouseDown(object sender, MouseEventArgs e)
         {

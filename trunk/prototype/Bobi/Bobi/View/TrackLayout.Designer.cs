@@ -1,6 +1,6 @@
 namespace Bobi.View
 {
-    partial class CursorBar
+    partial class TrackLayout
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,7 @@ namespace Bobi.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // CursorBar
-            // 
-            this.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.DoubleClick += new System.EventHandler(this.CursorBar_DoubleClick);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CursorBar_MouseMove);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CursorBar_MouseDown);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CursorBar_MouseUp);
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion
