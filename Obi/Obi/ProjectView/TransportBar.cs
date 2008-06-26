@@ -122,7 +122,7 @@ namespace Obi.ProjectView
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
         public bool CanRecord { get { return Enabled && mState == State.Stopped; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
-        public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring; } }
+        public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
@@ -1094,7 +1094,7 @@ namespace Obi.ProjectView
         // command to create a new section to record in.
         public ObiNode GetRecordingNode(urakawa.undo.CompositeCommand command)
         {
-            ObiNode node = mResumeRecordingPhrase == null ?
+            ObiNode node =( mResumeRecordingPhrase == null || !mResumeRecordingPhrase.IsRooted)?
                 mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripCursorSelection ?
                     mView.Selection.Node : null :
                 mResumeRecordingPhrase;
