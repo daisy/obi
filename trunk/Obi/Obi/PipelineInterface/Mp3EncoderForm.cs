@@ -101,6 +101,7 @@ namespace PipelineInterface
                             MessageBox.Show ("Not able to find source DTB." , "Error!" ) ;
                             return;
                         }
+
                         if (!Directory.Exists(m_txtOutputDirectory.Text))
                         {
                             DialogResult result =  MessageBox.Show("Not able to find output directory. \n Do you want to create it?", "Error!",MessageBoxButtons.YesNo);
@@ -111,7 +112,9 @@ namespace PipelineInterface
                                     MessageBox.Show("Not able to create directory", "Error!");
                                     return;
                                 }
-                            }
+                            } // if no button is pressed
+                            else
+                                return;
                         }
 
                         if (Directory.GetFiles(m_txtOutputDirectory.Text, "*.*",    SearchOption.AllDirectories).Length > 0)
