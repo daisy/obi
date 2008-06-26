@@ -35,19 +35,21 @@ namespace Bobi
         public Pen AudioPlaybackPen;
         public SolidBrush AudioPlaybackBrush;
         public Pen WaveformBaseLinePen;
+        public Pen WaveformBaseLineSelectedPen;
         public Pen WaveformChannel1Pen;
         public Pen WaveformChannel2Pen;
+        public Pen WaveformChannelSelectedPen;
         public Brush TrackLayoutSelectedBrush;
 
         public static ColorSettings DefaultColorScheme()
         {
             ColorSettings scheme = new ColorSettings();
             scheme.ProjectViewBackColor = Color.White;
-            scheme.TrackBackColor = Color.CornflowerBlue;
-            scheme.TrackSelectedBackColor = Color.Yellow;
+            scheme.TrackBackColor = Color.White;
+            scheme.TrackSelectedBackColor = Color.Blue;
             scheme.TrackForeColor = Color.Black;
-            scheme.TrackSelectedForeColor = Color.Red;
-            scheme.TrackLayoutBackColor = Color.LightBlue;
+            scheme.TrackSelectedForeColor = Color.White;
+            scheme.TrackLayoutBackColor = Color.White;
             scheme.AudioBlockBackColor = Color.White;
             scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
             scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 128, 255, 128));
@@ -55,9 +57,11 @@ namespace Bobi
             scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 128, 128));
             scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
             scheme.WaveformBaseLinePen = Pens.BlueViolet;
+            scheme.WaveformBaseLineSelectedPen = Pens.White;
             scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
             scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
-            scheme.TrackLayoutSelectedBrush = Brushes.Yellow;
+            scheme.WaveformChannelSelectedPen = Pens.White;
+            scheme.TrackLayoutSelectedBrush = Brushes.Blue;
             return scheme;
         }
 
@@ -77,8 +81,10 @@ namespace Bobi
             scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 0, 0));
             scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
             scheme.WaveformBaseLinePen = Pens.White;
+            scheme.WaveformBaseLineSelectedPen = Pens.Black;
             scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 255, 255, 0));
             scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 0));
+            scheme.WaveformChannelSelectedPen = Pens.Black;
             scheme.TrackLayoutSelectedBrush = Brushes.Green;
             return scheme;
         }

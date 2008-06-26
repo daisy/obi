@@ -39,6 +39,22 @@ namespace Bobi.View
             }
         }
 
+        /// <summary>
+        /// Set the backcolor for the waveform.
+        /// </summary>
+        public override Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                if (BackColor != value)
+                {
+                    base.BackColor = value;
+                    if (Parent is AudioBlock) UpdateWaveform((AudioBlock)Parent);
+                }
+            }
+        }
+
 
 
         // Draw the waveform in a graphics
@@ -58,8 +74,10 @@ namespace Bobi.View
             {
                 int read = au.Read(bytes, 0, bytesPerPixel);
                 Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                DrawChannel(g, block.Colors.WaveformChannel1Pen, samples, x, read, frameSize, 0, channels);
-                if (channels == 2) DrawChannel(g, block.Colors.WaveformChannel2Pen, samples, x, read, frameSize, 1, channels);
+                DrawChannel(g, block.Selected ? block.Colors.WaveformChannelSelectedPen : block.Colors.WaveformChannel1Pen,
+                    samples, x, read, frameSize, 0, channels);
+                if (channels == 2) DrawChannel(g, block.Selected ? block.Colors.WaveformChannelSelectedPen : block.Colors.WaveformChannel2Pen,
+                    samples, x, read, frameSize, 1, channels);
             }
             au.Close();
         }
@@ -115,7 +133,8 @@ namespace Bobi.View
                 this.bitmap = new Bitmap(Width, Height);
                 Graphics g = Graphics.FromImage(this.bitmap);
                 g.Clear(BackColor);
-                g.DrawLine(block.Colors.WaveformBaseLinePen, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                g.DrawLine(block.Selected ? block.Colors.WaveformBaseLineSelectedPen : block.Colors.WaveformBaseLinePen,
+                    new Point(0, Height / 2), new Point(Width - 1, Height / 2));
                 if (this.audio != null) DrawWaveform(g, block);
                 Invalidate();
             }
