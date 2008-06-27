@@ -43,11 +43,12 @@ namespace Bobi.View
                 }
                 if (block.Playing)
                 {
-                    int at = block.XForTime(block.PlayingTime) - 1;
+                    int at = block.XForTime(block.PlayingTime);
                     Point[] points = new Point[3];
                     points[0] = new Point(at, 0);
                     points[1] = new Point(at + Height / 2, Height / 2);
                     points[2] = new Point(at, Height);
+                    pe.Graphics.DrawLine(block.Colors.AudioPlaybackPen, new Point(at, 0), new Point(at, Height));
                     pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     pe.Graphics.FillPolygon(block.Colors.AudioPlaybackBrush, points);
                 }
