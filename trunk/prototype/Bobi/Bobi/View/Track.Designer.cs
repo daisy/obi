@@ -36,7 +36,8 @@ namespace Bobi.View
             // 
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(3, 0);
+            this.label.Location = new System.Drawing.Point(5, 0);
+            this.label.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(43, 16);
             this.label.TabIndex = 0;
@@ -47,7 +48,8 @@ namespace Bobi.View
             // 
             this.trackLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.trackLayout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.trackLayout.Location = new System.Drawing.Point(3, 19);
+            this.trackLayout.Location = new System.Drawing.Point(5, 21);
+            this.trackLayout.Margin = new System.Windows.Forms.Padding(5);
             this.trackLayout.Name = "trackLayout";
             this.trackLayout.Size = new System.Drawing.Size(0, 0);
             this.trackLayout.TabIndex = 1;
@@ -58,10 +60,11 @@ namespace Bobi.View
             // 
             this.AutoScrollMargin = new System.Drawing.Size(3, 3);
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.trackLayout);
             this.Controls.Add(this.label);
             this.Name = "Track";
-            this.Size = new System.Drawing.Size(49, 22);
+            this.Size = new System.Drawing.Size(171, 125);
             this.Click += new System.EventHandler(this.Track_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

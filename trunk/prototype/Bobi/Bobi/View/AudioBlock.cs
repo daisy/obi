@@ -260,5 +260,10 @@ namespace Bobi.View
         {
             SelectFromBelow();
         }
+
+        private void AudioBlock_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
