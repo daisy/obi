@@ -357,7 +357,7 @@ namespace Bobi
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.projectView.AudioScale = 1;
             this.projectView.AutoScroll = true;
-            this.projectView.BackColor = System.Drawing.Color.White;
+            this.projectView.BackColor = System.Drawing.SystemColors.Control;
             this.projectView.Location = new System.Drawing.Point(0, 24);
             this.projectView.Name = "projectView";
             this.projectView.Project = null;

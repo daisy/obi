@@ -27,7 +27,7 @@ namespace Bobi
         public Color TrackSelectedBackColor;
         public Color TrackForeColor;
         public Color TrackSelectedForeColor;
-        public Color TrackLayoutBackColor;
+
         public Color AudioBlockBackColor;
         public Color AudioBlockSelectedBackColor;
         public Pen AudioSelectionPen;
@@ -36,6 +36,7 @@ namespace Bobi
         public SolidBrush AudioPlaybackBrush;
         public Pen WaveformBaseLinePen;
         public Pen WaveformBaseLineSelectedPen;
+        public Pen WaveformMonoPen;
         public Pen WaveformChannel1Pen;
         public Pen WaveformChannel2Pen;
         public Pen WaveformChannelSelectedPen;
@@ -44,48 +45,44 @@ namespace Bobi
         public static ColorSettings DefaultColorScheme()
         {
             ColorSettings scheme = new ColorSettings();
-            scheme.ProjectViewBackColor = Color.White;
-            scheme.TrackBackColor = Color.White;
-            scheme.TrackSelectedBackColor = Color.Blue;
-            scheme.TrackForeColor = Color.Black;
-            scheme.TrackSelectedForeColor = Color.White;
-            scheme.TrackLayoutBackColor = Color.White;
-            scheme.AudioBlockBackColor = Color.White;
+            scheme.ProjectViewBackColor = System.Drawing.SystemColors.ControlDark;
+            scheme.TrackBackColor = System.Drawing.SystemColors.Control;
+            scheme.TrackSelectedBackColor = System.Drawing.SystemColors.Highlight;
+            scheme.TrackForeColor = System.Drawing.SystemColors.ControlText;
+            scheme.TrackSelectedForeColor = System.Drawing.SystemColors.HighlightText;
+            scheme.AudioBlockBackColor = System.Drawing.SystemColors.ControlLightLight;
             scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
+            scheme.TrackLayoutSelectedBrush = new SolidBrush(System.Drawing.SystemColors.Highlight);
+            scheme.WaveformChannelSelectedPen = new Pen(System.Drawing.SystemColors.HighlightText);
+            scheme.WaveformBaseLinePen = new Pen(System.Drawing.SystemColors.ControlText);
+            scheme.WaveformBaseLineSelectedPen = scheme.WaveformBaseLinePen;
+
+            scheme.WaveformMonoPen = new Pen(Color.Blue);
+            
             scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 128, 255, 128));
             scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
             scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 128, 128));
             scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
-            scheme.WaveformBaseLinePen = Pens.BlueViolet;
-            scheme.WaveformBaseLineSelectedPen = Pens.White;
             scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
             scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
-            scheme.WaveformChannelSelectedPen = Pens.White;
-            scheme.TrackLayoutSelectedBrush = Brushes.Blue;
             return scheme;
         }
 
         public static ColorSettings HighContrastColorScheme()
         {
             ColorSettings scheme = new ColorSettings();
-            scheme.ProjectViewBackColor = Color.Black;
-            scheme.TrackBackColor = Color.White;
-            scheme.TrackSelectedBackColor = Color.Green;
-            scheme.TrackForeColor = Color.Black;
-            scheme.TrackSelectedForeColor = Color.White;
-            scheme.TrackLayoutBackColor = Color.LightBlue;
-            scheme.AudioBlockBackColor = Color.Orange;
+            scheme.ProjectViewBackColor = System.Drawing.SystemColors.ControlDark;
+            scheme.TrackBackColor = System.Drawing.SystemColors.Control;
+            scheme.TrackSelectedBackColor = System.Drawing.SystemColors.Highlight;
+            scheme.TrackForeColor = System.Drawing.SystemColors.ControlText;
+            scheme.TrackSelectedForeColor = System.Drawing.SystemColors.HighlightText;
+            scheme.AudioBlockBackColor = System.Drawing.SystemColors.ControlLightLight;
             scheme.AudioBlockSelectedBackColor = scheme.TrackSelectedBackColor;
-            scheme.AudioSelectionPen = new Pen(Color.FromArgb(128, 0, 255, 0));
-            scheme.AudioSelectionBrush = new SolidBrush(scheme.AudioSelectionPen.Color);
-            scheme.AudioPlaybackPen = new Pen(Color.FromArgb(128, 255, 0, 0));
-            scheme.AudioPlaybackBrush = new SolidBrush(scheme.AudioPlaybackPen.Color);
-            scheme.WaveformBaseLinePen = Pens.White;
-            scheme.WaveformBaseLineSelectedPen = Pens.Black;
-            scheme.WaveformChannel1Pen = new Pen(Color.FromArgb(128, 255, 255, 0));
-            scheme.WaveformChannel2Pen = new Pen(Color.FromArgb(128, 255, 0, 0));
-            scheme.WaveformChannelSelectedPen = Pens.Black;
-            scheme.TrackLayoutSelectedBrush = Brushes.Green;
+            scheme.WaveformMonoPen = new Pen(System.Drawing.SystemColors.ControlText);
+            scheme.TrackLayoutSelectedBrush = new SolidBrush(System.Drawing.SystemColors.Highlight);
+            scheme.WaveformChannelSelectedPen = new Pen(System.Drawing.SystemColors.HighlightText);
+            scheme.WaveformBaseLinePen = new Pen(System.Drawing.SystemColors.ControlText);
+            scheme.WaveformBaseLineSelectedPen = scheme.WaveformBaseLinePen;
             return scheme;
         }
     }
