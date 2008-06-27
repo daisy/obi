@@ -74,7 +74,8 @@ namespace Bobi.View
             {
                 int read = au.Read(bytes, 0, bytesPerPixel);
                 Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                DrawChannel(g, block.Selected ? block.Colors.WaveformChannelSelectedPen : block.Colors.WaveformChannel1Pen,
+                DrawChannel(g, block.Highlighted ? block.Colors.WaveformChannelSelectedPen :
+                    channels == 1 ? block.Colors.WaveformMonoPen : block.Colors.WaveformChannel1Pen,
                     samples, x, read, frameSize, 0, channels);
                 if (channels == 2) DrawChannel(g, block.Selected ? block.Colors.WaveformChannelSelectedPen : block.Colors.WaveformChannel2Pen,
                     samples, x, read, frameSize, 1, channels);

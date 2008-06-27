@@ -377,6 +377,7 @@ namespace Bobi
             get { return this.projectView.Project; }
             set
             {
+                this.projectView.SelectFromAbove(null);
                 this.projectView.Project = value;
                 Text = "Bobi";
                 UpdateStatus();

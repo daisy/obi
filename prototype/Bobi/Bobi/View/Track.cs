@@ -69,7 +69,7 @@ namespace Bobi.View
             {
                 BackColor = Selected ? value.TrackSelectedBackColor : value.TrackBackColor;
                 ForeColor = Selected ? value.TrackSelectedForeColor : value.TrackForeColor;
-                this.trackLayout.BackColor = BackColor; // value.TrackLayoutBackColor;
+                this.trackLayout.BackColor = BackColor;
                 foreach (Control c in this.trackLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).Colors = value;
             }
         }

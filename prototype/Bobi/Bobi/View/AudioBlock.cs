@@ -72,9 +72,21 @@ namespace Bobi.View
             get { return ((Track)Parent.Parent).Colors; }
             set
             {
-                this.cursorBar.BackColor = this.selection is NodeSelection ? value.AudioBlockSelectedBackColor : value.AudioBlockBackColor;
-                this.waveformCanvas.BackColor = this.cursorBar.BackColor;
-                //waveformCanvas.BackColor = value.AudioBlockBackColor;
+                this.cursorBar.BackColor =
+                this.waveformCanvas.BackColor =
+                    Highlighted ? value.AudioBlockSelectedBackColor : value.AudioBlockBackColor;
+            }
+        }
+
+        /// <summary>
+        /// True if the block is highlihted (i.e. it or its parent is selected)
+        /// </summary>
+        public bool Highlighted
+        {
+            get
+            {
+                return (this.selection is NodeSelection && this.selection.ContainsNode(this.node)) ||
+                    (Parent != null && Parent.Parent is Track && ((Track)Parent.Parent).Selected);
             }
         }
 

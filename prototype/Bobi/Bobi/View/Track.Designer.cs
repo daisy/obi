@@ -58,11 +58,10 @@ namespace Bobi.View
             // 
             this.AutoScrollMargin = new System.Drawing.Size(3, 3);
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.trackLayout);
             this.Controls.Add(this.label);
             this.Name = "Track";
-            this.Size = new System.Drawing.Size(47, 20);
+            this.Size = new System.Drawing.Size(49, 22);
             this.Click += new System.EventHandler(this.Track_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
