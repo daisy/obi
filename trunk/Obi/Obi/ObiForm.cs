@@ -1360,6 +1360,16 @@ namespace Obi
                 mSettings.ColorSettingsHC : mSettings.ColorSettings;
         }
 
+        public ColorSettings ColorSettings
+        {
+            get
+            {
+                return SystemInformation.HighContrast ?
+                    (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
+                    (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
+            }
+        }
+
         /// <summary>
         /// Remove a project from the recent projects list
         /// This is required when import fails halfway through
