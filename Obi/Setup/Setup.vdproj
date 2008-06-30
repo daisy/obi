@@ -69,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_44DF92573CAB4B4494D46769029CC001"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_51ED6C0D4BD346D58B85CA6E4637335C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -619,6 +625,26 @@
             "TargetName" = "8:package.xslt"
             "Tag" = "8:"
             "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_44DF92573CAB4B4494D46769029CC001"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\low.wav"
+            "TargetName" = "8:low.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1433,7 +1459,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi Beta 1.02 internal"
+        "ProductName" = "8:Obi Beta 1.03 internal"
         "ProductCode" = "8:{D71E6772-1ADE-43CF-BC93-AA7428E99577}"
         "PackageCode" = "8:{D586B8BF-FD26-47FE-8797-A45981EC80ED}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
@@ -1441,7 +1467,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.11.2"
+        "ProductVersion" = "8:0.11.3"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1570,7 +1596,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi Beta 1.02 internal"
+            "Name" = "8:Obi Beta 1.03 internal"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
