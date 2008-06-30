@@ -11,6 +11,9 @@ namespace Obi
         /// </summary>
         public Color TOCViewBackColor;
 
+        public Color TOCViewForeColor;
+        public Color TOCViewUnusedColor;
+
         /// <summary>
         /// Content view background color.
         /// </summary>
@@ -23,6 +26,8 @@ namespace Obi
         {
             ColorSettings settings = new ColorSettings();
             settings.TOCViewBackColor = SystemColors.Window;
+            settings.TOCViewForeColor = SystemColors.ControlText;
+            settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
             settings.ContentViewBackColor = SystemColors.ControlDark;
             return settings;
         }
@@ -30,7 +35,7 @@ namespace Obi
         /// <summary>
         /// Get the default color settings for high-contrast mode.
         /// </summary>
-        public static ColorSettings HighContrastColorSettings()
+        public static ColorSettings DefaultColorSettingsHC()
         {
             ColorSettings settings = DefaultColorSettings();
             // we do not need to change system colors.

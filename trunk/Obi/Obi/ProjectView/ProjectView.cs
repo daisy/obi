@@ -265,6 +265,18 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Color settings obtained from the form's settings.
+        /// </summary>
+        public ColorSettings ColorSettings
+        {
+            get { return mForm.Settings.ColorSettings; }
+            set
+            {
+                mTOCView.ColorSettings = value;
+            }
+        }
+
+        /// <summary>
         /// Copy the current selection into the clipboard. Noop if there is no selection.
         /// </summary>
         public void Copy()
