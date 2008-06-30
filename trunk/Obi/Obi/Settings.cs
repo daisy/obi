@@ -17,29 +17,30 @@ namespace Obi
     [Serializable()]
     public class Settings
     {
-        public bool AllowOverwrite;        // allow/disallow overwriting audio when recording
-        public int AudioChannels;          // number of channels for recording
-        public int BitDepth;               // sample bit depth
-        public bool CreateTitleSection;    // defaulf for "create title section" in new project
-        public string DefaultExportPath;   // default path for DAISY export
-        public string DefaultPath;         // default location
-        public bool EnableTooltips;        // enable or disable tooltips
-        public float FontSize;             // global font size (all font sizes must be relative to this one)
-        public string LastInputDevice;     // the name of the last input device selected by the user
-        public string LastOpenProject;     // path to the last open project
-        public string LastOutputDevice;    // the name of the last output device selected by the user
-        public Size NewProjectDialogSize;  // size of the new project dialog
-        public double NudgeTimeMs;         // nudge time in milliseconds
-        public Size ObiFormSize;           // size of the form (for future sessions)
-        public bool OpenLastProject;       // open the last open project at startup
-        public bool PlayIfNoSelection;     // play all or nothing if no selection
-        public bool PlayOnNavigate;        // start playback when navigating, or just change the selection
-        public int PreviewDuration;        // playback preview duration in milliseconds
-        public ArrayList RecentProjects;   // paths to projects recently opened
-        public int SampleRate;             // sample rate in Hertz
-        public bool SynchronizeViews;      // keep views synchronized
-        public UserProfile UserProfile;    // the user profile
-        public bool WrapStrips;            // wrapping in content view
+        public bool AllowOverwrite;         // allow/disallow overwriting audio when recording
+        public int AudioChannels;           // number of channels for recording
+        public int BitDepth;                // sample bit depth
+        public ColorSettings ColorSettings;  // current color settings
+        public bool CreateTitleSection;     // defaulf for "create title section" in new project
+        public string DefaultExportPath;    // default path for DAISY export
+        public string DefaultPath;          // default location
+        public bool EnableTooltips;         // enable or disable tooltips
+        public float FontSize;              // global font size (all font sizes must be relative to this one)
+        public string LastInputDevice;      // the name of the last input device selected by the user
+        public string LastOpenProject;      // path to the last open project
+        public string LastOutputDevice;     // the name of the last output device selected by the user
+        public Size NewProjectDialogSize;   // size of the new project dialog
+        public double NudgeTimeMs;          // nudge time in milliseconds
+        public Size ObiFormSize;            // size of the form (for future sessions)
+        public bool OpenLastProject;        // open the last open project at startup
+        public bool PlayIfNoSelection;      // play all or nothing if no selection
+        public bool PlayOnNavigate;         // start playback when navigating, or just change the selection
+        public int PreviewDuration;         // playback preview duration in milliseconds
+        public ArrayList RecentProjects;    // paths to projects recently opened
+        public int SampleRate;              // sample rate in Hertz
+        public bool SynchronizeViews;       // keep views synchronized
+        public UserProfile UserProfile;     // the user profile
+        public bool WrapStrips;             // wrapping in content view
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -54,6 +55,7 @@ namespace Obi
             settings.AudioChannels = 1;
             settings.AllowOverwrite = false;
             settings.BitDepth = 16;
+            settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.DefaultExportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             settings.DefaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             settings.EnableTooltips = true;

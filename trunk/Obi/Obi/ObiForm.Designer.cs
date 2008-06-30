@@ -79,6 +79,10 @@ namespace Obi
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.mZoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mZoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mNormalSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -418,7 +422,11 @@ namespace Obi
             this.mWrappingInContentViewToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
-            this.mShowSourceToolStripMenuItem});
+            this.mShowSourceToolStripMenuItem,
+            this.toolStripSeparator15,
+            this.mZoomInToolStripMenuItem,
+            this.mZoomOutToolStripMenuItem,
+            this.mNormalSizeToolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
             // 
@@ -527,6 +535,29 @@ namespace Obi
             resources.ApplyResources(this.mShowSourceToolStripMenuItem, "mShowSourceToolStripMenuItem");
             this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
+            // mZoomInToolStripMenuItem
+            // 
+            this.mZoomInToolStripMenuItem.Name = "mZoomInToolStripMenuItem";
+            resources.ApplyResources(this.mZoomInToolStripMenuItem, "mZoomInToolStripMenuItem");
+            this.mZoomInToolStripMenuItem.Click += new System.EventHandler(this.mZoomInToolStripMenuItem_Click);
+            // 
+            // mZoomOutToolStripMenuItem
+            // 
+            this.mZoomOutToolStripMenuItem.Name = "mZoomOutToolStripMenuItem";
+            resources.ApplyResources(this.mZoomOutToolStripMenuItem, "mZoomOutToolStripMenuItem");
+            this.mZoomOutToolStripMenuItem.Click += new System.EventHandler(this.mZoomOutToolStripMenuItem_Click);
+            // 
+            // mNormalSizeToolStripMenuItem
+            // 
+            this.mNormalSizeToolStripMenuItem.Name = "mNormalSizeToolStripMenuItem";
+            resources.ApplyResources(this.mNormalSizeToolStripMenuItem, "mNormalSizeToolStripMenuItem");
+            this.mNormalSizeToolStripMenuItem.Click += new System.EventHandler(this.mNormalSizeToolStripMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -1112,6 +1143,7 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            this.mProjectView.ZoomFactor = 1;
             // 
             // ObiForm
             // 
@@ -1272,6 +1304,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEncodeToMp3toolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem mZoomInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mZoomOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mNormalSizeToolStripMenuItem;
     }
 }
 
