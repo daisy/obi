@@ -32,13 +32,13 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter = new System.Windows.Forms.SplitContainer();
             this.mTOCSplitter = new System.Windows.Forms.SplitContainer();
             this.mMetadataSplitter = new System.Windows.Forms.SplitContainer();
+            this.mTOCView = new Obi.ProjectView.InheritedTOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
-            this.mStripsView = new Obi.ProjectView.StripsView();
             this.mFindInText = new Obi.ProjectView.FindInText();
             this.mTransportBar = new Obi.ProjectView.TransportBar();
             this.mNoProjectLabel = new System.Windows.Forms.Label();
-            this.mTOCView = new Obi.ProjectView.InheritedTOCView();
+            this.mContentView = new Obi.ProjectView.ContentView();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
             this.mTransportBarSplitter.SuspendLayout();
@@ -109,7 +109,7 @@ namespace Obi.ProjectView
             // 
             // mTOCSplitter.Panel2
             // 
-            this.mTOCSplitter.Panel2.Controls.Add(this.mStripsView);
+            this.mTOCSplitter.Panel2.Controls.Add(this.mContentView);
             this.mTOCSplitter.Size = new System.Drawing.Size(964, 627);
             this.mTOCSplitter.SplitterDistance = 271;
             this.mTOCSplitter.TabIndex = 0;
@@ -131,6 +131,19 @@ namespace Obi.ProjectView
             this.mMetadataSplitter.Size = new System.Drawing.Size(271, 627);
             this.mMetadataSplitter.SplitterDistance = 379;
             this.mMetadataSplitter.TabIndex = 0;
+            // 
+            // mTOCView
+            // 
+            this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mTOCView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mTOCView.FullRowSelect = true;
+            this.mTOCView.LabelEdit = true;
+            this.mTOCView.Location = new System.Drawing.Point(0, 0);
+            this.mTOCView.Name = "mTOCView";
+            this.mTOCView.Selection = null;
+            this.mTOCView.Size = new System.Drawing.Size(271, 379);
+            this.mTOCView.TabIndex = 0;
             // 
             // mMetadataView
             // 
@@ -157,16 +170,6 @@ namespace Obi.ProjectView
             this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
             this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
             this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
-            // 
-            // mStripsView
-            // 
-            this.mStripsView.BackColor = System.Drawing.Color.Transparent;
-            this.mStripsView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mStripsView.Location = new System.Drawing.Point(0, 0);
-            this.mStripsView.Name = "mStripsView";
-            this.mStripsView.Selection = null;
-            this.mStripsView.Size = new System.Drawing.Size(689, 627);
-            this.mStripsView.TabIndex = 0;
             // 
             // mFindInText
             // 
@@ -198,16 +201,14 @@ namespace Obi.ProjectView
             this.mNoProjectLabel.TabIndex = 1;
             this.mNoProjectLabel.Text = "No project";
             // 
-            // mTOCView
+            // mStripsView
             // 
-            this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mTOCView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTOCView.Location = new System.Drawing.Point(0, 0);
-            this.mTOCView.Name = "mTOCView";
-            this.mTOCView.Selection = null;
-            this.mTOCView.Size = new System.Drawing.Size(271, 379);
-            this.mTOCView.TabIndex = 0;
+            this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mContentView.Location = new System.Drawing.Point(0, 0);
+            this.mContentView.Name = "mStripsView";
+            this.mContentView.Selection = null;
+            this.mContentView.Size = new System.Drawing.Size(689, 627);
+            this.mContentView.TabIndex = 0;
             // 
             // ProjectView
             // 
@@ -244,13 +245,13 @@ namespace Obi.ProjectView
         private TransportBar mTransportBar;
         private System.Windows.Forms.SplitContainer mFindInTextSplitter;
         private System.Windows.Forms.SplitContainer mTOCSplitter;
-        private StripsView mStripsView;
         private FindInText mFindInText;
         private System.Windows.Forms.SplitContainer mMetadataSplitter;
         private MetadataView mMetadataView;
         private System.Windows.Forms.Label mNoProjectLabel;
         private System.Windows.Forms.Button mPanelInfoLabelButton ;
         private InheritedTOCView mTOCView;
+        private ContentView mContentView;
 
 
     }

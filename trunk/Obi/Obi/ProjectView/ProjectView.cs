@@ -38,7 +38,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             mTOCView.ProjectView = this;
-            mStripsView.ProjectView = this;
+            mContentView.ProjectView = this;
             mMetadataView.ProjectView = this;
             mFindInText.ProjectView = this;
             mTransportBar.ProjectView = this;
@@ -69,8 +69,8 @@ namespace Obi.ProjectView
             if (CanAddEmptyBlock)
             {
                 EmptyNode node = new EmptyNode(mPresentation);
-                ObiNode parent = mStripsView.Selection.ParentForNewNode(node);
-                AddUnusedAndExecute(new Commands.Node.AddEmptyNode(this, node, parent, mStripsView.Selection.IndexForNewNode(node)),
+                ObiNode parent = mContentView.Selection.ParentForNewNode(node);
+                AddUnusedAndExecute(new Commands.Node.AddEmptyNode(this, node, parent, mContentView.Selection.IndexForNewNode(node)),
                     node, parent);
                             }
         }
@@ -126,7 +126,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSection()
         {
-            if (mStripsView.CanAddStrip)
+            if (mContentView.CanAddStrip)
             {
                 AddStrip();
             }
@@ -142,13 +142,13 @@ namespace Obi.ProjectView
         /// </summary>
         private void AddStrip()
         {
-            Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mStripsView);
+            Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
             urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
             SectionNode selected = null;
-            if (mStripsView.Selection.Node is SectionNode)
-                selected = (SectionNode)mStripsView.Selection.Node;
+            if (mContentView.Selection.Node is SectionNode)
+                selected = (SectionNode)mContentView.Selection.Node;
             else
-                selected = (SectionNode)mStripsView.Selection.Node.ParentAs<SectionNode>();
+                selected = (SectionNode)mContentView.Selection.Node.ParentAs<SectionNode>();
             
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
@@ -188,28 +188,28 @@ namespace Obi.ProjectView
             );
         }
 
-        public bool CanAddEmptyBlock { get { return mStripsView.Selection != null; } }
+        public bool CanAddEmptyBlock { get { return mContentView.Selection != null; } }
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
-        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mStripsView.CanAddStrip); } }
+        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && ( CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio ) && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyAudio { get { return mStripsView.CanCopyAudio && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyAudio { get { return mContentView.CanCopyAudio && !TransportBar.IsRecorderActive ; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyStrip { get { return mStripsView.CanCopyStrip && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyBlock { get { return mStripsView.CanCopyBlock && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyStrip { get { return mContentView.CanCopyStrip && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopyBlock { get { return mContentView.CanCopyBlock && !TransportBar.IsRecorderActive ; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive; } }
         public bool CanFastForward { get { return mTransportBar.CanFastForward; } }
-        public bool CanFocusOnContentView { get { return mPresentation != null && !mStripsView.Focused; } }
+        public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null && !TransportBar.IsRecorderActive ; } }
-        public bool CanInsertStrip { get { return mStripsView.Selection != null && !TransportBar.IsRecorderActive ; } }
-        public bool CanMergeStripWithNext { get { return mStripsView.CanMergeStripWithNext && !TransportBar.IsRecorderActive ; } }
+        public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive ; } }
+        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive ; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
@@ -224,21 +224,21 @@ namespace Obi.ProjectView
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
         public bool CanPreview { get { return mTransportBar.CanPreview; } }
         public bool CanPreviewAudioSelection { get { return mTransportBar.CanPreviewAudioSelection; } }
-        public bool CanRemoveAudio { get { return mStripsView.CanRemoveAudio; } }
-        public bool CanRemoveBlock { get { return mStripsView.CanRemoveBlock; } }
+        public bool CanRemoveAudio { get { return mContentView.CanRemoveAudio; } }
+        public bool CanRemoveBlock { get { return mContentView.CanRemoveBlock; } }
         public bool CanRemoveMetadata { get { return mMetadataView.CanRemoveMetadata; } }
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
-        public bool CanRemoveStrip { get { return mStripsView.CanRemoveStrip; } }
+        public bool CanRemoveStrip { get { return mContentView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
         public bool CanRenameSection { get { return Selection != null  && (CanRenameStrip || mTOCView.CanRenameSection) ; } }
-        public bool CanRenameStrip { get { return Selection != null  && ( mStripsView.CanRenameStrip ); } }
+        public bool CanRenameStrip { get { return Selection != null  && ( mContentView.CanRenameStrip ); } }
         public bool CanRewind { get { return mTransportBar.CanRewind; } }
-        public bool CanSetBlockUsedStatus { get { return mStripsView.CanSetBlockUsedStatus; } }
+        public bool CanSetBlockUsedStatus { get { return mContentView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
-        public bool CanSetStripUsedStatus { get { return mStripsView.CanSetStripUsedStatus; } }
+        public bool CanSetStripUsedStatus { get { return mContentView.CanSetStripUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } } 
-        public bool CanSplitStrip { get { return mStripsView.CanSplitStrip && !TransportBar.IsRecorderActive ; } }
+        public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive ; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive ; } }
 
@@ -273,6 +273,7 @@ namespace Obi.ProjectView
             set
             {
                 mTOCView.ColorSettings = value;
+                mContentView.ColorSettings = value;
             }
         }
 
@@ -347,7 +348,7 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveStrip)
             {
-                mPresentation.getUndoRedoManager().execute(mStripsView.DeleteStripCommand());
+                mPresentation.getUndoRedoManager().execute(mContentView.DeleteStripCommand());
             }
             else if (CanRemoveBlock)
             {
@@ -395,11 +396,11 @@ namespace Obi.ProjectView
                 if (mSelection != null && mSelection.Control is TOCView)
                 {
 if ( TransportBar.IsPlayerActive )
-    Selection = new NodeSelection(mStripsView.PlaybackPhrase , mStripsView);
+    Selection = new NodeSelection(mContentView.PlaybackPhrase , mContentView);
     else
-    Selection = new NodeSelection(mSelection.Node, mStripsView);                
+    Selection = new NodeSelection(mSelection.Node, mContentView);                
                                     }
-                mStripsView.Focus();
+                mContentView.Focus();
             }
         }
 
@@ -447,7 +448,7 @@ if ( TransportBar.IsPlayerActive )
         {
             if (CanMergeStripWithNext)
             {
-                mPresentation.getUndoRedoManager().execute(mStripsView.MergeSelectedStripWithNextCommand());
+                mPresentation.getUndoRedoManager().execute(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
             }
         }
@@ -552,9 +553,9 @@ if ( TransportBar.IsPlayerActive )
         {
             set
             {
-                if (mStripsView != null)
+                if (mContentView != null)
                 {
-                    mStripsView.PlaybackPhrase = value;
+                    mContentView.PlaybackPhrase = value;
                     if (value != null) MakePhraseNodeVisible(value);
                 }
             }
@@ -576,7 +577,7 @@ if ( TransportBar.IsPlayerActive )
                     if (mPresentation != null)
                     {
                         mTOCView.SetNewPresentation();
-                        mStripsView.NewPresentation();
+                        mContentView.NewPresentation();
                         mTransportBar.NewPresentation();
                         mMetadataView.NewPresentation();
                     }
@@ -605,9 +606,9 @@ if ( TransportBar.IsPlayerActive )
 
         // Quick way to set the selection
 
-        public EmptyNode SelectedBlockNode { set { Selection = new NodeSelection(value, mStripsView); } }
+        public EmptyNode SelectedBlockNode { set { Selection = new NodeSelection(value, mContentView); } }
         public SectionNode SelectedSectionNode { set { Selection = new NodeSelection(value, mTOCView); } }
-        public SectionNode SelectedStripNode { set { Selection = new NodeSelection(value, mStripsView); } }
+        public SectionNode SelectedStripNode { set { Selection = new NodeSelection(value, mContentView); } }
 
         /// <summary>
         /// Currently selected node of the given type (e.g. SectionNode, EmptyNode or PhraseNode).
@@ -687,16 +688,16 @@ if ( TransportBar.IsPlayerActive )
                 node.AncestorAs<SectionNode>();
             if (showOnly)
             {
-                mStripsView.ShowOnlySelectedSection(node);
+                mContentView.ShowOnlySelectedSection(node);
             }
             else
             {
                 SynchronizeViews = mSynchronizeViews;
             }
-            mStripsView.MakeStripVisibleForSection((SectionNode)node);
+            mContentView.MakeStripVisibleForSection((SectionNode)node);
         }
 
-        public bool WrapStrips { set { mStripsView.WrapStrips = value; } }
+        public bool WrapStrips { set { mContentView.WrapStrips = value; } }
 
         /// <summary>
         /// Select the name field of the selected section and start editing it.
@@ -705,7 +706,7 @@ if ( TransportBar.IsPlayerActive )
         {
             if (CanRenameStrip)
             {
-                mStripsView.SelectAndRename(mStripsView.Selection.Section);
+                mContentView.SelectAndRename(mContentView.Selection.Section);
             }
             else if (CanRenameSection)
             {
@@ -722,7 +723,7 @@ if ( TransportBar.IsPlayerActive )
             {
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode =mSelection.Node.ParentAs <SectionNode> ()  ;
-                mPresentation.getUndoRedoManager().execute(mStripsView.SplitStripCommand());
+                mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
 
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
                             }
@@ -743,12 +744,12 @@ if ( TransportBar.IsPlayerActive )
                         mTOCView.ResyncViews();
                         if (mSelection != null && mSelection.Control == mTOCView)
                         {
-                            mStripsView.MakeStripVisibleForSection(SelectedNodeAs<SectionNode>());
+                            mContentView.MakeStripVisibleForSection(SelectedNodeAs<SectionNode>());
                         }
                     }
                     else
                     {
-                        mStripsView.UnsyncViews();
+                        mContentView.UnsyncViews();
                     }
                 }
             }
@@ -873,7 +874,7 @@ if ( TransportBar.IsPlayerActive )
 
         public bool IsSectionSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mTOCView; } }
         public bool IsSectionSelectedStrict { get { return IsSectionSelected && mSelection.GetType() == typeof(NodeSelection); } }
-        public bool IsStripSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mStripsView; } }
+        public bool IsStripSelected { get { return SelectedNodeAs<SectionNode>() != null && mSelection.Control == mContentView; } }
         public bool IsStripSelectedStrict { get { return IsStripSelected && mSelection.GetType() == typeof(NodeSelection); } }
 
         public bool CanDeselect { get { return mSelection != null; } }
@@ -881,19 +882,19 @@ if ( TransportBar.IsPlayerActive )
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
-        public bool CanMarkStripUnused { get { return !mStripsView.CanSetStripUsedStatus || mSelection.Node.Used; } }
-        public bool CanMergeBlockWithNext { get { return mStripsView.CanMergeBlockWithNext; } }
+        public bool CanMarkStripUnused { get { return !mContentView.CanSetStripUsedStatus || mSelection.Node.Used; } }
+        public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
-        public bool IsBlockUsed { get { return mStripsView.IsBlockUsed; } }
-        public bool IsStripUsed { get { return mStripsView.IsStripUsed; } }
+        public bool IsBlockUsed { get { return mContentView.IsBlockUsed; } }
+        public bool IsStripUsed { get { return mContentView.IsStripUsed; } }
 
         /// <summary>
         /// Show the strip for the given section
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
         {
-            if (mSynchronizeViews) mStripsView.MakeStripVisibleForSection(section);
+            if (mSynchronizeViews) mContentView.MakeStripVisibleForSection(section);
         }
 
         /// <summary>
@@ -909,12 +910,12 @@ if ( TransportBar.IsPlayerActive )
         /// </summary>
         public void SetStripsVisibilityForSection(SectionNode section, bool visible)
         {
-            if (mSynchronizeViews) mStripsView.SetStripsVisibilityForSection(section, visible);
+            if (mSynchronizeViews) mContentView.SetStripsVisibilityForSection(section, visible);
         }
 
         public void SetStripVisibilityForSection(SectionNode section, bool visible)
         {
-            if (mSynchronizeViews) mStripsView.SetStripVisibilityForSection(section, visible);
+            if (mSynchronizeViews) mContentView.SetStripVisibilityForSection(section, visible);
         }
 
         /// <summary>
@@ -935,7 +936,7 @@ if ( TransportBar.IsPlayerActive )
             if (mFindInTextSplitter.Panel2Collapsed == true) mFindInTextSplitter.Panel2Collapsed = false;
             FindInTextVisible = true;
             //iterating over the layout panel seems to be the way to search the sections 
-            mFindInText.StartNewSearch(mStripsView);
+            mFindInText.StartNewSearch(mContentView);
         }
 
         public void FindNextInText()
@@ -957,8 +958,8 @@ if ( TransportBar.IsPlayerActive )
 
         public void ListenToSelection() { }
         public bool CanListenToSection { get { return mTransportBar.Enabled && mTOCView.Selection != null; } }
-        public bool CanListenToStrip { get { return mTransportBar.Enabled && mStripsView.SelectedSection != null; } }
-        public bool CanListenToBlock { get { return mTransportBar.Enabled && mStripsView.SelectedPhraseNode != null; } }
+        public bool CanListenToStrip { get { return mTransportBar.Enabled && mContentView.SelectedSection != null; } }
+        public bool CanListenToBlock { get { return mTransportBar.Enabled && mContentView.SelectedPhraseNode != null; } }
 
         // Blocks
 
@@ -987,7 +988,7 @@ if ( TransportBar.IsPlayerActive )
             }
         }
 
-        public bool CanImportPhrases { get { return mStripsView.Selection != null; } }
+        public bool CanImportPhrases { get { return mContentView.Selection != null; } }
 
         /// <summary>
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
@@ -1116,8 +1117,8 @@ if ( TransportBar.IsPlayerActive )
             }
         }
 
-        public void UpdateCursorPosition(double time) { mStripsView.UpdateCursorPosition(time); }
-        public void SelectAtCurrentTime() { mStripsView.SelectAtCurrentTime(); }
+        public void UpdateCursorPosition(double time) { mContentView.UpdateCursorPosition(time); }
+        public void SelectAtCurrentTime() { mContentView.SelectAtCurrentTime(); }
 
 
         /// <summary>
@@ -1255,13 +1256,12 @@ if ( TransportBar.IsPlayerActive )
         /// </summary>
         public void SelectNextPhrase()
         {
-            mStripsView.SelectNextPhrase(SelectedNodeAs<ObiNode>());
+            mContentView.SelectNextPhrase(SelectedNodeAs<ObiNode>());
         }
 
         public void UpdateBlocksLabelInStrip(SectionNode node)
         {
-            if (node != null)
-                mStripsView.UpdateBlocksLabelInStrip(node);
+            if (node != null) mContentView.UpdateBlocksLabelInStrip(node);
         }
 
 
@@ -1281,7 +1281,7 @@ if ( TransportBar.IsPlayerActive )
             ViewList.Add(mTOCView);
             ViewList.Add(mMetadataView);
             ViewList.Add(mPanelInfoLabelButton);
-            ViewList.Add(mStripsView);
+            ViewList.Add(mContentView);
             ViewList.Add(mTransportBar);
 
             if (mTOCSplitter.Focused)
@@ -1373,7 +1373,7 @@ if ( TransportBar.IsPlayerActive )
         public bool TogglePlayPause(bool useSelection)
         {
             if (!(mSelection is TextSelection) &&
-                (mStripsView.ContainsFocus
+                (mContentView.ContainsFocus
                 || mTOCView.ContainsFocus
                 || mTransportBar.ContainsFocus))
             {
@@ -1439,7 +1439,7 @@ if ( TransportBar.IsPlayerActive )
             {
                 if (mTOCView.ContainsFocus)
                     return true;
-                else if (mStripsView.ContainsFocus)
+                else if (mContentView.ContainsFocus)
                     return false;
                 else if (mTOCView.Visible) // if neither of views has focus then check if toc is visible, if visible  and focus on it
                     return false;
@@ -1453,7 +1453,7 @@ if ( TransportBar.IsPlayerActive )
         {
             if (mTOCView.ContainsFocus) 
                 FocusOnContentView();
-            else if (mStripsView.ContainsFocus) 
+            else if (mContentView.ContainsFocus) 
                 FocusOnTOCView();
             else if (mTOCView.Visible) // if neither of views has focus then check if toc is visible, if visible  and focus on it
                 FocusOnTOCView();
@@ -1466,12 +1466,12 @@ if ( TransportBar.IsPlayerActive )
 
         public void SelectNextTODOPhrase()
         {
-            mStripsView.SelectNextTODONode();
+            mContentView.SelectNextTODONode();
         }
 
         public void SelectPreviousTODOPhrase()
         {
-            mStripsView.SelectPrecedingTODONode();
+            mContentView.SelectPrecedingTODONode();
         }
 
         /// <summary>
@@ -1479,15 +1479,15 @@ if ( TransportBar.IsPlayerActive )
         /// </summary>
         public void SelectInContentView()
         {
-            if (mSelection != null && mSelection.Control != mStripsView)
+            if (mSelection != null && mSelection.Control != mContentView)
             {
-                Selection = new NodeSelection(mSelection.Node, mStripsView);
+                Selection = new NodeSelection(mSelection.Node, mContentView);
             }
         }
 
         public void SelectPhraseInContentView(PhraseNode node)
         {
-            if (node != null) Selection = new NodeSelection(node, mStripsView);
+            if (node != null) Selection = new NodeSelection(node, mContentView);
         }
 
         /// <summary>
@@ -1513,8 +1513,9 @@ if ( TransportBar.IsPlayerActive )
             {
                 if (value > 0.0)
                 {
-                    mZoomFactor = value;
-                    mTOCView.ZoomFactor = mZoomFactor;
+                    mZoomFactor =
+                    mTOCView.ZoomFactor =
+                    mContentView.ZoomFactor = value;
                 }
             }
         }
