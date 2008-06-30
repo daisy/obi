@@ -84,6 +84,16 @@ namespace Obi.ProjectView
             get { return IsSectionSelected && mSelection.Node.ParentAs<ObiNode>().Used; }
         }
 
+        public ColorSettings ColorSettings
+        {
+            set
+            {
+                BackColor = value.TOCViewBackColor;
+                ForeColor = value.TOCViewForeColor;
+                foreach (TreeNode n in Nodes) ChangeColorUsed(n, value);
+            }
+        }
+
         /// <summary>
         /// Make the tree node for this section visible.
         /// </summary>
@@ -182,15 +192,20 @@ namespace Obi.ProjectView
                     n = Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
                 }
                 n.Tag = node;
-                ChangeColorUsed(n, node.Used);
+                ChangeColorUsed(n, mView.ColorSettings);
             }
             return n;
         }
 
         // Change the color of a node to reflect its used status
-        private void ChangeColorUsed(TreeNode n, bool used)
+        private void ChangeColorUsed(TreeNode n, ColorSettings settings)
         {
-            n.ForeColor = used ? Color.Black : Color.LightGray;
+            SectionNode section = n.Tag as SectionNode;
+            if (section != null)
+            {
+                n.ForeColor = section.Used ? settings.TOCViewForeColor : settings.TOCViewUnusedColor;
+                foreach (TreeNode n_ in n.Nodes) ChangeColorUsed(n_, settings);
+            }
         }
 
         // Create a new tree node for a section node and all of its descendants
@@ -201,7 +216,7 @@ namespace Obi.ProjectView
             {
                 n.EnsureVisible();
                 n.ExpandAll();
-                ChangeColorUsed(n, node.Used);
+                ChangeColorUsed(n, mView.ColorSettings);
             }
             if (n != null || node is RootNode)
             {
@@ -311,7 +326,7 @@ namespace Obi.ProjectView
         {
             if (e.Node is SectionNode && IsInTree((SectionNode)e.Node))
             {
-                ChangeColorUsed(FindTreeNode((SectionNode)e.Node), e.Node.Used);
+                ChangeColorUsed(FindTreeNode((SectionNode)e.Node), mView.ColorSettings);
             }
         }
 

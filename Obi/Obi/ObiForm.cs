@@ -925,7 +925,7 @@ namespace Obi
                 mSession.ProjectSaved += new EventHandler(Session_ProjectSaved);
                 mSourceView = null;
                 InitializeSettings();
-                InitialiseHighContrastSettings();
+                InitializeColorSettings();
                 InitializeEventHandlers();
                 UpdateMenus();
                 // these should be stored in settings
@@ -1270,10 +1270,6 @@ namespace Obi
                 
                 Application.Exit();
 
-                // unhook User preferences system events 
-                Microsoft.Win32.SystemEvents.UserPreferenceChanged
-                -= new Microsoft.Win32.UserPreferenceChangedEventHandler(this.UserPreferenceChanged);
-
             }
             else
             {
@@ -1350,24 +1346,18 @@ namespace Obi
         // Various utility functions
 
 
-        private void InitialiseHighContrastSettings()
+        private void InitializeColorSettings()
         {
-            // Associate  user preference system events
             Microsoft.Win32.SystemEvents.UserPreferenceChanged
-                += new Microsoft.Win32.UserPreferenceChangedEventHandler(this.UserPreferenceChanged);
-
-            //UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
-            //mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
-            //BackColor = UserControls.Colors.ObiBackGround;
-
+                += new Microsoft.Win32.UserPreferenceChangedEventHandler(
+                delegate(object sender, Microsoft.Win32.UserPreferenceChangedEventArgs e) { UpdateColors(); });
+            UpdateColors();
         }
 
-        private void UserPreferenceChanged(object sender, EventArgs e)
+        private void UpdateColors()
         {
-            // UserControls.Colors.SetHighContrastColors(SystemInformation.HighContrast);
-            // mProjectView.TransportBar.SetHighContrastColors(SystemInformation.HighContrast);
-            // BackColor = UserControls.Colors.ObiBackGround;
-            // mProject.Touch();
+            mProjectView.ColorSettings = SystemInformation.HighContrast ?
+                mSettings.ColorSettingsHC : mSettings.ColorSettings;
         }
 
         /// <summary>
@@ -1605,7 +1595,5 @@ namespace Obi
         {
             mProjectView.ZoomFactor = 1.0;
         }
-
-
     }
 }
