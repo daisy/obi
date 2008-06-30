@@ -13,7 +13,7 @@ namespace Obi.ProjectView
     {
         private SectionNode mNode;       // the section node for this strip
         private bool mSelected;          // selected flag
-        private StripsView mParentView;  // parent strip view
+        private ContentView mParentView;  // parent strip view
         private bool mWrap;              // wrap contents
         private bool mEntering;          // entering flag
         private Mutex m_MutexUpdateThread;
@@ -35,7 +35,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new strip with an associated section node.
         /// </summary>
-        public Strip(SectionNode node, StripsView parent)
+        public Strip(SectionNode node, ContentView parent)
             : this()
         {
             if (node == null) throw new Exception("Cannot set a null section node for a strip!");
@@ -177,7 +177,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the strips view to which this strip belongs.
         /// </summary>
-        public StripsView ParentView { get { return mParentView; } }
+        public ContentView ParentView { get { return mParentView; } }
 
         /// <summary>
         /// Remove the block for the given node.

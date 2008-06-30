@@ -32,7 +32,7 @@ namespace Obi.ProjectView
     /// </remarks>
     public partial class FindInText : UserControl
     {
-        private StripsView mStripsView;
+        private ContentView mStripsView;
         private int mOriginalPosition;
         private int mNumberSearched;
         private bool mFoundFirst;
@@ -79,7 +79,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// This function displays the find in text form.
         /// </summary>
-        public void StartNewSearch(StripsView strips)
+        public void StartNewSearch(ContentView strips)
         {
             mStripsView = strips;
             mProjectView.FindInTextVisible = true;

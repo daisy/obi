@@ -1,25 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace Obi.ProjectView
 {
-    /// <summary>
-    /// Common interface for selection of strips and blocks
-    /// </summary>
-    public interface ISelectableInStripView
-    {
-        bool Selected { get; set; }               // set the selected state of the control
-        ObiNode ObiNode { get; }                  // get the Obi node for the control
-        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
-    }
-
-    public partial class StripsView : UserControl, IControlWithRenamableSelection
+    public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
     {
         private ProjectView mView;                                   // parent project view
         private NodeSelection mSelection;                            // current selection
@@ -35,7 +24,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// A new strips view.
         /// </summary>
-        public StripsView()
+        public ContentView()
         {
             InitializeComponent();
             InitializeShortcutKeys();
@@ -44,6 +33,22 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStrips = false;
+        }
+
+
+        public ColorSettings ColorSettings
+        {
+            set
+            {
+                BackColor = value.ContentViewBackColor;
+            }
+        }
+
+        public double ZoomFactor
+        {
+            set
+            {
+            }
         }
 
         /// <summary>
@@ -142,7 +147,7 @@ namespace Obi.ProjectView
                 mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
                 if (mPlaybackBlock != null)
                 {
-                    mLayoutPanel.ScrollControlIntoView(mPlaybackBlock);
+                    ScrollControlIntoView(mPlaybackBlock);
                     mPlaybackBlock.InitCursor();
                 }
             }
@@ -201,7 +206,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
         {
-            if (section != null) mLayoutPanel.ScrollControlIntoView(FindStrip(section));
+            if (section != null) ScrollControlIntoView(FindStrip(section));
         }
 
         /// <summary>
@@ -233,7 +238,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void NewPresentation()
         {
-            mLayoutPanel.Controls.Clear();
+            Controls.Clear();
             AddStripForSection(mView.Presentation.RootNode);
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
@@ -274,7 +279,7 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node.ParentAs<SectionNode>();
                         mView.MakeTreeNodeVisibleForSection(section);
-                        mLayoutPanel.ScrollControlIntoView((Control)s);
+                        ScrollControlIntoView((Control)s);
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus();
                         mFocusing = false;
@@ -345,7 +350,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void UnsyncViews()
         {
-            foreach (Control c in mLayoutPanel.Controls) c.Visible = true;
+            foreach (Control c in Controls) c.Visible = true;
         }
 
 
@@ -354,13 +359,13 @@ namespace Obi.ProjectView
         // Handle resizing of the layout panel: all strips are resized to be at least as wide.
         private void LayoutPanel_SizeChanged(object sender, EventArgs e)
         {
-            if (mLayoutPanel.Controls.Count > 0)
+            if (Controls.Count > 0)
             {
-                Control last = mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1];
+                Control last = Controls[Controls.Count - 1];
                 int scrollbarW = last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth + Margin.Right : 0;
-                foreach (Control c in mLayoutPanel.Controls)
+                foreach (Control c in Controls)
                 {
-                    int w = mLayoutPanel.Width - c.Location.X - c.Margin.Right - scrollbarW;
+                    int w = Width - c.Location.X - c.Margin.Right - scrollbarW;
                     c.Width = w;
                 }
             }
@@ -409,7 +414,7 @@ namespace Obi.ProjectView
                 null;
             if (c != null)
             {
-                mLayoutPanel.ScrollControlIntoView(c);
+                ScrollControlIntoView(c);
                 UpdateTabIndex(c);
             }
         }
@@ -445,10 +450,10 @@ namespace Obi.ProjectView
             Strip strip = null;
             if (node is SectionNode)
             {
-                //strip = new Strip((SectionNode)node, this);
+                strip = new Strip((SectionNode)node, this);
                 strip.Wrap = mWrapStrips;
-                mLayoutPanel.Controls.Add(strip);
-                mLayoutPanel.Controls.SetChildIndex(strip, ((SectionNode)node).Position);
+                Controls.Add(strip);
+                Controls.SetChildIndex(strip, ((SectionNode)node).Position);
                 strip.Width = Width;
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection_(node.SectionChild(i));
@@ -468,7 +473,7 @@ namespace Obi.ProjectView
         {
             for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection_(section.SectionChild(i));
             Strip strip = FindStrip(section);
-            mLayoutPanel.Controls.Remove(strip);
+            Controls.Remove(strip);
         }
 
         // Deselect everything when clicking the panel
@@ -502,7 +507,7 @@ namespace Obi.ProjectView
         /// </summary>
         private Strip FindStrip(SectionNode section)
         {
-            foreach (Control c in mLayoutPanel.Controls)
+            foreach (Control c in Controls)
             {
                 if (c is Strip && ((Strip)c).Node == section) return c as Strip;
             }
@@ -556,12 +561,6 @@ namespace Obi.ProjectView
 
         #endregion
 
-
-
-
-        // temporary for search
-        public FlowLayoutPanel LayoutPanel { get { return mLayoutPanel; } }
-
         /// <summary>
         /// Get all the searchable items (i.e. strips, blocks) in the control.  This does not support nested blocks right now.
         /// </summary>
@@ -570,7 +569,7 @@ namespace Obi.ProjectView
             get
             {
                 List<ISearchable> l = new List<ISearchable>();
-                AddToSearchables(mLayoutPanel, l);
+                AddToSearchables(this, l);
                 return l;
             }
         }
@@ -591,11 +590,11 @@ namespace Obi.ProjectView
         // Update tab index for all controls after a newly added strip
         private void UpdateTabIndex(Strip strip)
         {
-            int stripIndex = mLayoutPanel.Controls.IndexOf(strip);
-            int tabIndex = stripIndex > 0 ? ((Strip)mLayoutPanel.Controls[stripIndex - 1]).LastTabIndex : 0;
-            for (int i = stripIndex; i < mLayoutPanel.Controls.Count; ++i)
+            int stripIndex = Controls.IndexOf(strip);
+            int tabIndex = stripIndex > 0 ? ((Strip)Controls[stripIndex - 1]).LastTabIndex : 0;
+            for (int i = stripIndex; i < Controls.Count; ++i)
             {
-                tabIndex = ((Strip)mLayoutPanel.Controls[i]).UpdateTabIndex(tabIndex);
+                tabIndex = ((Strip)Controls[i]).UpdateTabIndex(tabIndex);
             }
         }
 
@@ -681,7 +680,7 @@ namespace Obi.ProjectView
             if (CanUseKeys &&
                 ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
-            if (ProcessTabKeyInContentsView(key)) return true;
+            //if (ProcessTabKeyInContentsView(key)) return true;
             return base.ProcessCmdKey(ref msg, key);
         }
 
@@ -802,7 +801,7 @@ namespace Obi.ProjectView
         {
             return SelectStripFor(delegate(Strip strip)
             {
-                return mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[0] : null;
+                return Controls.Count > 0 ? (Strip)Controls[0] : null;
             });
         }
 
@@ -810,7 +809,7 @@ namespace Obi.ProjectView
         {
             return SelectStripFor(delegate(Strip strip)
             {
-                return mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1] :
+                return Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
                     null;
             });
         }
@@ -839,9 +838,9 @@ namespace Obi.ProjectView
         {
             if (strip != null)
             {
-                int count = mLayoutPanel.Controls.Count;
-                int index = 1 + mLayoutPanel.Controls.IndexOf(strip);
-                return index < count ? (Strip)mLayoutPanel.Controls[index] : null;
+                int count = Controls.Count;
+                int index = 1 + Controls.IndexOf(strip);
+                return index < count ? (Strip)Controls[index] : null;
             }
             return null;
         }
@@ -850,8 +849,8 @@ namespace Obi.ProjectView
         {
             if (strip != null)
             {
-                int index = mLayoutPanel.Controls.IndexOf(strip);
-                return index > 0 ? (Strip)mLayoutPanel.Controls[index - 1] : null;
+                int index = Controls.IndexOf(strip);
+                return index > 0 ? (Strip)Controls[index - 1] : null;
             }
             return null;
         }
@@ -1075,7 +1074,7 @@ namespace Obi.ProjectView
 /// </summary>
 /// <param name="key"></param>
 /// <returns></returns>
-        private bool ProcessTabKeyInContentsView(Keys key)
+        /*private bool ProcessTabKeyInContentsView(Keys key)
         {
                         if (key == Keys.Tab)
             {
@@ -1114,7 +1113,7 @@ null;
                 }
             }
             return false;
-        }
+        }*/
 
 
 
@@ -1141,7 +1140,7 @@ null;
         {
             // Show only one strip
             SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode>();
-            foreach (Control c in mLayoutPanel.Controls)
+            foreach (Control c in Controls)
             {
                 if (c is Strip) c.Visible = ((Strip)c).Node == section;
             }
@@ -1152,7 +1151,7 @@ null;
             set
             {
                 mWrapStrips = value;
-                foreach (Control c in mLayoutPanel.Controls)
+                foreach (Control c in Controls)
                 {
                     Strip strip = c as Strip;
                     if (strip != null) strip.Wrap = mWrapStrips;
@@ -1171,13 +1170,12 @@ null;
                                                 BackgroundWorker UpdateStripThread = new BackgroundWorker();
                         UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
                         UpdateStripThread.RunWorkerAsync();
-                                                        }
+                }
                     catch ( System.Exception )
                 {
                         return ;
                     }
-                            }
-                                }
-
+            }
+        }
     }
 }
