@@ -164,6 +164,7 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1119,7 +1120,8 @@ namespace Obi
             // mStatusStrip
             // 
             this.mStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mStatusLabel});
+            this.mStatusLabel,
+            this.mStatusProgessBar});
             resources.ApplyResources(this.mStatusStrip, "mStatusStrip");
             this.mStatusStrip.Name = "mStatusStrip";
             this.mStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
@@ -1127,13 +1129,20 @@ namespace Obi
             // mStatusLabel
             // 
             this.mStatusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.mStatusLabel.Name = "mStatusLabel";
             resources.ApplyResources(this.mStatusLabel, "mStatusLabel");
+            this.mStatusLabel.Name = "mStatusLabel";
+            this.mStatusLabel.Spring = true;
+            // 
+            // mStatusProgessBar
+            // 
+            this.mStatusProgessBar.Name = "mStatusProgessBar";
+            resources.ApplyResources(this.mStatusProgessBar, "mStatusProgessBar");
             // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.Color.Transparent;
             this.mProjectView.Clipboard = null;
+            this.mProjectView.ColorSettings = ((Obi.ColorSettings)(resources.GetObject("mProjectView.ColorSettings")));
             resources.ApplyResources(this.mProjectView, "mProjectView");
             this.mProjectView.FindInTextVisible = false;
             this.mProjectView.MetadataViewVisible = true;
@@ -1308,6 +1317,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mZoomInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mZoomOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNormalSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
     }
 }
 

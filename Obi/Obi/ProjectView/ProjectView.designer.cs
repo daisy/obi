@@ -35,10 +35,10 @@ namespace Obi.ProjectView
             this.mTOCView = new Obi.ProjectView.InheritedTOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
+            this.mContentView = new Obi.ProjectView.ContentView();
             this.mFindInText = new Obi.ProjectView.FindInText();
             this.mTransportBar = new Obi.ProjectView.TransportBar();
             this.mNoProjectLabel = new System.Windows.Forms.Label();
-            this.mContentView = new Obi.ProjectView.ContentView();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
             this.mTransportBarSplitter.SuspendLayout();
@@ -134,7 +134,7 @@ namespace Obi.ProjectView
             // 
             // mTOCView
             // 
-            this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTOCView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTOCView.FullRowSelect = true;
@@ -171,6 +171,16 @@ namespace Obi.ProjectView
             this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
             this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
             // 
+            // mContentView
+            // 
+            this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mContentView.Location = new System.Drawing.Point(0, 0);
+            this.mContentView.Name = "mContentView";
+            this.mContentView.PlaybackPhrase = null;
+            this.mContentView.Selection = null;
+            this.mContentView.Size = new System.Drawing.Size(689, 627);
+            this.mContentView.TabIndex = 0;
+            // 
             // mFindInText
             // 
             this.mFindInText.BackColor = System.Drawing.SystemColors.Control;
@@ -201,20 +211,11 @@ namespace Obi.ProjectView
             this.mNoProjectLabel.TabIndex = 1;
             this.mNoProjectLabel.Text = "No project";
             // 
-            // mStripsView
-            // 
-            this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mContentView.Location = new System.Drawing.Point(0, 0);
-            this.mContentView.Name = "mStripsView";
-            this.mContentView.Selection = null;
-            this.mContentView.Size = new System.Drawing.Size(689, 627);
-            this.mContentView.TabIndex = 0;
-            // 
             // ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.mNoProjectLabel);
             this.Controls.Add(this.mTransportBarSplitter);
             this.DoubleBuffered = true;

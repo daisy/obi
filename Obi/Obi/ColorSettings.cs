@@ -6,18 +6,11 @@ namespace Obi
     [Serializable()]
     public class ColorSettings
     {
-        /// <summary>
-        /// TOC view background color.
-        /// </summary>
+        public Color ContentViewBackColor;
+        public Color ProjectViewBackColor;
         public Color TOCViewBackColor;
-
         public Color TOCViewForeColor;
         public Color TOCViewUnusedColor;
-
-        /// <summary>
-        /// Content view background color.
-        /// </summary>
-        public Color ContentViewBackColor;
 
         /// <summary>
         /// Get the default color settings.
@@ -25,10 +18,11 @@ namespace Obi
         public static ColorSettings DefaultColorSettings()
         {
             ColorSettings settings = new ColorSettings();
+            settings.ContentViewBackColor = SystemColors.AppWorkspace;
+            settings.ProjectViewBackColor = SystemColors.AppWorkspace;
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
-            settings.ContentViewBackColor = SystemColors.ControlDark;
             return settings;
         }
 

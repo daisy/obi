@@ -269,11 +269,15 @@ namespace Obi.ProjectView
         /// </summary>
         public ColorSettings ColorSettings
         {
-            get { return mForm.Settings.ColorSettings; }
+            get { return mForm == null ? ColorSettings.DefaultColorSettings() : mForm.ColorSettings; }
             set
             {
-                mTOCView.ColorSettings = value;
-                mContentView.ColorSettings = value;
+                if (value != null)
+                {
+                    BackColor = value.ProjectViewBackColor;
+                    mTOCView.ColorSettings = value;
+                    mContentView.ColorSettings = value;
+                }
             }
         }
 

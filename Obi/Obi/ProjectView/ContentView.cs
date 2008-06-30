@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             InitializeShortcutKeys();
+            DoubleBuffered = true;
             mView = null;
             mSelection = null;
             mFocusing = false;
@@ -140,7 +141,7 @@ namespace Obi.ProjectView
 
         public PhraseNode PlaybackPhrase
         {
-            get { return mPlaybackBlock.Node as PhraseNode; }
+            get { return mPlaybackBlock == null ? null : mPlaybackBlock.Node as PhraseNode; }
             set
             {
                 if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
