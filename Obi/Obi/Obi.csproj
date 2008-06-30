@@ -51,9 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.2893.30300, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AudioEngine.PPMeter, Version=1.0.3103.23163, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\SVN\2Urakawa\urakawa\implementation\AudioSystem\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>..\..\..\SDK 1.0\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -71,9 +71,9 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.0.0.21762, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.0.0.23145, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Urakawa toolkit\trunk\csharp\core\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\SDK 1.0\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +92,7 @@
     <Compile Include="Audio\VuMeter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ColorSettings.cs" />
     <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Audio\Copy.cs" />
     <Compile Include="Commands\Audio\Delete.cs" />
@@ -243,6 +244,12 @@
     </Compile>
     <Compile Include="ProjectView\ContainerBlock.Designer.cs">
       <DependentUpon>ContainerBlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectView\InheritedTOCView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectView\InheritedTOCView.Designer.cs">
+      <DependentUpon>InheritedTOCView.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\MetadataPanel.cs">
       <SubType>UserControl</SubType>
@@ -437,6 +444,10 @@
     <EmbeddedResource Include="ProjectView\EditableLabel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditableLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\InheritedTOCView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InheritedTOCView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataPanel.resx">
       <DependentUpon>MetadataPanel.cs</DependentUpon>

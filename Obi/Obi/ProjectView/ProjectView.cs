@@ -10,7 +10,6 @@ namespace Obi.ProjectView
 {
     public partial class ProjectView : UserControl
     {
-        private bool mEnableTooltips;        // tooltips flag
         private Presentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
         private Clipboard mClipboard;        // the clipboard
@@ -23,6 +22,8 @@ namespace Obi.ProjectView
 
         private EmptyNode.Kind mMarkRole;    // role to use as the on-the-fly custom role mark
         private string mMarkCustomRole;      // custom role (if applicable)
+
+        private double mZoomFactor;          // current zoom factor
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -50,10 +51,10 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
 
-            // mMarkRole = EmptyNode.Kind.Custom;
-            // mMarkCustomRole = Localizer.Message("default_custom_class_name");
             mMarkRole = EmptyNode.Kind.TODO;
             mMarkCustomRole = "";
+
+            mZoomFactor = 1.0;
         }
 
 
@@ -76,7 +77,6 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Add new empty pages.
-        ///
         /// </summary>
         public void AddEmptyPages()
         {
@@ -1491,6 +1491,20 @@ if ( TransportBar.IsPlayerActive )
         {
             System.Diagnostics.Debug.Print("LAYOUT form ProjectView: control={0}, component={1}, property={2}",
                 e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
+        }
+
+
+        public double ZoomFactor
+        {
+            get { return mZoomFactor; }
+            set
+            {
+                if (value > 0.0)
+                {
+                    mZoomFactor = value;
+                    mTOCView.ZoomFactor = mZoomFactor;
+                }
+            }
         }
     }
 

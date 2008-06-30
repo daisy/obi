@@ -1588,7 +1588,24 @@ namespace Obi
         private void mEncodeToMp3toolStripMenuItem_Click(object sender, EventArgs e)
         {
             PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath);
-                        EncoderForm.ShowDialog();
+            EncoderForm.ShowDialog();
         }
+
+        private void mZoomInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ZoomFactor *= 1.25;
+        }
+
+        private void mZoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ZoomFactor /= 1.25;
+        }
+
+        private void mNormalSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ZoomFactor = 1.0;
+        }
+
+
     }
 }
