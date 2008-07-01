@@ -9,12 +9,14 @@ namespace Obi.Events.Audio.VuMeter
 	public class LevelTooLowEventArgs: EventArgs
 	{
 		private object mMeasureInfo;
+        private double m_LowLevelValue;
 		private double mBytePositionStartOfRange;
 		private double mBytePositionEndOfRange;
 
-		public LevelTooLowEventArgs(object measureInfo, double startOfRange, double endOfRange)
+		public LevelTooLowEventArgs(object measureInfo, double LowLevelValue ,double startOfRange, double endOfRange)
 		{
 			mMeasureInfo = measureInfo;
+            m_LowLevelValue = LowLevelValue;
 			mBytePositionStartOfRange = startOfRange;
 			mBytePositionEndOfRange = endOfRange;
 		}
@@ -26,6 +28,14 @@ namespace Obi.Events.Audio.VuMeter
 				return mMeasureInfo;
 			}
 		}
+
+        public double LowLevelValue
+        {
+            get
+            {
+                return m_LowLevelValue;
+            }
+        }
 
 		public double BytePositionStartOfRange
 		{

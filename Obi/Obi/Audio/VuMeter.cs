@@ -3,6 +3,7 @@ using System.Threading;
 using System.Collections;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Obi.Audio
 {
@@ -58,6 +59,7 @@ namespace Obi.Audio
         public int LowerThreshold { get { return mLowerThreshold; } }
         public int ChannelValueLeft { get { return mMeanValueLeft; } }
         public int ChannelValueRight { get { return mMeanValueRight; } }
+        public int Channels { get { return mChannels;  } }
 
         // Set the event handlers for player and recorder.
         private void SetEventHandlers()
@@ -257,7 +259,8 @@ namespace Obi.Audio
                         DetectOverloadForPeakMeter();
         //System.IO.File.AppendAllText("c:\\1.txt", "\n");
         //System.IO.File.AppendAllText("c:\\1.txt", maxDbs[0].ToString());
-                        AnimationComputation();
+                        if ( ob_AudioRecorder != null && (ob_AudioRecorder.State == AudioRecorderState.Monitoring || ob_AudioRecorder.State == AudioRecorderState.Recording ))
+                            AnimationComputation();
         }
 
         private void TriggerPeakEventForSecondHalf()
@@ -280,8 +283,8 @@ namespace Obi.Audio
 
 		int m_PeakValueLeft = 0;
 		int m_PeakValueRight = 0;
-
-
+        double[] TempArray = new double[4];
+        int tempCount = 0;
 		void AnimationComputation ()
 		{
             // create an local array and fill the amplitude value of both channels from function
@@ -294,13 +297,19 @@ namespace Obi.Audio
             
             double left = Convert.ToDouble ( TempAmpArray [0] ) / MaxVal;
             left = 20 * Math.Log10(left);
-            if (left < -45) left = -45;
+            if (left < -90) left = -90;
                                          double right = Convert.ToDouble ( TempAmpArray [1] ) / MaxVal;
                                          right = 20 * Math.Log10(right);
-                                         if (right < -45) right = -45;
+                                         if (right < -90) right = -90;
 
-                                         m_AverageValue[0] = m_AverageValue[0] == 0 ? left : ((m_AverageValue[0] * 19) + left) / 20;
-                                         m_AverageValue[1] = m_AverageValue[1] == 0 ? right : ((m_AverageValue[1] * 19) + right) / 20; 
+                                         TempArray[tempCount] = left;
+                                         tempCount++;
+                                         if (tempCount >= 4) tempCount = 0;
+                                         m_AverageValue[0] = (TempArray [0] + TempArray [1] + TempArray [2] ) / 3;
+                                         m_AverageValue[1] = right;
+            // temp disabled for new trial
+                                         //m_AverageValue[0] = m_AverageValue[0] == 0 ? left : ((m_AverageValue[0] * 19) + left) / 20;
+                                         //m_AverageValue[1] = m_AverageValue[1] == 0 ? right : ((m_AverageValue[1] * 19) + right) / 20; 
                                          
             //mMeanValueLeft = ( ( mMeanValueLeft * 19 ) + left ) /20 ;
             //mMeanValueRight = AmpArray[1];
@@ -593,15 +602,58 @@ namespace Obi.Audio
 
         }
 
-            
+        int LowThresholdCount = 0;
+        List<double> LowAmpList = new List<double>();
+        bool GoneHigh = false;
         private void DetectLowAmplitude()
         {
-            const int UBound = -32; // Upper bound
+            const int UBound = -28; // Upper bound
             const int LBound = -36 ; // lower bound
             double AmplitudeValue;
+            
             if (mChannels == 1) AmplitudeValue = m_AverageValue[0];
             else AmplitudeValue = (m_AverageValue[0] + m_AverageValue[1] ) / 2;
 
+            if (AmplitudeValue < LBound)
+                LowThresholdCount++;
+            else
+            {
+                                GoneHigh = true;
+                LowAmpList.Add(AmplitudeValue);
+                LowThresholdCount = 0;
+            }
+            if ( ( LowThresholdCount >= 4 || LowAmpList.Count > 40 )
+                && GoneHigh )
+            {
+                                if (LowAmpList.Count > 4)
+                {
+                    GoneHigh = false;
+                    double avg = 0;
+                    foreach (double d in LowAmpList)
+                        avg += d;
+
+                    avg = avg / LowAmpList.Count;
+                    if (avg < UBound)
+                    {
+                        if (LevelTooLowEvent != null) LevelTooLowEvent(this, new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs(this, avg , 0, 0));
+                        m_IsLowAmplitude = true;
+                                                //Debug_WriteToTextFile("Val");
+                        //foreach (double d in LowAmpList)
+                            //Debug_WriteToTextFile(d.ToString());
+
+                        //Debug_WriteToTextFile("low: " + avg.ToString());
+                    }
+                    else
+                        m_IsLowAmplitude = false;
+
+                    LowAmpList.Clear();
+                    LowThresholdCount = 0;
+                    //Debug_WriteToTextFile(" next ");
+                }
+                else
+                    LowAmpList.Clear();
+            }
+            /*
             //if (m_MeanValueLeft > -32 || m_MeanValueLeft < -36 )
                                 if ( AmplitudeValue< UBound && AmplitudeValue > LBound )
             {
@@ -640,17 +692,25 @@ else // values is either above UBound or below LBound
                     m_IsLowAmplitude = false;
                 m_LowAmplitudeSamplesCounts = 0;
         }
+             */ 
         }
 
         void Debug_WriteToTextFile(string s)
         {
-            if ( System.IO.File.Exists ("c:\\222111.txt") )
+                        if ( System.IO.File.Exists ("c:\\222111.txt") )
             {
-            System.IO.StreamWriter wr = System.IO.File.AppendText("c:\\222111.txt");
-            wr.WriteLine(s);
-            wr.Close();
+                try
+                {
+                    System.IO.StreamWriter wr = System.IO.File.AppendText("c:\\222111.txt");
+                    wr.WriteLine(s);
+                    wr.Close();
+                }
+                catch (System.Exception)
+                {
+                    return;
+                }
             }
-        }
+                     }
 
 
 		 // end of class
