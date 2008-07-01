@@ -32,7 +32,7 @@ namespace Obi.ProjectView
             // 
             // InheritedTOCView
             // 
-            this.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FullRowSelect = true;
             this.LabelEdit = true;

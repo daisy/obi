@@ -19,7 +19,7 @@ namespace Obi
         {
             ColorSettings settings = new ColorSettings();
             settings.ContentViewBackColor = SystemColors.AppWorkspace;
-            settings.ProjectViewBackColor = SystemColors.AppWorkspace;
+            settings.ProjectViewBackColor = SystemColors.Control;
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
