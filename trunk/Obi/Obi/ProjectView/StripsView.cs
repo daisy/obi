@@ -19,6 +19,11 @@ namespace Obi.ProjectView
         NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
     }
 
+    public interface IBlockContainer : ISelectableInStripView
+    {
+        ColorSettings ColorSettings { get; }
+    }
+
     public partial class StripsView : UserControl, IControlWithRenamableSelection
     {
         private ProjectView mView;                                   // parent project view

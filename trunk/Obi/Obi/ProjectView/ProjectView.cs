@@ -272,7 +272,7 @@ namespace Obi.ProjectView
                 {
                     BackColor = value.ProjectViewBackColor;
                     mTOCView.ColorSettings =
-                    mContentView.ColorSettings = 
+                    mContentView.ColorSettings =
                     mTransportBar.ColorSettings = value;
                 }
             }

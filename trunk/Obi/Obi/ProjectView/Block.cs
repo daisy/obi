@@ -8,12 +8,12 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class Block : UserControl, ISelectableInStripView, ISearchable
+    public partial class Block : UserControl, IBlockContainer, ISearchable
     {
-        protected EmptyNode mNode;                        // the corresponding node
-        private bool mSelected;                           // selected flag
-        private ISelectableInStripView mParentContainer;  // not necessarily a strip!
-        private bool mEntering;                           // entering flag (for selection/deselection)
+        protected EmptyNode mNode;                 // the corresponding node
+        private bool mSelected;                    // selected flag
+        private IBlockContainer mParentContainer;  // not necessarily a strip!
+        private bool mEntering;                    // entering flag (for selection/deselection)
 
 
         // Used by the designer
@@ -22,7 +22,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new empty block from an empty node.
         /// </summary>
-        public Block(EmptyNode node, ISelectableInStripView parent): this()
+        public Block(EmptyNode node, IBlockContainer parent): this()
         {
             mNode = node;
             mParentContainer = parent;
@@ -35,6 +35,12 @@ namespace Obi.ProjectView
             UpdateLabel();
         }
 
+
+        public ColorSettings ColorSettings
+        {
+            get { return mParentContainer == null ? null : mParentContainer.ColorSettings; }
+            set { UpdateColors(value); }
+        }
 
         /// <summary>
         /// Get the tab index of the block.
@@ -80,12 +86,18 @@ namespace Obi.ProjectView
         /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
-        public void UpdateColors()
+        public void UpdateColors() { UpdateColors(ColorSettings); }
+
+        public void UpdateColors(ColorSettings settings)
         {
-            if (mNode != null)
+            if (mNode != null && settings != null)
             {
-                // TODO Get colors from profile
-                BackColor = mSelected ? Color.Yellow : mNode.Used ? Color.HotPink : Color.Gray;
+                BackColor =
+                    mSelected ? settings.BlockSelectedBackColor :
+                    mNode.Used ? settings.BlockBackColor : settings.BlockUnusedBackColor;
+                ForeColor =
+                    mSelected ? settings.BlockSelectedForeColor :
+                    mNode.Used ? settings.BlockForeColor : settings.BlockUnusedForeColor;
             }
         }
 

@@ -6,8 +6,21 @@ namespace Obi
     [Serializable()]
     public class ColorSettings
     {
+        public Color BlockBackColor;
+        public Color BlockForeColor;
+        public Color BlockSelectedBackColor;
+        public Color BlockSelectedForeColor;
+        public Color BlockUnusedBackColor;
+        public Color BlockUnusedForeColor;
         public Color ContentViewBackColor;
         public Color ProjectViewBackColor;
+        public Color StripBackColor;
+        public Color StripCursorSelectedBackColor;
+        public Color StripForeColor;
+        public Color StripSelectedBackColor;
+        public Color StripSelectedForeColor;
+        public Color StripUnusedBackColor;
+        public Color StripUnusedForeColor;
         public Color TOCViewBackColor;
         public Color TOCViewForeColor;
         public Color TOCViewUnusedColor;
@@ -19,8 +32,21 @@ namespace Obi
         public static ColorSettings DefaultColorSettings()
         {
             ColorSettings settings = new ColorSettings();
+            settings.BlockBackColor = SystemColors.Window;
+            settings.BlockForeColor = SystemColors.ControlText;
+            settings.BlockSelectedBackColor = SystemColors.Highlight;
+            settings.BlockSelectedForeColor = SystemColors.HighlightText;
+            settings.BlockUnusedBackColor = SystemColors.ControlDark;
+            settings.BlockUnusedForeColor = SystemColors.ControlText;
             settings.ContentViewBackColor = SystemColors.AppWorkspace;
             settings.ProjectViewBackColor = SystemColors.Control;
+            settings.StripBackColor = SystemColors.Control;
+            settings.StripCursorSelectedBackColor = SystemColors.Highlight;
+            settings.StripForeColor = SystemColors.ControlText;
+            settings.StripSelectedBackColor = SystemColors.Highlight;
+            settings.StripSelectedForeColor = SystemColors.HighlightText;
+            settings.StripUnusedBackColor = SystemColors.ControlDark;
+            settings.StripUnusedForeColor = SystemColors.ControlText;
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;

@@ -39,10 +39,14 @@ namespace Obi.ProjectView
 
         public ColorSettings ColorSettings
         {
-            set
-            {
-                BackColor = value.ContentViewBackColor;
-            }
+            get { return mView.ColorSettings; }
+            set { UpdateColors(value); }
+        }
+
+        public void UpdateColors(ColorSettings settings)
+        {
+            BackColor = settings.ContentViewBackColor;
+            foreach (Control c in Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
         }
 
         public double ZoomFactor
