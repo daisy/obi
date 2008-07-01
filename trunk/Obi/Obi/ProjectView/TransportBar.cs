@@ -736,7 +736,7 @@ namespace Obi.ProjectView
             if (CanPause)
             {
                 mDisplayTimer.Stop();
-                if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording)
+                if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording|| mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring)
                 {
                     PauseRecording();
                 }

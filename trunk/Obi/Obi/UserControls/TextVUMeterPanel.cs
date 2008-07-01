@@ -74,7 +74,7 @@ namespace Obi.UserControls
         {
                         if (m_VuMeter != null)
             {
-                                                                    if (!m_VuMeter.IsLevelTooLow || mShowMaxMinValues)
+                                                                                    if (!m_VuMeter.IsLevelTooLow || mShowMaxMinValues)
                         UpdateRunningValues();
                     else 
                         UpdateRunningLowValues();
@@ -103,10 +103,11 @@ namespace Obi.UserControls
             if (!mShowMaxMinValues)
             {//1
                 mLeftBox.Text = m_StrLeftOverloadIndicator + LeftDb.ToString();
-                mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
+                if (m_VuMeter.Channels == 2) mRightBox.Text = m_StrRightOverloadIndicator + RightDb.ToString();
+                else mRightBox.Text  = "--";
             }//-1
             else   // show extreme high and expreme low
-                if ( m_VuMeter.AverageAmplitudeDBValue != null && m_VuMeter.AverageAmplitudeDBValue.Length ==2 )  SetExtremeValues(LeftDb, RightDb, m_VuMeter.AverageAmplitudeDBValue[0]  , m_VuMeter.AverageAmplitudeDBValue[1]  );
+                SetExtremeValues(LeftDb, RightDb );
 
             if (m_BeepEnabled)
             {
@@ -121,7 +122,8 @@ namespace Obi.UserControls
             //if (m_VuMeter != null && m_VuMeter.IsLevelTooLow)
             {
                 mLeftBox.Text = m_strLeftLowLevelIndicator + m_VuMeter.AverageAmplitudeDBValue[0].ToString();
-                mRightBox.Text = m_strRightLowLevelIndicator + m_VuMeter.AverageAmplitudeDBValue[1].ToString();
+                if (m_VuMeter.Channels == 2) mRightBox.Text = m_strRightLowLevelIndicator + m_VuMeter.AverageAmplitudeDBValue[1].ToString();
+                else mRightBox.Text = "--";
             }
         }
 
@@ -138,37 +140,42 @@ namespace Obi.UserControls
         }
         
         
-        private void SetExtremeValues( double MaxLeftDB , double MaxRightDB , double MinLeftDB , double MinRightDB) 
+        private void SetExtremeValues( double MaxLeftDB , double MaxRightDB ) 
         {
             // set textbox for left channel
             if (MaxLeftDB > m_MaxLeftDB)
                 m_MaxLeftDB = MaxLeftDB;
-
+            
                             string strMaxLeftDB = m_MaxLeftDB.ToString();  
             if ( strMaxLeftDB.Length > 5 )
                 strMaxLeftDB = strMaxLeftDB.Substring(0, 5);
 
-            if (m_MinLeftDB > MinLeftDB)
-                m_MinLeftDB = MinLeftDB;
 
             string strMinLeftDB = m_MinLeftDB.ToString();
-
-            if ( strMinLeftDB.Length >5 )
+                        if ( strMinLeftDB.Length >5 )
                 strMinLeftDB = strMinLeftDB.Substring(0, 5);
 
-            mLeftBox.Text = m_StrLeftOverloadIndicator + strMaxLeftDB+ "/" + strMinLeftDB;
+            mLeftBox.Text = m_StrLeftOverloadIndicator + strMaxLeftDB+ "/" + m_strLeftLowLevelIndicator + strMinLeftDB;
             
             // set text for right channel
-            if (MaxRightDB > m_MaxRightDB)
-                m_MaxRightDB = MaxRightDB;
+            if (m_VuMeter.Channels == 2)
+            {
+                if (MaxRightDB > m_MaxRightDB)
+                    m_MaxRightDB = MaxRightDB;
 
-            string strMaxRightDB = m_MaxRightDB.ToString();
-            if (strMaxRightDB.Length > 5)
-                strMaxRightDB = strMaxRightDB.Substring(0, 5);
+                string strMaxRightDB = m_MaxRightDB.ToString();
+                if (strMaxRightDB.Length > 5)
+                    strMaxRightDB = strMaxRightDB.Substring(0, 5);
 
+                strMinLeftDB = m_MinRightDB.ToString();
 
-            mRightBox.Text = m_StrRightOverloadIndicator+ strMaxRightDB ;
-            
+                if (strMinLeftDB.Length > 5)
+                    strMinLeftDB = strMinLeftDB.Substring(0, 5);
+
+                mRightBox.Text = m_StrRightOverloadIndicator + strMaxRightDB + "/" + m_strLeftLowLevelIndicator + strMinLeftDB ;
+            }
+            else
+                mRightBox.Text = "--" ;
         }
 
         void CatchPeakOverloadEvent(object sender, EventArgs e)
@@ -191,10 +198,15 @@ namespace Obi.UserControls
             }
         }
 
-        private void CatchLevelTooLowEvent(object sender, EventArgs e)
+        private void CatchLevelTooLowEvent(object sender, Obi.Events.Audio.VuMeter.LevelTooLowEventArgs e)
         {
+            m_MinLeftDB = e.LowLevelValue;
+            if (m_VuMeter.Channels == 2) m_MinRightDB = e.LowLevelValue;
+
+
                         m_strLeftLowLevelIndicator = "Low:";
             m_strRightLowLevelIndicator = "Low:";
+            PlayLevelTooLowBeep();
         }
 
 
@@ -277,6 +289,15 @@ namespace Obi.UserControls
             {
                 mLeftBox.Text = m_StrLeftOverloadIndicator;
                 mRightBox.Text = m_StrRightOverloadIndicator;
+            }
+        }
+
+        private void PlayLevelTooLowBeep()
+        {
+                        if (File.Exists("low.wav") && m_BeepEnabled)
+            {
+                System.Media.SoundPlayer LowBeepPlayer  = new System.Media.SoundPlayer("low.wav");
+                LowBeepPlayer.Play();
             }
         }
 
