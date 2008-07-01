@@ -11,6 +11,7 @@ namespace Obi
         public Color TOCViewBackColor;
         public Color TOCViewForeColor;
         public Color TOCViewUnusedColor;
+        public Color TransportBarBackColor;
 
         /// <summary>
         /// Get the default color settings.
@@ -23,6 +24,7 @@ namespace Obi
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
+            settings.TransportBarBackColor = SystemColors.Control;
             return settings;
         }
 
