@@ -24,13 +24,15 @@ namespace Obi.ProjectView
             mStrip = strip;
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
+
+        private Strip ParentStrip
         {
-            if (mSelected)
+            get
             {
-                pe.Graphics.FillRectangle(Brushes.Yellow, new Rectangle(0, 0, Width, Height));
+                Control c = Parent;
+                while (c != null && !(c is Strip)) c = c.Parent;
+                return c as Strip;
             }
-            base.OnPaint(pe);
         }
 
         #region ISelectableInStripView Members
@@ -41,7 +43,11 @@ namespace Obi.ProjectView
             set
             {
                 mSelected = value;
-                Invalidate();
+                if (ParentStrip != null)
+                {
+                    BackColor = mSelected ? ParentStrip.ColorSettings.StripCursorSelectedBackColor : Parent.BackColor;
+                    Invalidate();
+                }
             }
         }
 

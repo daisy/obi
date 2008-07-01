@@ -9,14 +9,16 @@ using System.Threading;
 
 namespace Obi.ProjectView
 {
-    public partial class Strip : UserControl, ISearchable, ISelectableInStripView
+    public partial class Strip : UserControl, ISearchable, IBlockContainer
     {
-        private SectionNode mNode;       // the section node for this strip
-        private bool mSelected;          // selected flag
-        private ContentView mParentView;  // parent strip view
-        private bool mWrap;              // wrap contents
-        private bool mEntering;          // entering flag
-        private Mutex m_MutexUpdateThread;
+        private int mBaseHeight;           // base size (at zoom factor 1)
+        private bool mEntering;            // entering flag
+        private Mutex mLabelUpdateThread;  // thread to update labels
+        private SectionNode mNode;         // the section node for this strip
+        private ContentView mParentView;   // parent strip view
+        private bool mSelected;            // selected flag
+        private bool mWrap;                // wrap contents
+
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -24,12 +26,12 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
+            mBaseHeight = Height;
             mNode = null;
             Selected = false;
             mWrap = false;
             mEntering = false;
-
-            m_MutexUpdateThread = new Mutex();
+            mLabelUpdateThread = new Mutex();
         }
 
         /// <summary>
@@ -281,20 +283,31 @@ namespace Obi.ProjectView
             mParentView.Selection = null;
         }
 
+        public ColorSettings ColorSettings
+        {
+            get { return mParentView == null ? null : mParentView.ColorSettings; }
+            set { UpdateColors(value); }
+        }
+
         /// <summary>
         /// Update the colors of the block when the state of its node has changed.
         /// </summary>
-        public void UpdateColors()
+        public void UpdateColors(ColorSettings settings)
         {
-            if (mNode != null)
+            if (settings != null && mNode != null)
             {
-                // TODO: get colors from profile
+                BackColor =
                 mLabel.BackColor =
-                BackColor = mBlocksPanel.BackColor =
-                    mSelected ? Color.Yellow :
-                    mNode.Used ? Color.LightSkyBlue : Color.LightGray;
+                mBlocksPanel.BackColor =
+                    mSelected ? settings.StripSelectedBackColor :
+                    mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
+                mLabel.ForeColor =
+                    mSelected ? settings.StripSelectedForeColor :
+                    mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
             }
         }
+
+        public void UpdateColors() { UpdateColors(ColorSettings); }
 
         /// <summary>
         /// Update the tab index for the strip and all of its blocks.
@@ -493,23 +506,23 @@ namespace Obi.ProjectView
         {
             // System.Diagnostics.Debug.Print("<---> Resize block panel to " + mBlocksPanel.Size);
         }
-        
 
-                public void UpdateBlockLabelsInStrip( object sender  , DoWorkEventArgs e)
+
+        public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
         {
-            m_MutexUpdateThread.WaitOne();
-                        int BlocksCount = mBlocksPanel.Controls.Count;
-            Control BlockControl = null ;
-                    
-                        for (int i = 0 ; i < BlocksCount; i++)
+            mLabelUpdateThread.WaitOne();
+            int BlocksCount = mBlocksPanel.Controls.Count;
+            Control BlockControl = null;
+
+            for (int i = 0; i < BlocksCount; i++)
             {
-                BlockControl = mBlocksPanel.Controls[i] ;
-                if (BlockControl is Block )
-                                    {
-                                                                                ((Block)BlockControl).UpdateLabelsText();
+                BlockControl = mBlocksPanel.Controls[i];
+                if (BlockControl is Block)
+                {
+                    ((Block)BlockControl).UpdateLabelsText();
                 }
             }// end loop
-                                             m_MutexUpdateThread.ReleaseMutex();
+            mLabelUpdateThread.ReleaseMutex();
         }
 
     }

@@ -72,15 +72,15 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.mBlocksPanel);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(306, 150);
-            this.Click += new System.EventHandler(this.Strip_Click);
             this.Enter += new System.EventHandler(this.Strip_Enter);
+            this.Click += new System.EventHandler(this.Strip_Click);
             this.SizeChanged += new System.EventHandler(this.Strip_SizeChanged);
             this.ResumeLayout(false);
 
