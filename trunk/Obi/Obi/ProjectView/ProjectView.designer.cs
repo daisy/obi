@@ -55,6 +55,7 @@ namespace Obi.ProjectView
             // 
             // mTransportBarSplitter
             // 
+            this.mTransportBarSplitter.BackColor = System.Drawing.SystemColors.Control;
             this.mTransportBarSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTransportBarSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.mTransportBarSplitter.IsSplitterFixed = true;
@@ -76,6 +77,7 @@ namespace Obi.ProjectView
             // 
             // mFindInTextSplitter
             // 
+            this.mFindInTextSplitter.BackColor = System.Drawing.SystemColors.Control;
             this.mFindInTextSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mFindInTextSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.mFindInTextSplitter.IsSplitterFixed = true;
@@ -98,6 +100,7 @@ namespace Obi.ProjectView
             // mTOCSplitter
             // 
             this.mTOCSplitter.AccessibleName = "Panel Splitter";
+            this.mTOCSplitter.BackColor = System.Drawing.SystemColors.Control;
             this.mTOCSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTOCSplitter.Location = new System.Drawing.Point(0, 0);
             this.mTOCSplitter.Name = "mTOCSplitter";
@@ -173,6 +176,8 @@ namespace Obi.ProjectView
             // 
             // mContentView
             // 
+            this.mContentView.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.mContentView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mContentView.Location = new System.Drawing.Point(0, 0);
             this.mContentView.Name = "mContentView";
@@ -204,6 +209,7 @@ namespace Obi.ProjectView
             // 
             this.mNoProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.mNoProjectLabel.AutoSize = true;
+            this.mNoProjectLabel.BackColor = System.Drawing.SystemColors.Control;
             this.mNoProjectLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mNoProjectLabel.Location = new System.Drawing.Point(442, 340);
             this.mNoProjectLabel.Name = "mNoProjectLabel";

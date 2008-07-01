@@ -271,11 +271,15 @@ namespace Obi.ProjectView
                 if (value != null)
                 {
                     BackColor = value.ProjectViewBackColor;
-                    mTOCView.ColorSettings = value;
-                    mContentView.ColorSettings = value;
+                    mTOCView.ColorSettings =
+                    mContentView.ColorSettings = 
+                    mTransportBar.ColorSettings = value;
                 }
             }
         }
+
+        // Yes please don't
+        private bool ShouldSerializeColorSettings() { return false; }
 
         /// <summary>
         /// Copy the current selection into the clipboard. Noop if there is no selection.
@@ -1505,7 +1509,7 @@ if ( TransportBar.IsPlayerActive )
                 e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
         }
 
-
+        [DefaultValue(1.0)]
         public double ZoomFactor
         {
             set

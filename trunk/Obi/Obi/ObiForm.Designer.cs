@@ -1141,7 +1141,6 @@ namespace Obi
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
             this.mProjectView.Clipboard = null;
-            this.mProjectView.ColorSettings = ((Obi.ColorSettings)(resources.GetObject("mProjectView.ColorSettings")));
             resources.ApplyResources(this.mProjectView, "mProjectView");
             this.mProjectView.FindInTextVisible = false;
             this.mProjectView.MetadataViewVisible = true;
