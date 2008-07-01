@@ -80,9 +80,9 @@ namespace Obi
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.mZoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mZoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mNormalSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_NormalSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -425,9 +425,9 @@ namespace Obi
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
             this.toolStripSeparator15,
-            this.mZoomInToolStripMenuItem,
-            this.mZoomOutToolStripMenuItem,
-            this.mNormalSizeToolStripMenuItem});
+            this.mView_ZoomInMenuItem,
+            this.mView_ZoomOutMenuItem,
+            this.mView_NormalSizeMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
             // 
@@ -542,23 +542,23 @@ namespace Obi
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
             // 
-            // mZoomInToolStripMenuItem
+            // mView_ZoomInMenuItem
             // 
-            this.mZoomInToolStripMenuItem.Name = "mZoomInToolStripMenuItem";
-            resources.ApplyResources(this.mZoomInToolStripMenuItem, "mZoomInToolStripMenuItem");
-            this.mZoomInToolStripMenuItem.Click += new System.EventHandler(this.mZoomInToolStripMenuItem_Click);
+            this.mView_ZoomInMenuItem.Name = "mView_ZoomInMenuItem";
+            resources.ApplyResources(this.mView_ZoomInMenuItem, "mView_ZoomInMenuItem");
+            this.mView_ZoomInMenuItem.Click += new System.EventHandler(this.View_ZoomInMenuItem_Click);
             // 
-            // mZoomOutToolStripMenuItem
+            // mView_ZoomOutMenuItem
             // 
-            this.mZoomOutToolStripMenuItem.Name = "mZoomOutToolStripMenuItem";
-            resources.ApplyResources(this.mZoomOutToolStripMenuItem, "mZoomOutToolStripMenuItem");
-            this.mZoomOutToolStripMenuItem.Click += new System.EventHandler(this.mZoomOutToolStripMenuItem_Click);
+            this.mView_ZoomOutMenuItem.Name = "mView_ZoomOutMenuItem";
+            resources.ApplyResources(this.mView_ZoomOutMenuItem, "mView_ZoomOutMenuItem");
+            this.mView_ZoomOutMenuItem.Click += new System.EventHandler(this.View_ZoomOutMenuItem_Click);
             // 
-            // mNormalSizeToolStripMenuItem
+            // mView_NormalSizeMenuItem
             // 
-            this.mNormalSizeToolStripMenuItem.Name = "mNormalSizeToolStripMenuItem";
-            resources.ApplyResources(this.mNormalSizeToolStripMenuItem, "mNormalSizeToolStripMenuItem");
-            this.mNormalSizeToolStripMenuItem.Click += new System.EventHandler(this.mNormalSizeToolStripMenuItem_Click);
+            this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
+            resources.ApplyResources(this.mView_NormalSizeMenuItem, "mView_NormalSizeMenuItem");
+            this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.View_NormalSizeMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -1124,7 +1124,6 @@ namespace Obi
             this.mStatusProgessBar});
             resources.ApplyResources(this.mStatusStrip, "mStatusStrip");
             this.mStatusStrip.Name = "mStatusStrip";
-            this.mStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             // 
             // mStatusLabel
             // 
@@ -1140,7 +1139,7 @@ namespace Obi
             // 
             // mProjectView
             // 
-            this.mProjectView.BackColor = System.Drawing.Color.Transparent;
+            this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
             this.mProjectView.Clipboard = null;
             this.mProjectView.ColorSettings = ((Obi.ColorSettings)(resources.GetObject("mProjectView.ColorSettings")));
             resources.ApplyResources(this.mProjectView, "mProjectView");
@@ -1152,7 +1151,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            this.mProjectView.ZoomFactor = 1;
             // 
             // ObiForm
             // 
@@ -1314,9 +1312,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEncodeToMp3toolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
-        private System.Windows.Forms.ToolStripMenuItem mZoomInToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mZoomOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mNormalSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_ZoomInMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_ZoomOutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
     }
 }

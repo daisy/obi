@@ -23,8 +23,6 @@ namespace Obi.ProjectView
         private EmptyNode.Kind mMarkRole;    // role to use as the on-the-fly custom role mark
         private string mMarkCustomRole;      // custom role (if applicable)
 
-        private double mZoomFactor;          // current zoom factor
-
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
@@ -53,8 +51,6 @@ namespace Obi.ProjectView
 
             mMarkRole = EmptyNode.Kind.TODO;
             mMarkCustomRole = "";
-
-            mZoomFactor = 1.0;
         }
 
 
@@ -1512,15 +1508,10 @@ if ( TransportBar.IsPlayerActive )
 
         public double ZoomFactor
         {
-            get { return mZoomFactor; }
             set
             {
-                if (value > 0.0)
-                {
-                    mZoomFactor =
-                    mTOCView.ZoomFactor =
-                    mContentView.ZoomFactor = value;
-                }
+                mTOCView.ZoomFactor =
+                mContentView.ZoomFactor = value;
             }
         }
     }

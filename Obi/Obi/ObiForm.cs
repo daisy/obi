@@ -13,10 +13,15 @@ namespace Obi
     /// </summary>
     public partial class ObiForm : Form
     {
+        private float mBaseFontSize;             // base font size
+        private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
-		private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
+        private double mZoomFactor;              // current zoom factor
+
+        private static readonly double ZOOM_FACTOR_INCREMENT = 1.25;  // zoom factor increment (zoom in/out)
+
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -28,7 +33,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Initialize a new form with a XUK path given as parameter.
+        /// Initialize a new form and open a project from the path given as parameter.
         /// </summary>
         public ObiForm(string path)
         {
@@ -933,6 +938,8 @@ namespace Obi
                 mShowMetadataViewToolStripMenuItem.Checked = mProjectView.MetadataViewVisible = false;
                 mShowTransportBarToolStripMenuItem.Checked = mProjectView.TransportBarVisible = true;
                 mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
+                mBaseFontSize = mStatusLabel.Font.SizeInPoints;
+                mZoomFactor = 1.0;
                 Ready();
             }
             catch (Exception e)
@@ -1591,19 +1598,37 @@ namespace Obi
             EncoderForm.ShowDialog();
         }
 
-        private void mZoomInToolStripMenuItem_Click(object sender, EventArgs e)
+
+        // Set the zoom factor for the whole window (the form and its views.)
+        private double ZoomFactor
         {
-            mProjectView.ZoomFactor *= 1.25;
+            set
+            {
+                if (value > 0.0)
+                {
+                    this.mZoomFactor = value;
+                    mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * (float)value);
+                    mProjectView.ZoomFactor = value;
+                }
+            }
         }
 
-        private void mZoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        // View > Zoom in (Ctrl+Alt++)
+        private void View_ZoomInMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ZoomFactor /= 1.25;
+            ZoomFactor = mZoomFactor * ZOOM_FACTOR_INCREMENT;
         }
 
-        private void mNormalSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        // View > Zoom out (Ctrl+Alt+-)
+        private void View_ZoomOutMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ZoomFactor = 1.0;
+            ZoomFactor = mZoomFactor / ZOOM_FACTOR_INCREMENT;
+        }
+
+        // View > Normal size (Ctrl+Alt+0)
+        private void View_NormalSizeMenuItem_Click(object sender, EventArgs e)
+        {
+            ZoomFactor = 1.0;
         }
     }
 }
