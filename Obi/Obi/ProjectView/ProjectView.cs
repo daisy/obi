@@ -1275,7 +1275,8 @@ if ( TransportBar.IsPlayerActive )
                 (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
                 (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView() ) ||
                                 (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
-                                                (key == Keys.Space && TogglePlayPause(UseAudioCursor)) || 
+                                                (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
+                                                (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) || 
                 base.ProcessCmdKey(ref msg, key);
         }
 
@@ -1492,6 +1493,41 @@ if ( TransportBar.IsPlayerActive )
         public void SelectPhraseInContentView(PhraseNode node)
         {
             if (node != null) Selection = new NodeSelection(node, mContentView);
+        }
+
+
+        public bool ShowNodePropertiesDialog()
+        {
+            if (Selection != null)
+            {
+                if (Selection.Node is SectionNode)
+                {
+                    ShowSectionPropertiesDialog();
+                }
+                else if (Selection.Node is EmptyNode)
+                {
+                    ShowPhrasePropertiesDialog();
+                }
+            }
+            return true;
+        }
+
+        public void ShowSectionPropertiesDialog()
+        {
+            if (Selection != null && Selection.Node is SectionNode)
+            {
+                Obi.Dialogs.SectionProperties PropertiesDialog = new Obi.Dialogs.SectionProperties(this);
+                PropertiesDialog.Show();
+            }
+        }
+
+        public void ShowPhrasePropertiesDialog()
+        {
+            if (Selection != null && Selection.Node is EmptyNode)
+            {
+                Obi.Dialogs.PhraseProperties PropertiesDialog = new Obi.Dialogs.PhraseProperties(this);
+                PropertiesDialog.Show();
+            }
         }
 
         /// <summary>

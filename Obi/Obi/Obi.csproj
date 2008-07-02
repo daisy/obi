@@ -53,7 +53,7 @@
   <ItemGroup>
     <Reference Include="AudioEngine.PPMeter, Version=1.0.3103.23163, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SDK 1.0\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>..\..\Urakawa toolkit\tags\release-1.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=1.0.0.23145, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SDK 1.0\core\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\Urakawa toolkit\tags\release-1.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +144,18 @@
     </Compile>
     <Compile Include="Dialogs\NewProject.Designer.cs">
       <DependentUpon>NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PhraseProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PhraseProperties.designer.cs">
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SectionProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SectionProperties.designer.cs">
+      <DependentUpon>SectionProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SetPageNumber.cs">
       <SubType>Form</SubType>
@@ -414,6 +426,14 @@
     <EmbeddedResource Include="Dialogs\Help.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhraseProperties.resx">
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SectionProperties.resx">
+      <DependentUpon>SectionProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
