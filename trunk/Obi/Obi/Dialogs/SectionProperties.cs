@@ -20,6 +20,11 @@ namespace Obi.Dialogs
                     }
 
         private void SectionProperties_Load(object sender, EventArgs e)
+        {
+            LoadSectionProperties();
+        }
+
+            private void LoadSectionProperties ()
                     {
                         m_comboLevel.Items.Add(1);
                         m_comboLevel.Items.Add(2);
@@ -30,12 +35,12 @@ namespace Obi.Dialogs
 
             m_txtName.Text = m_node.Label;
             m_comboLevel.SelectedIndex = m_node.Level- 1;
-
+            if (m_node.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
             SectionNode IterationNode = m_node;
             for (int i = 0 ; i < m_node.Level -1; i++)
             {
                 IterationNode = IterationNode.ParentAs<SectionNode>();
-
+                
                 string strListItem = IterationNode.Label + " Level" + IterationNode.Level.ToString();
                 m_lbParentsList.Items.Insert ( 0 , strListItem);
             }

@@ -22,6 +22,11 @@ namespace Obi.Dialogs
 
         private void PhraseProperties_Load(object sender, EventArgs e)
         {
+            LoadPhraseProperties();
+        }
+
+        private void LoadPhraseProperties ()
+        {
             m_txtParentSection.Text = m_node.ParentAs<SectionNode>().Label;
             m_txtLocationInsideSection.Text = (m_node.Index+1).ToString() + " of " + m_node.ParentAs<SectionNode>().PhraseChildCount + " phrases";
             m_txtTimeLength.Text = (m_node.Duration / 1000).ToString();
@@ -34,7 +39,9 @@ namespace Obi.Dialogs
             m_chkUsed.Checked = m_node.Used;
             m_chkToDo.Checked = m_node.IsTo_Do;
 
+
             SectionNode IterationNode = m_node.ParentAs<SectionNode>() ;
+            if (IterationNode.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
             for (int i = 0; i < m_node.ParentAs<SectionNode>().Level - 1; i++)
             {
                 IterationNode = IterationNode.ParentAs<SectionNode>();
