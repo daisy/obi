@@ -62,7 +62,7 @@ namespace Obi.Commands.Node
         public override void unExecute()
         {
             mCopy.Detach();
-            View.UpdateBlocksLabelInStrip((SectionNode)mParent);
+            if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.unExecute();
         }
     }
