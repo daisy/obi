@@ -115,7 +115,7 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(0, 225);
+            this.m_btnOk.Location = new System.Drawing.Point(0, 250);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 9;
@@ -126,7 +126,7 @@ namespace Obi.Dialogs
             // m_btnCancel
             // 
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.Location = new System.Drawing.Point(100, 225);
+            this.m_btnCancel.Location = new System.Drawing.Point(100, 250);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_btnCancel.TabIndex = 10;

@@ -116,7 +116,7 @@ namespace Obi.Dialogs
             this.m_lblCustomClassName.Name = "m_lblCustomClassName";
             this.m_lblCustomClassName.Size = new System.Drawing.Size(103, 13);
             this.m_lblCustomClassName.TabIndex = 9;
-            this.m_lblCustomClassName.Text = "&Custom class Name:";
+            this.m_lblCustomClassName.Text = "C&ustom class Name:";
             // 
             // m_txtCustomClassName
             // 
