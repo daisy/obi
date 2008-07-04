@@ -43,6 +43,7 @@ namespace Obi.Dialogs
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_lblTimeLength = new System.Windows.Forms.Label();
             this.m_txtTimeLength = new System.Windows.Forms.TextBox();
+            this.m_gParentsList = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // m_lblParentSection
@@ -68,13 +69,13 @@ namespace Obi.Dialogs
             this.m_lblLocationInsideSection.AutoSize = true;
             this.m_lblLocationInsideSection.Location = new System.Drawing.Point(0, 40);
             this.m_lblLocationInsideSection.Name = "m_lblLocationInsideSection";
-            this.m_lblLocationInsideSection.Size = new System.Drawing.Size(115, 13);
+            this.m_lblLocationInsideSection.Size = new System.Drawing.Size(139, 13);
             this.m_lblLocationInsideSection.TabIndex = 2;
-            this.m_lblLocationInsideSection.Text = "Location &inside section";
+            this.m_lblLocationInsideSection.Text = "Location &in section phrases:";
             // 
             // m_txtLocationInsideSection
             // 
-            this.m_txtLocationInsideSection.AccessibleName = "Location inside Section";
+            this.m_txtLocationInsideSection.AccessibleName = "Location in section phrases:";
             this.m_txtLocationInsideSection.Location = new System.Drawing.Point(100, 40);
             this.m_txtLocationInsideSection.Name = "m_txtLocationInsideSection";
             this.m_txtLocationInsideSection.ReadOnly = true;
@@ -87,7 +88,7 @@ namespace Obi.Dialogs
             this.m_lbParentsList.FormattingEnabled = true;
             this.m_lbParentsList.Location = new System.Drawing.Point(100, 80);
             this.m_lbParentsList.Name = "m_lbParentsList";
-            this.m_lbParentsList.Size = new System.Drawing.Size(120, 95);
+            this.m_lbParentsList.Size = new System.Drawing.Size(120, 69);
             this.m_lbParentsList.TabIndex = 4;
             // 
             // m_lblPhraseRole
@@ -185,6 +186,15 @@ namespace Obi.Dialogs
             this.m_txtTimeLength.Size = new System.Drawing.Size(100, 20);
             this.m_txtTimeLength.TabIndex = 6;
             // 
+            // m_gParentsList
+            // 
+            this.m_gParentsList.Location = new System.Drawing.Point(80, 75);
+            this.m_gParentsList.Name = "m_gParentsList";
+            this.m_gParentsList.Size = new System.Drawing.Size(140, 85);
+            this.m_gParentsList.TabIndex = 4;
+            this.m_gParentsList.TabStop = false;
+            this.m_gParentsList.Text = "List of parent sections";
+            // 
             // PhraseProperties
             // 
             this.AcceptButton = this.m_btnOk;
@@ -192,6 +202,7 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(292, 323);
+            this.Controls.Add(this.m_gParentsList);
             this.Controls.Add(this.m_txtTimeLength);
             this.Controls.Add(this.m_lblTimeLength);
             this.Controls.Add(this.m_btnCancel);
@@ -232,5 +243,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.Label m_lblTimeLength;
         private System.Windows.Forms.TextBox m_txtTimeLength;
+        private System.Windows.Forms.GroupBox m_gParentsList;
     }
 }
