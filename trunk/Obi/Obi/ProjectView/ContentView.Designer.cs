@@ -32,9 +32,10 @@ namespace Obi.ProjectView
             // 
             // ContentView
             // 
+            this.AutoScroll = true;
+            this.Click += new System.EventHandler(this.ContentView_Click);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
-            this.Click += new System.EventHandler(this.mLayoutPanel_Click);
-            this.SizeChanged += new System.EventHandler(this.LayoutPanel_SizeChanged);
+            this.SizeChanged += new System.EventHandler(this.ContentView_SizeChanged);
             this.ResumeLayout(false);
 
         }

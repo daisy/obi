@@ -21,6 +21,10 @@ namespace Obi.ProjectView
         private AudioBlock mPlaybackBlock;
         private bool mFocusing;
 
+        private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
+        private delegate void RemoveControlForSectionNodeDelegate(SectionNode node);
+
+
         /// <summary>
         /// A new strips view.
         /// </summary>
@@ -37,86 +41,26 @@ namespace Obi.ProjectView
         }
 
 
-        public ColorSettings ColorSettings
-        {
-            get { return mView.ColorSettings; }
-            set { UpdateColors(value); }
-        }
-
-        public void UpdateColors(ColorSettings settings)
-        {
-            BackColor = settings.ContentViewBackColor;
-            foreach (Control c in Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
-        }
-
-        public double ZoomFactor
-        {
-            set
-            {
-            }
-        }
-
-        /// <summary>
-        /// Get the entering flag; and turn down the flag immediatly.
-        /// </summary>
-        public bool IsEnteringView
-        {
-            get
-            {
-                bool isEntering = mIsEnteringView;
-                mIsEnteringView = false;
-                return isEntering;
-            }
-        }
-
-
-        /// <summary>
-        /// String to be shown in the status bar.
-        /// </summary>
-        public override string ToString() { return Localizer.Message("strips_view_to_string"); }
-
-        /// <summary>
-        /// The parent project view. Should be set ASAP, and only once.
-        /// </summary>
-        public ProjectView ProjectView
-        {
-            set
-            {
-                if (mView != null) throw new Exception("Cannot set the project view again!");
-                mView = value;
-            }
-        }
-
-        private bool BlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
-        private bool BlockOrWaveformSelected { get { return mSelectedItem is Block; } }
-        private bool StripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
-
-        private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
-
-        public bool CanAddStrip { get { return StripSelected || BlockOrWaveformSelected || Selection is StripCursorSelection ; } }
-
+        public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripCursorSelection; } }
         public bool CanCopyAudio { get { return IsAudioRangeSelected; } }
-        public bool CanCopyBlock { get { return BlockSelected; } }
-        public bool CanCopyStrip { get { return StripSelected; } }
+        public bool CanCopyBlock { get { return IsBlockSelected; } }
+        public bool CanCopyStrip { get { return IsStripSelected; } }
         public bool CanRemoveAudio { get { return IsAudioRangeSelected; } }
-        public bool CanRemoveBlock { get { return BlockSelected; } }
-        public bool CanRemoveStrip { get { return StripSelected; } }
-        public bool CanRenameStrip { get { return StripSelected; } }
-
-        public bool IsStripCursorSelected { get { return mSelection is StripCursorSelection; } }
+        public bool CanRemoveBlock { get { return IsBlockSelected; } }
+        public bool CanRemoveStrip { get { return IsStripSelected; } }
+        public bool CanRenameStrip { get { return IsStripSelected; } }
 
         public bool CanSplitStrip
         {
             get
             {
-                return (BlockSelected && SelectedEmptyNode.Index > 0)                            // block selected
+                return (IsBlockSelected && SelectedEmptyNode.Index > 0)                          // block selected
                     || (IsStripCursorSelected && ((StripCursorSelection)mSelection).Index > 0);  // strip cursor selected
             }
         }
 
-        public bool CanSetBlockUsedStatus { get { return BlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
-
-        public bool CanSetStripUsedStatus { get { return StripSelected && mSelection.Node.SectionChildCount == 0; } }
+        public bool CanSetBlockUsedStatus { get { return IsBlockOrWaveformSelected && mSelection.Node.ParentAs<ObiNode>().Used; } }
+        public bool CanSetStripUsedStatus { get { return IsStripSelected && mSelection.Node.SectionChildCount == 0; } }
 
         public bool CanMergeBlockWithNext
         {
@@ -133,65 +77,32 @@ namespace Obi.ProjectView
         {
             get
             {
-                return StripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 &&
+                return IsStripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 &&
                     mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode>().SectionChildCount - 1);
             }
         }
 
-        public bool Focusing { get { return mFocusing; } }
 
-        public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
-        public Strip PlaybackStrip { get { return mPlaybackBlock == null ? null : mPlaybackBlock.Strip; } }
-
-        public PhraseNode PlaybackPhrase
+        /// <summary>
+        /// Current color settings used by the application.
+        /// </summary>
+        public ColorSettings ColorSettings
         {
-            get { return mPlaybackBlock == null ? null : mPlaybackBlock.Node as PhraseNode; }
-            set
-            {
-                if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
-                mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
-                if (mPlaybackBlock != null)
-                {
-                    ScrollControlIntoView(mPlaybackBlock);
-                    mPlaybackBlock.InitCursor();
-                }
-            }
+            get { return mView.ColorSettings; }
+            set { UpdateColors(value); }
         }
-
-        public void UpdateCursorPosition(double time) { mPlaybackBlock.UpdateCursorTime(time); }
 
         /// <summary>
         /// Create a command to delete the selected strip.
         /// </summary>
-        public urakawa.undo.ICommand DeleteStripCommand()
-        {
-            return DeleteStripCommand(SelectedSection);
-        }
+        public urakawa.undo.ICommand DeleteStripCommand() { return DeleteStripCommand(SelectedSection); }
 
-        private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
-        {
-            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_section_shallow"));
-            if (section.SectionChildCount > 0)
-            {
-                urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
-                command.setShortDescription(delete.getShortDescription());
-                for (int i = 0; i < section.SectionChildCount; ++i)
-                {
-                    command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(i)));
-                }
-                command.append(delete);
-                return command;
-            }
-            else
-            {
-                return delete;
-            }
-        }
+        public bool Focusing { get { return mFocusing; } }
 
         /// <summary>
         /// True if a block is selected and it is used.
         /// </summary>
-        public bool IsBlockUsed { get { return BlockOrWaveformSelected && mSelection.Node.Used; } }
+        public bool IsBlockUsed { get { return IsBlockOrWaveformSelected && mSelection.Node.Used; } }
 
         /// <summary>
         /// True if the strip where the selection is used.
@@ -203,6 +114,19 @@ namespace Obi.ProjectView
                 return mSelection == null ? false :
                     mSelection.Node is SectionNode ? mSelection.Node.Used :
                         mSelection.Node.AncestorAs<SectionNode>().Used;
+            }
+        }
+
+        /// <summary>
+        /// Get the entering flag; then turn down the flag immediatly.
+        /// </summary>
+        public bool IsEnteringView
+        {
+            get
+            {
+                bool isEntering = mIsEnteringView;
+                mIsEnteringView = false;
+                return isEntering;
             }
         }
 
@@ -231,7 +155,7 @@ namespace Obi.ProjectView
                 if (!section.Used) mView.AppendMakeUnused(command, next);
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section)); 
+                    command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section));
                 }
                 command.append(DeleteStripCommand(next));
             }
@@ -244,24 +168,66 @@ namespace Obi.ProjectView
         public void NewPresentation()
         {
             Controls.Clear();
-            AddStripForSection(mView.Presentation.RootNode);
+            AddStripForSection_Safe(mView.Presentation.RootNode);
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
 
+        public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
+
+        public PhraseNode PlaybackPhrase
+        {
+            get { return mPlaybackBlock.Node as PhraseNode; }
+            set
+            {
+                if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
+                mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
+                if (mPlaybackBlock != null)
+                {
+                    ScrollControlIntoView(mPlaybackBlock);
+                    mPlaybackBlock.InitCursor();
+                }
+            }
+        }
+        
+        public Strip PlaybackStrip { get { return mPlaybackBlock == null ? null : mPlaybackBlock.Strip; } }
+
+        /// <summary>
+        /// The parent project view. Should be set ASAP, and only once.
+        /// </summary>
+        public ProjectView ProjectView
+        {
+            set
+            {
+                if (mView != null) throw new Exception("Cannot set the project view again!");
+                mView = value;
+            }
+        }
+
         /// <summary>
         /// Rename a strip.
         /// </summary>
-        public void RenameStrip(Strip strip)
+        public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
+
+        /// <summary>
+        /// Get all the searchable items (i.e. strips, blocks) in the control.
+        /// This does not support nested blocks right now.
+        /// </summary>
+        public List<ISearchable> Searchables
         {
-            mView.RenameSectionNode(strip.Node, strip.Label);
+            get
+            {
+                List<ISearchable> l = new List<ISearchable>();
+                AddToSearchables(this, l);
+                return l;
+            }
         }
 
-        public EmptyNode SelectedEmptyNode { get { return BlockSelected ? ((Block)mSelectedItem).Node : null; } }
-        public PhraseNode SelectedPhraseNode { get { return BlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
-        public SectionNode SelectedSection { get { return StripSelected ? ((Strip)mSelectedItem).Node : null; } }
+        public EmptyNode SelectedEmptyNode { get { return IsBlockSelected ? ((Block)mSelectedItem).Node : null; } }
         public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
+        public PhraseNode SelectedPhraseNode { get { return IsBlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
+        public SectionNode SelectedSection { get { return IsStripSelected ? ((Strip)mSelectedItem).Node : null; } }
         public NodeSelection SelectionFromStrip { set { if (mView != null) mView.Selection = value; } }
 
         /// <summary>
@@ -293,10 +259,22 @@ namespace Obi.ProjectView
             }
         }
 
-        public void SetStripVisibilityForSection(SectionNode node, bool visible)
+        public void SelectNextPhrase(ObiNode node)
         {
-            Strip s = FindStrip(node);
-            if (s != null) s.Visible = visible;
+            if (mSelection != null)
+            {
+                SelectFollowingBlock();
+            }
+            else if (node is SectionNode)
+            {
+                mSelectedItem = FindStrip((SectionNode)node);
+                SelectFirstBlockInStrip();
+            }
+            else
+            {
+                SelectFirstStrip();
+                SelectFirstBlockInStrip();
+            }
         }
 
         /// <summary>
@@ -314,6 +292,25 @@ namespace Obi.ProjectView
                     if (mSelectedItem == s && !visible) mView.Selection = null;
                     SetStripsVisibilityForSection(section.SectionChild(i), visible);
                 }
+            }
+        }
+
+        public void SetStripVisibilityForSection(SectionNode node, bool visible)
+        {
+            Strip s = FindStrip(node);
+            if (s != null) s.Visible = visible;
+        }
+
+        /// <summary>
+        /// Show only the selected section.
+        /// </summary>
+        public void ShowOnlySelectedSection(ObiNode node)
+        {
+            // Show only one strip
+            SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode>();
+            foreach (Control c in Controls)
+            {
+                if (c is Strip) c.Visible = ((Strip)c).Node == section;
             }
         }
 
@@ -351,18 +348,109 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// String to be shown in the status bar.
+        /// </summary>
+        public override string ToString() { return Localizer.Message("strips_view_to_string"); }
+
+        /// <summary>
         /// Views are not synchronized anymore, so make sure that all strips are visible.
         /// </summary>
-        public void UnsyncViews()
+        public void UnsyncViews() { foreach (Control c in Controls) c.Visible = true; }
+
+        public void UpdateCursorPosition(double time) { mPlaybackBlock.UpdateCursorTime(time); }
+
+        public void UpdateBlocksLabelInStrip(SectionNode section)
         {
-            foreach (Control c in Controls) c.Visible = true;
+            Strip s = FindStrip(section);
+            if (s != null)
+            {
+                try
+                {
+                    BackgroundWorker UpdateStripThread = new BackgroundWorker();
+                    UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
+                    UpdateStripThread.RunWorkerAsync();
+                }
+                catch (System.Exception)
+                {
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set the flag to wrap contents inside a strip.
+        /// </summary>
+        public bool WrapStrips
+        {
+            set
+            {
+                mWrapStrips = value;
+                foreach (Control c in Controls)
+                {
+                    Strip strip = c as Strip;
+                    if (strip != null) strip.Wrap = mWrapStrips;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set the zoom factor for the control and its components.
+        /// </summary>
+        public double ZoomFactor
+        {
+            set
+            {
+                // this is a stub so far
+            }
         }
 
 
-        #region Event handlers
+        // Add a new strip for a section and all of its subsections
+        private Strip AddStripForSection_Safe(ObiNode node)
+        {
+            if (InvokeRequired)
+            {
+                return Invoke(new AddStripForObiNodeDelegate(AddStripForSection_Safe), node) as Strip;
+            }
+            else
+            {
+                SuspendLayout();
+                Strip strip = AddStripForSection(node);
+                ResumeLayout();
+                return strip;
+            }
+        }
+
+        // Add a single strip for a section node
+        private Strip AddStripForSection(ObiNode node)
+        {
+            Strip strip = null;
+            if (node is SectionNode)
+            {
+                strip = new Strip((SectionNode)node, this);
+                strip.Wrap = mWrapStrips;
+                strip.ColorSettings = ColorSettings;
+                Controls.Add(strip);
+                SetFlowBreak(strip, true);
+                Controls.SetChildIndex(strip, ((SectionNode)node).Position);
+            }
+            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
+            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
+            return strip;
+        }
+
+        // Recursive function to go through all the controls in-order and add the ISearchable ones to the list
+        private void AddToSearchables(Control c, List<ISearchable> searchables)
+        {
+            if (c is ISearchable) searchables.Add((ISearchable)c);
+            foreach (Control c_ in c.Controls) AddToSearchables(c_, searchables);
+        }
+
+        // Deselect everything when clicking the panel
+        private void ContentView_Click(object sender, EventArgs e) { mView.Selection = null; }
 
         // Handle resizing of the layout panel: all strips are resized to be at least as wide.
-        private void LayoutPanel_SizeChanged(object sender, EventArgs e)
+        private void ContentView_SizeChanged(object sender, EventArgs e)
         {
             if (Controls.Count > 0)
             {
@@ -376,11 +464,79 @@ namespace Obi.ProjectView
             }
         }
 
+        // Create a command (possibly composite) to delete a strip for the given section node.
+        private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
+        {
+            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_section_shallow"));
+            if (section.SectionChildCount > 0)
+            {
+                urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command.setShortDescription(delete.getShortDescription());
+                for (int i = 0; i < section.SectionChildCount; ++i)
+                {
+                    command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(i)));
+                }
+                command.append(delete);
+                return command;
+            }
+            else
+            {
+                return delete;
+            }
+        }
+
+        // Find the block for the given node; return null if not found (be careful!)
+        private Block FindBlock(EmptyNode node)
+        {
+            Strip strip = FindStrip(node.ParentAs<SectionNode>());
+            return strip == null ? null : strip.FindBlock(node);
+        }
+
+        // Find the strip for the given section node; return null if not found (be careful!)
+        private Strip FindStrip(SectionNode section)
+        {
+            foreach (Control c in Controls)
+            {
+                if (c is Strip && ((Strip)c).Node == section) return (Strip)c;
+            }
+            return null;
+        }
+
+        // Find the selectable item for this selection object
+        private ISelectableInStripView FindSelectable(NodeSelection selection)
+        {
+            return selection is StripCursorSelection ? (ISelectableInStripView)
+                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripCursorSelection)selection) :
+                selection == null ? null :
+                selection.Node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)selection.Node) :
+                selection.Node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)selection.Node) : null;
+        }
+
+        private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
+        private bool IsBlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
+        private bool IsBlockOrWaveformSelected { get { return mSelectedItem is Block; } }
+        private bool IsInView(ObiNode node) { return node is SectionNode && FindStrip((SectionNode)node) != null; }
+        private bool IsStripCursorSelected { get { return mSelection is StripCursorSelection; } }
+        private bool IsStripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
+
+        // Listen to changes in the presentation (new nodes being added or removed)
+        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            if (e is urakawa.events.core.ChildAddedEventArgs)
+            {
+                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
+            }
+            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            {
+                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+            }
+        }
+
         // Handle section nodes renamed from the project: change the label of the corresponding strip.
         private void Presentation_RenamedSectionNode(object sender, NodeEventArgs<SectionNode> e)
         {
             Strip strip = FindStrip(e.Node);
-            strip.Label = e.Node.Label;
+            if (strip != null) strip.Label = e.Node.Label;
         }
 
         // Handle change of used status
@@ -398,30 +554,26 @@ namespace Obi.ProjectView
             }
         }
 
-        // Listen to changes in the presentation
-        private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        // Remove all strips for a section and its subsections
+        private void RemoveStripsForSection_Safe(SectionNode section)
         {
-            if (e is urakawa.events.core.ChildAddedEventArgs)
+            if (InvokeRequired)
             {
-                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
+                Invoke(new RemoveControlForSectionNodeDelegate(RemoveStripsForSection_Safe), section);
             }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            else
             {
-                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+                SuspendLayout();
+                RemoveStripsForSection(section);
+                ResumeLayout();
             }
         }
 
-        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
+        private void RemoveStripsForSection(SectionNode section)
         {
-            Control c = e.AddedChild is SectionNode ? (Control)AddStripForSection((SectionNode)e.AddedChild) :
-                // TODO: in the future, the source node will not always be a section node!
-                e.AddedChild is EmptyNode ? (Control)FindStrip((SectionNode)e.SourceTreeNode).AddBlockForNode((EmptyNode)e.AddedChild) :
-                null;
-            if (c != null)
-            {
-                ScrollControlIntoView(c);
-                UpdateTabIndex(c);
-            }
+            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
+            Strip strip = FindStrip(section);
+            Controls.Remove(strip);
         }
 
         // Remove the strip or block for the removed tree node
@@ -429,7 +581,7 @@ namespace Obi.ProjectView
         {
             if (e.RemovedChild is SectionNode)
             {
-                RemoveStripsForSection((SectionNode)e.RemovedChild);
+                RemoveStripsForSection_Safe((SectionNode)e.RemovedChild);
             }
             else if (e.RemovedChild is EmptyNode)
             {
@@ -440,87 +592,26 @@ namespace Obi.ProjectView
             }
         }
 
-        // Add a new strip for a section and all of its subsections
-        private Strip AddStripForSection(ObiNode node)
+        // Add a new strip for a newly added section node or a new block for a newly added empty node.
+        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
         {
-            SuspendLayout();
-            Strip strip = AddStripForSection_(node);
-            ResumeLayout();
-            return strip;
-        }
-
-        // Add a single strip for a section node
-        private Strip AddStripForSection_(ObiNode node)
-        {
-            Strip strip = null;
-            if (node is SectionNode)
+            Control c = e.AddedChild is SectionNode ? (Control)AddStripForSection_Safe((SectionNode)e.AddedChild) :
+                // TODO: in the future, the source node will not always be a section node!
+                e.AddedChild is EmptyNode ? (Control)FindStrip((SectionNode)e.SourceTreeNode).AddBlockForNode((EmptyNode)e.AddedChild) :
+                null;
+            if (c != null)
             {
-                strip = new Strip((SectionNode)node, this);
-                strip.Wrap = mWrapStrips;
-                Controls.Add(strip);
-                Controls.SetChildIndex(strip, ((SectionNode)node).Position);
-                strip.Width = Width;
+                ScrollControlIntoView(c);
+                UpdateTabIndex(c);
             }
-            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection_(node.SectionChild(i));
-            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
-            return strip;
         }
 
-        // Remove all strips for a section and its subsections
-        private void RemoveStripsForSection(SectionNode section)
+        // Update the colors of the view and its components.
+        private void UpdateColors(ColorSettings settings)
         {
-            SuspendLayout();
-            RemoveStripsForSection_(section);
-            ResumeLayout();
+            BackColor = settings.ContentViewBackColor;
+            foreach (Control c in Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
         }
-
-        private void RemoveStripsForSection_(SectionNode section)
-        {
-            for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection_(section.SectionChild(i));
-            Strip strip = FindStrip(section);
-            Controls.Remove(strip);
-        }
-
-        // Deselect everything when clicking the panel
-        private void mLayoutPanel_Click(object sender, EventArgs e) { mView.Selection = null; }
-
-        #endregion
-
-
-        #region Utility functions
-
-        // Find the block for the given node
-        private Block FindBlock(EmptyNode node)
-        {
-            Strip strip = FindStrip(node.ParentAs<SectionNode>());
-            return strip == null ? null : strip.FindBlock(node);
-        }
-
-        // Find the selectable item for this selection object
-        private ISelectableInStripView FindSelectable(NodeSelection selection)
-        {
-            return selection is StripCursorSelection ? (ISelectableInStripView)
-                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripCursorSelection)selection) :
-                selection == null ? null :
-                selection.Node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)selection.Node) :
-                selection.Node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)selection.Node) : null;
-        }
-
-        /// <summary>
-        /// Find the strip for the given section node.
-        /// The strip must be present so an exception is thrown on failure.
-        /// </summary>
-        private Strip FindStrip(SectionNode section)
-        {
-            foreach (Control c in Controls)
-            {
-                if (c is Strip && ((Strip)c).Node == section) return c as Strip;
-            }
-            //throw new Exception(String.Format("Could not find strip for section node labeled `{0}'", section.Label));
-            return null;
-        }
-
-        #endregion
 
         #region IControlWithRenamableSelection Members
 
@@ -559,36 +650,9 @@ namespace Obi.ProjectView
             }
         }
 
-        private bool IsInView(ObiNode node)
-        {
-            return node is SectionNode && FindStrip((SectionNode)node) != null;
-        }
-
         #endregion
 
-        /// <summary>
-        /// Get all the searchable items (i.e. strips, blocks) in the control.  This does not support nested blocks right now.
-        /// </summary>
-        public List<ISearchable> Searchables
-        {
-            get
-            {
-                List<ISearchable> l = new List<ISearchable>();
-                AddToSearchables(this, l);
-                return l;
-            }
-        }
 
-        /// <summary>
-        /// Recursive function to go through all the controls in-order and add the ISearchable ones to the list
-        /// </summary>
-        /// <param name="c"></param>
-        /// <param name="searchables"></param>
-        private void AddToSearchables(Control c, List<ISearchable> searchables)
-        {
-            if (c is ISearchable) searchables.Add((ISearchable)c);
-            foreach (Control c2 in c.Controls) AddToSearchables(c2, searchables);
-        }
 
         #region tabbing
 
@@ -642,9 +706,9 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Shift | Keys.V] = delegate() { return mView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
             mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
             mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
-            
+
             // playback shortcuts.
-            
+
             mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
@@ -658,10 +722,10 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Right] = SelectFollowingBlock;
             mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
             mShortcutKeys[Keys.Home] = SelectFirstBlockInStrip;
-            mShortcutKeys[ Keys.Control | Keys.PageDown] = SelectNextPageNode ;
-            mShortcutKeys[Keys.Control |  Keys.PageUp] = SelectPrecedingPageNode;
-            mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode ;
-            mShortcutKeys[ Keys.Shift |  Keys.F4] = SelectPreviousSpecialRoleNode ;
+            mShortcutKeys[Keys.Control | Keys.PageDown] = SelectNextPageNode;
+            mShortcutKeys[Keys.Control | Keys.PageUp] = SelectPrecedingPageNode;
+            mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode;
+            mShortcutKeys[Keys.Shift | Keys.F4] = SelectPreviousSpecialRoleNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -779,18 +843,18 @@ namespace Obi.ProjectView
 
         private bool SelectPreviousStrip()
         {
-            Strip strip ;
-            if ( mView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
-                &&    this.mPlaybackBlock.ObiNode.Index == 0 )  
+            Strip strip;
+            if (mView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
+                && this.mPlaybackBlock.ObiNode.Index == 0)
             {
-                 strip = StripBefore(StripFor(mSelectedItem)) ;
-                            }
+                strip = StripBefore(StripFor(mSelectedItem));
+            }
             else
-            strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
+                strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
 
             if (strip != null)
             {
-                mView.Selection = new NodeSelection(strip.Node, this );
+                mView.Selection = new NodeSelection(strip.Node, this);
                 strip.FocusStripLabel();
                 return true;
             }
@@ -874,7 +938,7 @@ namespace Obi.ProjectView
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return true;
-                    }   
+                    }
                 }
             }
             return false;
@@ -901,7 +965,7 @@ namespace Obi.ProjectView
 
         /// <summary>
         ///  Move keyboard focus to block with some special role
-                /// </summary>
+        /// </summary>
         /// <returns></returns>
         public bool SelectPreviousSpecialRoleNode()
         {
@@ -922,7 +986,7 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Move keyboard focus to next block with special role 
-                /// </summary>
+        /// </summary>
         /// <returns></returns>
         public bool SelectNextSpecialRoleNode()
         {
@@ -976,7 +1040,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).IsTo_Do )
+                    if (n is EmptyNode && ((EmptyNode)n).IsTo_Do)
                     {
                         mView.Selection = new NodeSelection(n, this);
                         return;
@@ -1049,14 +1113,14 @@ namespace Obi.ProjectView
 
 
 
-               #endregion
+        #endregion
 
-        public void SelectAtCurrentTime() 
-        { 
-            if ( mPlaybackBlock != null )
-            mPlaybackBlock.SelectAtCurrentTime(); 
+        public void SelectAtCurrentTime()
+        {
+            if (mPlaybackBlock != null)
+                mPlaybackBlock.SelectAtCurrentTime();
         }
-        
+
         public void GetFocus()
         {
             if (mSelection == null)
@@ -1074,11 +1138,11 @@ namespace Obi.ProjectView
             mIsEnteringView = true;
         }
 
-/// <summary>
-///  Function for processing tab key to preventing keyboard focus to move out of contents view with tabbing
-/// </summary>
-/// <param name="key"></param>
-/// <returns></returns>
+        /// <summary>
+        ///  Function for processing tab key to preventing keyboard focus to move out of contents view with tabbing
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         /*private bool ProcessTabKeyInContentsView(Keys key)
         {
                         if (key == Keys.Tab)
@@ -1123,64 +1187,5 @@ null;
 
 
 
-        public void SelectNextPhrase(ObiNode node)
-        {
-            if (mSelection != null)
-            {
-                SelectFollowingBlock();
-            }
-            else if (node is SectionNode)
-            {
-                mSelectedItem = FindStrip((SectionNode)node);
-                SelectFirstBlockInStrip();
-            }
-            else
-            {
-                SelectFirstStrip();
-                SelectFirstBlockInStrip();
-            }
-        }
-
-        public void ShowOnlySelectedSection(ObiNode node)
-        {
-            // Show only one strip
-            SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode>();
-            foreach (Control c in Controls)
-            {
-                if (c is Strip) c.Visible = ((Strip)c).Node == section;
-            }
-        }
-
-        public bool WrapStrips
-        {
-            set
-            {
-                mWrapStrips = value;
-                foreach (Control c in Controls)
-                {
-                    Strip strip = c as Strip;
-                    if (strip != null) strip.Wrap = mWrapStrips;
-                    // if (strip != null) strip.WrapToWidth(Width, mWrapStrips);
-                }
-            }
-        }
-
-        public void UpdateBlocksLabelInStrip(SectionNode node )
-        {
-            Strip s = FindStrip(node);
-            if (s != null)
-            {
-                try 
-                    {
-                                                BackgroundWorker UpdateStripThread = new BackgroundWorker();
-                        UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
-                        UpdateStripThread.RunWorkerAsync();
-                }
-                    catch ( System.Exception )
-                {
-                        return ;
-                    }
-            }
-        }
     }
 }

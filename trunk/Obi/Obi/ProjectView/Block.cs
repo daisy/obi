@@ -131,12 +131,22 @@ namespace Obi.ProjectView
             Size = new Size(LabelFullWidth, Height);
         }
 
+
+        private delegate void UpdateLabelsTextDelegate();
+
         public virtual void UpdateLabelsText()
         {
-            mLabel.Text = Node.BaseStringShort();
-            mLabel.AccessibleName = Node.BaseString();
-            AccessibleName = mLabel.AccessibleName;
-                    }
+            if (InvokeRequired)
+            {
+                Invoke(new UpdateLabelsTextDelegate(UpdateLabelsText));
+            }
+            else
+            {
+                mLabel.Text = Node.BaseStringShort();
+                mLabel.AccessibleName = Node.BaseString();
+                AccessibleName = mLabel.AccessibleName;
+            }
+        }
 
         // Select/deselect on click
         private void Block_Click(object sender, EventArgs e) { ToggleSelection(); }
