@@ -77,12 +77,12 @@ namespace Obi.ProjectView
             AddTransportBarAccessibleName();
         }
 
-
+        /*
         public ColorSettings ColorSettings
         {
             set { if (value != null) BackColor = value.TransportBarBackColor; }
         }
-
+        */
         /// <summary>
         /// Get the phrase currently playing (or paused) if playback is active; null otherwise.
         /// </summary>
@@ -1309,8 +1309,17 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     PauseRecording();
-                    mResumeRecordingPhrase = null;
-                    mView.AddSection();
+                    if (mRecordingSection.FollowingSection.Duration == 0)
+                    {
+                         //focus to next section and start recording again
+                        mView.Selection = new NodeSelection(mRecordingSection.FollowingSection, mView.Selection.Control);
+                    }
+                    else
+                    {
+                                            mView.AddSection();
+                    }
+                                            mResumeRecordingPhrase = null;
+
                     SetupRecording(Recording);
                     // PrepareForRecording(true, null);
                 }
