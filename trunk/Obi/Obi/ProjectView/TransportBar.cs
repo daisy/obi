@@ -77,12 +77,12 @@ namespace Obi.ProjectView
             AddTransportBarAccessibleName();
         }
 
-        /*
+        
         public ColorSettings ColorSettings
         {
             set { if (value != null) BackColor = value.TransportBarBackColor; }
         }
-        */
+        
         /// <summary>
         /// Get the phrase currently playing (or paused) if playback is active; null otherwise.
         /// </summary>
