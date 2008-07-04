@@ -28,7 +28,7 @@ namespace Obi.Dialogs
         private void LoadPhraseProperties ()
         {
             m_txtParentSection.Text = m_node.ParentAs<SectionNode>().Label;
-            m_txtLocationInsideSection.Text = (m_node.Index+1).ToString() + " of " + m_node.ParentAs<SectionNode>().PhraseChildCount + " phrases";
+            m_txtLocationInsideSection.Text = (m_node.Index+1).ToString() + " of " + m_node.ParentAs<SectionNode>().PhraseChildCount ;
             m_txtTimeLength.Text = (m_node.Duration / 1000).ToString();
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Heading);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Page);

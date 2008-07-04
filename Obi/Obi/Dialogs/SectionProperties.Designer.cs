@@ -40,6 +40,7 @@ namespace Obi.Dialogs
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_chkUsed = new System.Windows.Forms.CheckBox();
             this.m_lbParentsList = new System.Windows.Forms.ListBox();
+            this.m_gParentsList = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // m_lblName
@@ -153,6 +154,15 @@ namespace Obi.Dialogs
             this.m_lbParentsList.Size = new System.Drawing.Size(120, 69);
             this.m_lbParentsList.TabIndex = 5;
             // 
+            // m_gParentsList
+            // 
+            this.m_gParentsList.Location = new System.Drawing.Point(85, 74);
+            this.m_gParentsList.Name = "m_gParentsList";
+            this.m_gParentsList.Size = new System.Drawing.Size(1500, 85);
+            this.m_gParentsList.TabIndex = 5;
+            this.m_gParentsList.TabStop = false;
+            this.m_gParentsList.Text = "Parent sections list";
+            // 
             // SectionProperties
             // 
             this.AcceptButton = this.m_btnOk;
@@ -160,6 +170,7 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(292, 273);
+            this.Controls.Add(this.m_gParentsList);
             this.Controls.Add(this.m_lbParentsList);
             this.Controls.Add(this.m_chkUsed);
             this.Controls.Add(this.m_btnCancel);
@@ -194,5 +205,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.CheckBox m_chkUsed;
         private System.Windows.Forms.ListBox m_lbParentsList;
+        private System.Windows.Forms.GroupBox m_gParentsList;
     }
 }
