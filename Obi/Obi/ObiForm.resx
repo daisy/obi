@@ -221,18 +221,6 @@
   <data name="mCleanProjectToolStripMenuItem.Text" xml:space="preserve">
     <value>C&amp;lean unreferenced audio</value>
   </data>
-  <data name="mExportAsDAISYToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Export as DAISY Ctrl+E</value>
-  </data>
-  <data name="mExportAsDAISYToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+E</value>
-  </data>
-  <data name="mExportAsDAISYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
-  </data>
-  <data name="mExportAsDAISYToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Export as DAISY</value>
-  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 6</value>
   </data>
@@ -1332,6 +1320,18 @@
   <data name="preferencesToolStripMenuItem1.Text" xml:space="preserve">
     <value>&amp;Preferences</value>
   </data>
+  <data name="mExportAsDAISYToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Export as DAISY Ctrl+E</value>
+  </data>
+  <data name="mExportAsDAISYToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+E</value>
+  </data>
+  <data name="mExportAsDAISYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 22</value>
+  </data>
+  <data name="mExportAsDAISYToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Export as DAISY</value>
+  </data>
   <data name="mEncodeToMp3toolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 22</value>
   </data>
@@ -1477,7 +1477,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.29051, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.38403, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1805,12 +1805,6 @@
     <value>mCleanProjectToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mCleanProjectToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mExportAsDAISYToolStripMenuItem.Name" xml:space="preserve">
-    <value>mExportAsDAISYToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mExportAsDAISYToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
@@ -2507,6 +2501,12 @@
     <value>preferencesToolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;preferencesToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mExportAsDAISYToolStripMenuItem.Name" xml:space="preserve">
+    <value>mExportAsDAISYToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mExportAsDAISYToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mEncodeToMp3toolStripMenuItem.Name" xml:space="preserve">
