@@ -978,17 +978,25 @@ if ( TransportBar.IsPlayerActive )
             {
                 string[] paths = SelectFilesToImport();
                 List<PhraseNode> phrases = new List<PhraseNode>(paths.Length);
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+
+                // invokes max phrase duration dialog
+                Dialogs.ImportFileSplitSize PhraseSizeDialog = new Obi.Dialogs.ImportFileSplitSize();
+                PhraseSizeDialog.ShowDialog();
+
+                if (PhraseSizeDialog.MaxPhraseDuration> 0  )
                 {
-                    CreatePhrasesForFiles(phrases, paths);
-                });
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-                    delegate(object sender, RunWorkerCompletedEventArgs e)
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
-                        if (phrases.Count > 0) mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, phrases));
+                        CreatePhrasesForFiles(phrases, paths ,PhraseSizeDialog.MaxPhraseDuration );
                     });
-                worker.RunWorkerAsync();
+                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+                        delegate(object sender, RunWorkerCompletedEventArgs e)
+                        {
+                            if (phrases.Count > 0) mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, phrases));
+                        });
+                    worker.RunWorkerAsync();
+                }
             }
         }
 
@@ -1006,21 +1014,26 @@ if ( TransportBar.IsPlayerActive )
             return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : new string[0];
         }
 
-        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths)
+        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths,double  Duration)
         {
-            foreach (string path in paths)
+            foreach (string path in paths )
             {
-                if (ImportingFile != null) ImportingFile(this, new ImportingFileEventArgs(path));
-                try
+                List<PhraseNode> PhraseList = mPresentation.CreatePhraseNodeList(path, Duration);
+                foreach (PhraseNode p in PhraseList)
                 {
-                    phrases.Add(mPresentation.CreatePhraseNode(path));
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
-                        Localizer.Message("import_phrase_error_caption"),
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    if (ImportingFile != null) ImportingFile(this, new ImportingFileEventArgs(path));
+                    try
+                    {
+                        //phrases.Add(mPresentation.CreatePhraseNode(path));
+                        phrases.Add(p);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
+                            Localizer.Message("import_phrase_error_caption"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 }
             }
             if (FinishedImportingFiles != null) FinishedImportingFiles(this, null);
