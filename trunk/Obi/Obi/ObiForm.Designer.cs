@@ -39,7 +39,6 @@ namespace Obi
             this.mSaveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSaveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCleanProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mRecentProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openrecentSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -156,6 +155,7 @@ namespace Obi
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEncodeToMp3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,7 +196,6 @@ namespace Obi
             this.mSaveProjectToolStripMenuItem,
             this.mSaveProjectAsToolStripMenuItem,
             this.mCleanProjectToolStripMenuItem,
-            this.mExportAsDAISYToolStripMenuItem,
             this.toolStripSeparator2,
             this.mRecentProjectToolStripMenuItem,
             this.toolStripSeparator3,
@@ -249,12 +248,6 @@ namespace Obi
             resources.ApplyResources(this.mCleanProjectToolStripMenuItem, "mCleanProjectToolStripMenuItem");
             this.mCleanProjectToolStripMenuItem.Name = "mCleanProjectToolStripMenuItem";
             this.mCleanProjectToolStripMenuItem.Click += new System.EventHandler(this.mCleanProjectToolStripMenuItem_Click);
-            // 
-            // mExportAsDAISYToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mExportAsDAISYToolStripMenuItem, "mExportAsDAISYToolStripMenuItem");
-            this.mExportAsDAISYToolStripMenuItem.Name = "mExportAsDAISYToolStripMenuItem";
-            this.mExportAsDAISYToolStripMenuItem.Click += new System.EventHandler(this.mExportAsDAISYToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1067,6 +1060,7 @@ namespace Obi
             this.mToolsToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preferencesToolStripMenuItem1,
+            this.mExportAsDAISYToolStripMenuItem,
             this.mEncodeToMp3toolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
@@ -1076,6 +1070,12 @@ namespace Obi
             resources.ApplyResources(this.preferencesToolStripMenuItem1, "preferencesToolStripMenuItem1");
             this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
+            // 
+            // mExportAsDAISYToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mExportAsDAISYToolStripMenuItem, "mExportAsDAISYToolStripMenuItem");
+            this.mExportAsDAISYToolStripMenuItem.Name = "mExportAsDAISYToolStripMenuItem";
+            this.mExportAsDAISYToolStripMenuItem.Click += new System.EventHandler(this.mExportAsDAISYToolStripMenuItem_Click);
             // 
             // mEncodeToMp3toolStripMenuItem
             // 
@@ -1241,7 +1241,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mCloseProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem mCleanProjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem mExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transportToolStripMenuItem;
@@ -1315,6 +1314,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomOutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
+        private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
     }
 }
 
