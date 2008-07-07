@@ -21,7 +21,8 @@ namespace PipelineInterface
             InitializeComponent();
                                 }
 
-        public Mp3EncoderForm(string InputPath ):this    ()
+        public Mp3EncoderForm(string InputPath, string ProjectDirectory)
+            : this()
         {
                         //string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
             string relativeScriptPath = "\\PipelineLight\\scripts\\DTBAudioEncoder.taskScript";
@@ -35,8 +36,18 @@ namespace PipelineInterface
             M_ScriptParser = new ScriptParser(m_ScriptFilePath);
 
             InputPath = InputPath + "\\obi_dtb.opf";
-            if ( InputPath != null  && File.Exists (InputPath) )
-            m_txtInputFile.Text = InputPath;
+            if (InputPath != null && File.Exists(InputPath))
+            {
+                m_txtInputFile.Text = InputPath;
+                openFileDialog1.InitialDirectory = Directory.GetParent(InputPath).FullName;
+                folderBrowserDialog1.SelectedPath = Directory.GetParent(InputPath).FullName; 
+            }
+            else
+            {
+                openFileDialog1.InitialDirectory = ProjectDirectory;
+                folderBrowserDialog1.SelectedPath = ProjectDirectory;
+            }
+        
 
 // associate script parameter objects
         AssociateParameterObjectToControls();
@@ -65,7 +76,7 @@ namespace PipelineInterface
             //folderBrowserDialog1.SelectedPath = @"C:\Avi\Project\CurrentProjects\DaisyUra\TrialModules\PipelineCmd\Trial\Output";
             openFileDialog1.Filter = "DTB 3.0 Source files|*.opf|DTB2.02 Source Files|ncc.html";
 
-                                    m_txtOutputDirectory.Text = folderBrowserDialog1.SelectedPath;
+                                    //m_txtOutputDirectory.Text = folderBrowserDialog1.SelectedPath;
                         //m_txtInputFile.Text = m_Encoder.InputFilePath;
             //m_txtOutputDirectory.Text = m_Encoder.OutputDirectory;
 
@@ -107,7 +118,8 @@ namespace PipelineInterface
                             DialogResult result =  MessageBox.Show("Not able to find output directory. \n Do you want to create it?", "Error!",MessageBoxButtons.YesNo);
                             if (result == DialogResult.Yes)
                             {
-                                if (!Directory.CreateDirectory(m_txtOutputDirectory.Text).Exists)
+                                if (m_txtOutputDirectory.Text == "" 
+                                    || !Directory.CreateDirectory (m_txtOutputDirectory.Text).Exists)
                                 {
                                     MessageBox.Show("Not able to create directory", "Error!");
                                     return;
