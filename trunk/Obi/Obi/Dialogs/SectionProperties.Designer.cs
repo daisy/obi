@@ -81,7 +81,7 @@ namespace Obi.Dialogs
             // m_lblTimeLength
             // 
             this.m_lblTimeLength.AutoSize = true;
-            this.m_lblTimeLength.Location = new System.Drawing.Point(0, 120);
+            this.m_lblTimeLength.Location = new System.Drawing.Point(0, 181);
             this.m_lblTimeLength.Name = "m_lblTimeLength";
             this.m_lblTimeLength.Size = new System.Drawing.Size(97, 13);
             this.m_lblTimeLength.TabIndex = 5;
@@ -90,7 +90,7 @@ namespace Obi.Dialogs
             // m_txtTimeLength
             // 
             this.m_txtTimeLength.AccessibleName = "Length in seconds:";
-            this.m_txtTimeLength.Location = new System.Drawing.Point(100, 120);
+            this.m_txtTimeLength.Location = new System.Drawing.Point(100, 181);
             this.m_txtTimeLength.Name = "m_txtTimeLength";
             this.m_txtTimeLength.ReadOnly = true;
             this.m_txtTimeLength.Size = new System.Drawing.Size(100, 20);
@@ -99,7 +99,7 @@ namespace Obi.Dialogs
             // m_lblPhraseCount
             // 
             this.m_lblPhraseCount.AutoSize = true;
-            this.m_lblPhraseCount.Location = new System.Drawing.Point(0, 150);
+            this.m_lblPhraseCount.Location = new System.Drawing.Point(0, 211);
             this.m_lblPhraseCount.Name = "m_lblPhraseCount";
             this.m_lblPhraseCount.Size = new System.Drawing.Size(80, 13);
             this.m_lblPhraseCount.TabIndex = 6;
@@ -108,7 +108,7 @@ namespace Obi.Dialogs
             // m_txtPhraseCount
             // 
             this.m_txtPhraseCount.AccessibleName = "Number of phrases:";
-            this.m_txtPhraseCount.Location = new System.Drawing.Point(100, 150);
+            this.m_txtPhraseCount.Location = new System.Drawing.Point(100, 211);
             this.m_txtPhraseCount.Name = "m_txtPhraseCount";
             this.m_txtPhraseCount.ReadOnly = true;
             this.m_txtPhraseCount.Size = new System.Drawing.Size(100, 20);
@@ -116,7 +116,7 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(0, 250);
+            this.m_btnOk.Location = new System.Drawing.Point(102, 267);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 9;
@@ -127,7 +127,7 @@ namespace Obi.Dialogs
             // m_btnCancel
             // 
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.Location = new System.Drawing.Point(100, 250);
+            this.m_btnCancel.Location = new System.Drawing.Point(202, 267);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_btnCancel.TabIndex = 10;
@@ -138,7 +138,7 @@ namespace Obi.Dialogs
             // m_chkUsed
             // 
             this.m_chkUsed.AutoSize = true;
-            this.m_chkUsed.Location = new System.Drawing.Point(100, 180);
+            this.m_chkUsed.Location = new System.Drawing.Point(100, 241);
             this.m_chkUsed.Name = "m_chkUsed";
             this.m_chkUsed.Size = new System.Drawing.Size(51, 17);
             this.m_chkUsed.TabIndex = 8;
@@ -149,16 +149,16 @@ namespace Obi.Dialogs
             // 
             this.m_lbParentsList.AccessibleName = "List of parent sections";
             this.m_lbParentsList.FormattingEnabled = true;
-            this.m_lbParentsList.Location = new System.Drawing.Point(100, 80);
+            this.m_lbParentsList.Location = new System.Drawing.Point(100, 86);
             this.m_lbParentsList.Name = "m_lbParentsList";
             this.m_lbParentsList.Size = new System.Drawing.Size(120, 69);
             this.m_lbParentsList.TabIndex = 5;
             // 
             // m_gParentsList
             // 
-            this.m_gParentsList.Location = new System.Drawing.Point(85, 74);
+            this.m_gParentsList.Location = new System.Drawing.Point(3, 74);
             this.m_gParentsList.Name = "m_gParentsList";
-            this.m_gParentsList.Size = new System.Drawing.Size(1500, 85);
+            this.m_gParentsList.Size = new System.Drawing.Size(1504, 85);
             this.m_gParentsList.TabIndex = 5;
             this.m_gParentsList.TabStop = false;
             this.m_gParentsList.Text = "Parent sections list";
@@ -169,7 +169,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.ClientSize = new System.Drawing.Size(292, 302);
             this.Controls.Add(this.m_gParentsList);
             this.Controls.Add(this.m_lbParentsList);
             this.Controls.Add(this.m_chkUsed);
