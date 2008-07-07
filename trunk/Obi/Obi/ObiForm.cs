@@ -56,6 +56,7 @@ namespace Obi
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mCleanProjectToolStripMenuItem.Enabled = mSession.HasProject;
             mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;
+            mEncodeToMp3toolStripMenuItem.Enabled = mSession.HasProject;
             mExitToolStripMenuItem.Enabled = true;
         }
 
@@ -253,25 +254,27 @@ namespace Obi
         // Export the project as DAISY 3.
         private void ExportProject()
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = Localizer.Message("export_choose_folder");
-            dialog.SelectedPath = mSettings.DefaultExportPath;
-            if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
+            //FolderBrowserDialog dialog = new FolderBrowserDialog();
+            //dialog.Description = Localizer.Message("export_choose_folder");
+            //dialog.SelectedPath = mSettings.DefaultExportPath;
+            Dialogs.SelectDirectoryPath SelectDirectoryDialog = new SelectDirectoryPath(Directory.GetParent(mSession.Path).FullName + "\\DAISY3 Export");
+            if (SelectDirectoryDialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(SelectDirectoryDialog.DirectoryPath))
+            //if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
             {
                 try
                 {
                     // Need the trailing slash, otherwise exported data ends up in a folder one level
                     // higher than our selection.
-                    string exportPath = dialog.SelectedPath;
+                    string exportPath = SelectDirectoryDialog.DirectoryPath;
                     if (!exportPath.EndsWith("/")) exportPath += "/";
                     mSession.PrimaryExportPath = exportPath ;
                     mSession.Presentation.ExportToZ(exportPath, mSession.Path);
-                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.SelectedPath),
+                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), SelectDirectoryDialog.DirectoryPath),
                        Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.SelectedPath, e.Message),
+                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), SelectDirectoryDialog.DirectoryPath, e.Message),
                         Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -1594,7 +1597,7 @@ namespace Obi
 
         private void mEncodeToMp3toolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath);
+            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath, Directory.GetParent(mSession.Path).FullName);
             EncoderForm.ShowDialog();
         }
 

@@ -163,6 +163,12 @@
     <Compile Include="Dialogs\SectionProperties.designer.cs">
       <DependentUpon>SectionProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectDirectoryPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectDirectoryPath.Designer.cs">
+      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SetPageNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +450,10 @@
     <EmbeddedResource Include="Dialogs\SectionProperties.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectDirectoryPath.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
