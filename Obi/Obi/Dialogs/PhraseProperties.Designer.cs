@@ -58,7 +58,7 @@ namespace Obi.Dialogs
             // m_txtParentSection
             // 
             this.m_txtParentSection.AccessibleName = "Parent Section";
-            this.m_txtParentSection.Location = new System.Drawing.Point(100, 10);
+            this.m_txtParentSection.Location = new System.Drawing.Point(146, 10);
             this.m_txtParentSection.Name = "m_txtParentSection";
             this.m_txtParentSection.ReadOnly = true;
             this.m_txtParentSection.Size = new System.Drawing.Size(100, 20);
@@ -76,7 +76,7 @@ namespace Obi.Dialogs
             // m_txtLocationInsideSection
             // 
             this.m_txtLocationInsideSection.AccessibleName = "Location in section phrases:";
-            this.m_txtLocationInsideSection.Location = new System.Drawing.Point(100, 40);
+            this.m_txtLocationInsideSection.Location = new System.Drawing.Point(145, 40);
             this.m_txtLocationInsideSection.Name = "m_txtLocationInsideSection";
             this.m_txtLocationInsideSection.ReadOnly = true;
             this.m_txtLocationInsideSection.Size = new System.Drawing.Size(100, 20);
@@ -149,7 +149,7 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(0, 310);
+            this.m_btnOk.Location = new System.Drawing.Point(111, 310);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 13;
@@ -160,7 +160,7 @@ namespace Obi.Dialogs
             // m_btnCancel
             // 
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.Location = new System.Drawing.Point(100, 310);
+            this.m_btnCancel.Location = new System.Drawing.Point(205, 310);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_btnCancel.TabIndex = 14;
@@ -201,7 +201,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(292, 323);
+            this.ClientSize = new System.Drawing.Size(292, 346);
             this.Controls.Add(this.m_gParentsList);
             this.Controls.Add(this.m_txtTimeLength);
             this.Controls.Add(this.m_lblTimeLength);
