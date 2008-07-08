@@ -7,6 +7,7 @@ namespace Obi
     public class ColorSettings
     {
         public Color BlockBackColor;
+        public SolidBrush BlockLayoutSelectedBrush;
         public Color BlockForeColor;
         public Color BlockSelectedBackColor;
         public Color BlockSelectedForeColor;
@@ -34,6 +35,7 @@ namespace Obi
         {
             ColorSettings settings = new ColorSettings();
             settings.BlockBackColor = SystemColors.Window;
+            settings.BlockLayoutSelectedBrush = new SolidBrush(SystemColors.Highlight);
             settings.BlockForeColor = SystemColors.ControlText;
             settings.BlockSelectedBackColor = SystemColors.Highlight;
             settings.BlockSelectedForeColor = SystemColors.HighlightText;

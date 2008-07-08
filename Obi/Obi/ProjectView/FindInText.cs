@@ -309,8 +309,8 @@ namespace Obi.ProjectView
             {
                 foreach (ISearchable c in mStripsView.Searchables)
                 {
-                    if (c is Strip && ((Strip)c).Selected) return mStripsView.Searchables.IndexOf((Strip)c);
-                    else if (c is Block && ((Block)c).Selected) return mStripsView.Searchables.IndexOf((Block)c);
+                    if (c is Strip && ((Strip)c).Highlighted) return mStripsView.Searchables.IndexOf((Strip)c);
+                    else if (c is Block && ((Block)c).Highlighted) return mStripsView.Searchables.IndexOf((Block)c);
                 }
             }
             return 0;

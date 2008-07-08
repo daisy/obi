@@ -9,14 +9,14 @@ using System.Threading;
 
 namespace Obi.ProjectView
 {
-    public partial class Strip : UserControl, ISearchable, IBlockContainer
+    public partial class Strip : UserControl, ISearchable, ISelectableInContentViewWithColors
     {
         private int mBaseHeight;           // base size (at zoom factor 1)
         private bool mEntering;            // entering flag
         private Mutex mLabelUpdateThread;  // thread to update labels
         private SectionNode mNode;         // the section node for this strip
         private ContentView mParentView;   // parent strip view
-        private bool mSelected;            // selected flag
+        private bool mHighlighted;         // highlighted flag (when the section node is selected)
         private bool mWrap;                // wrap contents
 
 
@@ -28,7 +28,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             mBaseHeight = Height;
             mNode = null;
-            Selected = false;
+            Highlighted = false;
             mWrap = false;
             mEntering = false;
             mLabelUpdateThread = new Mutex();
@@ -70,7 +70,7 @@ namespace Obi.ProjectView
         /// Return null if this is the last block, there are no blocks, or nothing was selected in the first place.
         /// This is used for arrow navigation.
         /// </summary>
-        public Block BlockAfter(ISelectableInStripView item)
+        public Block BlockAfter(ISelectableInContentView item)
         {
             int count = mBlocksPanel.Controls.Count;
             int index = item is Strip ? 1 :
@@ -83,7 +83,7 @@ namespace Obi.ProjectView
         /// Return the block before the selected block or strip. In the case of a strip this is the last block.
         /// Return null if this the first block, there are no blocks, or nothing was selected in the first place.
         /// </summary>
-        public Block BlockBefore(ISelectableInStripView item)
+        public Block BlockBefore(ISelectableInContentView item)
         {
             int index = item is Strip ? mBlocksPanel.Controls.Count - 2 :
                         item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 1 :
@@ -107,7 +107,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Find the strip cursor for the given selection.
         /// </summary>
-        public StripCursor FindStripCursor(StripCursorSelection selection)
+        public StripCursor FindStripCursor(StripIndexSelection selection)
         {
             return (StripCursor)mBlocksPanel.Controls[selection.Index * 2];
         }
@@ -124,6 +124,20 @@ namespace Obi.ProjectView
         /// Focus on the label.
         /// </summary>
         public void FocusStripLabel() { mLabel.Focus(); }
+
+        /// <summary>
+        /// Set the highlighted flag for the strip when the node is (de)selected.
+        /// </summary>
+        public bool Highlighted
+        {
+            get { return mHighlighted; }
+            set
+            {
+                mHighlighted = value && !(mParentView.Selection is TextSelection);
+                if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
+                UpdateColors();
+            }
+        }
 
         /// <summary>
         /// The label of the strip where the title of the section can be edited.
@@ -198,22 +212,21 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set the selected flag for the strip. This just tells the strip that it is selected.
-        /// </summary>
-        public bool Selected
-        {
-            get { return mSelected; }
-            set
-            {
-                mSelected = value && !(mParentView.Selection is TextSelection);
-                UpdateColors();
-            }
-        }
-
-        /// <summary>
         /// Select a block in the strip.
         /// </summary>
         public Block SelectedBlock { set { mParentView.SelectedNode = value.Node; } }
+
+        /// <summary>
+        /// Get the current selection, if this node is concerned.
+        /// </summary>
+        public NodeSelection Selection
+        {
+            get
+            {
+                NodeSelection selection = mParentView == null ? null : mParentView.Selection;
+                return selection == null || selection.Node != mNode ? null : selection;
+            }
+        }
 
         /// <summary>
         /// Set the selection from the parent view
@@ -222,13 +235,13 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (value is StripCursorSelection)
+                if (value is StripIndexSelection)
                 {
-                    ((StripCursor)mBlocksPanel.Controls[((StripCursorSelection)value).Index * 2]).Selected = true;
+                    ((StripCursor)mBlocksPanel.Controls[((StripIndexSelection)value).Index * 2]).Highlighted = true;
                 }
                 else
                 {
-                    Selected = value != null;
+                    Highlighted = value != null;
                 }
             }
         }
@@ -256,7 +269,7 @@ namespace Obi.ProjectView
         /// In the case of a strip this is the first cursor, and in the case of the last cursor position
         /// return -1.
         /// </summary>
-        public int StripCursorAfter(ISelectableInStripView item)
+        public int StripCursorAfter(ISelectableInContentView item)
         {
             int index = item is Strip ? 0 :
                         item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 :
@@ -269,7 +282,7 @@ namespace Obi.ProjectView
         /// In the case of a strip this is the last cursor, and in the case of the first cursor position
         /// return a negative value.
         /// </summary>
-        public int StripCursorBefore(ISelectableInStripView item)
+        public int StripCursorBefore(ISelectableInContentView item)
         {
             return (item is Strip ? mBlocksPanel.Controls.Count - 1 :
                     item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 2 :
@@ -300,10 +313,10 @@ namespace Obi.ProjectView
                 BackColor =
                 mLabel.BackColor =
                 mBlocksPanel.BackColor =
-                    mSelected ? settings.StripSelectedBackColor :
+                    mHighlighted ? settings.StripSelectedBackColor :
                     mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
                 mLabel.ForeColor =
-                    mSelected ? settings.StripSelectedForeColor :
+                    mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
             }
@@ -381,9 +394,9 @@ namespace Obi.ProjectView
             mBlocksPanel.Controls.SetChildIndex(cursor, index);
             cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
                 {
-                    if (!cursor.Selected)
+                    if (!cursor.Highlighted)
                     {
-                        mParentView.SelectionFromStrip = new StripCursorSelection(mNode, mParentView,
+                        mParentView.SelectionFromStrip = new StripIndexSelection(mNode, mParentView,
                             mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
                     }
                     else
@@ -461,7 +474,7 @@ namespace Obi.ProjectView
         // Toggle selection
         private void ToggleSelection()
         {
-            if (mSelected && !mEntering)
+            if (mHighlighted && !mEntering)
             {
                 mParentView.SelectionFromStrip = null;
             }

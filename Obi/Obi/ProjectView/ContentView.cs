@@ -8,11 +8,34 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
+    /// <summary>
+    /// Common interface for selection of strips and blocks.
+    /// </summary>
+    public interface ISelectableInContentView
+    {
+        bool Highlighted { get; set; }            // get or set the highlighted state of the control
+        ObiNode ObiNode { get; }                  // get the Obi node for the control
+        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
+    }
+
+
+    /// <summary>
+    /// Common interface to selectables (in the content view) that also have customizable colors.
+    /// </summary>
+    public interface ISelectableInContentViewWithColors : ISelectableInContentView
+    {
+        ColorSettings ColorSettings { get; }
+    }
+
+
+    /// <summary>
+    /// The content view shows the strips and blocks of the project.
+    /// </summary>
     public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
     {
         private ProjectView mView;                                   // parent project view
         private NodeSelection mSelection;                            // current selection
-        private ISelectableInStripView mSelectedItem;                // the actual item for the selection
+        private ISelectableInContentView mSelectedItem;              // the actual item for the selection
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
@@ -41,7 +64,7 @@ namespace Obi.ProjectView
         }
 
 
-        public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripCursorSelection; } }
+        public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripIndexSelection; } }
         public bool CanCopyAudio { get { return IsAudioRangeSelected; } }
         public bool CanCopyBlock { get { return IsBlockSelected; } }
         public bool CanCopyStrip { get { return IsStripSelected; } }
@@ -55,7 +78,7 @@ namespace Obi.ProjectView
             get
             {
                 return (IsBlockSelected && SelectedEmptyNode.Index > 0)                          // block selected
-                    || (IsStripCursorSelected && ((StripCursorSelection)mSelection).Index > 0);  // strip cursor selected
+                    || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0);  // strip cursor selected
             }
         }
 
@@ -240,8 +263,8 @@ namespace Obi.ProjectView
             {
                 if (value != mSelection)
                 {
-                    ISelectableInStripView s = value == null ? null : FindSelectable(value);
-                    if (mSelectedItem != null) mSelectedItem.Selected = false;
+                    ISelectableInContentView s = value == null ? null : FindSelectable(value);
+                    if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                     mSelection = value;
                     mSelectedItem = s;
                     if (s != null)
@@ -325,7 +348,7 @@ namespace Obi.ProjectView
             if (CanSplitStrip)
             {
                 EmptyNode node = IsStripCursorSelected ?
-                    mSelection.Node.PhraseChild(((StripCursorSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
+                    mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
                 SectionNode section = node.ParentAs<SectionNode>();
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("split_section"));
@@ -507,20 +530,20 @@ namespace Obi.ProjectView
         }
 
         // Find the selectable item for this selection object
-        private ISelectableInStripView FindSelectable(NodeSelection selection)
+        private ISelectableInContentView FindSelectable(NodeSelection selection)
         {
-            return selection is StripCursorSelection ? (ISelectableInStripView)
-                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripCursorSelection)selection) :
+            return selection is StripIndexSelection ? (ISelectableInContentView)
+                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripIndexSelection)selection) :
                 selection == null ? null :
-                selection.Node is SectionNode ? (ISelectableInStripView)FindStrip((SectionNode)selection.Node) :
-                selection.Node is EmptyNode ? (ISelectableInStripView)FindBlock((EmptyNode)selection.Node) : null;
+                selection.Node is SectionNode ? (ISelectableInContentView)FindStrip((SectionNode)selection.Node) :
+                selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) : null;
         }
 
         private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
         private bool IsBlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
         private bool IsBlockOrWaveformSelected { get { return mSelectedItem is Block; } }
         private bool IsInView(ObiNode node) { return node is SectionNode && FindStrip((SectionNode)node) != null; }
-        private bool IsStripCursorSelected { get { return mSelection is StripCursorSelection; } }
+        private bool IsStripCursorSelected { get { return mSelection is StripIndexSelection; } }
         private bool IsStripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
         // Listen to changes in the presentation (new nodes being added or removed)
@@ -759,14 +782,14 @@ namespace Obi.ProjectView
 
         // Get the strip for the currently selected component (i.e. the strip itself, or the parent strip
         // for a block.)
-        private Strip StripFor(ISelectableInStripView item)
+        private Strip StripFor(ISelectableInContentView item)
         {
             return item is Strip ? (Strip)item :
                    item is StripCursor ? ((StripCursor)item).Strip :
                    item is Block ? ((Block)item).Strip : null;
         }
 
-        private delegate Block SelectBlockFunction(Strip strip, ISelectableInStripView item);
+        private delegate Block SelectBlockFunction(Strip strip, ISelectableInContentView item);
 
         private bool SelectBlockFor(SelectBlockFunction f)
         {
@@ -783,7 +806,7 @@ namespace Obi.ProjectView
             return false;
         }
 
-        private delegate int SelectStripCursorFunction(Strip strip, ISelectableInStripView item);
+        private delegate int SelectStripCursorFunction(Strip strip, ISelectableInContentView item);
 
         private bool SelectStripCursorFor(SelectStripCursorFunction f)
         {
@@ -795,7 +818,7 @@ namespace Obi.ProjectView
                 if (index >= 0)
                 {
                     System.Diagnostics.Debug.Print("  ... got index {0}", index);
-                    mView.Selection = new StripCursorSelection(strip.Node, this, index);
+                    mView.Selection = new StripIndexSelection(strip.Node, this, index);
                     return true;
                 }
             }
@@ -804,32 +827,32 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockBefore(item); });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockBefore(item); });
         }
 
         private bool SelectPrecedingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInStripView item) { return strip.StripCursorBefore(item); });
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorBefore(item); });
         }
 
         private bool SelectFollowingBlock()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.BlockAfter(item); });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(item); });
         }
 
         private bool SelectFollowingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInStripView item) { return strip.StripCursorAfter(item); });
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
         }
 
         private bool SelectLastBlockInStrip()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.LastBlock; });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.LastBlock; });
         }
 
         private bool SelectFirstBlockInStrip()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return strip.FirstBlock; });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.FirstBlock; });
         }
 
         private delegate Strip SelectStripFunction(Strip strip);
@@ -893,7 +916,7 @@ namespace Obi.ProjectView
         {
             if (mSelection is AudioSelection)
             {
-                return SelectBlockFor(delegate(Strip s, ISelectableInStripView item) { return FindBlock((EmptyNode)mSelection.Node); });
+                return SelectBlockFor(delegate(Strip s, ISelectableInContentView item) { return FindBlock((EmptyNode)mSelection.Node); });
             }
             else if (mSelectedItem is Block)
             {
