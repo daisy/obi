@@ -227,19 +227,17 @@ namespace Obi
     /// <summary>
     /// Cursor selection inside a strip. The actual node is always a section node.
     /// </summary>
-    public class StripCursorSelection : NodeSelection
+    public class StripIndexSelection : NodeSelection
     {
         private int mIndex;  // cursor index in the strip
 
-        public StripCursorSelection(SectionNode node, IControlWithSelection control, int index)
+        public StripIndexSelection(SectionNode node, IControlWithSelection control, int index)
             : base(node, control)
         {
             mIndex = index;
         }
 
-        /// <summary>
-        /// Since we're in the strip, section nodes cannot be pasted.
-        /// </summary>
+        // Since we're in the strip, section nodes cannot be pasted.
         public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); }
 
         protected override urakawa.undo.ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)

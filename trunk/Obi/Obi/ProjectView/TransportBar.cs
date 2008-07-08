@@ -708,11 +708,11 @@ namespace Obi.ProjectView
                     }
                 }
             }
-            else if (mView.Selection is StripCursorSelection)
+            else if (mView.Selection is StripIndexSelection)
             {
                 // Play from the first phrase in the playlist following the strip cursor,
                 // or the beginning of the strip.
-                StripCursorSelection s = (StripCursorSelection)mView.Selection;
+                StripIndexSelection s = (StripIndexSelection)mView.Selection;
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
                     (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
                 mCurrentPlaylist.Play();
@@ -880,8 +880,8 @@ namespace Obi.ProjectView
                 // Record at the end of the section, or after the cursor
                 // in case of a cursor selection in the section.
                 mRecordingSection = (SectionNode)node;
-                mRecordingInitPhraseIndex = mView.Selection is StripCursorSelection ?
-                    ((StripCursorSelection)mView.Selection).Index : mRecordingSection.PhraseChildCount;
+                mRecordingInitPhraseIndex = mView.Selection is StripIndexSelection ?
+                    ((StripIndexSelection)mView.Selection).Index : mRecordingSection.PhraseChildCount;
             }
             else if (node is PhraseNode)
             {
@@ -1100,7 +1100,7 @@ namespace Obi.ProjectView
         public ObiNode GetRecordingNode(urakawa.undo.CompositeCommand command)
         {
             ObiNode node =( mResumeRecordingPhrase == null || !mResumeRecordingPhrase.IsRooted)?
-                mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripCursorSelection ?
+                mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripIndexSelection ?
                     mView.Selection.Node : null :
                 mResumeRecordingPhrase;
             if (node == null)

@@ -40,27 +40,23 @@ namespace Obi.ProjectView
             get { return mEditable; }
             set
             {
-                mEditable = value;
-                mOKButton.Enabled = mEditable;
-                mOKButton.Visible = mEditable;
-                mCancelButton.Enabled = mEditable;
-                mCancelButton.Visible = mEditable;
-                mTextBox.Enabled = mEditable;
-                mTextBox.Visible = mEditable;
-                mLabel.Visible = !mEditable;
-                if (mEditable)
+                if (mEditable != value)
                 {
-                    mTextBox.Text = "";
-                    mTextBox.SelectedText = mLabel.Text;
-                    mTextBox.SelectAll();
-                    mTextBox.Focus();
-                    Size = new Size(Width, mOKButton.Location.Y + mOKButton.Height + mOKButton.Margin.Bottom);
+                    mEditable = value;
+                    mOKButton.Enabled = mOKButton.Visible = mCancelButton.Enabled = mCancelButton.Visible =
+                    mTextBox.Enabled = mTextBox.Visible =
+                        mEditable;
+                    mLabel.Visible = !mEditable;
+                    if (mEditable)
+                    {
+                        mTextBox.SelectedText = "";
+                        mTextBox.Text = mLabel.Text;
+                        mTextBox.SelectAll();
+                        mTextBox.Focus();
+                    }
+                    UpdateSize();
+                    if (EditableChanged != null) EditableChanged(this, new EventArgs());
                 }
-                else
-                {
-                    Size = new Size(Width, mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
-                }
-                if (EditableChanged != null) EditableChanged(this, new EventArgs());
             }
         }
 
@@ -74,17 +70,24 @@ namespace Obi.ProjectView
             get { return mLabel.Text; }
             set
             {
-                if (value == "") throw new Exception("Empty label is not allowed.");
-                mLabel.Text = value;
-                mTextBox.Text = value;
-                int wb = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
-                int wl = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
-                MinimumSize = new Size(wb > wl ? wb : wl, MinimumSize.Height);
+                if (value != null && value != "")
+                {
+                    mLabel.Text = value;
+                    mTextBox.Text = value;
+                    int wb = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
+                    int wl = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
+                    MinimumSize = new Size(wb > wl ? wb : wl, MinimumSize.Height);
+                }
             }
         }
 
+        /// <summary>
+        /// Update the colors of the label when a change in color settings is made.
+        /// </summary>
+        /// <param name="settings"></param>
         public void UpdateColors(ColorSettings settings)
         {
+            // the rest of the colors are handled by the strip
             mTextBox.BackColor = settings.EditableLabelTextBackColor;
         }
 
@@ -103,15 +106,7 @@ namespace Obi.ProjectView
                     mOKButton.Font =
                     mCancelButton.Font =
                         new Font(mOKButton.Font.FontFamily, (float)value * mButtonsBaseFontSize);
-                    int h = mTextBox.Location.Y + mTextBox.Height + mTextBox.Margin.Bottom;
-                    mOKButton.Location = new Point(mOKButton.Location.X, h);
-                    mCancelButton.Location =
-                        new Point(mOKButton.Location.X + mOKButton.Width + mOKButton.Margin.Right + mCancelButton.Margin.Left, h);
-                    int wlabel = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
-                    int wbuttons = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
-                    Size = new Size(wlabel > wbuttons ? wlabel : wbuttons,
-                        mEditable ? h + mOKButton.Height + mOKButton.Margin.Bottom :
-                            mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
+                    UpdateSize();
                 }
             }
         }
@@ -153,6 +148,20 @@ namespace Obi.ProjectView
             {
                 Editable = false;
             }
+        }
+
+        // Update the size of the label when its zoom factor changes, it becomes editable, or the text changes.
+        private void UpdateSize()
+        {
+            int h = mTextBox.Location.Y + mTextBox.Height + mTextBox.Margin.Bottom;
+            mOKButton.Location = new Point(mOKButton.Location.X, h);
+            mCancelButton.Location =
+                new Point(mOKButton.Location.X + mOKButton.Width + mOKButton.Margin.Right + mCancelButton.Margin.Left, h);
+            int wlabel = mLabel.Location.X + mLabel.Width + mLabel.Margin.Right;
+            int wbuttons = mCancelButton.Location.X + mCancelButton.Width + mCancelButton.Margin.Right;
+            Size = new Size(wlabel > wbuttons ? wlabel : wbuttons,
+                mEditable ? mOKButton.Location.Y + mOKButton.Height + mOKButton.Margin.Bottom :
+                    mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
         }
 
         // Update the text in the label/textbox

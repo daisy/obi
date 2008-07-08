@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class Block : UserControl, IBlockContainer, ISearchable
+    public partial class Block : UserControl, ISelectableInContentViewWithColors, ISearchable
     {
         protected EmptyNode mNode;                 // the corresponding node
-        private bool mSelected;                    // selected flag
-        private IBlockContainer mParentContainer;  // not necessarily a strip!
+        private bool mHighlighted;                 // selected flag
+        private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip!
         private bool mEntering;                    // entering flag (for selection/deselection)
 
 
@@ -22,11 +22,11 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new empty block from an empty node.
         /// </summary>
-        public Block(EmptyNode node, IBlockContainer parent): this()
+        public Block(EmptyNode node, ISelectableInContentViewWithColors parent): this()
         {
             mNode = node;
             mParentContainer = parent;
-            mSelected = false;
+            mHighlighted = false;
             mEntering = false;
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
@@ -40,6 +40,19 @@ namespace Obi.ProjectView
         {
             get { return mParentContainer == null ? null : mParentContainer.ColorSettings; }
             set { UpdateColors(value); }
+        }
+
+        /// <summary>
+        /// Set the selected flag for the block.
+        /// </summary>
+        public virtual bool Highlighted
+        {
+            get { return mHighlighted; }
+            set
+            {
+                mHighlighted = value;
+                UpdateColors();
+            }
         }
 
         /// <summary>
@@ -58,22 +71,9 @@ namespace Obi.ProjectView
         public ObiNode ObiNode { get { return mNode; } }
 
         /// <summary>
-        /// Set the selected flag for the block.
-        /// </summary>
-        public virtual bool Selected
-        {
-            get { return mSelected; }
-            set
-            {
-                mSelected = value;
-                UpdateColors();
-            }
-        }
-
-        /// <summary>
         /// Set the selection from the parent view
         /// </summary>
-        public virtual NodeSelection SelectionFromView { set { Selected = value != null; } }
+        public virtual NodeSelection SelectionFromView { set { Highlighted = value != null; } }
 
         /// <summary>
         /// The strip that contains this block.
@@ -93,10 +93,10 @@ namespace Obi.ProjectView
             if (mNode != null && settings != null)
             {
                 BackColor =
-                    mSelected ? settings.BlockSelectedBackColor :
+                    mHighlighted ? settings.BlockSelectedBackColor :
                     mNode.Used ? settings.BlockBackColor : settings.BlockUnusedBackColor;
                 ForeColor =
-                    mSelected ? settings.BlockSelectedForeColor :
+                    mHighlighted ? settings.BlockSelectedForeColor :
                     mNode.Used ? settings.BlockForeColor : settings.BlockUnusedForeColor;
             }
         }
@@ -175,7 +175,7 @@ namespace Obi.ProjectView
         // Toggle selection when clicking.
         private void ToggleSelection()
         {
-            if (!mSelected || mEntering)
+            if (!mHighlighted || mEntering)
             {
                 Strip.SelectedBlock = this;
             }

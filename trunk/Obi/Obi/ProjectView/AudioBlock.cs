@@ -44,12 +44,12 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the selected flag for the block.
         /// </summary>
-        public override bool Selected
+        public override bool Highlighted
         {
             set
             {
                 if (!value) mWaveform.Deselect();
-                base.Selected = value;
+                base.Highlighted = value;
             }
         }
 

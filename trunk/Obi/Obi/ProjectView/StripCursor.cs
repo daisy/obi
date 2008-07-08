@@ -8,15 +8,15 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class StripCursor : Control, ISelectableInStripView
+    public partial class StripCursor : Control, ISelectableInContentView
     {
-        private bool mSelected;
+        private bool mHighlighted;
         private Strip mStrip;
 
         public StripCursor()
         {
             InitializeComponent();
-            mSelected = false;
+            mHighlighted = false;
         }
 
         public StripCursor(Strip strip): this()
@@ -37,15 +37,15 @@ namespace Obi.ProjectView
 
         #region ISelectableInStripView Members
 
-        public bool Selected
+        public bool Highlighted
         {
-            get { return mSelected; }
+            get { return mHighlighted; }
             set
             {
-                mSelected = value;
+                mHighlighted = value;
                 if (ParentStrip != null)
                 {
-                    BackColor = mSelected ? ParentStrip.ColorSettings.StripCursorSelectedBackColor : Parent.BackColor;
+                    BackColor = mHighlighted ? ParentStrip.ColorSettings.StripCursorSelectedBackColor : Parent.BackColor;
                     Invalidate();
                 }
             }
@@ -54,7 +54,7 @@ namespace Obi.ProjectView
 
         public ObiNode ObiNode { get { return mStrip.Node; } }
         public Strip Strip { get { return mStrip; } }
-        public NodeSelection SelectionFromView { set { Selected = value != null; } }
+        public NodeSelection SelectionFromView { set { Highlighted = value != null; } }
 
         #endregion
     }

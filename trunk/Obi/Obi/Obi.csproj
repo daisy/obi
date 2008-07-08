@@ -335,6 +335,12 @@
     <Compile Include="ProjectView\TOCView.Designer.cs">
       <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\BlockLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectView\BlockLayout.Designer.cs">
+      <DependentUpon>BlockLayout.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\TransportBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
