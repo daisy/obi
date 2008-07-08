@@ -181,7 +181,6 @@ namespace Obi.ProjectView
             this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mContentView.Location = new System.Drawing.Point(0, 0);
             this.mContentView.Name = "mContentView";
-            this.mContentView.PlaybackPhrase = null;
             this.mContentView.Selection = null;
             this.mContentView.Size = new System.Drawing.Size(689, 627);
             this.mContentView.TabIndex = 0;

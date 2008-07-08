@@ -42,6 +42,21 @@ namespace Obi
         }
 
 
+        public double ZoomFactor 
+        {
+            get { return mZoomFactor; }
+            set
+            {
+                if (value > 0.0)
+                {
+                    this.mZoomFactor = value;
+                    mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * (float)value);
+                    mProjectView.ZoomFactor = value;
+                }
+            }
+        }
+
+
         #region File menu
 
         private void UpdateFileMenu()
@@ -1601,20 +1616,6 @@ namespace Obi
             EncoderForm.ShowDialog();
         }
 
-
-        // Set the zoom factor for the whole window (the form and its views.)
-        private double ZoomFactor
-        {
-            set
-            {
-                if (value > 0.0)
-                {
-                    this.mZoomFactor = value;
-                    mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * (float)value);
-                    mProjectView.ZoomFactor = value;
-                }
-            }
-        }
 
         // View > Zoom in (Ctrl+Alt++)
         private void View_ZoomInMenuItem_Click(object sender, EventArgs e)

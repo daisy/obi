@@ -44,7 +44,6 @@ namespace Obi.ProjectView
             this.mBlocksPanel.TabIndex = 0;
             this.mBlocksPanel.WrapContents = false;
             this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
-            this.mBlocksPanel.SizeChanged += new System.EventHandler(this.BlocksPanel_SizeChanged);
             // 
             // mLabel
             // 
@@ -53,7 +52,6 @@ namespace Obi.ProjectView
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;
             this.mLabel.Editable = false;
-            this.mLabel.FontSize = 18F;
             this.mLabel.Label = "Label";
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
@@ -81,7 +79,6 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(306, 150);
             this.Enter += new System.EventHandler(this.Strip_Enter);
             this.Click += new System.EventHandler(this.Strip_Click);
-            this.SizeChanged += new System.EventHandler(this.Strip_SizeChanged);
             this.ResumeLayout(false);
 
         }

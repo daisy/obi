@@ -37,10 +37,11 @@ namespace Obi.ProjectView
             // mLabel
             // 
             this.mLabel.AutoSize = true;
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mLabel.Location = new System.Drawing.Point(3, 5);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(35, 13);
+            this.mLabel.Size = new System.Drawing.Size(79, 29);
             this.mLabel.TabIndex = 0;
             this.mLabel.Text = "label1";
             // 
@@ -50,18 +51,22 @@ namespace Obi.ProjectView
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mTextBox.BackColor = System.Drawing.SystemColors.Info;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTextBox.Location = new System.Drawing.Point(3, 3);
             this.mTextBox.Name = "mTextBox";
-            this.mTextBox.Size = new System.Drawing.Size(144, 20);
+            this.mTextBox.Size = new System.Drawing.Size(297, 35);
             this.mTextBox.TabIndex = 1;
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // mOKButton
             // 
+            this.mOKButton.AutoSize = true;
+            this.mOKButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(3, 26);
+            this.mOKButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mOKButton.Location = new System.Drawing.Point(3, 44);
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(35, 23);
+            this.mOKButton.Size = new System.Drawing.Size(38, 28);
             this.mOKButton.TabIndex = 2;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
@@ -69,10 +74,13 @@ namespace Obi.ProjectView
             // 
             // mCancelButton
             // 
+            this.mCancelButton.AutoSize = true;
+            this.mCancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(44, 26);
+            this.mCancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mCancelButton.Location = new System.Drawing.Point(47, 44);
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(50, 23);
+            this.mCancelButton.Size = new System.Drawing.Size(62, 28);
             this.mCancelButton.TabIndex = 3;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
@@ -89,7 +97,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EditableLabel";
-            this.Size = new System.Drawing.Size(150, 52);
+            this.Size = new System.Drawing.Size(303, 75);
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
