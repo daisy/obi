@@ -50,11 +50,11 @@ namespace Obi.ProjectView
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.Name = "Block";
             this.Size = new System.Drawing.Size(104, 104);
-            this.Enter += new System.EventHandler(this.Block_Enter);
             this.Click += new System.EventHandler(this.Block_Click);
+            this.Enter += new System.EventHandler(this.Block_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

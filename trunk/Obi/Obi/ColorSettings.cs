@@ -7,7 +7,6 @@ namespace Obi
     public class ColorSettings
     {
         public Color BlockBackColor;
-        public SolidBrush BlockLayoutSelectedBrush;
         public Color BlockForeColor;
         public Color BlockSelectedBackColor;
         public Color BlockSelectedForeColor;
@@ -28,6 +27,9 @@ namespace Obi
         public Color TOCViewUnusedColor;
         public Color TransportBarBackColor;
 
+        private Color mBlockLayoutSelectedColor;
+        [NonSerialized()] public SolidBrush BlockLayoutSelectedBrush;
+
         /// <summary>
         /// Get the default color settings.
         /// </summary>
@@ -35,7 +37,8 @@ namespace Obi
         {
             ColorSettings settings = new ColorSettings();
             settings.BlockBackColor = SystemColors.Window;
-            settings.BlockLayoutSelectedBrush = new SolidBrush(SystemColors.Highlight);
+            settings.mBlockLayoutSelectedColor = SystemColors.Highlight;
+            settings.BlockLayoutSelectedBrush = new SolidBrush(settings.mBlockLayoutSelectedColor);
             settings.BlockForeColor = SystemColors.ControlText;
             settings.BlockSelectedBackColor = SystemColors.Highlight;
             settings.BlockSelectedForeColor = SystemColors.HighlightText;

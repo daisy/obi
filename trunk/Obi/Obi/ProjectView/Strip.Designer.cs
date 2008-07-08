@@ -28,41 +28,30 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mBlocksPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.mLabel = new Obi.ProjectView.EditableLabel();
+            this.mBlockLayout = new Obi.ProjectView.BlockLayout();
             this.SuspendLayout();
-            // 
-            // mBlocksPanel
-            // 
-            this.mBlocksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBlocksPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mBlocksPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.mBlocksPanel.Location = new System.Drawing.Point(3, 43);
-            this.mBlocksPanel.Name = "mBlocksPanel";
-            this.mBlocksPanel.Size = new System.Drawing.Size(300, 104);
-            this.mBlocksPanel.TabIndex = 0;
-            this.mBlocksPanel.WrapContents = false;
-            this.mBlocksPanel.Click += new System.EventHandler(this.Strip_Click);
             // 
             // mLabel
             // 
-            this.mLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.mLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabel.BackColor = System.Drawing.Color.Thistle;
             this.mLabel.Editable = false;
-            this.mLabel.Label = "Label";
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.mLabel.MinimumSize = new System.Drawing.Size(300, 0);
+            this.mLabel.Label = "label1";
+            this.mLabel.Location = new System.Drawing.Point(4, 3);
+            this.mLabel.Margin = new System.Windows.Forms.Padding(0);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(300, 37);
+            this.mLabel.Size = new System.Drawing.Size(303, 75);
             this.mLabel.TabIndex = 0;
             this.mLabel.Click += new System.EventHandler(this.Strip_Click);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
             this.mLabel.EditableChanged += new System.EventHandler(this.Label_EditableChanged);
-            this.mLabel.SizeChanged += new System.EventHandler(this.Label_SizeChanged);
+            // 
+            // mBlockLayout
+            // 
+            this.mBlockLayout.Location = new System.Drawing.Point(6, 81);
+            this.mBlockLayout.Name = "mBlockLayout";
+            this.mBlockLayout.Size = new System.Drawing.Size(301, 102);
+            this.mBlockLayout.TabIndex = 1;
             // 
             // Strip
             // 
@@ -71,22 +60,23 @@ namespace Obi.ProjectView
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.mBlockLayout);
             this.Controls.Add(this.mLabel);
-            this.Controls.Add(this.mBlocksPanel);
             this.DoubleBuffered = true;
             this.Name = "Strip";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(306, 150);
-            this.Enter += new System.EventHandler(this.Strip_Enter);
+            this.Size = new System.Drawing.Size(313, 189);
             this.Click += new System.EventHandler(this.Strip_Click);
+            this.Enter += new System.EventHandler(this.Strip_Enter);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel mBlocksPanel;
         private EditableLabel mLabel;
+        private BlockLayout mBlockLayout;
+
 
 
 
