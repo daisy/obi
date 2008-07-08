@@ -44,6 +44,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mParentView = parent;
+            ZoomFactor = mParentView.ZoomFactor;
             UpdateColors();
             SetAccessibleName();
             AddCursor(0);
@@ -304,6 +305,7 @@ namespace Obi.ProjectView
                 mLabel.ForeColor =
                     mSelected ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
+                mLabel.UpdateColors(settings);
             }
         }
 
@@ -343,7 +345,19 @@ namespace Obi.ProjectView
             }
         }
 
-        void mParentView_SizeChanged(object sender, EventArgs e)
+        public double ZoomFactor
+        {
+            set
+            {
+                if (value > 0.0)
+                {
+                    mLabel.ZoomFactor = value;
+                }
+            }
+        }
+
+
+        private void mParentView_SizeChanged(object sender, EventArgs e)
         {
             UpdateSize();
         }
@@ -476,7 +490,6 @@ namespace Obi.ProjectView
         // Update the size of the strip to use the available width of the view
         private void UpdateSize()
         {
-            // System.Diagnostics.Debug.Print("<-> Update size");
             if (mWrap)
             {
                 MinimumSize = new Size(ParentView.Width, MinimumSize.Height);
@@ -497,17 +510,6 @@ namespace Obi.ProjectView
             }
         }
 
-        private void Strip_SizeChanged(object sender, EventArgs e)
-        {
-            // System.Diagnostics.Debug.Print("<-> Resize strip to " + Size);
-        }
-
-        private void BlocksPanel_SizeChanged(object sender, EventArgs e)
-        {
-            // System.Diagnostics.Debug.Print("<---> Resize block panel to " + mBlocksPanel.Size);
-        }
-
-
         public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
         {
             mLabelUpdateThread.WaitOne();
@@ -524,6 +526,5 @@ namespace Obi.ProjectView
             }// end loop
             mLabelUpdateThread.ReleaseMutex();
         }
-
     }
 }

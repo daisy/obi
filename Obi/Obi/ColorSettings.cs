@@ -13,6 +13,7 @@ namespace Obi
         public Color BlockUnusedBackColor;
         public Color BlockUnusedForeColor;
         public Color ContentViewBackColor;
+        public Color EditableLabelTextBackColor;
         public Color ProjectViewBackColor;
         public Color StripBackColor;
         public Color StripCursorSelectedBackColor;
@@ -39,6 +40,7 @@ namespace Obi
             settings.BlockUnusedBackColor = SystemColors.ControlDark;
             settings.BlockUnusedForeColor = SystemColors.ControlText;
             settings.ContentViewBackColor = SystemColors.AppWorkspace;
+            settings.EditableLabelTextBackColor = SystemColors.Window;
             settings.ProjectViewBackColor = SystemColors.Control;
             settings.StripBackColor = SystemColors.Control;
             settings.StripCursorSelectedBackColor = SystemColors.Highlight;

@@ -27,7 +27,7 @@ namespace Obi.ProjectView
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
-        
+
 
         /// <summary>
         /// Create a new project view with no project yet.
@@ -68,7 +68,7 @@ namespace Obi.ProjectView
                 ObiNode parent = mContentView.Selection.ParentForNewNode(node);
                 AddUnusedAndExecute(new Commands.Node.AddEmptyNode(this, node, parent, mContentView.Selection.IndexForNewNode(node)),
                     node, parent);
-                            }
+            }
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Obi.ProjectView
                 selected = (SectionNode)mContentView.Selection.Node;
             else
                 selected = (SectionNode)mContentView.Selection.Node.ParentAs<SectionNode>();
-            
+
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
                 SectionNode child = selected.SectionChild(i);
@@ -191,11 +191,11 @@ namespace Obi.ProjectView
         public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
-        public bool CanCopy { get { return mPresentation != null && ( CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio ) && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyAudio { get { return mContentView.CanCopyAudio && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopySection { get { return mTOCView.CanCopySection && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyStrip { get { return mContentView.CanCopyStrip && !TransportBar.IsRecorderActive ; } }
-        public bool CanCopyBlock { get { return mContentView.CanCopyBlock && !TransportBar.IsRecorderActive ; } }
+        public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
+        public bool CanCopyAudio { get { return mContentView.CanCopyAudio && !TransportBar.IsRecorderActive; } }
+        public bool CanCopySection { get { return mTOCView.CanCopySection && !TransportBar.IsRecorderActive; } }
+        public bool CanCopyStrip { get { return mContentView.CanCopyStrip && !TransportBar.IsRecorderActive; } }
+        public bool CanCopyBlock { get { return mContentView.CanCopyBlock && !TransportBar.IsRecorderActive; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
         public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive; } }
@@ -203,18 +203,18 @@ namespace Obi.ProjectView
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
-        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null && !TransportBar.IsRecorderActive ; } }
-        public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive ; } }
-        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive ; } }
+        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null && !TransportBar.IsRecorderActive; } }
+        public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
+        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
         public bool CanNavigatePrevPage { get { return mTransportBar.CanNavigatePrevPage; } }
         public bool CanNavigatePrevPhrase { get { return mTransportBar.CanNavigatePrevPhrase; } }
         public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
-        public bool CanPaste { get { return mPresentation != null &&  mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive ; } }
-        public bool CanPasteBefore { get { return mPresentation != null  && mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive ; } }
-        public bool CanPasteInside { get { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive ; } }
+        public bool CanPaste { get { return mPresentation != null && mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive; } }
+        public bool CanPasteBefore { get { return mPresentation != null && mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive; } }
+        public bool CanPasteInside { get { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -226,17 +226,17 @@ namespace Obi.ProjectView
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mContentView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
-        public bool CanRenameSection { get { return Selection != null  && (CanRenameStrip || mTOCView.CanRenameSection) ; } }
-        public bool CanRenameStrip { get { return Selection != null  && ( mContentView.CanRenameStrip ); } }
+        public bool CanRenameSection { get { return Selection != null && (CanRenameStrip || mTOCView.CanRenameSection); } }
+        public bool CanRenameStrip { get { return Selection != null && (mContentView.CanRenameStrip); } }
         public bool CanRewind { get { return mTransportBar.CanRewind; } }
         public bool CanSetBlockUsedStatus { get { return mContentView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetStripUsedStatus { get { return mContentView.CanSetStripUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
-        public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } } 
-        public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive ; } }
+        public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } }
+        public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
-        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive ; } }
+        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive; } }
 
         public bool CanMarkPhrase
         {
@@ -249,7 +249,7 @@ namespace Obi.ProjectView
                     mTransportBar.CurrentState == TransportBar.State.Paused ||
                     (node != null && (node.NodeKind != mMarkRole || node.CustomClass != mMarkCustomRole));
             }
-        }        
+        }
 
         /// <summary>
         /// Contents of the clipboard
@@ -399,11 +399,11 @@ namespace Obi.ProjectView
             {
                 if (mSelection != null && mSelection.Control is TOCView)
                 {
-if ( TransportBar.IsPlayerActive )
-    Selection = new NodeSelection(mContentView.PlaybackPhrase , mContentView);
-    else
-    Selection = new NodeSelection(mSelection.Node, mContentView);                
-                                    }
+                    if (TransportBar.IsPlayerActive)
+                        Selection = new NodeSelection(mContentView.PlaybackPhrase, mContentView);
+                    else
+                        Selection = new NodeSelection(mSelection.Node, mContentView);
+                }
                 mContentView.Focus();
             }
         }
@@ -469,7 +469,7 @@ if ( TransportBar.IsPlayerActive )
                 if (value)
                 {
                     mTOCSplitter.Panel1Collapsed = false;
-                                        mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
+                    mMetadataSplitter.Panel1Collapsed = !TOCViewVisible;
                 }
                 else if (!value && !TOCViewVisible) mTOCSplitter.Panel1Collapsed = true;
                 mMetadataSplitter.Panel2Collapsed = !value;
@@ -726,11 +726,11 @@ if ( TransportBar.IsPlayerActive )
             if (CanSplitStrip)
             {
                 SectionNode OriginalSectionNode = null;
-                if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode =mSelection.Node.ParentAs <SectionNode> ()  ;
+                if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
                 mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
 
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
-                            }
+            }
         }
 
         /// <summary>
@@ -983,12 +983,12 @@ if ( TransportBar.IsPlayerActive )
                 Dialogs.ImportFileSplitSize PhraseSizeDialog = new Obi.Dialogs.ImportFileSplitSize();
                 PhraseSizeDialog.ShowDialog();
 
-                if (PhraseSizeDialog.MaxPhraseDuration> 0  )
+                if (PhraseSizeDialog.MaxPhraseDuration > 0)
                 {
                     BackgroundWorker worker = new BackgroundWorker();
                     worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
-                        CreatePhrasesForFiles(phrases, paths ,PhraseSizeDialog.MaxPhraseDuration );
+                        CreatePhrasesForFiles(phrases, paths, PhraseSizeDialog.MaxPhraseDuration);
                     });
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
                         delegate(object sender, RunWorkerCompletedEventArgs e)
@@ -1014,9 +1014,9 @@ if ( TransportBar.IsPlayerActive )
             return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : new string[0];
         }
 
-        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths,double  Duration)
+        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths, double Duration)
         {
-            foreach (string path in paths )
+            foreach (string path in paths)
             {
                 List<PhraseNode> PhraseList = mPresentation.CreatePhraseNodeList(path, Duration);
                 foreach (PhraseNode p in PhraseList)
@@ -1051,14 +1051,14 @@ if ( TransportBar.IsPlayerActive )
 
         public void SplitPhrase()
         {
-                        if (CanSplitPhrase) 
+            if (CanSplitPhrase)
             {
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-                                            mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
-                                            if (ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume( mSelection.Node);
+                mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
+                if (ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
-            
+
         }
 
         /// <summary>
@@ -1126,9 +1126,9 @@ if ( TransportBar.IsPlayerActive )
 
         public void ToggleEmptyNodeTo_DoMark()
         {
-            if ( Selection != null &&  Selection.Node is EmptyNode)
+            if (Selection != null && Selection.Node is EmptyNode)
             {
-                                EmptyNode node = (EmptyNode)Selection.Node;
+                EmptyNode node = (EmptyNode)Selection.Node;
                 Commands.Node.ToggleNodeTo_Do command = new Commands.Node.ToggleNodeTo_Do(this, node);
                 Presentation.getUndoRedoManager().execute(command);
             }
@@ -1259,7 +1259,7 @@ if ( TransportBar.IsPlayerActive )
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
                     TransportBar.SelectionChangedPlaybackEnabled = true;
-                                                        }
+                }
             }// check for phrase node ends
             else
                 System.Media.SystemSounds.Beep.Play();
@@ -1284,13 +1284,13 @@ if ( TransportBar.IsPlayerActive )
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-                        return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
-                (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
-                (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView() ) ||
-                                (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
-                                                (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
-                                                (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) || 
-                base.ProcessCmdKey(ref msg, key);
+            return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
+    (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
+    (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView()) ||
+                    (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
+                                    (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
+                                    (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) ||
+    base.ProcessCmdKey(ref msg, key);
         }
 
         private bool SelectViewsInCycle(bool clockwise)
@@ -1342,32 +1342,32 @@ if ( TransportBar.IsPlayerActive )
             }
         }
 
-        private int  FocusNextView(List <Control> ViewList , int FocussedViewIndex)
+        private int FocusNextView(List<Control> ViewList, int FocussedViewIndex)
         {
-            int  Index = FocussedViewIndex ;
-                            for ( int i = 1 ; i <=  ViewList.Count ; i++ )
-                            {
-                                                                    Index = FocussedViewIndex + i;
-                                    if (Index >= ViewList.Count)
-                                        Index = Index - ViewList.Count;
-                                
-                                if (ViewList[Index].CanFocus)
-                                {
-                                    ViewList[Index].Focus();
-                                                                        return Index;
-                                }
+            int Index = FocussedViewIndex;
+            for (int i = 1; i <= ViewList.Count; i++)
+            {
+                Index = FocussedViewIndex + i;
+                if (Index >= ViewList.Count)
+                    Index = Index - ViewList.Count;
+
+                if (ViewList[Index].CanFocus)
+                {
+                    ViewList[Index].Focus();
+                    return Index;
+                }
             }
             return -1;
         }
 
 
-        private int  FocusPreviousView(List<Control> ViewList, int FocussedViewIndex)
+        private int FocusPreviousView(List<Control> ViewList, int FocussedViewIndex)
         {
             int Index = FocussedViewIndex;
-            
+
             for (int i = 1; i <= ViewList.Count; i++)
             {
-                                Index = FocussedViewIndex - i;
+                Index = FocussedViewIndex - i;
 
                 if (Index < 0)
                     Index = ViewList.Count + Index;
@@ -1378,7 +1378,7 @@ if ( TransportBar.IsPlayerActive )
                     return Index;
                 }
             }
-            return  -1 ;
+            return -1;
         }
 
 
@@ -1444,7 +1444,7 @@ if ( TransportBar.IsPlayerActive )
             mTabbingTimer.Stop();
         }
 
-        private void  mPanelInfoLabelButton_Leave(object sender, EventArgs e)
+        private void mPanelInfoLabelButton_Leave(object sender, EventArgs e)
         {
             mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             mPanelInfoLabelButton.Size = new Size(1, 1);
@@ -1463,15 +1463,15 @@ if ( TransportBar.IsPlayerActive )
                     return false;
                 else // if neither of view has focus and TOC is not visible, focus on contents view.
                     return true;
-           }
-                    }
+            }
+        }
 
 
-        public bool  ToggleFocusBTWTOCViewAndContentsView ()
+        public bool ToggleFocusBTWTOCViewAndContentsView()
         {
-            if (mTOCView.ContainsFocus) 
+            if (mTOCView.ContainsFocus)
                 FocusOnContentView();
-            else if (mContentView.ContainsFocus) 
+            else if (mContentView.ContainsFocus)
                 FocusOnTOCView();
             else if (mTOCView.Visible) // if neither of views has focus then check if toc is visible, if visible  and focus on it
                 FocusOnTOCView();
@@ -1561,10 +1561,14 @@ if ( TransportBar.IsPlayerActive )
         [DefaultValue(1.0)]
         public double ZoomFactor
         {
+            get { return ObiForm == null ? 1.0 : ObiForm.ZoomFactor; }
             set
             {
-                mTOCView.ZoomFactor =
-                mContentView.ZoomFactor = value;
+                if (value > 0.0)
+                {
+                    mTOCView.ZoomFactor =
+                    mContentView.ZoomFactor = value;
+                }
             }
         }
     }

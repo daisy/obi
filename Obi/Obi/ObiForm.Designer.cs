@@ -183,6 +183,7 @@ namespace Obi
             this.mHelpToolStripMenuItem});
             resources.ApplyResources(this.mMenuStrip, "mMenuStrip");
             this.mMenuStrip.Name = "mMenuStrip";
+            this.mMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // mFileToolStripMenuItem
             // 
@@ -745,8 +746,8 @@ namespace Obi
             // 
             // mAddRoleToolStripTextBox
             // 
-            this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
+            this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             this.mAddRoleToolStripTextBox.Click += new System.EventHandler(this.mAddRoleToolStripTextBox_Click);
             // 

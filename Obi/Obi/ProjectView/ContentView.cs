@@ -398,9 +398,13 @@ namespace Obi.ProjectView
         /// </summary>
         public double ZoomFactor
         {
+            get { return mView == null ? 1.0 : mView.ZoomFactor; }
             set
             {
-                // this is a stub so far
+                if (value > 0.0)
+                {
+                    foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
+                }
             }
         }
 
