@@ -47,7 +47,6 @@ namespace Obi.ProjectView
             ZoomFactor = mParentView.ZoomFactor;
             UpdateColors();
             SetAccessibleName();
-            AddCursor(0);
         }
 
 
@@ -58,9 +57,8 @@ namespace Obi.ProjectView
         {
             Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
             block.Margin = new Padding(0, 0, 0, 0);
-            mBlocksPanel.Controls.Add(block);
-            mBlocksPanel.Controls.SetChildIndex(block, 1 + node.Index * 2);
-            AddCursor(2 * (1 + node.Index));
+            mBlockLayout.Controls.Add(block);
+            mBlockLayout.Controls.SetChildIndex(block, 1 + node.Index * 2);
             UpdateSize();
             return block;
         }
@@ -72,11 +70,11 @@ namespace Obi.ProjectView
         /// </summary>
         public Block BlockAfter(ISelectableInContentView item)
         {
-            int count = mBlocksPanel.Controls.Count;
-            int index = item is Strip ? 1 :
-                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
-                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 : count;
-            return index < count ? (Block)mBlocksPanel.Controls[index] : null;
+            int count = mBlockLayout.Controls.Count;
+            int index = item is Strip ? 0 :
+                        //item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
+                        item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
+            return index < count ? (Block)mBlockLayout.Controls[index] : null;
         }
 
         /// <summary>
@@ -85,10 +83,10 @@ namespace Obi.ProjectView
         /// </summary>
         public Block BlockBefore(ISelectableInContentView item)
         {
-            int index = item is Strip ? mBlocksPanel.Controls.Count - 2 :
-                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 1 :
-                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) - 2 : 0;
-            return index > 0 ? (Block)mBlocksPanel.Controls[index] : null;
+            int index = item is Strip ? mBlockLayout.Controls.Count - 1 :
+                        // item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) - 1 :
+                        item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
+            return index > 0 ? (Block)mBlockLayout.Controls[index] : null;
         }
 
         /// <summary>
@@ -96,7 +94,7 @@ namespace Obi.ProjectView
         /// </summary>
         public Block FindBlock(EmptyNode node)
         {
-            foreach (Control c in mBlocksPanel.Controls)
+            foreach (Control c in mBlockLayout.Controls)
             {
                 // this needs to be updated for container blocks
                 if (c is Block && ((Block)c).Node == node) return (Block)c;
@@ -105,19 +103,11 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Find the strip cursor for the given selection.
-        /// </summary>
-        public StripCursor FindStripCursor(StripIndexSelection selection)
-        {
-            return (StripCursor)mBlocksPanel.Controls[selection.Index * 2];
-        }
-
-        /// <summary>
         /// Return the first block in the strip, or null if empty.
         /// </summary>
         public Block FirstBlock
         {
-            get { return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[1] : null; }
+            get { return mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[0] as Block : null; }
         }
 
         /// <summary>
@@ -164,7 +154,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mBlocksPanel.Controls.Count > 1 ? (Block)mBlocksPanel.Controls[mBlocksPanel.Controls.Count - 2] :
+                return mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] as Block :
                     null;
             }
         }
@@ -176,8 +166,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                int last = mBlocksPanel.Controls.Count - 2; // index of the last block (if any; last control is a cursor)
-                return last >= 0 ? ((Block)mBlocksPanel.Controls[last]).LastTabIndex : TabIndex;
+                int last = mBlockLayout.Controls.Count - 1;
+                return last >= 0 ? ((Block)mBlockLayout.Controls[last]).LastTabIndex : TabIndex;
             }
         }
 
@@ -204,9 +194,7 @@ namespace Obi.ProjectView
             Block block = FindBlock(node);
             if (block != null)
             {
-                int index = mBlocksPanel.Controls.IndexOf(block);
-                mBlocksPanel.Controls.RemoveAt(index + 1);         // remove the cursor after the block
-                mBlocksPanel.Controls.RemoveAt(index);             // and the block itself
+                mBlockLayout.Controls.Remove(block);             // and the block itself
                 UpdateSize();
             }
         }
@@ -237,7 +225,7 @@ namespace Obi.ProjectView
             {
                 if (value is StripIndexSelection)
                 {
-                    ((StripCursor)mBlocksPanel.Controls[((StripIndexSelection)value).Index * 2]).Highlighted = true;
+                    // ((StripCursor)mBlockLayout.Controls[((StripIndexSelection)value).Index * 2]).Highlighted = true;
                 }
                 else
                 {
@@ -265,31 +253,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Get the index of the cursor to select after the given item (cursor, block or strip.)
-        /// In the case of a strip this is the first cursor, and in the case of the last cursor position
-        /// return -1.
-        /// </summary>
-        public int StripCursorAfter(ISelectableInContentView item)
-        {
-            int index = item is Strip ? 0 :
-                        item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 2 :
-                        item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 : -2;
-            return index < mBlocksPanel.Controls.Count ? index / 2 : -1;
-        }
-
-        /// <summary>
-        /// Get the index of the cursor to select before the given item (cursor, block or strip.)
-        /// In the case of a strip this is the last cursor, and in the case of the first cursor position
-        /// return a negative value.
-        /// </summary>
-        public int StripCursorBefore(ISelectableInContentView item)
-        {
-            return (item is Strip ? mBlocksPanel.Controls.Count - 1 :
-                    item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) - 2 :
-                    item is Block ? mBlocksPanel.Controls.IndexOf((Control)item) - 1 : -2) / 2;
-        }
-
-        /// <summary>
         /// Clear the selection in the strip from its contents.
         /// </summary>
         public void UnselectInStrip()
@@ -312,7 +275,7 @@ namespace Obi.ProjectView
             {
                 BackColor =
                 mLabel.BackColor =
-                mBlocksPanel.BackColor =
+                mBlockLayout.BackColor =
                     mHighlighted ? settings.StripSelectedBackColor :
                     mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
                 mLabel.ForeColor =
@@ -331,7 +294,7 @@ namespace Obi.ProjectView
         {
             TabIndex = index;
             ++index;
-            foreach (Control c in mBlocksPanel.Controls)
+            foreach (Control c in mBlockLayout.Controls)
             {
                 if (c is Block) index = ((Block)c).UpdateTabIndex(index);
             }
@@ -385,28 +348,6 @@ namespace Obi.ProjectView
 
         #endregion
 
-        // Add a cursor at the end of the strip
-        private void AddCursor(int index)
-        {
-            StripCursor cursor = new StripCursor(this);
-            cursor.BackColor = Color.SkyBlue;
-            mBlocksPanel.Controls.Add(cursor);
-            mBlocksPanel.Controls.SetChildIndex(cursor, index);
-            cursor.Click += new EventHandler(delegate(object sender, EventArgs e)
-                {
-                    if (!cursor.Highlighted)
-                    {
-                        mParentView.SelectionFromStrip = new StripIndexSelection(mNode, mParentView,
-                            mBlocksPanel.Controls.IndexOf((Control)cursor) / 2);
-                    }
-                    else
-                    {
-                        mParentView.Selection = null;
-                    }
-                }
-            );
-        }
-
         // Add content view label to the accessible name of the strip when entering.
         private void AddContentsViewLabel()
         {
@@ -444,13 +385,12 @@ namespace Obi.ProjectView
         }
 
         // Resize the strip according to the editable label, which size can change.
-        // TODO since there are really two possible heights, we should cache these values.
         private void Label_SizeChanged(object sender, EventArgs e)
         {
-            mBlocksPanel.Location = new Point(mBlocksPanel.Location.X,
+            mBlockLayout.Location = new Point(mBlockLayout.Location.X,
                 mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
             Size = new Size(Width,
-                mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom);
+                mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom);
         }
 
         // Set verbose accessible name for the strip 
@@ -507,31 +447,32 @@ namespace Obi.ProjectView
             {
                 MinimumSize = new Size(ParentView.Width, MinimumSize.Height);
                 Width = ParentView.Width;
-                mBlocksPanel.AutoSize = true;
-                mBlocksPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                mBlocksPanel.WrapContents = true;
-                Height = mBlocksPanel.Location.Y + mBlocksPanel.Height + mBlocksPanel.Margin.Bottom;
+                mBlockLayout.AutoSize = true;
+                mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                mBlockLayout.WrapContents = true;
+                Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom;
             }
             else
             {
-                mBlocksPanel.AutoSize = false;
-                mBlocksPanel.WrapContents = false;
+                mBlockLayout.AutoSize = false;
+                mBlockLayout.WrapContents = false;
                 // Compute the minimum width of the block panel
                 int minBlockPanelWidth = 0;
-                foreach (Control c in mBlocksPanel.Controls) minBlockPanelWidth += c.Width;
-                MinimumSize = new Size(minBlockPanelWidth + mBlocksPanel.Margin.Left + mBlocksPanel.Margin.Right, MinimumSize.Height);
+                foreach (Control c in mBlockLayout.Controls) minBlockPanelWidth += c.Width;
+                MinimumSize = new Size(minBlockPanelWidth + mBlockLayout.Margin.Left + mBlockLayout.Margin.Right,
+                    MinimumSize.Height);
             }
         }
 
         public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
         {
             mLabelUpdateThread.WaitOne();
-            int BlocksCount = mBlocksPanel.Controls.Count;
+            int BlocksCount = mBlockLayout.Controls.Count;
             Control BlockControl = null;
 
             for (int i = 0; i < BlocksCount; i++)
             {
-                BlockControl = mBlocksPanel.Controls[i];
+                BlockControl = mBlockLayout.Controls[i];
                 if (BlockControl is Block)
                 {
                     ((Block)BlockControl).UpdateLabelsText();

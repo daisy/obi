@@ -287,12 +287,6 @@
     <Compile Include="ProjectView\MetadataPanel.Designer.cs">
       <DependentUpon>MetadataPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectView\StripCursor.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectView\StripCursor.Designer.cs">
-      <DependentUpon>StripCursor.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProjectView\EditableLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -524,10 +518,6 @@
     <EmbeddedResource Include="ProjectView\Strip.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\StripCursor.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StripCursor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\StripsView.resx">
       <SubType>Designer</SubType>

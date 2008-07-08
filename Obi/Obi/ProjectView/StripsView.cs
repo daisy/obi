@@ -479,8 +479,8 @@ namespace Obi.ProjectView
         // Find the selectable item for this selection object
         private ISelectableInContentView FindSelectable(NodeSelection selection)
         {
-            return selection is StripIndexSelection ? (ISelectableInContentView)
-                    FindStrip((SectionNode)selection.Node).FindStripCursor((StripIndexSelection)selection) :
+            return //selection is StripIndexSelection ? (ISelectableInContentView)
+                    //FindStrip((SectionNode)selection.Node).FindStripCursor((StripIndexSelection)selection) :
                 selection == null ? null :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip((SectionNode)selection.Node) :
                 selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) : null;
@@ -680,7 +680,7 @@ namespace Obi.ProjectView
         private Strip StripFor(ISelectableInContentView item)
         {
             return item is Strip ? (Strip)item :
-                   item is StripCursor ? ((StripCursor)item).Strip :
+                   //item is StripCursor ? ((StripCursor)item).Strip :
                    item is Block ? ((Block)item).Strip : null;
         }
 
@@ -727,7 +727,7 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorBefore(item); });
+            return false; // SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorBefore(item); });
         }
 
         private bool SelectFollowingBlock()
@@ -737,7 +737,7 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
+            return false; // SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
         }
 
         private bool SelectLastBlockInStrip()
