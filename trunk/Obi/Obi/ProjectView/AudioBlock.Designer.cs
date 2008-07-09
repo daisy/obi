@@ -35,10 +35,10 @@ namespace Obi.ProjectView
             // 
             this.mWaveform.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.mWaveform.Location = new System.Drawing.Point(3, 3);
+            this.mWaveform.Location = new System.Drawing.Point(-1, 22);
             this.mWaveform.Name = "mWaveform";
             this.mWaveform.Selection = null;
-            this.mWaveform.Size = new System.Drawing.Size(98, 98);
+            this.mWaveform.Size = new System.Drawing.Size(106, 83);
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
             this.mWaveform.DoubleClick += new System.EventHandler(this.mWaveform_DoubleClick);
@@ -53,8 +53,8 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.mWaveform);
-            this.DoubleBuffered = true;
             this.Name = "AudioBlock";
+            this.Size = new System.Drawing.Size(104, 104);
             this.Controls.SetChildIndex(this.mWaveform, 0);
             this.Controls.SetChildIndex(this.mLabel, 0);
             this.ResumeLayout(false);

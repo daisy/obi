@@ -38,8 +38,9 @@ namespace Obi.ProjectView
             this.mLabel.Location = new System.Drawing.Point(3, 3);
             this.mLabel.Margin = new System.Windows.Forms.Padding(3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(0, 13);
+            this.mLabel.Size = new System.Drawing.Size(33, 13);
             this.mLabel.TabIndex = 2;
+            this.mLabel.Text = "Label";
             this.mLabel.Click += new System.EventHandler(this.Label_Click);
             // 
             // Block

@@ -55,7 +55,6 @@ namespace Obi.ProjectView
         public Block AddBlockForNode(EmptyNode node)
         {
             Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
-            block.Margin = new Padding(0, 0, 0, 0);
             mBlockLayout.Controls.Add(block);
             mBlockLayout.Controls.SetChildIndex(block, 1 + node.Index * 2);
             UpdateSize();
@@ -438,7 +437,8 @@ namespace Obi.ProjectView
                 mBlockLayout.WrapContents = false;
                 // Compute the minimum width of the block panel
                 int minBlockPanelWidth = 0;
-                foreach (Control c in mBlockLayout.Controls) minBlockPanelWidth += c.Width;
+                foreach (Control c in mBlockLayout.Controls) minBlockPanelWidth += c.Width + c.Margin.Horizontal;
+                mBlockLayout.Size = new Size(minBlockPanelWidth, mBlockLayout.Height);
                 MinimumSize = new Size(minBlockPanelWidth + mBlockLayout.Margin.Horizontal, MinimumSize.Height);
             }
         }
@@ -458,6 +458,11 @@ namespace Obi.ProjectView
                 }
             }// end loop
             mLabelUpdateThread.ReleaseMutex();
+        }
+
+        private void mBlockLayout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
