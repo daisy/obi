@@ -53,7 +53,7 @@ namespace Obi.Dialogs
             // m_txtDuration
             // 
             this.m_txtDuration.AccessibleName = "Project Duration:";
-            this.m_txtDuration.Location = new System.Drawing.Point(100, 50);
+            this.m_txtDuration.Location = new System.Drawing.Point(118, 47);
             this.m_txtDuration.Name = "m_txtDuration";
             this.m_txtDuration.ReadOnly = true;
             this.m_txtDuration.Size = new System.Drawing.Size(100, 20);
@@ -71,7 +71,7 @@ namespace Obi.Dialogs
             // m_txtSectionsCount
             // 
             this.m_txtSectionsCount.AccessibleName = "Number of sections:";
-            this.m_txtSectionsCount.Location = new System.Drawing.Point(100, 80);
+            this.m_txtSectionsCount.Location = new System.Drawing.Point(118, 78);
             this.m_txtSectionsCount.Name = "m_txtSectionsCount";
             this.m_txtSectionsCount.ReadOnly = true;
             this.m_txtSectionsCount.Size = new System.Drawing.Size(100, 20);
@@ -89,7 +89,7 @@ namespace Obi.Dialogs
             // m_txtPhraseCount
             // 
             this.m_txtPhraseCount.AccessibleName = "Total number of phrases:";
-            this.m_txtPhraseCount.Location = new System.Drawing.Point(100, 110);
+            this.m_txtPhraseCount.Location = new System.Drawing.Point(118, 110);
             this.m_txtPhraseCount.Name = "m_txtPhraseCount";
             this.m_txtPhraseCount.ReadOnly = true;
             this.m_txtPhraseCount.Size = new System.Drawing.Size(100, 20);
@@ -107,7 +107,7 @@ namespace Obi.Dialogs
             // m_txtPageCount
             // 
             this.m_txtPageCount.AccessibleName = "Total number of pages:";
-            this.m_txtPageCount.Location = new System.Drawing.Point(100, 140);
+            this.m_txtPageCount.Location = new System.Drawing.Point(118, 141);
             this.m_txtPageCount.Name = "m_txtPageCount";
             this.m_txtPageCount.ReadOnly = true;
             this.m_txtPageCount.Size = new System.Drawing.Size(100, 20);
@@ -116,7 +116,7 @@ namespace Obi.Dialogs
             // m_btnOk
             // 
             this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btnOk.Location = new System.Drawing.Point(205, 200);
+            this.m_btnOk.Location = new System.Drawing.Point(145, 197);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 10;
@@ -136,7 +136,7 @@ namespace Obi.Dialogs
             // m_txtTitle
             // 
             this.m_txtTitle.AccessibleName = "Title:";
-            this.m_txtTitle.Location = new System.Drawing.Point(100, 10);
+            this.m_txtTitle.Location = new System.Drawing.Point(118, 10);
             this.m_txtTitle.Name = "m_txtTitle";
             this.m_txtTitle.Size = new System.Drawing.Size(100, 20);
             this.m_txtTitle.TabIndex = 1;
@@ -146,7 +146,8 @@ namespace Obi.Dialogs
             this.AcceptButton = this.m_btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
+            this.CancelButton = this.m_btnOk;
+            this.ClientSize = new System.Drawing.Size(267, 260);
             this.Controls.Add(this.m_txtTitle);
             this.Controls.Add(this.m_lblTitle);
             this.Controls.Add(this.m_btnOk);
