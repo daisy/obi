@@ -12,7 +12,6 @@ namespace Obi.ProjectView
     public partial class Strip : UserControl, ISearchable, ISelectableInContentViewWithColors
     {
         private int mBaseHeight;           // base size (at zoom factor 1)
-        private bool mEntering;            // entering flag
         private Mutex mLabelUpdateThread;  // thread to update labels
         private SectionNode mNode;         // the section node for this strip
         private ContentView mParentView;   // parent strip view
@@ -31,7 +30,6 @@ namespace Obi.ProjectView
             mNode = null;
             Highlighted = false;
             mWrap = false;
-            mEntering = false;
             mLabelUpdateThread = new Mutex();
         }
 
@@ -283,9 +281,6 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
-
-                mLabel.BackColor = Color.Red;
-                mBlockLayout.BackColor = Color.Green;
             }
         }
 
@@ -411,30 +406,9 @@ namespace Obi.ProjectView
                         string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount));
                 }
 
-        // Toggle selection when clicking
-        private void Strip_Click(object sender, EventArgs e)
-        {
-            ToggleSelection();
-        }
-
-        // Toggle selection
-        private void ToggleSelection()
-        {
-            if (mHighlighted && !mEntering)
-            {
-                mParentView.SelectionFromStrip = null;
-            }
-            else
-            {
-                mParentView.SelectedNode = mNode;
-            }
-            mEntering = false;
-        }
-
         // Select when tabbed into
         private void Strip_Enter(object sender, EventArgs e)
         {
-            mEntering = true;
             AddContentsViewLabel();
             if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
         }
