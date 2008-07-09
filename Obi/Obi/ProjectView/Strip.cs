@@ -26,6 +26,7 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
+            mLabel.Editable = false;
             mBaseHeight = Height;
             mNode = null;
             Highlighted = false;
@@ -282,6 +283,9 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
+
+                mLabel.BackColor = Color.Red;
+                mBlockLayout.BackColor = Color.Green;
             }
         }
 
@@ -360,12 +364,14 @@ namespace Obi.ProjectView
             }
         }
 
-        // Select the label when it is clicked (i.e. made editable) by the user.
         private void Label_EditableChanged(object sender, EventArgs e)
         {
-            mParentView.SelectionFromStrip = mLabel.Editable ?
-                new TextSelection(mNode, mParentView, mLabel.Label) :
-                new NodeSelection(mNode, mParentView);
+            if (mParentView != null)
+            {
+                mParentView.SelectionFromStrip = mLabel.Editable ?
+                    new TextSelection(mNode, mParentView, mLabel.Label) :
+                    new NodeSelection(mNode, mParentView);
+            }
         }
 
         // Update the label of the node after the user edited it.
@@ -387,10 +393,10 @@ namespace Obi.ProjectView
         // Resize the strip according to the editable label, which size can change.
         private void Label_SizeChanged(object sender, EventArgs e)
         {
+            int y = mBlockLayout.Location.Y;
             mBlockLayout.Location = new Point(mBlockLayout.Location.X,
-                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom);
-            Size = new Size(Width,
-                mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom);
+                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom + mBlockLayout.Margin.Top);
+            Size = new Size(Width, Height - y + mBlockLayout.Location.Y);
         }
 
         // Set verbose accessible name for the strip 
@@ -459,8 +465,7 @@ namespace Obi.ProjectView
                 // Compute the minimum width of the block panel
                 int minBlockPanelWidth = 0;
                 foreach (Control c in mBlockLayout.Controls) minBlockPanelWidth += c.Width;
-                MinimumSize = new Size(minBlockPanelWidth + mBlockLayout.Margin.Left + mBlockLayout.Margin.Right,
-                    MinimumSize.Height);
+                MinimumSize = new Size(minBlockPanelWidth + mBlockLayout.Margin.Horizontal, MinimumSize.Height);
             }
         }
 

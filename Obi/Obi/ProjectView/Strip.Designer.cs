@@ -28,46 +28,48 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mLabel = new Obi.ProjectView.EditableLabel();
             this.mBlockLayout = new Obi.ProjectView.BlockLayout();
+            this.mLabel = new Obi.ProjectView.EditableLabel();
             this.SuspendLayout();
+            // 
+            // mBlockLayout
+            // 
+            this.mBlockLayout.BackColor = System.Drawing.Color.Cyan;
+            this.mBlockLayout.Location = new System.Drawing.Point(3, 81);
+            this.mBlockLayout.Name = "mBlockLayout";
+            this.mBlockLayout.Size = new System.Drawing.Size(303, 102);
+            this.mBlockLayout.TabIndex = 1;
             // 
             // mLabel
             // 
-            this.mLabel.BackColor = System.Drawing.Color.Thistle;
-            this.mLabel.Editable = false;
-            this.mLabel.Label = "label1";
-            this.mLabel.Location = new System.Drawing.Point(4, 3);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.mLabel.BackColor = System.Drawing.Color.DodgerBlue;
+            this.mLabel.Editable = true;
+            this.mLabel.Label = "Untitled section";
+            this.mLabel.Location = new System.Drawing.Point(3, 3);
+            this.mLabel.MinimumSize = new System.Drawing.Size(184, 0);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(303, 75);
+            this.mLabel.Size = new System.Drawing.Size(184, 72);
             this.mLabel.TabIndex = 0;
             this.mLabel.Click += new System.EventHandler(this.Strip_Click);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
             this.mLabel.EditableChanged += new System.EventHandler(this.Label_EditableChanged);
-            // 
-            // mBlockLayout
-            // 
-            this.mBlockLayout.Location = new System.Drawing.Point(6, 81);
-            this.mBlockLayout.Name = "mBlockLayout";
-            this.mBlockLayout.Size = new System.Drawing.Size(301, 102);
-            this.mBlockLayout.TabIndex = 1;
+            this.mLabel.SizeChanged += new System.EventHandler(this.Label_SizeChanged);
             // 
             // Strip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.Yellow;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mBlockLayout);
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
             this.Name = "Strip";
-            this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(313, 189);
+            this.Size = new System.Drawing.Size(309, 187);
             this.Click += new System.EventHandler(this.Strip_Click);
             this.Enter += new System.EventHandler(this.Strip_Enter);
+            this.SizeChanged += new System.EventHandler(this.Strip_SizeChanged);
             this.ResumeLayout(false);
 
         }
