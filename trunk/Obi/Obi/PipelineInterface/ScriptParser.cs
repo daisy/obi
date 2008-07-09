@@ -90,7 +90,7 @@ namespace PipelineInterface
             PipelineProcess.StartInfo.CreateNoWindow = true;
             PipelineProcess.StartInfo.ErrorDialog = true;
             PipelineProcess.StartInfo.UseShellExecute = false;
-            PipelineProcess.StartInfo.FileName = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight\\Pipeline.bat";
+            PipelineProcess.StartInfo.FileName = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight\\pipeline-lite.bat";
             //PipelineProcess.StartInfo.Arguments = m_ScriptFilePath + " --\"input=c:\\Export\\obi_dtb.opf\" --\"output=c:\\Export\\Output\""  ;
             PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + m_ScriptFilePath + "\" -p" + Param;
             PipelineProcess.StartInfo.WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight";

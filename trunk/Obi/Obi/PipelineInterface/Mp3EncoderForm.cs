@@ -61,7 +61,7 @@ namespace PipelineInterface
         {
             foreach (ScriptParameter p in M_ScriptParser.ParameterList)
             {
-                if (p.ParameterDiscriptiveName == "Input file")
+                if (p.ParameterDiscriptiveName == "Input OPF")
                     m_txtInputFile.Tag = p;
                 else if (p.ParameterDiscriptiveName == "Output directory")
                     m_txtOutputDirectory.Tag = p;
