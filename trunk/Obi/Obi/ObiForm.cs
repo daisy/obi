@@ -73,6 +73,7 @@ namespace Obi
             mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;
             mEncodeToMp3toolStripMenuItem.Enabled = mSession.HasProject;
             mValidatorToolStripMenuItem.Enabled = mSession.HasProject;
+            mProjectStatisticstoolStripMenuItem.Enabled = mSession.HasProject;
             mExitToolStripMenuItem.Enabled = true;
         }
 
@@ -1621,6 +1622,15 @@ namespace Obi
         {
             PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm("", Directory.GetParent(mSession.Path).FullName);
             ValidatorDialog.ShowDialog();
+        }
+
+        private void mProjectStatisticstoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.Presentation != null)
+            {
+                Dialogs.ProjectStatistics dialog = new ProjectStatistics(mProjectView);
+                dialog.ShowDialog();
+            }
         }
 
 

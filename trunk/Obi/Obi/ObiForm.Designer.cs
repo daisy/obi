@@ -82,6 +82,7 @@ namespace Obi
             this.mView_ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_NormalSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mProjectStatisticstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -422,7 +423,8 @@ namespace Obi
             this.toolStripSeparator15,
             this.mView_ZoomInMenuItem,
             this.mView_ZoomOutMenuItem,
-            this.mView_NormalSizeMenuItem});
+            this.mView_NormalSizeMenuItem,
+            this.mProjectStatisticstoolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
             // 
@@ -554,6 +556,12 @@ namespace Obi
             this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
             resources.ApplyResources(this.mView_NormalSizeMenuItem, "mView_NormalSizeMenuItem");
             this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.View_NormalSizeMenuItem_Click);
+            // 
+            // mProjectStatisticstoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mProjectStatisticstoolStripMenuItem, "mProjectStatisticstoolStripMenuItem");
+            this.mProjectStatisticstoolStripMenuItem.Name = "mProjectStatisticstoolStripMenuItem";
+            this.mProjectStatisticstoolStripMenuItem.Click += new System.EventHandler(mProjectStatisticstoolStripMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -1090,7 +1098,7 @@ namespace Obi
             // 
             resources.ApplyResources(this.mValidatorToolStripMenuItem, "mValidatorToolStripMenuItem");
             this.mValidatorToolStripMenuItem.Name = "mValidatorToolStripMenuItem";
-            this.mValidatorToolStripMenuItem.Click += new System.EventHandler(mValidatorToolStripMenuItem_Click);
+            this.mValidatorToolStripMenuItem.Click += new System.EventHandler(this.mValidatorToolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1324,6 +1332,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mValidatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mProjectStatisticstoolStripMenuItem;
     }
 }
 
