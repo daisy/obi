@@ -50,7 +50,8 @@ namespace Obi.ProjectView
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(184, 72);
             this.mLabel.TabIndex = 0;
-            this.mLabel.Click += new System.EventHandler(this.Strip_Click);
+            this.mLabel.Click += new System.EventHandler(this.Strip_Enter);
+            this.mLabel.Enter += new System.EventHandler(this.Strip_Enter);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
             this.mLabel.EditableChanged += new System.EventHandler(this.Label_EditableChanged);
             this.mLabel.SizeChanged += new System.EventHandler(this.Label_SizeChanged);
@@ -67,9 +68,7 @@ namespace Obi.ProjectView
             this.DoubleBuffered = true;
             this.Name = "Strip";
             this.Size = new System.Drawing.Size(309, 187);
-            this.Click += new System.EventHandler(this.Strip_Click);
             this.Enter += new System.EventHandler(this.Strip_Enter);
-            this.SizeChanged += new System.EventHandler(this.Strip_SizeChanged);
             this.ResumeLayout(false);
 
         }

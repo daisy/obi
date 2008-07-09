@@ -180,5 +180,8 @@ namespace Obi.ProjectView
         {
             if (Editable) Editable = false;
         }
+
+        private void mLabel_Enter(object sender, EventArgs e) { OnEnter(e); }
+        private void mLabel_Click(object sender, EventArgs e) { OnClick(e); }
     }
 }

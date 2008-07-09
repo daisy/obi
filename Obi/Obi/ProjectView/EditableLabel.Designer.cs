@@ -44,6 +44,8 @@ namespace Obi.ProjectView
             this.mLabel.Size = new System.Drawing.Size(79, 29);
             this.mLabel.TabIndex = 0;
             this.mLabel.Text = "label1";
+            this.mLabel.Click += new System.EventHandler(this.mLabel_Click);
+            this.mLabel.Enter += new System.EventHandler(this.mLabel_Enter);
             // 
             // mTextBox
             // 
