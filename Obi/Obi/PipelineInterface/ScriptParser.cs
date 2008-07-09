@@ -6,7 +6,7 @@ using System.Xml.XPath;
 using System.IO;
 using System.Diagnostics;
 
-namespace PipelineInterface
+namespace Obi.PipelineInterface
 {
     // a common class for manipulating pipeline script files
     // Only this class interacts with physical script files
@@ -104,7 +104,7 @@ namespace PipelineInterface
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
             PipelineProcess.WaitForExit();
-                        System.Windows.Forms.MessageBox.Show("mp3 encoding complete");            
+                        System.Windows.Forms.MessageBox.Show("Task completed");            
         }
 
     }

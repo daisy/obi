@@ -157,6 +157,7 @@ namespace Obi
             this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEncodeToMp3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -746,8 +747,8 @@ namespace Obi
             // 
             // mAddRoleToolStripTextBox
             // 
-            resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
             this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
+            resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             this.mAddRoleToolStripTextBox.Click += new System.EventHandler(this.mAddRoleToolStripTextBox_Click);
             // 
@@ -1062,7 +1063,8 @@ namespace Obi
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preferencesToolStripMenuItem1,
             this.mExportAsDAISYToolStripMenuItem,
-            this.mEncodeToMp3toolStripMenuItem});
+            this.mEncodeToMp3toolStripMenuItem,
+            this.mValidatorToolStripMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
             // 
@@ -1083,6 +1085,12 @@ namespace Obi
             this.mEncodeToMp3toolStripMenuItem.Name = "mEncodeToMp3toolStripMenuItem";
             resources.ApplyResources(this.mEncodeToMp3toolStripMenuItem, "mEncodeToMp3toolStripMenuItem");
             this.mEncodeToMp3toolStripMenuItem.Click += new System.EventHandler(this.mEncodeToMp3toolStripMenuItem_Click);
+            // 
+            // mValidatorToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mValidatorToolStripMenuItem, "mValidatorToolStripMenuItem");
+            this.mValidatorToolStripMenuItem.Name = "mValidatorToolStripMenuItem";
+            this.mValidatorToolStripMenuItem.Click += new System.EventHandler(mValidatorToolStripMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1176,7 +1184,6 @@ namespace Obi
         }
 
         
-
         #endregion
 
         private System.Windows.Forms.MenuStrip mMenuStrip;
@@ -1316,6 +1323,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mValidatorToolStripMenuItem;
     }
 }
 

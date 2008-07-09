@@ -1,4 +1,4 @@
-namespace PipelineInterface
+namespace Obi.PipelineInterface
 {
     partial class Mp3EncoderForm
     {

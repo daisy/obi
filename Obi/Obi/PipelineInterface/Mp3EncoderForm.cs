@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace PipelineInterface
+namespace Obi.PipelineInterface
 {
     public partial class Mp3EncoderForm : Form
     {
