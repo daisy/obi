@@ -614,6 +614,15 @@
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>Normal si&amp;ze</value>
   </data>
+  <data name="mProjectStatisticstoolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Project Statistics</value>
+  </data>
+  <data name="mProjectStatisticstoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mProjectStatisticstoolStripMenuItem.Text" xml:space="preserve">
+    <value>Project Statistics</value>
+  </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
   </data>
@@ -1486,7 +1495,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.32020, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.37523, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2072,6 +2081,12 @@
     <value>mView_NormalSizeMenuItem</value>
   </data>
   <data name="&gt;&gt;mView_NormalSizeMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mProjectStatisticstoolStripMenuItem.Name" xml:space="preserve">
+    <value>mProjectStatisticstoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mProjectStatisticstoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mSectionsToolStripMenuItem.Name" xml:space="preserve">
