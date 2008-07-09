@@ -45,6 +45,11 @@ namespace Obi.PipelineInterface
             }
 
             openFileDialog1.Filter = "DTB 3.0 Source files|*.opf|DTB2.02 Source Files|ncc.html";
+            saveFileDialog1.Filter = "xml file|*.xml ";
+            saveFileDialog1.DefaultExt = ".xml";
+            saveFileDialog1.AddExtension = true;
+            m_txtErrorFilePath.Text = ProjectDirectory + "\\Validator error report.xml";
+
             AssociateParameterObjectToControls();
         }
 
@@ -54,7 +59,9 @@ namespace Obi.PipelineInterface
             {
                 if (p.ParameterDiscriptiveName == "Input OPF")
                     m_txtDTBFilePath.Tag = p;
-            }
+                else if (p.ParameterDiscriptiveName == "Validation Report")
+                    m_txtErrorFilePath.Tag = p;
+                            }
         }
 
 
@@ -69,7 +76,28 @@ namespace Obi.PipelineInterface
 
         private void m_chkReportToFile_CheckedChanged(object sender, EventArgs e)
         {
+            if (m_chkReportToFile.Checked)
+            {
+                m_lblErrorReportFilePath.Enabled = true;
+                m_txtErrorFilePath.Enabled = true;
+                m_btnBrowseErrorFile.Enabled = true;
+                            }
+            else
+            {
+                m_lblErrorReportFilePath.Enabled = false;
+                m_txtErrorFilePath.Enabled = false;
+                m_btnBrowseErrorFile.Enabled = false;
+            }
 
+        }
+
+        private void m_btnBrowseErrorFile_Click(object sender, EventArgs e)
+        {
+            DialogResult result = saveFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                m_txtErrorFilePath.Text = saveFileDialog1.FileName;
+            }
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
@@ -80,10 +108,25 @@ namespace Obi.PipelineInterface
                 return;
             }
 
+            if (m_chkReportToFile.Checked)
+            {
+                if (!File.Exists(m_txtErrorFilePath.Text))
+                {
+                    if (!CreateErrorReportFile(m_txtErrorFilePath.Text))
+                    {
+                        MessageBox.Show("Unable to create validator error report file.", "Error!");
+                        return ;
+                    }
+                }
+            }
+            
+
             // execute script with input values
                         try
                         {
                             ((ScriptParameter) m_txtDTBFilePath.Tag).ParameterValue = m_txtDTBFilePath.Text;
+                            ((ScriptParameter)m_txtErrorFilePath.Tag).ParameterValue = m_txtErrorFilePath.Text;
+
                             M_ValidatorScriptParser.ExecuteScript();
                         }
                         catch (System.Exception ex)
@@ -95,9 +138,26 @@ namespace Obi.PipelineInterface
             Close();
         }
 
+        private bool CreateErrorReportFile(string path)
+        {
+            try
+            {
+                File.CreateText(path);
+            }
+            catch ( System.Exception ex )
+            {
+                MessageBox.Show ( ex.ToString () ) ;
+                return false ;
+            }
+            return true;
+            
+        }
+
         private void m_btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        
     }
 }

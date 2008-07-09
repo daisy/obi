@@ -107,6 +107,7 @@ namespace Obi.PipelineInterface
             this.m_btnBrowseErrorFile.TabIndex = 6;
             this.m_btnBrowseErrorFile.Text = "Browse";
             this.m_btnBrowseErrorFile.UseVisualStyleBackColor = true;
+            this.m_btnBrowseErrorFile.Click += new System.EventHandler(this.m_btnBrowseErrorFile_Click);
             // 
             // m_btnOk
             // 
