@@ -95,7 +95,6 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mLabel);
-            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EditableLabel";
             this.Size = new System.Drawing.Size(303, 75);
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
