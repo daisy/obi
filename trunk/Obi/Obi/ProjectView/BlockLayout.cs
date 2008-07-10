@@ -13,12 +13,9 @@ namespace Obi.ProjectView
     /// </summary>
     public partial class BlockLayout : FlowLayoutPanel
     {
-        private int mBaseHeight;
-
         public BlockLayout()
         {
             InitializeComponent();
-            mBaseHeight = Height;
         }
 
         
@@ -36,14 +33,6 @@ namespace Obi.ProjectView
                 ++index;
             }
             return index;
-        }
-
-        public double ZoomFactor
-        {
-            set
-            {
-                if (value > 0.0) foreach (Control c in Controls) if (c is Block) ((Block)c).ZoomFactor = value;
-            }
         }
 
 

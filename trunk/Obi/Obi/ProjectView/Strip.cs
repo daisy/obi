@@ -11,12 +11,12 @@ namespace Obi.ProjectView
 {
     public partial class Strip : UserControl, ISearchable, ISelectableInContentViewWithColors
     {
-        private int mBaseHeight;           // base size (at zoom factor 1)
-        private Mutex mLabelUpdateThread;  // thread to update labels
-        private SectionNode mNode;         // the section node for this strip
-        private ContentView mParentView;   // parent strip view
-        private bool mHighlighted;         // highlighted flag (when the section node is selected)
-        private bool mWrap;                // wrap contents
+        private int mBlockLayoutBaseHeight;  // base height of the block layout (for zooming)
+        private Mutex mLabelUpdateThread;    // thread to update labels
+        private SectionNode mNode;           // the section node for this strip
+        private ContentView mParentView;     // parent strip view
+        private bool mHighlighted;           // highlighted flag (when the section node is selected)
+        private bool mWrap;                  // wrap contents
 
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
+            mBlockLayoutBaseHeight = mBlockLayout.Height;
             mLabel.Editable = false;
-            mBaseHeight = Height;
             mNode = null;
             Highlighted = false;
             mWrap = false;
@@ -275,6 +275,8 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
+
+                mBlockLayout.BackColor = Color.Red;
             }
         }
 
@@ -321,7 +323,14 @@ namespace Obi.ProjectView
                 if (value > 0.0)
                 {
                     mLabel.ZoomFactor = value;
-                    mBlockLayout.ZoomFactor = value;
+                    int h = (int)Math.Round(value * mBlockLayoutBaseHeight);
+                    foreach (Control c in mBlockLayout.Controls) if (c is Block) ((Block)c).SetZoomFactorAndHeight(value, h);
+                    Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
+                    int w = k == null ? Width - mBlockLayout.Margin.Horizontal :
+                        k.Location.X + k.Width + k.Margin.Right;
+                    int h_ = mBlockLayout.Height - h;
+                    mBlockLayout.Size = new Size(w, h);
+                    Size = new Size(mBlockLayout.Location.X + w + mBlockLayout.Margin.Right, Height - h_);
                 }
             }
         }

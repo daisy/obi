@@ -35,22 +35,24 @@ namespace Obi.ProjectView
             // 
             this.mLabel.AutoSize = true;
             this.mLabel.BackColor = System.Drawing.Color.Transparent;
-            this.mLabel.Location = new System.Drawing.Point(3, 3);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mLabel.Location = new System.Drawing.Point(0, 3);
+            this.mLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(33, 13);
+            this.mLabel.Size = new System.Drawing.Size(42, 16);
             this.mLabel.TabIndex = 2;
             this.mLabel.Text = "Label";
             this.mLabel.Click += new System.EventHandler(this.Label_Click);
             // 
             // Block
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.HotPink;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.Name = "Block";
             this.Size = new System.Drawing.Size(104, 104);
