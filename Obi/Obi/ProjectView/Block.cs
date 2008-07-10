@@ -15,6 +15,10 @@ namespace Obi.ProjectView
         private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip!
         private bool mEntering;                    // entering flag (for selection/deselection)
 
+        private int mBaseSpacing;
+        private int mBaseHeight;
+        private float mBaseFontSize;
+
 
         // Used by the designer
         public Block() { InitializeComponent(); }
@@ -33,6 +37,9 @@ namespace Obi.ProjectView
             node.ChangedTo_DoStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTo_DoStatus);
             UpdateColors();
             UpdateLabel();
+            mBaseSpacing = Margin.Left;
+            mBaseHeight = Height;
+            mBaseFontSize = mLabel.Font.SizeInPoints;
         }
 
 
@@ -110,11 +117,16 @@ namespace Obi.ProjectView
             return index + 1;
         }
 
-
-        public double ZoomFactor
+        /// <summary>
+        /// Set the zoom factor and the height.
+        /// We cheat for the height so that it fits exactly in the parent container.
+        /// </summary>
+        public void SetZoomFactorAndHeight(double zoom, int height)
         {
-            set { }
-
+            mLabel.Font = new Font(Font.FontFamily, (float)zoom * mBaseFontSize);
+            int margin = (int)Math.Round(zoom * mBaseSpacing);
+            Margin = new Padding(margin, 0, margin, 0);
+            Size = new Size(LabelFullWidth, height);
         }
 
 
@@ -129,7 +141,7 @@ namespace Obi.ProjectView
 
 
         // Width of the label (including margins)
-        protected int LabelFullWidth { get { return mLabel.Margin.Left + mLabel.Width + mLabel.Margin.Right; } }
+        protected int LabelFullWidth { get { return mLabel.Width + mLabel.Margin.Horizontal; } }
 
         // Generate the label string for this block.
         // Since there is no content, the width is always that of the label's.
