@@ -109,6 +109,22 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Update colors with overrides from the strip.
+        /// </summary>
+        public void UpdateColors(ColorSettings settings, bool highlighted)
+        {
+            if (highlighted)
+            {
+                BackColor = settings.BlockSelectedBackColor;
+                ForeColor = settings.BlockSelectedForeColor;
+            }
+            else
+            {
+                UpdateColors(settings);
+            }
+        }
+
+        /// <summary>
         /// Update the tab index of the block with the new value and return the next index.
         /// </summary>
         public int UpdateTabIndex(int index)

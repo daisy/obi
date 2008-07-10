@@ -1354,6 +1354,8 @@ namespace Obi
             mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;
             AllowOverwrite = mSettings.AllowOverwrite;
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
+            // Colors
+            mSettings.ColorSettings.CreateBrushesAndPens();
         }
 
         // Set the allow overwrite preference and the corresponding property in the transport bar.

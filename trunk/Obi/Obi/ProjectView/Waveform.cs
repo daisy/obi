@@ -40,11 +40,116 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// Set the backcolor for the waveform.
+        /// </summary>
+        public override Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                base.BackColor = value;
+                UpdateWaveform();
+                Invalidate();
+            }
+        }
+
+
+        // Draw the waveform in a graphics
+        // TODO: handle other bit depths than 16 bit.
+        private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
+        {
+            PCMFormatInfo format = mAudio.getPCMFormat();
+            if (format.getBitDepth() != 16) throw new Exception("Cannot deal with bitdepth others than 16.");
+            ushort channels = format.getNumberOfChannels();
+            ushort frameSize = format.getBlockAlign();
+            int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
+            int bytesPerPixel = samplesPerPixel * frameSize / channels;
+            byte[] bytes = new byte[bytesPerPixel];
+            short[] samples = new short[samplesPerPixel];
+            System.IO.Stream au = mAudio.getAudioData();
+            for (int x = 0; x < Width; ++x)
+            {
+                int read = au.Read(bytes, 0, bytesPerPixel);
+                Buffer.BlockCopy(bytes, 0, samples, 0, read);
+                DrawChannel(g, highlighted ? settings.WaveformHighlightedPen :
+                    channels == 1 ? settings.WaveformMonoPen : settings.WaveformChannel1Pen,
+                    samples, x, read, frameSize, 0, channels);
+                if (channels == 2) DrawChannel(g, highlighted ? settings.WaveformHighlightedPen : settings.WaveformChannel2Pen,
+                    samples, x, read, frameSize, 1, channels);
+            }
+            au.Close();
+        }
+
+        // Draw one channel for a given x
+        private void DrawChannel(Graphics g, Pen pen, short[] samples, int x, int read, int frameSize, int channel, int channels)
+        {
+            short min = short.MaxValue;
+            short max = short.MinValue;
+            for (int i = channel; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
+            {
+                if (samples[i] < min) min = samples[i];
+                if (samples[i] > max) max = samples[i];
+            }
+            g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+        }
+
+        // Repaint the waveform bitmap.
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            ColorSettings settings = ColorSettings;
+            if (settings != null)
+            {
+                if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                if (mSelection != null)
+                {
+                    if (CheckCursor)
+                    {
+                        pe.Graphics.DrawLine(settings.WaveformSelectionPen,
+                            new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                    }
+                    else if (CheckRange)
+                    {
+                        pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
+                            InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                    }
+                }
+                if (mCursor != null)
+                {
+                    pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                }
+                base.OnPaint(pe);
+            }
+        }
+
+        // Redraw the waveform to fit the available size.
+        private void UpdateWaveform()
+        {
+            AudioBlock block = Parent as AudioBlock;
+            if (block != null && Width > 0 && Height > 0)
+            {
+                ColorSettings settings = block.ColorSettings;
+                mBitmap = new Bitmap(Width, Height);
+                Graphics g = Graphics.FromImage(mBitmap);
+                g.Clear(BackColor);
+                g.DrawLine(settings.WaveformBaseLinePen, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                if (mAudio != null) DrawWaveform(g, settings, block.Highlighted);
+                Invalidate();
+            }
+        }
+
+
+
+
+
+
+
+        /// <summary>
         /// Selection point (not range) position (in pixels).
         /// </summary>
         public int SelectionPointPosition
         {
-            get { return XFromTime(mSelection.CursorTime); }
+            get { return mSelection == null ? -1 : XFromTime(mSelection.CursorTime); }
             set
             {
                 mSelection = new AudioRange(TimeFromX(value));
@@ -147,79 +252,19 @@ namespace Obi.ProjectView
         }
 
 
+        // Get the color settings from above
+        private ColorSettings ColorSettings
+        {
+            get { return Parent is AudioBlock ? ((AudioBlock)Parent).ColorSettings : null; }
+        }
+
         // Get the position in pixels of the cursor (during playback only.)
         private int CursorPosition
         {
             get { return XFromTime(mCursor.CursorTime); }
         }
 
-        // Draw the waveform in a graphics
-        // TODO: handle other bit depths than 16 bit.
-        private void DrawWaveform(Graphics g)
-        {
-            PCMFormatInfo format = mAudio.getPCMFormat();
-            if (format.getBitDepth() == 16)
-            {
-                ushort channels = format.getNumberOfChannels();
-                ushort frameSize = format.getBlockAlign();
-                int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
-                int bytesPerPixel = samplesPerPixel * frameSize / channels;
-                byte[] bytes = new byte[bytesPerPixel];
-                short[] samples = new short[samplesPerPixel];
-                System.IO.Stream audio = mAudio.getAudioData();
-                for (int x = 0; x < Width; ++x)
-                {
-                    int read = audio.Read(bytes, 0, bytesPerPixel);
-                    Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                    short min = short.MaxValue;
-                    short max = short.MinValue;
-                    for (int i = 0; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
-                    {
-                        if (samples[i] < min) min = samples[i];
-                        if (samples[i] > max) max = samples[i];
-                    }
-                    int ymin = Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue);
-                    int ymax = Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue);
-                    g.DrawLine(Channel1Pen, new Point(x, ymin), new Point(x, ymax));
-                    if (channels == 2)
-                    {
-                        min = short.MaxValue;
-                        max = short.MinValue;
-                        for (int i = 1; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
-                        {
-                            if (samples[i] < min) min = samples[i];
-                            if (samples[i] > max) max = samples[i];
-                        }
-                        ymin = Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue);
-                        ymax = Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue);
-                        g.DrawLine(Channel2Pen, new Point(x, ymin), new Point(x, ymax));
-                    }
-                }
-                audio.Close();
-            }
-        }
 
-        // Repaint the waveform bitmap.
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-            if (mSelection != null)
-            {
-                if (CheckCursor)
-                {
-                    pe.Graphics.DrawLine(SelectionPen, new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
-                }
-                else if (CheckRange)
-                {
-                    pe.Graphics.FillRectangle(SelectionBrush, InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
-                }
-            }
-            if (mCursor != null)
-            {
-                pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
-            }
-            base.OnPaint(pe);
-        }
 
         private bool CheckCursor
         {
@@ -246,20 +291,6 @@ namespace Obi.ProjectView
         private double TimeFromX(int x)
         {
             return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
-        }
-
-        // Redraw the waveform to fit the available size.
-        private void UpdateWaveform()
-        {
-            if (Width > 0 && Height > 0)
-            {
-                mBitmap = new Bitmap(Width, Height);
-                Graphics g = Graphics.FromImage(mBitmap);
-                g.Clear(Color.White);
-                g.DrawLine(Pens.BlueViolet, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (mAudio != null) DrawWaveform(g);
-                Invalidate();
-            }
         }
 
         // Convert a time (in ms) to a pixel position.

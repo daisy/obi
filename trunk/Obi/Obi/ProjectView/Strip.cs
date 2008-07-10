@@ -275,8 +275,7 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
-
-                mBlockLayout.BackColor = Color.Red;
+                mBlockLayout.UpdateColors(settings, mHighlighted);
             }
         }
 
