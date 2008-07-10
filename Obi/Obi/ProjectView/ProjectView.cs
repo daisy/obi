@@ -237,6 +237,14 @@ namespace Obi.ProjectView
         public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
         public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive; } }
+        public bool CanCropPhrase
+        {
+            get
+            {
+                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor;
+            }
+        } 
+
 
         public bool CanMarkPhrase
         {
@@ -1543,6 +1551,27 @@ namespace Obi.ProjectView
             }
         }
 
+        public void CropPhrase()
+        {
+            bool SplitBefore =false;
+            bool SplitAfter = false;
+            if ( CanCropPhrase )
+            {
+                PhraseNode node = (PhraseNode) Selection.Node;
+                if (((AudioSelection)Selection).AudioRange.SelectionBeginTime > 0) SplitBefore = true;
+                if (((AudioSelection)Selection).AudioRange.SelectionEndTime< ((PhraseNode)Selection.Node).Duration) SplitAfter = true;
+
+
+                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand("Crop audio");
+
+                                command.append(new Commands.Node.SplitAudioSelection(this));
+                                if (SplitAfter) command.append(new Commands.Node.DeleteWithOffset(this ,node ,2 ) );
+                                                                                                if (SplitBefore) command.append(new Commands.Node.Delete(this, node));
+                                
+                command.execute();
+                            }
+
+        }
         /// <summary>
         /// Get the phrase node to split depending on the selection or the playback node.
         /// </summary>

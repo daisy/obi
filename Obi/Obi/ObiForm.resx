@@ -987,6 +987,15 @@
   <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Go to...</value>
   </data>
+  <data name="mCropAudiotoolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Crop audio</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 22</value>
+  </data>
+  <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
+    <value>Crop audio</value>
+  </data>
   <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 20</value>
   </data>
@@ -1495,7 +1504,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.37523, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.22197, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2315,6 +2324,12 @@
     <value>mPreviousTODOPhraseToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mPreviousTODOPhraseToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Name" xml:space="preserve">
+    <value>mCropAudiotoolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;transportToolStripMenuItem.Name" xml:space="preserve">

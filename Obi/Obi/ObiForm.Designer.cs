@@ -121,6 +121,7 @@ namespace Obi
             this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -561,7 +562,7 @@ namespace Obi
             // 
             resources.ApplyResources(this.mProjectStatisticstoolStripMenuItem, "mProjectStatisticstoolStripMenuItem");
             this.mProjectStatisticstoolStripMenuItem.Name = "mProjectStatisticstoolStripMenuItem";
-            this.mProjectStatisticstoolStripMenuItem.Click += new System.EventHandler(mProjectStatisticstoolStripMenuItem_Click);
+            this.mProjectStatisticstoolStripMenuItem.Click += new System.EventHandler(this.mProjectStatisticstoolStripMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -663,7 +664,8 @@ namespace Obi
             this.mPhraseDetectionToolStripMenuItem,
             this.mMarkDefaultCustomClassToolStripMenuItem,
             this.mInPhraseSelectionToolStripMenuItem,
-            this.mGoToToolStripMenuItem});
+            this.mGoToToolStripMenuItem,
+            this.mCropAudiotoolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -830,6 +832,12 @@ namespace Obi
             resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
             this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
             this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
+            // 
+            // mCropAudiotoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
+            this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
+            this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
             // 
             // transportToolStripMenuItem
             // 
@@ -1333,6 +1341,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mValidatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mProjectStatisticstoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
     }
 }
 
