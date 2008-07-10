@@ -40,7 +40,7 @@ namespace Obi.ProjectView
             this.mBlockLayout.Name = "mBlockLayout";
             this.mBlockLayout.Size = new System.Drawing.Size(303, 104);
             this.mBlockLayout.TabIndex = 1;
-            this.mBlockLayout.Click += new System.EventHandler(this.mBlockLayout_Click);
+            this.mBlockLayout.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mBlockLayout_MouseClick);
             // 
             // mLabel
             // 
@@ -70,6 +70,7 @@ namespace Obi.ProjectView
             this.DoubleBuffered = true;
             this.Name = "Strip";
             this.Size = new System.Drawing.Size(309, 189);
+            this.Click += new System.EventHandler(this.Strip_Enter);
             this.Enter += new System.EventHandler(this.Strip_Enter);
             this.ResumeLayout(false);
 

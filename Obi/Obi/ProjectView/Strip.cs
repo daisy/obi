@@ -56,7 +56,7 @@ namespace Obi.ProjectView
         {
             Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
             mBlockLayout.Controls.Add(block);
-            mBlockLayout.Controls.SetChildIndex(block, 1 + node.Index * 2);
+            mBlockLayout.Controls.SetChildIndex(block, node.Index);
             UpdateSize();
             return block;
         }
@@ -124,6 +124,7 @@ namespace Obi.ProjectView
                 mHighlighted = value && !(mParentView.Selection is TextSelection);
                 if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
                 UpdateColors();
+                mBlockLayout.Invalidate();
             }
         }
 
@@ -221,14 +222,8 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (value is StripIndexSelection)
-                {
-                    // ((StripCursor)mBlockLayout.Controls[((StripIndexSelection)value).Index * 2]).Highlighted = true;
-                }
-                else
-                {
-                    Highlighted = value != null;
-                }
+                Highlighted = !(value is StripIndexSelection) && value != null;
+                mBlockLayout.Invalidate();
             }
         }
 
@@ -326,6 +321,7 @@ namespace Obi.ProjectView
                 if (value > 0.0)
                 {
                     mLabel.ZoomFactor = value;
+                    mBlockLayout.ZoomFactor = value;
                 }
             }
         }
@@ -409,7 +405,11 @@ namespace Obi.ProjectView
         private void Strip_Enter(object sender, EventArgs e)
         {
             AddContentsViewLabel();
-            if (mParentView.SelectedSection != mNode && !mParentView.Focusing) mParentView.SelectedNode = mNode;
+            if ((mParentView.SelectedSection != mNode || mParentView.Selection is StripIndexSelection) &&
+                !mParentView.Focusing)
+            {
+                mParentView.SelectedNode = mNode;
+            }
         }
 
         // Reset the accessible name after a short while.
@@ -460,9 +460,12 @@ namespace Obi.ProjectView
             mLabelUpdateThread.ReleaseMutex();
         }
 
-        private void mBlockLayout_Click(object sender, EventArgs e)
+        private void mBlockLayout_MouseClick(object sender, MouseEventArgs e)
         {
-
+            if (mParentView != null && e.Button == MouseButtons.Left)
+            {
+                mParentView.SelectionFromStrip = new StripIndexSelection(mNode, mParentView, mBlockLayout.IndexForX(e.X));
+            }
         }
     }
 }

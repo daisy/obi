@@ -110,6 +110,14 @@ namespace Obi.ProjectView
             return index + 1;
         }
 
+
+        public double ZoomFactor
+        {
+            set { }
+
+        }
+
+
         #region ISearchable Members
 
         public string ToMatch()
