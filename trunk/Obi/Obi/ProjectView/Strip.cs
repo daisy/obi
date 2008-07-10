@@ -446,18 +446,24 @@ namespace Obi.ProjectView
         public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
         {
             mLabelUpdateThread.WaitOne();
-            int BlocksCount = mBlockLayout.Controls.Count;
-            Control BlockControl = null;
-
-            for (int i = 0; i < BlocksCount; i++)
+                                    try
             {
-                BlockControl = mBlockLayout.Controls[i];
-                if (BlockControl is Block)
+                int BlocksCount = mBlockLayout.Controls.Count;
+                Control BlockControl = null;
+                for (int i = 0; i < BlocksCount; i++)
                 {
-                    ((Block)BlockControl).UpdateLabelsText();
-                }
-            }// end loop
-            mLabelUpdateThread.ReleaseMutex();
+                    BlockControl = mBlockLayout.Controls[i];
+                    if (BlockControl is Block)
+                    {
+                        ((Block)BlockControl).UpdateLabelsText();
+                    }
+                }// end loop
+            }
+            catch (System.Exception)
+            {
+                return;
+            }
+                        mLabelUpdateThread.ReleaseMutex();
         }
 
         private void mBlockLayout_MouseClick(object sender, MouseEventArgs e)

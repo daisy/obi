@@ -480,6 +480,7 @@ namespace Obi
             mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             // mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
             UpdateAudioSelectionBlockMenuItems();
@@ -1648,5 +1649,11 @@ namespace Obi
         {
             ZoomFactor = 1.0;
         }
+
+        private void mCropAudiotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.CropPhrase();
+        }
+
     }
 }
