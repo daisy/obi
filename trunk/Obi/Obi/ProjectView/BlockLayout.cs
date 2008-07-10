@@ -13,10 +13,39 @@ namespace Obi.ProjectView
     /// </summary>
     public partial class BlockLayout : FlowLayoutPanel
     {
+        private int mBaseHeight;
+
         public BlockLayout()
         {
             InitializeComponent();
+            mBaseHeight = Height;
         }
+
+        
+        /// <summary>
+        /// Get the index for an X position in the track layout
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int IndexForX(int x)
+        {
+            int index = 0;
+            foreach (Control c in Controls)
+            {
+                if (c.Location.X > x) return index;
+                ++index;
+            }
+            return index;
+        }
+
+        public double ZoomFactor
+        {
+            set
+            {
+                if (value > 0.0) foreach (Control c in Controls) if (c is Block) ((Block)c).ZoomFactor = value;
+            }
+        }
+
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -48,18 +77,5 @@ namespace Obi.ProjectView
             return index == 0 ? 0 :
                 Controls[index - 1].Location.X + Controls[index - 1].Width + Controls[index - 1].Margin.Right;
         }
-
-        // Get the index for an X position in the track layout
-        public int IndexForX(int x)
-        {
-            int index = 0;
-            foreach (Control c in Controls)
-            {
-                if (c.Location.X > x) return index;
-                ++index;
-            }
-            return index;
-        }
-
     }
 }

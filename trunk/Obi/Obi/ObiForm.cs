@@ -517,10 +517,7 @@ namespace Obi
                 mBeginInPhraseSelectionToolStripMenuItem.Enabled = false;
                 mEndInPhraseSelectionToolStripMenuItem.Enabled = false;
                 mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                //AudioSelectionStatusMessage = "";
             }
-            //if (AudioSelectionStatusMessage != "")
-            //    Status(Localizer.Message(mProjectView.TransportBar.CurrentPlaylist.State.ToString()) + AudioSelectionStatusMessage);
         }
 
         private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
