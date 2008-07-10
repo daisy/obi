@@ -66,5 +66,13 @@ namespace Obi.ProjectView
             return index == 0 ? 0 :
                 Controls[index - 1].Location.X + Controls[index - 1].Width + Controls[index - 1].Margin.Right;
         }
+
+        /// <summary>
+        /// Update colors for blocks; knowing that the above strip is highlighted and/or used.
+        /// </summary>
+        public void UpdateColors(ColorSettings settings, bool highlighted)
+        {
+            foreach (Control c in Controls) if (c is Block) ((Block)c).UpdateColors(settings, highlighted);
+        }
     }
 }

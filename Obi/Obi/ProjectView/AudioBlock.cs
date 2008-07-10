@@ -26,7 +26,7 @@ namespace Obi.ProjectView
             mShift = false;
         }
 
-        
+
         public void SetCursorTime(double time)
         {
             mWaveform.CursorTime = time;
@@ -38,7 +38,6 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if selection in the waveform is enabled.
         /// </summary>
-        // public bool CanSelectInWaveform { get { return !((ObiForm)ParentForm).IsTransportActive; } }
         public bool CanSelectInWaveform { get { return true; } }
 
         /// <summary>
@@ -46,6 +45,7 @@ namespace Obi.ProjectView
         /// </summary>
         public override bool Highlighted
         {
+            get { return base.Highlighted || (Strip != null && Strip.Highlighted); }
             set
             {
                 if (!value) mWaveform.Deselect();
@@ -65,6 +65,16 @@ namespace Obi.ProjectView
             }
         }
 
+        public override Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                base.BackColor = value;
+                if (mWaveform != null) mWaveform.BackColor = value;
+            }
+        }
+
 
         // Set the waveform from the audio on a phrase node.
         // Resize the block to fit both the whole waveform and its label.
@@ -80,17 +90,6 @@ namespace Obi.ProjectView
         // Update label and waveform when there is new information to display.
         public override void UpdateLabel()
         {
-            /*string name = mNode.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("blank_phrase") :
-                mNode.NodeKind == EmptyNode.Kind.Page ? String.Format(Localizer.Message("page_number"), mNode.PageNumber) :
-                String.Format(Localizer.Message("kind_phrase"),
-                    mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : mNode.NodeKind.ToString());
-            mLabel.Text = String.Format("{0} ({1:0.00}s)",
-                Node.NodeKind == EmptyNode.Kind.Plain ? Localizer.Message("normal_phrase") : name,
-                ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat() / 1000);
-            AccessibleName = String.Format(Localizer.Message("audio_block_label"),
-                mLabel.Text, mNode.Index + 1, mNode.ParentAs<SectionNode>().PhraseChildCount,
-                mNode.Used ? "" : Localizer.Message("audio_block_label_unused"));*/
-
             UpdateLabelsText();
             if (LabelFullWidth > WaveformDefaultWidth)
             {
@@ -103,9 +102,8 @@ namespace Obi.ProjectView
         {
             mLabel.Text = Node.BaseStringShort();
             AccessibleName = Node.BaseString();
-            if (mWaveform != null)
-                mWaveform.AccessibleName = AccessibleName;
-                    }
+            if (mWaveform != null) mWaveform.AccessibleName = AccessibleName;
+        }
 
         // Fill (current) width of the waveform.
         protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
