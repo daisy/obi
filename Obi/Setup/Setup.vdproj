@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_101AAF3A741863AEDD826E32246A540E"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_108B34500EE74A668BFA6AA5EF98EF7C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -213,7 +207,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CDB4559F9F0D2693CB3E66292065990F"
+        "MsmKey" = "8:_C7F9ECA88A103345E553DF0711868003"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -267,6 +261,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F65CB7E11D281C8F671DBD8C111C5440"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F7A18EE9882A4A128C31D712D367AAFD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -310,13 +310,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_101AAF3A741863AEDD826E32246A540E"
+        "OwnerKey" = "8:_F65CB7E11D281C8F671DBD8C111C5440"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CDB4559F9F0D2693CB3E66292065990F"
+        "OwnerKey" = "8:_C7F9ECA88A103345E553DF0711868003"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -455,37 +455,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_101AAF3A741863AEDD826E32246A540E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.2982.17989, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_101AAF3A741863AEDD826E32246A540E"
-                    {
-                    "Name" = "8:AudioEngine.PPMeter.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AudioEngine.PPMeter.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_108B34500EE74A668BFA6AA5EF98EF7C"
@@ -1092,20 +1061,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CDB4559F9F0D2693CB3E66292065990F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C7F9ECA88A103345E553DF0711868003"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.20975, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.3103.38888, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CDB4559F9F0D2693CB3E66292065990F"
+                    "_C7F9ECA88A103345E553DF0711868003"
                     {
-                    "Name" = "8:urakawa.dll"
+                    "Name" = "8:AudioEngine.PPMeter.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:urakawa.dll"
+            "SourcePath" = "8:AudioEngine.PPMeter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
@@ -1281,6 +1250,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F65CB7E11D281C8F671DBD8C111C5440"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.0.0.38842, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F65CB7E11D281C8F671DBD8C111C5440"
+                    {
+                    "Name" = "8:urakawa.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:urakawa.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7A18EE9882A4A128C31D712D367AAFD"
@@ -1459,15 +1459,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi Beta 1.03 internal"
-        "ProductCode" = "8:{D71E6772-1ADE-43CF-BC93-AA7428E99577}"
-        "PackageCode" = "8:{D586B8BF-FD26-47FE-8797-A45981EC80ED}"
+        "ProductName" = "8:Obi Beta2 internal candidate 0.1"
+        "ProductCode" = "8:{428E3B27-A841-413F-8738-46085B8273A4}"
+        "PackageCode" = "8:{287BEDEC-4916-457A-BA5B-16581F765996}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.11.3"
+        "ProductVersion" = "8:0.11.6"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1596,7 +1596,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi Beta 1.03 internal"
+            "Name" = "8:Obi Beta2 internal candidate 0.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
