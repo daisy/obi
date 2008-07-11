@@ -17,7 +17,8 @@ namespace Obi.UserControls
         private String m_StrRightOverloadIndicator;
         private string m_strLeftLowLevelIndicator;
         private string m_strRightLowLevelIndicator;
-        private bool m_BeepEnabled = false;
+        private bool m_BeepEnabled = false ;
+        private bool m_OverLoadBeepEnabled = false;
         private bool mShowMaxMinValues;
         private double m_MaxLeftDB;
         private double m_MaxRightDB;
@@ -33,7 +34,7 @@ namespace Obi.UserControls
             m_strLeftLowLevelIndicator = "";
             m_strRightLowLevelIndicator = "";
             mShowMaxMinValues = false;
-
+            m_BeepEnabled = false;
         }
 
         public Audio.VuMeter VuMeter
@@ -57,6 +58,15 @@ namespace Obi.UserControls
                     mResetButton.Enabled = mShowMaxMinValues;
                                     }
             }
+        }
+
+        public bool BeepEnable
+        {
+            get { return m_BeepEnabled; }
+            set
+            {
+                if (value != null) m_BeepEnabled = value;
+                                            }
         }
 
         public bool ShowMaxMinValues        
@@ -109,11 +119,11 @@ namespace Obi.UserControls
             else   // show extreme high and expreme low
                 SetExtremeValues(LeftDb, RightDb );
 
-            if (m_BeepEnabled)
+            if (m_OverLoadBeepEnabled)
             {
                 PlayBeep();
-                // only this function can set beep enable to false 
-                m_BeepEnabled = false;
+                // only this function can set OverLoadbeep enable to false 
+                m_OverLoadBeepEnabled = false;
             }
         }
 
@@ -191,10 +201,10 @@ namespace Obi.UserControls
 
 
             // beep enabled false means this is first peak overload after text timer tick, so play beep
-            if (m_BeepEnabled == false)
+            if (m_OverLoadBeepEnabled== false)
             {
                 PlayBeep();
-                m_BeepEnabled = true;
+                m_OverLoadBeepEnabled = true;
             }
         }
 
@@ -294,7 +304,7 @@ namespace Obi.UserControls
 
         private void PlayLevelTooLowBeep()
         {
-                        if (File.Exists("low.wav") && m_BeepEnabled)
+                                    if (File.Exists("low.wav") && m_BeepEnabled)
             {
                 System.Media.SoundPlayer LowBeepPlayer  = new System.Media.SoundPlayer("low.wav");
                 LowBeepPlayer.Play();

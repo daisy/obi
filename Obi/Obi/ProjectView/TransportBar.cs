@@ -856,10 +856,11 @@ namespace Obi.ProjectView
             if (recording)
             {
                 StartRecording();
-            }
+                            }
             else
             {
                 mRecordingSession.StartMonitoring();
+                                mVUMeterPanel.BeepEnable = true;
             }
         }
 
@@ -1119,6 +1120,7 @@ namespace Obi.ProjectView
         void StartRecording()
         {
             mRecordingSession.Record();
+            mVUMeterPanel.BeepEnable = false;
             mDisplayTimer.Start();
         }
 
@@ -1598,6 +1600,7 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ||
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
+                mVUMeterPanel.BeepEnable = false;
                 mRecordingSession.Stop();
                 // update phrases with audio assets
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)

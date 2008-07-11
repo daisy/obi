@@ -604,7 +604,9 @@ namespace Obi.Audio
 
         public enum NoiseLevelSelection { high, low, medium } ;
         private NoiseLevelSelection m_NoiseLevel;
-
+        /// <summary>
+        ///  
+                /// </summary>
         public NoiseLevelSelection NoiseLevel
         {
             get { return m_NoiseLevel; }
