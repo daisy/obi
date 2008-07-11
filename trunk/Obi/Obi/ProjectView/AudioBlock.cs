@@ -80,11 +80,22 @@ namespace Obi.ProjectView
         // Resize the block to fit both the whole waveform and its label.
         private void SetWaveform(PhraseNode node)
         {
-            mWaveform.AccessibleName = AccessibleName;
-            int w = WaveformDefaultWidth;
-            mWaveform.Width = w < mLabel.Width ? mLabel.Width : w;
-            mWaveform.Media = node.Audio.getMediaData();
-            Size = new Size(WaveformFullWidth, Height);
+            if (node != null)
+            {
+                mWaveform.BackColor = BackColor;
+                mWaveform.AccessibleName = AccessibleName;
+                int w = WaveformDefaultWidth;
+                mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
+                mWaveform.Size = new Size(w < mLabel.Width ? mLabel.Width : w, Height - mLabel.Height - mLabel.Margin.Bottom);
+                mWaveform.Media = node.Audio.getMediaData();
+                Size = new Size(WaveformFullWidth, Height);
+            }
+        }
+
+        public override void SetZoomFactorAndHeight(float zoom, int height)
+        {
+            base.SetZoomFactorAndHeight(zoom, height);
+            SetWaveform(mNode as PhraseNode);
         }
 
         // Update label and waveform when there is new information to display.
