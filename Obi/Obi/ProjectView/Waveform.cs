@@ -17,13 +17,6 @@ namespace Obi.ProjectView
         private AudioRange mSelection;  // selection in the waveform
         private AudioRange mCursor;     // playback cursor (can be different from cursor)
 
-        // Pens and brushes should be owned by someone above
-        private static readonly Pen Channel1Pen = new Pen(Color.FromArgb(128, 0, 0, 255));
-        private static readonly Pen Channel2Pen = new Pen(Color.FromArgb(128, 255, 0, 255));
-        private static readonly Pen SelectionPen = new Pen(Color.FromArgb(128, 0, 255, 255));
-        private static readonly SolidBrush SelectionBrush = new SolidBrush(Color.FromArgb(128, 0, 255, 0));
-        private static readonly Pen CursorPen = new Pen(Color.FromArgb(128, 255, 128, 128));
-
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -116,7 +109,8 @@ namespace Obi.ProjectView
                 }
                 if (mCursor != null)
                 {
-                    pe.Graphics.DrawLine(CursorPen, new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                    pe.Graphics.DrawLine(settings.WaveformCursorPen,
+                        new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                 }
                 base.OnPaint(pe);
             }
@@ -152,8 +146,11 @@ namespace Obi.ProjectView
             get { return mSelection == null ? -1 : XFromTime(mSelection.CursorTime); }
             set
             {
-                mSelection = new AudioRange(TimeFromX(value));
-                Invalidate();
+                if (value >= 0)
+                {
+                    mSelection = new AudioRange(TimeFromX(value));
+                    Invalidate();
+                }
             }
         }
 

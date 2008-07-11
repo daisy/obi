@@ -34,12 +34,17 @@ namespace Obi.ProjectView
             // mWaveform
             // 
             this.mWaveform.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mWaveform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mWaveform.BackColor = System.Drawing.Color.OliveDrab;
             this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.mWaveform.Location = new System.Drawing.Point(-1, 22);
+            this.mWaveform.Location = new System.Drawing.Point(0, 21);
             this.mWaveform.Margin = new System.Windows.Forms.Padding(0);
             this.mWaveform.Name = "mWaveform";
             this.mWaveform.Selection = null;
-            this.mWaveform.Size = new System.Drawing.Size(141, 107);
+            this.mWaveform.SelectionPointPosition = -1;
+            this.mWaveform.Size = new System.Drawing.Size(139, 107);
             this.mWaveform.TabIndex = 1;
             this.mWaveform.Text = "waveform1";
             this.mWaveform.DoubleClick += new System.EventHandler(this.mWaveform_DoubleClick);
