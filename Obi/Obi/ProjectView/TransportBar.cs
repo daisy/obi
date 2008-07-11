@@ -267,6 +267,8 @@ namespace Obi.ProjectView
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset));
+
+                PlayAudioClue (AudioCluesSelection.SelectionBegin ) ;
                 return true;
             }
             return false;
@@ -295,6 +297,7 @@ namespace Obi.ProjectView
                 if (begin != end)
                 {
                     mView.Selection = new AudioSelection((PhraseNode)selection.Node, selection.Control, new AudioRange(begin, end));
+                    PlayAudioClue ( AudioCluesSelection.SelectionEnd) ;
                     return true;
                 }
                 else
@@ -860,7 +863,7 @@ namespace Obi.ProjectView
             else
             {
                 mRecordingSession.StartMonitoring();
-                                mVUMeterPanel.BeepEnable = true;
+                                 if (mView.ObiForm.Settings.AudioClues )  mVUMeterPanel.BeepEnable = true;
             }
         }
 
@@ -1824,6 +1827,27 @@ namespace Obi.ProjectView
                                     }
             }
         }
+
+
+        private enum AudioCluesSelection { SelectionBegin, SelectionEnd } ;
+
+        private void PlayAudioClue(AudioCluesSelection Clue)
+        {
+            if ( mView.ObiForm.Settings.AudioClues )
+            {
+            if (Clue == AudioCluesSelection.SelectionBegin)
+            {
+                if ( System.IO.File.Exists ("SelectionBegin.wav"))
+                                    new System.Media.SoundPlayer("SelectionBegin.wav").Play ()  ;
+                                                }
+            else if (Clue == AudioCluesSelection.SelectionEnd)
+            {
+                if (System.IO.File.Exists("SelectionEnd.wav"))
+                                    new System.Media.SoundPlayer("SelectionEnd.wav").Play();
+            }
+            }
+                    }
+
 
         #endregion
 

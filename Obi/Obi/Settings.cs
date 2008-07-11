@@ -68,7 +68,7 @@ namespace Obi
             settings.LastOpenProject = "";
             settings.LastOutputDevice = "";
             settings.NewProjectDialogSize = new Size(0, 0);
-            settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Low;
+            settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 100.0;
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
