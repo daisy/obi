@@ -314,7 +314,7 @@ namespace Obi.Audio
             //mMeanValueLeft = ( ( mMeanValueLeft * 19 ) + left ) /20 ;
             //mMeanValueRight = AmpArray[1];
 
-                                         Debug_WriteToTextFile(m_AverageValue[0].ToString() + "-" + m_AverageValue[1].ToString());
+                                         //Debug_WriteToTextFile(m_AverageValue[0].ToString() + "-" + m_AverageValue[1].ToString());
                         //wr.WriteLine(left.ToString());
             
                         DetectLowAmplitude();
@@ -548,7 +548,7 @@ namespace Obi.Audio
             arSum[0] = leftVal / (int.MaxValue / 256); // division done to reduce the returned value to be in the range of 0-255
             arSum[1] = rightVal / (int.MaxValue / 256);
 
-//            System.Diagnostics.Debug.WriteLine(leftVal.ToString().PadLeft(10, ' ') + " : " + rightVal.ToString().PadLeft(10, ' '));
+
 
             return arSum;
 		}
@@ -602,19 +602,43 @@ namespace Obi.Audio
 
         }
 
+        public enum NoiseLevelSelection { high, low, medium } ;
+        private NoiseLevelSelection m_NoiseLevel;
+
+        public NoiseLevelSelection NoiseLevel
+        {
+            get { return m_NoiseLevel; }
+            set
+            {
+                if (value == NoiseLevelSelection.low)
+                {
+                    m_LBound = -37.5;
+                }
+                else if (value == NoiseLevelSelection.medium)
+                {
+                    m_LBound = -36;
+                }
+                else if (value == NoiseLevelSelection.high)
+                {
+                    m_LBound = -34;
+                }
+                m_NoiseLevel = value;
+            }
+                }
+
         int LowThresholdCount = 0;
         List<double> LowAmpList = new List<double>();
         bool GoneHigh = false;
+        double m_UBound = -28;
+        double m_LBound = -36;
         private void DetectLowAmplitude()
         {
-            const int UBound = -28; // Upper bound
-            const int LBound = -36 ; // lower bound
-            double AmplitudeValue;
+                        double AmplitudeValue;
             
             if (mChannels == 1) AmplitudeValue = m_AverageValue[0];
             else AmplitudeValue = (m_AverageValue[0] + m_AverageValue[1] ) / 2;
 
-            if (AmplitudeValue < LBound)
+            if (AmplitudeValue < m_LBound)
                 LowThresholdCount++;
             else
             {
@@ -633,7 +657,7 @@ namespace Obi.Audio
                         avg += d;
 
                     avg = avg / LowAmpList.Count;
-                    if (avg < UBound)
+                    if (avg < m_UBound)
                     {
                         if (LevelTooLowEvent != null) LevelTooLowEvent(this, new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs(this, avg , 0, 0));
                         m_IsLowAmplitude = true;
@@ -681,7 +705,7 @@ namespace Obi.Audio
                                                 System.Media.SoundPlayer BeepPlayer = new System.Media.SoundPlayer("low.wav");
                                                 BeepPlayer.Play();
                             }
-                        Debug_WriteToTextFile("Low" + diff.ToString());
+                        //Debug_WriteToTextFile("Low" + diff.ToString());
                                             }
                     }
                     m_LowAmplitudeSamplesCounts = 0;
