@@ -18,9 +18,9 @@ namespace Obi
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
-        private double mZoomFactor;              // current zoom factor
 
-        private static readonly double ZOOM_FACTOR_INCREMENT = 1.25;  // zoom factor increment (zoom in/out)
+        private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
+        private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
 
 
         /// <summary>
@@ -42,18 +42,24 @@ namespace Obi
         }
 
 
-        public double ZoomFactor 
+        public float ZoomFactor 
         {
-            get { return mZoomFactor; }
+            get { return mSettings.ZoomFactor; }
             set
             {
                 if (value > 0.0)
                 {
-                    this.mZoomFactor = value;
-                    mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * (float)value);
-                    mProjectView.ZoomFactor = value;
+                    mSettings.ZoomFactor = value;
+                    UpdateZoomFactor();
                 }
             }
+        }
+
+        private void UpdateZoomFactor()
+        {
+            float z = mSettings.ZoomFactor * (SystemInformation.HighContrast ? DEFAULT_ZOOM_FACTOR_HC : 1.0f);
+            mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * z);
+            mProjectView.ZoomFactor = z;
         }
 
 
@@ -948,7 +954,6 @@ namespace Obi
                 mSession.ProjectSaved += new EventHandler(Session_ProjectSaved);
                 mSourceView = null;
                 InitializeSettings();
-                InitializeColorSettings();
                 InitializeEventHandlers();
                 UpdateMenus();
                 // these should be stored in settings
@@ -957,7 +962,7 @@ namespace Obi
                 mShowTransportBarToolStripMenuItem.Checked = mProjectView.TransportBarVisible = true;
                 mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
                 mBaseFontSize = mStatusLabel.Font.SizeInPoints;
-                mZoomFactor = 1.0;
+                InitializeColorSettings();
                 Ready();
             }
             catch (Exception e)
@@ -1383,6 +1388,7 @@ namespace Obi
 
         private void UpdateColors()
         {
+            UpdateZoomFactor();
             mProjectView.ColorSettings = SystemInformation.HighContrast ?
                 mSettings.ColorSettingsHC : mSettings.ColorSettings;
         }
@@ -1391,9 +1397,11 @@ namespace Obi
         {
             get
             {
-                return SystemInformation.HighContrast ?
+                ColorSettings settings = SystemInformation.HighContrast ?
                     (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
                     (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
+                settings.CreateBrushesAndPens();
+                return settings;
             }
         }
 
@@ -1637,19 +1645,19 @@ namespace Obi
         // View > Zoom in (Ctrl+Alt++)
         private void View_ZoomInMenuItem_Click(object sender, EventArgs e)
         {
-            ZoomFactor = mZoomFactor * ZOOM_FACTOR_INCREMENT;
+            ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
         }
 
         // View > Zoom out (Ctrl+Alt+-)
         private void View_ZoomOutMenuItem_Click(object sender, EventArgs e)
         {
-            ZoomFactor = mZoomFactor / ZOOM_FACTOR_INCREMENT;
+            ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
         }
 
         // View > Normal size (Ctrl+Alt+0)
         private void View_NormalSizeMenuItem_Click(object sender, EventArgs e)
         {
-            ZoomFactor = 1.0;
+            ZoomFactor = 1.0f;
         }
 
         private void mCropAudiotoolStripMenuItem_Click(object sender, EventArgs e)

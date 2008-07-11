@@ -1587,13 +1587,13 @@ namespace Obi.ProjectView
                 e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
         }
 
-        [DefaultValue(1.0)]
-        public double ZoomFactor
+        [DefaultValue(1.0f)]
+        public float ZoomFactor
         {
-            get { return ObiForm == null ? 1.0 : ObiForm.ZoomFactor; }
+            get { return ObiForm == null ? 1.0f : ObiForm.ZoomFactor; }
             set
             {
-                if (value > 0.0)
+                if (value > 0.0f)
                 {
                     mTOCView.ZoomFactor =
                     mContentView.ZoomFactor = value;

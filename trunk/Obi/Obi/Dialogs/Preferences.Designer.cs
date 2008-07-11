@@ -41,9 +41,6 @@ namespace Obi.Dialogs
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
-            this.mExportTextbox = new System.Windows.Forms.TextBox();
-            this.mBrowseExportButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.mChannelsTextbox = new System.Windows.Forms.TextBox();
             this.mSampleRateTextbox = new System.Windows.Forms.TextBox();
@@ -59,10 +56,17 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.mPreviewDurationUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.mAudioCluesCheckBox = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -102,7 +106,7 @@ namespace Obi.Dialogs
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(238, 235);
+            this.mOKButton.Location = new System.Drawing.Point(228, 240);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(75, 25);
             this.mOKButton.TabIndex = 5;
@@ -115,7 +119,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(319, 235);
+            this.mCancelButton.Location = new System.Drawing.Point(309, 240);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(75, 25);
             this.mCancelButton.TabIndex = 6;
@@ -142,7 +146,7 @@ namespace Obi.Dialogs
             this.mInputDeviceCombo.FormattingEnabled = true;
             this.mInputDeviceCombo.Location = new System.Drawing.Point(121, 7);
             this.mInputDeviceCombo.Name = "mInputDeviceCombo";
-            this.mInputDeviceCombo.Size = new System.Drawing.Size(473, 21);
+            this.mInputDeviceCombo.Size = new System.Drawing.Size(453, 21);
             this.mInputDeviceCombo.TabIndex = 8;
             // 
             // labelOutputDeviceName
@@ -165,7 +169,7 @@ namespace Obi.Dialogs
             this.mOutputDeviceCombo.FormattingEnabled = true;
             this.mOutputDeviceCombo.Location = new System.Drawing.Point(121, 35);
             this.mOutputDeviceCombo.Name = "mOutputDeviceCombo";
-            this.mOutputDeviceCombo.Size = new System.Drawing.Size(473, 21);
+            this.mOutputDeviceCombo.Size = new System.Drawing.Size(453, 21);
             this.mOutputDeviceCombo.TabIndex = 10;
             // 
             // mTab
@@ -179,22 +183,19 @@ namespace Obi.Dialogs
             this.mTab.Location = new System.Drawing.Point(12, 13);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
-            this.mTab.Size = new System.Drawing.Size(608, 215);
+            this.mTab.Size = new System.Drawing.Size(588, 220);
             this.mTab.TabIndex = 11;
             // 
             // mProjectTab
             // 
             this.mProjectTab.Controls.Add(this.mLastOpenCheckBox);
-            this.mProjectTab.Controls.Add(this.mExportTextbox);
-            this.mProjectTab.Controls.Add(this.mBrowseExportButton);
-            this.mProjectTab.Controls.Add(this.label3);
             this.mProjectTab.Controls.Add(this.label2);
             this.mProjectTab.Controls.Add(this.mBrowseButton);
             this.mProjectTab.Controls.Add(this.mDirectoryTextbox);
             this.mProjectTab.Location = new System.Drawing.Point(4, 22);
             this.mProjectTab.Name = "mProjectTab";
             this.mProjectTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mProjectTab.Size = new System.Drawing.Size(600, 189);
+            this.mProjectTab.Size = new System.Drawing.Size(600, 194);
             this.mProjectTab.TabIndex = 0;
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
@@ -203,47 +204,21 @@ namespace Obi.Dialogs
             // 
             this.mLastOpenCheckBox.AutoSize = true;
             this.mLastOpenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mLastOpenCheckBox.Location = new System.Drawing.Point(6, 66);
+            this.mLastOpenCheckBox.Location = new System.Drawing.Point(6, 35);
             this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
             this.mLastOpenCheckBox.Size = new System.Drawing.Size(188, 17);
             this.mLastOpenCheckBox.TabIndex = 8;
             this.mLastOpenCheckBox.Text = "Open &last project when starting Obi";
             this.mLastOpenCheckBox.UseVisualStyleBackColor = true;
             // 
-            // mExportTextbox
-            // 
-            this.mExportTextbox.AccessibleName = "Default export directory:";
-            this.mExportTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mExportTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mExportTextbox.Location = new System.Drawing.Point(152, 40);
-            this.mExportTextbox.Name = "mExportTextbox";
-            this.mExportTextbox.Size = new System.Drawing.Size(361, 20);
-            this.mExportTextbox.TabIndex = 6;
-            // 
-            // mBrowseExportButton
-            // 
-            this.mBrowseExportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mBrowseExportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mBrowseExportButton.Location = new System.Drawing.Point(519, 37);
-            this.mBrowseExportButton.Name = "mBrowseExportButton";
-            this.mBrowseExportButton.Size = new System.Drawing.Size(75, 25);
-            this.mBrowseExportButton.TabIndex = 7;
-            this.mBrowseExportButton.Text = "&Browse";
-            this.mBrowseExportButton.UseVisualStyleBackColor = true;
-            this.mBrowseExportButton.Click += new System.EventHandler(this.mBrowseExportButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Default e&xport directory:";
-            // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.mNoiseLevelComboBox);
+            this.mAudioTab.Controls.Add(this.label8);
+            this.mAudioTab.Controls.Add(this.mAudioCluesCheckBox);
+            this.mAudioTab.Controls.Add(this.label7);
+            this.mAudioTab.Controls.Add(this.mPreviewDurationUpDown);
+            this.mAudioTab.Controls.Add(this.label3);
             this.mAudioTab.Controls.Add(this.mChannelsTextbox);
             this.mAudioTab.Controls.Add(this.mSampleRateTextbox);
             this.mAudioTab.Controls.Add(this.mChannelsCombo);
@@ -257,7 +232,7 @@ namespace Obi.Dialogs
             this.mAudioTab.Location = new System.Drawing.Point(4, 22);
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mAudioTab.Size = new System.Drawing.Size(600, 189);
+            this.mAudioTab.Size = new System.Drawing.Size(580, 194);
             this.mAudioTab.TabIndex = 1;
             this.mAudioTab.Text = "Audio";
             this.mAudioTab.UseVisualStyleBackColor = true;
@@ -271,7 +246,7 @@ namespace Obi.Dialogs
             this.mChannelsTextbox.Location = new System.Drawing.Point(121, 91);
             this.mChannelsTextbox.Name = "mChannelsTextbox";
             this.mChannelsTextbox.ReadOnly = true;
-            this.mChannelsTextbox.Size = new System.Drawing.Size(473, 20);
+            this.mChannelsTextbox.Size = new System.Drawing.Size(453, 20);
             this.mChannelsTextbox.TabIndex = 18;
             this.mChannelsTextbox.Visible = false;
             // 
@@ -284,7 +259,7 @@ namespace Obi.Dialogs
             this.mSampleRateTextbox.Location = new System.Drawing.Point(121, 63);
             this.mSampleRateTextbox.Name = "mSampleRateTextbox";
             this.mSampleRateTextbox.ReadOnly = true;
-            this.mSampleRateTextbox.Size = new System.Drawing.Size(473, 20);
+            this.mSampleRateTextbox.Size = new System.Drawing.Size(453, 20);
             this.mSampleRateTextbox.TabIndex = 17;
             this.mSampleRateTextbox.Visible = false;
             // 
@@ -299,7 +274,7 @@ namespace Obi.Dialogs
             this.mChannelsCombo.FormattingEnabled = true;
             this.mChannelsCombo.Location = new System.Drawing.Point(121, 91);
             this.mChannelsCombo.Name = "mChannelsCombo";
-            this.mChannelsCombo.Size = new System.Drawing.Size(473, 21);
+            this.mChannelsCombo.Size = new System.Drawing.Size(453, 21);
             this.mChannelsCombo.TabIndex = 16;
             // 
             // labelChannels
@@ -322,7 +297,7 @@ namespace Obi.Dialogs
             this.mSampleRateCombo.FormattingEnabled = true;
             this.mSampleRateCombo.Location = new System.Drawing.Point(121, 63);
             this.mSampleRateCombo.Name = "mSampleRateCombo";
-            this.mSampleRateCombo.Size = new System.Drawing.Size(473, 21);
+            this.mSampleRateCombo.Size = new System.Drawing.Size(453, 21);
             this.mSampleRateCombo.TabIndex = 14;
             // 
             // labelSampleRate
@@ -346,7 +321,7 @@ namespace Obi.Dialogs
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(600, 189);
+            this.tabPage1.Size = new System.Drawing.Size(600, 194);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "User profile";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -421,18 +396,84 @@ namespace Obi.Dialogs
             this.label1.TabIndex = 0;
             this.label1.Text = "Full &name:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(26, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "&Preview duration:";
+            // 
+            // mPreviewDurationUpDown
+            // 
+            this.mPreviewDurationUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mPreviewDurationUpDown.DecimalPlaces = 1;
+            this.mPreviewDurationUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.mPreviewDurationUpDown.Location = new System.Drawing.Point(121, 118);
+            this.mPreviewDurationUpDown.Name = "mPreviewDurationUpDown";
+            this.mPreviewDurationUpDown.Size = new System.Drawing.Size(120, 20);
+            this.mPreviewDurationUpDown.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(247, 120);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "second(s)";
+            // 
+            // mAudioCluesCheckBox
+            // 
+            this.mAudioCluesCheckBox.AutoSize = true;
+            this.mAudioCluesCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mAudioCluesCheckBox.Location = new System.Drawing.Point(6, 171);
+            this.mAudioCluesCheckBox.Name = "mAudioCluesCheckBox";
+            this.mAudioCluesCheckBox.Size = new System.Drawing.Size(78, 17);
+            this.mAudioCluesCheckBox.TabIndex = 25;
+            this.mAudioCluesCheckBox.Text = "&Audio clues";
+            this.mAudioCluesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(50, 147);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "&Noise level:";
+            // 
+            // mNoiseLevelComboBox
+            // 
+            this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mNoiseLevelComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mNoiseLevelComboBox.FormattingEnabled = true;
+            this.mNoiseLevelComboBox.Items.AddRange(new object[] {
+            "Low",
+            "Medium",
+            "High"});
+            this.mNoiseLevelComboBox.Location = new System.Drawing.Point(120, 144);
+            this.mNoiseLevelComboBox.Name = "mNoiseLevelComboBox";
+            this.mNoiseLevelComboBox.Size = new System.Drawing.Size(121, 21);
+            this.mNoiseLevelComboBox.TabIndex = 24;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(632, 273);
+            this.ClientSize = new System.Drawing.Size(612, 278);
             this.Controls.Add(this.mTab);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(8, 173);
+            this.MinimumSize = new System.Drawing.Size(350, 305);
             this.Name = "Preferences";
             this.Text = "Edit preferences";
             this.mTab.ResumeLayout(false);
@@ -442,6 +483,7 @@ namespace Obi.Dialogs
             this.mAudioTab.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -465,9 +507,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox mChannelsCombo;
         private System.Windows.Forms.Label labelChannels;
         private System.Windows.Forms.CheckBox mLastOpenCheckBox;
-        private System.Windows.Forms.TextBox mExportTextbox;
-        private System.Windows.Forms.Button mBrowseExportButton;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox mChannelsTextbox;
         private System.Windows.Forms.TextBox mSampleRateTextbox;
         private System.Windows.Forms.TabPage tabPage1;
@@ -478,5 +517,11 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox mCultureBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox mAudioCluesCheckBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown mPreviewDurationUpDown;
+        private System.Windows.Forms.ComboBox mNoiseLevelComboBox;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -137,12 +137,15 @@ namespace Obi.ProjectView
         /// Set the zoom factor and the height.
         /// We cheat for the height so that it fits exactly in the parent container.
         /// </summary>
-        public virtual void SetZoomFactorAndHeight(double zoom, int height)
+        public virtual void SetZoomFactorAndHeight(float zoom, int height)
         {
-            mLabel.Font = new Font(Font.FontFamily, (float)zoom * mBaseFontSize);
-            int margin = (int)Math.Round(zoom * mBaseSpacing);
-            Margin = new Padding(margin, 0, margin, 0);
-            Size = new Size(LabelFullWidth, height);
+            if (zoom > 0.0f)
+            {
+                mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+                int margin = (int)Math.Round(zoom * mBaseSpacing);
+                Margin = new Padding(margin, 0, margin, 0);
+                Size = new Size(LabelFullWidth, height);
+            }
         }
 
 
