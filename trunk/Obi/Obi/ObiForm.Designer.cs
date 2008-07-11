@@ -82,6 +82,9 @@ namespace Obi
             this.mView_ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_NormalSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_AudioZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.mProjectStatisticstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,6 +160,7 @@ namespace Obi
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEncodeToMp3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,7 +173,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -426,6 +429,9 @@ namespace Obi
             this.mView_ZoomInMenuItem,
             this.mView_ZoomOutMenuItem,
             this.mView_NormalSizeMenuItem,
+            this.mView_AudioZoomInMenuItem,
+            this.mView_AudioZoomOutMenuItem,
+            this.toolStripSeparator17,
             this.mProjectStatisticstoolStripMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
@@ -558,6 +564,23 @@ namespace Obi
             this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
             resources.ApplyResources(this.mView_NormalSizeMenuItem, "mView_NormalSizeMenuItem");
             this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.View_NormalSizeMenuItem_Click);
+            // 
+            // mView_AudioZoomInMenuItem
+            // 
+            this.mView_AudioZoomInMenuItem.Name = "mView_AudioZoomInMenuItem";
+            resources.ApplyResources(this.mView_AudioZoomInMenuItem, "mView_AudioZoomInMenuItem");
+            this.mView_AudioZoomInMenuItem.Click += new System.EventHandler(this.mView_AudioZoomInMenuItem_Click);
+            // 
+            // mView_AudioZoomOutMenuItem
+            // 
+            this.mView_AudioZoomOutMenuItem.Name = "mView_AudioZoomOutMenuItem";
+            resources.ApplyResources(this.mView_AudioZoomOutMenuItem, "mView_AudioZoomOutMenuItem");
+            this.mView_AudioZoomOutMenuItem.Click += new System.EventHandler(this.mView_AudioZoomOutMenuItem_Click);
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
             // mProjectStatisticstoolStripMenuItem
             // 
@@ -758,8 +781,8 @@ namespace Obi
             // 
             // mAddRoleToolStripTextBox
             // 
-            this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
+            this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             this.mAddRoleToolStripTextBox.Click += new System.EventHandler(this.mAddRoleToolStripTextBox_Click);
             // 
@@ -1092,6 +1115,11 @@ namespace Obi
             this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
             this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
             // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
+            // 
             // mExportAsDAISYToolStripMenuItem
             // 
             resources.ApplyResources(this.mExportAsDAISYToolStripMenuItem, "mExportAsDAISYToolStripMenuItem");
@@ -1177,11 +1205,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
             // ObiForm
             // 
@@ -1350,6 +1373,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mProjectStatisticstoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem mView_AudioZoomInMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_AudioZoomOutMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
     }
 }
 

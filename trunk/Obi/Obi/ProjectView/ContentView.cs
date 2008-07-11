@@ -416,6 +416,12 @@ namespace Obi.ProjectView
             }
         }
 
+        public float AudioScale
+        {
+            get { return mView == null ? 0.01f : mView.AudioScale; }
+            set { foreach (Control c in Controls) if (c is Strip) ((Strip)c).AudioScale = value; }
+        }
+
         /// <summary>
         /// Set the zoom factor for the control and its components.
         /// </summary>

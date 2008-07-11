@@ -614,14 +614,44 @@
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>Normal si&amp;ze</value>
   </data>
+  <data name="mView_AudioZoomInMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+Shift++</value>
+  </data>
+  <data name="mView_AudioZoomInMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Shift+Oemplus</value>
+  </data>
+  <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
+    <value>Au&amp;dio zoom in</value>
+  </data>
+  <data name="mView_AudioZoomOutMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+Alt+Shift+-</value>
+  </data>
+  <data name="mView_AudioZoomOutMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Shift+OemMinus</value>
+  </data>
+  <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
+    <value>Audio zoom out (&amp;q)</value>
+  </data>
+  <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 6</value>
+  </data>
   <data name="mProjectStatisticstoolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Project Statistics</value>
+  </data>
+  <data name="mProjectStatisticstoolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+I</value>
   </data>
   <data name="mProjectStatisticstoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
   </data>
   <data name="mProjectStatisticstoolStripMenuItem.Text" xml:space="preserve">
-    <value>Project Statistics</value>
+    <value>Pro&amp;ject statistics</value>
   </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
@@ -856,6 +886,9 @@
   </data>
   <data name="mCustomRoleToolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 6</value>
+  </data>
+  <data name="mAddRoleToolStripTextBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
   </data>
   <data name="mAddRoleToolStripTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 21</value>
@@ -1450,7 +1483,7 @@
     <value>2</value>
   </data>
   <metadata name="mStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>0, 606</value>
+    <value>0, 583</value>
   </metadata>
   <data name="mStatusLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
@@ -1510,7 +1543,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.18727, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.21773, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1782,6 +1815,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2097,6 +2133,24 @@
   </data>
   <data name="&gt;&gt;mView_NormalSizeMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_AudioZoomInMenuItem.Name" xml:space="preserve">
+    <value>mView_AudioZoomInMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_AudioZoomInMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_AudioZoomOutMenuItem.Name" xml:space="preserve">
+    <value>mView_AudioZoomOutMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_AudioZoomOutMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator17.Name" xml:space="preserve">
+    <value>toolStripSeparator17</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mProjectStatisticstoolStripMenuItem.Name" xml:space="preserve">
     <value>mProjectStatisticstoolStripMenuItem</value>
@@ -2548,6 +2602,12 @@
   <data name="&gt;&gt;preferencesToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator16.Name" xml:space="preserve">
+    <value>toolStripSeparator16</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mExportAsDAISYToolStripMenuItem.Name" xml:space="preserve">
     <value>mExportAsDAISYToolStripMenuItem</value>
   </data>
@@ -2607,12 +2667,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgessBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator16.Name" xml:space="preserve">
-    <value>toolStripSeparator16</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

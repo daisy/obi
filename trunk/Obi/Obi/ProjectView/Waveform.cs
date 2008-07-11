@@ -201,20 +201,24 @@ namespace Obi.ProjectView
             get { return XFromTime(mSelection.SelectionEndTime); }
             set
             {
-                int x = value < 0 ? 0 : value > Width ? Width : value;
-                double end = TimeFromX(x);
-                double start = mSelection == null ? end : mSelection.CursorTime;
-                if (start == end)
+                if (mSelection != null)
                 {
-                    mSelection.HasCursor = true;
+
+                    int x = value < 0 ? 0 : value > Width ? Width : value;
+                    double end = TimeFromX(x);
+                    double start = mSelection == null ? end : mSelection.CursorTime;
+                    if (start == end)
+                    {
+                        mSelection.HasCursor = true;
+                    }
+                    else
+                    {
+                        mSelection.HasCursor = false;
+                        mSelection.SelectionBeginTime = Math.Min(start, end);
+                        mSelection.SelectionEndTime = Math.Max(start, end);
+                    }
+                    Invalidate();
                 }
-                else
-                {
-                    mSelection.HasCursor = false;
-                    mSelection.SelectionBeginTime = Math.Min(start, end);
-                    mSelection.SelectionEndTime = Math.Max(start, end);
-                }
-                Invalidate();
             }
         }
 

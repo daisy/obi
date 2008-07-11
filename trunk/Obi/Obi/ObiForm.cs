@@ -21,6 +21,7 @@ namespace Obi
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
+        private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
 
 
         /// <summary>
@@ -41,6 +42,19 @@ namespace Obi
             OpenProject(path);
         }
 
+
+        public float AudioScale
+        {
+            get { return mSettings.AudioScale; }
+            set
+            {
+                if (value > 0.0)
+                {
+                    mSettings.AudioScale = value;
+                    mProjectView.AudioScale = value;
+                }
+            }
+        }
 
         public float ZoomFactor 
         {
@@ -1665,5 +1679,14 @@ namespace Obi
             mProjectView.CropPhrase();
         }
 
+        private void mView_AudioZoomInMenuItem_Click(object sender, EventArgs e)
+        {
+            AudioScale = AudioScale * AUDIO_SCALE_INCREMENT;
+        }
+
+        private void mView_AudioZoomOutMenuItem_Click(object sender, EventArgs e)
+        {
+            AudioScale = AudioScale / AUDIO_SCALE_INCREMENT;
+        }
     }
 }
