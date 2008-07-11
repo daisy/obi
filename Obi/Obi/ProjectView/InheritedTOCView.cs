@@ -170,9 +170,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the zoom factor (normally, from the project view.)
         /// </summary>
-        public double ZoomFactor
+        public float ZoomFactor
         {
-            set { Font = new Font(Font.FontFamily, mBaseFontSize * (float)value); }
+            set { Font = new Font(Font.FontFamily, mBaseFontSize * value); }
         }
 
 

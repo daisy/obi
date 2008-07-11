@@ -317,11 +317,11 @@ namespace Obi.ProjectView
             }
         }
 
-        public double ZoomFactor
+        public float ZoomFactor
         {
             set
             {
-                if (value > 0.0)
+                if (value > 0.0f)
                 {
                     mLabel.ZoomFactor = value;
                     int h = (int)Math.Round(value * mBlockLayoutBaseHeight);

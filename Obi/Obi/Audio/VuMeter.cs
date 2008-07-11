@@ -602,7 +602,7 @@ namespace Obi.Audio
 
         }
 
-        public enum NoiseLevelSelection { high, low, medium } ;
+        public enum NoiseLevelSelection { High, Low, Medium } ;
         private NoiseLevelSelection m_NoiseLevel;
         /// <summary>
         ///  
@@ -612,15 +612,15 @@ namespace Obi.Audio
             get { return m_NoiseLevel; }
             set
             {
-                if (value == NoiseLevelSelection.low)
+                if (value == NoiseLevelSelection.Low)
                 {
                     m_LBound = -37.5;
                 }
-                else if (value == NoiseLevelSelection.medium)
+                else if (value == NoiseLevelSelection.Medium)
                 {
                     m_LBound = -36;
                 }
-                else if (value == NoiseLevelSelection.high)
+                else if (value == NoiseLevelSelection.High)
                 {
                     m_LBound = -34;
                 }

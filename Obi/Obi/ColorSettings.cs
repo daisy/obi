@@ -112,6 +112,13 @@ namespace Obi
         {
             ColorSettings settings = DefaultColorSettings();
             // we do not need to change system colors.
+
+            settings.mWaveformChannel1Color = Color.Green;
+            settings.mWaveformChannel2Color = Color.Green;
+            settings.mWaveformMonoColor = Color.Green;
+            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Black);
+            settings.mWaveformCursorColor = Color.Purple;
+            
             return settings;
         }
     }

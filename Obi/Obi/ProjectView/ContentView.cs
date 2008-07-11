@@ -419,16 +419,10 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the zoom factor for the control and its components.
         /// </summary>
-        public double ZoomFactor
+        public float ZoomFactor
         {
-            get { return mView == null ? 1.0 : mView.ZoomFactor; }
-            set
-            {
-                if (value > 0.0)
-                {
-                    foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
-                }
-            }
+            get { return mView == null ? 1.0f : mView.ZoomFactor; }
+            set { foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value; }
         }
 
 

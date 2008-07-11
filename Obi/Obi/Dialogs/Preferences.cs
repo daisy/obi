@@ -40,7 +40,6 @@ namespace Obi.Dialogs
         private void InitializeProjectTab()
         {
             mDirectoryTextbox.Text = mSettings.DefaultPath;
-            mExportTextbox.Text = mSettings.DefaultExportPath;
             mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
         }
 
@@ -88,6 +87,12 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message(audioChannels == 1 ? "mono" : "stereo");
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
+
+            mPreviewDurationUpDown.Value = (decimal)(mSettings.PreviewDuration / 1000.0);
+            mNoiseLevelComboBox.SelectedIndex =
+                mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Low ? 0 :
+                mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
+            mAudioCluesCheckBox.Checked = mSettings.AudioClues;
         }
 
         // Initialize user profile preferences
@@ -105,14 +110,6 @@ namespace Obi.Dialogs
         private void mBrowseButton_Click(object sender, EventArgs e)
         {
             SelectFolder(mSettings.DefaultPath, "default_directory_browser", mDirectoryTextbox);
-        }
-
-        /// <summary>
-        /// Browse for the export directory.
-        /// </summary>
-        private void mBrowseExportButton_Click(object sender, EventArgs e)
-        {
-            SelectFolder(mSettings.DefaultExportPath, "export_directory_browser", mExportTextbox);
         }
 
         private void SelectFolder(string path, string description, TextBox textBox)
@@ -138,10 +135,6 @@ namespace Obi.Dialogs
             {
                 mSettings.DefaultPath = mDirectoryTextbox.Text;
             }
-            if (ObiForm.CanUseDirectory(mExportTextbox.Text, false))
-            {
-                mSettings.DefaultExportPath = mExportTextbox.Text;
-            }
             mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         }
 
@@ -161,6 +154,10 @@ namespace Obi.Dialogs
                     mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate);
                 }
             }
+            mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? Audio.VuMeter.NoiseLevelSelection.Low :
+                mNoiseLevelComboBox.SelectedIndex == 1 ? Audio.VuMeter.NoiseLevelSelection.Medium : Audio.VuMeter.NoiseLevelSelection.High;
+            mSettings.AudioClues = mAudioCluesCheckBox.Checked;
+            mSettings.PreviewDuration = (int)Math.Round(1000 * mPreviewDurationUpDown.Value);
         }
 
         // Update user profile

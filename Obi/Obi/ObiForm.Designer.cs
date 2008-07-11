@@ -169,6 +169,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1078,6 +1079,7 @@ namespace Obi
             this.mToolsToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preferencesToolStripMenuItem1,
+            this.toolStripSeparator16,
             this.mExportAsDAISYToolStripMenuItem,
             this.mEncodeToMp3toolStripMenuItem,
             this.mValidatorToolStripMenuItem});
@@ -1175,6 +1177,11 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
             // ObiForm
             // 
@@ -1342,6 +1349,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mValidatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mProjectStatisticstoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
     }
 }
 

@@ -92,18 +92,18 @@ namespace Obi.ProjectView
         /// <summary>
         /// Change the size of the control for the given zoom factor.
         /// </summary>
-        public double ZoomFactor
+        public float ZoomFactor
         {
             set
             {
-                if (value > 0.0)
+                if (value > 0.0f)
                 {
                     mLabel.Font =
                     mTextBox.Font =
-                         new Font(mLabel.Font.FontFamily, (float)value * mLabelBaseFontSize);
+                         new Font(mLabel.Font.FontFamily, value * mLabelBaseFontSize);
                     mOKButton.Font =
                     mCancelButton.Font =
-                        new Font(mOKButton.Font.FontFamily, (float)value * mButtonsBaseFontSize);
+                        new Font(mOKButton.Font.FontFamily, value * mButtonsBaseFontSize);
                     UpdateSize();
                 }
             }
