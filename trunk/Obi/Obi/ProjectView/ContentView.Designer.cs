@@ -35,9 +35,7 @@ namespace Obi.ProjectView
             this.AutoScroll = true;
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
-            this.SizeChanged += new System.EventHandler(this.ContentView_SizeChanged);
             this.ResumeLayout(false);
-
         }
 
         #endregion

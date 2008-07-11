@@ -57,6 +57,7 @@ namespace Obi.ProjectView
             Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
             mBlockLayout.Controls.Add(block);
             mBlockLayout.Controls.SetChildIndex(block, node.Index);
+            block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
             UpdateSize();
             return block;
         }
@@ -69,9 +70,9 @@ namespace Obi.ProjectView
         public Block BlockAfter(ISelectableInContentView item)
         {
             int count = mBlockLayout.Controls.Count;
-            int index = item is Strip ? 0 :
-                        //item is StripCursor ? mBlocksPanel.Controls.IndexOf((Control)item) + 1 :
-                        item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index : 0 :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
             return index < count ? (Block)mBlockLayout.Controls[index] : null;
         }
 
@@ -81,9 +82,10 @@ namespace Obi.ProjectView
         /// </summary>
         public Block BlockBefore(ISelectableInContentView item)
         {
-            int index = item is Strip ? mBlockLayout.Controls.Count - 1 :
-                        // item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) - 1 :
-                        item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
+                    mBlockLayout.Controls.Count - 1 :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
             return index > 0 ? (Block)mBlockLayout.Controls[index] : null;
         }
 
@@ -193,7 +195,7 @@ namespace Obi.ProjectView
             Block block = FindBlock(node);
             if (block != null)
             {
-                mBlockLayout.Controls.Remove(block);             // and the block itself
+                mBlockLayout.Controls.Remove(block);
                 UpdateSize();
             }
         }
@@ -443,11 +445,13 @@ namespace Obi.ProjectView
             {
                 mBlockLayout.AutoSize = false;
                 mBlockLayout.WrapContents = false;
-                // Compute the minimum width of the block panel
-                int minBlockPanelWidth = 0;
-                foreach (Control c in mBlockLayout.Controls) minBlockPanelWidth += c.Width + c.Margin.Horizontal;
-                mBlockLayout.Size = new Size(minBlockPanelWidth, mBlockLayout.Height);
-                MinimumSize = new Size(minBlockPanelWidth + mBlockLayout.Margin.Horizontal, MinimumSize.Height);
+                // Compute the minimum width of the block panel (largest of label or block layout width.)
+                int wl = mLabel.Width;
+                int wb = 0;
+                foreach (Control c in mBlockLayout.Controls) wb += c.Width + c.Margin.Horizontal;
+                int w = wl > wb ? wl : wb;
+                mBlockLayout.Size = new Size(wb, mBlockLayout.Height);
+                Size = new Size(w + mBlockLayout.Margin.Horizontal, Height);
             }
         }
 

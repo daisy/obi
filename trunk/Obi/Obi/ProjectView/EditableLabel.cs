@@ -24,7 +24,6 @@ namespace Obi.ProjectView
         public EditableLabel()
         {
             InitializeComponent();
-            Editable = false;
             mButtonsBaseFontSize = mOKButton.Font.SizeInPoints;
             mLabelBaseFontSize = mLabel.Font.SizeInPoints;
         }
@@ -49,7 +48,6 @@ namespace Obi.ProjectView
                     mLabel.Visible = !mEditable;
                     if (mEditable)
                     {
-                        mTextBox.SelectedText = "";
                         mTextBox.Text = mLabel.Text;
                         mTextBox.SelectAll();
                         mTextBox.Focus();

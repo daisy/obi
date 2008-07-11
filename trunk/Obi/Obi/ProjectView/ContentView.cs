@@ -476,21 +476,6 @@ namespace Obi.ProjectView
         // Deselect everything when clicking the panel
         private void ContentView_Click(object sender, EventArgs e) { mView.Selection = null; }
 
-        // Handle resizing of the layout panel: all strips are resized to be at least as wide.
-        private void ContentView_SizeChanged(object sender, EventArgs e)
-        {
-            if (Controls.Count > 0)
-            {
-                Control last = Controls[Controls.Count - 1];
-                int scrollbarW = last.Location.Y + last.Height > Height ? SystemInformation.VerticalScrollBarWidth + Margin.Right : 0;
-                foreach (Control c in Controls)
-                {
-                    int w = Width - c.Location.X - c.Margin.Right - scrollbarW;
-                    c.Width = w;
-                }
-            }
-        }
-
         // Create a command (possibly composite) to delete a strip for the given section node.
         private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
         {
