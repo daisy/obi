@@ -34,9 +34,6 @@ namespace Obi.ProjectView
             // mWaveform
             // 
             this.mWaveform.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.mWaveform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mWaveform.BackColor = System.Drawing.Color.OliveDrab;
             this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.mWaveform.Location = new System.Drawing.Point(0, 21);
