@@ -20,6 +20,7 @@ namespace Obi
         public bool AllowOverwrite;            // allow/disallow overwriting audio when recording
         public int AudioChannels;              // number of channels for recording
         public bool AudioClues;                // use audio clues (or not.)
+        public float AudioScale;               // scale of audio in waveform views
         public int BitDepth;                   // sample bit depth
         public ColorSettings ColorSettings;    // current color settings
         public ColorSettings ColorSettingsHC;  // current color settings for high contrast
@@ -57,6 +58,7 @@ namespace Obi
             Settings settings = new Settings();
             settings.AudioChannels = 1;
             settings.AudioClues = false;
+            settings.AudioScale = 0.01f;
             settings.AllowOverwrite = false;
             settings.BitDepth = 16;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();

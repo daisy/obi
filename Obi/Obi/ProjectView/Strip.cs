@@ -317,6 +317,16 @@ namespace Obi.ProjectView
             }
         }
 
+        public float AudioScale
+        {
+            get { return mParentView == null ? 0.01f : mParentView.AudioScale; }
+            set
+            {
+                foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+                ResizeToBlocksLength(mBlockLayout.Height);
+            }
+        }
+
         public float ZoomFactor
         {
             set
@@ -326,14 +336,19 @@ namespace Obi.ProjectView
                     mLabel.ZoomFactor = value;
                     int h = (int)Math.Round(value * mBlockLayoutBaseHeight);
                     foreach (Control c in mBlockLayout.Controls) if (c is Block) ((Block)c).SetZoomFactorAndHeight(value, h);
-                    Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
-                    int w = k == null ? Width - mBlockLayout.Margin.Horizontal :
-                        k.Location.X + k.Width + k.Margin.Right;
-                    int h_ = mBlockLayout.Height - h;
-                    mBlockLayout.Size = new Size(w, h);
-                    Size = new Size(mBlockLayout.Location.X + w + mBlockLayout.Margin.Right, Height - h_);
+                    ResizeToBlocksLength(h);
                 }
             }
+        }
+
+        private void ResizeToBlocksLength(int h)
+        {
+            Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
+            int w = k == null ? Width - mBlockLayout.Margin.Horizontal :
+                k.Location.X + k.Width + k.Margin.Right;
+            int h_ = mBlockLayout.Height - h;
+            mBlockLayout.Size = new Size(w, h);
+            Size = new Size(mBlockLayout.Location.X + w + mBlockLayout.Margin.Right, Height - h_);
         }
 
 

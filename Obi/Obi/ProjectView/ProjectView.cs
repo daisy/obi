@@ -1587,6 +1587,13 @@ namespace Obi.ProjectView
                 e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
         }
 
+        [DefaultValue(0.01f)]
+        public float AudioScale
+        {
+            get { return ObiForm == null ? 0.01f : ObiForm.AudioScale; }
+            set { if (value > 0.0f) mContentView.AudioScale = value; }
+        }
+
         [DefaultValue(1.0f)]
         public float ZoomFactor
         {

@@ -11,7 +11,6 @@ namespace Obi.ProjectView
     public partial class AudioBlock : Block
     {
         private bool mShift;                                // track the shift key
-        private static readonly float AUDIO_SCALE = 0.01f;  // scale of audio
 
 
         /// <summary>
@@ -92,6 +91,12 @@ namespace Obi.ProjectView
             }
         }
 
+        public float AudioScale
+        {
+            get { return Strip == null ? 0.01f : Strip.AudioScale; }
+            set { SetWaveform(mNode as PhraseNode); }
+        }
+
         public override void SetZoomFactorAndHeight(float zoom, int height)
         {
             base.SetZoomFactorAndHeight(zoom, height);
@@ -125,7 +130,7 @@ namespace Obi.ProjectView
             get
             {
                 long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
-                return (int)Math.Round(time * AUDIO_SCALE);
+                return (int)Math.Round(time * AudioScale);
             }
         }
 
