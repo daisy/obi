@@ -403,11 +403,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void FocusOnContentView()
         {
-            if (CanFocusOnContentView)
+                        if (CanFocusOnContentView)
             {
-                if (mSelection != null && mSelection.Control is TOCView)
+                                                if (mSelection != null && mSelection.Control is  InheritedTOCView)
                 {
-                    if (TransportBar.IsPlayerActive)
+                                        if (TransportBar.IsPlayerActive)
                         Selection = new NodeSelection(mContentView.PlaybackPhrase, mContentView);
                     else
                         Selection = new NodeSelection(mSelection.Node, mContentView);
