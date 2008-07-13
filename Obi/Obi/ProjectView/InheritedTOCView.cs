@@ -396,5 +396,20 @@ namespace Obi.ProjectView
         {
             if (e.Action == TreeViewAction.Unknown) e.Cancel = true;
         }
+
+        
+        protected override bool ProcessDialogKey(Keys KeyData)
+        {
+            if ( this.ContainsFocus &&
+                ( KeyData == Keys.Tab ||
+                KeyData == ((Keys) Keys.Shift | Keys.Tab ))  )
+            {
+                System.Media.SystemSounds.Beep.Play();
+                return true;
+            }
+            return base.ProcessDialogKey(KeyData);
+        }
+    
+
     }
 }
