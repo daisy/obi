@@ -761,7 +761,7 @@ namespace Obi.ProjectView
             if (CanUseKeys &&
                 ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
-            //if (ProcessTabKeyInContentsView(key)) return true;
+            if (ProcessTabKeyInContentsView(key)) return true;
             return base.ProcessCmdKey(ref msg, key);
         }
 
@@ -1155,13 +1155,17 @@ namespace Obi.ProjectView
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        /*private bool ProcessTabKeyInContentsView(Keys key)
+        private bool ProcessTabKeyInContentsView(Keys key)
         {
                         if (key == Keys.Tab)
             {
-                if (this.ActiveControl != null)
+                                            //if (this.ActiveControl != null)
+                                                        if ( this.ContainsFocus )
                 {
-                    Strip s = ((Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1]);
+                                        //Strip s = ((Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1]);
+Strip s  = Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
+null;
+
                     if (s != null &&
                         ((s.ContainsFocus && s.LastBlock == null)
                                             || (s.LastBlock != null && s.LastBlock.ContainsFocus)))
@@ -1174,19 +1178,22 @@ namespace Obi.ProjectView
             }
             else if (key == (Keys)(Keys.Shift | Keys.Tab))
             {
-                if (this.ActiveControl != null)
+                //if (this.ActiveControl != null)
+                if (this.ContainsFocus)
                 {
-                    Strip s = ((Strip)mLayoutPanel.Controls[0]);
-                    if (s != null && s.Controls[0].ContainsFocus)
+                    //Strip s = ((Strip)mLayoutPanel.Controls[0]);
+                    Strip s = Controls.Count > 0 ? (Strip)Controls[0] : null;
+                    
+                    if (s != null && s.Controls[1].ContainsFocus)
                     {
-                        Strip LastStrip = mLayoutPanel.Controls.Count > 0 ? (Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1] :
+                        Strip LastStrip = Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
 null;
 
                         if (LastStrip != null)
                         {
                             System.Media.SystemSounds.Beep.Play();
                             if (LastStrip.LastBlock != null)
-                                return SelectBlockFor(delegate(Strip strip, ISelectableInStripView item) { return LastStrip.LastBlock; });
+                                return SelectBlockFor(delegate(Strip strip, ISelectableInContentView  item) { return LastStrip.LastBlock; });
                             else
                                 return SelectLastStrip();
                         }
@@ -1194,7 +1201,7 @@ null;
                 }
             }
             return false;
-        }*/
+        }
 
 
 
