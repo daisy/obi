@@ -81,25 +81,25 @@ namespace Obi
 
         private void UpdateFileMenu()
         {
-            mNewProjectToolStripMenuItem.Enabled = true;
-            mNewProjectFromImportToolStripMenuItem.Enabled = true;
-            mOpenProjectToolStripMenuItem.Enabled = true;
-            mRecentProjectToolStripMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
-            mClearListToolStripMenuItem.Enabled = true;
-            mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
-            mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
-            mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
-            mExitToolStripMenuItem.Enabled = true;
+            mFile_NewProjectMenuItem.Enabled = true;
+            mFile_NewProjectFromImportMenuItem.Enabled = true;
+            mFile_OpenProjectMenuItem.Enabled = true;
+            mFile_CloseProjectMenuItem.Enabled = mSession.HasProject;
+            mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
+            mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
+            mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
+            mFile_ClearListMenuItem.Enabled = true;
+            mFile_ExitMenuItem.Enabled = true;
         }
 
-        private void mNewProjectToolStripMenuItem_Click(object sender, EventArgs e) { NewProject(); }
-        private void mNewProjectFromImportToolStripMenuItem_Click(object sender, EventArgs e) { NewProjectFromImport(); }
-        private void mOpenProjectToolStripMenuItem_Click(object sender, EventArgs e) { Open(); }
-        private void mClearListToolStripMenuItem_Click(object sender, EventArgs e) { ClearRecentProjectsList(); }
-        private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
-        private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
-        private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
-        private void mExitToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
+        private void File_NewProjectMenuItem_Click(object sender, EventArgs e) { NewProject(); }
+        private void File_NewProjectFromImportMenuItem_Click(object sender, EventArgs e) { NewProjectFromImport(); }
+        private void File_OpenProjectMenuItem_Click(object sender, EventArgs e) { Open(); }
+        private void File_CloseProjectMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
+        private void File_SaveProjectMenuItem_Click(object sender, EventArgs e) { Save(); }
+        private void File_SaveProjectAsMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
+        private void File_ClearListMenuItem_Click(object sender, EventArgs e) { ClearRecentProjectsList(); }
+        private void File_ExitMenuItem_Click(object sender, EventArgs e) { Close(); }
 
         // Create a new project if the current one was closed properly, or if none was open.
         private void NewProject()
@@ -172,12 +172,12 @@ namespace Obi
                     Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                 DialogResult.Yes)
             {
-                while (mRecentProjectToolStripMenuItem.DropDownItems.Count > 2)
+                while (mFile_RecentProjectMenuItem.DropDownItems.Count > 2)
                 {
-                    mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(0);
+                    mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(0);
                 }
                 mSettings.RecentProjects.Clear();
-                mRecentProjectToolStripMenuItem.Enabled = false;
+                mFile_RecentProjectMenuItem.Enabled = false;
             }
         }
 
@@ -214,10 +214,7 @@ namespace Obi
                 if (result == DialogResult.Cancel) return false;
                 if (result == DialogResult.Yes) mSession.Save();
             }
-
-            if (mProjectView.TransportBar.IsActive)
-                mProjectView.TransportBar.Stop();
-
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
             return true;
         }
@@ -279,36 +276,6 @@ namespace Obi
                     }
                 }
             }
-        }
-
-        // Export the project as DAISY 3.
-        private void ExportProject()
-        {
-            //FolderBrowserDialog dialog = new FolderBrowserDialog();
-            //dialog.Description = Localizer.Message("export_choose_folder");
-            //dialog.SelectedPath = mSettings.DefaultExportPath;
-            Dialogs.SelectDirectoryPath SelectDirectoryDialog = new SelectDirectoryPath(Directory.GetParent(mSession.Path).FullName + "\\DAISY3 Export");
-            if (SelectDirectoryDialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(SelectDirectoryDialog.DirectoryPath))
-            //if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
-            {
-                try
-                {
-                    // Need the trailing slash, otherwise exported data ends up in a folder one level
-                    // higher than our selection.
-                    string exportPath = SelectDirectoryDialog.DirectoryPath;
-                    if (!exportPath.EndsWith("/")) exportPath += "/";
-                    mSession.PrimaryExportPath = exportPath ;
-                    mSession.Presentation.ExportToZ(exportPath, mSession.Path);
-                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), SelectDirectoryDialog.DirectoryPath),
-                       Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), SelectDirectoryDialog.DirectoryPath, e.Message),
-                        Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            Ready();
         }
 
         #endregion
@@ -839,6 +806,38 @@ namespace Obi
 
         private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
 
+
+        // Export the project as DAISY 3.
+        private void ExportProject()
+        {
+            //FolderBrowserDialog dialog = new FolderBrowserDialog();
+            //dialog.Description = Localizer.Message("export_choose_folder");
+            //dialog.SelectedPath = mSettings.DefaultExportPath;
+            Dialogs.SelectDirectoryPath SelectDirectoryDialog = new SelectDirectoryPath(Directory.GetParent(mSession.Path).FullName + "\\DAISY3 Export");
+            if (SelectDirectoryDialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(SelectDirectoryDialog.DirectoryPath))
+            //if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
+            {
+                try
+                {
+                    // Need the trailing slash, otherwise exported data ends up in a folder one level
+                    // higher than our selection.
+                    string exportPath = SelectDirectoryDialog.DirectoryPath;
+                    if (!exportPath.EndsWith("/")) exportPath += "/";
+                    mSession.PrimaryExportPath = exportPath;
+                    mSession.Presentation.ExportToZ(exportPath, mSession.Path);
+                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), SelectDirectoryDialog.DirectoryPath),
+                       Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), SelectDirectoryDialog.DirectoryPath, e.Message),
+                        Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            Ready();
+        }
+
+
         #endregion
 
         #region Help menu
@@ -887,7 +886,7 @@ namespace Obi
                 // the item was in the list so bump it up
                 int i = mSettings.RecentProjects.IndexOf(path);
                 mSettings.RecentProjects.RemoveAt(i);
-                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
             }
             AddRecentProjectsItem(path);
             mSettings.RecentProjects.Insert(0, path);
@@ -921,7 +920,7 @@ namespace Obi
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = path;
             item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
-            mRecentProjectToolStripMenuItem.DropDownItems.Insert(0, item);
+            mFile_RecentProjectMenuItem.DropDownItems.Insert(0, item);
             return true;
         }
 
@@ -1450,7 +1449,7 @@ namespace Obi
             {
                 int i = mSettings.RecentProjects.IndexOf(path);
                 mSettings.RecentProjects.RemoveAt(i);
-                mRecentProjectToolStripMenuItem.DropDownItems.RemoveAt(i);
+                mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
             }
         }
 
