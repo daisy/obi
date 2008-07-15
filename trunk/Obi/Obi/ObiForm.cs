@@ -89,11 +89,6 @@ namespace Obi
             mSaveProjectToolStripMenuItem.Enabled = mSession.CanSave;
             mSaveProjectAsToolStripMenuItem.Enabled = mSession.HasProject;
             mCloseProjectToolStripMenuItem.Enabled = mSession.HasProject;
-            mCleanProjectToolStripMenuItem.Enabled = mSession.HasProject;
-            mExportAsDAISYToolStripMenuItem.Enabled = mSession.HasProject;
-            mEncodeToMp3toolStripMenuItem.Enabled = mSession.HasProject;
-            mValidatorToolStripMenuItem.Enabled = mSession.HasProject;
-            mProjectStatisticstoolStripMenuItem.Enabled = mSession.HasProject;
             mExitToolStripMenuItem.Enabled = true;
         }
 
@@ -104,8 +99,6 @@ namespace Obi
         private void mSaveProjectToolStripMenuItem_Click(object sender, EventArgs e) { Save(); }
         private void mSaveProjectAsToolStripMenuItem_Click(object sender, EventArgs e) { SaveAs(); }
         private void mCloseProjectToolStripMenuItem_Click(object sender, EventArgs e) { DidCloseProject(); }
-        private void mCleanProjectToolStripMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
-        private void mExportAsDAISYToolStripMenuItem_Click(object sender, EventArgs e) { ExportProject(); }
         private void mExitToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
 
         // Create a new project if the current one was closed properly, or if none was open.
@@ -350,7 +343,7 @@ namespace Obi
             mPasteInsideToolStripMenuItem.Enabled = mProjectView.CanPasteInside;
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
             mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
-            mDeleteUnusedDataToolStripMenuItem.Enabled = mSession.HasProject;
+            mEdit_DeleteUnusedDataMenuItem.Enabled = mSession.HasProject;
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
@@ -365,7 +358,7 @@ namespace Obi
         private void mPasteInsideToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteInside(); }
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
-        private void mDeleteUnusedDataToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
+        private void mEdit_DeleteUnusedDataMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
 
         #endregion
@@ -386,6 +379,7 @@ namespace Obi
             mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
+            mView_ProjectStatisticsMenuItem.Enabled = mSession.HasProject;
         }
 
         private void mShowTOCViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -813,13 +807,37 @@ namespace Obi
 
         #region Tools menu
 
+        private void UpdateToolsMenu()
+        {
+            mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
+            mTools_EncodeDTBAudioAsMP3MenuItem.Enabled = mSession.HasProject;
+            mTools_ValidateDTBMenuItem.Enabled = mSession.HasProject;
+            mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
+        }
+
         // Open the preferences dialog
-        private void mPreferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mTools_PreferencesMenuItem_Click(object sender, EventArgs e)
         {
             Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation, mProjectView.TransportBar);
             prefs.ShowDialog();
             Ready();
         }
+
+        private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e) { ExportProject(); }
+
+        private void mTools_EncodeDTBAudioAsMP3MenuItem_Click(object sender, EventArgs e)
+        {
+            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath, Directory.GetParent(mSession.Path).FullName);
+            EncoderForm.ShowDialog();
+        }
+
+        private void mTools_ValidateDTBMenuItem_Click(object sender, System.EventArgs e)
+        {
+            PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm("", Directory.GetParent(mSession.Path).FullName);
+            ValidatorDialog.ShowDialog();
+        }
+
+        private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
 
         #endregion
 
@@ -1146,6 +1164,7 @@ namespace Obi
             UpdateSectionsMenu();
             UpdatePhrasesMenu();
             UpdateTransportMenu();
+            UpdateToolsMenu();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
@@ -1634,19 +1653,7 @@ namespace Obi
             mProjectView.SelectPreviousTODOPhrase();
         }
 
-        private void mEncodeToMp3toolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath, Directory.GetParent(mSession.Path).FullName);
-            EncoderForm.ShowDialog();
-        }
-
-        void mValidatorToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm("", Directory.GetParent(mSession.Path).FullName);
-            ValidatorDialog.ShowDialog();
-        }
-
-        private void mProjectStatisticstoolStripMenuItem_Click(object sender, EventArgs e)
+        private void View_ProjectStatisticsMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.Presentation != null)
             {

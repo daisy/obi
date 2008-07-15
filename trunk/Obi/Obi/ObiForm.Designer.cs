@@ -38,7 +38,6 @@ namespace Obi
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mSaveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSaveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCleanProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mRecentProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openrecentSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -57,7 +56,7 @@ namespace Obi
             this.mDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSelectNothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.mDeleteUnusedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEdit_DeleteUnusedDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +84,7 @@ namespace Obi
             this.mView_AudioZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.mProjectStatisticstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_ProjectStatisticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -159,11 +158,13 @@ namespace Obi
             this.mRewindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFastForwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.mExportAsDAISYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mEncodeToMp3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mValidatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_EncodeDTBAudioAsMP3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mTools_ValidateDTBMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewHelpInExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -203,7 +204,6 @@ namespace Obi
             this.toolStripSeparator9,
             this.mSaveProjectToolStripMenuItem,
             this.mSaveProjectAsToolStripMenuItem,
-            this.mCleanProjectToolStripMenuItem,
             this.toolStripSeparator2,
             this.mRecentProjectToolStripMenuItem,
             this.toolStripSeparator3,
@@ -250,12 +250,6 @@ namespace Obi
             resources.ApplyResources(this.mSaveProjectAsToolStripMenuItem, "mSaveProjectAsToolStripMenuItem");
             this.mSaveProjectAsToolStripMenuItem.Name = "mSaveProjectAsToolStripMenuItem";
             this.mSaveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.mSaveProjectAsToolStripMenuItem_Click);
-            // 
-            // mCleanProjectToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mCleanProjectToolStripMenuItem, "mCleanProjectToolStripMenuItem");
-            this.mCleanProjectToolStripMenuItem.Name = "mCleanProjectToolStripMenuItem";
-            this.mCleanProjectToolStripMenuItem.Click += new System.EventHandler(this.mCleanProjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -306,7 +300,7 @@ namespace Obi
             this.mDeleteToolStripMenuItem,
             this.mSelectNothingToolStripMenuItem,
             this.toolStripSeparator7,
-            this.mDeleteUnusedDataToolStripMenuItem,
+            this.mEdit_DeleteUnusedDataMenuItem,
             this.toolStripSeparator4,
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
@@ -378,11 +372,11 @@ namespace Obi
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             // 
-            // mDeleteUnusedDataToolStripMenuItem
+            // mEdit_DeleteUnusedDataMenuItem
             // 
-            resources.ApplyResources(this.mDeleteUnusedDataToolStripMenuItem, "mDeleteUnusedDataToolStripMenuItem");
-            this.mDeleteUnusedDataToolStripMenuItem.Name = "mDeleteUnusedDataToolStripMenuItem";
-            this.mDeleteUnusedDataToolStripMenuItem.Click += new System.EventHandler(this.mDeleteUnusedDataToolStripMenuItem_Click);
+            this.mEdit_DeleteUnusedDataMenuItem.Name = "mEdit_DeleteUnusedDataMenuItem";
+            resources.ApplyResources(this.mEdit_DeleteUnusedDataMenuItem, "mEdit_DeleteUnusedDataMenuItem");
+            this.mEdit_DeleteUnusedDataMenuItem.Click += new System.EventHandler(this.mEdit_DeleteUnusedDataMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -432,7 +426,7 @@ namespace Obi
             this.mView_AudioZoomInMenuItem,
             this.mView_AudioZoomOutMenuItem,
             this.toolStripSeparator17,
-            this.mProjectStatisticstoolStripMenuItem});
+            this.mView_ProjectStatisticsMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
             // 
@@ -582,11 +576,11 @@ namespace Obi
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
-            // mProjectStatisticstoolStripMenuItem
+            // mView_ProjectStatisticsMenuItem
             // 
-            resources.ApplyResources(this.mProjectStatisticstoolStripMenuItem, "mProjectStatisticstoolStripMenuItem");
-            this.mProjectStatisticstoolStripMenuItem.Name = "mProjectStatisticstoolStripMenuItem";
-            this.mProjectStatisticstoolStripMenuItem.Click += new System.EventHandler(this.mProjectStatisticstoolStripMenuItem_Click);
+            resources.ApplyResources(this.mView_ProjectStatisticsMenuItem, "mView_ProjectStatisticsMenuItem");
+            this.mView_ProjectStatisticsMenuItem.Name = "mView_ProjectStatisticsMenuItem";
+            this.mView_ProjectStatisticsMenuItem.Click += new System.EventHandler(this.View_ProjectStatisticsMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -781,8 +775,8 @@ namespace Obi
             // 
             // mAddRoleToolStripTextBox
             // 
-            resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
             this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
+            resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
             this.mAddRoleToolStripTextBox.Click += new System.EventHandler(this.mAddRoleToolStripTextBox_Click);
             // 
@@ -1101,42 +1095,54 @@ namespace Obi
             // 
             this.mToolsToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preferencesToolStripMenuItem1,
+            this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
-            this.mExportAsDAISYToolStripMenuItem,
-            this.mEncodeToMp3toolStripMenuItem,
-            this.mValidatorToolStripMenuItem});
+            this.mTools_ExportAsDAISYMenuItem,
+            this.mTools_EncodeDTBAudioAsMP3MenuItem,
+            this.mTools_ValidateDTBMenuItem,
+            this.toolStripSeparator18,
+            this.mTools_CleanUnreferencedAudioMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
             // 
-            // preferencesToolStripMenuItem1
+            // mTools_PreferencesMenuItem
             // 
-            resources.ApplyResources(this.preferencesToolStripMenuItem1, "preferencesToolStripMenuItem1");
-            this.preferencesToolStripMenuItem1.Name = "preferencesToolStripMenuItem1";
-            this.preferencesToolStripMenuItem1.Click += new System.EventHandler(this.mPreferencesToolStripMenuItem_Click);
+            resources.ApplyResources(this.mTools_PreferencesMenuItem, "mTools_PreferencesMenuItem");
+            this.mTools_PreferencesMenuItem.Name = "mTools_PreferencesMenuItem";
+            this.mTools_PreferencesMenuItem.Click += new System.EventHandler(this.mTools_PreferencesMenuItem_Click);
             // 
             // toolStripSeparator16
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
-            // mExportAsDAISYToolStripMenuItem
+            // mTools_ExportAsDAISYMenuItem
             // 
-            resources.ApplyResources(this.mExportAsDAISYToolStripMenuItem, "mExportAsDAISYToolStripMenuItem");
-            this.mExportAsDAISYToolStripMenuItem.Name = "mExportAsDAISYToolStripMenuItem";
-            this.mExportAsDAISYToolStripMenuItem.Click += new System.EventHandler(this.mExportAsDAISYToolStripMenuItem_Click);
+            resources.ApplyResources(this.mTools_ExportAsDAISYMenuItem, "mTools_ExportAsDAISYMenuItem");
+            this.mTools_ExportAsDAISYMenuItem.Name = "mTools_ExportAsDAISYMenuItem";
             // 
-            // mEncodeToMp3toolStripMenuItem
+            // mTools_EncodeDTBAudioAsMP3MenuItem
             // 
-            this.mEncodeToMp3toolStripMenuItem.Name = "mEncodeToMp3toolStripMenuItem";
-            resources.ApplyResources(this.mEncodeToMp3toolStripMenuItem, "mEncodeToMp3toolStripMenuItem");
-            this.mEncodeToMp3toolStripMenuItem.Click += new System.EventHandler(this.mEncodeToMp3toolStripMenuItem_Click);
+            this.mTools_EncodeDTBAudioAsMP3MenuItem.Name = "mTools_EncodeDTBAudioAsMP3MenuItem";
+            resources.ApplyResources(this.mTools_EncodeDTBAudioAsMP3MenuItem, "mTools_EncodeDTBAudioAsMP3MenuItem");
+            this.mTools_EncodeDTBAudioAsMP3MenuItem.Click += new System.EventHandler(this.mTools_EncodeDTBAudioAsMP3MenuItem_Click);
             // 
-            // mValidatorToolStripMenuItem
+            // mTools_ValidateDTBMenuItem
             // 
-            resources.ApplyResources(this.mValidatorToolStripMenuItem, "mValidatorToolStripMenuItem");
-            this.mValidatorToolStripMenuItem.Name = "mValidatorToolStripMenuItem";
-            this.mValidatorToolStripMenuItem.Click += new System.EventHandler(this.mValidatorToolStripMenuItem_Click);
+            resources.ApplyResources(this.mTools_ValidateDTBMenuItem, "mTools_ValidateDTBMenuItem");
+            this.mTools_ValidateDTBMenuItem.Name = "mTools_ValidateDTBMenuItem";
+            this.mTools_ValidateDTBMenuItem.Click += new System.EventHandler(this.mTools_ValidateDTBMenuItem_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
+            // 
+            // mTools_CleanUnreferencedAudioMenuItem
+            // 
+            this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
+            resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
+            this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1294,7 +1300,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSaveProjectAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCloseProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripMenuItem mCleanProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem mExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transportToolStripMenuItem;
@@ -1320,8 +1325,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFastForwardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteBeforeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPasteInsideToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem mDeleteUnusedDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFocusOnTransportBarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhraseDetectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFastPlaytoolStripMenuItem;
@@ -1340,7 +1343,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMarkDefaultCustomClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mTools_PreferencesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddSubsectionToolStripMenuItem;
@@ -1362,20 +1365,24 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mEncodeToMp3toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_EncodeDTBAudioAsMP3MenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomOutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
-        private System.Windows.Forms.ToolStripMenuItem mExportAsDAISYToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mValidatorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mProjectStatisticstoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_ExportAsDAISYMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_ValidateDTBMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_ProjectStatisticsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem mView_AudioZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_AudioZoomOutMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem mEdit_DeleteUnusedDataMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
     }
 }
 
