@@ -249,7 +249,7 @@ namespace Obi
             Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>>();
             // Get the list of files used by the asset manager
             foreach (urakawa.media.data.FileDataProvider provider in
-                ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager()).
+                    ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager()).
                 getListOfManagedFileDataProviders())
             {
                 string path = provider.getDataFileFullPath();

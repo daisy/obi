@@ -12,10 +12,11 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
-        private AudioMediaData mAudio;  // audio data to draw
-        private Bitmap mBitmap;         // cached bitmap of the waveform
-        private AudioRange mSelection;  // selection in the waveform
-        private AudioRange mCursor;     // playback cursor (can be different from cursor)
+        private AudioMediaData mAudio;       // audio data to draw
+        private Bitmap mBitmap;              // cached bitmap of the waveform
+        private Bitmap mBitmap_Highlighted;  // cached bitmap of the waveform (highlighted)
+        private AudioRange mSelection;       // selection in the waveform
+        private AudioRange mCursor;          // playback cursor (can be different from cursor)
 
 
         /// <summary>
@@ -27,50 +28,39 @@ namespace Obi.ProjectView
             DoubleBuffered = true;
             mAudio = null;
             mBitmap = null;
+            mBitmap_Highlighted = null;
             mSelection = null;
             mCursor = null;
         }
 
 
-        /// <summary>
-        /// Set the backcolor for the waveform.
-        /// </summary>
-        public override Color BackColor
-        {
-            get { return base.BackColor; }
-            set
-            {
-                base.BackColor = value;
-                UpdateWaveform();
-                Invalidate();
-            }
-        }
-
-
-        // Draw the waveform in a graphics
-        // TODO: handle other bit depths than 16 bit.
+        // Draw the waveform in a given graphics. Use the color settings and draw a highlighted or lowlighted
+        // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
         {
             PCMFormatInfo format = mAudio.getPCMFormat();
-            if (format.getBitDepth() != 16) throw new Exception("Cannot deal with bitdepth others than 16.");
-            ushort channels = format.getNumberOfChannels();
-            ushort frameSize = format.getBlockAlign();
-            int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
-            int bytesPerPixel = samplesPerPixel * frameSize / channels;
-            byte[] bytes = new byte[bytesPerPixel];
-            short[] samples = new short[samplesPerPixel];
-            System.IO.Stream au = mAudio.getAudioData();
-            for (int x = 0; x < Width; ++x)
+            if (format.getBitDepth() == 16)
             {
-                int read = au.Read(bytes, 0, bytesPerPixel);
-                Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                DrawChannel(g, highlighted ? settings.WaveformHighlightedPen :
-                    channels == 1 ? settings.WaveformMonoPen : settings.WaveformChannel1Pen,
-                    samples, x, read, frameSize, 0, channels);
-                if (channels == 2) DrawChannel(g, highlighted ? settings.WaveformHighlightedPen : settings.WaveformChannel2Pen,
-                    samples, x, read, frameSize, 1, channels);
+                ushort channels = format.getNumberOfChannels();
+                ushort frameSize = format.getBlockAlign();
+                int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
+                int bytesPerPixel = samplesPerPixel * frameSize / channels;
+                byte[] bytes = new byte[bytesPerPixel];
+                short[] samples = new short[samplesPerPixel];
+                System.IO.Stream au = mAudio.getAudioData();
+                for (int x = 0; x < Width; ++x)
+                {
+                    int read = au.Read(bytes, 0, bytesPerPixel);
+                    Buffer.BlockCopy(bytes, 0, samples, 0, read);
+                    DrawChannel(g, highlighted ? settings.WaveformHighlightedPen :
+                        channels == 1 ? settings.WaveformMonoPen : settings.WaveformChannel1Pen,
+                        samples, x, read, frameSize, 0, channels);
+                    if (channels == 2) DrawChannel(g,
+                        highlighted ? settings.WaveformHighlightedPen : settings.WaveformChannel2Pen,
+                        samples, x, read, frameSize, 1, channels);
+                }
+                au.Close();
             }
-            au.Close();
         }
 
         // Draw one channel for a given x
@@ -93,7 +83,13 @@ namespace Obi.ProjectView
             ColorSettings settings = ColorSettings;
             if (settings != null)
             {
-                if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                AudioBlock block = Parent as AudioBlock;
+                if (block != null)
+                {
+                    if (mBitmap != null && !block.Highlighted) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                    else if (mBitmap_Highlighted != null && block.Highlighted) pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
+                }
+                // if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
                 if (mSelection != null)
                 {
                     if (CheckCursor)
@@ -123,13 +119,23 @@ namespace Obi.ProjectView
             if (block != null && Width > 0 && Height > 0)
             {
                 ColorSettings settings = block.ColorSettings;
-                mBitmap = new Bitmap(Width, Height);
-                Graphics g = Graphics.FromImage(mBitmap);
-                g.Clear(BackColor);
-                g.DrawLine(settings.WaveformBaseLinePen, new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (mAudio != null) DrawWaveform(g, settings, block.Highlighted);
+                mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
                 Invalidate();
             }
+        }
+
+        // Create the bitmap for the waveform given the current color settings.
+        // Use the highlight colors if the highlight flag is set, otherwise regular colors.
+        private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
+        {
+            Bitmap bitmap = new Bitmap(Width, Height);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
+            g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
+                new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+            if (mAudio != null) DrawWaveform(g, settings, highlighted);
+            return bitmap;
         }
 
 

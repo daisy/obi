@@ -63,10 +63,7 @@ namespace Obi.UserControls
         public bool BeepEnable
         {
             get { return m_BeepEnabled; }
-            set
-            {
-                if (value != null) m_BeepEnabled = value;
-                                            }
+            set { m_BeepEnabled = value; }
         }
 
         public bool ShowMaxMinValues        
