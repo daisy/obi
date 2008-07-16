@@ -88,25 +88,31 @@ namespace Obi.ProjectView
                 {
                     if (mBitmap != null && !block.Highlighted) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
                     else if (mBitmap_Highlighted != null && block.Highlighted) pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
-                }
-                // if (mBitmap != null) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-                if (mSelection != null)
-                {
-                    if (CheckCursor)
+
+                    if (mSelection != null)
                     {
-                        pe.Graphics.DrawLine(settings.WaveformSelectionPen,
-                            new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                        if (CheckCursor)
+                        {
+                            pe.Graphics.DrawLine(settings.WaveformSelectionPen,
+                                new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                        }
+                        else if (CheckRange)
+                        {
+                            pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
+                                InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                        }
                     }
-                    else if (CheckRange)
+                    if (mCursor != null)
                     {
-                        pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
-                            InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                        pe.Graphics.DrawLine(settings.WaveformCursorPen,
+                            new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                        int w = block.Margin.Right;
+                        Point[] points = new Point[3];
+                        points[0] = new Point(CursorPosition, Height / 2 - w);
+                        points[1] = new Point(CursorPosition + w, Height / 2);
+                        points[2] = new Point(CursorPosition, Height / 2 + w);
+                        pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
                     }
-                }
-                if (mCursor != null)
-                {
-                    pe.Graphics.DrawLine(settings.WaveformCursorPen,
-                        new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                 }
                 base.OnPaint(pe);
             }

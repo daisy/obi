@@ -985,25 +985,26 @@ namespace Obi.ProjectView
             if (CanImportPhrases)
             {
                 string[] paths = SelectFilesToImport();
-                List<PhraseNode> phrases = new List<PhraseNode>(paths.Length);
-
-                // invokes max phrase duration dialog
-                Dialogs.ImportFileSplitSize PhraseSizeDialog = new Obi.Dialogs.ImportFileSplitSize();
-                PhraseSizeDialog.ShowDialog();
-
-                if (PhraseSizeDialog.MaxPhraseDuration > 0)
+                if (paths != null)
                 {
-                    BackgroundWorker worker = new BackgroundWorker();
-                    worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                    List<PhraseNode> phrases = new List<PhraseNode>(paths.Length);
+                    Dialogs.ImportFileSplitSize dialog = new Dialogs.ImportFileSplitSize(ObiForm.Settings.MaxPhraseDurationMinutes);
+                    if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        CreatePhrasesForFiles(phrases, paths, PhraseSizeDialog.MaxPhraseDuration);
-                    });
-                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-                        delegate(object sender, RunWorkerCompletedEventArgs e)
+                        ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
+                        double duration = dialog.MaxPhraseDurationMinutes * 60000.0;  // convert from minutes to milliseconds
+                        BackgroundWorker worker = new BackgroundWorker();
+                        worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                         {
-                            if (phrases.Count > 0) mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, phrases));
+                            CreatePhrasesForFiles(phrases, paths, duration);
                         });
-                    worker.RunWorkerAsync();
+                        worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+                            delegate(object sender, RunWorkerCompletedEventArgs e)
+                            {
+                                if (phrases.Count > 0) mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, phrases));
+                            });
+                        worker.RunWorkerAsync();
+                    }
                 }
             }
         }
@@ -1019,20 +1020,19 @@ namespace Obi.ProjectView
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message("audio_file_filter");
-            return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : new string[0];
+            return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : null;
         }
 
-        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths, double Duration)
+        private void CreatePhrasesForFiles(List<PhraseNode> phrases, string[] paths, double duration)
         {
             foreach (string path in paths)
             {
-                List<PhraseNode> PhraseList = mPresentation.CreatePhraseNodeList(path, Duration);
+                List<PhraseNode> PhraseList = mPresentation.CreatePhraseNodeList(path, duration);
                 foreach (PhraseNode p in PhraseList)
                 {
                     if (ImportingFile != null) ImportingFile(this, new ImportingFileEventArgs(path));
                     try
                     {
-                        //phrases.Add(mPresentation.CreatePhraseNode(path));
                         phrases.Add(p);
                     }
                     catch (Exception)

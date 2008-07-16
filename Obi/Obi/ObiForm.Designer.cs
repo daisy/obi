@@ -256,23 +256,23 @@ namespace Obi
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
-            // mRecentProjectToolStripMenuItem
+            // mFile_RecentProjectMenuItem
             // 
             this.mFile_RecentProjectMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openrecentSeparator,
             this.mFile_ClearListMenuItem});
-            this.mFile_RecentProjectMenuItem.Name = "mRecentProjectToolStripMenuItem";
-            resources.ApplyResources(this.mFile_RecentProjectMenuItem, "mRecentProjectToolStripMenuItem");
+            this.mFile_RecentProjectMenuItem.Name = "mFile_RecentProjectMenuItem";
+            resources.ApplyResources(this.mFile_RecentProjectMenuItem, "mFile_RecentProjectMenuItem");
             // 
             // openrecentSeparator
             // 
             this.openrecentSeparator.Name = "openrecentSeparator";
             resources.ApplyResources(this.openrecentSeparator, "openrecentSeparator");
             // 
-            // mClearListToolStripMenuItem
+            // mFile_ClearListMenuItem
             // 
-            this.mFile_ClearListMenuItem.Name = "mClearListToolStripMenuItem";
-            resources.ApplyResources(this.mFile_ClearListMenuItem, "mClearListToolStripMenuItem");
+            this.mFile_ClearListMenuItem.Name = "mFile_ClearListMenuItem";
+            resources.ApplyResources(this.mFile_ClearListMenuItem, "mFile_ClearListMenuItem");
             this.mFile_ClearListMenuItem.Click += new System.EventHandler(this.File_ClearListMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -280,10 +280,10 @@ namespace Obi
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
-            // mExitToolStripMenuItem
+            // mFile_ExitMenuItem
             // 
-            resources.ApplyResources(this.mFile_ExitMenuItem, "mExitToolStripMenuItem");
-            this.mFile_ExitMenuItem.Name = "mExitToolStripMenuItem";
+            resources.ApplyResources(this.mFile_ExitMenuItem, "mFile_ExitMenuItem");
+            this.mFile_ExitMenuItem.Name = "mFile_ExitMenuItem";
             this.mFile_ExitMenuItem.Click += new System.EventHandler(this.File_ExitMenuItem_Click);
             // 
             // toolStripMenuItem1

@@ -191,10 +191,10 @@ namespace Obi
         /// <param name="path"></param>
         /// <param name="Duration"></param>
         /// <returns></returns>
-        public List<PhraseNode> CreatePhraseNodeList(string path, double Duration )
+        public List<PhraseNode> CreatePhraseNodeList(string path, double duration)
         {
             List<PhraseNode> PhraseList = new List<PhraseNode>();
-            List<ManagedAudioMedia> MediaList = ImportAudioFromFile(path, Duration);
+            List<ManagedAudioMedia> MediaList = ImportAudioFromFile(path, duration);
 
             foreach (ManagedAudioMedia m in MediaList)
             {
@@ -385,24 +385,29 @@ namespace Obi
             return media;
         }
 
-        /// <summary>
-        /// Creates a list of ManagedAudioMedia from audio file being imported
-                /// </summary>
-        /// <param name="path"></param>
-        /// <param name="Duration"></param>
-        /// <returns></returns>
-        private List<ManagedAudioMedia> ImportAudioFromFile(string path, double Duration)
+        // Create a list of ManagedAudioMedia from audio file being imported
+        private List<ManagedAudioMedia> ImportAudioFromFile(string path, double duration)
         {
-            List<ManagedAudioMedia> AudioMediaList = new List<ManagedAudioMedia>();
             ManagedAudioMedia media = ImportAudioFromFile(path);
-            while (media.getDuration().getTimeDeltaAsMillisecondFloat () > Duration )
+            double totalDuration = media.getDuration().getTimeDeltaAsMillisecondFloat();
+            int phrases = (int)Math.Floor(totalDuration / duration);
+            double lastPhraseBegin = phrases * duration;
+            double remaining = totalDuration - lastPhraseBegin;
+            if (remaining < duration / 10.0)
             {
-                urakawa.media.timing.Time SplitTime = new urakawa.media.timing.Time(media.getDuration().getTimeDeltaAsMillisecondFloat() - Duration);
-                  
-                                    AudioMediaList.Insert(0, media.split(SplitTime));
+                lastPhraseBegin -= duration;
             }
-            AudioMediaList.Insert(0, media);
-            return AudioMediaList;
+            else
+            {
+                ++phrases;
+            }
+            List<ManagedAudioMedia> audioMediaList = new List<ManagedAudioMedia>(phrases);
+            for (double time = lastPhraseBegin; time > 0.0; time -= duration)
+            {
+                audioMediaList.Insert(0, media.split(new urakawa.media.timing.Time(time)));
+            }
+            audioMediaList.Insert(0, media);
+            return audioMediaList;
         }
 
 

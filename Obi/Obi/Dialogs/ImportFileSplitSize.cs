@@ -11,42 +11,44 @@ namespace Obi.Dialogs
 {
     public partial class ImportFileSplitSize : Form
     {
+        private uint mMaxPhraseDurationMinutes;
+        private bool mCanClose;
 
-        private double m_MaxPhraseDuration;
-        public ImportFileSplitSize()
+        public ImportFileSplitSize(uint duration)
         {
             InitializeComponent();
-                                    m_MaxPhraseDuration = 0 ;
-            m_txtPhraseSize.Text = "10";
+            mMaxPhraseDurationMinutes = duration;
+            mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
+            mCanClose = true;
         }
 
-        public double MaxPhraseDuration
+        public uint MaxPhraseDurationMinutes
         {
-            get { return m_MaxPhraseDuration; }
+            get { return mMaxPhraseDurationMinutes; }
         }
 
-        private void m_btnOk_Click(object sender, EventArgs e)
+        private void mOKButton_Click(object sender, EventArgs e)
         {
-            if (m_txtPhraseSize.Text != "" && Convert.ToUInt32(m_txtPhraseSize.Text) != 0)
+            try
             {
-                double timeLength;
-                try
-                {
-                    timeLength = Convert.ToUInt32(m_txtPhraseSize.Text) * 60 * 1000;
-                    m_MaxPhraseDuration = timeLength;
-                }
-                catch (System.Exception)
-                {
-                    MessageBox.Show("Invalid input");
-                }
+                uint duration = Convert.ToUInt32(mPhraseSizeTextBox.Text);
+                mMaxPhraseDurationMinutes = duration;
             }
-                        Close();
+            catch (System.Exception)
+            {
+                MessageBox.Show(Localizer.Message("max_phrase_duration_invalid_input"));
+                mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
+                mCanClose = false;
+            }
         }
 
-        private void m_btnCancel_Click(object sender, EventArgs e)
+        private void ImportFileSplitSize_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Close () ;
+            if (!mCanClose)
+            {
+                mCanClose = true;
+                e.Cancel = true;
+            }
         }
-
     }
 }

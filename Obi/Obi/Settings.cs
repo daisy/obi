@@ -31,6 +31,7 @@ namespace Obi
         public string LastInputDevice;         // the name of the last input device selected by the user
         public string LastOpenProject;         // path to the last open project
         public string LastOutputDevice;        // the name of the last output device selected by the user
+        public uint MaxPhraseDurationMinutes;  // maximum phrase duration in minutes for autosplitting during import
         public Size NewProjectDialogSize;      // size of the new project dialog
         public Audio.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
         public double NudgeTimeMs;             // nudge time in milliseconds
@@ -69,6 +70,7 @@ namespace Obi
             settings.LastInputDevice = "";
             settings.LastOpenProject = "";
             settings.LastOutputDevice = "";
+            settings.MaxPhraseDurationMinutes = 10;
             settings.NewProjectDialogSize = new Size(0, 0);
             settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 100.0;
