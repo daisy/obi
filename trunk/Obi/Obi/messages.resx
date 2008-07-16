@@ -946,4 +946,8 @@ Error text: {1}</value>
     <value>http://daisy-trac.cvsdude.com/obi</value>
     <comment>Obi URL (may point to localized page.)</comment>
   </data>
+  <data name="max_phrase_duration_invalid_input" xml:space="preserve">
+    <value>Invalid input for maximum phrase duration. Please specify an integral number of minutes higher than 0.</value>
+    <comment>Error message</comment>
+  </data>
 </root>

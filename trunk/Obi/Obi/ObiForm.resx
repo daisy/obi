@@ -215,31 +215,31 @@
   <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 6</value>
   </data>
-  <data name="mClearListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 22</value>
   </data>
-  <data name="mClearListToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear list</value>
   </data>
-  <data name="mRecentProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mFile_RecentProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
   </data>
-  <data name="mRecentProjectToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mFile_RecentProjectMenuItem.Text" xml:space="preserve">
     <value>&amp;Recent projects</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 6</value>
   </data>
-  <data name="mExitToolStripMenuItem.AccessibleName" xml:space="preserve">
+  <data name="mFile_ExitMenuItem.AccessibleName" xml:space="preserve">
     <value>Exit Alt+F4</value>
   </data>
-  <data name="mExitToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+  <data name="mFile_ExitMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Alt+F4</value>
   </data>
-  <data name="mExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mFile_ExitMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
   </data>
-  <data name="mExitToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mFile_ExitMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
   <data name="mFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -1537,7 +1537,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.18057, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.11.2.39808, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1867,10 +1867,10 @@
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mRecentProjectToolStripMenuItem.Name" xml:space="preserve">
-    <value>mRecentProjectToolStripMenuItem</value>
+  <data name="&gt;&gt;mFile_RecentProjectMenuItem.Name" xml:space="preserve">
+    <value>mFile_RecentProjectMenuItem</value>
   </data>
-  <data name="&gt;&gt;mRecentProjectToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mFile_RecentProjectMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openrecentSeparator.Name" xml:space="preserve">
@@ -1879,10 +1879,10 @@
   <data name="&gt;&gt;openrecentSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mClearListToolStripMenuItem.Name" xml:space="preserve">
-    <value>mClearListToolStripMenuItem</value>
+  <data name="&gt;&gt;mFile_ClearListMenuItem.Name" xml:space="preserve">
+    <value>mFile_ClearListMenuItem</value>
   </data>
-  <data name="&gt;&gt;mClearListToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mFile_ClearListMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
@@ -1891,10 +1891,10 @@
   <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mExitToolStripMenuItem.Name" xml:space="preserve">
-    <value>mExitToolStripMenuItem</value>
+  <data name="&gt;&gt;mFile_ExitMenuItem.Name" xml:space="preserve">
+    <value>mFile_ExitMenuItem</value>
   </data>
-  <data name="&gt;&gt;mExitToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mFile_ExitMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">

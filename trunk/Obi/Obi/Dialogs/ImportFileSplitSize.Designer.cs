@@ -28,63 +28,78 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.m_lblPhraseSize = new System.Windows.Forms.Label();
-            this.m_txtPhraseSize = new System.Windows.Forms.TextBox();
-            this.m_btnOk = new System.Windows.Forms.Button();
-            this.m_btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.mPhraseSizeTextBox = new System.Windows.Forms.TextBox();
+            this.mOKButton = new System.Windows.Forms.Button();
+            this.mCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // m_lblPhraseSize
+            // label1
             // 
-            this.m_lblPhraseSize.AutoSize = true;
-            this.m_lblPhraseSize.Location = new System.Drawing.Point(0, 15);
-            this.m_lblPhraseSize.Name = "m_lblPhraseSize";
-            this.m_lblPhraseSize.Size = new System.Drawing.Size(116, 13);
-            this.m_lblPhraseSize.TabIndex = 0;
-            this.m_lblPhraseSize.Text = "Phrase &Size in minutes:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Phrase &size in minutes:";
             // 
-            // m_txtPhraseSize
+            // mPhraseSizeTextBox
             // 
-            this.m_txtPhraseSize.AccessibleName = "Phrase size in minutes:";
-            this.m_txtPhraseSize.Location = new System.Drawing.Point(100, 15);
-            this.m_txtPhraseSize.Name = "m_txtPhraseSize";
-            this.m_txtPhraseSize.Size = new System.Drawing.Size(100, 20);
-            this.m_txtPhraseSize.TabIndex = 1;
+            this.mPhraseSizeTextBox.AccessibleName = "Phrase size in minutes:";
+            this.mPhraseSizeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mPhraseSizeTextBox.Location = new System.Drawing.Point(164, 13);
+            this.mPhraseSizeTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mPhraseSizeTextBox.Name = "mPhraseSizeTextBox";
+            this.mPhraseSizeTextBox.Size = new System.Drawing.Size(132, 22);
+            this.mPhraseSizeTextBox.TabIndex = 1;
             // 
-            // m_btnOk
+            // mOKButton
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(100, 50);
-            this.m_btnOk.Name = "m_btnOk";
-            this.m_btnOk.Size = new System.Drawing.Size(75, 23);
-            this.m_btnOk.TabIndex = 2;
-            this.m_btnOk.Text = "&OK";
-            this.m_btnOk.UseVisualStyleBackColor = true;
-            this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mOKButton.Location = new System.Drawing.Point(50, 79);
+            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mOKButton.Name = "mOKButton";
+            this.mOKButton.Size = new System.Drawing.Size(100, 28);
+            this.mOKButton.TabIndex = 2;
+            this.mOKButton.Text = "&OK";
+            this.mOKButton.UseVisualStyleBackColor = true;
+            this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
-            // m_btnCancel
+            // mCancelButton
             // 
-            this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.Location = new System.Drawing.Point(180, 50);
-            this.m_btnCancel.Name = "m_btnCancel";
-            this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btnCancel.TabIndex = 3;
-            this.m_btnCancel.Text = "&Cancel";
-            this.m_btnCancel.UseVisualStyleBackColor = true;
-            this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCancelButton.Location = new System.Drawing.Point(158, 79);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
+            this.mCancelButton.TabIndex = 3;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // ImportFileSplitSize
             // 
-            this.AcceptButton = this.m_btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.mOKButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.m_btnCancel);
-            this.Controls.Add(this.m_btnOk);
-            this.Controls.Add(this.m_txtPhraseSize);
-            this.Controls.Add(this.m_lblPhraseSize);
+            this.CancelButton = this.mCancelButton;
+            this.ClientSize = new System.Drawing.Size(309, 120);
+            this.Controls.Add(this.mCancelButton);
+            this.Controls.Add(this.mOKButton);
+            this.Controls.Add(this.mPhraseSizeTextBox);
+            this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
-            this.Text = "Choose maximun phrase size";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Text = "Maximum phrase size";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportFileSplitSize_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,9 +107,9 @@ namespace Obi.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Label m_lblPhraseSize;
-        private System.Windows.Forms.TextBox m_txtPhraseSize;
-        private System.Windows.Forms.Button m_btnOk;
-        private System.Windows.Forms.Button m_btnCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox mPhraseSizeTextBox;
+        private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.Button mCancelButton;
     }
 }
