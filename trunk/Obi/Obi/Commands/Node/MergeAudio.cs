@@ -14,6 +14,7 @@ namespace Obi.Commands.Node
             : base(view)
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
+            mParentNode = mNode.AncestorAs<SectionNode>();
             mNextNode = next;
             mSplitPoint = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
             // Selection could be an audio selection?
@@ -37,14 +38,13 @@ namespace Obi.Commands.Node
         {
             Merge(mNode, mNextNode);
             if (UpdateSelection) View.Selection = mSelection;
-            if ( mNode is EmptyNode )  View.UpdateBlocksLabelInStrip(mParentNode);
-                    }
+            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip(mParentNode);
+        }
 
         public override void unExecute()
         {
             mNextNode.Audio = mNode.SplitAudio(mSplitPoint);
             mNode.InsertAfterSelf(mNextNode);
-
             View.UpdateBlocksLabelInStrip(mParentNode);
             base.unExecute();
         }
