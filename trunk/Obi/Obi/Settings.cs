@@ -78,7 +78,7 @@ namespace Obi
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
             settings.PlayIfNoSelection = true;
-            settings.PlayOnNavigate = true;
+            settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
             settings.SampleRate = 44100;
             settings.SynchronizeViews = true;
