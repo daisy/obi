@@ -34,6 +34,81 @@ namespace Obi.ProjectView
         }
 
 
+        /// <summary>
+        /// Set the audio data to be displayed
+        /// </summary>
+        public AudioMediaData Media
+        {
+            set
+            {
+                if (mAudio != value)
+                {
+                    mAudio = value;
+                    if (mAudio != null) RequestRendering();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Render the waveform graphically then display it.
+        /// </summary>
+        public void Render()
+        {
+            AudioBlock block = Parent as AudioBlock;
+            if (block != null && Width > 0 && Height > 0)
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                {
+                    ColorSettings settings = block.ColorSettings;
+                    mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                    mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                });
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
+                {
+                    Invalidate();
+                    block.ContentView.FinishedRendering();
+                });
+                worker.RunWorkerAsync();
+            }
+        }
+
+        private delegate Bitmap CreateBitmapDelegate(ColorSettings settings, bool highlighted);
+
+        // Create the bitmap for the waveform given the current color settings.
+        // Use the highlight colors if the highlight flag is set, otherwise regular colors.
+        private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
+        {
+            //if (InvokeRequired)
+            //{
+            //    return (Bitmap)Invoke(new CreateBitmapDelegate(CreateBitmapHighlighted), new Object[] { settings, highlighted });
+            //}
+            //else
+            //{
+                Bitmap bitmap = new Bitmap(Width, Height);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
+                g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
+                    new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                if (mAudio != null) DrawWaveform(g, settings, highlighted);
+                return bitmap;
+            //}
+        }
+
+        // Draw one channel for a given x
+        private void DrawChannel(Graphics g, Pen pen, short[] samples, int x, int read, int frameSize, int channel, int channels)
+        {
+            short min = short.MaxValue;
+            short max = short.MinValue;
+            for (int i = channel; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
+            {
+                if (samples[i] < min) min = samples[i];
+                if (samples[i] > max) max = samples[i];
+            }
+            g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
+                new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
+        }
+
         // Draw the waveform in a given graphics. Use the color settings and draw a highlighted or lowlighted
         // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
@@ -63,20 +138,6 @@ namespace Obi.ProjectView
             }
         }
 
-        // Draw one channel for a given x
-        private void DrawChannel(Graphics g, Pen pen, short[] samples, int x, int read, int frameSize, int channel, int channels)
-        {
-            short min = short.MaxValue;
-            short max = short.MinValue;
-            for (int i = channel; i < (int)Math.Ceiling(read / (float)frameSize); i += channels)
-            {
-                if (samples[i] < min) min = samples[i];
-                if (samples[i] > max) max = samples[i];
-            }
-            g.DrawLine(pen, new Point(x, Height - (int)Math.Round(((min - short.MinValue) * Height) / (float)ushort.MaxValue)),
-                new Point(x, Height - (int)Math.Round(((max - short.MinValue) * Height) / (float)ushort.MaxValue)));
-        }
-
         // Repaint the waveform bitmap.
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -88,7 +149,6 @@ namespace Obi.ProjectView
                 {
                     if (mBitmap != null && !block.Highlighted) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
                     else if (mBitmap_Highlighted != null && block.Highlighted) pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
-
                     if (mSelection != null)
                     {
                         if (CheckCursor)
@@ -118,32 +178,15 @@ namespace Obi.ProjectView
             }
         }
 
-        // Redraw the waveform to fit the available size.
-        private void UpdateWaveform()
+        // Add self to the content view rendering list.
+        private void RequestRendering()
         {
-            AudioBlock block = Parent as AudioBlock;
-            if (block != null && Width > 0 && Height > 0)
-            {
-                ColorSettings settings = block.ColorSettings;
-                mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
-                Invalidate();
-            }
+            Block block = Parent as Block;
+            if (block != null) block.ContentView.RenderWaveform(this);
         }
 
-        // Create the bitmap for the waveform given the current color settings.
-        // Use the highlight colors if the highlight flag is set, otherwise regular colors.
-        private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
-        {
-            Bitmap bitmap = new Bitmap(Width, Height);
-            Graphics g = Graphics.FromImage(bitmap);
-            g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
-            g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
-                new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-            if (mAudio != null) DrawWaveform(g, settings, highlighted);
-            return bitmap;
-        }
-
+        // Request a new rendering when the size has changed.
+        private void Waveform_SizeChanged(object sender, EventArgs e) { RequestRendering(); }
 
 
 
@@ -240,18 +283,6 @@ namespace Obi.ProjectView
         public int InitialSelectionPosition { get { return XFromTime(mSelection.SelectionBeginTime); } }
 
         /// <summary>
-        /// Set the audio data to be displayed
-        /// </summary>
-        public AudioMediaData Media
-        {
-            set
-            {
-                mAudio = value;
-                UpdateWaveform();
-            }
-        }
-
-        /// <summary>
         /// Get or set the audio range selection in the waveform.
         /// </summary>
         public AudioRange Selection
@@ -311,7 +342,5 @@ namespace Obi.ProjectView
         {
             return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
         }
-
-        private void Waveform_SizeChanged(object sender, EventArgs e) { UpdateWaveform(); }
     }
 }
