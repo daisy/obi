@@ -45,9 +45,11 @@ namespace Obi
         [NonSerialized()] public Pen WaveformCursorPen;
         [NonSerialized()] public SolidBrush WaveformCursorBrush;
         [NonSerialized()] public Pen WaveformHighlightedPen;
+        [NonSerialized()] public SolidBrush WaveformHighlightedTextBrush;
         [NonSerialized()] public Pen WaveformMonoPen;
         [NonSerialized()] public SolidBrush WaveformSelectionBrush;
         [NonSerialized()] public Pen WaveformSelectionPen;
+        [NonSerialized()] public SolidBrush WaveformTextBrush;
 
         /// <summary>
         /// Create the brushes and pens that were not serialized.
@@ -61,9 +63,11 @@ namespace Obi
             this.WaveformCursorPen = new Pen(this.mWaveformCursorColor);
             this.WaveformCursorBrush = new SolidBrush(this.mWaveformCursorColor);
             this.WaveformHighlightedPen = new Pen(this.mWaveFormHighlightedForeColor);
+            this.WaveformHighlightedTextBrush = new SolidBrush(this.mWaveFormHighlightedForeColor);
             this.WaveformMonoPen = new Pen(this.mWaveformMonoColor);
             this.WaveformSelectionBrush = new SolidBrush(this.mWaveformSelectionColor);
             this.WaveformSelectionPen = new Pen(this.mWaveformSelectionColor);
+            this.WaveformTextBrush = new SolidBrush(this.mWaveformBaseLineColor);
         }
 
         /// <summary>

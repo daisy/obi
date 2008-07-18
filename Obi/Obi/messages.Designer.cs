@@ -1676,6 +1676,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rendering waveform....
+        /// </summary>
+        internal static string rendering_waveform {
+            get {
+                return ResourceManager.GetString("rendering_waveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error deleting file {0}. ({1}).
         /// </summary>
         internal static string report_delete_error {

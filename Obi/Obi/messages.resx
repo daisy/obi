@@ -950,4 +950,8 @@ Error text: {1}</value>
     <value>Invalid input for maximum phrase duration. Please specify an integral number of minutes higher than 0.</value>
     <comment>Error message</comment>
   </data>
+  <data name="rendering_waveform" xml:space="preserve">
+    <value>Rendering waveform...</value>
+    <comment>Waveform display before bitmap is created</comment>
+  </data>
 </root>

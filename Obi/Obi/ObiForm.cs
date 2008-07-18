@@ -1044,7 +1044,7 @@ namespace Obi
         }
 
         // Update the status bar to say "Ready."
-        private void Ready()
+        public void Ready()
         {
             Status(Localizer.Message("ready"));
         }

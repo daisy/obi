@@ -197,15 +197,11 @@ namespace Obi.ProjectView
         public void NewPresentation()
         {
             Controls.Clear();
-            mWaveformRenderQueue.Clear();
+            ClearWaveformRenderQueue();
             AddStripForSection_Safe(mView.Presentation.RootNode);
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
-        }
-
-        public void NoPresentation()
-        {
         }
 
         public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
@@ -244,19 +240,38 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
 
+        private BackgroundWorker mWorker;
+
         /// <summary>
         /// Add a waveform to the queue of waveforms to render.
         /// </summary>
         public void RenderWaveform(Waveform w)
         {
             mWaveformRenderQueue.Enqueue(w);
-            if (mWaveformRenderQueue.Count == 1) w.Render();
+            if (mWaveformRenderQueue.Count == 1) RenderFirstWaveform();
         }
 
         public void FinishedRendering()
         {
             mWaveformRenderQueue.Dequeue();
-            if (mWaveformRenderQueue.Count > 0) mWaveformRenderQueue.Peek().Render();
+            if (mWaveformRenderQueue.Count == 0) mView.ObiForm.Ready();
+            RenderFirstWaveform();
+        }
+
+        private void RenderFirstWaveform()
+        {
+            mWorker = null;
+            if (mWaveformRenderQueue.Count > 0)
+            {
+                mWorker = mWaveformRenderQueue.Peek().Render();
+                mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+            }
+        }
+
+        private void ClearWaveformRenderQueue()
+        {
+            mWaveformRenderQueue.Clear();
+            if (mWorker != null) mWorker.CancelAsync();
         }
 
         /// <summary>
@@ -454,7 +469,11 @@ namespace Obi.ProjectView
         public float ZoomFactor
         {
             get { return mView == null ? 1.0f : mView.ZoomFactor; }
-            set { foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value; }
+            set
+            {
+                ClearWaveformRenderQueue();
+                foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
+            }
         }
 
 
