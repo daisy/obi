@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Obi.ProjectView
@@ -24,6 +25,7 @@ namespace Obi.ProjectView
     /// </summary>
     public interface ISelectableInContentViewWithColors : ISelectableInContentView
     {
+        ContentView ContentView { get; }
         ColorSettings ColorSettings { get; }
     }
 
@@ -40,9 +42,12 @@ namespace Obi.ProjectView
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
 
+        private Queue<Waveform> mWaveformRenderQueue;                // queue of waveforms to render
+
         // cursor stuff
         private AudioBlock mPlaybackBlock;
         private bool mFocusing;
+
 
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
         private delegate void RemoveControlForSectionNodeDelegate(SectionNode node);
@@ -61,9 +66,10 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStrips = false;
+            mWaveformRenderQueue = new Queue<Waveform>();
         }
 
-
+        
         public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripIndexSelection; } }
         public bool CanCopyAudio { get { return IsAudioRangeSelected; } }
         public bool CanCopyBlock { get { return IsBlockSelected; } }
@@ -191,10 +197,15 @@ namespace Obi.ProjectView
         public void NewPresentation()
         {
             Controls.Clear();
+            mWaveformRenderQueue.Clear();
             AddStripForSection_Safe(mView.Presentation.RootNode);
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+        }
+
+        public void NoPresentation()
+        {
         }
 
         public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
@@ -232,6 +243,21 @@ namespace Obi.ProjectView
         /// Rename a strip.
         /// </summary>
         public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
+
+        /// <summary>
+        /// Add a waveform to the queue of waveforms to render.
+        /// </summary>
+        public void RenderWaveform(Waveform w)
+        {
+            mWaveformRenderQueue.Enqueue(w);
+            if (mWaveformRenderQueue.Count == 1) w.Render();
+        }
+
+        public void FinishedRendering()
+        {
+            mWaveformRenderQueue.Dequeue();
+            if (mWaveformRenderQueue.Count > 0) mWaveformRenderQueue.Peek().Render();
+        }
 
         /// <summary>
         /// Get all the searchable items (i.e. strips, blocks) in the control.

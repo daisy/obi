@@ -593,6 +593,10 @@ namespace Obi.ProjectView
                         mTransportBar.NewPresentation();
                         mMetadataView.NewPresentation();
                     }
+                    else
+                    {
+                        mContentView.NoPresentation();
+                    }
                 }
             }
         }

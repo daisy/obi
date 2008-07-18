@@ -90,6 +90,11 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Get the content view for the strip.
+        /// </summary>
+        public ContentView ContentView { get { return mParentView; } }
+
+        /// <summary>
         /// Find the block for the corresponding node inside the strip.
         /// </summary>
         public Block FindBlock(EmptyNode node)

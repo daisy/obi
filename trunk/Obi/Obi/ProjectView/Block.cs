@@ -49,6 +49,11 @@ namespace Obi.ProjectView
             set { UpdateColors(value); }
         }
 
+        public ContentView ContentView
+        {
+            get { return mParentContainer == null ? null : mParentContainer.ContentView; }
+        }
+
         /// <summary>
         /// Set the selected flag for the block.
         /// </summary>
