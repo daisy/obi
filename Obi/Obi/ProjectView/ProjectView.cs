@@ -124,7 +124,7 @@ namespace Obi.ProjectView
         {
             if (mContentView.CanAddStrip)
             {
-                AddStrip();
+                                AddStrip();
             }
             else if (CanAddSection)
             {

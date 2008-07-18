@@ -1316,7 +1316,7 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     PauseRecording();
-                    if (mRecordingSection.FollowingSection.Duration == 0)
+                    if (mRecordingSection.FollowingSection != null &&  mRecordingSection.FollowingSection.Duration == 0)
                     {
                          //focus to next section and start recording again
                         mView.Selection = new NodeSelection(mRecordingSection.FollowingSection, mView.Selection.Control);
