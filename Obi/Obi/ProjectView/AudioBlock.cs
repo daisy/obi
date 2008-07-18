@@ -44,11 +44,11 @@ namespace Obi.ProjectView
         /// </summary>
         public override bool Highlighted
         {
-            get { return base.Highlighted || (Strip != null && Strip.Highlighted); }
+            get { return base.Highlighted; }
             set
             {
                 if (!value) mWaveform.Deselect();
-                base.Highlighted = value;
+                base.Highlighted = value && mWaveform.Selection == null;
             }
         }
 

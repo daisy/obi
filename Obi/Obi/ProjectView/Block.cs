@@ -62,8 +62,11 @@ namespace Obi.ProjectView
             get { return mHighlighted; }
             set
             {
-                mHighlighted = value;
-                UpdateColors();
+                if (value != mHighlighted)
+                {
+                    mHighlighted = value;
+                    UpdateColors();
+                }
             }
         }
 
@@ -118,15 +121,15 @@ namespace Obi.ProjectView
         /// </summary>
         public void UpdateColors(ColorSettings settings, bool highlighted)
         {
-            if (highlighted)
-            {
-                BackColor = settings.BlockSelectedBackColor;
-                ForeColor = settings.BlockSelectedForeColor;
-            }
-            else
-            {
+            //if (highlighted)
+            //{
+            //    BackColor = settings.BlockSelectedBackColor;
+            //    ForeColor = settings.BlockSelectedForeColor;
+            //}
+            //else
+            //{
                 UpdateColors(settings);
-            }
+            //}
         }
 
         /// <summary>
@@ -193,7 +196,7 @@ namespace Obi.ProjectView
         }
 
         // Select/deselect on click
-        private void Block_Click(object sender, EventArgs e) { ToggleSelection(); }
+        private void Block_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
 
         // Select on tabbing
         protected void Block_Enter(object sender, EventArgs e)
@@ -205,9 +208,6 @@ namespace Obi.ProjectView
             }
         }
 
-        // Select when clickin the label too.
-        private void Label_Click(object sender, EventArgs e) { ToggleSelection(); }
-
         // Update label when the page number changes
         private void Node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
 
@@ -216,18 +216,5 @@ namespace Obi.ProjectView
 
         // update label when to do status changes
         private void Node_ChangedTo_DoStatus(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
-        // Toggle selection when clicking.
-        private void ToggleSelection()
-        {
-            if (!mHighlighted || mEntering)
-            {
-                Strip.SelectedBlock = this;
-            }
-            else
-            {
-                Strip.UnselectInStrip();
-            }
-            mEntering = false;
-        }
     }
 }
