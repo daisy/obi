@@ -35,6 +35,16 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// Clear bitmaps when redrawing.
+        /// </summary>
+        private void ClearBitmaps()
+        {
+            mBitmap = null;
+            mBitmap_Highlighted = null;
+            Invalidate();
+        }
+
+        /// <summary>
         /// Set the audio data to be displayed
         /// </summary>
         public AudioMediaData Media
@@ -50,9 +60,9 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Render the waveform graphically then display it.
+        /// Render the waveform graphically then display it. Return the background worker doing the job.
         /// </summary>
-        public void Render()
+        public BackgroundWorker Render()
         {
             AudioBlock block = Parent as AudioBlock;
             if (block != null && Width > 0 && Height > 0)
@@ -66,33 +76,34 @@ namespace Obi.ProjectView
                 });
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                 {
+                    if (e.Cancelled)
+                    {
+                        mBitmap = null;
+                        mBitmap_Highlighted = null;
+                    }
+                    else
+                    {
+                        block.ContentView.FinishedRendering();
+                    }
                     Invalidate();
-                    block.ContentView.FinishedRendering();
                 });
                 worker.RunWorkerAsync();
+                return worker;
             }
+            return null;
         }
-
-        private delegate Bitmap CreateBitmapDelegate(ColorSettings settings, bool highlighted);
 
         // Create the bitmap for the waveform given the current color settings.
         // Use the highlight colors if the highlight flag is set, otherwise regular colors.
         private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
         {
-            //if (InvokeRequired)
-            //{
-            //    return (Bitmap)Invoke(new CreateBitmapDelegate(CreateBitmapHighlighted), new Object[] { settings, highlighted });
-            //}
-            //else
-            //{
-                Bitmap bitmap = new Bitmap(Width, Height);
-                Graphics g = Graphics.FromImage(bitmap);
-                g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
-                g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
-                    new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (mAudio != null) DrawWaveform(g, settings, highlighted);
-                return bitmap;
-            //}
+            Bitmap bitmap = new Bitmap(Width, Height);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
+            g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
+                new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+            if (mAudio != null) DrawWaveform(g, settings, highlighted);
+            return bitmap;
         }
 
         // Draw one channel for a given x
@@ -147,8 +158,30 @@ namespace Obi.ProjectView
                 AudioBlock block = Parent as AudioBlock;
                 if (block != null)
                 {
-                    if (mBitmap != null && !block.Highlighted) pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-                    else if (mBitmap_Highlighted != null && block.Highlighted) pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
+                    if (block.Highlighted)
+                    {
+                        if (mBitmap_Highlighted != null)
+                        {
+                            pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
+                        }
+                        else
+                        {
+                            pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
+                                block.ColorSettings.WaveformHighlightedTextBrush, new PointF(0.0f, 0.0f));
+                        }
+                    }
+                    else
+                    {
+                        if (mBitmap != null)
+                        {
+                            pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                        }
+                        else
+                        {
+                            pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
+                                block.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
+                        }
+                    }
                     if (mSelection != null)
                     {
                         if (CheckCursor)
@@ -182,7 +215,11 @@ namespace Obi.ProjectView
         private void RequestRendering()
         {
             Block block = Parent as Block;
-            if (block != null) block.ContentView.RenderWaveform(this);
+            if (block != null)
+            {
+                ClearBitmaps();
+                block.ContentView.RenderWaveform(this);
+            }
         }
 
         // Request a new rendering when the size has changed.

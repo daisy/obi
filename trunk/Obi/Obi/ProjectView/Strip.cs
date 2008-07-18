@@ -282,7 +282,7 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
-                mBlockLayout.UpdateColors(settings, mHighlighted);
+                mBlockLayout.UpdateColors(settings);
             }
         }
 

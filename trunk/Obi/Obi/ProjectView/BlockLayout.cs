@@ -68,11 +68,11 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Update colors for blocks; knowing that the above strip is highlighted and/or used.
+        /// Update colors for blocks.
         /// </summary>
-        public void UpdateColors(ColorSettings settings, bool highlighted)
+        public void UpdateColors(ColorSettings settings)
         {
-            foreach (Control c in Controls) if (c is Block) ((Block)c).UpdateColors(settings, highlighted);
+            foreach (Control c in Controls) if (c is Block) ((Block)c).UpdateColors(settings);
         }
     }
 }
