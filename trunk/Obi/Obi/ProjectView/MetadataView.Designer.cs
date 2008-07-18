@@ -80,6 +80,7 @@ namespace Obi.ProjectView
             this.mContentTextbox.Name = "mContentTextbox";
             this.mContentTextbox.Size = new System.Drawing.Size(225, 20);
             this.mContentTextbox.TabIndex = 4;
+            this.mContentTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mContentTextbox_KeyDown);
             // 
             // mUpdateButton
             // 

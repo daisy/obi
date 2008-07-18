@@ -1853,9 +1853,9 @@ namespace Obi.ProjectView
 
         #endregion
 
-        public void FocusOnTimeDisplay()
+        public bool FocusOnTimeDisplay()
         {
-            mTimeDisplayBox.Focus();
+            return mTimeDisplayBox.Focus();
         }
 
         private void TransportBar_Leave(object sender, EventArgs e)

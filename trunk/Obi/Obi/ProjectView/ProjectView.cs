@@ -1298,6 +1298,7 @@ namespace Obi.ProjectView
                     (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
                                     (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
                                     (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) ||
+                                    (key ==  Keys.F8&&  mTransportBar.FocusOnTimeDisplay () ) ||
     base.ProcessCmdKey(ref msg, key);
         }
 
