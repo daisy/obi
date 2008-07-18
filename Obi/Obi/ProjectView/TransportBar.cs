@@ -125,7 +125,7 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
-        public bool CanRecord { get { return Enabled && mState == State.Stopped; } }
+        public bool CanRecord { get { return Enabled && mState == State.Stopped || mState == State.Monitoring; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
@@ -540,7 +540,7 @@ namespace Obi.ProjectView
             mPauseButton.Visible = CanPause;
             mPlayButton.Visible = !mPauseButton.Visible;
             mPlayButton.Enabled = CanPlay || CanResumePlayback;
-            mRecordButton.Enabled = CanRecord || CanResumeRecording;
+            mRecordButton.Enabled =  CanRecord || CanResumeRecording;
             mRecordButton.AccessibleName = Localizer.Message(
                 mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? "start_recording" : "start_monitoring"
             );
@@ -937,6 +937,8 @@ namespace Obi.ProjectView
                 mView.Presentation.getUndoRedoManager().execute(add);
             }
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            if ( mView.Selection != null&&  mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus) 
+                mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
         }
 
         // Stop recording a phrase
@@ -1851,6 +1853,10 @@ namespace Obi.ProjectView
 
         #endregion
 
+        public void FocusOnTimeDisplay()
+        {
+            mTimeDisplayBox.Focus();
+        }
 
         private void TransportBar_Leave(object sender, EventArgs e)
         {
