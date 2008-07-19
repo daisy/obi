@@ -29,7 +29,8 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            try
+            this.DialogResult = DialogResult.OK;
+                        try
             {
                 uint duration = Convert.ToUInt32(mPhraseSizeTextBox.Text);
                 mMaxPhraseDurationMinutes = duration;
