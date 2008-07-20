@@ -164,7 +164,7 @@ namespace Obi.ProjectView
         {
             if (CanAddSubSection)
             {
-                Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
+                                Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
                 AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
             }
         }
@@ -188,7 +188,7 @@ namespace Obi.ProjectView
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
-        public bool CanAddSubSection { get { return mTOCView.CanAddSection && mTOCView.Selection != null; } }
+        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null ) || mContentView.CanAddStrip; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
@@ -214,7 +214,8 @@ namespace Obi.ProjectView
         public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
         public bool CanPaste { get { return mPresentation != null && mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive; } }
         public bool CanPasteBefore { get { return mPresentation != null && mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive; } }
-        public bool CanPasteInside { get { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; } }
+        public bool CanPasteInside { get
+        { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -294,6 +295,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Copy()
         {
+            if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanCopySection)
             {
                 mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_section")));
@@ -531,7 +533,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void Paste()
         {
-            if (CanPaste) mPresentation.getUndoRedoManager().execute(mSelection.PasteCommand(this));
+            if (CanPaste)
+            {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                mPresentation.getUndoRedoManager().execute(mSelection.PasteCommand(this));
+            }
         }
 
         /// <summary>
@@ -1244,6 +1250,7 @@ namespace Obi.ProjectView
             // first check if selected node is phrase node.
             if (CanApplyPhraseDetection)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 PhraseNode SilenceNode = null;
 
                 //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
