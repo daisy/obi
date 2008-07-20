@@ -20,7 +20,7 @@ namespace Obi.Commands.Node
             mParent = parent;
             mIndex = index;
 
-            if (view.Selection != null && view.Selection.Control.GetType() == typeof(ProjectView.StripsView))
+            if (view.Selection != null && view.Selection.Control.GetType() == typeof(ProjectView.ContentView))
                 mSelection = new NodeSelection(mNode, view.Selection.Control);
             else
                 mSelection = view.Selection;

@@ -56,7 +56,7 @@ namespace Obi.Commands.Node
             ObiNode node = null;
             if (mNode is SectionNode)
             {
-                if (View.Selection.Control is ProjectView.StripsView)
+                if (View.Selection.Control is ProjectView.ContentView)
                 {
                     // Select the next strip; if there is no next strip, select the previous one.
                     node = ((SectionNode)mNode).FollowingSection;
