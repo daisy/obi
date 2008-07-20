@@ -1120,6 +1120,7 @@ namespace Obi
             // 
             resources.ApplyResources(this.mTools_ExportAsDAISYMenuItem, "mTools_ExportAsDAISYMenuItem");
             this.mTools_ExportAsDAISYMenuItem.Name = "mTools_ExportAsDAISYMenuItem";
+            this.mTools_ExportAsDAISYMenuItem.Click += new System.EventHandler(mTools_ExportAsDAISYMenuItem_Click); 
             // 
             // mTools_EncodeDTBAudioAsMP3MenuItem
             // 
