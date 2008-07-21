@@ -388,11 +388,16 @@ namespace Obi.ProjectView
             urakawa.undo.CompositeCommand command = null;
             if (CanSplitStrip)
             {
-                EmptyNode node = IsStripCursorSelected ?
+                                EmptyNode node = IsStripCursorSelected ?
                     mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
                 SectionNode section = node.ParentAs<SectionNode>();
                 command = mView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("split_section"));
+
+                if (mView.CanSplitPhrase)
+                {
+                    command.append (new Commands.Node.SplitAudio(this.mView));
+                }
                 SectionNode sibling = mView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label;
                 Commands.Node.AddNode add = new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
@@ -405,9 +410,17 @@ namespace Obi.ProjectView
                 }
                 for (int i = node.Index; i < section.PhraseChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index));
+                    if (mView.CanSplitPhrase )
+                    {
+                        if (i == node.Index )
+                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index, node.Index + 1));
+                        else
+                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index+1));
+                    }
+                    else
+                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index));
                 }
-            }
+                            }
             return command;
         }
 

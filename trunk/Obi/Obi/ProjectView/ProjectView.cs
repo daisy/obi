@@ -746,11 +746,15 @@ namespace Obi.ProjectView
         {
             if (CanSplitStrip)
             {
+                if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
+
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
+                TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
-
+                
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
+                TransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
 
