@@ -1306,6 +1306,9 @@ namespace Obi.ProjectView
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
+            // trap delete key for preventing deleting of node during rename
+            if (Selection is TextSelection && key == Keys.Delete) return false;
+
             return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
                     (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
                     (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView()) ||
