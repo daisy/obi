@@ -42,7 +42,7 @@ namespace Obi
                 Used ? "" : Localizer.Message("unused"),
                                 IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
-                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("time_in_seconds"), duration),
+                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("duration_s_ms"), duration),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
                     mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber) :
                     Localizer.Message("phrase_extra_" + mKind.ToString()));
@@ -56,7 +56,7 @@ namespace Obi
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
                     mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber) :
                     Localizer.Message("phrase_short_" + mKind.ToString()),
-                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("time_in_seconds"), duration));
+                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("duration_s_ms"), duration));
         }
 
         public virtual string BaseStringShort() { return BaseStringShort(0.0); }

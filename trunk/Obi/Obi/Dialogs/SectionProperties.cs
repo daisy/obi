@@ -8,93 +8,80 @@ using System.Windows.Forms;
 
 namespace Obi.Dialogs
 {
-        public partial class SectionProperties : Form
+    public partial class SectionProperties : Form
     {
-            private Obi.SectionNode m_node;
-            private ProjectView.ProjectView m_View;
-        public SectionProperties( ProjectView.ProjectView View  )
+        private Obi.SectionNode mNode;
+        private ProjectView.ProjectView mView;
+
+ 
+        public SectionProperties(ProjectView.ProjectView View)
         {
             InitializeComponent();
-            m_View = View;
-            m_node = (SectionNode) View.Selection.Node ;
-                    }
+            mView = View;
+            mNode = View.SelectedNodeAs<SectionNode>();
+        }
+
 
         private void SectionProperties_Load(object sender, EventArgs e)
         {
-            LoadSectionProperties();
-        }
+            for (int i = 1; i <= mNode.Level; ++i) m_comboLevel.Items.Add(i);
+            if (mNode.CanIncreaseLevel) m_comboLevel.Items.Add(mNode.Level + 1);
+            m_comboLevel.SelectedIndex = mNode.Level - 1;
+            m_txtName.Text = mNode.Label;
+            m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
+            m_txtPhraseCount.Text = mNode.PhraseChildCount.ToString();
+            m_chkUsed.Checked = mNode.Used;
 
-            private void LoadSectionProperties ()
-                    {
-                        m_comboLevel.Items.Add(1);
-                        m_comboLevel.Items.Add(2);
-                        m_comboLevel.Items.Add(3);
-                        m_comboLevel.Items.Add(4);
-                        m_comboLevel.Items.Add(5);
-                        m_comboLevel.Items.Add(6);
-
-            m_txtName.Text = m_node.Label;
-            m_comboLevel.SelectedIndex = m_node.Level- 1;
-            if (m_node.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
-            SectionNode IterationNode = m_node;
-            for (int i = 0 ; i < m_node.Level -1; i++)
+            if (mNode.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
+            SectionNode IterationNode = mNode;
+            for (int i = 0; i < mNode.Level - 1; i++)
             {
                 IterationNode = IterationNode.ParentAs<SectionNode>();
-                
                 string strListItem = IterationNode.Label + " Level" + IterationNode.Level.ToString();
-                m_lbParentsList.Items.Insert ( 0 , strListItem);
+                m_lbParentsList.Items.Insert(0, strListItem);
             }
-
-            double time = 0.0;
-            for (int i = 0; i < m_node.PhraseChildCount; i++)
-                time += m_node.PhraseChild(i).Duration ;
-
-            m_txtTimeLength.Text = (time / 1000).ToString();
-            m_txtPhraseCount.Text = m_node.PhraseChildCount.ToString();
-
-            m_chkUsed.Checked = m_node.Used;
         }
 
-            private void m_btnOk_Click(object sender, EventArgs e)
-            {
-                ChangeSectionName();
-                ChangeSectionLevel();
-                Close();
-            }
+        private void m_btnOk_Click(object sender, EventArgs e)
+        {
+            ChangeSectionName();
+            ChangeSectionLevel();
+            Close();
+        }
 
-            private void ChangeSectionName()
-            {
-                if ( m_txtName.Text != "" && m_txtName.Text != m_node.Label )
-                    m_View.RenameSectionNode ( m_node , m_txtName.Text ) ;
-            }
+        private void ChangeSectionName()
+        {
+            if (m_txtName.Text != "" && m_txtName.Text != mNode.Label)
+                mView.RenameSectionNode(mNode, m_txtName.Text);
+        }
 
-            private void ChangeUsedStatus()
-            {
-                if (m_chkUsed.Checked != m_node.Used)
-                    m_View.SetSelectedNodeUsedStatus(!m_node.Used);
-            }
+        private void ChangeUsedStatus()
+        {
+            if (m_chkUsed.Checked != mNode.Used)
+                mView.SetSelectedNodeUsedStatus(!mNode.Used);
+        }
 
-            private void ChangeSectionLevel()
+        private void ChangeSectionLevel()
+        {
+            int newSectionLevel = m_comboLevel.SelectedIndex + 1;
+            if (newSectionLevel != mNode.Level)
             {
-                int newSectionLevel = m_comboLevel.SelectedIndex+ 1  ;
-                if (newSectionLevel != m_node.Level)
+                if (newSectionLevel < mNode.Level)
                 {
-                    if (newSectionLevel < m_node.Level)
-                    {
-                                                for (int i = m_node.Level; i > newSectionLevel; i--)
-                            m_View.DecreaseSelectedSectionLevel();
-                    }
-                    else
-                    {
-                        for (int i = m_node.Level; i < newSectionLevel; i++)
-                            m_View.IncreaseSelectedSectionNodeLevel();
-                    }
+                    for (int i = mNode.Level; i > newSectionLevel; i--)
+                        mView.DecreaseSelectedSectionLevel();
+                }
+                else
+                {
+                    for (int i = mNode.Level; i < newSectionLevel; i++)
+                        mView.IncreaseSelectedSectionNodeLevel();
                 }
             }
+        }
 
-            private void m_btnCancel_Click(object sender, EventArgs e)
-            {
-                Close();
-            }
+        private void m_btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

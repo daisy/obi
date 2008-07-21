@@ -855,6 +855,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}:{1:00}:{2:00}.
+        /// </summary>
+        internal static string duration_h_mm_ss {
+            get {
+                return ResourceManager.GetString("duration_h_mm_ss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:00}:{1:00}.
+        /// </summary>
+        internal static string duration_mm_ss {
+            get {
+                return ResourceManager.GetString("duration_mm_ss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.00}s.
+        /// </summary>
+        internal static string duration_s_ms {
+            get {
+                return ResourceManager.GetString("duration_s_ms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to empty.
         /// </summary>
         internal static string empty {
@@ -981,6 +1008,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hour.
+        /// </summary>
+        internal static string hour {
+            get {
+                return ResourceManager.GetString("hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hours.
+        /// </summary>
+        internal static string hours {
+            get {
+                return ResourceManager.GetString("hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import failed: .
         /// </summary>
         internal static string import_failed {
@@ -1064,6 +1109,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  {0} {1}.
+        /// </summary>
+        internal static string long_addl_time {
+            get {
+                return ResourceManager.GetString("long_addl_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}{2}{3}.
+        /// </summary>
+        internal static string long_h_mm_ss {
+            get {
+                return ResourceManager.GetString("long_h_mm_ss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}{2}.
+        /// </summary>
+        internal static string long_mm_ss {
+            get {
+                return ResourceManager.GetString("long_mm_ss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.00} {1}.
+        /// </summary>
+        internal static string long_s_ms {
+            get {
+                return ResourceManager.GetString("long_s_ms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to mark phrase as {0}.
         /// </summary>
         internal static string mark_phrase_used {
@@ -1132,6 +1213,24 @@ namespace Obi {
         internal static string metadata_name_error_text {
             get {
                 return ResourceManager.GetString("metadata_name_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minute.
+        /// </summary>
+        internal static string minute {
+            get {
+                return ResourceManager.GetString("minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minutes.
+        /// </summary>
+        internal static string minutes {
+            get {
+                return ResourceManager.GetString("minutes", resourceCulture);
             }
         }
         
@@ -1258,6 +1357,15 @@ namespace Obi {
         internal static string no_preceding_silent_phrase {
             get {
                 return ResourceManager.GetString("no_preceding_silent_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1}.
+        /// </summary>
+        internal static string node_position {
+            get {
+                return ResourceManager.GetString("node_position", resourceCulture);
             }
         }
         
@@ -1751,6 +1859,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to second.
+        /// </summary>
+        internal static string second {
+            get {
+                return ResourceManager.GetString("second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seconds.
+        /// </summary>
+        internal static string seconds {
+            get {
+                return ResourceManager.GetString("seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , depth {0}.
         /// </summary>
         internal static string section_level_to_string {
@@ -1873,15 +1999,6 @@ namespace Obi {
         internal static string text_selection_to_string {
             get {
                 return ResourceManager.GetString("text_selection_to_string", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0:0.00}s.
-        /// </summary>
-        internal static string time_in_seconds {
-            get {
-                return ResourceManager.GetString("time_in_seconds", resourceCulture);
             }
         }
         

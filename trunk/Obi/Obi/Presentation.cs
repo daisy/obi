@@ -300,8 +300,6 @@ namespace Obi
         }
 
 
-
-
         /// <summary>
         /// Add a new channel with the given name to the presentation's channel manager.
         /// </summary>

@@ -184,7 +184,7 @@ namespace Obi
         }
 
         /// <summary>
-        /// Test whether this node is 
+        /// Test whether this node is before some other node in the project.
         /// </summary>
         public bool IsBeforeInProject(PhraseNode other)
         {
@@ -192,7 +192,6 @@ namespace Obi
             SectionNode otherParent = other.ParentAs<SectionNode>();
             return parent.Position < otherParent.Position || (parent == otherParent && Index < other.Index);
         }
-
     }
 
     /// <summary>
@@ -250,6 +249,42 @@ namespace Obi
                     return true;
                 }, delegate(urakawa.core.TreeNode n) { });
                 return duration;
+            }
+        }
+
+        // Count all nodes that match the predicate.
+        private int Count(Predicate<urakawa.core.TreeNode> p)
+        {
+            int count = 0;
+            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+            {
+                if (p(n)) ++count;
+                return true;
+            }, delegate(urakawa.core.TreeNode n) { });
+            return count;
+        }
+
+        public int PageCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber > 0; });
+            }
+        }
+
+        public int PhraseCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode; });
+            }
+        }
+
+        public int SectionCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
             }
         }
 

@@ -47,24 +47,12 @@ namespace Obi
         }
 
         /// <summary>
-        /// Copy a section node (and its contents if the deep flag is set.)
+        /// Test whether this section's level can be increased (i.e. not the first child of its parent.)
         /// </summary>
-        /*protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        public bool CanIncreaseLevel
         {
-            SectionNode copy = Presentation.CreateSectionNode();
-            copy.Label = Label;
-            copy.Used = Used;
-            if (deep)
-            {
-                CopyChildren(copy);
-                if (mHeading != null) copy.Heading = (PhraseNode)copy.getChild(indexOf(mHeading));
-            }
-            else
-            {
-                copy.mHeading = mHeading;
-            }
-            return copy;
-        }*/
+            get { return Index > 0; }
+        }
 
         /// <summary>
         /// Find the first used phrase in the section, if any.
@@ -268,7 +256,7 @@ namespace Obi
             return string.Format(Localizer.Message("section_to_string"),
                 Used ? "" : Localizer.Message("unused"),
                 Label,
-                Duration == 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("time_in_seconds"), Duration / 1000.0),
+                Duration == 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("duration_s_ms"), Duration / 1000.0),
                 string.Format(Localizer.Message("section_level_to_string"), IsRooted ? Level : 0),
                 PhraseChildCount == 0 ? "" :
                     PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :

@@ -39,6 +39,7 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_lblTitle = new System.Windows.Forms.Label();
             this.m_txtTitle = new System.Windows.Forms.TextBox();
+            this.mCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // m_lblDuration
@@ -138,14 +139,13 @@ namespace Obi.Dialogs
             this.m_btnOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnOk.Location = new System.Drawing.Point(146, 195);
+            this.m_btnOk.Location = new System.Drawing.Point(92, 195);
             this.m_btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(100, 28);
             this.m_btnOk.TabIndex = 0;
             this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
-            this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
             // m_lblTitle
             // 
@@ -170,13 +170,27 @@ namespace Obi.Dialogs
             this.m_txtTitle.Size = new System.Drawing.Size(232, 22);
             this.m_txtTitle.TabIndex = 2;
             // 
+            // mCancelButton
+            // 
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCancelButton.Location = new System.Drawing.Point(200, 195);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
+            this.mCancelButton.TabIndex = 11;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
+            // 
             // ProjectStatistics
             // 
             this.AcceptButton = this.m_btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.m_btnOk;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(392, 236);
+            this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.m_txtTitle);
             this.Controls.Add(this.m_lblTitle);
             this.Controls.Add(this.m_btnOk);
@@ -213,5 +227,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Label m_lblTitle;
         private System.Windows.Forms.TextBox m_txtTitle;
+        private System.Windows.Forms.Button mCancelButton;
     }
 }

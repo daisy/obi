@@ -45,10 +45,10 @@ namespace Obi
         public override string ToString()
         {
             return HasCursor ?
-                String.Format(Localizer.Message("time_in_seconds"), CursorTime / 1000.0) :
+                String.Format(Localizer.Message("duration_s_ms"), CursorTime / 1000.0) :
                 String.Format("{0}-{1}",
-                    String.Format(Localizer.Message("time_in_seconds"), SelectionBeginTime / 1000.0),
-                    String.Format(Localizer.Message("time_in_seconds"), SelectionEndTime / 1000.0));
+                    String.Format(Localizer.Message("duration_s_ms"), SelectionBeginTime / 1000.0),
+                    String.Format(Localizer.Message("duration_s_ms"), SelectionEndTime / 1000.0));
         }
     }
 

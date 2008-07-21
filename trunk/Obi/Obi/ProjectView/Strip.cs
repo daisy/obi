@@ -424,7 +424,7 @@ namespace Obi.ProjectView
         {
                         mLabel.AccessibleName = string.Concat ( mNode.Used ? "" : Localizer.Message("unused"),
                 mNode.Label,
-                mNode.Duration== 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("time_in_seconds"), mNode.Duration / 1000.0),
+                mNode.Duration== 0.0 ? Localizer.Message("empty") : string.Format(Localizer.Message("duration_s_ms"), mNode.Duration / 1000.0),
                 string.Format(Localizer.Message("section_level_to_string"), mNode.IsRooted ? mNode.Level: 0),
                 mNode.PhraseChildCount == 0 ? "" :
                     mNode.PhraseChildCount== 1 ? Localizer.Message("section_one_phrase_to_string") :

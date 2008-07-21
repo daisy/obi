@@ -10,39 +10,35 @@ namespace Obi.Dialogs
 {
     public partial class PhraseProperties : Form
     {
-        private Obi.EmptyNode m_node;
-        private ProjectView.ProjectView m_View;
+        private Obi.EmptyNode mNode;
+        private ProjectView.ProjectView mView;
 
-        public PhraseProperties( ProjectView.ProjectView view)
+        public PhraseProperties(ProjectView.ProjectView view)
         {
             InitializeComponent();
-            m_node = (EmptyNode)view.Selection.Node;
-            m_View = view;
+            mView = view;
+            mNode = view.SelectedNodeAs<EmptyNode>();
         }
 
         private void PhraseProperties_Load(object sender, EventArgs e)
         {
-            LoadPhraseProperties();
-        }
-
-        private void LoadPhraseProperties ()
-        {
-            m_txtParentSection.Text = m_node.ParentAs<SectionNode>().Label;
-            m_txtLocationInsideSection.Text = (m_node.Index+1).ToString() + " of " + m_node.ParentAs<SectionNode>().PhraseChildCount ;
-            m_txtTimeLength.Text = (m_node.Duration / 1000).ToString();
+            m_txtParentSection.Text = mNode.ParentAs<SectionNode>().Label;
+            m_txtLocationInsideSection.Text = string.Format(Localizer.Message("node_position"),
+                mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
+            m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Heading);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Page);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Plain);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Silence);
             m_comboPhraseRole.Items.Add(EmptyNode.Kind.Custom);
-            m_comboPhraseRole.SelectedItem = m_node.NodeKind;
-            m_chkUsed.Checked = m_node.Used;
-            m_chkToDo.Checked = m_node.IsTo_Do;
+            m_comboPhraseRole.SelectedItem = mNode.NodeKind;
+            m_chkUsed.Checked = mNode.Used;
+            m_chkToDo.Checked = mNode.IsTo_Do;
 
 
-            SectionNode IterationNode = m_node.ParentAs<SectionNode>() ;
+            SectionNode IterationNode = mNode.ParentAs<SectionNode>() ;
             if (IterationNode.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
-            for (int i = 0; i < m_node.ParentAs<SectionNode>().Level - 1; i++)
+            for (int i = 0; i < mNode.ParentAs<SectionNode>().Level - 1; i++)
             {
                 IterationNode = IterationNode.ParentAs<SectionNode>();
 
@@ -63,37 +59,37 @@ namespace Obi.Dialogs
         }
         private void ChangeToDoStatus()
         {
-            if (m_chkToDo.Checked != m_node.IsTo_Do)
-                m_View.ToggleEmptyNodeTo_DoMark();
+            if (m_chkToDo.Checked != mNode.IsTo_Do)
+                mView.ToggleEmptyNodeTo_DoMark();
         }
 
         private void ChangeUsedStatus()
         {
-            if (m_chkUsed.Checked != m_node.Used)
-                m_View.SetSelectedNodeUsedStatus(m_chkUsed.Checked);
+            if (m_chkUsed.Checked != mNode.Used)
+                mView.SetSelectedNodeUsedStatus(m_chkUsed.Checked);
         }
         private void ChangeNodeKind()
         {
-            if (((EmptyNode.Kind)m_comboPhraseRole.SelectedItem) != m_node.NodeKind)
+            if (((EmptyNode.Kind)m_comboPhraseRole.SelectedItem) != mNode.NodeKind)
             {
                 switch ((EmptyNode.Kind)m_comboPhraseRole.SelectedItem)
                 {
                     case EmptyNode.Kind.Heading:
-                        m_View.MakeSelectedBlockIntoHeadingPhrase();
+                        mView.MakeSelectedBlockIntoHeadingPhrase();
                         break;
                     case EmptyNode.Kind.Silence:
-                        m_View.MakeSelectedBlockIntoSilencePhrase();
+                        mView.MakeSelectedBlockIntoSilencePhrase();
                         break;
                     case EmptyNode.Kind.Plain:
-                        m_View.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+                        mView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
                         break;
                     case EmptyNode.Kind.Page:
-                        Dialogs.SetPageNumber dialog = new SetPageNumber(m_View.NextPageNumber, false, false);
-                        if (dialog.ShowDialog() == DialogResult.OK) m_View.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
+                        Dialogs.SetPageNumber dialog = new SetPageNumber(mView.NextPageNumber, false, false);
+                        if (dialog.ShowDialog() == DialogResult.OK) mView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
                         break;
                     case EmptyNode.Kind.Custom:
-                        if (m_View.CanMarkPhrase)
-                        m_View.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(m_View, m_node, EmptyNode.Kind.Custom, m_txtCustomClassName.Text));
+                        if (mView.CanMarkPhrase)
+                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, mNode, EmptyNode.Kind.Custom, m_txtCustomClassName.Text));
                         break;
                 }
             }

@@ -918,10 +918,6 @@ Error text: {1}</value>
     <value>content view</value>
     <comment>ToString()</comment>
   </data>
-  <data name="time_in_seconds" xml:space="preserve">
-    <value>{0:0.00}s</value>
-    <comment>ToString()</comment>
-  </data>
   <data name="toc_view_to_string" xml:space="preserve">
     <value>TOC view</value>
     <comment>ToString()</comment>
@@ -953,5 +949,60 @@ Error text: {1}</value>
   <data name="rendering_waveform" xml:space="preserve">
     <value>Rendering waveform...</value>
     <comment>Waveform display before bitmap is created</comment>
+  </data>
+  <data name="duration_h_mm_ss" xml:space="preserve">
+    <value>{0}:{1:00}:{2:00}</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="duration_mm_ss" xml:space="preserve">
+    <value>{0:00}:{1:00}</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="duration_s_ms" xml:space="preserve">
+    <value>{0:0.00}s</value>
+    <comment>Format for duration</comment>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>hour</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>hours</value>
+    <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="long_addl_time" xml:space="preserve">
+    <value> {0} {1}</value>
+    <comment>Additional time (e.g. 1 minute, 23 seconds)</comment>
+  </data>
+  <data name="long_h_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}{3}</value>
+    <comment>Longer time formating (e.g. 1 hour 23 minutes 45 seconds)</comment>
+  </data>
+  <data name="long_mm_ss" xml:space="preserve">
+    <value>{0} {1}{2}</value>
+    <comment>Longer time formating (e.g. 1 minute 23 seconds)</comment>
+  </data>
+  <data name="long_s_ms" xml:space="preserve">
+    <value>{0:0.00} {1}</value>
+    <comment>Longer time formating (e.g. 1.23 seconds)</comment>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minute</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutes</value>
+    <comment>Used for time formating (plural)</comment>
+  </data>
+  <data name="node_position" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>second</value>
+    <comment>Used for time formating (singular)</comment>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>seconds</value>
+    <comment>Used for time formating (plural)</comment>
   </data>
 </root>
