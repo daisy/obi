@@ -124,10 +124,11 @@ namespace Obi.ProjectView
         {
             if (mContentView.CanAddStrip)
             {
-                                AddStrip();
+                                                AddStrip();
             }
             else if (CanAddSection)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mTOCView);
                 AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
             }
@@ -138,24 +139,27 @@ namespace Obi.ProjectView
         /// </summary>
         private void AddStrip()
         {
-            Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
+            if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                        Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
             urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
             SectionNode selected = null;
             if (mContentView.Selection.Node is SectionNode)
                 selected = (SectionNode)mContentView.Selection.Node;
             else
                 selected = (SectionNode)mContentView.Selection.Node.ParentAs<SectionNode>();
-
+            
+            command.append(add);
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
                 SectionNode child = selected.SectionChild(i);
+                
                 command.append(new Commands.Node.Delete(this, child));
                 command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
             }
-            command.append(add);
+            //command.append(add);
             if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
-            mPresentation.getUndoRedoManager().execute(command);
-        }
+                        mPresentation.getUndoRedoManager().execute(command);
+                    }
 
         /// <summary>
         /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
@@ -164,6 +168,7 @@ namespace Obi.ProjectView
         {
             if (CanAddSubSection)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                                 Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
                 AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
             }
@@ -440,11 +445,13 @@ namespace Obi.ProjectView
         {
             if (CanInsertStrip)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
                 AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
             }
             else if (CanInsertSection)
             {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
                 AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
             }
