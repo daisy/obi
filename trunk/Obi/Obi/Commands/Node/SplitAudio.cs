@@ -25,9 +25,10 @@ namespace Obi.Commands.Node
         {
             mNewNode = View.Presentation.CreatePhraseNode(mNode.SplitAudio(mSplitPoint));
             mNewNode.CustomClass = mNode.CustomClass;
-            mNewNode.NodeKind = mNode.NodeKind;
-            mNewNode.Used = mNode.Used;
+                        mNewNode.Used = mNode.Used;
             mNode.InsertAfterSelf(mNewNode);
+            mNewNode.NodeKind = mNode.NodeKind;
+
             if (UpdateSelection) View.SelectedBlockNode = mNewNode;
             if (mNewNode != null && mNewNode.ParentAs<ObiNode> () is SectionNode ) View.UpdateBlocksLabelInStrip(mNewNode.ParentAs<SectionNode>());
         }
