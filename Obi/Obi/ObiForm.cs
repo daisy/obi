@@ -1657,8 +1657,13 @@ namespace Obi
             if (mProjectView.Presentation != null)
             {
                 Dialogs.ProjectStatistics dialog = new ProjectStatistics(mProjectView);
-                dialog.ShowDialog();
-            }
+                if (dialog.ShowDialog() == DialogResult.OK && dialog.ProjectTitle != mSession.Presentation.Title &&
+                    dialog.ProjectTitle != null && dialog.ProjectTitle != "")
+                {
+                    mSession.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(mProjectView,
+                        mSession.Presentation.GetFirstMetadataItem(Metadata.DC_TITLE), dialog.ProjectTitle));
+                }
+             }
         }
 
 
