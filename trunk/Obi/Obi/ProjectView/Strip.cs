@@ -86,7 +86,7 @@ namespace Obi.ProjectView
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
                     mBlockLayout.Controls.Count - 1 :
                 item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
-            return index > 0 ? (Block)mBlockLayout.Controls[index] : null;
+            return index >= 0 ? (Block)mBlockLayout.Controls[index] : null;
         }
 
         /// <summary>
