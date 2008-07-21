@@ -13,6 +13,7 @@ namespace Obi.Commands.Node
         private ObiNode mPreviousParent;  // its previous parent
         private ObiNode mNewParent;       // the new parent
         private int mPreviousOffset;      // offset for indexes in the original node
+        private int mExecutionNodeOffset;
 
         public ChangeParent(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int offset): base(view)
         {
@@ -20,7 +21,14 @@ namespace Obi.Commands.Node
             mPreviousParent = node.ParentAs<ObiNode>();
             mNewParent = parent;
             mPreviousOffset = offset;
+            mExecutionNodeOffset = 0;
         }
+
+        public ChangeParent(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int offset, int  FutureNodeOffset)  :this(view, node, parent, 0) 
+    {
+                    
+                    mExecutionNodeOffset = FutureNodeOffset;
+    }
 
         public ChangeParent(ProjectView.ProjectView view, ObiNode node, ObiNode parent)
             : this(view, node, parent, 0) {}
@@ -28,6 +36,11 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             System.Diagnostics.Debug.Print("Detaching node <{0}> from parent <{1}>", mNode, mPreviousParent);
+            if (mExecutionNodeOffset != 0)
+            {
+                mNode = mNode.ParentAs<SectionNode>().PhraseChild(mExecutionNodeOffset);
+                mPreviousOffset = mExecutionNodeOffset;
+            }
             mNode.Detach();
             mNewParent.AppendChild(mNode);
             System.Diagnostics.Debug.Print("Added <{0}> to parent <{1}>", mNode, mNewParent);
@@ -37,7 +50,7 @@ namespace Obi.Commands.Node
         {
             mNode.Detach();
             mPreviousParent.Insert(mNode, mPreviousOffset);
-            base.unExecute();
+                        base.unExecute();
         }
     }
 }
