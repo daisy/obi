@@ -1667,7 +1667,8 @@ namespace Obi.ProjectView
                 if (value > 0.0f)
                 {
                     mTOCView.ZoomFactor =
-                    mContentView.ZoomFactor = value;
+                    mContentView.ZoomFactor =
+                    mMetadataView.ZoomFactor = value;
                 }
             }
         }

@@ -68,11 +68,13 @@ namespace Obi.ProjectView
             if (block != null && Width > 0 && Height > 0)
             {
                 BackgroundWorker worker = new BackgroundWorker();
+                worker.WorkerReportsProgress = false;
+                worker.WorkerSupportsCancellation = true;
                 worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                 {
                     ColorSettings settings = block.ColorSettings;
-                    mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                    mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                    if (!worker.CancellationPending) mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                    if (!worker.CancellationPending) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
                 });
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                 {
@@ -93,17 +95,27 @@ namespace Obi.ProjectView
             return null;
         }
 
+
+        private delegate Bitmap CreateBitmapDelegate(ColorSettings settings, bool highlighted);
+
         // Create the bitmap for the waveform given the current color settings.
         // Use the highlight colors if the highlight flag is set, otherwise regular colors.
         private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
         {
-            Bitmap bitmap = new Bitmap(Width, Height);
-            Graphics g = Graphics.FromImage(bitmap);
-            g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
-            g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
-                new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-            if (mAudio != null) DrawWaveform(g, settings, highlighted);
-            return bitmap;
+            //if (InvokeRequired)
+            //{
+            //    return (Bitmap)Invoke(new CreateBitmapDelegate(CreateBitmapHighlighted), new Object[] { settings, highlighted });
+            //}
+            //else
+            //{
+                Bitmap bitmap = new Bitmap(Width, Height);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
+                g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
+                    new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                if (mAudio != null) DrawWaveform(g, settings, highlighted);
+                return bitmap;
+            //}
         }
 
         // Draw one channel for a given x
