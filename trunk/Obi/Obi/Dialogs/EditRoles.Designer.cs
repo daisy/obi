@@ -45,9 +45,11 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mCustomRolesList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mCustomRolesList.FormattingEnabled = true;
-            this.mCustomRolesList.Location = new System.Drawing.Point(12, 52);
+            this.mCustomRolesList.ItemHeight = 16;
+            this.mCustomRolesList.Location = new System.Drawing.Point(16, 64);
+            this.mCustomRolesList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mCustomRolesList.Name = "mCustomRolesList";
-            this.mCustomRolesList.Size = new System.Drawing.Size(287, 132);
+            this.mCustomRolesList.Size = new System.Drawing.Size(382, 162);
             this.mCustomRolesList.TabIndex = 2;
             this.mCustomRolesList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mCustomRolesList_KeyUp);
             // 
@@ -56,18 +58,20 @@ namespace Obi.Dialogs
             this.mNewCustomRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mNewCustomRole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mNewCustomRole.Location = new System.Drawing.Point(12, 25);
+            this.mNewCustomRole.Location = new System.Drawing.Point(16, 31);
+            this.mNewCustomRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mNewCustomRole.Name = "mNewCustomRole";
-            this.mNewCustomRole.Size = new System.Drawing.Size(287, 20);
+            this.mNewCustomRole.Size = new System.Drawing.Size(382, 22);
             this.mNewCustomRole.TabIndex = 0;
             this.mNewCustomRole.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mNewCustomRole_KeyUp);
             // 
             // mInstructions
             // 
             this.mInstructions.AutoSize = true;
-            this.mInstructions.Location = new System.Drawing.Point(12, 9);
+            this.mInstructions.Location = new System.Drawing.Point(16, 11);
+            this.mInstructions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mInstructions.Name = "mInstructions";
-            this.mInstructions.Size = new System.Drawing.Size(187, 13);
+            this.mInstructions.Size = new System.Drawing.Size(232, 16);
             this.mInstructions.TabIndex = 3;
             this.mInstructions.Text = "Add a new role or choose from the list.";
             // 
@@ -76,9 +80,10 @@ namespace Obi.Dialogs
             this.mOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOk.Location = new System.Drawing.Point(118, 220);
+            this.mOk.Location = new System.Drawing.Point(157, 271);
+            this.mOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mOk.Name = "mOk";
-            this.mOk.Size = new System.Drawing.Size(75, 23);
+            this.mOk.Size = new System.Drawing.Size(100, 28);
             this.mOk.TabIndex = 4;
             this.mOk.Text = "&OK";
             this.mOk.UseVisualStyleBackColor = true;
@@ -89,9 +94,10 @@ namespace Obi.Dialogs
             this.mCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancel.Location = new System.Drawing.Point(199, 220);
+            this.mCancel.Location = new System.Drawing.Point(265, 271);
+            this.mCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mCancel.Name = "mCancel";
-            this.mCancel.Size = new System.Drawing.Size(75, 23);
+            this.mCancel.Size = new System.Drawing.Size(100, 28);
             this.mCancel.TabIndex = 5;
             this.mCancel.Text = "&Cancel";
             this.mCancel.UseVisualStyleBackColor = true;
@@ -101,9 +107,10 @@ namespace Obi.Dialogs
             // 
             this.mAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mAdd.Location = new System.Drawing.Point(305, 22);
+            this.mAdd.Location = new System.Drawing.Point(407, 27);
+            this.mAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mAdd.Name = "mAdd";
-            this.mAdd.Size = new System.Drawing.Size(75, 23);
+            this.mAdd.Size = new System.Drawing.Size(100, 28);
             this.mAdd.TabIndex = 1;
             this.mAdd.Text = "&Add";
             this.mAdd.UseVisualStyleBackColor = true;
@@ -113,9 +120,10 @@ namespace Obi.Dialogs
             // 
             this.mRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mRemove.Location = new System.Drawing.Point(305, 52);
+            this.mRemove.Location = new System.Drawing.Point(407, 64);
+            this.mRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mRemove.Name = "mRemove";
-            this.mRemove.Size = new System.Drawing.Size(75, 23);
+            this.mRemove.Size = new System.Drawing.Size(100, 28);
             this.mRemove.TabIndex = 3;
             this.mRemove.Text = "&Remove";
             this.mRemove.UseVisualStyleBackColor = true;
@@ -123,9 +131,11 @@ namespace Obi.Dialogs
             // 
             // EditRoles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.mOk;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 255);
+            this.CancelButton = this.mCancel;
+            this.ClientSize = new System.Drawing.Size(523, 314);
             this.Controls.Add(this.mRemove);
             this.Controls.Add(this.mAdd);
             this.Controls.Add(this.mCancel);
@@ -133,9 +143,13 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mInstructions);
             this.Controls.Add(this.mNewCustomRole);
             this.Controls.Add(this.mCustomRolesList);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditRoles";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Edit roles";
             this.Load += new System.EventHandler(this.CustomRoles_Load);
