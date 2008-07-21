@@ -1590,8 +1590,28 @@ namespace Obi.ProjectView
         {
             if (Selection != null && Selection.Node is EmptyNode)
             {
-                Obi.Dialogs.PhraseProperties PropertiesDialog = new Obi.Dialogs.PhraseProperties(this);
-                PropertiesDialog.Show();
+                Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    urakawa.undo.CompositeCommand command =
+                        mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
+                    if (dialog.Role != dialog.Node.NodeKind ||
+                        (dialog.Role == EmptyNode.Kind.Custom && dialog.Node.NodeKind == EmptyNode.Kind.Custom &&
+                        dialog.CustomClass != dialog.Node.CustomClass))
+                    {
+                        command.append(new Commands.Node.ChangeCustomType(this, dialog.Node, dialog.Role, dialog.CustomClass));
+                    }
+                    if (dialog.Used != dialog.Node.Used)
+                    {
+                        command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
+                    }
+                    if (dialog.TODO != dialog.Node.IsTo_Do)
+                    {
+                        command.append(new Commands.Node.ToggleNodeTo_Do(this, dialog.Node));
+                    }
+                    if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
+                    if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                }
             }
         }
 

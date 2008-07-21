@@ -10,9 +10,13 @@ namespace Obi.Dialogs
 {
     public partial class PhraseProperties : Form
     {
-        private Obi.EmptyNode mNode;
-        private ProjectView.ProjectView mView;
+        private EmptyNode mNode;                // the node to show the information for.
+        private ProjectView.ProjectView mView;  // the current view.
 
+
+        /// <summary>
+        /// Create the dialog to be shown by ShowDialog() for the given view.
+        /// </summary>
         public PhraseProperties(ProjectView.ProjectView view)
         {
             InitializeComponent();
@@ -20,11 +24,44 @@ namespace Obi.Dialogs
             mNode = view.SelectedNodeAs<EmptyNode>();
         }
 
+        
+        /// <summary>
+        /// Get the custom class value input by the user. Should be used only when role is set to custom.
+        /// </summary>
+        public string CustomClass { get { return m_txtCustomClassName.Text; } }
+
+        /// <summary>
+        /// Get the node under inspection.
+        /// </summary>
+        public EmptyNode Node { get { return mNode; } }
+
+        /// <summary>
+        /// Get the role chosen from the drop-down menu.
+        /// </summary>
+        public EmptyNode.Kind Role { get { return (EmptyNode.Kind)m_comboPhraseRole.SelectedItem; } }
+
+        /// <summary>
+        /// Get the TODO flag from the checkbox.
+        /// </summary>
+        public bool TODO { get { return m_chkToDo.Checked; } }
+
+        /// <summary>
+        /// Get the used status from the checkbox.
+        /// </summary>
+        public bool Used { get { return m_chkUsed.Checked; } }
+
+
+        // Fill out the fields when the form loads.
         private void PhraseProperties_Load(object sender, EventArgs e)
         {
-            m_txtParentSection.Text = mNode.ParentAs<SectionNode>().Label;
+            m_txtParentSection.Text = mNode.AncestorAs<SectionNode>().Label;
             m_txtLocationInsideSection.Text = string.Format(Localizer.Message("node_position"),
                 mNode.Index + 1, mNode.ParentAs<ObiNode>().PhraseChildCount);
+            for (SectionNode parent = mNode.AncestorAs<SectionNode>(); parent != null; parent = parent.ParentAs<SectionNode>())
+            {
+                m_lbParentsList.Items.Insert(0, string.Format(Localizer.Message("section_level"),
+                    parent.Label, parent.Level));
+            }
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Heading);
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Page);
@@ -32,89 +69,23 @@ namespace Obi.Dialogs
             m_comboPhraseRole.Items.Add(PhraseNode.Kind.Silence);
             m_comboPhraseRole.Items.Add(EmptyNode.Kind.Custom);
             m_comboPhraseRole.SelectedItem = mNode.NodeKind;
+            m_txtCustomClassName.Text = mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : "";
             m_chkUsed.Checked = mNode.Used;
             m_chkToDo.Checked = mNode.IsTo_Do;
-
-
-            SectionNode IterationNode = mNode.ParentAs<SectionNode>() ;
-            if (IterationNode.Level == 1) m_lbParentsList.Items.Insert(0, "It has no parent sections");
-            for (int i = 0; i < mNode.ParentAs<SectionNode>().Level - 1; i++)
-            {
-                IterationNode = IterationNode.ParentAs<SectionNode>();
-
-                string strListItem = IterationNode.Label + " Level" + IterationNode.Level.ToString();
-                m_lbParentsList.Items.Insert(0, strListItem);
-
-            }
-
             EnableCustomClassField();
         }
 
-        private void m_btnOk_Click(object sender, EventArgs e)
+        // Turn the custom class field on/off depending on the role (i.e. turned on only for custom classes.)
+        private void EnableCustomClassField()
         {
-            ChangeToDoStatus();
-            ChangeUsedStatus();
-            ChangeNodeKind();
-            Close();
-        }
-        private void ChangeToDoStatus()
-        {
-            if (m_chkToDo.Checked != mNode.IsTo_Do)
-                mView.ToggleEmptyNodeTo_DoMark();
+            m_txtCustomClassName.Enabled =
+                (EmptyNode.Kind)m_comboPhraseRole.SelectedItem == EmptyNode.Kind.Custom;
         }
 
-        private void ChangeUsedStatus()
-        {
-            if (m_chkUsed.Checked != mNode.Used)
-                mView.SetSelectedNodeUsedStatus(m_chkUsed.Checked);
-        }
-        private void ChangeNodeKind()
-        {
-            if (((EmptyNode.Kind)m_comboPhraseRole.SelectedItem) != mNode.NodeKind)
-            {
-                switch ((EmptyNode.Kind)m_comboPhraseRole.SelectedItem)
-                {
-                    case EmptyNode.Kind.Heading:
-                        mView.MakeSelectedBlockIntoHeadingPhrase();
-                        break;
-                    case EmptyNode.Kind.Silence:
-                        mView.MakeSelectedBlockIntoSilencePhrase();
-                        break;
-                    case EmptyNode.Kind.Plain:
-                        mView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
-                        break;
-                    case EmptyNode.Kind.Page:
-                        Dialogs.SetPageNumber dialog = new SetPageNumber(mView.NextPageNumber, false, false);
-                        if (dialog.ShowDialog() == DialogResult.OK) mView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
-                        break;
-                    case EmptyNode.Kind.Custom:
-                        if (mView.CanMarkPhrase)
-                        mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, mNode, EmptyNode.Kind.Custom, m_txtCustomClassName.Text));
-                        break;
-                }
-            }
-        }
-
-        private void m_btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        // Update the custom class text box when the role changes.
         private void m_comboPhraseRole_SelectionChangeCommitted(object sender, EventArgs e)
         {
             EnableCustomClassField();
         }
-
-        private void EnableCustomClassField()
-        {
-            if (((EmptyNode.Kind)m_comboPhraseRole.SelectedItem) == EmptyNode.Kind.Custom)
-            {
-                m_txtCustomClassName.Enabled = true;
-            }
-            else
-                m_txtCustomClassName.Enabled = false;
-        }
-
-
     }
 }
