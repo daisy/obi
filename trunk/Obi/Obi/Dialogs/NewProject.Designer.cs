@@ -69,7 +69,7 @@ namespace Obi.Dialogs
             this.label2.Location = new System.Drawing.Point(16, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 4;
             this.label2.Text = "&Location:";
             // 
             // mFileBox
@@ -142,7 +142,7 @@ namespace Obi.Dialogs
             // 
             // mIDBox
             // 
-            this.mIDBox.AccessibleName = "Location:";
+            this.mIDBox.AccessibleName = "ID:";
             this.mIDBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mIDBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
