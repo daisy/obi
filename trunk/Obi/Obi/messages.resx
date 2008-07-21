@@ -1015,4 +1015,8 @@ Error text: {1}</value>
     <value>update section</value>
     <comment>Command</comment>
   </data>
+  <data name="update_phrase" xml:space="preserve">
+    <value>update phrase</value>
+    <comment>Command</comment>
+  </data>
 </root>

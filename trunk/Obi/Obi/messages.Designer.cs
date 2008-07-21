@@ -2075,6 +2075,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to update phrase.
+        /// </summary>
+        internal static string update_phrase {
+            get {
+                return ResourceManager.GetString("update_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to update section.
         /// </summary>
         internal static string update_section {

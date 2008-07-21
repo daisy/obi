@@ -46,7 +46,7 @@ namespace Obi.Dialogs
             // m_lblName
             // 
             this.m_lblName.AutoSize = true;
-            this.m_lblName.Location = new System.Drawing.Point(59, 18);
+            this.m_lblName.Location = new System.Drawing.Point(59, 15);
             this.m_lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblName.Name = "m_lblName";
             this.m_lblName.Size = new System.Drawing.Size(79, 16);
@@ -59,7 +59,7 @@ namespace Obi.Dialogs
             this.m_txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.m_txtName.Location = new System.Drawing.Point(148, 16);
+            this.m_txtName.Location = new System.Drawing.Point(148, 13);
             this.m_txtName.Margin = new System.Windows.Forms.Padding(4);
             this.m_txtName.Name = "m_txtName";
             this.m_txtName.Size = new System.Drawing.Size(367, 22);
@@ -198,7 +198,7 @@ namespace Obi.Dialogs
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 16);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Ancestor section(s):";
+            this.label1.Text = "&Ancestor section(s):";
             // 
             // SectionProperties
             // 
