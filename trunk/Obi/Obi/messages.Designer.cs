@@ -1877,6 +1877,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot; (level {1}).
+        /// </summary>
+        internal static string section_level {
+            get {
+                return ResourceManager.GetString("section_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , depth {0}.
         /// </summary>
         internal static string section_level_to_string {
@@ -2021,6 +2030,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is a top-level section..
+        /// </summary>
+        internal static string top_level_section {
+            get {
+                return ResourceManager.GetString("top_level_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transport Bar.
         /// </summary>
         internal static string transport_bar {
@@ -2053,6 +2071,15 @@ namespace Obi {
         internal static string unused {
             get {
                 return ResourceManager.GetString("unused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to update section.
+        /// </summary>
+        internal static string update_section {
+            get {
+                return ResourceManager.GetString("update_section", resourceCulture);
             }
         }
         

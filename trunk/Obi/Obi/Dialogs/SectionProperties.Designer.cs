@@ -40,7 +40,7 @@ namespace Obi.Dialogs
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_chkUsed = new System.Windows.Forms.CheckBox();
             this.m_lbParentsList = new System.Windows.Forms.ListBox();
-            this.m_gParentsList = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // m_lblName
@@ -60,7 +60,7 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_txtName.Location = new System.Drawing.Point(148, 16);
-            this.m_txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_txtName.Margin = new System.Windows.Forms.Padding(4);
             this.m_txtName.Name = "m_txtName";
             this.m_txtName.Size = new System.Drawing.Size(367, 22);
             this.m_txtName.TabIndex = 1;
@@ -83,7 +83,7 @@ namespace Obi.Dialogs
             this.m_comboLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_comboLevel.FormattingEnabled = true;
             this.m_comboLevel.Location = new System.Drawing.Point(148, 43);
-            this.m_comboLevel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_comboLevel.Margin = new System.Windows.Forms.Padding(4);
             this.m_comboLevel.Name = "m_comboLevel";
             this.m_comboLevel.Size = new System.Drawing.Size(367, 24);
             this.m_comboLevel.TabIndex = 3;
@@ -92,7 +92,7 @@ namespace Obi.Dialogs
             // 
             this.m_lblTimeLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_lblTimeLength.AutoSize = true;
-            this.m_lblTimeLength.Location = new System.Drawing.Point(77, 201);
+            this.m_lblTimeLength.Location = new System.Drawing.Point(77, 199);
             this.m_lblTimeLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblTimeLength.Name = "m_lblTimeLength";
             this.m_lblTimeLength.Size = new System.Drawing.Size(61, 16);
@@ -105,18 +105,18 @@ namespace Obi.Dialogs
             this.m_txtTimeLength.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_txtTimeLength.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.m_txtTimeLength.Location = new System.Drawing.Point(146, 199);
-            this.m_txtTimeLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_txtTimeLength.Location = new System.Drawing.Point(148, 197);
+            this.m_txtTimeLength.Margin = new System.Windows.Forms.Padding(4);
             this.m_txtTimeLength.Name = "m_txtTimeLength";
             this.m_txtTimeLength.ReadOnly = true;
-            this.m_txtTimeLength.Size = new System.Drawing.Size(369, 22);
+            this.m_txtTimeLength.Size = new System.Drawing.Size(367, 22);
             this.m_txtTimeLength.TabIndex = 5;
             // 
             // m_lblPhraseCount
             // 
             this.m_lblPhraseCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_lblPhraseCount.AutoSize = true;
-            this.m_lblPhraseCount.Location = new System.Drawing.Point(13, 231);
+            this.m_lblPhraseCount.Location = new System.Drawing.Point(15, 229);
             this.m_lblPhraseCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblPhraseCount.Name = "m_lblPhraseCount";
             this.m_lblPhraseCount.Size = new System.Drawing.Size(125, 16);
@@ -129,39 +129,38 @@ namespace Obi.Dialogs
             this.m_txtPhraseCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_txtPhraseCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.m_txtPhraseCount.Location = new System.Drawing.Point(146, 229);
-            this.m_txtPhraseCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_txtPhraseCount.Location = new System.Drawing.Point(148, 227);
+            this.m_txtPhraseCount.Margin = new System.Windows.Forms.Padding(4);
             this.m_txtPhraseCount.Name = "m_txtPhraseCount";
             this.m_txtPhraseCount.ReadOnly = true;
-            this.m_txtPhraseCount.Size = new System.Drawing.Size(369, 22);
+            this.m_txtPhraseCount.Size = new System.Drawing.Size(367, 22);
             this.m_txtPhraseCount.TabIndex = 7;
             // 
             // m_btnOk
             // 
             this.m_btnOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnOk.Location = new System.Drawing.Point(160, 323);
-            this.m_btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_btnOk.Location = new System.Drawing.Point(160, 321);
+            this.m_btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(100, 28);
             this.m_btnOk.TabIndex = 9;
             this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
-            this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
             // m_btnCancel
             // 
             this.m_btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnCancel.Location = new System.Drawing.Point(268, 323);
-            this.m_btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_btnCancel.Location = new System.Drawing.Point(268, 321);
+            this.m_btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
             this.m_btnCancel.TabIndex = 10;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
-            this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
             // 
             // m_chkUsed
             // 
@@ -169,8 +168,8 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_chkUsed.AutoSize = true;
             this.m_chkUsed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_chkUsed.Location = new System.Drawing.Point(146, 259);
-            this.m_chkUsed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_chkUsed.Location = new System.Drawing.Point(148, 257);
+            this.m_chkUsed.Margin = new System.Windows.Forms.Padding(4);
             this.m_chkUsed.Name = "m_chkUsed";
             this.m_chkUsed.Size = new System.Drawing.Size(57, 20);
             this.m_chkUsed.TabIndex = 8;
@@ -183,27 +182,23 @@ namespace Obi.Dialogs
             this.m_lbParentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_lbParentsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_lbParentsList.FormattingEnabled = true;
             this.m_lbParentsList.ItemHeight = 16;
-            this.m_lbParentsList.Location = new System.Drawing.Point(146, 75);
-            this.m_lbParentsList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.m_lbParentsList.Location = new System.Drawing.Point(148, 75);
+            this.m_lbParentsList.Margin = new System.Windows.Forms.Padding(4);
             this.m_lbParentsList.Name = "m_lbParentsList";
-            this.m_lbParentsList.Size = new System.Drawing.Size(369, 116);
+            this.m_lbParentsList.Size = new System.Drawing.Size(367, 114);
             this.m_lbParentsList.TabIndex = 5;
             // 
-            // m_gParentsList
+            // label1
             // 
-            this.m_gParentsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.m_gParentsList.Location = new System.Drawing.Point(146, 75);
-            this.m_gParentsList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.m_gParentsList.Name = "m_gParentsList";
-            this.m_gParentsList.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.m_gParentsList.Size = new System.Drawing.Size(369, 116);
-            this.m_gParentsList.TabIndex = 5;
-            this.m_gParentsList.TabStop = false;
-            this.m_gParentsList.Text = "Parent sections";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 16);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Ancestor section(s):";
             // 
             // SectionProperties
             // 
@@ -211,8 +206,8 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
-            this.ClientSize = new System.Drawing.Size(528, 364);
-            this.Controls.Add(this.m_gParentsList);
+            this.ClientSize = new System.Drawing.Size(528, 362);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.m_lbParentsList);
             this.Controls.Add(this.m_chkUsed);
             this.Controls.Add(this.m_btnCancel);
@@ -226,7 +221,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_txtName);
             this.Controls.Add(this.m_lblName);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SectionProperties";
@@ -253,6 +248,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.CheckBox m_chkUsed;
         private System.Windows.Forms.ListBox m_lbParentsList;
-        private System.Windows.Forms.GroupBox m_gParentsList;
+        private System.Windows.Forms.Label label1;
     }
 }
