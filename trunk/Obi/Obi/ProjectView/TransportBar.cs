@@ -1757,7 +1757,7 @@ namespace Obi.ProjectView
                     {
                         if (PNode != mCurrentPlaylist.CurrentPhrase ) // if selected node is not currently playing phrase
                                                     {
-                                                        if (mView.Selection.Control.GetType() != typeof(TOCView)
+                                                        if (mView.Selection.Control.GetType() != typeof(InheritedTOCView)
                                                             || mCurrentPlaylist.CurrentPhrase.ParentAs <SectionNode> () != PNode.ParentAs <SectionNode> () ) // bypass if selection is in TOC and playing section is same as selected section
                                                         {
                                                             if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
