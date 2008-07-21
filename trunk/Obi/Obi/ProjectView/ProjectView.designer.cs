@@ -114,7 +114,7 @@ namespace Obi.ProjectView
             // 
             this.mTOCSplitter.Panel2.Controls.Add(this.mContentView);
             this.mTOCSplitter.Size = new System.Drawing.Size(964, 627);
-            this.mTOCSplitter.SplitterDistance = 271;
+            this.mTOCSplitter.SplitterDistance = 281;
             this.mTOCSplitter.TabIndex = 0;
             // 
             // mMetadataSplitter
@@ -131,8 +131,8 @@ namespace Obi.ProjectView
             // mMetadataSplitter.Panel2
             // 
             this.mMetadataSplitter.Panel2.Controls.Add(this.mMetadataView);
-            this.mMetadataSplitter.Size = new System.Drawing.Size(271, 627);
-            this.mMetadataSplitter.SplitterDistance = 379;
+            this.mMetadataSplitter.Size = new System.Drawing.Size(281, 627);
+            this.mMetadataSplitter.SplitterDistance = 349;
             this.mMetadataSplitter.TabIndex = 0;
             // 
             // mTOCView
@@ -145,17 +145,19 @@ namespace Obi.ProjectView
             this.mTOCView.Location = new System.Drawing.Point(0, 0);
             this.mTOCView.Name = "mTOCView";
             this.mTOCView.Selection = null;
-            this.mTOCView.Size = new System.Drawing.Size(271, 379);
+            this.mTOCView.Size = new System.Drawing.Size(281, 349);
             this.mTOCView.TabIndex = 0;
             // 
             // mMetadataView
             // 
             this.mMetadataView.BackColor = System.Drawing.Color.Transparent;
             this.mMetadataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mMetadataView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mMetadataView.Location = new System.Drawing.Point(0, 0);
+            this.mMetadataView.Margin = new System.Windows.Forms.Padding(0);
             this.mMetadataView.Name = "mMetadataView";
             this.mMetadataView.Selection = null;
-            this.mMetadataView.Size = new System.Drawing.Size(271, 244);
+            this.mMetadataView.Size = new System.Drawing.Size(281, 274);
             this.mMetadataView.TabIndex = 0;
             // 
             // mPanelInfoLabelButton
@@ -166,24 +168,27 @@ namespace Obi.ProjectView
             this.mPanelInfoLabelButton.AutoSize = true;
             this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
             this.mPanelInfoLabelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(-5, -1);
+            this.mPanelInfoLabelButton.Location = new System.Drawing.Point(-153, -1);
             this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
             this.mPanelInfoLabelButton.Size = new System.Drawing.Size(6, 6);
             this.mPanelInfoLabelButton.TabIndex = 2;
             this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
-            this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
             this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
+            this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
             // 
             // mContentView
             // 
+            this.mContentView.AudioScale = 0.01F;
+            this.mContentView.AutoScroll = true;
             this.mContentView.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.mContentView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mContentView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mContentView.Location = new System.Drawing.Point(0, 0);
             this.mContentView.Name = "mContentView";
             this.mContentView.Selection = null;
-            this.mContentView.Size = new System.Drawing.Size(689, 627);
+            this.mContentView.Size = new System.Drawing.Size(679, 627);
             this.mContentView.TabIndex = 0;
+            this.mContentView.ZoomFactor = 1F;
             // 
             // mFindInText
             // 

@@ -50,10 +50,11 @@ namespace Obi.ProjectView
             this.mNameColumn,
             this.mContentColumn});
             this.mMetadataListView.FullRowSelect = true;
-            this.mMetadataListView.Location = new System.Drawing.Point(3, 3);
+            this.mMetadataListView.Location = new System.Drawing.Point(4, 4);
+            this.mMetadataListView.Margin = new System.Windows.Forms.Padding(4);
             this.mMetadataListView.MultiSelect = false;
             this.mMetadataListView.Name = "mMetadataListView";
-            this.mMetadataListView.Size = new System.Drawing.Size(278, 257);
+            this.mMetadataListView.Size = new System.Drawing.Size(296, 237);
             this.mMetadataListView.TabIndex = 1;
             this.mMetadataListView.UseCompatibleStateImageBehavior = false;
             this.mMetadataListView.View = System.Windows.Forms.View.Details;
@@ -63,12 +64,12 @@ namespace Obi.ProjectView
             // mNameColumn
             // 
             this.mNameColumn.Text = "Name";
-            this.mNameColumn.Width = 100;
+            this.mNameColumn.Width = 143;
             // 
             // mContentColumn
             // 
             this.mContentColumn.Text = "Content";
-            this.mContentColumn.Width = 176;
+            this.mContentColumn.Width = 178;
             // 
             // mContentTextbox
             // 
@@ -76,9 +77,10 @@ namespace Obi.ProjectView
             this.mContentTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mContentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mContentTextbox.Location = new System.Drawing.Point(56, 292);
+            this.mContentTextbox.Location = new System.Drawing.Point(75, 280);
+            this.mContentTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mContentTextbox.Name = "mContentTextbox";
-            this.mContentTextbox.Size = new System.Drawing.Size(225, 20);
+            this.mContentTextbox.Size = new System.Drawing.Size(225, 22);
             this.mContentTextbox.TabIndex = 4;
             this.mContentTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mContentTextbox_KeyDown);
             // 
@@ -86,9 +88,10 @@ namespace Obi.ProjectView
             // 
             this.mUpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.mUpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mUpdateButton.Location = new System.Drawing.Point(206, 318);
+            this.mUpdateButton.Location = new System.Drawing.Point(201, 312);
+            this.mUpdateButton.Margin = new System.Windows.Forms.Padding(4);
             this.mUpdateButton.Name = "mUpdateButton";
-            this.mUpdateButton.Size = new System.Drawing.Size(75, 25);
+            this.mUpdateButton.Size = new System.Drawing.Size(100, 31);
             this.mUpdateButton.TabIndex = 5;
             this.mUpdateButton.Text = "&Update";
             this.mUpdateButton.UseVisualStyleBackColor = true;
@@ -99,18 +102,20 @@ namespace Obi.ProjectView
             this.mNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mNameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mNameTextbox.Location = new System.Drawing.Point(56, 266);
+            this.mNameTextbox.Location = new System.Drawing.Point(75, 248);
+            this.mNameTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mNameTextbox.Name = "mNameTextbox";
-            this.mNameTextbox.Size = new System.Drawing.Size(225, 20);
+            this.mNameTextbox.Size = new System.Drawing.Size(225, 22);
             this.mNameTextbox.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 268);
+            this.label1.Location = new System.Drawing.Point(19, 250);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "Name:";
             // 
@@ -118,15 +123,16 @@ namespace Obi.ProjectView
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 294);
+            this.label2.Location = new System.Drawing.Point(11, 282);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Content:";
             // 
             // MetadataView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -134,8 +140,10 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mNameTextbox);
             this.Controls.Add(this.mUpdateButton);
             this.Controls.Add(this.mContentTextbox);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MetadataView";
-            this.Size = new System.Drawing.Size(284, 346);
+            this.Size = new System.Drawing.Size(305, 347);
             this.VisibleChanged += new System.EventHandler(this.MetadataView_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
