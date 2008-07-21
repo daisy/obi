@@ -872,7 +872,8 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingStripCursor()
         {
-            return false; // SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
+            return false; 
+             //SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
         }
 
         private bool SelectLastBlockInStrip()

@@ -327,7 +327,7 @@ namespace Obi.ProjectView
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection || CanRemoveStrip)
             {
-                bool isSection = mSelection.Control is TOCView;
+                bool isSection = mSelection.Control is InheritedTOCView;
                 urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
                     Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
                 command.append(new Commands.Node.Copy(this, isSection));
