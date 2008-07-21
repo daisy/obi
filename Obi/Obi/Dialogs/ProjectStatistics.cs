@@ -10,25 +10,24 @@ namespace Obi.Dialogs
 {
     public partial class ProjectStatistics : Form
     {
-        private ProjectView.ProjectView m_View;
+        private ProjectView.ProjectView mView;
 
-        public ProjectStatistics( ProjectView.ProjectView View )
+        public ProjectStatistics(ProjectView.ProjectView View)
         {
             InitializeComponent();
-
-            m_View = View;
-                    }
+            mView = View;
+        }
 
         private void ProjectStatistics_Load(object sender, EventArgs e)
         {
-            m_txtTitle.Text = m_View.Presentation.Title;
+            m_txtTitle.Text = mView.Presentation.Title;
             LoadProjectDuration();
             LoadSectionsAndPhraseCount();
-                    }
+        }
 
         private void LoadProjectDuration()
         {
-            uint seconds = Convert.ToUInt32 ( m_View.Presentation.RootNode.Duration / 1000 );
+            uint seconds = Convert.ToUInt32(mView.Presentation.RootNode.Duration / 1000);
             uint minutes = seconds / 60;
             uint hours = minutes / 60;
             seconds = seconds % 60;
@@ -37,7 +36,7 @@ namespace Obi.Dialogs
 
         private void LoadSectionsAndPhraseCount ()
         {
-            SectionNode node     = m_View.Presentation.FirstSection ;
+            SectionNode node     = mView.Presentation.FirstSection ;
             EmptyNode FirstEmptyNode = null;
             uint SectionCount = 0 ;
             if ( node != null )

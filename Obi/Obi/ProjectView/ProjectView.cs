@@ -1307,13 +1307,13 @@ namespace Obi.ProjectView
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
             return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
-    (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
-    (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView()) ||
+                    (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
+                    (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView()) ||
                     (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
-                                    (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
-                                    (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) ||
-                                    (key ==  Keys.F8&&  mTransportBar.FocusOnTimeDisplay () ) ||
-    base.ProcessCmdKey(ref msg, key);
+                    (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
+                    (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) ||
+                    (key == Keys.F8 && mTransportBar.FocusOnTimeDisplay()) ||
+                    base.ProcessCmdKey(ref msg, key);
         }
 
         private bool SelectViewsInCycle(bool clockwise)
