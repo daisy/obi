@@ -1005,4 +1005,14 @@ Error text: {1}</value>
     <value>seconds</value>
     <comment>Used for time formating (plural)</comment>
   </data>
+  <data name="section_level" xml:space="preserve">
+    <value>"{0}" (level {1})</value>
+  </data>
+  <data name="top_level_section" xml:space="preserve">
+    <value>This is a top-level section.</value>
+  </data>
+  <data name="update_section" xml:space="preserve">
+    <value>update section</value>
+    <comment>Command</comment>
+  </data>
 </root>

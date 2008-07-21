@@ -214,22 +214,15 @@ namespace Obi
         }
 
         /// <summary>
-        /// The preceding section in "flat" order. If the section is the first child, then the preceding one is the parent.
+        /// The preceding section in "flat" order: the parent for the first child,
+        /// or the last descendant of the previous sibling.
         /// </summary>
         public SectionNode PrecedingSection
         {
             get
             {
                 SectionNode previous = PrecedingSibling;
-                if (previous == null)
-                {
-                    previous = ParentAs<SectionNode>();
-                }
-                else
-                {
-                    while (previous.SectionChildCount > 0) previous = previous.SectionChild(-1);
-                }
-                return previous;
+                return previous == null ? ParentAs<SectionNode>() : (SectionNode)previous.LastDescendant;
             }
         }
 

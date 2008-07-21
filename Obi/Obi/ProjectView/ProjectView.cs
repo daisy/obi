@@ -1551,12 +1551,38 @@ namespace Obi.ProjectView
             return true;
         }
 
+        /// <summary>
+        /// Show the section properties dialog. When the user closes the dialog, look for changes to commit.
+        /// Emit a single command consolidating all changes (title, level and used flag).
+        /// </summary>
         public void ShowSectionPropertiesDialog()
         {
             if (Selection != null && Selection.Node is SectionNode)
             {
-                Obi.Dialogs.SectionProperties PropertiesDialog = new Obi.Dialogs.SectionProperties(this);
-                PropertiesDialog.Show();
+                Dialogs.SectionProperties dialog = new Dialogs.SectionProperties(this);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    urakawa.undo.CompositeCommand command =
+                        mPresentation.CreateCompositeCommand(Localizer.Message("update_section"));
+                    if (dialog.Label != dialog.Node.Label && dialog.Label != null && dialog.Label != "")
+                    {
+                        command.append(new Commands.Node.RenameSection(this, dialog.Node, dialog.Label));
+                    }
+                    for (int i = dialog.Node.Level; i < dialog.Level; ++i)
+                    {
+                        command.append(new Commands.TOC.MoveSectionIn(this, dialog.Node));
+                    }
+                    for (int i = dialog.Level; i < dialog.Node.Level; ++i)
+                    {
+                        command.append(new Commands.TOC.MoveSectionOut(this, dialog.Node));
+                    }
+                    if (dialog.Used != dialog.Node.Used)
+                    {
+                        command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
+                    }
+                    if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
+                    if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                }
             }
         }
 
