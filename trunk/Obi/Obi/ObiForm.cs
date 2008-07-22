@@ -1123,7 +1123,7 @@ namespace Obi
         private void Undo()
         {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
-            if (mSession.CanUndo) { mSession.Presentation.getUndoRedoManager().undo(); }
+            if (mSession.CanUndo && !(mProjectView.Selection is   TextSelection)) { mSession.Presentation.getUndoRedoManager().undo(); }
         }
 
         /// <summary>
