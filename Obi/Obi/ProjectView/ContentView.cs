@@ -896,6 +896,7 @@ namespace Obi.ProjectView
 
         private bool SelectFirstBlockInStrip()
         {
+            if (mView.TransportBar.IsPlayerActive) mView.TransportBar.Stop();
             return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.FirstBlock; });
         }
 
