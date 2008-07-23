@@ -543,32 +543,33 @@ namespace Obi
             // 
             // mView_ZoomInMenuItem
             // 
-            this.mView_ZoomInMenuItem.Name = "mView_ZoomInMenuItem";
             resources.ApplyResources(this.mView_ZoomInMenuItem, "mView_ZoomInMenuItem");
+            this.mView_ZoomInMenuItem.Name = "mView_ZoomInMenuItem";
             this.mView_ZoomInMenuItem.Click += new System.EventHandler(this.View_ZoomInMenuItem_Click);
             // 
             // mView_ZoomOutMenuItem
             // 
-            this.mView_ZoomOutMenuItem.Name = "mView_ZoomOutMenuItem";
             resources.ApplyResources(this.mView_ZoomOutMenuItem, "mView_ZoomOutMenuItem");
+            this.mView_ZoomOutMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.mView_ZoomOutMenuItem.Name = "mView_ZoomOutMenuItem";
             this.mView_ZoomOutMenuItem.Click += new System.EventHandler(this.View_ZoomOutMenuItem_Click);
             // 
             // mView_NormalSizeMenuItem
             // 
-            this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
             resources.ApplyResources(this.mView_NormalSizeMenuItem, "mView_NormalSizeMenuItem");
+            this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
             this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.View_NormalSizeMenuItem_Click);
             // 
             // mView_AudioZoomInMenuItem
             // 
-            this.mView_AudioZoomInMenuItem.Name = "mView_AudioZoomInMenuItem";
             resources.ApplyResources(this.mView_AudioZoomInMenuItem, "mView_AudioZoomInMenuItem");
+            this.mView_AudioZoomInMenuItem.Name = "mView_AudioZoomInMenuItem";
             this.mView_AudioZoomInMenuItem.Click += new System.EventHandler(this.mView_AudioZoomInMenuItem_Click);
             // 
             // mView_AudioZoomOutMenuItem
             // 
-            this.mView_AudioZoomOutMenuItem.Name = "mView_AudioZoomOutMenuItem";
             resources.ApplyResources(this.mView_AudioZoomOutMenuItem, "mView_AudioZoomOutMenuItem");
+            this.mView_AudioZoomOutMenuItem.Name = "mView_AudioZoomOutMenuItem";
             this.mView_AudioZoomOutMenuItem.Click += new System.EventHandler(this.mView_AudioZoomOutMenuItem_Click);
             // 
             // toolStripSeparator17
