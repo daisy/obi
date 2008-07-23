@@ -435,11 +435,13 @@ namespace Obi.ProjectView
         private void Strip_Enter(object sender, EventArgs e)
         {
             AddContentsViewLabel();
+             mLabel.Focus();
+
             if ((mParentView.SelectedSection != mNode || mParentView.Selection is StripIndexSelection) &&
                 !mParentView.Focusing)
             {
                 mParentView.SelectedNode = mNode;
-            }
+                            }
         }
 
         // Reset the accessible name after a short while.
