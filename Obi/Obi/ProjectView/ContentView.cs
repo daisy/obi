@@ -83,7 +83,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return (IsBlockSelected && SelectedEmptyNode.Index > 0)                          // block selected
+                return (IsBlockSelected && SelectedEmptyNode.Index >= 0)                          // block selected
                     || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0);  // strip cursor selected
             }
         }
