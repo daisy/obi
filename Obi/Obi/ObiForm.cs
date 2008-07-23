@@ -156,13 +156,14 @@ namespace Obi
         // Open a new project from a file chosen by the user.
         private void Open()
         {
-            if (DidCloseProject())
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
+                                        OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter = Localizer.Message("obi_filter");
                 dialog.InitialDirectory = mSettings.DefaultPath;
-                if (dialog.ShowDialog() == DialogResult.OK) OpenProject(dialog.FileName);
-            }
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (DidCloseProject())
+                        OpenProject(dialog.FileName);
+                }
         }
 
         // Clear the list of recently opened files (prompt the user first.)
