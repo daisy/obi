@@ -959,6 +959,7 @@ namespace Obi.ProjectView
 
         #region Find in Text
 
+        public bool CanFindFirstTime { get { return mPresentation != null && mPresentation.RootNode.SectionChildCount> 0 ; } }
         public void FindInText()
         {
             //show the form if it's not already shown
