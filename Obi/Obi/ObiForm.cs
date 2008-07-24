@@ -1214,8 +1214,8 @@ namespace Obi
             set
             {
                 // Temporarily disabled
-                mSettings.WrapStrips = true;
-                mProjectView.WrapStrips = true;
+                mSettings.WrapStrips = false;
+                mProjectView.WrapStrips = false;
                 // mSettings.WrapStrips = value;
                 // mWrappingInContentViewToolStripMenuItem.Checked = value;
                 // mProjectView.WrapStrips = value;
