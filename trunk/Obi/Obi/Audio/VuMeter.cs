@@ -622,7 +622,7 @@ namespace Obi.Audio
                 }
                 else if (value == NoiseLevelSelection.High)
                 {
-                    m_LBound = -34;
+                    m_LBound = -33.5;
                 }
                 m_NoiseLevel = value;
             }
@@ -631,7 +631,7 @@ namespace Obi.Audio
         int LowThresholdCount = 0;
         List<double> LowAmpList = new List<double>();
         bool GoneHigh = false;
-        double m_UBound = -28;
+        double m_UBound = -28.8;
         double m_LBound = -36;
         private void DetectLowAmplitude()
         {
