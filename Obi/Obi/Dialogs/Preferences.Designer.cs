@@ -40,6 +40,8 @@ namespace Obi.Dialogs
             this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox();
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.mPipelineBrowseButton = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
@@ -62,6 +64,7 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.mPipelineTextbox = new System.Windows.Forms.TextBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -72,7 +75,7 @@ namespace Obi.Dialogs
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 15);
+            this.label2.Location = new System.Drawing.Point(12, 15);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 16);
@@ -85,10 +88,10 @@ namespace Obi.Dialogs
             this.mDirectoryTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mDirectoryTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mDirectoryTextbox.Location = new System.Drawing.Point(168, 13);
-            this.mDirectoryTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mDirectoryTextbox.Location = new System.Drawing.Point(172, 13);
+            this.mDirectoryTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mDirectoryTextbox.Name = "mDirectoryTextbox";
-            this.mDirectoryTextbox.Size = new System.Drawing.Size(332, 22);
+            this.mDirectoryTextbox.Size = new System.Drawing.Size(328, 22);
             this.mDirectoryTextbox.TabIndex = 3;
             // 
             // mBrowseButton
@@ -96,7 +99,7 @@ namespace Obi.Dialogs
             this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mBrowseButton.Location = new System.Drawing.Point(508, 8);
-            this.mBrowseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mBrowseButton.Margin = new System.Windows.Forms.Padding(4);
             this.mBrowseButton.Name = "mBrowseButton";
             this.mBrowseButton.Size = new System.Drawing.Size(100, 31);
             this.mBrowseButton.TabIndex = 4;
@@ -110,7 +113,7 @@ namespace Obi.Dialogs
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mOKButton.Location = new System.Drawing.Point(224, 293);
-            this.mOKButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 31);
             this.mOKButton.TabIndex = 5;
@@ -124,7 +127,7 @@ namespace Obi.Dialogs
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCancelButton.Location = new System.Drawing.Point(332, 293);
-            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 31);
             this.mCancelButton.TabIndex = 6;
@@ -151,7 +154,7 @@ namespace Obi.Dialogs
             this.mInputDeviceCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mInputDeviceCombo.FormattingEnabled = true;
             this.mInputDeviceCombo.Location = new System.Drawing.Point(161, 9);
-            this.mInputDeviceCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mInputDeviceCombo.Margin = new System.Windows.Forms.Padding(4);
             this.mInputDeviceCombo.Name = "mInputDeviceCombo";
             this.mInputDeviceCombo.Size = new System.Drawing.Size(443, 24);
             this.mInputDeviceCombo.TabIndex = 8;
@@ -176,7 +179,7 @@ namespace Obi.Dialogs
             this.mOutputDeviceCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mOutputDeviceCombo.FormattingEnabled = true;
             this.mOutputDeviceCombo.Location = new System.Drawing.Point(161, 43);
-            this.mOutputDeviceCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mOutputDeviceCombo.Margin = new System.Windows.Forms.Padding(4);
             this.mOutputDeviceCombo.Name = "mOutputDeviceCombo";
             this.mOutputDeviceCombo.Size = new System.Drawing.Size(443, 24);
             this.mOutputDeviceCombo.TabIndex = 10;
@@ -190,7 +193,7 @@ namespace Obi.Dialogs
             this.mTab.Controls.Add(this.mAudioTab);
             this.mTab.Controls.Add(this.tabPage1);
             this.mTab.Location = new System.Drawing.Point(16, 16);
-            this.mTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mTab.Margin = new System.Windows.Forms.Padding(4);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
             this.mTab.Size = new System.Drawing.Size(624, 266);
@@ -198,25 +201,50 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
+            this.mProjectTab.Controls.Add(this.mPipelineTextbox);
+            this.mProjectTab.Controls.Add(this.mPipelineBrowseButton);
+            this.mProjectTab.Controls.Add(this.label9);
             this.mProjectTab.Controls.Add(this.mLastOpenCheckBox);
             this.mProjectTab.Controls.Add(this.label2);
             this.mProjectTab.Controls.Add(this.mBrowseButton);
             this.mProjectTab.Controls.Add(this.mDirectoryTextbox);
             this.mProjectTab.Location = new System.Drawing.Point(4, 25);
-            this.mProjectTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mProjectTab.Margin = new System.Windows.Forms.Padding(4);
             this.mProjectTab.Name = "mProjectTab";
-            this.mProjectTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mProjectTab.Padding = new System.Windows.Forms.Padding(4);
             this.mProjectTab.Size = new System.Drawing.Size(616, 237);
             this.mProjectTab.TabIndex = 0;
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
+            // mPipelineBrowseButton
+            // 
+            this.mPipelineBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mPipelineBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mPipelineBrowseButton.Location = new System.Drawing.Point(508, 86);
+            this.mPipelineBrowseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mPipelineBrowseButton.Name = "mPipelineBrowseButton";
+            this.mPipelineBrowseButton.Size = new System.Drawing.Size(100, 31);
+            this.mPipelineBrowseButton.TabIndex = 11;
+            this.mPipelineBrowseButton.Text = "&Browse";
+            this.mPipelineBrowseButton.UseVisualStyleBackColor = true;
+            this.mPipelineBrowseButton.Click += new System.EventHandler(this.mPipelineBrowseButton_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 93);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(157, 16);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "&Pipeline scripts directory:";
+            // 
             // mLastOpenCheckBox
             // 
             this.mLastOpenCheckBox.AutoSize = true;
             this.mLastOpenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mLastOpenCheckBox.Location = new System.Drawing.Point(168, 43);
-            this.mLastOpenCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mLastOpenCheckBox.Location = new System.Drawing.Point(172, 52);
+            this.mLastOpenCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
             this.mLastOpenCheckBox.Size = new System.Drawing.Size(229, 20);
             this.mLastOpenCheckBox.TabIndex = 8;
@@ -242,9 +270,9 @@ namespace Obi.Dialogs
             this.mAudioTab.Controls.Add(this.labelOutputDeviceName);
             this.mAudioTab.Controls.Add(this.labelInputDeviceName);
             this.mAudioTab.Location = new System.Drawing.Point(4, 25);
-            this.mAudioTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mAudioTab.Margin = new System.Windows.Forms.Padding(4);
             this.mAudioTab.Name = "mAudioTab";
-            this.mAudioTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mAudioTab.Padding = new System.Windows.Forms.Padding(4);
             this.mAudioTab.Size = new System.Drawing.Size(616, 237);
             this.mAudioTab.TabIndex = 1;
             this.mAudioTab.Text = "Audio";
@@ -260,7 +288,7 @@ namespace Obi.Dialogs
             "Medium",
             "High"});
             this.mNoiseLevelComboBox.Location = new System.Drawing.Point(160, 177);
-            this.mNoiseLevelComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mNoiseLevelComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.mNoiseLevelComboBox.Name = "mNoiseLevelComboBox";
             this.mNoiseLevelComboBox.Size = new System.Drawing.Size(160, 24);
             this.mNoiseLevelComboBox.TabIndex = 24;
@@ -280,7 +308,7 @@ namespace Obi.Dialogs
             this.mAudioCluesCheckBox.AutoSize = true;
             this.mAudioCluesCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mAudioCluesCheckBox.Location = new System.Drawing.Point(160, 209);
-            this.mAudioCluesCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mAudioCluesCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.mAudioCluesCheckBox.Name = "mAudioCluesCheckBox";
             this.mAudioCluesCheckBox.Size = new System.Drawing.Size(94, 20);
             this.mAudioCluesCheckBox.TabIndex = 25;
@@ -307,7 +335,7 @@ namespace Obi.Dialogs
             0,
             65536});
             this.mPreviewDurationUpDown.Location = new System.Drawing.Point(161, 145);
-            this.mPreviewDurationUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mPreviewDurationUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.mPreviewDurationUpDown.Name = "mPreviewDurationUpDown";
             this.mPreviewDurationUpDown.Size = new System.Drawing.Size(159, 22);
             this.mPreviewDurationUpDown.TabIndex = 20;
@@ -329,7 +357,7 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mChannelsTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mChannelsTextbox.Location = new System.Drawing.Point(161, 114);
-            this.mChannelsTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mChannelsTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mChannelsTextbox.Name = "mChannelsTextbox";
             this.mChannelsTextbox.ReadOnly = true;
             this.mChannelsTextbox.Size = new System.Drawing.Size(443, 22);
@@ -343,7 +371,7 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mSampleRateTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mSampleRateTextbox.Location = new System.Drawing.Point(160, 79);
-            this.mSampleRateTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mSampleRateTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mSampleRateTextbox.Name = "mSampleRateTextbox";
             this.mSampleRateTextbox.ReadOnly = true;
             this.mSampleRateTextbox.Size = new System.Drawing.Size(443, 22);
@@ -360,7 +388,7 @@ namespace Obi.Dialogs
             this.mChannelsCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mChannelsCombo.FormattingEnabled = true;
             this.mChannelsCombo.Location = new System.Drawing.Point(161, 112);
-            this.mChannelsCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mChannelsCombo.Margin = new System.Windows.Forms.Padding(4);
             this.mChannelsCombo.Name = "mChannelsCombo";
             this.mChannelsCombo.Size = new System.Drawing.Size(443, 24);
             this.mChannelsCombo.TabIndex = 16;
@@ -385,7 +413,7 @@ namespace Obi.Dialogs
             this.mSampleRateCombo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mSampleRateCombo.FormattingEnabled = true;
             this.mSampleRateCombo.Location = new System.Drawing.Point(161, 78);
-            this.mSampleRateCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mSampleRateCombo.Margin = new System.Windows.Forms.Padding(4);
             this.mSampleRateCombo.Name = "mSampleRateCombo";
             this.mSampleRateCombo.Size = new System.Drawing.Size(443, 24);
             this.mSampleRateCombo.TabIndex = 14;
@@ -410,9 +438,9 @@ namespace Obi.Dialogs
             this.tabPage1.Controls.Add(this.mFullNameTextbox);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(616, 237);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "User profile";
@@ -437,7 +465,7 @@ namespace Obi.Dialogs
             this.mCultureBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCultureBox.FormattingEnabled = true;
             this.mCultureBox.Location = new System.Drawing.Point(108, 70);
-            this.mCultureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mCultureBox.Margin = new System.Windows.Forms.Padding(4);
             this.mCultureBox.Name = "mCultureBox";
             this.mCultureBox.Size = new System.Drawing.Size(500, 24);
             this.mCultureBox.Sorted = true;
@@ -459,7 +487,7 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mOrganizationTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mOrganizationTextbox.Location = new System.Drawing.Point(108, 39);
-            this.mOrganizationTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mOrganizationTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mOrganizationTextbox.Name = "mOrganizationTextbox";
             this.mOrganizationTextbox.Size = new System.Drawing.Size(500, 22);
             this.mOrganizationTextbox.TabIndex = 3;
@@ -480,7 +508,7 @@ namespace Obi.Dialogs
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mFullNameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mFullNameTextbox.Location = new System.Drawing.Point(108, 7);
-            this.mFullNameTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mFullNameTextbox.Margin = new System.Windows.Forms.Padding(4);
             this.mFullNameTextbox.Name = "mFullNameTextbox";
             this.mFullNameTextbox.Size = new System.Drawing.Size(500, 22);
             this.mFullNameTextbox.TabIndex = 1;
@@ -495,6 +523,18 @@ namespace Obi.Dialogs
             this.label1.TabIndex = 0;
             this.label1.Text = "Full &name:";
             // 
+            // mPipelineTextbox
+            // 
+            this.mPipelineTextbox.AccessibleName = "Default projects directory:";
+            this.mPipelineTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mPipelineTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mPipelineTextbox.Location = new System.Drawing.Point(172, 91);
+            this.mPipelineTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.mPipelineTextbox.Name = "mPipelineTextbox";
+            this.mPipelineTextbox.Size = new System.Drawing.Size(328, 22);
+            this.mPipelineTextbox.TabIndex = 12;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -507,7 +547,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mOKButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(464, 364);
@@ -562,5 +602,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown mPreviewDurationUpDown;
         private System.Windows.Forms.ComboBox mNoiseLevelComboBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button mPipelineBrowseButton;
+        private System.Windows.Forms.TextBox mPipelineTextbox;
     }
 }

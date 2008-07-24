@@ -802,14 +802,39 @@ namespace Obi
 
         private void mTools_EncodeDTBAudioAsMP3MenuItem_Click(object sender, EventArgs e)
         {
-            PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(mSession.PrimaryExportPath, Directory.GetParent(mSession.Path).FullName);
-            EncoderForm.ShowDialog();
+            string scriptPath = Path.Combine(mSettings.PipelineScriptsPath, "DTBAudioEncoder.taskScript");
+            try
+            {
+                PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(
+                    scriptPath,
+                    mSession.PrimaryExportPath,
+                    Directory.GetParent(mSession.Path).FullName);
+                EncoderForm.ShowDialog();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(string.Format(Localizer.Message("dtb_encode_error"), x.Message),
+                    Localizer.Message("dtb_encode_error_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mTools_ValidateDTBMenuItem_Click(object sender, System.EventArgs e)
         {
-            PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm("", Directory.GetParent(mSession.Path).FullName);
-            ValidatorDialog.ShowDialog();
+            string scriptPath = Path.Combine(mSettings.PipelineScriptsPath, "Z3986DTBValidator.taskScript");
+            try
+            {
+                PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm(
+                    scriptPath,
+                    "", Directory.GetParent(mSession.Path).FullName);
+                ValidatorDialog.ShowDialog();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(string.Format(Localizer.Message("dtb_validate_error"), x.Message),
+                    Localizer.Message("dtb_validate_error_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }

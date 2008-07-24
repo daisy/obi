@@ -11,28 +11,18 @@ namespace Obi.PipelineInterface
 {
     public partial class ValidatorForm : Form
     {
-
-        private ScriptParser M_ValidatorScriptParser; //instance of ScriptParser class
-        private string m_ScriptFilePath; // Path to validator script file
+        private ScriptParser mParser; //instance of ScriptParser class
 
         public ValidatorForm()
         {
-            InitializeComponent();
-                    }
+            InitializeComponent();            
+        }
 
-        public ValidatorForm(string InputPath, string ProjectDirectory)
+        public ValidatorForm(string scriptPath, string InputPath, string ProjectDirectory)
             : this()
         {
-            string relativeScriptPath = "\\PipelineLight\\scripts\\Z3986DTBValidator.taskScript";
-            m_ScriptFilePath = AppDomain.CurrentDomain.BaseDirectory + relativeScriptPath;
-            if (!File.Exists(m_ScriptFilePath))
-            {
-                MessageBox.Show("Pipeline script file not found");
-                return;
-            }
-
-            M_ValidatorScriptParser = new ScriptParser(m_ScriptFilePath);
-
+            if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
+            mParser = new ScriptParser(scriptPath);
             if (InputPath != "" && File.Exists(InputPath))
             {
                 m_txtDTBFilePath.Text = InputPath;
@@ -44,22 +34,21 @@ namespace Obi.PipelineInterface
                 saveFileDialog1.InitialDirectory = ProjectDirectory;
             }
 
-            openFileDialog1.Filter = "DTB 3.0 Source files|*.opf|DTB2.02 Source Files|ncc.html";
-            saveFileDialog1.Filter = "xml file|*.xml ";
+            openFileDialog1.Filter = Localizer.Message("dtb_filter");
+            saveFileDialog1.Filter = Localizer.Message("xml_filter");
             saveFileDialog1.DefaultExt = ".xml";
             saveFileDialog1.AddExtension = true;
-            m_txtErrorFilePath.Text = ProjectDirectory + "\\Validator error report.xml";
-
+            m_txtErrorFilePath.Text = Path.Combine(ProjectDirectory, "Validator error report.xml");
             AssociateParameterObjectToControls();
         }
 
         private void AssociateParameterObjectToControls()
         {
-            foreach (ScriptParameter p in M_ValidatorScriptParser.ParameterList)
+            foreach (ScriptParameter p in mParser.ParameterList)
             {
-                if (p.ParameterDiscriptiveName == "Input OPF")
+                if (p.ParameterDescriptiveName == "Input OPF")
                     m_txtDTBFilePath.Tag = p;
-                else if (p.ParameterDiscriptiveName == "Validation Report")
+                else if (p.ParameterDescriptiveName == "Validation Report")
                     m_txtErrorFilePath.Tag = p;
                             }
         }
@@ -127,7 +116,7 @@ namespace Obi.PipelineInterface
                             ((ScriptParameter) m_txtDTBFilePath.Tag).ParameterValue = m_txtDTBFilePath.Text;
                             ((ScriptParameter)m_txtErrorFilePath.Tag).ParameterValue = m_txtErrorFilePath.Text;
 
-                            M_ValidatorScriptParser.ExecuteScript();
+                            mParser.ExecuteScript();
                         }
                         catch (System.Exception ex)
                         {

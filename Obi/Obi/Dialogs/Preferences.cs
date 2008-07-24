@@ -41,6 +41,7 @@ namespace Obi.Dialogs
         {
             mDirectoryTextbox.Text = mSettings.DefaultPath;
             mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
+            mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
         }
 
         // Initialize audio tab
@@ -112,6 +113,11 @@ namespace Obi.Dialogs
             SelectFolder(mSettings.DefaultPath, "default_directory_browser", mDirectoryTextbox);
         }
 
+        private void mPipelineBrowseButton_Click(object sender, EventArgs e)
+        {
+            SelectFolder(mSettings.PipelineScriptsPath, "pipeline_path_browser", mPipelineTextbox);
+        }
+
         private void SelectFolder(string path, string description, TextBox textBox)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -136,6 +142,10 @@ namespace Obi.Dialogs
                 mSettings.DefaultPath = mDirectoryTextbox.Text;
             }
             mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
+            if (System.IO.Directory.Exists(mPipelineTextbox.Text))
+            {
+                mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
+            }
         }
 
         // Update audio settings

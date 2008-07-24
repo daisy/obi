@@ -147,7 +147,7 @@ namespace Obi.PipelineInterface
         }
 
         public string ParameterName { get { return m_Name; } }
-        public string ParameterDiscriptiveName { get { return m_DiscriptiveName; } }
+        public string ParameterDescriptiveName { get { return m_DiscriptiveName; } }
         public bool IsParameterRequired { get { return m_Required; } }
 
         public string ParameterValue
