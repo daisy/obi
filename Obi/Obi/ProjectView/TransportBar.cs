@@ -696,7 +696,7 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
                         ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                 }
-                else
+                else 
                 {
                     mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
                     if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node)
@@ -707,7 +707,7 @@ namespace Obi.ProjectView
                     else
                     {
                         // The selected node is not in the playlist so play from the beginning
-                        mCurrentPlaylist.Play();
+                                                mCurrentPlaylist.Play();
                     }
                 }
             }
@@ -720,14 +720,25 @@ namespace Obi.ProjectView
                     (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
                 mCurrentPlaylist.Play();
             }
-            else if (mView.Selection is NodeSelection)
+            else if (mView.Selection is NodeSelection )
             {
-                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
+                                                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
+
+                                                if (NoFollowingPhraseNodeInPlaylist)
                 mCurrentPlaylist.Play();
             }
-            else
+            else 
             {
                 mCurrentPlaylist.Play();
+            }
+        }
+
+        private bool NoFollowingPhraseNodeInPlaylist
+        {
+            get
+            {
+                ObiNode node = FindPlaybackStartNode(mView.Selection.Node);
+                                return   node != null && ( node.IsBeforeInProject (mCurrentPlaylist.CurrentPhrase ) ||node == mCurrentPlaylist.CurrentPhrase );
             }
         }
 
