@@ -73,7 +73,7 @@ namespace Obi
         {
             mPlayer = player;
             Reset(LocalPlaylist);
-            if (selection.Control is Obi.ProjectView.TOCView)
+            if (selection.Control is Obi.ProjectView.InheritedTOCView)
             {
                 AddPhraseNodes(selection.Node);
             }
@@ -946,7 +946,6 @@ namespace Obi
 
             
             mPlayer.PlayPreview(AudioData, StartTime, EndTime, StartTime );
-
         }
     }
 }
