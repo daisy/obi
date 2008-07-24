@@ -137,7 +137,7 @@ namespace Obi
             {
                 p.append(new Commands.Node.MergeAudio(view, phrase));
             }
-            else
+            else if (  Node is EmptyNode )
             {
                 phrase.CopyKind((EmptyNode)view.Selection.Node);
                 phrase.Used = view.Selection.Node.Used;
