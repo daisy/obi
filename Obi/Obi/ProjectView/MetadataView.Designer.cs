@@ -98,7 +98,6 @@ namespace Obi.ProjectView
             this.mUpdateButton.Text = "&Update";
             this.mUpdateButton.UseVisualStyleBackColor = true;
             this.mUpdateButton.Click += new System.EventHandler(this.mCommitButton_Click);
-            this.mUpdateButton.SizeChanged += new System.EventHandler(this.mUpdateButton_SizeChanged);
             // 
             // mNameTextbox
             // 

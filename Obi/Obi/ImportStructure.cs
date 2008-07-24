@@ -11,7 +11,6 @@ namespace Obi
     class ImportStructure
     {
         private Obi.Presentation mPresentation;            // target presentation
-
         private SectionNode mCurrentSection;               // section currently populated
         private Stack<Obi.SectionNode> mOpenSectionNodes;  // these are section nodes that could accept children
 
@@ -24,24 +23,13 @@ namespace Obi
 
         /// <summary>
         /// Grab the title element to seed the title info.
+        /// If no title element is found, use a default title.
         /// </summary>
         public static String GrabTitle(Uri fileUri)
         {
-            /*try
-            {
-                System.Xml.XPath.XPathDocument document = new System.Xml.XPath.XPathDocument(fileUri.ToString());
-                System.Xml.XPath.XPathNavigator navigator = document.CreateNavigator();
-                XmlNamespaceManager nsmngr = new XmlNamespaceManager(navigator.NameTable);
-                nsmngr.AddNamespace("xhtml", "http://www.w3.org/1999/xhtml");
-                return navigator.Evaluate("string(//xhtml:title[1])", nsmngr).ToString();
-            }
-            catch (Exception)
-            {
-                return "";
-            }*/
             XmlTextReader source = GetXmlReader(fileUri);
             source.WhitespaceHandling = WhitespaceHandling.Significant;
-            String title = source.ReadToFollowing("title") ? source.ReadString() : "";
+            String title = source.ReadToFollowing("title") ? source.ReadString() : Localizer.Message("default_project_title");
             source.Close();
             return title;
         }
@@ -100,19 +88,20 @@ namespace Obi
                 source.Close();
                 throw e;
             }
-            if (foundHeadings == false) throw new Exception("No headings found.");
+            if (!foundHeadings) throw new Exception(Localizer.Message("no_headings_found"));
         }
 
         private void addPage(XmlTextReader source)
         {
-            if (mCurrentSection == null) throw new Exception("Error adding page number: no parent section found");
-            
+            if (mCurrentSection == null) throw new Exception(Localizer.Message("error_adding_page_number"));
             int pageNumber;
             string pageNumberString = GetTextContent(source);
-            if (!int.TryParse(pageNumberString, out pageNumber)) return;
-            EmptyNode node = new EmptyNode(mPresentation);
-            mCurrentSection.AppendChild(node);
-            node.PageNumber = pageNumber;
+            if (int.TryParse(pageNumberString, out pageNumber))
+            {
+                EmptyNode node = new EmptyNode(mPresentation);
+                mCurrentSection.AppendChild(node);
+                node.PageNumber = pageNumber;
+            }
         }
 
         // Create a section node for a heading element (where the XML reader currently is)
@@ -125,7 +114,7 @@ namespace Obi
             //if no parent was found, then we must be an h1 sibling or first node
             if (parent == null)
             {
-                if (source.LocalName != "h1") throw new Exception("Heading element ordering is wrong.");
+                if (source.LocalName != "h1") throw new Exception(Localizer.Message("wrong_heading_order"));
                 mPresentation.RootNode.AppendChild(section);
             }   
             else parent.AppendChild(section); 
