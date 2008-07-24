@@ -29,8 +29,19 @@ namespace Obi
         {
             XmlTextReader source = GetXmlReader(fileUri);
             source.WhitespaceHandling = WhitespaceHandling.Significant;
-            String title = source.ReadToFollowing("title") ? source.ReadString() : Localizer.Message("default_project_title");
-            source.Close();
+            String title = null;
+            try
+            {
+                title = source.ReadToFollowing("title") ? source.ReadString() : Localizer.Message("default_project_title");
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                source.Close();
+            }
             return title;
         }
 

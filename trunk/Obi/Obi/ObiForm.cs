@@ -122,27 +122,33 @@ namespace Obi
         // Create a new project by importing an XHTML file
         private void NewProjectFromImport()
         {
-            // Bring up a chooser for the import file
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = Localizer.Message("choose_import_file");
-            openFile.Filter = Localizer.Message("xhtml_filter");
-            if (openFile.ShowDialog() != DialogResult.OK) return;
-            // Then bring up the create project dialog
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_filter"),
-                ImportStructure.GrabTitle(new Uri(openFile.FileName)),
-                mSettings.NewProjectDialogSize);
-            dialog.DisableAutoTitleCheckbox();
-            dialog.Text = Localizer.Message("create_new_project_from_import");
-            if (dialog.ShowDialog() != DialogResult.OK) return;
-            mSettings.NewProjectDialogSize = dialog.Size;
-            CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = Localizer.Message("choose_import_file");
+            dialog.Filter = Localizer.Message("xhtml_filter");
+            if (dialog.ShowDialog() == DialogResult.OK) NewProjectFromImport(dialog.FileName);
+        }
+
+        private void NewProjectFromImport(string path)
+        {
+            Dialogs.NewProject dialog = null;
             try
             {
-                (new ImportStructure()).ImportFromXHTML(openFile.FileName, mSession.Presentation);
-                mSession.ForceSave();
+                string title = ImportStructure.GrabTitle(new Uri(path));
+                dialog = new Dialogs.NewProject(
+                    mSettings.DefaultPath,
+                    Localizer.Message("default_project_filename"),
+                    Localizer.Message("obi_filter"),
+                    title,
+                    mSettings.NewProjectDialogSize);
+                dialog.DisableAutoTitleCheckbox();
+                dialog.Text = Localizer.Message("create_new_project_from_import");
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mSettings.NewProjectDialogSize = dialog.Size;
+                    CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
+                    (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                    mSession.ForceSave();
+                }
             }
             catch (Exception e)
             {
@@ -150,8 +156,7 @@ namespace Obi
                     Localizer.Message("import_failed_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (mSession.CanClose) mSession.Close();
-                File.Delete(dialog.Path);
-                return;
+                if (dialog != null) File.Delete(dialog.Path);
             }
         }
 
