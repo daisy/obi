@@ -11,61 +11,46 @@ namespace Obi.PipelineInterface
 {
     public partial class Mp3EncoderForm : Form
     {
-        
-        private ScriptParser M_ScriptParser; //instance of ScriptParser class
-        private string m_ScriptFilePath; // Path of DTBToAudioEncoder script file
-
+        ScriptParser mParser;
 
         public Mp3EncoderForm()
         {
             InitializeComponent();
-                                }
+        }
 
-        public Mp3EncoderForm(string InputPath, string ProjectDirectory)
+        public Mp3EncoderForm(string scriptPath, string inputPath, string ProjectDirectory)
             : this()
         {
-                        //string relativeScriptPath = "\\PipelineCmd\\scripts\\manipulation\\simple\\DTBAudioEncoder.taskScript";
-            string relativeScriptPath = "\\PipelineLight\\scripts\\DTBAudioEncoder.taskScript";
-            m_ScriptFilePath = AppDomain.CurrentDomain.BaseDirectory + relativeScriptPath;
-            if (!File.Exists(m_ScriptFilePath))
+            if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
+            mParser = new ScriptParser(scriptPath);
+            inputPath = Path.Combine(inputPath, "obi_dtp.opf");  // !!!
+            if (File.Exists(inputPath))
             {
-                MessageBox.Show("Pipeline script file not found");
-                return ;
-            }
-
-            M_ScriptParser = new ScriptParser(m_ScriptFilePath);
-
-            InputPath = InputPath + "\\obi_dtb.opf";
-            if (InputPath != null && File.Exists(InputPath))
-            {
-                m_txtInputFile.Text = InputPath;
-                openFileDialog1.InitialDirectory = Directory.GetParent(InputPath).FullName;
-                folderBrowserDialog1.SelectedPath = Directory.GetParent(InputPath).FullName; 
+                m_txtInputFile.Text = inputPath;
+                openFileDialog1.InitialDirectory = Directory.GetParent(inputPath).FullName;
+                folderBrowserDialog1.SelectedPath = Directory.GetParent(inputPath).FullName;
             }
             else
             {
                 openFileDialog1.InitialDirectory = ProjectDirectory;
                 folderBrowserDialog1.SelectedPath = ProjectDirectory;
             }
-        
-
-// associate script parameter objects
-        AssociateParameterObjectToControls();
+            AssociateParameterObjectToControls(mParser);
         }
 
         /// <summary>
         /// <summary></summary>
         ///  Associate script parameter objects to their respective controls
         /// </summary>
-        private void AssociateParameterObjectToControls()
+        private void AssociateParameterObjectToControls(ScriptParser script)
         {
-            foreach (ScriptParameter p in M_ScriptParser.ParameterList)
+            foreach (ScriptParameter p in script.ParameterList)
             {
-                if (p.ParameterDiscriptiveName == "Input OPF")
+                if (p.ParameterDescriptiveName == "Input OPF")
                     m_txtInputFile.Tag = p;
-                else if (p.ParameterDiscriptiveName == "Output directory")
+                else if (p.ParameterDescriptiveName == "Output directory")
                     m_txtOutputDirectory.Tag = p;
-                else if (p.ParameterDiscriptiveName == "Bitrate")
+                else if (p.ParameterDescriptiveName == "Bitrate")
                     m_comboBitRate.Tag = p;
             }
         }
@@ -73,13 +58,7 @@ namespace Obi.PipelineInterface
         private void Mp3EncoderForm_Load(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowNewFolderButton = true;
-            //folderBrowserDialog1.SelectedPath = @"C:\Avi\Project\CurrentProjects\DaisyUra\TrialModules\PipelineCmd\Trial\Output";
-            openFileDialog1.Filter = "DTB 3.0 Source files|*.opf|DTB2.02 Source Files|ncc.html";
-
-                                    //m_txtOutputDirectory.Text = folderBrowserDialog1.SelectedPath;
-                        //m_txtInputFile.Text = m_Encoder.InputFilePath;
-            //m_txtOutputDirectory.Text = m_Encoder.OutputDirectory;
-
+            openFileDialog1.Filter = Localizer.Message("dtb_filter");
             m_comboBitRate.Items.Add(32);
             m_comboBitRate.Items.Add(48);
             m_comboBitRate.Items.Add(64);
@@ -148,7 +127,7 @@ namespace Obi.PipelineInterface
                             ((ScriptParameter)m_txtOutputDirectory.Tag).ParameterValue  = m_txtOutputDirectory.Text;
                             ((ScriptParameter)m_comboBitRate.Tag).ParameterValue = m_comboBitRate.Items[m_comboBitRate.SelectedIndex].ToString();
 
-                          M_ScriptParser.ExecuteScript();
+                          mParser.ExecuteScript();
                         }
                         catch (System.Exception ex)
                         {

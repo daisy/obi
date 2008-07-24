@@ -729,6 +729,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error during DTB encoding: {0}.
+        /// </summary>
+        internal static string dtb_encode_error {
+            get {
+                return ResourceManager.GetString("dtb_encode_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DTB encoding error.
+        /// </summary>
+        internal static string dtb_encode_error_caption {
+            get {
+                return ResourceManager.GetString("dtb_encode_error_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html.
+        /// </summary>
+        internal static string dtb_filter {
+            get {
+                return ResourceManager.GetString("dtb_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Summary of the general types of media used in the content of this DTB. Value is a comma-delimited list of the top-level media types defined in [RFC2046]. In the current version of this standard, the only applicable types will be audio, text, and image. Media types that are referenced only by NCX, Resource File, or distInfo must not be listed here..
         /// </summary>
         internal static string dtb_multimedia_content_description {
@@ -851,6 +878,24 @@ namespace Obi {
         internal static string dtb_total_time_description {
             get {
                 return ResourceManager.GetString("dtb_total_time_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error during DTB validation: {0}.
+        /// </summary>
+        internal static string dtb_validate_error {
+            get {
+                return ResourceManager.GetString("dtb_validate_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DTB validation error.
+        /// </summary>
+        internal static string dtb_validate_error_caption {
+            get {
+                return ResourceManager.GetString("dtb_validate_error_caption", resourceCulture);
             }
         }
         
@@ -1388,6 +1433,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no script file found at &quot;{0}&quot;..
+        /// </summary>
+        internal static string no_script {
+            get {
+                return ResourceManager.GetString("no_script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} of {1}.
         /// </summary>
         internal static string node_position {
@@ -1681,6 +1735,15 @@ namespace Obi {
         internal static string phrase_to_string {
             get {
                 return ResourceManager.GetString("phrase_to_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose the pipeline scripts location below..
+        /// </summary>
+        internal static string pipeline_path_browser {
+            get {
+                return ResourceManager.GetString("pipeline_path_browser", resourceCulture);
             }
         }
         
@@ -2134,6 +2197,15 @@ namespace Obi {
         internal static string xhtml_filter {
             get {
                 return ResourceManager.GetString("xhtml_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML file|*.xml.
+        /// </summary>
+        internal static string xml_filter {
+            get {
+                return ResourceManager.GetString("xml_filter", resourceCulture);
             }
         }
     }

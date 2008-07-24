@@ -37,6 +37,7 @@ namespace Obi
         public double NudgeTimeMs;             // nudge time in milliseconds
         public Size ObiFormSize;               // size of the form (for future sessions)
         public bool OpenLastProject;           // open the last open project at startup
+        public string PipelineScriptsPath;     // path to the pipeline script for the DTB audio encoder
         public bool PlayIfNoSelection;         // play all or nothing if no selection
         public bool PlayOnNavigate;            // start playback when navigating, or just change the selection
         public int PreviewDuration;            // playback preview duration in milliseconds
@@ -77,6 +78,8 @@ namespace Obi
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
+            settings.PipelineScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                Path.Combine("PipelineLight", "scripts"));
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();

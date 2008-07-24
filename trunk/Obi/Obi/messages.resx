@@ -1031,4 +1031,29 @@ Error text: {1}</value>
   <data name="wrong_heading_order" xml:space="preserve">
     <value>Heading elements are in the wrong order.</value>
   </data>
+  <data name="dtb_encode_error" xml:space="preserve">
+    <value>Error during DTB encoding: {0}</value>
+  </data>
+  <data name="dtb_encode_error_caption" xml:space="preserve">
+    <value>DTB encoding error</value>
+  </data>
+  <data name="dtb_filter" xml:space="preserve">
+    <value>DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html</value>
+  </data>
+  <data name="dtb_validate_error" xml:space="preserve">
+    <value>Error during DTB validation: {0}</value>
+  </data>
+  <data name="dtb_validate_error_caption" xml:space="preserve">
+    <value>DTB validation error</value>
+  </data>
+  <data name="no_script" xml:space="preserve">
+    <value>no script file found at "{0}".</value>
+    <comment> </comment>
+  </data>
+  <data name="pipeline_path_browser" xml:space="preserve">
+    <value>Please choose the pipeline scripts location below.</value>
+  </data>
+  <data name="xml_filter" xml:space="preserve">
+    <value>XML file|*.xml</value>
+  </data>
 </root>
