@@ -77,7 +77,8 @@ namespace Obi.ProjectView
 
         // Set the waveform from the audio on a phrase node.
         // Resize the block to fit both the whole waveform and its label.
-        private void SetWaveform(PhraseNode node)
+        private void SetWaveform(PhraseNode node) { SetWaveform(node, false); }
+        private void SetWaveform(PhraseNode node, bool update)
         {
             if (node != null)
             {
@@ -86,7 +87,14 @@ namespace Obi.ProjectView
                 int w = WaveformDefaultWidth;
                 mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
                 mWaveform.Size = new Size(w < mLabel.Width ? mLabel.Width : w, Height - mLabel.Height - mLabel.Margin.Bottom);
-                mWaveform.Media = node.Audio.getMediaData();
+                if (update)
+                {
+                    mWaveform.UpdateMedia();
+                }
+                else
+                {
+                    mWaveform.Media = node.Audio.getMediaData();
+                }
                 Size = new Size(WaveformFullWidth, Height);
             }
         }
@@ -138,8 +146,9 @@ namespace Obi.ProjectView
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
         {
             UpdateLabel();
-            SetWaveform((PhraseNode)Node);
+            SetWaveform((PhraseNode)Node, true);
         }
+
 
         // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
