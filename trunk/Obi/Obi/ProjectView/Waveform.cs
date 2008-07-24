@@ -59,6 +59,8 @@ namespace Obi.ProjectView
             }
         }
 
+        public void UpdateMedia() { RequestRendering(); }
+
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
         /// </summary>
