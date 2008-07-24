@@ -909,6 +909,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error adding page number: no parent section found..
+        /// </summary>
+        internal static string error_adding_page_number {
+            get {
+                return ResourceManager.GetString("error_adding_page_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create metadata item.
         /// </summary>
         internal static string error_metadata_name_caption {
@@ -1026,11 +1035,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import failed: .
+        ///   Looks up a localized string similar to Could not create project from import: {0}.
         /// </summary>
         internal static string import_failed {
             get {
                 return ResourceManager.GetString("import_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import failed.
+        /// </summary>
+        internal static string import_failed_caption {
+            get {
+                return ResourceManager.GetString("import_failed_caption", resourceCulture);
             }
         }
         
@@ -1312,6 +1330,15 @@ namespace Obi {
         internal static string move_section_out {
             get {
                 return ResourceManager.GetString("move_section_out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No headings (h1, h2, etc.) were found in the XHTML document..
+        /// </summary>
+        internal static string no_headings_found {
+            get {
+                return ResourceManager.GetString("no_headings_found", resourceCulture);
             }
         }
         
@@ -2089,6 +2116,15 @@ namespace Obi {
         internal static string update_section {
             get {
                 return ResourceManager.GetString("update_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading elements are in the wrong order..
+        /// </summary>
+        internal static string wrong_heading_order {
+            get {
+                return ResourceManager.GetString("wrong_heading_order", resourceCulture);
             }
         }
         

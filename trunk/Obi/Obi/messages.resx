@@ -581,7 +581,7 @@ Error text: {1}</value>
     <comment>File dialog caption</comment>
   </data>
   <data name="import_failed" xml:space="preserve">
-    <value>Import failed: </value>
+    <value>Could not create project from import: {0}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="xhtml_filter" xml:space="preserve">
@@ -1018,5 +1018,17 @@ Error text: {1}</value>
   <data name="update_phrase" xml:space="preserve">
     <value>update phrase</value>
     <comment>Command</comment>
+  </data>
+  <data name="error_adding_page_number" xml:space="preserve">
+    <value>Error adding page number: no parent section found.</value>
+  </data>
+  <data name="import_failed_caption" xml:space="preserve">
+    <value>Import failed</value>
+  </data>
+  <data name="no_headings_found" xml:space="preserve">
+    <value>No headings (h1, h2, etc.) were found in the XHTML document.</value>
+  </data>
+  <data name="wrong_heading_order" xml:space="preserve">
+    <value>Heading elements are in the wrong order.</value>
   </data>
 </root>

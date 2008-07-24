@@ -146,7 +146,9 @@ namespace Obi
             }
             catch (Exception e)
             {
-                MessageBox.Show(Localizer.Message("import_failed") + e.Message);
+                MessageBox.Show(string.Format(Localizer.Message("import_failed"), e.Message),
+                    Localizer.Message("import_failed_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (mSession.CanClose) mSession.Close();
                 File.Delete(dialog.Path);
                 return;
