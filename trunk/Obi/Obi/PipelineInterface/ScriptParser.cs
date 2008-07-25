@@ -86,12 +86,13 @@ namespace Obi.PipelineInterface
                 }
             }
                         // invoke the script
-            Process PipelineProcess = new Process();
+            string PipelineFilePath = Path.Combine( Directory.GetParent(m_ScriptFilePath).Parent.FullName, "pipeline-lite.bat" );
+                        Process PipelineProcess = new Process();
             PipelineProcess.StartInfo.CreateNoWindow = true;
             PipelineProcess.StartInfo.ErrorDialog = true;
             PipelineProcess.StartInfo.UseShellExecute = false;
-            PipelineProcess.StartInfo.FileName = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight\\pipeline-lite.bat";
-            //PipelineProcess.StartInfo.Arguments = m_ScriptFilePath + " --\"input=c:\\Export\\obi_dtb.opf\" --\"output=c:\\Export\\Output\""  ;
+                        PipelineProcess.StartInfo.FileName = PipelineFilePath;
+            
             PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + m_ScriptFilePath + "\" -p" + Param;
             PipelineProcess.StartInfo.WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight";
             

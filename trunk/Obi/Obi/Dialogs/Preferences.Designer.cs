@@ -40,6 +40,7 @@ namespace Obi.Dialogs
             this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox();
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.mPipelineTextbox = new System.Windows.Forms.TextBox();
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
@@ -64,7 +65,6 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.mPipelineTextbox = new System.Windows.Forms.TextBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             this.mAudioTab.SuspendLayout();
@@ -217,6 +217,18 @@ namespace Obi.Dialogs
             this.mProjectTab.Text = "Project";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
+            // mPipelineTextbox
+            // 
+            this.mPipelineTextbox.AccessibleName = "Pipeline scripts directory";
+            this.mPipelineTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mPipelineTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mPipelineTextbox.Location = new System.Drawing.Point(172, 91);
+            this.mPipelineTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.mPipelineTextbox.Name = "mPipelineTextbox";
+            this.mPipelineTextbox.Size = new System.Drawing.Size(328, 22);
+            this.mPipelineTextbox.TabIndex = 12;
+            // 
             // mPipelineBrowseButton
             // 
             this.mPipelineBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -225,7 +237,7 @@ namespace Obi.Dialogs
             this.mPipelineBrowseButton.Margin = new System.Windows.Forms.Padding(4);
             this.mPipelineBrowseButton.Name = "mPipelineBrowseButton";
             this.mPipelineBrowseButton.Size = new System.Drawing.Size(100, 31);
-            this.mPipelineBrowseButton.TabIndex = 11;
+            this.mPipelineBrowseButton.TabIndex = 12;
             this.mPipelineBrowseButton.Text = "&Browse";
             this.mPipelineBrowseButton.UseVisualStyleBackColor = true;
             this.mPipelineBrowseButton.Click += new System.EventHandler(this.mPipelineBrowseButton_Click);
@@ -522,18 +534,6 @@ namespace Obi.Dialogs
             this.label1.Size = new System.Drawing.Size(69, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Full &name:";
-            // 
-            // mPipelineTextbox
-            // 
-            this.mPipelineTextbox.AccessibleName = "Default projects directory:";
-            this.mPipelineTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mPipelineTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPipelineTextbox.Location = new System.Drawing.Point(172, 91);
-            this.mPipelineTextbox.Margin = new System.Windows.Forms.Padding(4);
-            this.mPipelineTextbox.Name = "mPipelineTextbox";
-            this.mPipelineTextbox.Size = new System.Drawing.Size(328, 22);
-            this.mPipelineTextbox.TabIndex = 12;
             // 
             // Preferences
             // 
