@@ -45,7 +45,7 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set the audio data to be displayed
+        /// Set the audio data to be displayed.
         /// </summary>
         public AudioMediaData Media
         {
@@ -53,13 +53,19 @@ namespace Obi.ProjectView
             {
                 if (mAudio != value)
                 {
+                    if (mAudio != null)
+                    {
+                        mAudio.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                    }
                     mAudio = value;
-                    if (mAudio != null) RequestRendering();
+                    if (mAudio != null)
+                    {
+                        mAudio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                        RequestRendering(true);
+                    }
                 }
             }
         }
-
-        public void UpdateMedia() { RequestRendering(); }
 
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
@@ -71,25 +77,17 @@ namespace Obi.ProjectView
             {
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.WorkerReportsProgress = false;
-                worker.WorkerSupportsCancellation = true;
+                worker.WorkerSupportsCancellation = false;
                 worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                 {
                     ColorSettings settings = block.ColorSettings;
-                    if (!worker.CancellationPending) mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                    if (!worker.CancellationPending) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                    mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                    if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
                 });
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                 {
-                    if (e.Cancelled)
-                    {
-                        mBitmap = null;
-                        mBitmap_Highlighted = null;
-                    }
-                    else
-                    {
-                        block.ContentView.FinishedRendering();
-                    }
                     Invalidate();
+                    block.ContentView.FinishedRendering(mBitmap != null && mBitmap_Highlighted != null);
                 });
                 worker.RunWorkerAsync();
                 return worker;
@@ -98,26 +96,31 @@ namespace Obi.ProjectView
         }
 
 
-        private delegate Bitmap CreateBitmapDelegate(ColorSettings settings, bool highlighted);
+        // Request a new rendering when audio has changed.
+        private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        {
+            RequestRendering(true);
+        }
 
         // Create the bitmap for the waveform given the current color settings.
         // Use the highlight colors if the highlight flag is set, otherwise regular colors.
         private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
-        {
-            //if (InvokeRequired)
-            //{
-            //    return (Bitmap)Invoke(new CreateBitmapDelegate(CreateBitmapHighlighted), new Object[] { settings, highlighted });
-            //}
-            //else
-            //{
-                Bitmap bitmap = new Bitmap(Width, Height);
+        {            
+            Bitmap bitmap = new Bitmap(Width, Height);
+            try
+            {
                 Graphics g = Graphics.FromImage(bitmap);
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
                 if (mAudio != null) DrawWaveform(g, settings, highlighted);
-                return bitmap;
-            //}
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Debug.Print("Couldn't render waveform ({0})", bitmap.Size);
+                bitmap = null;
+            }
+            return bitmap;
         }
 
         // Draw one channel for a given x
@@ -226,14 +229,22 @@ namespace Obi.ProjectView
         }
 
         // Add self to the content view rendering list.
+        private void RequestRendering(bool required)
+        {
+            if (required)
+            {
+                Block block = Parent as Block;
+                if (block != null)
+                {
+                    ClearBitmaps();
+                    block.ContentView.RenderWaveform(this);
+                }
+            }
+        }
+
         private void RequestRendering()
         {
-            Block block = Parent as Block;
-            if (block != null)
-            {
-                ClearBitmaps();
-                block.ContentView.RenderWaveform(this);
-            }
+            RequestRendering(mAudio != null && (mBitmap == null || mBitmap.Size != Size));
         }
 
         // Request a new rendering when the size has changed.
