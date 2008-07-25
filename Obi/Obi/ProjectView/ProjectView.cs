@@ -193,7 +193,7 @@ namespace Obi.ProjectView
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
-        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null ) || mContentView.CanAddStrip; } }
+        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null) ; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }

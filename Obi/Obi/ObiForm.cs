@@ -466,7 +466,8 @@ namespace Obi
             mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
-            mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
+            //mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
+            mEditRolesToolStripMenuItem.Enabled = false; // disabled till it is improved
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
