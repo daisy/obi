@@ -42,7 +42,7 @@ namespace Obi.ProjectView
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
 
-        private Queue<Waveform> mWaveformRenderQueue;                // queue of waveforms to render
+        private Stack<Waveform> mWaveformRenderStack;                // stack of waveforms to render
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -66,7 +66,7 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStrips = false;
-            mWaveformRenderQueue = new Queue<Waveform>();
+            mWaveformRenderStack = new Stack<Waveform>();
         }
 
         
@@ -247,31 +247,34 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenderWaveform(Waveform w)
         {
-            mWaveformRenderQueue.Enqueue(w);
-            if (mWaveformRenderQueue.Count == 1) RenderFirstWaveform();
+            mWaveformRenderStack.Push(w);
+            if (mWaveformRenderStack.Count == 1) RenderFirstWaveform();
         }
 
-        public void FinishedRendering()
+        public void FinishedRendering(bool renderedOK)
         {
-            mWaveformRenderQueue.Dequeue();
-            if (mWaveformRenderQueue.Count == 0) mView.ObiForm.Ready();
+            if (!renderedOK)
+            {
+                System.Diagnostics.Debug.Print("Let's try again...");
+            }
+            if (renderedOK && mWaveformRenderStack.Count > 0) mWaveformRenderStack.Pop();
+            if (mWaveformRenderStack.Count == 0) mView.ObiForm.Ready();
             RenderFirstWaveform();
         }
 
         private void RenderFirstWaveform()
         {
             mWorker = null;
-            if (mWaveformRenderQueue.Count > 0)
+            if (mWaveformRenderStack.Count > 0)
             {
-                mWorker = mWaveformRenderQueue.Peek().Render();
+                mWorker = mWaveformRenderStack.Peek().Render();
                 mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
             }
         }
 
         private void ClearWaveformRenderQueue()
         {
-            mWaveformRenderQueue.Clear();
-            if (mWorker != null) mWorker.CancelAsync();
+            mWaveformRenderStack.Clear();
         }
 
         /// <summary>
