@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0F3A5AD8B82E4737B28CBE13C60F2215"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_108B34500EE74A668BFA6AA5EF98EF7C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -261,6 +267,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F3DF271F39574D3985390CB83023197D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F65CB7E11D281C8F671DBD8C111C5440"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
@@ -443,6 +455,26 @@
             "TargetName" = "8:obird256.png"
             "Tag" = "8:"
             "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F3A5AD8B82E4737B28CBE13C60F2215"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\SelectionEnd.wav"
+            "TargetName" = "8:SelectionEnd.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1252,6 +1284,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3DF271F39574D3985390CB83023197D"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\SelectionBegin.wav"
+            "TargetName" = "8:SelectionBegin.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F65CB7E11D281C8F671DBD8C111C5440"
             {
             "AssemblyRegister" = "3:1"
@@ -1459,15 +1511,15 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi Beta2 internal candidate 0.1"
-        "ProductCode" = "8:{428E3B27-A841-413F-8738-46085B8273A4}"
-        "PackageCode" = "8:{287BEDEC-4916-457A-BA5B-16581F765996}"
+        "ProductName" = "8:Obi Beta2 internal candidate 0.4"
+        "ProductCode" = "8:{30EEC5E3-A5B9-4E36-BDDC-19A7ACFE4820}"
+        "PackageCode" = "8:{4BD24A9B-86FB-46D8-8B9B-D423F4A68111}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.11.6"
+        "ProductVersion" = "8:0.11.9"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1596,7 +1648,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi Beta2 internal candidate 0.1"
+            "Name" = "8:Obi Beta2 internal candidate 0.4"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
