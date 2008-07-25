@@ -18,6 +18,9 @@ namespace Obi.ProjectView
         private AudioRange mSelection;       // selection in the waveform
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
 
+        private static int COUNTER = 0;
+        private int mID;
+        private bool mRendering;
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -31,8 +34,13 @@ namespace Obi.ProjectView
             mBitmap_Highlighted = null;
             mSelection = null;
             mCursor = null;
+            mID = COUNTER++;
+            mRendering = false;
         }
 
+
+        public int ID { get { return mID; } }
+        public override string ToString() { return "w" + mID; }
 
         /// <summary>
         /// Clear bitmaps when redrawing.
@@ -80,14 +88,33 @@ namespace Obi.ProjectView
                 worker.WorkerSupportsCancellation = false;
                 worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                 {
-                    ColorSettings settings = block.ColorSettings;
-                    mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                    if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                    if (!mRendering)
+                    {
+                        System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
+                        mRendering = true;
+                        ColorSettings settings = block.ColorSettings;
+                        mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Print("!!! Already rendering #{0}!?!?", mID);
+                    }
                 });
                 worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                 {
-                    Invalidate();
-                    block.ContentView.FinishedRendering(mBitmap != null && mBitmap_Highlighted != null);
+                    if (mRendering)
+                    {
+                        mRendering = false;
+                        Invalidate();
+                        System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
+                        block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.Print("<<< Was not rendering #{0}?!?!", mID);
+                        block.ContentView.FinishedRendering(this, false);
+                    }
                 });
                 worker.RunWorkerAsync();
                 return worker;
@@ -117,7 +144,7 @@ namespace Obi.ProjectView
             }
             catch (Exception)
             {
-                System.Diagnostics.Debug.Print("Couldn't render waveform ({0})", bitmap.Size);
+                System.Diagnostics.Debug.Print("Couldn't render waveform #{0}", mID);
                 bitmap = null;
             }
             return bitmap;

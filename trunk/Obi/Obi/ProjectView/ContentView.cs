@@ -42,7 +42,7 @@ namespace Obi.ProjectView
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
 
-        private Stack<Waveform> mWaveformRenderStack;                // stack of waveforms to render
+        private Queue<Waveform> mWaveformRenderQueue;                // stack of waveforms to render
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -66,7 +66,7 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStrips = false;
-            mWaveformRenderStack = new Stack<Waveform>();
+            mWaveformRenderQueue = new Queue<Waveform>();
         }
 
         
@@ -83,7 +83,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return (IsBlockSelected && SelectedEmptyNode.Index >= 0)                          // block selected
+                return (IsBlockSelected && SelectedEmptyNode.Index >= 0)                        // block selected
                     || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0);  // strip cursor selected
             }
         }
@@ -97,7 +97,6 @@ namespace Obi.ProjectView
             {
                 EmptyNode node = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
                 return node != null
-                    // && node is PhraseNode && node.FollowingNode is PhraseNode 
                     && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
         }
@@ -208,7 +207,7 @@ namespace Obi.ProjectView
 
         public PhraseNode PlaybackPhrase
         {
-            get { return mPlaybackBlock.Node as PhraseNode; }
+            get { return mPlaybackBlock == null ? null : mPlaybackBlock.Node as PhraseNode; }
             set
             {
                 if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
@@ -240,41 +239,76 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
 
-        private BackgroundWorker mWorker;
+        
+        private BackgroundWorker mCurrentWorker = null;
+
+        private string QueueString<T>(Queue<T> q)
+        {
+            string s = "{";
+            T[] array = q.ToArray();
+            if (array.Length > 0)
+            {
+                s += array[0];
+                for (int i = 1; i < array.Length; ++i) s += ", " + array[i];
+            }
+            return s + "}";
+        }
 
         /// <summary>
         /// Add a waveform to the queue of waveforms to render.
         /// </summary>
         public void RenderWaveform(Waveform w)
         {
-            mWaveformRenderStack.Push(w);
-            if (mWaveformRenderStack.Count == 1) RenderFirstWaveform();
-        }
-
-        public void FinishedRendering(bool renderedOK)
-        {
-            if (!renderedOK)
-            {
-                System.Diagnostics.Debug.Print("Let's try again...");
-            }
-            if (renderedOK && mWaveformRenderStack.Count > 0) mWaveformRenderStack.Pop();
-            if (mWaveformRenderStack.Count == 0) mView.ObiForm.Ready();
-            RenderFirstWaveform();
+            mWaveformRenderQueue.Enqueue(w);
+            System.Diagnostics.Debug.Print("+++ {0} {1}", w, QueueString(mWaveformRenderQueue));
+            // Start the rendering process if the queue was empty; otherwise, it is already running
+            if (mWaveformRenderQueue.Count == 1) RenderFirstWaveform();
         }
 
         private void RenderFirstWaveform()
         {
-            mWorker = null;
-            if (mWaveformRenderStack.Count > 0)
+            if (mWaveformRenderQueue.Count > 0)
             {
-                mWorker = mWaveformRenderStack.Peek().Render();
-                mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+                Waveform w = mWaveformRenderQueue.Peek();
+                mCurrentWorker = w.Render();
+                System.Diagnostics.Debug.Print("~~~ {0} {1}", w, QueueString(mWaveformRenderQueue));
+                // mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+                mView.ObiForm.Status(string.Format("{0} {1} {2}", Localizer.Message("rendering_waveform"), w,
+                    QueueString(mWaveformRenderQueue)));
             }
         }
 
         private void ClearWaveformRenderQueue()
         {
-            mWaveformRenderStack.Clear();
+            // Let the current waveform finish?!
+            Waveform w = mCurrentWorker != null && mWaveformRenderQueue.Count > 0 ? mWaveformRenderQueue.Dequeue() : null;
+            System.Diagnostics.Debug.Print("--- Clearing all {0}", QueueString(mWaveformRenderQueue));
+            mWaveformRenderQueue.Clear();
+            if (w != null)
+            {
+                System.Diagnostics.Debug.Print("*** Enqueuing back {0}", w);
+                mWaveformRenderQueue.Enqueue(w);
+            }
+        }
+
+        public void FinishedRendering(Waveform w, bool renderedOK)
+        {
+            mCurrentWorker = null;
+            if (renderedOK)
+            {
+                System.Diagnostics.Debug.Print("=== Finished rendering {0} {1}", w, QueueString(mWaveformRenderQueue));
+            }
+            else
+            {
+                System.Diagnostics.Debug.Print("??? Something wrong with {0} {1}", w, QueueString(mWaveformRenderQueue));
+            }
+            if (mWaveformRenderQueue.Count > 0)
+            {
+                Waveform w_ = mWaveformRenderQueue.Dequeue();
+                System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w_, QueueString(mWaveformRenderQueue));
+            }
+            if (mWaveformRenderQueue.Count == 0) mView.ObiForm.Ready();
+            RenderFirstWaveform();
         }
 
         /// <summary>
