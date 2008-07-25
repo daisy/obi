@@ -543,7 +543,9 @@ namespace Obi.ProjectView
             if (CanPaste)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                mTransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(mSelection.PasteCommand(this));
+                mTransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
 
