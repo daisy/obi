@@ -23,8 +23,10 @@ namespace Obi.PipelineInterface
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
+
+            if ( inputPath != null )
             inputPath = Path.Combine(inputPath, "obi_dtp.opf");  // !!!
-            if (File.Exists(inputPath))
+            if ( inputPath != null &&  File.Exists(inputPath))
             {
                 m_txtInputFile.Text = inputPath;
                 openFileDialog1.InitialDirectory = Directory.GetParent(inputPath).FullName;
