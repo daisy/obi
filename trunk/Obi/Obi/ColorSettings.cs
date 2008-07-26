@@ -25,7 +25,10 @@ namespace Obi
         public Color TOCViewBackColor;
         public Color TOCViewForeColor;
         public Color TOCViewUnusedColor;
+        public Color ToolTipForeColor;
         public Color TransportBarBackColor;
+        public Color TransportBarLabelBackColor;
+        public Color TransportBarLabelForeColor;
         public Color WaveformBackColor;
         public Color WaveformHighlightedBackColor;
 
@@ -96,7 +99,10 @@ namespace Obi
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
+            settings.ToolTipForeColor = SystemColors.ControlText;
             settings.TransportBarBackColor = SystemColors.Control;
+            settings.TransportBarLabelBackColor = Color.Azure;
+            settings.TransportBarLabelForeColor = SystemColors.ControlText;
             settings.WaveformBackColor = SystemColors.Window;
             settings.mWaveformBaseLineColor = SystemColors.ControlText;
             settings.WaveformHighlightedBackColor = SystemColors.Highlight;
@@ -105,8 +111,8 @@ namespace Obi
             settings.mWaveformChannel1Color = Color.FromArgb(127, Color.Blue);
             settings.mWaveformChannel2Color = Color.FromArgb(127, Color.Red);
             settings.mWaveformMonoColor = Color.FromArgb(127, Color.Blue);
-            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Green);
-            settings.mWaveformCursorColor = Color.FromArgb(127, Color.Orange);
+            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Yellow);
+            settings.mWaveformCursorColor = Color.FromArgb(127, Color.Green);
 
             return settings;
         }
@@ -119,10 +125,11 @@ namespace Obi
             ColorSettings settings = DefaultColorSettings();
             // we do not need to change system colors.
 
+            settings.TransportBarLabelBackColor = Color.DarkSlateGray;
             settings.mWaveformChannel1Color = Color.Green;
             settings.mWaveformChannel2Color = Color.Green;
             settings.mWaveformMonoColor = Color.Green;
-            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Black);
+            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Azure);
             settings.mWaveformCursorColor = Color.Purple;
             
             return settings;
