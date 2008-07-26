@@ -931,7 +931,7 @@ Error text: {1}</value>
     <comment>ToString() audio selection</comment>
   </data>
   <data name="strip_cursor_selection_to_string" xml:space="preserve">
-    <value>Selection position {0} in {1} in {2}</value>
+    <value>Selection index {0} in {1} in {2}</value>
     <comment>ToString() strip cursor selection</comment>
   </data>
   <data name="text_selection_to_string" xml:space="preserve">
@@ -1048,7 +1048,6 @@ Error text: {1}</value>
   </data>
   <data name="no_script" xml:space="preserve">
     <value>no script file found at "{0}".</value>
-    <comment> </comment>
   </data>
   <data name="pipeline_path_browser" xml:space="preserve">
     <value>Please choose the pipeline scripts location below.</value>

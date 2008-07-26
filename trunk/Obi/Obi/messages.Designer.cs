@@ -2075,7 +2075,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selection position {0} in {1} in {2}.
+        ///   Looks up a localized string similar to Selection index {0} in {1} in {2}.
         /// </summary>
         internal static string strip_cursor_selection_to_string {
             get {
