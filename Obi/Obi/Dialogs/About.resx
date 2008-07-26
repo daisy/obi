@@ -126,7 +126,7 @@
     <value>0, 0</value>
   </data>
   <data name="mWebBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>383, 316</value>
+    <value>383, 402</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mWebBrowser.TabIndex" type="System.Int32, mscorlib">
@@ -151,7 +151,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>383, 316</value>
+    <value>383, 402</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
