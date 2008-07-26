@@ -301,9 +301,10 @@ namespace Obi.UserControls
 
         private void PlayLevelTooLowBeep()
         {
-                                    if (File.Exists("low.wav") && m_BeepEnabled)
+            string FilePath = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "low.wav");
+                                    if (File.Exists(FilePath) && m_BeepEnabled)
             {
-                System.Media.SoundPlayer LowBeepPlayer  = new System.Media.SoundPlayer("low.wav");
+                System.Media.SoundPlayer LowBeepPlayer  = new System.Media.SoundPlayer(FilePath);
                 LowBeepPlayer.Play();
             }
         }

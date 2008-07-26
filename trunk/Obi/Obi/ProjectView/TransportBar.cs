@@ -1850,12 +1850,14 @@ namespace Obi.ProjectView
             {
             if (Clue == AudioCluesSelection.SelectionBegin)
             {
-                if ( System.IO.File.Exists ("SelectionBegin.wav"))
+                string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "SelectionBegin.wav");
+                if ( System.IO.File.Exists (FilePath))
                                     new System.Media.SoundPlayer("SelectionBegin.wav").Play ()  ;
                                                 }
             else if (Clue == AudioCluesSelection.SelectionEnd)
             {
-                if (System.IO.File.Exists("SelectionEnd.wav"))
+                string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "SelectionEnd.wav");
+                if (System.IO.File.Exists(FilePath))
                                     new System.Media.SoundPlayer("SelectionEnd.wav").Play();
             }
             }
