@@ -612,8 +612,7 @@ namespace Obi.ProjectView
         // Find the selectable item for this selection object
         private ISelectableInContentView FindSelectable(NodeSelection selection)
         {
-            return //selection is StripIndexSelection ? (ISelectableInContentView)
-                   // FindStrip((SectionNode)selection.Node).FindStripCursor((StripIndexSelection)selection) :
+            return
                 selection == null ? null :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip((SectionNode)selection.Node) :
                 selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) : null;
@@ -912,7 +911,7 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingStripCursor()
         {
-            return false; // SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorBefore(item); });
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripIndexBefore(item); });
         }
 
         private bool SelectFollowingBlock()
@@ -922,8 +921,7 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingStripCursor()
         {
-            return false; 
-             //SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripCursorAfter(item); });
+            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripIndexAfter(item); });
         }
 
         private bool SelectLastBlockInStrip()
