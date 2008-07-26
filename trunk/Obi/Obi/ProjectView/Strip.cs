@@ -77,6 +77,18 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Index in the strip after the current item.
+        /// </summary>
+        public int StripIndexAfter(ISelectableInContentView item)
+        {
+            int count = mBlockLayout.Controls.Count;
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
+            return index <= count ? index : count;
+        }
+
+        /// <summary>
         /// Return the block before the selected block or strip. In the case of a strip this is the last block.
         /// Return null if this the first block, there are no blocks, or nothing was selected in the first place.
         /// </summary>
@@ -87,6 +99,18 @@ namespace Obi.ProjectView
                     mBlockLayout.Controls.Count - 1 :
                 item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
             return index >= 0 ? (Block)mBlockLayout.Controls[index] : null;
+        }
+
+        /// <summary>
+        /// Index in the strip before the current item.
+        /// </summary>
+        public int StripIndexBefore(ISelectableInContentView item)
+        {
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
+                    mBlockLayout.Controls.Count :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) : 0;
+            return index >= 0 ? index : 0;
         }
 
         /// <summary>
