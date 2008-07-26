@@ -49,17 +49,18 @@ namespace Obi.Dialogs
             this.mPhraseSizeTextBox.AccessibleName = "Phrase size in minutes:";
             this.mPhraseSizeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mPhraseSizeTextBox.Location = new System.Drawing.Point(164, 13);
-            this.mPhraseSizeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mPhraseSizeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.mPhraseSizeTextBox.Name = "mPhraseSizeTextBox";
             this.mPhraseSizeTextBox.Size = new System.Drawing.Size(132, 22);
             this.mPhraseSizeTextBox.TabIndex = 1;
+            this.mPhraseSizeTextBox.TextChanged += new System.EventHandler(this.mPhraseSizeTextBox_TextChanged);
             // 
             // mOKButton
             // 
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mOKButton.Location = new System.Drawing.Point(50, 79);
-            this.mOKButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 28);
             this.mOKButton.TabIndex = 2;
@@ -72,7 +73,7 @@ namespace Obi.Dialogs
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mCancelButton.Location = new System.Drawing.Point(158, 79);
-            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
             this.mCancelButton.TabIndex = 3;
@@ -91,7 +92,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mPhraseSizeTextBox);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
