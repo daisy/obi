@@ -1874,13 +1874,13 @@ namespace Obi.ProjectView
             {
                 string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "SelectionBegin.wav");
                 if ( System.IO.File.Exists (FilePath))
-                                    new System.Media.SoundPlayer("SelectionBegin.wav").Play ()  ;
+                                    new System.Media.SoundPlayer(FilePath).Play ()  ;
                                                 }
             else if (Clue == AudioCluesSelection.SelectionEnd)
             {
                 string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "SelectionEnd.wav");
                 if (System.IO.File.Exists(FilePath))
-                                    new System.Media.SoundPlayer("SelectionEnd.wav").Play();
+                                    new System.Media.SoundPlayer(FilePath).Play();
             }
             }
                     }
