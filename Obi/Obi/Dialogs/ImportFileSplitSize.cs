@@ -51,5 +51,12 @@ namespace Obi.Dialogs
                 e.Cancel = true;
             }
         }
+
+        private void mPhraseSizeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (mPhraseSizeTextBox.Text != "" && Convert.ToInt32(mPhraseSizeTextBox.Text) > 30)
+                mPhraseSizeTextBox.Text = "30";
+
+        }
     }
 }
