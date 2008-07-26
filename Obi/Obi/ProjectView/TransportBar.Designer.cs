@@ -60,7 +60,7 @@ namespace Obi.ProjectView
             this.mPlayButton.FlatAppearance.BorderSize = 0;
             this.mPlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPlayButton.Image = ((System.Drawing.Image)(resources.GetObject("mPlayButton.Image")));
-            this.mPlayButton.Location = new System.Drawing.Point(152, 0);
+            this.mPlayButton.Location = new System.Drawing.Point(152, 1);
             this.mPlayButton.Name = "mPlayButton";
             this.mPlayButton.Size = new System.Drawing.Size(32, 35);
             this.mPlayButton.TabIndex = 4;
@@ -111,7 +111,7 @@ namespace Obi.ProjectView
             this.mNextPhrase.FlatAppearance.BorderSize = 0;
             this.mNextPhrase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mNextPhrase.Image = ((System.Drawing.Image)(resources.GetObject("mNextPhrase.Image")));
-            this.mNextPhrase.Location = new System.Drawing.Point(304, 0);
+            this.mNextPhrase.Location = new System.Drawing.Point(304, 1);
             this.mNextPhrase.Name = "mNextPhrase";
             this.mNextPhrase.Size = new System.Drawing.Size(32, 35);
             this.mNextPhrase.TabIndex = 9;
@@ -163,6 +163,7 @@ namespace Obi.ProjectView
             this.mPrevSectionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mPrevSectionButton.Image = ((System.Drawing.Image)(resources.GetObject("mPrevSectionButton.Image")));
             this.mPrevSectionButton.Location = new System.Drawing.Point(0, 0);
+            this.mPrevSectionButton.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.mPrevSectionButton.Name = "mPrevSectionButton";
             this.mPrevSectionButton.Size = new System.Drawing.Size(32, 35);
             this.mPrevSectionButton.TabIndex = 0;
@@ -190,10 +191,10 @@ namespace Obi.ProjectView
             // 
             // mTimeDisplayBox
             // 
-            this.mTimeDisplayBox.BackColor = System.Drawing.Color.Azure;
+            this.mTimeDisplayBox.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.mTimeDisplayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mTimeDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTimeDisplayBox.Location = new System.Drawing.Point(456, 1);
+            this.mTimeDisplayBox.Location = new System.Drawing.Point(456, 0);
             this.mTimeDisplayBox.Name = "mTimeDisplayBox";
             this.mTimeDisplayBox.ReadOnly = true;
             this.mTimeDisplayBox.Size = new System.Drawing.Size(118, 33);
@@ -297,7 +298,7 @@ namespace Obi.ProjectView
             this.mDisplayBox.AllowDrop = true;
             this.mDisplayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mDisplayBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
             "elapsed",
@@ -306,7 +307,7 @@ namespace Obi.ProjectView
             "remaining (total)"});
             this.mDisplayBox.Location = new System.Drawing.Point(580, 6);
             this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(116, 23);
+            this.mDisplayBox.Size = new System.Drawing.Size(116, 24);
             this.mDisplayBox.TabIndex = 14;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
@@ -316,9 +317,9 @@ namespace Obi.ProjectView
             this.mFastPlayRateCombobox.AccessibleName = "Fast Play Rate";
             this.mFastPlayRateCombobox.AllowDrop = true;
             this.mFastPlayRateCombobox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mFastPlayRateCombobox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mFastPlayRateCombobox.FormattingEnabled = true;
-            this.mFastPlayRateCombobox.ItemHeight = 15;
+            this.mFastPlayRateCombobox.ItemHeight = 16;
             this.mFastPlayRateCombobox.Items.AddRange(new object[] {
             "1",
             "1.125",
@@ -328,25 +329,27 @@ namespace Obi.ProjectView
             "2"});
             this.mFastPlayRateCombobox.Location = new System.Drawing.Point(702, 6);
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
-            this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 23);
+            this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 24);
             this.mFastPlayRateCombobox.TabIndex = 15;
             this.mFastPlayRateCombobox.SelectionChangeCommitted += new System.EventHandler(this.mFastPlayRateComboBox_SelectionChangeCommitted);
             // 
             // mVUMeterPanel
             // 
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
-            this.mVUMeterPanel.Location = new System.Drawing.Point(770, 3);
+            this.mVUMeterPanel.BeepEnable = false;
+            this.mVUMeterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mVUMeterPanel.Location = new System.Drawing.Point(772, 2);
+            this.mVUMeterPanel.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.ShowMaxMinValues = false;
-            this.mVUMeterPanel.Size = new System.Drawing.Size(175, 31);
+            this.mVUMeterPanel.Size = new System.Drawing.Size(208, 28);
             this.mVUMeterPanel.TabIndex = 16;
             this.mVUMeterPanel.VuMeter = null;
             // 
             // TransportBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.LightSalmon;
             this.Controls.Add(this.mCustomClassMarkButton);
             this.Controls.Add(this.mPreviousPageButton);
             this.Controls.Add(this.mNextPageButton);
@@ -365,8 +368,9 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mPlayButton);
             this.Controls.Add(this.mPauseButton);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(945, 35);
+            this.Size = new System.Drawing.Size(982, 36);
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
             this.Enter += new System.EventHandler(this.TransportBar_Enter);
             this.ResumeLayout(false);

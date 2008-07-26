@@ -38,6 +38,9 @@ namespace Obi.ProjectView
         private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
         private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
 
+        private float mBaseFontSize;                 // Base font size
+        private float mBaseFontSize_Large;           // Base font size for larger displauy (e.g. time display)
+
 
         // Constants from the display combo box
         private static readonly int ELAPSED_INDEX = 0;
@@ -75,14 +78,33 @@ namespace Obi.ProjectView
             mState = State.Stopped;
             m_SelectionChangedPlayEnable = true;
             AddTransportBarAccessibleName();
+            mBaseFontSize = Font.SizeInPoints;
+            mBaseFontSize_Large = mTimeDisplayBox.Font.SizeInPoints;
         }
 
         
         public ColorSettings ColorSettings
         {
-            set { if (value != null) BackColor = value.TransportBarBackColor; }
+            set
+            {
+                if (value != null)
+                {
+                    BackColor = value.TransportBarBackColor;
+                    mTransportBarTooltip.ForeColor = value.ToolTipForeColor;
+                    mTimeDisplayBox.BackColor = value.TransportBarLabelBackColor;
+                    mTimeDisplayBox.ForeColor = value.TransportBarLabelForeColor;
+                }
+            }
         }
-        
+
+        public float ZoomFactor
+        {
+            set
+            {
+                //mTimeDisplayBox.Font = new System.Drawing.Font(mTimeDisplayBox.Font.FontFamily, value * mBaseFontSize_Large);
+            }
+        }
+
         /// <summary>
         /// Get the phrase currently playing (or paused) if playback is active; null otherwise.
         /// </summary>
