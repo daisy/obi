@@ -54,8 +54,8 @@ namespace Obi.Dialogs
 
         private void mPhraseSizeTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (mPhraseSizeTextBox.Text != "" && Convert.ToInt32(mPhraseSizeTextBox.Text) > 30)
-                mPhraseSizeTextBox.Text = "30";
+            //if (mPhraseSizeTextBox.Text != "" && Convert.ToInt32(mPhraseSizeTextBox.Text) > 30)
+                //mPhraseSizeTextBox.Text = "30";
 
         }
     }
