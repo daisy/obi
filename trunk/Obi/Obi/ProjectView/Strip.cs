@@ -532,5 +532,13 @@ namespace Obi.ProjectView
                 mParentView.SelectionFromStrip = new StripIndexSelection(mNode, mParentView, mBlockLayout.IndexForX(e.X));
             }
         }
+
+        public void UpdateWaveforms()
+        {
+            foreach (Control c in mBlockLayout.Controls)
+            {
+                if (c is AudioBlock) mParentView.RenderWaveform(((AudioBlock)c).Waveform);
+            }
+        }
     }
 }

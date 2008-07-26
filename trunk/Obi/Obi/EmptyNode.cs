@@ -35,14 +35,14 @@ namespace Obi
         
         public override string ToString() { return BaseString(); }
 
-        public virtual string BaseString(double duration)
+        public virtual string BaseString(double durationMs)
         {
             return String.Format(Localizer.Message("phrase_to_string"),
                 IsTo_Do ? Localizer.Message ("phrase_short_TODO") : "",
                 Used ? "" : Localizer.Message("unused"),
                                 IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
-                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("duration_s_ms"), duration),
+                durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Long(durationMs),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
                     mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber) :
                     Localizer.Message("phrase_extra_" + mKind.ToString()));
@@ -50,13 +50,13 @@ namespace Obi
 
         public virtual string BaseString() { return BaseString(0.0); }
 
-        public virtual string BaseStringShort(double duration)
+        public virtual string BaseStringShort(double durationMs)
         {
             return String.Format(Localizer.Message("phrase_short_to_string"),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
                     mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber) :
                     Localizer.Message("phrase_short_" + mKind.ToString()),
-                duration == 0.0 ? Localizer.Message("empty") : String.Format(Localizer.Message("duration_s_ms"), duration));
+                durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Smart(durationMs));
         }
 
         public virtual string BaseStringShort() { return BaseStringShort(0.0); }
