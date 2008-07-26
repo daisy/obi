@@ -21,6 +21,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             SetWaveform((PhraseNode)Node);
+            // TODO replace this with the toolkit event
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShift = false;
         }
@@ -120,6 +121,8 @@ namespace Obi.ProjectView
             AccessibleName = Node.BaseString();
             if (mWaveform != null) mWaveform.AccessibleName = AccessibleName;
         }
+
+        public Waveform Waveform { get { return mWaveform; } }
 
         // Fill (current) width of the waveform.
         protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }

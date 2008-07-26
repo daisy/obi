@@ -12,12 +12,14 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
+        // TODO have a pointer to the audio block because we often need it too instead of the audio media
         private AudioMediaData mAudio;       // audio data to draw
         private Bitmap mBitmap;              // cached bitmap of the waveform
         private Bitmap mBitmap_Highlighted;  // cached bitmap of the waveform (highlighted)
         private AudioRange mSelection;       // selection in the waveform
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
 
+        // TODO we can remove this
         private static int COUNTER = 0;
         private int mID;
         private bool mRendering;

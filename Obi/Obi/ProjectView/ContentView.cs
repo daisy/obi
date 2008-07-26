@@ -272,9 +272,7 @@ namespace Obi.ProjectView
                 Waveform w = mWaveformRenderQueue.Peek();
                 mCurrentWorker = w.Render();
                 System.Diagnostics.Debug.Print("~~~ {0} {1}", w, QueueString(mWaveformRenderQueue));
-                // mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
-                mView.ObiForm.Status(string.Format("{0} {1} {2}", Localizer.Message("rendering_waveform"), w,
-                    QueueString(mWaveformRenderQueue)));
+                mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
             }
         }
 
@@ -717,6 +715,14 @@ namespace Obi.ProjectView
         {
             BackColor = settings.ContentViewBackColor;
             foreach (Control c in Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
+            UpdateWaveforms();
+        }
+
+        // Update all waveforms after colors have been set
+        private void UpdateWaveforms()
+        {
+            ClearWaveformRenderQueue();
+            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms();
         }
 
         #region IControlWithRenamableSelection Members

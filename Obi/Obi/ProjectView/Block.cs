@@ -103,7 +103,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void UpdateColors() { UpdateColors(ColorSettings); }
 
-        public void UpdateColors(ColorSettings settings)
+        public virtual void UpdateColors(ColorSettings settings)
         {
             if (mNode != null && settings != null)
             {
