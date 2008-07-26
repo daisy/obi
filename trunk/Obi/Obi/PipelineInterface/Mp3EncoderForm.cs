@@ -11,21 +11,29 @@ namespace Obi.PipelineInterface
 {
     public partial class Mp3EncoderForm : Form
     {
-        ScriptParser mParser;
+                ScriptParser mParser;
 
         public Mp3EncoderForm()
         {
             InitializeComponent();
         }
+        private string m_InputPath;
+        private String m_ProjectDirectory;
 
         public Mp3EncoderForm(string scriptPath, string inputPath, string ProjectDirectory)
             : this()
         {
-            if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
+                        if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
 
-            if ( inputPath != null )
-            inputPath = Path.Combine(inputPath, "obi_dtp.opf");  // !!!
+            m_ProjectDirectory = ProjectDirectory;
+            if (inputPath != null)
+            {
+                inputPath = Path.Combine(inputPath, "obi_dtb.opf");  // !!!
+                                m_InputPath = inputPath;
+            }
+            
+            
             if ( inputPath != null &&  File.Exists(inputPath))
             {
                 m_txtInputFile.Text = inputPath;
@@ -88,11 +96,21 @@ namespace Obi.PipelineInterface
 
         private void m_btnOK_Click(object sender, EventArgs e)
         {
-                        if (!File.Exists(m_txtInputFile.Text ) )
+            if (!File.Exists(m_txtInputFile.Text))
+            {
+                MessageBox.Show("Not able to find source DTB.", "Error!");
+                return;
+            }
+            else
+                m_InputPath = m_txtInputFile.Text;
+                        if (Directory.Exists(m_txtOutputDirectory.Text) &&
+                            (m_txtOutputDirectory.Text == m_ProjectDirectory || m_txtOutputDirectory.Text == Directory.GetParent(m_InputPath).FullName))
                         {
-                            MessageBox.Show ("Not able to find source DTB." , "Error!" ) ;
+                            MessageBox.Show("Choose some other directory", "ERROR!");
                             return;
                         }
+
+
 
                         if (!Directory.Exists(m_txtOutputDirectory.Text))
                         {
