@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditableLabel));
             this.mLabel = new System.Windows.Forms.Label();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
@@ -36,69 +37,59 @@ namespace Obi.ProjectView
             // 
             // mLabel
             // 
-            this.mLabel.AutoSize = true;
-            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabel.Location = new System.Drawing.Point(3, 5);
-            this.mLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.mLabel.AccessibleDescription = null;
+            this.mLabel.AccessibleName = null;
+            resources.ApplyResources(this.mLabel, "mLabel");
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(79, 29);
-            this.mLabel.TabIndex = 0;
-            this.mLabel.Text = "label1";
             this.mLabel.Click += new System.EventHandler(this.mLabel_Click);
             this.mLabel.Enter += new System.EventHandler(this.mLabel_Enter);
             // 
             // mTextBox
             // 
-            this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBox.AccessibleDescription = null;
+            this.mTextBox.AccessibleName = null;
+            resources.ApplyResources(this.mTextBox, "mTextBox");
             this.mTextBox.BackColor = System.Drawing.SystemColors.Info;
+            this.mTextBox.BackgroundImage = null;
             this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTextBox.Location = new System.Drawing.Point(3, 3);
             this.mTextBox.Name = "mTextBox";
-            this.mTextBox.Size = new System.Drawing.Size(297, 35);
-            this.mTextBox.TabIndex = 1;
             this.mTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBox_KeyDown);
             // 
             // mOKButton
             // 
-            this.mOKButton.AutoSize = true;
-            this.mOKButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mOKButton.Location = new System.Drawing.Point(3, 44);
+            this.mOKButton.AccessibleDescription = null;
+            this.mOKButton.AccessibleName = null;
+            resources.ApplyResources(this.mOKButton, "mOKButton");
+            this.mOKButton.BackgroundImage = null;
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(38, 28);
-            this.mOKButton.TabIndex = 2;
-            this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
-            this.mCancelButton.AutoSize = true;
-            this.mCancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mCancelButton.Location = new System.Drawing.Point(47, 44);
+            this.mCancelButton.AccessibleDescription = null;
+            this.mCancelButton.AccessibleName = null;
+            resources.ApplyResources(this.mCancelButton, "mCancelButton");
+            this.mCancelButton.BackgroundImage = null;
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(62, 28);
-            this.mCancelButton.TabIndex = 3;
-            this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             this.mCancelButton.Click += new System.EventHandler(this.mCancelButton_Click);
             // 
             // EditableLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
+            this.BackgroundImage = null;
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.mTextBox);
             this.Controls.Add(this.mLabel);
+            this.Font = null;
             this.Name = "EditableLabel";
-            this.Size = new System.Drawing.Size(303, 75);
+            this.Tag = "";
             this.Leave += new System.EventHandler(this.EditableLabel_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();

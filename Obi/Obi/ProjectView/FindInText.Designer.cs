@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindInText));
             this.mLabel = new System.Windows.Forms.Label();
             this.mString = new System.Windows.Forms.TextBox();
             this.mPreviousButton = new System.Windows.Forms.Button();
@@ -37,73 +38,70 @@ namespace Obi.ProjectView
             // 
             // mLabel
             // 
-            this.mLabel.AutoSize = true;
-            this.mLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabel.Location = new System.Drawing.Point(3, 8);
+            this.mLabel.AccessibleDescription = null;
+            this.mLabel.AccessibleName = null;
+            resources.ApplyResources(this.mLabel, "mLabel");
             this.mLabel.Name = "mLabel";
-            this.mLabel.Size = new System.Drawing.Size(51, 13);
-            this.mLabel.TabIndex = 0;
-            this.mLabel.Text = "Search:";
             // 
             // mString
             // 
-            this.mString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mString.AccessibleDescription = null;
+            this.mString.AccessibleName = null;
+            resources.ApplyResources(this.mString, "mString");
+            this.mString.BackgroundImage = null;
             this.mString.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mString.Location = new System.Drawing.Point(60, 6);
+            this.mString.Font = null;
             this.mString.Name = "mString";
-            this.mString.Size = new System.Drawing.Size(206, 20);
-            this.mString.TabIndex = 1;
             this.mString.TextChanged += new System.EventHandler(this.mString_TextChanged);
             this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mString_KeyDown);
             this.mString.Enter += new System.EventHandler(this.mString_Enter);
             // 
             // mPreviousButton
             // 
-            this.mPreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mPreviousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mPreviousButton.Location = new System.Drawing.Point(272, 3);
+            this.mPreviousButton.AccessibleDescription = null;
+            this.mPreviousButton.AccessibleName = null;
+            resources.ApplyResources(this.mPreviousButton, "mPreviousButton");
+            this.mPreviousButton.BackgroundImage = null;
+            this.mPreviousButton.Font = null;
             this.mPreviousButton.Name = "mPreviousButton";
-            this.mPreviousButton.Size = new System.Drawing.Size(75, 23);
-            this.mPreviousButton.TabIndex = 2;
-            this.mPreviousButton.Text = "Previo&us";
             this.mPreviousButton.UseVisualStyleBackColor = true;
             // 
             // mNextButton
             // 
-            this.mNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mNextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mNextButton.Location = new System.Drawing.Point(353, 3);
+            this.mNextButton.AccessibleDescription = null;
+            this.mNextButton.AccessibleName = null;
+            resources.ApplyResources(this.mNextButton, "mNextButton");
+            this.mNextButton.BackgroundImage = null;
+            this.mNextButton.Font = null;
             this.mNextButton.Name = "mNextButton";
-            this.mNextButton.Size = new System.Drawing.Size(75, 23);
-            this.mNextButton.TabIndex = 3;
-            this.mNextButton.Text = "&Next";
             this.mNextButton.UseVisualStyleBackColor = true;
             // 
             // mCloseButton
             // 
-            this.mCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCloseButton.Location = new System.Drawing.Point(434, 3);
+            this.mCloseButton.AccessibleDescription = null;
+            this.mCloseButton.AccessibleName = null;
+            resources.ApplyResources(this.mCloseButton, "mCloseButton");
+            this.mCloseButton.BackgroundImage = null;
+            this.mCloseButton.Font = null;
             this.mCloseButton.Name = "mCloseButton";
-            this.mCloseButton.Size = new System.Drawing.Size(75, 23);
-            this.mCloseButton.TabIndex = 4;
-            this.mCloseButton.Text = "&Close";
             this.mCloseButton.UseVisualStyleBackColor = true;
             this.mCloseButton.Click += new System.EventHandler(this.mCloseButton_Click);
             // 
             // FindInText
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
+            this.BackgroundImage = null;
             this.Controls.Add(this.mCloseButton);
             this.Controls.Add(this.mNextButton);
             this.Controls.Add(this.mPreviousButton);
             this.Controls.Add(this.mString);
             this.Controls.Add(this.mLabel);
+            this.Font = null;
             this.Name = "FindInText";
-            this.Size = new System.Drawing.Size(512, 29);
             this.Leave += new System.EventHandler(this.FindInText_Leave);
             this.Enter += new System.EventHandler(this.FindInText_Enter);
             this.ResumeLayout(false);

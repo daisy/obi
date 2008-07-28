@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetadataView));
             this.mMetadataListView = new System.Windows.Forms.ListView();
             this.mNameColumn = new System.Windows.Forms.ColumnHeader();
             this.mContentColumn = new System.Windows.Forms.ColumnHeader();
@@ -40,22 +41,18 @@ namespace Obi.ProjectView
             // 
             // mMetadataListView
             // 
-            this.mMetadataListView.AccessibleName = "Metadata List";
-            this.mMetadataListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mMetadataListView.AccessibleDescription = null;
+            resources.ApplyResources(this.mMetadataListView, "mMetadataListView");
+            this.mMetadataListView.BackgroundImage = null;
             this.mMetadataListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mMetadataListView.CheckBoxes = true;
             this.mMetadataListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.mNameColumn,
             this.mContentColumn});
+            this.mMetadataListView.Font = null;
             this.mMetadataListView.FullRowSelect = true;
-            this.mMetadataListView.Location = new System.Drawing.Point(0, 0);
-            this.mMetadataListView.Margin = new System.Windows.Forms.Padding(4);
             this.mMetadataListView.MultiSelect = false;
             this.mMetadataListView.Name = "mMetadataListView";
-            this.mMetadataListView.Size = new System.Drawing.Size(311, 321);
-            this.mMetadataListView.TabIndex = 1;
             this.mMetadataListView.UseCompatibleStateImageBehavior = false;
             this.mMetadataListView.View = System.Windows.Forms.View.Details;
             this.mMetadataListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.mMetadataListView_ItemChecked);
@@ -63,89 +60,73 @@ namespace Obi.ProjectView
             // 
             // mNameColumn
             // 
-            this.mNameColumn.Text = "Name";
-            this.mNameColumn.Width = 143;
+            resources.ApplyResources(this.mNameColumn, "mNameColumn");
             // 
             // mContentColumn
             // 
-            this.mContentColumn.Text = "Content";
-            this.mContentColumn.Width = 178;
+            resources.ApplyResources(this.mContentColumn, "mContentColumn");
             // 
             // mContentTextbox
             // 
-            this.mContentTextbox.AccessibleName = "Metadata Content:";
-            this.mContentTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mContentTextbox.AccessibleDescription = null;
+            resources.ApplyResources(this.mContentTextbox, "mContentTextbox");
+            this.mContentTextbox.BackgroundImage = null;
             this.mContentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mContentTextbox.Location = new System.Drawing.Point(64, 359);
-            this.mContentTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.mContentTextbox.Font = null;
             this.mContentTextbox.Name = "mContentTextbox";
-            this.mContentTextbox.Size = new System.Drawing.Size(247, 22);
-            this.mContentTextbox.TabIndex = 4;
             this.mContentTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mContentTextbox_KeyDown);
             // 
             // mUpdateButton
             // 
-            this.mUpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mUpdateButton.AutoSize = true;
-            this.mUpdateButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.mUpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mUpdateButton.Location = new System.Drawing.Point(246, 389);
-            this.mUpdateButton.Margin = new System.Windows.Forms.Padding(4, 4, 0, 0);
+            this.mUpdateButton.AccessibleDescription = null;
+            this.mUpdateButton.AccessibleName = null;
+            resources.ApplyResources(this.mUpdateButton, "mUpdateButton");
+            this.mUpdateButton.BackgroundImage = null;
+            this.mUpdateButton.Font = null;
             this.mUpdateButton.Name = "mUpdateButton";
-            this.mUpdateButton.Size = new System.Drawing.Size(65, 28);
-            this.mUpdateButton.TabIndex = 5;
-            this.mUpdateButton.Text = "&Update";
             this.mUpdateButton.UseVisualStyleBackColor = true;
             this.mUpdateButton.Click += new System.EventHandler(this.mCommitButton_Click);
             // 
             // mNameTextbox
             // 
-            this.mNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNameTextbox.AccessibleDescription = null;
+            this.mNameTextbox.AccessibleName = null;
+            resources.ApplyResources(this.mNameTextbox, "mNameTextbox");
+            this.mNameTextbox.BackgroundImage = null;
             this.mNameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mNameTextbox.Location = new System.Drawing.Point(64, 329);
-            this.mNameTextbox.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.mNameTextbox.Font = null;
             this.mNameTextbox.Name = "mNameTextbox";
-            this.mNameTextbox.Size = new System.Drawing.Size(247, 22);
-            this.mNameTextbox.TabIndex = 3;
             // 
             // mNameLabel
             // 
-            this.mNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.mNameLabel.AutoSize = true;
-            this.mNameLabel.Location = new System.Drawing.Point(8, 331);
-            this.mNameLabel.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.mNameLabel.AccessibleDescription = null;
+            this.mNameLabel.AccessibleName = null;
+            resources.ApplyResources(this.mNameLabel, "mNameLabel");
+            this.mNameLabel.Font = null;
             this.mNameLabel.Name = "mNameLabel";
-            this.mNameLabel.Size = new System.Drawing.Size(48, 16);
-            this.mNameLabel.TabIndex = 7;
-            this.mNameLabel.Text = "&Name:";
             // 
             // mContentLabel
             // 
-            this.mContentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.mContentLabel.AutoSize = true;
-            this.mContentLabel.Location = new System.Drawing.Point(0, 361);
-            this.mContentLabel.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.mContentLabel.AccessibleDescription = null;
+            this.mContentLabel.AccessibleName = null;
+            resources.ApplyResources(this.mContentLabel, "mContentLabel");
+            this.mContentLabel.Font = null;
             this.mContentLabel.Name = "mContentLabel";
-            this.mContentLabel.Size = new System.Drawing.Size(56, 16);
-            this.mContentLabel.TabIndex = 8;
-            this.mContentLabel.Text = "&Content:";
             // 
             // MetadataView
             // 
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            resources.ApplyResources(this, "$this");
+            this.BackgroundImage = null;
             this.Controls.Add(this.mContentLabel);
             this.Controls.Add(this.mNameLabel);
             this.Controls.Add(this.mMetadataListView);
             this.Controls.Add(this.mNameTextbox);
             this.Controls.Add(this.mUpdateButton);
             this.Controls.Add(this.mContentTextbox);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MetadataView";
-            this.Size = new System.Drawing.Size(311, 417);
             this.VisibleChanged += new System.EventHandler(this.MetadataView_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
