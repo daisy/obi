@@ -247,33 +247,21 @@ namespace Obi.Audio
 
         /// <summary>
         /// Forward / Rewind rate.
-        ///  0 for normal playback
-        ///   negetive integer for  Rewind
-        ///  positive integer   for FastForward
+        /// 0 for normal playback
+        /// negative integer for Rewind
+        /// positive integer for FastForward
         /// </summary>
         public int PlaybackFwdRwdRate
         {
-            get
-            {
-                return mFwdRwdRate;
-            }
-            set
-            {
-                SetPlaybackMode (value);
-                            }
+            get { return mFwdRwdRate; }
+            set { SetPlaybackMode(value); }
         }
 
         /// <summary>
-        ///  indicate if playback is previewing
+        /// Indicate if playback is previewing
         /// <see cref=""/>
         /// </summary>
-        public bool IsPreviewing
-        {
-            get
-            {
-                return m_IsPreviewing;
-            }
-        }
+        public bool IsPreviewing { get { return m_IsPreviewing; } }
 
         public int OutputVolume
         {
@@ -571,7 +559,7 @@ namespace Obi.Audio
         /// <param name="asset"></param>
         /// <param name="lStartPosition"></param>
         /// <param name="lEndPosition"></param>
-private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
+        private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
 		{
                                         if (mState != AudioPlayerState.Playing )
             {
