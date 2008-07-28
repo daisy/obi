@@ -34,28 +34,25 @@ namespace Obi.Dialogs
             // 
             // sourceBox
             // 
+            this.sourceBox.AccessibleDescription = null;
+            this.sourceBox.AccessibleName = null;
+            resources.ApplyResources(this.sourceBox, "sourceBox");
             this.sourceBox.BackColor = System.Drawing.Color.White;
+            this.sourceBox.BackgroundImage = null;
             this.sourceBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.sourceBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourceBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sourceBox.Location = new System.Drawing.Point(0, 0);
-            this.sourceBox.Multiline = true;
             this.sourceBox.Name = "sourceBox";
             this.sourceBox.ReadOnly = true;
-            this.sourceBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.sourceBox.Size = new System.Drawing.Size(676, 609);
-            this.sourceBox.TabIndex = 0;
-            this.sourceBox.WordWrap = false;
             // 
             // ShowSource
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 609);
+            this.BackgroundImage = null;
             this.Controls.Add(this.sourceBox);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Font = null;
             this.Name = "ShowSource";
-            this.Text = "Source view";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SourceView_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

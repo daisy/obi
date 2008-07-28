@@ -28,6 +28,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportFileSplitSize));
             this.label1 = new System.Windows.Forms.Label();
             this.mPhraseSizeTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
@@ -36,70 +37,65 @@ namespace Obi.Dialogs
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.AccessibleDescription = null;
+            this.label1.AccessibleName = null;
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Font = null;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Phrase &size in minutes:";
             // 
             // mPhraseSizeTextBox
             // 
-            this.mPhraseSizeTextBox.AccessibleName = "Phrase size in minutes:";
+            this.mPhraseSizeTextBox.AccessibleDescription = null;
+            resources.ApplyResources(this.mPhraseSizeTextBox, "mPhraseSizeTextBox");
+            this.mPhraseSizeTextBox.BackgroundImage = null;
             this.mPhraseSizeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPhraseSizeTextBox.Location = new System.Drawing.Point(164, 13);
-            this.mPhraseSizeTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mPhraseSizeTextBox.Font = null;
             this.mPhraseSizeTextBox.Name = "mPhraseSizeTextBox";
-            this.mPhraseSizeTextBox.Size = new System.Drawing.Size(132, 22);
-            this.mPhraseSizeTextBox.TabIndex = 1;
             this.mPhraseSizeTextBox.TextChanged += new System.EventHandler(this.mPhraseSizeTextBox_TextChanged);
             // 
             // mOKButton
             // 
+            this.mOKButton.AccessibleDescription = null;
+            this.mOKButton.AccessibleName = null;
+            resources.ApplyResources(this.mOKButton, "mOKButton");
+            this.mOKButton.BackgroundImage = null;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(50, 79);
-            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mOKButton.Font = null;
             this.mOKButton.Name = "mOKButton";
-            this.mOKButton.Size = new System.Drawing.Size(100, 28);
-            this.mOKButton.TabIndex = 2;
-            this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
+            this.mCancelButton.AccessibleDescription = null;
+            this.mCancelButton.AccessibleName = null;
+            resources.ApplyResources(this.mCancelButton, "mCancelButton");
+            this.mCancelButton.BackgroundImage = null;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(158, 79);
-            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mCancelButton.Font = null;
             this.mCancelButton.Name = "mCancelButton";
-            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
-            this.mCancelButton.TabIndex = 3;
-            this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AccessibleDescription = null;
+            this.AccessibleName = null;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = null;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(309, 120);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.mPhraseSizeTextBox);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = null;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Maximum phrase size";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportFileSplitSize_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

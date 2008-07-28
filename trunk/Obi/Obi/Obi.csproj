@@ -275,12 +275,6 @@
     <Compile Include="ProjectView\AudioBlock.Designer.cs">
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectView\ContainerBlock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProjectView\ContainerBlock.Designer.cs">
-      <DependentUpon>ContainerBlock.cs</DependentUpon>
-    </Compile>
     <Compile Include="ProjectView\ContentView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -292,12 +286,6 @@
     </Compile>
     <Compile Include="ProjectView\InheritedTOCView.Designer.cs">
       <DependentUpon>InheritedTOCView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectView\MetadataPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProjectView\MetadataPanel.Designer.cs">
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\EditableLabel.cs">
       <SubType>UserControl</SubType>
@@ -328,18 +316,6 @@
     </Compile>
     <Compile Include="ProjectView\Strip.Designer.cs">
       <DependentUpon>Strip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectView\StripsView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProjectView\StripsView.Designer.cs">
-      <DependentUpon>StripsView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectView\TOCView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProjectView\TOCView.Designer.cs">
-      <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\BlockLayout.cs">
       <SubType>Component</SubType>
@@ -435,7 +411,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\About.fr.resx">
+    <EmbeddedResource Include="Dialogs\About.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -443,41 +419,89 @@
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditRoles.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\EditRoles.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Help.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportFileSplitSize.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ImportFileSplitSize.resx">
       <DependentUpon>ImportFileSplitSize.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewProject.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PhraseProperties.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PhraseProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\PhraseProperties.resx">
       <DependentUpon>PhraseProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Preferences.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProjectStatistics.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectStatistics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectStatistics.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SectionProperties.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.resx">
       <DependentUpon>SectionProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectDirectoryPath.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectDirectoryPath.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SentenceDetection.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SentenceDetection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SentenceDetection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SetPageNumber.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SetPageNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SetPageNumber.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SetPageNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShowSource.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ShowSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowSource.resx">
       <DependentUpon>ShowSource.cs</DependentUpon>
@@ -503,29 +527,37 @@
       <DependentUpon>AudioBlock.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\ContainerBlock.resx">
-      <DependentUpon>ContainerBlock.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ContentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\EditableLabel.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditableLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\EditableLabel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditableLabel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\FindInText.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FindInText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\InheritedTOCView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>InheritedTOCView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\MetadataPanel.resx">
-      <DependentUpon>MetadataPanel.cs</DependentUpon>
+    <EmbeddedResource Include="ProjectView\MetadataView.hi.resx">
       <SubType>Designer</SubType>
+      <DependentUpon>MetadataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MetadataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ProjectView.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ProjectView.resx">
       <DependentUpon>ProjectView.cs</DependentUpon>
@@ -538,14 +570,6 @@
     <EmbeddedResource Include="ProjectView\Strip.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\StripsView.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StripsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\TOCView.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>TOCView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TransportBar.resx">
       <DependentUpon>TransportBar.cs</DependentUpon>
@@ -562,6 +586,10 @@
     <EmbeddedResource Include="UserControls\GraphicalVuMeter.resx">
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TextVUMeterPanel.hi.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextVUMeterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextVUMeterPanel.resx">
       <DependentUpon>TextVUMeterPanel.cs</DependentUpon>

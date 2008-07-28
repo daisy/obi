@@ -117,7 +117,7 @@ namespace Obi.ProjectView
         public ColorSettings ColorSettings
         {
             get { return mView == null ? null : mView.ColorSettings; }
-            set { UpdateColors(value); }
+            set { if (value != null) UpdateColors(value); }
         }
 
         /// <summary>
