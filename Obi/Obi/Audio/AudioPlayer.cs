@@ -160,7 +160,7 @@ namespace Obi.Audio
                         else
                             subtractor = mBufferStopPosition + ( mSoundBuffer.Caps.BufferBytes -  PlayPosition ) ;
 
-                        lCurrentPosition = mCurrentAudio.getPCMLength() - subtractor;
+                        lCurrentPosition = m_lLength - subtractor;
                     }//-3
                     else if (m_BufferCheck % 2 == 1)
                     {//3
@@ -559,27 +559,27 @@ namespace Obi.Audio
         /// <param name="asset"></param>
         /// <param name="lStartPosition"></param>
         /// <param name="lEndPosition"></param>
-        private void InitPlay(AudioMediaData asset ,   long lStartPosition, long lEndPosition)
-		{
-                                        if (mState != AudioPlayerState.Playing )
+        private void InitPlay(AudioMediaData asset, long lStartPosition, long lEndPosition)
+        {
+            if (mState != AudioPlayerState.Playing)
             {
-                                                                InitialiseWithAsset (asset ) ;
-
-                                if (mFwdRwdRate == 0)
-                                                                    PlayAssetStream(lStartPosition, lEndPosition);
-                                                                    else if (mFwdRwdRate > 0)
-                                {
-                                    FastForward(lStartPosition);
-                                }
-                                else if (mFwdRwdRate < 0)
-                                {
-                                    if (lStartPosition == 0)
-                                        lStartPosition = mCurrentAudio.getPCMLength();
-                                    Rewind(lStartPosition);
-                                }
+                InitialiseWithAsset(asset);
+                if (mFwdRwdRate == 0)
+                {
+                    PlayAssetStream(lStartPosition, lEndPosition);
+                }
+                else if (mFwdRwdRate > 0)
+                {
+                    FastForward(lStartPosition);
+                }
+                else if (mFwdRwdRate < 0)
+                {
+                    if (lStartPosition == 0) lStartPosition = mCurrentAudio.getPCMLength();
+                    Rewind(lStartPosition);
+                }
             }// end of state check
-			// end of function
-		}
+            // end of function
+        }
 
         private AudioPlayerState  m_StateBeforePreview ;
         private long m_PreviewStartPosition ;
