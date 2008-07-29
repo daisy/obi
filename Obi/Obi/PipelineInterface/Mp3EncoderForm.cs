@@ -23,7 +23,7 @@ namespace Obi.PipelineInterface
         public Mp3EncoderForm(string scriptPath, string inputPath, string ProjectDirectory)
             : this()
         {
-                        if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
+                                    if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
 
             m_ProjectDirectory = ProjectDirectory;
@@ -56,11 +56,11 @@ namespace Obi.PipelineInterface
         {
             foreach (ScriptParameter p in script.ParameterList)
             {
-                if (p.ParameterDescriptiveName == "Input OPF")
+                if (p.NiceName== "Input OPF")
                     m_txtInputFile.Tag = p;
-                else if (p.ParameterDescriptiveName == "Output directory")
+                else if (p.NiceName== "Output directory")
                     m_txtOutputDirectory.Tag = p;
-                else if (p.ParameterDescriptiveName == "Bitrate")
+                else if (p.NiceName== "Bitrate")
                     m_comboBitRate.Tag = p;
             }
         }

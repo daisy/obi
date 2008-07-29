@@ -82,7 +82,7 @@ namespace Obi.PipelineInterface
                 if (p.IsParameterRequired)
                 {
                     //Param = Param + " --\"" + p.ParameterName + "=" + p.ParameterValue + "\"";
-                    Param = Param + " \"" + p.ParameterName + "=" + p.ParameterValue + "\"";
+                    Param = Param + " \"" + p.Name + "=" + p.ParameterValue + "\"";
                 }
             }
                         // invoke the script
@@ -109,65 +109,4 @@ namespace Obi.PipelineInterface
         }
 
     }
-
-    class ScriptParameter
-    {
-        private string m_Name;
-        private string m_Value;
-        private bool m_Required;
-        private string m_DiscriptiveName;
-
-        public ScriptParameter(XmlNode node)
-        {
-            XmlNodeList ChildList = node.ChildNodes;
-            foreach (XmlNode x in ChildList)
-            {
-                if (x.Name == "nicename" && x.ParentNode == node)
-                    m_DiscriptiveName = x.InnerText;
-            }
-
-            for (int AttrIndex = 0; AttrIndex < node.Attributes.Count; AttrIndex++)
-            {
-                if (node.Attributes[AttrIndex].Name == "name")
-                {
-                    m_Name = node.Attributes.GetNamedItem("name").Value;
-                }
-                else if (node.Attributes[AttrIndex].Name == "value")
-                {
-                    m_Value = node.Attributes.GetNamedItem("value").Value;
-                }
-                else if (node.Attributes[AttrIndex].Name == "required")
-                {
-                    if (node.Attributes.GetNamedItem("required").Value == "true")
-                        m_Required = true;
-                    else
-                        m_Required = false;
-
-                }
-            }
-        }
-
-        public string ParameterName { get { return m_Name; } }
-        public string ParameterDescriptiveName { get { return m_DiscriptiveName; } }
-        public bool IsParameterRequired { get { return m_Required; } }
-
-        public string ParameterValue
-        {
-            get { return m_Value; }
-            set
-            {
-                if (value != null && value != "")
-                {
-                    m_Value = value;
-                    m_Required = true;
-                }
-                else if (m_Required && (m_Value == null || m_Value == ""))
-                    m_Required = false;
-            }
-        }
-
-
-    }
-    
-
 }

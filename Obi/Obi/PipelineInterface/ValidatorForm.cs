@@ -46,9 +46,9 @@ namespace Obi.PipelineInterface
         {
             foreach (ScriptParameter p in mParser.ParameterList)
             {
-                if (p.ParameterDescriptiveName == "Input OPF")
+                if (p.NiceName== "Input OPF")
                     m_txtDTBFilePath.Tag = p;
-                else if (p.ParameterDescriptiveName == "Validation Report")
+                else if (p.NiceName== "Validation Report")
                     m_txtErrorFilePath.Tag = p;
                             }
         }
