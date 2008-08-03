@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace Obi.PipelineInterface
 {
-    class ScriptParameter
+    public class ScriptParameter
     {
         
 
@@ -14,7 +14,8 @@ namespace Obi.PipelineInterface
         private string m_NiceName;
             private bool m_Required;
             private string m_Discription;
-
+        private DataTypes.IDataTypes m_DataType ;
+        
             public ScriptParameter(XmlNode node)
             {
                 GetParameterAttributeInfo(node);
@@ -41,7 +42,7 @@ namespace Obi.PipelineInterface
                             break;
                     }
 
-                    System.Windows.Forms.MessageBox.Show(m_Name + ":" + m_Value + ":" + m_Required.ToString());
+                    //System.Windows.Forms.MessageBox.Show(m_Name + ":" + m_Value + ":" + m_Required.ToString());
                 }
         }
             
@@ -57,28 +58,46 @@ namespace Obi.PipelineInterface
                         {
                             case "nicename" :
                                 m_NiceName = ChildNode.InnerText;
-                                break;
+                                                                break;
 
-                            case "Discription" :
+                            case "description" :
                                 m_Discription = ChildNode.InnerText;
-                                break; 
+                                                                break; 
 
                             case "datatype" :
-                                // call function here
+                                GetDatatype(ChildNode);
                                 break;
                         }
-
-                        //System.Windows.Forms.MessageBox.Show(ChildNode.Name+":" + ChildNode.InnerText);
+                                
                         ChildNode = ChildNode = ChildNode.NextSibling;
                                             }
                                        
                 }
-            
+
+        public void GetDatatype(XmlNode DatatypeNode)
+        {
+            switch (DatatypeNode.FirstChild.Name)
+            {
+                case "file":
+                    m_DataType = new DataTypes.PathDataType( this , DatatypeNode);
+                                        break;
+
+                                    case "directory":
+                                        m_DataType = new DataTypes.PathDataType(this , DatatypeNode);
+                                        break;
+
+                case "enum":
+                    m_DataType = new  DataTypes.EnumDataType( this , DatatypeNode);
+                    break;
+            }
+        }
+
 
             public string Name { get { return m_Name; } }
         public string NiceName { get { return m_NiceName; } }
             public string Description { get { return m_Discription; } }
             public bool IsParameterRequired { get { return m_Required; } }
+        public DataTypes.IDataTypes ParameterDataType { get { return m_DataType as DataTypes.IDataTypes; }  }
 
             public string ParameterValue
             {
@@ -94,12 +113,6 @@ namespace Obi.PipelineInterface
                         m_Required = false;
                 }
             }
-
-
         }
-    
-
-
-
     }
 
