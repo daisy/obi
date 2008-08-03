@@ -26,7 +26,7 @@ namespace Obi.PipelineInterface
                 ScriptFileInfo = new FileInfo (s) ;
                 ScriptName = ScriptFileInfo.Name.Replace(ScriptFileInfo.Extension, "");
                 m_ScriptsInfo.Add(ScriptName, ScriptFileInfo);
-            }
+                            }
         }
 
         public Dictionary<string, FileInfo> ScriptsInfo

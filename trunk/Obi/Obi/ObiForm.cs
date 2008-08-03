@@ -18,6 +18,7 @@ namespace Obi
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
+        private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -789,6 +790,7 @@ namespace Obi
             mTools_EncodeDTBAudioAsMP3MenuItem.Enabled = mSession.HasProject;
             mTools_ValidateDTBMenuItem.Enabled = mSession.HasProject;
             mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
+            PipelineMenuItemsEnabled = mSession.HasProject;
         }
 
         // Open the preferences dialog
@@ -1028,6 +1030,9 @@ namespace Obi
                 mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
                 mBaseFontSize = mStatusLabel.Font.SizeInPoints;
                 InitializeColorSettings();
+
+                mPipelineInfo = new Obi.PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
+                PopulatePipelineScriptsInToolsMenu();
                 Ready();
             }
             catch (Exception e)
@@ -1050,7 +1055,36 @@ namespace Obi
             mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
             mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
         }
-        
+
+        private void PopulatePipelineScriptsInToolsMenu()
+        {
+            ToolStripMenuItem PipelineMenuItem = null;
+                        foreach( KeyValuePair<string,FileInfo> k in    mPipelineInfo.ScriptsInfo )
+            {
+                PipelineMenuItem = new ToolStripMenuItem();
+                PipelineMenuItem.Text = k.Key;
+                PipelineMenuItem.AccessibleName = k.Key;
+                PipelineMenuItem.Name = "PipelineMenu";
+                PipelineMenuItem.Enabled = mSession.HasProject;
+                                mMenuStrip.Items.Add(PipelineMenuItem);
+                                mToolsToolStripMenuItem.DropDown.Items.Add(PipelineMenuItem);
+                                PipelineMenuItem.Click += new EventHandler(PipelineToolStripItems_Click);
+                                            }
+                                                                }
+
+        private bool PipelineMenuItemsEnabled
+        {
+            set
+            {
+                                                                 ToolStripItem []  ItemList =  mMenuStrip.Items.Find("PipelineMenu", true);
+                                                 foreach (ToolStripMenuItem m in ItemList)
+                                                 {
+                                                     m.Enabled = value;
+                                                                                                                                                           }
+            }
+            }
+
+
         // Open the project at the given path; warn the user on error.
         private void OpenProject(string path)
         {
@@ -1736,5 +1770,24 @@ namespace Obi
         {
             AudioScale = AudioScale / AUDIO_SCALE_INCREMENT;
         }
+
+        private void PipelineToolStripItems_Click(object sender, EventArgs e)
+        {
+                                    try
+            {
+                PipelineInterface.PipelineInterfaceForm  PipelineForm = new PipelineInterface.PipelineInterfaceForm(
+                    mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName ,
+                    mSession.PrimaryExportPath,
+                    Directory.GetParent(mSession.Path).FullName);
+                PipelineForm.ShowDialog();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(string.Format(Localizer.Message("dtb_encode_error"), x.Message),
+                                   Localizer.Message("dtb_encode_error_caption"),
+                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }              
+        }
+
     }
 }
