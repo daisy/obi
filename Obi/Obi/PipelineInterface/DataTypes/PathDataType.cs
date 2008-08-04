@@ -12,10 +12,10 @@ namespace Obi.PipelineInterface.DataTypes
             private ScriptParameter m_Parameter;
 
         public enum InputOrOutput { input, output } ;
-        public InputOrOutput m_InputOrOutput;
+        private InputOrOutput m_InputOrOutput;
 
         public enum FileOrDirectory { File, Directory }
-        public FileOrDirectory m_FileOrDirectory;
+        private FileOrDirectory m_FileOrDirectory;
 
             public PathDataType( ScriptParameter p, XmlNode DataTypeNode)
         {
@@ -25,6 +25,16 @@ namespace Obi.PipelineInterface.DataTypes
             m_FileOrDirectory = ChildNode.Name == "file" ? FileOrDirectory.File : FileOrDirectory.Directory;
             m_InputOrOutput = ChildNode.Attributes.GetNamedItem("type").Value == "input" ? InputOrOutput.input : InputOrOutput.output;
                     }
+
+            /// <summary>
+            ///  The path is of a file or a directory
+                        /// </summary>
+            public FileOrDirectory IsFileOrDirectory { get { return m_FileOrDirectory; } }
+
+            /// <summary>
+            /// Is it a path for input file/directory or for output file/directory
+                        /// </summary>
+            public InputOrOutput isInputOrOutput { get { return  m_InputOrOutput ; } } 
 
         public string  Value
                 {
@@ -39,7 +49,11 @@ namespace Obi.PipelineInterface.DataTypes
                 else throw new System.Exception ("Path do not exists") ;
                     }
 }
-
+            /// <summary>
+            ///  Does the path exists
+                        /// </summary>
+            /// <param name="PathValue"></param>
+            /// <returns></returns>
             public bool Exists(string PathValue)
             {
                                     if (m_FileOrDirectory == FileOrDirectory.File)

@@ -44,6 +44,9 @@ namespace Obi.PipelineInterface.DataTypes
         public List<string> GetValues { get { return m_ValueList; } }
         public List<string> GetNiceNames { get { return m_NiceNameList; } }
 
+        /// <summary>
+        ///  Gets and sets the index of value selected.
+                /// </summary>
         public int SelectedIndex
         {
             get { return m_SelectedIndex;  }
@@ -54,6 +57,7 @@ namespace Obi.PipelineInterface.DataTypes
                                     else throw new System.Exception ("Index out of range") ;
             }
         }
+
 
         public string SelectedItemValue
         {
@@ -77,6 +81,7 @@ namespace Obi.PipelineInterface.DataTypes
                 else throw new System.Exception("Not able to select item");
             }
         }
+
 
         private bool SetSelectedIndexAndUpdateScript ( int Index)
         {

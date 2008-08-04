@@ -40,7 +40,8 @@ namespace Obi.PipelineInterface
         {
             CreateControlsDynamically();
         }
-        
+
+// creates controls dynamically from datatype of script parameter
         public void CreateControlsDynamically()
         {
             int Tab_Index = 0;

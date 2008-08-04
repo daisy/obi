@@ -49,8 +49,7 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             try
             {
-                MessageBox.Show("Combo Index" + comboBox1.SelectedIndex);
-                m_EnumData.SelectedIndex = comboBox1.SelectedIndex;
+                                m_EnumData.SelectedIndex = comboBox1.SelectedIndex;
             }
             catch (System.Exception ex)
             {
