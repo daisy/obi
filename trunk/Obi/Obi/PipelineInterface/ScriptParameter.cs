@@ -22,6 +22,11 @@ namespace Obi.PipelineInterface
                 GetParameterProperties(node);
             }
 
+
+        /// <summary>
+        /// extracts  parameter attribute info from script xml file
+                /// </summary>
+        /// <param name="node"></param>
         private void GetParameterAttributeInfo(XmlNode node)
         {
                 // Get attribute  information of ScriptParameter
@@ -41,12 +46,13 @@ namespace Obi.PipelineInterface
                             m_Required=  node.Attributes.GetNamedItem("required").Value == "true" ? true : false;
                             break;
                     }
-
-                    //System.Windows.Forms.MessageBox.Show(m_Name + ":" + m_Value + ":" + m_Required.ToString());
                 }
         }
             
-
+/// <summary>
+///  extracts parameter properties from script xml file
+/// </summary>
+/// <param name="node"></param>
         private void GetParameterProperties( XmlNode node )
         {
                     // Get properties of parameter from its child nodes
@@ -74,6 +80,11 @@ namespace Obi.PipelineInterface
                                        
                 }
 
+
+        /// <summary>
+        /// choose  datatype matching  parameter datatype in script and set its properties from script xml file
+                        /// </summary>
+        /// <param name="DatatypeNode"></param>
         public void GetDatatype(XmlNode DatatypeNode)
         {
             switch (DatatypeNode.FirstChild.Name)

@@ -69,14 +69,14 @@ namespace Obi.PipelineInterface.ParameterControls
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            if (m_PathData.m_FileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
+            if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
             {
-                if (m_PathData.m_InputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
+                if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
                     UpdatePathTextboxFromOpenFileDialog();
-                else if (m_PathData.m_InputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
+                else if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
                     UpdatePathTextboxFromSaveFileDialog();
             }
-            else if (m_PathData.m_FileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
+            else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
             {
                 UpdatePathTextboxFromFolderBrowserDialog();
             }
@@ -111,12 +111,12 @@ namespace Obi.PipelineInterface.ParameterControls
         public override void UpdateScriptParameterValue()
             	{
                     m_SelectedPath = textBox1.Text;
-		 if (m_PathData.m_InputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output )
+		 if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output )
                       {
                           try
                           {
-                              if (m_PathData.m_FileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
-                              else if (m_PathData.m_FileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text);
+                              if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
+                              else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text);
                           }
                           catch (System.Exception ex)
                           {
@@ -136,63 +136,7 @@ namespace Obi.PipelineInterface.ParameterControls
         
             	}
         
-
-        
-        /*
-            m_SelectedPath = textBox1.Text;
-                        // check for file   
-            if (m_PathData.m_FileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
-            { //1
-                                                if (m_PathData.m_InputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
-                { //2
-                    if (!File.Exists(textBox1.Text))
-                    { //3
-                        MessageBox.Show("Not able to find source file.", "Error!");
-                        return;
-                    } //-3
-                    MessageBox.Show("Input Exists!!!");
-                } //-2
-                else // file is output file
-                { //2
-                    if (!File.Exists(textBox1.Text))
-                    { //3
-                        File.Create(textBox1.Text);
-                    } //-3
-                    MessageBox.Show("Bypassed  create file!!!");
-                } //-2
-                //
-                            } //-1
-            // it is directory path
-            else 
-            { //1
-                if (m_PathData.m_InputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
-                { //2
-                    if (!Directory.Exists(textBox1.Text))
-                    { //3
-                        MessageBox.Show("Source Directory do not exist");
-                        return;
-                    } //-3
-                    MessageBox.Show("source dir!!!");
-                } //-2
-                else // if it is output directory
-                { //2
-                    MessageBox.Show("Inside out directory!!!");
-                    if( !CheckForOutputDirectory()) return ;
-                } //-2
-            }//-1
-                MessageBox.Show(textBox1.Text);
-                // if this point is reached after passing all tests, assign value to script parameter.
-                try
-                {
-                    m_PathData.Value = textBox1.Text;
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-        }
-        */
-         
+ 
         private bool  CheckForOutputDirectory()
         {
                 MessageBox.Show(textBox1.Text + ":" + m_ProjectDirectory + ":" + m_SelectedPath);
@@ -202,8 +146,7 @@ namespace Obi.PipelineInterface.ParameterControls
                 MessageBox.Show("Choose some other directory", "ERROR!");
                 return false;
             }
-            MessageBox.Show("2");
-            if (!Directory.Exists(textBox1.Text))
+                        if (!Directory.Exists(textBox1.Text))
             {
                 DialogResult result = MessageBox.Show("Not able to find output directory. \n Do you want to create it?", "Error!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
