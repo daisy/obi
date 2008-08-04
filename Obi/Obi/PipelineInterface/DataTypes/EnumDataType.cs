@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Obi.PipelineInterface.DataTypes
 {
-    public class EnumDataType:IDataTypes
+    public class EnumDataType
     {
         private List<string>  m_ValueList ;
         private List<string> m_NiceNameList;

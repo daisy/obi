@@ -14,7 +14,7 @@ namespace Obi.PipelineInterface
         private string m_NiceName;
             private bool m_Required;
             private string m_Discription;
-        private DataTypes.IDataTypes m_DataType ;
+        private object m_DataType ;
         
             public ScriptParameter(XmlNode node)
             {
@@ -97,7 +97,7 @@ namespace Obi.PipelineInterface
         public string NiceName { get { return m_NiceName; } }
             public string Description { get { return m_Discription; } }
             public bool IsParameterRequired { get { return m_Required; } }
-        public DataTypes.IDataTypes ParameterDataType { get { return m_DataType as DataTypes.IDataTypes; }  }
+        public object ParameterDataType { get { return m_DataType ; }  }
 
             public string ParameterValue
             {
