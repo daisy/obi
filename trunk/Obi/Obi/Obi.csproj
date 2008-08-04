@@ -249,7 +249,6 @@
     <Compile Include="PhraseNode.cs" />
     <Compile Include="PipelineInterface\DataTypes\BoolDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\EnumDataType.cs" />
-    <Compile Include="PipelineInterface\DataTypes\IDataTypes.cs" />
     <Compile Include="PipelineInterface\DataTypes\PathDataType.cs" />
     <Compile Include="PipelineInterface\Mp3EncoderForm.cs">
       <SubType>Form</SubType>

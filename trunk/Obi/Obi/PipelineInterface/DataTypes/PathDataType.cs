@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace Obi.PipelineInterface.DataTypes
 {
-        class PathDataType:IDataTypes
+        class PathDataType
     {
                 private string m_Path;
             private ScriptParameter m_Parameter;

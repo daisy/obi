@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.PipelineInterface.DataTypes
 {
-    public class BoolDataType: IDataTypes
+    public class BoolDataType
     {
         private bool m_Val ;
 
