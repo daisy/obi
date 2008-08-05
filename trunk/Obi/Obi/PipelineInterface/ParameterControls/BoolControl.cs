@@ -10,15 +10,34 @@ namespace Obi.PipelineInterface.ParameterControls
 {
     public partial class BoolControl : BaseUserControl
     {
+        ScriptParameter m_Parameter;
+        DataTypes.BoolDataType m_boolDataType;
+
         public BoolControl()
         {
             InitializeComponent();
                     }
 
-
-        public override void UpdateScriptParameterValue ()
+        public BoolControl(ScriptParameter p)
+            : this()
         {
-                     }
+            base.Value = p.Description;
+            checkBox1.Text = p.NiceName;
+            m_Parameter = p;
+            m_boolDataType = (DataTypes.BoolDataType)p.ParameterDataType;
+            checkBox1.Checked = m_boolDataType.Value;
+        }
 
+        public override void UpdateScriptParameterValue()
+        {
+                        try
+            {
+                m_boolDataType.Value = checkBox1.Checked;    
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
             }
 }
