@@ -85,7 +85,7 @@ namespace Obi.PipelineInterface
         /// choose  datatype matching  parameter datatype in script and set its properties from script xml file
                         /// </summary>
         /// <param name="DatatypeNode"></param>
-        public void GetDatatype(XmlNode DatatypeNode)
+        private void GetDatatype(XmlNode DatatypeNode)
         {
             switch (DatatypeNode.FirstChild.Name)
             {
@@ -99,6 +99,10 @@ namespace Obi.PipelineInterface
 
                 case "enum":
                     m_DataType = new  DataTypes.EnumDataType( this , DatatypeNode);
+                    break;
+
+                case "boolean":
+                    m_DataType = new DataTypes.BoolDataType(this, DatatypeNode);
                     break;
             }
         }
