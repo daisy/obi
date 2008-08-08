@@ -904,7 +904,15 @@ namespace Obi.ProjectView
                             }
             else
             {
-                mRecordingSession.StartMonitoring();
+                try
+                {
+                    mRecordingSession.StartMonitoring();
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
                                  if (mView.ObiForm.Settings.AudioClues )  mVUMeterPanel.BeepEnable = true;
             }
         }
@@ -1166,7 +1174,14 @@ namespace Obi.ProjectView
         // Start recording
         void StartRecording()
         {
-            mRecordingSession.Record();
+            try
+            {
+                mRecordingSession.Record();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             mVUMeterPanel.BeepEnable = false;
             mDisplayTimer.Start();
         }
@@ -1286,7 +1301,14 @@ namespace Obi.ProjectView
                 {
                     // start recording
                     mRecordingSession.Stop();
-                    mRecordingSession.Record();
+                    try
+                    {
+                        mRecordingSession.Record();
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
                 else if (mState == State.Stopped)
                 {
