@@ -246,7 +246,7 @@ namespace Obi
         /// </summary>
         public void Play()
         {
-            System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayerState.Stopped, "Only play from stopped state.");
+            System.Diagnostics.Debug.Assert(mPlaylistState != AudioPlayerState.Playing, "Only play from stopped or pause state.");
             if (mCurrentPhraseIndex < mPhrases.Count) PlayPhrase(mCurrentPhraseIndex);
         }
 

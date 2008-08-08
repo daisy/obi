@@ -491,6 +491,7 @@ namespace Obi.ProjectView
         {
             mView.PlaybackPhrase = e.Node;
             UpdateTimeDisplay();
+
         }
 
         // Update the transport bar according to the player state.
@@ -509,6 +510,8 @@ namespace Obi.ProjectView
             if (StateChanged != null) StateChanged(this, e);
             UpdateTimeDisplay();
             UpdateButtons();
+
+            PostPreviewRestore();
         }
 
         // Simply pass the playback rate change event.
@@ -776,6 +779,12 @@ namespace Obi.ProjectView
         {
             if (CanPause)
             {
+                if (m_IsPreviewing)
+                {
+                    m_AfterPreviewRestoreTime = mCurrentPlaylist.CurrentTimeInAsset;
+                    Stop();
+                }
+
                 mDisplayTimer.Stop();
                 if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording|| mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring)
                 {
@@ -1592,6 +1601,11 @@ namespace Obi.ProjectView
             return false;
         }
 
+        private PhraseNode m_PreviewPhraseNode;
+        private double m_AfterPreviewRestoreTime;
+        private bool m_IsPreviewing;
+
+
         // Preview from a given time for a given duration inside a phrase.
         private void PlayPreview(PhraseNode phrase, double from, double duration, bool forward)
         {
@@ -1604,12 +1618,26 @@ namespace Obi.ProjectView
             double end = from + duration;
             if (end > audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat())
                 end = audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat();
-            mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
+            //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
+            mCurrentPlaylist.Play(from, end);
+            m_AfterPreviewRestoreTime = forward ? from : end;
+            m_PreviewPhraseNode = mCurrentPlaylist.CurrentPhrase;
+            m_IsPreviewing = true;
         }
+        
 
-
-
-
+        private void PostPreviewRestore()
+        {
+            if (m_IsPreviewing)
+            {
+                if (mView.Selection != null &&
+                    mView.Selection.Node == m_PreviewPhraseNode)
+                {
+                    mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                                    }
+                m_IsPreviewing = false;
+            }
+        }
 
 
         #region undoable recording
