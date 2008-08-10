@@ -511,7 +511,7 @@ namespace Obi.ProjectView
             UpdateTimeDisplay();
             UpdateButtons();
 
-            PostPreviewRestore();
+            if(m_IsPreviewing)  PostPreviewRestore();
         }
 
         // Simply pass the playback rate change event.
@@ -1542,16 +1542,22 @@ namespace Obi.ProjectView
         public bool Nudge(bool forward)
         {
             double nudge = mView.ObiForm.Settings.NudgeTimeMs * (forward ? 1 : -1);
-            if (!IsRecorderActive && mState == State.Paused)
+            SelectionChangedPlaybackEnabled = false;
+            if (!IsRecorderActive && (mState == State.Paused || m_IsPreviewing))
             {
-                double time = mCurrentPlaylist.CurrentTimeInAsset + nudge;
+                                double time = mCurrentPlaylist.CurrentTimeInAsset + nudge;
+                if (m_IsPreviewing )
+                    time = m_AfterPreviewRestoreTime + nudge;
+
                 if (time >= 0.0 && time < mCurrentPlaylist.CurrentPhrase.Duration)
                 {
                     // Move selection to audio cursor, stop, and nudge the selection.
+                    Stop();
                     mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                         new AudioRange(time));
-                    Stop();
+
+                    if (mView.ObiForm.Settings.PlayOnNavigate) Preview(true, false);
                     return true;
                 }
             }
@@ -1568,6 +1574,7 @@ namespace Obi.ProjectView
                     }
                 }
             }
+            SelectionChangedPlaybackEnabled = true;
             return false;
         }
 
@@ -1588,6 +1595,11 @@ namespace Obi.ProjectView
             {
                 if ((mState == State.Paused || mState == State.Playing) && !useSelection)
                 {
+                    if (m_IsPreviewing)
+                    {
+                        PostPreviewRestore();
+                                                                    }
+
                     // use the audio cursor
                     if (mState == State.Playing) Pause();
                     PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (from ? 0.0 : mPreviewDuration),
@@ -1650,16 +1662,14 @@ namespace Obi.ProjectView
 
         private void PostPreviewRestore()
         {
-            if (m_IsPreviewing)
-            {
-                if (mView.Selection != null &&
+                                        if (mView.Selection != null &&
                     mView.Selection.Node == m_PreviewPhraseNode)
                 {
-                    mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
-                                    }
+                                                            mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                                                                                                                                                            }
                 m_IsPreviewing = false;
-            }
-        }
+                if (mState == State.Playing) Pause();
+                        }
 
 
         #region undoable recording
