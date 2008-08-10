@@ -1637,6 +1637,7 @@ namespace Obi.ProjectView
 
         private PhraseNode m_PreviewPhraseNode;
         private double m_AfterPreviewRestoreTime;
+        private double m_AfterPreviewRestoreEndTime;
         private bool m_IsPreviewing;
 
 
@@ -1653,9 +1654,13 @@ namespace Obi.ProjectView
             if (end > audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat())
                 end = audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat();
             //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
-            mCurrentPlaylist.Play(from, end);
-            m_AfterPreviewRestoreTime = forward ? from : end;
             m_PreviewPhraseNode = mCurrentPlaylist.CurrentPhrase;
+            m_AfterPreviewRestoreEndTime =  m_AfterPreviewRestoreTime = forward ? from : end;
+            if (mView.Selection != null &&mView.Selection is AudioSelection &&   !((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                m_AfterPreviewRestoreEndTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
+            mCurrentPlaylist.Play(from, end);
+            
+            
             m_IsPreviewing = true;
         }
         
@@ -1665,10 +1670,14 @@ namespace Obi.ProjectView
                                         if (mView.Selection != null &&
                     mView.Selection.Node == m_PreviewPhraseNode)
                 {
+                                            if (m_AfterPreviewRestoreTime == m_AfterPreviewRestoreEndTime )
                                                             mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                                            else
+                                                            mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime , m_AfterPreviewRestoreEndTime));
                                                                                                                                                             }
                 m_IsPreviewing = false;
                 if (mState == State.Playing) Pause();
+                //mCurrentPlaylist.SetPausePosition(m_PreviewPhraseNode, m_AfterPreviewRestoreTime);
                         }
 
 
