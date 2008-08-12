@@ -109,13 +109,12 @@ namespace Obi.PipelineInterface
                     ((ParameterControls.BaseUserControl)Controls[i]).UpdateScriptParameterValue();
                               
             }
-            foreach (ScriptParameter p in m_Parser.ParameterList)
-                MessageBox.Show(p.ParameterValue);
+            //foreach (ScriptParameter p in m_Parser.ParameterList)
+                //MessageBox.Show(p.ParameterValue);
 
 
             m_Parser.ExecuteScript();
-            MessageBox.Show("new done");
-            Close();
+                        Close();
         }
 
         private void m_btnCancel_Click(object sender, EventArgs e)
