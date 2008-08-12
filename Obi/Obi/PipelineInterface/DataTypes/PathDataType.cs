@@ -46,7 +46,7 @@ namespace Obi.PipelineInterface.DataTypes
                 m_Path = value;
             UpdateScript(m_Path);
                 }
-                else throw new System.Exception ("Path do not exists") ;
+                else throw new System.Exception (Localizer.Message("No_Path")) ;
                     }
 }
             /// <summary>
@@ -98,7 +98,7 @@ namespace Obi.PipelineInterface.DataTypes
                 }
                 else
                 {
-                    throw new System.Exception("cannot create path or type input");
+                    throw new System.Exception(Localizer.Message("CannotCreate_InputPath"));
                                     }
                             }
 

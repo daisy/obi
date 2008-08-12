@@ -54,7 +54,7 @@ namespace Obi.PipelineInterface.DataTypes
             {
                 if (value >= 0 && value < m_ValueList.Count )
                                     SetSelectedIndexAndUpdateScript( value  ) ;
-                                    else throw new System.Exception ("Index out of range") ;
+                                    else throw new System.Exception (Localizer.Message("IndexNotInRange")) ;
             }
         }
 
@@ -66,7 +66,7 @@ namespace Obi.PipelineInterface.DataTypes
             {
                 if (value != null && m_ValueList.Contains(value))
                     SetSelectedIndexAndUpdateScript( m_ValueList.BinarySearch(value) );
-                else throw new System.Exception("Not able to select item");
+                else throw new System.Exception(Localizer.Message("NotAbleToSelectItem"));
             }
         }
 
@@ -78,7 +78,7 @@ namespace Obi.PipelineInterface.DataTypes
             {
                 if (value != null && m_NiceNameList.Contains(value))
                     SetSelectedIndexAndUpdateScript( m_NiceNameList.BinarySearch(value) ) ;
-                else throw new System.Exception("Not able to select item");
+                else throw new System.Exception(Localizer.Message("NotAbleToSelectItem"));
             }
         }
 

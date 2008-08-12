@@ -71,11 +71,11 @@ namespace Obi.PipelineInterface
                             || !Directory.Exists(m_OutputDirectory.ParameterValue) || Directory.GetFiles(m_OutputDirectory.ParameterValue).Length > 0
                             || (m_BitRate.ParameterValue != "32" && m_BitRate.ParameterValue != "48" && m_BitRate.ParameterValue != "64" && m_BitRate.ParameterValue != "128"))
             {
-                throw new System.Exception("One or more parameters are invalid");
+                throw new System.Exception( Localizer.Message ("Invalid_ScriptParameters")) ;
                 return;
             }
-             */ 
-            
+             */
+
             string Param = "";
             foreach (ScriptParameter p in  ParameterList)
             {

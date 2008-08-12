@@ -139,22 +139,21 @@ namespace Obi.PipelineInterface.ParameterControls
  
         private bool  CheckForOutputDirectory()
         {
-                MessageBox.Show(textBox1.Text + ":" + m_ProjectDirectory + ":" + m_SelectedPath);
-                        if (Directory.Exists(textBox1.Text) &&
+                                        if (Directory.Exists(textBox1.Text) &&
                             (textBox1.Text == m_ProjectDirectory || textBox1.Text == Directory.GetParent(m_SelectedPath ).FullName))
             {
-                MessageBox.Show("Choose some other directory", "ERROR!");
+                MessageBox.Show(Localizer.Message("Choose_OtherDirectory"), Localizer.Message("Caption_Error"));
                 return false;
             }
                         if (!Directory.Exists(textBox1.Text))
             {
-                DialogResult result = MessageBox.Show("Not able to find output directory. \n Do you want to create it?", "Error!", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show(Localizer.Message("OutputDirectoryNotFound_Permission_Create"), Localizer.Message("Caption_Error"), MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     if (textBox1.Text == ""
                         || !Directory.CreateDirectory(textBox1.Text).Exists)
                     {
-                        MessageBox.Show("Not able to create directory", "Error!");
+                                                MessageBox.Show(string.Format(Localizer.Message("NotAbleToCreateDirectory"), textBox1.Text), Localizer.Message("Caption_Error"));
                         return false;
                     }
                 } // if no button is pressed
@@ -164,7 +163,7 @@ namespace Obi.PipelineInterface.ParameterControls
 
             if (Directory.GetFiles(textBox1.Text, "*.*", SearchOption.AllDirectories).Length > 0)
             {
-                DialogResult result = MessageBox.Show("Output directory is not empty! Do you want to empty it?", "Warning", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show(Localizer.Message("Permission_EmptyOutputDirectory") , Localizer.Message("Caption_Warning") , MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     Directory.Delete(textBox1.Text, true);
