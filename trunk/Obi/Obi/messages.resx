@@ -1055,4 +1055,46 @@ Error text: {1}</value>
   <data name="xml_filter" xml:space="preserve">
     <value>XML file|*.xml</value>
   </data>
+  <data name="CannotCreate_InputPath" xml:space="preserve">
+    <value>Cannot create path of type: input</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="Caption_Error" xml:space="preserve">
+    <value>ERROR</value>
+  </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>WARNING!</value>
+  </data>
+  <data name="Choose_OtherDirectory" xml:space="preserve">
+    <value>Choose some other directory</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="IndexNotInRange" xml:space="preserve">
+    <value>Index not in range</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="Invalid_ScriptParameters" xml:space="preserve">
+    <value>One or more parameters are invalid</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="No_Path" xml:space="preserve">
+    <value>path do not exist</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="NotAbleToCreateDirectory" xml:space="preserve">
+    <value>Not able to create directory{0}</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="NotAbleToSelectItem" xml:space="preserve">
+    <value>Not able to select item</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="OutputDirectoryNotFound_Permission_Create" xml:space="preserve">
+    <value>Not able to find output directory. \n Do you want to create it?</value>
+    <comment>Pipeline</comment>
+  </data>
+  <data name="Permission_EmptyOutputDirectory" xml:space="preserve">
+    <value>Output directory is not empty! Do you want to empty it?</value>
+    <comment>Pipeline</comment>
+  </data>
 </root>
