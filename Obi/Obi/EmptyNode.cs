@@ -10,9 +10,9 @@ namespace Obi
     /// </summary>
     public class EmptyNode: ObiNode
     {
-        private Kind mKind;           // this node's kind
-        private string mCustomClass;  // custom class name
-        private int mPageNumber;      // page number
+        private Kind mKind;              // this node's kind
+        private string mCustomClass;     // custom class name
+        private PageNumber mPageNumber;  // page number
         private bool m_ToDo;
 
         public static readonly string XUK_ELEMENT_NAME = "empty";        // name of the element in the XUK file
@@ -40,11 +40,11 @@ namespace Obi
             return String.Format(Localizer.Message("phrase_to_string"),
                 IsTo_Do ? Localizer.Message ("phrase_short_TODO") : "",
                 Used ? "" : Localizer.Message("unused"),
-                                IsRooted ? Index + 1 : 0,
+                IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Long(durationMs),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
-                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber) :
+                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber.ToString()) :
                     Localizer.Message("phrase_extra_" + mKind.ToString()));
         }
 
@@ -54,7 +54,7 @@ namespace Obi
         {
             return String.Format(Localizer.Message("phrase_short_to_string"),
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
-                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber) :
+                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber.ToString()) :
                     Localizer.Message("phrase_short_" + mKind.ToString()),
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Smart(durationMs));
         }
@@ -83,7 +83,7 @@ namespace Obi
         {
             mKind = kind;
             mCustomClass = customClass;
-            mPageNumber = 0;
+            mPageNumber = null;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Obi
         {
             mKind = node.mKind;
             mCustomClass = node.mCustomClass;
-            mPageNumber = node.mPageNumber;
+            mPageNumber = node.mPageNumber.Clone();
         }
 
         /// <summary>
@@ -155,12 +155,11 @@ namespace Obi
         /// Get or set the page number for this node.
         /// Will discard previous kind if it was not already a page node.
         /// </summary>
-        public int PageNumber
+        public PageNumber PageNumber
         {
             get { return mPageNumber; }
             set
             {
-                if (value <= 0) return;
                 mPageNumber = value;
                 if (mKind == Kind.Page)            
                 {
@@ -183,7 +182,7 @@ namespace Obi
                 ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
                 mKind = kind;
                 mCustomClass = customClass;
-                if (kind != Kind.Page) mPageNumber = 0;
+                if (kind != Kind.Page) mPageNumber = null;
                 if (kind == Kind.Heading) AncestorAs<SectionNode>().Heading = this;
                 if (ChangedKind != null) ChangedKind(this, args);
             }
@@ -205,18 +204,18 @@ namespace Obi
 
 
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
-        
+
         protected override void xukInAttributes(System.Xml.XmlReader source)
         {
             string kind = source.GetAttribute(XUK_ATTR_NAME_KIND);
             if (kind != null) mKind = kind == Kind.Custom.ToString() ? Kind.Custom :
                                       kind == Kind.Heading.ToString() ? Kind.Heading :
                                       kind == Kind.Page.ToString() ? Kind.Page :
-                                      kind == Kind.Silence.ToString () ? Kind.Silence :
+                                      kind == Kind.Silence.ToString() ? Kind.Silence :
                                       kind == Kind.TODO.ToString() ? Kind.TODO : Kind.Plain;
             if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
             mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
-            if (mKind == Kind.Page) mPageNumber = SafeParsePageNumber(source.GetAttribute(XUK_ATTR_NAME_PAGE));
+            if (mKind == Kind.Page) mPageNumber = new PageNumber(SafeParsePageNumber(source.GetAttribute(XUK_ATTR_NAME_PAGE)));
             if (mKind != Kind.Custom && mCustomClass != null)
             {
                 throw new Exception("Extraneous `custom' attribute.");
@@ -225,7 +224,7 @@ namespace Obi
             {
                 throw new Exception("Missing `custom' attribute.");
             }
-            else if (mKind == Kind.Page && mPageNumber == 0)
+            else if (mKind == Kind.Page && mPageNumber == null)
             {
                 throw new Exception("Missing `page' attribute (page number for page node.)");
             }
@@ -238,7 +237,7 @@ namespace Obi
                 if (ToDo == "True") m_ToDo = true;
                 else m_ToDo = false;
             }
-                        base.xukInAttributes(source);
+            base.xukInAttributes(source);
         }
 
         protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
@@ -246,7 +245,7 @@ namespace Obi
             if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
             if (mKind == Kind.Page) wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ToString());
-                        if (m_ToDo) wr.WriteAttributeString(To_Do_ATTR_NAME, "True");
+            if (m_ToDo) wr.WriteAttributeString(To_Do_ATTR_NAME, "True");
             base.xukOutAttributes(wr, baseUri);
         }
 

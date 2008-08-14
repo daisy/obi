@@ -10,10 +10,10 @@ namespace Obi.Dialogs
 {
     public partial class SetPageNumber : Form
     {
-        private int mInitialNumber;
+        private PageNumber mInitialNumber;
         private int mNumberOfPages;
 
-        public SetPageNumber(int number, bool renumber, bool canSetNumberOfPages): this()
+        public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
             mInitialNumber = number;
             mNumberOfPages = 1;
@@ -25,12 +25,12 @@ namespace Obi.Dialogs
 
         public SetPageNumber() { InitializeComponent(); }
 
-        public int Number
+        public PageNumber Number
         {
             get
             {
                 int number = EmptyNode.SafeParsePageNumber(mNumberBox.Text);
-                return number > 0 ? number : mInitialNumber;
+                return number > 0 ? new PageNumber(number) : mInitialNumber.Clone();
             } 
         }
 

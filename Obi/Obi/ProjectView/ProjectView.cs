@@ -524,7 +524,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
-        public int NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); } }
+        public PageNumber NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); } }
 
         /// <summary>
         /// The parent form as an Obi form.
@@ -1190,7 +1190,7 @@ namespace Obi.ProjectView
         /// </summary>
         /// <param name="number">The new page number.</param>
         /// <param name="renumber">If true, renumber subsequent blocks.</param>
-        public void SetPageNumberOnSelectedBock(int number, bool renumber)
+        public void SetPageNumberOnSelectedBock(PageNumber number, bool renumber)
         {
             if (CanSetPageNumber)
             {
@@ -1202,7 +1202,7 @@ namespace Obi.ProjectView
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                         {
-                            k.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, ++number));
+                            k.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number.NextPageNumber()));
                         }
                     }
                     k.append(cmd);
@@ -1218,7 +1218,7 @@ namespace Obi.ProjectView
         /// <param name="number">The starting number for the range of pages.</param>
         /// <param name="count">The number of pages to add.</param>
         /// <param name="renumber">Renumber subsequent pages if true.</param>
-        public void AddPageRange(int number, int count, bool renumber)
+        public void AddPageRange(PageNumber number, int count, bool renumber)
         {
             if (CanAddEmptyBlock)
             {
@@ -1236,7 +1236,7 @@ namespace Obi.ProjectView
                         index = mSelection.IndexForNewNode(node);
                     }
                     cmd.append(new Commands.Node.AddEmptyNode(this, node, parent, index + i));
-                    cmd.append(new Commands.Node.SetPageNumber(this, node, number++));
+                    cmd.append(new Commands.Node.SetPageNumber(this, node, number.NextPageNumber()));
                 }
                 // Add commands to renumber the following pages; be careful that the previous blocks have not
                 // been added yet!
@@ -1247,7 +1247,7 @@ namespace Obi.ProjectView
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                         {
-                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number++));
+                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number.NextPageNumber()));
                         }
                     }
                 }
