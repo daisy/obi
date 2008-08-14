@@ -268,7 +268,7 @@ namespace Obi
         {
             get
             {
-                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber > 0; });
+                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber != null; });
             }
         }
 

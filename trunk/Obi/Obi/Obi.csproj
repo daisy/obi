@@ -246,6 +246,7 @@
     </Compile>
     <Compile Include="ObiNode.cs" />
     <Compile Include="ObiNodeFactory.cs" />
+    <Compile Include="PageNumber.cs" />
     <Compile Include="PhraseNode.cs" />
     <Compile Include="PipelineInterface\DataTypes\BoolDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\EnumDataType.cs" />

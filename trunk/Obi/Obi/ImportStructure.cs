@@ -111,7 +111,7 @@ namespace Obi
             {
                 EmptyNode node = new EmptyNode(mPresentation);
                 mCurrentSection.AppendChild(node);
-                node.PageNumber = pageNumber;
+                node.PageNumber = new PageNumber(pageNumber);
             }
         }
 

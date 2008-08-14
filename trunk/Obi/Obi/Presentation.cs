@@ -520,7 +520,7 @@ namespace Obi
         /// Get the page number for this node. If the node already has a page number, return it.
         /// If it has no page number, find the nearest preceding block with a page number and add one.
         /// </summary>
-        public int PageNumberFor(ObiNode node)
+        public PageNumber PageNumberFor(ObiNode node)
         {
             if (node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page)
             {
@@ -530,7 +530,7 @@ namespace Obi
             {
                 ObiNode n = node.PrecedingNode;
                 while (n != null && !(n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)) n = n.PrecedingNode;
-                return n != null ? ((EmptyNode)n).PageNumber + 1 : 1;
+                return n != null ? ((EmptyNode)n).PageNumber.NextPageNumber() : new PageNumber(1);
             }
         }
 

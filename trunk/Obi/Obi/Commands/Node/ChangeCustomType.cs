@@ -11,7 +11,7 @@ namespace Obi.Commands.Node
         private string mCustomClass;          // the new custom class
         private EmptyNode.Kind mOldNodeKind;  // the old node kind 
         private string mOldCustomClass;       // the old custom class
-        private int mOldPageNumber;           // old page number (if previous kind was page)
+        private PageNumber mOldPageNumber;    // old page number (if previous kind was page)
 
         /// <summary>
         /// Change the type (either regular kind or custom type) of a node.
@@ -59,9 +59,9 @@ namespace Obi.Commands.Node
 
     public class SetPageNumber : ChangeCustomType
     {
-        private int mPageNumber;
+        private PageNumber mPageNumber;
 
-        public SetPageNumber(ProjectView.ProjectView view, EmptyNode node, int pageNumber)
+        public SetPageNumber(ProjectView.ProjectView view, EmptyNode node, PageNumber pageNumber)
             : base(view, node, EmptyNode.Kind.Page)
         {
             mPageNumber = pageNumber;
