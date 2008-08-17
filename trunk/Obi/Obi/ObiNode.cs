@@ -202,6 +202,8 @@ namespace Obi
     {
         public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
 
+        private string m_PrimaryExportDirectory= "" ;
+
         public RootNode(Presentation presentation) : base(presentation) { }
 
         /// <summary>
@@ -289,5 +291,39 @@ namespace Obi
         }
 
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+
+        /// <summary>
+                ///  Path of directory containing exported DAISY book in raw PCM format
+        /// </summary>
+        public string PrimaryExportDirectory
+        {
+            get { return m_PrimaryExportDirectory; }
+            set
+            {
+                if (value != null) m_PrimaryExportDirectory = value;
+            }
+        }
+
+        private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
+
+        /// <summary>
+        /// Read back the used attribute.
+        /// </summary>
+        protected override void xukInAttributes(System.Xml.XmlReader reader)
+        {
+            m_PrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+                        base.xukInAttributes(reader);
+        }
+
+        /// <summary>
+        /// Write the used attribute if its value is false (true being the default.)
+        /// </summary>
+        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        {
+             destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, m_PrimaryExportDirectory);
+            base.xukOutAttributes(destination, baseUri);
+        }
+
+
     }
 }
