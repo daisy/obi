@@ -32,6 +32,7 @@ namespace Obi.PipelineInterface.ParameterControls
                         label1.Text = p.NiceName;
                         textBox1.AccessibleName = p.NiceName;
                         base.Value = p.Description;
+                        if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input) textBox1.Text = SelectedPath;
 
                         base.Size = this.Size;
         }
