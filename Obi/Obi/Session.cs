@@ -10,8 +10,7 @@ namespace Obi
         private DataModelFactory mDataModelFactory;  // the Obi data model factory (see below)
         private urakawa.Project mProject;            // the current project (as of now 1 presentation = 1 project)
         private string mPath;                        // path of the XUK file to save to
-        private string mPrimaryExportPath; // path of DTB manifest file created by export
-        private int mChangesCount;                   // changes since (or before) last save
+                private int mChangesCount;                   // changes since (or before) last save
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
@@ -26,8 +25,7 @@ namespace Obi
             mDataModelFactory = new DataModelFactory();
             mProject = null;
             mPath = null;
-            mPrimaryExportPath = null;
-            mChangesCount = 0;
+                        mChangesCount = 0;
         }
 
 
@@ -61,10 +59,17 @@ namespace Obi
         /// </summary>
         public string Path { get { return mPath; } }
 
+        /// <summary>
+        /// Path of directory containing exported DAISY book in raw PCM format
+                /// </summary>
         public string PrimaryExportPath
         {
-            get { return mPrimaryExportPath; }
-            set { mPrimaryExportPath = value; }
+            get { return Presentation.RootNode.PrimaryExportDirectory;  }
+            set 
+            { 
+                Presentation.RootNode.PrimaryExportDirectory = value;
+                PresentationHasChanged(1);
+            }
         }
 
         /// <summary>
@@ -114,7 +119,7 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
-            mChangesCount = 0;
+                        mChangesCount = 0;
             Presentation.Initialize(this, title, createTitleSection, id, settings);
             if (ProjectCreated != null) ProjectCreated(this, null);
             ForceSave();
@@ -129,10 +134,10 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.openXUK(new Uri(path));
             mPath = path;
-            Presentation.Initialize(this);
+                        Presentation.Initialize(this);
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.getUndoRedoManager().flushCommands();
-            if (ProjectOpened != null) ProjectOpened(this, null);
+                        if (ProjectOpened != null) ProjectOpened(this, null);
         }
 
         /// <summary>
