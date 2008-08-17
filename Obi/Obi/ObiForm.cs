@@ -810,7 +810,7 @@ namespace Obi
             {
                 PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(
                     scriptPath,
-                    mSession.PrimaryExportPath,
+                   mSession.PrimaryExportPath ,
                     Directory.GetParent(mSession.Path).FullName);
                 EncoderForm.ShowDialog();
             }
@@ -1777,7 +1777,7 @@ namespace Obi
             {
                 PipelineInterface.PipelineInterfaceForm  PipelineForm = new PipelineInterface.PipelineInterfaceForm(
                     mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName ,
-                    mSession.PrimaryExportPath,
+                    Path.Combine( mSession.PrimaryExportPath , "obi_dtb.opf" ),
                     Directory.GetParent(mSession.Path).FullName);
                 PipelineForm.ShowDialog();
             }
