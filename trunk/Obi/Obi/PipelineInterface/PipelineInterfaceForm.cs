@@ -56,7 +56,10 @@ namespace Obi.PipelineInterface
                 {
                     CreateEnumControl(p,Tab_Index,m_YCordinate);
                 }
-
+                else if (p.ParameterDataType is DataTypes.BoolDataType)
+                {
+                    CreateBoolControl (p, Tab_Index, m_YCordinate);
+                }
                     Tab_Index++;
                     
 
@@ -92,6 +95,19 @@ namespace Obi.PipelineInterface
 
             UpdateFormSize(PC);
         }
+
+        private void CreateBoolControl(ScriptParameter p, int Tab_Index, int m_YCordinate)
+        {
+            ParameterControls.BoolControl PC = new Obi.PipelineInterface.ParameterControls.BoolControl (p);
+            PC.Location = new Point(0, m_YCordinate);
+            PC.Visible = true;
+            PC.TabIndex = Tab_Index;
+            Controls.Add(PC);
+
+            UpdateFormSize(PC);
+        }
+
+
 
         private void UpdateFormSize(Control PC)
         {

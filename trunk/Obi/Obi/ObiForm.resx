@@ -1389,21 +1389,6 @@
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
     <value>&amp;Export as DAISY</value>
   </data>
-  <data name="mTools_EncodeDTBAudioAsMP3MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
-  </data>
-  <data name="mTools_EncodeDTBAudioAsMP3MenuItem.Text" xml:space="preserve">
-    <value>Encode DTB audio as &amp;MP3</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.AccessibleName" xml:space="preserve">
-    <value>DTB Validator</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 22</value>
-  </data>
-  <data name="mTools_ValidateDTBMenuItem.Text" xml:space="preserve">
-    <value>&amp;Validate DTB</value>
-  </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 6</value>
   </data>
@@ -1555,7 +1540,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.16234, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.33799, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2615,18 +2600,6 @@
     <value>mTools_ExportAsDAISYMenuItem</value>
   </data>
   <data name="&gt;&gt;mTools_ExportAsDAISYMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mTools_EncodeDTBAudioAsMP3MenuItem.Name" xml:space="preserve">
-    <value>mTools_EncodeDTBAudioAsMP3MenuItem</value>
-  </data>
-  <data name="&gt;&gt;mTools_EncodeDTBAudioAsMP3MenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mTools_ValidateDTBMenuItem.Name" xml:space="preserve">
-    <value>mTools_ValidateDTBMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mTools_ValidateDTBMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator18.Name" xml:space="preserve">

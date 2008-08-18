@@ -787,9 +787,7 @@ namespace Obi
         private void UpdateToolsMenu()
         {
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
-            mTools_EncodeDTBAudioAsMP3MenuItem.Enabled = mSession.HasProject;
-            mTools_ValidateDTBMenuItem.Enabled = mSession.HasProject;
-            mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
+                        mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
             PipelineMenuItemsEnabled = mSession.HasProject;
         }
 

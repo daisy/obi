@@ -161,8 +161,6 @@ namespace Obi
             this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTools_EncodeDTBAudioAsMP3MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTools_ValidateDTBMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1099,8 +1097,6 @@ namespace Obi
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
             this.mTools_ExportAsDAISYMenuItem,
-            this.mTools_EncodeDTBAudioAsMP3MenuItem,
-            this.mTools_ValidateDTBMenuItem,
             this.toolStripSeparator18,
             this.mTools_CleanUnreferencedAudioMenuItem});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
@@ -1122,18 +1118,6 @@ namespace Obi
             resources.ApplyResources(this.mTools_ExportAsDAISYMenuItem, "mTools_ExportAsDAISYMenuItem");
             this.mTools_ExportAsDAISYMenuItem.Name = "mTools_ExportAsDAISYMenuItem";
             this.mTools_ExportAsDAISYMenuItem.Click += new System.EventHandler(this.mTools_ExportAsDAISYMenuItem_Click);
-            // 
-            // mTools_EncodeDTBAudioAsMP3MenuItem
-            // 
-            this.mTools_EncodeDTBAudioAsMP3MenuItem.Name = "mTools_EncodeDTBAudioAsMP3MenuItem";
-            resources.ApplyResources(this.mTools_EncodeDTBAudioAsMP3MenuItem, "mTools_EncodeDTBAudioAsMP3MenuItem");
-            this.mTools_EncodeDTBAudioAsMP3MenuItem.Click += new System.EventHandler(this.mTools_EncodeDTBAudioAsMP3MenuItem_Click);
-            // 
-            // mTools_ValidateDTBMenuItem
-            // 
-            resources.ApplyResources(this.mTools_ValidateDTBMenuItem, "mTools_ValidateDTBMenuItem");
-            this.mTools_ValidateDTBMenuItem.Name = "mTools_ValidateDTBMenuItem";
-            this.mTools_ValidateDTBMenuItem.Click += new System.EventHandler(this.mTools_ValidateDTBMenuItem_Click);
             // 
             // toolStripSeparator18
             // 
@@ -1367,14 +1351,12 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mStartRecordingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTools_EncodeDTBAudioAsMP3MenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomOutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportAsDAISYMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTools_ValidateDTBMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ProjectStatisticsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
