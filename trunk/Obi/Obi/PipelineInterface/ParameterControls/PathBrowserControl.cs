@@ -101,7 +101,7 @@ namespace Obi.PipelineInterface.ParameterControls
 
         private void UpdatePathTextboxFromFolderBrowserDialog()
         {
-            folderBrowserDialog1.ShowNewFolderButton = true;
+                folderBrowserDialog1.ShowNewFolderButton = true;
             if (folderBrowserDialog1.ShowDialog () == DialogResult.OK)
             {
                 textBox1.Text = folderBrowserDialog1.SelectedPath;
@@ -117,8 +117,8 @@ namespace Obi.PipelineInterface.ParameterControls
                           try
                           {
                               if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
-                              else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text);
-                          }
+                              else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text).Close();
+                                                        }
                           catch (System.Exception ex)
                           {
                               MessageBox.Show(ex.ToString());
