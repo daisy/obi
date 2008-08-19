@@ -88,9 +88,13 @@ namespace Obi.PipelineInterface
                         // invoke the script
             string PipelineFilePath = Path.Combine( Directory.GetParent(m_ScriptFilePath).Parent.FullName, "pipeline-lite.bat" );
                         Process PipelineProcess = new Process();
-            PipelineProcess.StartInfo.CreateNoWindow = true;
-            PipelineProcess.StartInfo.ErrorDialog = true;
-            PipelineProcess.StartInfo.UseShellExecute = false;
+            //PipelineProcess.StartInfo.CreateNoWindow = true;
+            //PipelineProcess.StartInfo.ErrorDialog = true;
+            //PipelineProcess.StartInfo.UseShellExecute = false;
+
+                        PipelineProcess.StartInfo.CreateNoWindow = false;
+                        PipelineProcess.StartInfo.ErrorDialog = true;
+                        PipelineProcess.StartInfo.UseShellExecute = true;
                         PipelineProcess.StartInfo.FileName = PipelineFilePath;
             
             PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + m_ScriptFilePath + "\" -p" + Param;
