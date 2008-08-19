@@ -99,7 +99,9 @@ namespace Obi.PipelineInterface
             
             PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + m_ScriptFilePath + "\" -p" + Param;
             PipelineProcess.StartInfo.WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory + "\\PipelineLight";
-            
+            System.Windows.Forms.MessageBox.Show("Working directory : " + PipelineProcess.StartInfo.WorkingDirectory);
+            System.Windows.Forms.MessageBox.Show("Parameters :" + PipelineProcess.StartInfo.Arguments);
+            System.Windows.Forms.MessageBox.Show("Batch file :" + PipelineProcess.StartInfo.FileName);
             try
             {
                 PipelineProcess.Start();
