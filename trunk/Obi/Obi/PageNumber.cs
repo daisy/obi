@@ -30,12 +30,20 @@ namespace Obi
         }
 
 
-        public PageKind Kind { get { return mKind; } }
+        /// <summary>
+        /// Get the number as an arabic number or an unquoted label.
+        /// </summary>
+        public string ArabicNumberOrLabel { get { return mKind == PageKind.Special ? mLabel : mNumber.ToString(); } }
 
         /// <summary>
         /// Clone the page number.
         /// </summary>
         public PageNumber Clone() { return mKind == PageKind.Special ? new PageNumber(mLabel) : new PageNumber(mNumber, mKind); }
+
+        /// <summary>
+        /// Get the kind of the page.
+        /// </summary>
+        public PageKind Kind { get { return mKind; } }
 
         /// <summary>
         /// Make a new page number following this one.
@@ -47,12 +55,13 @@ namespace Obi
 
         /// <summary>
         /// Get the display string for the number (i.e. arabic, roman or label.)
+        /// Label is quoted.
         /// </summary>
         public override string ToString()
         {
             return mKind == PageKind.Front ? ToRoman(mNumber) :
                 mKind == PageKind.Normal ? mNumber.ToString() :
-                mLabel;
+                string.Format("\"{0}\"", mLabel);
         }
 
         // Convert a number to roman numerals (lowercase)
