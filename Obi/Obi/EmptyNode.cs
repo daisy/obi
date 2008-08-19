@@ -13,13 +13,14 @@ namespace Obi
         private Kind mKind;              // this node's kind
         private string mCustomClass;     // custom class name
         private PageNumber mPageNumber;  // page number
-        private bool m_ToDo;
+        private bool mTODO;
 
-        public static readonly string XUK_ELEMENT_NAME = "empty";        // name of the element in the XUK file
-        private static readonly string XUK_ATTR_NAME_KIND = "kind";      // name of the kind attribute
-        private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";  // name of the custom attribute
-        private static readonly string XUK_ATTR_NAME_PAGE = "page";      // name of the page attribute
-        private static readonly string To_Do_ATTR_NAME = "To_Do";  // name of the To Do attribute
+        public static readonly string XUK_ELEMENT_NAME = "empty";             // name of the element in the XUK file
+        private static readonly string XUK_ATTR_NAME_KIND = "kind";           // name of the kind attribute
+        private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";       // name of the custom attribute
+        private static readonly string XUK_ATTR_NAME_PAGE = "page";           // name of the page attribute
+        private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
+        private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
 
         /// <summary>
         /// Different kinds of content nodes.
@@ -133,8 +134,8 @@ namespace Obi
 
         public bool IsTo_Do
         {
-            get { return m_ToDo; }
-            set { m_ToDo = value;  }
+            get { return mTODO; }
+            set { mTODO = value;  }
         }
 
         /// <summary>
@@ -215,7 +216,34 @@ namespace Obi
                                       kind == Kind.TODO.ToString() ? Kind.TODO : Kind.Plain;
             if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
             mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
-            if (mKind == Kind.Page) mPageNumber = new PageNumber(SafeParsePageNumber(source.GetAttribute(XUK_ATTR_NAME_PAGE)));
+            if (mKind == Kind.Page)
+            {
+                string pageKind = source.GetAttribute(XUK_ATTR_NAME_PAGE_KIND);
+                if (pageKind != null)
+                {
+                    string page = source.GetAttribute(XUK_ATTR_NAME_PAGE);
+                    int number = SafeParsePageNumber(page);
+                    if (pageKind == "Front")
+                    {
+                        if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
+                        mPageNumber = new PageNumber(number, PageKind.Front);
+                    }
+                    else if (pageKind == "Normal")
+                    {
+                        if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
+                        mPageNumber = new PageNumber(number);
+                    }
+                    else if (pageKind == "Special")
+                    {
+                        if (page == null || page == "") throw new Exception("Invalid empty page number.");
+                        mPageNumber = new PageNumber(page);
+                    }
+                    else
+                    {
+                        throw new Exception(string.Format("Invalid page kind \"{0}\".", pageKind));
+                    }
+                }
+            }
             if (mKind != Kind.Custom && mCustomClass != null)
             {
                 throw new Exception("Extraneous `custom' attribute.");
@@ -224,18 +252,14 @@ namespace Obi
             {
                 throw new Exception("Missing `custom' attribute.");
             }
-            else if (mKind == Kind.Page && mPageNumber == null)
-            {
-                throw new Exception("Missing `page' attribute (page number for page node.)");
-            }
             // add it to the presentation
             Presentation.AddCustomClass(mCustomClass, this);
 
-            string ToDo = source.GetAttribute(To_Do_ATTR_NAME);
+            string ToDo = source.GetAttribute(XUK_ATTR_NAME_TODO);
             if (ToDo != null)
             {
-                if (ToDo == "True") m_ToDo = true;
-                else m_ToDo = false;
+                if (ToDo == "True") mTODO = true;
+                else mTODO = false;
             }
             base.xukInAttributes(source);
         }
@@ -244,8 +268,12 @@ namespace Obi
         {
             if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
             if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
-            if (mKind == Kind.Page) wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ToString());
-            if (m_ToDo) wr.WriteAttributeString(To_Do_ATTR_NAME, "True");
+            if (mKind == Kind.Page)
+            {
+                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
+                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
+            }
+            if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
             base.xukOutAttributes(wr, baseUri);
         }
 

@@ -17,7 +17,8 @@ namespace Obi.Dialogs
         {
             mInitialNumber = number;
             mNumberOfPages = 1;
-            mNumberBox.Text = number.ToString();
+            mNumberBox.Text = number.ArabicNumberOrLabel;
+            mPageKindComboBox.SelectedIndex = number.Kind == PageKind.Front ? 0 : number.Kind == PageKind.Normal ? 1 : 2;
             mRenumber.Checked = renumber;
             mNumberOfPagesBox.Text = mNumberOfPages.ToString();
             mNumberOfPagesBox.Enabled = canSetNumberOfPages;
@@ -29,8 +30,18 @@ namespace Obi.Dialogs
         {
             get
             {
-                int number = EmptyNode.SafeParsePageNumber(mNumberBox.Text);
-                return number > 0 ? new PageNumber(number) : mInitialNumber.Clone();
+                if (mPageKindComboBox.SelectedIndex == 2)
+                {
+                    // Special page
+                    return new PageNumber(mNumberBox.Text);
+                }
+                else
+                {
+                    int number = EmptyNode.SafeParsePageNumber(mNumberBox.Text);
+                    return number > 0 ?
+                        new PageNumber(number, mPageKindComboBox.SelectedIndex == 1 ? PageKind.Normal : PageKind.Front) :
+                        mInitialNumber.Clone();
+                }
             } 
         }
 
