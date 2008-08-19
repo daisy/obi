@@ -54,6 +54,11 @@ namespace Obi.Dialogs
             }
         }
 
-        public bool Renumber { get { return mRenumber.Checked; } }
+        public bool Renumber { get { return mRenumber.Checked && mRenumber.Enabled; } }
+
+        private void mPageKindComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mRenumber.Enabled = mPageKindComboBox.SelectedIndex != 2;
+        }
     }
 }

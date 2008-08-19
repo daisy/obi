@@ -128,10 +128,20 @@ namespace Obi
             }
         }
 
-        /// <summary>
-        /// Following section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
-        /// </summary>
-        public SectionNode FollowingSection
+        public override EmptyNode LastUsedPhrase
+        {
+            get
+            {
+                int i;
+                for (i = PhraseChildCount - 1; i >= 0 && !Used && !PhraseChild(i).Used; --i) { }
+                return i >= 0 ? PhraseChild(i) : null;
+            }
+        }
+
+            /// <summary>
+            /// Following section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
+            /// </summary>
+            public SectionNode FollowingSection
         {
             get
             {
