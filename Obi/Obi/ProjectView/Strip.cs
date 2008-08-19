@@ -512,11 +512,10 @@ namespace Obi.ProjectView
         public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
         {
             mLabelUpdateThread.WaitOne();
-                                    try
+            try
             {
-                int BlocksCount = mBlockLayout.Controls.Count;
                 Control BlockControl = null;
-                for (int i = 0; i < BlocksCount; i++)
+                for (int i = 0; i < mBlockLayout.Controls.Count; i++)
                 {
                     BlockControl = mBlockLayout.Controls[i];
                     if (BlockControl is Block)

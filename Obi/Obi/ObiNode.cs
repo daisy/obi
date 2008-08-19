@@ -41,6 +41,12 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the last used phrase child of the node. If the node itself is unused, just get the last phrase.
+        /// If there is no such phrase, return null.
+        /// </summary>
+        public abstract EmptyNode LastUsedPhrase { get; }
+
+        /// <summary>
         /// Last leaf from a given node. In this case, we don't distinguish between phrase and section nodes.
         /// </summary>
         public ObiNode LastLeaf
@@ -231,11 +237,8 @@ namespace Obi
         public override ObiNode PrecedingNode { get { return null; } }
         public override ObiNode FollowingNode { get { return null; } }
 
-        public override PhraseNode FirstUsedPhrase
-        {
-            get { throw new Exception("The method or operation is not implemented."); }
-        }
-
+        public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
+        public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
         public override int SectionChildCount { get { return getChildCount(); } }
         public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }

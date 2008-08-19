@@ -92,6 +92,7 @@ namespace Obi.Dialogs
             resources.GetString("mPageKindComboBox.Items1"),
             resources.GetString("mPageKindComboBox.Items2")});
             this.mPageKindComboBox.Name = "mPageKindComboBox";
+            this.mPageKindComboBox.SelectedIndexChanged += new System.EventHandler(this.mPageKindComboBox_SelectedIndexChanged);
             // 
             // label3
             // 

@@ -524,7 +524,19 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
-        public PageNumber NextPageNumber { get { return mPresentation.PageNumberFor(mSelection.Node); } }
+        public PageNumber NextPageNumber
+        {
+            get
+            {
+                return mPresentation.PageNumberFor(mSelection.Node);
+                /*return mPresentation.PageNumberFor(
+                    mSelection is StripIndexSelection &&
+                    ((StripIndexSelection)mSelection).Index < mSelection.Node.PhraseChildCount - 1 ?
+                        mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) :
+                        mSelection.Node is SectionNode && mSelection.Node.LastUsedPhrase != null ? mSelection.Node.LastUsedPhrase :
+                        mSelection.Node);*/
+            }
+        }
 
         /// <summary>
         /// The parent form as an Obi form.
@@ -1200,9 +1212,11 @@ namespace Obi.ProjectView
                     urakawa.undo.CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
                     for (ObiNode n = SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                     {
-                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                            ((EmptyNode)n).PageNumber.Kind == number.Kind)
                         {
-                            k.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number.NextPageNumber()));
+                            number = number.NextPageNumber();
+                            k.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
                         }
                     }
                     k.append(cmd);
@@ -1236,18 +1250,22 @@ namespace Obi.ProjectView
                         index = mSelection.IndexForNewNode(node);
                     }
                     cmd.append(new Commands.Node.AddEmptyNode(this, node, parent, index + i));
-                    cmd.append(new Commands.Node.SetPageNumber(this, node, number.NextPageNumber()));
+                    cmd.append(new Commands.Node.SetPageNumber(this, node, number));
+                    number = number.NextPageNumber();
                 }
                 // Add commands to renumber the following pages; be careful that the previous blocks have not
                 // been added yet!
+                // Also be careful to only renumber pages of the same kind.
                 if (renumber)
                 {
                     ObiNode from = index < parent.getChildCount() ? (ObiNode)parent.getChild(index) : parent;
                     for (ObiNode n = from; n != null; n = n.FollowingNode)
                     {
-                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                            ((EmptyNode)n).PageNumber.Kind == number.Kind)
                         {
-                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number.NextPageNumber()));
+                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
+                            number = number.NextPageNumber();
                         }
                     }
                 }

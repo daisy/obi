@@ -201,6 +201,7 @@ namespace Obi
         public override int SectionChildCount { get { return 0; } }
         public override EmptyNode PhraseChild(int index) { throw new Exception("Emtpy nodes have no children."); }
         public override int PhraseChildCount { get { return 0; } }
+        public override EmptyNode LastUsedPhrase { get { throw new Exception("Empty nodes have no children."); } }
 
 
 
