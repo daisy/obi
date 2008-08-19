@@ -788,7 +788,7 @@ namespace Obi
         {
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
                         mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
-            PipelineMenuItemsEnabled = mSession.HasProject;
+                        PipelineMenuItemsEnabled = mSession.HasProject && mSession.PrimaryExportPath!= "" ;
         }
 
         // Open the preferences dialog
