@@ -521,6 +521,15 @@ namespace Obi.ProjectView
             }
         }
 
+        public PageNumber CurrentOrNextPageNumber
+        {
+            get
+            {
+                return mSelection.Node is EmptyNode && ((EmptyNode)mSelection.Node).NodeKind == EmptyNode.Kind.Page ?
+                    ((EmptyNode)mSelection.Node).PageNumber : NextPageNumber;
+            }
+        }
+
         /// <summary>
         /// Get the next page number for the selected block.
         /// </summary>
@@ -535,18 +544,24 @@ namespace Obi.ProjectView
                     {
                         // Page number follows the page number for the block at this 
                         int index = ((StripIndexSelection)mSelection).Index;
-                        if (index > 0 && index < node.PhraseChildCount) node = node.PhraseChild(index - 1);
+                        if (index > 0)
+                        {
+                            if (index < mSelection.Section.PhraseChildCount)
+                            {
+                                node = node.PhraseChild(index - 1);
+                            }
+                            else if (node.LastUsedPhrase != null)
+                            {
+                                node = node.LastUsedPhrase;
+                            }
+                        }
                     }
                     else if (node.LastUsedPhrase != null)
                     {
                         node = node.LastUsedPhrase;
                     }
-                    return mPresentation.PageNumberFollowing(node);
                 }
-                else
-                {
-                    return mPresentation.PageNumberFor(node);
-                }
+                return mPresentation.PageNumberFollowing(node);
             }
         }
 
