@@ -18,6 +18,7 @@ namespace Obi.ProjectView
         private Bitmap mBitmap_Highlighted;  // cached bitmap of the waveform (highlighted)
         private AudioRange mSelection;       // selection in the waveform
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
+        private bool mNeedsRendering;        // needs to render the waveform (when size, color or data changes.)
 
         // TODO we can remove this
         private static int COUNTER = 0;
@@ -35,6 +36,8 @@ namespace Obi.ProjectView
             mBitmap = null;
             mBitmap_Highlighted = null;
             mSelection = null;
+            mNeedsRendering = false;
+
             mCursor = null;
             mID = COUNTER++;
             mRendering = false;
@@ -71,7 +74,8 @@ namespace Obi.ProjectView
                     if (mAudio != null)
                     {
                         mAudio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
-                        RequestRendering(true);
+                        mNeedsRendering = true;
+                        RequestRendering();
                     }
                 }
             }
@@ -82,53 +86,57 @@ namespace Obi.ProjectView
         /// </summary>
         public BackgroundWorker Render()
         {
-            AudioBlock block = Parent as AudioBlock;
-            if (block != null && Width > 0 && Height > 0)
+            if (mNeedsRendering)
             {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.WorkerReportsProgress = false;
-                worker.WorkerSupportsCancellation = false;
-                worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                mNeedsRendering = false;
+                AudioBlock block = Parent as AudioBlock;
+                if (block != null && Width > 0 && Height > 0)
                 {
-                    if (!mRendering)
+                    BackgroundWorker worker = new BackgroundWorker();
+                    worker.WorkerReportsProgress = false;
+                    worker.WorkerSupportsCancellation = false;
+                    worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
-                        System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
-                        mRendering = true;
-                        ColorSettings settings = block.ColorSettings;
-                        mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
-                    }
-                    else
+                        if (!mRendering)
+                        {
+                            System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
+                            mRendering = true;
+                            ColorSettings settings = block.ColorSettings;
+                            mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                            if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.Print("!!! Already rendering #{0}!?!?", mID);
+                        }
+                    });
+                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
-                        System.Diagnostics.Debug.Print("!!! Already rendering #{0}!?!?", mID);
-                    }
-                });
-                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
-                {
-                    if (mRendering)
-                    {
-                        mRendering = false;
-                        Invalidate();
-                        System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
-                        block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.Print("<<< Was not rendering #{0}?!?!", mID);
-                        block.ContentView.FinishedRendering(this, false);
-                    }
-                });
-                worker.RunWorkerAsync();
-                return worker;
+                        if (mRendering)
+                        {
+                            mRendering = false;
+                            Invalidate();
+                            System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
+                            block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.Print("<<< Was not rendering #{0}?!?!", mID);
+                            block.ContentView.FinishedRendering(this, false);
+                        }
+                    });
+                    worker.RunWorkerAsync();
+                    return worker;
+                }
             }
             return null;
         }
 
-
         // Request a new rendering when audio has changed.
         private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            RequestRendering(true);
+            mNeedsRendering = true;
+            RequestRendering();
         }
 
         // Create the bitmap for the waveform given the current color settings.
@@ -258,26 +266,22 @@ namespace Obi.ProjectView
         }
 
         // Add self to the content view rendering list.
-        private void RequestRendering(bool required)
+        private void RequestRendering()
         {
-            if (required)
+            Block block = Parent as Block;
+            if (block != null)
             {
-                Block block = Parent as Block;
-                if (block != null)
-                {
-                    ClearBitmaps();
-                    block.ContentView.RenderWaveform(new WaveformWithPriority(this));
-                }
+                ClearBitmaps();
+                block.ContentView.RenderWaveform(new WaveformWithPriority(this));
             }
         }
 
-        private void RequestRendering()
-        {
-            RequestRendering(mAudio != null && (mBitmap == null || mBitmap.Size != Size));
-        }
-
         // Request a new rendering when the size has changed.
-        private void Waveform_SizeChanged(object sender, EventArgs e) { RequestRendering(); }
+        private void Waveform_SizeChanged(object sender, EventArgs e) 
+        {
+            mNeedsRendering = true;
+            RequestRendering(); 
+        }
 
 
 
