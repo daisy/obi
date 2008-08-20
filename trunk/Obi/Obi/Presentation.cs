@@ -534,6 +534,10 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Find the page number following the one for this node. If the node doesn't have a number,
+        /// find the first preceding node that has one.
+        /// </summary>
         public PageNumber PageNumberFollowing(ObiNode node)
         {
             while (node != null && !(node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page))

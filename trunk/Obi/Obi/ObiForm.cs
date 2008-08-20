@@ -554,7 +554,7 @@ namespace Obi
         {
             if (mProjectView.CanSetPageNumber)
             {
-                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.NextPageNumber, false, false);
+                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.CurrentOrNextPageNumber, false, false);
                 if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
             }
         }
