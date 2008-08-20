@@ -298,6 +298,7 @@
     </Compile>
     <Compile Include="Playlist.cs" />
     <Compile Include="Presentation.cs" />
+    <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>

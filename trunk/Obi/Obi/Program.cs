@@ -13,6 +13,7 @@ namespace Obi
         [STAThread]
         static void Main(string[] args)
         {
+            // Application.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("hi");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(args.Length == 0 ? new ObiForm() : new ObiForm(args[0]));

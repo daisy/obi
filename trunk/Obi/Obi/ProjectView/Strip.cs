@@ -544,7 +544,7 @@ namespace Obi.ProjectView
         {
             foreach (Control c in mBlockLayout.Controls)
             {
-                if (c is AudioBlock) mParentView.RenderWaveform(((AudioBlock)c).Waveform);
+                if (c is AudioBlock) mParentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform));
             }
         }
     }
