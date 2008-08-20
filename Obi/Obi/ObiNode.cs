@@ -72,6 +72,15 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get a command to renumber this node and all following nodes from this number.
+        /// </summary>
+        public virtual urakawa.undo.CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
+        {
+            ObiNode n = FollowingNode;
+            return n == null ? null : n.RenumberCommand(view, from);
+        }
+
+        /// <summary>
         /// First leaf from a given node.
         /// </summary>
         public ObiNode FirstLeaf

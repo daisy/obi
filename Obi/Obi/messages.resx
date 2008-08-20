@@ -1097,4 +1097,20 @@ Error text: {1}</value>
     <value>Output directory is not empty! Do you want to empty it?</value>
     <comment>Pipeline</comment>
   </data>
+  <data name="Front_pages" xml:space="preserve">
+    <value>front pages</value>
+  </data>
+  <data name="Normal_pages" xml:space="preserve">
+    <value>normal pages</value>
+  </data>
+  <data name="renumber_before_export" xml:space="preserve">
+    <value>This project cannot be exported because there are at least two pages numbered {0}. Do you want to renumber pages automatically and continue exporting? Otherwise export will be cancelled.</value>
+  </data>
+  <data name="renumber_before_export_caption" xml:space="preserve">
+    <value>Duplicate page numbers in project.</value>
+  </data>
+  <data name="renumber_pages" xml:space="preserve">
+    <value>renumber {0}</value>
+    <comment>Command (renumber --- pages)</comment>
+  </data>
 </root>

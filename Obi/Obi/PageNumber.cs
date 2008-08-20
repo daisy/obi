@@ -54,6 +54,11 @@ namespace Obi
         }
 
         /// <summary>
+        /// Get the actual page number.
+        /// </summary>
+        public int Number { get { return mNumber; } }
+
+        /// <summary>
         /// Get the display string for the number (i.e. arabic, roman or label.)
         /// Label is quoted.
         /// </summary>
