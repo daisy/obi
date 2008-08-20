@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -214,7 +214,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Create a new project</value>
+    <value>नए प्रोजेक्ट का निर्माण करे</value>
   </data>
   <data name="mGenerateIDButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -226,7 +226,7 @@
     <value>mTitleBox</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
-    <value>&amp;OK</value>
+    <value>ठीक</value>
   </data>
   <data name="&gt;&gt;mAutoTitleCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -247,13 +247,13 @@
     <value>37, 16</value>
   </data>
   <data name="mFileBox.AccessibleName" xml:space="preserve">
-    <value>Location:</value>
+    <value>स्थान:</value>
   </data>
   <data name="mFileBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>567, 22</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
-    <value>&amp;Cancel</value>
+    <value>रद्द</value>
   </data>
   <data name="&gt;&gt;mCancelButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -265,13 +265,13 @@
     <value>8</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>&amp;Location:</value>
+    <value>स्थान:</value>
   </data>
   <data name="&gt;&gt;mSelectButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;ID:</value>
+    <value>आई डी:</value>
   </data>
   <data name="mFileBox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -280,7 +280,7 @@
     <value>399, 190</value>
   </data>
   <data name="mAutoTitleCheckBox.Text" xml:space="preserve">
-    <value>&amp;Automatically create a title section with this title</value>
+    <value>इस शीर्षक के साथ स्वतः ही शीर्षक भाग बनाएँ</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -313,7 +313,7 @@
     <value>8</value>
   </data>
   <data name="mGenerateIDButton.Text" xml:space="preserve">
-    <value>&amp;Generate</value>
+    <value>जनरेट</value>
   </data>
   <data name="mTitleBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>675, 22</value>
@@ -337,7 +337,7 @@
     <value>6</value>
   </data>
   <data name="mSelectButton.Text" xml:space="preserve">
-    <value>&amp;Select</value>
+    <value>चयन</value>
   </data>
   <data name="&gt;&gt;mTitleBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -424,7 +424,7 @@
     <value>0</value>
   </data>
   <data name="mTitleBox.AccessibleName" xml:space="preserve">
-    <value>Title:</value>
+    <value>शीर्षक:</value>
   </data>
   <data name="&gt;&gt;mFileBox.Parent" xml:space="preserve">
     <value>$this</value>
@@ -734,7 +734,7 @@
     <value>1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>&amp;Title:</value>
+    <value>शीर्षक:</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
