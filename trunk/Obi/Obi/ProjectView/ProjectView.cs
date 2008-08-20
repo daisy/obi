@@ -528,13 +528,25 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mPresentation.PageNumberFor(mSelection.Node);
-                /*return mPresentation.PageNumberFor(
-                    mSelection is StripIndexSelection &&
-                    ((StripIndexSelection)mSelection).Index < mSelection.Node.PhraseChildCount - 1 ?
-                        mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) :
-                        mSelection.Node is SectionNode && mSelection.Node.LastUsedPhrase != null ? mSelection.Node.LastUsedPhrase :
-                        mSelection.Node);*/
+                ObiNode node = mSelection.Node;
+                if (node is SectionNode)
+                {
+                    if (mSelection is StripIndexSelection)
+                    {
+                        // Page number follows the page number for the block at this 
+                        int index = ((StripIndexSelection)mSelection).Index;
+                        if (index > 0 && index < node.PhraseChildCount) node = node.PhraseChild(index - 1);
+                    }
+                    else if (node.LastUsedPhrase != null)
+                    {
+                        node = node.LastUsedPhrase;
+                    }
+                    return mPresentation.PageNumberFollowing(node);
+                }
+                else
+                {
+                    return mPresentation.PageNumberFor(node);
+                }
             }
         }
 

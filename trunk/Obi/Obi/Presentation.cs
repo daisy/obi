@@ -534,6 +534,15 @@ namespace Obi
             }
         }
 
+        public PageNumber PageNumberFollowing(ObiNode node)
+        {
+            while (node != null && !(node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page))
+            {
+                node = node.PrecedingNode;
+            }
+            return node != null ? ((EmptyNode)node).PageNumber.NextPageNumber() : new PageNumber(1);
+        }
+
         /// <summary>
         /// Update the audio properties of the presentation, if possible. Return true on success.
         /// </summary>
