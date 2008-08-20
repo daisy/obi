@@ -266,7 +266,7 @@ namespace Obi.ProjectView
                 if (block != null)
                 {
                     ClearBitmaps();
-                    block.ContentView.RenderWaveform(this);
+                    block.ContentView.RenderWaveform(new WaveformWithPriority(this));
                 }
             }
         }

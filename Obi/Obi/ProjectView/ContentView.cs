@@ -31,6 +31,62 @@ namespace Obi.ProjectView
 
 
     /// <summary>
+    /// Waveforms with rendering priority.
+    /// </summary>
+    public class WaveformWithPriority : IComparable, ICanUpdatePriority
+    {
+        private Waveform mWaveform;  // waveform
+        public int Priority;         // 4 for rendering; 3 for selected; 2 for modified; 1 for visible; 0 otherwise.
+
+
+        public WaveformWithPriority(Waveform w, int p)
+        {
+            mWaveform = w;
+            Priority = p;
+        }
+
+        public WaveformWithPriority(Waveform w) : this(w, 0) { }
+
+
+        /// <summary>
+        /// Compare two waveforms depending on their priority. If the second object is null
+        /// then return the priority is considered has being higher.
+        /// </summary>
+        public int CompareTo(object obj)
+        {
+            WaveformWithPriority w = obj as WaveformWithPriority;
+            return w == null ? 1 : Priority.CompareTo(w.Priority);
+        }
+
+        public override string ToString() { return string.Format("{0}<{1}>", mWaveform, Priority); }
+
+        public Waveform Waveform { get { return mWaveform; } }
+
+        #region ICanUpdatePriority Members
+
+        /// <summary>
+        /// Compare the waveforms to see if it's the same object.
+        /// </summary>
+        public bool IsSameAs(object obj)
+        {
+            WaveformWithPriority w = obj as WaveformWithPriority;
+            return w != null && w.Waveform == mWaveform;
+        }
+
+        /// <summary>
+        /// Can update the priority if and only if it's not rendering (priority 4)
+        /// </summary>
+        public bool CanUpdatePriorityOf(object obj)
+        {
+            WaveformWithPriority w = obj as WaveformWithPriority;
+            return w != null && w.Priority != 4 && w.Priority != Priority;
+        }
+
+        #endregion
+    }
+
+
+    /// <summary>
     /// The content view shows the strips and blocks of the project.
     /// </summary>
     public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
@@ -42,7 +98,7 @@ namespace Obi.ProjectView
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
 
-        private Queue<Waveform> mWaveformRenderQueue;                // stack of waveforms to render
+        private PriorityQueue<WaveformWithPriority> mWaveformRenderQ;  // queue of waveforms to render
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -66,7 +122,7 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStrips = false;
-            mWaveformRenderQueue = new Queue<Waveform>();
+            mWaveformRenderQ = new PriorityQueue<WaveformWithPriority>();
         }
 
         
@@ -242,36 +298,25 @@ namespace Obi.ProjectView
         
         private BackgroundWorker mCurrentWorker = null;
 
-        private string QueueString<T>(Queue<T> q)
-        {
-            string s = "{";
-            T[] array = q.ToArray();
-            if (array.Length > 0)
-            {
-                s += array[0];
-                for (int i = 1; i < array.Length; ++i) s += ", " + array[i];
-            }
-            return s + "}";
-        }
-
         /// <summary>
         /// Add a waveform to the queue of waveforms to render.
         /// </summary>
-        public void RenderWaveform(Waveform w)
+        public void RenderWaveform(WaveformWithPriority w)
         {
-            mWaveformRenderQueue.Enqueue(w);
-            System.Diagnostics.Debug.Print("+++ {0} {1}", w, QueueString(mWaveformRenderQueue));
+            mWaveformRenderQ.Enqueue(w);
+            System.Diagnostics.Debug.Print("+++ {0} {1}", w, mWaveformRenderQ);
             // Start the rendering process if the queue was empty; otherwise, it is already running
-            if (mWaveformRenderQueue.Count == 1) RenderFirstWaveform();
+            if (mWaveformRenderQ.Count == 1) RenderFirstWaveform();
         }
 
         private void RenderFirstWaveform()
         {
-            if (mWaveformRenderQueue.Count > 0)
+            if (mWaveformRenderQ.Count > 0)
             {
-                Waveform w = mWaveformRenderQueue.Peek();
-                mCurrentWorker = w.Render();
-                System.Diagnostics.Debug.Print("~~~ {0} {1}", w, QueueString(mWaveformRenderQueue));
+                WaveformWithPriority w = mWaveformRenderQ.Peek();
+                w.Priority = 4;
+                mCurrentWorker = w.Waveform.Render();
+                System.Diagnostics.Debug.Print("~~~ {0} {1}", w, mWaveformRenderQ);
                 mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
             }
         }
@@ -279,13 +324,13 @@ namespace Obi.ProjectView
         private void ClearWaveformRenderQueue()
         {
             // Let the current waveform finish?!
-            Waveform w = mCurrentWorker != null && mWaveformRenderQueue.Count > 0 ? mWaveformRenderQueue.Dequeue() : null;
-            System.Diagnostics.Debug.Print("--- Clearing all {0}", QueueString(mWaveformRenderQueue));
-            mWaveformRenderQueue.Clear();
+            WaveformWithPriority w = mCurrentWorker != null && mWaveformRenderQ.Count > 0 ? mWaveformRenderQ.Dequeue() : null;
+            System.Diagnostics.Debug.Print("--- Clearing all {0}", mWaveformRenderQ);
+            mWaveformRenderQ.Clear();
             if (w != null)
             {
                 System.Diagnostics.Debug.Print("*** Enqueuing back {0}", w);
-                mWaveformRenderQueue.Enqueue(w);
+                mWaveformRenderQ.Enqueue(w);
             }
         }
 
@@ -294,18 +339,18 @@ namespace Obi.ProjectView
             mCurrentWorker = null;
             if (renderedOK)
             {
-                System.Diagnostics.Debug.Print("=== Finished rendering {0} {1}", w, QueueString(mWaveformRenderQueue));
+                System.Diagnostics.Debug.Print("=== Finished rendering {0} {1}", w, mWaveformRenderQ);
             }
             else
             {
-                System.Diagnostics.Debug.Print("??? Something wrong with {0} {1}", w, QueueString(mWaveformRenderQueue));
+                System.Diagnostics.Debug.Print("??? Something wrong with {0} {1}", w, mWaveformRenderQ);
             }
-            if (mWaveformRenderQueue.Count > 0)
+            if (mWaveformRenderQ.Count > 0)
             {
-                Waveform w_ = mWaveformRenderQueue.Dequeue();
-                System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w_, QueueString(mWaveformRenderQueue));
+                WaveformWithPriority w_ = mWaveformRenderQ.Dequeue();
+                System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w_, mWaveformRenderQ);
             }
-            if (mWaveformRenderQueue.Count == 0) mView.ObiForm.Ready();
+            if (mWaveformRenderQ.Count == 0) mView.ObiForm.Ready();
             RenderFirstWaveform();
         }
 
