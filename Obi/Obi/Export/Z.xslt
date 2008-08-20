@@ -102,11 +102,11 @@
               <ncx:meta name="dtb:depth" content="{count(ancestor-or-self::obi:section)}"/>
             </xsl:if>
           </xsl:for-each>
-          <ncx:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
+          <ncx:meta name="dtb:generator" content="{//xuk:Metadata[@name='generator']/@content}"/>
           <ncx:meta name="dtb:totalPageCount" content="{count(//obi:phrase[@kind='Page'])}"/>
           <xsl:choose>
-            <xsl:when test="//obi:phrase[@kind='Page']">
-              <xsl:for-each select="//obi:phrase[@kind='Page']">
+            <xsl:when test="//obi:phrase[@kind='Page'][not(@pageKind='Special')]">
+              <xsl:for-each select="//obi:phrase[@kind='Page'][not(@pageKind='Special')]">
                 <xsl:sort order="descending" select="@page"/>
                 <xsl:if test="position()=1">
                   <ncx:meta name="dtb:maxPageNumber" content="{@page}"/>
@@ -137,7 +137,7 @@
         <smil:smil>
           <smil:head>
             <smil:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
-            <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='dtb:generator']/@content}"/>
+            <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='generator']/@content}"/>
             <smil:meta name="dtb:totalElapsedTime" content="{ext:TotalElapsedTime(position()-1)}ms"/>
             <!-- Keep track of which section this SMIL file is for -->
             <smil:meta name="obi:section" content="{.//xuk:mChannelMapping[@channel=$text-channel]/xuk:TextMedia/xuk:mText}"/>
@@ -187,12 +187,17 @@
 
   <!-- Page target -->
   <xsl:template match="obi:phrase[@kind='Page']">
-    <ncx:pageTarget value="{@page}" type="normal" id="{generate-id()}" 
+    <ncx:pageTarget type="{translate(@pageKind,'FNS','fns')}" id="{generate-id()}" 
       playOrder="{1+count(preceding::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)]|
                           ancestor::obi:phrase[@kind='Page' or not(preceding-sibling::obi:phrase)])}">
+      <xsl:if test="not(@pageKind='Special')">
+        <xsl:attribute name="value">
+          <xsl:value-of select="@page"/>
+        </xsl:attribute>
+      </xsl:if>
       <ncx:navLabel>
         <ncx:text>
-          <xsl:value-of select="@page"/>
+          <xsl:value-of select="@pageText"/>
         </ncx:text>
         <xsl:variable name="p" select=".//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
         <ncx:audio src="{ext:RelativePathForUri($p/@src)}" clipBegin="{$p/@clipBegin}" clipEnd="{$p/@clipEnd}"/>

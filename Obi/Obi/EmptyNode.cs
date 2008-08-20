@@ -20,6 +20,7 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";       // name of the custom attribute
         private static readonly string XUK_ATTR_NAME_PAGE = "page";           // name of the page attribute
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
+        private static readonly string XUK_ATTR_NAME_PAGE_TEXT = "pageText";  // name of the pageText attribute
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
 
         /// <summary>
@@ -273,6 +274,7 @@ namespace Obi
             {
                 wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
                 wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
+                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
             }
             if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
             base.xukOutAttributes(wr, baseUri);

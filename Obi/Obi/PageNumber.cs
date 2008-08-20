@@ -64,6 +64,19 @@ namespace Obi
                 string.Format("\"{0}\"", mLabel);
         }
 
+        /// <summary>
+        /// Unquoted text version of the page number (for DAISY export.)
+        /// </summary>
+        public string Unquoted
+        {
+            get
+            {
+                return mKind == PageKind.Front ? ToRoman(mNumber) :
+                    mKind == PageKind.Normal ? mNumber.ToString() :
+                    mLabel;
+            }
+        }
+
         // Convert a number to roman numerals (lowercase)
         private static string ToRoman(int n)
         {
