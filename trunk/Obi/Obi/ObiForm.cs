@@ -24,6 +24,8 @@ namespace Obi
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
 
+        private static readonly string DEFAULT_EXPORT_DIRNAME = "DAISY3 Export";  // defaul export directory name
+
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -844,33 +846,84 @@ namespace Obi
         // Export the project as DAISY 3.
         private void ExportProject()
         {
-            //FolderBrowserDialog dialog = new FolderBrowserDialog();
-            //dialog.Description = Localizer.Message("export_choose_folder");
-            //dialog.SelectedPath = mSettings.DefaultExportPath;
-            Dialogs.SelectDirectoryPath SelectDirectoryDialog = new SelectDirectoryPath(Directory.GetParent(mSession.Path).FullName + "\\DAISY3 Export");
-            if (SelectDirectoryDialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(SelectDirectoryDialog.DirectoryPath))
-            //if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.SelectedPath))
+            if (CheckPageNumbers())
             {
-                try
+                Dialogs.SelectDirectoryPath dialog =
+                    new SelectDirectoryPath(Path.Combine(Directory.GetParent(mSession.Path).FullName, DEFAULT_EXPORT_DIRNAME));
+                if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.DirectoryPath))
                 {
-                    // Need the trailing slash, otherwise exported data ends up in a folder one level
-                    // higher than our selection.
-                    string exportPath = SelectDirectoryDialog.DirectoryPath;
-                    if (!exportPath.EndsWith("/")) exportPath += "/";
-                    mSession.PrimaryExportPath = exportPath;
-                    mSession.Presentation.ExportToZ(exportPath, mSession.Path);
-                    MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), SelectDirectoryDialog.DirectoryPath),
-                       Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), SelectDirectoryDialog.DirectoryPath, e.Message),
-                        Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    try
+                    {
+                        // Need the trailing slash, otherwise exported data ends up in a folder one level
+                        // higher than our selection.
+                        string exportPath = dialog.DirectoryPath;
+                        if (!exportPath.EndsWith("/")) exportPath += "/";
+                        mSession.PrimaryExportPath = exportPath;
+                        mSession.Presentation.ExportToZ(exportPath, mSession.Path);
+                        MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.DirectoryPath),
+                           Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("didnt_save_as_daisy_text"), dialog.DirectoryPath, e.Message),
+                            Localizer.Message("didnt_save_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             Ready();
         }
 
+        // Check that page numbers are valid before exporting and return true if they are.
+        // If they're not, the user is presented with the possibility to cancel export (return false)
+        // or automatically renumber, in which case we also return true.
+        // Only normal and front pages are considered, and we skip empty blocks since they're not exported.
+        private bool CheckPageNumbers()
+        {
+            return CheckPageNumbers(PageKind.Front) && CheckPageNumbers(PageKind.Normal);
+        }
+
+        /// <summary>
+        /// Check page numbers of a given kind and give the option to renumber from the first duplicate value if
+        /// a duplicate is found.
+        /// </summary>
+        private bool CheckPageNumbers(PageKind kind)
+        {
+            Dictionary<int, PhraseNode> pages = new Dictionary<int, PhraseNode>();
+            PhraseNode renumberFrom = null;
+            PageNumber renumberNumber = null;
+            mSession.Presentation.RootNode.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
+                {
+                    PhraseNode phrase = n as PhraseNode;
+                    if (phrase != null && phrase.NodeKind == EmptyNode.Kind.Page && phrase.PageNumber.Kind == kind)
+                    {
+                        if (pages.ContainsKey(phrase.PageNumber.Number))
+                        {
+                            if (renumberFrom == null)
+                            {
+                                renumberFrom = phrase;
+                                renumberNumber = phrase.PageNumber.NextPageNumber();
+                                while (pages.ContainsKey(renumberNumber.Number)) renumberNumber = renumberNumber.NextPageNumber();
+                            }
+                        }
+                        else
+                        {
+                            pages.Add(phrase.PageNumber.Number, phrase);
+                        }
+                    }
+                    return true;
+                },
+                delegate(urakawa.core.TreeNode n) { });
+            if (renumberFrom != null)
+            {
+                // There are duplicates, so ask if we should renumber and continue, or stop here.
+                if (MessageBox.Show(string.Format(Localizer.Message("renumber_before_export"), renumberFrom.PageNumber.ToString()),
+                    Localizer.Message("renumber_before_export_caption"),
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel) return false;
+                mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
+            }
+            return true;
+        }
 
         #endregion
 

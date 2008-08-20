@@ -175,6 +175,29 @@ namespace Obi
         }
 
         /// <summary>
+        /// Renumber this node and all following pages of the same kind starting from this number.
+        /// </summary>
+        public override urakawa.undo.CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
+        {
+            if (mKind == Kind.Page && mPageNumber.Kind == from.Kind)
+            {
+                urakawa.undo.CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
+                if (k == null)
+                {
+                    k = getPresentation().getCommandFactory().createCompositeCommand();
+                    k.setShortDescription(string.Format(Localizer.Message("renumber_pages"),
+                        Localizer.Message(string.Format("{0}_pages", from.Kind.ToString()))));
+                }
+                k.append(new Commands.Node.SetPageNumber(view, this, from));
+                return k;
+            }
+            else
+            {
+                return base.RenumberCommand(view, from);
+            }
+        }
+
+        /// <summary>
         /// Set the kind or custom class of the node.
         /// </summary>
         public void SetKind(Kind kind, string customClass)
