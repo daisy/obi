@@ -306,19 +306,28 @@ namespace Obi.ProjectView
             mWaveformRenderQ.Enqueue(w);
             System.Diagnostics.Debug.Print("+++ {0} {1}", w, mWaveformRenderQ);
             // Start the rendering process if the queue was empty; otherwise, it is already running
-            if (mWaveformRenderQ.Count == 1) RenderFirstWaveform();
+            if (mWaveformRenderQ.Count == 1 && mCurrentWorker == null) RenderFirstWaveform();
         }
 
         private void RenderFirstWaveform()
         {
-            if (mWaveformRenderQ.Count > 0)
+            while (mCurrentWorker == null && mWaveformRenderQ.Count > 0)
             {
                 WaveformWithPriority w = mWaveformRenderQ.Peek();
                 w.Priority = 4;
                 mCurrentWorker = w.Waveform.Render();
-                System.Diagnostics.Debug.Print("~~~ {0} {1}", w, mWaveformRenderQ);
-                mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+                if (mCurrentWorker != null)
+                {
+                    System.Diagnostics.Debug.Print("~~~ {0} {1}", w, mWaveformRenderQ);
+                    mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+                }
+                else
+                {
+                    WaveformWithPriority w_ = mWaveformRenderQ.Dequeue();
+                    System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w_, mWaveformRenderQ);
+                }
             }
+            if (mWaveformRenderQ.Count == 0) mView.ObiForm.Ready();
         }
 
         private void ClearWaveformRenderQueue()
