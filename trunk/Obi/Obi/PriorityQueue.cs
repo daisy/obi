@@ -4,13 +4,7 @@ using System.Text;
 
 namespace Obi
 {
-    public interface ICanUpdatePriority
-    {
-        bool IsSameAs(object obj);             // two items with priority correspond to the same item
-        bool CanUpdatePriorityOf(object obj);  // this item can replace a similar item with a different priority
-    }
-
-    public class PriorityQueue<T> where T: IComparable, ICanUpdatePriority
+    public class PriorityQueue<T> where T: IComparable
     {
         private List<T> mItems;  // items in the queue, organized in a binary heap.
 
@@ -63,30 +57,8 @@ namespace Obi
         /// </summary>
         public void Enqueue(T item)
         {
-            // Look for a replaceable instance of the item
-            int i;
-            for (i = 0; i < mItems.Count && !item.IsSameAs(mItems[i]); ++i) { }
-            if (i < mItems.Count)
-            {
-                if (item.CanUpdatePriorityOf(mItems[i]))
-                {
-                    mItems[i] = item;
-                    if (CanBubbleUp(i))
-                    {
-                        BubbleUp(i);
-                    }
-                    else
-                    {
-                        BubbleDown(i);
-                    }
-                }
-            }
-            else
-            {
-                // Add the new item at the bottom of the heap and bubble it up.
-                mItems.Add(item);
-                BubbleUp(mItems.Count - 1);
-            }
+            mItems.Add(item);
+            BubbleUp(mItems.Count - 1);
         }
 
         /// <summary>
@@ -167,12 +139,6 @@ namespace Obi
             {
                 SwapItems(i, p);
             }
-        }
-
-        private bool CanBubbleUp(int i)
-        {
-            int p = (i - 1) / 2;
-            return p > 0 && mItems[i].CompareTo(mItems[p]) > 0;
         }
 
         // Swap the two items at indices i and j.
