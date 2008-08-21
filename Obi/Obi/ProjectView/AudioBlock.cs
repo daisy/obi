@@ -10,7 +10,7 @@ namespace Obi.ProjectView
 {
     public partial class AudioBlock : Block
     {
-        private bool mShift;                                // track the shift key
+        private bool mShiftKeyPressed;  // track the shift key
 
 
         /// <summary>
@@ -20,18 +20,47 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             InitializeComponent();
-            SetWaveform((PhraseNode)Node);
-            // TODO replace this with the toolkit event
+            SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
-            mShift = false;
+            mShiftKeyPressed = false;
         }
 
 
+        /// <summary>
+        /// Set cursor time during playback to show the current position.
+        /// </summary>
         public void SetCursorTime(double time)
         {
             mWaveform.CursorTime = time;
             Strip.SelectTimeInBlock(this, mWaveform.Selection);
         }
+
+
+        // Audio of the block has changed: update the label and the width to accomodate the new audio.
+        private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
+        {
+            SetWaveform(e.Node);
+            UpdateLabel();
+        }
+
+        // Set the waveform from the audio on a phrase node.
+        // Resize the block to fit both the whole waveform and its label.
+        private void SetWaveform(PhraseNode node)
+        {
+            if (node != null)
+            {
+                mWaveform.BackColor = BackColor;
+                mWaveform.AccessibleName = AccessibleName;
+                int w = WaveformDefaultWidth;
+                mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
+                mWaveform.Size = new Size(w < mLabel.Width ? mLabel.Width : w, Height - mLabel.Height - mLabel.Margin.Bottom);
+                mWaveform.Media = node.Audio.getMediaData();
+                Size = new Size(WaveformFullWidth, Height);
+            }
+        }
+
+
+
 
         public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
 
@@ -82,21 +111,6 @@ namespace Obi.ProjectView
         }
 
 
-        // Set the waveform from the audio on a phrase node.
-        // Resize the block to fit both the whole waveform and its label.
-        private void SetWaveform(PhraseNode node)
-        {
-            if (node != null)
-            {
-                mWaveform.BackColor = BackColor;
-                mWaveform.AccessibleName = AccessibleName;
-                int w = WaveformDefaultWidth;
-                mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
-                mWaveform.Size = new Size(w < mLabel.Width ? mLabel.Width : w, Height - mLabel.Height - mLabel.Margin.Bottom);
-                mWaveform.Media = node.Audio.getMediaData();
-                Size = new Size(WaveformFullWidth, Height);
-            }
-        }
 
         public float AudioScale
         {
@@ -143,12 +157,6 @@ namespace Obi.ProjectView
             }
         }
 
-        // Update the waveform when the audio of the phrase node has changed.
-        private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
-        {
-            UpdateLabel();
-        }
-
 
         // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
@@ -157,8 +165,8 @@ namespace Obi.ProjectView
         }
 
         // Track down the shift key for selection
-        private void mWaveform_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShift = true; }
-        private void mWaveform_KeyUp(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShift = false; }
+        private void mWaveform_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShiftKeyPressed = true; }
+        private void mWaveform_KeyUp(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.ShiftKey) mShiftKeyPressed = false; }
 
         // Double clicking on the waveform selects all.
         private void mWaveform_DoubleClick(object sender, EventArgs e)
@@ -175,7 +183,7 @@ namespace Obi.ProjectView
         {
             if (e.Button == MouseButtons.Left && CanSelectInWaveform)
             {
-                if (mShift && mWaveform.Selection != null)
+                if (mShiftKeyPressed && mWaveform.Selection != null)
                 {
                     int begin = mWaveform.SelectionPointPosition;
                     if (begin < e.X)
