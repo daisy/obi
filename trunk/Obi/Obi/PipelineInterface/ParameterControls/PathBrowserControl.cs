@@ -111,36 +111,39 @@ namespace Obi.PipelineInterface.ParameterControls
 
         public override void UpdateScriptParameterValue()
             	{
-                    m_SelectedPath = textBox1.Text;
-		 if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output )
-                      {
-                          try
-                          {
-                              if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
-                              else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text).Close();
-                                                        }
-                          catch (System.Exception ex)
-                          {
-                              MessageBox.Show(ex.ToString());
-                              return;
-                          }
-         }
-            // update    parameter
-            try
-                {
-                    m_PathData.Value = textBox1.Text;
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-        
+                    if ((textBox1.Text != null && textBox1.Text != "")
+                        ||   m_Parameter.IsParameterRequired)
+                    {
+                        m_SelectedPath = textBox1.Text;
+                        if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
+                        {
+                            try
+                            {
+                                if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
+                                else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text).Close();
+                            }
+                            catch (System.Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                                return;
+                            }
+                        }
+                        // update    parameter
+                        try
+                        {
+                            m_PathData.Value = textBox1.Text;
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    } // null value check ends
             	}
         
  
         private bool  CheckForOutputDirectory()
         {
-                                        if (Directory.Exists(textBox1.Text) &&
+                                        if ( Directory.Exists(textBox1.Text) &&
                             (textBox1.Text == m_ProjectDirectory || textBox1.Text == Directory.GetParent(m_SelectedPath ).FullName))
             {
                 MessageBox.Show(Localizer.Message("Choose_OtherDirectory"), Localizer.Message("Caption_Error"));
