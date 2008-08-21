@@ -308,13 +308,8 @@ namespace Obi
         /// </summary>
         public static int SafeParsePageNumber(string str)
         {
-            int page = 0;
-            try
-            {
-                page = Int32.Parse(str);
-            }
-            catch (Exception) { }
-            return page;
+            int page;
+            return Int32.TryParse(str, out page) ? page : 0;
         }
     }
 
