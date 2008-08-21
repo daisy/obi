@@ -351,7 +351,7 @@
     <comment>Metadata</comment>
   </data>
   <data name="help_file_name" xml:space="preserve">
-    <value>सहायता_en.html</value>
+    <value>help_hi.html</value>
     <comment>Path to file</comment>
   </data>
   <data name="error_metadata_name_caption" xml:space="preserve">
@@ -631,7 +631,7 @@
     <comment>Metadata</comment>
   </data>
   <data name="about_file_name" xml:space="preserve">
-    <value>en.html के बारे में</value>
+    <value>about_hi.html</value>
     <comment>Location of the HTML document for the "About" dialog</comment>
   </data>
   <data name="add_blank_pages" xml:space="preserve">
