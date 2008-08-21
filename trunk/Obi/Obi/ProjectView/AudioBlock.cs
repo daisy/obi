@@ -50,8 +50,13 @@ namespace Obi.ProjectView
             {
                 if (!value) mWaveform.Deselect();
                 base.Highlighted = value && mWaveform.Selection == null;
-                if (base.Highlighted) ContentView.RenderWaveform(new WaveformWithPriority(mWaveform, 3));
+                if (base.Highlighted) PrioritizeRendering(WaveformWithPriority.BLOCK_SELECTED_PRIORITY);
             }
+        }
+
+        public void PrioritizeRendering(int priority)
+        {
+            ContentView.RenderWaveform(new WaveformWithPriority(mWaveform, priority));
         }
 
         /// <summary>

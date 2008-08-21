@@ -36,7 +36,11 @@ namespace Obi.ProjectView
     public class WaveformWithPriority : IComparable
     {
         private Waveform mWaveform;  // waveform
-        public int Priority;         // 4 for rendering; 3 for selected; 2 for modified; 1 for visible; 0 otherwise.
+        public int Priority;         // see priorities below
+
+        public static readonly int BLOCK_SELECTED_PRIORITY = 3;
+        public static readonly int STRIP_SELECTED_PRIORITY = 2;
+        public static readonly int NORMAL_PRIORITY = 1;
 
 
         public WaveformWithPriority(Waveform w, int p)
@@ -44,8 +48,6 @@ namespace Obi.ProjectView
             mWaveform = w;
             Priority = p;
         }
-
-        public WaveformWithPriority(Waveform w) : this(w, 0) { }
 
 
         /// <summary>
@@ -77,6 +79,7 @@ namespace Obi.ProjectView
         private bool mIsEnteringView;                                // flag set when entering the  view
 
         private PriorityQueue<WaveformWithPriority> mWaveformRenderQ;  // queue of waveforms to render
+        private BackgroundWorker mWaveformRenderWorker;                // current waveform rendering worker
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -101,6 +104,7 @@ namespace Obi.ProjectView
             mIsEnteringView = false;
             mWrapStrips = false;
             mWaveformRenderQ = new PriorityQueue<WaveformWithPriority>();
+            mWaveformRenderWorker = null;
         }
 
         
@@ -273,9 +277,6 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
 
-        
-        private BackgroundWorker mCurrentWorker = null;
-
         /// <summary>
         /// Add a waveform to the queue of waveforms to render.
         /// </summary>
@@ -289,12 +290,12 @@ namespace Obi.ProjectView
         // Render the first waveform from the queue if no other rendering is in progress.
         private void RenderFirstWaveform()
         {
-            while (mCurrentWorker == null && mWaveformRenderQ.Count > 0)
+            while (mWaveformRenderWorker == null && mWaveformRenderQ.Count > 0)
             {
                 WaveformWithPriority w = mWaveformRenderQ.Dequeue();
                 System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w, mWaveformRenderQ);
-                mCurrentWorker = w.Waveform.Render();
-                if (mCurrentWorker != null)
+                mWaveformRenderWorker = w.Waveform.Render();
+                if (mWaveformRenderWorker != null)
                 {
                     System.Diagnostics.Debug.Print("~~~ {0} {1}", w, mWaveformRenderQ);
                     mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
@@ -311,7 +312,7 @@ namespace Obi.ProjectView
 
         public void FinishedRendering(Waveform w, bool renderedOK)
         {
-            mCurrentWorker = null;
+            mWaveformRenderWorker = null;
             if (renderedOK)
             {
                 System.Diagnostics.Debug.Print("=== Finished rendering {0} {1}", w, mWaveformRenderQ);
@@ -737,7 +738,7 @@ namespace Obi.ProjectView
         private void UpdateWaveforms()
         {
             ClearWaveformRenderQueue();
-            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms();
+            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms(WaveformWithPriority.NORMAL_PRIORITY);
         }
 
         #region IControlWithRenamableSelection Members

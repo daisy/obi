@@ -11,11 +11,12 @@ namespace Obi.ProjectView
 {
     public partial class Strip : UserControl, ISearchable, ISelectableInContentViewWithColors
     {
+        private float mAudioScale;           // local audio scale for the strip
         private int mBlockLayoutBaseHeight;  // base height of the block layout (for zooming)
+        private bool mHighlighted;           // highlighted flag (when the section node is selected)
         private Mutex mLabelUpdateThread;    // thread to update labels
         private SectionNode mNode;           // the section node for this strip
         private ContentView mParentView;     // parent strip view
-        private bool mHighlighted;           // highlighted flag (when the section node is selected)
         private bool mWrap;                  // wrap contents
 
 
@@ -44,13 +45,14 @@ namespace Obi.ProjectView
             Label = mNode.Label;
             mParentView = parent;
             ZoomFactor = mParentView.ZoomFactor;
+            AudioScale = mParentView.AudioScale;
             UpdateColors();
             SetAccessibleName();
         }
 
 
         /// <summary>
-        /// Add a new block for a phrase node.
+        /// Add a new block for an empty node. Return the block once added.
         /// </summary>
         public Block AddBlockForNode(EmptyNode node)
         {
@@ -63,9 +65,23 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Return the block after the selected block or strip. In the case of a strip it is the first block.
-        /// Return null if this is the last block, there are no blocks, or nothing was selected in the first place.
-        /// This is used for arrow navigation.
+        /// Set the audio scale for the strip (may differ from the parent's.)
+        /// </summary>
+        public float AudioScale
+        {
+            get { return mAudioScale; }
+            set
+            {
+                mAudioScale = value;
+                foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+                ResizeToBlocksLength(mBlockLayout.Height);
+            }
+        }
+
+        /// <summary>
+        /// Return the block after the selection. In the case of a strip it is the first block.
+        /// Return null if this goes past the last block, there are no blocks, or nothing was selected
+        /// in the first place.
         /// </summary>
         public Block BlockAfter(ISelectableInContentView item)
         {
@@ -77,20 +93,9 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Index in the strip after the current item.
-        /// </summary>
-        public int StripIndexAfter(ISelectableInContentView item)
-        {
-            int count = mBlockLayout.Controls.Count;
-            int index = item is Strip ?
-                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
-                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
-            return index <= count ? index : count;
-        }
-
-        /// <summary>
-        /// Return the block before the selected block or strip. In the case of a strip this is the last block.
-        /// Return null if this the first block, there are no blocks, or nothing was selected in the first place.
+        /// Return the block before the selection. In the case of a strip this is the last block.
+        /// Return null if this is before the first block, there are no blocks, or nothing was selected
+        /// in the first place.
         /// </summary>
         public Block BlockBefore(ISelectableInContentView item)
         {
@@ -99,18 +104,6 @@ namespace Obi.ProjectView
                     mBlockLayout.Controls.Count - 1 :
                 item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : 0;
             return index >= 0 ? (Block)mBlockLayout.Controls[index] : null;
-        }
-
-        /// <summary>
-        /// Index in the strip before the current item.
-        /// </summary>
-        public int StripIndexBefore(ISelectableInContentView item)
-        {
-            int index = item is Strip ?
-                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
-                    mBlockLayout.Controls.Count :
-                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) : 0;
-            return index >= 0 ? index : 0;
         }
 
         /// <summary>
@@ -125,7 +118,6 @@ namespace Obi.ProjectView
         {
             foreach (Control c in mBlockLayout.Controls)
             {
-                // this needs to be updated for container blocks
                 if (c is Block && ((Block)c).Node == node) return (Block)c;
             }
             return null;
@@ -156,8 +148,40 @@ namespace Obi.ProjectView
                 if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
                 UpdateColors();
                 mBlockLayout.Invalidate();
+                if (mHighlighted) UpdateWaveforms(WaveformWithPriority.STRIP_SELECTED_PRIORITY);
             }
         }
+
+        /// <summary>
+        /// Index in the strip after the selected item.
+        /// </summary>
+        public int StripIndexAfter(ISelectableInContentView item)
+        {
+            int count = mBlockLayout.Controls.Count;
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
+            return index <= count ? index : count;
+        }
+
+        /// <summary>
+        /// Index in the strip before the selected item.
+        /// </summary>
+        public int StripIndexBefore(ISelectableInContentView item)
+        {
+            int index = item is Strip ?
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
+                    mBlockLayout.Controls.Count :
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) : 0;
+            return index >= 0 ? index : 0;
+        }
+
+
+
+
+
+
+
 
         /// <summary>
         /// The label of the strip where the title of the section can be edited.
@@ -347,16 +371,6 @@ namespace Obi.ProjectView
             }
         }
 
-        public float AudioScale
-        {
-            get { return mParentView == null ? 0.01f : mParentView.AudioScale; }
-            set
-            {
-                foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
-                ResizeToBlocksLength(mBlockLayout.Height);
-            }
-        }
-
         public float ZoomFactor
         {
             set
@@ -540,11 +554,14 @@ namespace Obi.ProjectView
             }
         }
 
-        public void UpdateWaveforms()
+        public void UpdateWaveforms(int priority)
         {
             foreach (Control c in mBlockLayout.Controls)
             {
-                if (c is AudioBlock) mParentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform));
+                if (c is AudioBlock)
+                {
+                    mParentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform, priority));
+                }
             }
         }
     }
