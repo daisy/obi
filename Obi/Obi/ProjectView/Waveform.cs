@@ -16,14 +16,13 @@ namespace Obi.ProjectView
         private AudioMediaData mAudio;       // audio data to draw
         private Bitmap mBitmap;              // cached bitmap of the waveform
         private Bitmap mBitmap_Highlighted;  // cached bitmap of the waveform (highlighted)
-        private AudioRange mSelection;       // selection in the waveform
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
         private bool mNeedsRendering;        // needs to render the waveform (when size, color or data changes.)
+        private AudioRange mSelection;       // selection in the waveform
 
-        // TODO we can remove this
+        // These are used for debugging messages
         private static int COUNTER = 0;
         private int mID;
-        private bool mRendering;
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -40,22 +39,9 @@ namespace Obi.ProjectView
 
             mCursor = null;
             mID = COUNTER++;
-            mRendering = false;
         }
 
 
-        public int ID { get { return mID; } }
-        public override string ToString() { return "w" + mID; }
-
-        /// <summary>
-        /// Clear bitmaps when redrawing.
-        /// </summary>
-        private void ClearBitmaps()
-        {
-            mBitmap = null;
-            mBitmap_Highlighted = null;
-            Invalidate();
-        }
 
         /// <summary>
         /// Set the audio data to be displayed.
@@ -74,12 +60,16 @@ namespace Obi.ProjectView
                     if (mAudio != null)
                     {
                         mAudio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
-                        mNeedsRendering = true;
                         RequestRendering();
                     }
                 }
             }
         }
+
+        /// <summary>
+        /// String version showing the id for debugging purposes.
+        /// </summary>
+        public override string ToString() { return "w" + mID; }
 
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
@@ -97,33 +87,16 @@ namespace Obi.ProjectView
                     worker.WorkerSupportsCancellation = false;
                     worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
-                        if (!mRendering)
-                        {
-                            System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
-                            mRendering = true;
-                            ColorSettings settings = block.ColorSettings;
-                            mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                            if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
-                        }
-                        else
-                        {
-                            System.Diagnostics.Debug.Print("!!! Already rendering #{0}!?!?", mID);
-                        }
+                        System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
+                        ColorSettings settings = block.ColorSettings;
+                        mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
+                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
                     });
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
-                        if (mRendering)
-                        {
-                            mRendering = false;
-                            Invalidate();
-                            System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
-                            block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
-                        }
-                        else
-                        {
-                            System.Diagnostics.Debug.Print("<<< Was not rendering #{0}?!?!", mID);
-                            block.ContentView.FinishedRendering(this, false);
-                        }
+                        Invalidate();
+                        System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
+                        block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
                     });
                     worker.RunWorkerAsync();
                     return worker;
@@ -132,11 +105,17 @@ namespace Obi.ProjectView
             return null;
         }
 
+
         // Request a new rendering when audio has changed.
-        private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
+        private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { RequestRendering(); }
+
+        // Clear bitmaps before redrawing.
+        private void ClearBitmaps()
         {
-            mNeedsRendering = true;
-            RequestRendering();
+            mBitmap = null;
+            mBitmap_Highlighted = null;
+            // Invalidate to immediately show the empty bitmaps
+            Invalidate();
         }
 
         // Create the bitmap for the waveform given the current color settings.
@@ -271,17 +250,14 @@ namespace Obi.ProjectView
             Block block = Parent as Block;
             if (block != null)
             {
+                mNeedsRendering = true;
                 ClearBitmaps();
-                block.ContentView.RenderWaveform(new WaveformWithPriority(this));
+                block.ContentView.RenderWaveform(new WaveformWithPriority(this, WaveformWithPriority.NORMAL_PRIORITY));
             }
         }
 
         // Request a new rendering when the size has changed.
-        private void Waveform_SizeChanged(object sender, EventArgs e) 
-        {
-            mNeedsRendering = true;
-            RequestRendering(); 
-        }
+        private void Waveform_SizeChanged(object sender, EventArgs e) { RequestRendering(); }
 
 
 

@@ -35,7 +35,6 @@ namespace Obi.ProjectView
             return index;
         }
 
-
         protected override void OnPaint(PaintEventArgs pe)
         {
             // Calling the base class OnPaint
