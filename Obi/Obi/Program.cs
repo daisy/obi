@@ -14,8 +14,8 @@ namespace Obi
         static void Main(string[] args)
         {
             // Hardcoded language switch
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("hi-IN");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hi-IN");
+            // System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("hi-IN");
+            // System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hi-IN");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(args.Length == 0 ? new ObiForm() : new ObiForm(args[0]));
