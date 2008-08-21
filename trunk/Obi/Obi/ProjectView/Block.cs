@@ -108,11 +108,25 @@ namespace Obi.ProjectView
             if (mNode != null && settings != null)
             {
                 BackColor =
-                    mHighlighted ? settings.BlockSelectedBackColor :
-                    mNode.Used ? settings.BlockBackColor : settings.BlockUnusedBackColor;
+                    mHighlighted ? settings.BlockBackColor_Selected :
+                    mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockBackColor_Silence :
+                    !mNode.Used ? settings.BlockBackColor_Unused :
+                    mNode.IsTo_Do ? settings.BlockBackColor_TODO :
+                    mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockBackColor_Custom :
+                    mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockBackColor_Heading :
+                    mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockBackColor_Page :
+                    !(mNode is PhraseNode) ? settings.BlockBackColor_Empty :
+                        settings.BlockBackColor_Plain;
                 ForeColor =
-                    mHighlighted ? settings.BlockSelectedForeColor :
-                    mNode.Used ? settings.BlockForeColor : settings.BlockUnusedForeColor;
+                    mHighlighted ? settings.BlockForeColor_Selected :
+                    mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockForeColor_Silence :
+                    !mNode.Used ? settings.BlockForeColor_Unused :
+                    mNode.IsTo_Do ? settings.BlockForeColor_TODO :
+                    mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockForeColor_Custom :
+                    mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockForeColor_Heading :
+                    mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockForeColor_Page :
+                    !(mNode is PhraseNode) ? settings.BlockForeColor_Empty :
+                        settings.BlockForeColor_Plain;
             }
         }
 
