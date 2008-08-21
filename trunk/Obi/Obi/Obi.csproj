@@ -163,6 +163,12 @@
     <Compile Include="Dialogs\ProjectStatistics.Designer.cs">
       <DependentUpon>ProjectStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SaveProjectAsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SaveProjectAsDialog.Designer.cs">
+      <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SectionProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -503,6 +509,10 @@
     <EmbeddedResource Include="Dialogs\ProjectStatistics.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ProjectStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SaveProjectAsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SectionProperties.hi.resx">
       <SubType>Designer</SubType>
