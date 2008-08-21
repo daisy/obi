@@ -1814,12 +1814,33 @@ namespace Obi
 
         private void mView_AudioZoomInMenuItem_Click(object sender, EventArgs e)
         {
-            AudioScale = AudioScale * AUDIO_SCALE_INCREMENT;
+            ProjectView.Strip strip = mProjectView.StripForSelection;
+            if (strip == null)
+            {
+                AudioScale *= AUDIO_SCALE_INCREMENT;
+            }
+            else
+            {
+                strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+            }
         }
 
         private void mView_AudioZoomOutMenuItem_Click(object sender, EventArgs e)
         {
-            AudioScale = AudioScale / AUDIO_SCALE_INCREMENT;
+            ProjectView.Strip strip = mProjectView.StripForSelection;
+            if (strip == null)
+            {
+                AudioScale /= AUDIO_SCALE_INCREMENT;
+            }
+            else
+            {
+                strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+            }
+        }
+
+        private void mView_ResetAudioSizeMenuItem_Click(object sender, EventArgs e)
+        {
+            AudioScale = AudioScale;
         }
 
         private void PipelineToolStripItems_Click(object sender, EventArgs e)
