@@ -72,9 +72,12 @@ namespace Obi.ProjectView
             get { return mAudioScale; }
             set
             {
-                mAudioScale = value;
-                foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
-                ResizeToBlocksLength(mBlockLayout.Height);
+                if (value > 0.0)
+                {
+                    mAudioScale = value;
+                    foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+                    ResizeToBlocksLength(mBlockLayout.Height);
+                }
             }
         }
 

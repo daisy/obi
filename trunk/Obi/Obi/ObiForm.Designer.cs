@@ -172,6 +172,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -423,6 +424,7 @@ namespace Obi
             this.mView_NormalSizeMenuItem,
             this.mView_AudioZoomInMenuItem,
             this.mView_AudioZoomOutMenuItem,
+            this.mView_ResetAudioSizeMenuItem,
             this.toolStripSeparator17,
             this.mView_ProjectStatisticsMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
@@ -750,9 +752,8 @@ namespace Obi
             // 
             // mPageToolStripMenuItem
             // 
-            this.mPageToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
-            this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
             resources.ApplyResources(this.mPageToolStripMenuItem, "mPageToolStripMenuItem");
+            this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
             this.mPageToolStripMenuItem.Click += new System.EventHandler(this.mPageToolStripMenuItem_Click);
             // 
             // mSilenceToolStripMenuItem
@@ -1092,7 +1093,6 @@ namespace Obi
             // 
             // mToolsToolStripMenuItem
             // 
-            this.mToolsToolStripMenuItem.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
@@ -1197,6 +1197,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mView_ResetAudioSizeMenuItem
+            // 
+            resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
+            this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
+            this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1367,6 +1373,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mEdit_DeleteUnusedDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_ResetAudioSizeMenuItem;
     }
 }
 

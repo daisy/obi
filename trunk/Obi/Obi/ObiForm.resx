@@ -642,6 +642,18 @@
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
     <value>Audio zoom out (&amp;q)</value>
   </data>
+  <data name="mView_ResetAudioSizeMenuItem.AccessibleName" xml:space="preserve">
+    <value>Reset audio size Ctrl+Alt+Shift+0</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+Shift+0</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
+    <value>Reset audio size (&amp;h)</value>
+  </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 6</value>
   </data>
@@ -863,6 +875,9 @@
   </data>
   <data name="mSetAsHeadingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Heading</value>
+  </data>
+  <data name="mPageToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Page Ctrl+Shift+G</value>
   </data>
   <data name="mPageToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+G</value>
@@ -1540,7 +1555,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.33799, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.31254, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2655,6 +2670,12 @@
   </data>
   <data name="&gt;&gt;mStatusProgessBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_ResetAudioSizeMenuItem.Name" xml:space="preserve">
+    <value>mView_ResetAudioSizeMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_ResetAudioSizeMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

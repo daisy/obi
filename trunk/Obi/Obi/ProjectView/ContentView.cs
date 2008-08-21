@@ -287,6 +287,20 @@ namespace Obi.ProjectView
             RenderFirstWaveform();
         }
 
+        /// <summary>
+        /// Get the strip that the selection is in, or null if there is no applicable selection.
+        /// </summary>
+        public Strip StripForSelection
+        {
+            get
+            {
+                return mSelectedItem is Strip ? (Strip)mSelectedItem :
+                    mSelectedItem is Block ? ((Block)mSelectedItem).Strip :
+                    null;
+            }
+        }
+
+
         // Render the first waveform from the queue if no other rendering is in progress.
         private void RenderFirstWaveform()
         {

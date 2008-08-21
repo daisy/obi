@@ -746,6 +746,13 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Get the strip that the selection is in, or null if there is no applicable selection.
+        /// </summary>
+        public Strip StripForSelection { get { return mContentView == null ? null : mContentView.StripForSelection; } }
+
+
+
         private void UpdateShowOnlySelected(bool showOnly)
         {
             ObiNode node = SelectedNodeAs<ObiNode>();
