@@ -6,12 +6,26 @@ namespace Obi
     [Serializable()]
     public class ColorSettings
     {
-        public Color BlockBackColor;
-        public Color BlockForeColor;
-        public Color BlockSelectedBackColor;
-        public Color BlockSelectedForeColor;
-        public Color BlockUnusedBackColor;
-        public Color BlockUnusedForeColor;
+        public Color BlockBackColor_Custom;
+        public Color BlockBackColor_Empty;
+        public Color BlockBackColor_Heading;
+        public Color BlockBackColor_Page;
+        public Color BlockBackColor_Plain;
+        public Color BlockBackColor_Selected;
+        public Color BlockBackColor_Silence;
+        public Color BlockBackColor_TODO;
+        public Color BlockBackColor_Unused;
+
+        public Color BlockForeColor_Custom;
+        public Color BlockForeColor_Empty;
+        public Color BlockForeColor_Heading;
+        public Color BlockForeColor_Page;
+        public Color BlockForeColor_Plain;
+        public Color BlockForeColor_Selected;
+        public Color BlockForeColor_Silence;
+        public Color BlockForeColor_TODO;
+        public Color BlockForeColor_Unused;
+
         public Color ContentViewBackColor;
         public Color EditableLabelTextBackColor;
         public Color ProjectViewBackColor;
@@ -79,13 +93,27 @@ namespace Obi
         public static ColorSettings DefaultColorSettings()
         {
             ColorSettings settings = new ColorSettings();
-            settings.BlockBackColor = SystemColors.Window;
+            settings.BlockBackColor_Custom = Color.Brown;
+            settings.BlockBackColor_Empty = Color.LightBlue;
+            settings.BlockBackColor_Heading = Color.LightGreen;
+            settings.BlockBackColor_Page = Color.HotPink;
+            settings.BlockBackColor_Plain = SystemColors.Window;
+            settings.BlockBackColor_Silence = Color.Purple;
+            settings.BlockBackColor_Selected = SystemColors.Highlight;
+            settings.BlockBackColor_TODO = Color.Red;
+            settings.BlockBackColor_Unused = SystemColors.ControlDark;
+
+            settings.BlockForeColor_Custom = SystemColors.HighlightText;
+            settings.BlockForeColor_Empty = SystemColors.ControlText;
+            settings.BlockForeColor_Heading = SystemColors.ControlText;
+            settings.BlockForeColor_Page = SystemColors.ControlText;
+            settings.BlockForeColor_Plain = SystemColors.ControlText;
+            settings.BlockForeColor_Selected = SystemColors.HighlightText;
+            settings.BlockForeColor_Silence = SystemColors.HighlightText;
+            settings.BlockForeColor_TODO = Color.Yellow;
+            settings.BlockForeColor_Unused = SystemColors.ControlText;
+
             settings.mBlockLayoutSelectedColor = SystemColors.Highlight;
-            settings.BlockForeColor = SystemColors.ControlText;
-            settings.BlockSelectedBackColor = SystemColors.Highlight;
-            settings.BlockSelectedForeColor = SystemColors.HighlightText;
-            settings.BlockUnusedBackColor = SystemColors.ControlDark;
-            settings.BlockUnusedForeColor = SystemColors.ControlText;
             settings.ContentViewBackColor = SystemColors.AppWorkspace;
             settings.EditableLabelTextBackColor = SystemColors.Window;
             settings.ProjectViewBackColor = SystemColors.Control;
@@ -123,7 +151,20 @@ namespace Obi
         public static ColorSettings DefaultColorSettingsHC()
         {
             ColorSettings settings = DefaultColorSettings();
-            // we do not need to change system colors.
+
+            // Blocks don't change color much in high contrast settings.
+            settings.BlockBackColor_Custom = SystemColors.Window;
+            settings.BlockBackColor_Empty = SystemColors.Window;
+            settings.BlockBackColor_Heading = SystemColors.Window;
+            settings.BlockBackColor_Page = SystemColors.Window;
+            settings.BlockBackColor_Silence = SystemColors.Window;
+            settings.BlockBackColor_TODO = SystemColors.Window;
+
+            settings.BlockForeColor_Custom = SystemColors.ControlText;
+            settings.BlockForeColor_Empty = SystemColors.ControlText;
+            settings.BlockForeColor_Heading = SystemColors.ControlText;
+            settings.BlockForeColor_Page = SystemColors.ControlText;
+            settings.BlockForeColor_TODO = SystemColors.ControlText;
 
             settings.TransportBarLabelBackColor = Color.DarkSlateGray;
             settings.mWaveformChannel1Color = Color.Green;

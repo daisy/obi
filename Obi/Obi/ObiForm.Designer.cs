@@ -109,7 +109,6 @@ namespace Obi
             this.mSetAsHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSilenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mTodoClasstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mAddRoleToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.mEditRolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,8 +170,9 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mTodoClasstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -680,6 +680,7 @@ namespace Obi
             this.mAssignRoleToolStripMenuItem,
             this.mEditRolesToolStripMenuItem,
             this.mClearRoleToolStripMenuItem,
+            this.mTodoClasstoolStripMenuItem,
             this.mPhraseDetectionToolStripMenuItem,
             this.mMarkDefaultCustomClassToolStripMenuItem,
             this.mInPhraseSelectionToolStripMenuItem,
@@ -738,7 +739,6 @@ namespace Obi
             this.mSetAsHeadingToolStripMenuItem,
             this.mPageToolStripMenuItem,
             this.mSilenceToolStripMenuItem,
-            this.mTodoClasstoolStripMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mAddRoleToolStripTextBox});
             this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
@@ -762,12 +762,6 @@ namespace Obi
             resources.ApplyResources(this.mSilenceToolStripMenuItem, "mSilenceToolStripMenuItem");
             this.mSilenceToolStripMenuItem.Click += new System.EventHandler(this.mSilenceToolStripMenuItem_Click);
             // 
-            // mTodoClasstoolStripMenuItem
-            // 
-            this.mTodoClasstoolStripMenuItem.Name = "mTodoClasstoolStripMenuItem";
-            resources.ApplyResources(this.mTodoClasstoolStripMenuItem, "mTodoClasstoolStripMenuItem");
-            this.mTodoClasstoolStripMenuItem.Click += new System.EventHandler(this.mTodoClasstoolStripMenuItem_Click);
-            // 
             // mCustomRoleToolStripSeparator
             // 
             this.mCustomRoleToolStripSeparator.Name = "mCustomRoleToolStripSeparator";
@@ -775,6 +769,7 @@ namespace Obi
             // 
             // mAddRoleToolStripTextBox
             // 
+            this.mAddRoleToolStripTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mAddRoleToolStripTextBox.Name = "mAddRoleToolStripTextBox";
             resources.ApplyResources(this.mAddRoleToolStripTextBox, "mAddRoleToolStripTextBox");
             this.mAddRoleToolStripTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.mAddRoleToolStripTextBox_KeyUp);
@@ -1184,6 +1179,12 @@ namespace Obi
             this.mStatusProgessBar.Name = "mStatusProgessBar";
             resources.ApplyResources(this.mStatusProgessBar, "mStatusProgessBar");
             // 
+            // mView_ResetAudioSizeMenuItem
+            // 
+            resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
+            this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
+            this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1198,11 +1199,10 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
-            // mView_ResetAudioSizeMenuItem
+            // mTodoClasstoolStripMenuItem
             // 
-            resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
-            this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
-            this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
+            this.mTodoClasstoolStripMenuItem.Name = "mTodoClasstoolStripMenuItem";
+            resources.ApplyResources(this.mTodoClasstoolStripMenuItem, "mTodoClasstoolStripMenuItem");
             // 
             // ObiForm
             // 
@@ -1333,7 +1333,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEndInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeselectInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMarkDefaultCustomClassToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mTools_PreferencesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSectionsToolStripMenuItem;
@@ -1374,6 +1373,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_DeleteUnusedDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ResetAudioSizeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
     }
 }
 

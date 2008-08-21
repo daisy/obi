@@ -13,7 +13,7 @@ namespace Obi
         private Kind mKind;              // this node's kind
         private string mCustomClass;     // custom class name
         private PageNumber mPageNumber;  // page number
-        private bool mTODO;
+        private bool mTODO;              // marked as TODO
 
         public static readonly string XUK_ELEMENT_NAME = "empty";             // name of the element in the XUK file
         private static readonly string XUK_ATTR_NAME_KIND = "kind";           // name of the kind attribute
@@ -29,7 +29,6 @@ namespace Obi
         /// Page is a page node with a page number.
         /// Heading is the audio heading for a section.
         /// Silence is a silence node for phrase detection.
-        /// TODO is a mark for producers.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
         public enum Kind { Plain, Page, Heading, Silence, TODO, Custom };

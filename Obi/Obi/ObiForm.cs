@@ -1552,8 +1552,9 @@ namespace Obi
             get
             {
                 ColorSettings settings = SystemInformation.HighContrast ?
-                    (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
-                    (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
+                    ColorSettings.DefaultColorSettingsHC() : ColorSettings.DefaultColorSettings();
+//                    (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
+//                    (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
                 settings.CreateBrushesAndPens();
                 return settings;
             }
