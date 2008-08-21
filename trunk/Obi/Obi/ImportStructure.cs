@@ -85,10 +85,21 @@ namespace Obi
                             if (node != null && node.Level < 6) mOpenSectionNodes.Push(node);
                             mCurrentSection = node;
                         }
-                        else if ((source.LocalName == "p" || source.LocalName == "span") && 
-                            source.GetAttribute("class") == "page")
+                        else if ((source.LocalName == "p" || source.LocalName == "span"))
                         {
-                            addPage(source);
+                            string classAttr = source.GetAttribute("class");
+                            if (classAttr == "page" || classAttr == "page-normal")
+                            {
+                                addPage(source, PageKind.Normal);
+                            }
+                            else if (classAttr == "page-front")
+                            {
+                                addPage(source, PageKind.Front);
+                            }
+                            else if (classAttr == "page-special")
+                            {
+                                addPage(source, PageKind.Special);
+                            }
                         }
                     }
                     if (source.EOF) break;
@@ -102,16 +113,26 @@ namespace Obi
             if (!foundHeadings) throw new Exception(Localizer.Message("no_headings_found"));
         }
 
-        private void addPage(XmlTextReader source)
+        // Add a page of the given kind; parse the content to get the page number.
+        private void addPage(XmlTextReader source, PageKind kind)
         {
             if (mCurrentSection == null) throw new Exception(Localizer.Message("error_adding_page_number"));
-            int pageNumber;
             string pageNumberString = GetTextContent(source);
-            if (int.TryParse(pageNumberString, out pageNumber))
+            PageNumber number = null;
+            if (kind == PageKind.Special && pageNumberString != null && pageNumberString != "")
+            {
+                number = new PageNumber(pageNumberString);
+            }
+            else if (kind == PageKind.Front || kind == PageKind.Normal)
+            {
+                int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                if (pageNumber > 0) number = new PageNumber(pageNumber, kind);
+            }
+            if (number != null)
             {
                 EmptyNode node = new EmptyNode(mPresentation);
+                node.PageNumber = number;
                 mCurrentSection.AppendChild(node);
-                node.PageNumber = new PageNumber(pageNumber);
             }
         }
 
