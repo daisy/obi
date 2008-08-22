@@ -60,6 +60,7 @@ namespace Obi.ProjectView
             mBlockLayout.Controls.Add(block);
             mBlockLayout.Controls.SetChildIndex(block, node.Index);
             block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
+            block.Cursor = Cursor;
             UpdateSize();
             return block;
         }

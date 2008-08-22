@@ -51,9 +51,8 @@ namespace Obi.ProjectView
             {
                 mWaveform.BackColor = BackColor;
                 mWaveform.AccessibleName = AccessibleName;
-                int w = WaveformDefaultWidth;
                 mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
-                mWaveform.Size = new Size(w < mLabel.Width ? mLabel.Width : w, Height - mLabel.Height - mLabel.Margin.Bottom);
+                mWaveform.Size = new Size(WaveformDefaultWidth, Height - mLabel.Height - mLabel.Margin.Bottom);
                 mWaveform.Media = node.Audio.getMediaData();
                 Size = new Size(WaveformFullWidth, Height);
             }
@@ -128,17 +127,11 @@ namespace Obi.ProjectView
         public override void UpdateLabel()
         {
             UpdateLabelsText();
-            if (LabelFullWidth > WaveformDefaultWidth)
-            {
-                if (mWaveform != null) mWaveform.Width = mLabel.Width;
-                Size = new Size(LabelFullWidth, Height);
-            }
         }
 
         public override void UpdateLabelsText()
         {
-            mLabel.Text = Node.BaseStringShort();
-            AccessibleName = Node.BaseString();
+            base.UpdateLabelsText();
             if (mWaveform != null) mWaveform.AccessibleName = AccessibleName;
         }
 

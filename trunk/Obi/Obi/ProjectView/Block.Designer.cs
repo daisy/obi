@@ -28,7 +28,9 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mLabel = new System.Windows.Forms.Label();
+            this.mToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // mLabel
@@ -66,6 +68,7 @@ namespace Obi.ProjectView
         #endregion
 
         protected System.Windows.Forms.Label mLabel;
+        private System.Windows.Forms.ToolTip mToolTip;
 
     }
 }
