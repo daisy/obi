@@ -36,6 +36,8 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.m_chkSavePrimaryDirectories = new System.Windows.Forms.CheckBox();
+            this.m_chkActivateNewProject = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // m_lblProjectDirectoryName
@@ -83,10 +85,10 @@ namespace Obi.Dialogs
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(130, 125);
+            this.m_btnOk.Location = new System.Drawing.Point(130, 150);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
-            this.m_btnOk.TabIndex = 6;
+            this.m_btnOk.TabIndex = 8;
             this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
             this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
@@ -94,13 +96,33 @@ namespace Obi.Dialogs
             // m_btnCancel
             // 
             this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.Location = new System.Drawing.Point(215, 125);
+            this.m_btnCancel.Location = new System.Drawing.Point(215, 150);
             this.m_btnCancel.Name = "m_btnCancel";
             this.m_btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btnCancel.TabIndex = 7;
+            this.m_btnCancel.TabIndex = 9;
             this.m_btnCancel.Text = "&Cancel";
             this.m_btnCancel.UseVisualStyleBackColor = true;
             this.m_btnCancel.Click += new System.EventHandler(this.m_btnCancel_Click);
+            // 
+            // m_chkSavePrimaryDirectories
+            // 
+            this.m_chkSavePrimaryDirectories.AutoSize = true;
+            this.m_chkSavePrimaryDirectories.Location = new System.Drawing.Point(0, 115);
+            this.m_chkSavePrimaryDirectories.Name = "m_chkSavePrimaryDirectories";
+            this.m_chkSavePrimaryDirectories.Size = new System.Drawing.Size(160, 17);
+            this.m_chkSavePrimaryDirectories.TabIndex = 6;
+            this.m_chkSavePrimaryDirectories.Text = "Save &primary directories only";
+            this.m_chkSavePrimaryDirectories.UseVisualStyleBackColor = true;
+            // 
+            // m_chkActivateNewProject
+            // 
+            this.m_chkActivateNewProject.AutoSize = true;
+            this.m_chkActivateNewProject.Location = new System.Drawing.Point(0, 128);
+            this.m_chkActivateNewProject.Name = "m_chkActivateNewProject";
+            this.m_chkActivateNewProject.Size = new System.Drawing.Size(123, 17);
+            this.m_chkActivateNewProject.TabIndex = 8;
+            this.m_chkActivateNewProject.Text = "Activate &new project";
+            this.m_chkActivateNewProject.UseVisualStyleBackColor = true;
             // 
             // SaveProjectAsDialog
             // 
@@ -109,6 +131,8 @@ namespace Obi.Dialogs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(292, 173);
+            this.Controls.Add(this.m_chkActivateNewProject);
+            this.Controls.Add(this.m_chkSavePrimaryDirectories);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_txtParentDirectory);
@@ -133,5 +157,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.CheckBox m_chkSavePrimaryDirectories;
+        private System.Windows.Forms.CheckBox m_chkActivateNewProject;
     }
 }

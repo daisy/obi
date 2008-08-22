@@ -198,19 +198,53 @@ namespace Obi
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
         {
+            SaveProjectAsDialog SaveDialog = new SaveProjectAsDialog( Directory.GetParent( mSession.Path).FullName);
+            /*
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(mSession.Path));
             dialog.FileName = Localizer.Message("default_project_filename");
             dialog.Filter = Localizer.Message("obi_filter");
+             
             if (dialog.ShowDialog() == DialogResult.OK)
+             */ 
+            if ( SaveDialog.ShowDialog () == DialogResult.OK )
             {
-                mSession.SaveAs(dialog.FileName);
+                DirectoryInfo DirInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
+                DirectoryInfo OriginalDirInfo = new DirectoryInfo(Directory.GetParent(mSession.Path).FullName);
+                DirInfo.Create();
+                ShallowCopyFilesInDirectory(OriginalDirInfo.FullName, DirInfo.FullName);
+
+                
+                    DirectoryInfo[] DirList = OriginalDirInfo.GetDirectories("*.*", SearchOption.AllDirectories);
+
+                    foreach (DirectoryInfo d in DirList)
+                    {
+                        string DestPath = DirInfo.FullName + d.FullName.Replace(OriginalDirInfo.FullName, "");
+                        Directory.CreateDirectory(DestPath);
+                        // copy files in each directory
+                        ShallowCopyFilesInDirectory(d.FullName, DestPath);
+                    }
+                
+                //mSession.SaveAs(dialog.FileName);
             }
             else
             {
                 Ready();
             }
         }
+
+        private void ShallowCopyFilesInDirectory(string source, string dest)
+        {
+             string [] FilesList = Directory.GetFiles(source , "*.*", SearchOption.TopDirectoryOnly);
+            FileInfo FInfo  = null ;
+            foreach( string f in FilesList)
+            {
+                FInfo = new FileInfo (f) ;
+                FInfo.CopyTo( Path.Combine ( dest , FInfo.Name) );
+                //MessageBox.Show(d.FullName);
+            }
+        }
+
 
         // Return whether the project can be closed or not.
         // If a project is open and unsaved, ask about what to do.
