@@ -58,7 +58,14 @@ namespace Obi.Commands.Node
             if (transferRole && phrase.NodeKind != EmptyNode.Kind.Plain)
             {
                 command.append(new Commands.Node.ChangeCustomType(view, phrase, EmptyNode.Kind.Plain));
-                command.append(new Commands.Node.ChangeCustomType(view, split.NodeAfter, phrase.NodeKind, phrase.CustomClass));
+                if (phrase.NodeKind == EmptyNode.Kind.Page)
+                {
+                    command.append(new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
+                }
+                else
+                {
+                    command.append(new Commands.Node.ChangeCustomType(view, split.NodeAfter, phrase.NodeKind, phrase.CustomClass));
+                }
             }
         }
 
