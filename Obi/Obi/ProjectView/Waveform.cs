@@ -191,29 +191,14 @@ namespace Obi.ProjectView
                 AudioBlock block = Parent as AudioBlock;
                 if (block != null)
                 {
-                    if (block.Highlighted)
+                    if (mBitmap != null)
                     {
-                        if (mBitmap_Highlighted != null)
-                        {
-                            pe.Graphics.DrawImage(mBitmap_Highlighted, new Point(0, 0));
-                        }
-                        else
-                        {
-                            pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
-                                block.ColorSettings.WaveformHighlightedTextBrush, new PointF(0.0f, 0.0f));
-                        }
+                        pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
                     }
                     else
                     {
-                        if (mBitmap != null)
-                        {
-                            pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
-                        }
-                        else
-                        {
-                            pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
-                                block.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
-                        }
+                        pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
+                            block.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
                     }
                     if (mSelection != null)
                     {

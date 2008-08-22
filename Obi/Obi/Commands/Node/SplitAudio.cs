@@ -24,7 +24,7 @@ namespace Obi.Commands.Node
         public PhraseNode NodeAfter { get { return mNodeAfter; } }
 
         /// <summary>
-        /// Create a command to crop the current selection
+        /// Create a command to crop the current selection.
         /// </summary>
         public static urakawa.undo.ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
         {
