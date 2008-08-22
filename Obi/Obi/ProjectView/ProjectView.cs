@@ -1137,33 +1137,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void MergeBlockWithNext()
         {
-            if (CanMergeBlockWithNext)
-            {
-                EmptyNode selected = SelectedNodeAs<EmptyNode>();
-                EmptyNode next = (EmptyNode)selected.FollowingNode;
-                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("merge_phrase_with_next"));
-                // Merge roles, then the audio of the two phrase nodes, or delete the first empty node.
-                if (selected.NodeKind == EmptyNode.Kind.Plain && next.NodeKind != EmptyNode.Kind.Plain)
-                {
-                    if (next.NodeKind == EmptyNode.Kind.Custom)
-                    {
-                        command.append(new Commands.Node.ChangeCustomType(this, selected, next.CustomClass));
-                    }
-                    else if (next.NodeKind == EmptyNode.Kind.Page)
-                    {
-                        command.append(new Commands.Node.SetPageNumber(this, selected, next.PageNumber));
-                    }
-                    else
-                    {
-                        command.append(new Commands.Node.ChangeCustomType(this, selected, next.NodeKind));
-                    }
-                }
-                command.append(selected is PhraseNode ?
-                    next is PhraseNode ? (Commands.Command)new Commands.Node.MergeAudio(this) :
-                        (Commands.Command)new Commands.Node.Delete(this, next) :
-                    new Commands.Node.Delete(this, selected));
-                mPresentation.getUndoRedoManager().execute(command);
-            }
+            if (CanMergeBlockWithNext) mPresentation.getUndoRedoManager().execute(Commands.Node.MergeAudio.GetMergeCommand(this));
         }
 
         public void MakeSelectedBlockIntoSilencePhrase()

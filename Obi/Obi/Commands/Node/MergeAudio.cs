@@ -13,20 +13,66 @@ namespace Obi.Commands.Node
         private PhraseNode mNextNode;      // the following phrase to merge with
         private Time mSplitTime;           // the split time of the new merged node
 
-        public MergeAudio(ProjectView.ProjectView view, PhraseNode next)
+
+        private MergeAudio(ProjectView.ProjectView view, PhraseNode node, PhraseNode next)
             : base(view)
         {
-            mNode = view.SelectedNodeAs<PhraseNode>();
+            mNode = node;
             mNextNode = next;
             mSplitTime = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
-            Label = Localizer.Message("merge_phrase_with_next");
+        }
+
+
+        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view)
+        {
+            return GetMergeCommand(view, view.SelectedNodeAs<EmptyNode>());
+        }
+
+        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node)
+        {
+            if (node != null)
+            {
+                urakawa.undo.CompositeCommand command =
+                    view.Presentation.CreateCompositeCommand(Localizer.Message("merge_phrase_with_next"));
+                EmptyNode next = node.ParentAs<ObiNode>().PhraseChild(node.Index + 1) as EmptyNode;
+                if (node.NodeKind == EmptyNode.Kind.Plain && next.NodeKind != EmptyNode.Kind.Plain)
+                {
+                    if (next.NodeKind == EmptyNode.Kind.Page)
+                    {
+                        command.append(new Commands.Node.SetPageNumber(view, node, next.PageNumber.Clone()));
+                    }
+                    else
+                    {
+                        command.append(new Commands.Node.ChangeCustomType(view, node, next.NodeKind, next.CustomClass));
+                    }
+                }
+                if (!node.TODO && next.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, node));
+                if (!node.Used && next.Used) command.append(new Commands.Node.ToggleNodeUsed(view, node));
+                if (node is PhraseNode)
+                {
+                    if (next is PhraseNode)
+                    {
+                        command.append(new Commands.Node.MergeAudio(view, (PhraseNode)node, (PhraseNode)next));
+                    }
+                    else
+                    {
+                        command.append(new Commands.Node.Delete(view, next));
+                    }
+                }
+                else
+                {
+                    command.append(new Commands.Node.Delete(view, node));
+                }
+                return command;
+            }
+            return null;
         }
 
         /// <summary>
         /// Merge the selected phrase with the following phrase.
         /// </summary>
-        public MergeAudio(ProjectView.ProjectView view):
-            this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1)) {}
+        //public MergeAudio(ProjectView.ProjectView view):
+        //    this(view, (PhraseNode)view.Selection.Node.ParentAs<ObiNode>().PhraseChild(view.Selection.Node.Index + 1)) {}
 
         /// <summary>
         /// Merge two nodes; the "next" one is removed after merging.

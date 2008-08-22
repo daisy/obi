@@ -133,17 +133,9 @@ namespace Obi
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
             urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
-            if (Node is PhraseNode)
+            if (Node is EmptyNode)
             {
-                p.append(new Commands.Node.MergeAudio(view, phrase));
-            }
-            else if (  Node is EmptyNode )
-            {
-                phrase.CopyKind((EmptyNode)view.Selection.Node);
-                phrase.Used = view.Selection.Node.Used;
-                Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
-                delete.UpdateSelection = false;
-                p.append(delete);
+                p.append(Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node));
             }
             return p;
         }
