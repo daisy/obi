@@ -505,19 +505,21 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
-            mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
-            mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
-            mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
-            //mEditRolesToolStripMenuItem.Enabled = mSession.Presentation != null;
             mEditRolesToolStripMenuItem.Enabled = false; // disabled till it is improved
             mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
-            // mMarkDefaultCustomClassToolStripMenuItem.Enabled = mProjectView.CanMarkPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
+            mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
+            mPhraseIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler(mPhraseIsUsedToolStripMenuItem_CheckedChanged);
+            mPhrases_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus;
+            mPhrases_PhraseIsTODOMenuItem.CheckedChanged -= new System.EventHandler(mPhrases_PhraseIsTODOMenuItem_CheckedChanged);
+            mPhrases_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
+            mPhrases_PhraseIsTODOMenuItem.CheckedChanged += new System.EventHandler(mPhrases_PhraseIsTODOMenuItem_CheckedChanged);
             UpdateAudioSelectionBlockMenuItems();
         }
 
@@ -538,14 +540,11 @@ namespace Obi
                     mDeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
                     string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
                     string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
-                    //AudioSelectionStatusMessage = string.Concat(" Selected:", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime.ToString(), " - ", ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime.ToString());
-                    //AudioSelectionStatusMessage = string.Concat(Localizer.Message("AudioSelected"), BeginTime, " - ", EndTime, "s");
 
                 }
                 else
                 {
                     mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
-                    //AudioSelectionStatusMessage = "";
                 }
             }
             else
@@ -561,6 +560,19 @@ namespace Obi
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
         private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
         private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+
+        private void mPhrases_PhraseIsTODOMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mProjectView.TransportBar.IsActive)
+            {
+                mProjectView.TransportBar.MarkTodoClass();
+            }
+            else
+            {
+                mProjectView.ToggleEmptyNodeTo_DoMark();
+            }
+        }
+
         private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
@@ -1779,19 +1791,6 @@ namespace Obi
         private void mMarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.TransportBar.Enabled) mProjectView.TransportBar.MarkCustomClass();
-        }
-
-        private void mPhrases_PhraseIsTODOMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.TransportBar.Enabled
-                && mProjectView.TransportBar.IsActive)
-            {
-                mProjectView.TransportBar.MarkTodoClass();
-            }
-            else
-            {
-                mProjectView.ToggleEmptyNodeTo_DoMark();
-            }
         }
 
         private void mAllowOverwriteToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

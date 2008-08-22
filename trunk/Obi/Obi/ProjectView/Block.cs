@@ -216,5 +216,10 @@ namespace Obi.ProjectView
 
         // update label when to do status changes
         private void Node_ChangedTo_DoStatus(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
+
+        private void Block_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

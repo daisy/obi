@@ -733,9 +733,12 @@ namespace Obi
             // 
             // mPhrases_PhraseIsTODOMenuItem
             // 
+            this.mPhrases_PhraseIsTODOMenuItem.Checked = true;
+            this.mPhrases_PhraseIsTODOMenuItem.CheckOnClick = true;
+            this.mPhrases_PhraseIsTODOMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mPhrases_PhraseIsTODOMenuItem.Name = "mPhrases_PhraseIsTODOMenuItem";
             resources.ApplyResources(this.mPhrases_PhraseIsTODOMenuItem, "mPhrases_PhraseIsTODOMenuItem");
-            this.mPhrases_PhraseIsTODOMenuItem.Click += new System.EventHandler(this.mPhrases_PhraseIsTODOMenuItem_Click);
+            this.mPhrases_PhraseIsTODOMenuItem.CheckedChanged += new System.EventHandler(this.mPhrases_PhraseIsTODOMenuItem_CheckedChanged);
             // 
             // mPhraseIsUsedToolStripMenuItem
             // 
