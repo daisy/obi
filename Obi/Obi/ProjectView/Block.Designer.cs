@@ -60,6 +60,7 @@ namespace Obi.ProjectView
             this.Size = new System.Drawing.Size(104, 104);
             this.Click += new System.EventHandler(this.Block_Click);
             this.Enter += new System.EventHandler(this.Block_Enter);
+            this.SizeChanged += new System.EventHandler(this.Block_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

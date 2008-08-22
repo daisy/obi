@@ -230,6 +230,7 @@ namespace Obi.ProjectView
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
         public bool CanSetStripUsedStatus { get { return mContentView.CanSetStripUsedStatus; } }
         public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
+        public bool CanSetTODOStatus { get { return IsBlockSelected || mTransportBar.IsActive; } }
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } }
         public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
@@ -959,6 +960,20 @@ namespace Obi.ProjectView
         public bool IsStripUsed { get { return mContentView.IsStripUsed; } }
 
         /// <summary>
+        /// True when there is a block that is selected that is TODO, or a block playing back that is TODO.
+        /// </summary>
+        public bool IsCurrentBlockTODO
+        {
+            get
+            {
+                return mTransportBar.PlaybackPhrase != null ?
+                    mTransportBar.PlaybackPhrase.TODO :
+                    mContentView.SelectedEmptyNode != null ?
+                    mContentView.SelectedEmptyNode.TODO : false;
+            }
+        }
+
+        /// <summary>
         /// Show the strip for the given section
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
@@ -1171,7 +1186,7 @@ namespace Obi.ProjectView
 
         public void ToggleEmptyNodeTo_DoMark()
         {
-            if (Selection != null && Selection.Node is EmptyNode)
+            if (IsBlockSelected)
             {
                 EmptyNode node = (EmptyNode)Selection.Node;
                 Commands.Node.ToggleNodeTo_Do command = new Commands.Node.ToggleNodeTo_Do(this, node);
