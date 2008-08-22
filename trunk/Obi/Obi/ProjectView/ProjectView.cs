@@ -1115,16 +1115,21 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        /// Split a phrase at the playback cursor time (when playback is going on),
+        /// the cursor position, or at both ends of the audio selection.
+        /// </summary>
         public void SplitPhrase()
         {
-            if (CanSplitPhrase)
+            urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+            if (command != null)
             {
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.SplitAudio(this));
+                mPresentation.getUndoRedoManager().execute(command);
+                // Replace this with the on-the-fly splitting behavior (see ticket #95.)
                 if (ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
-
         }
 
         /// <summary>

@@ -133,7 +133,7 @@ namespace Obi.ProjectView
         {
             get { return m_SelectionChangedPlayEnable; }
             set { m_SelectionChangedPlayEnable = value; }
-                    }
+        }
 
         /// <summary>
         /// Get the audio player used by the transport bar.
@@ -223,20 +223,37 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Split time is either the current playback position,
-        /// or when stopped, the selection position.
+        /// Split time is either the current playback position, or when stopped, the selection position.
+        /// Will return 0.0 in case something goes wrong (which may be the actual split time, but we don't
+        /// want to split then anyway do we?)
         /// </summary>
-        public double SplitTime
+        public double SplitBeginTime
         {
             get
             {
                 return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
                     mPlayer.State == Obi.Audio.AudioPlayerState.Playing ?
                     mCurrentPlaylist.CurrentTimeInAsset :
-                    ((AudioSelection)mView.Selection).AudioRange.CursorTime;
-            } 
+                    mView.Selection is AudioSelection ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : 0.0;
+            }
         }
 
+        /// <summary>
+        /// Get the end time for splitting; this is only valid for audio selections when playback is not
+        /// underway. In all other cases return 0.0.
+        /// </summary>
+        public double SplitEndTime
+        {
+            get
+            {
+                return mPlayer.State != Obi.Audio.AudioPlayerState.Paused &&
+                    mPlayer.State != Obi.Audio.AudioPlayerState.Playing &&
+                    mView.Selection is AudioSelection &&
+                    !((AudioSelection)mView.Selection).AudioRange.HasCursor ?
+                    ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime : 0.0;
+            }
+        }
+                    
         /// <summary>
         /// Get the current playlist.
         /// </summary>
@@ -946,7 +963,7 @@ namespace Obi.ProjectView
                     (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
                 {
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
-                    command.append(new Commands.Node.SplitAudio(mView, SplitTime));
+                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mView));
                 }
             }
             else if (node is EmptyNode)

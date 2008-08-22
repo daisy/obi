@@ -85,9 +85,9 @@ namespace Obi
         }
 
         /// <summary>
-        /// Split the audio of this phrase at the given position and notify that the 
+        /// Split the audio of this phrase at the given position and notified that audio has changed.
         /// </summary>
-        /// <returns>The other half of the split audio.</returns>
+        /// <returns>The half of the split audio after the split point.</returns>
         public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
         {
             ManagedAudioMedia newAudio = Audio.split(splitPoint);
