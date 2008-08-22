@@ -93,10 +93,10 @@ namespace Obi
         public static ColorSettings DefaultColorSettings()
         {
             ColorSettings settings = new ColorSettings();
-            settings.BlockBackColor_Custom = Color.Brown;
-            settings.BlockBackColor_Empty = Color.LightBlue;
+            settings.BlockBackColor_Custom = Color.Orange;
+            settings.BlockBackColor_Empty = Color.LightSkyBlue;
             settings.BlockBackColor_Heading = Color.LightGreen;
-            settings.BlockBackColor_Page = Color.HotPink;
+            settings.BlockBackColor_Page = Color.LightSalmon;
             settings.BlockBackColor_Plain = SystemColors.Window;
             settings.BlockBackColor_Silence = Color.Purple;
             settings.BlockBackColor_Selected = SystemColors.Highlight;
@@ -111,7 +111,7 @@ namespace Obi
             settings.BlockForeColor_Selected = SystemColors.HighlightText;
             settings.BlockForeColor_Silence = SystemColors.HighlightText;
             settings.BlockForeColor_TODO = Color.Yellow;
-            settings.BlockForeColor_Unused = SystemColors.ControlText;
+            settings.BlockForeColor_Unused = SystemColors.HighlightText;
 
             settings.mBlockLayoutSelectedColor = SystemColors.Highlight;
             settings.ContentViewBackColor = SystemColors.AppWorkspace;

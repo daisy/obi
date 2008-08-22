@@ -459,6 +459,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to crop audio.
+        /// </summary>
+        internal static string crop_audio {
+            get {
+                return ResourceManager.GetString("crop_audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cut audio.
         /// </summary>
         internal static string cut_audio {
@@ -1829,7 +1838,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} ({1}).
+        ///   Looks up a localized string similar to {0}{1} ({2}).
         /// </summary>
         internal static string phrase_short_to_string {
             get {
@@ -1838,7 +1847,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To do.
+        ///   Looks up a localized string similar to *TODO* .
         /// </summary>
         internal static string phrase_short_TODO {
             get {

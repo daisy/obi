@@ -12,16 +12,16 @@ namespace Obi.Commands.Node
         private PhraseNode mOriginalNode;
         private PhraseNode mMiddleNode ;
         private PhraseNode mLastNode;
-        private double mSplitTime1;
-        private double mSplitTime2;
+        private double mSplitTimeBegin;
+        private double mSplitTimeEnd;
 
 
         public SplitAudioSelection(ProjectView.ProjectView  view)
             : base(view)
         {
             mOriginalNode = view.Selection.Phrase;
-            mSplitTime1 = ((AudioSelection)view.Selection).AudioRange.SelectionBeginTime;
-            mSplitTime2 = ((AudioSelection)view.Selection).AudioRange.SelectionEndTime;
+            mSplitTimeBegin = ((AudioSelection)view.Selection).AudioRange.SelectionBeginTime;
+            mSplitTimeEnd = ((AudioSelection)view.Selection).AudioRange.SelectionEndTime;
         }
 
         public static PhraseNode Split(PhraseNode node, Time splitPoint)
@@ -33,15 +33,15 @@ namespace Obi.Commands.Node
 
         public override void execute()
         {
-            mMiddleNode = Split(mOriginalNode, new Time(mSplitTime1));
-            mLastNode = Split(mMiddleNode, new Time(mSplitTime2 - mSplitTime1));
+            mLastNode = mSplitTimeEnd < mOriginalNode.Duration ? Split(mOriginalNode, new Time(mSplitTimeEnd)) : null;
+            mMiddleNode = mSplitTimeBegin > 0 ? Split(mOriginalNode, new Time(mSplitTimeBegin)) : mOriginalNode;
             View.SelectedBlockNode = mMiddleNode;
         }
 
         public override void unExecute()
         {
-            MergeAudio.Merge(mOriginalNode, mMiddleNode );
-            MergeAudio.Merge(mMiddleNode, mLastNode );
+            if (mOriginalNode != mMiddleNode) MergeAudio.Merge(mOriginalNode, mMiddleNode);
+            if (mLastNode != null) MergeAudio.Merge(mMiddleNode, mLastNode );
             base.unExecute();
         }
     }

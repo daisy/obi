@@ -24,13 +24,22 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mNewNode = View.Presentation.CreatePhraseNode(mNode.SplitAudio(mSplitPoint));
-            mNewNode.CustomClass = mNode.CustomClass;
-                        mNewNode.Used = mNode.Used;
+            if (mNode.CustomClass != null)
+            {
+                mNewNode.CustomClass = mNode.CustomClass;
+            }
+            else if (mNode.NodeKind != EmptyNode.Kind.Heading)
+            {
+                mNewNode.NodeKind = mNode.NodeKind;
+            }
+            mNewNode.Used = mNode.Used;
+            mNewNode.TODO = mNewNode.TODO;
             mNode.InsertAfterSelf(mNewNode);
-            mNewNode.NodeKind = mNode.NodeKind;
-
             if (UpdateSelection) View.SelectedBlockNode = mNewNode;
-            if (mNewNode != null && mNewNode.ParentAs<ObiNode> () is SectionNode ) View.UpdateBlocksLabelInStrip(mNewNode.ParentAs<SectionNode>());
+            if (mNewNode != null && mNewNode.ParentAs<ObiNode>() is SectionNode)
+            {
+                View.UpdateBlocksLabelInStrip(mNewNode.ParentAs<SectionNode>());
+            }
         }
 
         public override void unExecute()

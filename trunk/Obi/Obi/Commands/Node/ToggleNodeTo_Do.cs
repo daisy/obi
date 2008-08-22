@@ -16,7 +16,7 @@ namespace Obi.Commands.Node
             : base(view)
         {
             mNode = node;
-            mOriginalStatus = node.IsTo_Do;
+            mOriginalStatus = node.TODO;
         }
 
         public override void execute()
