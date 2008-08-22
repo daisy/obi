@@ -461,7 +461,7 @@ namespace Obi.ProjectView
 
                 if (mView.CanSplitPhrase)
                 {
-                    command.append (new Commands.Node.SplitAudio(this.mView));
+                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mView));
                 }
                 SectionNode sibling = mView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label;

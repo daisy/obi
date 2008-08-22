@@ -40,8 +40,8 @@ namespace Obi.Commands.Node
 
         public override void unExecute()
         {
-            if (mOriginalNode != mMiddleNode) MergeAudio.Merge(mOriginalNode, mMiddleNode);
-            if (mLastNode != null) MergeAudio.Merge(mMiddleNode, mLastNode );
+            //if (mOriginalNode != mMiddleNode) MergeAudio.Merge(mOriginalNode, mMiddleNode);
+            //if (mLastNode != null) MergeAudio.Merge(mMiddleNode, mLastNode );
             base.unExecute();
         }
     }
