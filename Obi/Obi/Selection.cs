@@ -135,7 +135,7 @@ namespace Obi
             p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (Node is EmptyNode)
             {
-                p.append(Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node));
+                p.append(Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
             }
             return p;
         }
