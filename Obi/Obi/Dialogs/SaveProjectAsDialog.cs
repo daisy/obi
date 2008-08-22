@@ -33,6 +33,15 @@ namespace Obi.Dialogs
             get { return m_NewProjectDirectoryPath; }
                     }
 
+        public bool SavePrimaryDirectoriesOnly
+        {
+            get { return m_chkSavePrimaryDirectories.Checked; }
+        }
+
+        public bool ActivateNewProject
+        {
+            get { return m_chkActivateNewProject.Checked; }
+        }
         private void m_btnBrowseParentDirectory_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog () == DialogResult.OK)
