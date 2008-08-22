@@ -189,6 +189,8 @@ namespace Obi.ProjectView
             {
                 mLabel.Text = Node.BaseStringShort();
                 mLabel.AccessibleName = Node.BaseString();
+                mToolTip.SetToolTip(this, Node.BaseStringShort());
+                mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 AccessibleName = mLabel.AccessibleName;
             }
         }
