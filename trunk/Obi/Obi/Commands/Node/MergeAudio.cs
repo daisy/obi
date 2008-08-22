@@ -25,31 +25,19 @@ namespace Obi.Commands.Node
 
         public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view)
         {
-            return GetMergeCommand(view, view.SelectedNodeAs<EmptyNode>());
+            EmptyNode node = view.SelectedNodeAs<EmptyNode>();
+            return GetMergeCommand(view, node, node.getNextSibling() as EmptyNode);
         }
 
-        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node)
+        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node, EmptyNode next)
         {
-            if (node != null)
+            if (node != null && next != null)
             {
                 urakawa.undo.CompositeCommand command =
                     view.Presentation.CreateCompositeCommand(Localizer.Message("merge_phrase_with_next"));
-                EmptyNode next = node.ParentAs<ObiNode>().PhraseChild(node.Index + 1) as EmptyNode;
-                if (node.NodeKind == EmptyNode.Kind.Plain && next.NodeKind != EmptyNode.Kind.Plain)
-                {
-                    if (next.NodeKind == EmptyNode.Kind.Page)
-                    {
-                        command.append(new Commands.Node.SetPageNumber(view, node, next.PageNumber.Clone()));
-                    }
-                    else
-                    {
-                        command.append(new Commands.Node.ChangeCustomType(view, node, next.NodeKind, next.CustomClass));
-                    }
-                }
-                if (!node.TODO && next.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, node));
-                if (!node.Used && next.Used) command.append(new Commands.Node.ToggleNodeUsed(view, node));
                 if (node is PhraseNode)
                 {
+                    AppendCopyNodeAttributes(command, view, next, node);
                     if (next is PhraseNode)
                     {
                         command.append(new Commands.Node.MergeAudio(view, (PhraseNode)node, (PhraseNode)next));
@@ -61,11 +49,28 @@ namespace Obi.Commands.Node
                 }
                 else
                 {
+                    AppendCopyNodeAttributes(command, view, node, next);
                     command.append(new Commands.Node.Delete(view, node));
                 }
                 return command;
             }
             return null;
+        }
+
+        // Append commands to transfer the attributes of a node to another (used, TODO, role, page number)
+        private static void AppendCopyNodeAttributes(urakawa.undo.CompositeCommand command, ProjectView.ProjectView view,
+            EmptyNode from, EmptyNode to)
+        {
+            if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, to));
+            if (!from.Used && to.Used) command.append(new Commands.Node.ToggleNodeUsed(view, to));
+            if (from.NodeKind == EmptyNode.Kind.Page)
+            {
+                command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
+            }
+            else if (from.NodeKind != EmptyNode.Kind.Plain)
+            {
+                command.append(new Commands.Node.ChangeCustomType(view, to, from.NodeKind, from.CustomClass));
+            }
         }
 
         /// <summary>

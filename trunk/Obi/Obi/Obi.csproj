@@ -114,7 +114,6 @@
     <Compile Include="Commands\Node\PhraseDetection.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />
-    <Compile Include="Commands\Node\SplitAudioSelection.cs" />
     <Compile Include="Commands\Node\ToggleNodeTo_Do.cs" />
     <Compile Include="Commands\Node\ToggleNodeUsed.cs" />
     <Compile Include="Commands\Strips\ImportPhrases.cs" />

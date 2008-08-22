@@ -24,6 +24,38 @@ namespace Obi.Commands.Node
         public PhraseNode NodeAfter { get { return mNodeAfter; } }
 
         /// <summary>
+        /// Create a command to crop the current selection
+        /// </summary>
+        public static urakawa.undo.ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
+        {
+            PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
+            if (phrase != null)
+            {
+                double begin = view.TransportBar.SplitBeginTime;
+                double end = view.TransportBar.SplitEndTime;
+                if (end >= phrase.Duration) end = 0.0;
+                if (begin > 0.0 || end > 0.0)
+                {
+                    urakawa.undo.CompositeCommand command =
+                        view.Presentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
+                    if (end > 0.0)
+                    {
+                        AppendSplitCommandWithProperties(view, command, phrase, end, false);
+                        command.append(new Commands.Node.DeleteWithOffset(view, phrase, 1));
+                    }
+                    if (begin > 0.0)
+                    {
+                        AppendSplitCommandWithProperties(view, command, phrase, begin,
+                            view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
+                        command.append(new Commands.Node.Delete(view, phrase));
+                    }
+                    if (command.getCount() > 0) return command;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Create a split command for the current selection.
         /// </summary>
         public static urakawa.undo.CompositeCommand GetSplitCommand(ProjectView.ProjectView view)

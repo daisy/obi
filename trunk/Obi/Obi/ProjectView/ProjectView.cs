@@ -1647,18 +1647,7 @@ namespace Obi.ProjectView
 
         public void CropPhrase()
         {
-            if (CanCropPhrase)
-            {
-                PhraseNode phrase = Selection.Phrase;
-                bool splitBefore = ((AudioSelection)Selection).AudioRange.SelectionBeginTime > 0;
-                bool splitAfter = ((AudioSelection)Selection).AudioRange.SelectionEndTime < phrase.Duration;
-                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
-                command.append(new Commands.Node.SplitAudioSelection(this));
-                if (splitAfter) command.append(new Commands.Node.DeleteWithOffset(this, phrase, 1 + (splitBefore ? 1 : 0)));
-                if (splitBefore) command.append(new Commands.Node.Delete(this, phrase));
-                mPresentation.getUndoRedoManager().execute(command);
-            }
-
+            if (CanCropPhrase) { mPresentation.getUndoRedoManager().execute(Commands.Node.SplitAudio.GetCropCommand(this)); }
         }
 
         /// <summary>

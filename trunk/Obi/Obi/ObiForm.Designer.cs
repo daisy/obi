@@ -102,9 +102,9 @@ namespace Obi
             this.mAddBlankPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -713,12 +713,6 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Name = "mImportAudioFileToolStripMenuItem";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
             // 
-            // mCropAudiotoolStripMenuItem
-            // 
-            resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
-            this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
-            this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
-            // 
             // mSplitPhraseToolStripMenuItem
             // 
             resources.ApplyResources(this.mSplitPhraseToolStripMenuItem, "mSplitPhraseToolStripMenuItem");
@@ -730,6 +724,12 @@ namespace Obi
             resources.ApplyResources(this.mMergePhraseWithNextToolStripMenuItem, "mMergePhraseWithNextToolStripMenuItem");
             this.mMergePhraseWithNextToolStripMenuItem.Name = "mMergePhraseWithNextToolStripMenuItem";
             this.mMergePhraseWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergePhraseWithNextToolStripMenuItem_Click);
+            // 
+            // mCropAudiotoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
+            this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
+            this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
             // 
             // mPhrases_PhraseIsTODOMenuItem
             // 
