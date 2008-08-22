@@ -111,7 +111,7 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.BlockBackColor_Selected :
                     mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockBackColor_Silence :
                     !mNode.Used ? settings.BlockBackColor_Unused :
-                    mNode.IsTo_Do ? settings.BlockBackColor_TODO :
+                    mNode.TODO ? settings.BlockBackColor_TODO :
                     mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockBackColor_Custom :
                     mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockBackColor_Heading :
                     mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockBackColor_Page :
@@ -121,7 +121,7 @@ namespace Obi.ProjectView
                     mHighlighted ? settings.BlockForeColor_Selected :
                     mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockForeColor_Silence :
                     !mNode.Used ? settings.BlockForeColor_Unused :
-                    mNode.IsTo_Do ? settings.BlockForeColor_TODO :
+                    mNode.TODO ? settings.BlockForeColor_TODO :
                     mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockForeColor_Custom :
                     mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockForeColor_Heading :
                     mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockForeColor_Page :

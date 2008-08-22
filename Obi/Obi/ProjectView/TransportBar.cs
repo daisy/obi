@@ -1636,7 +1636,7 @@ namespace Obi.ProjectView
         {
             if (mView.CanMarkPhrase)
             {
-                EmptyNode node;
+                /*EmptyNode node;
                 if (IsRecording)
                 {
                     mRecordingSession.NextPhrase();
@@ -1658,6 +1658,7 @@ namespace Obi.ProjectView
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
                     mView.MarkRole, mView.MarkCustomRole));
                 mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                 */
             }
         }
 

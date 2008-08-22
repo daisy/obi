@@ -31,7 +31,7 @@ namespace Obi
         /// Silence is a silence node for phrase detection.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Kind { Plain, Page, Heading, Silence, TODO, Custom };
+        public enum Kind { Plain, Page, Heading, Silence, Custom };
 
         
         public override string ToString() { return BaseString(); }
@@ -39,7 +39,7 @@ namespace Obi
         public virtual string BaseString(double durationMs)
         {
             return String.Format(Localizer.Message("phrase_to_string"),
-                IsTo_Do ? Localizer.Message ("phrase_short_TODO") : "",
+                TODO ? Localizer.Message ("phrase_short_TODO") : "",
                 Used ? "" : Localizer.Message("unused"),
                 IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
@@ -54,6 +54,7 @@ namespace Obi
         public virtual string BaseStringShort(double durationMs)
         {
             return String.Format(Localizer.Message("phrase_short_to_string"),
+                TODO ? Localizer.Message("phrase_short_TODO") : "",
                 mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
                     mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber.ToString()) :
                     Localizer.Message("phrase_short_" + mKind.ToString()),
@@ -132,7 +133,7 @@ namespace Obi
             set { SetKind(Kind.Custom, value); }
         }
 
-        public bool IsTo_Do
+        public bool TODO
         {
             get { return mTODO; }
             set { mTODO = value;  }
@@ -214,7 +215,7 @@ namespace Obi
 
         public void AssignTo_DoMark( bool Val )
         {
-            IsTo_Do = Val;
+            TODO = Val;
             if ( ChangedTo_DoStatus != null )
                 ChangedTo_DoStatus(this, new NodeEventArgs<EmptyNode>(this));
         }
@@ -236,8 +237,7 @@ namespace Obi
             if (kind != null) mKind = kind == Kind.Custom.ToString() ? Kind.Custom :
                                       kind == Kind.Heading.ToString() ? Kind.Heading :
                                       kind == Kind.Page.ToString() ? Kind.Page :
-                                      kind == Kind.Silence.ToString() ? Kind.Silence :
-                                      kind == Kind.TODO.ToString() ? Kind.TODO : Kind.Plain;
+                                      kind == Kind.Silence.ToString() ? Kind.Silence : Kind.Plain;
             if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
             mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
             if (mKind == Kind.Page)

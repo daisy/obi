@@ -1739,7 +1739,7 @@ namespace Obi
             if (mProjectView.TransportBar.Enabled) mProjectView.TransportBar.MarkCustomClass();
         }
 
-        private void mTodoClasstoolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_PhraseIsTODOMenuItem_Click(object sender, EventArgs e)
         {
             if (mProjectView.TransportBar.Enabled
                 && mProjectView.TransportBar.IsActive)
@@ -1861,6 +1861,5 @@ namespace Obi
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }              
         }
-
     }
 }

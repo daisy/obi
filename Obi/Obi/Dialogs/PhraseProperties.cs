@@ -71,7 +71,7 @@ namespace Obi.Dialogs
             m_comboPhraseRole.SelectedItem = mNode.NodeKind;
             m_txtCustomClassName.Text = mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : "";
             m_chkUsed.Checked = mNode.Used;
-            m_chkToDo.Checked = mNode.IsTo_Do;
+            m_chkToDo.Checked = mNode.TODO;
             EnableCustomClassField();
         }
 

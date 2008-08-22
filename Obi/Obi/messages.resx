@@ -891,11 +891,11 @@ Error text: {1}</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_short_to_string" xml:space="preserve">
-    <value>{0} ({1})</value>
+    <value>{0}{1} ({2})</value>
     <comment>ToStirng() short version for labels</comment>
   </data>
   <data name="phrase_short_TODO" xml:space="preserve">
-    <value>To do</value>
+    <value>*TODO* </value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
@@ -1112,5 +1112,9 @@ Error text: {1}</value>
   <data name="renumber_pages" xml:space="preserve">
     <value>renumber {0}</value>
     <comment>Command (renumber --- pages)</comment>
+  </data>
+  <data name="crop_audio" xml:space="preserve">
+    <value>crop audio</value>
+    <comment>Command</comment>
   </data>
 </root>

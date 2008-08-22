@@ -20,9 +20,6 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
 
-        private EmptyNode.Kind mMarkRole;    // role to use as the on-the-fly custom role mark
-        private string mMarkCustomRole;      // custom role (if applicable)
-
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
@@ -48,14 +45,8 @@ namespace Obi.ProjectView
             mForm = null;
             mClipboard = null;
             mTabbingTimer = null;
-
-            mMarkRole = EmptyNode.Kind.TODO;
-            mMarkCustomRole = "";
         }
 
-
-        public EmptyNode.Kind MarkRole { get { return mMarkRole; } }
-        public string MarkCustomRole { get { return mMarkCustomRole; } }
 
         /// <summary>
         /// Add a new empty block.
@@ -249,19 +240,20 @@ namespace Obi.ProjectView
             {
                 return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor;
             }
-        } 
+        }
 
 
         public bool CanMarkPhrase
         {
             get
             {
-                EmptyNode node = mTransportBar.HasAudioCursor ?
+                /*EmptyNode node = mTransportBar.HasAudioCursor ?
                     mTransportBar.CurrentPlaylist.CurrentPhrase :
                     SelectedNodeAs<EmptyNode>();
                 return mTransportBar.CurrentState == TransportBar.State.Recording ||
                     mTransportBar.CurrentState == TransportBar.State.Paused ||
-                    (node != null && (node.NodeKind != mMarkRole || node.CustomClass != mMarkCustomRole));
+                    (node != null && (node.NodeKind != mMarkRole || node.CustomClass != mMarkCustomRole));*/
+                return false;
             }
         }
 
@@ -1664,7 +1656,7 @@ namespace Obi.ProjectView
                     {
                         command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
                     }
-                    if (dialog.TODO != dialog.Node.IsTo_Do)
+                    if (dialog.TODO != dialog.Node.TODO)
                     {
                         command.append(new Commands.Node.ToggleNodeTo_Do(this, dialog.Node));
                     }
@@ -1676,25 +1668,20 @@ namespace Obi.ProjectView
 
         public void CropPhrase()
         {
-            bool SplitBefore =false;
-            bool SplitAfter = false;
-            if ( CanCropPhrase )
+            if (CanCropPhrase)
             {
-                PhraseNode node = (PhraseNode) Selection.Node;
-                if (((AudioSelection)Selection).AudioRange.SelectionBeginTime > 0) SplitBefore = true;
-                if (((AudioSelection)Selection).AudioRange.SelectionEndTime< ((PhraseNode)Selection.Node).Duration) SplitAfter = true;
-
-
-                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand("Crop audio");
-
-                                command.append(new Commands.Node.SplitAudioSelection(this));
-                                if (SplitAfter) command.append(new Commands.Node.DeleteWithOffset(this ,node ,2 ) );
-                                                                                                if (SplitBefore) command.append(new Commands.Node.Delete(this, node));
-                                
-                command.execute();
-                            }
+                PhraseNode phrase = Selection.Phrase;
+                bool splitBefore = ((AudioSelection)Selection).AudioRange.SelectionBeginTime > 0;
+                bool splitAfter = ((AudioSelection)Selection).AudioRange.SelectionEndTime < phrase.Duration;
+                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
+                command.append(new Commands.Node.SplitAudioSelection(this));
+                if (splitAfter) command.append(new Commands.Node.DeleteWithOffset(this, phrase, 1 + (splitBefore ? 1 : 0)));
+                if (splitBefore) command.append(new Commands.Node.Delete(this, phrase));
+                mPresentation.getUndoRedoManager().execute(command);
+            }
 
         }
+
         /// <summary>
         /// Get the phrase node to split depending on the selection or the playback node.
         /// </summary>

@@ -83,6 +83,7 @@ namespace Obi
             this.mView_NormalSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_AudioZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.mView_ProjectStatisticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,8 +102,10 @@ namespace Obi
             this.mAddBlankPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddEmptyPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mImportAudioFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mAssignRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +125,6 @@ namespace Obi
             this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -170,9 +172,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mTodoClasstoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -572,6 +572,12 @@ namespace Obi
             this.mView_AudioZoomOutMenuItem.Name = "mView_AudioZoomOutMenuItem";
             this.mView_AudioZoomOutMenuItem.Click += new System.EventHandler(this.mView_AudioZoomOutMenuItem_Click);
             // 
+            // mView_ResetAudioSizeMenuItem
+            // 
+            resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
+            this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
+            this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
+            // 
             // toolStripSeparator17
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
@@ -673,19 +679,19 @@ namespace Obi
             this.mAddBlankPhraseToolStripMenuItem,
             this.mAddEmptyPagesToolStripMenuItem,
             this.mImportAudioFileToolStripMenuItem,
+            this.mCropAudiotoolStripMenuItem,
             this.mSplitPhraseToolStripMenuItem,
             this.mMergePhraseWithNextToolStripMenuItem,
+            this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
             this.toolStripSeparator6,
             this.mAssignRoleToolStripMenuItem,
             this.mEditRolesToolStripMenuItem,
             this.mClearRoleToolStripMenuItem,
-            this.mTodoClasstoolStripMenuItem,
             this.mPhraseDetectionToolStripMenuItem,
             this.mMarkDefaultCustomClassToolStripMenuItem,
             this.mInPhraseSelectionToolStripMenuItem,
-            this.mGoToToolStripMenuItem,
-            this.mCropAudiotoolStripMenuItem});
+            this.mGoToToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -707,6 +713,12 @@ namespace Obi
             this.mImportAudioFileToolStripMenuItem.Name = "mImportAudioFileToolStripMenuItem";
             this.mImportAudioFileToolStripMenuItem.Click += new System.EventHandler(this.mImportAudioFileToolStripMenuItem_Click);
             // 
+            // mCropAudiotoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
+            this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
+            this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
+            // 
             // mSplitPhraseToolStripMenuItem
             // 
             resources.ApplyResources(this.mSplitPhraseToolStripMenuItem, "mSplitPhraseToolStripMenuItem");
@@ -718,6 +730,12 @@ namespace Obi
             resources.ApplyResources(this.mMergePhraseWithNextToolStripMenuItem, "mMergePhraseWithNextToolStripMenuItem");
             this.mMergePhraseWithNextToolStripMenuItem.Name = "mMergePhraseWithNextToolStripMenuItem";
             this.mMergePhraseWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergePhraseWithNextToolStripMenuItem_Click);
+            // 
+            // mPhrases_PhraseIsTODOMenuItem
+            // 
+            this.mPhrases_PhraseIsTODOMenuItem.Name = "mPhrases_PhraseIsTODOMenuItem";
+            resources.ApplyResources(this.mPhrases_PhraseIsTODOMenuItem, "mPhrases_PhraseIsTODOMenuItem");
+            this.mPhrases_PhraseIsTODOMenuItem.Click += new System.EventHandler(this.mPhrases_PhraseIsTODOMenuItem_Click);
             // 
             // mPhraseIsUsedToolStripMenuItem
             // 
@@ -845,12 +863,6 @@ namespace Obi
             resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
             this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
             this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
-            // 
-            // mCropAudiotoolStripMenuItem
-            // 
-            resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
-            this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
-            this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
             // 
             // transportToolStripMenuItem
             // 
@@ -1179,12 +1191,6 @@ namespace Obi
             this.mStatusProgessBar.Name = "mStatusProgessBar";
             resources.ApplyResources(this.mStatusProgessBar, "mStatusProgessBar");
             // 
-            // mView_ResetAudioSizeMenuItem
-            // 
-            resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
-            this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
-            this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
-            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1198,11 +1204,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mTodoClasstoolStripMenuItem
-            // 
-            this.mTodoClasstoolStripMenuItem.Name = "mTodoClasstoolStripMenuItem";
-            resources.ApplyResources(this.mTodoClasstoolStripMenuItem, "mTodoClasstoolStripMenuItem");
             // 
             // ObiForm
             // 
@@ -1373,7 +1374,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_DeleteUnusedDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ResetAudioSizeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mTodoClasstoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_PhraseIsTODOMenuItem;
     }
 }
 
