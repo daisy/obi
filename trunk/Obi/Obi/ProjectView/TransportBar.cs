@@ -234,7 +234,11 @@ namespace Obi.ProjectView
                 return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
                     mPlayer.State == Obi.Audio.AudioPlayerState.Playing ?
                     mCurrentPlaylist.CurrentTimeInAsset :
-                    mView.Selection is AudioSelection ? ((AudioSelection)mView.Selection).AudioRange.CursorTime : 0.0;
+                    mView.Selection is AudioSelection ?
+                        ((AudioSelection)mView.Selection).AudioRange.HasCursor ?
+                            ((AudioSelection)mView.Selection).AudioRange.CursorTime :
+                            ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime :
+                        0.0;
             }
         }
 
