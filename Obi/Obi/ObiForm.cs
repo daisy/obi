@@ -209,29 +209,39 @@ namespace Obi
              */ 
             if ( SaveDialog.ShowDialog () == DialogResult.OK )
             {
-                DirectoryInfo DirInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
+                DirectoryInfo NewProjectDirectoryInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
                 DirectoryInfo OriginalDirInfo = new DirectoryInfo(Directory.GetParent(mSession.Path).FullName);
-                DirInfo.Create();
-                ShallowCopyFilesInDirectory(OriginalDirInfo.FullName, DirInfo.FullName);
+                NewProjectDirectoryInfo.Create();
+                ShallowCopyFilesInDirectory(OriginalDirInfo.FullName, NewProjectDirectoryInfo.FullName);
 
-                
+                FileInfo XukFileInfo = new FileInfo(mSession.Path);
+                string XukPath = Path.Combine(NewProjectDirectoryInfo.FullName, XukFileInfo.Name);
+                if (File.Exists(XukPath)) File.Delete(XukPath);
+                mSession.SaveAs(XukPath);
+
+                if (!SaveDialog.SavePrimaryDirectoriesOnly)
+                {
                     DirectoryInfo[] DirList = OriginalDirInfo.GetDirectories("*.*", SearchOption.AllDirectories);
 
                     foreach (DirectoryInfo d in DirList)
                     {
-                        string DestPath = DirInfo.FullName + d.FullName.Replace(OriginalDirInfo.FullName, "");
-                        Directory.CreateDirectory(DestPath);
-                        // copy files in each directory
-                        ShallowCopyFilesInDirectory(d.FullName, DestPath);
+                        string DestPath = NewProjectDirectoryInfo.FullName + d.FullName.Replace(OriginalDirInfo.FullName, "");
+                        if (!Directory.Exists(DestPath))
+                        {
+                            Directory.CreateDirectory(DestPath);
+                            // copy files in each directory
+                            ShallowCopyFilesInDirectory(d.FullName, DestPath);
+                        }
                     }
-                
-                //mSession.SaveAs(dialog.FileName);
+
+                }
             }
             else
             {
                 Ready();
             }
         }
+
 
         private void ShallowCopyFilesInDirectory(string source, string dest)
         {
@@ -241,10 +251,8 @@ namespace Obi
             {
                 FInfo = new FileInfo (f) ;
                 FInfo.CopyTo( Path.Combine ( dest , FInfo.Name) );
-                //MessageBox.Show(d.FullName);
-            }
+                            }
         }
-
 
         // Return whether the project can be closed or not.
         // If a project is open and unsaved, ask about what to do.
