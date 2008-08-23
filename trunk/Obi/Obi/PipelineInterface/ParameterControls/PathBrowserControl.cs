@@ -17,24 +17,36 @@ namespace Obi.PipelineInterface.ParameterControls
         private DataTypes.PathDataType m_PathData;
                 private string m_ProjectDirectory;
 
-        public PathBrowserControl()
+        public PathBrowserControl() { InitializeComponent(); }
+
+        public PathBrowserControl(ScriptParameter p, string SelectedPath, string ProjectDirectory)
+            : this()
         {
-                        InitializeComponent();
-        }
+            m_SelectedPath = SelectedPath;
+            m_ProjectDirectory = ProjectDirectory;
+            m_Parameter = p;
+            m_PathData = (DataTypes.PathDataType)p.ParameterDataType;
 
-        public PathBrowserControl( ScriptParameter p , string SelectedPath ,string ProjectDirectory):this  ()
-        {
-                        m_SelectedPath = SelectedPath;
-                        m_ProjectDirectory = ProjectDirectory;
-
-                        m_Parameter = p;
-                        m_PathData = (DataTypes.PathDataType)p.ParameterDataType;
-                        label1.Text = p.NiceName;
-                        textBox1.AccessibleName = p.NiceName;
-                        base.Value = p.Description;
-                        if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input) textBox1.Text = SelectedPath;
-
-                        base.Size = this.Size;
+            int wdiff = mNiceNameLabel.Width;
+            mNiceNameLabel.Text = p.NiceName;
+            wdiff -= mNiceNameLabel.Width;
+            if (wdiff < 0)
+            {
+                Point location = mNiceNameLabel.Location;
+                Width -= wdiff;
+                mNiceNameLabel.Location = location;
+            }
+            else
+            {
+                mNiceNameLabel.Location = new Point(mNiceNameLabel.Location.X - wdiff, mNiceNameLabel.Location.Y);
+            }
+            mTextBox.AccessibleName = p.Description;
+            base.DescriptionLabel = p.Description;
+            if (mLabel.Width + mLabel.Margin.Horizontal > Width) Width = mLabel.Width + mLabel.Margin.Horizontal;
+            if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
+            {
+                mTextBox.Text = SelectedPath;
+            }
         }
 
         public override string Text
@@ -44,8 +56,8 @@ namespace Obi.PipelineInterface.ParameterControls
             {
                 if (value != null)
                 {
-                    label1.Text = value;
-                    textBox1.AccessibleName = value;
+                    mNiceNameLabel.Text = value;
+                    mTextBox.AccessibleName = value;
                 }
             }
         }
@@ -62,7 +74,7 @@ namespace Obi.PipelineInterface.ParameterControls
             {
                 if (value != null)
                 {
-                    textBox1.Text = value;
+                    mTextBox.Text = value;
 
                 }
             }
@@ -87,7 +99,7 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             if (openFileDialog1.ShowDialog () == DialogResult.OK)
             {
-                textBox1.Text = openFileDialog1.FileName;
+                mTextBox.Text = openFileDialog1.FileName;
             }
         }
 
@@ -95,7 +107,7 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             if (saveFileDialog1.ShowDialog () == DialogResult.OK)
             {
-                textBox1.Text = saveFileDialog1.FileName;
+                mTextBox.Text = saveFileDialog1.FileName;
             }
         }
 
@@ -104,23 +116,23 @@ namespace Obi.PipelineInterface.ParameterControls
                 folderBrowserDialog1.ShowNewFolderButton = true;
             if (folderBrowserDialog1.ShowDialog () == DialogResult.OK)
             {
-                textBox1.Text = folderBrowserDialog1.SelectedPath;
+                mTextBox.Text = folderBrowserDialog1.SelectedPath;
             }
 
         }
 
         public override void UpdateScriptParameterValue()
             	{
-                    if ((textBox1.Text != null && textBox1.Text != "")
+                    if ((mTextBox.Text != null && mTextBox.Text != "")
                         ||   m_Parameter.IsParameterRequired)
                     {
-                        m_SelectedPath = textBox1.Text;
+                        m_SelectedPath = mTextBox.Text;
                         if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
                         {
                             try
                             {
                                 if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
-                                else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(textBox1.Text).Close();
+                                else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(mTextBox.Text).Close();
                             }
                             catch (System.Exception ex)
                             {
@@ -131,7 +143,7 @@ namespace Obi.PipelineInterface.ParameterControls
                         // update    parameter
                         try
                         {
-                            m_PathData.Value = textBox1.Text;
+                            m_PathData.Value = mTextBox.Text;
                         }
                         catch (System.Exception ex)
                         {
@@ -143,21 +155,21 @@ namespace Obi.PipelineInterface.ParameterControls
  
         private bool  CheckForOutputDirectory()
         {
-                                        if ( Directory.Exists(textBox1.Text) &&
-                            (textBox1.Text == m_ProjectDirectory || textBox1.Text == Directory.GetParent(m_SelectedPath ).FullName))
+                                        if ( Directory.Exists(mTextBox.Text) &&
+                            (mTextBox.Text == m_ProjectDirectory || mTextBox.Text == Directory.GetParent(m_SelectedPath ).FullName))
             {
                 MessageBox.Show(Localizer.Message("Choose_OtherDirectory"), Localizer.Message("Caption_Error"));
                 return false;
             }
-                        if (!Directory.Exists(textBox1.Text))
+                        if (!Directory.Exists(mTextBox.Text))
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("OutputDirectoryNotFound_Permission_Create"), Localizer.Message("Caption_Error"), MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if (textBox1.Text == ""
-                        || !Directory.CreateDirectory(textBox1.Text).Exists)
+                    if (mTextBox.Text == ""
+                        || !Directory.CreateDirectory(mTextBox.Text).Exists)
                     {
-                                                MessageBox.Show(string.Format(Localizer.Message("NotAbleToCreateDirectory"), textBox1.Text), Localizer.Message("Caption_Error"));
+                                                MessageBox.Show(string.Format(Localizer.Message("NotAbleToCreateDirectory"), mTextBox.Text), Localizer.Message("Caption_Error"));
                         return false;
                     }
                 } // if no button is pressed
@@ -165,13 +177,13 @@ namespace Obi.PipelineInterface.ParameterControls
                     return false;
             }
 
-            if (Directory.GetFiles(textBox1.Text, "*.*", SearchOption.AllDirectories).Length > 0)
+            if (Directory.GetFiles(mTextBox.Text, "*.*", SearchOption.AllDirectories).Length > 0)
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("Permission_EmptyOutputDirectory") , Localizer.Message("Caption_Warning") , MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    Directory.Delete(textBox1.Text, true);
-                    Directory.CreateDirectory(textBox1.Text);
+                    Directory.Delete(mTextBox.Text, true);
+                    Directory.CreateDirectory(mTextBox.Text);
                 }
                 else
                     return false;

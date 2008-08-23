@@ -867,43 +867,6 @@ namespace Obi
 
         private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e) { ExportProject(); }
 
-        private void mTools_EncodeDTBAudioAsMP3MenuItem_Click(object sender, EventArgs e)
-        {
-            string scriptPath = Path.Combine(mSettings.PipelineScriptsPath, "DTBAudioEncoder.taskScript");
-            try
-            {
-                PipelineInterface.Mp3EncoderForm EncoderForm = new PipelineInterface.Mp3EncoderForm(
-                    scriptPath,
-                   mSession.PrimaryExportPath ,
-                    Directory.GetParent(mSession.Path).FullName);
-                EncoderForm.ShowDialog();
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(string.Format(Localizer.Message("dtb_encode_error"), x.Message),
-                    Localizer.Message("dtb_encode_error_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void mTools_ValidateDTBMenuItem_Click(object sender, System.EventArgs e)
-        {
-            string scriptPath = Path.Combine(mSettings.PipelineScriptsPath, "Z3986DTBValidator.taskScript");
-            try
-            {
-                PipelineInterface.ValidatorForm ValidatorDialog = new Obi.PipelineInterface.ValidatorForm(
-                    scriptPath,
-                    "", Directory.GetParent(mSession.Path).FullName);
-                ValidatorDialog.ShowDialog();
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(string.Format(Localizer.Message("dtb_validate_error"), x.Message),
-                    Localizer.Message("dtb_validate_error_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
 
 
@@ -1174,18 +1137,18 @@ namespace Obi
         private void PopulatePipelineScriptsInToolsMenu()
         {
             ToolStripMenuItem PipelineMenuItem = null;
-                        foreach( KeyValuePair<string,FileInfo> k in    mPipelineInfo.ScriptsInfo )
+            foreach (KeyValuePair<string, FileInfo> k in mPipelineInfo.ScriptsInfo)
             {
                 PipelineMenuItem = new ToolStripMenuItem();
                 PipelineMenuItem.Text = k.Key;
                 PipelineMenuItem.AccessibleName = k.Key;
                 PipelineMenuItem.Name = "PipelineMenu";
                 PipelineMenuItem.Enabled = mSession.HasProject;
-                                mMenuStrip.Items.Add(PipelineMenuItem);
-                                mToolsToolStripMenuItem.DropDown.Items.Add(PipelineMenuItem);
-                                PipelineMenuItem.Click += new EventHandler(PipelineToolStripItems_Click);
-                                            }
-                                                                }
+                mMenuStrip.Items.Add(PipelineMenuItem);
+                mToolsToolStripMenuItem.DropDown.Items.Add(PipelineMenuItem);
+                PipelineMenuItem.Click += new EventHandler(PipelineToolStripItems_Click);
+            }
+        }
 
         private bool PipelineMenuItemsEnabled
         {
@@ -1897,13 +1860,13 @@ namespace Obi
 
         private void PipelineToolStripItems_Click(object sender, EventArgs e)
         {
-                                    try
+            try
             {
-                PipelineInterface.PipelineInterfaceForm  PipelineForm = new PipelineInterface.PipelineInterfaceForm(
-                    mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName ,
-                    Path.Combine( mSession.PrimaryExportPath , "obi_dtb.opf" ),
+                PipelineInterface.PipelineInterfaceForm PipelineForm = new PipelineInterface.PipelineInterfaceForm(
+                    mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName,
+                    Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"),
                     Directory.GetParent(mSession.Path).FullName);
-                PipelineForm.ShowDialog();
+                if (PipelineForm.ShowDialog() == DialogResult.OK) PipelineForm.RunScript();
             }
             catch (Exception x)
             {

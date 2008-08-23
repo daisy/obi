@@ -24,19 +24,19 @@ namespace Obi.PipelineInterface.ParameterControls
             m_Parameter = p ;
             m_EnumData = (DataTypes.EnumDataType) p.ParameterDataType ;
 
-            label1.Text =  p.NiceName;
-            comboBox1.AccessibleName = p.NiceName;
-            base.Value = p.Description;
+            mNiceNameLabel.Text =  p.NiceName;
+            mComboBox.AccessibleName = p.NiceName;
+            base.DescriptionLabel = p.Description;
 
             DataTypes.EnumDataType EnumData = (DataTypes.EnumDataType)p.ParameterDataType;
             foreach (string s in EnumData.GetNiceNames)
             {
-                comboBox1.Items.Add(s);
+                mComboBox.Items.Add(s);
             }
 
             base.Size = this.Size;
             if ( m_EnumData.SelectedIndex >= 0 && m_EnumData.SelectedIndex < m_EnumData.GetValues.Count )
-            comboBox1.SelectedIndex = m_EnumData.SelectedIndex;
+            mComboBox.SelectedIndex = m_EnumData.SelectedIndex;
         }
 
 
@@ -49,7 +49,7 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             try
             {
-                                m_EnumData.SelectedIndex = comboBox1.SelectedIndex;
+                                m_EnumData.SelectedIndex = mComboBox.SelectedIndex;
             }
             catch (System.Exception ex)
             {
