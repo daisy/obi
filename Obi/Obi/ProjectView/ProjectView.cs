@@ -131,6 +131,10 @@ namespace Obi.ProjectView
         private void AddStrip()
         {
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+            // select section node if its  phrase  is selected
+            if (Selection != null && Selection.Node is EmptyNode)
+                Selection = new NodeSelection ( Selection.Node.ParentAs<SectionNode> (), Selection.Control );
+
                         Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
             urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
             SectionNode selected = null;
