@@ -56,7 +56,7 @@ namespace Obi.Dialogs
 
             if (new DirectoryInfo(m_OriginalProjectPath).FullName == new DirectoryInfo(DirPath).FullName)
             {
-                MessageBox.Show("Cannot save in the same directory. Please choose some other location");
+                MessageBox.Show( Localizer.Message("CannotSaveInSameProjectDirectory"));
                                 return;
             }
 

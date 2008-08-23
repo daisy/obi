@@ -1117,4 +1117,10 @@ Error text: {1}</value>
     <value>crop audio</value>
     <comment>Command</comment>
   </data>
+  <data name="CannotSaveInSameProjectDirectory" xml:space="preserve">
+    <value>Cannot save in the same directory. Please choose some other location</value>
+  </data>
+  <data name="SaveBeforeUsingSaveAs" xml:space="preserve">
+    <value>Do you want to save changes before saving project to a new location? </value>
+  </data>
 </root>
