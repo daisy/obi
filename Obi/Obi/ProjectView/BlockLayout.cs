@@ -37,7 +37,6 @@ namespace Obi.ProjectView
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            // BackColor = Color.Azure;
             // Calling the base class OnPaint
             base.OnPaint(pe);
             StripIndexSelection selection = Selection as StripIndexSelection;

@@ -61,9 +61,12 @@ namespace Obi.ProjectView
             mBlockLayout.Controls.SetChildIndex(block, node.Index);
             block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
             block.Cursor = Cursor;
+            block.SizeChanged += new EventHandler(block_SizeChanged);
             UpdateSize();
             return block;
         }
+
+        private void block_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
 
         /// <summary>
         /// Set the audio scale for the strip (may differ from the parent's.)
@@ -253,6 +256,7 @@ namespace Obi.ProjectView
             if (block != null)
             {
                 mBlockLayout.Controls.Remove(block);
+                block.SizeChanged -= new EventHandler(block_SizeChanged);
                 UpdateSize();
             }
         }
