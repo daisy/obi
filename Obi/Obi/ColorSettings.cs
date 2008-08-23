@@ -139,9 +139,8 @@ namespace Obi
             settings.mWaveformChannel1Color = Color.FromArgb(127, Color.Blue);
             settings.mWaveformChannel2Color = Color.FromArgb(127, Color.Red);
             settings.mWaveformMonoColor = Color.FromArgb(127, Color.Blue);
-            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Yellow);
-            settings.mWaveformCursorColor = Color.FromArgb(127, Color.Green);
-
+            settings.mWaveformSelectionColor = SystemColors.Highlight;
+            settings.mWaveformCursorColor = Color.Red;
             return settings;
         }
 
@@ -170,8 +169,7 @@ namespace Obi
             settings.mWaveformChannel1Color = Color.Green;
             settings.mWaveformChannel2Color = Color.Green;
             settings.mWaveformMonoColor = Color.Green;
-            settings.mWaveformSelectionColor = Color.FromArgb(127, Color.Azure);
-            settings.mWaveformCursorColor = Color.Purple;
+            settings.mWaveformCursorColor = Color.Yellow;
             
             return settings;
         }

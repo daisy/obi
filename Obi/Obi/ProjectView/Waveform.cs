@@ -200,28 +200,39 @@ namespace Obi.ProjectView
                         pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
                             block.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
                     }
+                    int w = block.Margin.Right;
                     if (mSelection != null)
                     {
                         if (CheckCursor)
                         {
                             pe.Graphics.DrawLine(settings.WaveformSelectionPen,
                                 new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                            pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
+                                new Rectangle(SelectionPointPosition - w / 2, 0, w, 2 * w));
                         }
                         else if (CheckRange)
                         {
-                            pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
-                                InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                            if (mBitmap_Highlighted != null)
+                            {
+                                pe.Graphics.DrawImage(mBitmap_Highlighted, InitialSelectionPosition, 0,
+                                    new Rectangle(InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition,
+                                    Height), GraphicsUnit.Pixel);
+                            }
+                            else
+                            {
+                                pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
+                                    InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
+                            }
                         }
                     }
                     if (mCursor != null)
                     {
                         pe.Graphics.DrawLine(settings.WaveformCursorPen,
                             new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
-                        int w = block.Margin.Right;
                         Point[] points = new Point[3];
-                        points[0] = new Point(CursorPosition, Height / 2 - w);
-                        points[1] = new Point(CursorPosition + w, Height / 2);
-                        points[2] = new Point(CursorPosition, Height / 2 + w);
+                        points[0] = new Point(CursorPosition, 0);
+                        points[1] = new Point(CursorPosition + w, w);
+                        points[2] = new Point(CursorPosition, 2 * w);
                         pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
                     }
                 }
