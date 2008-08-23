@@ -111,7 +111,7 @@ namespace Obi
         {
             mKind = node.mKind;
             mCustomClass = node.mCustomClass;
-            mPageNumber = node.mPageNumber.Clone();
+            mPageNumber = node.mPageNumber != null ? node.mPageNumber.Clone() : null;
         }
 
         /// <summary>
