@@ -28,41 +28,49 @@ namespace Obi.PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.mComboBox = new System.Windows.Forms.ComboBox();
+            this.mNiceNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // mComboBox
             // 
-            this.comboBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.ComboBox;
-            this.comboBox1.AllowDrop = true;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(100, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.mComboBox.AccessibleRole = System.Windows.Forms.AccessibleRole.ComboBox;
+            this.mComboBox.AllowDrop = true;
+            this.mComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mComboBox.FormattingEnabled = true;
+            this.mComboBox.Location = new System.Drawing.Point(51, 20);
+            this.mComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mComboBox.Name = "mComboBox";
+            this.mComboBox.Size = new System.Drawing.Size(160, 24);
+            this.mComboBox.TabIndex = 1;
             // 
-            // label1
+            // mNiceNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.mNiceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNiceNameLabel.AutoSize = true;
+            this.mNiceNameLabel.Location = new System.Drawing.Point(4, 23);
+            this.mNiceNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mNiceNameLabel.Name = "mNiceNameLabel";
+            this.mNiceNameLabel.Size = new System.Drawing.Size(39, 16);
+            this.mNiceNameLabel.TabIndex = 1;
+            this.mNiceNameLabel.Text = "Nice:";
             // 
             // EnumControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.mNiceNameLabel);
+            this.Controls.Add(this.mComboBox);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "EnumControl";
-            this.Size = new System.Drawing.Size(270, 70);
+            this.Size = new System.Drawing.Size(215, 48);
             this.Load += new System.EventHandler(this.ComboboxControl_Load);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.mLabel, 0);
+            this.Controls.SetChildIndex(this.mComboBox, 0);
+            this.Controls.SetChildIndex(this.mNiceNameLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,7 +78,7 @@ namespace Obi.PipelineInterface.ParameterControls
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox mComboBox;
+        private System.Windows.Forms.Label mNiceNameLabel;
     }
 }

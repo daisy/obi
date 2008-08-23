@@ -256,12 +256,6 @@
     <Compile Include="PipelineInterface\DataTypes\BoolDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\EnumDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\PathDataType.cs" />
-    <Compile Include="PipelineInterface\Mp3EncoderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\Mp3EncoderForm.designer.cs">
-      <DependentUpon>Mp3EncoderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PipelineInterface\ParameterControls\BaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -295,12 +289,6 @@
     </Compile>
     <Compile Include="PipelineInterface\ScriptParameter.cs" />
     <Compile Include="PipelineInterface\ScriptParser.cs" />
-    <Compile Include="PipelineInterface\ValidatorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ValidatorForm.designer.cs">
-      <DependentUpon>ValidatorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Playlist.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="PriorityQueue.cs" />
@@ -560,10 +548,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>ObiForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\Mp3EncoderForm.resx">
-      <DependentUpon>Mp3EncoderForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="PipelineInterface\ParameterControls\BaseUserControl.resx">
       <DependentUpon>BaseUserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -583,10 +567,6 @@
     <EmbeddedResource Include="PipelineInterface\PipelineInterfaceForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ValidatorForm.resx">
-      <DependentUpon>ValidatorForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Block.resx">
       <SubType>Designer</SubType>

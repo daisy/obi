@@ -28,39 +28,47 @@ namespace Obi.PipelineInterface.ParameterControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
+            this.mNiceNameLabel = new System.Windows.Forms.Label();
+            this.mTextBox = new System.Windows.Forms.TextBox();
+            this.mBrowseButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // label1
+            // mNiceNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.mNiceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNiceNameLabel.AutoSize = true;
+            this.mNiceNameLabel.Location = new System.Drawing.Point(4, 26);
+            this.mNiceNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mNiceNameLabel.Name = "mNiceNameLabel";
+            this.mNiceNameLabel.Size = new System.Drawing.Size(39, 16);
+            this.mNiceNameLabel.TabIndex = 1;
+            this.mNiceNameLabel.Text = "Nice:";
             // 
-            // textBox1
+            // mTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(100, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 20);
-            this.textBox1.TabIndex = 2;
+            this.mTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mTextBox.Location = new System.Drawing.Point(51, 24);
+            this.mTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mTextBox.Name = "mTextBox";
+            this.mTextBox.Size = new System.Drawing.Size(262, 22);
+            this.mTextBox.TabIndex = 2;
             // 
-            // btnBrowse
+            // mBrowseButton
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(280, 40);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowse.TabIndex = 3;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.mBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mBrowseButton.Location = new System.Drawing.Point(321, 20);
+            this.mBrowseButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mBrowseButton.Name = "mBrowseButton";
+            this.mBrowseButton.Size = new System.Drawing.Size(100, 28);
+            this.mBrowseButton.TabIndex = 3;
+            this.mBrowseButton.Text = "Browse";
+            this.mBrowseButton.UseVisualStyleBackColor = true;
+            this.mBrowseButton.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // openFileDialog1
             // 
@@ -68,17 +76,19 @@ namespace Obi.PipelineInterface.ParameterControls
             // 
             // PathBrowserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mBrowseButton);
+            this.Controls.Add(this.mTextBox);
+            this.Controls.Add(this.mNiceNameLabel);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "PathBrowserControl";
-            this.Size = new System.Drawing.Size(360, 80);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.btnBrowse, 0);
+            this.Size = new System.Drawing.Size(425, 52);
+            this.Controls.SetChildIndex(this.mLabel, 0);
+            this.Controls.SetChildIndex(this.mNiceNameLabel, 0);
+            this.Controls.SetChildIndex(this.mTextBox, 0);
+            this.Controls.SetChildIndex(this.mBrowseButton, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,9 +96,9 @@ namespace Obi.PipelineInterface.ParameterControls
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Label mNiceNameLabel;
+        private System.Windows.Forms.TextBox mTextBox;
+        private System.Windows.Forms.Button mBrowseButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;

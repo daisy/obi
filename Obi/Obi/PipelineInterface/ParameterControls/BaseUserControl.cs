@@ -10,29 +10,14 @@ namespace Obi.PipelineInterface.ParameterControls
 {
     public partial class BaseUserControl : UserControl
     {
-        public BaseUserControl()
+        public BaseUserControl() { InitializeComponent(); }
+
+        public virtual String DescriptionLabel
         {
-            InitializeComponent();
+            get { return mLabel.Text; }
+            set { mLabel.Text = value; }
         }
 
-        public virtual String Value
-        {
-            get
-            {
-                return BaseTextBox.Text;
-            }
-            set
-            {
-                                BaseTextBox.Text = value;
-                                            }
-        }
-
-        public virtual void UpdateScriptParameterValue()
-        {
-
-        }
-
-
-
+        public virtual void UpdateScriptParameterValue() { }
     }
 }

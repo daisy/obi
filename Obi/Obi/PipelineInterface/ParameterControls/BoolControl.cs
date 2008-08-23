@@ -21,7 +21,7 @@ namespace Obi.PipelineInterface.ParameterControls
         public BoolControl(ScriptParameter p)
             : this()
         {
-            base.Value = p.Description;
+            base.DescriptionLabel = p.Description;
             checkBox1.Text = p.NiceName;
             m_Parameter = p;
             m_boolDataType = (DataTypes.BoolDataType)p.ParameterDataType;

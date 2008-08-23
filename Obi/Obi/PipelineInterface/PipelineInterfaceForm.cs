@@ -11,132 +11,59 @@ namespace Obi.PipelineInterface
 {
     public partial class PipelineInterfaceForm : Form
     {
-        public PipelineInterfaceForm()
+        private string mInputPath;
+        private string mProjectDirectory;
+        private ScriptParser mParser;
+
+        public PipelineInterfaceForm() { InitializeComponent(); }
+
+        public PipelineInterfaceForm(string scriptPath, string inputPath, string ProjectDirectory)
+            : this()
         {
-            InitializeComponent();
-        }
-
-        private string m_InputPath;
-        private string m_ProjectDirectory;
-        private ScriptParser m_Parser  ;
-        private int m_YCordinate;
-
-        public PipelineInterfaceForm (string scriptPath, string inputPath, string ProjectDirectory)
-                        : this()
-        {
-                                    if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
-            m_Parser = new ScriptParser(scriptPath);
-
-            m_InputPath = inputPath;
-            m_ProjectDirectory = ProjectDirectory;
-            m_YCordinate = 0;
-
-            FileInfo f = new FileInfo(scriptPath) ;
+            if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
+            mParser = new ScriptParser(scriptPath);
+            mInputPath = inputPath;
+            mProjectDirectory = ProjectDirectory;
+            FileInfo f = new FileInfo(scriptPath);
             this.Text = f.Name.Replace(f.Extension, "");
-    }
+        }
 
 
         private void PipelineInterfaceForm_Load(object sender, EventArgs e)
         {
-            CreateControlsDynamically();
-        }
-
-// creates controls dynamically from datatype of script parameter
-        public void CreateControlsDynamically()
-        {
-            int Tab_Index = 0;
-    
-            foreach (ScriptParameter p in m_Parser.ParameterList)
+            int tabIndex = 0;
+            int w = 0;
+            int h = 0;
+            foreach (ScriptParameter p in mParser.ParameterList)
             {
-                if (p.ParameterDataType is DataTypes.PathDataType)
-                {
-                    CreatePathBrowserControl(p, Tab_Index, m_YCordinate);
-                }
-                else if (p.ParameterDataType is DataTypes.EnumDataType)
-                {
-                    CreateEnumControl(p,Tab_Index,m_YCordinate);
-                }
-                else if (p.ParameterDataType is DataTypes.BoolDataType)
-                {
-                    CreateBoolControl (p, Tab_Index, m_YCordinate);
-                }
-                    Tab_Index++;
-                    
-
-                }
-                // update ok button and cancel button
-                m_btnOk.Location = new Point(this.Size.Width - (m_btnOk.Size.Width + m_btnOk.Size.Width + 10), m_YCordinate);
-                m_btnCancel.Location = new Point(this.Size.Width - (m_btnOk.Size.Width), m_YCordinate);
-                m_btnOk.TabIndex = Tab_Index;
-                m_btnCancel.TabIndex = Tab_Index + 1;
-
-                this.Size = new Size(this.Size.Width, this.Size.Height + m_btnCancel.Size.Height + 20);
-                                                    }
-
-        private void CreatePathBrowserControl(ScriptParameter p,  int Tab_Index, int m_YCordinate)
-        {
-            ParameterControls.PathBrowserControl PC = new Obi.PipelineInterface.ParameterControls.PathBrowserControl(p, m_InputPath , m_ProjectDirectory );
-            PC.Location = new Point(0,m_YCordinate );
-            PC.Visible = true;
-            PC.TabIndex = Tab_Index;
-            Controls.Add(PC);
-
-
-            UpdateFormSize(PC);    
-        }
-
-        private void CreateEnumControl(ScriptParameter p , int Tab_Index , int m_YCordinate)
-        {
-            ParameterControls.EnumControl PC = new Obi.PipelineInterface.ParameterControls.EnumControl(p);
-            PC.Location = new Point(0, m_YCordinate);
-            PC.Visible = true;
-            PC.TabIndex = Tab_Index;
-            Controls.Add(PC);
-
-            UpdateFormSize(PC);
-        }
-
-        private void CreateBoolControl(ScriptParameter p, int Tab_Index, int m_YCordinate)
-        {
-            ParameterControls.BoolControl PC = new Obi.PipelineInterface.ParameterControls.BoolControl (p);
-            PC.Location = new Point(0, m_YCordinate);
-            PC.Visible = true;
-            PC.TabIndex = Tab_Index;
-            Controls.Add(PC);
-
-            UpdateFormSize(PC);
-        }
-
-
-
-        private void UpdateFormSize(Control PC)
-        {
-                        m_YCordinate = m_YCordinate + PC.Size.Height;
-
-            if (PC.Size.Width > this.Size.Width || this.Size.Height < m_YCordinate)
-                this.Size = new Size(PC.Size.Width, m_YCordinate);
-        }
-
-        private void m_btnOk_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < Controls.Count; i++)
-            {
-                if (Controls[i] is ParameterControls.BaseUserControl)
-                    ((ParameterControls.BaseUserControl)Controls[i]).UpdateScriptParameterValue();
-                              
+                Control c =
+                    p.ParameterDataType is DataTypes.BoolDataType ? (Control)new ParameterControls.BoolControl(p) :
+                    p.ParameterDataType is DataTypes.EnumDataType ? (Control)new ParameterControls.EnumControl(p) :
+                        (Control)new ParameterControls.PathBrowserControl(p, mInputPath, mProjectDirectory);
+                mLayoutPanel.Controls.Add(c);
+                mLayoutPanel.SetFlowBreak(c, true);
+                c.TabIndex = tabIndex++;
+                if (w < c.Width + c.Margin.Horizontal) w = c.Width + c.Margin.Horizontal;
+                h += c.Height + c.Margin.Vertical;
             }
-            //foreach (ScriptParameter p in m_Parser.ParameterList)
-                //MessageBox.Show(p.ParameterValue);
-
-
-            m_Parser.ExecuteScript();
-                        Close();
+            int wdiff = w - mLayoutPanel.Width;
+            int hdiff = h - mLayoutPanel.Height;
+            mLayoutPanel.Size = new Size(w, h);
+            foreach (Control c in mLayoutPanel.Controls) c.Width = mLayoutPanel.Width - c.Margin.Horizontal;
+            Size = new Size(Width + wdiff, Height + hdiff);
         }
 
-        private void m_btnCancel_Click(object sender, EventArgs e)
+        public void RunScript()
         {
+            for (int i = 0; i < mLayoutPanel.Controls.Count; i++)
+            {
+                if (mLayoutPanel.Controls[i] is ParameterControls.BaseUserControl)
+                {
+                    ((ParameterControls.BaseUserControl)mLayoutPanel.Controls[i]).UpdateScriptParameterValue();
+                }
+            }
+            mParser.ExecuteScript();
             Close();
         }
-
     }
 }
