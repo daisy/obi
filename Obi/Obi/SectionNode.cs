@@ -49,10 +49,7 @@ namespace Obi
         /// <summary>
         /// Test whether this section's level can be increased (i.e. not the first child of its parent.)
         /// </summary>
-        public bool CanIncreaseLevel
-        {
-            get { return Index > 0; }
-        }
+        public bool CanIncreaseLevel { get { return Index > 0; } }
 
         /// <summary>
         /// Find the first used phrase in the section, if any.

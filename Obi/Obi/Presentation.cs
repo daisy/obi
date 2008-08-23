@@ -568,6 +568,7 @@ namespace Obi
 
         // Get the elapsed time at the beginning of each section
         // (last section has the total time.)
+        // Unused sections and phrases are skipped.
         private List<double> ElapsedTimes
         {
             get
@@ -577,8 +578,9 @@ namespace Obi
                 RootNode.acceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n is PhraseNode) time += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-                        else if (n is SectionNode) times.Add(time);
+                        if (n is ObiNode && !((ObiNode)n).Used) return false;
+                        if (n is PhraseNode) time += ((PhraseNode)n).Duration;
+                        else if (n is SectionNode && ((SectionNode)n).FirstUsedPhrase != null) times.Add(time);
                         return true;
                     },
                     delegate(urakawa.core.TreeNode n) { });

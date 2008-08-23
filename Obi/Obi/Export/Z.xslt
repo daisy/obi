@@ -127,9 +127,11 @@
         <ncx:navMap>
           <xsl:apply-templates mode="navPoint"/>        
         </ncx:navMap>
-        <ncx:pageList>
-          <xsl:apply-templates select="//obi:phrase[@kind='Page']"/>      
-        </ncx:pageList>
+        <xsl:if test="//obi:phrase[@kind='Page']">
+          <ncx:pageList>
+            <xsl:apply-templates select="//obi:phrase[@kind='Page']"/>
+          </ncx:pageList>
+        </xsl:if>
       </ncx:ncx>
 
       <!-- The smil files; one per section -->
