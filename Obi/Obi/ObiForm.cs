@@ -209,6 +209,10 @@ namespace Obi
              */ 
             if ( SaveDialog.ShowDialog () == DialogResult.OK )
             {
+                if (mSession.CanSave && MessageBox.Show(Localizer.Message("SaveBeforeUsingSaveAs") ,  Localizer.Message("Caption_Warning") , MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    mSession.ForceSave();
+
+                string OriginalProjectFilePath = mSession.Path;
                 DirectoryInfo NewProjectDirectoryInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
                 DirectoryInfo OriginalDirInfo = new DirectoryInfo(Directory.GetParent(mSession.Path).FullName);
                 NewProjectDirectoryInfo.Create();
@@ -235,6 +239,12 @@ namespace Obi
                     }
 
                 }
+                if (!SaveDialog.ActivateNewProject)
+                {
+                    mSession.Close();
+                    OpenProject (OriginalProjectFilePath);
+                }
+
             }
             else
             {
