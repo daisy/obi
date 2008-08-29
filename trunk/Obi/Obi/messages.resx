@@ -1123,4 +1123,7 @@ Error text: {1}</value>
   <data name="SaveBeforeUsingSaveAs" xml:space="preserve">
     <value>Do you want to save changes before saving project to a new location? </value>
   </data>
+  <data name="NoPrimaryExportDirectory" xml:space="preserve">
+    <value>Primary export directory not found. Please browse for primary export path or export the project to DAISY3.</value>
+  </data>
 </root>

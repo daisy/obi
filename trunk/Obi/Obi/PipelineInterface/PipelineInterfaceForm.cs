@@ -22,7 +22,14 @@ namespace Obi.PipelineInterface
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
-            mInputPath = inputPath;
+            if (File.Exists ( inputPath ))
+                mInputPath = inputPath;
+            else
+                {
+                mInputPath = "";
+                MessageBox.Show (Localizer.Message("NoPrimaryExportDirectory"));
+                                                }
+
             mProjectDirectory = ProjectDirectory;
             FileInfo f = new FileInfo(scriptPath);
             this.Text = f.Name.Replace(f.Extension, "");
