@@ -1550,6 +1550,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Primary export directory not found. Please browse for primary export path or export the project to DAISY3..
+        /// </summary>
+        internal static string NoPrimaryExportDirectory {
+            get {
+                return ResourceManager.GetString("NoPrimaryExportDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to normal pages.
         /// </summary>
         internal static string Normal_pages {
