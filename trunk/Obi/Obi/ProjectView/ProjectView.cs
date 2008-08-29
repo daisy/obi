@@ -1140,13 +1140,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void SplitPhrase()
         {
-            urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+        bool WasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
+                    urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
-                TransportBar.SelectionChangedPlaybackEnabled = false;
+                            TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(command);
-                // Replace this with the on-the-fly splitting behavior (see ticket #95.)
-                if (ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
+                
+                if ( WasPlaying ||  ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
