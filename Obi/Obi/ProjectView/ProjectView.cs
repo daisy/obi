@@ -416,7 +416,7 @@ namespace Obi.ProjectView
                     else
                         Selection = new NodeSelection(mSelection.Node, mContentView);
                 }
-                mContentView.Focus();
+                //mContentView.Focus();
             }
         }
 
