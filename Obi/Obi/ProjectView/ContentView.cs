@@ -1006,8 +1006,19 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip()
         {
-            return SelectStripFor(StripAfter);
-        }
+                        Strip strip =   StripAfter  ( StripFor ( mSelectedItem ));
+                        if (strip != null)
+                            {
+                            mView.Selection = new NodeSelection ( strip.Node, this );
+                            strip.FocusStripLabel ();
+                            return true;
+                            }
+                        else if (StripFor ( mSelectedItem ) != (Strip)Controls[Controls.Count - 1] // allow base to process the key if  current strip is not last strip or some text is selected
+                            || Selection is TextSelection)
+                            return false;
+                        else // do not allow key processing by base
+                            return true;
+                    }
 
         private bool SelectFirstStrip()
         {
