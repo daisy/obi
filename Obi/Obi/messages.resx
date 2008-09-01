@@ -1134,4 +1134,8 @@ Error text: {1}</value>
     <value>Section will not be exported</value>
     <comment>Warning at export time (caption)</comment>
   </data>
+  <data name="default_export_dirname" xml:space="preserve">
+    <value>DAISY3 Export</value>
+    <comment>Default name for the export directory</comment>
+  </data>
 </root>
