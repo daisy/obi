@@ -456,7 +456,7 @@ namespace Obi
             ConvertXukToZed(exportPath, xukPath, XukString);
             getChannelsManager().removeChannel(publishChannel);
         }
-
+ 
         // Update metadata before exporting
         private void UpdatePublicationMetadata()
         {
@@ -505,6 +505,7 @@ namespace Obi
             }
         }
 
+        // Convert the XUK output of the project to Z.
         private void ConvertXukToZed(string outputDir, string xukPath, string exported)
         {
             Export.Z z = new Export.Z();

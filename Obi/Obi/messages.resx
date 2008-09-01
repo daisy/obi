@@ -1126,4 +1126,12 @@ Error text: {1}</value>
   <data name="NoPrimaryExportDirectory" xml:space="preserve">
     <value>Primary export directory not found. Please browse for primary export path or export the project to DAISY3.</value>
   </data>
+  <data name="section_unexported" xml:space="preserve">
+    <value>Section "{0}" has no audio content and will not be exported, nor will any of its subsections. Do you want to continue?</value>
+    <comment>Warning at export time</comment>
+  </data>
+  <data name="section_unexported_caption" xml:space="preserve">
+    <value>Section will not be exported</value>
+    <comment>Warning at export time (caption)</comment>
+  </data>
 </root>
