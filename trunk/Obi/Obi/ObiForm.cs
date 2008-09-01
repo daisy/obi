@@ -873,7 +873,7 @@ namespace Obi
         // Export the project as DAISY 3.
         private void ExportProject()
         {
-            if (CheckPageNumbers())
+            if (CheckedPageNumbers() && CheckedForEmptySections())
             {
                 Dialogs.SelectDirectoryPath dialog =
                     new SelectDirectoryPath(Path.Combine(Directory.GetParent(mSession.Path).FullName, DEFAULT_EXPORT_DIRNAME));
@@ -904,7 +904,7 @@ namespace Obi
         // If they're not, the user is presented with the possibility to cancel export (return false)
         // or automatically renumber, in which case we also return true.
         // Only normal and front pages are considered, and we skip empty blocks since they're not exported.
-        private bool CheckPageNumbers()
+        private bool CheckedPageNumbers()
         {
             return CheckPageNumbers(PageKind.Front) && CheckPageNumbers(PageKind.Normal);
         }
@@ -950,6 +950,31 @@ namespace Obi
                 mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
             }
             return true;
+        }
+
+        // Look for sections which will not be exported and warn the user.
+        // If there are empty sections, issue a warning and ask whether to continue.
+        // Return true if there are no empty sections, or the user chose to continue.
+        private bool CheckedForEmptySections()
+        {
+            bool cont = true;
+            bool keepWarning = true;
+            mSession.Presentation.RootNode.acceptDepthFirst(
+                delegate(urakawa.core.TreeNode n)
+                {
+                    SectionNode s = n as SectionNode;
+                    if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
+                    {
+                        cont = cont &&
+                            (MessageBox.Show(string.Format(Localizer.Message("section_unexported"), s.Label),
+                                Localizer.Message("section_unexported_caption"), MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes);
+                        return false;
+                    }
+                    return true;
+                },
+                delegate(urakawa.core.TreeNode n) { });
+            return cont;
         }
 
         #endregion
