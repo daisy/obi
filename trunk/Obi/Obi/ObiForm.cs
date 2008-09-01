@@ -876,7 +876,8 @@ namespace Obi
             if (CheckedPageNumbers() && CheckedForEmptySections())
             {
                 Dialogs.SelectDirectoryPath dialog =
-                    new SelectDirectoryPath(Path.Combine(Directory.GetParent(mSession.Path).FullName, DEFAULT_EXPORT_DIRNAME));
+                    new SelectDirectoryPath(Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                        Localizer.Message("default_export_dirname")));
                 if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.DirectoryPath))
                 {
                     try
