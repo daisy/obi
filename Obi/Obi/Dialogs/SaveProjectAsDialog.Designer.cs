@@ -43,15 +43,15 @@ namespace Obi.Dialogs
         // m_lblProjectDirectoryName
         // 
         this.m_lblProjectDirectoryName.AutoSize = true;
-        this.m_lblProjectDirectoryName.Location = new System.Drawing.Point ( 10, 10 );
+        this.m_lblProjectDirectoryName.Location = new System.Drawing.Point ( 10, 11 );
         this.m_lblProjectDirectoryName.Name = "m_lblProjectDirectoryName";
-        this.m_lblProjectDirectoryName.Size = new System.Drawing.Size ( 85, 13 );
+        this.m_lblProjectDirectoryName.Size = new System.Drawing.Size ( 115, 13 );
         this.m_lblProjectDirectoryName.TabIndex = 0;
-        this.m_lblProjectDirectoryName.Text = "Save Project as:";
+        this.m_lblProjectDirectoryName.Text = "Project &directory name:";
         // 
         // m_txtProjectDirectoryName
         // 
-        this.m_txtProjectDirectoryName.Location = new System.Drawing.Point ( 150, 8 );
+        this.m_txtProjectDirectoryName.Location = new System.Drawing.Point ( 140, 8 );
         this.m_txtProjectDirectoryName.Name = "m_txtProjectDirectoryName";
         this.m_txtProjectDirectoryName.Size = new System.Drawing.Size ( 100, 20 );
         this.m_txtProjectDirectoryName.TabIndex = 1;
@@ -59,18 +59,18 @@ namespace Obi.Dialogs
         // m_btnBrowseParentDirectory
         // 
         this.m_btnBrowseParentDirectory.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        this.m_btnBrowseParentDirectory.Location = new System.Drawing.Point ( 200, 80 );
+        this.m_btnBrowseParentDirectory.Location = new System.Drawing.Point ( 210, 76 );
         this.m_btnBrowseParentDirectory.Name = "m_btnBrowseParentDirectory";
         this.m_btnBrowseParentDirectory.Size = new System.Drawing.Size ( 75, 23 );
         this.m_btnBrowseParentDirectory.TabIndex = 5;
-        this.m_btnBrowseParentDirectory.Text = "&browse";
+        this.m_btnBrowseParentDirectory.Text = "&Browse";
         this.m_btnBrowseParentDirectory.UseVisualStyleBackColor = true;
         this.m_btnBrowseParentDirectory.Click += new System.EventHandler ( this.m_btnBrowseParentDirectory_Click );
         // 
         // m_lblParentDirectoryPath
         // 
         this.m_lblParentDirectoryPath.AutoSize = true;
-        this.m_lblParentDirectoryPath.Location = new System.Drawing.Point ( 10, 50 );
+        this.m_lblParentDirectoryPath.Location = new System.Drawing.Point ( 10, 47 );
         this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
         this.m_lblParentDirectoryPath.Size = new System.Drawing.Size ( 123, 13 );
         this.m_lblParentDirectoryPath.TabIndex = 3;
@@ -78,14 +78,14 @@ namespace Obi.Dialogs
         // 
         // m_txtParentDirectory
         // 
-        this.m_txtParentDirectory.Location = new System.Drawing.Point ( 150, 50 );
+        this.m_txtParentDirectory.Location = new System.Drawing.Point ( 139, 44 );
         this.m_txtParentDirectory.Name = "m_txtParentDirectory";
-        this.m_txtParentDirectory.Size = new System.Drawing.Size ( 150, 20 );
+        this.m_txtParentDirectory.Size = new System.Drawing.Size ( 145, 20 );
         this.m_txtParentDirectory.TabIndex = 4;
         // 
         // m_btnOk
         // 
-        this.m_btnOk.Location = new System.Drawing.Point ( 130, 150 );
+        this.m_btnOk.Location = new System.Drawing.Point ( 127, 147 );
         this.m_btnOk.Name = "m_btnOk";
         this.m_btnOk.Size = new System.Drawing.Size ( 75, 23 );
         this.m_btnOk.TabIndex = 8;
@@ -96,7 +96,7 @@ namespace Obi.Dialogs
         // m_btnCancel
         // 
         this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        this.m_btnCancel.Location = new System.Drawing.Point ( 215, 150 );
+        this.m_btnCancel.Location = new System.Drawing.Point ( 212, 147 );
         this.m_btnCancel.Name = "m_btnCancel";
         this.m_btnCancel.Size = new System.Drawing.Size ( 75, 23 );
         this.m_btnCancel.TabIndex = 9;
@@ -107,7 +107,7 @@ namespace Obi.Dialogs
         // m_chkSavePrimaryDirectories
         // 
         this.m_chkSavePrimaryDirectories.AutoSize = true;
-        this.m_chkSavePrimaryDirectories.Location = new System.Drawing.Point ( 0, 115 );
+        this.m_chkSavePrimaryDirectories.Location = new System.Drawing.Point ( 5, 106 );
         this.m_chkSavePrimaryDirectories.Name = "m_chkSavePrimaryDirectories";
         this.m_chkSavePrimaryDirectories.Size = new System.Drawing.Size ( 160, 17 );
         this.m_chkSavePrimaryDirectories.TabIndex = 6;
@@ -119,7 +119,7 @@ namespace Obi.Dialogs
         this.m_chkActivateNewProject.AutoSize = true;
         this.m_chkActivateNewProject.Checked = true;
         this.m_chkActivateNewProject.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.m_chkActivateNewProject.Location = new System.Drawing.Point ( 0, 128 );
+        this.m_chkActivateNewProject.Location = new System.Drawing.Point ( 5, 125 );
         this.m_chkActivateNewProject.Name = "m_chkActivateNewProject";
         this.m_chkActivateNewProject.Size = new System.Drawing.Size ( 119, 17 );
         this.m_chkActivateNewProject.TabIndex = 8;
