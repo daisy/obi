@@ -217,8 +217,8 @@ namespace Obi.ProjectView
         public bool CanPasteInside { get
         { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; } }
         public bool CanPause { get { return mTransportBar.CanPause; } }
-        public bool CanPlay { get { return mTransportBar.CanPlay; } }
-        public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
+        public bool CanPlay { get { return mTransportBar.CanStartPlayback; } }
+        public bool CanPlaySelection { get { return mTransportBar.CanStartPlayback && mSelection != null; } }
         public bool CanPreview { get { return mTransportBar.CanPreview; } }
         public bool CanPreviewAudioSelection { get { return mTransportBar.CanPreviewAudioSelection; } }
         public bool CanRemoveAudio { get { return mContentView.CanRemoveAudio; } }
@@ -1484,7 +1484,7 @@ namespace Obi.ProjectView
                     TransportBar.Pause();
                     return true;
                 }
-                else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)
+                else if (TransportBar.CanStartPlayback || TransportBar.CanResumePlayback)
                 {
                     // Start playback or resume from audio cursor
                     TransportBar.PlayOrResume();

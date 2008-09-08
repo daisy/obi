@@ -727,7 +727,7 @@ namespace Obi
             mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
             
             mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-            if (mProjectView.TransportBar.IsListening)
+            if (mProjectView.TransportBar.IsMonitoring)
             {
                 mStartMonitoringToolStripMenuItem.Visible = false;
                 mStartRecordingToolStripMenuItem.Visible = true;
