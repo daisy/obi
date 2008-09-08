@@ -727,7 +727,7 @@ namespace Obi
             mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
             
             mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
-            if (mProjectView.TransportBar.IsMonitoring)
+            if (mProjectView.TransportBar.IsListening)
             {
                 mStartMonitoringToolStripMenuItem.Visible = false;
                 mStartRecordingToolStripMenuItem.Visible = true;
@@ -966,9 +966,10 @@ namespace Obi
                     SectionNode s = n as SectionNode;
                     if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
                     {
-                        Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label);
-                        cont = cont && dialog.ShowDialog() == DialogResult.OK;
-                        keepWarning = dialog.KeepWarning;
+                        cont = cont &&
+                            (MessageBox.Show(string.Format(Localizer.Message("section_unexported"), s.Label),
+                                Localizer.Message("section_unexported_caption"), MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) == DialogResult.Yes);
                         return false;
                     }
                     return true;
