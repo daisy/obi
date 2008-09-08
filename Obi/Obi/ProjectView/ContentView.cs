@@ -1226,7 +1226,7 @@ namespace Obi.ProjectView
                 mView.TransportBar.Pause();
                 return true;
             }
-            else if (mView.TransportBar.CanPlay || mView.TransportBar.CanResumePlayback)
+            else if (mView.TransportBar.CanStartPlayback || mView.TransportBar.CanResumePlayback)
             {
                 mView.TransportBar.PlayOrResume();
                 return true;
