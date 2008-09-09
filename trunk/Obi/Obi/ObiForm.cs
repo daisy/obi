@@ -966,10 +966,9 @@ namespace Obi
                     SectionNode s = n as SectionNode;
                     if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
                     {
-                        cont = cont &&
-                            (MessageBox.Show(string.Format(Localizer.Message("section_unexported"), s.Label),
-                                Localizer.Message("section_unexported_caption"), MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question) == DialogResult.Yes);
+                        Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label);
+                        cont = cont && dialog.ShowDialog() == DialogResult.OK;
+                        keepWarning = dialog.KeepWarning;
                         return false;
                     }
                     return true;

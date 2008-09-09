@@ -132,6 +132,12 @@
     <Compile Include="Dialogs\EditRoles.Designer.cs">
       <DependentUpon>EditRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\EmptySection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EmptySection.Designer.cs">
+      <DependentUpon>EmptySection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,6 +462,10 @@
     <EmbeddedResource Include="Dialogs\EditRoles.resx">
       <SubType>Designer</SubType>
       <DependentUpon>EditRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EmptySection.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EmptySection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Help.hi.resx">
       <SubType>Designer</SubType>
