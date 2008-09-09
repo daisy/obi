@@ -1134,8 +1134,13 @@ namespace Obi
                 mBaseFontSize = mStatusLabel.Font.SizeInPoints;
                 InitializeColorSettings();
 
-                mPipelineInfo = new Obi.PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
-                PopulatePipelineScriptsInToolsMenu();
+                if (Directory.Exists ( mSettings.PipelineScriptsPath ))
+                    {
+                    mPipelineInfo = new Obi.PipelineInterface.PipelineInfo ( mSettings.PipelineScriptsPath );
+                    PopulatePipelineScriptsInToolsMenu ();
+                    }
+                else
+                    MessageBox.Show (string.Format( Localizer.Message ("ObiForm_PipelineNotFound"), mSettings.PipelineScriptsPath ) );
                 Ready();
             }
             catch (Exception e)
