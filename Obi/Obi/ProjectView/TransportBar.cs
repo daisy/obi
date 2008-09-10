@@ -875,7 +875,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-            if (mView.Presentation != null)
+                    if (mView.Presentation != null)
             {
                 if (mState == State.Monitoring)
                 {
@@ -885,8 +885,7 @@ namespace Obi.ProjectView
                 else if (CanResumeRecording)
                 {
                     SetupRecording(Recording);
-                    // PrepareForRecording(true, mResumeRecordingPhrase);
-                }
+                                    }
                 else
                 {
                     SetupRecording(Monitoring);
@@ -905,6 +904,12 @@ namespace Obi.ProjectView
         private void SetupRecording(bool recording)
         {
             urakawa.undo.CompositeCommand command = CreateRecordingCommand();
+
+            // warning message while resuming recording
+            if ( ( mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted ) &&
+                MessageBox.Show ( Localizer.Message ( "RecordingResume_Check_Text" ), Localizer.Message ("Caption_Warning"), MessageBoxButtons.YesNo ) == DialogResult.No)
+            { mResumeRecordingPhrase = null;  }
+
             ObiNode node = GetRecordingNode(command);
             InitRecordingSectionAndPhraseIndex(node, mView.ObiForm.Settings.AllowOverwrite, command);
             // Set events
