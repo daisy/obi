@@ -1901,6 +1901,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more parameters are invalid. Please enter correct values.
+        /// </summary>
+        internal static string Pipeline_InvalidScriptsParameters {
+            get {
+                return ResourceManager.GetString("Pipeline_InvalidScriptsParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please choose the pipeline scripts location below..
         /// </summary>
         internal static string pipeline_path_browser {

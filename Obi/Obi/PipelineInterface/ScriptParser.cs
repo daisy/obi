@@ -66,15 +66,14 @@ namespace Obi.PipelineInterface
                 /// </summary>
         public void ExecuteScript  ()
         {
-            /*
-            if (!File.Exists(m_InputFile.ParameterValue)
-                            || !Directory.Exists(m_OutputDirectory.ParameterValue) || Directory.GetFiles(m_OutputDirectory.ParameterValue).Length > 0
-                            || (m_BitRate.ParameterValue != "32" && m_BitRate.ParameterValue != "48" && m_BitRate.ParameterValue != "64" && m_BitRate.ParameterValue != "128"))
+        foreach (ScriptParameter p in ParameterList)
             {
-                throw new System.Exception( Localizer.Message ("Invalid_ScriptParameters")) ;
-                return;
+            if (p.IsParameterRequired
+                && ( p.ParameterValue == null  || p.ParameterValue == "") )
+                {
+                throw new System.Exception ( Localizer.Message("Pipeline_InvalidScriptsParameters")  );
+                                }
             }
-             */
 
             string Param = "";
             foreach (ScriptParameter p in  ParameterList)

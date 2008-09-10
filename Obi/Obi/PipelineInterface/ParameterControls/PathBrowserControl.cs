@@ -123,8 +123,8 @@ namespace Obi.PipelineInterface.ParameterControls
 
         public override void UpdateScriptParameterValue()
             	{
-                    if ((mTextBox.Text != null && mTextBox.Text != "")
-                        ||   m_Parameter.IsParameterRequired)
+                    if ((mTextBox.Text != null && mTextBox.Text != ""))
+                        //||   m_Parameter.IsParameterRequired)
                     {
                         m_SelectedPath = mTextBox.Text;
                         if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
@@ -161,7 +161,7 @@ namespace Obi.PipelineInterface.ParameterControls
                 MessageBox.Show(Localizer.Message("Choose_OtherDirectory"), Localizer.Message("Caption_Error"));
                 return false;
             }
-                        if (!Directory.Exists(mTextBox.Text))
+                        if (!Directory.Exists(mTextBox.Text) )
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("OutputDirectoryNotFound_Permission_Create"), Localizer.Message("Caption_Error"), MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
