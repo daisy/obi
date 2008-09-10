@@ -85,7 +85,9 @@ namespace Obi
             this.mView_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.mView_ProjectStatisticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_ProjectPropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_PhrasePropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_SectionPropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mAddSubsectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -426,7 +428,9 @@ namespace Obi
             this.mView_AudioZoomOutMenuItem,
             this.mView_ResetAudioSizeMenuItem,
             this.toolStripSeparator17,
-            this.mView_ProjectStatisticsMenuItem});
+            this.mView_ProjectPropertiesMenuItem,
+            this.mView_PhrasePropertiesMenuItem,
+            this.mView_SectionPropertiesMenuItem});
             this.mViewToolStripMenuItem.Name = "mViewToolStripMenuItem";
             resources.ApplyResources(this.mViewToolStripMenuItem, "mViewToolStripMenuItem");
             // 
@@ -545,20 +549,20 @@ namespace Obi
             // 
             resources.ApplyResources(this.mView_ZoomInMenuItem, "mView_ZoomInMenuItem");
             this.mView_ZoomInMenuItem.Name = "mView_ZoomInMenuItem";
-            this.mView_ZoomInMenuItem.Click += new System.EventHandler(this.View_ZoomInMenuItem_Click);
+            this.mView_ZoomInMenuItem.Click += new System.EventHandler(this.mView_ZoomInMenuItem_Click);
             // 
             // mView_ZoomOutMenuItem
             // 
             resources.ApplyResources(this.mView_ZoomOutMenuItem, "mView_ZoomOutMenuItem");
             this.mView_ZoomOutMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.mView_ZoomOutMenuItem.Name = "mView_ZoomOutMenuItem";
-            this.mView_ZoomOutMenuItem.Click += new System.EventHandler(this.View_ZoomOutMenuItem_Click);
+            this.mView_ZoomOutMenuItem.Click += new System.EventHandler(this.mView_ZoomOutMenuItem_Click);
             // 
             // mView_NormalSizeMenuItem
             // 
             resources.ApplyResources(this.mView_NormalSizeMenuItem, "mView_NormalSizeMenuItem");
             this.mView_NormalSizeMenuItem.Name = "mView_NormalSizeMenuItem";
-            this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.View_NormalSizeMenuItem_Click);
+            this.mView_NormalSizeMenuItem.Click += new System.EventHandler(this.mView_NormalSizeMenuItem_Click);
             // 
             // mView_AudioZoomInMenuItem
             // 
@@ -583,11 +587,23 @@ namespace Obi
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
-            // mView_ProjectStatisticsMenuItem
+            // mView_ProjectPropertiesMenuItem
             // 
-            resources.ApplyResources(this.mView_ProjectStatisticsMenuItem, "mView_ProjectStatisticsMenuItem");
-            this.mView_ProjectStatisticsMenuItem.Name = "mView_ProjectStatisticsMenuItem";
-            this.mView_ProjectStatisticsMenuItem.Click += new System.EventHandler(this.View_ProjectStatisticsMenuItem_Click);
+            resources.ApplyResources(this.mView_ProjectPropertiesMenuItem, "mView_ProjectPropertiesMenuItem");
+            this.mView_ProjectPropertiesMenuItem.Name = "mView_ProjectPropertiesMenuItem";
+            this.mView_ProjectPropertiesMenuItem.Click += new System.EventHandler(this.mView_ProjectPropertiesMenuItem_Click);
+            // 
+            // mView_PhrasePropertiesMenuItem
+            // 
+            resources.ApplyResources(this.mView_PhrasePropertiesMenuItem, "mView_PhrasePropertiesMenuItem");
+            this.mView_PhrasePropertiesMenuItem.Name = "mView_PhrasePropertiesMenuItem";
+            this.mView_PhrasePropertiesMenuItem.Click += new System.EventHandler(this.mView_PhrasePropertiesMenuItem_Click);
+            // 
+            // mView_SectionPropertiesMenuItem
+            // 
+            resources.ApplyResources(this.mView_SectionPropertiesMenuItem, "mView_SectionPropertiesMenuItem");
+            this.mView_SectionPropertiesMenuItem.Name = "mView_SectionPropertiesMenuItem";
+            this.mView_SectionPropertiesMenuItem.Click += new System.EventHandler(this.mView_SectionPropertiesMenuItem_Click);
             // 
             // mSectionsToolStripMenuItem
             // 
@@ -1366,7 +1382,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
         private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportAsDAISYMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mView_ProjectStatisticsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_ProjectPropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem mView_AudioZoomInMenuItem;
@@ -1378,6 +1394,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTools_CleanUnreferencedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ResetAudioSizeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_PhraseIsTODOMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_PhrasePropertiesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_SectionPropertiesMenuItem;
     }
 }
 

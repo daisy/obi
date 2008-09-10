@@ -20,10 +20,12 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
 
+
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event ImportingFileEventHandler ImportingFile;   // triggered when a file is being imported
         public event EventHandler FinishedImportingFiles;       // triggered when all files were imported
+
 
 
         /// <summary>
@@ -32,6 +34,7 @@ namespace Obi.ProjectView
         public ProjectView()
         {
             InitializeComponent();
+            InitializeShortcutKeys();
             mTOCView.ProjectView = this;
             mContentView.ProjectView = this;
             mMetadataView.ProjectView = this;
@@ -115,7 +118,7 @@ namespace Obi.ProjectView
         {
             if (mContentView.CanAddStrip)
             {
-                                                AddStrip();
+                AddStrip();
             }
             else if (CanAddSection)
             {
@@ -133,28 +136,28 @@ namespace Obi.ProjectView
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
             // select section node if its  phrase  is selected
             if (Selection != null && Selection.Node is EmptyNode)
-                Selection = new NodeSelection ( Selection.Node.ParentAs<SectionNode> (), Selection.Control );
+                Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
 
-                        Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
+            Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
             urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
             SectionNode selected = null;
             if (mContentView.Selection.Node is SectionNode)
                 selected = (SectionNode)mContentView.Selection.Node;
             else
                 selected = (SectionNode)mContentView.Selection.Node.ParentAs<SectionNode>();
-            
+
             command.append(add);
             for (int i = selected.SectionChildCount - 1; i >= 0; --i)
             {
                 SectionNode child = selected.SectionChild(i);
-                
+
                 command.append(new Commands.Node.Delete(this, child));
                 command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
             }
             //command.append(add);
             if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
-                        mPresentation.getUndoRedoManager().execute(command);
-                    }
+            mPresentation.getUndoRedoManager().execute(command);
+        }
 
         /// <summary>
         /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
@@ -164,7 +167,7 @@ namespace Obi.ProjectView
             if (CanAddSubSection)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
-                                Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
+                Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
                 AddUnusedAndExecute(add, add.NewSection, add.NewSectionParent);
             }
         }
@@ -188,7 +191,7 @@ namespace Obi.ProjectView
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
-        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null) ; } }
+        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null); } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
@@ -214,8 +217,11 @@ namespace Obi.ProjectView
         public bool CanNavigatePrevSection { get { return mTransportBar.CanNavigatePrevSection; } }
         public bool CanPaste { get { return mPresentation != null && mSelection != null && mSelection.CanPaste(mClipboard) && !TransportBar.IsRecorderActive; } }
         public bool CanPasteBefore { get { return mPresentation != null && mTOCView.CanPasteBefore(mClipboard) && !TransportBar.IsRecorderActive; } }
-        public bool CanPasteInside { get
-        { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; } }
+        public bool CanPasteInside
+        {
+            get
+            { return mPresentation != null && mTOCView.CanPasteInside(mClipboard) && !TransportBar.IsRecorderActive; }
+        }
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -407,11 +413,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void FocusOnContentView()
         {
-                        if (CanFocusOnContentView)
+            if (CanFocusOnContentView)
             {
-                                                if (mSelection != null && mSelection.Control is  InheritedTOCView)
+                if (mSelection != null && mSelection.Control is InheritedTOCView)
                 {
-                                        if (TransportBar.IsPlayerActive)
+                    if (TransportBar.IsPlayerActive)
                         Selection = new NodeSelection(mContentView.PlaybackPhrase, mContentView);
                     else
                         Selection = new NodeSelection(mSelection.Node, mContentView);
@@ -797,7 +803,7 @@ namespace Obi.ProjectView
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
-                
+
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
@@ -955,6 +961,10 @@ namespace Obi.ProjectView
 
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
 
+        public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode; } }
+        public bool CanShowProjectPropertiesDialog { get { return mPresentation != null && !CanShowPhrasePropertiesDialog && !CanShowSectionPropertiesDialog; } }
+        public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode; } }
+
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMarkStripUnused { get { return !mContentView.CanSetStripUsedStatus || mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
@@ -1018,7 +1028,7 @@ namespace Obi.ProjectView
 
         #region Find in Text
 
-        public bool CanFindFirstTime { get { return mPresentation != null && mPresentation.RootNode.SectionChildCount> 0 ; } }
+        public bool CanFindFirstTime { get { return mPresentation != null && mPresentation.RootNode.SectionChildCount > 0; } }
         public void FindInText()
         {
             //show the form if it's not already shown
@@ -1140,14 +1150,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void SplitPhrase()
         {
-        bool WasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
-                    urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+            bool WasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
+            urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
-                            TransportBar.SelectionChangedPlaybackEnabled = false;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(command);
-                
-                if ( WasPlaying ||  ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
+
+                if (WasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
@@ -1354,20 +1364,40 @@ namespace Obi.ProjectView
         }
 
 
+        #region Keyboard shortcuts
+
+        public delegate bool HandledShortcutKey();
+        public static readonly int WM_KEYDOWN = 0x100;
+        public static readonly int WM_SYSKEYDOWN = 0x104;
+
+        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;
+
+        // Initialize the list of shortcut keys
+        private void InitializeShortcutKeys()
+        {
+            mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
+            mShortcutKeys[Keys.Control | Keys.Tab] = delegate() { return SelectViewsInCycle(true); };
+            mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate() { return SelectViewsInCycle(false); };
+            mShortcutKeys[Keys.F6] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
+            mShortcutKeys[Keys.Shift | Keys.Space] = delegate() { return TogglePlayPause(UseSelection); };
+            mShortcutKeys[Keys.Space] = delegate() { return TogglePlayPause(UseAudioCursor); };
+            mShortcutKeys[Keys.Alt | Keys.Enter] = delegate() { return ShowNodePropertiesDialog(); };
+            mShortcutKeys[Keys.F8] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
+        }
+
+        // Process key press: if this is a key down event, lookup the shortcut tables;
+        // if the key was not handled then, proceed with the default process.
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
-            // trap delete key for preventing deleting of node during rename
-            if (Selection is TextSelection && key == Keys.Delete) return false;
-
-            return (key == (Keys)(Keys.Control | Keys.Tab) && SelectViewsInCycle(true)) ||
-                    (key == (Keys)(Keys.Control | Keys.Shift | Keys.Tab) && SelectViewsInCycle(false)) ||
-                    (key == (Keys)(Keys.F6) && ToggleFocusBTWTOCViewAndContentsView()) ||
-                    (key == (Keys)(Keys.Shift | Keys.Space) && TogglePlayPause(UseSelection)) ||
-                    (key == Keys.Space && TogglePlayPause(UseAudioCursor)) ||
-                    (key == (Keys)(Keys.Alt | Keys.Enter) && ShowNodePropertiesDialog()) ||
-                    (key == Keys.F8 && mTransportBar.FocusOnTimeDisplay()) ||
-                    base.ProcessCmdKey(ref msg, key);
+            return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
+                CanUseKey(key) && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) ||
+                base.ProcessCmdKey(ref msg, key);
         }
+
+        // Trap the delete key to prevent deleting a node during text editing
+        private bool CanUseKey(Keys key) { return !(Selection is TextSelection && key == Keys.Delete); }
+
+        #endregion
 
         private bool SelectViewsInCycle(bool clockwise)
         {
@@ -1585,84 +1615,91 @@ namespace Obi.ProjectView
         }
 
 
+        /// <summary>
+        /// Show the project properties dialog. Handle potential renaming of the project.
+        /// </summary>
+        public bool ShowProjectPropertiesDialog()
+        {
+            Dialogs.ProjectProperties dialog = new Dialogs.ProjectProperties(this);
+            if (dialog.ShowDialog() == DialogResult.OK && dialog.ProjectTitle != mPresentation.Title &&
+                dialog.ProjectTitle != null && dialog.ProjectTitle != "")
+            {
+                mPresentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(this,
+                    mPresentation.GetFirstMetadataItem(Metadata.DC_TITLE), dialog.ProjectTitle));
+            }
+            return true; // return true for keyboard handling
+        }
+
+
+        /// <summary>
+        /// Show properties dialog for the selected node (phrase or section) or the project if nothing is selected.
+        /// </summary>
         public bool ShowNodePropertiesDialog()
         {
-            if (Selection != null)
-            {
-                if (Selection.Node is SectionNode)
-                {
-                    ShowSectionPropertiesDialog();
-                }
-                else if (Selection.Node is EmptyNode)
-                {
-                    ShowPhrasePropertiesDialog();
-                }
-            }
-            return true;
+            return CanShowProjectPropertiesDialog ? ShowProjectPropertiesDialog() :
+                CanShowPhrasePropertiesDialog ? ShowPhrasePropertiesDialog() :
+                CanShowSectionPropertiesDialog ? ShowSectionPropertiesDialog() :
+                true;
         }
 
         /// <summary>
         /// Show the section properties dialog. When the user closes the dialog, look for changes to commit.
         /// Emit a single command consolidating all changes (title, level and used flag).
         /// </summary>
-        public void ShowSectionPropertiesDialog()
+        public bool ShowSectionPropertiesDialog()
         {
-            if (Selection != null && Selection.Node is SectionNode)
+            Dialogs.SectionProperties dialog = new Dialogs.SectionProperties(this);
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Dialogs.SectionProperties dialog = new Dialogs.SectionProperties(this);
-                if (dialog.ShowDialog() == DialogResult.OK)
+                urakawa.undo.CompositeCommand command =
+                    mPresentation.CreateCompositeCommand(Localizer.Message("update_section"));
+                if (dialog.Label != dialog.Node.Label && dialog.Label != null && dialog.Label != "")
                 {
-                    urakawa.undo.CompositeCommand command =
-                        mPresentation.CreateCompositeCommand(Localizer.Message("update_section"));
-                    if (dialog.Label != dialog.Node.Label && dialog.Label != null && dialog.Label != "")
-                    {
-                        command.append(new Commands.Node.RenameSection(this, dialog.Node, dialog.Label));
-                    }
-                    for (int i = dialog.Node.Level; i < dialog.Level; ++i)
-                    {
-                        command.append(new Commands.TOC.MoveSectionIn(this, dialog.Node));
-                    }
-                    for (int i = dialog.Level; i < dialog.Node.Level; ++i)
-                    {
-                        command.append(new Commands.TOC.MoveSectionOut(this, dialog.Node));
-                    }
-                    if (dialog.Used != dialog.Node.Used)
-                    {
-                        command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
-                    }
-                    if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
-                    if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                    command.append(new Commands.Node.RenameSection(this, dialog.Node, dialog.Label));
                 }
+                for (int i = dialog.Node.Level; i < dialog.Level; ++i)
+                {
+                    command.append(new Commands.TOC.MoveSectionIn(this, dialog.Node));
+                }
+                for (int i = dialog.Level; i < dialog.Node.Level; ++i)
+                {
+                    command.append(new Commands.TOC.MoveSectionOut(this, dialog.Node));
+                }
+                if (dialog.Used != dialog.Node.Used)
+                {
+                    command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
+                }
+                if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
+                if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
             }
+            return true;
         }
 
-        public void ShowPhrasePropertiesDialog()
+        public bool ShowPhrasePropertiesDialog()
         {
-            if (Selection != null && Selection.Node is EmptyNode)
+            Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this);
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this);
-                if (dialog.ShowDialog() == DialogResult.OK)
+                urakawa.undo.CompositeCommand command =
+                    mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
+                if (dialog.Role != dialog.Node.NodeKind ||
+                    (dialog.Role == EmptyNode.Kind.Custom && dialog.Node.NodeKind == EmptyNode.Kind.Custom &&
+                    dialog.CustomClass != dialog.Node.CustomClass))
                 {
-                    urakawa.undo.CompositeCommand command =
-                        mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
-                    if (dialog.Role != dialog.Node.NodeKind ||
-                        (dialog.Role == EmptyNode.Kind.Custom && dialog.Node.NodeKind == EmptyNode.Kind.Custom &&
-                        dialog.CustomClass != dialog.Node.CustomClass))
-                    {
-                        command.append(new Commands.Node.ChangeCustomType(this, dialog.Node, dialog.Role, dialog.CustomClass));
-                    }
-                    if (dialog.Used != dialog.Node.Used)
-                    {
-                        command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
-                    }
-                    if (dialog.TODO != dialog.Node.TODO)
-                    {
-                        command.append(new Commands.Node.ToggleNodeTo_Do(this, dialog.Node));
-                    }
-                    if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
-                    if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                    command.append(new Commands.Node.ChangeCustomType(this, dialog.Node, dialog.Role, dialog.CustomClass));
                 }
+                if (dialog.Used != dialog.Node.Used)
+                {
+                    command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
+                }
+                if (dialog.TODO != dialog.Node.TODO)
+                {
+                    command.append(new Commands.Node.ToggleNodeTo_Do(this, dialog.Node));
+                }
+                if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
+                if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
             }
+            return true;
         }
 
         public void CropPhrase()
