@@ -74,7 +74,7 @@ namespace Obi.ProjectView
         private ProjectView mView;                                   // parent project view
         private NodeSelection mSelection;                            // current selection
         private ISelectableInContentView mSelectedItem;              // the actual item for the selection
-        private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
+        private Dictionary<Keys, ProjectView.HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
         private bool mWrapStrips;                                    // wrapping of strips
         private bool mIsEnteringView;                                // flag set when entering the  view
 
@@ -826,11 +826,9 @@ namespace Obi.ProjectView
 
         #region shortcut keys
 
-        public delegate bool HandledShortcutKey();  // key handling delegate
-
         private void InitializeShortcutKeys()
         {
-            mShortcutKeys = new Dictionary<Keys, HandledShortcutKey>();
+            mShortcutKeys = new Dictionary<Keys, ProjectView.HandledShortcutKey>();
 
             mShortcutKeys[Keys.A] = delegate() { return mView.TransportBar.MarkSelectionWholePhrase(); };
             mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
@@ -881,15 +879,12 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
         }
 
-        private static readonly int WM_KEYDOWN = 0x100;
-        private static readonly int WM_SYSKEYDOWN = 0x104;
-
         private bool CanUseKeys { get { return mSelection == null || !(mSelection is TextSelection); } }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
             if (CanUseKeys &&
-                ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
+                ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) return true;
             if (ProcessTabKeyInContentsView(key)) return true;
             return base.ProcessCmdKey(ref msg, key);

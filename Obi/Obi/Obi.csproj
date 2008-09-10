@@ -162,11 +162,11 @@
     <Compile Include="Dialogs\PhraseProperties.designer.cs">
       <DependentUpon>PhraseProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\ProjectStatistics.cs">
+    <Compile Include="Dialogs\ProjectProperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\ProjectStatistics.Designer.cs">
-      <DependentUpon>ProjectStatistics.cs</DependentUpon>
+    <Compile Include="Dialogs\ProjectProperties.Designer.cs">
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SaveProjectAsDialog.cs">
       <SubType>Form</SubType>
@@ -500,13 +500,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProjectStatistics.hi.resx">
+    <EmbeddedResource Include="Dialogs\ProjectProperties.hi.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProjectStatistics.cs</DependentUpon>
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\ProjectStatistics.resx">
+    <EmbeddedResource Include="Dialogs\ProjectProperties.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProjectStatistics.cs</DependentUpon>
+      <DependentUpon>ProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SaveProjectAsDialog.resx">
       <SubType>Designer</SubType>

@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>46, 42</value>
+    <value>15, 41</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -157,13 +157,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtDuration.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 39</value>
+    <value>116, 39</value>
   </data>
   <data name="m_txtDuration.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtDuration.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>263, 22</value>
   </data>
   <data name="m_txtDuration.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -217,13 +217,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtSectionsCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 69</value>
+    <value>116, 69</value>
   </data>
   <data name="m_txtSectionsCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtSectionsCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>263, 22</value>
   </data>
   <data name="m_txtSectionsCount.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -256,7 +256,7 @@
     <value>7</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
-    <value>Total phrases:</value>
+    <value>Total p&amp;hrases:</value>
   </data>
   <data name="&gt;&gt;m_lblPhraseCount.Name" xml:space="preserve">
     <value>m_lblPhraseCount</value>
@@ -277,13 +277,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPhraseCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 99</value>
+    <value>116, 99</value>
   </data>
   <data name="m_txtPhraseCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPhraseCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>263, 22</value>
   </data>
   <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -337,13 +337,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtPageCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 129</value>
+    <value>116, 129</value>
   </data>
   <data name="m_txtPageCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtPageCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>263, 22</value>
   </data>
   <data name="m_txtPageCount.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -400,7 +400,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_lblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 12</value>
+    <value>32, 11</value>
   </data>
   <data name="m_lblTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -433,13 +433,13 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 9</value>
+    <value>116, 9</value>
   </data>
   <data name="m_txtTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_txtTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 22</value>
+    <value>263, 22</value>
   </data>
   <data name="m_txtTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -505,7 +505,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Project Statistics</value>
+    <value>Project properties</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ProjectStatistics</value>

@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace Obi.Dialogs
 {
-    public partial class ProjectStatistics : Form
+    public partial class ProjectProperties : Form
     {
         private ProjectView.ProjectView mView;
 
-        public ProjectStatistics(ProjectView.ProjectView View)
+        public ProjectProperties(ProjectView.ProjectView View)
         {
             InitializeComponent();
             mView = View;

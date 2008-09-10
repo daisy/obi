@@ -657,17 +657,41 @@
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 6</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.AccessibleName" xml:space="preserve">
-    <value>Project Statistics</value>
+  <data name="mView_ProjectPropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Project properties Alt+Enter</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+I</value>
+  <data name="mView_ProjectPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+Enter</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
   </data>
-  <data name="mView_ProjectStatisticsMenuItem.Text" xml:space="preserve">
-    <value>Pro&amp;ject statistics</value>
+  <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
+    <value>Proj&amp;ect properties</value>
+  </data>
+  <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Phrase properties Alt+Enter</value>
+  </data>
+  <data name="mView_PhrasePropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+Enter</value>
+  </data>
+  <data name="mView_PhrasePropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
+    <value>Phras&amp;e properties</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.AccessibleName" xml:space="preserve">
+    <value>Section properties Alt+Enter</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Alt+Enter</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
+    <value>S&amp;ection properties</value>
   </data>
   <data name="mViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 20</value>
@@ -1555,7 +1579,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.33342, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.19278, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1827,9 +1851,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2164,10 +2185,22 @@
   <data name="&gt;&gt;toolStripSeparator17.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mView_ProjectStatisticsMenuItem.Name" xml:space="preserve">
-    <value>mView_ProjectStatisticsMenuItem</value>
+  <data name="&gt;&gt;mView_ProjectPropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_ProjectPropertiesMenuItem</value>
   </data>
-  <data name="&gt;&gt;mView_ProjectStatisticsMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mView_ProjectPropertiesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_PhrasePropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_PhrasePropertiesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_PhrasePropertiesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mView_SectionPropertiesMenuItem.Name" xml:space="preserve">
+    <value>mView_SectionPropertiesMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mView_SectionPropertiesMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mSectionsToolStripMenuItem.Name" xml:space="preserve">

@@ -26,7 +26,6 @@ namespace Obi
 
         private static readonly string DEFAULT_EXPORT_DIRNAME = "DAISY3 Export";  // defaul export directory name
 
-
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
         /// </summary>
@@ -409,7 +408,14 @@ namespace Obi
             mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
-            mView_ProjectStatisticsMenuItem.Enabled = mSession.HasProject;
+
+            mView_PhrasePropertiesMenuItem.Visible =
+                mView_PhrasePropertiesMenuItem.Enabled = mProjectView.CanShowPhrasePropertiesDialog;
+            mView_SectionPropertiesMenuItem.Visible =
+                mView_SectionPropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
+            mView_ProjectPropertiesMenuItem.Enabled = mProjectView.CanShowProjectPropertiesDialog;
+            mView_ProjectPropertiesMenuItem.Visible =
+                mProjectView.CanShowProjectPropertiesDialog || !mSession.HasProject;
         }
 
         private void mShowTOCViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -1819,37 +1825,41 @@ namespace Obi
             mProjectView.SelectPreviousTODOPhrase();
         }
 
-        private void View_ProjectStatisticsMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.Presentation != null)
-            {
-                Dialogs.ProjectStatistics dialog = new ProjectStatistics(mProjectView);
-                if (dialog.ShowDialog() == DialogResult.OK && dialog.ProjectTitle != mSession.Presentation.Title &&
-                    dialog.ProjectTitle != null && dialog.ProjectTitle != "")
-                {
-                    mSession.Presentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(mProjectView,
-                        mSession.Presentation.GetFirstMetadataItem(Metadata.DC_TITLE), dialog.ProjectTitle));
-                }
-             }
-        }
-
 
         // View > Zoom in (Ctrl+Alt++)
-        private void View_ZoomInMenuItem_Click(object sender, EventArgs e)
+        private void mView_ZoomInMenuItem_Click(object sender, EventArgs e)
         {
             ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
         }
 
         // View > Zoom out (Ctrl+Alt+-)
-        private void View_ZoomOutMenuItem_Click(object sender, EventArgs e)
+        private void mView_ZoomOutMenuItem_Click(object sender, EventArgs e)
         {
             ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
         }
 
         // View > Normal size (Ctrl+Alt+0)
-        private void View_NormalSizeMenuItem_Click(object sender, EventArgs e)
+        private void mView_NormalSizeMenuItem_Click(object sender, EventArgs e)
         {
             ZoomFactor = 1.0f;
+        }
+
+        // View > Project properties (Alt+Enter)
+        private void mView_ProjectPropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowProjectPropertiesDialog();
+        }
+
+        // View > Phrase properties (Alt+Enter)
+        private void mView_PhrasePropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowPhrasePropertiesDialog();
+        }
+
+        // View > Section properties (Alt+Enter)
+        private void mView_SectionPropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowSectionPropertiesDialog();
         }
 
         private void mCropAudiotoolStripMenuItem_Click(object sender, EventArgs e)
