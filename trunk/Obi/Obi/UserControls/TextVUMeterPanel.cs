@@ -53,6 +53,7 @@ namespace Obi.UserControls
                     m_VuMeter.LevelTooLowEvent += new Obi.Events.Audio.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
                     //m_VuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
                     m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
+                    m_VuMeter.LevelGoodEvent += new Obi.Events.Audio.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
                     m_MaxLeftDB = -100.00;
                     m_MaxRightDB = -100.00;
                     mResetButton.Enabled = mShowMaxMinValues;
@@ -309,6 +310,15 @@ namespace Obi.UserControls
             }
         }
 
+        private void PlayLevelGoodSound ( object sender , EventArgs e)
+            {
+            string FilePath = Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "good.wav" );
+            if (File.Exists ( FilePath ) && m_BeepEnabled)
+                {
+                System.Media.SoundPlayer LevelGoodSoundpPlayer = new System.Media.SoundPlayer ( FilePath );
+                LevelGoodSoundpPlayer.Play ();
+                }
+            }
 
     }// end of class
 }

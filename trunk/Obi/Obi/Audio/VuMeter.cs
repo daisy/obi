@@ -14,6 +14,7 @@ namespace Obi.Audio
 		public event Events.Audio.VuMeter.ResetHandler ResetEvent;                 //
 		public event Events.Audio.VuMeter.UpdateFormsHandler UpdateForms;          //
         public event Events.Audio.VuMeter.UpdatePeakMeterHandler UpdatePeakMeter;  //
+        public Events.Audio.VuMeter.LevelGoodHandler LevelGoodEvent;
 
         private AudioPlayer mPlayer;      // associated player
         private AudioRecorder mRecorder;  // associated recorder
@@ -648,77 +649,40 @@ namespace Obi.Audio
                 LowAmpList.Add(AmplitudeValue);
                 LowThresholdCount = 0;
             }
+
             if ( ( LowThresholdCount >= 4 || LowAmpList.Count > 40 )
                 && GoneHigh )
             {
-                                if (LowAmpList.Count > 4)
+            if (LowAmpList.Count > 4)
                 {
-                    GoneHigh = false;
-                    double avg = 0;
-                    foreach (double d in LowAmpList)
-                        avg += d;
+                GoneHigh = false;
+                double avg = 0;
+                foreach (double d in LowAmpList)
+                    avg += d;
 
-                    avg = avg / LowAmpList.Count;
-                    if (avg < m_UBound)
+                avg = avg / LowAmpList.Count;
+                if (avg < m_UBound)
                     {
-                        if (LevelTooLowEvent != null) LevelTooLowEvent(this, new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs(this, avg , 0, 0));
-                        m_IsLowAmplitude = true;
-                                                //Debug_WriteToTextFile("Val");
-                        //foreach (double d in LowAmpList)
-                            //Debug_WriteToTextFile(d.ToString());
-
-                        //Debug_WriteToTextFile("low: " + avg.ToString());
+                    if (LevelTooLowEvent != null) LevelTooLowEvent ( this, new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs ( this, avg, 0, 0 ) );
+                    m_IsLowAmplitude = true;
+                    
+                    //Debug_WriteToTextFile("low: " + avg.ToString());
                     }
-                    else
-                        m_IsLowAmplitude = false;
-
-                    LowAmpList.Clear();
-                    LowThresholdCount = 0;
-                    //Debug_WriteToTextFile(" next ");
-                }
-                else
-                    LowAmpList.Clear();
-            }
-            /*
-            //if (m_MeanValueLeft > -32 || m_MeanValueLeft < -36 )
-                                if ( AmplitudeValue< UBound && AmplitudeValue > LBound )
-            {
-                m_arLowAmpSamples[m_LowAmplitudeSamplesCounts] = AmplitudeValue ;
-                m_LowAmplitudeSamplesCounts++;
-                                                                if (m_LowAmplitudeSamplesCounts >= m_MaxLowAmpSamples)
-                {
-                    double diff = 0;
-                    int LowIndex = 0 ;
-                    for (int i = 0 ; i < m_arLowAmpSamples.Length - 1 ; i++)
+                else if (avg > m_UBound)
                     {
-                        if (m_arLowAmpSamples[LowIndex] > m_arLowAmpSamples [i]) LowIndex = i;
-                        diff += m_arLowAmpSamples[i] - m_arLowAmpSamples[i + 1];
-                    }
-                    diff = diff /( m_MaxLowAmpSamples - 1) ;
-                    if (Math.Abs(diff) < 0.25)
-                    {
-                        if ( (LowIndex == 0 || LowIndex == 9 )
-                            && ( m_arLowAmpSamples[0] >  LBound && m_arLowAmpSamples[9] > LBound) ) 
-                                            {
-                                                if (LevelTooLowEvent != null) LevelTooLowEvent(this , new Obi.Events.Audio.VuMeter.LevelTooLowEventArgs( this , 0, 0) ) ;
-                                                m_IsLowAmplitude = true;
-                            if ( System.IO.File.Exists ("low.wav") )
-                            {
-                                                System.Media.SoundPlayer BeepPlayer = new System.Media.SoundPlayer("low.wav");
-                                                BeepPlayer.Play();
-                            }
-                        //Debug_WriteToTextFile("Low" + diff.ToString());
-                                            }
-                    }
-                    m_LowAmplitudeSamplesCounts = 0;
-                }
-            }
-else // values is either above UBound or below LBound
-                {
                     m_IsLowAmplitude = false;
-                m_LowAmplitudeSamplesCounts = 0;
-        }
-             */ 
+                    if (LevelGoodEvent != null) LevelGoodEvent (this ,  new Events.Audio.VuMeter.LevelGoodArgs ( avg ) );
+                    }
+                LowAmpList.Clear ();
+                LowThresholdCount = 0;
+                //Debug_WriteToTextFile(" next ");
+                }
+            else
+                {
+                LowAmpList.Clear ();
+                LowThresholdCount = 0;
+                }
+            }
         }
 
         void Debug_WriteToTextFile(string s)
