@@ -216,6 +216,7 @@
     <Compile Include="Events\Audio\Player\UpdateVuMeter.cs" />
     <Compile Include="Events\Audio\Recorder\StateChangedEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\UpdateVuMeter.cs" />
+    <Compile Include="Events\Audio\VuMeter\LevelGoodArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\LevelTooLowEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
     <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
