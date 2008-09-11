@@ -2417,6 +2417,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last project is not saved in settings. Obi will open with no project..
+        /// </summary>
+        internal static string WelcomeDialog_NoLastProjectINSettings {
+            get {
+                return ResourceManager.GetString("WelcomeDialog_NoLastProjectINSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading elements are in the wrong order..
         /// </summary>
         internal static string wrong_heading_order {

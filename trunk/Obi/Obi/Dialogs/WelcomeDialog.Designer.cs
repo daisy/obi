@@ -31,7 +31,7 @@ namespace Obi.Dialogs
             this.label1 = new System.Windows.Forms.Label ();
             this.m_btnNewProject = new System.Windows.Forms.Button ();
             this.m_btnOpenProject = new System.Windows.Forms.Button ();
-            this.m_btnOpenBlank = new System.Windows.Forms.Button ();
+            this.m_btnOpenLastProject = new System.Windows.Forms.Button ();
             this.m_btnCancel = new System.Windows.Forms.Button ();
             this.SuspendLayout ();
             // 
@@ -66,16 +66,16 @@ namespace Obi.Dialogs
             this.m_btnOpenProject.UseVisualStyleBackColor = true;
             this.m_btnOpenProject.Click += new System.EventHandler ( this.m_btnOpenProject_Click );
             // 
-            // m_btnOpenBlank
+            // m_btnOpenLastProject
             // 
-            this.m_btnOpenBlank.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btnOpenBlank.Location = new System.Drawing.Point ( 50, 110 );
-            this.m_btnOpenBlank.Name = "m_btnOpenBlank";
-            this.m_btnOpenBlank.Size = new System.Drawing.Size ( 150, 23 );
-            this.m_btnOpenBlank.TabIndex = 3;
-            this.m_btnOpenBlank.Text = "Open &blank";
-            this.m_btnOpenBlank.UseVisualStyleBackColor = true;
-            this.m_btnOpenBlank.Click += new System.EventHandler ( this.m_btnOpenBlank_Click );
+            this.m_btnOpenLastProject.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.m_btnOpenLastProject.Location = new System.Drawing.Point ( 50, 110 );
+            this.m_btnOpenLastProject.Name = "m_btnOpenLastProject";
+            this.m_btnOpenLastProject.Size = new System.Drawing.Size ( 150, 23 );
+            this.m_btnOpenLastProject.TabIndex = 3;
+            this.m_btnOpenLastProject.Text = "Open &last project";
+            this.m_btnOpenLastProject.UseVisualStyleBackColor = true;
+            this.m_btnOpenLastProject.Click += new System.EventHandler ( this.m_btnOpenBlank_Click );
             // 
             // m_btnCancel
             // 
@@ -95,7 +95,7 @@ namespace Obi.Dialogs
             this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size ( 192, 273 );
             this.Controls.Add ( this.m_btnCancel );
-            this.Controls.Add ( this.m_btnOpenBlank );
+            this.Controls.Add ( this.m_btnOpenLastProject );
             this.Controls.Add ( this.m_btnOpenProject );
             this.Controls.Add ( this.m_btnNewProject );
             this.Controls.Add ( this.label1 );
@@ -111,7 +111,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button m_btnNewProject;
         private System.Windows.Forms.Button m_btnOpenProject;
-        private System.Windows.Forms.Button m_btnOpenBlank;
+        private System.Windows.Forms.Button m_btnOpenLastProject;
         private System.Windows.Forms.Button m_btnCancel;
         }
     }
