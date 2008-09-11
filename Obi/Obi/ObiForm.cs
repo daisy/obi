@@ -1915,5 +1915,29 @@ namespace Obi
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }              
         }
+
+        private void ObiForm_Load ( object sender, EventArgs e )
+            {
+            ShowWelcomeDialog ();
+            }
+
+        private void ShowWelcomeDialog ()
+            {
+            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog () ;
+            if (ObiWelcome.ShowDialog () == DialogResult.OK)
+                {
+                switch (ObiWelcome.Result)
+                    {
+                case WelcomeDialog.Option.newProject :
+                NewProject ();
+                break;
+                case WelcomeDialog.Option.OpenProject :
+                Open ();
+                break;
+                    }
+                }
+            }
+
+
     }
 }

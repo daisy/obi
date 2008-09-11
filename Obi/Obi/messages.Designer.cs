@@ -2018,6 +2018,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recording is being resumed from paused state. Press Yes to resume from position where it was paused. Press No to resume it from current position..
+        /// </summary>
+        internal static string RecordingResume_Check_Text {
+            get {
+                return ResourceManager.GetString("RecordingResume_Check_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Redo.
         /// </summary>
         internal static string redo {
