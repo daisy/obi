@@ -598,6 +598,14 @@ namespace Obi.ProjectView
             mCustomClassMarkButton.Enabled = CanMarkCustomClass;
         }
 
+        private static string FormatDuration_hh_mm_ss(double durationMs)
+        {
+            double seconds = durationMs / 1000.0;
+            int minutes = (int)Math.Floor(seconds / 60.0);
+            int seconds_ = (int)Math.Floor(seconds - minutes * 60.0);
+            return string.Format(Localizer.Message("duration_hh_mm_ss"), minutes / 60, minutes % 60, seconds_);
+        }
+
         /// <summary>
         /// Update the time display to show current time. Depends on the what kind of timing is selected.
         /// </summary>
@@ -610,16 +618,16 @@ namespace Obi.ProjectView
             }
             else if (mState == State.Recording)
             {
-                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(mRecordingSession.AudioRecorder.TimeOfAsset);
+                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(mRecordingSession.AudioRecorder.TimeOfAsset);
                 mDisplayBox.SelectedIndex = ELAPSED_INDEX;
             }
             else if (mState == State.Stopped)
             {
-                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(0.0);
+                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
             }
             else
             {
-                mTimeDisplayBox.Text = ObiForm.FormatTime_hh_mm_ss(
+                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
                     mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
                         mCurrentPlaylist.CurrentTimeInAsset :
                     mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
