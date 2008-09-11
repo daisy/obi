@@ -1053,6 +1053,7 @@ namespace Obi
                         if (!exportPath.EndsWith("/")) exportPath += "/";
                         mSession.PrimaryExportPath = exportPath;
                         mSession.Presentation.ExportToZ(exportPath, mSession.Path);
+                        mSession.ForceSave ();
                         MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.DirectoryPath),
                            Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
