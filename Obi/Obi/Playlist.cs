@@ -73,7 +73,7 @@ namespace Obi
         {
             mPlayer = player;
             Reset(LocalPlaylist);
-            if (selection.Control is Obi.ProjectView.InheritedTOCView)
+            if (selection.Control is Obi.ProjectView.TOCView)
             {
                 AddPhraseNodes(selection.Node);
             }
