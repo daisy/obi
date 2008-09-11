@@ -1916,34 +1916,32 @@ namespace Obi
             }              
         }
 
-        private void ObiForm_Load ( object sender, EventArgs e )
-            {
-            ShowWelcomeDialog ();
-            }
+        private void ObiForm_Load(object sender, EventArgs e)
+        {
+            if (!mSettings.OpenLastProject) ShowWelcomeDialog();
+        }
 
-        private void ShowWelcomeDialog ()
+        private void ShowWelcomeDialog()
+        {
+            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog();
+            if (ObiWelcome.ShowDialog() == DialogResult.OK)
             {
-            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog () ;
-            if (ObiWelcome.ShowDialog () == DialogResult.OK)
-                {
                 switch (ObiWelcome.Result)
-                    {
-                case WelcomeDialog.Option.newProject :
-                NewProject ();
-                break;
-                case WelcomeDialog.Option.OpenProject :
-                Open ();
-                break;
+                {
+                    case WelcomeDialog.Option.newProject:
+                        NewProject();
+                        break;
+                    case WelcomeDialog.Option.OpenProject:
+                        Open();
+                        break;
 
-                case WelcomeDialog.Option.OpenLastProject :
-                if (mSettings.LastOpenProject != "") OpenProject ( mSettings.LastOpenProject );
-                else MessageBox.Show ( Localizer.Message ( "WelcomeDialog_NoLastProjectINSettings") );
-                break;
+                    case WelcomeDialog.Option.OpenLastProject:
+                        if (mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
+                        else MessageBox.Show(Localizer.Message("WelcomeDialog_NoLastProjectINSettings"));
+                        break;
 
-                    }
                 }
             }
-
-
+        }
     }
 }
