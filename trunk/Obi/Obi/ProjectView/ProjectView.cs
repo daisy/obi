@@ -1682,6 +1682,30 @@ namespace Obi.ProjectView
             {
                 urakawa.undo.CompositeCommand command =
                     mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
+
+                if (dialog.Role == EmptyNode.Kind.Page)
+                    {
+                    Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
+                    if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
+                        {
+                        urakawa.undo.ICommand PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
+                        command.append ( PageCmd );
+                        PageNumber number = PageDialog.Number;
+                        if (PageDialog.Renumber)
+                            {
+                            for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
+                                {
+                                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                                    ((EmptyNode)n).PageNumber.Kind == number.Kind)
+                                    {
+                                    number = number.NextPageNumber ();
+                                    command.append ( new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                                    }
+                                }
+                            }
+                        }
+                    } // page related braces ends
+
                 if (dialog.Role != dialog.Node.NodeKind ||
                     (dialog.Role == EmptyNode.Kind.Custom && dialog.Node.NodeKind == EmptyNode.Kind.Custom &&
                     dialog.CustomClass != dialog.Node.CustomClass))
@@ -1753,4 +1777,4 @@ namespace Obi.ProjectView
     }
 
     public delegate void ImportingFileEventHandler(object sender, ImportingFileEventArgs e);
-}
+    }
