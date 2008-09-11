@@ -1144,4 +1144,7 @@ Error text: {1}</value>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
     <value>One or more parameters are invalid. Please enter correct values</value>
   </data>
+  <data name="RecordingResume_Check_Text" xml:space="preserve">
+    <value>Recording is being resumed from paused state. Press Yes to resume from position where it was paused. Press No to resume it from current position.</value>
+  </data>
 </root>
