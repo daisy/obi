@@ -324,11 +324,11 @@
     <Compile Include="ProjectView\ContentView.Designer.cs">
       <DependentUpon>ContentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectView\InheritedTOCView.cs">
+    <Compile Include="ProjectView\TOCView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ProjectView\InheritedTOCView.Designer.cs">
-      <DependentUpon>InheritedTOCView.cs</DependentUpon>
+    <Compile Include="ProjectView\TOCView.Designer.cs">
+      <DependentUpon>TOCView.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\EditableLabel.cs">
       <SubType>UserControl</SubType>
@@ -613,9 +613,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>FindInText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectView\InheritedTOCView.resx">
+    <EmbeddedResource Include="ProjectView\TOCView.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>InheritedTOCView.cs</DependentUpon>
+      <DependentUpon>TOCView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\MetadataView.hi.resx">
       <SubType>Designer</SubType>

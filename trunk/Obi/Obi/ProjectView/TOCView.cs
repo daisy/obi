@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace Obi.ProjectView
 {
-    public partial class InheritedTOCView : TreeView, IControlWithRenamableSelection
+    public partial class TOCView : TreeView, IControlWithRenamableSelection
     {
         private float mBaseFontSize;       // base font size (for scaling)
         private NodeSelection mSelection;  // actual selection context
         private ProjectView mView;         // the parent project view
 
-        public InheritedTOCView()
+        public TOCView()
         {
             InitializeComponent();
             mBaseFontSize = Font.SizeInPoints;
@@ -409,7 +409,5 @@ namespace Obi.ProjectView
             }
             return base.ProcessDialogKey(KeyData);
         }
-    
-
     }
 }

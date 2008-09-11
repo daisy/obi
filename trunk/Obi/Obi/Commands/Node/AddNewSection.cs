@@ -75,7 +75,7 @@ namespace Obi.Commands.Node
 
     public class AddSubSection : AddSectionNode
     {
-        public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.InheritedTOCView)view.Selection.Control)
+        public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control)
         {
             Label = Localizer.Message("add_subsection");
         }

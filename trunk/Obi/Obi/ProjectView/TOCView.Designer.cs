@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class InheritedTOCView
+    partial class TOCView
     {
         /// <summary>
         /// Required designer variable.

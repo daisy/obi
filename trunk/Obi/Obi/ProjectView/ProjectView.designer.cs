@@ -33,7 +33,7 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter = new System.Windows.Forms.SplitContainer();
             this.mTOCSplitter = new System.Windows.Forms.SplitContainer();
             this.mMetadataSplitter = new System.Windows.Forms.SplitContainer();
-            this.mTOCView = new Obi.ProjectView.InheritedTOCView();
+            this.mTOCView = new Obi.ProjectView.TOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
             this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
             this.mContentView = new Obi.ProjectView.ContentView();
@@ -289,7 +289,7 @@ namespace Obi.ProjectView
         private MetadataView mMetadataView;
         private System.Windows.Forms.Label mNoProjectLabel;
         private System.Windows.Forms.Button mPanelInfoLabelButton ;
-        private InheritedTOCView mTOCView;
+        private TOCView mTOCView;
         private ContentView mContentView;
 
 

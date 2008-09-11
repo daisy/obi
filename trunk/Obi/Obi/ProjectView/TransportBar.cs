@@ -1723,7 +1723,7 @@ namespace Obi.ProjectView
 
         private void PlaybackOnSelectionChange ()
         {
-            if ( mView.Selection != null  )
+            if (mView.Selection != null)
             {
                 if (mState == State.Playing || mState == State.Paused)
                 {
@@ -1743,7 +1743,7 @@ namespace Obi.ProjectView
                     {
                         if (PNode != mCurrentPlaylist.CurrentPhrase ) // if selected node is not currently playing phrase
                                                     {
-                                                        if (mView.Selection.Control.GetType() != typeof(InheritedTOCView)
+                                                        if (mView.Selection.Control.GetType() != typeof(TOCView)
                                                             || mCurrentPlaylist.CurrentPhrase.ParentAs <SectionNode> () != PNode.ParentAs <SectionNode> () ) // bypass if selection is in TOC and playing section is same as selected section
                                                         {
                                                             if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop();
