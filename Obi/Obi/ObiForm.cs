@@ -13,6 +13,8 @@ namespace Obi
     /// </summary>
     public partial class ObiForm : Form
     {
+        #region Members and initializers
+
         private float mBaseFontSize;             // base font size
         private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
         private Session mSession;                // current work session
@@ -23,8 +25,6 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-
-        private static readonly string DEFAULT_EXPORT_DIRNAME = "DAISY3 Export";  // defaul export directory name
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -44,7 +44,14 @@ namespace Obi
             OpenProject(path);
         }
 
+        #endregion
 
+
+        #region Properties
+
+        /// <summary>
+        /// Global audio scale for waveforms.
+        /// </summary>
         public float AudioScale
         {
             get { return mSettings.AudioScale; }
@@ -58,7 +65,15 @@ namespace Obi
             }
         }
 
-        public float ZoomFactor 
+        /// <summary>
+        /// Application settings.
+        /// </summary>
+        public Settings Settings { get { return mSettings; } }
+
+        /// <summary>
+        /// Global zoom factor for all controls in the form.
+        /// </summary>
+        public float ZoomFactor
         {
             get { return mSettings.ZoomFactor; }
             set
@@ -71,12 +86,15 @@ namespace Obi
             }
         }
 
+        // Update the zoom factor for the form itself after it was set.
         private void UpdateZoomFactor()
         {
             float z = mSettings.ZoomFactor * (SystemInformation.HighContrast ? DEFAULT_ZOOM_FACTOR_HC : 1.0f);
             mStatusLabel.Font = new System.Drawing.Font(mStatusLabel.Font.FontFamily, mBaseFontSize * z);
             mProjectView.ZoomFactor = z;
         }
+
+        #endregion
 
 
         #region File menu
@@ -103,7 +121,7 @@ namespace Obi
         private void File_ClearListMenuItem_Click(object sender, EventArgs e) { ClearRecentProjectsList(); }
         private void File_ExitMenuItem_Click(object sender, EventArgs e) { Close(); }
 
-        // Create a new project if the current one was closed properly, or if none was open.
+        // Create a new project by asking initial information through a dialog.
         private void NewProject()
         {
             Dialogs.NewProject dialog = new Dialogs.NewProject(
@@ -121,7 +139,8 @@ namespace Obi
             mSettings.NewProjectDialogSize = dialog.Size;
         }
 
-        // Create a new project by importing an XHTML file
+        // Create a new project by importing an XHTML file.
+        // Prompt the user for the location of the file through a dialog.
         private void NewProjectFromImport()
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -130,6 +149,7 @@ namespace Obi
             if (dialog.ShowDialog() == DialogResult.OK) NewProjectFromImport(dialog.FileName);
         }
 
+        // Create a new project by importing an XHTML file at the given path.
         private void NewProjectFromImport(string path)
         {
             Dialogs.NewProject dialog = null;
@@ -162,25 +182,21 @@ namespace Obi
             }
         }
 
-        // Open a new project from a file chosen by the user.
+        // Open a new project after showing a file open dialog.
         private void Open()
         {
-                                        OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = Localizer.Message("obi_filter");
-                dialog.InitialDirectory = mSettings.DefaultPath;
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (DidCloseProject())
-                        OpenProject(dialog.FileName);
-                }
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = Localizer.Message("obi_filter");
+            dialog.InitialDirectory = mSettings.DefaultPath;
+            if (dialog.ShowDialog() == DialogResult.OK && DidCloseProject()) OpenProject(dialog.FileName);
         }
 
         // Clear the list of recently opened files (prompt the user first.)
         private void ClearRecentProjectsList()
         {
             if (MessageBox.Show(Localizer.Message("clear_recent_text"),
-                    Localizer.Message("clear_recent_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
-                DialogResult.Yes)
+                                Localizer.Message("clear_recent_caption"),
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 while (mFile_RecentProjectMenuItem.DropDownItems.Count > 2)
                 {
@@ -198,18 +214,15 @@ namespace Obi
         private void SaveAs()
         {
             SaveProjectAsDialog SaveDialog = new SaveProjectAsDialog( Directory.GetParent( mSession.Path).FullName);
-            /*
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(mSession.Path));
-            dialog.FileName = Localizer.Message("default_project_filename");
-            dialog.Filter = Localizer.Message("obi_filter");
-             
-            if (dialog.ShowDialog() == DialogResult.OK)
-             */ 
             if ( SaveDialog.ShowDialog () == DialogResult.OK )
             {
-                if (mSession.CanSave && MessageBox.Show(Localizer.Message("SaveBeforeUsingSaveAs") ,  Localizer.Message("Caption_Warning") , MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (mSession.CanSave &&
+                    MessageBox.Show(Localizer.Message("SaveBeforeUsingSaveAs"),
+                                    Localizer.Message("Caption_Warning"),
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
                     mSession.ForceSave();
+                }
 
                 string OriginalProjectFilePath = mSession.Path;
                 DirectoryInfo NewProjectDirectoryInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
@@ -243,7 +256,6 @@ namespace Obi
                     mSession.Close();
                     OpenProject (OriginalProjectFilePath);
                 }
-
             }
             else
             {
@@ -251,16 +263,16 @@ namespace Obi
             }
         }
 
-
+        // Copy files from one directory to another
         private void ShallowCopyFilesInDirectory(string source, string dest)
         {
-             string [] FilesList = Directory.GetFiles(source , "*.*", SearchOption.TopDirectoryOnly);
-            FileInfo FInfo  = null ;
-            foreach( string f in FilesList)
+            string[] FilesList = Directory.GetFiles(source, "*.*", SearchOption.TopDirectoryOnly);
+            FileInfo FInfo = null;
+            foreach (string f in FilesList)
             {
-                FInfo = new FileInfo (f) ;
-                FInfo.CopyTo( Path.Combine ( dest , FInfo.Name) );
-                            }
+                FInfo = new FileInfo(f);
+                FInfo.CopyTo(Path.Combine(dest, FInfo.Name));
+            }
         }
 
         // Return whether the project can be closed or not.
@@ -341,6 +353,153 @@ namespace Obi
         }
 
         #endregion
+
+        #region Help menu
+
+        // Help > Contents (F1)
+        private void mHelp_ContentsMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialogs.Help help = new Dialogs.Help();
+            help.WebBrowser.Url = new Uri(Path.Combine(
+                Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_file_name")));
+            help.Show();
+        }
+
+        // Help > View help in external browser (Shift+F1)
+        private void mHelp_ViewHelpInExternalBrowserMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message("help_file_name")))).ToString());
+        }
+
+        // Help > Report bug (Ctrl+Alt+R)
+        private void mHelp_ReportBugMenuItem_Click(object sender, EventArgs e)
+        {
+            Uri url = new Uri("http://daisy-trac.cvsdude.com/obi/newticket");
+            System.Diagnostics.Process.Start(url.ToString());
+        }
+
+        // Help > About
+        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e) { (new Dialogs.About()).ShowDialog(); }
+
+        #endregion
+
+
+        #region Event handlers
+
+        // Initialize event handlers from the project view
+        private void InitializeEventHandlers()
+        {
+            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
+            mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
+            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
+            mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
+            mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
+        }
+
+        private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(1); }
+        private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { ProjectHasChanged(-1); }
+        private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { ProjectHasChanged(1); }
+
+        // Show welcome dialog first, unless the user has chosen
+        private void ObiForm_Load(object sender, EventArgs e)
+        {
+            if (!mSettings.OpenLastProject) ShowWelcomeDialog();
+        }
+
+        // Show the welcome dialog
+        private void ShowWelcomeDialog()
+        {
+            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog();
+            if (ObiWelcome.ShowDialog() == DialogResult.OK)
+            {
+                switch (ObiWelcome.Result)
+                {
+                    case WelcomeDialog.Option.newProject:
+                        NewProject();
+                        break;
+                    case WelcomeDialog.Option.OpenProject:
+                        Open();
+                        break;
+                    case WelcomeDialog.Option.OpenLastProject:
+                        if (mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
+                        else MessageBox.Show(Localizer.Message("WelcomeDialog_NoLastProjectINSettings"));
+                        break;
+                }
+            }
+        }
+
+        private void ProjectView_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateMenus();
+            ShowSelectionInStatusBar();
+        }
+
+        private void Session_ProjectCreated(object sender, EventArgs e)
+        {
+            GotNewPresentation();
+            Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
+        }
+
+        private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
+        {
+            if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
+            {
+                Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
+            }
+            mProjectView.Selection = null;
+            mProjectView.Presentation = null;
+            UpdateObi();
+            if (mSourceView != null) mSourceView.Close();
+        }
+
+        private void Session_ProjectOpened(object sender, EventArgs e)
+        {
+            GotNewPresentation();
+            Status(String.Format(Localizer.Message("opened_project"), mSession.Presentation.Title));
+        }
+
+        private void Session_ProjectSaved(object sender, EventArgs e)
+        {
+            UpdateObi();
+            AddRecentProject(mSession.Path);
+            Status(String.Format(Localizer.Message("saved_project"), mSession.Path));
+        }
+
+        // Add a project to the list of recent projects.
+        // If the project was already in the list, promote it to the top of the list.
+        private void AddRecentProject(string path)
+        {
+            if (mSettings.RecentProjects.Contains(path))
+            {
+                // the item was in the list so bump it up
+                int i = mSettings.RecentProjects.IndexOf(path);
+                mSettings.RecentProjects.RemoveAt(i);
+                mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
+            }
+            AddRecentProjectsItem(path);
+            mSettings.RecentProjects.Insert(0, path);
+            mSettings.LastOpenProject = path;
+        }
+
+        // Add an item in the recent projects list.
+        private bool AddRecentProjectsItem(string path)
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = path;
+            item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
+            mFile_RecentProjectMenuItem.DropDownItems.Insert(0, item);
+            return true;
+        }
+
+        #endregion
+
+
+
+
+
+
 
         #region Edit menu
 
@@ -985,63 +1144,9 @@ namespace Obi
 
         #endregion
 
-        #region Help menu
-
-        // Show the HTML help page.
-        private void mContentsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialogs.Help help = new Dialogs.Help();
-            help.WebBrowser.Url = new Uri(Path.Combine(
-                Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_file_name")));
-            help.Show();
-        }
-
-        // Show the HTML help page in an external browser.
-        private void mViewHelpInExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_file_name")))).ToString());
-        }
-
-        // Take the user to the Sourceforge bug page.
-        private void mReportBugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Uri url = new Uri("http://sourceforge.net/tracker/?func=add&group_id=149942&atid=776242");
-            System.Diagnostics.Process.Start(url.ToString());
-        }
-
-        // Show the About dialog
-        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new Dialogs.About()).ShowDialog();
-        }
-        
-        #endregion
 
 
-        /// <summary>
-        /// Add a project to the list of recent projects.
-        /// If the project was already in the list, promote it to the top of the list.
-        /// </summary>
-        private void AddRecentProject(string path)
-        {
-            if (mSettings.RecentProjects.Contains(path))
-            {
-                // the item was in the list so bump it up
-                int i = mSettings.RecentProjects.IndexOf(path);
-                mSettings.RecentProjects.RemoveAt(i);
-                mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
-            }
-            AddRecentProjectsItem(path);
-            mSettings.RecentProjects.Insert(0, path);
-            mSettings.LastOpenProject = path;
-        }
 
-        /// <summary>
-        /// Application settings.
-        /// </summary>
-        public Settings Settings { get { return mSettings; } }
 
         /// <summary>
         /// Display a message in the status bar.
@@ -1057,17 +1162,6 @@ namespace Obi
 
 
 
-        /// <summary>
-        /// Add an item in the recent projects list.
-        /// </summary>
-        private bool AddRecentProjectsItem(string path)
-        {
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = path;
-            item.Click += new System.EventHandler(delegate(object sender, EventArgs e) { CloseAndOpenProject(path); });
-            mFile_RecentProjectMenuItem.DropDownItems.Insert(0, item);
-            return true;
-        }
 
         /// <summary>
         /// Try to open a project from a XUK file.
@@ -1111,9 +1205,6 @@ namespace Obi
             UpdateCustomClassMenu();
         }
 
-        private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(1); }
-        private void ObiForm_commandUnDone(object sender, urakawa.events.undo.UnDoneEventArgs e) { ProjectHasChanged(-1); }
-        private void ObiForm_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e) { ProjectHasChanged(1); }
 
         // Catch problems with initialization and report them.
         private void InitializeObi()
@@ -1160,15 +1251,6 @@ namespace Obi
             }
         }
 
-        // Initialize event handlers from the project view
-        private void InitializeEventHandlers()
-        {
-            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
-            mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
-            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
-            mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
-            mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
-        }
 
         private void PopulatePipelineScriptsInToolsMenu()
         {
@@ -1190,13 +1272,10 @@ namespace Obi
         {
             set
             {
-                                                                 ToolStripItem []  ItemList =  mMenuStrip.Items.Find("PipelineMenu", true);
-                                                 foreach (ToolStripMenuItem m in ItemList)
-                                                 {
-                                                     m.Enabled = value;
-                                                                                                                                                           }
+                ToolStripItem[] ItemList = mMenuStrip.Items.Find("PipelineMenu", true);
+                foreach (ToolStripMenuItem m in ItemList) m.Enabled = value;
             }
-            }
+        }
 
 
         // Open the project at the given path; warn the user on error.
@@ -1370,47 +1449,6 @@ namespace Obi
                 // mProjectView.WrapStrips = value;
             }
         }
-
-        #region Event handlers
-
-        private void ProjectView_SelectionChanged(object sender, EventArgs e)
-        {
-            UpdateMenus();
-            ShowSelectionInStatusBar();
-        }
-
-        private void Session_ProjectCreated(object sender, EventArgs e)
-        {
-            GotNewPresentation();
-            Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
-        }
-
-        private void Session_ProjectClosed(object sender, ProjectClosedEventArgs e)
-        {
-            if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
-            {
-                Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
-            }
-            mProjectView.Selection = null;
-            mProjectView.Presentation = null;
-            UpdateObi();
-            if (mSourceView != null) mSourceView.Close();
-        }
-
-        private void Session_ProjectOpened(object sender, EventArgs e)
-        {
-            GotNewPresentation();
-            Status(String.Format(Localizer.Message("opened_project"), mSession.Presentation.Title));
-        }
-
-        private void Session_ProjectSaved(object sender, EventArgs e)
-        {
-            UpdateObi();
-            AddRecentProject(mSession.Path);
-            Status(String.Format(Localizer.Message("saved_project"), mSession.Path));
-        }
-
-        #endregion
 
 
 
@@ -1725,49 +1763,6 @@ namespace Obi
         }
 
 
-        /// <summary>
-        /// Format a time value. If less than a minute, display seconds and milliseconds.
-        /// If less than an hour, display minutes and seconds. Otherwise show hh:mm:ss.
-        /// </summary>
-        /// <param name="time">The time to display (in milliseconds.)</param>
-        /// <returns>The formatted string.</returns>
-        public static string FormatTime(double time)
-        {
-            return time < 60000.0 ? FormatTime_ss_ms(time) :
-                // time < 3600000.0 ? FormatTime_mm_ss(time) :
-                FormatTime_hh_mm_ss(time);
-        }
-
-        /// <summary>
-        /// Convenient function to format a milliseconds time into hh:mm:ss format.
-        /// </summary>
-        /// <param name="time">The time in milliseconds.</param>
-        /// <returns>The time in hh:mm:ss format (fractions of seconds are discarded.)</returns>
-        public static string FormatTime_hh_mm_ss(double time)
-        {
-            int s = Convert.ToInt32(time / 1000.0);
-            string str = (s % 60).ToString("00");
-            int m = Convert.ToInt32(s / 60);
-            str = (m % 60).ToString("00") + ":" + str;
-            int h = m / 60;
-            return h.ToString("00") + ":" + str;
-        }
-
-        private static string FormatTime_mm_ss(double time)
-        {
-            int s = Convert.ToInt32(Math.Floor(time / 1000.0));
-            string str = (s % 60).ToString("00");
-            int m = Convert.ToInt32(Math.Floor(s / 60.0));
-            return m.ToString("00") + ":" + str;
-        }
-
-        private static string FormatTime_ss_ms(double time)
-        {
-            time /= 1000.0;
-            return time.ToString("0.00") + "s";
-        }
-
-
 
         private void mShowPeakMeterMenuItem_Click(object sender, EventArgs e)
         {
@@ -1914,34 +1909,6 @@ namespace Obi
                                    Localizer.Message("dtb_encode_error_caption"),
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }              
-        }
-
-        private void ObiForm_Load(object sender, EventArgs e)
-        {
-            if (!mSettings.OpenLastProject) ShowWelcomeDialog();
-        }
-
-        private void ShowWelcomeDialog()
-        {
-            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog();
-            if (ObiWelcome.ShowDialog() == DialogResult.OK)
-            {
-                switch (ObiWelcome.Result)
-                {
-                    case WelcomeDialog.Option.newProject:
-                        NewProject();
-                        break;
-                    case WelcomeDialog.Option.OpenProject:
-                        Open();
-                        break;
-
-                    case WelcomeDialog.Option.OpenLastProject:
-                        if (mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
-                        else MessageBox.Show(Localizer.Message("WelcomeDialog_NoLastProjectINSettings"));
-                        break;
-
-                }
-            }
         }
     }
 }
