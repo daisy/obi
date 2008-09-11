@@ -1934,6 +1934,12 @@ namespace Obi
                 case WelcomeDialog.Option.OpenProject :
                 Open ();
                 break;
+
+                case WelcomeDialog.Option.OpenLastProject :
+                if (mSettings.LastOpenProject != "") OpenProject ( mSettings.LastOpenProject );
+                else MessageBox.Show ( Localizer.Message ( "WelcomeDialog_NoLastProjectINSettings") );
+                break;
+
                     }
                 }
             }

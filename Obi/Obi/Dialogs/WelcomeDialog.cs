@@ -15,7 +15,7 @@ namespace Obi.Dialogs
             InitializeComponent ();
             }
 
-        public enum Option { newProject , OpenProject , OpenBlank } ;
+        public enum Option { newProject , OpenProject , OpenLastProject } ;
         private Option m_Result;
 
         public Option Result
@@ -38,14 +38,13 @@ namespace Obi.Dialogs
 
         private void m_btnOpenBlank_Click ( object sender, EventArgs e )
             {
-            m_Result = Option.OpenBlank;
+            m_Result = Option.OpenLastProject;
             Close ();
             }
 
         private void m_btnCancel_Click ( object sender, EventArgs e )
             {
-            m_Result = Option.OpenBlank;
-            Close ();
+                        Close ();
             }
         }
     }

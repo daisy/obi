@@ -1147,4 +1147,7 @@ Error text: {1}</value>
   <data name="RecordingResume_Check_Text" xml:space="preserve">
     <value>Recording is being resumed from paused state. Press Yes to resume from position where it was paused. Press No to resume it from current position.</value>
   </data>
+  <data name="WelcomeDialog_NoLastProjectINSettings" xml:space="preserve">
+    <value>Last project is not saved in settings. Obi will open with no project.</value>
+  </data>
 </root>
