@@ -32,7 +32,7 @@ namespace Obi
         public ObiForm()
         {
             InitializeObi();
-            if (mSettings.OpenLastProject && mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
+            if (ShouldOpenLastProject) OpenProject(mSettings.LastOpenProject);
         }
 
         /// <summary>
@@ -48,6 +48,15 @@ namespace Obi
 
 
         #region Properties
+
+        private bool AllowOverwrite
+        {
+            set
+            {
+                mAllowOverwriteToolStripMenuItem.Checked = value;
+                mSettings.AllowOverwrite = value;
+            }
+        }
 
         /// <summary>
         /// Global audio scale for waveforms.
@@ -65,10 +74,56 @@ namespace Obi
             }
         }
 
+        public ColorSettings ColorSettings
+        {
+            get
+            {
+                ColorSettings settings = SystemInformation.HighContrast ?
+                    (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
+                    (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
+                settings.CreateBrushesAndPens();
+                return settings;
+            }
+        }
+
         /// <summary>
         /// Application settings.
         /// </summary>
         public Settings Settings { get { return mSettings; } }
+
+        // True if the user has chosen the "open last project" option, and there is a last project to open.
+        private bool ShouldOpenLastProject
+        {
+            get
+            {
+                return mSettings != null && mSettings.OpenLastProject && mSettings.LastOpenProject != "";
+            }
+        }
+
+        /// Set view synchronization and update the menu and settings accordingly.
+        private bool SynchronizeViews
+        {
+            set
+            {
+                mSettings.SynchronizeViews = value;
+                mSynchronizeViewsToolStripMenuItem.Checked = value;
+                mProjectView.SynchronizeViews = value;
+            }
+        }
+
+        // Set wrapping strips
+        private bool WrapStrips
+        {
+            set
+            {
+                // Temporarily disabled
+                mSettings.WrapStrips = false;
+                mProjectView.WrapStrips = false;
+                // mSettings.WrapStrips = value;
+                // mWrappingInContentViewToolStripMenuItem.Checked = value;
+                // mProjectView.WrapStrips = value;
+            }
+        }
 
         /// <summary>
         /// Global zoom factor for all controls in the form.
@@ -213,8 +268,8 @@ namespace Obi
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
         {
-            SaveProjectAsDialog SaveDialog = new SaveProjectAsDialog( Directory.GetParent( mSession.Path).FullName);
-            if ( SaveDialog.ShowDialog () == DialogResult.OK )
+            SaveProjectAsDialog SaveDialog = new SaveProjectAsDialog(Directory.GetParent(mSession.Path).FullName);
+            if (SaveDialog.ShowDialog() == DialogResult.OK)
             {
                 if (mSession.CanSave &&
                     MessageBox.Show(Localizer.Message("SaveBeforeUsingSaveAs"),
@@ -254,7 +309,7 @@ namespace Obi
                 if (!SaveDialog.ActivateNewProject)
                 {
                     mSession.Close();
-                    OpenProject (OriginalProjectFilePath);
+                    OpenProject(OriginalProjectFilePath);
                 }
             }
             else
@@ -405,7 +460,7 @@ namespace Obi
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            if (!mSettings.OpenLastProject) ShowWelcomeDialog();
+            if (!ShouldOpenLastProject) ShowWelcomeDialog();
         }
 
         // Show the welcome dialog
@@ -429,6 +484,9 @@ namespace Obi
                 }
             }
         }
+
+        // Remember the form size in the settings.
+        private void ObiForm_ResizeEnd(object sender, EventArgs e) { mSettings.ObiFormSize = Size; }
 
         private void ProjectView_SelectionChanged(object sender, EventArgs e)
         {
@@ -559,8 +617,8 @@ namespace Obi
             mShowMetadataViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
-            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView  &&  !mProjectView.CanToggleFocusToContentsView ;
-            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView   &&   mProjectView.CanToggleFocusToContentsView ;
+            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView && !mProjectView.CanToggleFocusToContentsView;
+            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView && mProjectView.CanToggleFocusToContentsView;
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mShowOnlySelectedSectionToolStripMenuItem.Enabled = mProjectView.CanShowOnlySelectedSection;
@@ -860,9 +918,9 @@ namespace Obi
         // Update the transport manu
         private void UpdateTransportMenu()
         {
-            mPlayToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanPlaySelection ||  mProjectView.CanResume ;
-            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay ||  mProjectView.CanResume;
-            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume ;
+            mPlayToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanPlaySelection || mProjectView.CanResume;
+            mPlayAllToolStripMenuItem.Enabled = mProjectView.CanPlay || mProjectView.CanResume;
+            mPlaySelectionToolStripMenuItem.Enabled = mProjectView.CanPlaySelection || mProjectView.CanResume;
             if (mProjectView.CanResume)
             {
                 mPauseToolStripMenuItem.Visible = false;
@@ -890,7 +948,7 @@ namespace Obi
 
 
             mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
-            
+
             mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsListening)
             {
@@ -1018,8 +1076,8 @@ namespace Obi
         private void UpdateToolsMenu()
         {
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
-                        mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
-                        PipelineMenuItemsEnabled = mSession.HasProject && mSession.PrimaryExportPath!= "" ;
+            mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
+            PipelineMenuItemsEnabled = mSession.HasProject && mSession.PrimaryExportPath != "";
         }
 
         // Open the preferences dialog
@@ -1154,9 +1212,11 @@ namespace Obi
         /// </summary>
         public void Status(string message) { mStatusLabel.Text = message; }
 
-
-
-
+        // Update the status bar to say "Ready."
+        public void Ready()
+        {
+            Status(Localizer.Message("ready"));
+        }
 
 
         // Utility functions
@@ -1232,13 +1292,13 @@ namespace Obi
                 mBaseFontSize = mStatusLabel.Font.SizeInPoints;
                 InitializeColorSettings();
 
-                if (Directory.Exists ( mSettings.PipelineScriptsPath ))
-                    {
-                    mPipelineInfo = new Obi.PipelineInterface.PipelineInfo ( mSettings.PipelineScriptsPath );
-                    PopulatePipelineScriptsInToolsMenu ();
-                    }
+                if (Directory.Exists(mSettings.PipelineScriptsPath))
+                {
+                    mPipelineInfo = new Obi.PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
+                    PopulatePipelineScriptsInToolsMenu();
+                }
                 else
-                    MessageBox.Show (string.Format( Localizer.Message ("ObiForm_PipelineNotFound"), mSettings.PipelineScriptsPath ) );
+                    MessageBox.Show(string.Format(Localizer.Message("ObiForm_PipelineNotFound"), mSettings.PipelineScriptsPath));
                 Ready();
             }
             catch (Exception e)
@@ -1305,12 +1365,6 @@ namespace Obi
             UpdateObi();
         }
 
-        // Update the status bar to say "Ready."
-        public void Ready()
-        {
-            Status(Localizer.Message("ready"));
-        }
-
         // Redo
         private void Redo()
         {
@@ -1348,27 +1402,27 @@ namespace Obi
                 mPeakMeter = new Obi.Audio.PeakMeterForm();
                 mPeakMeter.SourceVuMeter = mProjectView.TransportBar.VuMeter;
                 mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) { mPeakMeter = null; });
-				if (this.WindowState != FormWindowState.Minimized)
-				{
-					//Make sure the Peak meter is displayed on the right of the Obi form.
-					if (this.WindowState == FormWindowState.Maximized)
-					{
-						System.Drawing.Point newLoc = this.Location;
-						newLoc.X += SystemInformation.HorizontalResizeBorderThickness;
-						newLoc.Y +=SystemInformation.VerticalResizeBorderThickness;
-						System.Drawing.Size newSize = this.Size;
-						newSize.Width -= 2 * SystemInformation.HorizontalResizeBorderThickness;
-						newSize.Height -= 2 * SystemInformation.VerticalResizeBorderThickness;
-						this.WindowState = FormWindowState.Normal;
-						this.Location = newLoc;
-						this.Size = newSize;
-					}
-					this.Width -= mPeakMeter.Width;
-					mPeakMeter.Top = this.Top;
-					mPeakMeter.Left = this.Right;
-					mPeakMeter.Height = this.Height;
-					mPeakMeter.StartPosition = FormStartPosition.Manual;
-				}
+                if (this.WindowState != FormWindowState.Minimized)
+                {
+                    //Make sure the Peak meter is displayed on the right of the Obi form.
+                    if (this.WindowState == FormWindowState.Maximized)
+                    {
+                        System.Drawing.Point newLoc = this.Location;
+                        newLoc.X += SystemInformation.HorizontalResizeBorderThickness;
+                        newLoc.Y += SystemInformation.VerticalResizeBorderThickness;
+                        System.Drawing.Size newSize = this.Size;
+                        newSize.Width -= 2 * SystemInformation.HorizontalResizeBorderThickness;
+                        newSize.Height -= 2 * SystemInformation.VerticalResizeBorderThickness;
+                        this.WindowState = FormWindowState.Normal;
+                        this.Location = newLoc;
+                        this.Size = newSize;
+                    }
+                    this.Width -= mPeakMeter.Width;
+                    mPeakMeter.Top = this.Top;
+                    mPeakMeter.Left = this.Right;
+                    mPeakMeter.Height = this.Height;
+                    mPeakMeter.StartPosition = FormStartPosition.Manual;
+                }
                 mPeakMeter.Show();
                 mShowPeakMeterMenuItem.Checked = true;
             }
@@ -1386,7 +1440,7 @@ namespace Obi
         private void Undo()
         {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
-            if (mSession.CanUndo && !(mProjectView.Selection is   TextSelection)) { mSession.Presentation.getUndoRedoManager().undo(); }
+            if (mSession.CanUndo && !(mProjectView.Selection is TextSelection)) { mSession.Presentation.getUndoRedoManager().undo(); }
         }
 
         /// <summary>
@@ -1395,19 +1449,6 @@ namespace Obi
         private void ShowSelectionInStatusBar()
         {
             if (mProjectView.Selection != null) Status(mProjectView.Selection.ToString());
-        }
-
-        /// <summary>
-        /// Set view synchronization and update the menu and settings accordingly.
-        /// </summary>
-        private bool SynchronizeViews
-        {
-            set
-            {
-                mSettings.SynchronizeViews = value;
-                mSynchronizeViewsToolStripMenuItem.Checked = value;
-                mProjectView.SynchronizeViews = value;
-            }
         }
 
         // Update all of Obi.
@@ -1438,26 +1479,12 @@ namespace Obi
                 Localizer.Message("obi");
         }
 
-        // Set wrapping strips
-        private bool WrapStrips
-        {
-            set
-            {
-                // Temporarily disabled
-                mSettings.WrapStrips = false;
-                mProjectView.WrapStrips = false;
-                // mSettings.WrapStrips = value;
-                // mWrappingInContentViewToolStripMenuItem.Checked = value;
-                // mProjectView.WrapStrips = value;
-            }
-        }
-
 
 
         /// <summary>
         /// Show the state of the transport bar in the status bar.
         /// </summary>
-        void TransportBar_StateChanged(object sender, EventArgs e )
+        void TransportBar_StateChanged(object sender, EventArgs e)
         {
             Status(Localizer.Message(mProjectView.TransportBar.CurrentState.ToString()));
             UpdatePhrasesMenu();
@@ -1540,7 +1567,7 @@ namespace Obi
         private void ObiForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if ( mProjectView != null )  mProjectView.TransportBar.Stop();
+            if (mProjectView != null) mProjectView.TransportBar.Stop();
 
             if (DidCloseProject())
             {
@@ -1554,7 +1581,7 @@ namespace Obi
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 mProjectView.SelectionChanged -= new EventHandler(ProjectView_SelectionChanged);
-                
+
                 Application.Exit();
 
             }
@@ -1620,17 +1647,6 @@ namespace Obi
             mSettings.ColorSettings.CreateBrushesAndPens();
         }
 
-        // Set the allow overwrite preference and the corresponding property in the transport bar.
-        private bool AllowOverwrite
-        {
-            set
-            {
-                mProjectView.TransportBar.AllowOverwrite = value;
-                mAllowOverwriteToolStripMenuItem.Checked = value;
-                mSettings.AllowOverwrite = value;
-            }
-        }
-        
 
         // Various utility functions
 
@@ -1650,18 +1666,6 @@ namespace Obi
                 mSettings.ColorSettingsHC : mSettings.ColorSettings;
         }
 
-        public ColorSettings ColorSettings
-        {
-            get
-            {
-                ColorSettings settings = SystemInformation.HighContrast ?
-                    ColorSettings.DefaultColorSettingsHC() : ColorSettings.DefaultColorSettings();
-//                    (mSettings == null ? ColorSettings.DefaultColorSettingsHC() : mSettings.ColorSettingsHC) :
-//                    (mSettings == null ? ColorSettings.DefaultColorSettings() : mSettings.ColorSettings);
-                settings.CreateBrushesAndPens();
-                return settings;
-            }
-        }
 
         /// <summary>
         /// Remove a project from the recent projects list
@@ -1677,11 +1681,6 @@ namespace Obi
                 mSettings.RecentProjects.RemoveAt(i);
                 mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
             }
-        }
-
-        private void ObiForm_ResizeEnd(object sender, EventArgs e)
-        {
-            mSettings.ObiFormSize = Size;
         }
 
 
@@ -1910,7 +1909,50 @@ namespace Obi
                 MessageBox.Show(string.Format(Localizer.Message("dtb_encode_error"), x.Message),
                                    Localizer.Message("dtb_encode_error_caption"),
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }              
+            }
+        }
+
+
+        private bool mHasProgressBar;
+
+        private void ShowProgressBar()
+        {
+            if (!mHasProgressBar)
+            {
+                mStatusProgressBar.Minimum = 0;
+                mStatusProgressBar.Maximum = 0;
+                mStatusProgressBar.Step = 1;
+                mStatusProgressBar.Value = 0;
+                mStatusProgressBar.Visible = true;
+                mHasProgressBar = true;
+            }
+        }
+
+        public void BackgroundOperation_AddItem()
+        {
+            if (mStatusProgressBar.ProgressBar != null)
+            {
+                ShowProgressBar();
+                ++mStatusProgressBar.Maximum;
+            }
+        }
+
+        public void BackgroundOperation_Step()
+        {
+            if (mStatusProgressBar.ProgressBar != null)
+            {
+                ShowProgressBar();
+                if (mStatusProgressBar.Value < mStatusProgressBar.Maximum) ++mStatusProgressBar.Value;
+            }
+        }
+
+        public void BackgroundOperation_Done()
+        {
+            if (mStatusProgressBar.ProgressBar != null)
+            {
+                mStatusProgressBar.Visible = false;
+                mHasProgressBar = false;
+            }
         }
     }
 }

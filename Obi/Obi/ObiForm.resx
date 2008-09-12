@@ -1530,10 +1530,10 @@
   <data name="mStatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="mStatusProgessBar.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mStatusProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 16</value>
   </data>
-  <data name="mStatusProgessBar.Visible" type="System.Boolean, mscorlib">
+  <data name="mStatusProgressBar.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="mStatusStrip.Location" type="System.Drawing.Point, System.Drawing">
@@ -1579,7 +1579,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.17674, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.29856, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2707,10 +2707,10 @@
   <data name="&gt;&gt;mStatusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mStatusProgessBar.Name" xml:space="preserve">
-    <value>mStatusProgessBar</value>
+  <data name="&gt;&gt;mStatusProgressBar.Name" xml:space="preserve">
+    <value>mStatusProgressBar</value>
   </data>
-  <data name="&gt;&gt;mStatusProgessBar.Type" xml:space="preserve">
+  <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

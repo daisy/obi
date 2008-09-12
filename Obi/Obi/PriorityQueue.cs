@@ -54,11 +54,14 @@ namespace Obi
 
         /// <summary>
         /// Add a new item at the right place in the queue depending on its priority.
+        /// TODO: If the item was already present, its priority may be adjusted.
+        /// Return true when the item was actually added. (Right now, always true.)
         /// </summary>
-        public void Enqueue(T item)
+        public bool Enqueued(T item)
         {
             mItems.Add(item);
             BubbleUp(mItems.Count - 1);
+            return true;
         }
 
         /// <summary>

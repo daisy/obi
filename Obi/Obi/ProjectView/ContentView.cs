@@ -278,16 +278,6 @@ namespace Obi.ProjectView
         public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
 
         /// <summary>
-        /// Add a waveform to the queue of waveforms to render.
-        /// </summary>
-        public void RenderWaveform(WaveformWithPriority w)
-        {
-            mWaveformRenderQ.Enqueue(w);
-            System.Diagnostics.Debug.Print("+++ {0} {1}", w, mWaveformRenderQ);
-            RenderFirstWaveform();
-        }
-
-        /// <summary>
         /// Get the strip that the selection is in, or null if there is no applicable selection.
         /// </summary>
         public Strip StripForSelection
@@ -301,41 +291,42 @@ namespace Obi.ProjectView
         }
 
 
+        /// <summary>
+        /// Add a waveform to the queue of waveforms to render.
+        /// </summary>
+        public void RenderWaveform(WaveformWithPriority w)
+        {
+            if (mWaveformRenderQ.Enqueued(w)) mView.ObiForm.BackgroundOperation_AddItem();
+            RenderFirstWaveform();
+        }
+
+
         // Render the first waveform from the queue if no other rendering is in progress.
         private void RenderFirstWaveform()
         {
             while (mWaveformRenderWorker == null && mWaveformRenderQ.Count > 0)
             {
                 WaveformWithPriority w = mWaveformRenderQ.Dequeue();
-                System.Diagnostics.Debug.Print("--- Dequeued {0} {1}", w, mWaveformRenderQ);
                 mWaveformRenderWorker = w.Waveform.Render();
                 if (mWaveformRenderWorker != null)
                 {
-                    System.Diagnostics.Debug.Print("~~~ {0} {1}", w, mWaveformRenderQ);
-                    mView.ObiForm.Status(Localizer.Message("rendering_waveform"));
+                    mView.ObiForm.BackgroundOperation_Step();
+                    // mView.ObiForm.Status_Background(Localizer.Message("rendering_waveform"));
                 }
             }
-            if (mWaveformRenderQ.Count == 0) mView.ObiForm.Ready();
+            if (mWaveformRenderQ.Count == 0) mView.ObiForm.BackgroundOperation_Done();
         }
 
         private void ClearWaveformRenderQueue()
         {
-            System.Diagnostics.Debug.Print("--- Clearing all {0}", mWaveformRenderQ);
             mWaveformRenderQ.Clear();
+            if (mView != null && mView.ObiForm != null) mView.ObiForm.BackgroundOperation_Done();
         }
 
         public void FinishedRendering(Waveform w, bool renderedOK)
         {
             mWaveformRenderWorker = null;
-            if (renderedOK)
-            {
-                System.Diagnostics.Debug.Print("=== Finished rendering {0} {1}", w, mWaveformRenderQ);
-            }
-            else
-            {
-                System.Diagnostics.Debug.Print("??? Something wrong with {0} {1}", w, mWaveformRenderQ);
-            }
-            mView.ObiForm.Ready();
+            //mView.ObiForm.Ready();
             RenderFirstWaveform();
         }
 

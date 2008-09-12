@@ -53,7 +53,7 @@ namespace Obi.ProjectView
                 mWaveform.AccessibleName = AccessibleName;
                 mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
                 mWaveform.Size = new Size(WaveformDefaultWidth, Height - mLabel.Height - mLabel.Margin.Bottom);
-                mWaveform.Media = node.Audio.getMediaData();
+                mWaveform.Block = this;
                 Size = new Size(WaveformFullWidth, Height);
             }
         }
