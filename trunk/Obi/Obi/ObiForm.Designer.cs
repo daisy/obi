@@ -173,7 +173,7 @@ namespace Obi
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mStatusProgessBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -1194,7 +1194,7 @@ namespace Obi
             // 
             this.mStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mStatusLabel,
-            this.mStatusProgessBar});
+            this.mStatusProgressBar});
             resources.ApplyResources(this.mStatusStrip, "mStatusStrip");
             this.mStatusStrip.Name = "mStatusStrip";
             // 
@@ -1205,10 +1205,10 @@ namespace Obi
             this.mStatusLabel.Name = "mStatusLabel";
             this.mStatusLabel.Spring = true;
             // 
-            // mStatusProgessBar
+            // mStatusProgressBar
             // 
-            this.mStatusProgessBar.Name = "mStatusProgessBar";
-            resources.ApplyResources(this.mStatusProgessBar, "mStatusProgessBar");
+            this.mStatusProgressBar.Name = "mStatusProgressBar";
+            resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             // 
             // mProjectView
             // 
@@ -1381,7 +1381,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomInMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ZoomOutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_NormalSizeMenuItem;
-        private System.Windows.Forms.ToolStripProgressBar mStatusProgessBar;
+        private System.Windows.Forms.ToolStripProgressBar mStatusProgressBar;
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportAsDAISYMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_ProjectPropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mCropAudiotoolStripMenuItem;

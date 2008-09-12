@@ -23,7 +23,6 @@ namespace Obi.ProjectView
         private RecordingSession mRecordingSession;  // current recording session
         private State mState;                        // transport bar state (composite of player/recorder states)
         
-        private bool mAllowOverwrite;                // if true, recording can overwrite data
         private bool mPlayIfNoSelection;             // play all when no selection if true; play nothing otherwise
 
         private bool m_SelectionChangedPlayEnable; // flag for enabling / disabling playback on change of selection
@@ -73,7 +72,6 @@ namespace Obi.ProjectView
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
-            mAllowOverwrite = true;
             mPlayIfNoSelection = true;
             mState = State.Stopped;
             m_SelectionChangedPlayEnable = true;
@@ -121,13 +119,6 @@ namespace Obi.ProjectView
             mPrevSectionButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mPrevSectionAccessibleName);
             mStopButton.AccessibleName = string.Format("{0} {1}", Localizer.Message("transport_bar"), mStopButtonAccessibleName);
         }
-
-
-        /// <summary>
-        /// Flag to enable/disable overwrite during recording.
-        /// Set from an Obi preference.
-        /// </summary>
-        public bool AllowOverwrite { set { mAllowOverwrite = value; } }
 
         public bool SelectionChangedPlaybackEnabled
         {

@@ -12,17 +12,12 @@ namespace Obi.ProjectView
 {
     public partial class Waveform : Control
     {
-        // TODO have a pointer to the audio block because we often need it too instead of the audio media
-        private AudioMediaData mAudio;       // audio data to draw
         private Bitmap mBitmap;              // cached bitmap of the waveform
         private Bitmap mBitmap_Highlighted;  // cached bitmap of the waveform (highlighted)
+        private AudioBlock mBlock;           // parent audio block
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
         private bool mNeedsRendering;        // needs to render the waveform (when size, color or data changes.)
         private AudioRange mSelection;       // selection in the waveform
-
-        // These are used for debugging messages
-        private static int COUNTER = 0;
-        private int mID;
 
         /// <summary>
         /// Create a waveform with no data to display yet.
@@ -31,45 +26,45 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             DoubleBuffered = true;
-            mAudio = null;
             mBitmap = null;
             mBitmap_Highlighted = null;
+            mBlock = null;
             mSelection = null;
             mNeedsRendering = false;
-
-            mCursor = null;
-            mID = COUNTER++;
         }
 
 
+        // Audio media data of the parent block.
+        private ManagedAudioMedia Audio { get { return ((PhraseNode)mBlock.Node).Audio; } }
+
+        // Actual audio media data of the parent block.
+        private AudioMediaData Media { get { return Audio.getMediaData(); } }
 
         /// <summary>
-        /// Set the audio data to be displayed.
+        /// Set the parent audio block.
         /// </summary>
-        public AudioMediaData Media
+        public AudioBlock Block
         {
             set
             {
-                if (mAudio != value)
+                if (mBlock != value)
                 {
-                    if (mAudio != null)
+                    if (mBlock != null)
                     {
-                        mAudio.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                        Audio.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
                     }
-                    mAudio = value;
-                    if (mAudio != null)
+                    mBlock = value;
+                    if (mBlock != null)
                     {
-                        mAudio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                        Audio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
                         RequestRendering();
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// String version showing the id for debugging purposes.
-        /// </summary>
-        public override string ToString() { return "w" + mID; }
+        // Request a new rendering when audio has changed.
+        private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { RequestRendering(); }
 
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
@@ -79,24 +74,21 @@ namespace Obi.ProjectView
             if (mNeedsRendering)
             {
                 mNeedsRendering = false;
-                AudioBlock block = Parent as AudioBlock;
-                if (block != null && Width > 0 && Height > 0)
+                if (mBlock != null && Width > 0 && Height > 0)
                 {
                     BackgroundWorker worker = new BackgroundWorker();
                     worker.WorkerReportsProgress = false;
                     worker.WorkerSupportsCancellation = false;
                     worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
-                        System.Diagnostics.Debug.Print(">>> Rendering #{0}", mID);
-                        ColorSettings settings = block.ColorSettings;
-                        mBitmap = CreateBitmapHighlighted(block.ColorSettings, false);
-                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(block.ColorSettings, true);
+                        ColorSettings settings = mBlock.ColorSettings;
+                        mBitmap = CreateBitmapHighlighted(mBlock.ColorSettings, false);
+                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(mBlock.ColorSettings, true);
                     });
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
                         Invalidate();
-                        System.Diagnostics.Debug.Print("<<< Rendered #{0} (OK? {1})", mID, mBitmap != null && mBitmap_Highlighted != null);
-                        block.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
+                        mBlock.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
                     });
                     worker.RunWorkerAsync();
                     return worker;
@@ -105,9 +97,6 @@ namespace Obi.ProjectView
             return null;
         }
 
-
-        // Request a new rendering when audio has changed.
-        private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { RequestRendering(); }
 
         // Clear bitmaps before redrawing.
         private void ClearBitmaps()
@@ -129,11 +118,10 @@ namespace Obi.ProjectView
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (mAudio != null) DrawWaveform(g, settings, highlighted);
+                if (Audio != null) DrawWaveform(g, settings, highlighted);
             }
             catch (Exception)
             {
-                System.Diagnostics.Debug.Print("Couldn't render waveform #{0}", mID);
                 bitmap = null;
             }
             return bitmap;
@@ -157,16 +145,16 @@ namespace Obi.ProjectView
         // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
         {
-            PCMFormatInfo format = mAudio.getPCMFormat();
+            PCMFormatInfo format = Media.getPCMFormat();
             if (format.getBitDepth() == 16)
             {
                 ushort channels = format.getNumberOfChannels();
                 ushort frameSize = format.getBlockAlign();
-                int samplesPerPixel = (int)Math.Ceiling(mAudio.getPCMLength() / (float)frameSize / Width * channels);
+                int samplesPerPixel = (int)Math.Ceiling(Media.getPCMLength() / (float)frameSize / Width * channels);
                 int bytesPerPixel = samplesPerPixel * frameSize / channels;
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];
-                System.IO.Stream au = mAudio.getAudioData();
+                System.IO.Stream au = Media.getAudioData();
                 for (int x = 0; x < Width; ++x)
                 {
                     int read = au.Read(bytes, 0, bytesPerPixel);
@@ -186,69 +174,64 @@ namespace Obi.ProjectView
         protected override void OnPaint(PaintEventArgs pe)
         {
             ColorSettings settings = ColorSettings;
-            if (settings != null)
+            if (settings != null && mBlock != null)
             {
-                AudioBlock block = Parent as AudioBlock;
-                if (block != null)
+                if (mBitmap != null)
                 {
-                    if (mBitmap != null)
+                    pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                }
+                else
+                {
+                    pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), mBlock.Font,
+                        mBlock.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
+                }
+                int w = mBlock.Margin.Right;
+                if (mSelection != null)
+                {
+                    if (CheckCursor)
                     {
-                        pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
+                        pe.Graphics.DrawLine(settings.WaveformSelectionPen,
+                            new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                        pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
+                            new Rectangle(SelectionPointPosition - w / 2, 0, w, 2 * w));
                     }
-                    else
+                    else if (CheckRange)
                     {
-                        pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), block.Font,
-                            block.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
-                    }
-                    int w = block.Margin.Right;
-                    if (mSelection != null)
-                    {
-                        if (CheckCursor)
+                        if (mBitmap_Highlighted != null)
                         {
-                            pe.Graphics.DrawLine(settings.WaveformSelectionPen,
-                                new Point(SelectionPointPosition, 0), new Point(SelectionPointPosition, Height - 1));
+                            pe.Graphics.DrawImage(mBitmap_Highlighted, InitialSelectionPosition, 0,
+                                new Rectangle(InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition,
+                                Height), GraphicsUnit.Pixel);
+                        }
+                        else
+                        {
                             pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
-                                new Rectangle(SelectionPointPosition - w / 2, 0, w, 2 * w));
+                                InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
                         }
-                        else if (CheckRange)
-                        {
-                            if (mBitmap_Highlighted != null)
-                            {
-                                pe.Graphics.DrawImage(mBitmap_Highlighted, InitialSelectionPosition, 0,
-                                    new Rectangle(InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition,
-                                    Height), GraphicsUnit.Pixel);
-                            }
-                            else
-                            {
-                                pe.Graphics.FillRectangle(settings.WaveformSelectionBrush,
-                                    InitialSelectionPosition, 0, FinalSelectionPosition - InitialSelectionPosition, Height);
-                            }
-                        }
-                    }
-                    if (mCursor != null)
-                    {
-                        pe.Graphics.DrawLine(settings.WaveformCursorPen,
-                            new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
-                        Point[] points = new Point[3];
-                        points[0] = new Point(CursorPosition, 0);
-                        points[1] = new Point(CursorPosition + w, w);
-                        points[2] = new Point(CursorPosition, 2 * w);
-                        pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
                     }
                 }
-                base.OnPaint(pe);
+                if (mCursor != null)
+                {
+                    pe.Graphics.DrawLine(settings.WaveformCursorPen,
+                        new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
+                    Point[] points = new Point[3];
+                    points[0] = new Point(CursorPosition, 0);
+                    points[1] = new Point(CursorPosition + w, w);
+                    points[2] = new Point(CursorPosition, 2 * w);
+                    pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
+                }
             }
+            base.OnPaint(pe);
         }
 
         // Add self to the content view rendering list.
         private void RequestRendering()
         {
-            Block block = Parent as Block;
-            if (block != null)
+            if (mBlock != null)
             {
                 mNeedsRendering = true;
                 ClearBitmaps();
-                block.ContentView.RenderWaveform(new WaveformWithPriority(this, WaveformWithPriority.NORMAL_PRIORITY));
+                mBlock.ContentView.RenderWaveform(new WaveformWithPriority(this, WaveformWithPriority.NORMAL_PRIORITY));
             }
         }
 
@@ -382,7 +365,7 @@ namespace Obi.ProjectView
             get
             {
                 return mSelection.HasCursor &&
-                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= Media.getAudioDuration().getTimeDeltaAsMillisecondFloat();
             }
         }
 
@@ -390,7 +373,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                double d = mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                double d = Media.getAudioDuration().getTimeDeltaAsMillisecondFloat();
                 return !mSelection.HasCursor &&
                     mSelection.SelectionBeginTime >= 0.0 && mSelection.SelectionBeginTime <= d &&
                     mSelection.SelectionEndTime >= 0.0 && mSelection.SelectionEndTime <= d &&
@@ -401,13 +384,13 @@ namespace Obi.ProjectView
         // Convert a pixel position into a time (in ms.)
         private double TimeFromX(int x)
         {
-            return x * mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
+            return x * Media.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
         }
 
         // Convert a time (in ms) to a pixel position.
         private int XFromTime(double time)
         {
-            return (int)Math.Round(time / mAudio.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
+            return (int)Math.Round(time / Media.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
         }
     }
 }
