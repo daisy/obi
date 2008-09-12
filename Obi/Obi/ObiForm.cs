@@ -1374,10 +1374,11 @@ namespace Obi
             }
             else
             {
+            this.Width = this.Width + mPeakMeter.Width;
                 mPeakMeter.Close();
                 mPeakMeter = null;
-                mShowPeakMeterMenuItem.Checked = false;
-                            }
+                                mShowPeakMeterMenuItem.Checked = false;
+                                                            }
             this.Ready();
         }
 
