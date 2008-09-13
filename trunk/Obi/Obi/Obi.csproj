@@ -138,6 +138,12 @@
     <Compile Include="Dialogs\EmptySection.Designer.cs">
       <DependentUpon>EmptySection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +511,10 @@
     <EmbeddedResource Include="Dialogs\Preferences.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ProgressDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ProjectProperties.hi.resx">
       <SubType>Designer</SubType>

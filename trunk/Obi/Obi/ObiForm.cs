@@ -1090,9 +1090,6 @@ namespace Obi
 
         private void mTools_ExportAsDAISYMenuItem_Click(object sender, EventArgs e) { ExportProject(); }
 
-        private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
-
-
         // Export the project as DAISY 3.
         private void ExportProject()
         {
@@ -1110,10 +1107,10 @@ namespace Obi
                         string exportPath = dialog.DirectoryPath;
                         if (!exportPath.EndsWith("/")) exportPath += "/";
                         mSession.PrimaryExportPath = exportPath;
-                        mSession.Presentation.ExportToZ(exportPath, mSession.Path);
-                        mSession.ForceSave ();
+                        (new ExportProgressDialog(mSession, exportPath)).ShowDialog();
+                        mSession.ForceSave();
                         MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.DirectoryPath),
-                           Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception e)
                     {
@@ -1124,6 +1121,10 @@ namespace Obi
             }
             Ready();
         }
+
+        private void mTools_CleanUnreferencedAudioMenuItem_Click(object sender, EventArgs e) { CleanProject(); }
+
+
 
         // Check that page numbers are valid before exporting and return true if they are.
         // If they're not, the user is presented with the possibility to cancel export (return false)
