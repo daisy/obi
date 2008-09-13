@@ -1071,6 +1071,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting project....
+        /// </summary>
+        internal static string export_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("export_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type the text to search for it in the project..
         /// </summary>
         internal static string find_in_text_init {

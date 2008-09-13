@@ -1154,4 +1154,8 @@ Error text: {1}</value>
     <value>{0:00}:{1:00}:{2:00}</value>
     <comment>Format for duration (used for the transport bar display)</comment>
   </data>
+  <data name="export_progress_dialog_title" xml:space="preserve">
+    <value>Exporting project...</value>
+    <comment>Export progress dialog title</comment>
+  </data>
 </root>

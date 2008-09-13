@@ -164,8 +164,8 @@ namespace Obi
             this.mTools_PreferencesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mTools_ExportAsDAISYMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ViewHelpInExternalBrowserMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1123,8 +1123,8 @@ namespace Obi
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
             this.mTools_ExportAsDAISYMenuItem,
-            this.toolStripSeparator18,
-            this.mTools_CleanUnreferencedAudioMenuItem});
+            this.mTools_CleanUnreferencedAudioMenuItem,
+            this.toolStripSeparator18});
             this.mToolsToolStripMenuItem.Name = "mToolsToolStripMenuItem";
             resources.ApplyResources(this.mToolsToolStripMenuItem, "mToolsToolStripMenuItem");
             // 
@@ -1145,16 +1145,16 @@ namespace Obi
             this.mTools_ExportAsDAISYMenuItem.Name = "mTools_ExportAsDAISYMenuItem";
             this.mTools_ExportAsDAISYMenuItem.Click += new System.EventHandler(this.mTools_ExportAsDAISYMenuItem_Click);
             // 
-            // toolStripSeparator18
-            // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
-            // 
             // mTools_CleanUnreferencedAudioMenuItem
             // 
             this.mTools_CleanUnreferencedAudioMenuItem.Name = "mTools_CleanUnreferencedAudioMenuItem";
             resources.ApplyResources(this.mTools_CleanUnreferencedAudioMenuItem, "mTools_CleanUnreferencedAudioMenuItem");
             this.mTools_CleanUnreferencedAudioMenuItem.Click += new System.EventHandler(this.mTools_CleanUnreferencedAudioMenuItem_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
             // 
             // mHelpToolStripMenuItem
             // 
@@ -1209,6 +1209,7 @@ namespace Obi
             // 
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
+            this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // mProjectView
             // 
