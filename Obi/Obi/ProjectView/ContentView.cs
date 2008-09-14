@@ -236,10 +236,31 @@ namespace Obi.ProjectView
             Controls.Clear();
             ClearWaveformRenderQueue();
             AddStripForSection_Safe(mView.Presentation.RootNode);
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
-            mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
-            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+            EventsAreEnabled = true;
         }
+
+        /// <summary>
+        /// Ignore/unignore events.
+        /// </summary>
+        public bool EventsAreEnabled
+        {
+            set
+            {
+                if (value)
+                {
+                    mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+                    mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+                    mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                }
+                else
+                {
+                    mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+                    mView.Presentation.RenamedSectionNode -= new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+                    mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                }
+            }
+        }
+
 
         public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
 

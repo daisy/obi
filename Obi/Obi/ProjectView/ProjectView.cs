@@ -504,23 +504,29 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Increase the level of the selected section (was "move in.")
+        /// TODO: rewrite command as a composite command.
         /// </summary>
         public void IncreaseSelectedSectionNodeLevel()
         {
             if (CanIncreaseLevel)
             {
+                mContentView.EventsAreEnabled = false;
                 mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
+                mContentView.EventsAreEnabled = true;
             }
         }
 
         /// <summary>
         /// Decrease the level of the selected section (was "move out.")
+        /// TODO: rewrite command as a composite command.
         /// </summary>
         public void DecreaseSelectedSectionLevel()
         {
             if (CanDecreaseLevel)
             {
+                mContentView.EventsAreEnabled = false;
                 mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
+                mContentView.EventsAreEnabled = true;
             }
         }
 
