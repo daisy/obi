@@ -1395,6 +1395,8 @@ namespace Obi.ProjectView
         // if the key was not handled then, proceed with the default process.
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
+        if (!CanUseKey ( key )) return false;
+
             return (((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN)) &&
                 CanUseKey(key) && mShortcutKeys.ContainsKey(key) && mShortcutKeys[key]()) ||
                 base.ProcessCmdKey(ref msg, key);
