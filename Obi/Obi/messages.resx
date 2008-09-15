@@ -1178,4 +1178,15 @@ Error text: {1}</value>
     <value>Silence</value>
     <comment>Localized role name</comment>
   </data>
+  <data name="could_not_clean_up" xml:space="preserve">
+    <value>Could not delete invalid project. {0} You may try to remove the files yourself. Sorry.
+</value>
+  </data>
+  <data name="could_not_clean_up_caption" xml:space="preserve">
+    <value>Could not delete invalid project</value>
+  </data>
+  <data name="import_progress_dialog_title" xml:space="preserve">
+    <value>Importing from XHTML...</value>
+    <comment>Progress dialog title</comment>
+  </data>
 </root>

@@ -432,6 +432,25 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not delete invalid project. {0} You may try to remove the files yourself. Sorry.
+        ///.
+        /// </summary>
+        internal static string could_not_clean_up {
+            get {
+                return ResourceManager.GetString("could_not_clean_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not delete invalid project.
+        /// </summary>
+        internal static string could_not_clean_up_caption {
+            get {
+                return ResourceManager.GetString("could_not_clean_up_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create directory?.
         /// </summary>
         internal static string create_directory_caption {
@@ -1211,6 +1230,15 @@ namespace Obi {
         internal static string import_phrases {
             get {
                 return ResourceManager.GetString("import_phrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing from XHTML....
+        /// </summary>
+        internal static string import_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("import_progress_dialog_title", resourceCulture);
             }
         }
         

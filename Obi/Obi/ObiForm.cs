@@ -201,11 +201,28 @@ namespace Obi
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = Localizer.Message("choose_import_file");
             dialog.Filter = Localizer.Message("xhtml_filter");
-            if (dialog.ShowDialog() == DialogResult.OK) NewProjectFromImport(dialog.FileName);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (!NewProjectFromImport(dialog.FileName))
+                {
+                    try
+                    {
+                        RemoveRecentProject(mSession.Path);
+                        mSession.CleanupAfterFailure();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("could_not_clean_up"), e.Message),
+                            Localizer.Message("could_not_clean_up_caption"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
         }
 
         // Create a new project by importing an XHTML file at the given path.
-        private void NewProjectFromImport(string path)
+        // Return success status.
+        private bool NewProjectFromImport(string path)
         {
             Dialogs.NewProject dialog = null;
             try
@@ -223,17 +240,19 @@ namespace Obi
                 {
                     mSettings.NewProjectDialogSize = dialog.Size;
                     CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                    (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                    ImportProgressDialog progress = new ImportProgressDialog(dialog.Path, mSession.Presentation);
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave();
                 }
+                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(string.Format(Localizer.Message("import_failed"), e.Message),
                     Localizer.Message("import_failed_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (mSession.CanClose) mSession.Close();
-                if (dialog != null) File.Delete(dialog.Path);
+                return false;
             }
         }
 
@@ -1669,11 +1688,10 @@ namespace Obi
 
 
         /// <summary>
-        /// Remove a project from the recent projects list
-        /// This is required when import fails halfway through
+        /// Remove a project from the recent projects list.
+        /// This is required when import fails halfway through, or when a project is no longer available.
+        /// Also unset the last open project path if it was pointing to this project path.
         /// </summary>
-        /// <param name="p"></param>
-        //added by med june 4 2007
         private void RemoveRecentProject(String path)
         {
             if (mSettings.RecentProjects.Contains(path))
@@ -1681,6 +1699,7 @@ namespace Obi
                 int i = mSettings.RecentProjects.IndexOf(path);
                 mSettings.RecentProjects.RemoveAt(i);
                 mFile_RecentProjectMenuItem.DropDownItems.RemoveAt(i);
+                if (mSettings.LastOpenProject == path) mSettings.LastOpenProject = "";
             }
         }
 

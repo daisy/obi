@@ -13,13 +13,18 @@ namespace Obi.Dialogs
     /// </summary>
     public partial class ProgressDialog : Form
     {
+        private Exception mException;
+
         /// <summary>
         /// Create the progress dialog.
         /// </summary>
         public ProgressDialog()
         {
+            mException = null;
             InitializeComponent();
         }
+
+        public Exception Exception { get { return mException; } }
 
         /// <summary>
         /// Override this method to do the actual work.
@@ -35,7 +40,17 @@ namespace Obi.Dialogs
             BackgroundWorker worker = new BackgroundWorker();
             worker.WorkerReportsProgress = false;
             worker.WorkerSupportsCancellation = false;
-            worker.DoWork += new DoWorkEventHandler(delegate(object sender_, DoWorkEventArgs e_) { Do(); });
+            worker.DoWork += new DoWorkEventHandler(delegate(object sender_, DoWorkEventArgs e_)
+            {
+                try
+                {
+                    Do();
+                }
+                catch (Exception x)
+                {
+                    mException = x;
+                }
+            });
             worker.RunWorkerCompleted +=
                 new RunWorkerCompletedEventHandler(delegate(object sender_, RunWorkerCompletedEventArgs e_) { Close(); });
             worker.RunWorkerAsync();
@@ -53,7 +68,8 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create a new dialog showing progress during the export process.
         /// </summary>
-        public ExportProgressDialog(Session session, string path): base()
+        public ExportProgressDialog(Session session, string path)
+            : base()
         {
             mSession = session;
             mPath = path;
@@ -64,6 +80,28 @@ namespace Obi.Dialogs
         protected override void Do()
         {
             mSession.Presentation.ExportToZ(mPath, mSession.Path);
+        }
+    }
+
+    /// <summary>
+    /// Import from XHTML.
+    /// </summary>
+    public class ImportProgressDialog : ProgressDialog
+    {
+        private string mPath;
+        private Presentation mPresentation;
+
+        public ImportProgressDialog(string path, Presentation presentation)
+            : base()
+        {
+            mPath = path;
+            mPresentation = presentation;
+            Text = Localizer.Message("import_progress_dialog_title");
+        }
+
+        protected override void Do()
+        {
+            (new ImportStructure()).ImportFromXHTML(mPath, mPresentation);
         }
     }
 }
