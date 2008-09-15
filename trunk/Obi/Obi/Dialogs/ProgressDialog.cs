@@ -104,4 +104,50 @@ namespace Obi.Dialogs
             (new ImportStructure()).ImportFromXHTML(mPath, mPresentation);
         }
     }
+
+    /// <summary>
+    /// Import audio files into phrases.
+    /// </summary>
+    public class ImportAudioProgressDialog : ProgressDialog
+    {
+        private Presentation mPresentation;
+        private List<PhraseNode> mPhrases;
+        private string[] mPaths;
+        private double mDuration;
+
+        public ImportAudioProgressDialog(Presentation presentation, string[] paths, double duration)
+            : base()
+        {
+            mPresentation = presentation;
+            mPaths = paths;
+            mDuration = duration;
+            Text = Localizer.Message("import_audio_progress_dialog_title");
+        }
+
+        public List<PhraseNode> Phrases { get { return mPhrases; } }
+
+        protected override void Do()
+        {
+            mPhrases = new List<PhraseNode>(mPaths.Length);
+            foreach (string path in mPaths)
+            {
+                List<PhraseNode> phrases = mPresentation.CreatePhraseNodeList(path, mDuration);
+                foreach (PhraseNode p in phrases)
+                {
+                    try
+                    {
+                        mPhrases.Add(p);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(String.Format(Localizer.Message("import_phrase_error_text"), path),
+                            Localizer.Message("import_phrase_error_caption"),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+    }
 }

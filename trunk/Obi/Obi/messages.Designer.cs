@@ -1189,6 +1189,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importing audio....
+        /// </summary>
+        internal static string import_audio_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("import_audio_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create project from import: {0}.
         /// </summary>
         internal static string import_failed {
