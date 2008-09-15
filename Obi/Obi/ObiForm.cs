@@ -471,8 +471,6 @@ namespace Obi
             mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler(TransportBar_StateChanged);
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler(TransportBar_PlaybackRateChanged);
             mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(TransportBar_StateChanged);
-            mProjectView.ImportingFile += new Obi.ProjectView.ImportingFileEventHandler(mProjectView_ImportingFile);
-            mProjectView.FinishedImportingFiles += new EventHandler(mProjectView_FinishedImportingFiles);
         }
 
         private void ObiForm_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { ProjectHasChanged(1); }
@@ -836,33 +834,6 @@ namespace Obi
             mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
         }
 
-
-        private delegate void DisableCallback(bool disable);
-
-        private void Disable(bool disable)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new DisableCallback(Disable), new object[] { disable });
-            }
-            else
-            {
-                Cursor = disable ? Cursors.WaitCursor : Cursors.Default;
-                mMenuStrip.Enabled = !disable;
-                mProjectView.Enabled = !disable;
-            }
-        }
-
-        void mProjectView_ImportingFile(object sender, Obi.ProjectView.ImportingFileEventArgs e)
-        {
-            Disable(true);
-            Status(String.Format(Localizer.Message("importing_file"), e.Path));
-        }
-
-        void mProjectView_FinishedImportingFiles(object sender, EventArgs e)
-        {
-            Disable(false);
-        }
 
         private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
         {

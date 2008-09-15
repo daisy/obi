@@ -1186,4 +1186,7 @@ Error text: {1}</value>
     <value>Importing from XHTML...</value>
     <comment>Progress dialog title</comment>
   </data>
+  <data name="import_audio_progress_dialog_title" xml:space="preserve">
+    <value>Importing audio...</value>
+  </data>
 </root>
