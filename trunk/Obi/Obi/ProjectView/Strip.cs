@@ -51,19 +51,28 @@ namespace Obi.ProjectView
         }
 
 
+        private delegate Block BlockInvokation(EmptyNode node);
+
         /// <summary>
         /// Add a new block for an empty node. Return the block once added.
         /// </summary>
         public Block AddBlockForNode(EmptyNode node)
         {
-            Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
-            mBlockLayout.Controls.Add(block);
-            mBlockLayout.Controls.SetChildIndex(block, node.Index);
-            block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
-            block.Cursor = Cursor;
-            block.SizeChanged += new EventHandler(block_SizeChanged);
-            UpdateSize();
-            return block;
+            if (InvokeRequired)
+            {
+                return (Block)Invoke(new BlockInvokation(AddBlockForNode), node);
+            }
+            else
+            {
+                Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
+                mBlockLayout.Controls.Add(block);
+                mBlockLayout.Controls.SetChildIndex(block, node.Index);
+                block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
+                block.Cursor = Cursor;
+                block.SizeChanged += new EventHandler(block_SizeChanged);
+                UpdateSize();
+                return block;
+            }
         }
 
         private void block_SizeChanged(object sender, EventArgs e) { UpdateSize(); }

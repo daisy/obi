@@ -745,7 +745,18 @@ namespace Obi.ProjectView
                 // TODO: in the future, the source node will not always be a section node!
                 e.AddedChild is EmptyNode ? (Control)FindStrip((SectionNode)e.SourceTreeNode).AddBlockForNode((EmptyNode)e.AddedChild) :
                 null;
-            if (c != null)
+            UpdateNewControl(c);
+        }
+
+        private delegate void ControlInvokation(Control c);
+
+        private void UpdateNewControl(Control c)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ControlInvokation(UpdateNewControl), c);
+            }
+            else if (c != null)
             {
                 ScrollControlIntoView(c);
                 UpdateTabIndex(c);
