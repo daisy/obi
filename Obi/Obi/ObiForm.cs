@@ -240,7 +240,7 @@ namespace Obi
                 {
                     mSettings.NewProjectDialogSize = dialog.Size;
                     CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                    ImportProgressDialog progress = new ImportProgressDialog(dialog.Path, mSession.Presentation);
+                    ImportProgressDialog progress = new ImportProgressDialog(path, mSession.Presentation);
                     progress.ShowDialog();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave();
@@ -431,7 +431,10 @@ namespace Obi
         #region Help menu
 
         // Help > Contents (F1)
-        private void mHelp_ContentsMenuItem_Click(object sender, EventArgs e)
+        private void mHelp_ContentsMenuItem_Click(object sender, EventArgs e) { ShowHelpFile(); }
+
+        // View the help file in our own browser window.
+        private void ShowHelpFile()
         {
             Dialogs.Help help = new Dialogs.Help();
             help.WebBrowser.Url = new Uri(Path.Combine(
@@ -485,22 +488,25 @@ namespace Obi
         // Show the welcome dialog
         private void ShowWelcomeDialog()
         {
-            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog();
-            if (ObiWelcome.ShowDialog() == DialogResult.OK)
+            Dialogs.WelcomeDialog ObiWelcome = new WelcomeDialog(mSettings.LastOpenProject != "");
+            ObiWelcome.ShowDialog();
+            switch (ObiWelcome.Result)
             {
-                switch (ObiWelcome.Result)
-                {
-                    case WelcomeDialog.Option.newProject:
-                        NewProject();
-                        break;
-                    case WelcomeDialog.Option.OpenProject:
-                        Open();
-                        break;
-                    case WelcomeDialog.Option.OpenLastProject:
-                        if (mSettings.LastOpenProject != "") OpenProject(mSettings.LastOpenProject);
-                        else MessageBox.Show(Localizer.Message("WelcomeDialog_NoLastProjectINSettings"));
-                        break;
-                }
+                case WelcomeDialog.Option.NewProject:
+                    NewProject();
+                    break;
+                case WelcomeDialog.Option.NewProjectFromImport:
+                    NewProjectFromImport();
+                    break;
+                case WelcomeDialog.Option.OpenProject:
+                    Open();
+                    break;
+                case WelcomeDialog.Option.OpenLastProject:
+                    OpenProject(mSettings.LastOpenProject);
+                    break;
+                case WelcomeDialog.Option.ViewHelp:
+                    ShowHelpFile();
+                    break;
             }
         }
 
