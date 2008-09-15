@@ -7,44 +7,67 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Obi.Dialogs
-    {
+{
     public partial class WelcomeDialog : Form
+    {
+        /// <summary>
+        /// Possible actions offered by this dialog.
+        /// </summary>
+        public enum Option { NewProject, NewProjectFromImport, OpenProject, OpenLastProject, OpenEmpty, ViewHelp };
+
+        private Option mResult;
+
+        public WelcomeDialog(bool canOpenLastProject)
         {
-        public WelcomeDialog ()
-            {
-            InitializeComponent ();
-            }
+            InitializeComponent();
+            mOpenLastProjectButton.Enabled = canOpenLastProject;
+        }
 
-        public enum Option { newProject , OpenProject , OpenLastProject } ;
-        private Option m_Result;
+        /// <summary>
+        /// Result of the user choice.
+        /// </summary>
+        public Option Result { get { return mResult; } }
 
-        public Option Result
-            {
-            get { return m_Result; }
-            }
+        // Create a new project.
+        private void mNewProjectButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.NewProject;
+            Close();
+        }
 
+        // Create a new project from import
+        private void mImportButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.NewProjectFromImport;
+            Close();
+        }
 
-        private void m_btnNewProject_Click ( object sender, EventArgs e )
-            {
-            m_Result = Option.newProject;
-            Close ();
-            }
+        // Open an existing project
+        private void mOpenProjectButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.OpenProject;
+            Close();
+        }
 
-        private void m_btnOpenProject_Click ( object sender, EventArgs e )
-            {
-            m_Result = Option.OpenProject;
-            Close ();
-            }
+        // Open last project (if possible)
+        private void mOpenLastProjectButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.OpenLastProject;
+            Close();
+        }
 
-        private void m_btnOpenBlank_Click ( object sender, EventArgs e )
-            {
-            m_Result = Option.OpenLastProject;
-            Close ();
-            }
+        // Open Obi with no project
+        private void mOpenEmptyButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.OpenEmpty;
+            Close();
+        }
 
-        private void m_btnCancel_Click ( object sender, EventArgs e )
-            {
-                        Close ();
-            }
+        // Open Obi with no project and view the manual
+        private void mViewManualButton_Click(object sender, EventArgs e)
+        {
+            mResult = Option.ViewHelp;
+            Close();
         }
     }
+}
