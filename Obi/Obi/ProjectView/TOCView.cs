@@ -176,25 +176,34 @@ namespace Obi.ProjectView
         }
 
 
+        private delegate TreeNode NodeInvokation(ObiNode node);
+
         // Convenience method to add a new tree node for a section. Return the added tree node.
         private TreeNode AddSingleSectionNode(ObiNode node)
         {
-            TreeNode n = null;
-            if (node is SectionNode && node.IsRooted)
+            if (InvokeRequired)
             {
-                if (node.ParentAs<SectionNode>() != null)
-                {
-                    TreeNode p = FindTreeNode(node.ParentAs<SectionNode>());
-                    n = p.Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
-                }
-                else
-                {
-                    n = Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
-                }
-                n.Tag = node;
-                ChangeColorUsed(n, mView.ColorSettings);
+                return (TreeNode)Invoke(new NodeInvokation(AddSingleSectionNode), node);
             }
-            return n;
+            else
+            {
+                TreeNode n = null;
+                if (node is SectionNode && node.IsRooted)
+                {
+                    if (node.ParentAs<SectionNode>() != null)
+                    {
+                        TreeNode p = FindTreeNode(node.ParentAs<SectionNode>());
+                        n = p.Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
+                    }
+                    else
+                    {
+                        n = Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
+                    }
+                    n.Tag = node;
+                    ChangeColorUsed(n, mView.ColorSettings);
+                }
+                return n;
+            }
         }
 
         // Change the color of a node to reflect its used status
@@ -209,18 +218,26 @@ namespace Obi.ProjectView
         }
 
         // Create a new tree node for a section node and all of its descendants
-        private void CreateTreeNodeForSectionNode(ObiNode node)
+        private TreeNode CreateTreeNodeForSectionNode(ObiNode node)
         {
-            TreeNode n = AddSingleSectionNode(node);
-            if (n != null)
+            if (InvokeRequired)
             {
-                n.EnsureVisible();
-                n.ExpandAll();
-                ChangeColorUsed(n, mView.ColorSettings);
+                return (TreeNode)Invoke(new NodeInvokation(CreateTreeNodeForSectionNode), node);
             }
-            if (n != null || node is RootNode)
+            else
             {
-                for (int i = 0; i < node.SectionChildCount; ++i) CreateTreeNodeForSectionNode(node.SectionChild(i));
+                TreeNode n = AddSingleSectionNode(node);
+                if (n != null)
+                {
+                    n.EnsureVisible();
+                    n.ExpandAll();
+                    ChangeColorUsed(n, mView.ColorSettings);
+                }
+                if (n != null || node is RootNode)
+                {
+                    for (int i = 0; i < node.SectionChildCount; ++i) CreateTreeNodeForSectionNode(node.SectionChild(i));
+                }
+                return n;
             }
         }
 
