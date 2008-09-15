@@ -1910,7 +1910,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1} phrase {2} of {3} ({4}){5}.
+        ///   Looks up a localized string similar to {0}{1}phrase {2} of {3} ({4}){5}.
         /// </summary>
         internal static string phrase_to_string {
             get {
@@ -2113,6 +2113,51 @@ namespace Obi {
         internal static string report_delete_error {
             get {
                 return ResourceManager.GetString("report_delete_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        internal static string role_Custom {
+            get {
+                return ResourceManager.GetString("role_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading.
+        /// </summary>
+        internal static string role_Heading {
+            get {
+                return ResourceManager.GetString("role_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string role_Page {
+            get {
+                return ResourceManager.GetString("role_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plain.
+        /// </summary>
+        internal static string role_Plain {
+            get {
+                return ResourceManager.GetString("role_Plain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silence.
+        /// </summary>
+        internal static string role_Silence {
+            get {
+                return ResourceManager.GetString("role_Silence", resourceCulture);
             }
         }
         

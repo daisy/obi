@@ -33,6 +33,11 @@ namespace Obi
         /// </summary>
         public enum Kind { Plain, Page, Heading, Silence, Custom };
 
+        public static readonly LocalizedRole LOCALIZED_PLAIN = new LocalizedRole(Kind.Plain);
+        public static readonly LocalizedRole LOCALIZED_PAGE = new LocalizedRole(Kind.Page);
+        public static readonly LocalizedRole LOCALIZED_HEADING = new LocalizedRole(Kind.Heading);
+        public static readonly LocalizedRole LOCALIZED_SILENCE = new LocalizedRole(Kind.Silence);
+        public static readonly LocalizedRole LOCALIZED_CUSTOM = new LocalizedRole(Kind.Custom);
         
         public override string ToString() { return BaseString(); }
 
@@ -310,6 +315,14 @@ namespace Obi
             int page;
             return Int32.TryParse(str, out page) ? page : 0;
         }
+
+        public static object LocalizedRoleFor(Kind kind)
+        {
+            return kind == Kind.Custom ? LOCALIZED_CUSTOM :
+                kind == Kind.Heading ? LOCALIZED_HEADING :
+                kind == Kind.Page ? LOCALIZED_PAGE :
+                kind == Kind.Plain ? LOCALIZED_PLAIN : LOCALIZED_SILENCE;
+        }
     }
 
     /// <summary>
@@ -335,5 +348,17 @@ namespace Obi
         /// Previous custom class for a content node.
         /// </summary>
         public string PreviousCustomClass { get { return mCustomClass; } }
+    }
+
+    /// <summary>
+    /// Wrapper around the role enumeration for localization
+    /// </summary>
+    public class LocalizedRole
+    {
+        private EmptyNode.Kind mRole;
+
+        public LocalizedRole(EmptyNode.Kind role) { mRole = role; }
+        public EmptyNode.Kind Role { get { return mRole; } }
+        public override string ToString() { return Localizer.Message("role_" + mRole.ToString()); }
     }
 }

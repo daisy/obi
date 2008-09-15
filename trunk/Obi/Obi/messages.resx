@@ -899,7 +899,7 @@ Error text: {1}</value>
     <comment>ToString() short</comment>
   </data>
   <data name="phrase_to_string" xml:space="preserve">
-    <value>{0} {1} phrase {2} of {3} ({4}){5}</value>
+    <value>{0}{1}phrase {2} of {3} ({4}){5}</value>
     <comment>ToString(); e.g. [unused] phrase 3 of 5 (2.5s), page number 2</comment>
   </data>
   <data name="section_level_to_string" xml:space="preserve">
@@ -1157,5 +1157,25 @@ Error text: {1}</value>
   <data name="export_progress_dialog_title" xml:space="preserve">
     <value>Exporting project...</value>
     <comment>Export progress dialog title</comment>
+  </data>
+  <data name="role_Custom" xml:space="preserve">
+    <value>Custom</value>
+    <comment>Localized role name</comment>
+  </data>
+  <data name="role_Heading" xml:space="preserve">
+    <value>Heading</value>
+    <comment>Localized role name</comment>
+  </data>
+  <data name="role_Page" xml:space="preserve">
+    <value>Page</value>
+    <comment>Localized role name</comment>
+  </data>
+  <data name="role_Plain" xml:space="preserve">
+    <value>Plain</value>
+    <comment>Localized role name</comment>
+  </data>
+  <data name="role_Silence" xml:space="preserve">
+    <value>Silence</value>
+    <comment>Localized role name</comment>
   </data>
 </root>

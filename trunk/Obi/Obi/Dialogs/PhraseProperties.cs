@@ -38,7 +38,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Get the role chosen from the drop-down menu.
         /// </summary>
-        public EmptyNode.Kind Role { get { return (EmptyNode.Kind)m_comboPhraseRole.SelectedItem; } }
+        public EmptyNode.Kind Role { get { return ((LocalizedRole)m_comboPhraseRole.SelectedItem).Role; } }
 
         /// <summary>
         /// Get the TODO flag from the checkbox.
@@ -63,12 +63,12 @@ namespace Obi.Dialogs
                     parent.Label, parent.Level));
             }
             m_txtTimeLength.Text = Program.FormatDuration_Long(mNode.Duration);
-            m_comboPhraseRole.Items.Add(PhraseNode.Kind.Heading);
-            m_comboPhraseRole.Items.Add(PhraseNode.Kind.Page);
-            m_comboPhraseRole.Items.Add(PhraseNode.Kind.Plain);
-            m_comboPhraseRole.Items.Add(PhraseNode.Kind.Silence);
-            m_comboPhraseRole.Items.Add(EmptyNode.Kind.Custom);
-            m_comboPhraseRole.SelectedItem = mNode.NodeKind;
+            m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_HEADING);
+            m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_PAGE);
+            m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_PLAIN);
+            m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_SILENCE);
+            m_comboPhraseRole.Items.Add(EmptyNode.LOCALIZED_CUSTOM);
+            m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor(mNode.NodeKind);
             m_txtCustomClassName.Text = mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : "";
             m_chkUsed.Checked = mNode.Used;
             m_chkToDo.Checked = mNode.TODO;
@@ -79,7 +79,7 @@ namespace Obi.Dialogs
         private void EnableCustomClassField()
         {
             m_txtCustomClassName.Enabled =
-                (EmptyNode.Kind)m_comboPhraseRole.SelectedItem == EmptyNode.Kind.Custom;
+                m_comboPhraseRole.SelectedItem == EmptyNode.LOCALIZED_CUSTOM;
         }
 
         // Update the custom class text box when the role changes.
