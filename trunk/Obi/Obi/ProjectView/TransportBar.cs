@@ -1733,9 +1733,23 @@ namespace Obi.ProjectView
                         PNode = (PhraseNode)node;
                     else if (node is SectionNode)
                     {
-                        if (((SectionNode)node).PhraseChildCount > 0
-                            && ((SectionNode)node).PhraseChild(0) is PhraseNode)
+                        if (((SectionNode)node).PhraseChildCount > 0 )
+                            {
+                            if ( mCurrentPlaylist != mMasterPlaylist &&  ((SectionNode)node).PhraseChild(0) is PhraseNode)
                             PNode = (PhraseNode)((SectionNode)node).PhraseChild(0);
+                            else // start finding required phrase node in this section
+                                {
+                                for (int PIndex = 0; PIndex < node.PhraseChildCount; PIndex++)
+                                    {
+                                    if (node.PhraseChild ( PIndex ) is PhraseNode && node.PhraseChild ( PIndex ).Used)
+                                        {
+                                        PNode = (PhraseNode)((SectionNode)node).PhraseChild ( PIndex );
+                                        break;
+                                        }
+                                    } // for loop ends
+
+                                }
+                            }
                     }
 
                     if (PNode != null && mCurrentPlaylist.ContainsPhrase(PNode))
