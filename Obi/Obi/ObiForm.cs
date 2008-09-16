@@ -240,7 +240,8 @@ namespace Obi
                 {
                     mSettings.NewProjectDialogSize = dialog.Size;
                     CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                    ImportProgressDialog progress = new ImportProgressDialog(path, mSession.Presentation);
+                    ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
+                        delegate() { (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation); });
                     progress.ShowDialog();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave();
@@ -379,8 +380,14 @@ namespace Obi
             {
                 try
                 {
-                    mSession.Presentation.cleanup();
-                    DeleteExtraFiles();
+                    Dialogs.ProgressDialog progress = new ProgressDialog(Localizer.Message("cleaning_up"),
+                        delegate()
+                        {
+                            mSession.Presentation.cleanup();
+                            DeleteExtraFiles();
+                        });
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave();
                 }
                 catch (Exception e)
@@ -1103,7 +1110,10 @@ namespace Obi
                         string exportPath = dialog.DirectoryPath;
                         if (!exportPath.EndsWith("/")) exportPath += "/";
                         mSession.PrimaryExportPath = exportPath;
-                        (new ExportProgressDialog(mSession, exportPath)).ShowDialog();
+                        ProgressDialog progress = new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
+                            delegate() { mSession.Presentation.ExportToZ(exportPath, mSession.Path); });
+                        progress.ShowDialog();
+                        if (progress.Exception != null) throw progress.Exception;
                         mSession.ForceSave();
                         MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.DirectoryPath),
                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);

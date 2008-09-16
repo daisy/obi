@@ -340,6 +340,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleaning up....
+        /// </summary>
+        internal static string cleaning_up {
+            get {
+                return ResourceManager.GetString("cleaning_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the list of recent projects?.
         /// </summary>
         internal static string clear_recent_caption {

@@ -1189,4 +1189,8 @@ Error text: {1}</value>
   <data name="import_audio_progress_dialog_title" xml:space="preserve">
     <value>Importing audio...</value>
   </data>
+  <data name="cleaning_up" xml:space="preserve">
+    <value>Cleaning up...</value>
+    <comment>Progress dialog title</comment>
+  </data>
 </root>
