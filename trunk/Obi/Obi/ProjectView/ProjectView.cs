@@ -1084,12 +1084,36 @@ namespace Obi.ProjectView
                     {
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
                         double duration = dialog.MaxPhraseDurationMinutes * 60000.0;  // convert from minutes to milliseconds
-                        Dialogs.ImportAudioProgressDialog progress =
-                            new Dialogs.ImportAudioProgressDialog(mPresentation, paths, duration);
+                        List<PhraseNode> phraseNodes = new List<PhraseNode>(paths.Length);
+                        // new Dialogs.ImportAudioProgressDialog(mPresentation, paths, duration);
+                        Dialogs.ProgressDialog progress =
+                            new Dialogs.ProgressDialog(Localizer.Message("import_audio_progress_dialog_title"),
+                                delegate()
+                                {
+                                    foreach (string path in paths)
+                                    {
+                                        List<PhraseNode> phrases = mPresentation.CreatePhraseNodeList(path, duration);
+                                        foreach (PhraseNode p in phrases)
+                                        {
+                                            try
+                                            {
+                                                phraseNodes.Add(p);
+                                            }
+                                            catch (Exception)
+                                            {
+                                                MessageBox.Show(
+                                                    String.Format(Localizer.Message("import_phrase_error_text"), path),
+                                                    Localizer.Message("import_phrase_error_caption"),
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Error);
+                                            }
+                                        }
+                                    }
+                                });
                         progress.ShowDialog();
-                        if (progress.Phrases.Count > 0)
+                        if (phraseNodes.Count > 0)
                         {
-                            mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, progress.Phrases));
+                            mPresentation.getUndoRedoManager().execute(new Commands.Strips.ImportPhrases(this, phraseNodes));
                         }
                     }
                 }
