@@ -47,7 +47,7 @@ namespace Obi.Dialogs
             List<EmptyNode> nodes = mPresentation.NodesForCustomClass(customClass);
             if (nodes.Count == 0) return false;
             urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-            command.setShortDescription("remove_custom_class");
+            command.setShortDescription(Localizer.Message("remove_custom_class"));
             foreach (EmptyNode node in nodes) command.append(new Commands.Node.ChangeCustomType(mProjectView, node, EmptyNode.Kind.Plain));
             mPresentation.getUndoRedoManager().execute(command);
             ++mNumberOfCommandsSinceOpened;

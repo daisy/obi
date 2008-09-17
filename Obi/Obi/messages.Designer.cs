@@ -2109,6 +2109,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to remove custom class.
+        /// </summary>
+        internal static string remove_custom_class {
+            get {
+                return ResourceManager.GetString("remove_custom_class", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rename section.
         /// </summary>
         internal static string rename_section {
