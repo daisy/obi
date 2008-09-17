@@ -32,10 +32,11 @@ namespace Obi.ProjectView
             // 
             // ContentView
             // 
-            this.AutoScroll = true;
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentView_Paint);
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
             this.ResumeLayout(false);
+
         }
 
         #endregion

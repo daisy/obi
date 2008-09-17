@@ -56,124 +56,66 @@ namespace Obi.ProjectView
             // 
             // mTransportBarSplitter
             // 
-            this.mTransportBarSplitter.AccessibleDescription = null;
-            this.mTransportBarSplitter.AccessibleName = null;
-            resources.ApplyResources(this.mTransportBarSplitter, "mTransportBarSplitter");
             this.mTransportBarSplitter.BackColor = System.Drawing.SystemColors.Control;
-            this.mTransportBarSplitter.BackgroundImage = null;
+            resources.ApplyResources(this.mTransportBarSplitter, "mTransportBarSplitter");
             this.mTransportBarSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.mTransportBarSplitter.Font = null;
             this.mTransportBarSplitter.Name = "mTransportBarSplitter";
             // 
             // mTransportBarSplitter.Panel1
             // 
-            this.mTransportBarSplitter.Panel1.AccessibleDescription = null;
-            this.mTransportBarSplitter.Panel1.AccessibleName = null;
-            resources.ApplyResources(this.mTransportBarSplitter.Panel1, "mTransportBarSplitter.Panel1");
-            this.mTransportBarSplitter.Panel1.BackgroundImage = null;
             this.mTransportBarSplitter.Panel1.Controls.Add(this.mFindInTextSplitter);
-            this.mTransportBarSplitter.Panel1.Font = null;
             // 
             // mTransportBarSplitter.Panel2
             // 
-            this.mTransportBarSplitter.Panel2.AccessibleDescription = null;
-            this.mTransportBarSplitter.Panel2.AccessibleName = null;
-            resources.ApplyResources(this.mTransportBarSplitter.Panel2, "mTransportBarSplitter.Panel2");
-            this.mTransportBarSplitter.Panel2.BackgroundImage = null;
             this.mTransportBarSplitter.Panel2.Controls.Add(this.mTransportBar);
-            this.mTransportBarSplitter.Panel2.Font = null;
             // 
             // mFindInTextSplitter
             // 
-            this.mFindInTextSplitter.AccessibleDescription = null;
-            this.mFindInTextSplitter.AccessibleName = null;
-            resources.ApplyResources(this.mFindInTextSplitter, "mFindInTextSplitter");
             this.mFindInTextSplitter.BackColor = System.Drawing.SystemColors.Control;
-            this.mFindInTextSplitter.BackgroundImage = null;
+            resources.ApplyResources(this.mFindInTextSplitter, "mFindInTextSplitter");
             this.mFindInTextSplitter.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.mFindInTextSplitter.Font = null;
             this.mFindInTextSplitter.Name = "mFindInTextSplitter";
             // 
             // mFindInTextSplitter.Panel1
             // 
-            this.mFindInTextSplitter.Panel1.AccessibleDescription = null;
-            this.mFindInTextSplitter.Panel1.AccessibleName = null;
-            resources.ApplyResources(this.mFindInTextSplitter.Panel1, "mFindInTextSplitter.Panel1");
-            this.mFindInTextSplitter.Panel1.BackgroundImage = null;
             this.mFindInTextSplitter.Panel1.Controls.Add(this.mTOCSplitter);
-            this.mFindInTextSplitter.Panel1.Font = null;
             // 
             // mFindInTextSplitter.Panel2
             // 
-            this.mFindInTextSplitter.Panel2.AccessibleDescription = null;
-            this.mFindInTextSplitter.Panel2.AccessibleName = null;
-            resources.ApplyResources(this.mFindInTextSplitter.Panel2, "mFindInTextSplitter.Panel2");
-            this.mFindInTextSplitter.Panel2.BackgroundImage = null;
             this.mFindInTextSplitter.Panel2.Controls.Add(this.mFindInText);
-            this.mFindInTextSplitter.Panel2.Font = null;
             // 
             // mTOCSplitter
             // 
-            this.mTOCSplitter.AccessibleDescription = null;
             resources.ApplyResources(this.mTOCSplitter, "mTOCSplitter");
             this.mTOCSplitter.BackColor = System.Drawing.SystemColors.Control;
-            this.mTOCSplitter.BackgroundImage = null;
-            this.mTOCSplitter.Font = null;
             this.mTOCSplitter.Name = "mTOCSplitter";
             // 
             // mTOCSplitter.Panel1
             // 
-            this.mTOCSplitter.Panel1.AccessibleDescription = null;
-            this.mTOCSplitter.Panel1.AccessibleName = null;
-            resources.ApplyResources(this.mTOCSplitter.Panel1, "mTOCSplitter.Panel1");
-            this.mTOCSplitter.Panel1.BackgroundImage = null;
             this.mTOCSplitter.Panel1.Controls.Add(this.mMetadataSplitter);
             this.mTOCSplitter.Panel1.Controls.Add(this.mPanelInfoLabelButton);
-            this.mTOCSplitter.Panel1.Font = null;
             // 
             // mTOCSplitter.Panel2
             // 
-            this.mTOCSplitter.Panel2.AccessibleDescription = null;
-            this.mTOCSplitter.Panel2.AccessibleName = null;
-            resources.ApplyResources(this.mTOCSplitter.Panel2, "mTOCSplitter.Panel2");
-            this.mTOCSplitter.Panel2.BackgroundImage = null;
             this.mTOCSplitter.Panel2.Controls.Add(this.mContentView);
-            this.mTOCSplitter.Panel2.Font = null;
             // 
             // mMetadataSplitter
             // 
-            this.mMetadataSplitter.AccessibleDescription = null;
-            this.mMetadataSplitter.AccessibleName = null;
             resources.ApplyResources(this.mMetadataSplitter, "mMetadataSplitter");
-            this.mMetadataSplitter.BackgroundImage = null;
-            this.mMetadataSplitter.Font = null;
             this.mMetadataSplitter.Name = "mMetadataSplitter";
             // 
             // mMetadataSplitter.Panel1
             // 
-            this.mMetadataSplitter.Panel1.AccessibleDescription = null;
-            this.mMetadataSplitter.Panel1.AccessibleName = null;
-            resources.ApplyResources(this.mMetadataSplitter.Panel1, "mMetadataSplitter.Panel1");
-            this.mMetadataSplitter.Panel1.BackgroundImage = null;
             this.mMetadataSplitter.Panel1.Controls.Add(this.mTOCView);
-            this.mMetadataSplitter.Panel1.Font = null;
             // 
             // mMetadataSplitter.Panel2
             // 
-            this.mMetadataSplitter.Panel2.AccessibleDescription = null;
-            this.mMetadataSplitter.Panel2.AccessibleName = null;
-            resources.ApplyResources(this.mMetadataSplitter.Panel2, "mMetadataSplitter.Panel2");
-            this.mMetadataSplitter.Panel2.BackgroundImage = null;
             this.mMetadataSplitter.Panel2.Controls.Add(this.mMetadataView);
-            this.mMetadataSplitter.Panel2.Font = null;
             // 
             // mTOCView
             // 
-            this.mTOCView.AccessibleDescription = null;
-            this.mTOCView.AccessibleName = null;
-            resources.ApplyResources(this.mTOCView, "mTOCView");
-            this.mTOCView.BackgroundImage = null;
             this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.mTOCView, "mTOCView");
             this.mTOCView.FullRowSelect = true;
             this.mTOCView.LabelEdit = true;
             this.mTOCView.Name = "mTOCView";
@@ -181,21 +123,16 @@ namespace Obi.ProjectView
             // 
             // mMetadataView
             // 
-            this.mMetadataView.AccessibleDescription = null;
-            this.mMetadataView.AccessibleName = null;
-            resources.ApplyResources(this.mMetadataView, "mMetadataView");
             this.mMetadataView.BackColor = System.Drawing.Color.Transparent;
-            this.mMetadataView.BackgroundImage = null;
+            resources.ApplyResources(this.mMetadataView, "mMetadataView");
             this.mMetadataView.Name = "mMetadataView";
             this.mMetadataView.Selection = null;
             // 
             // mPanelInfoLabelButton
             // 
-            this.mPanelInfoLabelButton.AccessibleDescription = null;
             resources.ApplyResources(this.mPanelInfoLabelButton, "mPanelInfoLabelButton");
             this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
-            this.mPanelInfoLabelButton.BackgroundImage = null;
             this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
             this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
             this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
@@ -203,15 +140,11 @@ namespace Obi.ProjectView
             // 
             // mContentView
             // 
-            this.mContentView.AccessibleDescription = null;
-            this.mContentView.AccessibleName = null;
-            resources.ApplyResources(this.mContentView, "mContentView");
             this.mContentView.AudioScale = 0.01F;
+            resources.ApplyResources(this.mContentView, "mContentView");
             this.mContentView.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.mContentView.BackgroundImage = null;
             this.mContentView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mContentView.ColorSettings = null;
-            this.mContentView.Font = null;
             this.mContentView.Name = "mContentView";
             this.mContentView.PlaybackPhrase = null;
             this.mContentView.Selection = null;
@@ -219,45 +152,32 @@ namespace Obi.ProjectView
             // 
             // mFindInText
             // 
-            this.mFindInText.AccessibleDescription = null;
-            this.mFindInText.AccessibleName = null;
-            resources.ApplyResources(this.mFindInText, "mFindInText");
             this.mFindInText.BackColor = System.Drawing.SystemColors.Control;
-            this.mFindInText.BackgroundImage = null;
-            this.mFindInText.Font = null;
+            resources.ApplyResources(this.mFindInText, "mFindInText");
             this.mFindInText.Name = "mFindInText";
             // 
             // mTransportBar
             // 
-            this.mTransportBar.AccessibleDescription = null;
-            this.mTransportBar.AccessibleName = null;
-            resources.ApplyResources(this.mTransportBar, "mTransportBar");
             this.mTransportBar.BackColor = System.Drawing.Color.White;
-            this.mTransportBar.BackgroundImage = null;
+            resources.ApplyResources(this.mTransportBar, "mTransportBar");
             this.mTransportBar.LocalPlaylist = null;
             this.mTransportBar.Name = "mTransportBar";
             this.mTransportBar.SelectionChangedPlaybackEnabled = true;
             // 
             // mNoProjectLabel
             // 
-            this.mNoProjectLabel.AccessibleDescription = null;
-            this.mNoProjectLabel.AccessibleName = null;
             resources.ApplyResources(this.mNoProjectLabel, "mNoProjectLabel");
             this.mNoProjectLabel.BackColor = System.Drawing.SystemColors.Control;
             this.mNoProjectLabel.Name = "mNoProjectLabel";
             // 
             // ProjectView
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.BackgroundImage = null;
             this.Controls.Add(this.mNoProjectLabel);
             this.Controls.Add(this.mTransportBarSplitter);
             this.DoubleBuffered = true;
-            this.Font = null;
             this.Name = "ProjectView";
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.ProjectView_Layout);
             this.mTransportBarSplitter.Panel1.ResumeLayout(false);
