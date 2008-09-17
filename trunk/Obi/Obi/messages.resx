@@ -1193,4 +1193,8 @@ Error text: {1}</value>
     <value>Cleaning up...</value>
     <comment>Progress dialog title</comment>
   </data>
+  <data name="remove_custom_class" xml:space="preserve">
+    <value>remove custom class</value>
+    <comment>Command</comment>
+  </data>
 </root>

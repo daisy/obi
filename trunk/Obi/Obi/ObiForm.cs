@@ -770,8 +770,8 @@ namespace Obi
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
-            mEditRolesToolStripMenuItem.Enabled = false; // disabled till it is improved
-            mClearRoleToolStripMenuItem.Enabled = mProjectView.CanClearRole;
+            mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
+            mPhrases_AssignRole_PlainMenuItem.Enabled = mProjectView.CanClearRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -887,7 +887,7 @@ namespace Obi
             if (index < items.IndexOf(mAddRoleToolStripTextBox)) items.RemoveAt(index);
         }
 
-        private void mClearRoleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
         }
@@ -899,7 +899,7 @@ namespace Obi
 
         private void mSilenceToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MakeSelectedBlockIntoSilencePhrase(); }
 
-        private void mEditRolesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_EditRolesMenuItem_Click(object sender, EventArgs e)
         {
             EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
             dialog.ShowDialog();
