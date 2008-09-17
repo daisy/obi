@@ -212,6 +212,7 @@ namespace Obi.ProjectView
                 }
                 if (mCursor != null)
                 {
+                    CheckVisibility();         
                     pe.Graphics.DrawLine(settings.WaveformCursorPen,
                         new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                     Point[] points = new Point[3];
@@ -222,6 +223,27 @@ namespace Obi.ProjectView
                 }
             }
             base.OnPaint(pe);
+        }
+
+        private static readonly int XScrollIncrement = 48;
+
+        private void CheckVisibility()
+        {
+            Point location = Location;
+            Control parent = Parent;
+            while (parent != null && !(parent.Parent is ContentView))
+            {
+                location.X += parent.Location.X;
+                location.Y += parent.Location.Y;
+                parent = parent.Parent;
+            }
+            ContentView contentView = parent == null ? null : parent.Parent as ContentView;
+            if (contentView != null &&
+                location.X + CursorPosition > contentView.Width - contentView.AutoScrollPosition.X - XScrollIncrement)
+            {
+                contentView.AutoScrollPosition =
+                    new Point(-contentView.AutoScrollPosition.X + XScrollIncrement, -contentView.AutoScrollPosition.Y);
+            }
         }
 
         // Add self to the content view rendering list.

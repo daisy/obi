@@ -10,63 +10,6 @@ using System.Windows.Forms;
 namespace Obi.ProjectView
 {
     /// <summary>
-    /// Common interface for selection of strips and blocks.
-    /// </summary>
-    public interface ISelectableInContentView
-    {
-        bool Highlighted { get; set; }            // get or set the highlighted state of the control
-        ObiNode ObiNode { get; }                  // get the Obi node for the control
-        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
-    }
-
-
-    /// <summary>
-    /// Common interface to selectables (in the content view) that also have customizable colors.
-    /// </summary>
-    public interface ISelectableInContentViewWithColors : ISelectableInContentView
-    {
-        ContentView ContentView { get; }
-        ColorSettings ColorSettings { get; }
-    }
-
-
-    /// <summary>
-    /// Waveforms with rendering priority.
-    /// </summary>
-    public class WaveformWithPriority : IComparable
-    {
-        private Waveform mWaveform;  // waveform
-        public int Priority;         // see priorities below
-
-        public static readonly int BLOCK_SELECTED_PRIORITY = 3;
-        public static readonly int STRIP_SELECTED_PRIORITY = 2;
-        public static readonly int NORMAL_PRIORITY = 1;
-
-
-        public WaveformWithPriority(Waveform w, int p)
-        {
-            mWaveform = w;
-            Priority = p;
-        }
-
-
-        /// <summary>
-        /// Compare two waveforms depending on their priority. If the second object is null
-        /// then return the priority is considered has being higher.
-        /// </summary>
-        public int CompareTo(object obj)
-        {
-            WaveformWithPriority w = obj as WaveformWithPriority;
-            return w == null ? 1 : Priority.CompareTo(w.Priority);
-        }
-
-        public override string ToString() { return string.Format("{0}<{1}>", mWaveform, Priority); }
-
-        public Waveform Waveform { get { return mWaveform; } }
-    }
-
-
-    /// <summary>
     /// The content view shows the strips and blocks of the project.
     /// </summary>
     public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
@@ -1363,8 +1306,71 @@ null;
             return false;
         }
 
+        private void ContentView_Paint(object sender, PaintEventArgs e)
+        {
+            System.Diagnostics.Debug.Print("AutoScrollPosition = {0} (Autoscroll = {1})", AutoScrollPosition, AutoScroll);
+        }
+
 
 
 
     }
+    /// <summary>
+    /// Common interface for selection of strips and blocks.
+    /// </summary>
+    public interface ISelectableInContentView
+    {
+        bool Highlighted { get; set; }            // get or set the highlighted state of the control
+        ObiNode ObiNode { get; }                  // get the Obi node for the control
+        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
+    }
+
+
+    /// <summary>
+    /// Common interface to selectables (in the content view) that also have customizable colors.
+    /// </summary>
+    public interface ISelectableInContentViewWithColors : ISelectableInContentView
+    {
+        ContentView ContentView { get; }
+        ColorSettings ColorSettings { get; }
+    }
+
+
+    /// <summary>
+    /// Waveforms with rendering priority.
+    /// </summary>
+    public class WaveformWithPriority : IComparable
+    {
+        private Waveform mWaveform;  // waveform
+        public int Priority;         // see priorities below
+
+        public static readonly int BLOCK_SELECTED_PRIORITY = 3;
+        public static readonly int STRIP_SELECTED_PRIORITY = 2;
+        public static readonly int NORMAL_PRIORITY = 1;
+
+
+        public WaveformWithPriority(Waveform w, int p)
+        {
+            mWaveform = w;
+            Priority = p;
+        }
+
+
+        /// <summary>
+        /// Compare two waveforms depending on their priority. If the second object is null
+        /// then return the priority is considered has being higher.
+        /// </summary>
+        public int CompareTo(object obj)
+        {
+            WaveformWithPriority w = obj as WaveformWithPriority;
+            return w == null ? 1 : Priority.CompareTo(w.Priority);
+        }
+
+        public override string ToString() { return string.Format("{0}<{1}>", mWaveform, Priority); }
+
+        public Waveform Waveform { get { return mWaveform; } }
+    }
+
+
+
 }
