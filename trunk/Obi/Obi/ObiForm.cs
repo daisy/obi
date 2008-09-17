@@ -914,6 +914,18 @@ namespace Obi
             }
         }
 
+        private void mAssignNewCustomRoleToolStripMenuItem_click ( object sender, EventArgs e )
+            {
+            Dialogs.AssignNewCustomRole NewCustomRoleDialog = new AssignNewCustomRole ();
+
+            if (NewCustomRoleDialog.ShowDialog () == DialogResult.OK && NewCustomRoleDialog.CustomClassName != "" )
+                {
+                mProjectView.AddCustomTypeAndSetOnBlock ( EmptyNode.Kind.Custom, NewCustomRoleDialog.CustomClassName );
+                mPhrasesToolStripMenuItem.DropDown.Close ();
+                mAddRoleToolStripTextBox.Text = Localizer.Message ( "add_role" );
+                }
+            }
+
         #endregion
 
         #region Transport menu
