@@ -916,14 +916,7 @@ namespace Obi
 
         private void mAssignNewCustomRoleToolStripMenuItem_click ( object sender, EventArgs e )
             {
-            Dialogs.AssignNewCustomRole NewCustomRoleDialog = new AssignNewCustomRole ();
-
-            if (NewCustomRoleDialog.ShowDialog () == DialogResult.OK && NewCustomRoleDialog.CustomClassName != "" )
-                {
-                mProjectView.AddCustomTypeAndSetOnBlock ( EmptyNode.Kind.Custom, NewCustomRoleDialog.CustomClassName );
-                mPhrasesToolStripMenuItem.DropDown.Close ();
-                mAddRoleToolStripTextBox.Text = Localizer.Message ( "add_role" );
-                }
+            mProjectView.ShowPhrasePropertiesDialog ( true );
             }
 
         #endregion
@@ -1868,7 +1861,7 @@ namespace Obi
         // View > Phrase properties (Alt+Enter)
         private void mView_PhrasePropertiesMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowPhrasePropertiesDialog();
+            mProjectView.ShowPhrasePropertiesDialog( false);
         }
 
         // View > Section properties (Alt+Enter)
