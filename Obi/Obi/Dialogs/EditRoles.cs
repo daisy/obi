@@ -35,8 +35,11 @@ namespace Obi.Dialogs
 
         private void RemoveRole(string role)
         {
-            mCustomRolesList.Items.Remove(role);
-            RemoveCustomTypeFromNodes(role);
+        if (role != "" ) 
+            {
+            mCustomRolesList.Items.Remove ( role );
+            RemoveCustomTypeFromNodes ( role );
+            }
         }
 
         /// <summary>
@@ -107,5 +110,7 @@ namespace Obi.Dialogs
             foreach (string customType in mPresentation.CustomClasses) mCustomRolesList.Items.Add(customType);
             mNewCustomRole.Focus();
         }
+
+        
     }
 }
