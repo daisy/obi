@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Obi.Dialogs
 {
@@ -12,17 +13,19 @@ namespace Obi.Dialogs
         {
         private EmptyNode mNode;                // the node to show the information for.
         private ProjectView.ProjectView mView;  // the current view.
-        private bool m_IsNewCustomClass;
+        private bool m_IsSetCustomClass;
+
 
         /// <summary>
         /// Create the dialog to be shown by ShowDialog() for the given view.
         /// </summary>
-        public PhraseProperties ( ProjectView.ProjectView view )
+        public PhraseProperties ( ProjectView.ProjectView view , bool SetCustomClass )
             {
             InitializeComponent ();
             mView = view;
             mNode = view.SelectedNodeAs<EmptyNode> ();
-            m_IsNewCustomClass = false;
+
+            m_IsSetCustomClass = SetCustomClass;
             }
 
 
@@ -76,15 +79,17 @@ namespace Obi.Dialogs
             m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
             m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
             m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.NodeKind );
-
+            
             // load custom class combobox
             foreach (string customType in mView.Presentation.CustomClasses) m_comboCustomClassName.Items.Add ( customType );
 
             m_comboCustomClassName.Text = mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : "";
             m_chkUsed.Checked = mNode.Used;
             m_chkToDo.Checked = mNode.TODO;
+
             EnableCustomClassField ();
-            }
+            if (m_IsSetCustomClass) SetCustomClassOnLoad ();
+                        }
 
         // Turn the custom class field on/off depending on the role (i.e. turned on only for custom classes.)
         private void EnableCustomClassField ()
@@ -93,10 +98,30 @@ namespace Obi.Dialogs
                 m_comboPhraseRole.SelectedItem == EmptyNode.LOCALIZED_CUSTOM;
             }
 
+        private void SetCustomClassOnLoad ()
+            {
+            m_comboPhraseRole.SelectedIndex = m_comboPhraseRole.Items.Count - 1;
+            m_comboCustomClassName.Enabled = true;
+
+            backgroundWorker1.RunWorkerAsync ();
+                                    }
+
+        private void FocusOnCustomClassCombo ()
+            {
+            Thread.Sleep ( 500 );
+            m_comboCustomClassName.Focus ();
+            }
+
         // Update the custom class text box when the role changes.
         private void m_comboPhraseRole_SelectionChangeCommitted ( object sender, EventArgs e )
             {
             EnableCustomClassField ();
+                        }
+
+        private void backgroundWorker1_RunWorkerCompleted ( object sender, RunWorkerCompletedEventArgs e )
+            {
+            Thread.Sleep ( 500 );
+            m_comboCustomClassName.Focus ();
             }
 
 

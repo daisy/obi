@@ -1639,7 +1639,7 @@ namespace Obi.ProjectView
         public bool ShowNodePropertiesDialog()
         {
             return CanShowProjectPropertiesDialog ? ShowProjectPropertiesDialog() :
-                CanShowPhrasePropertiesDialog ? ShowPhrasePropertiesDialog() :
+                CanShowPhrasePropertiesDialog ? ShowPhrasePropertiesDialog(false) :
                 CanShowSectionPropertiesDialog ? ShowSectionPropertiesDialog() :
                 true;
         }
@@ -1677,9 +1677,9 @@ namespace Obi.ProjectView
             return true;
         }
 
-        public bool ShowPhrasePropertiesDialog()
+        public bool ShowPhrasePropertiesDialog( bool SetCustomClassName )
         {
-            Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this);
+            Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this, SetCustomClassName);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 urakawa.undo.CompositeCommand command =

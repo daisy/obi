@@ -45,6 +45,7 @@ namespace Obi.Dialogs
         this.m_txtTimeLength = new System.Windows.Forms.TextBox ();
         this.label1 = new System.Windows.Forms.Label ();
         this.m_comboCustomClassName = new System.Windows.Forms.ComboBox ();
+        this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker ();
         this.SuspendLayout ();
         // 
         // m_lblParentSection
@@ -144,6 +145,10 @@ namespace Obi.Dialogs
         this.m_comboCustomClassName.FormattingEnabled = true;
         this.m_comboCustomClassName.Name = "m_comboCustomClassName";
         // 
+        // backgroundWorker1
+        // 
+                this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler ( this.backgroundWorker1_RunWorkerCompleted );
+        // 
         // PhraseProperties
         // 
         this.AcceptButton = this.m_btnOk;
@@ -195,5 +200,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtTimeLength;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox m_comboCustomClassName;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
