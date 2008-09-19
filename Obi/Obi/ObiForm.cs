@@ -863,7 +863,7 @@ namespace Obi
         private void AddCustomClassToMenu(string customClass)
         {
             ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
-            int index = items.IndexOf(mAddRoleToolStripTextBox);
+            int index = items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem);
             // TODO find alphabetical spot for the new class
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = customClass;
@@ -882,9 +882,10 @@ namespace Obi
         {
             ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
             int index;
-            for (index = items.IndexOf(mCustomRoleToolStripSeparator); index < items.IndexOf(mAddRoleToolStripTextBox) &&
+            for (index = items.IndexOf(mCustomRoleToolStripSeparator);
+                index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem) &&
                 items[index].Text != e.CustomClass; ++index) ;
-            if (index < items.IndexOf(mAddRoleToolStripTextBox)) items.RemoveAt(index);
+            if (index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem)) items.RemoveAt(index);
         }
 
         private void mPhrases_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
@@ -904,20 +905,6 @@ namespace Obi
             EditRoles dialog = new EditRoles(mSession.Presentation, mProjectView);
             dialog.ShowDialog();
         }
-        private void mAddRoleToolStripTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                mProjectView.AddCustomTypeAndSetOnBlock(EmptyNode.Kind.Custom, mAddRoleToolStripTextBox.Text);
-                mPhrasesToolStripMenuItem.DropDown.Close();
-                mAddRoleToolStripTextBox.Text = Localizer.Message("add_role");
-            }
-        }
-
-        private void mAssignNewCustomRoleToolStripMenuItem_click ( object sender, EventArgs e )
-            {
-            mProjectView.ShowPhrasePropertiesDialog ( true );
-            }
 
         #endregion
 
@@ -1792,18 +1779,6 @@ namespace Obi
             mProjectView.FindPreviousInText();
         }
 
-        private void mAddRoleToolStripTextBox_Click(object sender, EventArgs e)
-        {
-            if (mAddRoleToolStripTextBox.SelectedText == "")
-            {
-                // A little bit convoluted but otherwise the selection doesn't work :(
-                string text = mAddRoleToolStripTextBox.Text;
-                mAddRoleToolStripTextBox.Text = "";
-                mAddRoleToolStripTextBox.SelectedText = text;
-                mAddRoleToolStripTextBox.SelectAll();
-            }
-        }
-
 
         private void mMarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1965,6 +1940,11 @@ namespace Obi
                 mStatusProgressBar.Visible = false;
                 mHasProgressBar = false;
             }
+        }
+
+        private void mPhrases_AssignRole_NewCustomRoleMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowPhrasePropertiesDialog(true);
         }
     }
 }

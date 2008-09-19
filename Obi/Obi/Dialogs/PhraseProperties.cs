@@ -19,14 +19,14 @@ namespace Obi.Dialogs
         /// <summary>
         /// Create the dialog to be shown by ShowDialog() for the given view.
         /// </summary>
-        public PhraseProperties ( ProjectView.ProjectView view , bool SetCustomClass )
-            {
-            InitializeComponent ();
+        public PhraseProperties(ProjectView.ProjectView view, bool SetCustomClass)
+        {
+            InitializeComponent();
             mView = view;
-            mNode = view.SelectedNodeAs<EmptyNode> ();
+            mNode = view.SelectedNodeAs<EmptyNode>();
 
             m_IsSetCustomClass = SetCustomClass;
-            }
+        }
 
 
         /// <summary>
@@ -105,12 +105,6 @@ namespace Obi.Dialogs
 
             backgroundWorker1.RunWorkerAsync ();
                                     }
-
-        private void FocusOnCustomClassCombo ()
-            {
-            Thread.Sleep ( 500 );
-            m_comboCustomClassName.Focus ();
-            }
 
         // Update the custom class text box when the role changes.
         private void m_comboPhraseRole_SelectionChangeCommitted ( object sender, EventArgs e )
