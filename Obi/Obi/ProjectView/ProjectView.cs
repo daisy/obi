@@ -1766,6 +1766,7 @@ namespace Obi.ProjectView
                     mTOCView.ZoomFactor =
                     mContentView.ZoomFactor =
                     mMetadataView.ZoomFactor =
+                    mFindInText.ZoomFactor =
                     mTransportBar.ZoomFactor = value;
                 }
             }

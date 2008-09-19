@@ -33,13 +33,13 @@ namespace Obi.ProjectView
             this.mFindInTextSplitter = new System.Windows.Forms.SplitContainer();
             this.mTOCSplitter = new System.Windows.Forms.SplitContainer();
             this.mMetadataSplitter = new System.Windows.Forms.SplitContainer();
+            this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
+            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTOCView = new Obi.ProjectView.TOCView();
             this.mMetadataView = new Obi.ProjectView.MetadataView();
-            this.mPanelInfoLabelButton = new System.Windows.Forms.Button();
             this.mContentView = new Obi.ProjectView.ContentView();
             this.mFindInText = new Obi.ProjectView.FindInText();
             this.mTransportBar = new Obi.ProjectView.TransportBar();
-            this.mNoProjectLabel = new System.Windows.Forms.Label();
             this.mTransportBarSplitter.Panel1.SuspendLayout();
             this.mTransportBarSplitter.Panel2.SuspendLayout();
             this.mTransportBarSplitter.SuspendLayout();
@@ -82,6 +82,7 @@ namespace Obi.ProjectView
             // 
             // mFindInTextSplitter.Panel2
             // 
+            this.mFindInTextSplitter.Panel2.BackColor = System.Drawing.Color.Red;
             this.mFindInTextSplitter.Panel2.Controls.Add(this.mFindInText);
             // 
             // mTOCSplitter
@@ -112,6 +113,22 @@ namespace Obi.ProjectView
             // 
             this.mMetadataSplitter.Panel2.Controls.Add(this.mMetadataView);
             // 
+            // mPanelInfoLabelButton
+            // 
+            resources.ApplyResources(this.mPanelInfoLabelButton, "mPanelInfoLabelButton");
+            this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
+            this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
+            this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
+            this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
+            this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
+            // 
+            // mNoProjectLabel
+            // 
+            resources.ApplyResources(this.mNoProjectLabel, "mNoProjectLabel");
+            this.mNoProjectLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.mNoProjectLabel.Name = "mNoProjectLabel";
+            // 
             // mTOCView
             // 
             this.mTOCView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -128,16 +145,6 @@ namespace Obi.ProjectView
             this.mMetadataView.Name = "mMetadataView";
             this.mMetadataView.Selection = null;
             // 
-            // mPanelInfoLabelButton
-            // 
-            resources.ApplyResources(this.mPanelInfoLabelButton, "mPanelInfoLabelButton");
-            this.mPanelInfoLabelButton.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.mPanelInfoLabelButton.BackColor = System.Drawing.Color.Transparent;
-            this.mPanelInfoLabelButton.Name = "mPanelInfoLabelButton";
-            this.mPanelInfoLabelButton.UseVisualStyleBackColor = false;
-            this.mPanelInfoLabelButton.Leave += new System.EventHandler(this.mPanelInfoLabelButton_Leave);
-            this.mPanelInfoLabelButton.Enter += new System.EventHandler(this.mPanelInfoLabelButton_Enter);
-            // 
             // mContentView
             // 
             this.mContentView.AudioScale = 0.01F;
@@ -152,8 +159,8 @@ namespace Obi.ProjectView
             // 
             // mFindInText
             // 
-            this.mFindInText.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.mFindInText, "mFindInText");
+            this.mFindInText.BackColor = System.Drawing.SystemColors.Control;
             this.mFindInText.Name = "mFindInText";
             // 
             // mTransportBar
@@ -163,12 +170,6 @@ namespace Obi.ProjectView
             this.mTransportBar.LocalPlaylist = null;
             this.mTransportBar.Name = "mTransportBar";
             this.mTransportBar.SelectionChangedPlaybackEnabled = true;
-            // 
-            // mNoProjectLabel
-            // 
-            resources.ApplyResources(this.mNoProjectLabel, "mNoProjectLabel");
-            this.mNoProjectLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.mNoProjectLabel.Name = "mNoProjectLabel";
             // 
             // ProjectView
             // 
