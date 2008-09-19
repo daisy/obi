@@ -39,8 +39,9 @@ namespace Obi.ProjectView
         private ProjectView mProjectView;
         private enum SearchDirection { NEXT, PREVIOUS };
         private SearchDirection mLastDirection;
-        Timer mTimer;
-    
+        private Timer mTimer;
+        private float mBaseFontSize;
+
         public FindInText()
         {
             mStripsView = null;
@@ -49,11 +50,25 @@ namespace Obi.ProjectView
             mProjectView = null;
             mFoundFirst = false;
             InitializeComponent();
+            mBaseFontSize = Font.SizeInPoints;
             mTimer = new Timer();
             mTimer.Interval = 4000;
             mTimer.Tick += new EventHandler(mTimer_Tick);
         }
 
+        /// <summary>
+        /// Set the zoom factor for the search bar.
+        /// </summary>
+        public float ZoomFactor
+        {
+            set
+            {
+                /*if (value != 0.0)
+                {
+                    Font = new Font(Font.FontFamily, mBaseFontSize * value);
+                }*/
+            }
+        }
       
 
         /// <summary>
@@ -376,6 +391,16 @@ namespace Obi.ProjectView
         private void mCloseButton_Click(object sender, EventArgs e)
         {
             mProjectView.FindInTextVisible = false;
+        }
+
+        private void FindInText_FontChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FindInText_SizeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -181,7 +181,7 @@
     <value>mTOCView</value>
   </data>
   <data name="&gt;&gt;mTOCView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.TOCView, Obi, Version=0.12.0.38431, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.TOCView, Obi, Version=0.12.0.34751, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mTOCView.Parent" xml:space="preserve">
     <value>mMetadataSplitter.Panel1</value>
@@ -223,7 +223,7 @@
     <value>mMetadataView</value>
   </data>
   <data name="&gt;&gt;mMetadataView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.MetadataView, Obi, Version=0.12.0.38431, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.MetadataView, Obi, Version=0.12.0.34751, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mMetadataView.Parent" xml:space="preserve">
     <value>mMetadataSplitter.Panel2</value>
@@ -275,6 +275,9 @@
   </data>
   <data name="mPanelInfoLabelButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="mPanelInfoLabelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mPanelInfoLabelButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>-132, -1</value>
@@ -328,7 +331,7 @@
     <value>mContentView</value>
   </data>
   <data name="&gt;&gt;mContentView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentView, Obi, Version=0.12.0.38431, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentView, Obi, Version=0.12.0.34751, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mContentView.Parent" xml:space="preserve">
     <value>mTOCSplitter.Panel2</value>
@@ -381,11 +384,20 @@
   <data name="&gt;&gt;mFindInTextSplitter.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="mFindInText.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="mFindInText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mFindInText.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="mFindInText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="mFindInText.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
+  </data>
+  <data name="mFindInText.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="mFindInText.Size" type="System.Drawing.Size, System.Drawing">
     <value>996, 29</value>
@@ -397,7 +409,7 @@
     <value>mFindInText</value>
   </data>
   <data name="&gt;&gt;mFindInText.Type" xml:space="preserve">
-    <value>Obi.ProjectView.FindInText, Obi, Version=0.12.0.38431, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.FindInText, Obi, Version=0.12.0.34751, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mFindInText.Parent" xml:space="preserve">
     <value>mFindInTextSplitter.Panel2</value>
@@ -469,7 +481,7 @@
     <value>mTransportBar</value>
   </data>
   <data name="&gt;&gt;mTransportBar.Type" xml:space="preserve">
-    <value>Obi.ProjectView.TransportBar, Obi, Version=0.12.0.38431, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.TransportBar, Obi, Version=0.12.0.34751, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mTransportBar.Parent" xml:space="preserve">
     <value>mTransportBarSplitter.Panel2</value>
@@ -521,6 +533,9 @@
   </data>
   <data name="mNoProjectLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="mNoProjectLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="mNoProjectLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>458, 340</value>
