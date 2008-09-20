@@ -1490,6 +1490,13 @@ namespace Obi.ProjectView
                 }
                 else if (mView.Selection is AudioSelection)
                 {
+                    if ( !mCurrentPlaylist.ContainsPhrase ((PhraseNode)mView.Selection.Node ))
+                        {
+                            //System.Media.SystemSounds.Asterisk.Play ();
+                            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection );
+                            SetPlaylistEvents ( mLocalPlaylist );
+                            mCurrentPlaylist = mLocalPlaylist;
+                        }
                     AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
