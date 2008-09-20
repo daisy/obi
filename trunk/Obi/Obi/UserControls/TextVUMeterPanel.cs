@@ -24,6 +24,8 @@ namespace Obi.UserControls
         private double m_MaxRightDB;
         private double m_MinLeftDB;
         private double m_MinRightDB;
+        private int m_AfterGoodCount;
+        
 
         public TextVUMeterPanel()
         {
@@ -57,7 +59,8 @@ namespace Obi.UserControls
                     m_MaxLeftDB = -100.00;
                     m_MaxRightDB = -100.00;
                     mResetButton.Enabled = mShowMaxMinValues;
-                                    }
+                    m_AfterGoodCount = 0;
+                                                        }
             }
         }
 
@@ -87,6 +90,8 @@ namespace Obi.UserControls
                     else 
                         UpdateRunningLowValues();
                                                                }
+            
+                                                           m_AfterGoodCount++;
         }
 
         private void UpdateRunningValues()
@@ -208,13 +213,16 @@ namespace Obi.UserControls
 
         private void CatchLevelTooLowEvent(object sender, Obi.Events.Audio.VuMeter.LevelTooLowEventArgs e)
         {
+        if (m_AfterGoodCount >= 0)
+            {
             m_MinLeftDB = e.LowLevelValue;
             if (m_VuMeter.Channels == 2) m_MinRightDB = e.LowLevelValue;
 
 
-                        m_strLeftLowLevelIndicator = "Low:";
+            m_strLeftLowLevelIndicator = "Low:";
             m_strRightLowLevelIndicator = "Low:";
-            PlayLevelTooLowBeep();
+            PlayLevelTooLowBeep ();
+            }
         }
 
 
@@ -273,7 +281,8 @@ namespace Obi.UserControls
                 m_MinLeftDB = 0;
                 m_MinRightDB = 0;
             }
-        }
+        m_AfterGoodCount = 0;
+                }
 
         private delegate  void   SetTextBoxCallBack  () ;
 
@@ -285,7 +294,8 @@ namespace Obi.UserControls
             m_MinRightDB = 0;
             
             SetResetText();
-        }
+            m_AfterGoodCount = 0;
+                    }
 
         private void SetResetText()
         {
@@ -318,7 +328,10 @@ namespace Obi.UserControls
                 System.Media.SoundPlayer LevelGoodSoundpPlayer = new System.Media.SoundPlayer ( FilePath );
                 LevelGoodSoundpPlayer.Play ();
                 }
-            }
+
+            m_AfterGoodCount = -4 ;
+                        }
+
 
     }// end of class
 }
