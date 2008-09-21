@@ -31,6 +31,7 @@ namespace Obi.Dialogs
             Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, role);
             mPresentation.getUndoRedoManager().execute(cmd);
             mNumberOfCommandsSinceOpened++;
+            mNewCustomRole.Text = "";
         }
 
         private void RemoveRole(string role)
@@ -51,7 +52,13 @@ namespace Obi.Dialogs
             if (nodes.Count == 0) return false;
             urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
             command.setShortDescription(Localizer.Message("remove_custom_class"));
-            foreach (EmptyNode node in nodes) command.append(new Commands.Node.ChangeCustomType(mProjectView, node, EmptyNode.Kind.Plain));
+            foreach (EmptyNode node in nodes)
+                {
+                if ( node != null )
+                command.append ( new Commands.Node.ChangeCustomType ( mProjectView, node, EmptyNode.Kind.Plain ) );
+                else
+                command.append ( new Obi.Commands.RemoveCustomType ( mProjectView, mPresentation, customClass ) ) ;
+                }
             mPresentation.getUndoRedoManager().execute(command);
             ++mNumberOfCommandsSinceOpened;
             return true;
