@@ -617,6 +617,10 @@
       <DependentUpon>AudioBlock.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\BlockLayout.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BlockLayout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ContentView.cs</DependentUpon>
