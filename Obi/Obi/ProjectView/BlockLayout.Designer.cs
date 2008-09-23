@@ -28,12 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // BlockLayout
-            // 
-            this.ResumeLayout(false);
-
+            components = new System.ComponentModel.Container();
         }
 
         #endregion

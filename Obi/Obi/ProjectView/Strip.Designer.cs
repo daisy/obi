@@ -34,9 +34,6 @@ namespace Obi.ProjectView
             // 
             // mBlockLayout
             // 
-            this.mBlockLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mBlockLayout.BackColor = System.Drawing.Color.Cyan;
             this.mBlockLayout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.mBlockLayout.Location = new System.Drawing.Point(3, 81);
@@ -55,7 +52,6 @@ namespace Obi.ProjectView
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(184, 72);
             this.mLabel.TabIndex = 0;
-            this.mLabel.Tag = "";
             this.mLabel.Click += new System.EventHandler(this.Strip_Enter);
             this.mLabel.Enter += new System.EventHandler(this.Strip_Enter);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
