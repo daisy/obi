@@ -117,11 +117,11 @@ namespace Obi
             set
             {
                 // Temporarily disabled
-                //mSettings.WrapStrips = false;
-                //mProjectView.WrapStrips = false;
-                mSettings.WrapStrips = value;
-                mWrappingInContentViewToolStripMenuItem.Checked = value;
-                mProjectView.WrapStrips = value;
+                mSettings.WrapStrips = false;
+                mProjectView.WrapStrips = false;
+                // mSettings.WrapStrips = value;
+                // mWrappingInContentViewToolStripMenuItem.Checked = value;
+                // mProjectView.WrapStrips = value;
             }
         }
 

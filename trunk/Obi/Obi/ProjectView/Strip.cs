@@ -11,14 +11,13 @@ namespace Obi.ProjectView
 {
     public partial class Strip : UserControl, ISearchable, ISelectableInContentViewWithColors
     {
-        private float mAudioScale;             // local audio scale for the strip
-        private int mBlockLayoutBaseHeight;    // base height of the block layout (for zooming)
-        private int mBlockLayoutSingleHeight;  // height of a single line in the block layout
-        private bool mHighlighted;             // highlighted flag (when the section node is selected)
-        private Mutex mLabelUpdateThread;      // thread to update labels
-        private SectionNode mNode;             // the section node for this strip
-        private ContentView mParentView;       // parent strip view
-        private bool mWrap;                    // wrap contents
+        private float mAudioScale;           // local audio scale for the strip
+        private int mBlockLayoutBaseHeight;  // base height of the block layout (for zooming)
+        private bool mHighlighted;           // highlighted flag (when the section node is selected)
+        private Mutex mLabelUpdateThread;    // thread to update labels
+        private SectionNode mNode;           // the section node for this strip
+        private ContentView mParentView;     // parent strip view
+        private bool mWrap;                  // wrap contents
 
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
-            mBlockLayoutBaseHeight = mBlockLayoutSingleHeight = mBlockLayout.Height;
+            mBlockLayoutBaseHeight = mBlockLayout.Height;
             mLabel.Editable = false;
             mNode = null;
             Highlighted = false;
@@ -68,7 +67,7 @@ namespace Obi.ProjectView
                 Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
                 mBlockLayout.Controls.Add(block);
                 mBlockLayout.Controls.SetChildIndex(block, node.Index);
-                block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayoutSingleHeight);
+                block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
                 block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(block_SizeChanged);
                 UpdateSize();
@@ -90,7 +89,7 @@ namespace Obi.ProjectView
                 {
                     mAudioScale = value;
                     foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
-                    ResizeToBlocksLength(mBlockLayoutSingleHeight);
+                    ResizeToBlocksLength(mBlockLayout.Height);
                 }
             }
         }
@@ -396,12 +395,9 @@ namespace Obi.ProjectView
                 if (value > 0.0f)
                 {
                     mLabel.ZoomFactor = value;
-                    mBlockLayoutSingleHeight = (int)Math.Round(value * mBlockLayoutBaseHeight);
-                    foreach (Control c in mBlockLayout.Controls)
-                    {
-                        if (c is Block) ((Block)c).SetZoomFactorAndHeight(value, mBlockLayoutSingleHeight);
-                    }
-                    ResizeToBlocksLength(mBlockLayoutSingleHeight);
+                    int h = (int)Math.Round(value * mBlockLayoutBaseHeight);
+                    foreach (Control c in mBlockLayout.Controls) if (c is Block) ((Block)c).SetZoomFactorAndHeight(value, h);
+                    ResizeToBlocksLength(h);
                 }
             }
         }
@@ -411,7 +407,7 @@ namespace Obi.ProjectView
             Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
             int w = k == null ? Width - mBlockLayout.Margin.Horizontal :
                 k.Location.X + k.Width + k.Margin.Right;
-            int h_ = mBlockLayoutSingleHeight - h;
+            int h_ = mBlockLayout.Height - h;
             mBlockLayout.Size = new Size(w, h);
             Size = new Size(mBlockLayout.Location.X + w + mBlockLayout.Margin.Right, Height - h_);
         }
@@ -523,12 +519,11 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
-                int w = ParentView.Width - System.Windows.Forms.SystemInformation.VerticalScrollBarWidth - Margin.Horizontal;
-                MinimumSize = new Size(w, MinimumSize.Height);
+                MinimumSize = new Size(ParentView.Width, MinimumSize.Height);
+                Width = ParentView.Width;
                 mBlockLayout.AutoSize = true;
                 mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 mBlockLayout.WrapContents = true;
-                mBlockLayout.Width = w - mBlockLayout.Margin.Horizontal;
                 Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom;
             }
             else

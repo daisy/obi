@@ -18,7 +18,7 @@ namespace Obi.ProjectView
             InitializeComponent();
         }
 
-
+        
         /// <summary>
         /// Get the index for an X position in the track layout
         /// </summary>
