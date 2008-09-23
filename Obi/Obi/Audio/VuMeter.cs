@@ -31,7 +31,6 @@ namespace Obi.Audio
         // variables for detecting lower amplitude
         private double[] m_AverageValue; // array to hold average or RMS value
         private bool m_IsLowAmplitude;
-        private int m_LowAmplitudeSamplesCounts ;
         private double[] m_arLowAmpSamples ;
         private readonly int m_MaxLowAmpSamples = 10;
 
@@ -51,7 +50,6 @@ namespace Obi.Audio
             m_AverageValue = new double[2];
             m_AverageValue[0] = 0;
             m_AverageValue[1] = 0;
-            m_LowAmplitudeSamplesCounts = 0;
             m_arLowAmpSamples = new double[m_MaxLowAmpSamples];
         }
 
@@ -72,7 +70,6 @@ namespace Obi.Audio
         }
 
 		//Member variable used in properties
-		private double m_ScaleFactor = 2 ;
 		private double m_SampleTimeLength = 500 ;
 		internal bool m_bOverload = false ;
 		private int [] arPeakOverloadValue = new int [2] ;
@@ -120,7 +117,6 @@ namespace Obi.Audio
             m_IsLowAmplitude = false;
             m_AverageValue[0] = 0;
             m_AverageValue[1] = 0;
-            m_LowAmplitudeSamplesCounts = 0;
                         if (ResetEvent  != null)
 			ResetEvent(this, new Events.Audio.VuMeter.ResetEventArgs());
 					}

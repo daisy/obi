@@ -12,7 +12,6 @@ namespace Obi.PipelineInterface.ParameterControls
     public partial class PathBrowserControl : BaseUserControl
     {
         private string m_SelectedPath;
-        private string m_TextLabel;
         private ScriptParameter m_Parameter;
         private DataTypes.PathDataType m_PathData;
                 private string m_ProjectDirectory;
@@ -46,19 +45,6 @@ namespace Obi.PipelineInterface.ParameterControls
             if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
             {
                 mTextBox.Text = SelectedPath;
-            }
-        }
-
-        public override string Text
-        {
-            get { return m_TextLabel; }
-            set
-            {
-                if (value != null)
-                {
-                    mNiceNameLabel.Text = value;
-                    mTextBox.AccessibleName = value;
-                }
             }
         }
 

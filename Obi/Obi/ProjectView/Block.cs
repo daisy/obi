@@ -13,7 +13,6 @@ namespace Obi.ProjectView
         protected EmptyNode mNode;                 // the corresponding node
         private bool mHighlighted;                 // selected flag
         private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip!
-        private bool mEntering;                    // entering flag (for selection/deselection)
 
         private int mBaseSpacing;
         private int mBaseHeight;
@@ -31,7 +30,6 @@ namespace Obi.ProjectView
             mNode = node;
             mParentContainer = parent;
             mHighlighted = false;
-            mEntering = false;
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTo_DoStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTo_DoStatus);
@@ -203,7 +201,6 @@ namespace Obi.ProjectView
         {
             if (!Strip.ParentView.Focusing)
             {
-                mEntering = true;
                 Strip.SelectedBlock = this;
             }
         }
