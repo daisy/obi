@@ -330,7 +330,7 @@ namespace Obi.ProjectView
                     mSelectedItem = s;
                     if (s != null)
                     {
-                        s.SelectionFromView = mSelection;
+                        s.SetSelectionFromContentView(mSelection);
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node.ParentAs<SectionNode>();
                         mView.MakeTreeNodeVisibleForSection(section);
@@ -582,6 +582,13 @@ namespace Obi.ProjectView
             return strip == null ? null : strip.FindBlock(node);
         }
 
+        // Find the strip cursor for a strip index selection
+        private StripCursor FindStripCursor(StripIndexSelection selection)
+        {
+            Strip strip = FindStrip(selection.Node as SectionNode);
+            return strip == null ? null : strip.FindStripCursor(selection.Index);
+        }
+
         // Find the strip for the given section node; return null if not found (be careful!)
         private Strip FindStrip(SectionNode section)
         {
@@ -592,11 +599,12 @@ namespace Obi.ProjectView
             return null;
         }
 
-        // Find the selectable item for this selection object
+        // Find the selectable item for this selection object (block, strip or strip cursor.)
         private ISelectableInContentView FindSelectable(NodeSelection selection)
         {
             return
                 selection == null ? null :
+                selection is StripIndexSelection ? (ISelectableInContentView)FindStripCursor((StripIndexSelection)selection) :
                 selection.Node is SectionNode ? (ISelectableInContentView)FindStrip((SectionNode)selection.Node) :
                 selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) : null;
         }
@@ -1320,9 +1328,9 @@ null;
     /// </summary>
     public interface ISelectableInContentView
     {
-        bool Highlighted { get; set; }            // get or set the highlighted state of the control
-        ObiNode ObiNode { get; }                  // get the Obi node for the control
-        NodeSelection SelectionFromView { set; }  // used by the parent view to set the selection 
+        bool Highlighted { get; set; }                              // get or set the highlighted state of the control
+        ObiNode ObiNode { get; }                                    // get the Obi node for the control
+        void SetSelectionFromContentView(NodeSelection selection);  // set the selection from the parent view
     }
 
 

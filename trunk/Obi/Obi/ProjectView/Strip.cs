@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
@@ -13,10 +10,10 @@ namespace Obi.ProjectView
     {
         private float mAudioScale;           // local audio scale for the strip
         private int mBlockLayoutBaseHeight;  // base height of the block layout (for zooming)
+        private ContentView mContentView;    // parent content view
         private bool mHighlighted;           // highlighted flag (when the section node is selected)
         private Mutex mLabelUpdateThread;    // thread to update labels
         private SectionNode mNode;           // the section node for this strip
-        private ContentView mParentView;     // parent strip view
         private bool mWrap;                  // wrap contents
 
 
@@ -43,12 +40,124 @@ namespace Obi.ProjectView
             if (node == null) throw new Exception("Cannot set a null section node for a strip!");
             mNode = node;
             Label = mNode.Label;
-            mParentView = parent;
-            ZoomFactor = mParentView.ZoomFactor;
-            AudioScale = mParentView.AudioScale;
+            mContentView = parent;
+            ZoomFactor = mContentView.ZoomFactor;
+            AudioScale = mContentView.AudioScale;
             UpdateColors();
             SetAccessibleName();
         }
+
+
+        /// <summary>
+        /// Get or set the audio scale for *this* strip (may differ from the parent's.)
+        /// </summary>
+        public float AudioScale
+        {
+            get { return mAudioScale; }
+            set
+            {
+                if (value > 0.0)
+                {
+                    mAudioScale = value;
+                    foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
+                    ResizeToContentsLength(mBlockLayout.Height);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the content view for the strip.
+        /// </summary>
+        public ContentView ContentView { get { return mContentView; } }
+
+        /// <summary>
+        /// Get the first block in the strip, or null if empty.
+        /// </summary>
+        public Block FirstBlock
+        {
+            get { return mBlockLayout.Controls.Count > 1 ? mBlockLayout.Controls[1] as Block : null; }
+        }
+
+        /// <summary>
+        /// Get or set the highlighted flag for the strip corresponding to the section node being (de)selected.
+        /// </summary>
+        public bool Highlighted
+        {
+            get { return mHighlighted; }
+            set
+            {
+                mHighlighted = value && !(mContentView.Selection is TextSelection);
+                if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
+                UpdateColors();
+                if (mHighlighted) UpdateWaveforms(WaveformWithPriority.STRIP_SELECTED_PRIORITY);
+            }
+        }
+
+        /// <summary>
+        /// Get or set the label of the strip where the title of the section can be edited.
+        /// </summary>
+        public string Label
+        {
+            get { return mLabel.Label; }
+            set
+            {
+                if (value != null && value != "")
+                {
+                    mLabel.Label = value;
+                    SetAccessibleName();
+                }
+                int w = mLabel.MinimumSize.Width + mLabel.Margin.Left + mLabel.Margin.Right;
+                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
+            }
+        }
+
+        /// <summary>
+        /// Get the last block in the strip, or null if empty.
+        /// </summary>
+        public Block LastBlock
+        {
+            get
+            {
+                return mBlockLayout.Controls.Count > 1 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 2] as Block :
+                    null;
+            }
+        }
+
+        /// <summary>
+        /// Get the tab index of the last block in the strip.
+        /// Strip cursors are skipped when tabbing.
+        /// </summary>
+        public int LastTabIndex
+        {
+            get
+            {
+                int last = mBlockLayout.Controls.Count - 2;
+                return last >= 0 ? ((Block)mBlockLayout.Controls[last]).LastTabIndex : TabIndex;
+            }
+        }
+
+        /// <summary>
+        /// Get the section node for this strip.
+        /// </summary>
+        public SectionNode Node { get { return mNode; } }
+
+        /// <summary>
+        /// Get the (generic) node for this strip; used for selection.
+        /// </summary>
+        public ObiNode ObiNode { get { return mNode; } }
+
+        /// <summary>
+        /// Get the current selection for this node (i.e. the strip, its label or an index is selected.)
+        /// </summary>
+        public NodeSelection Selection
+        {
+            get
+            {
+                NodeSelection selection = mContentView == null ? null : mContentView.Selection;
+                return selection == null || selection.Node != mNode ? null : selection;
+            }
+        }
+
 
 
         private delegate Block BlockInvokation(EmptyNode node);
@@ -66,12 +175,12 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (mBlockLayout.Controls.Count == 0) AddCursor(0);
+                if (mBlockLayout.Controls.Count == 0) AddCursorAtBlockLayoutIndex(0);
                 Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
                 mBlockLayout.Controls.Add(block);
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
-                AddCursor(2 + 2 * node.Index);
-                block.SetZoomFactorAndHeight(mParentView.ZoomFactor, mBlockLayout.Height);
+                AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockLayout.Height);
                 block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(block_SizeChanged);
                 UpdateSize();
@@ -80,32 +189,13 @@ namespace Obi.ProjectView
         }
 
         // Add a cursor at the given index (in the context of the block layout.)
-        private void AddCursor(int index)
+        private void AddCursorAtBlockLayoutIndex(int index)
         {
             StripCursor cursor = new StripCursor(this.Node);
             cursor.SetHeight(mBlockLayout.Height);
             cursor.ColorSettings = ColorSettings;
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
-        }
-
-        private void block_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
-
-        /// <summary>
-        /// Set the audio scale for the strip (may differ from the parent's.)
-        /// </summary>
-        public float AudioScale
-        {
-            get { return mAudioScale; }
-            set
-            {
-                if (value > 0.0)
-                {
-                    mAudioScale = value;
-                    foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
-                    ResizeToContentsLength(mBlockLayout.Height);
-                }
-            }
         }
 
         /// <summary>
@@ -137,25 +227,24 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Get the content view for the strip.
-        /// </summary>
-        public ContentView ContentView { get { return mParentView; } }
-
-        /// <summary>
         /// Find the block for the corresponding node inside the strip.
         /// </summary>
         public Block FindBlock(EmptyNode node)
         {
+            // Note: we cannot rely on node.Index because we may want to find the block of a node that was deleted
+            // from the tree, and it does not have an index anymore. So let's just look for it.
             foreach (Control c in mBlockLayout.Controls) if (c is Block && ((Block)c).Node == node) return (Block)c;
             return null;
         }
 
         /// <summary>
-        /// Return the first block in the strip, or null if empty.
+        /// Find the strip cursor at the given index.
         /// </summary>
-        public Block FirstBlock
+        public StripCursor FindStripCursor(int index)
         {
-            get { return mBlockLayout.Controls.Count > 1 ? mBlockLayout.Controls[1] as Block : null; }
+            System.Diagnostics.Debug.Assert(index * 2 < mBlockLayout.Controls.Count, "No strip cursor at index");
+            System.Diagnostics.Debug.Assert(mBlockLayout.Controls[index * 2] is StripCursor);
+            return (StripCursor)mBlockLayout.Controls[index * 2];
         }
 
         /// <summary>
@@ -163,21 +252,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void FocusStripLabel() { mLabel.Focus(); }
 
-        /// <summary>
-        /// Set the highlighted flag for the strip when the node is (de)selected.
-        /// </summary>
-        public bool Highlighted
-        {
-            get { return mHighlighted; }
-            set
-            {
-                mHighlighted = value && !(mParentView.Selection is TextSelection);
-                if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
-                UpdateColors();
-                if (mHighlighted) UpdateWaveforms(WaveformWithPriority.STRIP_SELECTED_PRIORITY);
-            }
-        }
 
+
+
+
+ 
         /// <summary>
         /// Get the strip index after the given (selected) item.
         /// </summary>
@@ -202,70 +281,6 @@ namespace Obi.ProjectView
             return index >= 0 ? index : 0;
         }
 
-
-
-
-
-
-
-
-        /// <summary>
-        /// The label of the strip where the title of the section can be edited.
-        /// </summary>
-        public string Label
-        {
-            get { return mLabel.Label; }
-            set
-            {
-                if (value != null && value != "")
-                {
-                    mLabel.Label = value;
-                    SetAccessibleName();
-                }
-                int w = mLabel.MinimumSize.Width + mLabel.Margin.Left + mLabel.Margin.Right;
-                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
-            }
-        }
-
-        /// <summary>
-        /// Return the last block in the strip, or null if empty.
-        /// </summary>
-        public Block LastBlock
-        {
-            get
-            {
-                return mBlockLayout.Controls.Count > 1 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 2] as Block :
-                    null;
-            }
-        }
-
-        /// <summary>
-        /// Get the tab index of the last control in the strip
-        /// </summary>
-        public int LastTabIndex
-        {
-            get
-            {
-                int last = mBlockLayout.Controls.Count - 2;
-                return last >= 0 ? ((Block)mBlockLayout.Controls[last]).LastTabIndex : TabIndex;
-            }
-        }
-
-        /// <summary>
-        /// Get the section node for this strip.
-        /// </summary>
-        public SectionNode Node { get { return mNode; } }
-
-        /// <summary>
-        /// Get the (generic) node for this strip; used for selection.
-        /// </summary>
-        public ObiNode ObiNode { get { return mNode; } }
-
-        /// <summary>
-        /// Get the strips view to which this strip belongs.
-        /// </summary>
-        public ContentView ParentView { get { return mParentView; } }
-
         /// <summary>
         /// Remove the block for the given node.
         /// Remove the following strip cursor as well
@@ -286,49 +301,17 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Select a block in the strip.
+        /// Set the current selected from the block itself. This gets passed to the content view.
         /// </summary>
-        public Block SelectedBlock { set { mParentView.SelectedNode = value.Node; } }
+        public void SetSelectedBlockFromBlock(Block block) { mContentView.SelectedNode = block.Node; }
 
         /// <summary>
-        /// Select an index in the strip layout.
+        /// Set the selection from a strip cursor to its index. This gets passed to the content view.
         /// </summary>
-        public StripCursor SelectedIndex
+        public void SetSelectedIndexFromStripCursor(StripCursor cursor)
         {
-            set
-            {
-                int index = mBlockLayout.Controls.IndexOf(value) / 2;
-                mParentView.SelectionFromStrip = new StripIndexSelection(Node, mParentView, index);
-            }
-        }
-
-        /// <summary>
-        /// Get the current selection, if this node is concerned.
-        /// </summary>
-        public NodeSelection Selection
-        {
-            get
-            {
-                NodeSelection selection = mParentView == null ? null : mParentView.Selection;
-                return selection == null || selection.Node != mNode ? null : selection;
-            }
-        }
-
-        /// <summary>
-        /// Set the selection from the parent view
-        /// </summary>
-        public NodeSelection SelectionFromView
-        {
-            set
-            {
-                SetAccessibleName();
-                if (value is StripIndexSelection)
-                {
-                    ((StripCursor)mBlockLayout.Controls[((StripIndexSelection)value).Index * 2]).Highlighted = true;
-                }
-                Highlighted = !(value is StripIndexSelection) && value != null;
-                mBlockLayout.Invalidate();
-            }
+            int index = mBlockLayout.Controls.IndexOf(cursor) / 2;
+            mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);
         }
 
         /// <summary>
@@ -336,8 +319,23 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectTimeInBlock(Block block, AudioRange audioRange)
         {
-            mParentView.SelectionFromStrip = new AudioSelection((PhraseNode)block.Node, mParentView, audioRange);
+            mContentView.SelectionFromStrip = new AudioSelection((PhraseNode)block.Node, mContentView, audioRange);
         }
+
+
+        /// <summary>
+        /// Set the selection from the parent control view. (From ISelectableInContentView)
+        /// </summary>
+        public void SetSelectionFromContentView(NodeSelection selection)
+        {
+            SetAccessibleName();
+            /*if (selection is StripIndexSelection)
+            {
+                ((StripCursor)mBlockLayout.Controls[((StripIndexSelection)selection).Index * 2]).Highlighted = true;
+            }*/
+            Highlighted = !(selection is StripIndexSelection) && selection != null;
+        }
+
 
         /// <summary>
         /// Start renaming the strip.
@@ -345,7 +343,7 @@ namespace Obi.ProjectView
         public void StartRenaming()
         {
             mLabel.Editable = true;
-            mParentView.SelectionFromStrip = new TextSelection(mNode, mParentView, Label);
+            mContentView.SelectionFromStrip = new TextSelection(mNode, mContentView, Label);
             SetAccessibleName();
         }
 
@@ -354,12 +352,12 @@ namespace Obi.ProjectView
         /// </summary>
         public void UnselectInStrip()
         {
-            mParentView.Selection = null;
+            mContentView.Selection = null;
         }
 
         public ColorSettings ColorSettings
         {
-            get { return mParentView == null ? null : mParentView.ColorSettings; }
+            get { return mContentView == null ? null : mContentView.ColorSettings; }
             set { UpdateColors(value); }
         }
 
@@ -413,11 +411,11 @@ namespace Obi.ProjectView
                 UpdateSize();
                 if (mWrap)
                 {
-                    mParentView.SizeChanged += new EventHandler(mParentView_SizeChanged);
+                    mContentView.SizeChanged += new EventHandler(mParentView_SizeChanged);
                 }
                 else
                 {
-                    mParentView.SizeChanged -= new EventHandler(mParentView_SizeChanged);
+                    mContentView.SizeChanged -= new EventHandler(mParentView_SizeChanged);
                 }
             }
         }
@@ -461,6 +459,10 @@ namespace Obi.ProjectView
         // Resize when the parent size changes; only when wrapping strips.
         private void mParentView_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
 
+        // Resize when a block size has changed.
+        private void block_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
+
+
 
         #region ISearchable Members
 
@@ -475,7 +477,7 @@ namespace Obi.ProjectView
         private void AddContentsViewLabel()
         {
             SetAccessibleName();
-            if (mParentView.IsEnteringView)
+            if (mContentView.IsEnteringView)
             {
                 mLabel.AccessibleName = string.Format("{0} {1}", Localizer.Message("content_view"), mLabel.AccessibleName);
                 Thread TrimAccessibleName = new Thread(new ThreadStart(TrimContentsViewAccessibleLabel));
@@ -483,13 +485,14 @@ namespace Obi.ProjectView
             }
         }
 
+        // Change the selection depending on the editable state of the label.
         private void Label_EditableChanged(object sender, EventArgs e)
         {
-            if (mParentView != null)
+            if (mContentView != null)
             {
-                mParentView.SelectionFromStrip = mLabel.Editable ?
-                    new TextSelection(mNode, mParentView, mLabel.Label) :
-                    new NodeSelection(mNode, mParentView);
+                mContentView.SelectionFromStrip = mLabel.Editable ?
+                    new TextSelection(mNode, mContentView, mLabel.Label) :
+                    new NodeSelection(mNode, mContentView);
             }
         }
 
@@ -499,8 +502,8 @@ namespace Obi.ProjectView
             if (mLabel.Label != "")
             {
                 // update the label for the node
-                mParentView.RenameStrip(this);
-                mParentView.SelectionFromStrip = new NodeSelection(mNode, mParentView);
+                mContentView.RenameStrip(this);
+                mContentView.SelectionFromStrip = new NodeSelection(mNode, mContentView);
             }
             else
             {
@@ -543,10 +546,10 @@ namespace Obi.ProjectView
             AddContentsViewLabel();
              mLabel.Focus();
 
-            if ((mParentView.SelectedSection != mNode || mParentView.Selection is StripIndexSelection) &&
-                !mParentView.Focusing)
+            if ((mContentView.SelectedSection != mNode || mContentView.Selection is StripIndexSelection) &&
+                !mContentView.Focusing)
             {
-                mParentView.SelectedNode = mNode;
+                mContentView.SelectedNode = mNode;
                             }
         }
 
@@ -562,8 +565,8 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
-                MinimumSize = new Size(ParentView.Width, MinimumSize.Height);
-                Width = ParentView.Width;
+                MinimumSize = new Size(mContentView.Width, MinimumSize.Height);
+                Width = mContentView.Width;
                 mBlockLayout.AutoSize = true;
                 mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 mBlockLayout.WrapContents = true;
@@ -612,7 +615,7 @@ namespace Obi.ProjectView
             {
                 if (c is AudioBlock)
                 {
-                    mParentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform, priority));
+                    mContentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform, priority));
                 }
             }
         }

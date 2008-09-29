@@ -89,7 +89,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the selection from the parent view
         /// </summary>
-        public virtual NodeSelection SelectionFromView { set { Highlighted = value != null; } }
+        public virtual void SetSelectionFromContentView(NodeSelection selection) { Highlighted = selection != null; }
 
         /// <summary>
         /// Get the strip that contains this block.
@@ -195,12 +195,12 @@ namespace Obi.ProjectView
 
 
         // Select/deselect on click
-        private void Block_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
+        private void Block_Click(object sender, EventArgs e) { Strip.SetSelectedBlockFromBlock(this); }
 
         // Select on tabbing
         protected void Block_Enter(object sender, EventArgs e)
         {
-            if (!Strip.ParentView.Focusing) { Strip.SelectedBlock = this; }
+            if (!Strip.ContentView.Focusing) { Strip.SetSelectedBlockFromBlock(this); }
         }
 
         // Update label when the page number changes

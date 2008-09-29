@@ -90,13 +90,10 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the selection from the parent view
         /// </summary>
-        public override NodeSelection SelectionFromView
+        public override void SetSelectionFromContentView(NodeSelection selection)
         {
-            set
-            {
-                if (value != null) mWaveform.Selection = value is AudioSelection ? ((AudioSelection)value).AudioRange : null;
-                base.SelectionFromView = value;
-            }
+            if (selection != null) mWaveform.Selection = selection is AudioSelection ? ((AudioSelection)selection).AudioRange : null;
+            base.SetSelectionFromContentView(selection);
         }
 
         public override Color BackColor
