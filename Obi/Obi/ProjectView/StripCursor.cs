@@ -62,14 +62,11 @@ namespace Obi.ProjectView
 
         public ObiNode ObiNode { get { return mSection; } }
 
-        public NodeSelection SelectionFromView
-        {
-            set { throw new Exception("The method or operation is not implemented."); }
-        }
+        public void SetSelectionFromContentView(NodeSelection selection) { Highlighted = selection != null; }
 
         #endregion
 
-        private static readonly double HeightToWidthRatio = 12.0;
+        private static readonly double HeightToWidthRatio = 10.0;
 
         public void SetHeight(int h)
         {
@@ -86,7 +83,7 @@ namespace Obi.ProjectView
             }
         }
 
-        private void StripCursor_Click(object sender, EventArgs e) { Strip.SelectedIndex = this; }
-        private void StripCursor_Enter(object sender, EventArgs e) { Strip.SelectedIndex = this; }
+        private void StripCursor_Click(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
+        private void StripCursor_Enter(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
     }
 }
