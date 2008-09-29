@@ -1475,28 +1475,35 @@ namespace Obi.ProjectView
         {
             if (!IsRecorderActive)
             {
-                if ((mState == State.Paused || mState == State.Playing) && !useSelection)
-                {
-                    if (m_IsPreviewing)
-                    {
-                        PostPreviewRestore();
-                                                                    }
+                            if ((mState == State.Paused || mState == State.Playing) && !useSelection)
+                                {
+                                if (m_IsPreviewing)
+                                    {
+                                    PostPreviewRestore();
+                                    }
 
                     // use the audio cursor
                     if (mState == State.Playing) Pause();
+
+                    if (mCurrentPlaylist.CanNavigateNextPhrase)
+                        {
+                        double time = mCurrentPlaylist.CurrentTimeInAsset;
+                        mCurrentPlaylist.Stop ();
+                        CreateLocalPlaylistForPreview ();                    
+                        mCurrentPlaylist.CurrentTimeInAsset = time;
+                        }
+                    
                     PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (from ? 0.0 : mPreviewDuration),
                         mPreviewDuration, from);
                     return true;
                 }
                 else if (mView.Selection is AudioSelection)
                 {
-                    if ( !mCurrentPlaylist.ContainsPhrase ((PhraseNode)mView.Selection.Node ))
-                        {
-                            //System.Media.SystemSounds.Asterisk.Play ();
-                            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection );
-                            SetPlaylistEvents ( mLocalPlaylist );
-                            mCurrentPlaylist = mLocalPlaylist;
-                        }
+                                    if ( !mCurrentPlaylist.ContainsPhrase ((PhraseNode)mView.Selection.Node ) )
+                                                {
+                                                //System.Media.SystemSounds.Asterisk.Play ();
+                                                CreateLocalPlaylistForPreview ();
+                                                }
                     AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
@@ -1507,6 +1514,13 @@ namespace Obi.ProjectView
             return false;
         }
 
+        private void CreateLocalPlaylistForPreview ()
+            {
+            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection );
+            SetPlaylistEvents ( mLocalPlaylist );
+            mCurrentPlaylist = mLocalPlaylist;
+            }
+
 
         /// <summary>
         /// Preview the audio selection.
@@ -1515,7 +1529,13 @@ namespace Obi.ProjectView
         {
             if (CanPreviewAudioSelection)
             {
-                AudioSelection s = (AudioSelection)mView.Selection;
+                            AudioSelection s = (AudioSelection)mView.Selection;
+                            if (mCurrentPlaylist.CanNavigateNextPhrase)
+                                {
+                                mCurrentPlaylist.Stop ();
+                                CreateLocalPlaylistForPreview ();
+                                }
+
                 if (mState == State.Playing) Pause();
                 PlayPreview((PhraseNode)s.Node, s.AudioRange.SelectionBeginTime,
                     s.AudioRange.SelectionEndTime - s.AudioRange.SelectionBeginTime, true);
