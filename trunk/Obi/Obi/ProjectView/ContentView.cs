@@ -485,7 +485,7 @@ namespace Obi.ProjectView
                 foreach (Control c in Controls)
                 {
                     Strip strip = c as Strip;
-                    if (strip != null) strip.Wrap = mWrapStrips;
+                    if (strip != null) strip.WrapContents = mWrapStrips;
                 }
             }
         }
@@ -533,7 +533,7 @@ namespace Obi.ProjectView
             if (node is SectionNode)
             {
                 strip = new Strip((SectionNode)node, this);
-                strip.Wrap = mWrapStrips;
+                strip.WrapContents = mWrapStrips;
                 strip.ColorSettings = ColorSettings;
                 Controls.Add(strip);
                 SetFlowBreak(strip, true);

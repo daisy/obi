@@ -32,7 +32,7 @@ namespace Obi.ProjectView
         public void SetCursorTime(double time)
         {
             mWaveform.CursorTime = time;
-            Strip.SelectTimeInBlock(this, mWaveform.Selection);
+            Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
         }
 
 
@@ -151,7 +151,7 @@ namespace Obi.ProjectView
         // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
         {
-            if (CanSelectInWaveform) Strip.SelectTimeInBlock(this, mWaveform.Selection);
+            if (CanSelectInWaveform) Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
         }
 
         // Track down the shift key for selection
@@ -164,7 +164,7 @@ namespace Obi.ProjectView
             if (CanSelectInWaveform)
             {
                 mWaveform.Selection = new AudioRange(0.0, ((PhraseNode)mNode).Audio.getDuration().getTimeDeltaAsMillisecondFloat());
-                Strip.SelectTimeInBlock(this, mWaveform.Selection);
+                Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }
 
@@ -199,7 +199,7 @@ namespace Obi.ProjectView
                 {
                     mWaveform.SelectionPointPosition = e.X;
                 }
-                Strip.SelectTimeInBlock(this, mWaveform.Selection);
+                Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }
 
@@ -208,7 +208,7 @@ namespace Obi.ProjectView
         {
             if (e.Button == MouseButtons.Left && CanSelectInWaveform)
             {
-                if (e.X < 0 || e.X > mWaveform.Width) Strip.SelectTimeInBlock(this, mWaveform.Selection);
+                if (e.X < 0 || e.X > mWaveform.Width) Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }    
 
@@ -219,7 +219,7 @@ namespace Obi.ProjectView
         }
 
 
-        public void SelectAtCurrentTime() { Strip.SelectTimeInBlock(this, mWaveform.Selection); }
+        public void SelectAtCurrentTime() { Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection); }
 
         public void InitCursor() { mWaveform.InitCursor(); }
         public void ClearCursor() { mWaveform.ClearCursor(); }
