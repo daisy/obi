@@ -48,7 +48,16 @@ namespace Obi.Dialogs
         /// <summary>
         /// Get the role chosen from the drop-down menu.
         /// </summary>
-        public EmptyNode.Kind Role { get { return ((LocalizedRole)m_comboPhraseRole.SelectedItem).Role; } }
+        public EmptyNode.Kind Role 
+            { 
+                        get 
+                        {
+                            if (m_comboPhraseRole.SelectedItem != null)
+                                return ((LocalizedRole)m_comboPhraseRole.SelectedItem).Role;
+                            else
+                                return mNode.NodeKind ;
+                        } 
+                    }
 
         /// <summary>
         /// Get the TODO flag from the checkbox.
