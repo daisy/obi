@@ -885,7 +885,7 @@ namespace Obi.ProjectView
                 {
                     SetupRecording(Recording);
                                     }
-                else
+                else if ( !IsRecorderActive ) 
                 {
                     SetupRecording(Monitoring);
                     // PrepareForRecording(false, null);
