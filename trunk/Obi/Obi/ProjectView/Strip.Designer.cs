@@ -28,19 +28,18 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            this.mBlockLayout = new Obi.ProjectView.BlockLayout();
+            this.mBlockLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.mLabel = new Obi.ProjectView.EditableLabel();
             this.SuspendLayout();
             // 
             // mBlockLayout
             // 
-            this.mBlockLayout.BackColor = System.Drawing.Color.Cyan;
-            this.mBlockLayout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mBlockLayout.Location = new System.Drawing.Point(3, 81);
+            this.mBlockLayout.BackColor = System.Drawing.Color.GreenYellow;
+            this.mBlockLayout.Location = new System.Drawing.Point(3, 78);
+            this.mBlockLayout.Margin = new System.Windows.Forms.Padding(3, 0, 3, 2);
             this.mBlockLayout.Name = "mBlockLayout";
-            this.mBlockLayout.Size = new System.Drawing.Size(303, 104);
+            this.mBlockLayout.Size = new System.Drawing.Size(303, 109);
             this.mBlockLayout.TabIndex = 1;
-            this.mBlockLayout.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mBlockLayout_MouseClick);
             // 
             // mLabel
             // 
@@ -52,6 +51,7 @@ namespace Obi.ProjectView
             this.mLabel.Name = "mLabel";
             this.mLabel.Size = new System.Drawing.Size(184, 72);
             this.mLabel.TabIndex = 0;
+            this.mLabel.Tag = "";
             this.mLabel.Click += new System.EventHandler(this.Strip_Enter);
             this.mLabel.Enter += new System.EventHandler(this.Strip_Enter);
             this.mLabel.LabelEditedByUser += new System.EventHandler(this.Label_LabelEditedByUser);
@@ -79,7 +79,7 @@ namespace Obi.ProjectView
         #endregion
 
         private EditableLabel mLabel;
-        private BlockLayout mBlockLayout;
+        private System.Windows.Forms.FlowLayoutPanel mBlockLayout;
 
 
 

@@ -55,12 +55,11 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.Name = "Block";
             this.Size = new System.Drawing.Size(104, 104);
             this.Click += new System.EventHandler(this.Block_Click);
             this.Enter += new System.EventHandler(this.Block_Enter);
-            this.SizeChanged += new System.EventHandler(this.Block_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

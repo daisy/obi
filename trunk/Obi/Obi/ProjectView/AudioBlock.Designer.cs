@@ -56,7 +56,6 @@ namespace Obi.ProjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.Controls.Add(this.mWaveform);
-            this.Margin = new System.Windows.Forms.Padding(11, 0, 11, 0);
             this.Name = "AudioBlock";
             this.Size = new System.Drawing.Size(139, 128);
             this.Controls.SetChildIndex(this.mWaveform, 0);

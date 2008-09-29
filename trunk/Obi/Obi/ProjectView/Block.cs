@@ -10,13 +10,11 @@ namespace Obi.ProjectView
 {
     public partial class Block : UserControl, ISelectableInContentViewWithColors, ISearchable
     {
-        protected EmptyNode mNode;                 // the corresponding node
-        private bool mHighlighted;                 // selected flag
-        private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip!
-
-        private int mBaseSpacing;
-        private int mBaseHeight;
-        private float mBaseFontSize;
+        private int mBaseHeight;                                      // base height for scaling
+        private float mBaseFontSize;                                  // base font size for scaling
+        private bool mHighlighted;                                    // if true show as highlighted
+        protected EmptyNode mNode;                                    // the corresponding node
+        private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip (in the future)
 
 
         // Used by the designer
@@ -35,25 +33,30 @@ namespace Obi.ProjectView
             node.ChangedTo_DoStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTo_DoStatus);
             UpdateColors();
             UpdateLabel();
-            mBaseSpacing = Margin.Left;
             mBaseHeight = Height;
             mBaseFontSize = mLabel.Font.SizeInPoints;
         }
 
 
+        /// <summary>
+        /// Get or set the color settings. Set from the strip/parent container, get from the waveform.
+        /// </summary>
         public ColorSettings ColorSettings
         {
             get { return mParentContainer == null ? null : mParentContainer.ColorSettings; }
             set { UpdateColors(value); }
         }
 
+        /// <summary>
+        /// Get the current content view.
+        /// </summary>
         public ContentView ContentView
         {
             get { return mParentContainer == null ? null : mParentContainer.ContentView; }
         }
 
         /// <summary>
-        /// Set the selected flag for the block.
+        /// Get or set the highlighted flag for the block.
         /// </summary>
         public virtual bool Highlighted
         {
@@ -74,12 +77,12 @@ namespace Obi.ProjectView
         public int LastTabIndex { get { return TabIndex; } }
 
         /// <summary>
-        /// The empty node for this block.
+        /// Get the empty node for this block.
         /// </summary>
         public EmptyNode Node { get { return mNode; } }
 
         /// <summary>
-        /// The Obi node for this block.
+        /// Get the Obi node for this block.
         /// </summary>
         public ObiNode ObiNode { get { return mNode; } }
 
@@ -89,18 +92,35 @@ namespace Obi.ProjectView
         public virtual NodeSelection SelectionFromView { set { Highlighted = value != null; } }
 
         /// <summary>
-        /// The strip that contains this block.
+        /// Get the strip that contains this block.
         /// </summary>
         public Strip Strip
         {
             get { return mParentContainer is Strip ? (Strip)mParentContainer : ((Block)mParentContainer).Strip; }
         }
 
+
         /// <summary>
-        /// Update the colors of the block when the state of its node has changed.
+        /// Set the zoom factor and the height.
+        /// We cheat for the height so that it fits exactly in the parent container.
+        /// </summary>
+        public virtual void SetZoomFactorAndHeight(float zoom, int height)
+        {
+            if (zoom > 0.0f)
+            {
+                mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+                Size = new Size(LabelFullWidth, height - Margin.Vertical);
+            }
+        }
+
+        /// <summary>
+        /// Update the colors of the block when the state of its node has changed using the current color settings.
         /// </summary>
         public void UpdateColors() { UpdateColors(ColorSettings); }
 
+        /// <summary>
+        /// Update the colors with new color settings.
+        /// </summary>
         public virtual void UpdateColors(ColorSettings settings)
         {
             if (mNode != null && settings != null)
@@ -128,55 +148,11 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Update the tab index of the block with the new value and return the next index.
-        /// </summary>
-        public int UpdateTabIndex(int index)
-        {
-            TabIndex = index;
-            return index + 1;
-        }
-
-        /// <summary>
-        /// Set the zoom factor and the height.
-        /// We cheat for the height so that it fits exactly in the parent container.
-        /// </summary>
-        public virtual void SetZoomFactorAndHeight(float zoom, int height)
-        {
-            if (zoom > 0.0f)
-            {
-                mLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
-                int margin = (int)Math.Round(zoom * mBaseSpacing);
-                Margin = new Padding(margin, 0, margin, 0);
-                Size = new Size(LabelFullWidth, height);
-            }
-        }
-
-
-        #region ISearchable Members
-
-        public string ToMatch()
-        {
-            return mLabel.Text.ToLowerInvariant();
-        }
-
-        #endregion
-
-
-        // Width of the label (including margins)
-        protected int LabelFullWidth { get { return mLabel.Width + mLabel.Margin.Horizontal; } }
-
-        // Generate the label string for this block.
-        // Since there is no content, the width is always that of the label's.
-        public virtual void UpdateLabel()
-        {
-            UpdateLabelsText();
-            Size = new Size(LabelFullWidth, Height);
-        }
-
-
         private delegate void UpdateLabelsTextDelegate();
 
+        /// <summary>
+        /// Update label and tooltips.
+        /// </summary>
         public virtual void UpdateLabelsText()
         {
             if (InvokeRequired)
@@ -193,16 +169,38 @@ namespace Obi.ProjectView
             }
         }
 
+
+        #region ISearchable Members
+
+        /// <summary>
+        /// Return the string to be matched, which is the one displayed by
+        /// the label (including role and duration.)
+        /// </summary>
+        public string ToMatch() { return mLabel.Text.ToLowerInvariant(); }
+
+        #endregion
+
+
+        // Width of the label (including margins)
+        protected int LabelFullWidth { get { return mLabel.Width + mLabel.Margin.Horizontal; } }
+
+        /// <summary>
+        /// Update the tab index of the block with the new value and return the next index.
+        /// </summary>
+        public int UpdateTabIndex(int index)
+        {
+            TabIndex = index;
+            return index + 1;
+        }
+
+
         // Select/deselect on click
         private void Block_Click(object sender, EventArgs e) { Strip.SelectedBlock = this; }
 
         // Select on tabbing
         protected void Block_Enter(object sender, EventArgs e)
         {
-            if (!Strip.ParentView.Focusing)
-            {
-                Strip.SelectedBlock = this;
-            }
+            if (!Strip.ParentView.Focusing) { Strip.SelectedBlock = this; }
         }
 
         // Update label when the page number changes
@@ -214,9 +212,10 @@ namespace Obi.ProjectView
         // update label when to do status changes
         private void Node_ChangedTo_DoStatus(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
 
-        private void Block_SizeChanged(object sender, EventArgs e)
+        protected virtual void UpdateLabel()
         {
-
+            UpdateLabelsText();
+            Size = new Size(LabelFullWidth, Height);
         }
     }
 }
