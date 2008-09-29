@@ -78,7 +78,8 @@ namespace Obi.ProjectView
         {
             set 
             {
-                BackColor = value.StripBackColor;
+                BackColor = Color.Magenta;
+                // BackColor = value.StripBackColor;
                 if (Highlighted) Invalidate();
             }
         }
