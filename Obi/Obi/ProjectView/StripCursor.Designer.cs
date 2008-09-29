@@ -1,6 +1,6 @@
 namespace Obi.ProjectView
 {
-    partial class BlockLayout
+    partial class StripCursor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,16 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // StripCursor
+            // 
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.Click += new System.EventHandler(this.StripCursor_Click);
+            this.Enter += new System.EventHandler(this.StripCursor_Enter);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -700,7 +700,6 @@ namespace Obi.ProjectView
             get { return mSelection; }
             set
             {
-                System.Diagnostics.Debug.Print("Selection: `{0}' >>> `{1}'", mSelection, value);
                 // Selection is disabled when the transport bar is active.
                 if (mSelection != value)
                 {

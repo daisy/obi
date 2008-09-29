@@ -124,7 +124,7 @@ namespace Obi.ProjectView
         }
 
         // Update label and waveform when there is new information to display.
-        public override void UpdateLabel()
+        protected override void UpdateLabel()
         {
             UpdateLabelsText();
         }

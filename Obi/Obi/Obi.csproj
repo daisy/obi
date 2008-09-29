@@ -336,6 +336,12 @@
     <Compile Include="ProjectView\ContentView.Designer.cs">
       <DependentUpon>ContentView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\StripCursor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectView\StripCursor.Designer.cs">
+      <DependentUpon>StripCursor.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\TOCView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -371,12 +377,6 @@
     </Compile>
     <Compile Include="ProjectView\Strip.Designer.cs">
       <DependentUpon>Strip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectView\BlockLayout.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectView\BlockLayout.Designer.cs">
-      <DependentUpon>BlockLayout.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\TransportBar.cs">
       <SubType>UserControl</SubType>
@@ -632,6 +632,10 @@
     <EmbeddedResource Include="ProjectView\FindInText.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FindInText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\StripCursor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StripCursor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\TOCView.resx">
       <SubType>Designer</SubType>
