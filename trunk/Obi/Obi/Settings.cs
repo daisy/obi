@@ -45,7 +45,7 @@ namespace Obi
         public int SampleRate;                 // sample rate in Hertz
         public bool SynchronizeViews;          // keep views synchronized
         public UserProfile UserProfile;        // the user profile
-        public bool WrapStrips;                // wrapping in content view
+        public bool WrapStripContents;         // wrap strip contents in the content view
         public float ZoomFactor;               // global zoom factor
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
@@ -86,7 +86,7 @@ namespace Obi
             settings.SampleRate = 44100;
             settings.SynchronizeViews = true;
             settings.UserProfile = new UserProfile();
-            settings.WrapStrips = false;
+            settings.WrapStripContents = false;
             settings.ZoomFactor = 1.0f;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try

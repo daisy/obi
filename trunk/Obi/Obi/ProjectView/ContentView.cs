@@ -18,7 +18,7 @@ namespace Obi.ProjectView
         private NodeSelection mSelection;                            // current selection
         private ISelectableInContentView mSelectedItem;              // the actual item for the selection
         private Dictionary<Keys, ProjectView.HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
-        private bool mWrapStrips;                                    // wrapping of strips
+        private bool mWrapStripContents;                             // wrapping of strip contents
         private bool mIsEnteringView;                                // flag set when entering the  view
 
         private PriorityQueue<WaveformWithPriority> mWaveformRenderQ;  // queue of waveforms to render
@@ -45,7 +45,7 @@ namespace Obi.ProjectView
             mSelection = null;
             mFocusing = false;
             mIsEnteringView = false;
-            mWrapStrips = false;
+            mWrapStripContents = false;
             mWaveformRenderQ = new PriorityQueue<WaveformWithPriority>();
             mWaveformRenderWorker = null;
         }
@@ -477,15 +477,15 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the flag to wrap contents inside a strip.
         /// </summary>
-        public bool WrapStrips
+        public bool WrapStripContents
         {
             set
             {
-                mWrapStrips = value;
+                mWrapStripContents = value;
                 foreach (Control c in Controls)
                 {
                     Strip strip = c as Strip;
-                    if (strip != null) strip.WrapContents = mWrapStrips;
+                    if (strip != null) strip.WrapContents = mWrapStripContents;
                 }
             }
         }
@@ -533,7 +533,7 @@ namespace Obi.ProjectView
             if (node is SectionNode)
             {
                 strip = new Strip((SectionNode)node, this);
-                strip.WrapContents = mWrapStrips;
+                strip.WrapContents = mWrapStripContents;
                 strip.ColorSettings = ColorSettings;
                 Controls.Add(strip);
                 SetFlowBreak(strip, true);
