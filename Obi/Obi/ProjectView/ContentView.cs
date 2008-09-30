@@ -869,7 +869,7 @@ namespace Obi.ProjectView
         private Strip StripFor(ISelectableInContentView item)
         {
             return item is Strip ? (Strip)item :
-                   //item is StripCursor ? ((StripCursor)item).Strip :
+                   item is StripCursor ? ((StripCursor)item).Strip :
                    item is Block ? ((Block)item).Strip : null;
         }
 
@@ -894,14 +894,12 @@ namespace Obi.ProjectView
 
         private bool SelectStripCursorFor(SelectStripCursorFunction f)
         {
-            System.Diagnostics.Debug.Print("SelectStripCursorFor {0} ...", mSelectedItem);
             Strip strip = StripFor(mSelectedItem);
             if (strip != null)
             {
                 int index = f(strip, mSelectedItem);
                 if (index >= 0)
                 {
-                    System.Diagnostics.Debug.Print("  ... got index {0}", index);
                     mView.Selection = new StripIndexSelection(strip.Node, this, index);
                     return true;
                 }

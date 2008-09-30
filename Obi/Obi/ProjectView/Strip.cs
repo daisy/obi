@@ -247,7 +247,8 @@ namespace Obi.ProjectView
             int count = mBlockLayout.Controls.Count;
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index : 0 :
-                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 2 : count;
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 2 :
+                item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
             return index < count ? (Block)mBlockLayout.Controls[index] : null;
         }
 
@@ -261,7 +262,8 @@ namespace Obi.ProjectView
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
                     mBlockLayout.Controls.Count - 2 :
-                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 2 : 0;
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) - 2 :
+                item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) - 1 : -1;
             return index >= 0 ? (Block)mBlockLayout.Controls[index] : null;
         }
 
@@ -356,10 +358,11 @@ namespace Obi.ProjectView
         /// </summary>
         public int StripIndexAfter(ISelectableInContentView item)
         {
-            int lastIndex = Node.PhraseChildCount + 1;
+            int lastIndex = Node.PhraseChildCount;
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
-                item is Block ? (mBlockLayout.Controls.IndexOf((Control)item) + 1) / 2 : lastIndex;
+                item is Block ? (mBlockLayout.Controls.IndexOf((Control)item) + 1) / 2 :
+                item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) / 2 + 1 : lastIndex + 1;
             return index <= lastIndex ? index : lastIndex;
         }
 
@@ -371,7 +374,8 @@ namespace Obi.ProjectView
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
                     mBlockLayout.Controls.Count :
-                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) / 2 - 1 : 0;
+                item is Block ? mBlockLayout.Controls.IndexOf((Control)item) / 2 :
+                item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) / 2 - 1 : -1;
             return index >= 0 ? index : 0;
         }
 

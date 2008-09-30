@@ -24,7 +24,7 @@ namespace Obi.ProjectView
             mSection = section;
         }
 
-        private Strip Strip
+        public Strip Strip
         {
             get { return Parent == null ? null : Parent.Parent as Strip; }
         }
@@ -85,6 +85,5 @@ namespace Obi.ProjectView
         }
 
         private void StripCursor_Click(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
-        private void StripCursor_Enter(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
     }
 }
