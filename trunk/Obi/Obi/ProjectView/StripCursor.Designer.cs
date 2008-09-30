@@ -35,7 +35,6 @@ namespace Obi.ProjectView
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.Click += new System.EventHandler(this.StripCursor_Click);
-            this.Enter += new System.EventHandler(this.StripCursor_Enter);
             this.ResumeLayout(false);
 
         }
