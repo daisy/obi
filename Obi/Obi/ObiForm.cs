@@ -111,17 +111,17 @@ namespace Obi
             }
         }
 
-        // Set wrapping strips
-        private bool WrapStrips
+        // Set content wrapping in strips
+        private bool WrapStripContents
         {
             set
             {
-                // Temporarily disabled
-                mSettings.WrapStrips = false;
-                mProjectView.WrapStrips = false;
-                // mSettings.WrapStrips = value;
-                // mWrappingInContentViewToolStripMenuItem.Checked = value;
-                // mProjectView.WrapStrips = value;
+                // Switch comments to disable
+                // mSettings.WrapStrips = false;
+                // mProjectView.WrapStrips = false;
+                mSettings.WrapStripContents = value;
+                mWrappingInContentViewToolStripMenuItem.Checked = value;
+                mProjectView.WrapStripContents = value;
             }
         }
 
@@ -718,7 +718,7 @@ namespace Obi
         // Check/uncheck "Wrapping in content view"
         private void mWrappingInContentViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            WrapStrips = mWrappingInContentViewToolStripMenuItem.Checked;
+            WrapStripContents = mWrappingInContentViewToolStripMenuItem.Checked;
         }
 
         private void mShowSourceToolStripMenuItem_Click(object sender, EventArgs e) { ShowSource(); }
@@ -1636,7 +1636,7 @@ namespace Obi
             }
             // Synchronize views
             SynchronizeViews = mSettings.SynchronizeViews;
-            WrapStrips = mSettings.WrapStrips;
+            WrapStripContents = mSettings.WrapStripContents;
             // Transport bar settings
             mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
             mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;

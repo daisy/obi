@@ -10,6 +10,7 @@ namespace Obi.ProjectView
     {
         private float mAudioScale;           // local audio scale for the strip
         private int mBlockLayoutBaseHeight;  // base height of the block layout (for zooming)
+        private int mBlockHeight;            // height of a single line of the block layout
         private ContentView mContentView;    // parent content view
         private bool mHighlighted;           // highlighted flag (when the section node is selected)
         private Mutex mLabelUpdateThread;    // thread to update labels
@@ -24,6 +25,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             mBlockLayoutBaseHeight = mBlockLayout.Height;
+            mBlockHeight = 0;
             mLabel.Editable = false;
             mNode = null;
             Highlighted = false;
@@ -41,6 +43,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mContentView = parent;
+            mContentView.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { Resize_View(); });
             ZoomFactor = mContentView.ZoomFactor;
             AudioScale = mContentView.AudioScale;
             UpdateColors();
@@ -60,7 +63,7 @@ namespace Obi.ProjectView
                 {
                     mAudioScale = value;
                     foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
-                    ResizeToContentsLength(mBlockLayout.Height);
+                    Resize_Blocks();
                 }
             }
         }
@@ -115,8 +118,7 @@ namespace Obi.ProjectView
                     mLabel.Label = value;
                     SetAccessibleName();
                 }
-                int w = mLabel.MinimumSize.Width + mLabel.Margin.Left + mLabel.Margin.Right;
-                if (w > MinimumSize.Width) MinimumSize = new Size(w, MinimumSize.Height);
+                Resize_Label();
             }
         }
 
@@ -175,15 +177,7 @@ namespace Obi.ProjectView
             set
             {
                 mWrap = value;
-                UpdateSize();
-                if (mWrap)
-                {
-                    mContentView.SizeChanged += new EventHandler(ContentView_SizeChanged);
-                }
-                else
-                {
-                    mContentView.SizeChanged -= new EventHandler(ContentView_SizeChanged);
-                }
+                Resize_Wrap();
             }
         }
 
@@ -197,19 +191,19 @@ namespace Obi.ProjectView
                 if (value > 0.0f)
                 {
                     mLabel.ZoomFactor = value;
-                    int h = (int)Math.Round(value * mBlockLayoutBaseHeight);
+                    mBlockHeight = (int)Math.Round(value * mBlockLayoutBaseHeight);
                     foreach (Control c in mBlockLayout.Controls)
                     {
                         if (c is Block)
                         {
-                            ((Block)c).SetZoomFactorAndHeight(value, h);
+                            ((Block)c).SetZoomFactorAndHeight(value, mBlockHeight);
                         }
                         else if (c is StripCursor)
                         {
-                            ((StripCursor)c).SetHeight(h);
+                            ((StripCursor)c).SetHeight(mBlockHeight);
                         }
                     }
-                    ResizeToContentsLength(h);
+                    Resize_Zoom();
                 }
             }
         }
@@ -238,7 +232,7 @@ namespace Obi.ProjectView
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockLayout.Height);
                 block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
-                UpdateSize();
+                Resize_Blocks();
                 return block;
             }
         }
@@ -312,7 +306,7 @@ namespace Obi.ProjectView
                 mBlockLayout.Controls.RemoveAt(index);
                 if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
                 block.SizeChanged -= new EventHandler(Block_SizeChanged);
-                UpdateSize();
+                Resize_Blocks();
             }
         }
 
@@ -469,23 +463,75 @@ namespace Obi.ProjectView
             mBlockLayout.Controls.SetChildIndex(cursor, index);
         }
 
-        // Resize the strip so that it fits both its label and its block layout.
-        // h is the target height of the block layout.
-        private void ResizeToContentsLength(int h)
+        private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
+        private int BorderWidth { get { return Bounds.Width - ClientSize.Width; } }
+
+        // Blocks are added, removed, or their width has changed after the audio scale changed.
+        // Heights do not change, unless wrapping.
+        private void Resize_Blocks()
         {
             if (mWrap)
             {
-                throw new Exception("Augh!");
             }
             else
             {
+                // the block layout is resized to fit the blocks exactly; we use the last control to get the total width
                 Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
-                int w = k == null ? Width - mBlockLayout.Margin.Horizontal :
-                    k.Location.X + k.Width + k.Margin.Right;
-                int h_ = mBlockLayout.Height - h;
-                mBlockLayout.Size = new Size(w, h);
-                int w_ = mLabel.Width > w ? mLabel.Width : w;
-                Size = new Size(mBlockLayout.Location.X + w_ + mBlockLayout.Margin.Right, Height - h_);
+                int width_blocks = k == null ? mBlockLayout.Margin.Horizontal : k.Location.X + k.Width + k.Margin.Right;
+                mBlockLayout.Width = width_blocks;
+                int width_label = mLabel.Width + mLabel.Margin.Horizontal;
+                int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
+                if (width_layout > width_label) Width = width_layout + BorderWidth;
+            }
+        }
+
+        // Resize after the label has changed (edited or editable status changed)
+        // This is not affected by the wrap contents setting.
+        private void Resize_Label()
+        {
+            int width_label = mLabel.Width + mLabel.Margin.Horizontal;
+            int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
+            // move the block layout up or down if the label height has changed
+            // and resize the strip accordingly
+            mBlockLayout.Location = new Point(mBlockLayout.Location.X,
+                mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom + mBlockLayout.Margin.Top);
+            Size = new Size(Math.Max(width_label, width_layout) + BorderWidth,
+                mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom + BorderHeight);
+        }
+
+        // Resize after the view has changed.
+        // No effect when not wrapping.
+        private void Resize_View()
+        {
+            if (mWrap)
+            {
+            }
+        }
+
+        // Resize after wrapping has changed.
+        private void Resize_Wrap()
+        {
+            if (mWrap)
+            {
+            }
+            else
+            {
+                mBlockLayout.AutoSize = false;
+                mBlockLayout.WrapContents = false;
+            }
+        }
+
+        // Resize after the zoom factor has changed.
+        private void Resize_Zoom()
+        {
+            if (mWrap)
+            {
+            }
+            else
+            {
+                mBlockLayout.Height = mBlockHeight;
+                Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom + BorderHeight;
+                Resize_Blocks();
             }
         }
 
@@ -536,50 +582,39 @@ namespace Obi.ProjectView
             }
         }
 
-        // Update the size of the strip to use the available width of the view
-        private void UpdateSize()
-        {
-            if (mWrap)
-            {
-                UpdateSize_Wrap();
-            }
-            else
-            {
-                UpdateSize_NoWrap();
-            }
-        }
-
         // Update size when not wrapping contents.
         private void UpdateSize_NoWrap()
         {
+            mBlockLayout.Anchor = AnchorStyles.Left | AnchorStyles.Top;
             mBlockLayout.AutoSize = false;
             mBlockLayout.WrapContents = false;
             // Compute the minimum width of the block panel (largest of label or block layout width.)
-            int wl = mLabel.Width;
+            int wl = mLabel.Width + mLabel.Margin.Horizontal;
             int wb = 0;
             foreach (Control c in mBlockLayout.Controls) wb += c.Width + c.Margin.Horizontal;
-            int w = wl > wb ? wl : wb;
-            mBlockLayout.Size = new Size(wb, mBlockLayout.Height);
-            Size = new Size(w + mBlockLayout.Margin.Horizontal, Height);
+            mBlockLayout.Width = wb;
+            wb += mBlockLayout.Margin.Horizontal;
+            Size = new Size(wl > wb ? wl : wb, Height);
         }
 
         // Update size when wrapping contents.
         private void UpdateSize_Wrap()
         {
-            MinimumSize = new Size(mContentView.Width, MinimumSize.Height);
-            Width = mContentView.Width;
+            // MinimumSize = new Size(mContentView.Width, MinimumSize.Height);
+            // Width = mContentView.Width;
+            mBlockLayout.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             mBlockLayout.AutoSize = true;
             mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             mBlockLayout.WrapContents = true;
-            Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom;
+            mBlockLayout.Width = 300;
+            Width = 400;
+            Height = 400;
+            // Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom;
         }
 
 
         // Resize when a block size has changed.
-        private void Block_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
-
-        // Resize when the parent size changes; only when wrapping strips.
-        private void ContentView_SizeChanged(object sender, EventArgs e) { UpdateSize(); }
+        private void Block_SizeChanged(object sender, EventArgs e) { Resize_Blocks(); }
 
         // Change the selection depending on the editable state of the label.
         private void Label_EditableChanged(object sender, EventArgs e)

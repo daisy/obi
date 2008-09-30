@@ -776,7 +776,10 @@ namespace Obi.ProjectView
             mContentView.MakeStripVisibleForSection((SectionNode)node);
         }
 
-        public bool WrapStrips { set { mContentView.WrapStrips = value; } }
+        /// <summary>
+        /// Set content wrapping in the content view.
+        /// </summary>
+        public bool WrapStripContents { set { mContentView.WrapStripContents = value; } }
 
         /// <summary>
         /// Select the name field of the selected section and start editing it.

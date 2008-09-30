@@ -34,12 +34,14 @@ namespace Obi.ProjectView
             // 
             // mBlockLayout
             // 
+            this.mBlockLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mBlockLayout.BackColor = System.Drawing.Color.GreenYellow;
             this.mBlockLayout.Location = new System.Drawing.Point(3, 78);
-            this.mBlockLayout.Margin = new System.Windows.Forms.Padding(3, 0, 3, 2);
+            this.mBlockLayout.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.mBlockLayout.Name = "mBlockLayout";
             this.mBlockLayout.Size = new System.Drawing.Size(303, 109);
             this.mBlockLayout.TabIndex = 1;
+            this.mBlockLayout.WrapContents = false;
             // 
             // mLabel
             // 
@@ -69,7 +71,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mLabel);
             this.DoubleBuffered = true;
             this.Name = "Strip";
-            this.Size = new System.Drawing.Size(309, 189);
+            this.Size = new System.Drawing.Size(309, 187);
             this.Click += new System.EventHandler(this.Strip_Enter);
             this.Enter += new System.EventHandler(this.Strip_Enter);
             this.ResumeLayout(false);
