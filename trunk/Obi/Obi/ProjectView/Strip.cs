@@ -224,7 +224,10 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (mBlockLayout.Controls.Count == 0) AddCursorAtBlockLayoutIndex(0);
+                if (mBlockLayout.Controls.Count == 0)
+                {
+                    StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
+                }
                 Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
                 mBlockLayout.Controls.Add(block);
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
@@ -457,7 +460,8 @@ namespace Obi.ProjectView
         }
 
         // Add a cursor at the given index (in the context of the block layout.)
-        private void AddCursorAtBlockLayoutIndex(int index)
+        // Return the new cursor.
+        private StripCursor AddCursorAtBlockLayoutIndex(int index)
         {
             StripCursor cursor = new StripCursor(this.Node);
             cursor.SetHeight(mBlockHeight);
@@ -465,6 +469,7 @@ namespace Obi.ProjectView
             cursor.TabStop = false;
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
+            return cursor;
         }
 
         // Compute the full width of the block layout that can accomodate all blocks.
@@ -479,8 +484,44 @@ namespace Obi.ProjectView
             }
         }
 
+        // Get the minimum width necessary for the block layout to contain all blocks.
+        private int BlockLayoutMinimumWidth
+        {
+            get
+            {
+                int w_min = 0;
+                int count = mBlockLayout.Controls.Count;
+                if (count > 2)
+                {
+                    // there is at least one block; the first block must fit the first two cursors
+                    w_min = mBlockLayout.Controls[0].Width + mBlockLayout.Controls[0].Margin.Horizontal +
+                        mBlockLayout.Controls[1].Width + mBlockLayout.Controls[1].Margin.Horizontal +
+                        mBlockLayout.Controls[2].Width + mBlockLayout.Controls[2].Margin.Horizontal;
+                    // following blocks are counted with the following cursor
+                    for (int i = 3; i < mBlockLayout.Controls.Count - 1; i += 2)
+                    {
+                        int w = mBlockLayout.Controls[i].Width + mBlockLayout.Controls[i].Margin.Horizontal +
+                            mBlockLayout.Controls[i + 1].Width + mBlockLayout.Controls[i + 1].Margin.Horizontal;
+                        if (w > w_min) w_min = w;
+                    }
+                }
+                return w_min;
+            }
+        }
+
+        // Size of the borders
         private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
         private int BorderWidth { get { return Bounds.Width - ClientSize.Width; } }
+
+        // Get the height of the strip for the current block layout size/position.
+        // Includes the border size.
+        private int HeightForContents
+        {
+            get
+            {
+                return mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom + BorderHeight;
+            }
+        }
 
         // Blocks are added, removed, or their width has changed after the audio scale changed.
         // Heights do not change, unless wrapping.
@@ -497,9 +538,7 @@ namespace Obi.ProjectView
                 // int width_blocks = k == null ? mBlockLayout.Margin.Horizontal : k.Location.X + k.Width + k.Margin.Right;
                 int width_blocks = BlockLayoutFullWidth;
                 mBlockLayout.Width = width_blocks;
-                int width_label = mLabel.Width + mLabel.Margin.Horizontal;
-                int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
-                Width = Math.Max(width_label, width_layout) + BorderWidth;
+                Width = WidthForContents;
             }
         }
 
@@ -507,13 +546,11 @@ namespace Obi.ProjectView
         // This is not affected by the wrap contents setting.
         private void Resize_Label()
         {
-            int width_label = mLabel.Width + mLabel.Margin.Horizontal;
-            int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
             // move the block layout up or down if the label height has changed
             // and resize the strip accordingly
             mBlockLayout.Location = new Point(mBlockLayout.Location.X,
                 mLabel.Location.Y + mLabel.Height + mLabel.Margin.Bottom + mBlockLayout.Margin.Top);
-            Size = new Size(Math.Max(width_label, width_layout) + BorderWidth,
+            Size = new Size(WidthForContents,
                 mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom + BorderHeight);
         }
 
@@ -532,17 +569,21 @@ namespace Obi.ProjectView
                 mBlockLayout.AutoSize = true;
                 mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
                 mBlockLayout.WrapContents = true;
-                int width_max = mContentView.ClientRectangle.Width - Margin.Horizontal - BorderWidth -
+                // The width of the block layout should fit the available space, unless it's narrower.
+                // This may be overridden however by the minimum width to fit the widest waveform.
+                int width_fit = mContentView.ClientRectangle.Width - Margin.Horizontal - BorderWidth -
                     mBlockLayout.Margin.Horizontal;
-                mBlockLayout.MaximumSize = new Size(Math.Min(BlockLayoutFullWidth, width_max), 0);
-                Size = new Size(width_max, mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom +
-                    BorderHeight);
+                mBlockLayout.MaximumSize =
+                    new Size(Math.Max(BlockLayoutMinimumWidth, Math.Min(BlockLayoutFullWidth, width_fit)), 0);
+                Size = new Size(WidthForContents, HeightForContents);
             }
             else
             {
                 mBlockLayout.AutoSize = false;
                 mBlockLayout.WrapContents = false;
-
+                mBlockLayout.MaximumSize = new Size(0, 0);
+                mBlockLayout.Height = mBlockHeight;
+                Height = HeightForContents;
                 Resize_Blocks();
             }
         }
@@ -606,6 +647,17 @@ namespace Obi.ProjectView
                 {
                     if (c is Block) ((Block)c).UpdateColors();
                 }
+            }
+        }
+
+        // Width of the strip to contain the label and the block layout, including borders.
+        private int WidthForContents
+        {
+            get
+            {
+                int width_label = mLabel.Width + mLabel.Margin.Horizontal;
+                int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
+                return Math.Max(width_label, width_layout) + BorderWidth;
             }
         }
 
