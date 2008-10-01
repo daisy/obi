@@ -236,6 +236,7 @@ namespace Obi.ProjectView
                 block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
+                UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
                 return block;
             }
         }
@@ -312,6 +313,7 @@ namespace Obi.ProjectView
                 if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
                 block.SizeChanged -= new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
+                UpdateStripCursorsAccessibleName(index - 1);
             }
         }
 
@@ -467,6 +469,7 @@ namespace Obi.ProjectView
             cursor.SetHeight(mBlockHeight);
             cursor.ColorSettings = ColorSettings;
             cursor.TabStop = false;
+            cursor.SetAccessibleName(index / 2);
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
             return cursor;
@@ -647,6 +650,16 @@ namespace Obi.ProjectView
                 {
                     if (c is Block) ((Block)c).UpdateColors();
                 }
+            }
+        }
+
+        // Update the accessible label of the strip cursors after the given index.
+        private void UpdateStripCursorsAccessibleName(int afterIndex)
+        {
+            for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
+            {
+                System.Diagnostics.Debug.Assert(mBlockLayout.Controls[i] is StripCursor);
+                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleName(i / 2);
             }
         }
 

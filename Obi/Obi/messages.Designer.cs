@@ -2427,6 +2427,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strip cursor at {0}-{1}.
+        /// </summary>
+        internal static string strip_cursor_accessible_name {
+            get {
+                return ResourceManager.GetString("strip_cursor_accessible_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selection index {0} in {1} in {2}.
         /// </summary>
         internal static string strip_cursor_selection_to_string {

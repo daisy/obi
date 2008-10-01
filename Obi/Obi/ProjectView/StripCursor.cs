@@ -84,6 +84,18 @@ namespace Obi.ProjectView
             }
         }
 
-        private void StripCursor_Click(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
+        private void StripCursor_Click(object sender, EventArgs e)
+        {
+            Strip.SetSelectedIndexFromStripCursor(this);
+            System.Diagnostics.Debug.Print("*** <" + AccessibleName + ">");
+        }
+
+        /// <summary>
+        /// Set the accessible name for this cursor given its index.
+        /// </summary>
+        public void SetAccessibleName(int index)
+        {
+            AccessibleName = string.Format(Localizer.Message("strip_cursor_accessible_name"), index, index + 1);
+        }
     }
 }

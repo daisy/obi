@@ -1197,4 +1197,8 @@ Error text: {1}</value>
     <value>remove custom class</value>
     <comment>Command</comment>
   </data>
+  <data name="strip_cursor_accessible_name" xml:space="preserve">
+    <value>Strip cursor at {0}-{1}</value>
+    <comment>Accessible name for strip cursor</comment>
+  </data>
 </root>
