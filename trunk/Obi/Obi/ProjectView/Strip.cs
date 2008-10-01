@@ -229,7 +229,7 @@ namespace Obi.ProjectView
                 mBlockLayout.Controls.Add(block);
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
                 AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockLayout.Height);
+                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                 block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
@@ -460,11 +460,23 @@ namespace Obi.ProjectView
         private void AddCursorAtBlockLayoutIndex(int index)
         {
             StripCursor cursor = new StripCursor(this.Node);
-            cursor.SetHeight(mBlockLayout.Height);
+            cursor.SetHeight(mBlockHeight);
             cursor.ColorSettings = ColorSettings;
             cursor.TabStop = false;
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
+        }
+
+        // Compute the full width of the block layout that can accomodate all blocks.
+        // This is exclusive of margins.
+        private int BlockLayoutFullWidth
+        {
+            get
+            {
+                int w = 0;
+                foreach (Control c in mBlockLayout.Controls) w += c.Width + c.Margin.Horizontal;
+                return w;
+            }
         }
 
         private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
@@ -476,16 +488,18 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
+                Resize_Wrap();
             }
             else
             {
                 // the block layout is resized to fit the blocks exactly; we use the last control to get the total width
-                Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
-                int width_blocks = k == null ? mBlockLayout.Margin.Horizontal : k.Location.X + k.Width + k.Margin.Right;
+                // Control k = mBlockLayout.Controls.Count > 0 ? mBlockLayout.Controls[mBlockLayout.Controls.Count - 1] : null;
+                // int width_blocks = k == null ? mBlockLayout.Margin.Horizontal : k.Location.X + k.Width + k.Margin.Right;
+                int width_blocks = BlockLayoutFullWidth;
                 mBlockLayout.Width = width_blocks;
                 int width_label = mLabel.Width + mLabel.Margin.Horizontal;
                 int width_layout = mBlockLayout.Width + mBlockLayout.Margin.Horizontal;
-                if (width_layout > width_label) Width = width_layout + BorderWidth;
+                Width = Math.Max(width_label, width_layout) + BorderWidth;
             }
         }
 
@@ -507,9 +521,7 @@ namespace Obi.ProjectView
         // No effect when not wrapping.
         private void Resize_View()
         {
-            if (mWrap)
-            {
-            }
+            if (mWrap) Resize_Wrap();
         }
 
         // Resize after wrapping has changed.
@@ -517,11 +529,21 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
+                mBlockLayout.AutoSize = true;
+                mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                mBlockLayout.WrapContents = true;
+                int width_max = mContentView.ClientRectangle.Width - Margin.Horizontal - BorderWidth -
+                    mBlockLayout.Margin.Horizontal;
+                mBlockLayout.MaximumSize = new Size(Math.Min(BlockLayoutFullWidth, width_max), 0);
+                Size = new Size(width_max, mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom +
+                    BorderHeight);
             }
             else
             {
                 mBlockLayout.AutoSize = false;
                 mBlockLayout.WrapContents = false;
+
+                Resize_Blocks();
             }
         }
 
@@ -530,6 +552,7 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
+                Resize_Wrap();
             }
             else
             {
@@ -584,36 +607,6 @@ namespace Obi.ProjectView
                     if (c is Block) ((Block)c).UpdateColors();
                 }
             }
-        }
-
-        // Update size when not wrapping contents.
-        private void UpdateSize_NoWrap()
-        {
-            mBlockLayout.Anchor = AnchorStyles.Left | AnchorStyles.Top;
-            mBlockLayout.AutoSize = false;
-            mBlockLayout.WrapContents = false;
-            // Compute the minimum width of the block panel (largest of label or block layout width.)
-            int wl = mLabel.Width + mLabel.Margin.Horizontal;
-            int wb = 0;
-            foreach (Control c in mBlockLayout.Controls) wb += c.Width + c.Margin.Horizontal;
-            mBlockLayout.Width = wb;
-            wb += mBlockLayout.Margin.Horizontal;
-            Size = new Size(wl > wb ? wl : wb, Height);
-        }
-
-        // Update size when wrapping contents.
-        private void UpdateSize_Wrap()
-        {
-            // MinimumSize = new Size(mContentView.Width, MinimumSize.Height);
-            // Width = mContentView.Width;
-            mBlockLayout.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            mBlockLayout.AutoSize = true;
-            mBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            mBlockLayout.WrapContents = true;
-            mBlockLayout.Width = 300;
-            Width = 400;
-            Height = 400;
-            // Height = mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom;
         }
 
 
