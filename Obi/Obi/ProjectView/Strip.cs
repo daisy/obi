@@ -465,11 +465,11 @@ namespace Obi.ProjectView
         // Return the new cursor.
         private StripCursor AddCursorAtBlockLayoutIndex(int index)
         {
-            StripCursor cursor = new StripCursor(this.Node);
+            StripCursor cursor = new StripCursor();
             cursor.SetHeight(mBlockHeight);
             cursor.ColorSettings = ColorSettings;
             cursor.TabStop = false;
-            cursor.SetAccessibleName(index / 2);
+            cursor.SetAccessibleNameForIndex(index / 2);
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
             return cursor;
@@ -659,7 +659,7 @@ namespace Obi.ProjectView
             for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
             {
                 System.Diagnostics.Debug.Assert(mBlockLayout.Controls[i] is StripCursor);
-                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleName(i / 2);
+                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
             }
         }
 
