@@ -42,6 +42,7 @@ namespace Obi.ProjectView
             this.mBlockLayout.Size = new System.Drawing.Size(303, 109);
             this.mBlockLayout.TabIndex = 1;
             this.mBlockLayout.WrapContents = false;
+            this.mBlockLayout.Click += new System.EventHandler(this.Strip_Enter);
             // 
             // mLabel
             // 
