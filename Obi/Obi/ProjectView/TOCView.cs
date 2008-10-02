@@ -11,15 +11,19 @@ namespace Obi.ProjectView
     public partial class TOCView : TreeView, IControlWithRenamableSelection
     {
         private float mBaseFontSize;       // base font size (for scaling)
+        private ProjectView mProjectView;  // the parent project view
         private NodeSelection mSelection;  // actual selection context
-        private ProjectView mView;         // the parent project view
 
+
+        /// <summary>
+        /// Create an empty TOC view.
+        /// </summary>
         public TOCView()
         {
             InitializeComponent();
             mBaseFontSize = Font.SizeInPoints;
             mSelection = null;
-            mView = null;
+            mProjectView = null;
         }
 
 
@@ -29,9 +33,22 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return !(mSelection is TextSelection); } }
 
         /// <summary>
+        /// Can add a subsection if there is a selection (not a text selection though.)
+        /// </summary>
+        public bool CanAddSubsection { get { return CanAddSection && mSelection != null; } }
+
+        /// <summary>
         /// An actual section must be selected to be copied (i.e. not the text of the section.)
         /// </summary>
         public bool CanCopySection { get { return IsSectionSelected; } }
+
+        /// <summary>
+        /// True if there is a selected section and its level can be decreased (it must not be a top-level section.)
+        /// </summary>
+        public bool CanDecreaseLevel
+        {
+            get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
+        }
 
         /// <summary>
         /// True if there is a selected section and its level can be increased (it must not be the first child.)
@@ -42,11 +59,17 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// True if there is a selected section and its level can be decreased (it must not be a top-level section.)
+        /// Can insert a section if there is a selection (not a text selection though.)
         /// </summary>
-        public bool CanDecreaseLevel
+        public bool CanInsertSection { get { return CanAddSection && mSelection != null; } }
+
+        /// <summary>
+        /// True if the contents of the clipboard can be pasted after the selected section.
+        /// </summary>
+        public bool CanPaste(Clipboard clipboard)
         {
-            get { return IsSectionSelected && Commands.TOC.MoveSectionOut.CanMoveNode((SectionNode)mSelection.Node); }
+            return mSelection != null && !(mSelection is TextSelection) &&
+                clipboard != null && clipboard.Node is SectionNode;
         }
 
         /// <summary>
@@ -84,6 +107,9 @@ namespace Obi.ProjectView
             get { return IsSectionSelected && mSelection.Node.ParentAs<ObiNode>().Used; }
         }
 
+        /// <summary>
+        /// Set the color settings from the parent view.
+        /// </summary>
         public ColorSettings ColorSettings
         {
             set
@@ -95,22 +121,9 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Make the tree node for this section visible.
-        /// </summary>
-        public void MakeTreeNodeVisibleForSection(SectionNode section) { FindTreeNode(section).EnsureVisible(); }
-
-        /// <summary>
         /// Set the parent project view.
         /// </summary>
-        public ProjectView ProjectView { set { mView = value; } }
-
-        /// <summary>
-        /// Resynchronize strips and TOC views depending on which node is visible.
-        /// </summary>
-        public void ResyncViews()
-        {
-            foreach (TreeNode n in Nodes) SetStripsVisibilityForNode(n, true);
-        }
+        public ProjectView ProjectView { set { mProjectView = value; } }
 
         /// <summary>
         /// Get or set the current selection.
@@ -130,12 +143,31 @@ namespace Obi.ProjectView
                     AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
                     BeforeSelect -= new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
                     SelectedNode = n;
-                    if (n != null) mView.MakeStripVisibleForSection(n.Tag as SectionNode);
+                    if (n != null) mProjectView.MakeStripVisibleForSection(n.Tag as SectionNode);
                     AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
                     BeforeSelect += new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
                 }
             }
         }
+
+        /// <summary>
+        /// Set the zoom factor (normally, from the project view.)
+        /// </summary>
+        public float ZoomFactor
+        {
+            set { if (value != 0.0) Font = new Font(Font.FontFamily, mBaseFontSize * value); }
+        }
+
+
+        /// <summary>
+        /// Make the tree node for this section visible.
+        /// </summary>
+        public void MakeTreeNodeVisibleForSection(SectionNode section) { FindTreeNode(section).EnsureVisible(); }
+
+        /// <summary>
+        /// Resynchronize strips and TOC views depending on which node is visible.
+        /// </summary>
+        public void ResyncViews() { foreach (TreeNode n in Nodes) SetStripsVisibilityForNode(n, true); }
 
         /// <summary>
         /// Select and start renaming a section node.
@@ -145,7 +177,7 @@ namespace Obi.ProjectView
             SectionNode section = (SectionNode)node;
             DoToNewNode(section, delegate()
             {
-                mView.Selection = new TextSelection(section, this, section.Label);
+                mProjectView.Selection = new TextSelection(section, this, section.Label);
                 FindTreeNode(section).BeginEdit();
             });
         }
@@ -156,10 +188,10 @@ namespace Obi.ProjectView
         public void SetNewPresentation()
         {
             Nodes.Clear();
-            CreateTreeNodeForSectionNode(mView.Presentation.RootNode);
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
-            mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
-            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+            CreateTreeNodeForSectionNode(mProjectView.Presentation.RootNode);
+            mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+            mProjectView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+            mProjectView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
 
         /// <summary>
@@ -168,11 +200,26 @@ namespace Obi.ProjectView
         public override string ToString() { return Localizer.Message("toc_view_to_string"); }
 
         /// <summary>
-        /// Set the zoom factor (normally, from the project view.)
+        /// Update the context menu after selection has changed.
         /// </summary>
-        public float ZoomFactor
+        public void UpdateContextMenu()
         {
-            set { Font = new Font(Font.FontFamily, mBaseFontSize * value); }
+            Context_AddSectionMenuItem.Enabled = CanAddSection;
+            Context_AddSubsectionMenuItem.Enabled = CanAddSubsection;
+            Context_InsertSectionMenuItem.Enabled = CanInsertSection;
+            Context_RenameSectionMenuItem.Enabled = CanRenameSection;
+            Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel;
+            Context_IncreaseSectionLevelMenuItem.Enabled = CanIncreaseLevel;
+            Context_SectionIsUsedMenuItem.Enabled = CanSetSectionUsedStatus;
+            Context_SectionIsUsedMenuItem.CheckedChanged -= new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
+            Context_SectionIsUsedMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            Context_SectionIsUsedMenuItem.CheckedChanged += new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
+            Context_CutMenuItem.Enabled = CanRemoveSection;
+            Context_CopyMenuItem.Enabled = CanCopySection;
+            Context_PasteMenuItem.Enabled = CanPaste(mProjectView.Clipboard);
+            Context_PasteBeforeMenuItem.Enabled = CanPasteBefore(mProjectView.Clipboard);
+            Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard);
+            Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
         }
 
 
@@ -200,7 +247,7 @@ namespace Obi.ProjectView
                         n = Nodes.Insert(node.Index, node.GetHashCode().ToString(), ((SectionNode)node).Label);
                     }
                     n.Tag = node;
-                    ChangeColorUsed(n, mView.ColorSettings);
+                    ChangeColorUsed(n, mProjectView.ColorSettings);
                 }
                 return n;
             }
@@ -231,7 +278,7 @@ namespace Obi.ProjectView
                 {
                     n.EnsureVisible();
                     n.ExpandAll();
-                    ChangeColorUsed(n, mView.ColorSettings);
+                    ChangeColorUsed(n, mProjectView.ColorSettings);
                 }
                 if (n != null || node is RootNode)
                 {
@@ -261,10 +308,10 @@ namespace Obi.ProjectView
                         ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == section)
                     {
                         f();
-                        mView.Presentation.changed -= h;
+                        mProjectView.Presentation.changed -= h;
                     }
                 };
-                mView.Presentation.changed += h;
+                mProjectView.Presentation.changed += h;
             }
         }
 
@@ -306,6 +353,96 @@ namespace Obi.ProjectView
         // True if a section (not its text) is selected.
         private bool IsSectionSelected { get { return mSelection is NodeSelection; } }
 
+        // Tabbing inside the view
+        protected override bool ProcessDialogKey(Keys KeyData)
+        {
+            if (this.ContainsFocus && (KeyData == Keys.Tab || KeyData == ((Keys)Keys.Shift | Keys.Tab)))
+            {
+                System.Media.SystemSounds.Beep.Play();
+                return true;
+            }
+            return base.ProcessDialogKey(KeyData);
+        }
+
+        // Set the strips visibility for the given tree node according to expandednessity
+        private void SetStripsVisibilityForNode(TreeNode node, bool visible)
+        {
+            mProjectView.SetStripVisibilityForSection((SectionNode)node.Tag, visible);
+            foreach (TreeNode n in node.Nodes) SetStripsVisibilityForNode(n, visible && node.IsExpanded);
+        }
+
+        // Add new section nodes to the tree
+        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
+        {
+            if (e.AddedChild is SectionNode)
+            {
+                // ignore the selection of the new tree node
+                AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
+                CreateTreeNodeForSectionNode((SectionNode)e.AddedChild);
+                AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
+            }
+        }
+
+        // Remove deleted section nodes from the tree
+        void TreeNodeRemoved(urakawa.events.core.ChildRemovedEventArgs e)
+        {
+            if (e.RemovedChild is SectionNode) Nodes.Remove(FindTreeNode((SectionNode)e.RemovedChild));
+        }
+
+
+        // Add section context menu item
+        private void Context_AddSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSection(); }
+
+        // Add subsection context menu item
+        private void Context_AddSubsectionMenuItem_Click(object sender, EventArgs e) { mProjectView.AddSubSection(); }
+
+        // Rename section menu item
+        private void Context_RenameSectionMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.Assert(Selection != null);
+            System.Diagnostics.Debug.Assert(Selection.Node is SectionNode);
+            SelectAndRename(Selection.Node as SectionNode);
+        }
+
+        // Decrease section level context menu item
+        private void Context_DecreaseSectionLevelMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DecreaseSelectedSectionLevel();
+        }
+
+        // Increase section level context menu item
+        private void Context_IncreaseSectionLevelMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.IncreaseSelectedSectionLevel();
+        }
+
+        // Section is used context menu item
+        private void Context_SectionIsUsedMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.SetSelectedNodeUsedStatus(Context_SectionIsUsedMenuItem.Checked);
+        }
+
+        // Cut context menu item
+        private void Context_CutMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
+
+        // Copy context menu item
+        private void Context_CopyMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
+
+        // Paste context menu item
+        private void Context_PasteMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
+
+        // Paste before context menu item
+        private void Context_PasteBeforeMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteBefore(); }
+
+        // Paste inside context menu item
+        private void Context_PasteInsideMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteInside(); }
+
+        // Delete context menu item
+        private void Context_DeleteMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
+
+        // Insert section context menu item
+        private void Context_InsertSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
+
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
@@ -326,38 +463,13 @@ namespace Obi.ProjectView
             n.Text = e.Node.Label;
         }
 
-        // Add new section nodes to the tree
-        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
-        {
-            if (e.AddedChild is SectionNode)
-            {
-                // ignore the selection of the new tree node
-                AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
-                CreateTreeNodeForSectionNode((SectionNode)e.AddedChild);
-                AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
-            }
-        }
-
         // Node used status changed
         private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
         {
             if (e.Node is SectionNode && IsInTree((SectionNode)e.Node))
             {
-                ChangeColorUsed(FindTreeNode((SectionNode)e.Node), mView.ColorSettings);
+                ChangeColorUsed(FindTreeNode((SectionNode)e.Node), mProjectView.ColorSettings);
             }
-        }
-
-        // Remove deleted section nodes from the tree
-        void TreeNodeRemoved(urakawa.events.core.ChildRemovedEventArgs e)
-        {
-            if (e.RemovedChild is SectionNode) Nodes.Remove(FindTreeNode((SectionNode)e.RemovedChild));
-        }
-
-        // Set the strips visibility for the given tree node according to expandednessity
-        private void SetStripsVisibilityForNode(TreeNode node, bool visible)
-        {
-            mView.SetStripVisibilityForSection((SectionNode)node.Tag, visible);
-            foreach (TreeNode n in node.Nodes) SetStripsVisibilityForNode(n, visible && node.IsExpanded);
         }
 
         // When a node is collapsed, hide strips corresponding to the collapsed nodes.
@@ -378,12 +490,12 @@ namespace Obi.ProjectView
         {
             if (e.Node.Tag != null && e.Label != null && e.Label != "")
             {
-                mView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
+                mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
             }
             else
             {
                 e.CancelEdit = true;
-                mView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
+                mProjectView.Selection = new NodeSelection((SectionNode)e.Node.Tag, this);
             }
         }
 
@@ -392,7 +504,7 @@ namespace Obi.ProjectView
         private void TOCTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             NodeSelection s = new NodeSelection((SectionNode)e.Node.Tag, this);
-            if (s != mView.Selection) mView.Selection = s;
+            if (s != mProjectView.Selection) mProjectView.Selection = s;
         }
 
         // Make a text selection in the view.
@@ -404,7 +516,7 @@ namespace Obi.ProjectView
             }
             else if (mSelection != null)
             {
-                mView.Selection = new TextSelection((SectionNode)e.Node.Tag, this, e.Node.Text);
+                mProjectView.Selection = new TextSelection((SectionNode)e.Node.Tag, this, e.Node.Text);
             }
         }
 
@@ -412,19 +524,6 @@ namespace Obi.ProjectView
         private void TOCTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Action == TreeViewAction.Unknown) e.Cancel = true;
-        }
-
-        
-        protected override bool ProcessDialogKey(Keys KeyData)
-        {
-            if ( this.ContainsFocus &&
-                ( KeyData == Keys.Tab ||
-                KeyData == ((Keys) Keys.Shift | Keys.Tab ))  )
-            {
-                System.Media.SystemSounds.Beep.Play();
-                return true;
-            }
-            return base.ProcessDialogKey(KeyData);
         }
     }
 }
