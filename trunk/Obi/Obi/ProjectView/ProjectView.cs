@@ -162,7 +162,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSubSection()
         {
-            if (CanAddSubSection)
+            if (CanAddSubsection)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 Commands.Node.AddSubSection add = new Commands.Node.AddSubSection(this);
@@ -189,7 +189,7 @@ namespace Obi.ProjectView
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
-        public bool CanAddSubSection { get { return (mTOCView.CanAddSection && mTOCView.Selection != null); } }
+        public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
@@ -204,7 +204,7 @@ namespace Obi.ProjectView
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
-        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.Selection != null && !TransportBar.IsRecorderActive; } }
+        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
@@ -504,7 +504,7 @@ namespace Obi.ProjectView
         /// Increase the level of the selected section (was "move in.")
         /// TODO: rewrite command as a composite command.
         /// </summary>
-        public void IncreaseSelectedSectionNodeLevel()
+        public void IncreaseSelectedSectionLevel()
         {
             if (CanIncreaseLevel)
             {
@@ -1772,6 +1772,14 @@ namespace Obi.ProjectView
                     mTransportBar.ZoomFactor = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// Update the context menus of the view.
+        /// </summary>
+        public void UpdateContextMenus()
+        {
+            mTOCView.UpdateContextMenu();
         }
     }
 

@@ -730,7 +730,7 @@ namespace Obi
         private void UpdateSectionsMenu()
         {
             mAddSectionToolStripMenuItem.Enabled = mProjectView.CanAddSection;
-            mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubSection;
+            mAddSubsectionToolStripMenuItem.Enabled = mProjectView.CanAddSubsection;
             mInsertSectionToolStripMenuItem.Enabled = mProjectView.CanInsertSection;
             mRenameSectionToolStripMenuItem.Enabled = mProjectView.CanRenameSection;
             mDecreaseSectionLevelToolStripMenuItem.Enabled = mProjectView.CanDecreaseLevel;
@@ -748,7 +748,7 @@ namespace Obi
         private void mInsertSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
         private void mRenameSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.StartRenamingSelectedSection(); }
         private void mDecreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.DecreaseSelectedSectionLevel(); }
-        private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionNodeLevel(); }
+        private void mIncreaseSectionLevelToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.IncreaseSelectedSectionLevel(); }
         private void mSplitSectionToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
         private void mMergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -1467,6 +1467,7 @@ namespace Obi
             UpdatePhrasesMenu();
             UpdateTransportMenu();
             UpdateToolsMenu();
+            mProjectView.UpdateContextMenus();
         }
 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
