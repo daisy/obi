@@ -522,7 +522,9 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mBlockLayout.Location.Y + mBlockLayout.Height + mBlockLayout.Margin.Bottom + BorderHeight;
+                // If there are no contents, still show space for the block layout
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight, mBlockLayout.Height) +
+                    mBlockLayout.Margin.Bottom + BorderHeight;
             }
         }
 
