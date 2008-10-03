@@ -1207,4 +1207,7 @@ Error text: {1}</value>
   <data name="Pipeline_OutOfRange" xml:space="preserve">
     <value>Value do not lie in expected range</value>
   </data>
+  <data name="Pipeline_InvalidString" xml:space="preserve">
+    <value>invalid input</value>
+  </data>
 </root>
