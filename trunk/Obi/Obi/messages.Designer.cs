@@ -1983,6 +1983,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to invalid input.
+        /// </summary>
+        internal static string Pipeline_InvalidString {
+            get {
+                return ResourceManager.GetString("Pipeline_InvalidString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value do not lie in expected range.
         /// </summary>
         internal static string Pipeline_OutOfRange {

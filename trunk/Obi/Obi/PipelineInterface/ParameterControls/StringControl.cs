@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Obi.PipelineInterface.ParameterControls
@@ -42,6 +43,17 @@ namespace Obi.PipelineInterface.ParameterControls
                 MessageBox.Show ( ex.ToString () );
                 }
             }
+
+        private void textBox1_TextChanged ( object sender, EventArgs e )
+            {
+            if (textBox1.Text != "" && m_StringData.RegularExpression != ""
+            && Regex.IsMatch ( textBox1.Text, m_StringData.RegularExpression, RegexOptions.None ))
+            {
+            MessageBox.Show ( Localizer.Message ( "Pipeline_InvalidString" ) );
+                }
+            }
+
+            
 
         }
     }
