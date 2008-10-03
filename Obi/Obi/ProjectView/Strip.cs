@@ -250,7 +250,7 @@ namespace Obi.ProjectView
         {
             int count = mBlockLayout.Controls.Count;
             int index = item is Strip ?
-                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index : 0 :
+                ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index : 1 :
                 item is Block ? mBlockLayout.Controls.IndexOf((Control)item) + 2 :
                 item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) + 1 : count;
             return index < count ? (Block)mBlockLayout.Controls[index] : null;
@@ -378,7 +378,7 @@ namespace Obi.ProjectView
         {
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index - 1 :
-                    mBlockLayout.Controls.Count :
+                    (mBlockLayout.Controls.Count - 1) / 2 :
                 item is Block ? mBlockLayout.Controls.IndexOf((Control)item) / 2 :
                 item is StripCursor ? mBlockLayout.Controls.IndexOf((Control)item) / 2 - 1 : -1;
             return index >= 0 ? index : 0;
