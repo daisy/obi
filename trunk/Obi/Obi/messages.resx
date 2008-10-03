@@ -1201,4 +1201,10 @@ Error text: {1}</value>
     <value>Strip cursor at {0}-{1}</value>
     <comment>Accessible name for strip cursor</comment>
   </data>
+  <data name="Pipeline_Error_NotExpectedRange" xml:space="preserve">
+    <value>Value should lie between{0} and {1}</value>
+  </data>
+  <data name="Pipeline_OutOfRange" xml:space="preserve">
+    <value>Value do not lie in expected range</value>
+  </data>
 </root>

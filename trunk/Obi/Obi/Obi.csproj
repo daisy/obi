@@ -53,7 +53,7 @@
   <ItemGroup>
     <Reference Include="AudioEngine.PPMeter, Version=1.0.3103.23163, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Urakawa toolkit\tags\release-1.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>..\..\..\..\Urakawa toolkit\tags\release-1.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -73,7 +73,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=1.0.0.23145, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Urakawa toolkit\tags\release-1.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\Urakawa toolkit\tags\release-1.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +281,8 @@
     <Compile Include="PipelineInterface\DataTypes\BoolDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\EnumDataType.cs" />
     <Compile Include="PipelineInterface\DataTypes\PathDataType.cs" />
+    <Compile Include="PipelineInterface\DataTypes\IntDataType.cs" />
+    <Compile Include="PipelineInterface\DataTypes\StringDataType.cs" />
     <Compile Include="PipelineInterface\ParameterControls\BaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -299,11 +301,23 @@
     <Compile Include="PipelineInterface\ParameterControls\EnumControl.Designer.cs">
       <DependentUpon>EnumControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PipelineInterface\ParameterControls\IntControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PipelineInterface\ParameterControls\IntControl.Designer.cs">
+      <DependentUpon>IntControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PipelineInterface\ParameterControls\PathBrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PipelineInterface\ParameterControls\PathBrowserControl.Designer.cs">
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PipelineInterface\ParameterControls\StringControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PipelineInterface\ParameterControls\StringControl.Designer.cs">
+      <DependentUpon>StringControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PipelineInterface\PipelineInfo.cs" />
     <Compile Include="PipelineInterface\PipelineInterfaceForm.cs">
@@ -601,9 +615,17 @@
       <SubType>Designer</SubType>
       <DependentUpon>EnumControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterface\ParameterControls\IntControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IntControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PipelineInterface\ParameterControls\PathBrowserControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PathBrowserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PipelineInterface\ParameterControls\StringControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StringControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PipelineInterface\PipelineInterfaceForm.resx">
       <SubType>Designer</SubType>

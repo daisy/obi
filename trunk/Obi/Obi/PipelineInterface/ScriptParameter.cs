@@ -104,6 +104,14 @@ namespace Obi.PipelineInterface
                 case "boolean":
                     m_DataType = new DataTypes.BoolDataType(this, DatatypeNode);
                     break;
+
+                    case "integer":
+                    m_DataType = new DataTypes.IntDataType ( this, DatatypeNode );
+                    break;
+
+                    case "string":
+                    m_DataType = new DataTypes.StringDataType( this, DatatypeNode );
+                    break;    
             }
         }
 
