@@ -45,6 +45,8 @@ namespace Obi.PipelineInterface
             {
                 Control c =
                     p.ParameterDataType is DataTypes.BoolDataType ? (Control)new ParameterControls.BoolControl(p) :
+                    p.ParameterDataType is DataTypes.IntDataType ? (Control)new ParameterControls.IntControl( p ) :
+                    p.ParameterDataType is DataTypes.StringDataType ? (Control)new ParameterControls.StringControl( p ) :
                     p.ParameterDataType is DataTypes.EnumDataType ? (Control)new ParameterControls.EnumControl(p) :
                         (Control)new ParameterControls.PathBrowserControl(p, mInputPath, mProjectDirectory);
                 mLayoutPanel.Controls.Add(c);
