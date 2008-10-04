@@ -1719,32 +1719,31 @@ namespace Obi.ProjectView
                 ///  apply to do mark on empty nodes 
         public void MarkTodoClass()
         {
-                                    EmptyNode node = null ;
+            EmptyNode node = null;
             if (IsRecording)
             {
-                node =(EmptyNode)  mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                node = (EmptyNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
 
                 mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                 mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTo_Do(mView , node) );
-                 mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                                NextPhrase();
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
+                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                NextPhrase();
             }
             else
-                        {
-                            if (mState == State.Playing || mState == State.Paused)
-                                node =(EmptyNode)  mCurrentPlaylist.CurrentPhrase;
-                            else if ( mView.Selection != null && mView.Selection.Node is EmptyNode)
-                node = mView.SelectedNodeAs<EmptyNode>();
+            {
+                if (mState == State.Playing || mState == State.Paused)
+                    node = (EmptyNode)mCurrentPlaylist.CurrentPhrase;
+                else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
+                    node = mView.SelectedNodeAs<EmptyNode>();
 
                 if (node != null)
                 {
                     mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                     mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
                     mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                                                            }
+                }
             }
-
-                    }
+        }
 
 
         private void PlaybackOnSelectionChange ()

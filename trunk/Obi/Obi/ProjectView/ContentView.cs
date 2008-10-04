@@ -14,7 +14,7 @@ namespace Obi.ProjectView
     /// </summary>
     public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
     {
-        private ProjectView mView;                                   // parent project view
+        private ProjectView mProjectView;                            // parent project view
         private NodeSelection mSelection;                            // current selection
         private ISelectableInContentView mSelectedItem;              // the actual item for the selection
         private Dictionary<Keys, ProjectView.HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
@@ -41,7 +41,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             InitializeShortcutKeys();
             DoubleBuffered = true;
-            mView = null;
+            mProjectView = null;
             mSelection = null;
             mFocusing = false;
             mIsEnteringView = false;
@@ -97,7 +97,7 @@ namespace Obi.ProjectView
         /// </summary>
         public ColorSettings ColorSettings
         {
-            get { return mView == null ? null : mView.ColorSettings; }
+            get { return mProjectView == null ? null : mProjectView.ColorSettings; }
             set { if (value != null) UpdateColors(value); }
         }
 
@@ -157,14 +157,14 @@ namespace Obi.ProjectView
             urakawa.undo.CompositeCommand command = null;
             if (CanMergeStripWithNext)
             {
-                command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("merge_sections"));
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
-                if (!section.Used) mView.AppendMakeUnused(command, next);
+                if (!section.Used) mProjectView.AppendMakeUnused(command, next);
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mView, next.PhraseChild(i), section));
+                    command.append(new Commands.Node.ChangeParent(mProjectView, next.PhraseChild(i), section));
                 }
                 command.append(DeleteStripCommand(next));
             }
@@ -178,7 +178,7 @@ namespace Obi.ProjectView
         {
             Controls.Clear();
             ClearWaveformRenderQueue();
-            AddStripForSection_Safe(mView.Presentation.RootNode);
+            AddStripForSection_Safe(mProjectView.Presentation.RootNode);
             EventsAreEnabled = true;
         }
 
@@ -191,15 +191,15 @@ namespace Obi.ProjectView
             {
                 if (value)
                 {
-                    mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
-                    mView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
-                    mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                    mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+                    mProjectView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+                    mProjectView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
                 }
                 else
                 {
-                    mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
-                    mView.Presentation.RenamedSectionNode -= new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
-                    mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                    mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+                    mProjectView.Presentation.RenamedSectionNode -= new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
+                    mProjectView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
                 }
             }
         }
@@ -231,15 +231,15 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (mView != null) throw new Exception("Cannot set the project view again!");
-                mView = value;
+                if (mProjectView != null) throw new Exception("Cannot set the project view again!");
+                mProjectView = value;
             }
         }
 
         /// <summary>
         /// Rename a strip.
         /// </summary>
-        public void RenameStrip(Strip strip) { mView.RenameSectionNode(strip.Node, strip.Label); }
+        public void RenameStrip(Strip strip) { mProjectView.RenameSectionNode(strip.Node, strip.Label); }
 
         /// <summary>
         /// Get the strip that the selection is in, or null if there is no applicable selection.
@@ -260,7 +260,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenderWaveform(WaveformWithPriority w)
         {
-            if (mWaveformRenderQ.Enqueued(w)) mView.ObiForm.BackgroundOperation_AddItem();
+            if (mWaveformRenderQ.Enqueued(w)) mProjectView.ObiForm.BackgroundOperation_AddItem();
             RenderFirstWaveform();
         }
 
@@ -274,17 +274,17 @@ namespace Obi.ProjectView
                 mWaveformRenderWorker = w.Waveform.Render();
                 if (mWaveformRenderWorker != null)
                 {
-                    mView.ObiForm.BackgroundOperation_Step();
+                    mProjectView.ObiForm.BackgroundOperation_Step();
                     // mView.ObiForm.Status_Background(Localizer.Message("rendering_waveform"));
                 }
             }
-            if (mWaveformRenderQ.Count == 0) mView.ObiForm.BackgroundOperation_Done();
+            if (mWaveformRenderQ.Count == 0) mProjectView.ObiForm.BackgroundOperation_Done();
         }
 
         private void ClearWaveformRenderQueue()
         {
             mWaveformRenderQ.Clear();
-            if (mView != null && mView.ObiForm != null) mView.ObiForm.BackgroundOperation_Done();
+            if (mProjectView != null && mProjectView.ObiForm != null) mProjectView.ObiForm.BackgroundOperation_Done();
         }
 
         public void FinishedRendering(Waveform w, bool renderedOK)
@@ -309,10 +309,10 @@ namespace Obi.ProjectView
         }
 
         public EmptyNode SelectedEmptyNode { get { return IsBlockSelected ? ((Block)mSelectedItem).Node : null; } }
-        public ObiNode SelectedNode { set { if (mView != null) mView.Selection = new NodeSelection(value, this); } }
+        public ObiNode SelectedNode { set { if (mProjectView != null) mProjectView.Selection = new NodeSelection(value, this); } }
         public PhraseNode SelectedPhraseNode { get { return IsBlockSelected ? ((Block)mSelectedItem).Node as PhraseNode : null; } }
         public SectionNode SelectedSection { get { return IsStripSelected ? ((Strip)mSelectedItem).Node : null; } }
-        public NodeSelection SelectionFromStrip { set { if (mView != null) mView.Selection = value; } }
+        public NodeSelection SelectionFromStrip { set { if (mProjectView != null) mProjectView.Selection = value; } }
 
         /// <summary>
         /// Set the selection from the parent view.
@@ -333,7 +333,7 @@ namespace Obi.ProjectView
                         s.SetSelectionFromContentView(mSelection);
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node.ParentAs<SectionNode>();
-                        mView.MakeTreeNodeVisibleForSection(section);
+                        mProjectView.MakeTreeNodeVisibleForSection(section);
                         ScrollControlIntoView((Control)s);
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus();
@@ -373,7 +373,7 @@ namespace Obi.ProjectView
                 if ((s = FindStrip(child)) != null)
                 {
                     s.Visible = visible;
-                    if (mSelectedItem == s && !visible) mView.Selection = null;
+                    if (mSelectedItem == s && !visible) mProjectView.Selection = null;
                     SetStripsVisibilityForSection(section.SectionChild(i), visible);
                 }
             }
@@ -411,34 +411,34 @@ namespace Obi.ProjectView
                                 EmptyNode node = IsStripCursorSelected ?
                     mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
                 SectionNode section = node.ParentAs<SectionNode>();
-                command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("split_section"));
 
-                if (mView.CanSplitPhrase)
+                if (mProjectView.CanSplitPhrase)
                 {
-                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mView));
+                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mProjectView));
                 }
-                SectionNode sibling = mView.Presentation.CreateSectionNode();
+                SectionNode sibling = mProjectView.Presentation.CreateSectionNode();
                 sibling.Label = section.Label + "*" ;
-                Commands.Node.AddNode add = new Commands.Node.AddNode(mView, sibling, section.ParentAs<ObiNode>(),
+                Commands.Node.AddNode add = new Commands.Node.AddNode(mProjectView, sibling, section.ParentAs<ObiNode>(),
                     section.Index + 1);
                 add.UpdateSelection = false;
                 command.append(add);
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mView, section.SectionChild(i), sibling));
+                    command.append(new Commands.Node.ChangeParent(mProjectView, section.SectionChild(i), sibling));
                 }
                 for (int i = node.Index; i < section.PhraseChildCount; ++i)
                 {
-                    if (mView.CanSplitPhrase )
+                    if (mProjectView.CanSplitPhrase )
                     {
                         if (i == node.Index )
-                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index, node.Index + 1));
+                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index, node.Index + 1));
                         else
-                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index+1));
+                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index+1));
                     }
                     else
-                        command.append(new Commands.Node.ChangeParent(mView, section.PhraseChild(i), sibling, node.Index));
+                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index));
                 }
                             }
             return command;
@@ -492,7 +492,7 @@ namespace Obi.ProjectView
 
         public float AudioScale
         {
-            get { return mView == null ? 0.01f : mView.AudioScale; }
+            get { return mProjectView == null ? 0.01f : mProjectView.AudioScale; }
             set { foreach (Control c in Controls) if (c is Strip) ((Strip)c).AudioScale = value; }
         }
 
@@ -501,7 +501,7 @@ namespace Obi.ProjectView
         /// </summary>
         public float ZoomFactor
         {
-            get { return mView == null ? 1.0f : mView.ZoomFactor; }
+            get { return mProjectView == null ? 1.0f : mProjectView.ZoomFactor; }
             set
             {
                 ClearWaveformRenderQueue();
@@ -552,19 +552,19 @@ namespace Obi.ProjectView
         }
 
         // Deselect everything when clicking the panel
-        private void ContentView_Click(object sender, EventArgs e) { mView.Selection = null; }
+        private void ContentView_Click(object sender, EventArgs e) { mProjectView.Selection = null; }
 
         // Create a command (possibly composite) to delete a strip for the given section node.
         private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
         {
-            Commands.Node.Delete delete = new Commands.Node.Delete(mView, section, Localizer.Message("delete_section_shallow"));
+            Commands.Node.Delete delete = new Commands.Node.Delete(mProjectView, section, Localizer.Message("delete_section_shallow"));
             if (section.SectionChildCount > 0)
             {
-                urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+                urakawa.undo.CompositeCommand command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(delete.getShortDescription());
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {
-                    command.append(new Commands.TOC.MoveSectionOut(mView, section.SectionChild(i)));
+                    command.append(new Commands.TOC.MoveSectionOut(mProjectView, section.SectionChild(i)));
                 }
                 command.append(delete);
                 return command;
@@ -735,7 +735,7 @@ namespace Obi.ProjectView
         {
             DoToNewNode(node, delegate()
             {
-                mView.Selection = new NodeSelection(node, this);
+                mProjectView.Selection = new NodeSelection(node, this);
                 FindStrip((SectionNode)node).StartRenaming();
             });
         }
@@ -759,10 +759,10 @@ namespace Obi.ProjectView
                         ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == node)
                     {
                         f();
-                        mView.Presentation.changed -= h;
+                        mProjectView.Presentation.changed -= h;
                     }
                 };
-                mView.Presentation.changed += h;
+                mProjectView.Presentation.changed += h;
             }
         }
 
@@ -804,22 +804,22 @@ namespace Obi.ProjectView
         {
             mShortcutKeys = new Dictionary<Keys, ProjectView.HandledShortcutKey>();
 
-            mShortcutKeys[Keys.A] = delegate() { return mView.TransportBar.MarkSelectionWholePhrase(); };
-            mShortcutKeys[Keys.C] = delegate() { return mView.TransportBar.PreviewAudioSelection(); };
-            mShortcutKeys[Keys.H] = delegate() { return mView.TransportBar.NextSection(); };
-            mShortcutKeys[Keys.Shift | Keys.H] = delegate() { return mView.TransportBar.PrevSection(); };
-            mShortcutKeys[Keys.J] = delegate() { return mView.TransportBar.PrevPhrase(); };
-            mShortcutKeys[Keys.K] = delegate() { return mView.TransportBar.NextPhrase(); };
-            mShortcutKeys[Keys.N] = delegate() { return mView.TransportBar.Nudge(TransportBar.Forward); };
-            mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mView.TransportBar.Nudge(TransportBar.Backward); };
-            mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mView.TransportBar.MarkSelectionBeginTime(); };
-            mShortcutKeys[Keys.OemCloseBrackets] = delegate() { return mView.TransportBar.MarkSelectionEndTime(); };
-            mShortcutKeys[Keys.P] = delegate() { return mView.TransportBar.NextPage(); };
-            mShortcutKeys[Keys.Shift | Keys.P] = delegate() { return mView.TransportBar.PrevPage(); };
-            mShortcutKeys[Keys.V] = delegate() { return mView.TransportBar.Preview(TransportBar.From, TransportBar.UseAudioCursor); };
-            mShortcutKeys[Keys.Shift | Keys.V] = delegate() { return mView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
-            mShortcutKeys[Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
-            mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
+            mShortcutKeys[Keys.A] = delegate() { return mProjectView.TransportBar.MarkSelectionWholePhrase(); };
+            mShortcutKeys[Keys.C] = delegate() { return mProjectView.TransportBar.PreviewAudioSelection(); };
+            mShortcutKeys[Keys.H] = delegate() { return mProjectView.TransportBar.NextSection(); };
+            mShortcutKeys[Keys.Shift | Keys.H] = delegate() { return mProjectView.TransportBar.PrevSection(); };
+            mShortcutKeys[Keys.J] = delegate() { return mProjectView.TransportBar.PrevPhrase(); };
+            mShortcutKeys[Keys.K] = delegate() { return mProjectView.TransportBar.NextPhrase(); };
+            mShortcutKeys[Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
+            mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
+            mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
+            mShortcutKeys[Keys.OemCloseBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionEndTime(); };
+            mShortcutKeys[Keys.P] = delegate() { return mProjectView.TransportBar.NextPage(); };
+            mShortcutKeys[Keys.Shift | Keys.P] = delegate() { return mProjectView.TransportBar.PrevPage(); };
+            mShortcutKeys[Keys.V] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseAudioCursor); };
+            mShortcutKeys[Keys.Shift | Keys.V] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
+            mShortcutKeys[Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
+            mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
 
             // playback shortcuts.
 
@@ -883,7 +883,7 @@ namespace Obi.ProjectView
                 Block block = f(strip, mSelectedItem);
                 if (block != null)
                 {
-                    mView.Selection = new NodeSelection(block.Node, this);
+                    mProjectView.Selection = new NodeSelection(block.Node, this);
                     return true;
                 }
             }
@@ -900,7 +900,7 @@ namespace Obi.ProjectView
                 int index = f(strip, mSelectedItem);
                 if (index >= 0)
                 {
-                    mView.Selection = new StripIndexSelection(strip.Node, this, index);
+                    mProjectView.Selection = new StripIndexSelection(strip.Node, this, index);
                     return true;
                 }
             }
@@ -934,7 +934,7 @@ namespace Obi.ProjectView
 
         private bool SelectFirstBlockInStrip()
         {
-            if (mView.TransportBar.IsPlayerActive) mView.TransportBar.Stop();
+            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop();
             return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.FirstBlock; });
         }
 
@@ -945,7 +945,7 @@ namespace Obi.ProjectView
             Strip strip = f(StripFor(mSelectedItem) as Strip);
             if (strip != null)
             {
-                mView.Selection = new NodeSelection(strip.Node, this);
+                mProjectView.Selection = new NodeSelection(strip.Node, this);
                 return true;
             }
             return false;
@@ -954,7 +954,7 @@ namespace Obi.ProjectView
         private bool SelectPreviousStrip()
         {
             Strip strip;
-            if (mView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
+            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
                 && this.mPlaybackBlock.ObiNode.Index == 0)
             {
                 strip = StripBefore(StripFor(mSelectedItem));
@@ -964,7 +964,7 @@ namespace Obi.ProjectView
 
             if (strip != null)
             {
-                mView.Selection = new NodeSelection(strip.Node, this);
+                mProjectView.Selection = new NodeSelection(strip.Node, this);
                 strip.FocusStripLabel();
                 return true;
             }
@@ -976,7 +976,7 @@ namespace Obi.ProjectView
                         Strip strip =   StripAfter  ( StripFor ( mSelectedItem ));
                         if (strip != null)
                             {
-                            mView.Selection = new NodeSelection ( strip.Node, this );
+                            mProjectView.Selection = new NodeSelection ( strip.Node, this );
                             strip.FocusStripLabel ();
                             return true;
                             }
@@ -1018,7 +1018,7 @@ namespace Obi.ProjectView
             }
             else if (mSelectedItem is Strip)
             {
-                mView.Selection = null;
+                mProjectView.Selection = null;
                 return true;
             }
             return false;
@@ -1051,13 +1051,13 @@ namespace Obi.ProjectView
         /// </summary>
         public bool SelectPrecedingPageNode()
         {
-            if (mView.SelectedNodeAs<ObiNode>() != null)
+            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return true;
                     }
                 }
@@ -1070,13 +1070,13 @@ namespace Obi.ProjectView
         /// </summary>
         public bool SelectNextPageNode()
         {
-            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return true;
                     }
                 }
@@ -1090,13 +1090,13 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectPreviousSpecialRoleNode()
         {
-            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return true;
                     }
                 }
@@ -1111,13 +1111,13 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectNextSpecialRoleNode()
         {
-            if (mView.SelectedNodeAs<EmptyNode>() != null)
+            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return true;
                     }
                 }
@@ -1131,22 +1131,22 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectNextTODONode()
         {
-            if (mView.SelectedNodeAs<ObiNode>() != null)
+            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return;
                     }
                 }
             }
-            for (ObiNode n = mView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+            for (ObiNode n = mProjectView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).TODO)
                 {
-                    mView.Selection = new NodeSelection(n, this);
+                    mProjectView.Selection = new NodeSelection(n, this);
                     return;
                 }
             }
@@ -1157,22 +1157,22 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectPrecedingTODONode()
         {
-            if (mView.SelectedNodeAs<ObiNode>() != null)
+            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
             {
-                for (ObiNode n = mView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                     {
-                        mView.Selection = new NodeSelection(n, this);
+                        mProjectView.Selection = new NodeSelection(n, this);
                         return;
                     }
                 }
             }
-            for (ObiNode n = mView.Presentation.RootNode.LastLeaf; n != null; n = n.PrecedingNode)
+            for (ObiNode n = mProjectView.Presentation.RootNode.LastLeaf; n != null; n = n.PrecedingNode)
             {
                 if (n is EmptyNode && ((EmptyNode)n).TODO)
                 {
-                    mView.Selection = new NodeSelection(n, this);
+                    mProjectView.Selection = new NodeSelection(n, this);
                     return;
                 }
             }
@@ -1188,14 +1188,14 @@ namespace Obi.ProjectView
         // Toggle play/pause in the transport bar
         public bool TogglePlayPause()
         {
-            if (mView.TransportBar.CanPause)
+            if (mProjectView.TransportBar.CanPause)
             {
-                mView.TransportBar.Pause();
+                mProjectView.TransportBar.Pause();
                 return true;
             }
-            else if (mView.TransportBar.CanPlay || mView.TransportBar.CanResumePlayback)
+            else if (mProjectView.TransportBar.CanPlay || mProjectView.TransportBar.CanResumePlayback)
             {
-                mView.TransportBar.PlayOrResume();
+                mProjectView.TransportBar.PlayOrResume();
                 return true;
             }
             return false;
@@ -1204,32 +1204,32 @@ namespace Obi.ProjectView
 
         private bool FastPlayRateStepDown()
         {
-            return mView.TransportBar.FastPlayRateStepDown();
+            return mProjectView.TransportBar.FastPlayRateStepDown();
         }
 
         private bool FastPlayRateStepUp()
         {
-            return mView.TransportBar.FastPlayRateStepUp();
+            return mProjectView.TransportBar.FastPlayRateStepUp();
         }
 
         private bool FastPlayRateNormalise()
         {
-            return mView.TransportBar.FastPlayRateNormalise();
+            return mProjectView.TransportBar.FastPlayRateNormalise();
         }
 
         private bool FastPlayNormaliseWithLapseBack()
         {
-            return mView.TransportBar.FastPlayNormaliseWithLapseBack();
+            return mProjectView.TransportBar.FastPlayNormaliseWithLapseBack();
         }
 
         private bool MarkSelectionFromCursor()
         {
-            return mView.TransportBar.MarkSelectionFromCursor();
+            return mProjectView.TransportBar.MarkSelectionFromCursor();
         }
 
         private bool MarkSelectionToCursor()
         {
-            return mView.TransportBar.MarkSelectionToCursor();
+            return mProjectView.TransportBar.MarkSelectionToCursor();
         }
 
 
@@ -1246,7 +1246,7 @@ namespace Obi.ProjectView
         {
             if (mSelection == null)
             {
-                mView.Selection = new NodeSelection(mView.Presentation.FirstSection, this);
+                mProjectView.Selection = new NodeSelection(mProjectView.Presentation.FirstSection, this);
             }
             else
             {
@@ -1316,6 +1316,102 @@ null;
         {
             System.Diagnostics.Debug.Print("AutoScrollPosition = {0} (Autoscroll = {1})", AutoScrollPosition, AutoScroll);
         }
+
+        /// <summary>
+        /// Update the context menu items.
+        /// </summary>
+        public void UpdateContextMenu()
+        {
+            Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection;
+            Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
+            Context_SplitSectionMenuItem.Enabled = CanSplitStrip;
+            Context_MergeSectionWithNextMenuItem.Enabled = CanMergeStripWithNext;
+            Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
+            Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
+            Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
+            Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
+            Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus;
+            Context_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
+            Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
+            Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;
+            Context_AssignRoleMenuItem.Enabled = mProjectView.CanAssignRole;
+        }
+
+        private bool CanSetSelectedPhraseUsedStatus
+        {
+            get
+            {
+                return IsBlockSelected && SelectedEmptyNode.AncestorAs<SectionNode>().Used;
+            }
+        }
+
+        // Add section context menu item
+        private void Context_AddSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.AddStrip(); }
+
+        // Insert section context menu item
+        private void Context_InsertSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.InsertSection(); }
+
+        // Split section context menu item
+        private void Context_SplitSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitStrip(); }
+
+        // Merge section with next context menu item
+        private void Context_MergeSectionWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+
+        // Add blank phrase context menu item
+        private void Context_AddBlankPhraseMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }
+
+        // Add empty pages context menu item
+        private void Context_AddEmptyPagesMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyPages(); }
+
+        // Import audio files context menu item
+        private void Context_ImportAudioFilesMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
+
+        // Split phrase context context menu item
+        private void Context_SplitPhraseMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
+
+        // Merge phrase with next context menu item
+        private void Context_MergePhraseWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+
+        // Crop audio context menu item
+        private void Context_CropAudioMenuItem_Click(object sender, EventArgs e) { mProjectView.CropPhrase(); }
+
+        // Phrase is TODO context menu item
+        private void Context_PhraseIsTODOMenuItem_Click(object sender, EventArgs e)
+        {
+            Context_PhraseIsTODOMenuItem.Checked = !Context_PhraseIsTODOMenuItem.Checked;
+            mProjectView.ToggleTODOForPhrase();
+        }
+
+        // Phrase is used context menu item
+        private void Context_PhraseIsUsedMenuItem_Click(object sender, EventArgs e)
+        {
+            Context_PhraseIsUsedMenuItem.Checked = !Context_PhraseIsUsedMenuItem.Checked;
+            mProjectView.SetSelectedNodeUsedStatus(Context_PhraseIsUsedMenuItem.Checked);
+        }
+
+        // Assign role > Plain context menu item
+        private void Context_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+        }
+
+        private void Context_AssignRole_HeadingMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Heading, null);
+        }
+
+        private void Context_AssignRole_PageMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Page, null);
+        }
+
+        private void Context_AssignRole_SilenceMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Silence, null);
+        }
+
 
 
 
