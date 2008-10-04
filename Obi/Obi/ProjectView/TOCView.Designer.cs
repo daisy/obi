@@ -29,27 +29,27 @@ namespace Obi.ProjectView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddSubsectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_RenameSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DecreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_IncreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SectionIsUsedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_RenameSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_CopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteBeforeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteInsideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mContextMenu.SuspendLayout();
+            this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // mContextMenu
+            // mContextMenuStrip
             // 
-            this.mContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_AddSectionMenuItem,
             this.Context_AddSubsectionMenuItem,
             this.Context_InsertSectionMenuItem,
@@ -64,8 +64,8 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem,
             this.Context_PasteInsideMenuItem,
             this.Context_DeleteMenuItem});
-            this.mContextMenu.Name = "mContextMenu";
-            this.mContextMenu.Size = new System.Drawing.Size(182, 318);
+            this.mContextMenuStrip.Name = "mContextMenu";
+            this.mContextMenuStrip.Size = new System.Drawing.Size(182, 296);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -87,6 +87,13 @@ namespace Obi.ProjectView
             this.Context_InsertSectionMenuItem.Size = new System.Drawing.Size(181, 22);
             this.Context_InsertSectionMenuItem.Text = "&Insert section";
             this.Context_InsertSectionMenuItem.Click += new System.EventHandler(this.Context_InsertSectionMenuItem_Click);
+            // 
+            // Context_RenameSectionMenuItem
+            // 
+            this.Context_RenameSectionMenuItem.Name = "Context_RenameSectionMenuItem";
+            this.Context_RenameSectionMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.Context_RenameSectionMenuItem.Text = "&Rename section";
+            this.Context_RenameSectionMenuItem.Click += new System.EventHandler(this.Context_RenameSectionMenuItem_Click);
             // 
             // Context_DecreaseSectionLevelMenuItem
             // 
@@ -112,24 +119,17 @@ namespace Obi.ProjectView
             this.Context_SectionIsUsedMenuItem.Text = "Sec&tion is used";
             this.Context_SectionIsUsedMenuItem.CheckedChanged += new System.EventHandler(this.Context_SectionIsUsedMenuItem_CheckedChanged);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            // 
             // Context_CutMenuItem
             // 
             this.Context_CutMenuItem.Name = "Context_CutMenuItem";
             this.Context_CutMenuItem.Size = new System.Drawing.Size(181, 22);
             this.Context_CutMenuItem.Text = "&Cut";
             this.Context_CutMenuItem.Click += new System.EventHandler(this.Context_CutMenuItem_Click);
-            // 
-            // Context_RenameSectionMenuItem
-            // 
-            this.Context_RenameSectionMenuItem.Name = "Context_RenameSectionMenuItem";
-            this.Context_RenameSectionMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.Context_RenameSectionMenuItem.Text = "&Rename section";
-            this.Context_RenameSectionMenuItem.Click += new System.EventHandler(this.Context_RenameSectionMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
             // 
             // Context_CopyMenuItem
             // 
@@ -169,7 +169,7 @@ namespace Obi.ProjectView
             // TOCView
             // 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ContextMenuStrip = this.mContextMenu;
+            this.ContextMenuStrip = this.mContextMenuStrip;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FullRowSelect = true;
             this.LabelEdit = true;
@@ -180,14 +180,14 @@ namespace Obi.ProjectView
             this.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.TOCTree_BeforeLabelEdit);
             this.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.TOCTree_BeforeSelect);
             this.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TOCTree_AfterExpand);
-            this.mContextMenu.ResumeLayout(false);
+            this.mContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip mContextMenu;
+        private System.Windows.Forms.ContextMenuStrip mContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem Context_AddSectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AddSubsectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_InsertSectionMenuItem;

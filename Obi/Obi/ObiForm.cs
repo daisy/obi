@@ -823,18 +823,8 @@ namespace Obi
         private void mImportAudioFileToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.ImportPhrases(); }
         private void mSplitPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SplitPhrase(); }
         private void mMergePhraseWithNextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeBlockWithNext(); }
+        private void mPhrases_PhraseIsTODOMenuItem_CheckedChanged(object sender, EventArgs e) { mProjectView.ToggleTODOForPhrase(); }
 
-        private void mPhrases_PhraseIsTODOMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mProjectView.TransportBar.IsActive)
-            {
-                mProjectView.TransportBar.MarkTodoClass();
-            }
-            else
-            {
-                mProjectView.ToggleEmptyNodeTo_DoMark();
-            }
-        }
 
         private void mPhraseIsUsedToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {

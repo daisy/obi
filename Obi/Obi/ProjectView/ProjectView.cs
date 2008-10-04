@@ -126,35 +126,36 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Add a new strip to the project.
-        /// </summary>
-        private void AddStrip()
+        // Add a new strip to the project.
+        public void AddStrip()
         {
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
-            // select section node if its  phrase  is selected
-            if (Selection != null && Selection.Node is EmptyNode)
-                Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
-
             Commands.Node.AddSectionNode add = new Commands.Node.AddSectionNode(this, mContentView);
-            urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
-            SectionNode selected = null;
-            if (mContentView.Selection.Node is SectionNode)
-                selected = (SectionNode)mContentView.Selection.Node;
-            else
-                selected = (SectionNode)mContentView.Selection.Node.ParentAs<SectionNode>();
-
-            command.append(add);
-            for (int i = selected.SectionChildCount - 1; i >= 0; --i)
+            if (mContentView.Selection != null)
             {
-                SectionNode child = selected.SectionChild(i);
-
-                command.append(new Commands.Node.Delete(this, child));
-                command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
+                // select parent section node if a child phrase node is selected
+                if (Selection.Node is EmptyNode)
+                {
+                    Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
+                }
+                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
+                SectionNode selected = mContentView.Selection.Node is SectionNode ?
+                    mContentView.SelectedSection : mContentView.Selection.Node.ParentAs<SectionNode>();
+                command.append(add);
+                for (int i = selected.SectionChildCount - 1; i >= 0; --i)
+                {
+                    SectionNode child = selected.SectionChild(i);
+                    command.append(new Commands.Node.Delete(this, child));
+                    command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
+                }
+                //command.append(add);
+                if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
+                mPresentation.getUndoRedoManager().execute(command);
             }
-            //command.append(add);
-            if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
-            mPresentation.getUndoRedoManager().execute(command);
+            else
+            {
+                mPresentation.getUndoRedoManager().execute(add);
+            }
         }
 
         /// <summary>
@@ -1528,6 +1529,21 @@ namespace Obi.ProjectView
             return false;
         }
 
+        /// <summary>
+        /// Toggle the TODO status of a phrase.
+        /// </summary>
+        public void ToggleTODOForPhrase()
+        {
+            if (TransportBar.IsActive)
+            {
+                TransportBar.MarkTodoClass();
+            }
+            else
+            {
+                ToggleEmptyNodeTo_DoMark();
+            }
+        }
+
         // Initialize timer for tabbing
         private void InitialiseTabbingTimer()
         {
@@ -1780,6 +1796,7 @@ namespace Obi.ProjectView
         public void UpdateContextMenus()
         {
             mTOCView.UpdateContextMenu();
+            mContentView.UpdateContextMenu();
         }
     }
 
