@@ -51,6 +51,19 @@ namespace Obi.ProjectView
             this.Context_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AudioSelection_BeginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_AudioSelection_EndMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_CopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_PasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_PasteBeforeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_PasteInsideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,9 +84,20 @@ namespace Obi.ProjectView
             this.Context_PhraseIsTODOMenuItem,
             this.Context_PhraseIsUsedMenuItem,
             this.toolStripSeparator2,
-            this.Context_AssignRoleMenuItem});
+            this.Context_AssignRoleMenuItem,
+            this.Context_ApplyPhraseDetectionMenuItem,
+            this.Context_AudioSelectionMenuItem,
+            this.toolStripSeparator4,
+            this.Context_CutMenuItem,
+            this.Context_CopyMenuItem,
+            this.Context_PasteMenuItem,
+            this.Context_PasteBeforeMenuItem,
+            this.Context_PasteInsideMenuItem,
+            this.Context_DeleteMenuItem,
+            this.toolStripSeparator5,
+            this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 302);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 512);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -226,6 +250,95 @@ namespace Obi.ProjectView
             this.Context_AssignRole_NewCustomRoleMenuItem.Text = "(New custom role...)";
             this.Context_AssignRole_NewCustomRoleMenuItem.Click += new System.EventHandler(this.Context_AssignRole_NewCustomRoleMenuItem_Click);
             // 
+            // Context_ApplyPhraseDetectionMenuItem
+            // 
+            this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
+            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection";
+            this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
+            // 
+            // Context_AudioSelectionMenuItem
+            // 
+            this.Context_AudioSelectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_AudioSelection_BeginMenuItem,
+            this.Context_AudioSelection_EndMenuItem});
+            this.Context_AudioSelectionMenuItem.Name = "Context_AudioSelectionMenuItem";
+            this.Context_AudioSelectionMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_AudioSelectionMenuItem.Text = "Audi&o selection";
+            // 
+            // Context_AudioSelection_BeginMenuItem
+            // 
+            this.Context_AudioSelection_BeginMenuItem.Name = "Context_AudioSelection_BeginMenuItem";
+            this.Context_AudioSelection_BeginMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.Context_AudioSelection_BeginMenuItem.Text = "&Begin audio selection";
+            this.Context_AudioSelection_BeginMenuItem.Click += new System.EventHandler(this.Context_AudioSelection_BeginMenuItem_Click);
+            // 
+            // Context_AudioSelection_EndMenuItem
+            // 
+            this.Context_AudioSelection_EndMenuItem.Name = "Context_AudioSelection_EndMenuItem";
+            this.Context_AudioSelection_EndMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.Context_AudioSelection_EndMenuItem.Text = "&End audio selection";
+            this.Context_AudioSelection_EndMenuItem.Click += new System.EventHandler(this.Context_AudioSelection_EndMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(186, 6);
+            // 
+            // Context_CutMenuItem
+            // 
+            this.Context_CutMenuItem.Name = "Context_CutMenuItem";
+            this.Context_CutMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_CutMenuItem.Text = "&Cut";
+            this.Context_CutMenuItem.Click += new System.EventHandler(this.Context_CutMenuItem_Click);
+            // 
+            // Context_CopyMenuItem
+            // 
+            this.Context_CopyMenuItem.Name = "Context_CopyMenuItem";
+            this.Context_CopyMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_CopyMenuItem.Text = "Cop&y";
+            this.Context_CopyMenuItem.Click += new System.EventHandler(this.Context_CopyMenuItem_Click);
+            // 
+            // Context_PasteMenuItem
+            // 
+            this.Context_PasteMenuItem.Name = "Context_PasteMenuItem";
+            this.Context_PasteMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_PasteMenuItem.Text = "&Paste";
+            this.Context_PasteMenuItem.Click += new System.EventHandler(this.Context_PasteMenuItem_Click);
+            // 
+            // Context_PasteBeforeMenuItem
+            // 
+            this.Context_PasteBeforeMenuItem.Name = "Context_PasteBeforeMenuItem";
+            this.Context_PasteBeforeMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_PasteBeforeMenuItem.Text = "Paste &before";
+            this.Context_PasteBeforeMenuItem.Click += new System.EventHandler(this.Context_PasteBeforeMenuItem_Click);
+            // 
+            // Context_PasteInsideMenuItem
+            // 
+            this.Context_PasteInsideMenuItem.Name = "Context_PasteInsideMenuItem";
+            this.Context_PasteInsideMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_PasteInsideMenuItem.Text = "Paste &inside";
+            this.Context_PasteInsideMenuItem.Click += new System.EventHandler(this.Context_PasteInsideMenuItem_Click);
+            // 
+            // Context_DeleteMenuItem
+            // 
+            this.Context_DeleteMenuItem.Name = "Context_DeleteMenuItem";
+            this.Context_DeleteMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_DeleteMenuItem.Text = "&Delete";
+            this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(186, 6);
+            // 
+            // Context_PropertiesMenuItem
+            // 
+            this.Context_PropertiesMenuItem.Name = "Context_PropertiesMenuItem";
+            this.Context_PropertiesMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_PropertiesMenuItem.Text = "Pr&operties";
+            this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
+            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -261,5 +374,18 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_SilenceMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_NewCustomRoleMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ApplyPhraseDetectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AudioSelectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AudioSelection_BeginMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_AudioSelection_EndMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem Context_CutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_CopyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_PasteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_PasteBeforeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_PasteInsideMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_DeleteMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
     }
 }
