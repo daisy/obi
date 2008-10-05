@@ -44,6 +44,8 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteInsideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,9 +65,11 @@ namespace Obi.ProjectView
             this.Context_PasteMenuItem,
             this.Context_PasteBeforeMenuItem,
             this.Context_PasteInsideMenuItem,
-            this.Context_DeleteMenuItem});
+            this.Context_DeleteMenuItem,
+            this.toolStripSeparator2,
+            this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenu";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(182, 296);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(182, 324);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -166,6 +170,18 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem.Text = "&Delete";
             this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(178, 6);
+            // 
+            // Context_PropertiesMenuItem
+            // 
+            this.Context_PropertiesMenuItem.Name = "Context_PropertiesMenuItem";
+            this.Context_PropertiesMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.Context_PropertiesMenuItem.Text = "Pr&operties";
+            this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
+            // 
             // TOCView
             // 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -202,5 +218,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_PasteBeforeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_PasteInsideMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
     }
 }
