@@ -641,7 +641,7 @@ namespace Obi.ProjectView
             {
                 BackColor =
                 mLabel.BackColor =
-                    //mBlockLayout.BackColor =
+                    mBlockLayout.BackColor =
                     mHighlighted ? settings.StripSelectedBackColor :
                     mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
                 mLabel.ForeColor =
@@ -651,6 +651,7 @@ namespace Obi.ProjectView
                 foreach (Control c in mBlockLayout.Controls)
                 {
                     if (c is Block) ((Block)c).UpdateColors();
+                    else if (c is StripCursor) ((StripCursor)c).UpdateColors();
                 }
             }
         }
