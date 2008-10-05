@@ -524,6 +524,15 @@ namespace Obi.ProjectView
             UpdateButtons();
 
             if(m_IsPreviewing)  PostPreviewRestore();
+
+
+            if (mCurrentPlaylist != null &&
+                (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused )
+                && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
+                {
+                mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
+                }
+
         }
 
         // Simply pass the playback rate change event.
