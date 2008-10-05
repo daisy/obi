@@ -32,8 +32,8 @@ namespace Obi.ProjectView
         {
             set
             {
-                BackColor = Color.Magenta;
-                // BackColor = value.StripBackColor;
+                // BackColor = Color.Magenta;
+                BackColor = value.StripBackColor;
                 if (Highlighted) Invalidate();
             }
         }
@@ -110,5 +110,10 @@ namespace Obi.ProjectView
 
         // Select on click.
         private void StripCursor_Click(object sender, EventArgs e) { Strip.SetSelectedIndexFromStripCursor(this); }
+
+        internal void UpdateColors()
+        {
+            BackColor = Parent.BackColor;
+        }
     }
 }
