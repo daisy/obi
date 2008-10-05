@@ -43,7 +43,7 @@ namespace Obi.PipelineInterface.ParameterControls
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point ( 75, 25 );
+            this.textBox1.Location = new System.Drawing.Point ( 100, 25 );
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size ( 100, 22 );
             this.textBox1.TabIndex = 2;
@@ -55,7 +55,7 @@ namespace Obi.PipelineInterface.ParameterControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add ( this.textBox1 );
             this.Controls.Add ( this.label1 );
-            this.Margin = new System.Windows.Forms.Padding ( 5, 5, 5, 5 );
+            this.Margin = new System.Windows.Forms.Padding ( 5 );
             this.Name = "IntControl";
             this.Size = new System.Drawing.Size ( 287, 55 );
             this.Controls.SetChildIndex ( this.label1, 0 );
