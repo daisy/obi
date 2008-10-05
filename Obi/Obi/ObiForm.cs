@@ -845,26 +845,35 @@ namespace Obi
         // Update the custom class menu with the classes from the new project
         private void UpdateCustomClassMenu()
         {
-            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomClassToMenu(customClass);
+            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomRoleToMenus(customClass);
             mSession.Presentation.CustomClassAddded += new CustomClassEventHandler(Presentation_CustomClassAddded);
             mSession.Presentation.CustomClassRemoved += new CustomClassEventHandler(Presentation_CustomClassRemoved);
         }
 
-        private void AddCustomClassToMenu(string customClass)
-        {
-            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
-            int index = items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem);
-            // TODO find alphabetical spot for the new class
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = customClass;
-            item.Click += new EventHandler(delegate(object sender, EventArgs e)
-               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, customClass); });
-            items.Insert(index, item);
-        }
         // Update the custom class menu
         private void Presentation_CustomClassAddded(object sender, CustomClassEventArgs e)
         {
-            AddCustomClassToMenu(e.CustomClass);
+            AddCustomRoleToMenus(e.CustomClass);
+        }
+
+        private void AddCustomRoleToMenus(string name)
+        {
+            AddCustomRoleToMenu(name, mAssignRoleToolStripMenuItem.DropDownItems,
+                mPhrases_AssignRole_NewCustomRoleMenuItem);
+            mProjectView.AddCustomRoleToContextMenu(name, this);
+        }
+
+        /// <summary>
+        /// Add a new custom role menu item to a menu given a context item.
+        /// </summary>
+        public void AddCustomRoleToMenu(string name, ToolStripItemCollection items, ToolStripMenuItem contextItem)
+        {
+            int index = items.IndexOf(contextItem);
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = name;
+            item.Click += new EventHandler(delegate(object sender, EventArgs e)
+               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, name); });
+            items.Insert(index, item);
         }
 
         // Update the custom class menu to remove this class

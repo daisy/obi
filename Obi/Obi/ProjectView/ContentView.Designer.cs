@@ -49,6 +49,8 @@ namespace Obi.ProjectView
             this.Context_AssignRole_HeadingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AssignRole_PageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator2,
             this.Context_AssignRoleMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 324);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 302);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -177,7 +179,9 @@ namespace Obi.ProjectView
             this.Context_AssignRole_PlainMenuItem,
             this.Context_AssignRole_HeadingMenuItem,
             this.Context_AssignRole_PageMenuItem,
-            this.Context_AssignRole_SilenceMenuItem});
+            this.Context_AssignRole_SilenceMenuItem,
+            this.toolStripSeparator3,
+            this.Context_AssignRole_NewCustomRoleMenuItem});
             this.Context_AssignRoleMenuItem.Name = "Context_AssignRoleMenuItem";
             this.Context_AssignRoleMenuItem.Size = new System.Drawing.Size(189, 22);
             this.Context_AssignRoleMenuItem.Text = "Assign ro&le";
@@ -185,30 +189,42 @@ namespace Obi.ProjectView
             // Context_AssignRole_PlainMenuItem
             // 
             this.Context_AssignRole_PlainMenuItem.Name = "Context_AssignRole_PlainMenuItem";
-            this.Context_AssignRole_PlainMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Context_AssignRole_PlainMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_PlainMenuItem.Text = "P&lain";
             this.Context_AssignRole_PlainMenuItem.Click += new System.EventHandler(this.Context_AssignRole_PlainMenuItem_Click);
             // 
             // Context_AssignRole_HeadingMenuItem
             // 
             this.Context_AssignRole_HeadingMenuItem.Name = "Context_AssignRole_HeadingMenuItem";
-            this.Context_AssignRole_HeadingMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Context_AssignRole_HeadingMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_HeadingMenuItem.Text = "&Heading";
             this.Context_AssignRole_HeadingMenuItem.Click += new System.EventHandler(this.Context_AssignRole_HeadingMenuItem_Click);
             // 
             // Context_AssignRole_PageMenuItem
             // 
             this.Context_AssignRole_PageMenuItem.Name = "Context_AssignRole_PageMenuItem";
-            this.Context_AssignRole_PageMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Context_AssignRole_PageMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_PageMenuItem.Text = "&Page";
             this.Context_AssignRole_PageMenuItem.Click += new System.EventHandler(this.Context_AssignRole_PageMenuItem_Click);
             // 
             // Context_AssignRole_SilenceMenuItem
             // 
             this.Context_AssignRole_SilenceMenuItem.Name = "Context_AssignRole_SilenceMenuItem";
-            this.Context_AssignRole_SilenceMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Context_AssignRole_SilenceMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_SilenceMenuItem.Text = "&Silence";
             this.Context_AssignRole_SilenceMenuItem.CheckedChanged += new System.EventHandler(this.Context_AssignRole_SilenceMenuItem_CheckedChanged);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(170, 6);
+            // 
+            // Context_AssignRole_NewCustomRoleMenuItem
+            // 
+            this.Context_AssignRole_NewCustomRoleMenuItem.Name = "Context_AssignRole_NewCustomRoleMenuItem";
+            this.Context_AssignRole_NewCustomRoleMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.Context_AssignRole_NewCustomRoleMenuItem.Text = "(New custom role...)";
+            this.Context_AssignRole_NewCustomRoleMenuItem.Click += new System.EventHandler(this.Context_AssignRole_NewCustomRoleMenuItem_Click);
             // 
             // ContentView
             // 
@@ -243,5 +259,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_HeadingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_PageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_SilenceMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_NewCustomRoleMenuItem;
     }
 }

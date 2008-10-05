@@ -1798,6 +1798,14 @@ namespace Obi.ProjectView
             mTOCView.UpdateContextMenu();
             mContentView.UpdateContextMenu();
         }
+
+        /// <summary>
+        /// Add a custom class to the content view context menu.
+        /// </summary>
+        public void AddCustomRoleToContextMenu(string name, ObiForm form)
+        {
+            mContentView.AddCustomRoleToContextMenu(name, form);
+        }
     }
 
     public class ImportingFileEventArgs
