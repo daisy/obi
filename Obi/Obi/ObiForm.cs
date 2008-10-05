@@ -1053,13 +1053,10 @@ namespace Obi
             UpdateAudioSelectionBlockMenuItems();
         }
 
+        // TODO Remove this
         private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mProjectView.Selection is AudioSelection)
-            {
-                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime = 0;
-                ((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime = 0;
-            }
+            mProjectView.DeselectAudio();
             UpdateAudioSelectionBlockMenuItems();
         }
 

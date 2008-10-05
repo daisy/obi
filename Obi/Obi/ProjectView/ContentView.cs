@@ -1345,6 +1345,15 @@ null;
             Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
             Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;
             Context_AssignRoleMenuItem.Enabled = mProjectView.CanAssignRole;
+            Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            Context_CutMenuItem.Enabled = CanRemoveAudio || CanRemoveBlock || CanRemoveStrip;
+            Context_CopyMenuItem.Enabled = CanCopyAudio || CanCopyBlock || CanCopyStrip;
+            Context_PasteMenuItem.Enabled = mProjectView.CanPaste;
+            Context_PasteBeforeMenuItem.Enabled = mProjectView.CanPasteBefore;
+            Context_PasteInsideMenuItem.Enabled = mProjectView.CanPasteInside;
+            Context_DeleteMenuItem.Enabled = CanRemoveAudio || CanRemoveBlock || CanRemoveStrip;
+            Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog ||
+                mProjectView.CanShowPhrasePropertiesDialog || mProjectView.CanShowProjectPropertiesDialog;
         }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -1425,12 +1434,59 @@ null;
             mProjectView.ShowPhrasePropertiesDialog(true);
         }
 
+        // Apply phrase detection context menu item
+        private void Context_ApplyPhraseDetectionMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ApplyPhraseDetection();
+        }
+
+        private void Context_AudioSelection_BeginMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionBeginTime();
+        }
+
+        private void Context_AudioSelection_EndMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.TransportBar.MarkSelectionEndTime();
+        }
 
 
+        // Cut context menu item
+        private void Context_CutMenuItem_Click(object sender, EventArgs e) { mProjectView.Cut(); }
 
+        // Copy context menu item
+        private void Context_CopyMenuItem_Click(object sender, EventArgs e) { mProjectView.Copy(); }
 
+        // Paste context menu item
+        private void Context_PasteMenuItem_Click(object sender, EventArgs e) { mProjectView.Paste(); }
 
+        // Paste before context menu item
+        private void Context_PasteBeforeMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteBefore(); }
+
+        // Paste inside context menu item
+        private void Context_PasteInsideMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteInside(); }
+
+        // Delete context menu item
+        private void Context_DeleteMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
+
+        // Properties context menu item
+        private void Context_PropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanShowPhrasePropertiesDialog)
+            {
+                mProjectView.ShowPhrasePropertiesDialog(false);
+            }
+            else if (mProjectView.CanShowSectionPropertiesDialog)
+            {
+                mProjectView.ShowSectionPropertiesDialog();
+            }
+            else
+            {
+                mProjectView.ShowProjectPropertiesDialog();
+            }
+        }
     }
+
     /// <summary>
     /// Common interface for selection of strips and blocks.
     /// </summary>

@@ -406,6 +406,18 @@ namespace Obi.ProjectView
             if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
         }
 
+        /// <summary>
+        /// Cancel any audio selection.
+        /// </summary>
+        public void DeselectAudio()
+        {
+            if (Selection is AudioSelection)
+            {
+                ((AudioSelection)Selection).AudioRange.SelectionBeginTime = 0;
+                ((AudioSelection)Selection).AudioRange.SelectionEndTime = 0;
+            }
+        }
+
 
         /// <summary>
         /// Show (select) the strip for the current selection
