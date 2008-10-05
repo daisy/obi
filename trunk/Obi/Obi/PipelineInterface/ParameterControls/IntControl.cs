@@ -29,6 +29,21 @@ namespace Obi.PipelineInterface.ParameterControls
             if ( p.ParameterValue != null )  textBox1.Text = p.ParameterValue;
 
             base.DescriptionLabel = p.Description;
+            
+
+            int wdiff = label1.Width;
+                        wdiff -= label1.Width;
+            if (wdiff < 0)
+                {
+                Point location = label1.Location;
+                Width -= wdiff;
+                label1.Location = location;
+                }
+            else
+                {
+                label1.Location = new Point ( label1.Location.X - wdiff, label1.Location.Y );
+                }
+            if (mLabel.Width + mLabel.Margin.Horizontal > Width) Width = mLabel.Width + mLabel.Margin.Horizontal;
             base.Size = this.Size;
             }
 
