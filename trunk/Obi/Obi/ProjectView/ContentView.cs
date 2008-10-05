@@ -140,6 +140,14 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Add a custom class to the context menu.
+        /// </summary>
+        public void AddCustomRoleToContextMenu(string name, ObiForm from)
+        {
+            from.AddCustomRoleToMenu(name, Context_AssignRoleMenuItem.DropDownItems, Context_AssignRole_NewCustomRoleMenuItem);
+        }
+
+        /// <summary>
         /// Show the strip for this section node.
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
@@ -1411,6 +1419,12 @@ null;
         {
             mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Silence, null);
         }
+
+        private void Context_AssignRole_NewCustomRoleMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ShowPhrasePropertiesDialog(true);
+        }
+
 
 
 
