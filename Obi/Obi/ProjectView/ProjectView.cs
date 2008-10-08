@@ -199,12 +199,12 @@ namespace Obi.ProjectView
         public bool CanCopyStrip { get { return mContentView.CanCopyStrip && !TransportBar.IsRecorderActive; } }
         public bool CanCopyBlock { get { return mContentView.CanCopyBlock && !TransportBar.IsRecorderActive; } }
         public bool CanCut { get { return CanDelete; } }
-        public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel; } }
+        public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel     &&    !(Selection is TextSelection )  ; } }
         public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive; } }
         public bool CanFastForward { get { return mTransportBar.CanFastForward; } }
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
-        public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel; } }
+        public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel    &&    !( Selection is TextSelection ) ; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
