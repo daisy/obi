@@ -33,7 +33,19 @@ namespace Obi.Dialogs
         /// <summary>
         /// Get the new level from the combo box.
         /// </summary>
-        public int Level { get { return m_comboLevel.SelectedIndex + 1; } }
+        public int Level 
+            { 
+            get 
+                {
+                if (m_comboLevel.SelectedIndex != null   &&   
+                    m_comboLevel.SelectedIndex >= 0 && m_comboLevel.SelectedIndex < m_comboLevel.Items.Count )
+                    {
+                                        return Convert.ToInt32 ( m_comboLevel.Items[m_comboLevel.SelectedIndex] );
+                    }
+                else
+                    return mNode.Level;
+                } 
+            }
 
         /// <summary>
         /// Get the section node for which the information is displayed.
