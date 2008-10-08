@@ -50,5 +50,23 @@ namespace Obi.Dialogs
             mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
             mLeadingSilenceBox.Text = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE.ToString();
         }
+
+        private void mLeadingSilenceBox_TextChanged ( object sender, EventArgs e )
+            {
+            CheckLeadingSilenceInput ();            
+            }
+
+        private void CheckLeadingSilenceInput ()
+            {
+            if (mGapBox.Text != "" && mLeadingSilenceBox.Text != ""
+ && mGapBox.Text != "-" && mLeadingSilenceBox.Text != "-"
+                && Convert.ToInt32 ( mLeadingSilenceBox.Text ) > Convert.ToInt32 ( mGapBox.Text ))
+                mLeadingSilenceBox.Text = mGapBox.Text;
+            }
+
+        private void mGapBox_TextChanged ( object sender, EventArgs e )
+            {
+            CheckLeadingSilenceInput ();
+            }
     }
 }
