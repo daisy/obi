@@ -530,7 +530,10 @@ namespace Obi.ProjectView
                 (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused )
                 && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
                 {
+                if ( mView.Selection.Control is ContentView )
                 mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
+                else if ( mView.Selection.Control is TOCView )
+                mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode>(), mView.Selection.Control );
                 }
 
         }
