@@ -36,7 +36,7 @@ namespace Obi.Dialogs
 
         private void RemoveRole(string role)
         {
-        if (role != "" ) 
+        if (role != null &&  role.Trim() != "" ) 
             {
             mCustomRolesList.Items.Remove ( role );
             RemoveCustomTypeFromNodes ( role );
