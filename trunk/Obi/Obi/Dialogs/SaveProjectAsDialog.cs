@@ -54,6 +54,12 @@ namespace Obi.Dialogs
         {
             string DirPath = Path.Combine(m_txtParentDirectory.Text, m_txtProjectDirectoryName.Text);
 
+            if (DirPath.Trim () == "")
+                {
+                MessageBox.Show ( Localizer.Message("Textboxs_Empty")  ,Localizer.Message("Caption_Error"));
+                return;
+                }
+
             if (new DirectoryInfo(m_OriginalProjectPath).FullName == new DirectoryInfo(DirPath).FullName)
             {
                 MessageBox.Show( Localizer.Message("CannotSaveInSameProjectDirectory"));

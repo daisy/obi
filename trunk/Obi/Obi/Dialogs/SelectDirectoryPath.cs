@@ -37,7 +37,7 @@ namespace Obi.Dialogs
 
         private void m_btnOk_Click(object sender, EventArgs e)
         {
-            if (!Directory.Exists(m_txtDirectoryPath.Text))
+            if ( m_txtDirectoryPath.Text.Trim () != ""    &&   !Directory.Exists(m_txtDirectoryPath.Text))
             {
                 DialogResult MsgBoxResult =  MessageBox.Show("Directory do not exist. \n Do you want to create it?", "Error!", MessageBoxButtons.YesNo);
                 if (MsgBoxResult == DialogResult.Yes)
@@ -50,10 +50,21 @@ namespace Obi.Dialogs
                 }
             }
 
-            m_DirectoryPath = m_txtDirectoryPath.Text;
+        try
+            {
+            m_DirectoryPath = System.IO.Path.GetFullPath ( m_txtDirectoryPath.Text );
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( ex.ToString () );
+            return;
+            }
+            
+
             this.DialogResult = DialogResult.OK;
             Close();
         }
+
         public bool  CreateDirectory(string path)
         {
             try
