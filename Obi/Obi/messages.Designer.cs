@@ -2490,6 +2490,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more fields are empty!.
+        /// </summary>
+        internal static string Textboxs_Empty {
+            get {
+                return ResourceManager.GetString("Textboxs_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} - {2}.
         /// </summary>
         internal static string title_bar {

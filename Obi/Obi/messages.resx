@@ -1210,4 +1210,7 @@ Error text: {1}</value>
   <data name="Pipeline_InvalidString" xml:space="preserve">
     <value>invalid input</value>
   </data>
+  <data name="Textboxs_Empty" xml:space="preserve">
+    <value>One or more fields are empty!</value>
+  </data>
 </root>

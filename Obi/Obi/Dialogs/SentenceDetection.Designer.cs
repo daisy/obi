@@ -42,9 +42,9 @@ namespace Obi.Dialogs
         // mOKButton
         // 
         resources.ApplyResources ( this.mOKButton, "mOKButton" );
-        this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
         this.mOKButton.Name = "mOKButton";
         this.mOKButton.UseVisualStyleBackColor = true;
+        this.mOKButton.Click += new System.EventHandler ( this.mOKButton_Click );
         // 
         // mCancelButton
         // 

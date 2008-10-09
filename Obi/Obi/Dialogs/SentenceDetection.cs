@@ -68,5 +68,18 @@ namespace Obi.Dialogs
             {
             CheckLeadingSilenceInput ();
             }
+
+        private void mOKButton_Click ( object sender, EventArgs e )
+            {
+            if (mThresholdBox.Text.Trim () == ""
+                || mGapBox.Text.Trim () == ""
+                || mLeadingSilenceBox.Text.Trim () == "")
+                {
+                MessageBox.Show ( Localizer.Message ( "Textboxs_Empty" ), Localizer.Message ( "Caption_Error" ) );
+                return;
+                                }
+                            this.DialogResult = DialogResult.OK;
+            }
+
     }
 }
