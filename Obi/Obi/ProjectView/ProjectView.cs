@@ -1772,6 +1772,16 @@ namespace Obi.ProjectView
             return playing == null ? SelectedNodeAs<PhraseNode>() : playing;
         }
 
+        public void SelectFromTransportBar ( ObiNode node, IControlWithSelection selectionControl )
+            {
+            if ( node != null )
+                {
+                if (selectionControl == null)
+                    Selection = new NodeSelection ( node, mContentView );
+                else
+                    Selection = new NodeSelection ( node, selectionControl );
+                }
+            }
         private void ProjectView_Layout(object sender, LayoutEventArgs e)
         {
             System.Diagnostics.Debug.Print("LAYOUT form ProjectView: control={0}, component={1}, property={2}",

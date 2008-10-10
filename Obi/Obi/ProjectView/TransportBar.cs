@@ -525,8 +525,9 @@ namespace Obi.ProjectView
 
             if(m_IsPreviewing)  PostPreviewRestore();
 
-
-            if (mCurrentPlaylist != null &&
+            if (mView.Selection == null && mState == State.Paused)
+                mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, null );
+            else if (mCurrentPlaylist != null &&
                 (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused )
                 && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
                 {
