@@ -460,6 +460,9 @@ namespace Obi.ProjectView
             if (CanInsertStrip)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                // select section if empty node is selected
+                if (Selection.Node is EmptyNode) Selection = new NodeSelection ( Selection.Node.ParentAs<SectionNode> (), Selection.Control );
+
                 Commands.Node.InsertSectionNode insert = new Commands.Node.InsertSectionNode(this);
                 AddUnusedAndExecute(insert, insert.NewSection, insert.NewSectionParent);
             }
