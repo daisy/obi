@@ -179,6 +179,8 @@ namespace Obi
         // Create a new project by asking initial information through a dialog.
         private void NewProject()
         {
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
             Dialogs.NewProject dialog = new Dialogs.NewProject(
                 mSettings.DefaultPath,
                 Localizer.Message("default_project_filename"),
@@ -198,6 +200,8 @@ namespace Obi
         // Prompt the user for the location of the file through a dialog.
         private void NewProjectFromImport()
         {
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = Localizer.Message("choose_import_file");
             dialog.Filter = Localizer.Message("xhtml_filter");
@@ -260,6 +264,8 @@ namespace Obi
         // Open a new project after showing a file open dialog.
         private void Open()
         {
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Localizer.Message("obi_filter");
             dialog.InitialDirectory = mSettings.DefaultPath;
