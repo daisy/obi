@@ -599,7 +599,7 @@ namespace Obi.ProjectView
             mNextPhrase.Enabled = CanNavigateNextPhrase;
             mNextPageButton.Enabled = CanNavigateNextPage;
             mNextSectionButton.Enabled = CanNavigateNextSection;
-            mCustomClassMarkButton.Enabled = CanMarkCustomClass;
+            mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
         }
 
         private static string FormatDuration_hh_mm_ss(double durationMs)
@@ -1684,7 +1684,7 @@ namespace Obi.ProjectView
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
 
-        private void mCustomClassMarkButton_Click(object sender, EventArgs e) 
+        private void mToDo_CustomClassMarkButton_Click ( object sender, EventArgs e ) 
         {
             // add check for preferences flag for  marking T_do phrase or custom phrase
             // currently commenting custom phrase because it do not have good accessibility
