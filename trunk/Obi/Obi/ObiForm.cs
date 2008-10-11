@@ -772,6 +772,7 @@ namespace Obi
             mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
             mPhrases_AssignRole_PlainMenuItem.Enabled = mProjectView.CanClearRole;
+            mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanClearRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -1942,6 +1943,11 @@ namespace Obi
         private void mPhrases_AssignRole_NewCustomRoleMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ShowPhrasePropertiesDialog(true);
+        }
+
+        private void mPhrases_ClearRoleMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
         }
     }
 }

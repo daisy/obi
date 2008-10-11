@@ -959,11 +959,23 @@
   <data name="mAssignRoleToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Assign role</value>
   </data>
+  <data name="mPhrases_ClearRoleMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+C</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 22</value>
+  </data>
+  <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear role</value>
+  </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
     <value>E&amp;dit custom roles...</value>
+  </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 6</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Apply phrase detection Ctrl+Shift+P</value>
@@ -1573,7 +1585,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.34785, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.19103, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2706,6 +2718,18 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_ClearRoleMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_ClearRoleMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhrases_ClearRoleMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
+    <value>toolStripSeparator19</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
