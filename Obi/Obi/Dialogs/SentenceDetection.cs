@@ -14,17 +14,17 @@ namespace Obi.Dialogs
     {
         public long Threshold
         {
-            get { return Convert.ToInt64(mThresholdBox.Text); }
+            get { return Convert.ToInt64(mThresholdNumericBox.Value); }
         }
 
         public double Gap
         {
-            get { return Convert.ToDouble(mGapBox.Text); }
+            get { return Convert.ToDouble(mGapNumericBox.Value); }
         }
 
         public double LeadingSilence
         {
-            get { return Convert.ToDouble(mLeadingSilenceBox.Text); }
+            get { return Convert.ToDouble(mLeadingNumericBox.Value); }
         }
 
         public SentenceDetection()
@@ -41,36 +41,40 @@ namespace Obi.Dialogs
             InitializeComponent();
 
             if (silence != null)
-                mThresholdBox.Text = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio).ToString();
+                {
+                                mThresholdNumericBox.Value = Audio.PhraseDetection.GetSilenceAmplitude ( silence.Audio );
+                }
             else
-            {
-                MessageBox.Show(Localizer.Message("no_preceding_silent_phrase"));
-                mThresholdBox.Text = "280";
-            }
-            mGapBox.Text = Audio.PhraseDetection.DEFAULT_GAP.ToString();
-            mLeadingSilenceBox.Text = Audio.PhraseDetection.DEFAULT_LEADING_SILENCE.ToString();
-        }
+                {
+                MessageBox.Show ( Localizer.Message ( "no_preceding_silent_phrase" ) );
+                                mThresholdNumericBox.Value = 280;
+                }
+            mGapNumericBox.Value = Convert.ToDecimal ( Audio.PhraseDetection.DEFAULT_GAP ) ;
+                        mLeadingNumericBox.Value =Convert.ToDecimal ( Audio.PhraseDetection.DEFAULT_LEADING_SILENCE ) ;
+                    }
 
-        private void mLeadingSilenceBox_TextChanged ( object sender, EventArgs e )
+
+        private void mGapNumericBox_ValueChanged ( object sender, EventArgs e )
             {
-            CheckLeadingSilenceInput ();            
+            CheckLeadingSilenceInput ();
             }
+
 
         private void CheckLeadingSilenceInput ()
             {
-            if (mGapBox.Text != "" && mLeadingSilenceBox.Text != ""
- && mGapBox.Text != "-" && mLeadingSilenceBox.Text != "-"
-                && Convert.ToInt32 ( mLeadingSilenceBox.Text ) > Convert.ToInt32 ( mGapBox.Text ))
-                mLeadingSilenceBox.Text = mGapBox.Text;
-            }
+            if ( mLeadingNumericBox.Value >  mGapNumericBox.Value )
+                mLeadingNumericBox.Value = mGapNumericBox.Value ;
+                        }
 
-        private void mGapBox_TextChanged ( object sender, EventArgs e )
+
+        private void mLeadingNumericBox_ValueChanged ( object sender, EventArgs e )
             {
             CheckLeadingSilenceInput ();
             }
 
         private void mOKButton_Click ( object sender, EventArgs e )
             {
+            /*
             if (mThresholdBox.Text.Trim () == ""
                 || mGapBox.Text.Trim () == ""
                 || mLeadingSilenceBox.Text.Trim () == "")
@@ -78,8 +82,10 @@ namespace Obi.Dialogs
                 MessageBox.Show ( Localizer.Message ( "Textboxs_Empty" ), Localizer.Message ( "Caption_Error" ) );
                 return;
                                 }
+             */ 
                             this.DialogResult = DialogResult.OK;
             }
+
 
     }
 }

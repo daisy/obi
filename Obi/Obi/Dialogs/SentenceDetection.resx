@@ -216,36 +216,6 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="mThresholdBox.AccessibleName" xml:space="preserve">
-    <value>Silence threshold:</value>
-  </data>
-  <data name="mThresholdBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mThresholdBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 13</value>
-  </data>
-  <data name="mThresholdBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mThresholdBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 22</value>
-  </data>
-  <data name="mThresholdBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;mThresholdBox.Name" xml:space="preserve">
-    <value>mThresholdBox</value>
-  </data>
-  <data name="&gt;&gt;mThresholdBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mThresholdBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mThresholdBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -274,37 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mGapBox.AccessibleName" xml:space="preserve">
-    <value>Gap between sentences:</value>
-  </data>
-  <data name="mGapBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mGapBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 43</value>
-  </data>
-  <data name="mGapBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mGapBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 22</value>
-  </data>
-  <data name="mGapBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;mGapBox.Name" xml:space="preserve">
-    <value>mGapBox</value>
-  </data>
-  <data name="&gt;&gt;mGapBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mGapBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mGapBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -334,39 +274,78 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
-  <data name="mLeadingSilenceBox.AccessibleName" xml:space="preserve">
-    <value>Leading silence:</value>
+  <data name="mThresholdNumericBox.AccessibleName" xml:space="preserve">
+    <value>Silence threshold:</value>
   </data>
-  <data name="mLeadingSilenceBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="mThresholdNumericBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 13</value>
   </data>
-  <data name="mLeadingSilenceBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="mThresholdNumericBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 22</value>
   </data>
-  <data name="mLeadingSilenceBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 72</value>
+  <data name="mThresholdNumericBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="mLeadingSilenceBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+  <data name="&gt;&gt;mThresholdNumericBox.Name" xml:space="preserve">
+    <value>mThresholdNumericBox</value>
   </data>
-  <data name="mLeadingSilenceBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 22</value>
+  <data name="&gt;&gt;mThresholdNumericBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mLeadingSilenceBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;mLeadingSilenceBox.Name" xml:space="preserve">
-    <value>mLeadingSilenceBox</value>
-  </data>
-  <data name="&gt;&gt;mLeadingSilenceBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mLeadingSilenceBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mThresholdNumericBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mLeadingSilenceBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mThresholdNumericBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mGapNumericBox.AccessibleName" xml:space="preserve">
+    <value>Gap between sentences:</value>
+  </data>
+  <data name="mGapNumericBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 43</value>
+  </data>
+  <data name="mGapNumericBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 22</value>
+  </data>
+  <data name="mGapNumericBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;mGapNumericBox.Name" xml:space="preserve">
+    <value>mGapNumericBox</value>
+  </data>
+  <data name="&gt;&gt;mGapNumericBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mGapNumericBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mGapNumericBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mLeadingNumericBox.AccessibleName" xml:space="preserve">
+    <value>Leading silence:</value>
+  </data>
+  <data name="mLeadingNumericBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 73</value>
+  </data>
+  <data name="mLeadingNumericBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 22</value>
+  </data>
+  <data name="mLeadingNumericBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;mLeadingNumericBox.Name" xml:space="preserve">
+    <value>mLeadingNumericBox</value>
+  </data>
+  <data name="&gt;&gt;mLeadingNumericBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mLeadingNumericBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mLeadingNumericBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
