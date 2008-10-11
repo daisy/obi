@@ -1345,6 +1345,7 @@ null;
             Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
             Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;
             Context_AssignRoleMenuItem.Enabled = mProjectView.CanAssignRole;
+            Context_ClearRoleMenuItem.Enabled = mProjectView.CanClearRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_CutMenuItem.Enabled = CanRemoveAudio || CanRemoveBlock || CanRemoveStrip;
             Context_CopyMenuItem.Enabled = CanCopyAudio || CanCopyBlock || CanCopyStrip;
@@ -1432,6 +1433,12 @@ null;
         private void Context_AssignRole_NewCustomRoleMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ShowPhrasePropertiesDialog(true);
+        }
+
+        // Clear role context menu item
+        private void Context_ClearRoleMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
         }
 
         // Apply phrase detection context menu item

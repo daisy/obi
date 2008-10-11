@@ -64,6 +64,7 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@ namespace Obi.ProjectView
             this.Context_PhraseIsUsedMenuItem,
             this.toolStripSeparator2,
             this.Context_AssignRoleMenuItem,
+            this.Context_ClearRoleMenuItem,
             this.Context_ApplyPhraseDetectionMenuItem,
             this.Context_AudioSelectionMenuItem,
             this.toolStripSeparator4,
@@ -97,7 +99,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 512);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 534);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -339,6 +341,13 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem.Text = "Pr&operties";
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
+            // Context_ClearRoleMenuItem
+            // 
+            this.Context_ClearRoleMenuItem.Name = "Context_ClearRoleMenuItem";
+            this.Context_ClearRoleMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_ClearRoleMenuItem.Text = "Clear role";
+            this.Context_ClearRoleMenuItem.Click += new System.EventHandler(this.Context_ClearRoleMenuItem_Click);
+            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -387,5 +396,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ClearRoleMenuItem;
     }
 }

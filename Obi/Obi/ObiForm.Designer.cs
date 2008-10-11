@@ -175,6 +175,8 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -702,7 +704,9 @@ namespace Obi
             this.mPhraseIsUsedToolStripMenuItem,
             this.toolStripSeparator6,
             this.mAssignRoleToolStripMenuItem,
+            this.mPhrases_ClearRoleMenuItem,
             this.mPhrases_EditRolesMenuItem,
+            this.toolStripSeparator19,
             this.mPhraseDetectionToolStripMenuItem,
             this.mMarkDefaultCustomClassToolStripMenuItem,
             this.mInPhraseSelectionToolStripMenuItem,
@@ -1223,6 +1227,17 @@ namespace Obi
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
             // 
+            // mPhrases_ClearRoleMenuItem
+            // 
+            this.mPhrases_ClearRoleMenuItem.Name = "mPhrases_ClearRoleMenuItem";
+            resources.ApplyResources(this.mPhrases_ClearRoleMenuItem, "mPhrases_ClearRoleMenuItem");
+            this.mPhrases_ClearRoleMenuItem.Click += new System.EventHandler(this.mPhrases_ClearRoleMenuItem_Click);
+            // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
+            // 
             // ObiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1396,6 +1411,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_SectionPropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_PlainMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_NewCustomRoleMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_ClearRoleMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
     }
 }
 
