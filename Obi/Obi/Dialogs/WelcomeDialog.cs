@@ -21,6 +21,7 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
             mOpenLastProjectButton.Enabled = canOpenLastProject;
+            mResult = Option.OpenEmpty;
         }
 
         /// <summary>
