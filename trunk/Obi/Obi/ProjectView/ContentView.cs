@@ -1139,33 +1139,38 @@ namespace Obi.ProjectView
         /// </summary>
         public void SelectNextTODONode()
         {
-            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
+        if (mProjectView.Presentation != null)
             {
-                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().FollowingNode; n != null; n = n.FollowingNode)
+            if (mProjectView.SelectedNodeAs<ObiNode> () != null)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).TODO)
+                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode> ().FollowingNode; n != null; n = n.FollowingNode)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                    if (n is EmptyNode && ((EmptyNode)n).TODO)
+                        {
+                        mProjectView.Selection = new NodeSelection ( n, this );
                         return;
+                        }
                     }
                 }
-            }
             for (ObiNode n = mProjectView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
-            {
-                if (n is EmptyNode && ((EmptyNode)n).TODO)
                 {
-                    mProjectView.Selection = new NodeSelection(n, this);
+                if (n is EmptyNode && ((EmptyNode)n).TODO)
+                    {
+                    mProjectView.Selection = new NodeSelection ( n, this );
                     return;
+                    }
                 }
-            }
-        }
+            } // check for null presentation ends
+                    }
 
         /// <summary>
         /// Select previous to do node in contents view
         /// </summary>
         public void SelectPrecedingTODONode()
         {
-            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
+        if (mProjectView.Presentation != null)
+            {
+                                if ( mProjectView.SelectedNodeAs<ObiNode>() != null)
             {
                 for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
@@ -1184,6 +1189,7 @@ namespace Obi.ProjectView
                     return;
                 }
             }
+} // check for null presentation ends
         }
 
 
