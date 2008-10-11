@@ -32,11 +32,14 @@ namespace Obi.Dialogs
         this.mOKButton = new System.Windows.Forms.Button ();
         this.mCancelButton = new System.Windows.Forms.Button ();
         this.label1 = new System.Windows.Forms.Label ();
-        this.mThresholdBox = new System.Windows.Forms.TextBox ();
         this.label2 = new System.Windows.Forms.Label ();
-        this.mGapBox = new System.Windows.Forms.TextBox ();
         this.label3 = new System.Windows.Forms.Label ();
-        this.mLeadingSilenceBox = new System.Windows.Forms.TextBox ();
+        this.mThresholdNumericBox = new System.Windows.Forms.NumericUpDown ();
+        this.mGapNumericBox = new System.Windows.Forms.NumericUpDown ();
+        this.mLeadingNumericBox = new System.Windows.Forms.NumericUpDown ();
+        ((System.ComponentModel.ISupportInitialize)(this.mThresholdNumericBox)).BeginInit ();
+        ((System.ComponentModel.ISupportInitialize)(this.mGapNumericBox)).BeginInit ();
+        ((System.ComponentModel.ISupportInitialize)(this.mLeadingNumericBox)).BeginInit ();
         this.SuspendLayout ();
         // 
         // mOKButton
@@ -58,35 +61,67 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this.label1, "label1" );
         this.label1.Name = "label1";
         // 
-        // mThresholdBox
-        // 
-        resources.ApplyResources ( this.mThresholdBox, "mThresholdBox" );
-        this.mThresholdBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        this.mThresholdBox.Name = "mThresholdBox";
-        // 
         // label2
         // 
         resources.ApplyResources ( this.label2, "label2" );
         this.label2.Name = "label2";
-        // 
-        // mGapBox
-        // 
-        resources.ApplyResources ( this.mGapBox, "mGapBox" );
-        this.mGapBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        this.mGapBox.Name = "mGapBox";
-        this.mGapBox.TextChanged += new System.EventHandler ( this.mGapBox_TextChanged );
         // 
         // label3
         // 
         resources.ApplyResources ( this.label3, "label3" );
         this.label3.Name = "label3";
         // 
-        // mLeadingSilenceBox
+        // mThresholdNumericBox
         // 
-        resources.ApplyResources ( this.mLeadingSilenceBox, "mLeadingSilenceBox" );
-        this.mLeadingSilenceBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        this.mLeadingSilenceBox.Name = "mLeadingSilenceBox";
-        this.mLeadingSilenceBox.TextChanged += new System.EventHandler ( this.mLeadingSilenceBox_TextChanged );
+        resources.ApplyResources ( this.mThresholdNumericBox, "mThresholdNumericBox" );
+        this.mThresholdNumericBox.Increment = new decimal ( new int[] {
+            20,
+            0,
+            0,
+            0} );
+        this.mThresholdNumericBox.Maximum = new decimal ( new int[] {
+            10000,
+            0,
+            0,
+            0} );
+        this.mThresholdNumericBox.Minimum = new decimal ( new int[] {
+            1000,
+            0,
+            0,
+            -2147483648} );
+        this.mThresholdNumericBox.Name = "mThresholdNumericBox";
+        // 
+        // mGapNumericBox
+        // 
+        resources.ApplyResources ( this.mGapNumericBox, "mGapNumericBox" );
+        this.mGapNumericBox.Increment = new decimal ( new int[] {
+            20,
+            0,
+            0,
+            0} );
+        this.mGapNumericBox.Maximum = new decimal ( new int[] {
+            2000,
+            0,
+            0,
+            0} );
+        this.mGapNumericBox.Name = "mGapNumericBox";
+        this.mGapNumericBox.ValueChanged += new System.EventHandler ( this.mGapNumericBox_ValueChanged );
+        // 
+        // mLeadingNumericBox
+        // 
+        resources.ApplyResources ( this.mLeadingNumericBox, "mLeadingNumericBox" );
+        this.mLeadingNumericBox.Increment = new decimal ( new int[] {
+            20,
+            0,
+            0,
+            0} );
+        this.mLeadingNumericBox.Maximum = new decimal ( new int[] {
+            1000,
+            0,
+            0,
+            0} );
+        this.mLeadingNumericBox.Name = "mLeadingNumericBox";
+        this.mLeadingNumericBox.ValueChanged += new System.EventHandler ( this.mLeadingNumericBox_ValueChanged );
         // 
         // SentenceDetection
         // 
@@ -94,11 +129,11 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this, "$this" );
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.CancelButton = this.mCancelButton;
-        this.Controls.Add ( this.mLeadingSilenceBox );
+        this.Controls.Add ( this.mLeadingNumericBox );
+        this.Controls.Add ( this.mGapNumericBox );
+        this.Controls.Add ( this.mThresholdNumericBox );
         this.Controls.Add ( this.label3 );
-        this.Controls.Add ( this.mGapBox );
         this.Controls.Add ( this.label2 );
-        this.Controls.Add ( this.mThresholdBox );
         this.Controls.Add ( this.label1 );
         this.Controls.Add ( this.mCancelButton );
         this.Controls.Add ( this.mOKButton );
@@ -107,6 +142,9 @@ namespace Obi.Dialogs
         this.Name = "SentenceDetection";
         this.ShowIcon = false;
         this.ShowInTaskbar = false;
+        ((System.ComponentModel.ISupportInitialize)(this.mThresholdNumericBox)).EndInit ();
+        ((System.ComponentModel.ISupportInitialize)(this.mGapNumericBox)).EndInit ();
+        ((System.ComponentModel.ISupportInitialize)(this.mLeadingNumericBox)).EndInit ();
         this.ResumeLayout ( false );
         this.PerformLayout ();
 
@@ -117,10 +155,10 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox mThresholdBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox mGapBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox mLeadingSilenceBox;
+        private System.Windows.Forms.NumericUpDown mThresholdNumericBox;
+        private System.Windows.Forms.NumericUpDown mGapNumericBox;
+        private System.Windows.Forms.NumericUpDown mLeadingNumericBox;
     }
 }
