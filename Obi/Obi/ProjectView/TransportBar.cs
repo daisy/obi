@@ -222,8 +222,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
-                    mPlayer.State == Obi.Audio.AudioPlayerState.Playing ?
+                return ( mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||mPlayer.State == Obi.Audio.AudioPlayerState.Playing  )
+                   && !(mView.Selection is AudioSelection) ?
                     mCurrentPlaylist.CurrentTimeInAsset :
                     mView.Selection is AudioSelection ?
                         ((AudioSelection)mView.Selection).AudioRange.HasCursor ?
@@ -241,8 +241,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mPlayer.State != Obi.Audio.AudioPlayerState.Paused &&
-                    mPlayer.State != Obi.Audio.AudioPlayerState.Playing &&
+                return mPlayer.State != Obi.Audio.AudioPlayerState.Playing &&
                     mView.Selection is AudioSelection &&
                     !((AudioSelection)mView.Selection).AudioRange.HasCursor ?
                     ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime : 0.0;
@@ -981,10 +980,14 @@ namespace Obi.ProjectView
                 mRecordingSection = node.AncestorAs<SectionNode>();
                 mRecordingInitPhraseIndex = 1 + node.Index;
                 if (overwrite && (mState == State.Paused ||
-                    (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)))
+                    mView.Selection is AudioSelection ))
                 {
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
                     command.append(Commands.Node.SplitAudio.GetSplitCommand(mView));
+
+                    if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                        command.append ( new Commands.Node.DeleteWithOffset (mView , node , 1)) ;
+
                 }
             }
             else if (node is EmptyNode)
