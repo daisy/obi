@@ -21,6 +21,7 @@ namespace Obi
         private Settings mSettings;              // application settings
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
         private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
+        private bool mShowWelcomWindow; // flag for controlling showing of welcome window
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -31,15 +32,17 @@ namespace Obi
         /// </summary>
         public ObiForm()
         {
+            mShowWelcomWindow = true;
             InitializeObi();
             if (ShouldOpenLastProject) OpenProject(mSettings.LastOpenProject);
-        }
+                    }
 
         /// <summary>
         /// Initialize a new form and open a project from the path given as parameter.
         /// </summary>
         public ObiForm(string path)
         {
+            mShowWelcomWindow = false;
             InitializeObi();
             OpenProject(path);
         }
@@ -493,7 +496,7 @@ namespace Obi
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load(object sender, EventArgs e)
         {
-            if (!ShouldOpenLastProject) ShowWelcomeDialog();
+            if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog();
         }
 
         // Show the welcome dialog
