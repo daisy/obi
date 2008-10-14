@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
-
-using urakawa.command;
 using urakawa.core;
+using urakawa.command;
 
 namespace Obi.ProjectView
 {
@@ -20,11 +19,13 @@ namespace Obi.ProjectView
         private Audio.VuMeter mVuMeter;              // VU meter
 
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
+        private Playlist mQAPlaylist; // master playlist (all phrases in the project) except unsed phrases
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null)
-        private Playlist mCurrentPlaylist;           // playlist currently playing
+                private Playlist mCurrentPlaylist;           // playlist currently playing
         private RecordingSession mRecordingSession;  // current recording session
         private State mState;                        // transport bar state (composite of player/recorder states)
-        
+        private bool mPlayQAPlaylist = true ; // this should be set from UI
+
         private bool mPlayIfNoSelection;             // play all when no selection if true; play nothing otherwise
 
         private bool m_SelectionChangedPlayEnable; // flag for enabling / disabling playback on change of selection
@@ -465,7 +466,7 @@ namespace Obi.ProjectView
         // Initialize playlists
         private void InitPlaylists()
         {
-            mMasterPlaylist = new Playlist(mPlayer);
+            mMasterPlaylist = new Playlist(mPlayer , false);
             mLocalPlaylist = null;
             mCurrentPlaylist = mMasterPlaylist;
             SetPlaylistEvents(mMasterPlaylist);
@@ -656,8 +657,9 @@ namespace Obi.ProjectView
         {
                         if (CanPlay)
             {
-                mCurrentPlaylist = mMasterPlaylist;
-                PlayCurrentPlaylistFromSelection();
+                //mCurrentPlaylist = mMasterPlaylist;
+                //PlayCurrentPlaylistFromSelection();
+            PlayMaster ();
             }
             else if (CanResumePlayback)
             {
@@ -672,6 +674,30 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.Resume();
             }
                     }
+
+        
+
+        private void PlayMaster ()
+            {
+            if (mPlayQAPlaylist)
+                {
+                CreateQAPlaylist ();
+                }
+            else
+                {
+                mCurrentPlaylist = mMasterPlaylist;
+                }
+            PlayCurrentPlaylistFromSelection ();
+            }
+
+        private void CreateQAPlaylist ()
+            {
+                                                mQAPlaylist = new Playlist ( mPlayer, true);
+                                    mQAPlaylist.Presentation = mView.Presentation;
+                        mCurrentPlaylist = mQAPlaylist;
+            SetPlaylistEvents (  mQAPlaylist);
+            }
+
 
         /// <summary>
         /// All-purpose play function for the play button.
@@ -724,7 +750,7 @@ namespace Obi.ProjectView
             }
             else if (node != null)
             {
-                mLocalPlaylist = new Playlist(mPlayer, mView.Selection);
+                mLocalPlaylist = new Playlist(mPlayer, mView.Selection , mPlayQAPlaylist);
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;
                 PlayCurrentPlaylistFromSelection();
@@ -916,7 +942,7 @@ namespace Obi.ProjectView
         // Setup recording and start recording or monitoring
         private void SetupRecording(bool recording)
         {
-            CompositeCommand command = CreateRecordingCommand();
+            urakawa.command.CompositeCommand command = CreateRecordingCommand();
 
             // warning message while resuming recording
             if ( ( mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted ) &&
@@ -959,14 +985,14 @@ namespace Obi.ProjectView
         // Create a new recording command.
         private CompositeCommand CreateRecordingCommand()
         {
-            CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+            urakawa.command.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
             command.setShortDescription(Localizer.Message("recording_command"));
             return command;
         }
 
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
-        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, CompositeCommand command)
+        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command)
         {
             if (node is SectionNode)
             {
@@ -1002,7 +1028,7 @@ namespace Obi.ProjectView
 
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
         private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
-            CompositeCommand command, EmptyNode emptyNode)
+            urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
             // Suspend presentation change handler so that we don't stop when new nodes are added.
             mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
@@ -1053,7 +1079,7 @@ namespace Obi.ProjectView
         // otherwise the selected node (section or phrase) for node selection, audio selection
         // or strip cursor selection. If there is no node, add to the recording command a
         // command to create a new section to record in.
-        public ObiNode GetRecordingNode(CompositeCommand command)
+        public ObiNode GetRecordingNode(urakawa.command.CompositeCommand command)
         {
             ObiNode node =( mResumeRecordingPhrase == null || !mResumeRecordingPhrase.IsRooted)?
                 mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripIndexSelection ?
@@ -1534,7 +1560,7 @@ namespace Obi.ProjectView
 
         private void CreateLocalPlaylistForPreview ()
             {
-            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection );
+            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection , mPlayQAPlaylist);
             SetPlaylistEvents ( mLocalPlaylist );
             mCurrentPlaylist = mLocalPlaylist;
             }
@@ -1585,7 +1611,7 @@ namespace Obi.ProjectView
             m_AfterPreviewRestoreEndTime =  m_AfterPreviewRestoreTime = forward ? from : end;
             if (mView.Selection != null &&mView.Selection is AudioSelection &&   !((AudioSelection)mView.Selection).AudioRange.HasCursor)
                 m_AfterPreviewRestoreEndTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
-            mCurrentPlaylist.Play(from, end);
+                        mCurrentPlaylist.Play(from, end);
             
             
             m_IsPreviewing = true;
@@ -1863,7 +1889,7 @@ namespace Obi.ProjectView
 
                                     if (ENode is PhraseNode)
                                     {
-                                        mLocalPlaylist = new Playlist(mPlayer, ENode);
+                                        mLocalPlaylist = new Playlist(mPlayer, ENode ,mPlayQAPlaylist);
                                         SetPlaylistEvents(mLocalPlaylist);
                                         mCurrentPlaylist = mLocalPlaylist;
                                         mCurrentPlaylist.CurrentPhrase = (PhraseNode) ENode ;
