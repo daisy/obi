@@ -752,6 +752,18 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
+        /// Set a page number on the selected phrase.
+        /// </summary>
+        public void SetPageNumberOnSelection()
+        {
+            if (CanSetPageNumber)
+            {
+                Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(CurrentOrNextPageNumber, false, false);
+                if (dialog.ShowDialog() == DialogResult.OK) SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
+            }
+        }
+
+        /// <summary>
         /// Set the used status of the selected node, and of all its descendants.
         /// </summary>
         public void SetSelectedNodeUsedStatus(bool used)
