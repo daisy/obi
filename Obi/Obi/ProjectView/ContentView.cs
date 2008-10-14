@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
+using urakawa.command;
+
 namespace Obi.ProjectView
 {
     /// <summary>
@@ -104,7 +106,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a command to delete the selected strip.
         /// </summary>
-        public urakawa.undo.ICommand DeleteStripCommand() { return DeleteStripCommand(SelectedSection); }
+        public ICommand DeleteStripCommand() { return DeleteStripCommand(SelectedSection); }
 
         public bool Focusing { get { return mFocusing; } }
 
@@ -160,9 +162,9 @@ namespace Obi.ProjectView
         /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
         /// a lower level, merging is not possible.
         /// </summary>
-        public urakawa.undo.ICommand MergeSelectedStripWithNextCommand()
+        public ICommand MergeSelectedStripWithNextCommand()
         {
-            urakawa.undo.CompositeCommand command = null;
+            CompositeCommand command = null;
             if (CanMergeStripWithNext)
             {
                 command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
@@ -411,9 +413,9 @@ namespace Obi.ProjectView
         /// inherits the children of the split section except for the phrases before the selected block or
         /// position. Do not do anything if there are no phrases before.
         /// </summary>
-        public urakawa.undo.CompositeCommand SplitStripCommand()
+        public CompositeCommand SplitStripCommand()
         {
-            urakawa.undo.CompositeCommand command = null;
+            CompositeCommand command = null;
             if (CanSplitStrip)
             {
                                 EmptyNode node = IsStripCursorSelected ?
@@ -563,12 +565,12 @@ namespace Obi.ProjectView
         private void ContentView_Click(object sender, EventArgs e) { mProjectView.Selection = null; }
 
         // Create a command (possibly composite) to delete a strip for the given section node.
-        private urakawa.undo.ICommand DeleteStripCommand(SectionNode section)
+        private ICommand DeleteStripCommand(SectionNode section)
         {
             Commands.Node.Delete delete = new Commands.Node.Delete(mProjectView, section, Localizer.Message("delete_section_shallow"));
             if (section.SectionChildCount > 0)
             {
-                urakawa.undo.CompositeCommand command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
+                CompositeCommand command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(delete.getShortDescription());
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {

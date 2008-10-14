@@ -1,5 +1,7 @@
-using urakawa.core;
 using System;
+
+using urakawa.command;
+using urakawa.core;
 
 namespace Obi
 {
@@ -182,11 +184,11 @@ namespace Obi
         /// <summary>
         /// Renumber this node and all following pages of the same kind starting from this number.
         /// </summary>
-        public override urakawa.undo.CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
+        public override CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
         {
             if (mKind == Kind.Page && mPageNumber.Kind == from.Kind)
             {
-                urakawa.undo.CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
+                CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
                 if (k == null)
                 {
                     k = getPresentation().getCommandFactory().createCompositeCommand();

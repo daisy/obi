@@ -1,4 +1,6 @@
 using System;
+
+using urakawa.command;
 using urakawa.core;
 using urakawa.exception;
 using urakawa.property.channel;
@@ -74,7 +76,7 @@ namespace Obi
         /// <summary>
         /// Get a command to renumber this node and all following nodes from this number.
         /// </summary>
-        public virtual urakawa.undo.CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
+        public virtual CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
         {
             ObiNode n = FollowingNode;
             return n == null ? null : n.RenumberCommand(view, from);

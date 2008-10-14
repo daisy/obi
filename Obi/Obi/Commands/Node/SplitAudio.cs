@@ -1,3 +1,4 @@
+using urakawa.command;
 using urakawa.media.data.audio;
 using urakawa.media.timing;
 
@@ -26,7 +27,7 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a command to crop the current selection.
         /// </summary>
-        public static urakawa.undo.ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
+        public static ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
         {
             PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
@@ -36,7 +37,7 @@ namespace Obi.Commands.Node
                 if (end >= phrase.Duration) end = 0.0;
                 if (begin > 0.0 || end > 0.0)
                 {
-                    urakawa.undo.CompositeCommand command =
+                    CompositeCommand command =
                         view.Presentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
                     if (end > 0.0)
                     {
@@ -58,7 +59,7 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a split command for the current selection.
         /// </summary>
-        public static urakawa.undo.CompositeCommand GetSplitCommand(ProjectView.ProjectView view)
+        public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view)
         {
             PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
@@ -68,7 +69,7 @@ namespace Obi.Commands.Node
                 if (end >= phrase.Duration) end = 0.0;
                 if (begin > 0.0 || end > 0.0)
                 {
-                    urakawa.undo.CompositeCommand command =
+                    CompositeCommand command =
                         view.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                     if (end > 0.0) AppendSplitCommandWithProperties(view, command, phrase, end, false);
                     if (begin > 0.0) AppendSplitCommandWithProperties(view, command, phrase, begin,
@@ -80,7 +81,7 @@ namespace Obi.Commands.Node
         }
 
         // Create a split command preserving used/TODO status, and optionally transferring the role to the next node
-        private static void AppendSplitCommandWithProperties(ProjectView.ProjectView view, urakawa.undo.CompositeCommand command,
+        private static void AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);

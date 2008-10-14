@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using urakawa.command;
 
 namespace Obi.ProjectView
 {
@@ -138,7 +139,7 @@ namespace Obi.ProjectView
                 {
                     Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
                 }
-                urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
+                CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
                 SectionNode selected = mContentView.Selection.Node is SectionNode ?
                     mContentView.SelectedSection : mContentView.Selection.Node.ParentAs<SectionNode>();
                 command.append(add);
@@ -175,7 +176,7 @@ namespace Obi.ProjectView
         /// Append commands to make a node and its descendants unused to a composite command.
         /// This is used when adding new nodes under unused nodes.
         /// </summary>
-        public void AppendMakeUnused(urakawa.undo.CompositeCommand command, ObiNode node)
+        public void AppendMakeUnused(CompositeCommand command, ObiNode node)
         {
             node.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
@@ -330,7 +331,7 @@ namespace Obi.ProjectView
             if (CanRemoveSection || CanRemoveStrip)
             {
                 bool isSection = mSelection.Control is TOCView;
-                urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(
+                CompositeCommand command = Presentation.CreateCompositeCommand(
                     Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
                 command.append(new Commands.Node.Copy(this, isSection));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
@@ -338,7 +339,7 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveBlock)
             {
-                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("cut_phrase"));
                 command.append(new Commands.Node.Copy(this, true));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
@@ -346,7 +347,7 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveAudio)
             {
-                urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+                CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("cut_audio"));
                 Commands.Audio.Delete delete = new Commands.Audio.Delete(this);
                 command.append(new Commands.Audio.Copy(this, delete.Deleted,
@@ -391,7 +392,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void DeleteUnused()
         {
-            urakawa.undo.CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
+            CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
             mPresentation.RootNode.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode node)
                 {
@@ -745,7 +746,7 @@ namespace Obi.ProjectView
         {
             if (CanSetSelectedNodeUsedStatus && mSelection.Node.Used != used)
             {
-                urakawa.undo.CompositeCommand command = Presentation.CreateCompositeCommand(String.Format(
+                CompositeCommand command = Presentation.CreateCompositeCommand(String.Format(
                     Localizer.Message(mSelection.Node is SectionNode ? "mark_section_used" : "mark_phrase_used"),
                     Localizer.Message(mSelection.Node.Used ? "unused" : "used")));
                 mSelection.Node.acceptDepthFirst(
@@ -889,7 +890,7 @@ namespace Obi.ProjectView
 
         // Execute a command, but first add some extra stuff to maintain the unusedness of the new node
         // depending on the unusedness of its parent.
-        private void AddUnusedAndExecute(urakawa.undo.ICommand command, ObiNode node, ObiNode parent)
+        private void AddUnusedAndExecute(ICommand command, ObiNode node, ObiNode parent)
         {
             if (parent.Used)
             {
@@ -897,10 +898,10 @@ namespace Obi.ProjectView
             }
             else
             {
-                urakawa.undo.CompositeCommand c;
-                if (command is urakawa.undo.CompositeCommand)
+                CompositeCommand c;
+                if (command is CompositeCommand)
                 {
-                    c = (urakawa.undo.CompositeCommand)command;
+                    c = (CompositeCommand)command;
                 }
                 else
                 {
@@ -1169,7 +1170,7 @@ namespace Obi.ProjectView
         public void SplitPhrase()
         {
             bool WasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
-            urakawa.undo.CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+            CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
                 TransportBar.SelectionChangedPlaybackEnabled = false;
@@ -1193,7 +1194,7 @@ namespace Obi.ProjectView
             EmptyNode node = SelectedNodeAs<EmptyNode>();
             if (node != null)
             {
-                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
                 Commands.Node.ChangeCustomType silence = new Commands.Node.ChangeCustomType(this, node, EmptyNode.Kind.Silence);
                 command.append(silence);
                 command.setShortDescription(silence.getShortDescription());
@@ -1206,7 +1207,7 @@ namespace Obi.ProjectView
         {
             if (IsBlockSelected)
             {
-                urakawa.undo.CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
                 SectionNode parent = node.AncestorAs<SectionNode>();
                 if (parent.Heading != null) command.append(new Commands.Node.ChangeCustomType(this, parent.Heading, EmptyNode.Kind.Plain));
@@ -1259,10 +1260,10 @@ namespace Obi.ProjectView
         {
             if (CanSetPageNumber)
             {
-                urakawa.undo.ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
+                ICommand cmd = new Commands.Node.SetPageNumber(this, SelectedNodeAs<EmptyNode>(), number);
                 if (renumber)
                 {
-                    urakawa.undo.CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
+                    CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
                     for (ObiNode n = SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
@@ -1289,8 +1290,7 @@ namespace Obi.ProjectView
         {
             if (CanAddEmptyBlock)
             {
-                urakawa.undo.CompositeCommand cmd =
-                    Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
+                CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
                 int index = -1;
                 ObiNode parent = null;
                 // For every page, add a new empty block and give it a number.
@@ -1686,7 +1686,7 @@ namespace Obi.ProjectView
             Dialogs.SectionProperties dialog = new Dialogs.SectionProperties(this);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                urakawa.undo.CompositeCommand command =
+                CompositeCommand command =
                     mPresentation.CreateCompositeCommand(Localizer.Message("update_section"));
                 if (dialog.Label != dialog.Node.Label && dialog.Label != null && dialog.Label != "")
                 {
@@ -1715,7 +1715,7 @@ namespace Obi.ProjectView
             Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties(this, SetCustomClassName);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                urakawa.undo.CompositeCommand command =
+                CompositeCommand command =
                     mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
 
                 if (dialog.Role == EmptyNode.Kind.Page)
@@ -1723,7 +1723,7 @@ namespace Obi.ProjectView
                     Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
                         {
-                        urakawa.undo.ICommand PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
+                        ICommand PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
                         command.append ( PageCmd );
                         PageNumber number = PageDialog.Number;
                         if (PageDialog.Renumber)

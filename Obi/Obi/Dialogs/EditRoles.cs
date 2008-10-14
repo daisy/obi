@@ -5,7 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+
 using Obi.ProjectView;
+
+using urakawa.command;
 
 namespace Obi.Dialogs
 {
@@ -50,7 +53,7 @@ namespace Obi.Dialogs
         {
             List<EmptyNode> nodes = mPresentation.NodesForCustomClass(customClass);
             if (nodes.Count == 0) return false;
-            urakawa.undo.CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
+            CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
             command.setShortDescription(Localizer.Message("remove_custom_class"));
             foreach (EmptyNode node in nodes)
                 {

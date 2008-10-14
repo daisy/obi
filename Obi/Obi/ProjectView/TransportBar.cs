@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
+
+using urakawa.command;
 using urakawa.core;
 
 namespace Obi.ProjectView
@@ -914,7 +916,7 @@ namespace Obi.ProjectView
         // Setup recording and start recording or monitoring
         private void SetupRecording(bool recording)
         {
-            urakawa.undo.CompositeCommand command = CreateRecordingCommand();
+            CompositeCommand command = CreateRecordingCommand();
 
             // warning message while resuming recording
             if ( ( mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted ) &&
@@ -955,16 +957,16 @@ namespace Obi.ProjectView
         }
 
         // Create a new recording command.
-        private urakawa.undo.CompositeCommand CreateRecordingCommand()
+        private CompositeCommand CreateRecordingCommand()
         {
-            urakawa.undo.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+            CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
             command.setShortDescription(Localizer.Message("recording_command"));
             return command;
         }
 
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
-        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.undo.CompositeCommand command)
+        private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, CompositeCommand command)
         {
             if (node is SectionNode)
             {
@@ -1000,7 +1002,7 @@ namespace Obi.ProjectView
 
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
         private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
-            urakawa.undo.CompositeCommand command, EmptyNode emptyNode)
+            CompositeCommand command, EmptyNode emptyNode)
         {
             // Suspend presentation change handler so that we don't stop when new nodes are added.
             mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
@@ -1051,7 +1053,7 @@ namespace Obi.ProjectView
         // otherwise the selected node (section or phrase) for node selection, audio selection
         // or strip cursor selection. If there is no node, add to the recording command a
         // command to create a new section to record in.
-        public ObiNode GetRecordingNode(urakawa.undo.CompositeCommand command)
+        public ObiNode GetRecordingNode(CompositeCommand command)
         {
             ObiNode node =( mResumeRecordingPhrase == null || !mResumeRecordingPhrase.IsRooted)?
                 mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripIndexSelection ?

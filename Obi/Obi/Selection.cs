@@ -1,4 +1,5 @@
 using System;
+using urakawa.command;
 
 namespace Obi
 {
@@ -98,7 +99,7 @@ namespace Obi
         /// <summary>
         /// Create the paste command for pasting whatever is in the clipboard in the current selection.
         /// </summary>
-        public virtual urakawa.undo.ICommand PasteCommand(ProjectView.ProjectView view)
+        public virtual ICommand PasteCommand(ProjectView.ProjectView view)
         {
             return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view);
         }
@@ -124,14 +125,14 @@ namespace Obi
 
         // Create a new phrase node with the audio from the clipboard
         // and merge the selected node with this one.
-        protected virtual urakawa.undo.ICommand PasteCommandAudio(ProjectView.ProjectView view)
+        protected virtual ICommand PasteCommandAudio(ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
                 new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
                 new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
-            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
+            CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (Node is EmptyNode)
             {
@@ -141,10 +142,10 @@ namespace Obi
         }
 
         // Paste a node in or after another node.
-        protected virtual urakawa.undo.ICommand PasteCommandNode(ProjectView.ProjectView view)
+        protected virtual ICommand PasteCommandNode(ProjectView.ProjectView view)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
-            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
+            CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
             p.append(paste);
             if (paste.DeleteSelectedBlock)
             {
@@ -205,7 +206,7 @@ namespace Obi
         /// <summary>
         /// Create a paste command for this selection and the clipboard selection.
         /// </summary>
-        public override urakawa.undo.ICommand PasteCommand(Obi.ProjectView.ProjectView view)
+        public override ICommand PasteCommand(Obi.ProjectView.ProjectView view)
         {
             return new Commands.Audio.Paste(view);
         }
@@ -232,14 +233,14 @@ namespace Obi
         // Since we're in the strip, section nodes cannot be pasted.
         public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); }
 
-        protected override urakawa.undo.ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
+        protected override ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
                 new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
                 new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
-            urakawa.undo.CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
+            CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (!Node.Used) view.AppendMakeUnused(p, phrase);
             return p;

@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using urakawa.property.channel;
-using urakawa.media.data.audio;
-using urakawa.publish;
 using System.Xml;
+
+using urakawa.command;
+using urakawa.media.data.audio;
+using urakawa.property.channel;
+using urakawa.publish;
 
 namespace Obi
 {
@@ -146,9 +148,9 @@ namespace Obi
         /// <summary>
         /// Create a new composite command with the given label.
         /// </summary>
-        public urakawa.undo.CompositeCommand CreateCompositeCommand(string label)
+        public CompositeCommand CreateCompositeCommand(string label)
         {
-            urakawa.undo.CompositeCommand command = getCommandFactory().createCompositeCommand();
+            CompositeCommand command = getCommandFactory().createCompositeCommand();
             command.setShortDescription(label);
             return command;
         }
@@ -494,14 +496,11 @@ namespace Obi
         {
             get
             {
-                System.Text.StringBuilder srcstr = new System.Text.StringBuilder();
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-                settings.IndentChars = "  ";
-                XmlWriter writer = XmlWriter.Create(srcstr, settings);
-                getProject().saveXUK(writer, null);
-                writer.Close();
-                return srcstr.ToString();
+                MemoryStream memstream = new MemoryStream();
+                urakawa.xuk.SaveXukAction action = new urakawa.xuk.SaveXukAction(null, getProject(), memstream);
+                action.execute();
+                memstream.Position = 0;
+                return (new StreamReader(memstream)).ReadToEnd();
             }
         }
 
