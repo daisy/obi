@@ -192,6 +192,19 @@ namespace Obi.ProjectView
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
+
+        public bool CanApplyPhraseDetection
+        {
+            get
+            {
+                return mPresentation != null &&
+                    Selection != null &&
+                    Selection.Node is PhraseNode &&
+                    ((PhraseNode)Selection.Node).NodeKind != EmptyNode.Kind.Silence &&
+                    !TransportBar.IsRecorderActive;
+            }
+        }
+
         public bool CanAssignRole { get { return IsBlockSelected; } }
         public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
@@ -244,7 +257,6 @@ namespace Obi.ProjectView
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } }
         public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
         public bool CanStop { get { return mTransportBar.CanStop; } }
-        public bool CanApplyPhraseDetection { get { return mPresentation != null && Selection != null && Selection.Node is PhraseNode && !TransportBar.IsRecorderActive; } }
         public bool CanCropPhrase
         {
             get
