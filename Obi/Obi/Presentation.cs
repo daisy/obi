@@ -501,6 +501,8 @@ namespace Obi
                 settings.Indent = true;
                 settings.IndentChars = " ";
                 XmlWriter writer = XmlWriter.Create(memstream, settings);
+
+                writer.WriteStartDocument();
                 
                 //This local XukString property should really only serialize the current context (i.e. Presentation):
                 //          xukOut(writer, getRootUri(), null);
@@ -511,6 +513,8 @@ namespace Obi
                 //TODO: decide whether the whole Project XML needs to be in the result string, or just the Presentation
                 
                 getProject().xukOut(writer, getRootUri(), null);
+
+                writer.WriteEndDocument();
                 writer.Close();
                 
                 memstream.Position = 0;
