@@ -1,4 +1,5 @@
 using urakawa.media.timing;
+using urakawa.command;
 
 namespace Obi.Commands.Node
 {
@@ -23,17 +24,17 @@ namespace Obi.Commands.Node
         }
 
 
-        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view)
+        public static CompositeCommand GetMergeCommand(ProjectView.ProjectView view)
         {
             EmptyNode node = view.SelectedNodeAs<EmptyNode>();
             return GetMergeCommand(view, node, node.getNextSibling() as EmptyNode);
         }
 
-        public static urakawa.undo.CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node, EmptyNode next)
+        public static CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node, EmptyNode next)
         {
             if (node != null && next != null)
             {
-                urakawa.undo.CompositeCommand command =
+                CompositeCommand command =
                     view.Presentation.CreateCompositeCommand(Localizer.Message("merge_phrase_with_next"));
                 if (node is PhraseNode)
                 {
@@ -58,7 +59,7 @@ namespace Obi.Commands.Node
         }
 
         // Append commands to transfer the attributes of a node to another (used, TODO, role, page number)
-        private static void AppendCopyNodeAttributes(urakawa.undo.CompositeCommand command, ProjectView.ProjectView view,
+        private static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
             EmptyNode from, EmptyNode to)
         {
             if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, to));

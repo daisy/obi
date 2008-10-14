@@ -37,8 +37,7 @@ namespace Obi.Dialogs
             { 
             get 
                 {
-                if (m_comboLevel.SelectedIndex != null   &&   
-                    m_comboLevel.SelectedIndex >= 0 && m_comboLevel.SelectedIndex < m_comboLevel.Items.Count )
+                if (m_comboLevel.SelectedIndex >= 0 && m_comboLevel.SelectedIndex < m_comboLevel.Items.Count )
                     {
                                         return Convert.ToInt32 ( m_comboLevel.Items[m_comboLevel.SelectedIndex] );
                     }

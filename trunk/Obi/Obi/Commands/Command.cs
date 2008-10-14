@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using urakawa;
+
+using urakawa.command;
 using urakawa.events;
 using urakawa.events.undo;
 using urakawa.media.data;
-using urakawa.undo;
+using urakawa.progress;
 
 namespace Obi.Commands
 {
@@ -17,8 +18,8 @@ namespace Obi.Commands
 
         public bool UpdateSelection;             // flag to set the selection update
 
-        public event EventHandler<ExecutedEventArgs> executed;
-        public event EventHandler<UnExecutedEventArgs> unExecuted;
+        public event EventHandler<urakawa.events.command.ExecutedEventArgs> executed;
+        public event EventHandler<urakawa.events.command.UnExecutedEventArgs> unExecuted;
         public event EventHandler<DataModelChangedEventArgs> changed;
 
 
@@ -39,7 +40,12 @@ namespace Obi.Commands
         /// </summary>
         public Command(ProjectView.ProjectView view) : this(view, "") { }
 
-        
+
+        /// <summary>
+        /// In Obi, all commands can be executed. Ain't that nice?
+        /// </summary>
+        public virtual bool canExecute() { return true; }
+
         public abstract void execute();
 
         /// <summary>
@@ -100,14 +106,14 @@ namespace Obi.Commands
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void xukIn(System.Xml.XmlReader source)
+        public void xukIn(System.Xml.XmlReader source, ProgressHandler handler)
         {
         }
 
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri)
+        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
         {
         }
 
