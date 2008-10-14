@@ -497,10 +497,26 @@ namespace Obi
             get
             {
                 MemoryStream memstream = new MemoryStream();
-                urakawa.xuk.SaveXukAction action = new urakawa.xuk.SaveXukAction(null, getProject(), memstream);
-                action.execute();
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.IndentChars = " ";
+                XmlWriter writer = XmlWriter.Create(memstream, settings);
+                
+                //This local XukString property should really only serialize the current context (i.e. Presentation):
+                //          xukOut(writer, getRootUri(), null);
+                //...but in order to remain compatible with the SaveXukAction mechanism (see code lines below),
+                //we serialize the whole Project.
+                //          urakawa.xuk.SaveXukAction action = new urakawa.xuk.SaveXukAction(null, getProject(), memstream);
+                //          action.execute();
+                //TODO: decide whether the whole Project XML needs to be in the result string, or just the Presentation
+                
+                getProject().xukOut(writer, getRootUri(), null);
+                writer.Close();
+                
                 memstream.Position = 0;
-                return (new StreamReader(memstream)).ReadToEnd();
+                string strXml = (new StreamReader(memstream)).ReadToEnd();
+                
+                return strXml;
             }
         }
 
