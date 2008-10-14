@@ -51,6 +51,7 @@ namespace Obi.ProjectView
             this.Context_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_BeginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +99,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 534);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 556);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -238,7 +238,7 @@ namespace Obi.ProjectView
             this.Context_AssignRole_SilenceMenuItem.Name = "Context_AssignRole_SilenceMenuItem";
             this.Context_AssignRole_SilenceMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_SilenceMenuItem.Text = "&Silence";
-            this.Context_AssignRole_SilenceMenuItem.CheckedChanged += new System.EventHandler(this.Context_AssignRole_SilenceMenuItem_CheckedChanged);
+            this.Context_AssignRole_SilenceMenuItem.Click += new System.EventHandler(this.Context_AssignRole_SilenceMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -251,6 +251,13 @@ namespace Obi.ProjectView
             this.Context_AssignRole_NewCustomRoleMenuItem.Size = new System.Drawing.Size(173, 22);
             this.Context_AssignRole_NewCustomRoleMenuItem.Text = "(New custom role...)";
             this.Context_AssignRole_NewCustomRoleMenuItem.Click += new System.EventHandler(this.Context_AssignRole_NewCustomRoleMenuItem_Click);
+            // 
+            // Context_ClearRoleMenuItem
+            // 
+            this.Context_ClearRoleMenuItem.Name = "Context_ClearRoleMenuItem";
+            this.Context_ClearRoleMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.Context_ClearRoleMenuItem.Text = "Clear role";
+            this.Context_ClearRoleMenuItem.Click += new System.EventHandler(this.Context_ClearRoleMenuItem_Click);
             // 
             // Context_ApplyPhraseDetectionMenuItem
             // 
@@ -340,13 +347,6 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem.Size = new System.Drawing.Size(189, 22);
             this.Context_PropertiesMenuItem.Text = "Pr&operties";
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
-            // 
-            // Context_ClearRoleMenuItem
-            // 
-            this.Context_ClearRoleMenuItem.Name = "Context_ClearRoleMenuItem";
-            this.Context_ClearRoleMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_ClearRoleMenuItem.Text = "Clear role";
-            this.Context_ClearRoleMenuItem.Click += new System.EventHandler(this.Context_ClearRoleMenuItem_Click);
             // 
             // ContentView
             // 

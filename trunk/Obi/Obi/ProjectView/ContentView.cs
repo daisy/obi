@@ -1430,10 +1430,10 @@ null;
 
         private void Context_AssignRole_PageMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Page, null);
+            mProjectView.SetPageNumberOnSelection();
         }
 
-        private void Context_AssignRole_SilenceMenuItem_CheckedChanged(object sender, EventArgs e)
+        private void Context_AssignRole_SilenceMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Silence, null);
         }

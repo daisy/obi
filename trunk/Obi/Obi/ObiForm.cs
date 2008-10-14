@@ -841,15 +841,7 @@ namespace Obi
             mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
         }
 
-
-        private void mPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.CanSetPageNumber)
-            {
-                Dialogs.SetPageNumber dialog = new SetPageNumber(mProjectView.CurrentOrNextPageNumber, false, false);
-                if (dialog.ShowDialog() == DialogResult.OK) mProjectView.SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
-            }
-        }
+        private void mPageToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SetPageNumberOnSelection(); }
 
 
         // Update the custom class menu with the classes from the new project
