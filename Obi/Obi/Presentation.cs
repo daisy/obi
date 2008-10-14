@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 
 using urakawa.command;
@@ -496,11 +497,11 @@ namespace Obi
         {
             get
             {
-                MemoryStream memstream = new MemoryStream();
+                StringBuilder strBuilder = new StringBuilder();
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
                 settings.IndentChars = " ";
-                XmlWriter writer = XmlWriter.Create(memstream, settings);
+                XmlWriter writer = XmlWriter.Create(strBuilder, settings);
 
                 writer.WriteStartDocument();
                 
@@ -517,10 +518,7 @@ namespace Obi
                 writer.WriteEndDocument();
                 writer.Close();
                 
-                memstream.Position = 0;
-                string strXml = (new StreamReader(memstream)).ReadToEnd();
-                
-                return strXml;
+                return strBuilder.ToString();
             }
         }
 
