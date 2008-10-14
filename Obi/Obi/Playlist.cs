@@ -28,6 +28,8 @@ namespace Obi
 
         private double mPlaybackStartTime;        // start time in first asset
         private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
+        private bool m_IsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
+
 
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
@@ -56,10 +58,11 @@ namespace Obi
         /// <summary>
         /// Create an empty playlist (to be populated later) for a given player.
         /// </summary>
-        public Playlist(AudioPlayer player)
+        public Playlist(AudioPlayer player  , bool IsQAPlaylist )
         {
             mPlayer = player;
-            Reset(MasterPlaylist);
+            m_IsQAPlaylist = IsQAPlaylist;
+            Reset(MasterPlaylist );
         }
 
         /// <summary>
@@ -69,8 +72,9 @@ namespace Obi
         /// (just the strip if selected in the content view; whole section from TOC view.)
         /// If the selection is an audio selection, set start/stop times as well.
         /// </summary>
-        public Playlist(AudioPlayer player, NodeSelection selection)
+        public Playlist(AudioPlayer player, NodeSelection selection , bool IsQAPlaylist )
         {
+        m_IsQAPlaylist = IsQAPlaylist;
             mPlayer = player;
             Reset(LocalPlaylist);
             if (selection.Control is Obi.ProjectView.TOCView)
@@ -97,9 +101,10 @@ namespace Obi
                 /// </summary>
         /// <param name="player"></param>
         /// <param name="node"></param>
-        public Playlist(AudioPlayer player,ObiNode node )
+        public Playlist(AudioPlayer player,ObiNode node  , bool IsQaPlaylist )
         {
             mPlayer = player;
+            m_IsQAPlaylist = IsQaPlaylist;
             Reset(LocalPlaylist);
                             AddPhraseNodes(node);
                                 }
@@ -286,20 +291,40 @@ namespace Obi
         // In case of the master playlist, exclude unused nodes.
         private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
+        if (m_IsQAPlaylist)
+            {
             node.acceptDepthFirst
             (
-                delegate(urakawa.core.TreeNode n)
-                {
-                    if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                delegate ( urakawa.core.TreeNode n )
                     {
-                        mPhrases.Add((PhraseNode)n);
-                        mStartTimes.Add(mTotalTime);
-                        mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-                    }
+                    if (n is PhraseNode && n.getChildCount () == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                        {
+                        mPhrases.Add ( (PhraseNode)n );
+                        mStartTimes.Add ( mTotalTime );
+                        mTotalTime += ((PhraseNode)n).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+                        }
                     return true;
-                },
-                delegate(urakawa.core.TreeNode n) { }
+                    },
+                delegate ( urakawa.core.TreeNode n ) { }
             );
+            }
+        else
+            {
+            node.acceptDepthFirst
+        (
+            delegate ( urakawa.core.TreeNode n )
+                {
+                if (n is PhraseNode && n.getChildCount () == 0 )
+                    {
+                    mPhrases.Add ( (PhraseNode)n );
+                    mStartTimes.Add ( mTotalTime );
+                    mTotalTime += ((PhraseNode)n).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+                    }
+                return true;
+                },
+            delegate ( urakawa.core.TreeNode n ) { }
+        );
+            }
         }
 
         // Add phrase nodes from a strip, or a single phrase.
@@ -308,15 +333,18 @@ namespace Obi
         {
             if (node is PhraseNode)
             {
-                mPhrases.Add((PhraseNode)node);
-                mStartTimes.Add(mTotalTime);
-                mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            if (!m_IsQAPlaylist || node.Used)  
+                            {
+                mPhrases.Add ( (PhraseNode)node );
+                mStartTimes.Add ( mTotalTime );
+                mTotalTime += ((PhraseNode)node).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+                }
             }
             else if (node is SectionNode)
             {
                 for (int i = 0; i < ((SectionNode)node).PhraseChildCount; ++i)
                 {
-                    AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
+                                        AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
                 }
             }
         }
