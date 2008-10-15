@@ -184,6 +184,8 @@ namespace Obi.ProjectView
         // Width of the label (including margins)
         protected int LabelFullWidth { get { return mLabel.Width + mLabel.Margin.Horizontal; } }
 
+        protected int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
+
         /// <summary>
         /// Update the tab index of the block with the new value and return the next index.
         /// </summary>
