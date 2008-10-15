@@ -291,54 +291,96 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Check that a project path is correct (directory is usable; extension is OK with user.)
+        /// If createDir is set, try to create a directory to save to.
+        /// This is the safe version that does not throw exceptions.
+        /// </summary>
+        public static bool CheckProjectPath_Safe(string path, bool createDir)
+        {
+            bool check = false;
+            try
+            {
+                check = CheckProjectPath(path, createDir);
+            }
+            catch (Exception) { }
+            return check;
+        }
+
+        /// <summary>
+        /// Check that a project path is correct (directory is usable; extension is OK with user.)
+        /// If createDir is set, try to create a directory to save to.
+        /// This is the safe version that does not throw exceptions.
+        /// </summary>
+        public static bool CheckProjectPath(string path, bool createDir)
+        {
+            string dir = Path.GetDirectoryName(path);
+            return (Directory.Exists(dir) ? CheckEmpty(dir, true) : DidCreateDirectory(dir, createDir)) &&
+                CheckExtension(path);
+        }
+
+        /// <summary>
+        /// Check the extension of a project file. If it is not .obi, ask the user if they really want to
+        /// use the path (it may be a mistake on their part.)
+        /// </summary>
+        public static bool CheckExtension(string path)
+        {
+            return Path.GetExtension(path) == ".obi" ||
+                MessageBox.Show(string.Format(Localizer.Message("extension_warning"), path),
+                    Localizer.Message("extension_warning_caption"),
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
         // Save the current project
         private void Save() { mSession.Save(); }
 
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
         {
-            SaveProjectAsDialog SaveDialog = new SaveProjectAsDialog(Directory.GetParent(mSession.Path).FullName);
-            if (SaveDialog.ShowDialog() == DialogResult.OK)
+            string path_original = mSession.Path;
+            SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                if (mSession.CanSave &&
-                    MessageBox.Show(Localizer.Message("SaveBeforeUsingSaveAs"),
-                                    Localizer.Message("Caption_Warning"),
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                string path_new = dialog.NewProjectPath;
+                try
                 {
-                    mSession.ForceSave();
-                }
-
-                string OriginalProjectFilePath = mSession.Path;
-                DirectoryInfo NewProjectDirectoryInfo = new DirectoryInfo(SaveDialog.NewProjectDirectoryPath);
-                DirectoryInfo OriginalDirInfo = new DirectoryInfo(Directory.GetParent(mSession.Path).FullName);
-                NewProjectDirectoryInfo.Create();
-                ShallowCopyFilesInDirectory(OriginalDirInfo.FullName, NewProjectDirectoryInfo.FullName);
-
-                FileInfo XukFileInfo = new FileInfo(mSession.Path);
-                string XukPath = Path.Combine(NewProjectDirectoryInfo.FullName, XukFileInfo.Name);
-                if (File.Exists(XukPath)) File.Delete(XukPath);
-                mSession.SaveAs(XukPath);
-
-                if (!SaveDialog.SavePrimaryDirectoriesOnly)
-                {
-                    DirectoryInfo[] DirList = OriginalDirInfo.GetDirectories("*.*", SearchOption.AllDirectories);
-
-                    foreach (DirectoryInfo d in DirList)
+                    if (mSession.CanSave &&
+                        MessageBox.Show(Localizer.Message("save_before_save_as"),
+                                        Localizer.Message("save_before_save_as_caption"),
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        string DestPath = NewProjectDirectoryInfo.FullName + d.FullName.Replace(OriginalDirInfo.FullName, "");
-                        if (!Directory.Exists(DestPath))
+                        mSession.ForceSave();
+                    }
+                    DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
+                    DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
+                    ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
+                    mSession.SaveAs(path_new);
+                    if (!dialog.SaveDataAndProjectOnly)
+                    {
+                        DirectoryInfo[] dirs = dir_original.GetDirectories("*.*", SearchOption.AllDirectories);
+                        foreach (DirectoryInfo d in dirs)
                         {
-                            Directory.CreateDirectory(DestPath);
-                            // copy files in each directory
-                            ShallowCopyFilesInDirectory(d.FullName, DestPath);
+                            string dest = dir_new.FullName + d.FullName.Replace(dir_original.FullName, "");
+                            if (!Directory.Exists(dest))
+                            {
+                                Directory.CreateDirectory(dest);
+                                // copy files in each directory
+                                ShallowCopyFilesInDirectory(d.FullName, dest);
+                            }
                         }
                     }
-
+                    if (dialog.SwitchToNewProject)
+                    {
+                        mSession.Close();
+                        OpenProject(path_new);
+                    }
                 }
-                if (!SaveDialog.ActivateNewProject)
+                catch (Exception e)
                 {
-                    mSession.Close();
-                    OpenProject(OriginalProjectFilePath);
+                    MessageBox.Show(string.Format(Localizer.Message("save_as_failed"), path_new, e.Message),
+                        Localizer.Message("save_as_failed_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -347,7 +389,8 @@ namespace Obi
             }
         }
 
-        // Copy files from one directory to another
+        // Copy files from one directory to another.
+        // May throw exception when things go wrong.
         private void ShallowCopyFilesInDirectory(string source, string dest)
         {
             string[] FilesList = Directory.GetFiles(source, "*.*", SearchOption.TopDirectoryOnly);
@@ -1686,27 +1729,34 @@ namespace Obi
 
 
 
-
         /// <summary>
-        /// Check if a string representation of a directory 
-        /// exists as a directory on the filesystem,
-        /// if not, try to create it, asking the user first.
+        /// Check that we can use a directory to write to. We may want to make sure that it is empty as well.
+        /// If the directory does not exist yet, give the option to create it.
+        /// If alwaysCreate is set, do not check before creating.
         /// </summary>
-        /// <param name="path">String representation of the directory to be checked/created</param>
-        /// <param name="checkEmpty">Check for empty directories.</param>
-        /// <returns>True if the is suitable, false otherwise.</returns>        
-        public static bool CanUseDirectory(string path, bool checkEmpty)
+        public static bool CanUseDirectory(string path, bool checkEmpty, bool alwaysCreate)
         {
-            return File.Exists(path) ? false :
-                Directory.Exists(path) ? CheckEmpty(path, checkEmpty) : DidCreateDirectory(path);
+            string absolutePath;
+            try
+            {
+                absolutePath = Path.GetFullPath(path);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(string.Format(Localizer.Message("cannot_use_directory"), path, e.Message),
+                    Localizer.Message("cannot_use_directory_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return File.Exists(absolutePath) ? false :
+                Directory.Exists(absolutePath) ? CheckEmpty(absolutePath, checkEmpty) :
+                    DidCreateDirectory(absolutePath, alwaysCreate);
         }
 
         /// <summary>
         /// Check if a directory is empty or not; ask the user to confirm
         /// that they mean this directory even though it is not empty.
         /// </summary>
-        /// <param name="path">The directory to check.</param>
-        /// <param name="checkEmpty">Actually check.</param>
         private static bool CheckEmpty(string path, bool checkEmpty)
         {
             if (checkEmpty &&
@@ -1732,9 +1782,9 @@ namespace Obi
         /// </summary>
         /// <param name="path">Path to the non-existing directory.</param>
         /// <returns>True if the directory was created.</returns>
-        private static bool DidCreateDirectory(string path)
+        private static bool DidCreateDirectory(string path, bool alwaysCreate)
         {
-            if (MessageBox.Show(
+            if (alwaysCreate || MessageBox.Show(
                 String.Format(Localizer.Message("create_directory_text"), path),
                 Localizer.Message("create_directory_caption"),
                 MessageBoxButtons.YesNo,

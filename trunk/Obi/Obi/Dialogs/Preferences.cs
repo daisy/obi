@@ -137,7 +137,7 @@ namespace Obi.Dialogs
         // Update project settings
         private void UpdateProjectSettings()
         {
-            if (ObiForm.CanUseDirectory(mDirectoryTextbox.Text, false))
+            if (ObiForm.CanUseDirectory(mDirectoryTextbox.Text, false, false))
             {
                 mSettings.DefaultPath = mDirectoryTextbox.Text;
             }

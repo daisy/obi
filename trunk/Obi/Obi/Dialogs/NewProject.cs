@@ -20,7 +20,7 @@ namespace Obi.Dialogs
         private string mBasepath;       // the base path for the project
         private bool mCanClose;         // can close the form or not (cannot close if file existed)
         private string mExtension;      // file extension for the file chooser
-        private string mFilename;       // the actual filename 
+        private string mFilename;       // the actual filename
         private bool mUserSetLocation;  // the location was changed manually by the user
 
         /// <summary>
@@ -100,18 +100,17 @@ namespace Obi.Dialogs
         /// </summary>
         private void mOKButton_Click(object sender, EventArgs e)
         {
-        string directory = "";
-        try
+            string directory = "";
+            try
             {
-            directory = System.IO.Path.GetDirectoryName ( mFileBox.Text );
+                directory = System.IO.Path.GetDirectoryName(mFileBox.Text);
             }
-            catch ( System.Exception ex )
+            catch (System.Exception ex)
             {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show(ex.ToString());
                 return;
             }
-
-            mCanClose = ObiForm.CanUseDirectory(directory, true);
+            mCanClose = ObiForm.CanUseDirectory(directory, true, false);
         }
 
         /// <summary>
@@ -120,7 +119,11 @@ namespace Obi.Dialogs
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
+            try
+            {
+                dialog.InitialDirectory = System.IO.Path.GetDirectoryName(mFileBox.Text);
+            }
+            catch (Exception) { }
             dialog.FileName = mFilename;
             dialog.Filter = mExtension;
             dialog.AddExtension = true;

@@ -28,138 +28,164 @@ namespace Obi.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-        this.m_lblProjectDirectoryName = new System.Windows.Forms.Label ();
-        this.m_txtProjectDirectoryName = new System.Windows.Forms.TextBox ();
-        this.m_btnBrowseParentDirectory = new System.Windows.Forms.Button ();
-        this.m_lblParentDirectoryPath = new System.Windows.Forms.Label ();
-        this.m_txtParentDirectory = new System.Windows.Forms.TextBox ();
-        this.m_btnOk = new System.Windows.Forms.Button ();
-        this.m_btnCancel = new System.Windows.Forms.Button ();
-        this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog ();
-        this.m_chkSavePrimaryDirectories = new System.Windows.Forms.CheckBox ();
-        this.m_chkActivateNewProject = new System.Windows.Forms.CheckBox ();
-        this.SuspendLayout ();
-        // 
-        // m_lblProjectDirectoryName
-        // 
-        this.m_lblProjectDirectoryName.AutoSize = true;
-        this.m_lblProjectDirectoryName.Location = new System.Drawing.Point ( 10, 11 );
-        this.m_lblProjectDirectoryName.Name = "m_lblProjectDirectoryName";
-        this.m_lblProjectDirectoryName.Size = new System.Drawing.Size ( 115, 13 );
-        this.m_lblProjectDirectoryName.TabIndex = 0;
-        this.m_lblProjectDirectoryName.Text = "Project &directory name:";
-        // 
-        // m_txtProjectDirectoryName
-        // 
-        this.m_txtProjectDirectoryName.Location = new System.Drawing.Point ( 140, 8 );
-        this.m_txtProjectDirectoryName.Name = "m_txtProjectDirectoryName";
-        this.m_txtProjectDirectoryName.Size = new System.Drawing.Size ( 100, 20 );
-        this.m_txtProjectDirectoryName.TabIndex = 1;
-        // 
-        // m_btnBrowseParentDirectory
-        // 
-        this.m_btnBrowseParentDirectory.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        this.m_btnBrowseParentDirectory.Location = new System.Drawing.Point ( 210, 76 );
-        this.m_btnBrowseParentDirectory.Name = "m_btnBrowseParentDirectory";
-        this.m_btnBrowseParentDirectory.Size = new System.Drawing.Size ( 75, 23 );
-        this.m_btnBrowseParentDirectory.TabIndex = 5;
-        this.m_btnBrowseParentDirectory.Text = "&Browse";
-        this.m_btnBrowseParentDirectory.UseVisualStyleBackColor = true;
-        this.m_btnBrowseParentDirectory.Click += new System.EventHandler ( this.m_btnBrowseParentDirectory_Click );
-        // 
-        // m_lblParentDirectoryPath
-        // 
-        this.m_lblParentDirectoryPath.AutoSize = true;
-        this.m_lblParentDirectoryPath.Location = new System.Drawing.Point ( 10, 47 );
-        this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
-        this.m_lblParentDirectoryPath.Size = new System.Drawing.Size ( 123, 13 );
-        this.m_lblParentDirectoryPath.TabIndex = 3;
-        this.m_lblParentDirectoryPath.Text = "Directory path for project";
-        // 
-        // m_txtParentDirectory
-        // 
-        this.m_txtParentDirectory.Location = new System.Drawing.Point ( 139, 44 );
-        this.m_txtParentDirectory.Name = "m_txtParentDirectory";
-        this.m_txtParentDirectory.Size = new System.Drawing.Size ( 145, 20 );
-        this.m_txtParentDirectory.TabIndex = 4;
-        // 
-        // m_btnOk
-        // 
-        this.m_btnOk.Location = new System.Drawing.Point ( 127, 147 );
-        this.m_btnOk.Name = "m_btnOk";
-        this.m_btnOk.Size = new System.Drawing.Size ( 75, 23 );
-        this.m_btnOk.TabIndex = 8;
-        this.m_btnOk.Text = "&OK";
-        this.m_btnOk.UseVisualStyleBackColor = true;
-        this.m_btnOk.Click += new System.EventHandler ( this.m_btnOk_Click );
-        // 
-        // m_btnCancel
-        // 
-        this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        this.m_btnCancel.Location = new System.Drawing.Point ( 212, 147 );
-        this.m_btnCancel.Name = "m_btnCancel";
-        this.m_btnCancel.Size = new System.Drawing.Size ( 75, 23 );
-        this.m_btnCancel.TabIndex = 9;
-        this.m_btnCancel.Text = "&Cancel";
-        this.m_btnCancel.UseVisualStyleBackColor = true;
-        this.m_btnCancel.Click += new System.EventHandler ( this.m_btnCancel_Click );
-        // 
-        // m_chkSavePrimaryDirectories
-        // 
-        this.m_chkSavePrimaryDirectories.AutoSize = true;
-        this.m_chkSavePrimaryDirectories.Location = new System.Drawing.Point ( 5, 106 );
-        this.m_chkSavePrimaryDirectories.Name = "m_chkSavePrimaryDirectories";
-        this.m_chkSavePrimaryDirectories.Size = new System.Drawing.Size ( 160, 17 );
-        this.m_chkSavePrimaryDirectories.TabIndex = 6;
-        this.m_chkSavePrimaryDirectories.Text = "Save &primary directories only";
-        this.m_chkSavePrimaryDirectories.UseVisualStyleBackColor = true;
-        // 
-        // m_chkActivateNewProject
-        // 
-        this.m_chkActivateNewProject.AutoSize = true;
-        this.m_chkActivateNewProject.Checked = true;
-        this.m_chkActivateNewProject.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.m_chkActivateNewProject.Location = new System.Drawing.Point ( 5, 125 );
-        this.m_chkActivateNewProject.Name = "m_chkActivateNewProject";
-        this.m_chkActivateNewProject.Size = new System.Drawing.Size ( 119, 17 );
-        this.m_chkActivateNewProject.TabIndex = 8;
-        this.m_chkActivateNewProject.Text = "&Switch to new copy";
-        this.m_chkActivateNewProject.UseVisualStyleBackColor = true;
-        // 
-        // SaveProjectAsDialog
-        // 
-        this.AcceptButton = this.m_btnOk;
-        this.AutoScaleDimensions = new System.Drawing.SizeF ( 6F, 13F );
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.CancelButton = this.m_btnCancel;
-        this.ClientSize = new System.Drawing.Size ( 292, 173 );
-        this.Controls.Add ( this.m_chkActivateNewProject );
-        this.Controls.Add ( this.m_chkSavePrimaryDirectories );
-        this.Controls.Add ( this.m_btnCancel );
-        this.Controls.Add ( this.m_btnOk );
-        this.Controls.Add ( this.m_txtParentDirectory );
-        this.Controls.Add ( this.m_lblParentDirectoryPath );
-        this.Controls.Add ( this.m_btnBrowseParentDirectory );
-        this.Controls.Add ( this.m_txtProjectDirectoryName );
-        this.Controls.Add ( this.m_lblProjectDirectoryName );
-        this.Name = "SaveProjectAsDialog";
-        this.Text = "Save project as";
-        this.ResumeLayout ( false );
-        this.PerformLayout ();
+            this.m_lblProjectDirectoryName = new System.Windows.Forms.Label();
+            this.mNewDirectoryTextBox = new System.Windows.Forms.TextBox();
+            this.mSelectButton = new System.Windows.Forms.Button();
+            this.m_lblParentDirectoryPath = new System.Windows.Forms.Label();
+            this.mLocationTextBox = new System.Windows.Forms.TextBox();
+            this.mOKButton = new System.Windows.Forms.Button();
+            this.mCancelButton = new System.Windows.Forms.Button();
+            this.mSaveDataOnlyCheckBox = new System.Windows.Forms.CheckBox();
+            this.mSwitchToNewCheckBox = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
+            // 
+            // m_lblProjectDirectoryName
+            // 
+            this.m_lblProjectDirectoryName.AutoSize = true;
+            this.m_lblProjectDirectoryName.Location = new System.Drawing.Point(13, 21);
+            this.m_lblProjectDirectoryName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.m_lblProjectDirectoryName.Name = "m_lblProjectDirectoryName";
+            this.m_lblProjectDirectoryName.Size = new System.Drawing.Size(137, 16);
+            this.m_lblProjectDirectoryName.TabIndex = 0;
+            this.m_lblProjectDirectoryName.Text = "&New project directory:";
+            // 
+            // mNewDirectoryTextBox
+            // 
+            this.mNewDirectoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNewDirectoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mNewDirectoryTextBox.Location = new System.Drawing.Point(158, 19);
+            this.mNewDirectoryTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mNewDirectoryTextBox.Name = "mNewDirectoryTextBox";
+            this.mNewDirectoryTextBox.Size = new System.Drawing.Size(320, 22);
+            this.mNewDirectoryTextBox.TabIndex = 1;
+            this.mNewDirectoryTextBox.TextChanged += new System.EventHandler(this.mNewDirectoryTextBox_TextChanged);
+            // 
+            // mSelectButton
+            // 
+            this.mSelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mSelectButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mSelectButton.Location = new System.Drawing.Point(493, 48);
+            this.mSelectButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mSelectButton.Name = "mSelectButton";
+            this.mSelectButton.Size = new System.Drawing.Size(100, 28);
+            this.mSelectButton.TabIndex = 5;
+            this.mSelectButton.Text = "&Select";
+            this.mSelectButton.UseVisualStyleBackColor = true;
+            this.mSelectButton.Click += new System.EventHandler(this.mSelectButton_Click);
+            // 
+            // m_lblParentDirectoryPath
+            // 
+            this.m_lblParentDirectoryPath.AutoSize = true;
+            this.m_lblParentDirectoryPath.Location = new System.Drawing.Point(88, 54);
+            this.m_lblParentDirectoryPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
+            this.m_lblParentDirectoryPath.Size = new System.Drawing.Size(62, 16);
+            this.m_lblParentDirectoryPath.TabIndex = 3;
+            this.m_lblParentDirectoryPath.Text = "&Location:";
+            // 
+            // mLocationTextBox
+            // 
+            this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mLocationTextBox.Location = new System.Drawing.Point(158, 52);
+            this.mLocationTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mLocationTextBox.Name = "mLocationTextBox";
+            this.mLocationTextBox.Size = new System.Drawing.Size(320, 22);
+            this.mLocationTextBox.TabIndex = 4;
+            // 
+            // mOKButton
+            // 
+            this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mOKButton.Location = new System.Drawing.Point(195, 174);
+            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mOKButton.Name = "mOKButton";
+            this.mOKButton.Size = new System.Drawing.Size(100, 28);
+            this.mOKButton.TabIndex = 8;
+            this.mOKButton.Text = "&OK";
+            this.mOKButton.UseVisualStyleBackColor = true;
+            this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
+            // 
+            // mCancelButton
+            // 
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCancelButton.Location = new System.Drawing.Point(303, 174);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
+            this.mCancelButton.TabIndex = 9;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
+            // 
+            // mSaveDataOnlyCheckBox
+            // 
+            this.mSaveDataOnlyCheckBox.AutoSize = true;
+            this.mSaveDataOnlyCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mSaveDataOnlyCheckBox.Location = new System.Drawing.Point(158, 82);
+            this.mSaveDataOnlyCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mSaveDataOnlyCheckBox.Name = "mSaveDataOnlyCheckBox";
+            this.mSaveDataOnlyCheckBox.Size = new System.Drawing.Size(221, 20);
+            this.mSaveDataOnlyCheckBox.TabIndex = 6;
+            this.mSaveDataOnlyCheckBox.Text = "Save project and audio &data only";
+            this.mSaveDataOnlyCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mSwitchToNewCheckBox
+            // 
+            this.mSwitchToNewCheckBox.AutoSize = true;
+            this.mSwitchToNewCheckBox.Checked = true;
+            this.mSwitchToNewCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mSwitchToNewCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mSwitchToNewCheckBox.Location = new System.Drawing.Point(158, 110);
+            this.mSwitchToNewCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.mSwitchToNewCheckBox.Name = "mSwitchToNewCheckBox";
+            this.mSwitchToNewCheckBox.Size = new System.Drawing.Size(136, 20);
+            this.mSwitchToNewCheckBox.TabIndex = 8;
+            this.mSwitchToNewCheckBox.Text = "S&witch to new copy";
+            this.mSwitchToNewCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // SaveProjectAsDialog
+            // 
+            this.AcceptButton = this.mOKButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
+            this.ClientSize = new System.Drawing.Size(606, 215);
+            this.ControlBox = false;
+            this.Controls.Add(this.mSwitchToNewCheckBox);
+            this.Controls.Add(this.mSaveDataOnlyCheckBox);
+            this.Controls.Add(this.mCancelButton);
+            this.Controls.Add(this.mOKButton);
+            this.Controls.Add(this.mLocationTextBox);
+            this.Controls.Add(this.m_lblParentDirectoryPath);
+            this.Controls.Add(this.mSelectButton);
+            this.Controls.Add(this.mNewDirectoryTextBox);
+            this.Controls.Add(this.m_lblProjectDirectoryName);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "SaveProjectAsDialog";
+            this.Text = "Save project as";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveProjectAsDialog_FormClosing);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label m_lblProjectDirectoryName;
-        private System.Windows.Forms.TextBox m_txtProjectDirectoryName;
-        private System.Windows.Forms.Button m_btnBrowseParentDirectory;
+        private System.Windows.Forms.TextBox mNewDirectoryTextBox;
+        private System.Windows.Forms.Button mSelectButton;
         private System.Windows.Forms.Label m_lblParentDirectoryPath;
-        private System.Windows.Forms.TextBox m_txtParentDirectory;
-        private System.Windows.Forms.Button m_btnOk;
-        private System.Windows.Forms.Button m_btnCancel;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.CheckBox m_chkSavePrimaryDirectories;
-        private System.Windows.Forms.CheckBox m_chkActivateNewProject;
+        private System.Windows.Forms.TextBox mLocationTextBox;
+        private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.Button mCancelButton;
+        private System.Windows.Forms.CheckBox mSaveDataOnlyCheckBox;
+        private System.Windows.Forms.CheckBox mSwitchToNewCheckBox;
     }
 }
