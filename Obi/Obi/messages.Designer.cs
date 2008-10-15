@@ -241,6 +241,42 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot use directory &quot;{0}&quot; for saving or exporting: {1}.
+        /// </summary>
+        internal static string cannot_use_directory {
+            get {
+                return ResourceManager.GetString("cannot_use_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot use directory.
+        /// </summary>
+        internal static string cannot_use_directory_caption {
+            get {
+                return ResourceManager.GetString("cannot_use_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot use selected location &quot;{0}&quot; for saving: {1}.
+        /// </summary>
+        internal static string cannot_use_project_path {
+            get {
+                return ResourceManager.GetString("cannot_use_project_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot use selected location.
+        /// </summary>
+        internal static string cannot_use_project_path_caption {
+            get {
+                return ResourceManager.GetString("cannot_use_project_path_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create path of type: input.
         /// </summary>
         internal static string CannotCreate_InputPath {
@@ -250,29 +286,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot save in the same directory. Please choose some other location.
-        /// </summary>
-        internal static string CannotSaveInSameProjectDirectory {
-            get {
-                return ResourceManager.GetString("CannotSaveInSameProjectDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ERROR.
         /// </summary>
         internal static string Caption_Error {
             get {
                 return ResourceManager.GetString("Caption_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to WARNING!.
-        /// </summary>
-        internal static string Caption_Warning {
-            get {
-                return ResourceManager.GetString("Caption_Warning", resourceCulture);
             }
         }
         
@@ -1104,6 +1122,24 @@ namespace Obi {
         internal static string export_progress_dialog_title {
             get {
                 return ResourceManager.GetString("export_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file exention. Are you sure you want to keep the selected extension?.
+        /// </summary>
+        internal static string extension_warning {
+            get {
+                return ResourceManager.GetString("extension_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File extension warning.
+        /// </summary>
+        internal static string extension_warning_caption {
+            get {
+                return ResourceManager.GetString("extension_warning_caption", resourceCulture);
             }
         }
         
@@ -2244,6 +2280,60 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot save in the same directory as the original project. Please choose another location.
+        /// </summary>
+        internal static string save_as_error_same_directory {
+            get {
+                return ResourceManager.GetString("save_as_error_same_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save to location &quot;{0}&quot;: {1}.
+        /// </summary>
+        internal static string save_as_failed {
+            get {
+                return ResourceManager.GetString("save_as_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save.
+        /// </summary>
+        internal static string save_as_failed_caption {
+            get {
+                return ResourceManager.GetString("save_as_failed_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} copy.
+        /// </summary>
+        internal static string save_as_new_directory_name {
+            get {
+                return ResourceManager.GetString("save_as_new_directory_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save changes before saving project to a new location? .
+        /// </summary>
+        internal static string save_before_save_as {
+            get {
+                return ResourceManager.GetString("save_before_save_as", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save before save as?.
+        /// </summary>
+        internal static string save_before_save_as_caption {
+            get {
+                return ResourceManager.GetString("save_before_save_as_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not save settings.
         /// </summary>
         internal static string save_settings_error_caption {
@@ -2261,15 +2351,6 @@ namespace Obi {
         internal static string save_settings_error_text {
             get {
                 return ResourceManager.GetString("save_settings_error_text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to save changes before saving project to a new location? .
-        /// </summary>
-        internal static string SaveBeforeUsingSaveAs {
-            get {
-                return ResourceManager.GetString("SaveBeforeUsingSaveAs", resourceCulture);
             }
         }
         
@@ -2486,15 +2567,6 @@ namespace Obi {
         internal static string text_selection_to_string {
             get {
                 return ResourceManager.GetString("text_selection_to_string", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One or more fields are empty!.
-        /// </summary>
-        internal static string Textboxs_Empty {
-            get {
-                return ResourceManager.GetString("Textboxs_Empty", resourceCulture);
             }
         }
         

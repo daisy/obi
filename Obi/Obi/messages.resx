@@ -1062,8 +1062,8 @@ Error text: {1}</value>
   <data name="Caption_Error" xml:space="preserve">
     <value>ERROR</value>
   </data>
-  <data name="Caption_Warning" xml:space="preserve">
-    <value>WARNING!</value>
+  <data name="save_before_save_as_caption" xml:space="preserve">
+    <value>Save before save as?</value>
   </data>
   <data name="Choose_OtherDirectory" xml:space="preserve">
     <value>Choose some other directory</value>
@@ -1117,10 +1117,11 @@ Error text: {1}</value>
     <value>crop audio</value>
     <comment>Command</comment>
   </data>
-  <data name="CannotSaveInSameProjectDirectory" xml:space="preserve">
-    <value>Cannot save in the same directory. Please choose some other location</value>
+  <data name="save_as_error_same_directory" xml:space="preserve">
+    <value>Cannot save in the same directory as the original project. Please choose another location</value>
+    <comment>Save as error</comment>
   </data>
-  <data name="SaveBeforeUsingSaveAs" xml:space="preserve">
+  <data name="save_before_save_as" xml:space="preserve">
     <value>Do you want to save changes before saving project to a new location? </value>
   </data>
   <data name="NoPrimaryExportDirectory" xml:space="preserve">
@@ -1210,7 +1211,32 @@ Error text: {1}</value>
   <data name="Pipeline_InvalidString" xml:space="preserve">
     <value>invalid input</value>
   </data>
-  <data name="Textboxs_Empty" xml:space="preserve">
-    <value>One or more fields are empty!</value>
+  <data name="cannot_use_directory" xml:space="preserve">
+    <value>Cannot use directory "{0}" for saving or exporting: {1}</value>
+  </data>
+  <data name="cannot_use_directory_caption" xml:space="preserve">
+    <value>Cannot use directory</value>
+  </data>
+  <data name="save_as_new_directory_name" xml:space="preserve">
+    <value>{0} copy</value>
+    <comment>Default new name for copy</comment>
+  </data>
+  <data name="cannot_use_project_path" xml:space="preserve">
+    <value>Cannot use selected location "{0}" for saving: {1}</value>
+  </data>
+  <data name="cannot_use_project_path_caption" xml:space="preserve">
+    <value>Cannot use selected location</value>
+  </data>
+  <data name="extension_warning" xml:space="preserve">
+    <value>You are about to save a project file to {0}. It is recommended that you use the .obi file exention. Are you sure you want to keep the selected extension?</value>
+  </data>
+  <data name="extension_warning_caption" xml:space="preserve">
+    <value>File extension warning</value>
+  </data>
+  <data name="save_as_failed" xml:space="preserve">
+    <value>Failed to save to location "{0}": {1}</value>
+  </data>
+  <data name="save_as_failed_caption" xml:space="preserve">
+    <value>Failed to save</value>
   </data>
 </root>

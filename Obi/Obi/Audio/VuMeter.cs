@@ -278,8 +278,6 @@ namespace Obi.Audio
         }
 
 
-		int m_PeakValueLeft = 0;
-		int m_PeakValueRight = 0;
         double[] TempArray = new double[4];
         int tempCount = 0;
 		void AnimationComputation ()

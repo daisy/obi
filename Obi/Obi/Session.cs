@@ -157,18 +157,19 @@ namespace Obi
         }
 
         /// <summary>
-        /// Save as: save the project under a different location,
-        /// and edit the newly saved project.
+        /// Save as: save the project under a different location. Only affects the project file.
+        /// Does not affect the current project file.
         /// </summary>
         public void SaveAs(string path)
         {
             try
             {
-                System.IO.FileStream file = System.IO.File.Create(path);
-                file.Close();
-                Presentation.setRootUri(new Uri(path));
-                mPath = path;
-                ForceSave();
+                if (!System.IO.File.Exists(path))
+                {
+                    System.IO.FileStream file = System.IO.File.Create(path);
+                    file.Close();
+                }
+                mProject.saveXUK(new Uri(path));
             }
             catch (Exception e)
             {
@@ -178,7 +179,6 @@ namespace Obi
                     System.Windows.Forms.MessageBoxButtons.OK,
                     System.Windows.Forms.MessageBoxIcon.Error);
             }
-
         }
 
         /// <summary>
