@@ -1546,36 +1546,32 @@ namespace Obi.ProjectView
         {
             if (!IsRecorderActive)
             {
-                            if ((mState == State.Paused || mState == State.Playing) && !useSelection)
+                            if ((mState == State.Paused || mState == State.Playing || m_AfterPreviewRestoreTime > 0 ) && !useSelection)
                                 {
                                 if (m_IsPreviewing)
                                     {
                                     PostPreviewRestore();
                                     }
-
-                    // use the audio cursor
+                                                    
                     if (mState == State.Playing) Pause();
 
-                    if (mCurrentPlaylist.CanNavigateNextPhrase)
-                        {
-                        double time = mCurrentPlaylist.CurrentTimeInAsset;
-                        mCurrentPlaylist.Stop ();
+                    double time= 0 ;
+
+                    if (m_AfterPreviewRestoreTime > 0)
+                                                time = m_AfterPreviewRestoreTime ;
+                    else time = mCurrentPlaylist.CurrentTimeInAsset;
+
                         CreateLocalPlaylistForPreview ();                    
                         mCurrentPlaylist.CurrentTimeInAsset = time;
-                        }
-                    
-                    PlayPreview(mCurrentPlaylist.CurrentPhrase, mCurrentPlaylist.CurrentTimeInAsset - (from ? 0.0 : mPreviewDuration),
-                        mPreviewDuration, from);
+                        
+                        PlayPreview ( mCurrentPlaylist.CurrentPhrase, time - (from ? 0.0 : mPreviewDuration),
+                                                mPreviewDuration, from);
                     return true;
                 }
                 else if (mView.Selection is AudioSelection)
                 {
-                                    if ( !mCurrentPlaylist.ContainsPhrase ((PhraseNode)mView.Selection.Node ) )
-                                                {
-                                                //System.Media.SystemSounds.Asterisk.Play ();
-                                                CreateLocalPlaylistForPreview ();
-                                                }
-                    AudioSelection s = (AudioSelection)mView.Selection;
+                                                                CreateLocalPlaylistForPreview ();
+                                                                    AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
                     PlayPreview((PhraseNode)s.Node, time, mPreviewDuration, from);
@@ -1601,13 +1597,9 @@ namespace Obi.ProjectView
             if (CanPreviewAudioSelection)
             {
                             AudioSelection s = (AudioSelection)mView.Selection;
-                            if (mCurrentPlaylist.CanNavigateNextPhrase)
-                                {
-                                mCurrentPlaylist.Stop ();
-                                CreateLocalPlaylistForPreview ();
-                                }
-
-                if (mState == State.Playing) Pause();
+                                
+                                                if (mState == State.Playing) Pause();
+                                                CreateLocalPlaylistForPreview ();
                 PlayPreview((PhraseNode)s.Node, s.AudioRange.SelectionBeginTime,
                     s.AudioRange.SelectionEndTime - s.AudioRange.SelectionBeginTime, true);
                 return true;
@@ -1640,7 +1632,6 @@ namespace Obi.ProjectView
             if (mView.Selection != null && mView.Selection is AudioSelection &&   !((AudioSelection)mView.Selection).AudioRange.HasCursor)
                 m_AfterPreviewRestoreEndTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
                         mCurrentPlaylist.Play(from, end);
-            
             
             m_IsPreviewing = true;
         }
