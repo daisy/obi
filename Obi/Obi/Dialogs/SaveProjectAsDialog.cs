@@ -78,7 +78,7 @@ namespace Obi.Dialogs
             }
             catch (Exception) {}
             dialog.DefaultExt = Localizer.Message("obi_filter");
-            if (dialog.ShowDialog () == DialogResult.OK)
+            if (dialog.ShowDialog () == DialogResult.OK && ObiForm.CheckProjectPath_Safe(dialog.FileName, true))
             {
                 mLocationTextBox.Text = dialog.FileName;
                 mUserSetLocation = true;

@@ -100,17 +100,7 @@ namespace Obi.Dialogs
         /// </summary>
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            string directory = "";
-            try
-            {
-                directory = System.IO.Path.GetDirectoryName(mFileBox.Text);
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return;
-            }
-            mCanClose = ObiForm.CanUseDirectory(directory, true, false);
+            mCanClose = ObiForm.CheckProjectPath_Safe(mFileBox.Text, true);
         }
 
         /// <summary>
