@@ -1553,17 +1553,17 @@ namespace Obi.ProjectView
                 || mTOCView.ContainsFocus
                 || mTransportBar.ContainsFocus))
             {
-                if ((TransportBar.CanPausePlayback || TransportBar.CanResumePlayback) && useSelection)
+                if ((TransportBar.CanPausePlayback || TransportBar.CanResumePlayback ) && useSelection)
                 {
                     // Resume from selection, not from audio cursor
                     TransportBar.Stop();
                     TransportBar.PlayOrResume();
                     return true;
                 }
-                else if (TransportBar.CanPause)
+                else if (TransportBar.CanPause )
                 {
                     // Pause playback or recording
-                    TransportBar.Pause();
+                                    TransportBar.Pause();
                     return true;
                 }
                 else if (TransportBar.CanPlay || TransportBar.CanResumePlayback)
@@ -1571,6 +1571,11 @@ namespace Obi.ProjectView
                     // Start playback or resume from audio cursor
                     TransportBar.PlayOrResume();
                     return true;
+                }
+            else if (TransportBar.IsListening)
+                {
+                TransportBar.Stop ();
+                return true;
                 }
             }
             return false;
