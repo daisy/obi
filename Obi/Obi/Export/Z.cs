@@ -81,7 +81,13 @@ namespace Obi.Export
         /// <summary>
         /// Get the relative path for an URI (passed as a string from XSLT.)
         /// </summary>
-        public string RelativePathForUri(string uri) { return mExportUri.MakeRelativeUri(new Uri(uri)).ToString(); }
+        public string RelativePathForUri(string uri) 
+        {
+            // We get a) a URI relative to the project path, and b) a stupidly escaped one that crashes the URI constructor.
+            // So it's a bit convoluted, but here it is.
+            Uri absolute = new Uri(new Uri(ProjectPath + System.IO.Path.DirectorySeparatorChar), Uri.UnescapeDataString(uri));
+            return mExportUri.MakeRelativeUri(absolute).ToString();
+        }
 
         /// <summary>
         /// Get the total elapsed time for a given section.
