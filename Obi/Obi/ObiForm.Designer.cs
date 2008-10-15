@@ -117,7 +117,9 @@ namespace Obi
             this.mSilenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_EditRolesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -175,8 +177,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -820,11 +820,22 @@ namespace Obi
             resources.ApplyResources(this.mPhrases_AssignRole_NewCustomRoleMenuItem, "mPhrases_AssignRole_NewCustomRoleMenuItem");
             this.mPhrases_AssignRole_NewCustomRoleMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_NewCustomRoleMenuItem_Click);
             // 
+            // mPhrases_ClearRoleMenuItem
+            // 
+            this.mPhrases_ClearRoleMenuItem.Name = "mPhrases_ClearRoleMenuItem";
+            resources.ApplyResources(this.mPhrases_ClearRoleMenuItem, "mPhrases_ClearRoleMenuItem");
+            this.mPhrases_ClearRoleMenuItem.Click += new System.EventHandler(this.mPhrases_ClearRoleMenuItem_Click);
+            // 
             // mPhrases_EditRolesMenuItem
             // 
             this.mPhrases_EditRolesMenuItem.Name = "mPhrases_EditRolesMenuItem";
             resources.ApplyResources(this.mPhrases_EditRolesMenuItem, "mPhrases_EditRolesMenuItem");
             this.mPhrases_EditRolesMenuItem.Click += new System.EventHandler(this.mPhrases_EditRolesMenuItem_Click);
+            // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
             // 
             // mPhraseDetectionToolStripMenuItem
             // 
@@ -1226,17 +1237,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mPhrases_ClearRoleMenuItem
-            // 
-            this.mPhrases_ClearRoleMenuItem.Name = "mPhrases_ClearRoleMenuItem";
-            resources.ApplyResources(this.mPhrases_ClearRoleMenuItem, "mPhrases_ClearRoleMenuItem");
-            this.mPhrases_ClearRoleMenuItem.Click += new System.EventHandler(this.mPhrases_ClearRoleMenuItem_Click);
-            // 
-            // toolStripSeparator19
-            // 
-            this.toolStripSeparator19.Name = "toolStripSeparator19";
-            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
             // 
             // ObiForm
             // 

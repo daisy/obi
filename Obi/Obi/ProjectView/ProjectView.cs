@@ -146,10 +146,13 @@ namespace Obi.ProjectView
                 for (int i = selected.SectionChildCount - 1; i >= 0; --i)
                 {
                     SectionNode child = selected.SectionChild(i);
-                    command.append(new Commands.Node.Delete(this, child));
-                    command.append(new Commands.Node.AddNode(this, child, add.NewSection, 0));
+                    Commands.Node.Delete delete = new Commands.Node.Delete(this, child);
+                    delete.UpdateSelection = false;
+                    command.append(delete);
+                    Commands.Node.AddNode readd = new Commands.Node.AddNode(this, child, add.NewSection, 0);
+                    readd.UpdateSelection = false;
+                    command.append(readd);
                 }
-                //command.append(add);
                 if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
                 mPresentation.getUndoRedoManager().execute(command);
             }
@@ -181,7 +184,12 @@ namespace Obi.ProjectView
             node.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
-                    if (n is ObiNode && ((ObiNode)n).Used) command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)n));
+                    if (n is ObiNode && ((ObiNode)n).Used)
+                    {
+                        Commands.Node.ToggleNodeUsed unused = new Commands.Node.ToggleNodeUsed(this, (ObiNode)n);
+                        unused.UpdateSelection = false;
+                        command.append(unused);
+                    }
                     return true;
                 }, delegate(urakawa.core.TreeNode n) { }
             );

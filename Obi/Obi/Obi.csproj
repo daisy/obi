@@ -71,7 +71,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.1.0.21152, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.1.0.26175, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SDK 1.1\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>

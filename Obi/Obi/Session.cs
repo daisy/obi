@@ -162,23 +162,7 @@ namespace Obi
         /// </summary>
         public void SaveAs(string path)
         {
-            try
-            {
-                if (!System.IO.File.Exists(path))
-                {
-                    System.IO.FileStream file = System.IO.File.Create(path);
-                    file.Close();
-                }
-                mProject.saveXUK(new Uri(path));
-            }
-            catch (Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show(
-                    String.Format(Localizer.Message("cannot_create_file_text"), path, e.Message),
-                    Localizer.Message("cannot_create_file_caption"),
-                    System.Windows.Forms.MessageBoxButtons.OK,
-                    System.Windows.Forms.MessageBoxIcon.Error);
-            }
+            mProject.saveXUK(new Uri(path));
         }
 
         /// <summary>
