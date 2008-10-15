@@ -34,7 +34,7 @@ namespace Obi
         {
             mShowWelcomWindow = true;
             InitializeObi();
-            if (ShouldOpenLastProject) OpenProject(mSettings.LastOpenProject);
+            if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject);
                     }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Obi
         {
             mShowWelcomWindow = false;
             InitializeObi();
-            OpenProject(path);
+            OpenProject_Safe(path);
         }
 
         #endregion
@@ -272,7 +272,7 @@ namespace Obi
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Localizer.Message("obi_filter");
             dialog.InitialDirectory = mSettings.DefaultPath;
-            if (dialog.ShowDialog() == DialogResult.OK && DidCloseProject()) OpenProject(dialog.FileName);
+            if (dialog.ShowDialog() == DialogResult.OK && DidCloseProject()) OpenProject_Safe(dialog.FileName);
         }
 
         // Clear the list of recently opened files (prompt the user first.)
@@ -370,11 +370,7 @@ namespace Obi
                             }
                         }
                     }
-                    if (dialog.SwitchToNewProject)
-                    {
-                        mSession.Close();
-                        OpenProject(path_new);
-                    }
+                    if (dialog.SwitchToNewProject) CloseAndOpenProject(path_new);
                 }
                 catch (Exception e)
                 {
@@ -559,7 +555,7 @@ namespace Obi
                     Open();
                     break;
                 case WelcomeDialog.Option.OpenLastProject:
-                    OpenProject(mSettings.LastOpenProject);
+                    OpenProject_Safe(mSettings.LastOpenProject);
                     break;
                 case WelcomeDialog.Option.ViewHelp:
                     ShowHelpFile();
@@ -1268,7 +1264,7 @@ namespace Obi
         /// Try to open a project from a XUK file.
         /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
-        private void CloseAndOpenProject(string path) { if (DidCloseProject()) OpenProject(path); }
+        private void CloseAndOpenProject(string path) { if (DidCloseProject()) OpenProject_Safe(path); }
 
         // Try to create a new project with the given title at the given path.
         private void CreateNewProject(string path, string title, bool createTitleSection, string id)
@@ -1380,12 +1376,11 @@ namespace Obi
 
 
         // Open the project at the given path; warn the user on error.
-        private void OpenProject(string path)
+        private void OpenProject_Safe(string path)
         {
             try
             {
-                mSession.Open(path);
-                AddRecentProject(path);
+                OpenProject(path);
             }
             catch (Exception e)
             {
@@ -1396,6 +1391,13 @@ namespace Obi
                 mSettings.LastOpenProject = "";
                 mSession.Close();
             }
+        }
+
+        // Unsafe version of open project
+        private void OpenProject(string path)
+        {
+            mSession.Open(path);
+            AddRecentProject(path);
         }
 
         // The project was modified.

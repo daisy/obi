@@ -151,18 +151,24 @@ namespace Obi
         /// </summary>
         public void ForceSave()
         {
-            mProject.saveXUK(new Uri(mPath));
+            SaveAs(mPath);
             mChangesCount = 0;
             if (ProjectSaved != null) ProjectSaved(this, null);
         }
 
         /// <summary>
-        /// Save as: save the project under a different location. Only affects the project file.
-        /// Does not affect the current project file.
+        /// Save the project under a given location (used by save for the regular location,
+        /// or save as for a different location.)
         /// </summary>
         public void SaveAs(string path)
         {
-            mProject.saveXUK(new Uri(path));
+            // Make sure that saving is finished before returning
+            System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
+            urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(new Uri(path), mProject);
+            save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
+                (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
+            save.execute();
+            wh.WaitOne();
         }
 
         /// <summary>
