@@ -223,6 +223,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot empty directory &quot;{0}&quot;: {1}.
+        /// </summary>
+        internal static string cannot_empty_directory {
+            get {
+                return ResourceManager.GetString("cannot_empty_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot empty directory.
+        /// </summary>
+        internal static string cannot_empty_directory_caption {
+            get {
+                return ResourceManager.GetString("cannot_empty_directory_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot redo.
         /// </summary>
         internal static string cannot_redo {
@@ -237,24 +255,6 @@ namespace Obi {
         internal static string cannot_undo {
             get {
                 return ResourceManager.GetString("cannot_undo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot use directory &quot;{0}&quot; for saving or exporting: {1}.
-        /// </summary>
-        internal static string cannot_use_directory {
-            get {
-                return ResourceManager.GetString("cannot_use_directory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot use directory.
-        /// </summary>
-        internal static string cannot_use_directory_caption {
-            get {
-                return ResourceManager.GetString("cannot_use_directory_caption", resourceCulture);
             }
         }
         
@@ -2100,7 +2100,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Non-empty new project directory.
+        ///   Looks up a localized string similar to Empty directory before using it?.
         /// </summary>
         internal static string really_use_directory_caption {
             get {
@@ -2109,7 +2109,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directory &quot;{0}&quot;is not empty. If you create a new project in this directory, some contents may be overwritten. Do you wish to continue?.
+        ///   Looks up a localized string similar to Directory &quot;{0}&quot;is not empty. If you want to empty this directory before using it, choose &quot;Yes.&quot; If you want to use this directory as is, choose &quot;No.&quot; If you do not want to use this directory, press &quot;Cancel.&quot;.
         /// </summary>
         internal static string really_use_directory_text {
             get {

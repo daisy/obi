@@ -314,9 +314,7 @@ namespace Obi
         /// </summary>
         public static bool CheckProjectPath(string path, bool createDir)
         {
-            string dir = Path.GetDirectoryName(path);
-            return (Directory.Exists(dir) ? CheckEmpty(dir, true) : DidCreateDirectory(dir, createDir)) &&
-                CheckExtension(path);
+            return CheckProjectDirectory(Path.GetDirectoryName(path), true) && CheckExtension(path);
         }
 
         /// <summary>
@@ -330,6 +328,28 @@ namespace Obi
                     Localizer.Message("extension_warning_caption"),
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning) == DialogResult.Yes;
+        }
+
+        /// <summary>
+        /// Check that a directory can host a project or export.
+        /// </summary>
+        public static bool CheckProjectDirectory(string path, bool checkEmpty)
+        {
+            return Directory.Exists(path) ? CheckEmpty(path, checkEmpty) : DidCreateDirectory(path, true);
+        }
+
+        /// <summary>
+        /// Check that a directory can host a project or export. Safe version.
+        /// </summary>
+        public static bool CheckProjectDirectory_Safe(string path, bool checkEmpty)
+        {
+            bool check = false;
+            try
+            {
+                check = CheckProjectDirectory(path, checkEmpty);
+            }
+            catch (Exception) { }
+            return check;
         }
 
         // Save the current project
@@ -1127,17 +1147,17 @@ namespace Obi
         {
             if (CheckedPageNumbers() && CheckedForEmptySections())
             {
-                Dialogs.SelectDirectoryPath dialog =
-                    new SelectDirectoryPath(Path.Combine(Directory.GetParent(mSession.Path).FullName,
+                Dialogs.ExportDirectory dialog =
+                    new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
                         Localizer.Message("default_export_dirname")));
-                if (dialog.ShowDialog() == DialogResult.OK && IsExportDirectoryReady(dialog.DirectoryPath))
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
                         // Need the trailing slash, otherwise exported data ends up in a folder one level
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
-                        if (!exportPath.EndsWith("/")) exportPath += "/";
+                        if (!exportPath.EndsWith(Path.DirectorySeparatorChar.ToString())) exportPath += Path.DirectorySeparatorChar;
                         mSession.PrimaryExportPath = exportPath;
                         ProgressDialog progress = new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
                             delegate() { mSession.Presentation.ExportToZ(exportPath, mSession.Path); });
@@ -1543,55 +1563,6 @@ namespace Obi
 
 
 
-        // The export directory is ready if it doesn't exist and can be created, or exists
-        // and is empty or can be emptied (or the user decided not to empty it.)
-        private bool IsExportDirectoryReady(string path)
-        {
-            if (Directory.Exists(path))
-            {
-                string[] files = Directory.GetFiles(path);
-                if (files.Length > 0)
-                {
-                    DialogResult result = MessageBox.Show(String.Format(Localizer.Message("empty_directory_text"), path),
-                        Localizer.Message("empty_directory_caption"), MessageBoxButtons.YesNoCancel,
-                        MessageBoxIcon.Question);
-                    if (result == DialogResult.Cancel)
-                    {
-                        return false;
-                    }
-                    else if (result == DialogResult.Yes)
-                    {
-                        foreach (string file in files)
-                        {
-                            try
-                            {
-                                File.Delete(file);
-                            }
-                            catch (Exception e)
-                            {
-                                DialogResult dialog = MessageBox.Show(String.Format(Localizer.Message("cannot_delete_text"),
-                                    file, e.Message),
-                                    Localizer.Message("cannot_delete_caption"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                try
-                {
-                    DirectoryInfo info = Directory.CreateDirectory(path);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(String.Format(Localizer.Message("cannot_create_directory_text"), path, e.Message),
-                        Localizer.Message("cannot_create_directory_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            return true;
-        }
 
 
         /// <summary>
@@ -1732,34 +1703,10 @@ namespace Obi
 
 
         /// <summary>
-        /// Check that we can use a directory to write to. We may want to make sure that it is empty as well.
-        /// If the directory does not exist yet, give the option to create it.
-        /// If alwaysCreate is set, do not check before creating.
-        /// </summary>
-        public static bool CanUseDirectory(string path, bool checkEmpty, bool alwaysCreate)
-        {
-            string absolutePath;
-            try
-            {
-                absolutePath = Path.GetFullPath(path);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(string.Format(Localizer.Message("cannot_use_directory"), path, e.Message),
-                    Localizer.Message("cannot_use_directory_caption"),
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return File.Exists(absolutePath) ? false :
-                Directory.Exists(absolutePath) ? CheckEmpty(absolutePath, checkEmpty) :
-                    DidCreateDirectory(absolutePath, alwaysCreate);
-        }
-
-        /// <summary>
         /// Check if a directory is empty or not; ask the user to confirm
         /// that they mean this directory even though it is not empty.
         /// </summary>
-        private static bool CheckEmpty(string path, bool checkEmpty)
+        public static bool CheckEmpty(string path, bool checkEmpty)
         {
             if (checkEmpty &&
                 (Directory.GetFiles(path).Length > 0 || Directory.GetDirectories(path).Length > 0))
@@ -1767,16 +1714,30 @@ namespace Obi
                 DialogResult result = MessageBox.Show(
                     String.Format(Localizer.Message("really_use_directory_text"), path),
                     Localizer.Message("really_use_directory_caption"),
-                    MessageBoxButtons.YesNo,
+                    MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
-                return result == DialogResult.Yes;
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        foreach (string f in Directory.GetFiles(path)) File.Delete(f);
+                        foreach (string d in Directory.GetDirectories(path)) Directory.Delete(d, true);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("cannot_empty_directory"), path, e.Message),
+                            Localizer.Message("cannot_empty_directory_caption"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                return result != DialogResult.Cancel;
             }
             else
             {
                 return true;  // the directory was empty or we didn't need to check
             }
         }
-
 
         /// <summary>
         /// Ask the user whether she wants to create a directory,

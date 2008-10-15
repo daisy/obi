@@ -192,11 +192,11 @@
     <Compile Include="Dialogs\SectionProperties.designer.cs">
       <DependentUpon>SectionProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SelectDirectoryPath.cs">
+    <Compile Include="Dialogs\ExportDirectory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\SelectDirectoryPath.Designer.cs">
-      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+    <Compile Include="Dialogs\ExportDirectory.Designer.cs">
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SetPageNumber.cs">
       <SubType>Form</SubType>
@@ -560,13 +560,13 @@
       <DependentUpon>SectionProperties.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SelectDirectoryPath.hi.resx">
+    <EmbeddedResource Include="Dialogs\ExportDirectory.hi.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\SelectDirectoryPath.resx">
+    <EmbeddedResource Include="Dialogs\ExportDirectory.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>SelectDirectoryPath.cs</DependentUpon>
+      <DependentUpon>ExportDirectory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SentenceDetection.hi.resx">
       <SubType>Designer</SubType>
