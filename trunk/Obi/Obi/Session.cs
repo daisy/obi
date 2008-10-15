@@ -164,7 +164,7 @@ namespace Obi
         {
             // Make sure that saving is finished before returning
             System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
-            urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(new Uri(path), mProject);
+            urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
             save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
                 (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
             save.execute();
