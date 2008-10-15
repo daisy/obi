@@ -1570,7 +1570,7 @@ namespace Obi.ProjectView
                 }
                 else if (mView.Selection is AudioSelection)
                 {
-                                                                CreateLocalPlaylistForPreview ();
+                                                                                CreateLocalPlaylistForPreview ();
                                                                     AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - mPreviewDuration;
@@ -1583,9 +1583,9 @@ namespace Obi.ProjectView
 
         private void CreateLocalPlaylistForPreview ()
             {
-            mLocalPlaylist = new Playlist ( mPlayer, mView.Selection , mPlayQAPlaylist);
-            SetPlaylistEvents ( mLocalPlaylist );
-            mCurrentPlaylist = mLocalPlaylist;
+            Playlist PreviewPlaylist  = new Playlist ( mPlayer, mView.Selection , mPlayQAPlaylist);
+            SetPlaylistEvents ( PreviewPlaylist);
+            mCurrentPlaylist = PreviewPlaylist;
             }
 
 
