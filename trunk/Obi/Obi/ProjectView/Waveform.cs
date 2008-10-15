@@ -82,8 +82,8 @@ namespace Obi.ProjectView
                     worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
                         ColorSettings settings = mBlock.ColorSettings;
-                        mBitmap = CreateBitmapHighlighted(mBlock.ColorSettings, false);
-                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmapHighlighted(mBlock.ColorSettings, true);
+                        mBitmap = FillBitmap(mBitmap, mBlock.ColorSettings, false);
+                        mBitmap_Highlighted = FillBitmap(mBitmap_Highlighted, mBlock.ColorSettings, true);
                     });
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
@@ -101,16 +101,14 @@ namespace Obi.ProjectView
         // Clear bitmaps before redrawing.
         private void ClearBitmaps()
         {
-            mBitmap = null;
-            mBitmap_Highlighted = null;
+            mBitmap = CreateBaseBitmap(ColorSettings, false);
+            mBitmap_Highlighted = CreateBaseBitmap(ColorSettings, true);
             // Invalidate to immediately show the empty bitmaps
             Invalidate();
         }
 
-        // Create the bitmap for the waveform given the current color settings.
-        // Use the highlight colors if the highlight flag is set, otherwise regular colors.
-        private Bitmap CreateBitmapHighlighted(ColorSettings settings, bool highlighted)
-        {            
+        private Bitmap CreateBaseBitmap(ColorSettings settings, bool highlighted)
+        {
             Bitmap bitmap = new Bitmap(Width, Height);
             try
             {
@@ -118,12 +116,24 @@ namespace Obi.ProjectView
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
-                if (Audio != null) DrawWaveform(g, settings, highlighted);
             }
             catch (Exception)
             {
                 bitmap = null;
             }
+            return bitmap;
+        }
+
+        // Create the bitmap for the waveform given the current color settings.
+        // Use the highlight colors if the highlight flag is set, otherwise regular colors.
+        private Bitmap FillBitmap(Bitmap bitmap, ColorSettings settings, bool highlighted)
+        {
+            try
+            {
+                Graphics g = Graphics.FromImage(bitmap);
+                if (Audio != null) DrawWaveform(g, settings, highlighted);
+            }
+            catch (Exception) { }
             return bitmap;
         }
 
@@ -185,7 +195,7 @@ namespace Obi.ProjectView
                     pe.Graphics.DrawString(Localizer.Message("rendering_waveform"), mBlock.Font,
                         mBlock.ColorSettings.WaveformTextBrush, new PointF(0.0f, 0.0f));
                 }
-                int w = mBlock.Margin.Right;
+                int w = Height / 10;
                 if (mSelection != null)
                 {
                     if (CheckCursor)

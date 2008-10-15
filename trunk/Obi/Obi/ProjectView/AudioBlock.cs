@@ -52,7 +52,8 @@ namespace Obi.ProjectView
                 mWaveform.BackColor = BackColor;
                 mWaveform.AccessibleName = AccessibleName;
                 mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
-                mWaveform.Size = new Size(WaveformDefaultWidth, Height - mLabel.Height - mLabel.Margin.Bottom);
+                mWaveform.Size = new Size(WaveformDefaultWidth,
+                    Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
                 mWaveform.Block = this;
                 Size = new Size(WaveformFullWidth, Height);
             }
