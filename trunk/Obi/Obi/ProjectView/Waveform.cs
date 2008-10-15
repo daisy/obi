@@ -82,8 +82,8 @@ namespace Obi.ProjectView
                     worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                     {
                         ColorSettings settings = mBlock.ColorSettings;
-                        mBitmap = FillBitmap(mBitmap, mBlock.ColorSettings, false);
-                        mBitmap_Highlighted = FillBitmap(mBitmap_Highlighted, mBlock.ColorSettings, true);
+                        mBitmap = CreateBitmap(mBlock.ColorSettings, false);
+                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
                     });
                     worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                     {
@@ -109,25 +109,24 @@ namespace Obi.ProjectView
 
         private Bitmap CreateBaseBitmap(ColorSettings settings, bool highlighted)
         {
-            Bitmap bitmap = new Bitmap(Width, Height);
+            Bitmap bitmap = null;
             try
             {
+                bitmap = new Bitmap(Width, Height);
                 Graphics g = Graphics.FromImage(bitmap);
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
             }
-            catch (Exception)
-            {
-                bitmap = null;
-            }
+            catch (Exception) { }
             return bitmap;
         }
 
         // Create the bitmap for the waveform given the current color settings.
         // Use the highlight colors if the highlight flag is set, otherwise regular colors.
-        private Bitmap FillBitmap(Bitmap bitmap, ColorSettings settings, bool highlighted)
+        private Bitmap CreateBitmap(ColorSettings settings, bool highlighted)
         {
+            Bitmap bitmap = CreateBaseBitmap(settings, highlighted);
             try
             {
                 Graphics g = Graphics.FromImage(bitmap);
