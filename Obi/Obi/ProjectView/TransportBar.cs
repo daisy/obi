@@ -19,7 +19,7 @@ namespace Obi.ProjectView
         private Audio.VuMeter mVuMeter;              // VU meter
 
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
-        private Playlist mQAPlaylist; // master playlist (all phrases in the project) except unsed phrases
+        private Playlist mQAMasterPlaylist; // master playlist (all phrases in the project) except unsed phrases
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null)
                 private Playlist mCurrentPlaylist;           // playlist currently playing
         private RecordingSession mRecordingSession;  // current recording session
@@ -437,7 +437,7 @@ namespace Obi.ProjectView
                 UpdateButtons();
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
                     UpdateButtons();
-                    if (Enabled && m_SelectionChangedPlayEnable )   PlaybackOnSelectionChange();
+                    if (Enabled && m_SelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
                 });
             }
         }
@@ -692,10 +692,10 @@ namespace Obi.ProjectView
 
         private void CreateQAPlaylist ()
             {
-                                                mQAPlaylist = new Playlist ( mPlayer, true);
-                                    mQAPlaylist.Presentation = mView.Presentation;
-                        mCurrentPlaylist = mQAPlaylist;
-            SetPlaylistEvents (  mQAPlaylist);
+                                                mQAMasterPlaylist = new Playlist ( mPlayer, true);
+                                    mQAMasterPlaylist.Presentation = mView.Presentation;
+                        mCurrentPlaylist = mQAMasterPlaylist;
+            SetPlaylistEvents (  mQAMasterPlaylist);
             }
 
 
@@ -1624,7 +1624,10 @@ namespace Obi.ProjectView
                     mView.Selection.Node == m_PreviewPhraseNode)
                 {
                                             if (m_AfterPreviewRestoreTime == m_AfterPreviewRestoreEndTime )
-                                                            mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                                                {
+                                                mView.UpdateCursorPosition ( m_AfterPreviewRestoreTime );
+                                                            //mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                                                }
                                             else
                                                             mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime , m_AfterPreviewRestoreEndTime));
                                                                                                                                                             }
