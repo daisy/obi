@@ -182,46 +182,50 @@ namespace Obi
         // Create a new project by asking initial information through a dialog.
         private void NewProject()
         {
-            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-
-            Dialogs.NewProject dialog = new Dialogs.NewProject(
-                mSettings.DefaultPath,
-                Localizer.Message("default_project_filename"),
-                Localizer.Message("obi_filter"),
-                Localizer.Message("default_project_title"),
-                mSettings.NewProjectDialogSize);
-            dialog.CreateTitleSection = mSettings.CreateTitleSection;
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+            if (DidCloseProject())
             {
-                CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID);
+                Dialogs.NewProject dialog = new Dialogs.NewProject(
+                    mSettings.DefaultPath,
+                    Localizer.Message("default_project_filename"),
+                    Localizer.Message("obi_filter"),
+                    Localizer.Message("default_project_title"),
+                    mSettings.NewProjectDialogSize);
+                dialog.CreateTitleSection = mSettings.CreateTitleSection;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    CreateNewProject(dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID);
+                }
+                mSettings.CreateTitleSection = dialog.CreateTitleSection;
+                mSettings.NewProjectDialogSize = dialog.Size;
             }
-            mSettings.CreateTitleSection = dialog.CreateTitleSection;
-            mSettings.NewProjectDialogSize = dialog.Size;
         }
 
         // Create a new project by importing an XHTML file.
         // Prompt the user for the location of the file through a dialog.
         private void NewProjectFromImport()
         {
-            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = Localizer.Message("choose_import_file");
-            dialog.Filter = Localizer.Message("xhtml_filter");
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+            if (DidCloseProject())
             {
-                if (!NewProjectFromImport(dialog.FileName))
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Title = Localizer.Message("choose_import_file");
+                dialog.Filter = Localizer.Message("xhtml_filter");
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    try
+                    if (!NewProjectFromImport(dialog.FileName))
                     {
-                        RemoveRecentProject(mSession.Path);
-                        mSession.CleanupAfterFailure();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(string.Format(Localizer.Message("could_not_clean_up"), e.Message),
-                            Localizer.Message("could_not_clean_up_caption"),
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        try
+                        {
+                            if (mSession.Path != null) RemoveRecentProject(mSession.Path);
+                            mSession.CleanupAfterFailure();
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(string.Format(Localizer.Message("could_not_clean_up"), e.Message),
+                                Localizer.Message("could_not_clean_up_caption"),
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }
@@ -1294,10 +1298,7 @@ namespace Obi
                 // let's see if we can actually write the file that the user chose (bug #1679175)
                 FileStream file = File.Create(path);
                 file.Close();
-                if (DidCloseProject())
-                {
-                    mSession.NewPresentation(path, title, createTitleSection, id, mSettings);
-                }
+                mSession.NewPresentation(path, title, createTitleSection, id, mSettings);
                 UpdateMenus();
             }
             catch (Exception e)

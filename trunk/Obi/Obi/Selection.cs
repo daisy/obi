@@ -189,9 +189,6 @@ namespace Obi
         public AudioSelection(PhraseNode node, IControlWithSelection control, AudioRange audioRange)
             : base(node, control)
         {
-            if (audioRange == null)
-            {
-            }
             mAudioRange = audioRange;
         }
 
