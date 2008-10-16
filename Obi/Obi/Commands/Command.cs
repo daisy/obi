@@ -120,4 +120,20 @@ namespace Obi.Commands
         public string getXukLocalName() { return GetType().Name; }
         public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
+
+    public class UpdateSelection : Command
+    {
+        private NodeSelection mSelectionAfter;
+
+        public UpdateSelection(ProjectView.ProjectView view, NodeSelection selection)
+            : base(view)
+        {
+            mSelectionAfter = selection;
+        }
+
+        public override void execute()
+        {
+            View.Selection = mSelectionAfter;
+        }
+    }
 }

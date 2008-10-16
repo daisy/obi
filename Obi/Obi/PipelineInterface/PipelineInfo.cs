@@ -17,7 +17,6 @@ namespace Obi.PipelineInterface
         private void PopulateScriptsDictionary(string DirPath)
         {
             string[] ScriptsFilePaths = Directory.GetFiles(DirPath, "*.taskScript", SearchOption.TopDirectoryOnly);
-            string ScriptName = "";
             FileInfo ScriptFileInfo = null;
             foreach (string s in ScriptsFilePaths)
             {
