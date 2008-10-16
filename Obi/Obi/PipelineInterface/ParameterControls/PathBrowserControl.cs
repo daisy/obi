@@ -46,6 +46,11 @@ namespace Obi.PipelineInterface.ParameterControls
             {
                 mTextBox.Text = SelectedPath;
             }
+            else
+            {
+                mTextBox.Text = Path.IsPathRooted(p.ParameterValue) ? p.ParameterValue :
+                    Path.GetFullPath(Path.Combine(ProjectDirectory, p.ParameterValue));
+            }
         }
 
 
