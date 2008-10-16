@@ -57,9 +57,11 @@ namespace Obi.Commands.Node
             }
             return null;
         }
-
-        // Append commands to transfer the attributes of a node to another (used, TODO, role, page number)
-        private static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
+       
+        /// <summary>
+        /// Append commands to transfer the attributes of a node to another (used, TODO, role, page number)
+        /// </summary>
+        public static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
             EmptyNode from, EmptyNode to)
         {
             if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, to));
