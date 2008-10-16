@@ -219,7 +219,7 @@ namespace Obi
     {
         public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
 
-        private string m_PrimaryExportDirectory= "" ;
+        private string mPrimaryExportDirectory= "" ;
 
         public RootNode(Presentation presentation) : base(presentation) { }
 
@@ -311,10 +311,10 @@ namespace Obi
         /// </summary>
         public string PrimaryExportDirectory
         {
-            get { return m_PrimaryExportDirectory; }
+            get { return mPrimaryExportDirectory; }
             set
             {
-                if (value != null) m_PrimaryExportDirectory = value;
+                if (value != null) mPrimaryExportDirectory = value;
             }
         }
 
@@ -325,7 +325,7 @@ namespace Obi
         /// </summary>
         protected override void xukInAttributes(System.Xml.XmlReader reader)
         {
-            m_PrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
                         base.xukInAttributes(reader);
         }
 
@@ -334,7 +334,7 @@ namespace Obi
         /// </summary>
         protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-             destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, m_PrimaryExportDirectory);
+             destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
             base.xukOutAttributes(destination, baseUri);
         }
 

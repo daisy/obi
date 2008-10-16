@@ -11,16 +11,36 @@ namespace Obi.Dialogs
 {
     public partial class ExportDirectory : Form
     {
-        private bool mCanClose;
+        private string mXukPath;  // path to XUK project (for relative paths)
+        private bool mCanClose;   // can prevent from closing on problem
 
-        public ExportDirectory(string path)
+        public ExportDirectory(string path, string xukPath)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
+            mXukPath = xukPath;
             mCanClose = true;
         }
 
-        public string DirectoryPath { get { return mPathTextBox.Text; } }
+        /// <summary>
+        /// Get the full path (if not rooted, use the xuk path as context.)
+        /// </summary>
+        public string DirectoryPath
+        {
+            get
+            {
+                try
+                {
+                    return Path.IsPathRooted(mPathTextBox.Text) ?
+                        mPathTextBox.Text :
+                        Path.Combine(Path.GetDirectoryName(mXukPath), mPathTextBox.Text);
+                }
+                catch (Exception)
+                {
+                    return mPathTextBox.Text;
+                }
+            }
+        }
 
         private void mSelectButton_Click(object sender, EventArgs e)
         {
@@ -35,7 +55,7 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mCanClose = ObiForm.CheckProjectDirectory_Safe(mPathTextBox.Text, true);
+            mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
         }
 
         private void SelectDirectoryPath_FormClosing(object sender, FormClosingEventArgs e)

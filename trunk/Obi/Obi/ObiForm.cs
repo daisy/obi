@@ -1154,7 +1154,7 @@ namespace Obi
             {
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
-                        Localizer.Message("default_export_dirname")));
+                        Localizer.Message("default_export_dirname")), mSession.Path);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
@@ -1162,14 +1162,17 @@ namespace Obi
                         // Need the trailing slash, otherwise exported data ends up in a folder one level
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
-                        if (!exportPath.EndsWith(Path.DirectorySeparatorChar.ToString())) exportPath += Path.DirectorySeparatorChar;
-                        mSession.PrimaryExportPath = exportPath;
+                        if (!exportPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                        {
+                            exportPath += Path.DirectorySeparatorChar;
+                        }
                         ProgressDialog progress = new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
                             delegate() { mSession.Presentation.ExportToZ(exportPath, mSession.Path); });
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
+                        mSession.PrimaryExportPath = exportPath;
                         mSession.ForceSave();
-                        MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), dialog.DirectoryPath),
+                        MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), exportPath),
                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception e)
