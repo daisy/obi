@@ -23,7 +23,7 @@ namespace Obi.ProjectView
         private bool mWrapStripContents;                             // wrapping of strip contents
         private bool mIsEnteringView;                                // flag set when entering the  view
 
-        private PriorityQueue<WaveformWithPriority> mWaveformRenderQ;  // queue of waveforms to render
+        private PriorityQueue<Waveform, int> mWaveformRenderQ;  // queue of waveforms to render
         private BackgroundWorker mWaveformRenderWorker;                // current waveform rendering worker
 
         // cursor stuff
@@ -48,8 +48,9 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStripContents = false;
-            mWaveformRenderQ = new PriorityQueue<WaveformWithPriority>();
+            mWaveformRenderQ = new PriorityQueue<Waveform, int>();
             mWaveformRenderWorker = null;
+            SetPlaybackPhraseAndTime(null, 0.0);
         }
 
         
@@ -154,7 +155,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void MakeStripVisibleForSection(SectionNode section)
         {
-            if (section != null) ScrollControlIntoView(FindStrip(section));
+            if (section != null) EnsureControlVisible(FindStrip(section));
         }
 
         /// <summary>
@@ -217,19 +218,20 @@ namespace Obi.ProjectView
 
         public AudioBlock PlaybackBlock { get { return mPlaybackBlock; } }
 
+        public void SetPlaybackPhraseAndTime(PhraseNode node, double time)
+        {
+            if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
+            mPlaybackBlock = node == null ? null : (AudioBlock)FindBlock(node);
+            if (mPlaybackBlock != null)
+            {
+                EnsureControlVisible(mPlaybackBlock);
+                mPlaybackBlock.InitCursor(time);
+            }
+        }
+
         public PhraseNode PlaybackPhrase
         {
             get { return mPlaybackBlock == null ? null : mPlaybackBlock.Node as PhraseNode; }
-            set
-            {
-                if (mPlaybackBlock != null) mPlaybackBlock.ClearCursor();
-                mPlaybackBlock = value == null ? null : (AudioBlock)FindBlock(value);
-                if (mPlaybackBlock != null)
-                {
-                    ScrollControlIntoView(mPlaybackBlock);
-                    mPlaybackBlock.InitCursor();
-                }
-            }
         }
         
         public Strip PlaybackStrip { get { return mPlaybackBlock == null ? null : mPlaybackBlock.Strip; } }
@@ -268,9 +270,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// Add a waveform to the queue of waveforms to render.
         /// </summary>
-        public void RenderWaveform(WaveformWithPriority w)
+        public void RenderWaveform(Waveform w, int priority)
         {
-            if (mWaveformRenderQ.Enqueued(w)) mProjectView.ObiForm.BackgroundOperation_AddItem();
+            if (mWaveformRenderQ.Enqueued(w, priority)) mProjectView.ObiForm.BackgroundOperation_AddItem();
             RenderFirstWaveform();
         }
 
@@ -280,12 +282,11 @@ namespace Obi.ProjectView
         {
             while (mWaveformRenderWorker == null && mWaveformRenderQ.Count > 0)
             {
-                WaveformWithPriority w = mWaveformRenderQ.Dequeue();
-                mWaveformRenderWorker = w.Waveform.Render();
+                Waveform w = mWaveformRenderQ.Dequeue();
+                mWaveformRenderWorker = w.Render();
                 if (mWaveformRenderWorker != null)
                 {
                     mProjectView.ObiForm.BackgroundOperation_Step();
-                    // mView.ObiForm.Status_Background(Localizer.Message("rendering_waveform"));
                 }
             }
             if (mWaveformRenderQ.Count == 0) mProjectView.ObiForm.BackgroundOperation_Done();
@@ -300,7 +301,6 @@ namespace Obi.ProjectView
         public void FinishedRendering(Waveform w, bool renderedOK)
         {
             mWaveformRenderWorker = null;
-            //mView.ObiForm.Ready();
             RenderFirstWaveform();
         }
 
@@ -344,13 +344,18 @@ namespace Obi.ProjectView
                         SectionNode section = value.Node is SectionNode ? (SectionNode)value.Node :
                             value.Node.ParentAs<SectionNode>();
                         mProjectView.MakeTreeNodeVisibleForSection(section);
-                        ScrollControlIntoView((Control)s);
+                        EnsureControlVisible((Control)s);
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus();
                         mFocusing = false;
                     }
                 }
             }
+        }
+
+        private void EnsureControlVisible(Control c)
+        {
+            ScrollControlIntoView(c);
         }
 
         public void SelectNextPhrase(ObiNode node)
@@ -719,7 +724,7 @@ namespace Obi.ProjectView
             }
             else if (c != null)
             {
-                ScrollControlIntoView(c);
+                EnsureControlVisible(c);
                 UpdateTabIndex(c);
             }
         }

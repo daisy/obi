@@ -443,7 +443,7 @@ namespace Obi.ProjectView
             {
                 if (c is AudioBlock)
                 {
-                    mContentView.RenderWaveform(new WaveformWithPriority(((AudioBlock)c).Waveform, priority));
+                    mContentView.RenderWaveform(((AudioBlock)c).Waveform, priority);
                 }
             }
         }

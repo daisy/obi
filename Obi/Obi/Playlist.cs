@@ -30,7 +30,6 @@ namespace Obi
         private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
         private bool m_IsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
 
-
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
 
@@ -646,25 +645,28 @@ namespace Obi
         /// <param name="e">The arguments sent by the player.</param>
         private void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
-            // add an option to have a beep between assets
-            // System.Media.SystemSounds.Exclamation.Play();
-
-
-            if ( //mPlayer.PlaybackMode == Audio.PlaybackMode.Rewind
-                mPlayer.PlaybackFwdRwdRate < 0
-                && mCurrentPhraseIndex > 0)
-                PlayPhrase(mCurrentPhraseIndex - 1);
-            else if (mCurrentPhraseIndex < mPhrases.Count - 1 && //mPlayer.PlaybackMode != Audio.PlaybackMode.Rewind
-                mPlayer.PlaybackFwdRwdRate >= 0)
+            if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
             {
+                // Going backward so play previous phrase
+                PlayPhrase(mCurrentPhraseIndex - 1);
+            }
+            else if (mPlayer.PlaybackFwdRwdRate >= 0 && mCurrentPhraseIndex < mPhrases.Count - 1)
+            {
+                // Going forward so play next phrase
                 PlayPhrase(mCurrentPhraseIndex + 1);
             }
-            else if (EndOfPlaylist != null)
+            else
             {
-                //mPlaylistState = AudioPlayerState.Stopped;    // Avn: Commented because changing Playlist state to stopped before calling stop () function will bypass stopping code
-                Stop();
-                EndOfPlaylist(this, new EventArgs());
+                ReachedEndOfPlaylist();
             }
+        }
+
+        // What to do when the end of the playlist has been reached?
+        // In the normal case we just stop.
+        protected virtual void ReachedEndOfPlaylist()
+        {
+            Stop();
+            if (EndOfPlaylist != null) EndOfPlaylist(this, new EventArgs());
         }
 
         /// <summary>
@@ -676,12 +678,21 @@ namespace Obi
             {
                 mPlaylistState = AudioPlayerState.Paused;
                 mPlayer.Pause();
-                //mPlayer.PlaybackMode = PlaybackMode.Normal;
                 mPlayer.PlaybackFwdRwdRate = 0;
                 if (StateChanged != null)
                 {
                     StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
                 }
+            }
+        }
+
+        public void PauseFromStopped(double time)
+        {
+            mPlayer.PauseFromStopped(time);
+            mPlaylistState = AudioPlayerState.Paused;
+            if (StateChanged != null)
+            {
+                StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
             }
         }
 
@@ -962,18 +973,27 @@ namespace Obi
 
 
 
-        public void PreviewSelectedFragment(double StartTime , double EndTime )
+    }
+
+
+    /// <summary>
+    /// Special playlist used for preview. It reverts to pause at the beginning after playback is done.
+    /// If we get both end of audio asset/stopped event, then we can revert.
+    /// </summary>
+    public class PreviewPlaylist : Playlist
+    {
+        private double mRevertTime;  // revert time
+
+        public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
+            : base(player, selection, false)
         {
-            AudioMediaData AudioData = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
+            mRevertTime = revertTime;
+        }
 
-            if (StartTime < 0)
-                StartTime = 0;
-
-            if ( EndTime >  AudioData.getAudioDuration ().getTimeDeltaAsMillisecondFloat () )
-                EndTime = AudioData.getAudioDuration ().getTimeDeltaAsMillisecondFloat ()  ;
-
-            
-            mPlayer.PlayPreview(AudioData, StartTime, EndTime, StartTime );
+        protected override void ReachedEndOfPlaylist()
+        {
+            PauseFromStopped(mRevertTime);
+            // if (base.EndOfPlaylist != null) base.EndOfPlaylist(this, new EventArgs());
         }
     }
 }

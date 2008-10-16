@@ -873,6 +873,21 @@ namespace Obi.Audio
         }
 
         /// <summary>
+        /// Pause from stopped state, in order to reset the pause position after preview.
+        /// </summary>
+        public void PauseFromStopped(double time)
+        {
+            if (State == AudioPlayerState.Stopped)
+            {
+                m_lPausePosition = CalculationFunctions.ConvertTimeToByte(time, m_SamplingRate, m_FrameSize);
+                m_lResumeToPosition = 0;
+                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                mState = AudioPlayerState.Paused;
+                TriggerStateChangedEvent(e);
+            }
+        }
+
+        /// <summary>
         ///  Pauses playing asset. 
         /// Resumes from paused position with resume command or starts from begining/specified start position with play command.
         /// /<see cref=""/>
