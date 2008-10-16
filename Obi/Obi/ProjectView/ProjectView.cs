@@ -1377,8 +1377,7 @@ namespace Obi.ProjectView
                 // Also be careful to only renumber pages of the same kind.
                 if (renumber)
                 {
-                    ObiNode from = index < parent.getChildCount() ? (ObiNode)parent.getChild(index) : parent;
-                    for (ObiNode n = from; n != null; n = n.FollowingNode)
+                    for (ObiNode n = parent.FollowingNodeAfter(index - 1); n != null; n = n.FollowingNodeAfter(-1))
                     {
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
                             ((EmptyNode)n).PageNumber.Kind == number.Kind)
