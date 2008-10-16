@@ -101,6 +101,7 @@ namespace Obi
                 try { presentation = Presentation; }
                 catch (Exception) { }
                 mProject = null;
+                mPath = null;
                 mChangesCount = 0;
                 if (ProjectClosed != null) ProjectClosed(this, new ProjectClosedEventArgs(presentation));
             }
@@ -176,8 +177,8 @@ namespace Obi
         /// </summary>
         public void CleanupAfterFailure()
         {
+            if (mPath != null) System.IO.File.Delete(mPath);
             Close();
-            System.IO.File.Delete(mPath);
         }
     }
 
