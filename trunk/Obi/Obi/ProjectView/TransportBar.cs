@@ -890,11 +890,6 @@ namespace Obi.ProjectView
             }
         }
 
-        public void PauseFromStopped(double time)
-        {
-            if (mState == State.Stopped) mCurrentPlaylist.PauseFromStopped(time);
-        }
-
         // Pause recording
         private void PauseRecording()
         {
@@ -1556,16 +1551,16 @@ namespace Obi.ProjectView
         {
             if (!IsRecorderActive)
             {
-                if ((mState == State.Paused || mState == State.Playing || mAfterPreviewRestoreTime > 0) && !useSelection)
+                if ((mState == State.Paused || mState == State.Playing) && !useSelection)
                 {
-                    if (m_IsPreviewing) PostPreviewRestore();
+                    // if (m_IsPreviewing) PostPreviewRestore();
                     if (mState == State.Playing) Pause();
-                    double time = mAfterPreviewRestoreTime > 0 ? mAfterPreviewRestoreTime : mCurrentPlaylist.CurrentTimeInAsset;
+                    // double time = mAfterPreviewRestoreTime > 0 ? mAfterPreviewRestoreTime : mCurrentPlaylist.CurrentTimeInAsset;
+                    double time = mCurrentPlaylist is PreviewPlaylist ?
+                        ((PreviewPlaylist)mCurrentPlaylist).RevertTime : mCurrentPlaylist.CurrentTimeInAsset;
                     CreateLocalPlaylistForPreview(time);
                     mCurrentPlaylist.CurrentTimeInAsset = time;
-
-                    PlayPreview(mCurrentPlaylist.CurrentPhrase, time - (from ? 0.0 : PreviewDuration),
-                                            PreviewDuration, from);
+                    PlayPreview(mCurrentPlaylist.CurrentPhrase, time - (from ? 0.0 : PreviewDuration), PreviewDuration, from);
                     return true;
                 }
                 else if (mView.Selection is AudioSelection)
