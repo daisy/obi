@@ -2589,6 +2589,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to toggle TODO.
+        /// </summary>
+        internal static string toggle_TODO {
+            get {
+                return ResourceManager.GetString("toggle_TODO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a top-level section..
         /// </summary>
         internal static string top_level_section {

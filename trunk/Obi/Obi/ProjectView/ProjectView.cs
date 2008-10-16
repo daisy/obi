@@ -1289,7 +1289,7 @@ namespace Obi.ProjectView
             if (IsBlockSelected)
             {
                 EmptyNode node = (EmptyNode)Selection.Node;
-                Commands.Node.ToggleNodeTo_Do command = new Commands.Node.ToggleNodeTo_Do(this, node);
+                Commands.Node.ToggleNodeTODO command = new Commands.Node.ToggleNodeTODO(this, node);
                 Presentation.getUndoRedoManager().execute(command);
             }
         }
@@ -1622,7 +1622,7 @@ namespace Obi.ProjectView
         {
             if (TransportBar.IsActive)
             {
-                TransportBar.MarkTodoClass();
+                TransportBar.MarkTodo();
             }
             else
             {
@@ -1824,7 +1824,7 @@ namespace Obi.ProjectView
                 }
                 if (dialog.TODO != dialog.Node.TODO)
                 {
-                    command.append(new Commands.Node.ToggleNodeTo_Do(this, dialog.Node));
+                    command.append(new Commands.Node.ToggleNodeTODO(this, dialog.Node));
                 }
                 if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
                 if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);

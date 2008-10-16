@@ -1353,7 +1353,7 @@ null;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
-            Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus;
+            Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
             Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
             Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;

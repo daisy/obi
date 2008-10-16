@@ -121,7 +121,6 @@ namespace Obi
             this.mPhrases_EditRolesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMarkDefaultCustomClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mBeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mEndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -708,7 +707,6 @@ namespace Obi
             this.mPhrases_EditRolesMenuItem,
             this.toolStripSeparator19,
             this.mPhraseDetectionToolStripMenuItem,
-            this.mMarkDefaultCustomClassToolStripMenuItem,
             this.mInPhraseSelectionToolStripMenuItem,
             this.mGoToToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
@@ -842,12 +840,6 @@ namespace Obi
             resources.ApplyResources(this.mPhraseDetectionToolStripMenuItem, "mPhraseDetectionToolStripMenuItem");
             this.mPhraseDetectionToolStripMenuItem.Name = "mPhraseDetectionToolStripMenuItem";
             this.mPhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
-            // 
-            // mMarkDefaultCustomClassToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mMarkDefaultCustomClassToolStripMenuItem, "mMarkDefaultCustomClassToolStripMenuItem");
-            this.mMarkDefaultCustomClassToolStripMenuItem.Name = "mMarkDefaultCustomClassToolStripMenuItem";
-            this.mMarkDefaultCustomClassToolStripMenuItem.Click += new System.EventHandler(this.mMarkDefaultCustomClassToolStripMenuItem_Click);
             // 
             // mInPhraseSelectionToolStripMenuItem
             // 
@@ -1365,7 +1357,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mBeginInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEndInPhraseSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mDeselectInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mMarkDefaultCustomClassToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mTools_PreferencesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSectionsToolStripMenuItem;

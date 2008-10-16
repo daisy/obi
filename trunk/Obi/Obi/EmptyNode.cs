@@ -82,7 +82,7 @@ namespace Obi
         /// This event is sent when the page number changes on a node (for a node which previously had a page number.)
         /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedPageNumber;
-        public event NodeEventHandler<EmptyNode> ChangedTo_DoStatus;
+        public event NodeEventHandler<EmptyNode> ChangedTODOStatus;
 
 
         /// <summary>
@@ -220,11 +220,10 @@ namespace Obi
             }
         }
 
-        public void AssignTo_DoMark( bool Val )
+        public void SetTODO(bool todo)
         {
-            TODO = Val;
-            if ( ChangedTo_DoStatus != null )
-                ChangedTo_DoStatus(this, new NodeEventArgs<EmptyNode>(this));
+            TODO = todo;
+            if (ChangedTODOStatus != null) ChangedTODOStatus(this, new NodeEventArgs<EmptyNode>(this));
         }
 
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }

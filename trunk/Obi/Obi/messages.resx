@@ -1243,4 +1243,8 @@ Error text: {1}</value>
     <value>Cannot empty directory</value>
     <comment>Error dialog caption</comment>
   </data>
+  <data name="toggle_TODO" xml:space="preserve">
+    <value>toggle TODO</value>
+    <comment>Command</comment>
+  </data>
 </root>

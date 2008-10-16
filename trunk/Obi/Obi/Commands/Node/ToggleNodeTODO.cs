@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Commands.Node
 {
-    class ToggleNodeTo_Do : Command
+    class ToggleNodeTODO : Command
     {
         private EmptyNode mNode;         // the empty node
         private bool mOriginalStatus;  // original used status of the node
@@ -12,21 +12,22 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Change the used status of a single node.
         /// </summary>
-        public ToggleNodeTo_Do (ProjectView.ProjectView view, EmptyNode node)
+        public ToggleNodeTODO (ProjectView.ProjectView view, EmptyNode node)
             : base(view)
         {
             mNode = node;
             mOriginalStatus = node.TODO;
+            Label = Localizer.Message("toggle_TODO");
         }
 
         public override void execute()
         {
-            mNode.AssignTo_DoMark ( !mOriginalStatus );
+            mNode.SetTODO ( !mOriginalStatus );
         }
 
         public override void unExecute()
         {
-            mNode.AssignTo_DoMark(mOriginalStatus);
+            mNode.SetTODO(mOriginalStatus);
             base.unExecute();
         }
 
