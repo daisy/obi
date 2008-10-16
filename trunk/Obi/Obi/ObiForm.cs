@@ -1653,8 +1653,6 @@ namespace Obi
             SynchronizeViews = mSettings.SynchronizeViews;
             WrapStripContents = mSettings.WrapStripContents;
             // Transport bar settings
-            mProjectView.TransportBar.PreviewDuration = mSettings.PreviewDuration;
-            mProjectView.TransportBar.PlayIfNoSelection = mSettings.PlayIfNoSelection;
             AllowOverwrite = mSettings.AllowOverwrite;
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
             // Colors

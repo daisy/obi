@@ -262,7 +262,7 @@ namespace Obi.ProjectView
             {
                 mNeedsRendering = true;
                 ClearBitmaps();
-                mBlock.ContentView.RenderWaveform(new WaveformWithPriority(this, WaveformWithPriority.NORMAL_PRIORITY));
+                mBlock.ContentView.RenderWaveform(this, WaveformWithPriority.NORMAL_PRIORITY);
             }
         }
 
@@ -323,9 +323,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a new cursor when playback starts.
         /// </summary>
-        public void InitCursor()
+        public void InitCursor(double time)
         {
-            mCursor = new AudioRange(0.0);
+            mCursor = new AudioRange(time);
         }
 
         /// <summary>

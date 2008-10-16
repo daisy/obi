@@ -26,15 +26,6 @@ namespace Obi.ProjectView
         }
 
 
-        /// <summary>
-        /// Set cursor time during playback to show the current position.
-        /// </summary>
-        public void SetCursorTime(double time)
-        {
-            mWaveform.CursorTime = time;
-            Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
-        }
-
 
         // Audio of the block has changed: update the label and the width to accomodate the new audio.
         private void node_NodeAudioChanged(object sender, NodeEventArgs<PhraseNode> e)
@@ -85,7 +76,7 @@ namespace Obi.ProjectView
 
         public void PrioritizeRendering(int priority)
         {
-            ContentView.RenderWaveform(new WaveformWithPriority(mWaveform, priority));
+            ContentView.RenderWaveform(mWaveform, priority);
         }
 
         /// <summary>
@@ -222,7 +213,7 @@ namespace Obi.ProjectView
 
         public void SelectAtCurrentTime() { Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection); }
 
-        public void InitCursor() { mWaveform.InitCursor(); }
+        public void InitCursor(double time) { mWaveform.InitCursor(time); }
         public void ClearCursor() { mWaveform.ClearCursor(); }
     }
 }

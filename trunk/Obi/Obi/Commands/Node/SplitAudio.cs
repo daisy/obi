@@ -61,7 +61,8 @@ namespace Obi.Commands.Node
         /// </summary>
         public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view)
         {
-            PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
+            PhraseNode phrase = view.TransportBar.PlaybackPhrase;
+            if (phrase == null) phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
             {
                 double begin = view.TransportBar.SplitBeginTime;

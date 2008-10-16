@@ -28,6 +28,7 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectView));
             this.mTransportBarSplitter = new System.Windows.Forms.SplitContainer();
             this.mFindInTextSplitter = new System.Windows.Forms.SplitContainer();
@@ -153,7 +154,6 @@ namespace Obi.ProjectView
             this.mContentView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mContentView.ColorSettings = null;
             this.mContentView.Name = "mContentView";
-            this.mContentView.PlaybackPhrase = null;
             this.mContentView.Selection = null;
             this.mContentView.ZoomFactor = 1F;
             // 

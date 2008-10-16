@@ -4,9 +4,13 @@ using System.Text;
 
 namespace Obi
 {
-    public class PriorityQueue<T> where T: IComparable
+    /// <summary>
+    /// Priority queue of items of type T, ordered by priority U.
+    /// </summary>
+    public class PriorityQueue<T, U> where U: IComparable
     {
-        private List<T> mItems;  // items in the queue, organized in a binary heap.
+        private List<T> mItems;                // items in the queue, organized in a binary heap.
+        private Dictionary<T, U> mPriorities;  // priority of items in the queue.
 
 
         /// <summary>
@@ -15,13 +19,18 @@ namespace Obi
         public PriorityQueue()
         {
             mItems = new List<T>();
+            mPriorities = new Dictionary<T, U>();
         }
 
 
         /// <summary>
         /// Clear the queue completely.
         /// </summary>
-        public void Clear() { mItems.Clear(); }
+        public void Clear() 
+        {
+            mItems.Clear();
+            mPriorities.Clear();
+        }
 
         /// <summary>
         /// Get the number of items in the queue.
@@ -35,6 +44,8 @@ namespace Obi
         {
             if (mItems.Count == 0) throw new Exception("Cannot dequeue from an empty queue!");
             T top = mItems[0];
+            // Remove the top item from the priority map
+            mPriorities.Remove(top);
             if (mItems.Count == 1)
             {
                 // The heap becomes empty.
@@ -57,11 +68,28 @@ namespace Obi
         /// TODO: If the item was already present, its priority may be adjusted.
         /// Return true when the item was actually added. (Right now, always true.)
         /// </summary>
-        public bool Enqueued(T item)
+        public bool Enqueued(T item, U priority)
         {
-            mItems.Add(item);
-            BubbleUp(mItems.Count - 1);
-            return true;
+            if (mPriorities.ContainsKey(item))
+            {
+                if (mPriorities[item].CompareTo(priority) < 0)
+                {
+                    mPriorities[item] = priority;
+                    BubbleUp(mItems.IndexOf(item));
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                mItems.Add(item);
+                mPriorities[item] = priority;
+                BubbleUp(mItems.Count - 1);
+                return true;
+            }
         }
 
         /// <summary>
@@ -78,8 +106,8 @@ namespace Obi
             string str = "{";
             if (mItems.Count > 0)
             {
-                str += mItems[0].ToString();
-                for (int i = 1; i < mItems.Count; ++i) str += ", " + mItems[i];
+                str += mItems[0].ToString() + "/" + mPriorities[mItems[0]].ToString();
+                for (int i = 1; i < mItems.Count; ++i) str += ", " + mItems[i] + "/" + mPriorities[mItems[i]].ToString();
             }
             return str + "}";
         }
@@ -96,10 +124,13 @@ namespace Obi
                 // Note that the comparer should return a value higher than 0 when comparing
                 // with a null object.
                 T child1 = c < mItems.Count ? mItems[c] : default(T);
+                U priority1 = c < mItems.Count ? mPriorities[child1] : default(U);
                 T child2 = c + 1 < mItems.Count ? mItems[c + 1] : default(T);
-                if (mItems[i].CompareTo(child1) >= 0)
+                U priority2 = c + 1 < mItems.Count ? mPriorities[child2] : default(U);
+                U priority = mPriorities[mItems[i]];
+                if (priority.CompareTo(priority1) >= 0)
                 {
-                    if (mItems[i].CompareTo(child2) >= 0)
+                    if (priority.CompareTo(priority2) >= 0)
                     {
                         // Current element has a higher priority than both children
                         // so it's in its correct location.
@@ -115,7 +146,7 @@ namespace Obi
                 }
                 else
                 {
-                    if (mItems[i].CompareTo(child2) >= 0 || child1.CompareTo(child2) >= 0)
+                    if (priority1.CompareTo(priority) >= 0 || priority1.CompareTo(priority2) >= 0)
                     {
                         // Child #1 has a higher priority than the current element
                         // and child #2.
@@ -138,7 +169,8 @@ namespace Obi
         // (i - 1) / 2.
         private void BubbleUp(int from)
         {
-            for (int i = from, p = (i - 1) / 2; p > 0 && mItems[i].CompareTo(mItems[p]) > 0; i = p, p = (p - 1) / 2)
+            for (int i = from, p = (i - 1) / 2; p > 0 && mPriorities[mItems[i]].CompareTo(mPriorities[mItems[p]]) > 0;
+                i = p, p = (p - 1) / 2)
             {
                 SwapItems(i, p);
             }

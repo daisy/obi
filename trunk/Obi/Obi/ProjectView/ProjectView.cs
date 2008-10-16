@@ -656,18 +656,12 @@ namespace Obi.ProjectView
             }
         }
 
-        /// <summary>
-        /// Set the block currently playing back as a "light" selection.
-        /// </summary>
-        public PhraseNode PlaybackPhrase
+        public void SetPlaybackPhraseAndTime(PhraseNode node, double time)
         {
-            set
+            if (mContentView != null)
             {
-                if (mContentView != null)
-                {
-                    mContentView.PlaybackPhrase = value;
-                    if (value != null) MakePhraseNodeVisible(value);
-                }
+                mContentView.SetPlaybackPhraseAndTime(node, time);
+                if (node != null) MakePhraseNodeVisible(node);
             }
         }
 
@@ -1846,8 +1840,7 @@ namespace Obi.ProjectView
                     mTOCView.ZoomFactor =
                     mContentView.ZoomFactor =
                     mMetadataView.ZoomFactor =
-                    mFindInText.ZoomFactor =
-                    mTransportBar.ZoomFactor = value;
+                    mFindInText.ZoomFactor = value;
                 }
             }
         }
