@@ -74,6 +74,18 @@ namespace Obi
         }
 
         /// <summary>
+        /// Following node in document order: section, then its phrase children, then its section children,
+        /// then its siblings, etc.
+        /// </summary>
+        public virtual ObiNode FollowingNodeAfter(int index_after)
+        {
+            int index_self = getParent().indexOf(this);
+            return getChildCount() > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
+                index_self < getParent().getChildCount() - 1 ? (ObiNode)getParent().getChild(index_self + 1) :
+                ((ObiNode)getParent()).FollowingNodeAfter(index_self);
+        }
+
+        /// <summary>
         /// Get a command to renumber this node and all following nodes from this number.
         /// </summary>
         public virtual CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
@@ -247,6 +259,7 @@ namespace Obi
 
         public override ObiNode PrecedingNode { get { return null; } }
         public override ObiNode FollowingNode { get { return null; } }
+        public override ObiNode FollowingNodeAfter(int index) { return null; }
 
         public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
         public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
