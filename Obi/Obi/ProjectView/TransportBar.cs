@@ -231,7 +231,8 @@ namespace Obi.ProjectView
         {
             get
             {
-                return IsPlayerActive ?
+                return IsPlayerActive
+                    && !(mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ?
                     mCurrentPlaylist.CurrentTimeInAsset :
                     mView.Selection is AudioSelection ?
                         ((AudioSelection)mView.Selection).AudioRange.HasCursor ?
