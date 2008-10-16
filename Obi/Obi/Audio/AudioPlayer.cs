@@ -879,7 +879,8 @@ namespace Obi.Audio
         {
             if (State == AudioPlayerState.Stopped)
             {
-                m_lPausePosition = CalculationFunctions.ConvertTimeToByte(time, m_SamplingRate, m_FrameSize);
+                SetCurrentTimePosition(time);
+                m_lPausePosition = GetCurrentBytePosition();
                 m_lResumeToPosition = 0;
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Paused;

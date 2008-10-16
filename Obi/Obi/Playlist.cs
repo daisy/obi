@@ -990,6 +990,8 @@ namespace Obi
             mRevertTime = revertTime;
         }
 
+        public double RevertTime { get { return mRevertTime; } }
+
         protected override void ReachedEndOfPlaylist()
         {
             PauseFromStopped(mRevertTime);
