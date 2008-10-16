@@ -379,6 +379,7 @@ namespace Obi
                     DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
                     DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
                     ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
+                    mSession.Presentation.setRootUri(new Uri(path_new));
                     mSession.SaveAs(path_new);
                     if (!dialog.SaveDataAndProjectOnly)
                     {

@@ -500,7 +500,7 @@ namespace Obi
                 StringBuilder strBuilder = new StringBuilder();
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Indent = true;
-                settings.IndentChars = " ";
+                settings.IndentChars = "  ";
                 XmlWriter writer = XmlWriter.Create(strBuilder, settings);
 
                 writer.WriteStartDocument();
