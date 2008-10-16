@@ -12,43 +12,59 @@ namespace Obi.PipelineInterface
     // Only this class interacts with physical script files
     class ScriptParser
     {
-
         private XmlDataDocument m_ScriptDocument;
-        private string m_ScriptFilePath;
-        private List<ScriptParameter> m_ParameterList;
+        private string mScriptFilePath;                // path to the script file
+        private List<ScriptParameter> mParameterList;  // list of script parameters
+        private string mNiceName;                      // nice name for the script itself
 
         public ScriptParser(string ScriptPath)
         {
-            m_ParameterList= new List<ScriptParameter>() ;
-            m_ScriptFilePath = ScriptPath;
-            XmlTextReader reader = new XmlTextReader(m_ScriptFilePath);
+            mParameterList = new List<ScriptParameter>();
+            mScriptFilePath = ScriptPath;
+            XmlTextReader reader = new XmlTextReader(mScriptFilePath);
             reader.XmlResolver = null;
 
             m_ScriptDocument = new XmlDataDocument();
             m_ScriptDocument.XmlResolver = null;
             m_ScriptDocument.Load(reader);
             reader.Close();
-            
-            //populate parameters list
+
+            mNiceName = ScriptNiceName(m_ScriptDocument, mScriptFilePath);
             PopulateParameterList();
-                    }
+        }
+
         /// <summary>
-        /// <summary
-        ///  populate parameter list
+        /// Get the nice name of the script.
         /// </summary>
+        public string NiceName { get { return mNiceName; } }
+
+        // Find the script nice name; or, by default, the name from the file name.
+        private string ScriptNiceName(XmlDataDocument doc, string path)
+        {
+            XmlNodeList tasks = doc.GetElementsByTagName("taskScript");
+            if (tasks.Count > 0)
+            {
+                foreach (XmlNode child in tasks[0].ChildNodes)
+                {
+                    if (child.LocalName == "nicename") return child.InnerText;
+                }
+            }
+            return Path.GetFileNameWithoutExtension(path);
+        }
+
+        //  populate parameter list
         private void PopulateParameterList()
         {
-    XmlNodeList CompleteNodeList =  m_ScriptDocument.GetElementsByTagName("parameter") ;
-            ScriptParameter p  = null ;
+            XmlNodeList CompleteNodeList = m_ScriptDocument.GetElementsByTagName("parameter");
+            ScriptParameter p = null;
             foreach (XmlNode n in CompleteNodeList)
             {
                 if (n.Attributes.Count > 0)
                 {
                     p = new ScriptParameter(n);
-                    m_ParameterList.Add(p);
+                    mParameterList.Add(p);
                 }
-}
-
+            }
         }
 
 
@@ -58,7 +74,7 @@ namespace Obi.PipelineInterface
         /// </summary>
         public List<ScriptParameter> ParameterList
         {
-            get { return m_ParameterList; } 
+            get { return mParameterList; } 
         }
 
         /// <summary>
@@ -85,15 +101,15 @@ namespace Obi.PipelineInterface
                 }
             }
                         // invoke the script
-            string PipelineFilePath = Path.Combine( Directory.GetParent(m_ScriptFilePath).Parent.FullName, "pipeline-lite.bat" );
+            string PipelineFilePath = Path.Combine( Directory.GetParent(mScriptFilePath).Parent.FullName, "pipeline-lite.bat" );
                         Process PipelineProcess = new Process();
             PipelineProcess.StartInfo.CreateNoWindow = true;
             PipelineProcess.StartInfo.ErrorDialog = true;
             PipelineProcess.StartInfo.UseShellExecute = false;
                         
                         PipelineProcess.StartInfo.FileName = PipelineFilePath;
-            PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + m_ScriptFilePath + "\" -p" + Param;
-            PipelineProcess.StartInfo.WorkingDirectory = Directory.GetParent(Directory.GetParent(m_ScriptFilePath).FullName).FullName ;
+            PipelineProcess.StartInfo.Arguments =" -x -q -s \"" + mScriptFilePath + "\" -p" + Param;
+            PipelineProcess.StartInfo.WorkingDirectory = Directory.GetParent(Directory.GetParent(mScriptFilePath).FullName).FullName ;
             
                         try
             {

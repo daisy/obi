@@ -1632,7 +1632,16 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to no script file found at &quot;{0}&quot;..
+        ///   Looks up a localized string similar to The primary export directory for this project was not found. Please select an export path or export the project to DAISY3..
+        /// </summary>
+        internal static string no_primary_export_directory {
+            get {
+                return ResourceManager.GetString("no_primary_export_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No script file found at &quot;{0}&quot;..
         /// </summary>
         internal static string no_script {
             get {
@@ -1655,15 +1664,6 @@ namespace Obi {
         internal static string node_selection_to_string {
             get {
                 return ResourceManager.GetString("node_selection_to_string", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Primary export directory not found. Please browse for primary export path or export the project to DAISY3..
-        /// </summary>
-        internal static string NoPrimaryExportDirectory {
-            get {
-                return ResourceManager.GetString("NoPrimaryExportDirectory", resourceCulture);
             }
         }
         

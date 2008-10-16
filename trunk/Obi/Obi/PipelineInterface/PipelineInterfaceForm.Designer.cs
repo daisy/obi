@@ -28,39 +28,41 @@ namespace Obi.PipelineInterface
         /// </summary>
         private void InitializeComponent()
         {
-            this.m_btnOk = new System.Windows.Forms.Button();
-            this.m_btnCancel = new System.Windows.Forms.Button();
+            this.mOKButton = new System.Windows.Forms.Button();
+            this.mCancelButton = new System.Windows.Forms.Button();
             this.mLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // m_btnOk
+            // mOKButton
             // 
-            this.m_btnOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.m_btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.m_btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnOk.Location = new System.Drawing.Point(96, 317);
-            this.m_btnOk.Margin = new System.Windows.Forms.Padding(4);
-            this.m_btnOk.Name = "m_btnOk";
-            this.m_btnOk.Size = new System.Drawing.Size(100, 28);
-            this.m_btnOk.TabIndex = 0;
-            this.m_btnOk.Text = "&OK";
-            this.m_btnOk.UseVisualStyleBackColor = true;
+            this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mOKButton.Location = new System.Drawing.Point(96, 317);
+            this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mOKButton.Name = "mOKButton";
+            this.mOKButton.Size = new System.Drawing.Size(100, 28);
+            this.mOKButton.TabIndex = 0;
+            this.mOKButton.Text = "&OK";
+            this.mOKButton.UseVisualStyleBackColor = true;
             // 
-            // m_btnCancel
+            // mCancelButton
             // 
-            this.m_btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_btnCancel.Location = new System.Drawing.Point(204, 317);
-            this.m_btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.m_btnCancel.Name = "m_btnCancel";
-            this.m_btnCancel.Size = new System.Drawing.Size(100, 28);
-            this.m_btnCancel.TabIndex = 1;
-            this.m_btnCancel.Text = "&Cancel";
-            this.m_btnCancel.UseVisualStyleBackColor = true;
+            this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mCancelButton.Location = new System.Drawing.Point(204, 317);
+            this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.mCancelButton.Name = "mCancelButton";
+            this.mCancelButton.Size = new System.Drawing.Size(100, 28);
+            this.mCancelButton.TabIndex = 1;
+            this.mCancelButton.Text = "&Cancel";
+            this.mCancelButton.UseVisualStyleBackColor = true;
             // 
             // mLayoutPanel
             // 
+            this.mLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.mLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.mLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -73,14 +75,14 @@ namespace Obi.PipelineInterface
             // 
             // PipelineInterfaceForm
             // 
-            this.AcceptButton = this.m_btnOk;
+            this.AcceptButton = this.mOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.m_btnCancel;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(401, 358);
             this.Controls.Add(this.mLayoutPanel);
-            this.Controls.Add(this.m_btnCancel);
-            this.Controls.Add(this.m_btnOk);
+            this.Controls.Add(this.mCancelButton);
+            this.Controls.Add(this.mOKButton);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -95,8 +97,8 @@ namespace Obi.PipelineInterface
 
         #endregion
 
-        private System.Windows.Forms.Button m_btnOk;
-        private System.Windows.Forms.Button m_btnCancel;
+        private System.Windows.Forms.Button mOKButton;
+        private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.FlowLayoutPanel mLayoutPanel;
     }
 }
