@@ -989,22 +989,6 @@
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Apply p&amp;hrase detection</value>
   </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Mark default custom class Ctrl+U</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+U</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
-  </data>
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mar&amp;k default custom class</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mMarkDefaultCustomClassToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="mBeginInPhraseSelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Begin audio selection Ctrl+[</value>
   </data>
@@ -1506,6 +1490,7 @@
   <data name="mMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>948, 24</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -1585,7 +1570,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.31811, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.27688, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2405,12 +2390,6 @@
     <value>mPhraseDetectionToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMarkDefaultCustomClassToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMarkDefaultCustomClassToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMarkDefaultCustomClassToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">

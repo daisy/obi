@@ -1723,53 +1723,15 @@ namespace Obi.ProjectView
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
 
-        private void mToDo_CustomClassMarkButton_Click ( object sender, EventArgs e ) 
+        private void mToDoMarkButton_Click ( object sender, EventArgs e ) 
         {
-            // add check for preferences flag for  marking T_do phrase or custom phrase
-            // currently commenting custom phrase because it do not have good accessibility
-            MarkTodoClass();
-            //MarkCustomClass(); 
+            MarkTodo();
         }
 
         /// <summary>
-        /// Mark custom class on current block. Currently defaults to "TODO".
-        /// If recording, create new phrase and mark custom class this new phrase block
-        /// else mark on currently playing block; otherwise on selected block
+        /// Toggle TODO on the currently playing/recording phrase.
         /// </summary>
-        public void MarkCustomClass()
-        {
-            if (mView.CanMarkPhrase)
-            {
-                /*EmptyNode node;
-                if (IsRecording)
-                {
-                    mRecordingSession.NextPhrase();
-                    node = mRecordingPhrase;
-                }
-                else
-                {
-                    if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused ||
-                        mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
-                    {
-                        node = mCurrentPlaylist.CurrentPhrase;
-                    }
-                    else
-                    {
-                        node = mView.SelectedNodeAs<EmptyNode>();
-                    }
-                }
-                mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(mView, node,
-                    mView.MarkRole, mView.MarkCustomRole));
-                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                 */
-            }
-        }
-
-        /// <summary>
-                /// </summary>
-                ///  apply to do mark on empty nodes 
-        public void MarkTodoClass()
+        public void MarkTodo()
         {
             EmptyNode node = null;
             if (IsRecording)
@@ -1777,21 +1739,17 @@ namespace Obi.ProjectView
                 node = (EmptyNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
 
                 mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
+                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
                 mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 NextPhrase();
             }
-            else
+            else if (IsPlayerActive)
             {
-                if (mState == State.Playing || mState == State.Paused)
-                    node = (EmptyNode)mCurrentPlaylist.CurrentPhrase;
-                else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
-                    node = mView.SelectedNodeAs<EmptyNode>();
-
+                node = (EmptyNode)mCurrentPlaylist.CurrentPhrase;
                 if (node != null)
                 {
                     mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTo_Do(mView, node));
+                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
                     mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
             }

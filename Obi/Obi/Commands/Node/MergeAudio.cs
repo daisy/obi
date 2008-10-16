@@ -64,7 +64,7 @@ namespace Obi.Commands.Node
         public static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
             EmptyNode from, EmptyNode to)
         {
-            if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, to));
+            if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
             if (!from.Used && to.Used) command.append(new Commands.Node.ToggleNodeUsed(view, to));
             if (from.NodeKind == EmptyNode.Kind.Page)
             {

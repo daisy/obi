@@ -30,7 +30,7 @@ namespace Obi.ProjectView
             mHighlighted = false;
             node.ChangedKind += new EmptyNode.ChangedKindEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
-            node.ChangedTo_DoStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTo_DoStatus);
+            node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
             UpdateColors();
             UpdateLabel();
             mBaseHeight = Height;
@@ -212,7 +212,11 @@ namespace Obi.ProjectView
         private void Node_ChangedKind(object sender, ChangedKindEventArgs e) { UpdateLabel(); }
 
         // update label when to do status changes
-        private void Node_ChangedTo_DoStatus(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
+        private void Node_ChangedTODOStatus(object sender, NodeEventArgs<EmptyNode> e)
+        {
+            UpdateColors();
+            UpdateLabel();
+        }
 
         protected virtual void UpdateLabel()
         {

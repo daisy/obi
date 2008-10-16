@@ -90,7 +90,7 @@ namespace Obi.Commands.Node
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);
-            if (split.Node.TODO) command.append(new Commands.Node.ToggleNodeTo_Do(view, split.NodeAfter));
+            if (split.Node.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
             if (!split.Node.Used) command.append(new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
             command.append(split);
             if (transferRole && phrase.NodeKind != EmptyNode.Kind.Plain)

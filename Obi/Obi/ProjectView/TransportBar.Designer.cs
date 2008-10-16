@@ -287,7 +287,7 @@ namespace Obi.ProjectView
         this.mToDo_CustomClassMarkButton.TabIndex = 12;
         this.mTransportBarTooltip.SetToolTip ( this.mToDo_CustomClassMarkButton, "Add a TODO mark while recording. (F9)" );
         this.mToDo_CustomClassMarkButton.UseVisualStyleBackColor = true;
-        this.mToDo_CustomClassMarkButton.Click += new System.EventHandler ( this.mToDo_CustomClassMarkButton_Click );
+        this.mToDo_CustomClassMarkButton.Click += new System.EventHandler ( this.mToDoMarkButton_Click );
         // 
         // mDisplayTimer
         // 

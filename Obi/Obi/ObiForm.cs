@@ -1789,12 +1789,6 @@ namespace Obi
             mProjectView.FindPreviousInText();
         }
 
-
-        private void mMarkDefaultCustomClassToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (mProjectView.TransportBar.Enabled) mProjectView.TransportBar.MarkCustomClass();
-        }
-
         private void mAllowOverwriteToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             AllowOverwrite = mAllowOverwriteToolStripMenuItem.Checked;
