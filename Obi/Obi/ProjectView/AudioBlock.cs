@@ -143,7 +143,10 @@ namespace Obi.ProjectView
         // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
         {
-            if (CanSelectInWaveform) Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
+            if (CanSelectInWaveform && mWaveform.Selection != null)
+            {
+                Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
+            }
         }
 
         // Track down the shift key for selection
