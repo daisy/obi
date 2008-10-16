@@ -334,7 +334,7 @@ namespace Obi.ProjectView
         /// </summary>
         public int FinalSelectionPosition
         {
-            get { return XFromTime(mSelection.SelectionEndTime); }
+            get { return mSelection != null ? XFromTime(mSelection.SelectionEndTime) : 0; }
             set
             {
                 if (mSelection != null)

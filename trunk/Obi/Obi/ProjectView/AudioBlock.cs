@@ -12,7 +12,6 @@ namespace Obi.ProjectView
     {
         private bool mShiftKeyPressed;  // track the shift key
 
-
         /// <summary>
         /// Create a new audio block for a phrase node in a strip.
         /// </summary>
@@ -135,7 +134,7 @@ namespace Obi.ProjectView
             get
             {
                 long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
-                return (int)Math.Round(time * AudioScale);
+                return time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);
             }
         }
 

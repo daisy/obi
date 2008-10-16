@@ -32,7 +32,6 @@ namespace Obi.ProjectView
         {
             set
             {
-                // BackColor = Color.Magenta;
                 BackColor = value.StripBackColor;
                 if (Highlighted) Invalidate();
             }
