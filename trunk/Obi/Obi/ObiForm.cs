@@ -140,6 +140,7 @@ namespace Obi
                 {
                     mSettings.ZoomFactor = value;
                     UpdateZoomFactor();
+                    mView_NormalSizeMenuItem.Enabled = value != 1.0;
                 }
             }
         }
@@ -728,7 +729,6 @@ namespace Obi
             mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
-
             mView_PhrasePropertiesMenuItem.Visible =
                 mView_PhrasePropertiesMenuItem.Enabled = mProjectView.CanShowPhrasePropertiesDialog;
             mView_SectionPropertiesMenuItem.Visible =
