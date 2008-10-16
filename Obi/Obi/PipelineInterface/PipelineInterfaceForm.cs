@@ -9,30 +9,41 @@ using System.IO;
 
 namespace Obi.PipelineInterface
 {
+    /// <summary>
+    /// Base dialog for the pipeline interface.
+    /// </summary>
     public partial class PipelineInterfaceForm : Form
     {
         private string mInputPath;
         private string mProjectDirectory;
         private ScriptParser mParser;
 
+
+        /// <summary>
+        /// Used by the designer.
+        /// </summary>
         public PipelineInterfaceForm() { InitializeComponent(); }
 
+        /// <summary>
+        /// Create a dialog for the pipeline script given as input. The path to the exported project
+        /// as well as the directory of the project are also given as initial parameters.
+        /// </summary>
         public PipelineInterfaceForm(string scriptPath, string inputPath, string ProjectDirectory)
             : this()
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
-            if (File.Exists ( inputPath ))
+            if (File.Exists(inputPath))
+            {
                 mInputPath = inputPath;
+            }
             else
-                {
+            {
                 mInputPath = "";
-                MessageBox.Show (Localizer.Message("NoPrimaryExportDirectory"));
-                                                }
-
+                MessageBox.Show(Localizer.Message("no_primary_export_directory"));
+            }
             mProjectDirectory = ProjectDirectory;
-            FileInfo f = new FileInfo(scriptPath);
-            this.Text = f.Name.Replace(f.Extension, "");
+            Text = mParser.NiceName;
         }
 
 
