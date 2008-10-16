@@ -35,22 +35,26 @@ namespace Obi.Commands.Node
                 double begin = view.TransportBar.SplitBeginTime;
                 double end = view.TransportBar.SplitEndTime;
                 if (end >= phrase.Duration) end = 0.0;
+                CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
                 if (begin > 0.0 || end > 0.0)
                 {
-                    CompositeCommand command =
-                        view.Presentation.CreateCompositeCommand(Localizer.Message("crop_audio"));
+                    SplitAudio split;         // actual split command
+                    PhraseNode after = null;  // node to select after splitting
                     if (end > 0.0)
                     {
-                        AppendSplitCommandWithProperties(view, command, phrase, end, false);
+                        split = AppendSplitCommandWithProperties(view, command, phrase, end, false);
+                        after = split.Node;
                         command.append(new Commands.Node.DeleteWithOffset(view, phrase, 1));
                     }
                     if (begin > 0.0)
                     {
-                        AppendSplitCommandWithProperties(view, command, phrase, begin,
+                        split = AppendSplitCommandWithProperties(view, command, phrase, begin,
                             view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
+                        after = split.NodeAfter;
                         command.append(new Commands.Node.Delete(view, phrase));
                     }
-                    if (command.getCount() > 0) return command;
+                    command.append(new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));
+                    return command;
                 }
             }
             return null;
@@ -82,7 +86,7 @@ namespace Obi.Commands.Node
         }
 
         // Create a split command preserving used/TODO status, and optionally transferring the role to the next node
-        private static void AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
+        private static SplitAudio AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);
@@ -101,6 +105,7 @@ namespace Obi.Commands.Node
                     command.append(new Commands.Node.ChangeCustomType(view, split.NodeAfter, phrase.NodeKind, phrase.CustomClass));
                 }
             }
+            return split;
         }
 
         // Perform a split given a time and a node with no audio, optionally updating the selection in the view afterward.

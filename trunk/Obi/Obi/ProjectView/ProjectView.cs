@@ -369,9 +369,11 @@ namespace Obi.ProjectView
             {
                 CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("cut_audio"));
-                Commands.Audio.Delete delete = new Commands.Audio.Delete(this);
-                command.append(new Commands.Audio.Copy(this, delete.Deleted,
-                    new AudioRange(0.0, delete.Deleted.Audio.getDuration().getTimeDeltaAsMillisecondFloat())));
+                ICommand delete = Commands.Audio.Delete.GetCommand(this);
+                PhraseNode deleted = delete is Commands.Audio.Delete ?
+                    ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
+                command.append(new Commands.Audio.Copy(this, deleted,
+                    new AudioRange(0.0, deleted.Audio.getDuration().getTimeDeltaAsMillisecondFloat())));
                 command.append(delete);
                 mPresentation.getUndoRedoManager().execute(command);
             }
@@ -399,7 +401,8 @@ namespace Obi.ProjectView
             }
             else if (CanRemoveAudio)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Audio.Delete(this));
+                ICommand delete = Commands.Audio.Delete.GetCommand(this);
+                if (delete != null) mPresentation.getUndoRedoManager().execute(delete);
             }
             else if (CanRemoveMetadata)
             {
@@ -1831,7 +1834,12 @@ namespace Obi.ProjectView
 
         public void CropPhrase()
         {
-            if (CanCropPhrase) { mPresentation.getUndoRedoManager().execute(Commands.Node.SplitAudio.GetCropCommand(this)); }
+            if (CanCropPhrase)
+            {
+                ICommand crop = Commands.Node.SplitAudio.GetCropCommand(this);
+                // Crop may be null if the audio selection is unsuitable
+                if (crop != null) mPresentation.getUndoRedoManager().execute(crop);
+            }
         }
 
         /// <summary>

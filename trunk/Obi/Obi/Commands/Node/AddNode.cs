@@ -59,6 +59,6 @@ namespace Obi.Commands.Node
         {
             base.execute();
             View.Selection = new NodeSelection(mNode, mControl);
-                    }
+        }
     }
 }

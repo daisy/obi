@@ -122,8 +122,16 @@ namespace Obi.PipelineInterface.ParameterControls
                         {
                             try
                             {
-                                if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory) CheckForOutputDirectory();
-                                else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File) File.CreateText(mTextBox.Text).Close();
+                                if (m_PathData.IsFileOrDirectory ==
+                                    Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
+                                {
+                                    ObiForm.CheckProjectDirectory(mTextBox.Text, true);
+                                }
+                                else if (m_PathData.IsFileOrDirectory ==
+                                    Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
+                                {
+                                    File.CreateText(mTextBox.Text).Close();
+                                }
                             }
                             catch (System.Exception ex)
                             {

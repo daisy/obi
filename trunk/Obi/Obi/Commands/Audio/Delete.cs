@@ -12,7 +12,8 @@ namespace Obi.Commands.Audio
         private NodeSelection mSelectionAfter;  // selection after deletion (cursor at split point)
         private bool mHasAudioAfterDeleted;     // true if there is audio left after the deleted part
 
-        public Delete(ProjectView.ProjectView view)
+        // Made private so that GetCommand() is used instead
+        private Delete(ProjectView.ProjectView view)
             : base(view)
         {
             mNode = (PhraseNode)view.Selection.Node;
@@ -43,6 +44,32 @@ namespace Obi.Commands.Audio
             mNode.MergeAudioWith(mDeleted.Audio.copy());
             if (after != null) mNode.MergeAudioWith(after);
             base.unExecute();
+        }
+
+        /// <summary>
+        /// Get a delete command handling the delete all audio case gracefully.
+        /// </summary>
+        public static urakawa.command.ICommand GetCommand(Obi.ProjectView.ProjectView view)
+        {
+            Delete command = new Delete(view);
+            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.getTimeAsMillisecondFloat() == 0.0)
+            {
+                // Delete the whole audio
+                urakawa.command.CompositeCommand composite =
+                    view.Presentation.CreateCompositeCommand(command.getShortDescription());
+                EmptyNode empty = new EmptyNode(view.Presentation);
+                composite.append(new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
+                    command.mNode.Index));
+                Commands.Node.MergeAudio.AppendCopyNodeAttributes(composite, view, command.mNode, empty);
+                Commands.Node.Delete delete = new Commands.Node.Delete(view, command.mNode);
+                delete.UpdateSelection = false;
+                composite.append(delete);
+                return composite;
+            }
+            else
+            {
+                return command;
+            }
         }
     }
 }
