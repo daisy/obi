@@ -79,10 +79,18 @@ namespace Obi
         /// </summary>
         public virtual ObiNode FollowingNodeAfter(int index_after)
         {
-            int index_self = getParent().indexOf(this);
-            return getChildCount() > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
-                index_self < getParent().getChildCount() - 1 ? (ObiNode)getParent().getChild(index_self + 1) :
-                ((ObiNode)getParent()).FollowingNodeAfter(index_self);
+            ObiNode parent = ParentAs<ObiNode>();
+            if (parent != null)
+            {
+                int index_self = parent.indexOf(this);
+                return getChildCount() > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
+                    index_self < getParent().getChildCount() - 1 ? (ObiNode)getParent().getChild(index_self + 1) :
+                    parent.FollowingNodeAfter(index_self);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -259,7 +267,6 @@ namespace Obi
 
         public override ObiNode PrecedingNode { get { return null; } }
         public override ObiNode FollowingNode { get { return null; } }
-        public override ObiNode FollowingNodeAfter(int index) { return null; }
 
         public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
         public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }

@@ -43,6 +43,7 @@ namespace Obi
         public int PreviewDuration;            // playback preview duration in milliseconds
         public ArrayList RecentProjects;       // paths to projects recently opened
         public int SampleRate;                 // sample rate in Hertz
+        public bool SplitPhrasesOnImport;      // split phrases on import
         public bool SynchronizeViews;          // keep views synchronized
         public UserProfile UserProfile;        // the user profile
         public bool WrapStripContents;         // wrap strip contents in the content view
@@ -84,6 +85,7 @@ namespace Obi
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
             settings.SampleRate = 44100;
+            settings.SplitPhrasesOnImport = true;
             settings.SynchronizeViews = true;
             settings.UserProfile = new UserProfile();
             settings.WrapStripContents = false;

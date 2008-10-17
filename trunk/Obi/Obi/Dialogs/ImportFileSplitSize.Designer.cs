@@ -33,63 +33,53 @@ namespace Obi.Dialogs
             this.mPhraseSizeTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
+            this.mSplitCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = null;
-            this.label1.AccessibleName = null;
             resources.ApplyResources(this.label1, "label1");
-            this.label1.Font = null;
             this.label1.Name = "label1";
             // 
             // mPhraseSizeTextBox
             // 
-            this.mPhraseSizeTextBox.AccessibleDescription = null;
             resources.ApplyResources(this.mPhraseSizeTextBox, "mPhraseSizeTextBox");
-            this.mPhraseSizeTextBox.BackgroundImage = null;
             this.mPhraseSizeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPhraseSizeTextBox.Font = null;
             this.mPhraseSizeTextBox.Name = "mPhraseSizeTextBox";
-            this.mPhraseSizeTextBox.TextChanged += new System.EventHandler(this.mPhraseSizeTextBox_TextChanged);
             // 
             // mOKButton
             // 
-            this.mOKButton.AccessibleDescription = null;
-            this.mOKButton.AccessibleName = null;
-            resources.ApplyResources(this.mOKButton, "mOKButton");
-            this.mOKButton.BackgroundImage = null;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mOKButton.Font = null;
+            resources.ApplyResources(this.mOKButton, "mOKButton");
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
             // 
             // mCancelButton
             // 
-            this.mCancelButton.AccessibleDescription = null;
-            this.mCancelButton.AccessibleName = null;
-            resources.ApplyResources(this.mCancelButton, "mCancelButton");
-            this.mCancelButton.BackgroundImage = null;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.mCancelButton.Font = null;
+            resources.ApplyResources(this.mCancelButton, "mCancelButton");
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
+            // 
+            // mSplitCheckBox
+            // 
+            resources.ApplyResources(this.mSplitCheckBox, "mSplitCheckBox");
+            this.mSplitCheckBox.Name = "mSplitCheckBox";
+            this.mSplitCheckBox.UseVisualStyleBackColor = true;
+            this.mSplitCheckBox.CheckedChanged += new System.EventHandler(this.mSplitCheckBox_CheckedChanged);
             // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.mSplitCheckBox);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.mPhraseSizeTextBox);
             this.Controls.Add(this.label1);
-            this.Icon = null;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFileSplitSize";
@@ -108,5 +98,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox mPhraseSizeTextBox;
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
+        private System.Windows.Forms.CheckBox mSplitCheckBox;
     }
 }

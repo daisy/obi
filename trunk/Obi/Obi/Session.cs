@@ -122,9 +122,14 @@ namespace Obi
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
             mChangesCount = 0;
+            Presentation.rootUriChanged += new EventHandler<urakawa.events.presentation.RootUriChangedEventArgs>(Presentation_rootUriChanged);
             Presentation.Initialize(this, title, createTitleSection, id, settings);
             if (ProjectCreated != null) ProjectCreated(this, null);
             ForceSave();
+        }
+
+        private void Presentation_rootUriChanged(object sender, urakawa.events.presentation.RootUriChangedEventArgs e)
+        {
         }
 
         /// <summary>

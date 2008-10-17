@@ -14,26 +14,36 @@ namespace Obi.Dialogs
         private uint mMaxPhraseDurationMinutes;
         private bool mCanClose;
 
-        public ImportFileSplitSize(uint duration)
+        public ImportFileSplitSize(bool split, uint duration)
         {
             InitializeComponent();
+            mSplitCheckBox.Checked = split;
             mMaxPhraseDurationMinutes = duration;
             mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
+            mPhraseSizeTextBox.ReadOnly = !split;
             mCanClose = true;
         }
 
-        public uint MaxPhraseDurationMinutes
-        {
-            get { return mMaxPhraseDurationMinutes; }
-        }
+        /// <summary>
+        /// When set, the user wants the phrases to be split.
+        /// </summary>
+        public bool SplitPhrases { get { return mSplitCheckBox.Checked; } }
 
+        /// <summary>
+        /// Maximum durations of imported phrases.
+        /// </summary>
+        public uint MaxPhraseDurationMinutes { get { return mMaxPhraseDurationMinutes; } }
+
+
+        // Check that the duration is a number.
         private void mOKButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-                        try
+            try
             {
                 uint duration = Convert.ToUInt32(mPhraseSizeTextBox.Text);
                 mMaxPhraseDurationMinutes = duration;
+                if (duration <= 0) throw new Exception();
             }
             catch (System.Exception)
             {
@@ -43,6 +53,7 @@ namespace Obi.Dialogs
             }
         }
 
+        // Check that we have a valid value before we close, otherwise cancel.
         private void ImportFileSplitSize_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!mCanClose)
@@ -52,11 +63,10 @@ namespace Obi.Dialogs
             }
         }
 
-        private void mPhraseSizeTextBox_TextChanged(object sender, EventArgs e)
+        // When not splitting, don't edit the text box.
+        private void mSplitCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            //if (mPhraseSizeTextBox.Text != "" && Convert.ToInt32(mPhraseSizeTextBox.Text) > 30)
-                //mPhraseSizeTextBox.Text = "30";
-
+            mPhraseSizeTextBox.ReadOnly = !mSplitCheckBox.Checked;
         }
     }
 }

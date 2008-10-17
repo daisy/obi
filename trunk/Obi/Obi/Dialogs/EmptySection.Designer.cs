@@ -97,6 +97,8 @@ namespace Obi.Dialogs
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EmptySection";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Section will not be exported";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -189,20 +189,13 @@ namespace Obi
 
         
         /// <summary>
-        /// Creates list of phrases from file being imported
+        /// Creates list of phrases from file being imported. Split by the duration parameter, or not if 0.
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="Duration"></param>
-        /// <returns></returns>
-        public List<PhraseNode> CreatePhraseNodeList(string path, double duration)
+        public List<PhraseNode> CreatePhraseNodeList(string path, double durationMs)
         {
             List<PhraseNode> PhraseList = new List<PhraseNode>();
-            List<ManagedAudioMedia> MediaList = ImportAudioFromFile(path, duration);
-
-            foreach (ManagedAudioMedia m in MediaList)
-            {
-                PhraseList.Add(CreatePhraseNode(m));
-            }
+            List<ManagedAudioMedia> MediaList = ImportAudioFromFile(path, durationMs);
+            foreach (ManagedAudioMedia m in MediaList) PhraseList.Add(CreatePhraseNode(m));
             return PhraseList;
         }
 
@@ -387,23 +380,25 @@ namespace Obi
         }
 
         // Create a list of ManagedAudioMedia from audio file being imported
-        private List<ManagedAudioMedia> ImportAudioFromFile(string path, double duration)
+        // Split by duration, unless 0 or less.
+        private List<ManagedAudioMedia> ImportAudioFromFile(string path, double durationMs)
         {
             ManagedAudioMedia media = ImportAudioFromFile(path);
             double totalDuration = media.getDuration().getTimeDeltaAsMillisecondFloat();
-            int phrases = (int)Math.Floor(totalDuration / duration);
-            double lastPhraseBegin = phrases * duration;
+            // if duration is 0 or less, just one phrase
+            int phrases = durationMs <= 0.0 ? 1 : (int)Math.Floor(totalDuration / durationMs);
+            double lastPhraseBegin = phrases * durationMs;
             double remaining = totalDuration - lastPhraseBegin;
-            if (remaining < duration / 10.0)
+            if (remaining < durationMs / 10.0)
             {
-                lastPhraseBegin -= duration;
+                lastPhraseBegin -= durationMs;
             }
             else
             {
                 ++phrases;
             }
             List<ManagedAudioMedia> audioMediaList = new List<ManagedAudioMedia>(phrases);
-            for (double time = lastPhraseBegin; time > 0.0; time -= duration)
+            for (double time = lastPhraseBegin; time > 0.0; time -= durationMs)
             {
                 audioMediaList.Insert(0, media.split(new urakawa.media.timing.Time(time)));
             }
