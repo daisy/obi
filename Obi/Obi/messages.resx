@@ -1250,4 +1250,7 @@ Error text: {1}</value>
   <data name="recording_resume_check_caption" xml:space="preserve">
     <value>Resume recording from pause position?</value>
   </data>
+  <data name="save_as_progress_dialog_title" xml:space="preserve">
+    <value>Saving project under a new location...</value>
+  </data>
 </root>

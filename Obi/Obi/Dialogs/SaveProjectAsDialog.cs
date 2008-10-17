@@ -50,11 +50,6 @@ namespace Obi.Dialogs
         public string NewProjectPath { get { return mNewProjectPath; } }
 
         /// <summary>
-        /// If true, only save data and project; otherwise, save everything under the original directory.
-        /// </summary>
-        public bool SaveDataAndProjectOnly { get { return mSaveDataOnlyCheckBox.Checked; } }
-
-        /// <summary>
         /// If true, edit new project instead of the old one after saving.
         /// </summary>
         public bool SwitchToNewProject { get { return mSwitchToNewCheckBox.Checked; } }

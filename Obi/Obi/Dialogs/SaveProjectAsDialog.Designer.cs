@@ -35,7 +35,6 @@ namespace Obi.Dialogs
             this.mLocationTextBox = new System.Windows.Forms.TextBox();
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
-            this.mSaveDataOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.mSwitchToNewCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -101,7 +100,7 @@ namespace Obi.Dialogs
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(195, 174);
+            this.mOKButton.Location = new System.Drawing.Point(195, 146);
             this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 28);
@@ -115,7 +114,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(303, 174);
+            this.mCancelButton.Location = new System.Drawing.Point(303, 146);
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
@@ -123,25 +122,13 @@ namespace Obi.Dialogs
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
-            // mSaveDataOnlyCheckBox
-            // 
-            this.mSaveDataOnlyCheckBox.AutoSize = true;
-            this.mSaveDataOnlyCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mSaveDataOnlyCheckBox.Location = new System.Drawing.Point(158, 82);
-            this.mSaveDataOnlyCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.mSaveDataOnlyCheckBox.Name = "mSaveDataOnlyCheckBox";
-            this.mSaveDataOnlyCheckBox.Size = new System.Drawing.Size(221, 20);
-            this.mSaveDataOnlyCheckBox.TabIndex = 6;
-            this.mSaveDataOnlyCheckBox.Text = "Save project and audio &data only";
-            this.mSaveDataOnlyCheckBox.UseVisualStyleBackColor = true;
-            // 
             // mSwitchToNewCheckBox
             // 
             this.mSwitchToNewCheckBox.AutoSize = true;
             this.mSwitchToNewCheckBox.Checked = true;
             this.mSwitchToNewCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mSwitchToNewCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mSwitchToNewCheckBox.Location = new System.Drawing.Point(158, 110);
+            this.mSwitchToNewCheckBox.Location = new System.Drawing.Point(158, 82);
             this.mSwitchToNewCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.mSwitchToNewCheckBox.Name = "mSwitchToNewCheckBox";
             this.mSwitchToNewCheckBox.Size = new System.Drawing.Size(136, 20);
@@ -155,10 +142,9 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(606, 215);
+            this.ClientSize = new System.Drawing.Size(606, 187);
             this.ControlBox = false;
             this.Controls.Add(this.mSwitchToNewCheckBox);
-            this.Controls.Add(this.mSaveDataOnlyCheckBox);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
             this.Controls.Add(this.mLocationTextBox);
@@ -187,7 +173,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox mLocationTextBox;
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
-        private System.Windows.Forms.CheckBox mSaveDataOnlyCheckBox;
         private System.Windows.Forms.CheckBox mSwitchToNewCheckBox;
     }
 }
