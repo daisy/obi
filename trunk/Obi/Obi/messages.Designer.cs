@@ -2145,11 +2145,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recording is being resumed from paused state. Press Yes to resume from position where it was paused. Press No to resume it from current position..
+        ///   Looks up a localized string similar to Recording is being resumed from paused state. Choose Yes to resume from the pause position, or choose No to resume it from the current selection..
         /// </summary>
-        internal static string RecordingResume_Check_Text {
+        internal static string recording_resume_check {
             get {
-                return ResourceManager.GetString("RecordingResume_Check_Text", resourceCulture);
+                return ResourceManager.GetString("recording_resume_check", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume recording from pause position?.
+        /// </summary>
+        internal static string recording_resume_check_caption {
+            get {
+                return ResourceManager.GetString("recording_resume_check_caption", resourceCulture);
             }
         }
         
