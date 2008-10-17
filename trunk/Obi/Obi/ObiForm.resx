@@ -974,46 +974,40 @@
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
     <value>Apply p&amp;hrase detection</value>
   </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Begin audio selection Ctrl+[</value>
   </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+[</value>
   </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+OemOpenBrackets</value>
   </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
   </data>
-  <data name="mBeginInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Text" xml:space="preserve">
     <value>&amp;Begin audio selection</value>
   </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.AccessibleName" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>End audio selection Ctrl+]</value>
   </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+]</value>
   </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Oem6</value>
   </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
   </data>
-  <data name="mEndInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mPhrases_AudioSelection_EndAudioSelectionMenuItem.Text" xml:space="preserve">
     <value>&amp;End audio selection</value>
   </data>
-  <data name="mDeselectInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 22</value>
-  </data>
-  <data name="mDeselectInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Deselect</value>
-  </data>
-  <data name="mInPhraseSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 22</value>
   </data>
-  <data name="mInPhraseSelectionToolStripMenuItem.Text" xml:space="preserve">
+  <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
     <value>Audi&amp;o selection</value>
   </data>
   <data name="mNextTODOPhraseToolStripMenuItem.AccessibleName" xml:space="preserve">
@@ -1555,7 +1549,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.25074, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.34022, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2365,28 +2359,22 @@
   <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mBeginInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mBeginInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelection_BeginAudioSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mBeginInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mEndInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mEndInPhraseSelectionToolStripMenuItem</value>
+  <data name="&gt;&gt;mPhrases_AudioSelection_EndAudioSelectionMenuItem.Name" xml:space="preserve">
+    <value>mPhrases_AudioSelection_EndAudioSelectionMenuItem</value>
   </data>
-  <data name="&gt;&gt;mEndInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mDeselectInPhraseSelectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mDeselectInPhraseSelectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mDeselectInPhraseSelectionToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;mPhrases_AudioSelection_EndAudioSelectionMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mGoToToolStripMenuItem.Name" xml:space="preserve">

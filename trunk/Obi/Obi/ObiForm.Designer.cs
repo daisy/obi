@@ -119,10 +119,9 @@ namespace Obi
             this.mPhrases_EditRolesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mPhraseDetectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mBeginInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mEndInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDeselectInPhraseSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AudioSelection_EndAudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -691,7 +690,7 @@ namespace Obi
             this.mPhrases_EditRolesMenuItem,
             this.toolStripSeparator19,
             this.mPhraseDetectionToolStripMenuItem,
-            this.mInPhraseSelectionToolStripMenuItem,
+            this.mPhrases_AudioSelectionMenuItem,
             this.mGoToToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
@@ -825,32 +824,25 @@ namespace Obi
             this.mPhraseDetectionToolStripMenuItem.Name = "mPhraseDetectionToolStripMenuItem";
             this.mPhraseDetectionToolStripMenuItem.Click += new System.EventHandler(this.PhraseDetectionToolStripMenuItem_Click);
             // 
-            // mInPhraseSelectionToolStripMenuItem
+            // mPhrases_AudioSelectionMenuItem
             // 
-            this.mInPhraseSelectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mBeginInPhraseSelectionToolStripMenuItem,
-            this.mEndInPhraseSelectionToolStripMenuItem,
-            this.mDeselectInPhraseSelectionToolStripMenuItem});
-            this.mInPhraseSelectionToolStripMenuItem.Name = "mInPhraseSelectionToolStripMenuItem";
-            resources.ApplyResources(this.mInPhraseSelectionToolStripMenuItem, "mInPhraseSelectionToolStripMenuItem");
+            this.mPhrases_AudioSelectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem,
+            this.mPhrases_AudioSelection_EndAudioSelectionMenuItem});
+            this.mPhrases_AudioSelectionMenuItem.Name = "mPhrases_AudioSelectionMenuItem";
+            resources.ApplyResources(this.mPhrases_AudioSelectionMenuItem, "mPhrases_AudioSelectionMenuItem");
             // 
-            // mBeginInPhraseSelectionToolStripMenuItem
+            // mPhrases_AudioSelection_BeginAudioSelectionMenuItem
             // 
-            resources.ApplyResources(this.mBeginInPhraseSelectionToolStripMenuItem, "mBeginInPhraseSelectionToolStripMenuItem");
-            this.mBeginInPhraseSelectionToolStripMenuItem.Name = "mBeginInPhraseSelectionToolStripMenuItem";
-            this.mBeginInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.BeginInPhraseSelectionToolStripMenuItem_Click);
+            resources.ApplyResources(this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem, "mPhrases_AudioSelection_BeginAudioSelectionMenuItem");
+            this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Name = "mPhrases_AudioSelection_BeginAudioSelectionMenuItem";
+            this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Click += new System.EventHandler(this.mPhrases_AudioSelection_BeginAudioSelectionMenuItem_Click);
             // 
-            // mEndInPhraseSelectionToolStripMenuItem
+            // mPhrases_AudioSelection_EndAudioSelectionMenuItem
             // 
-            resources.ApplyResources(this.mEndInPhraseSelectionToolStripMenuItem, "mEndInPhraseSelectionToolStripMenuItem");
-            this.mEndInPhraseSelectionToolStripMenuItem.Name = "mEndInPhraseSelectionToolStripMenuItem";
-            this.mEndInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.EndInPhraseSelectionToolStripMenuItem_Click);
-            // 
-            // mDeselectInPhraseSelectionToolStripMenuItem
-            // 
-            this.mDeselectInPhraseSelectionToolStripMenuItem.Name = "mDeselectInPhraseSelectionToolStripMenuItem";
-            resources.ApplyResources(this.mDeselectInPhraseSelectionToolStripMenuItem, "mDeselectInPhraseSelectionToolStripMenuItem");
-            this.mDeselectInPhraseSelectionToolStripMenuItem.Click += new System.EventHandler(this.DeselectInPhraseSelectionToolStripMenuItem_Click);
+            resources.ApplyResources(this.mPhrases_AudioSelection_EndAudioSelectionMenuItem, "mPhrases_AudioSelection_EndAudioSelectionMenuItem");
+            this.mPhrases_AudioSelection_EndAudioSelectionMenuItem.Name = "mPhrases_AudioSelection_EndAudioSelectionMenuItem";
+            this.mPhrases_AudioSelection_EndAudioSelectionMenuItem.Click += new System.EventHandler(this.mPhrases_AudioSelection_EndAudioSelectionMenuItem_Click);
             // 
             // mGoToToolStripMenuItem
             // 
@@ -1337,10 +1329,9 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPreviewFromToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviewUpToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviewSelectedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mBeginInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mEndInPhraseSelectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mDeselectInPhraseSelectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AudioSelectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AudioSelection_BeginAudioSelectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AudioSelection_EndAudioSelectionMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mTools_PreferencesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSectionsToolStripMenuItem;
