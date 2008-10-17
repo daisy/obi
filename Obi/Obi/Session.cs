@@ -98,8 +98,7 @@ namespace Obi
             {
                 // if the project could not be opened, there is no presentation so this call may fail
                 Presentation presentation = null;
-                try { presentation = Presentation; }
-                catch (Exception) { }
+                try { presentation = Presentation; } catch (Exception) { }
                 mProject = null;
                 mPath = null;
                 mChangesCount = 0;
@@ -122,14 +121,10 @@ namespace Obi
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
             mChangesCount = 0;
-            Presentation.rootUriChanged += new EventHandler<urakawa.events.presentation.RootUriChangedEventArgs>(Presentation_rootUriChanged);
             Presentation.Initialize(this, title, createTitleSection, id, settings);
+            Presentation.setRootUri(new Uri(path));
             if (ProjectCreated != null) ProjectCreated(this, null);
             ForceSave();
-        }
-
-        private void Presentation_rootUriChanged(object sender, urakawa.events.presentation.RootUriChangedEventArgs e)
-        {
         }
 
         /// <summary>
@@ -157,7 +152,7 @@ namespace Obi
         /// </summary>
         public void ForceSave()
         {
-            SaveAs(mPath);
+            Save(mPath);
             mChangesCount = 0;
             if (ProjectSaved != null) ProjectSaved(this, null);
         }
@@ -166,8 +161,9 @@ namespace Obi
         /// Save the project under a given location (used by save for the regular location,
         /// or save as for a different location.)
         /// </summary>
-        public void SaveAs(string path)
+        public void Save(string path)
         {
+            Uri prevRootUri = Presentation.getRootUri();
             // Make sure that saving is finished before returning
             System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
             urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
