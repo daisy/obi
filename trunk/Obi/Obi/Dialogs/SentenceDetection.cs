@@ -42,7 +42,11 @@ namespace Obi.Dialogs
 
             if (silence != null)
                 {
-                                mThresholdNumericBox.Value = Audio.PhraseDetection.GetSilenceAmplitude ( silence.Audio );
+                double threshold = Audio.PhraseDetection.GetSilenceAmplitude ( silence.Audio );
+                if (threshold > Convert.ToDouble( mThresholdNumericBox.Maximum)) 
+                    threshold = Convert.ToDouble( mThresholdNumericBox.Maximum) ;
+
+                                mThresholdNumericBox.Value = Convert.ToDecimal ( threshold) ;
                 }
             else
                 {
