@@ -380,7 +380,11 @@ namespace Obi
                     DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
                     DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
                     ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
-                    mSession.SaveAs(path_new);
+                    Uri prevUri = mSession.Presentation.getRootUri();
+                    mSession.Presentation.setRootUri(new Uri(path_new));
+                    mSession.Save(path_new);
+                    // Horrible hacky kludge
+                    try { mSession.Presentation.setRootUri(prevUri); } catch (Exception) { }
                     if (!dialog.SaveDataAndProjectOnly)
                     {
                         DirectoryInfo[] dirs = dir_original.GetDirectories("*.*", SearchOption.AllDirectories);
@@ -1531,7 +1535,7 @@ namespace Obi
         {
             Text = mSession.HasProject ?
                 String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
-                    (mSession.CanSave ? "*" : ""), Localizer.Message("obi")) :
+                    (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi")) :
                 Localizer.Message("obi");
         }
 
