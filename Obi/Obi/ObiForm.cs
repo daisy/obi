@@ -724,7 +724,6 @@ namespace Obi
             mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView && mProjectView.CanToggleFocusToContentsView;
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
-            mShowOnlySelectedSectionToolStripMenuItem.Enabled = mProjectView.CanShowOnlySelectedSection;
             mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
@@ -776,15 +775,6 @@ namespace Obi
         private void mSynchronizeViewsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             SynchronizeViews = mSynchronizeViewsToolStripMenuItem.Checked;
-        }
-
-        // Check/uncheck "Show only selected section"
-        private void mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mProjectView.CanShowOnlySelectedSection)
-            {
-                mProjectView.ShowOnlySelectedSection = mShowOnlySelectedSectionToolStripMenuItem.Checked;
-            }
         }
 
         // Check/uncheck "Wrapping in content view"
@@ -1322,7 +1312,6 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
             mSession.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
             mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
-            mShowOnlySelectedSectionToolStripMenuItem.Checked = false;
             UpdateCustomClassMenu();
         }
 

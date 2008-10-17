@@ -509,21 +509,6 @@
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;ynchronize views</value>
   </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Show only selected section F5</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>F5</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
-  </data>
-  <data name="mShowOnlySelectedSectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show only &amp;selected section</value>
-  </data>
   <data name="mWrappingInContentViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Wrapping in content view W Ctrl+Alt+W</value>
   </data>
@@ -1570,7 +1555,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.16562, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.22311, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2090,18 +2075,6 @@
     <value>mSynchronizeViewsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
-    <value>toolStripSeparator8</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mShowOnlySelectedSectionToolStripMenuItem.Name" xml:space="preserve">
-    <value>mShowOnlySelectedSectionToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mShowOnlySelectedSectionToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mWrappingInContentViewToolStripMenuItem.Name" xml:space="preserve">
