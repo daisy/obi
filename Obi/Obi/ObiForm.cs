@@ -857,33 +857,20 @@ namespace Obi
 
         private void UpdateAudioSelectionBlockMenuItems()
         {
-            //string AudioSelectionStatusMessage = "";
             if (mProjectView.Selection is AudioSelection)
             {
-                mBeginInPhraseSelectionToolStripMenuItem.Enabled = true;
-
+                mPhrases_AudioSelectionMenuItem.Enabled = true;
+                mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Enabled = true;
                 if (((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
                 {
-                    mEndInPhraseSelectionToolStripMenuItem.Enabled = true;
-                }
-
-                if (((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime > 0)
-                {
-                    mDeselectInPhraseSelectionToolStripMenuItem.Enabled = true;
-                    string BeginTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionBeginTime / 1000, 1).ToString();
-                    string EndTime = Math.Round(((AudioSelection)mProjectView.Selection).AudioRange.SelectionEndTime / 1000, 1).ToString();
-
-                }
-                else
-                {
-                    mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                    mPhrases_AudioSelection_EndAudioSelectionMenuItem.Enabled = true;
                 }
             }
             else
             {
-                mBeginInPhraseSelectionToolStripMenuItem.Enabled = false;
-                mEndInPhraseSelectionToolStripMenuItem.Enabled = false;
-                mDeselectInPhraseSelectionToolStripMenuItem.Enabled = false;
+                mPhrases_AudioSelectionMenuItem.Enabled = false;
+                mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Enabled = false;
+                mPhrases_AudioSelection_EndAudioSelectionMenuItem.Enabled = false;
             }
         }
 
@@ -1102,22 +1089,15 @@ namespace Obi
             mProjectView.ApplyPhraseDetection();
         }
 
-        private void BeginInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_AudioSelection_BeginAudioSelectionMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.TransportBar.MarkSelectionBeginTime();
             UpdateAudioSelectionBlockMenuItems();
         }
 
-        private void EndInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_AudioSelection_EndAudioSelectionMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.TransportBar.MarkSelectionEndTime();
-            UpdateAudioSelectionBlockMenuItems();
-        }
-
-        // TODO Remove this
-        private void DeselectInPhraseSelectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.DeselectAudio();
             UpdateAudioSelectionBlockMenuItems();
         }
 
