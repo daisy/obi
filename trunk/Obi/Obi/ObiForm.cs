@@ -377,28 +377,30 @@ namespace Obi
                     {
                         mSession.ForceSave();
                     }
-                    DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
-                    DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
-                    ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
-                    Uri prevUri = mSession.Presentation.getRootUri();
-                    mSession.Presentation.setRootUri(new Uri(path_new));
-                    mSession.Save(path_new);
-                    // Horrible hacky kludge
-                    try { mSession.Presentation.setRootUri(prevUri); } catch (Exception) { }
-                    if (!dialog.SaveDataAndProjectOnly)
-                    {
-                        DirectoryInfo[] dirs = dir_original.GetDirectories("*.*", SearchOption.AllDirectories);
-                        foreach (DirectoryInfo d in dirs)
+                    ProgressDialog progress = new ProgressDialog(Localizer.Message("save_as_progress_dialog_title"),
+                        delegate()
                         {
-                            string dest = dir_new.FullName + d.FullName.Replace(dir_original.FullName, "");
-                            if (!Directory.Exists(dest))
+                            DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
+                            DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
+                            ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
+                            DirectoryInfo[] dirs = dir_original.GetDirectories("*.*", SearchOption.AllDirectories);
+                            foreach (DirectoryInfo d in dirs)
                             {
-                                Directory.CreateDirectory(dest);
-                                // copy files in each directory
-                                ShallowCopyFilesInDirectory(d.FullName, dest);
+                                string dest = dir_new.FullName + d.FullName.Replace(dir_original.FullName, "");
+                                if (!Directory.Exists(dest))
+                                {
+                                    Directory.CreateDirectory(dest);
+                                    // copy files in each directory
+                                    ShallowCopyFilesInDirectory(d.FullName, dest);
+                                }
                             }
-                        }
-                    }
+                            Uri prevUri = mSession.Presentation.getRootUri();
+                            mSession.Presentation.setRootUri(new Uri(path_new));
+                            mSession.Save(path_new);
+                            mSession.Presentation.setRootUri(prevUri);
+                        });
+                    progress.ShowDialog();
+                    if (progress.Exception != null) throw progress.Exception;
                     if (dialog.SwitchToNewProject) CloseAndOpenProject(path_new);
                 }
                 catch (Exception e)

@@ -2325,6 +2325,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saving project under a new location....
+        /// </summary>
+        internal static string save_as_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("save_as_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to save changes before saving project to a new location? .
         /// </summary>
         internal static string save_before_save_as {
