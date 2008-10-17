@@ -45,7 +45,7 @@ namespace Obi.Commands.Node
             mNode.SetKind(mNodeKind, mCustomClass);
             if (mOldNodeKind == EmptyNode.Kind.Custom) View.Presentation.RemoveCustomClass(mOldCustomClass, mNode);
             if (mNodeKind == EmptyNode.Kind.Custom) View.Presentation.AddCustomClass(mCustomClass, mNode);
-            View.SelectedBlockNode = mNode;
+            if (UpdateSelection) View.SelectedBlockNode = mNode;
         }
 
         public override void unExecute()

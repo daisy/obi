@@ -1127,20 +1127,22 @@ namespace Obi.ProjectView
                 if (paths != null)
                 {
                     Dialogs.ImportFileSplitSize dialog =
-                        new Dialogs.ImportFileSplitSize(ObiForm.Settings.MaxPhraseDurationMinutes);
+                        new Dialogs.ImportFileSplitSize(ObiForm.Settings.SplitPhrasesOnImport,
+                            ObiForm.Settings.MaxPhraseDurationMinutes);
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
-                        double duration = dialog.MaxPhraseDurationMinutes * 60000.0;  // convert from minutes to milliseconds
+                        ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
+                        // convert from minutes to milliseconds
+                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
                         List<PhraseNode> phraseNodes = new List<PhraseNode>(paths.Length);
-                        // new Dialogs.ImportAudioProgressDialog(mPresentation, paths, duration);
                         Dialogs.ProgressDialog progress =
                             new Dialogs.ProgressDialog(Localizer.Message("import_audio_progress_dialog_title"),
                                 delegate()
                                 {
                                     foreach (string path in paths)
                                     {
-                                        List<PhraseNode> phrases = mPresentation.CreatePhraseNodeList(path, duration);
+                                        List<PhraseNode> phrases = mPresentation.CreatePhraseNodeList(path, durationMs);
                                         foreach (PhraseNode p in phrases)
                                         {
                                             try
@@ -1382,7 +1384,9 @@ namespace Obi.ProjectView
                         if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
                             ((EmptyNode)n).PageNumber.Kind == number.Kind)
                         {
-                            cmd.append(new Commands.Node.SetPageNumber(this, (EmptyNode)n, number));
+                            Commands.Node.SetPageNumber c = new Commands.Node.SetPageNumber(this, (EmptyNode)n, number);
+                            c.UpdateSelection = false;
+                            cmd.append(c);
                             number = number.NextPageNumber();
                         }
                     }
