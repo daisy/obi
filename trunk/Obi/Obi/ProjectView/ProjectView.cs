@@ -409,6 +409,11 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool CanDeleteMetadataEntry(urakawa.metadata.Metadata m)
+        {
+            return mPresentation.getListOfMetadata().Contains(m);
+        }
+
         /// <summary>
         /// Delete all unused nodes.
         /// </summary>
