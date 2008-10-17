@@ -71,8 +71,6 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.mShowOnlySelectedSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -415,8 +413,6 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.mShowOnlySelectedSectionToolStripMenuItem,
             this.mWrappingInContentViewToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
@@ -502,18 +498,6 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
             this.mSynchronizeViewsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_CheckedChanged);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
-            // 
-            // mShowOnlySelectedSectionToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mShowOnlySelectedSectionToolStripMenuItem, "mShowOnlySelectedSectionToolStripMenuItem");
-            this.mShowOnlySelectedSectionToolStripMenuItem.CheckOnClick = true;
-            this.mShowOnlySelectedSectionToolStripMenuItem.Name = "mShowOnlySelectedSectionToolStripMenuItem";
-            this.mShowOnlySelectedSectionToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mShowOnlySelectedSectionToolStripMenuItem_CheckedChanged);
             // 
             // mWrappingInContentViewToolStripMenuItem
             // 
@@ -1373,9 +1357,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mSectionIsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem mPlayOnNavigateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowOnlySelectedSectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mWrappingInContentViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mGoToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mNextTODOPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPreviousTODOPhraseToolStripMenuItem;

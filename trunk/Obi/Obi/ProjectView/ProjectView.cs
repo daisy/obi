@@ -14,7 +14,6 @@ namespace Obi.ProjectView
         private Presentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
         private Clipboard mClipboard;        // the clipboard
-        private bool mShowOnlySelected;      // show only selected section
         private bool mSynchronizeViews;      // synchronize views flag
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
@@ -744,7 +743,6 @@ namespace Obi.ProjectView
                     }
                     // select in the control
                     mSelection = value;
-                    UpdateShowOnlySelected(mSelection == null ? false : mShowOnlySelected);
                     if (mSelection != null)
                     {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
@@ -786,15 +784,6 @@ namespace Obi.ProjectView
                     }, delegate(urakawa.core.TreeNode n) { }
                 );
                 Presentation.getUndoRedoManager().execute(command);
-            }
-        }
-
-        public bool ShowOnlySelectedSection
-        {
-            set
-            {
-                mShowOnlySelected = value;
-                UpdateShowOnlySelected(value);
             }
         }
 
@@ -869,7 +858,7 @@ namespace Obi.ProjectView
             set
             {
                 mSynchronizeViews = value;
-                if (!mShowOnlySelected || !CanShowOnlySelectedSection)
+                if (!CanShowOnlySelectedSection)
                 {
                     if (mSynchronizeViews)
                     {
