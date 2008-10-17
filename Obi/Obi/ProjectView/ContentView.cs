@@ -23,8 +23,9 @@ namespace Obi.ProjectView
         private bool mWrapStripContents;                             // wrapping of strip contents
         private bool mIsEnteringView;                                // flag set when entering the  view
 
-        private PriorityQueue<Waveform, int> mWaveformRenderQ;  // queue of waveforms to render
-        private BackgroundWorker mWaveformRenderWorker;                // current waveform rendering worker
+        private Dictionary<SectionNode, Strip> mStrips;              // strips for sections (reuse old strips instead of redrawing)
+        private PriorityQueue<Waveform, int> mWaveformRenderQ;       // queue of waveforms to render
+        private BackgroundWorker mWaveformRenderWorker;              // current waveform rendering worker
 
         // cursor stuff
         private AudioBlock mPlaybackBlock;
@@ -48,6 +49,7 @@ namespace Obi.ProjectView
             mFocusing = false;
             mIsEnteringView = false;
             mWrapStripContents = false;
+            mStrips = new Dictionary<SectionNode, Strip>();
             mWaveformRenderQ = new PriorityQueue<Waveform, int>();
             mWaveformRenderWorker = null;
             SetPlaybackPhraseAndTime(null, 0.0);
@@ -547,15 +549,23 @@ namespace Obi.ProjectView
             Strip strip = null;
             if (node is SectionNode)
             {
-                strip = new Strip((SectionNode)node, this);
-                strip.WrapContents = mWrapStripContents;
-                strip.ColorSettings = ColorSettings;
+                if (mStrips.ContainsKey((SectionNode)node))
+                {
+                    strip = mStrips[(SectionNode)node];
+                }
+                else
+                {
+                    strip = new Strip((SectionNode)node, this);
+                    mStrips[(SectionNode)node] = strip;
+                    strip.WrapContents = mWrapStripContents;
+                    strip.ColorSettings = ColorSettings;
+                    for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
+                }
                 Controls.Add(strip);
                 SetFlowBreak(strip, true);
-                Controls.SetChildIndex(strip, ((SectionNode)node).Position);
+                Controls.SetChildIndex(strip, ((SectionNode)node).Position);                
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
-            for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
             return strip;
         }
 
