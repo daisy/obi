@@ -1282,7 +1282,11 @@ namespace Obi.ProjectView
 
         public void ToggleEmptyNodeTo_DoMark()
         {
-            if (IsBlockSelected)
+        if (TransportBar.Enabled)
+            {
+            TransportBar.MarkTodo ();
+            }
+        else if (IsBlockSelected)
             {
                 EmptyNode node = (EmptyNode)Selection.Node;
                 Commands.Node.ToggleNodeTODO command = new Commands.Node.ToggleNodeTODO(this, node);

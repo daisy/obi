@@ -1726,7 +1726,7 @@ namespace Obi.ProjectView
 
         private void mToDoMarkButton_Click ( object sender, EventArgs e ) 
         {
-            MarkTodo();
+                    MarkTodo();
         }
 
         /// <summary>
@@ -1753,6 +1753,13 @@ namespace Obi.ProjectView
                     mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
                     mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
+            }
+        else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
+            {
+            node  = (EmptyNode)mView.Selection.Node;
+            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTODO ( mView, node ) );
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             }
         }
 
