@@ -133,7 +133,7 @@ namespace Obi.ProjectView
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
         public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Monitoring ) ; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
-        public bool CanResumeRecording { get { return Enabled && mState == State.Monitoring && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
+        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
@@ -981,6 +981,7 @@ namespace Obi.ProjectView
 
             // warning message while resuming recording
             if ((mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted) &&
+                mView.Selection.Node != null && mView.Selection.Node != mResumeRecordingPhrase &&
                 MessageBox.Show(Localizer.Message("recording_resume_check"),
                     Localizer.Message("recording_resume_check_caption"),
                     MessageBoxButtons.YesNo,
