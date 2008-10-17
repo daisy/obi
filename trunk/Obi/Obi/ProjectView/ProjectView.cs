@@ -140,7 +140,7 @@ namespace Obi.ProjectView
                 }
                 CompositeCommand command = mPresentation.CreateCompositeCommand(add.getShortDescription());
                 SectionNode selected = mContentView.Selection.Node is SectionNode ?
-                    mContentView.SelectedSection : mContentView.Selection.Node.ParentAs<SectionNode>();
+                    (SectionNode)mContentView.Selection.Node : mContentView.Selection.Node.ParentAs<SectionNode>();
                 command.append(add);
                 for (int i = selected.SectionChildCount - 1; i >= 0; --i)
                 {

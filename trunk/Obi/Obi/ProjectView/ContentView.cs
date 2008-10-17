@@ -65,12 +65,18 @@ namespace Obi.ProjectView
         public bool CanRemoveStrip { get { return IsStripSelected; } }
         public bool CanRenameStrip { get { return IsStripSelected; } }
 
+        /// <summary>
+        /// Can split strip when a phrase is selected (but not the first), or at a strip index
+        /// (but neither first nor last.)
+        /// </summary>
         public bool CanSplitStrip
         {
             get
             {
-                return (IsBlockSelected && SelectedEmptyNode.Index >= 0)                        // block selected
-                    || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0);  // strip cursor selected
+                return (IsBlockSelected && SelectedEmptyNode.Index >= 0)
+                    || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0 &&
+                        ((StripIndexSelection)mSelection).Index <
+                            ((StripIndexSelection)mSelection).Section.PhraseChildCount); 
             }
         }
 
