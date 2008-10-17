@@ -1147,8 +1147,8 @@ Error text: {1}</value>
   <data name="Pipeline_InvalidScriptsParameters" xml:space="preserve">
     <value>One or more parameters are invalid. Please enter correct values</value>
   </data>
-  <data name="RecordingResume_Check_Text" xml:space="preserve">
-    <value>Recording is being resumed from paused state. Press Yes to resume from position where it was paused. Press No to resume it from current position.</value>
+  <data name="recording_resume_check" xml:space="preserve">
+    <value>Recording is being resumed from paused state. Choose Yes to resume from the pause position, or choose No to resume it from the current selection.</value>
   </data>
   <data name="duration_hh_mm_ss" xml:space="preserve">
     <value>{0:00}:{1:00}:{2:00}</value>
@@ -1246,5 +1246,8 @@ Error text: {1}</value>
   <data name="toggle_TODO" xml:space="preserve">
     <value>toggle TODO</value>
     <comment>Command</comment>
+  </data>
+  <data name="recording_resume_check_caption" xml:space="preserve">
+    <value>Resume recording from pause position?</value>
   </data>
 </root>

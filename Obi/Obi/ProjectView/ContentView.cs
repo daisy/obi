@@ -748,11 +748,15 @@ namespace Obi.ProjectView
 
         public void SelectAndRename(ObiNode node)
         {
-            DoToNewNode(node, delegate()
+            SectionNode section = node as SectionNode;
+            if (section != null)
             {
-                mProjectView.Selection = new NodeSelection(node, this);
-                FindStrip((SectionNode)node).StartRenaming();
-            });
+                DoToNewNode(node, delegate()
+                {
+                    mProjectView.Selection = new NodeSelection(section, this);
+                    FindStrip(section).StartRenaming();
+                });
+            }
         }
 
         private delegate void DoToNewNodeDelegate();
