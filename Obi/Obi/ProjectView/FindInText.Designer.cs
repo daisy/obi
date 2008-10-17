@@ -28,64 +28,66 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindInText));
-            this.mString = new System.Windows.Forms.TextBox();
-            this.mPreviousButton = new System.Windows.Forms.Button();
-            this.mNextButton = new System.Windows.Forms.Button();
-            this.mCloseButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // mString
-            // 
-            resources.ApplyResources(this.mString, "mString");
-            this.mString.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mString.Name = "mString";
-            this.mString.TextChanged += new System.EventHandler(this.mString_TextChanged);
-            this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mString_KeyDown);
-            this.mString.Enter += new System.EventHandler(this.mString_Enter);
-            // 
-            // mPreviousButton
-            // 
-            resources.ApplyResources(this.mPreviousButton, "mPreviousButton");
-            this.mPreviousButton.Name = "mPreviousButton";
-            this.mPreviousButton.UseVisualStyleBackColor = true;
-            // 
-            // mNextButton
-            // 
-            resources.ApplyResources(this.mNextButton, "mNextButton");
-            this.mNextButton.Name = "mNextButton";
-            this.mNextButton.UseVisualStyleBackColor = true;
-            // 
-            // mCloseButton
-            // 
-            resources.ApplyResources(this.mCloseButton, "mCloseButton");
-            this.mCloseButton.Name = "mCloseButton";
-            this.mCloseButton.UseVisualStyleBackColor = true;
-            this.mCloseButton.Click += new System.EventHandler(this.mCloseButton_Click);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // FindInText
-            // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Honeydew;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.mCloseButton);
-            this.Controls.Add(this.mNextButton);
-            this.Controls.Add(this.mPreviousButton);
-            this.Controls.Add(this.mString);
-            this.Name = "FindInText";
-            this.Leave += new System.EventHandler(this.FindInText_Leave);
-            this.FontChanged += new System.EventHandler(this.FindInText_FontChanged);
-            this.Enter += new System.EventHandler(this.FindInText_Enter);
-            this.SizeChanged += new System.EventHandler(this.FindInText_SizeChanged);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager ( typeof ( FindInText ) );
+        this.mString = new System.Windows.Forms.TextBox ();
+        this.mPreviousButton = new System.Windows.Forms.Button ();
+        this.mNextButton = new System.Windows.Forms.Button ();
+        this.mCloseButton = new System.Windows.Forms.Button ();
+        this.label1 = new System.Windows.Forms.Label ();
+        this.SuspendLayout ();
+        // 
+        // mString
+        // 
+        resources.ApplyResources ( this.mString, "mString" );
+        this.mString.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        this.mString.Name = "mString";
+        this.mString.TextChanged += new System.EventHandler ( this.mString_TextChanged );
+        this.mString.KeyDown += new System.Windows.Forms.KeyEventHandler ( this.mString_KeyDown );
+        this.mString.Enter += new System.EventHandler ( this.mString_Enter );
+        // 
+        // mPreviousButton
+        // 
+        resources.ApplyResources ( this.mPreviousButton, "mPreviousButton" );
+        this.mPreviousButton.Name = "mPreviousButton";
+        this.mPreviousButton.UseVisualStyleBackColor = true;
+            this.mPreviousButton.Click +=  new System.EventHandler(mPreviousButton_Click);
+        // 
+        // mNextButton
+        // 
+        resources.ApplyResources ( this.mNextButton, "mNextButton" );
+        this.mNextButton.Name = "mNextButton";
+        this.mNextButton.UseVisualStyleBackColor = true;
+        this.mNextButton.Click += new System.EventHandler ( this.mNextButton_Click );
+        // 
+        // mCloseButton
+        // 
+        resources.ApplyResources ( this.mCloseButton, "mCloseButton" );
+        this.mCloseButton.Name = "mCloseButton";
+        this.mCloseButton.UseVisualStyleBackColor = true;
+        this.mCloseButton.Click += new System.EventHandler ( this.mCloseButton_Click );
+        // 
+        // label1
+        // 
+        resources.ApplyResources ( this.label1, "label1" );
+        this.label1.Name = "label1";
+        // 
+        // FindInText
+        // 
+        resources.ApplyResources ( this, "$this" );
+        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.BackColor = System.Drawing.Color.Honeydew;
+        this.Controls.Add ( this.label1 );
+        this.Controls.Add ( this.mCloseButton );
+        this.Controls.Add ( this.mNextButton );
+        this.Controls.Add ( this.mPreviousButton );
+        this.Controls.Add ( this.mString );
+        this.Name = "FindInText";
+        this.Leave += new System.EventHandler ( this.FindInText_Leave );
+        this.FontChanged += new System.EventHandler ( this.FindInText_FontChanged );
+        this.Enter += new System.EventHandler ( this.FindInText_Enter );
+        this.SizeChanged += new System.EventHandler ( this.FindInText_SizeChanged );
+        this.ResumeLayout ( false );
+        this.PerformLayout ();
 
         }
 
