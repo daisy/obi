@@ -35,7 +35,6 @@ namespace Obi.PipelineInterface.ParameterControls
             // mComboBox
             // 
             this.mComboBox.AccessibleRole = System.Windows.Forms.AccessibleRole.ComboBox;
-            this.mComboBox.AllowDrop = true;
             this.mComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -50,7 +49,7 @@ namespace Obi.PipelineInterface.ParameterControls
             // 
             this.mNiceNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mNiceNameLabel.AutoSize = true;
-            this.mNiceNameLabel.Location = new System.Drawing.Point(4, 23);
+            this.mNiceNameLabel.Location = new System.Drawing.Point(3, 23);
             this.mNiceNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mNiceNameLabel.Name = "mNiceNameLabel";
             this.mNiceNameLabel.Size = new System.Drawing.Size(39, 16);

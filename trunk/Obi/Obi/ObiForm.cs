@@ -1878,11 +1878,14 @@ namespace Obi
         {
             try
             {
-                PipelineInterface.PipelineInterfaceForm PipelineForm = new PipelineInterface.PipelineInterfaceForm(
+                PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(
                     mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName,
                     Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"),
                     Directory.GetParent(mSession.Path).FullName);
-                if (PipelineForm.ShowDialog() == DialogResult.OK) PipelineForm.RunScript();
+                ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem)sender).Text,
+                    delegate() { if (pipeline.ShowDialog() == DialogResult.OK) pipeline.RunScript(); });
+                progress.Show();
+                if (progress.Exception != null) throw progress.Exception;
             }
             catch (Exception x)
             {
