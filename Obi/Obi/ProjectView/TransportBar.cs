@@ -1082,7 +1082,7 @@ namespace Obi.ProjectView
             {
                 if (emptyNode != null && e.PhraseIndex == 0)
                 {
-                    phrase.CopyKind(emptyNode);
+                    phrase.CopyAttributes(emptyNode);
                     phrase.Used = emptyNode.Used;
                     command.append(new Commands.Node.Delete(mView, emptyNode));
                     command.append(add);
@@ -1869,7 +1869,7 @@ namespace Obi.ProjectView
                     
                 for (int i = 0; i < node.PhraseChildCount ; i++)
                 {
-                    if (((EmptyNode)node.PhraseChild(i)).NodeKind == EmptyNode.Kind.Heading)
+                    if (((EmptyNode)node.PhraseChild(i)).Role_ == EmptyNode.Role.Heading)
                     {
                         ENode = node.PhraseChild(i);
                                                 break;

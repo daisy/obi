@@ -26,7 +26,7 @@ namespace Obi.Commands.Node
             if (mCopy is PhraseNode && view.Selection.Node.GetType() == typeof(EmptyNode))
             {
                 mDeleteSelectedBlock = true;
-                ((PhraseNode)mCopy).CopyKind((EmptyNode)view.Selection.Node);
+                ((PhraseNode)mCopy).CopyAttributes((EmptyNode)view.Selection.Node);
                 mCopy.Used = view.Selection.Node.Used;
             }
             else
@@ -55,8 +55,8 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mParent.Insert(mCopy, mIndex);
-                        if (UpdateSelection) View.Selection = mSelection;
-            if ( mParent != null &&  mParent is SectionNode )  View.UpdateBlocksLabelInStrip( (SectionNode) mParent);
+            if (UpdateSelection) View.Selection = mSelection;
+            if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
 
         public override void unExecute()

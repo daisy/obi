@@ -1090,7 +1090,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
                         mProjectView.Selection = new NodeSelection(n, this);
                         return true;
@@ -1109,7 +1109,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
                         mProjectView.Selection = new NodeSelection(n, this);
                         return true;
@@ -1129,7 +1129,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
                         mProjectView.Selection = new NodeSelection(n, this);
                         return true;
@@ -1150,7 +1150,7 @@ namespace Obi.ProjectView
             {
                 for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                 {
-                    if (n is EmptyNode && ((EmptyNode)n).NodeKind != EmptyNode.Kind.Plain)
+                    if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
                         mProjectView.Selection = new NodeSelection(n, this);
                         return true;
@@ -1377,8 +1377,13 @@ null;
             Context_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
             Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
             Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;
-            Context_AssignRoleMenuItem.Enabled = mProjectView.CanAssignRole;
-            Context_ClearRoleMenuItem.Enabled = mProjectView.CanClearRole;
+            Context_AssignRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            Context_AssignRole_PlainMenuItem.Enabled = mProjectView.CanAssignPlainRole;
+            Context_AssignRole_HeadingMenuItem.Enabled = mProjectView.CanAssignHeadingRole;
+            Context_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
+            Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
+            Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_CutMenuItem.Enabled = CanRemoveAudio || CanRemoveBlock || CanRemoveStrip;
             Context_CopyMenuItem.Enabled = CanCopyAudio || CanCopyBlock || CanCopyStrip;
@@ -1445,33 +1450,33 @@ null;
         // Assign role > Plain context menu item
         private void Context_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+            if (mProjectView.CanAssignPlainRole) mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
         }
 
         private void Context_AssignRole_HeadingMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Heading, null);
+            if (mProjectView.CanAssignHeadingRole) mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Heading, null);
         }
 
         private void Context_AssignRole_PageMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetPageNumberOnSelection();
+            if (mProjectView.CanAssignARole) mProjectView.SetPageNumberOnSelection();
         }
 
         private void Context_AssignRole_SilenceMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Silence, null);
+            if (mProjectView.CanAssignSilenceRole) mProjectView.SetSilenceRoleForSelectedPhrase();
         }
 
         private void Context_AssignRole_NewCustomRoleMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.ShowPhrasePropertiesDialog(true);
+            if (mProjectView.CanAssignARole) mProjectView.ShowPhrasePropertiesDialog(true);
         }
 
         // Clear role context menu item
         private void Context_ClearRoleMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+            mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
         }
 
         // Apply phrase detection context menu item

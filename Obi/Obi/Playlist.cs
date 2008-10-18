@@ -124,7 +124,7 @@ namespace Obi
         public PhraseNode NextPage(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) + 1;
-            for (; index < mPhrases.Count && mPhrases[index].NodeKind != EmptyNode.Kind.Page; ++index) { }
+            for (; index < mPhrases.Count && mPhrases[index].Role_ != EmptyNode.Role.Page; ++index) { }
             return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
         }
 
@@ -147,7 +147,7 @@ namespace Obi
         public PhraseNode PrevPage(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) - 1;
-            for (; index >= 0 && mPhrases[index].NodeKind != EmptyNode.Kind.Page; --index) { }
+            for (; index >= 0 && mPhrases[index].Role_ != EmptyNode.Role.Page; --index) { }
             return index >= 0 ? mPhrases[index] : null;
         }
 
@@ -796,14 +796,14 @@ namespace Obi
                 PhraseNode n = mPhrases[PrevPagePhraseIndex];
 
                 while (PrevPagePhraseIndex > 0
-                    && n.NodeKind != EmptyNode.Kind.Page)
+                    && n.Role_ != EmptyNode.Role.Page)
                 {
                     --PrevPagePhraseIndex;
                     n = (PhraseNode)mPhrases[PrevPagePhraseIndex];
                 }
 
                 if (PrevPagePhraseIndex < mCurrentPhraseIndex && PrevPagePhraseIndex >= 0
-                    &&     n.NodeKind == EmptyNode.Kind.Page )
+                    &&     n.Role_ == EmptyNode.Role.Page )
                                     NavigateToPhrase(PrevPagePhraseIndex);
                             }
         }
@@ -860,14 +860,14 @@ namespace Obi
                 PhraseNode n = mPhrases[NextPagePhraseIndex];
 
                 while (NextPagePhraseIndex < mPhrases.Count - 1
-                    && n.NodeKind != EmptyNode.Kind.Page)
+                    && n.Role_ != EmptyNode.Role.Page)
                 {
                     ++NextPagePhraseIndex;
                     n = (PhraseNode)mPhrases[NextPagePhraseIndex];
                 }
 
                 if ( NextPagePhraseIndex > mCurrentPhraseIndex && NextPagePhraseIndex < mPhrases.Count
-                    &&     n.NodeKind == EmptyNode.Kind.Page )
+                    &&     n.Role_ == EmptyNode.Role.Page )
                     NavigateToPhrase(NextPagePhraseIndex);
             }
         }

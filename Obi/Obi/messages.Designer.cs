@@ -124,6 +124,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to assign role.
+        /// </summary>
+        internal static string assign_role {
+            get {
+                return ResourceManager.GetString("assign_role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} {1} of {2}{3}.
         /// </summary>
         internal static string audio_block_label {
@@ -291,15 +300,6 @@ namespace Obi {
         internal static string Caption_Error {
             get {
                 return ResourceManager.GetString("Caption_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to change role.
-        /// </summary>
-        internal static string change_role {
-            get {
-                return ResourceManager.GetString("change_role", resourceCulture);
             }
         }
         

@@ -836,11 +836,9 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
-            mAssignRoleToolStripMenuItem.Enabled = mProjectView.CanAssignRole;
-            mPageToolStripMenuItem.Enabled = mProjectView.CanSetPageNumber;
+            mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
-            mPhrases_AssignRole_PlainMenuItem.Enabled = mProjectView.CanClearRole;
-            mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanClearRole;
+            mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
@@ -852,6 +850,12 @@ namespace Obi
             mPhrases_PhraseIsTODOMenuItem.CheckedChanged -= new System.EventHandler(mPhrases_PhraseIsTODOMenuItem_CheckedChanged);
             mPhrases_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
             mPhrases_PhraseIsTODOMenuItem.CheckedChanged += new System.EventHandler(mPhrases_PhraseIsTODOMenuItem_CheckedChanged);
+            mPhrases_AssignRoleMenuItem.Enabled = mProjectView.CanAssignARole;
+            mPhrases_AssignRole_PlainMenuItem.Enabled = mProjectView.CanAssignPlainRole;
+            mPhrases_AssignRole_HeadingMenuItem.Enabled = mProjectView.CanAssignHeadingRole;
+            mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
+            mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
+            mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             UpdateAudioSelectionBlockMenuItems();
         }
 
@@ -887,8 +891,6 @@ namespace Obi
             mProjectView.SetSelectedNodeUsedStatus(mPhraseIsUsedToolStripMenuItem.Checked);
         }
 
-        private void mPageToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SetPageNumberOnSelection(); }
-
 
         // Update the custom class menu with the classes from the new project
         private void UpdateCustomClassMenu()
@@ -906,7 +908,7 @@ namespace Obi
 
         private void AddCustomRoleToMenus(string name)
         {
-            AddCustomRoleToMenu(name, mAssignRoleToolStripMenuItem.DropDownItems,
+            AddCustomRoleToMenu(name, mPhrases_AssignRoleMenuItem.DropDownItems,
                 mPhrases_AssignRole_NewCustomRoleMenuItem);
             mProjectView.AddCustomRoleToContextMenu(name, this);
         }
@@ -920,14 +922,14 @@ namespace Obi
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = name;
             item.Click += new EventHandler(delegate(object sender, EventArgs e)
-               { mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Custom, name); });
+               { mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Custom, name); });
             items.Insert(index, item);
         }
 
         // Update the custom class menu to remove this class
         void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
         {
-            ToolStripItemCollection items = mAssignRoleToolStripMenuItem.DropDownItems;
+            ToolStripItemCollection items = mPhrases_AssignRoleMenuItem.DropDownItems;
             int index;
             for (index = items.IndexOf(mCustomRoleToolStripSeparator);
                 index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem) &&
@@ -937,15 +939,23 @@ namespace Obi
 
         private void mPhrases_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+            if (mProjectView.CanAssignPlainRole) mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
         }
 
-        private void mSetAsHeadingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_AssignRole_HeadingMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.MakeSelectedBlockIntoHeadingPhrase();
+            if (mProjectView.CanAssignHeadingRole) mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Heading, null);
         }
 
-        private void mSilenceToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.MakeSelectedBlockIntoSilencePhrase(); }
+        private void mPhrases_AssignRole_PageMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mProjectView.CanAssignARole) mProjectView.SetPageNumberOnSelection();
+        }
+
+        private void mPhrases_AssignRole_SilenceMenuItem_Click(object sender, EventArgs e) 
+        {
+            if (mProjectView.CanAssignSilenceRole) mProjectView.SetSilenceRoleForSelectedPhrase(); 
+        }
 
         private void mPhrases_EditRolesMenuItem_Click(object sender, EventArgs e)
         {
@@ -1186,7 +1196,7 @@ namespace Obi
                 delegate(urakawa.core.TreeNode n)
                 {
                     PhraseNode phrase = n as PhraseNode;
-                    if (phrase != null && phrase.NodeKind == EmptyNode.Kind.Page && phrase.PageNumber.Kind == kind)
+                    if (phrase != null && phrase.Role_ == EmptyNode.Role.Page && phrase.PageNumber.Kind == kind)
                     {
                         if (pages.ContainsKey(phrase.PageNumber.Number))
                         {
@@ -1932,7 +1942,7 @@ namespace Obi
 
         private void mPhrases_ClearRoleMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetCustomTypeForSelectedBlock(EmptyNode.Kind.Plain, null);
+            mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
         }
     }
 }

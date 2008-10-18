@@ -28,7 +28,7 @@ namespace Obi.ProjectView
             mNode = node;
             mParentContainer = parent;
             mHighlighted = false;
-            node.ChangedKind += new EmptyNode.ChangedKindEventHandler(Node_ChangedKind);
+            node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
             UpdateColors();
@@ -127,22 +127,22 @@ namespace Obi.ProjectView
             {
                 BackColor =
                     mHighlighted ? settings.BlockBackColor_Selected :
-                    mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockBackColor_Silence :
+                    mNode.Role_ == EmptyNode.Role.Silence ? settings.BlockBackColor_Silence :
                     !mNode.Used ? settings.BlockBackColor_Unused :
                     mNode.TODO ? settings.BlockBackColor_TODO :
-                    mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockBackColor_Custom :
-                    mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockBackColor_Heading :
-                    mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockBackColor_Page :
+                    mNode.Role_ == EmptyNode.Role.Custom ? settings.BlockBackColor_Custom :
+                    mNode.Role_ == EmptyNode.Role.Heading ? settings.BlockBackColor_Heading :
+                    mNode.Role_ == EmptyNode.Role.Page ? settings.BlockBackColor_Page :
                     !(mNode is PhraseNode) ? settings.BlockBackColor_Empty :
                         settings.BlockBackColor_Plain;
                 ForeColor =
                     mHighlighted ? settings.BlockForeColor_Selected :
-                    mNode.NodeKind == EmptyNode.Kind.Silence ? settings.BlockForeColor_Silence :
+                    mNode.Role_ == EmptyNode.Role.Silence ? settings.BlockForeColor_Silence :
                     !mNode.Used ? settings.BlockForeColor_Unused :
                     mNode.TODO ? settings.BlockForeColor_TODO :
-                    mNode.NodeKind == EmptyNode.Kind.Custom ? settings.BlockForeColor_Custom :
-                    mNode.NodeKind == EmptyNode.Kind.Heading ? settings.BlockForeColor_Heading :
-                    mNode.NodeKind == EmptyNode.Kind.Page ? settings.BlockForeColor_Page :
+                    mNode.Role_ == EmptyNode.Role.Custom ? settings.BlockForeColor_Custom :
+                    mNode.Role_ == EmptyNode.Role.Heading ? settings.BlockForeColor_Heading :
+                    mNode.Role_ == EmptyNode.Role.Page ? settings.BlockForeColor_Page :
                     !(mNode is PhraseNode) ? settings.BlockForeColor_Empty :
                         settings.BlockForeColor_Plain;
             }
@@ -209,7 +209,7 @@ namespace Obi.ProjectView
         private void Node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
 
         // Update the label when the role of the node changes
-        private void Node_ChangedKind(object sender, ChangedKindEventArgs e) { UpdateLabel(); }
+        private void Node_ChangedKind(object sender, ChangedRoleEventArgs e) { UpdateLabel(); }
 
         // update label when to do status changes
         private void Node_ChangedTODOStatus(object sender, NodeEventArgs<EmptyNode> e)

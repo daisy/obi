@@ -153,6 +153,15 @@ namespace Obi
                 delete.UpdateSelection = false;
                 p.append(delete);
             }
+            // If the node to paste is a heading phrase, revert to a plain phrase.
+            // We consider that being a heading is more of a section things (copying sections conserve the heading.)
+            if (paste.Copy is PhraseNode && ((PhraseNode)paste.Copy).Role_ == EmptyNode.Role.Heading)
+            {
+                Commands.Node.AssignRole behead =
+                    new Commands.Node.AssignRole(view, (EmptyNode)paste.Copy, EmptyNode.Role.Plain);
+                behead.UpdateSelection = false;
+                p.append(behead);
+            }
             if (paste.Copy.Used && !paste.CopyParent.Used) view.AppendMakeUnused(p, paste.Copy);
             return p;
         }

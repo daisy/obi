@@ -409,10 +409,11 @@ namespace Obi.ProjectView
             }
             catch (System.Exception)
             {
-                mLabelUpdateThread.ReleaseMutex();
-                return;
             }
-            mLabelUpdateThread.ReleaseMutex();
+            finally
+            {
+                mLabelUpdateThread.ReleaseMutex();
+            }
         }
 
         /// <summary>
