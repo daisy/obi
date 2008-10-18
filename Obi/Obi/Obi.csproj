@@ -427,6 +427,8 @@
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
     <None Include="Obi_TemporaryKey.pfx" />
+    <None Include="PipelineInterface\scripts\DTBAudioEncoder.taskScript" />
+    <None Include="PipelineInterface\scripts\Z3986DTBValidator.taskScript" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
