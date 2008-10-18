@@ -116,8 +116,9 @@ namespace Obi.PipelineInterface
                 PipelineProcess.Start();
             }
             catch (System.Exception ex)
-            {
+                                        {
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
+                return;
             }
             PipelineProcess.WaitForExit();
                         System.Windows.Forms.MessageBox.Show("Task completed");            
