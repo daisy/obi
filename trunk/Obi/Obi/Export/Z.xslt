@@ -97,7 +97,7 @@
         <ncx:head>
           <ncx:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
           <xsl:for-each select="//obi:section">
-            <xsl:sort order="descending" select="count(ancestor-or-self::obi:section)"/>
+            <xsl:sort order="descending" select="count(ancestor-or-self::obi:section)" data-type="number"/>
             <xsl:if test="position()=1">
               <ncx:meta name="dtb:depth" content="{count(ancestor-or-self::obi:section)}"/>
             </xsl:if>
@@ -107,7 +107,7 @@
           <xsl:choose>
             <xsl:when test="//obi:phrase[@kind='Page'][not(@pageKind='Special')]">
               <xsl:for-each select="//obi:phrase[@kind='Page'][not(@pageKind='Special')]">
-                <xsl:sort order="descending" select="@page"/>
+                <xsl:sort order="descending" select="@page" data-type="number"/>
                 <xsl:if test="position()=1">
                   <ncx:meta name="dtb:maxPageNumber" content="{@page}"/>
                 </xsl:if>
