@@ -92,17 +92,24 @@ namespace Obi.Commands.Node
             SplitAudio split = new SplitAudio(view, phrase, time);
             if (split.Node.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
             if (!split.Node.Used) command.append(new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
-            command.append(split);
-            if (transferRole && phrase.NodeKind != EmptyNode.Kind.Plain)
+            if (split.Node.Role_ == EmptyNode.Role.Silence)
             {
-                command.append(new Commands.Node.ChangeCustomType(view, phrase, EmptyNode.Kind.Plain));
-                if (phrase.NodeKind == EmptyNode.Kind.Page)
+                Commands.Node.AssignRole silence =
+                    new Commands.Node.AssignRole(view, split.NodeAfter, EmptyNode.Role.Silence);
+                silence.UpdateSelection = false;
+                command.append(silence);
+            }
+            command.append(split);
+            if (transferRole && phrase.Role_ != EmptyNode.Role.Plain)
+            {
+                command.append(new Commands.Node.AssignRole(view, phrase, EmptyNode.Role.Plain));
+                if (phrase.Role_ == EmptyNode.Role.Page)
                 {
                     command.append(new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
                 }
                 else
                 {
-                    command.append(new Commands.Node.ChangeCustomType(view, split.NodeAfter, phrase.NodeKind, phrase.CustomClass));
+                    command.append(new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole));
                 }
             }
             return split;

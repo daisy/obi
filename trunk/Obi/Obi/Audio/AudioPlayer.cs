@@ -40,9 +40,9 @@ namespace Obi.Audio
                         private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
                                 private long m_lLength;         // Total length of audio asset being played
                                 private Thread RefreshThread; // thread for refreshing buffer while playing 
-                                private int m_FrameSize;
+                                private int mFrameSize;
                                 private int m_Channels;
-        private int m_SamplingRate;
+        private int mSampleRate;
         internal byte[] arUpdateVM; // array for update current amplitude to VuMeter
         private int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
 
@@ -52,7 +52,7 @@ namespace Obi.Audio
         private AudioPlayerState mState;       // player state
         private int m_BufferCheck; // integer to indicate which part of buffer is to be refreshed front or rear, value is odd for refreshing front part and even for refreshing rear
         private long m_lPlayed;         // Length of audio asset in bytes which had been played ( loadded to SoundBuffer )
-        private long m_lPausePosition; // holds pause position in bytes to allow play resume playback from there
+        private long mPausePosition; // holds pause position in bytes to allow play resume playback from there
         private long m_lResumeToPosition; // In case play ( from, to ) function is used, holds the end position i.e. "to"  for resuming playback
 
         private long m_lChunkStartPosition = 0; // position for starting chunk play in forward/Rewind
@@ -125,23 +125,11 @@ namespace Obi.Audio
                     return mState;
             }
         }
-        
-/// <summary>
-///      Returns the current position of play cursor to be used by CurrentTimePosition property
-/// </summary>
-/// <returns></returns>
-                 private     double GetCurrentTimePosition()
-        {
-            if (mCurrentAudio != null)
-                return CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), m_SamplingRate, m_FrameSize);
-            else
-                return 0;
-        }
 
-        long  PrevBytePosition ;
-        /// <summary>
-        /// Get the current playback position in bytes.
-        /// </summary>
+
+        long  mPrevBytePosition ;
+
+        // Get the current playback position in bytes.
         private long GetCurrentBytePosition()
         {
             int PlayPosition = 0;
@@ -176,21 +164,21 @@ namespace Obi.Audio
                     if (lCurrentPosition >= mCurrentAudio.getPCMLength())
                     {//3
                         lCurrentPosition = mCurrentAudio.getPCMLength() -
-                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, m_SamplingRate, m_FrameSize));
+                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                 }//-2
                         else if (mState == AudioPlayerState.Paused)
             {//2
-                lCurrentPosition = m_lPausePosition;
+                lCurrentPosition = mPausePosition;
             }//-2
                         if (mFwdRwdRate  != 0 ) lCurrentPosition = m_lChunkStartPosition;
-            lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, m_FrameSize);
+            lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
         }//-1
 
-        if (PrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0)
-                                return PrevBytePosition;
+        if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0)
+                                return mPrevBytePosition;
                                         
-        PrevBytePosition = lCurrentPosition;
+        mPrevBytePosition = lCurrentPosition;
 
             return lCurrentPosition;
         }
@@ -304,17 +292,22 @@ namespace Obi.Audio
 			}
 		}
 
-		public double CurrentTimePosition
-		{
-			get
-			{
-				return GetCurrentTimePosition () ;
-			}
-			set
-			{
-                				SetCurrentTimePosition (value) ;
-			}
-		}
+        /// <summary>
+        /// When playing, current playback position (either playing or stopped.)
+        /// 0 when not playing.
+        /// </summary>
+        public double CurrentTimePosition
+        {
+            get
+            {
+                return mCurrentAudio == null ? 0 :
+                    CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), mSampleRate, mFrameSize);
+            }
+            set
+            {
+                SetCurrentTimePosition(value);
+            }
+        }
 
         // Sets the output volume
         void SetVolumeLevel(int VolLevel)
@@ -425,7 +418,7 @@ namespace Obi.Audio
             // This is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                m_StartPosition = 0;
+                mStartPosition = 0;
 
                 if (asset != null       &&   asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
                     InitPlay(asset ,  0, 0);
@@ -454,7 +447,7 @@ namespace Obi.Audio
                     lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.getPCMFormat().getBlockAlign());
                     if (lPosition >= 0 && lPosition <= asset.getPCMLength())
                     {
-                                                m_StartPosition = lPosition;
+                                                mStartPosition = lPosition;
                         InitPlay( asset , lPosition, 0);
                     }
                     else throw new Exception("Start Position is out of bounds of Audio Asset");
@@ -535,7 +528,7 @@ namespace Obi.Audio
                         InitPlay(asset, lStartPosition, lEndPosition);
 
                         if (RestoreTime >= 0 && RestoreTime < asset.getAudioDuration().getTimeDeltaAsMillisecondFloat())
-                            m_PreviewStartPosition = CalculationFunctions.ConvertTimeToByte(RestoreTime, (int)m_SamplingRate, m_FrameSize);
+                            m_PreviewStartPosition = CalculationFunctions.ConvertTimeToByte(RestoreTime, (int)mSampleRate, mFrameSize);
                         else
                             m_PreviewStartPosition = 0;
 
@@ -600,7 +593,7 @@ namespace Obi.Audio
                  BufferDescription  BufferDesc = new BufferDescription();
                 
                 // retrieve format from asset
-                m_FrameSize = mCurrentAudio.getPCMFormat().getBlockAlign();
+                mFrameSize = mCurrentAudio.getPCMFormat().getBlockAlign();
                 m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
                 newFormat.AverageBytesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
                                 newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBitDepth());
@@ -624,7 +617,7 @@ namespace Obi.Audio
 
                 // calculate the size of VuMeter Update array length
                 m_UpdateVMArrayLength = m_SizeBuffer / 20;
-                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
+                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
                 // reset the VuMeter (if set)
                 if (ResetVuMeter != null)
@@ -659,7 +652,7 @@ namespace Obi.Audio
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
                 lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
-                m_SamplingRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
                 
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
@@ -673,7 +666,7 @@ namespace Obi.Audio
                     m_lLength = (mCurrentAudio.getPCMLength());
                 }
 
-                PrevBytePosition = lStartPosition;
+                mPrevBytePosition = lStartPosition;
                 // initialize M_lPlayed for this asset
                 m_lPlayed = lStartPosition;
 
@@ -715,7 +708,7 @@ namespace Obi.Audio
             int ReadPosition;
 
             // variable to prevent least count errors in clip end time
-            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, m_SamplingRate, m_FrameSize);
+            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, mSampleRate, mFrameSize);
 
 
             while (m_lPlayed < (m_lLength - SafeMargin))
@@ -778,7 +771,7 @@ namespace Obi.Audio
 
             int CurrentPlayPosition;
             CurrentPlayPosition = mSoundBuffer.PlayPosition;
-            int StopMargin = Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(70, m_SamplingRate, m_FrameSize));
+            int StopMargin = Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(70, mSampleRate, mFrameSize));
             StopMargin = (int)(StopMargin * m_fFastPlayFactor);
 
             if (mBufferStopPosition < StopMargin)
@@ -793,7 +786,7 @@ namespace Obi.Audio
 
             // Stopping process begins
             mBufferStopPosition = -1;
-            m_lPausePosition = 0;
+            mPausePosition = 0;
             mSoundBuffer.Stop();
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
@@ -830,7 +823,7 @@ namespace Obi.Audio
                 {
                     Events.Audio.Player.StateChangedEventArgs e = new Obi.Events.Audio.Player.StateChangedEventArgs( AudioPlayerState.Playing );
                     mState = AudioPlayerState.Paused;
-                    m_lPausePosition = m_PreviewStartPosition;
+                    mPausePosition = m_PreviewStartPosition;
                     TriggerStateChangedEvent(e);
                                     }
                 else if (m_StateBeforePreview == AudioPlayerState.Stopped )
@@ -851,8 +844,8 @@ namespace Obi.Audio
             if (mCurrentAudio != null)
             {
                 m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
-                m_FrameSize = mCurrentAudio.getPCMFormat().getNumberOfChannels() * (mCurrentAudio.getPCMFormat().getBitDepth() / 8);
-                m_SamplingRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                mFrameSize = mCurrentAudio.getPCMFormat().getNumberOfChannels() * (mCurrentAudio.getPCMFormat().getBitDepth() / 8);
+                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
             } 
 
             Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(mState);
@@ -879,11 +872,11 @@ namespace Obi.Audio
         {
             if (State == AudioPlayerState.Stopped)
             {
-                SetCurrentTimePosition(time);
-                m_lPausePosition = GetCurrentBytePosition();
+                mPausePosition = GetCurrentBytePosition();
                 m_lResumeToPosition = 0;
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Paused;
+                SetCurrentTimePosition(time);
                 TriggerStateChangedEvent(e);
             }
         }
@@ -901,7 +894,7 @@ namespace Obi.Audio
                 if (m_IsPreviewing)
                     m_IsPreviewing = false;
 
-                    m_lPausePosition = GetCurrentBytePosition();
+                    mPausePosition = GetCurrentBytePosition();
                     if (!mIsFwdRwd)
                         m_lResumeToPosition = m_lLength;
                     else
@@ -927,12 +920,12 @@ namespace Obi.Audio
             			if ( State.Equals(AudioPlayerState.Paused))
 			{
                 
-                long lPosition = CalculationFunctions.AdaptToFrame( m_lPausePosition , mCurrentAudio.getPCMFormat ().getBlockAlign ()  );
+                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.getPCMFormat ().getBlockAlign ()  );
                 long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.getPCMFormat().getBlockAlign());
 
                 if (lPosition >= 0 && lPosition < mCurrentAudio.getPCMLength () )
                 {
-                    m_StartPosition = lPosition;
+                    mStartPosition = lPosition;
                                         InitPlay( mCurrentAudio , lPosition, lEndPosition );
                 }
                 else
@@ -951,50 +944,41 @@ namespace Obi.Audio
 				                StopPlayback();
 			}
             
-        m_lPausePosition = 0;
+        mPausePosition = 0;
 			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 		}
 
 		
-		long m_StartPosition  ;
+		long mStartPosition;
 
-		void SetCurrentBytePosition (long localPosition) 
+        // Set the current position in the player in bytes.
+        void SetCurrentBytePosition(long position)
+        {
+            if (position < 0) position = 0;
+            if (position > mCurrentAudio.getPCMLength()) position = mCurrentAudio.getPCMLength() - 100;
+            mEventsEnabled = false;
+            if (State == AudioPlayerState.Playing)
+            {
+                Stop();
+                Thread.Sleep(30);
+                mStartPosition = position;
+                InitPlay(mCurrentAudio, position, 0);
+            }
+            else if (mState.Equals(AudioPlayerState.Paused))
+            {
+                mStartPosition = position;
+                mPausePosition = position;
+            }
+            mEventsEnabled = true;
+        }
+
+
+        // Set the current time position in milliseconds
+		private void SetCurrentTimePosition(double timeMs) 
 		{
-            			if (localPosition < 0)
-				localPosition = 0;
-
-			if (localPosition > mCurrentAudio.getPCMLength ()  )
-				localPosition = mCurrentAudio.getPCMLength ()  - 100;
-
-
-			mEventsEnabled = false ;
-
-			if (State == AudioPlayerState.Playing  )
-			{
-                					Stop();
-					Thread.Sleep (30) ;
-					m_StartPosition = localPosition ;
-                    					InitPlay( mCurrentAudio , localPosition , 0);
-				
-			}		
-			
-			else if(mState.Equals (AudioPlayerState .Paused ) )
-			{
-					m_StartPosition = localPosition ;
-                    m_lPausePosition = localPosition;
-																																	}
-			mEventsEnabled = true ;
-
-			// end of set byte position
-		}
-
-
-		void SetCurrentTimePosition (double localPosition) 
-		{
-			long lTemp = CalculationFunctions.ConvertTimeToByte (localPosition, m_SamplingRate, m_FrameSize);
-			SetCurrentBytePosition(lTemp) ;
+            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(timeMs, mSampleRate, mFrameSize));
 		}
 
 
@@ -1061,7 +1045,7 @@ namespace Obi.Audio
                         m_lChunkStartPosition += lStepInBytes;
                     }
                     else
-                        m_lChunkStartPosition = m_FrameSize;
+                        m_lChunkStartPosition = mFrameSize;
 
                     PlayStartPos = m_lChunkStartPosition;
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;

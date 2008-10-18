@@ -48,14 +48,14 @@ namespace Obi.Dialogs
         /// <summary>
         /// Get the role chosen from the drop-down menu.
         /// </summary>
-        public EmptyNode.Kind Role 
+        public EmptyNode.Role Role 
             { 
                         get 
                         {
                             if (m_comboPhraseRole.SelectedItem != null)
                                 return ((LocalizedRole)m_comboPhraseRole.SelectedItem).Role;
                             else
-                                return mNode.NodeKind ;
+                                return mNode.Role_ ;
                         } 
                     }
 
@@ -87,12 +87,12 @@ namespace Obi.Dialogs
             m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PLAIN );
             m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
             m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
-            m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.NodeKind );
+            m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.Role_ );
             
             // load custom class combobox
             foreach (string customType in mView.Presentation.CustomClasses) m_comboCustomClassName.Items.Add ( customType );
 
-            m_comboCustomClassName.Text = mNode.NodeKind == EmptyNode.Kind.Custom ? mNode.CustomClass : "";
+            m_comboCustomClassName.Text = mNode.Role_ == EmptyNode.Role.Custom ? mNode.CustomRole : "";
             m_chkUsed.Checked = mNode.Used;
             m_chkToDo.Checked = mNode.TODO;
 

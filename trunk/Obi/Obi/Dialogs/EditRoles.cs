@@ -58,7 +58,7 @@ namespace Obi.Dialogs
             foreach (EmptyNode node in nodes)
                 {
                 if ( node != null )
-                command.append ( new Commands.Node.ChangeCustomType ( mProjectView, node, EmptyNode.Kind.Plain ) );
+                command.append ( new Commands.Node.AssignRole ( mProjectView, node, EmptyNode.Role.Plain ) );
                 else
                 command.append ( new Obi.Commands.RemoveCustomType ( mProjectView, mPresentation, customClass ) ) ;
                 }

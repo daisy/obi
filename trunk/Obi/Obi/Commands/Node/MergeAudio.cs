@@ -66,13 +66,14 @@ namespace Obi.Commands.Node
         {
             if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
             if (!from.Used && to.Used) command.append(new Commands.Node.ToggleNodeUsed(view, to));
-            if (from.NodeKind == EmptyNode.Kind.Page)
+            if (from.Role_ == EmptyNode.Role.Page)
             {
                 command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
             }
-            else if (from.NodeKind != EmptyNode.Kind.Plain)
+            else if (from.Role_ != EmptyNode.Role.Plain &&
+                (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode))
             {
-                command.append(new Commands.Node.ChangeCustomType(view, to, from.NodeKind, from.CustomClass));
+                command.append(new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
             }
         }
 

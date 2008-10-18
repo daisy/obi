@@ -108,11 +108,11 @@ namespace Obi
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.mAssignRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AssignRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_AssignRole_PlainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mSetAsHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mSilenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AssignRole_HeadingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AssignRole_PageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPhrases_AssignRole_SilenceMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCustomRoleToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.mPhrases_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -685,7 +685,7 @@ namespace Obi
             this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
             this.toolStripSeparator6,
-            this.mAssignRoleToolStripMenuItem,
+            this.mPhrases_AssignRoleMenuItem,
             this.mPhrases_ClearRoleMenuItem,
             this.mPhrases_EditRolesMenuItem,
             this.toolStripSeparator19,
@@ -754,17 +754,17 @@ namespace Obi
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
-            // mAssignRoleToolStripMenuItem
+            // mPhrases_AssignRoleMenuItem
             // 
-            this.mAssignRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mPhrases_AssignRoleMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mPhrases_AssignRole_PlainMenuItem,
-            this.mSetAsHeadingToolStripMenuItem,
-            this.mPageToolStripMenuItem,
-            this.mSilenceToolStripMenuItem,
+            this.mPhrases_AssignRole_HeadingMenuItem,
+            this.mPhrases_AssignRole_PageMenuItem,
+            this.mPhrases_AssignRole_SilenceMenuItem,
             this.mCustomRoleToolStripSeparator,
             this.mPhrases_AssignRole_NewCustomRoleMenuItem});
-            this.mAssignRoleToolStripMenuItem.Name = "mAssignRoleToolStripMenuItem";
-            resources.ApplyResources(this.mAssignRoleToolStripMenuItem, "mAssignRoleToolStripMenuItem");
+            this.mPhrases_AssignRoleMenuItem.Name = "mPhrases_AssignRoleMenuItem";
+            resources.ApplyResources(this.mPhrases_AssignRoleMenuItem, "mPhrases_AssignRoleMenuItem");
             // 
             // mPhrases_AssignRole_PlainMenuItem
             // 
@@ -772,23 +772,23 @@ namespace Obi
             resources.ApplyResources(this.mPhrases_AssignRole_PlainMenuItem, "mPhrases_AssignRole_PlainMenuItem");
             this.mPhrases_AssignRole_PlainMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_PlainMenuItem_Click);
             // 
-            // mSetAsHeadingToolStripMenuItem
+            // mPhrases_AssignRole_HeadingMenuItem
             // 
-            this.mSetAsHeadingToolStripMenuItem.Name = "mSetAsHeadingToolStripMenuItem";
-            resources.ApplyResources(this.mSetAsHeadingToolStripMenuItem, "mSetAsHeadingToolStripMenuItem");
-            this.mSetAsHeadingToolStripMenuItem.Click += new System.EventHandler(this.mSetAsHeadingToolStripMenuItem_Click);
+            this.mPhrases_AssignRole_HeadingMenuItem.Name = "mPhrases_AssignRole_HeadingMenuItem";
+            resources.ApplyResources(this.mPhrases_AssignRole_HeadingMenuItem, "mPhrases_AssignRole_HeadingMenuItem");
+            this.mPhrases_AssignRole_HeadingMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_HeadingMenuItem_Click);
             // 
-            // mPageToolStripMenuItem
+            // mPhrases_AssignRole_PageMenuItem
             // 
-            resources.ApplyResources(this.mPageToolStripMenuItem, "mPageToolStripMenuItem");
-            this.mPageToolStripMenuItem.Name = "mPageToolStripMenuItem";
-            this.mPageToolStripMenuItem.Click += new System.EventHandler(this.mPageToolStripMenuItem_Click);
+            resources.ApplyResources(this.mPhrases_AssignRole_PageMenuItem, "mPhrases_AssignRole_PageMenuItem");
+            this.mPhrases_AssignRole_PageMenuItem.Name = "mPhrases_AssignRole_PageMenuItem";
+            this.mPhrases_AssignRole_PageMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_PageMenuItem_Click);
             // 
-            // mSilenceToolStripMenuItem
+            // mPhrases_AssignRole_SilenceMenuItem
             // 
-            this.mSilenceToolStripMenuItem.Name = "mSilenceToolStripMenuItem";
-            resources.ApplyResources(this.mSilenceToolStripMenuItem, "mSilenceToolStripMenuItem");
-            this.mSilenceToolStripMenuItem.Click += new System.EventHandler(this.mSilenceToolStripMenuItem_Click);
+            this.mPhrases_AssignRole_SilenceMenuItem.Name = "mPhrases_AssignRole_SilenceMenuItem";
+            resources.ApplyResources(this.mPhrases_AssignRole_SilenceMenuItem, "mPhrases_AssignRole_SilenceMenuItem");
+            this.mPhrases_AssignRole_SilenceMenuItem.Click += new System.EventHandler(this.mPhrases_AssignRole_SilenceMenuItem_Click);
             // 
             // mCustomRoleToolStripSeparator
             // 
@@ -1266,7 +1266,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mShowTransportBarToolStripMenuItem;
         private Obi.ProjectView.ProjectView mProjectView;
         private System.Windows.Forms.ToolStripMenuItem mSelectNothingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mAssignRoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRoleMenuItem;
         private System.Windows.Forms.ToolStripSeparator mCustomRoleToolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem mSplitPhraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithNextToolStripMenuItem;
@@ -1276,10 +1276,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mFindNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFindPreviousToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFocusOnStripsViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSetAsHeadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_HeadingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_EditRolesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mPageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mSilenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_PageMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_SilenceMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mAddEmptyPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhraseIsUsedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mFileToolStripMenuItem;

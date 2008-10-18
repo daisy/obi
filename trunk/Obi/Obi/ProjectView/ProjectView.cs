@@ -207,13 +207,62 @@ namespace Obi.ProjectView
                 return mPresentation != null &&
                     Selection != null &&
                     Selection.Node is PhraseNode &&
-                    ((PhraseNode)Selection.Node).NodeKind != EmptyNode.Kind.Silence &&
+                    ((PhraseNode)Selection.Node).Role_ != EmptyNode.Role.Silence &&
                     !TransportBar.IsRecorderActive;
             }
         }
 
-        public bool CanAssignRole { get { return IsBlockSelected; } }
-        public bool CanClearRole { get { return IsBlockSelected && ((EmptyNode)mSelection.Node).NodeKind != EmptyNode.Kind.Plain; } }
+        /// <summary>
+        /// Can assign the plain role if there is an empty node to assign to,
+        /// and the current role is different from plain.
+        /// </summary>
+        public bool CanAssignPlainRole
+        {
+            get { return IsBlockSelected && SelectedNodeAs<EmptyNode>().Role_ != EmptyNode.Role.Plain; }
+        }
+
+        /// <summary>
+        /// Can assign the silence role if there is a phrase node to assign to,
+        /// and the current role is different from silence.
+        /// </summary>
+        public bool CanAssignSilenceRole
+        {
+            get
+            {
+                PhraseNode node = SelectedNodeAs<PhraseNode>();
+                return node != null && node.Role_ != EmptyNode.Role.Silence;
+            }
+        }
+
+        /// <summary>
+        /// Can assign this custom role if there is an empty node to assign to,
+        /// and the role is different from the one of this node.
+        /// </summary>
+        public bool CanAssignCustomRole(string customRole)
+        {
+            EmptyNode node = SelectedNodeAs<EmptyNode>();
+            return node != null && (node.Role_ != EmptyNode.Role.Custom || node.CustomRole != customRole);
+        }
+
+        /// <summary>
+        /// Can assign the heading role if there is a phrase node (must have audio)
+        /// and there is no phrase role in the parent section.
+        /// </summary>
+        public bool CanAssignHeadingRole
+        {
+            get
+            {
+                PhraseNode node = SelectedNodeAs<PhraseNode>();
+                return node != null && node.Role_ != EmptyNode.Role.Heading && node.AncestorAs<SectionNode>() != null &&
+                    node.AncestorAs<SectionNode>().Heading == null;
+            }
+        }
+
+        /// <summary>
+        /// Can assign at least one role (for instance custom or page); as long as there is a block to assign it to.
+        /// </summary>
+        public bool CanAssignARole { get { return IsBlockSelected; } }
+
         public bool CanCopy { get { return mPresentation != null && (CanCopySection || CanCopyStrip || CanCopyBlock || CanCopyAudio) && !TransportBar.IsRecorderActive; } }
         public bool CanCopyAudio { get { return mContentView.CanCopyAudio && !TransportBar.IsRecorderActive; } }
         public bool CanCopySection { get { return mTOCView.CanCopySection && !TransportBar.IsRecorderActive; } }
@@ -576,7 +625,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mSelection.Node is EmptyNode && ((EmptyNode)mSelection.Node).NodeKind == EmptyNode.Kind.Page ?
+                return mSelection.Node is EmptyNode && ((EmptyNode)mSelection.Node).Role_ == EmptyNode.Role.Page ?
                     ((EmptyNode)mSelection.Node).PageNumber : NextPageNumber;
             }
         }
@@ -1217,11 +1266,23 @@ namespace Obi.ProjectView
 
         public void SelectNothing() { Selection = null; }
 
-        public void SetCustomTypeForSelectedBlock(EmptyNode.Kind kind, string custom)
+        public void SetRoleForSelectedBlock(EmptyNode.Role kind, string custom)
         {
-            if (IsBlockSelected)
+            mPresentation.getUndoRedoManager().execute(
+                new Commands.Node.AssignRole(this, SelectedNodeAs<EmptyNode>(), kind, custom));
+        }
+
+        public void SetSilenceRoleForSelectedPhrase()
+        {
+            PhraseNode node = SelectedNodeAs<PhraseNode>();
+            if (node != null)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.ChangeCustomType(this, SelectedNodeAs<EmptyNode>(), kind, custom));
+                CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
+                Commands.Node.AssignRole silence = new Commands.Node.AssignRole(this, node, EmptyNode.Role.Silence);
+                command.append(silence);
+                command.setShortDescription(silence.getShortDescription());
+                if (node.Used) command.append(new Commands.Node.ToggleNodeUsed(this, node));
+                Presentation.getUndoRedoManager().execute(command);
             }
         }
 
@@ -1251,35 +1312,6 @@ namespace Obi.ProjectView
             if (CanMergeBlockWithNext) mPresentation.getUndoRedoManager().execute(Commands.Node.MergeAudio.GetMergeCommand(this));
         }
 
-        public void MakeSelectedBlockIntoSilencePhrase()
-        {
-            EmptyNode node = SelectedNodeAs<EmptyNode>();
-            if (node != null)
-            {
-                CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
-                Commands.Node.ChangeCustomType silence = new Commands.Node.ChangeCustomType(this, node, EmptyNode.Kind.Silence);
-                command.append(silence);
-                command.setShortDescription(silence.getShortDescription());
-                if (node.Used) command.append(new Commands.Node.ToggleNodeUsed(this, node));
-                Presentation.getUndoRedoManager().execute(command);
-            }
-        }
-
-        public void MakeSelectedBlockIntoHeadingPhrase()
-        {
-            if (IsBlockSelected)
-            {
-                CompositeCommand command = Presentation.getCommandFactory().createCompositeCommand();
-                EmptyNode node = SelectedNodeAs<EmptyNode>();
-                SectionNode parent = node.AncestorAs<SectionNode>();
-                if (parent.Heading != null) command.append(new Commands.Node.ChangeCustomType(this, parent.Heading, EmptyNode.Kind.Plain));
-                Commands.Node.ChangeCustomType custom = new Commands.Node.ChangeCustomType(this, node, EmptyNode.Kind.Heading);
-                command.append(custom);
-                command.setShortDescription(custom.getShortDescription());
-                mPresentation.getUndoRedoManager().execute(command);
-            }
-        }
-
         public void ToggleEmptyNodeTo_DoMark()
         {
         if (TransportBar.Enabled)
@@ -1303,14 +1335,14 @@ namespace Obi.ProjectView
         /// </summary>
         /// <param name="customName"></param>
         /// <param name="kind"></param>
-        public void AddCustomTypeAndSetOnBlock(EmptyNode.Kind nodeKind, string customClass)
+        public void AddCustomTypeAndSetOnBlock(EmptyNode.Role nodeKind, string customClass)
         {
             if (IsBlockSelected)
             {
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
-                if (node.NodeKind != nodeKind || node.CustomClass != customClass)
+                if (node.Role_ != nodeKind || node.CustomRole != customClass)
                 {
-                    mPresentation.getUndoRedoManager().execute(new Obi.Commands.Node.ChangeCustomType(this, node, customClass));
+                    mPresentation.getUndoRedoManager().execute(new Obi.Commands.Node.AssignRole(this, node, customClass));
                 }
             }
         }
@@ -1332,7 +1364,7 @@ namespace Obi.ProjectView
                     CompositeCommand k = Presentation.CreateCompositeCommand(cmd.getShortDescription());
                     for (ObiNode n = SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
                     {
-                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                             ((EmptyNode)n).PageNumber.Kind == number.Kind)
                         {
                             number = number.NextPageNumber();
@@ -1379,7 +1411,7 @@ namespace Obi.ProjectView
                 {
                     for (ObiNode n = parent.FollowingNodeAfter(index - 1); n != null; n = n.FollowingNodeAfter(-1))
                     {
-                        if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                        if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                             ((EmptyNode)n).PageNumber.Kind == number.Kind)
                         {
                             Commands.Node.SetPageNumber c = new Commands.Node.SetPageNumber(this, (EmptyNode)n, number);
@@ -1410,7 +1442,7 @@ namespace Obi.ProjectView
 
                 while (IterationNode != null)
                 {
-                    if (IterationNode is PhraseNode&& ((EmptyNode)IterationNode).NodeKind == EmptyNode.Kind.Silence)
+                    if (IterationNode is PhraseNode&& ((EmptyNode)IterationNode).Role_ == EmptyNode.Role.Silence)
                     {
                         SilenceNode = (PhraseNode)IterationNode;
                         break;
@@ -1790,7 +1822,7 @@ namespace Obi.ProjectView
                 CompositeCommand command =
                     mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
 
-                if (dialog.Role == EmptyNode.Kind.Page)
+                if (dialog.Role == EmptyNode.Role.Page)
                     {
                     Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
@@ -1802,7 +1834,7 @@ namespace Obi.ProjectView
                             {
                             for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
                                 {
-                                if (n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page &&
+                                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
                                     {
                                     number = number.NextPageNumber ();
@@ -1813,11 +1845,11 @@ namespace Obi.ProjectView
                         }
                     } // page related braces ends
 
-                if (dialog.Role != dialog.Node.NodeKind ||
-                    (dialog.Role == EmptyNode.Kind.Custom && dialog.Node.NodeKind == EmptyNode.Kind.Custom &&
-                    dialog.CustomClass != dialog.Node.CustomClass))
+                if (dialog.Role != dialog.Node.Role_ ||
+                    (dialog.Role == EmptyNode.Role.Custom && dialog.Node.Role_ == EmptyNode.Role.Custom &&
+                    dialog.CustomClass != dialog.Node.CustomRole))
                 {
-                    command.append(new Commands.Node.ChangeCustomType(this, dialog.Node, dialog.Role, dialog.CustomClass));
+                    command.append(new Commands.Node.AssignRole(this, dialog.Node, dialog.Role, dialog.CustomClass));
                 }
                 if (dialog.Used != dialog.Node.Used)
                 {

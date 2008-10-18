@@ -535,14 +535,14 @@ namespace Obi
         /// </summary>
         public PageNumber PageNumberFor(ObiNode node)
         {
-            if (node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page)
+            if (node is EmptyNode && ((EmptyNode)node).Role_ == EmptyNode.Role.Page)
             {
                 return ((EmptyNode)node).PageNumber;
             }
             else
             {
                 ObiNode n = node.PrecedingNode;
-                while (n != null && !(n is EmptyNode && ((EmptyNode)n).NodeKind == EmptyNode.Kind.Page)) n = n.PrecedingNode;
+                while (n != null && !(n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)) n = n.PrecedingNode;
                 return n != null ? ((EmptyNode)n).PageNumber.NextPageNumber() : new PageNumber(1);
             }
         }
@@ -553,7 +553,7 @@ namespace Obi
         /// </summary>
         public PageNumber PageNumberFollowing(ObiNode node)
         {
-            while (node != null && !(node is EmptyNode && ((EmptyNode)node).NodeKind == EmptyNode.Kind.Page))
+            while (node != null && !(node is EmptyNode && ((EmptyNode)node).Role_ == EmptyNode.Role.Page))
             {
                 node = node.PrecedingNode;
             }

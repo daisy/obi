@@ -146,7 +146,7 @@ namespace Obi
         // Our own overrides
 
         public virtual void AppendChild(ObiNode node) { appendChild(node); }
-        public ObiNode Detach() { return (ObiNode)detach(); }
+        public virtual ObiNode Detach() { return (ObiNode)detach(); }
         public abstract void Insert(ObiNode node, int index);
         public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
         public void InsertAfterSelf(ObiNode node) { getParent().insertAfter(node, this); }

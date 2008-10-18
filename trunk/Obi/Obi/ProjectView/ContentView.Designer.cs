@@ -99,7 +99,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 556);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(190, 534);
             // 
             // Context_AddSectionMenuItem
             // 

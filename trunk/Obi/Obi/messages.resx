@@ -524,8 +524,8 @@ Error text: {1}</value>
     <value>(Add role)</value>
     <comment>For the custom types dropdown</comment>
   </data>
-  <data name="change_role" xml:space="preserve">
-    <value>change role</value>
+  <data name="assign_role" xml:space="preserve">
+    <value>assign role</value>
     <comment>Command</comment>
   </data>
   <data name="mark_phrase_used" xml:space="preserve">

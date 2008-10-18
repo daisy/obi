@@ -17,14 +17,12 @@ namespace Obi.Commands.Node
         }
         public override void execute()
         {
-            if (mNode == null) return;
-            mNode.AncestorAs<SectionNode>().Heading = mNode; 
+            mNode.AncestorAs<SectionNode>().DidSetHeading(mNode);
         }
 
         public override void unExecute()
         {
-            if (mNode == null) return;
-            mNode.AncestorAs<SectionNode>().Heading = null;
+            mNode.AncestorAs<SectionNode>().UnsetHeading(mNode);
         } 
     }
 
@@ -33,24 +31,21 @@ namespace Obi.Commands.Node
     /// </summary>
     class UnsetNodeAsHeadingPhrase : Command
     {
-        private EmptyNode mNode;
+        private PhraseNode mNode;
         
-        public UnsetNodeAsHeadingPhrase(ProjectView.ProjectView view, EmptyNode node)
+        public UnsetNodeAsHeadingPhrase(ProjectView.ProjectView view, PhraseNode node)
             : base(view, "")
         {
             mNode = node;
         }
         public override void execute()
         {
-            if (mNode == null) return;
-            if (mNode.AncestorAs<SectionNode>().Heading == mNode) mNode.AncestorAs<SectionNode>().Heading = null;
-            else throw new Exception("UnsetNodeAsHeading: node was not a heading!");
+            mNode.AncestorAs<SectionNode>().UnsetHeading(mNode);
         }
 
         public override void unExecute()
         {
-            if (mNode == null) return;
-            mNode.AncestorAs<SectionNode>().Heading = mNode;
+            mNode.AncestorAs<SectionNode>().DidSetHeading(mNode);
         }
 
     }

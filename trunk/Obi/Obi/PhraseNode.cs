@@ -20,8 +20,8 @@ namespace Obi
         /// Create a phrase node.
         /// </summary>
         public PhraseNode(Presentation presentation): base(presentation) {}
-        public PhraseNode(Presentation presentation, EmptyNode.Kind kind) : base(presentation, kind) {} 
-        public PhraseNode(Presentation presentation, string custom) : base(presentation, Kind.Custom) {}
+        public PhraseNode(Presentation presentation, EmptyNode.Role kind) : base(presentation, kind) {} 
+        public PhraseNode(Presentation presentation, string custom) : base(presentation, Role.Custom) {}
 
 
         /// <summary>
@@ -99,6 +99,12 @@ namespace Obi
         /// We use our own element name for XUK output.
         /// </summary>
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+
+        public override ObiNode Detach()
+        {
+            if (Role_ == Role.Heading) AncestorAs<SectionNode>().UnsetHeading(this);
+            return base.Detach();
+        }
 
         public override string BaseString() { return base.BaseString(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }
         public override string BaseStringShort() { return base.BaseStringShort(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }

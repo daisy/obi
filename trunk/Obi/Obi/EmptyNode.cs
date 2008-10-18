@@ -8,17 +8,17 @@ namespace Obi
     /// <summary>
     /// The empty node class is the base class for content nodes.
     /// It doesn't have any actual content yet and will either become a PhraseNode or a ContainerNode.
-    /// It can have a kind/custom class.
+    /// It can have a role and be marked as TODO (attributes of the node.)
     /// </summary>
     public class EmptyNode: ObiNode
     {
-        private Kind mKind;              // this node's kind
-        private string mCustomClass;     // custom class name
+        private Role mRole;              // this node's kind
+        private string mCustomRole;      // custom role name
         private PageNumber mPageNumber;  // page number
         private bool mTODO;              // marked as TODO
 
         public static readonly string XUK_ELEMENT_NAME = "empty";             // name of the element in the XUK file
-        private static readonly string XUK_ATTR_NAME_KIND = "kind";           // name of the kind attribute
+        private static readonly string XUK_ATTR_NAME_ROLE = "kind";           // name of the role attribute
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";       // name of the custom attribute
         private static readonly string XUK_ATTR_NAME_PAGE = "page";           // name of the page attribute
         private static readonly string XUK_ATTR_NAME_PAGE_KIND = "pageKind";  // name of the pageKind attribute
@@ -26,20 +26,20 @@ namespace Obi
         private static readonly string XUK_ATTR_NAME_TODO = "TODO";           // name of the TODO attribute
 
         /// <summary>
-        /// Different kinds of content nodes.
+        /// Different roles for content nodes.
         /// Plain is the default.
         /// Page is a page node with a page number.
         /// Heading is the audio heading for a section.
         /// Silence is a silence node for phrase detection.
         /// Custom is a node with a custom class (e.g. sidebar, etc.)
         /// </summary>
-        public enum Kind { Plain, Page, Heading, Silence, Custom };
+        public enum Role { Plain, Page, Heading, Silence, Custom };
 
-        public static readonly LocalizedRole LOCALIZED_PLAIN = new LocalizedRole(Kind.Plain);
-        public static readonly LocalizedRole LOCALIZED_PAGE = new LocalizedRole(Kind.Page);
-        public static readonly LocalizedRole LOCALIZED_HEADING = new LocalizedRole(Kind.Heading);
-        public static readonly LocalizedRole LOCALIZED_SILENCE = new LocalizedRole(Kind.Silence);
-        public static readonly LocalizedRole LOCALIZED_CUSTOM = new LocalizedRole(Kind.Custom);
+        public static readonly LocalizedRole LOCALIZED_PLAIN = new LocalizedRole(Role.Plain);
+        public static readonly LocalizedRole LOCALIZED_PAGE = new LocalizedRole(Role.Page);
+        public static readonly LocalizedRole LOCALIZED_HEADING = new LocalizedRole(Role.Heading);
+        public static readonly LocalizedRole LOCALIZED_SILENCE = new LocalizedRole(Role.Silence);
+        public static readonly LocalizedRole LOCALIZED_CUSTOM = new LocalizedRole(Role.Custom);
         
         public override string ToString() { return BaseString(); }
 
@@ -51,9 +51,9 @@ namespace Obi
                 IsRooted ? Index + 1 : 0,
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Long(durationMs),
-                mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomClass) :
-                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber.ToString()) :
-                    Localizer.Message("phrase_extra_" + mKind.ToString()));
+                mRole == Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomRole) :
+                    mRole == Role.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber.ToString()) :
+                    Localizer.Message("phrase_extra_" + mRole.ToString()));
         }
 
         public virtual string BaseString() { return BaseString(0.0); }
@@ -62,9 +62,9 @@ namespace Obi
         {
             return String.Format(Localizer.Message("phrase_short_to_string"),
                 TODO ? Localizer.Message("phrase_short_TODO") : "",
-                mKind == Kind.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomClass) :
-                    mKind == Kind.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber.ToString()) :
-                    Localizer.Message("phrase_short_" + mKind.ToString()),
+                mRole == Role.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomRole) :
+                    mRole == Role.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber.ToString()) :
+                    Localizer.Message("phrase_short_" + mRole.ToString()),
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Smart(durationMs));
         }
 
@@ -75,50 +75,55 @@ namespace Obi
         /// <summary>
         /// This event is sent when we change the kind or custom class of a node.
         /// </summary>
-        public event ChangedKindEventHandler ChangedKind;
-        public delegate void ChangedKindEventHandler(object sender, ChangedKindEventArgs e);
+        public event ChangedRoleEventHandler ChangedRole;
+        public delegate void ChangedRoleEventHandler(object sender, ChangedRoleEventArgs e);
 
         /// <summary>
         /// This event is sent when the page number changes on a node (for a node which previously had a page number.)
         /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedPageNumber;
+
+        /// <summary>
+        /// This event is sent when the TODO status of the node is toggled.
+        /// </summary>
         public event NodeEventHandler<EmptyNode> ChangedTODOStatus;
 
 
         /// <summary>
         /// Create a new empty node of a given kind in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Kind kind, string customClass): base(presentation)
+        public EmptyNode(Presentation presentation, Role role, string customRole): base(presentation)
         {
-            mKind = kind;
-            mCustomClass = customClass;
+            mRole = role;
+            mCustomRole = customRole;
             mPageNumber = null;
         }
 
         /// <summary>
         /// Create a plain empty node in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation): this(presentation, Kind.Plain, null) {}
+        public EmptyNode(Presentation presentation): this(presentation, Role.Plain, null) {}
 
         /// <summary>
         /// Create an empty node of a pre-defined kind a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Kind kind): this(presentation, kind, null) {}
+        public EmptyNode(Presentation presentation, Role role): this(presentation, role, null) {}
 
         /// <summary>
         /// Create an empty node with a custom class in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, string customClass): this(presentation, Kind.Custom, customClass) {}
+        public EmptyNode(Presentation presentation, string customRole): this(presentation, Role.Custom, customRole) {}
 
 
         /// <summary>
-        /// Copy node kind/custom class and page number from another node to this node.
+        /// Copy all attributes of this node to another.
         /// </summary>
-        public void CopyKind(EmptyNode node)
+        public void CopyAttributes(EmptyNode node)
         {
-            mKind = node.mKind;
-            mCustomClass = node.mCustomClass;
+            mRole = node.mRole;
+            mCustomRole = node.mCustomRole;
             mPageNumber = node.mPageNumber != null ? node.mPageNumber.Clone() : null;
+            mTODO = node.TODO;
         }
 
         /// <summary>
@@ -127,19 +132,22 @@ namespace Obi
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
             EmptyNode copy = (EmptyNode)base.copyProtected(deep, inclProperties);
-            copy.CopyKind(this);
+            copy.CopyAttributes(this);
             return copy;
         }
 
         /// <summary>
-        /// Custom class (may be null if it is a predefined kind such as plain, page or heading.)
+        /// Get or set the custom role name, if the role is "Custom." (When setting, set to custom as well.)
         /// </summary>
-        public string CustomClass
+        public string CustomRole
         {
-            get { return mCustomClass; }
-            set { SetKind(Kind.Custom, value); }
+            get { return mCustomRole; }
+            set { SetRole(Role.Custom, value); }
         }
 
+        /// <summary>
+        /// Get or set the TODO status of the phrase.
+        /// </summary>
         public bool TODO
         {
             get { return mTODO; }
@@ -152,17 +160,17 @@ namespace Obi
         public override PhraseNode FirstUsedPhrase { get { return null; } }
 
         /// <summary>
-        /// Predefined kind of the node.
+        /// Get or set the role. For custom, use CustomRole directly.
         /// </summary>
-        public Kind NodeKind
+        public Role Role_
         {
-            get { return mKind; }
-            set { SetKind(value, null); }
+            get { return mRole; }
+            set { SetRole(value, null); }
         }
 
         /// <summary>
         /// Get or set the page number for this node.
-        /// Will discard previous kind if it was not already a page node.
+        /// Will discard previous role if it was not already a page node.
         /// </summary>
         public PageNumber PageNumber
         {
@@ -170,13 +178,13 @@ namespace Obi
             set
             {
                 mPageNumber = value;
-                if (mKind == Kind.Page)            
+                if (mRole == Role.Page)            
                 {
                     if (ChangedPageNumber != null) ChangedPageNumber(this, new NodeEventArgs<EmptyNode>(this));
                 }
                 else
                 {
-                    NodeKind = Kind.Page;
+                    Role_ = Role.Page;
                 }
             }
         }
@@ -186,7 +194,7 @@ namespace Obi
         /// </summary>
         public override CompositeCommand RenumberCommand(ProjectView.ProjectView view, PageNumber from)
         {
-            if (mKind == Kind.Page && mPageNumber.Kind == from.Kind)
+            if (mRole == Role.Page && mPageNumber.Kind == from.Kind)
             {
                 CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
                 if (k == null)
@@ -207,23 +215,37 @@ namespace Obi
         /// <summary>
         /// Set the kind or custom class of the node.
         /// </summary>
-        public void SetKind(Kind kind, string customClass)
+        public void SetRole(Role role, string customRole)
         {
-            if (mKind != kind || mCustomClass != customClass)
+            if (mRole != role || mCustomRole != customRole)
             {
-                ChangedKindEventArgs args = new ChangedKindEventArgs(this, mKind, mCustomClass);
-                mKind = kind;
-                mCustomClass = customClass;
-                if (kind != Kind.Page) mPageNumber = null;
-                if (kind == Kind.Heading) AncestorAs<SectionNode>().Heading = this;
-                if (ChangedKind != null) ChangedKind(this, args);
+                ChangedRoleEventArgs args = new ChangedRoleEventArgs(this, mRole, mCustomRole);
+                if (mRole == EmptyNode.Role.Heading) AncestorAs<SectionNode>().UnsetHeading(this as PhraseNode);
+                mRole = role;
+                mCustomRole = customRole;
+                if (role != Role.Page) mPageNumber = null;
+                if (role != Role.Custom) mCustomRole = null;
+                if (role == Role.Heading && !AncestorAs<SectionNode>().DidSetHeading(this))
+                {
+                    mRole = args.PreviousRole;
+                    mCustomRole = args.PreviousCustomRole;
+                    return;
+                }
+                if (ChangedRole != null) ChangedRole(this, args);
             }
         }
 
+        /// <summary>
+        /// Set the TODO status of this node and send an event on change.
+        /// </summary>
+        /// <param name="todo"></param>
         public void SetTODO(bool todo)
         {
-            TODO = todo;
-            if (ChangedTODOStatus != null) ChangedTODOStatus(this, new NodeEventArgs<EmptyNode>(this));
+            if (todo != TODO)
+            {
+                TODO = todo;
+                if (ChangedTODOStatus != null) ChangedTODOStatus(this, new NodeEventArgs<EmptyNode>(this));
+            }
         }
 
         public override void Insert(ObiNode node, int index) { throw new Exception("Empty nodes have no children."); }
@@ -239,14 +261,18 @@ namespace Obi
 
         protected override void xukInAttributes(System.Xml.XmlReader source)
         {
-            string kind = source.GetAttribute(XUK_ATTR_NAME_KIND);
-            if (kind != null) mKind = kind == Kind.Custom.ToString() ? Kind.Custom :
-                                      kind == Kind.Heading.ToString() ? Kind.Heading :
-                                      kind == Kind.Page.ToString() ? Kind.Page :
-                                      kind == Kind.Silence.ToString() ? Kind.Silence : Kind.Plain;
-            if (kind != null && kind != mKind.ToString()) throw new Exception("Unknown kind: " + kind);
-            mCustomClass = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
-            if (mKind == Kind.Page)
+            string role = source.GetAttribute(XUK_ATTR_NAME_ROLE);
+            if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
+                                      role == Role.Heading.ToString() ? Role.Heading :
+                                      role == Role.Page.ToString() ? Role.Page :
+                                      role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
+            if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
+            mCustomRole = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
+            if (mRole == Role.Heading)
+            {
+                if (!AncestorAs<SectionNode>().DidSetHeading(this)) mRole = Role.Plain;
+            }
+            else if (mRole == Role.Page)
             {
                 string pageKind = source.GetAttribute(XUK_ATTR_NAME_PAGE_KIND);
                 if (pageKind != null)
@@ -255,7 +281,7 @@ namespace Obi
                     int number = SafeParsePageNumber(page);
                     if (pageKind == "Front")
                     {
-                        if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
+                        if (number == 0) throw new Exception(string.Format("Invalid front page number \"{0}\".", page));
                         mPageNumber = new PageNumber(number, PageKind.Front);
                     }
                     else if (pageKind == "Normal")
@@ -265,7 +291,7 @@ namespace Obi
                     }
                     else if (pageKind == "Special")
                     {
-                        if (page == null || page == "") throw new Exception("Invalid empty page number.");
+                        if (page == null || page == "") throw new Exception("Invalid empty special page number.");
                         mPageNumber = new PageNumber(page);
                     }
                     else
@@ -274,31 +300,27 @@ namespace Obi
                     }
                 }
             }
-            if (mKind != Kind.Custom && mCustomClass != null)
+            if (mRole != Role.Custom && mCustomRole != null)
             {
                 throw new Exception("Extraneous `custom' attribute.");
             }
-            else if (mKind == Kind.Custom && mCustomClass == null)
+            else if (mRole == Role.Custom && mCustomRole == null)
             {
                 throw new Exception("Missing `custom' attribute.");
             }
             // add it to the presentation
-            Presentation.AddCustomClass(mCustomClass, this);
+            Presentation.AddCustomClass(mCustomRole, this);
 
-            string ToDo = source.GetAttribute(XUK_ATTR_NAME_TODO);
-            if (ToDo != null)
-            {
-                if (ToDo == "True") mTODO = true;
-                else mTODO = false;
-            }
+            string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
+            if (todo != null) mTODO = todo == "True";
             base.xukInAttributes(source);
         }
 
         protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
-            if (mKind != Kind.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_KIND, mKind.ToString());
-            if (mKind == Kind.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomClass);
-            if (mKind == Kind.Page)
+            if (mRole != Role.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_ROLE, mRole.ToString());
+            if (mRole == Role.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomRole);
+            if (mRole == Role.Page)
             {
                 wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
                 wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
@@ -317,38 +339,38 @@ namespace Obi
             return Int32.TryParse(str, out page) ? page : 0;
         }
 
-        public static object LocalizedRoleFor(Kind kind)
+        public static object LocalizedRoleFor(Role role)
         {
-            return kind == Kind.Custom ? LOCALIZED_CUSTOM :
-                kind == Kind.Heading ? LOCALIZED_HEADING :
-                kind == Kind.Page ? LOCALIZED_PAGE :
-                kind == Kind.Plain ? LOCALIZED_PLAIN : LOCALIZED_SILENCE;
+            return role == Role.Custom ? LOCALIZED_CUSTOM :
+                role == Role.Heading ? LOCALIZED_HEADING :
+                role == Role.Page ? LOCALIZED_PAGE :
+                role == Role.Plain ? LOCALIZED_PLAIN : LOCALIZED_SILENCE;
         }
     }
 
     /// <summary>
     /// Informs that a node's kind has changed and pass along its old kind.
     /// </summary>
-    class ChangedKindEventArgs : NodeEventArgs<EmptyNode>
+    class ChangedRoleEventArgs : NodeEventArgs<EmptyNode>
     {
-        private EmptyNode.Kind mKind;
-        private string mCustomClass;
+        private EmptyNode.Role mRole;  // previous role
+        private string mCustomRole;    // previous custom role name
 
-        public ChangedKindEventArgs(EmptyNode node, EmptyNode.Kind kind, string customClass): base(node)
+        public ChangedRoleEventArgs(EmptyNode node, EmptyNode.Role role, string customRole): base(node)
         {
-            mKind = kind;
-            mCustomClass = customClass;
+            mRole = role;
+            mCustomRole = customRole;
         }
 
         /// <summary>
-        /// Previous kind for a content node.
+        /// Get the revious role.
         /// </summary>
-        public EmptyNode.Kind PreviousKind { get { return mKind; } }
+        public EmptyNode.Role PreviousRole { get { return mRole; } }
 
         /// <summary>
-        /// Previous custom class for a content node.
+        /// Get the previous custom role name.
         /// </summary>
-        public string PreviousCustomClass { get { return mCustomClass; } }
+        public string PreviousCustomRole { get { return mCustomRole; } }
     }
 
     /// <summary>
@@ -356,10 +378,10 @@ namespace Obi
     /// </summary>
     public class LocalizedRole
     {
-        private EmptyNode.Kind mRole;
+        private EmptyNode.Role mRole;
 
-        public LocalizedRole(EmptyNode.Kind role) { mRole = role; }
-        public EmptyNode.Kind Role { get { return mRole; } }
+        public LocalizedRole(EmptyNode.Role role) { mRole = role; }
+        public EmptyNode.Role Role { get { return mRole; } }
         public override string ToString() { return Localizer.Message("role_" + mRole.ToString()); }
     }
 }

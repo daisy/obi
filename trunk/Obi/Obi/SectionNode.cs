@@ -35,6 +35,27 @@ namespace Obi
             insert(node, index);
         }
 
+        /// <summary>
+        /// Test whether this section's level can be increased (i.e. not the first child of its parent.)
+        /// </summary>
+        public bool CanIncreaseLevel { get { return Index > 0; } }
+
+        /// <summary>
+        /// Copy the children of a section node.
+        /// </summary>
+        protected void CopyChildren(SectionNode destinationNode)
+        {
+            for (int i = 0; i < PhraseChildCount; ++i)
+            {
+                destinationNode.Insert((EmptyNode)PhraseChild(i).copy(true), i);
+            }
+            for (int i = 0; i < SectionChildCount; ++i)
+            {
+                destinationNode.Insert((SectionNode)SectionChild(i).copy(true, true), i);
+            }
+        }
+
+        // Copy the section and its contents (shallow)
         protected override TreeNode copyProtected(bool deep, bool inclProperties)
         {
             SectionNode copy = (SectionNode)base.copyProtected(deep, inclProperties);
@@ -47,9 +68,31 @@ namespace Obi
         }
 
         /// <summary>
-        /// Test whether this section's level can be increased (i.e. not the first child of its parent.)
+        /// Set the heading to be the given node, if it has audio and there is no heading already.
+        /// Return whether the node was actually suitable as heading.
         /// </summary>
-        public bool CanIncreaseLevel { get { return Index > 0; } }
+        public bool DidSetHeading(EmptyNode node)
+        {
+            if (node is PhraseNode && mHeading == null)
+            {
+                mHeading = node;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Total duration of the section.
+        /// </summary>
+        public override double Duration
+        {
+            get
+            {
+                double duration = 0;
+                for (int i = 0; i < PhraseChildCount; ++i) duration += PhraseChild(i).Duration;
+                return duration;
+            }
+        }
 
         /// <summary>
         /// Find the first used phrase in the section, if any.
@@ -76,7 +119,6 @@ namespace Obi
         public EmptyNode Heading
         {
             get { return mHeading; }
-            set { mHeading = value; }
         }
 
         /// <summary>
@@ -102,6 +144,7 @@ namespace Obi
             index = node is EmptyNode ? index < 0 ? FirstSectionIndex + index : index :
                                         index < 0 ? getChildCount() + index : index + FirstSectionIndex;
             insert(node, index);
+            if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Heading) DidSetHeading((PhraseNode)node);
         }
 
         /// <summary>
@@ -125,6 +168,9 @@ namespace Obi
             }
         }
 
+        /// <summary>
+        /// Last used phrase of the section.
+        /// </summary>
         public override EmptyNode LastUsedPhrase
         {
             get
@@ -135,10 +181,10 @@ namespace Obi
             }
         }
 
-            /// <summary>
-            /// Following section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
-            /// </summary>
-            public SectionNode FollowingSection
+        /// <summary>
+        /// Following section in flat order: first child if there is a child, next sibling, or parent's sibling, etc.
+        /// </summary>
+        public SectionNode FollowingSection
         {
             get
             {
@@ -264,32 +310,13 @@ namespace Obi
         }
 
         /// <summary>
-        /// Total duration of the section.
+        /// Unset the heading node, if it was indeed this one.
         /// </summary>
-        public override double Duration
+        public void UnsetHeading(PhraseNode node)
         {
-            get
-            {
-                double duration = 0;
-                for (int i = 0; i < PhraseChildCount; ++i) duration += PhraseChild(i).Duration;
-                return duration;
-            }
+            if (node == mHeading) mHeading = null;
         }
 
-        /// <summary>
-        /// Copy the children of a section node.
-        /// </summary>
-        protected void CopyChildren(SectionNode destinationNode)
-        {
-            for (int i = 0; i < PhraseChildCount; ++i)
-            {
-                destinationNode.Insert((EmptyNode)PhraseChild(i).copy(true), i);
-            }
-            for (int i = 0; i < SectionChildCount; ++i)
-            {
-                destinationNode.Insert((SectionNode)SectionChild(i).copy(true, true), i);
-            }
-        }
 
         // The index of the first section in the list of children. 
         // If there is no section this is simply the number of children (i.e. where the first phrase would be.)
