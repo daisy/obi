@@ -1962,5 +1962,8 @@ namespace Obi.ProjectView
             SetPlaylistEvents(playlist);
             mCurrentPlaylist = playlist;
         }
+
+        public bool CanUsePlaybackSelection { get { return Enabled && IsPlayerActive && mView.ObiForm.Settings.PlayOnNavigate; }}
+
     }
 }

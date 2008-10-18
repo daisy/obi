@@ -944,22 +944,22 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockBefore(item); });
+        return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
         }
 
         private bool SelectPrecedingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripIndexBefore(item); });
+        return SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
         }
 
         private bool SelectFollowingBlock()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(item); });
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock: item); });
         }
 
         private bool SelectFollowingStripCursor()
         {
-            return SelectStripCursorFor(delegate(Strip strip, ISelectableInContentView item) { return strip.StripIndexAfter(item); });
+        return SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexAfter ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
         }
 
         private bool SelectLastBlockInStrip()
@@ -992,10 +992,10 @@ namespace Obi.ProjectView
             if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
                 && this.mPlaybackBlock.ObiNode.Index == 0)
             {
-                strip = StripBefore(StripFor(mSelectedItem));
+            strip = StripBefore ( StripFor (  mSelectedItem ) );
             }
             else
-                strip = mSelectedItem is Strip ? StripBefore(StripFor(mSelectedItem)) : StripFor(mSelectedItem);
+            strip = mSelectedItem is Strip ? StripBefore ( StripFor ( mSelectedItem ) ) : StripFor ( mSelectedItem );
 
             if (strip != null)
             {
@@ -1008,7 +1008,7 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip()
         {
-                        Strip strip =   StripAfter  ( StripFor ( mSelectedItem ));
+        Strip strip = StripAfter ( StripFor (  mSelectedItem ) );
                         if (strip != null)
                             {
                             mProjectView.Selection = new NodeSelection ( strip.Node, this );
