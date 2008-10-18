@@ -13,7 +13,7 @@ namespace Obi.PipelineInterface.ParameterControls
     {
         private string m_SelectedPath;
         private ScriptParameter m_Parameter;
-        private DataTypes.PathDataType m_PathData;
+        private DataTypes.PathDataType mPathData;
                 private string m_ProjectDirectory;
 
         public PathBrowserControl() { InitializeComponent(); }
@@ -24,7 +24,7 @@ namespace Obi.PipelineInterface.ParameterControls
             m_SelectedPath = SelectedPath;
             m_ProjectDirectory = ProjectDirectory;
             m_Parameter = p;
-            m_PathData = (DataTypes.PathDataType)p.ParameterDataType;
+            mPathData = (DataTypes.PathDataType)p.ParameterDataType;
 
             int wdiff = mNiceNameLabel.Width;
             mNiceNameLabel.Text = p.NiceName;
@@ -42,14 +42,18 @@ namespace Obi.PipelineInterface.ParameterControls
             mTextBox.AccessibleName = p.Description;
             base.DescriptionLabel = p.Description;
             if (mLabel.Width + mLabel.Margin.Horizontal > Width) Width = mLabel.Width + mLabel.Margin.Horizontal;
-            if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
+            if (mPathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
             {
                 mTextBox.Text = SelectedPath;
             }
-            else
+            else if (mPathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
             {
                 mTextBox.Text = Path.IsPathRooted(p.ParameterValue) ? p.ParameterValue :
                     Path.GetFullPath(Path.Combine(ProjectDirectory, p.ParameterValue));
+            }
+            else
+            {
+                mTextBox.Text = p.ParameterValue;
             }
         }
 
@@ -71,45 +75,52 @@ namespace Obi.PipelineInterface.ParameterControls
             }
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void mBrowseButton_Click(object sender, EventArgs e)
         {
-            if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
+            if (mPathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
             {
-                if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
+                if (mPathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.input)
+                {
                     UpdatePathTextboxFromOpenFileDialog();
-                else if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
+                }
+                else if (mPathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
+                {
                     UpdatePathTextboxFromSaveFileDialog();
+                }
             }
-            else if (m_PathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
+            else if (mPathData.IsFileOrDirectory == Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
             {
                 UpdatePathTextboxFromFolderBrowserDialog();
             }
         }
 
+        // Bring up the file browser to choose an input file
         private void UpdatePathTextboxFromOpenFileDialog()
         {
-            if (openFileDialog1.ShowDialog () == DialogResult.OK)
-            {
-                mTextBox.Text = openFileDialog1.FileName;
-            }
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.FileName = mTextBox.Text;
+            dialog.CheckPathExists = true;
+            dialog.CheckFileExists = false;
+            if (dialog.ShowDialog() == DialogResult.OK) mTextBox.Text = dialog.FileName;
         }
 
+        // Bring up the save file dialog to choose an output file
         private void UpdatePathTextboxFromSaveFileDialog()
         {
-            if (saveFileDialog1.ShowDialog () == DialogResult.OK)
-            {
-                mTextBox.Text = saveFileDialog1.FileName;
-            }
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = mTextBox.Text;
+            dialog.CheckFileExists = false;
+            dialog.CheckPathExists = true;
+            dialog.OverwritePrompt = true;
+            if (dialog.ShowDialog() == DialogResult.OK) mTextBox.Text = dialog.FileName;
         }
 
         private void UpdatePathTextboxFromFolderBrowserDialog()
         {
-                folderBrowserDialog1.ShowNewFolderButton = true;
-            if (folderBrowserDialog1.ShowDialog () == DialogResult.OK)
-            {
-                mTextBox.Text = folderBrowserDialog1.SelectedPath;
-            }
-
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = mTextBox.Text;
+            dialog.ShowNewFolderButton = true;
+            if (dialog.ShowDialog() == DialogResult.OK) mTextBox.Text = dialog.SelectedPath;
         }
 
         public override void UpdateScriptParameterValue()
@@ -118,16 +129,16 @@ namespace Obi.PipelineInterface.ParameterControls
                         //||   m_Parameter.IsParameterRequired)
                     {
                         m_SelectedPath = mTextBox.Text;
-                        if (m_PathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
+                        if (mPathData.isInputOrOutput == Obi.PipelineInterface.DataTypes.PathDataType.InputOrOutput.output)
                         {
                             try
                             {
-                                if (m_PathData.IsFileOrDirectory ==
+                                if (mPathData.IsFileOrDirectory ==
                                     Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
                                 {
                                     ObiForm.CheckProjectDirectory(mTextBox.Text, true);
                                 }
-                                else if (m_PathData.IsFileOrDirectory ==
+                                else if (mPathData.IsFileOrDirectory ==
                                     Obi.PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
                                 {
                                     File.CreateText(mTextBox.Text).Close();
@@ -142,7 +153,7 @@ namespace Obi.PipelineInterface.ParameterControls
                         // update    parameter
                         try
                         {
-                            m_PathData.Value = mTextBox.Text;
+                            mPathData.Value = mTextBox.Text;
                         }
                         catch (System.Exception ex)
                         {

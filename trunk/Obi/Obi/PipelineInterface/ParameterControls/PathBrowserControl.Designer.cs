@@ -31,9 +31,6 @@ namespace Obi.PipelineInterface.ParameterControls
             this.mNiceNameLabel = new System.Windows.Forms.Label();
             this.mTextBox = new System.Windows.Forms.TextBox();
             this.mBrowseButton = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // mNiceNameLabel
@@ -68,11 +65,7 @@ namespace Obi.PipelineInterface.ParameterControls
             this.mBrowseButton.TabIndex = 3;
             this.mBrowseButton.Text = "Browse";
             this.mBrowseButton.UseVisualStyleBackColor = true;
-            this.mBrowseButton.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.mBrowseButton.Click += new System.EventHandler(this.mBrowseButton_Click);
             // 
             // PathBrowserControl
             // 
@@ -99,8 +92,5 @@ namespace Obi.PipelineInterface.ParameterControls
         private System.Windows.Forms.Label mNiceNameLabel;
         private System.Windows.Forms.TextBox mTextBox;
         private System.Windows.Forms.Button mBrowseButton;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
