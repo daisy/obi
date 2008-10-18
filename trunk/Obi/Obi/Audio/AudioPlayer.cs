@@ -952,22 +952,25 @@ namespace Obi.Audio
         // Set the current position in the player in bytes.
         void SetCurrentBytePosition(long position)
         {
+        if (mState != AudioPlayerState.Stopped || mCurrentAudio != null)
+            {
             if (position < 0) position = 0;
-            if (position > mCurrentAudio.getPCMLength()) position = mCurrentAudio.getPCMLength() - 100;
+            if (position > mCurrentAudio.getPCMLength ()) position = mCurrentAudio.getPCMLength () - 100;
             mEventsEnabled = false;
             if (State == AudioPlayerState.Playing)
-            {
-                Stop();
-                Thread.Sleep(30);
+                {
+                Stop ();
+                Thread.Sleep ( 30 );
                 mStartPosition = position;
-                InitPlay(mCurrentAudio, position, 0);
-            }
-            else if (mState.Equals(AudioPlayerState.Paused))
-            {
+                InitPlay ( mCurrentAudio, position, 0 );
+                }
+            else if (mState.Equals ( AudioPlayerState.Paused ))
+                {
                 mStartPosition = position;
                 mPausePosition = position;
-            }
+                }
             mEventsEnabled = true;
+            }
         }
 
 
