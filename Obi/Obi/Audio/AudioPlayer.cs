@@ -126,15 +126,16 @@ namespace Obi.Audio
             }
         }
 
-
-        long  mPrevBytePosition ;
+        // The player sometimes reports a bogus position before the current position while playing,
+        // so remember where we were last to avoid going backward randomly.
+        long  mPrevBytePosition;
 
         // Get the current playback position in bytes.
         private long GetCurrentBytePosition()
         {
             int PlayPosition = 0;
             long lCurrentPosition = 0;
-            if (mCurrentAudio != null     &&       mCurrentAudio.getPCMLength() > 0)
+            if (mCurrentAudio != null && mCurrentAudio.getPCMLength() > 0)
             {//1
                 if (mState == AudioPlayerState.Playing)
                 {//2
@@ -142,11 +143,11 @@ namespace Obi.Audio
                     // if refreshing of buffer has finished and player is near end of asset
                     if (mBufferStopPosition != -1)
                     {//3
-                        int subtractor  = 0 ;
+                        int subtractor = 0;
                         if (mBufferStopPosition >= PlayPosition)
                             subtractor = (mBufferStopPosition - PlayPosition);
                         else
-                            subtractor = mBufferStopPosition + ( mSoundBuffer.Caps.BufferBytes -  PlayPosition ) ;
+                            subtractor = mBufferStopPosition + (mSoundBuffer.Caps.BufferBytes - PlayPosition);
 
                         lCurrentPosition = m_lLength - subtractor;
                     }//-3
@@ -166,20 +167,16 @@ namespace Obi.Audio
                         lCurrentPosition = mCurrentAudio.getPCMLength() -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
+                    if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
+                    mPrevBytePosition = lCurrentPosition;
                 }//-2
-                        else if (mState == AudioPlayerState.Paused)
-            {//2
-                lCurrentPosition = mPausePosition;
-            }//-2
-                        if (mFwdRwdRate  != 0 ) lCurrentPosition = m_lChunkStartPosition;
-            lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
-        }//-1
-
-        if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0)
-                                return mPrevBytePosition;
-                                        
-        mPrevBytePosition = lCurrentPosition;
-
+                else if (mState == AudioPlayerState.Paused)
+                {//2
+                    lCurrentPosition = mPausePosition;
+                }//-2
+                if (mFwdRwdRate != 0) lCurrentPosition = m_lChunkStartPosition;
+                lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
+            }//-1
             return lCurrentPosition;
         }
 
@@ -872,7 +869,6 @@ namespace Obi.Audio
         {
             if (State == AudioPlayerState.Stopped)
             {
-                mPausePosition = GetCurrentBytePosition();
                 m_lResumeToPosition = 0;
                 Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Paused;
