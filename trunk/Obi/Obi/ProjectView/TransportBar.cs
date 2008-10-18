@@ -1580,13 +1580,14 @@ namespace Obi.ProjectView
         /// </summary>
         public bool Preview(bool from, bool useSelection)
         {
-            if (!IsRecorderActive)
+            if (!IsRecorderActive && mView.Selection != null)
             {
-                if ((mState == State.Paused || mState == State.Playing) && !useSelection)
+                if ((mState == State.Paused || mState == State.Playing) 
+                    && !useSelection )
                 {
                     // if (m_IsPreviewing) PostPreviewRestore();
                     if (mState == State.Playing) Pause();
-                    // double time = mAfterPreviewRestoreTime > 0 ? mAfterPreviewRestoreTime : mCurrentPlaylist.CurrentTimeInAsset;
+                    
                     double time = mCurrentPlaylist is PreviewPlaylist ?
                         ((PreviewPlaylist)mCurrentPlaylist).RevertTime : mCurrentPlaylist.CurrentTimeInAsset;
                     CreateLocalPlaylistForPreview(time);
