@@ -134,7 +134,7 @@ namespace Obi.ProjectView
             if (mContentView.Selection != null)
             {
                 // select parent section node if a child phrase node is selected
-            if (Selection.Node is EmptyNode || Selection is StripIndexSelection)
+            if (Selection.Node is EmptyNode)
                 {
                     Selection = new NodeSelection(Selection.Node.ParentAs<SectionNode>(), Selection.Control);
                 }
