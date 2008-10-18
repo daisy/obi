@@ -856,7 +856,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html.
+        ///   Looks up a localized string similar to DTB pacakge file (*.opf)|*.opf|Any file|*.*.
         /// </summary>
         internal static string dtb_filter {
             get {

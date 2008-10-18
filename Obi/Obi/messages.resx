@@ -1038,7 +1038,7 @@ Error text: {1}</value>
     <value>DTB encoding error</value>
   </data>
   <data name="dtb_filter" xml:space="preserve">
-    <value>DTB 3.0 file|*.opf|DTB 2.02 file|ncc.html</value>
+    <value>DTB pacakge file (*.opf)|*.opf|Any file|*.*</value>
   </data>
   <data name="dtb_validate_error" xml:space="preserve">
     <value>Error during DTB validation: {0}</value>
