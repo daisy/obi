@@ -41,6 +41,10 @@ namespace Obi.Commands.Node
             {
                 mParentSection.Insert(mDetectedPhrases[i], mOriginalPhraseIndex + i);
             }
+        mParentSection.PhraseChild(mOriginalPhraseIndex).CopyAttributes ( mOriginalPhrase);
+        mParentSection.PhraseChild ( mOriginalPhraseIndex ).Used = mOriginalPhrase.Used;
+        mParentSection.PhraseChild ( mOriginalPhraseIndex ).TODO = mOriginalPhrase.TODO;
+            
             if (View.Selection != null) View.Selection = new NodeSelection(mParentSection.PhraseChild(mOriginalPhraseIndex), View.Selection.Control);
             mOriginalPhrase.Detach();
             View.UpdateBlocksLabelInStrip(mParentSection);
