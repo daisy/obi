@@ -137,15 +137,21 @@ namespace Obi.Dialogs
         // Update project settings
         private void UpdateProjectSettings()
         {
-            if (ObiForm.CheckProjectDirectory_Safe(mDirectoryTextbox.Text, false))
+        if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
+            && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
             {
+            if (ObiForm.CheckProjectDirectory_Safe ( mDirectoryTextbox.Text, false ))
                 mSettings.DefaultPath = mDirectoryTextbox.Text;
+
+            mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
             }
-            mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
-            if (System.IO.Directory.Exists(mPipelineTextbox.Text))
+        else
             {
-                mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
+            MessageBox.Show ( Localizer.Message ( "InvalidPaths") , Localizer.Message ("Caption_Error"));
+            return;
             }
+
+        mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         }
 
         // Update audio settings

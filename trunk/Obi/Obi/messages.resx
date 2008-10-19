@@ -1253,4 +1253,7 @@ Error text: {1}</value>
   <data name="save_as_progress_dialog_title" xml:space="preserve">
     <value>Saving project under a new location...</value>
   </data>
+  <data name="InvalidPaths" xml:space="preserve">
+    <value>One or more paths are invalid!</value>
+  </data>
 </root>
