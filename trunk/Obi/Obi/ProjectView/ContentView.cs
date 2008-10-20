@@ -98,7 +98,7 @@ namespace Obi.ProjectView
             get
             {
                 return IsStripSelected && (((SectionNode)mSelection.Node).PhraseChildCount > 0 &&
-                    mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode>().SectionChildCount - 1);
+                    (mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode>().SectionChildCount - 1       || ((SectionNode)mSelection.Node).SectionChildCount > 0) );
             }
         }
 
