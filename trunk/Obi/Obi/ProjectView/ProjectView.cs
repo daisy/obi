@@ -307,8 +307,7 @@ namespace Obi.ProjectView
         public bool CanRewind { get { return mTransportBar.CanRewind; } }
         public bool CanSetBlockUsedStatus { get { return mContentView.CanSetBlockUsedStatus; } }
         public bool CanSetSectionUsedStatus { get { return mTOCView.CanSetSectionUsedStatus; } }
-        public bool CanSetStripUsedStatus { get { return mContentView.CanSetStripUsedStatus; } }
-        public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus || CanSetStripUsedStatus; } }
+        public bool CanSetSelectedNodeUsedStatus { get { return CanSetSectionUsedStatus || CanSetBlockUsedStatus; } }
         public bool CanSetTODOStatus { get { return IsBlockSelected || mTransportBar.IsActive; } }
         public bool CanShowOnlySelectedSection { get { return SelectedNodeAs<ObiNode>() != null; } }
         public bool CanSplitStrip { get { return mContentView.CanSplitStrip && !TransportBar.IsRecorderActive; } }
@@ -1061,7 +1060,6 @@ namespace Obi.ProjectView
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode; } }
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
-        public bool CanMarkStripUnused { get { return !mContentView.CanSetStripUsedStatus || mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
