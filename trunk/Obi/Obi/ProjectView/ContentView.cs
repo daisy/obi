@@ -1353,11 +1353,6 @@ null;
             return false;
         }
 
-        private void ContentView_Paint(object sender, PaintEventArgs e)
-        {
-            System.Diagnostics.Debug.Print("AutoScrollPosition = {0} (Autoscroll = {1})", AutoScrollPosition, AutoScroll);
-        }
-
         /// <summary>
         /// Update the context menu items.
         /// </summary>

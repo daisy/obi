@@ -383,6 +383,7 @@ namespace Obi
                             DirectoryInfo dir_original = new DirectoryInfo(Path.GetDirectoryName(path_original));
                             DirectoryInfo dir_new = new DirectoryInfo(Path.GetDirectoryName(path_new));
                             ShallowCopyFilesInDirectory(dir_original.FullName, dir_new.FullName);
+                            mSession.RemoveLock_safe(path_new);
                             DirectoryInfo[] dirs = dir_original.GetDirectories("*.*", SearchOption.AllDirectories);
                             foreach (DirectoryInfo d in dirs)
                             {

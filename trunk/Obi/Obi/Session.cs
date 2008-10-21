@@ -100,10 +100,21 @@ namespace Obi
                 Presentation presentation = null;
                 try { presentation = Presentation; } catch (Exception) { }
                 mProject = null;
+                RemoveLock_safe(mPath);
                 mPath = null;
                 mChangesCount = 0;
                 if (ProjectClosed != null) ProjectClosed(this, new ProjectClosedEventArgs(presentation));
             }
+        }
+
+        /// <summary>
+        /// Remove the lock file for the project; fail silently.
+        /// </summary>
+        public void RemoveLock_safe(string path)
+        {
+            string path_lock = path + ".lock";
+            try { System.IO.File.Delete(path_lock); }
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -120,6 +131,7 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.setPresentation(mDataModelFactory.createPresentation(), 0);
             mPath = path;
+            GetLock(mPath);
             mChangesCount = 0;
             Presentation.Initialize(this, title, createTitleSection, id, settings);
             Presentation.setRootUri(new Uri(path));
@@ -136,10 +148,29 @@ namespace Obi
             mProject.setDataModelFactory(mDataModelFactory);
             mProject.openXUK(new Uri(path));
             mPath = path;
+            GetLock(mPath);
             Presentation.Initialize(this);
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.getUndoRedoManager().flushCommands();
             if (ProjectOpened != null) ProjectOpened(this, null);
+        }
+
+        // Get a lock file, and throw an exception if there is already one.
+        private void GetLock(string path)
+        {
+            string path_lock = path + ".lock";
+            if (System.IO.File.Exists(path_lock))
+            {
+                throw new Exception(string.Format(Localizer.Message("project_locked"), path_lock));
+            }
+            try
+            {
+                System.IO.File.Create(path_lock).Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format(Localizer.Message("project_lock_error"), path_lock, e.Message), e);
+            }
         }
 
         /// <summary>
@@ -148,7 +179,7 @@ namespace Obi
         public void Save() { if (CanSave) ForceSave(); }
 
         /// <summary>
-        /// Always save, regardless of changes.
+        /// Always save, regardless of change count (which gets reset.)
         /// </summary>
         public void ForceSave()
         {
