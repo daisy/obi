@@ -1057,7 +1057,7 @@ namespace Obi.ProjectView
         public bool CanShowInStripsView { get { return IsSectionSelected; } }
 
         public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode; } }
-        public bool CanShowProjectPropertiesDialog { get { return mPresentation != null && !CanShowPhrasePropertiesDialog && !CanShowSectionPropertiesDialog; } }
+        public bool CanShowProjectPropertiesDialog { get { return mPresentation != null ; } }
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode; } }
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
@@ -1775,8 +1775,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool ShowNodePropertiesDialog()
         {
-            return CanShowProjectPropertiesDialog ? ShowProjectPropertiesDialog() :
-                CanShowPhrasePropertiesDialog ? ShowPhrasePropertiesDialog(false) :
+            return                 CanShowPhrasePropertiesDialog ? ShowPhrasePropertiesDialog(false) :
                 CanShowSectionPropertiesDialog ? ShowSectionPropertiesDialog() :
                 true;
         }
