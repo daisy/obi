@@ -560,9 +560,9 @@ Error text: {1}</value>
     <value>Marked</value>
     <comment>Role stuff</comment>
   </data>
-  <data name="no_preceding_silent_phrase" xml:space="preserve">
-    <value>No preceding silent phrase for reference; using default values.</value>
-    <comment>Error dialog</comment>
+  <data name="no_preceding_silence_phrase" xml:space="preserve">
+    <value>There was no silence phrase preceding the selection, so default values will be used. You can still modifiy these default settings freely, or cancel and select a silence phrase.</value>
+    <comment>Warning for phrase detection</comment>
   </data>
   <data name="paste_audio" xml:space="preserve">
     <value>paste audio</value>
@@ -1224,7 +1224,7 @@ Error text: {1}</value>
     <value>Cannot use selected location</value>
   </data>
   <data name="extension_warning" xml:space="preserve">
-    <value>You are about to save a project file to {0}. It is recommended that you use the .obi file exention. Are you sure you want to keep the selected extension?</value>
+    <value>You are about to save a project file to {0}. It is recommended that you use the .obi file extension. Are you sure you want to keep the selected extension?</value>
   </data>
   <data name="extension_warning_caption" xml:space="preserve">
     <value>File extension warning</value>
@@ -1263,5 +1263,13 @@ Error text: {1}</value>
   <data name="project_locked" xml:space="preserve">
     <value>Project is locked, probably because there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file "{0}", but proceed at your own risk.</value>
     <comment>Lock error</comment>
+  </data>
+  <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
+    <value>No preceding silence phrase</value>
+    <comment>Phrase detection warning</comment>
+  </data>
+  <data name="phrase_detection_progress_dialog_title" xml:space="preserve">
+    <value>Applying phrase detection...</value>
+    <comment>Progress dialog title</comment>
   </data>
 </root>

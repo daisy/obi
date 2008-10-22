@@ -39,23 +39,25 @@ namespace Obi.Dialogs
         public SentenceDetection(PhraseNode silence)
         {
             InitializeComponent();
-
             if (silence != null)
+            {
+                double threshold = Audio.PhraseDetection.GetSilenceAmplitude(silence.Audio);
+                if (threshold > Convert.ToDouble(mThresholdNumericBox.Maximum))
                 {
-                double threshold = Audio.PhraseDetection.GetSilenceAmplitude ( silence.Audio );
-                if (threshold > Convert.ToDouble( mThresholdNumericBox.Maximum)) 
-                    threshold = Convert.ToDouble( mThresholdNumericBox.Maximum) ;
-
-                                mThresholdNumericBox.Value = Convert.ToDecimal ( threshold) ;
+                    threshold = Convert.ToDouble(mThresholdNumericBox.Maximum);
                 }
+                mThresholdNumericBox.Value = Convert.ToDecimal(threshold);
+            }
             else
-                {
-                MessageBox.Show ( Localizer.Message ( "no_preceding_silent_phrase" ) );
-                                mThresholdNumericBox.Value = 280;
-                }
-            mGapNumericBox.Value = Convert.ToDecimal ( Audio.PhraseDetection.DEFAULT_GAP ) ;
-                        mLeadingNumericBox.Value =Convert.ToDecimal ( Audio.PhraseDetection.DEFAULT_LEADING_SILENCE ) ;
-                    }
+            {
+                MessageBox.Show(Localizer.Message("no_preceding_silence_phrase"),
+                    Localizer.Message("no_preceding_silence_phrase_caption"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mThresholdNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_THRESHOLD);
+            }
+            mGapNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_GAP);
+            mLeadingNumericBox.Value = Convert.ToDecimal(Audio.PhraseDetection.DEFAULT_LEADING_SILENCE);
+        }
 
 
         private void mGapNumericBox_ValueChanged ( object sender, EventArgs e )
@@ -71,25 +73,9 @@ namespace Obi.Dialogs
                         }
 
 
-        private void mLeadingNumericBox_ValueChanged ( object sender, EventArgs e )
-            {
-            CheckLeadingSilenceInput ();
-            }
-
-        private void mOKButton_Click ( object sender, EventArgs e )
-            {
-            /*
-            if (mThresholdBox.Text.Trim () == ""
-                || mGapBox.Text.Trim () == ""
-                || mLeadingSilenceBox.Text.Trim () == "")
-                {
-                MessageBox.Show ( Localizer.Message ( "Textboxs_Empty" ), Localizer.Message ( "Caption_Error" ) );
-                return;
-                                }
-             */ 
-                            this.DialogResult = DialogResult.OK;
-            }
-
-
+        private void mLeadingNumericBox_ValueChanged(object sender, EventArgs e)
+        {
+            CheckLeadingSilenceInput();
+        }
     }
 }

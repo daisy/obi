@@ -234,7 +234,7 @@ namespace Obi.ProjectView
             base.OnPaint(pe);
         }
 
-        private static readonly int XScrollIncrement = 48;
+        private const int X_SCROLL_INCREMENT = 48;
 
         private void CheckVisibility()
         {
@@ -248,10 +248,10 @@ namespace Obi.ProjectView
             }
             ContentView contentView = parent == null ? null : parent.Parent as ContentView;
             if (contentView != null &&
-                location.X + CursorPosition > contentView.Width - contentView.AutoScrollPosition.X - XScrollIncrement)
+                location.X + CursorPosition > contentView.Width - contentView.AutoScrollPosition.X - X_SCROLL_INCREMENT)
             {
                 contentView.AutoScrollPosition =
-                    new Point(-contentView.AutoScrollPosition.X + XScrollIncrement, -contentView.AutoScrollPosition.Y);
+                    new Point(-contentView.AutoScrollPosition.X + X_SCROLL_INCREMENT, -contentView.AutoScrollPosition.Y);
             }
         }
 
@@ -262,7 +262,7 @@ namespace Obi.ProjectView
             {
                 mNeedsRendering = true;
                 ClearBitmaps();
-                mBlock.ContentView.RenderWaveform(this, WaveformWithPriority.NORMAL_PRIORITY);
+                mBlock.ContentView.RenderWaveform(this, AudioBlock.NORMAL_PRIORITY);
             }
         }
 
@@ -285,6 +285,7 @@ namespace Obi.ProjectView
                 if (value >= 0)
                 {
                     mSelection = new AudioRange(TimeFromX(value));
+                    if (mNeedsRendering) mBlock.PrioritizeRendering(AudioBlock.WAVEFORM_SELECTED_PRIORITY); 
                     Invalidate();
                 }
             }
@@ -326,6 +327,7 @@ namespace Obi.ProjectView
         public void InitCursor(double time)
         {
             mCursor = new AudioRange(time);
+            if (mNeedsRendering) mBlock.PrioritizeRendering(AudioBlock.WAVEFORM_SELECTED_PRIORITY);
         }
 
         /// <summary>

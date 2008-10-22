@@ -180,7 +180,6 @@ namespace Obi.ProjectView
             this.Controls.Add(this.mTransportBarSplitter);
             this.DoubleBuffered = true;
             this.Name = "ProjectView";
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.ProjectView_Layout);
             this.mTransportBarSplitter.Panel1.ResumeLayout(false);
             this.mTransportBarSplitter.Panel2.ResumeLayout(false);
             this.mTransportBarSplitter.ResumeLayout(false);

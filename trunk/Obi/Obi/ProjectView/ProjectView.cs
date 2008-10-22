@@ -1429,37 +1429,20 @@ namespace Obi.ProjectView
         /// </summary>
         public void ApplyPhraseDetection()
         {
-            // first check if selected node is phrase node.
             if (CanApplyPhraseDetection)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
-                PhraseNode SilenceNode = null;
-
-                //ObiNode  IterationNode = (EmptyNode)mPresentation.FirstSection.PhraseChild (0)  ;
-                ObiNode IterationNode = SelectedNodeAs<EmptyNode>();
-
-                while (IterationNode != null)
+                ObiNode node;
+                for (node = SelectedNodeAs<EmptyNode>();
+                    node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
+                    node = node.PrecedingNode) { }
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode);
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (IterationNode is PhraseNode&& ((EmptyNode)IterationNode).Role_ == EmptyNode.Role.Silence)
-                    {
-                        SilenceNode = (PhraseNode)IterationNode;
-                        break;
-                    }
-                    IterationNode = IterationNode.PrecedingNode;
+                    mPresentation.getUndoRedoManager().execute(new
+                        Commands.Node.PhraseDetection(this, dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
                 }
-
-
-                Dialogs.SentenceDetection PhraseDetectionDialog = new Obi.Dialogs.SentenceDetection(SilenceNode);
-                PhraseDetectionDialog.ShowDialog();
-                if (PhraseDetectionDialog.DialogResult == DialogResult.OK)
-                {
-                    TransportBar.SelectionChangedPlaybackEnabled = false;
-                    mPresentation.getUndoRedoManager().execute(new Commands.Node.PhraseDetection(this, PhraseDetectionDialog.Threshold, PhraseDetectionDialog.Gap, PhraseDetectionDialog.LeadingSilence));
-                    TransportBar.SelectionChangedPlaybackEnabled = true;
-                }
-            }// check for phrase node ends
-            else
-                System.Media.SystemSounds.Beep.Play();
+            }
         }
 
 
@@ -1881,20 +1864,15 @@ namespace Obi.ProjectView
             return playing == null ? SelectedNodeAs<PhraseNode>() : playing;
         }
 
-        public void SelectFromTransportBar ( ObiNode node, IControlWithSelection selectionControl )
-            {
-            if ( node != null )
-                {
-                if (selectionControl == null)
-                    Selection = new NodeSelection ( node, mContentView );
-                else
-                    Selection = new NodeSelection ( node, selectionControl );
-                }
-            }
-        private void ProjectView_Layout(object sender, LayoutEventArgs e)
+        public void SelectFromTransportBar(ObiNode node, IControlWithSelection selectionControl)
         {
-            System.Diagnostics.Debug.Print("LAYOUT form ProjectView: control={0}, component={1}, property={2}",
-                e.AffectedControl, e.AffectedComponent, e.AffectedProperty);
+            if (node != null)
+            {
+                if (selectionControl == null)
+                    Selection = new NodeSelection(node, mContentView);
+                else
+                    Selection = new NodeSelection(node, selectionControl);
+            }
         }
 
         [DefaultValue(0.01f)]

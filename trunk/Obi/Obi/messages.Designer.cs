@@ -1126,7 +1126,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file exention. Are you sure you want to keep the selected extension?.
+        ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file extension. Are you sure you want to keep the selected extension?.
         /// </summary>
         internal static string extension_warning {
             get {
@@ -1632,11 +1632,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No preceding silent phrase for reference; using default values..
+        ///   Looks up a localized string similar to There was no silence phrase preceding the selection, so default values will be used. You can still modifiy these default settings freely, or cancel and select a silence phrase..
         /// </summary>
-        internal static string no_preceding_silent_phrase {
+        internal static string no_preceding_silence_phrase {
             get {
-                return ResourceManager.GetString("no_preceding_silent_phrase", resourceCulture);
+                return ResourceManager.GetString("no_preceding_silence_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No preceding silence phrase.
+        /// </summary>
+        internal static string no_preceding_silence_phrase_caption {
+            get {
+                return ResourceManager.GetString("no_preceding_silence_phrase_caption", resourceCulture);
             }
         }
         
@@ -1871,6 +1880,15 @@ namespace Obi {
         internal static string phrase_detection {
             get {
                 return ResourceManager.GetString("phrase_detection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying phrase detection....
+        /// </summary>
+        internal static string phrase_detection_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("phrase_detection_progress_dialog_title", resourceCulture);
             }
         }
         
