@@ -676,7 +676,7 @@ namespace Obi
         {
             if (mPlaylistState == AudioPlayerState.Playing)
             {
-                mPlaylistState = AudioPlayerState.Paused;
+                            mPlaylistState = AudioPlayerState.Paused;
                 mPlayer.Pause();
                 mPlayer.PlaybackFwdRwdRate = 0;
                 if (StateChanged != null)
@@ -730,12 +730,18 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate * -1;
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
 
+                Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs ( mPlayer.State );
+
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
                 else if (mPlayer.State == AudioPlayerState.Stopped)
                     Play();
 
+                if (mPlayer.State == AudioPlayerState.Playing)
+                    mPlaylistState = AudioPlayerState.Playing;
+
                 mPlayBackState = PlayBackState.Rewind;
+                if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged ( this, evargs );
             }
             else
             {
@@ -755,13 +761,18 @@ namespace Obi
                 mPlaybackRate = 1;
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward;
+                Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs ( mPlayer.State );
 
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
                 else if (mPlayer.State == AudioPlayerState.Stopped)
                     Play();
 
+                if (mPlayer.State == AudioPlayerState.Playing)
+                    mPlaylistState = AudioPlayerState.Playing;
+
                 mPlayBackState = PlayBackState.Forward;
+                if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged ( this, evargs );
             }
             else
             {
