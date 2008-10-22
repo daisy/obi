@@ -11,6 +11,7 @@ namespace Obi
         private urakawa.Project mProject;            // the current project (as of now 1 presentation = 1 project)
         private string mPath;                        // path of the XUK file to save to
         private int mChangesCount;                   // changes since (or before) last save
+        private bool mCanDeleteLock;                 // flag to delete the lock on closign (when obtained successfully)
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
@@ -26,6 +27,7 @@ namespace Obi
             mProject = null;
             mPath = null;
             mChangesCount = 0;
+            mCanDeleteLock = false;
         }
 
 
@@ -112,9 +114,13 @@ namespace Obi
         /// </summary>
         public void RemoveLock_safe(string path)
         {
-            string path_lock = path + ".lock";
-            try { System.IO.File.Delete(path_lock); }
-            catch (Exception) { }
+            if (mCanDeleteLock)
+            {
+                string path_lock = path + ".lock";
+                try { System.IO.File.Delete(path_lock); }
+                catch (Exception) { }
+                mCanDeleteLock = false;
+            }
         }
 
         /// <summary>
@@ -158,6 +164,7 @@ namespace Obi
         // Get a lock file, and throw an exception if there is already one.
         private void GetLock(string path)
         {
+            mCanDeleteLock = false;
             string path_lock = path + ".lock";
             if (System.IO.File.Exists(path_lock))
             {
@@ -166,6 +173,7 @@ namespace Obi
             try
             {
                 System.IO.File.Create(path_lock).Close();
+                mCanDeleteLock = true;
             }
             catch (Exception e)
             {
