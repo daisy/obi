@@ -503,7 +503,10 @@ namespace Obi.ProjectView
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
+            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
+                {
+                mView.UpdateCursorPosition ( mCurrentPlaylist.CurrentTimeInAsset );
+                                }
         }
 
         // Move the audio cursor to the phrase currently playing.
@@ -1424,6 +1427,9 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.FastForward();
+
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                    mDisplayTimer.Start ();
             }
         }
 
@@ -1436,6 +1442,9 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.Rewind();
+
+                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                    mDisplayTimer.Start ();
             }
         }
 
