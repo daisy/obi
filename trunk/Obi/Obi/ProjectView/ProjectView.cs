@@ -114,6 +114,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddSection()
         {
+            // if metadata is selected, for section creating rules, treat as nothing is selected.
+        if (Selection != null && Selection is MetadataSelection)
+            Selection = null;
+
             if (mContentView.CanAddStrip)
             {
                 AddStrip();
