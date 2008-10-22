@@ -14,6 +14,7 @@ namespace Obi.Audio
     {
         public static readonly double DEFAULT_GAP = 300.0;              // default gap for phrase detection
         public static readonly double DEFAULT_LEADING_SILENCE = 100.0;  // default leading silence
+        public static readonly double DEFAULT_THRESHOLD = 280.0;
 
         private static  AudioMediaData m_AudioAsset;
 

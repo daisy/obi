@@ -756,7 +756,7 @@ namespace Obi.ProjectView
         private void UpdateWaveforms()
         {
             ClearWaveformRenderQueue();
-            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms(WaveformWithPriority.NORMAL_PRIORITY);
+            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms(AudioBlock.NORMAL_PRIORITY);
         }
 
         #region IControlWithRenamableSelection Members
@@ -1524,6 +1524,25 @@ null;
                 mProjectView.ShowProjectPropertiesDialog();
             }
         }
+
+
+        /*
+        private bool mUpdateAutoScrollPosition = false;
+        private Point mAutoScrollPosition = new Point(0, 0);
+
+        private void ContentView_Paint(object sender, PaintEventArgs e)
+        {
+            if (!mUpdateAutoScrollPosition) AutoScrollPosition = mAutoScrollPosition;
+            mUpdateAutoScrollPosition = false;
+        }
+
+        private void ContentView_Scroll(object sender, ScrollEventArgs e)
+        {
+            System.Diagnostics.Debug.Print("User scrolled to {0}", AutoScrollPosition);
+            mAutoScrollPosition = AutoScrollPosition;
+            mUpdateAutoScrollPosition = true;
+        }
+        */
     }
 
     /// <summary>
@@ -1545,43 +1564,4 @@ null;
         ContentView ContentView { get; }
         ColorSettings ColorSettings { get; }
     }
-
-
-    /// <summary>
-    /// Waveforms with rendering priority.
-    /// </summary>
-    public class WaveformWithPriority : IComparable
-    {
-        private Waveform mWaveform;  // waveform
-        public int Priority;         // see priorities below
-
-        public static readonly int BLOCK_SELECTED_PRIORITY = 3;
-        public static readonly int STRIP_SELECTED_PRIORITY = 2;
-        public static readonly int NORMAL_PRIORITY = 1;
-
-
-        public WaveformWithPriority(Waveform w, int p)
-        {
-            mWaveform = w;
-            Priority = p;
-        }
-
-
-        /// <summary>
-        /// Compare two waveforms depending on their priority. If the second object is null
-        /// then return the priority is considered has being higher.
-        /// </summary>
-        public int CompareTo(object obj)
-        {
-            WaveformWithPriority w = obj as WaveformWithPriority;
-            return w == null ? 1 : Priority.CompareTo(w.Priority);
-        }
-
-        public override string ToString() { return string.Format("{0}<{1}>", mWaveform, Priority); }
-
-        public Waveform Waveform { get { return mWaveform; } }
-    }
-
-
-
 }

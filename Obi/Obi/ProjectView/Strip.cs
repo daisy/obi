@@ -101,7 +101,7 @@ namespace Obi.ProjectView
                 mHighlighted = value && !(mContentView.Selection is TextSelection);
                 if (mHighlighted && mLabel.Editable) mLabel.Editable = false;
                 UpdateColors();
-                if (mHighlighted) UpdateWaveforms(WaveformWithPriority.STRIP_SELECTED_PRIORITY);
+                if (mHighlighted) UpdateWaveforms(AudioBlock.STRIP_SELECTED_PRIORITY);
             }
         }
 

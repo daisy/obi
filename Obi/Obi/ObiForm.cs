@@ -840,7 +840,7 @@ namespace Obi
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
             mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
-            mPhraseDetectionToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            mPhrases_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
             mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
@@ -1095,7 +1095,7 @@ namespace Obi
         }
 
 
-        private void PhraseDetectionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mPhrases_ApplyPhraseDetectionMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ApplyPhraseDetection();
         }

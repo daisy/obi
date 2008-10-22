@@ -12,6 +12,11 @@ namespace Obi.ProjectView
     {
         private bool mShiftKeyPressed;  // track the shift key
 
+        public const int NORMAL_PRIORITY = 1;
+        public const int STRIP_SELECTED_PRIORITY = 2;
+        public const int BLOCK_SELECTED_PRIORITY = 3;
+        public const int WAVEFORM_SELECTED_PRIORITY = 4;
+
         /// <summary>
         /// Create a new audio block for a phrase node in a strip.
         /// </summary>
@@ -69,7 +74,7 @@ namespace Obi.ProjectView
             {
                 if (!value) mWaveform.Deselect();
                 base.Highlighted = value && mWaveform.Selection == null;
-                if (base.Highlighted) PrioritizeRendering(WaveformWithPriority.BLOCK_SELECTED_PRIORITY);
+                if (base.Highlighted) PrioritizeRendering(BLOCK_SELECTED_PRIORITY);
             }
         }
 
