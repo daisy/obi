@@ -290,7 +290,7 @@ namespace Obi.ProjectView
             System.Diagnostics.Debug.Assert(index * 2 < mBlockLayout.Controls.Count, "No strip cursor at index");
             System.Diagnostics.Debug.Assert ( mBlockLayout.Controls.Count > index * 2    &&    mBlockLayout.Controls[index * 2] is StripCursor );
             return mBlockLayout.Controls.Count > index * 2? (StripCursor)mBlockLayout.Controls[index * 2] : null;
-        }
+        } 
 
         /// <summary>
         /// Focus on the label.

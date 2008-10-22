@@ -1140,7 +1140,7 @@ namespace Obi
             {
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
-                        Localizer.Message("default_export_dirname")), mSession.Path);
+                        string.Format( Localizer.Message("default_export_dirname"), mProjectView.Presentation.Title ) ) , mSession.Path);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try
