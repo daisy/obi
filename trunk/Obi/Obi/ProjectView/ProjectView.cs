@@ -70,6 +70,8 @@ namespace Obi.ProjectView
         {
             if (CanAddEmptyBlock)
             {
+            if (TransportBar.IsActive) TransportBar.Stop ();
+
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(NextPageNumber, false, true);
                 if (dialog.ShowDialog() == DialogResult.OK) AddPageRange(dialog.Number, dialog.NumberOfPages, dialog.Renumber);
             }
