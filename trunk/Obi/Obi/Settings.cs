@@ -80,7 +80,7 @@ namespace Obi
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
             settings.PipelineScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                Path.Combine ( "Pipeline-Lite", "scripts" ) );
+                Path.Combine ( "Pipeline-lite", "scripts" ) );
             settings.PlayIfNoSelection = true;
             settings.PlayOnNavigate = false;
             settings.RecentProjects = new ArrayList();
