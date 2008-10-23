@@ -1479,6 +1479,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metadata cannot have empty values..
+        /// </summary>
+        internal static string MetadataView_CannotCommitEmptyContent {
+            get {
+                return ResourceManager.GetString("MetadataView_CannotCommitEmptyContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to minute.
         /// </summary>
         internal static string minute {
