@@ -18,11 +18,16 @@ namespace Obi.Commands.Node
         /// Create a new delete section command from a view.
         /// </summary>
         public Delete(ProjectView.ProjectView view, ObiNode node, string label)
-            : base(view)
+            : this(view, node, node.ParentAs<ObiNode>(), node.Index, true)
+        {
+            Label = label;
+        }
+
+        public Delete(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index, bool update): base(view)
         {
             mNode = node;
-            mParent = node.ParentAs<ObiNode>();
-            mIndex = mNode.Index;
+            mParent = parent;
+            mIndex = index;
             if (view.Selection != null && view.Selection.Node == node)
             {
                 mAfter = GetPostDeleteSelection();
@@ -31,26 +36,31 @@ namespace Obi.Commands.Node
             {
                 mAfter = view.Selection;
             }
-            Label = label;
         }
 
         /// <summary>
-        /// Create a delete section command with no label.
+        /// Create a delete node command with no label.
         /// </summary>
         public Delete(ProjectView.ProjectView view, ObiNode node) : this(view, node, "") { }
 
+        /// <summary>
+        /// Create a delete node command with no label and update selection flag (normally to be set to false.)
+        /// </summary>
+        public Delete(ProjectView.ProjectView view, ObiNode node, bool update)
+            : this(view, node, "")
+        {
+            UpdateSelection = update;
+        }
 
         public override void execute()
         {
             mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
-            if (mNode is EmptyNode ) View.UpdateBlocksLabelInStrip((SectionNode) mParent);
         }
 
         public override void unExecute()
         {
             mParent.Insert(mNode, mIndex);
-            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.unExecute();
         }
 

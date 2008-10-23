@@ -61,6 +61,41 @@ namespace Obi.Commands.Node
         }
 
         /// <summary>
+        /// Get the first node after the split created by a split command.
+        /// </summary>
+        public static PhraseNode GetSplitNode(ICommand command)
+        {
+            CompositeCommand c = command as CompositeCommand;
+            SplitAudio split = command as SplitAudio;
+            if (c != null)
+            {
+                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                int i = commands.Count - 1;
+                for (; i >= 0 && !(commands[i] is SplitAudio); --i) { }
+                if (i >= 0) split = commands[i] as SplitAudio;
+            }
+            return split == null ? null : split.NodeAfter;
+        }
+
+        /// <summary>
+        /// Get the node after the split node created by a crop command.
+        /// </summary>
+        public static PhraseNode GetCropNode(ICommand command, PhraseNode splitNode)
+        {
+            CompositeCommand c = command as CompositeCommand;
+            SplitAudio split = null;
+            if (c != null)
+            {
+                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                int i = 0;
+                for (; i < commands.Count && !((commands[i] is SplitAudio) && ((SplitAudio)commands[i]).NodeAfter != splitNode);
+                    ++i) { }
+                if (i < commands.Count) split = commands[i] as SplitAudio;
+            }
+            return split == null ? null : split.NodeAfter;
+        }
+
+        /// <summary>
         /// Create a split command for the current selection.
         /// </summary>
         public static CompositeCommand GetSplitCommand(ProjectView.ProjectView view)

@@ -74,6 +74,7 @@ namespace Obi.ProjectView
             get
             {
                 return (IsBlockSelected && SelectedEmptyNode.Index >= 0)
+                    || mSelection is AudioSelection
                     || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0 &&
                         ((StripIndexSelection)mSelection).Index <
                             ((StripIndexSelection)mSelection).Section.PhraseChildCount); 
@@ -180,9 +181,27 @@ namespace Obi.ProjectView
                 SectionNode section = SelectedSection;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild(0);
                 if (!section.Used) mProjectView.AppendMakeUnused(command, next);
+                // Delete nodes in reverse order so that they are added back in the right order on redo
+                // and remove the heading role if there is any in the next section
+                for (int i = next.PhraseChildCount - 1; i >= 0; --i)
+                {
+                    // Remove the role before removing the node because it needs to be attached to
+                    // inform its parent that it is not a heading anymore.
+                    if (next.PhraseChild(i).Role_ == EmptyNode.Role.Heading)
+                    {
+                        Commands.Node.AssignRole role =
+                            new Commands.Node.AssignRole(mProjectView, next.PhraseChild(i), EmptyNode.Role.Plain);
+                        role.UpdateSelection = false;
+                        command.append(role);
+                    }
+                    Commands.Node.Delete delete = new Commands.Node.Delete(mProjectView, next.PhraseChild(i));
+                    delete.UpdateSelection = false;
+                    command.append(delete);
+                }
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mProjectView, next.PhraseChild(i), section));
+                    command.append(new
+                        Commands.Node.AddNode(mProjectView, next.PhraseChild(i), section, section.PhraseChildCount + i));
                 }
                 command.append(DeleteStripCommand(next));
             }
@@ -424,45 +443,66 @@ namespace Obi.ProjectView
         /// Split a strip at the selected block or cursor position; i.e. create a new sibling section which
         /// inherits the children of the split section except for the phrases before the selected block or
         /// position. Do not do anything if there are no phrases before.
+        /// In case of an audio selection, split the phrase normally and use this position as the split
+        /// point (i.e. audio before becomes the last block of the first strip, audio after is the beginning
+        /// of the new strip.)
         /// </summary>
         public CompositeCommand SplitStripCommand()
         {
             CompositeCommand command = null;
             if (CanSplitStrip)
             {
-                                EmptyNode node = IsStripCursorSelected ?
-                    mSelection.Node.PhraseChild(((StripIndexSelection)mSelection).Index) : (EmptyNode)mSelection.Node;
+                EmptyNode node = Selection.EmptyNodeForSelection;
                 SectionNode section = node.ParentAs<SectionNode>();
                 command = mProjectView.Presentation.getCommandFactory().createCompositeCommand();
                 command.setShortDescription(Localizer.Message("split_section"));
-
-                if (mProjectView.CanSplitPhrase)
-                {
-                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mProjectView));
-                }
+                // Add a sibling with a new label
                 SectionNode sibling = mProjectView.Presentation.CreateSectionNode();
-                sibling.Label = section.Label + "*" ;
+                sibling.Label = section.Label + "*";
                 Commands.Node.AddNode add = new Commands.Node.AddNode(mProjectView, sibling, section.ParentAs<ObiNode>(),
                     section.Index + 1);
                 add.UpdateSelection = false;
                 command.append(add);
+                // Change parents of children to insert the section at the right position in strip order
+                for (int i = section.SectionChildCount - 1; i >= 0; --i)
+                {
+                    command.append(new Commands.Node.Delete(mProjectView, section.SectionChild(i), false));
+                }
                 for (int i = 0; i < section.SectionChildCount; ++i)
                 {
-                    command.append(new Commands.Node.ChangeParent(mProjectView, section.SectionChild(i), sibling));
+                    command.append(new Commands.Node.AddNode(mProjectView, section.SectionChild(i), sibling, i, false));
                 }
-                for (int i = node.Index; i < section.PhraseChildCount; ++i)
+                // Split the node if necessary
+                PhraseNode splitNode = null;
+                PhraseNode cropNode = null;
+                if (mProjectView.CanSplitPhrase)
                 {
-                    if (mProjectView.CanSplitPhrase )
-                    {
-                        if (i == node.Index )
-                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index, node.Index + 1));
-                        else
-                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index+1));
-                    }
-                    else
-                        command.append(new Commands.Node.ChangeParent(mProjectView, section.PhraseChild(i), sibling, node.Index));
+                    ICommand splitCommand = Commands.Node.SplitAudio.GetSplitCommand(mProjectView);
+                    command.append(splitCommand);
+                    splitNode = Commands.Node.SplitAudio.GetSplitNode(splitCommand);
+                    if (splitNode != null) cropNode = Commands.Node.SplitAudio.GetCropNode(splitCommand, splitNode);
                 }
-                            }
+                // Move children from the context phrase to the new sibling
+                int sectionOffset = node.Index + (splitNode != null ? 1 : 0);
+                for (int i = section.PhraseChildCount - 1; i >= sectionOffset; --i)
+                {
+                    command.append(new Commands.Node.Delete(mProjectView, section.PhraseChild(i), false));
+                }
+                if (cropNode != null) command.append(new Commands.Node.Delete(mProjectView, cropNode, section, node.Index + 2, false));
+                if (splitNode != null)
+                {
+                    command.append(new Commands.Node.Delete(mProjectView, splitNode, section, node.Index + 1, false));
+                    command.append(new Commands.Node.AddNode(mProjectView, splitNode, sibling, 0, false));
+                }
+                if (cropNode != null) command.append(new Commands.Node.AddNode(mProjectView, cropNode, sibling, 1, false));
+                int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
+                for (int i = sectionOffset; i < section.PhraseChildCount; ++i)
+                {
+                    command.append(new
+                        Commands.Node.AddNode(mProjectView, section.PhraseChild(i), sibling, i - siblingOffset, false));
+                }
+                command.append(new Commands.UpdateSelection(mProjectView, new NodeSelection(sibling, this)));
+            }
             return command;
         }
 
