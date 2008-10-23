@@ -1272,4 +1272,7 @@ Error text: {1}</value>
     <value>Applying phrase detection...</value>
     <comment>Progress dialog title</comment>
   </data>
+  <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
+    <value>Metadata cannot have empty values.</value>
+  </data>
 </root>
