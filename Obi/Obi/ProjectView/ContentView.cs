@@ -943,7 +943,10 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock()
         {
-        return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
+        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus)
+            mProjectView.TransportBar.Pause ();
+
+        return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( item ); } );
         }
 
         private bool SelectPrecedingStripCursor()
@@ -953,7 +956,10 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingBlock()
         {
-            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock: item); });
+        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus)
+            mProjectView.TransportBar.Pause ();
+
+            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( item); });
         }
 
         private bool SelectFollowingStripCursor()
@@ -963,11 +969,17 @@ namespace Obi.ProjectView
 
         private bool SelectLastBlockInStrip()
         {
+        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus )
+            mProjectView.TransportBar.Pause();
+
             return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.LastBlock; });
         }
 
         private bool SelectFirstBlockInStrip()
         {
+        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus )
+            mProjectView.TransportBar.Pause ();
+
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop();
             return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.FirstBlock; });
         }
@@ -987,9 +999,13 @@ namespace Obi.ProjectView
 
         private bool SelectPreviousStrip()
         {
+            bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing ;
+        if (mProjectView.TransportBar.CanUsePlaybackSelection )
+            mProjectView.TransportBar.Pause ();
+
             Strip strip;
-            if (mProjectView.TransportBar.CurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing
-                && this.mPlaybackBlock.ObiNode.Index == 0)
+            if (WasPlaying
+                && (this.mPlaybackBlock.ObiNode.Index == 0 || mPlaybackBlock.Node.Role_ == EmptyNode.Role.Heading ))
             {
             strip = StripBefore ( StripFor (  mSelectedItem ) );
             }
@@ -1007,6 +1023,9 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip()
         {
+        if (mProjectView.TransportBar.CanUsePlaybackSelection)
+            mProjectView.TransportBar.Pause ();
+
         Strip strip = StripAfter ( StripFor (  mSelectedItem ) );
                         if (strip != null)
                             {
@@ -1023,7 +1042,10 @@ namespace Obi.ProjectView
 
         private bool SelectFirstStrip()
         {
-            return SelectStripFor(delegate(Strip strip)
+        if (mProjectView.TransportBar.CanUsePlaybackSelection)
+            mProjectView.TransportBar.Pause ();
+
+                        return SelectStripFor(delegate(Strip strip)
             {
                 return Controls.Count > 0 ? (Strip)Controls[0] : null;
             });
@@ -1031,6 +1053,9 @@ namespace Obi.ProjectView
 
         private bool SelectLastStrip()
         {
+        if (mProjectView.TransportBar.CanUsePlaybackSelection)
+            mProjectView.TransportBar.Pause ();
+
             return SelectStripFor(delegate(Strip strip)
             {
                 return Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
