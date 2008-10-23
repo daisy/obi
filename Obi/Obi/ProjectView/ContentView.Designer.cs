@@ -351,6 +351,7 @@ namespace Obi.ProjectView
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
+            this.Size = new System.Drawing.Size(538, 573);
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
             this.mContextMenuStrip.ResumeLayout(false);

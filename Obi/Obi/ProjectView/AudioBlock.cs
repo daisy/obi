@@ -214,7 +214,10 @@ namespace Obi.ProjectView
         // Update the audio range selection when moving the mouse.
         private void mWaveform_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && CanSelectInWaveform) mWaveform.FinalSelectionPosition = e.X;
+            if (e.Button == MouseButtons.Left && CanSelectInWaveform)
+            {
+                mWaveform.FinalSelectionPosition = e.X;
+            }
         }
 
 

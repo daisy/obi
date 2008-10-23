@@ -181,7 +181,7 @@
     <value>mTOCView</value>
   </data>
   <data name="&gt;&gt;mTOCView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.TOCView, Obi, Version=0.12.0.3470, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.TOCView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mTOCView.Parent" xml:space="preserve">
     <value>mMetadataSplitter.Panel1</value>
@@ -223,7 +223,7 @@
     <value>mMetadataView</value>
   </data>
   <data name="&gt;&gt;mMetadataView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.MetadataView, Obi, Version=0.12.0.3470, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.MetadataView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mMetadataView.Parent" xml:space="preserve">
     <value>mMetadataSplitter.Panel2</value>
@@ -312,9 +312,6 @@
   <data name="&gt;&gt;mTOCSplitter.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="mContentView.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="mContentView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -331,7 +328,7 @@
     <value>mContentView</value>
   </data>
   <data name="&gt;&gt;mContentView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ContentView, Obi, Version=0.12.0.3470, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ContentView, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mContentView.Parent" xml:space="preserve">
     <value>mTOCSplitter.Panel2</value>
@@ -409,7 +406,7 @@
     <value>mFindInText</value>
   </data>
   <data name="&gt;&gt;mFindInText.Type" xml:space="preserve">
-    <value>Obi.ProjectView.FindInText, Obi, Version=0.12.0.3470, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.FindInText, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mFindInText.Parent" xml:space="preserve">
     <value>mFindInTextSplitter.Panel2</value>
@@ -481,7 +478,7 @@
     <value>mTransportBar</value>
   </data>
   <data name="&gt;&gt;mTransportBar.Type" xml:space="preserve">
-    <value>Obi.ProjectView.TransportBar, Obi, Version=0.12.0.3470, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.TransportBar, Obi, Version=0.12.0.6478, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mTransportBar.Parent" xml:space="preserve">
     <value>mTransportBarSplitter.Panel2</value>

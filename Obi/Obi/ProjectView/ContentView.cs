@@ -14,7 +14,7 @@ namespace Obi.ProjectView
     /// <summary>
     /// The content view shows the strips and blocks of the project.
     /// </summary>
-    public partial class ContentView : FlowLayoutPanel, IControlWithRenamableSelection
+    public partial class ContentView : Panel, IControlWithRenamableSelection
     {
         private ProjectView mProjectView;                            // parent project view
         private NodeSelection mSelection;                            // current selection
@@ -35,7 +35,6 @@ namespace Obi.ProjectView
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
         private delegate void RemoveControlForSectionNodeDelegate(SectionNode node);
 
-
         /// <summary>
         /// A new strips view.
         /// </summary>
@@ -53,9 +52,29 @@ namespace Obi.ProjectView
             mWaveformRenderQ = new PriorityQueue<Waveform, int>();
             mWaveformRenderWorker = null;
             SetPlaybackPhraseAndTime(null, 0.0);
+            AutoScroll = true;
         }
 
-        
+        private void AddControlAt(Control c, int index)
+        {
+            Controls.Add(c);
+            Controls.SetChildIndex(c, index);
+            ReflowFromControl(c);
+            c.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { ReflowFromControl(c); });
+        }
+
+        private void ReflowFromIndex(int index)
+        {
+            for (int i = index; i < Controls.Count; ++i)
+            {
+                int y_prev = i == 0 ? 0 : Controls[i - 1].Location.Y + Controls[i - 1].Height + Controls[i - 1].Margin.Bottom;
+                Controls[i].Location = new Point(Controls[i].Margin.Left, y_prev + Controls[i].Margin.Top);
+            }
+        }
+
+        private void ReflowFromControl(Control c) { ReflowFromIndex(Controls.IndexOf(c)); }
+
+
         public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripIndexSelection; } }
         public bool CanCopyAudio { get { return IsAudioRangeSelected; } }
         public bool CanCopyBlock { get { return IsBlockSelected; } }
@@ -381,7 +400,6 @@ namespace Obi.ProjectView
 
         private void EnsureControlVisible(Control c)
         {
-            ScrollControlIntoView(c);
         }
 
         public void SelectNextPhrase(ObiNode node)
@@ -544,9 +562,9 @@ namespace Obi.ProjectView
             set
             {
                 mWrapStripContents = value;
-                foreach (Control c in Controls)
+                for (int i = Controls.Count - 1; i >= 0; --i)
                 {
-                    Strip strip = c as Strip;
+                    Strip strip = Controls[i] as Strip;
                     if (strip != null) strip.WrapContents = mWrapStripContents;
                 }
             }
@@ -606,9 +624,7 @@ namespace Obi.ProjectView
                     strip.ColorSettings = ColorSettings;
                     for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
                 }
-                Controls.Add(strip);
-                SetFlowBreak(strip, true);
-                Controls.SetChildIndex(strip, ((SectionNode)node).Position);                
+                AddControlAt(strip, ((SectionNode)node).Position);
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             return strip;
@@ -740,7 +756,9 @@ namespace Obi.ProjectView
         {
             for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
             Strip strip = FindStrip(section);
+            int index = Controls.IndexOf(strip);
             Controls.Remove(strip);
+            ReflowFromIndex(index);
         }
 
         // Remove the strip or block for the removed tree node
@@ -1589,25 +1607,6 @@ null;
                 mProjectView.ShowProjectPropertiesDialog();
             }
         }
-
-
-        /*
-        private bool mUpdateAutoScrollPosition = false;
-        private Point mAutoScrollPosition = new Point(0, 0);
-
-        private void ContentView_Paint(object sender, PaintEventArgs e)
-        {
-            if (!mUpdateAutoScrollPosition) AutoScrollPosition = mAutoScrollPosition;
-            mUpdateAutoScrollPosition = false;
-        }
-
-        private void ContentView_Scroll(object sender, ScrollEventArgs e)
-        {
-            System.Diagnostics.Debug.Print("User scrolled to {0}", AutoScrollPosition);
-            mAutoScrollPosition = AutoScrollPosition;
-            mUpdateAutoScrollPosition = true;
-        }
-        */
     }
 
     /// <summary>
