@@ -52,7 +52,7 @@ namespace Obi
                 IsRooted ? ParentAs<ObiNode>().PhraseChildCount : 0,
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Long(durationMs),
                 mRole == Role.Custom ? String.Format(Localizer.Message("phrase_extra_custom"), mCustomRole) :
-                    mRole == Role.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber.ToString()) :
+                mRole == Role.Page ? String.Format(Localizer.Message("phrase_extra_page"), mPageNumber != null ? mPageNumber.ToString() : "" ) :
                     Localizer.Message("phrase_extra_" + mRole.ToString()));
         }
 
@@ -63,7 +63,7 @@ namespace Obi
             return String.Format(Localizer.Message("phrase_short_to_string"),
                 TODO ? Localizer.Message("phrase_short_TODO") : "",
                 mRole == Role.Custom ? String.Format(Localizer.Message("phrase_short_custom"), mCustomRole) :
-                    mRole == Role.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber.ToString()) :
+                mRole == Role.Page ? String.Format(Localizer.Message("phrase_short_page"), mPageNumber != null ? mPageNumber.ToString() : "") :
                     Localizer.Message("phrase_short_" + mRole.ToString()),
                 durationMs == 0.0 ? Localizer.Message("empty") : Program.FormatDuration_Smart(durationMs));
         }

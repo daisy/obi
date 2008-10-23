@@ -1311,7 +1311,12 @@ namespace Obi.ProjectView
         /// </summary>
         public void MergeBlockWithNext()
         {
-            if (CanMergeBlockWithNext) mPresentation.getUndoRedoManager().execute(Commands.Node.MergeAudio.GetMergeCommand(this));
+        if (CanMergeBlockWithNext)
+            {
+            if (TransportBar.IsPlayerActive) TransportBar.Pause ();
+
+                        mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
+            }
         }
 
         public void ToggleEmptyNodeTo_DoMark()
