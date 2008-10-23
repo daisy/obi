@@ -984,7 +984,7 @@ namespace Obi.ProjectView
 
             // warning message while resuming recording
             if ((mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted) &&
-                mView.Selection.Node != null && mView.Selection.Node != mResumeRecordingPhrase &&
+                mView.Selection != null && mView.Selection.Node != mResumeRecordingPhrase  &&
                 MessageBox.Show(Localizer.Message("recording_resume_check"),
                     Localizer.Message("recording_resume_check_caption"),
                     MessageBoxButtons.YesNo,
