@@ -70,6 +70,7 @@ namespace Obi.ProjectView
         this.mContentTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         this.mContentTextbox.Name = "mContentTextbox";
         this.mContentTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler ( this.mContentTextbox_KeyDown );
+        this.mContentTextbox.Leave += new System.EventHandler ( this.mContentTextbox_Leave );
         // 
         // mUpdateButton
         // 
@@ -83,6 +84,7 @@ namespace Obi.ProjectView
         resources.ApplyResources ( this.mNameTextbox, "mNameTextbox" );
         this.mNameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         this.mNameTextbox.Name = "mNameTextbox";
+        this.mNameTextbox.Leave += new System.EventHandler ( this.mNameTextbox_Leave );
         // 
         // mNameLabel
         // 
