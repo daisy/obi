@@ -69,10 +69,16 @@ namespace Obi.Commands.Node
             if (from.Role_ == EmptyNode.Role.Page)
             {
                 command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
-            }
-            else if (from.Role_ != EmptyNode.Role.Plain &&
+                            }
+            else if ( from.Role_ != EmptyNode.Role.Plain &&
                 (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode))
             {
+            if (from.Role_ == EmptyNode.Role.Heading)
+                {
+                command.append ( new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Plain, from.CustomRole ) );
+                command.append ( new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Heading, null) );
+                }
+            else
                 command.append(new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
             }
         }
