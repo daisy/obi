@@ -1432,8 +1432,12 @@ namespace Obi
         {
             if (mProjectView.TransportBar.IsActive)
                 mProjectView.TransportBar.Stop();
+            bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
 
             if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager().redo();
+
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 
         // Show a new source view window or give focus back to the previously opened one.
@@ -1502,7 +1506,12 @@ namespace Obi
         private void Undo()
         {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+            bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+
             if (mSession.CanUndo && !(mProjectView.Selection is TextSelection)) { mSession.Presentation.getUndoRedoManager().undo(); }
+
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 
         /// <summary>

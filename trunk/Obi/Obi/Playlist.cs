@@ -265,6 +265,12 @@ namespace Obi
 
         public void Play(double from, double to)
         {
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
+            from = 0;
+
+        if (to < 0 || to >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
+            to = mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+
             mPlaybackEndTime = to;
             Play(from);
         }
