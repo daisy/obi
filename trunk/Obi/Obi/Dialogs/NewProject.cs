@@ -100,7 +100,16 @@ namespace Obi.Dialogs
         /// </summary>
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            mCanClose = ObiForm.CheckProjectPath_Safe(mFileBox.Text, true);
+            mCanClose = false;
+            try
+            {
+                ObiForm.CheckProjectPath(mFileBox.Text, true);
+                mCanClose = true;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message, Localizer.Message("location_error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
