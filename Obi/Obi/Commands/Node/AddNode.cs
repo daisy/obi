@@ -14,18 +14,27 @@ namespace Obi.Commands.Node
         private int mIndex;
         private NodeSelection mSelection;
 
+        /// <summary>
+        /// Add an existing node to a parent node at the given index.
+        /// </summary>
         public AddNode(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index): base(view, "")
         {
             mNode = node;
             mParent = parent;
             mIndex = index;
-
-            if (view.Selection != null && view.Selection.Control.GetType() == typeof(ProjectView.ContentView))
-                mSelection = new NodeSelection(mNode, view.Selection.Control);
-            else
-                mSelection = view.Selection;
+            mSelection = view.Selection != null && view.Selection.Control is ProjectView.ContentView ?
+                new NodeSelection(mNode, view.Selection.Control) : view.Selection;
         }
 
+        public AddNode(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index, bool update)
+            : this(view, node, parent, index)
+        {
+            UpdateSelection = update;
+        }
+
+        /// <summary>
+        /// Add an existing node to its parent at its index.
+        /// </summary>
         public AddNode(ProjectView.ProjectView view, ObiNode node)
             : this(view, node, node.ParentAs<ObiNode>(), node.Index) {}
 
@@ -33,7 +42,6 @@ namespace Obi.Commands.Node
         {
             mParent.Insert(mNode, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
-            if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
 
         public override void unExecute()

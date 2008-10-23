@@ -71,6 +71,15 @@ namespace Obi
             Control = control;
         }
 
+
+        /// <summary>
+        /// Get the empty node in context for that selection. In the case of a section node, a text selection,
+        /// or a strip cursor with no following empty node, this will be null; in the case of an audio selection,
+        /// this will be the node where the selection is.
+        /// </summary>
+        public virtual EmptyNode EmptyNodeForSelection { get { return Node as EmptyNode; } }
+
+
         /// <summary>
         /// Stringify the selection for showing in the status bar.
         /// </summary>
@@ -182,6 +191,8 @@ namespace Obi
 
         public string Text { get { return mText; } }
 
+        public override EmptyNode EmptyNodeForSelection { get { return null; } }
+
         public override string ToString()
         {
             return String.Format(Localizer.Message("text_selection_to_string"), Node.ToString(), Control.ToString(), mText);
@@ -241,6 +252,18 @@ namespace Obi
 
         // Since we're in the strip, section nodes cannot be pasted.
         public override bool CanPaste(Clipboard clipboard) { return clipboard != null && !(clipboard.Node is SectionNode); }
+
+        /// <summary>
+        /// Return the block following the cursor, if any (i.e. if not the last cursor in the strip.)
+        /// </summary>
+        public override EmptyNode EmptyNodeForSelection
+        {
+            get
+            {
+                SectionNode section = (SectionNode)Node;
+                return mIndex < section.PhraseChildCount ? section.PhraseChild(mIndex) : null;
+            }
+        }
 
         protected override ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
         {

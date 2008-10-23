@@ -897,13 +897,11 @@ namespace Obi.ProjectView
         {
             if (CanSplitStrip)
             {
-                if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause();
-
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
-
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
@@ -1445,8 +1443,10 @@ namespace Obi.ProjectView
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    TransportBar.SelectionChangedPlaybackEnabled = false;
                     mPresentation.getUndoRedoManager().execute(new
                         Commands.Node.PhraseDetection(this, dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
+                    TransportBar.SelectionChangedPlaybackEnabled = true;
                 }
             }
         }

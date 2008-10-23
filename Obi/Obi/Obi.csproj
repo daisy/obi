@@ -106,7 +106,6 @@
     <Compile Include="Commands\Node\AddNode.cs" />
     <Compile Include="Commands\Node\SetNodeAsHeadingPhrase.cs" />
     <Compile Include="Commands\Node\AssignRole.cs" />
-    <Compile Include="Commands\Node\ChangeParent.cs" />
     <Compile Include="Commands\Node\Copy.cs" />
     <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\MergeAudio.cs" />
