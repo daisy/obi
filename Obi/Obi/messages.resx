@@ -1275,4 +1275,16 @@ Error text: {1}</value>
   <data name="MetadataView_CannotCommitEmptyContent" xml:space="preserve">
     <value>Metadata cannot have empty values.</value>
   </data>
+  <data name="location_error" xml:space="preserve">
+    <value>File location error</value>
+    <comment>Path error</comment>
+  </data>
+  <data name="path_not_recognized" xml:space="preserve">
+    <value>Path "{0}" is not recognized ({1}).</value>
+    <comment>Path error</comment>
+  </data>
+  <data name="path_not_rooted" xml:space="preserve">
+    <value>Path "{0}" is not rooted. Please choose a complete path, including the drive letter.</value>
+    <comment>Path error</comment>
+  </data>
 </root>

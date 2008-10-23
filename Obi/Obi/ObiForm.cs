@@ -319,6 +319,16 @@ namespace Obi
         /// </summary>
         public static bool CheckProjectPath(string path, bool createDir)
         {
+            // Check that a URI can be built from this path because that's what will happen in the end.
+            if (!Path.IsPathRooted(path)) throw new Exception(string.Format(Localizer.Message("path_not_rooted"), path));
+            try
+            {
+                Uri uri = new Uri(path);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("path_not_recognized", path, e.Message));
+            }
             return CheckProjectDirectory(Path.GetDirectoryName(path), true) && CheckExtension(path);
         }
 
