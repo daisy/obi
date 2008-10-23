@@ -144,10 +144,10 @@ namespace Obi.UserControls
         // load the beep file and plays it once in case of overload
         private void PlayBeep()
         {
-            FileInfo BeepFile = new FileInfo("Beep.wav");
+        FileInfo BeepFile = new FileInfo ( Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "hi.wav" ) );
             if (BeepFile.Exists)
             {
-                System.Media.SoundPlayer PlayBeep = new System.Media.SoundPlayer("Beep.wav");
+                System.Media.SoundPlayer PlayBeep = new System.Media.SoundPlayer(BeepFile.FullName);
                 PlayBeep.Play();
             }
         }
