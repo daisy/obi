@@ -256,6 +256,9 @@ namespace Obi
 
         public void Play(double from)
         {
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
+            from = 0;
+
             mPlaybackStartTime = from;
             Play();
         }
