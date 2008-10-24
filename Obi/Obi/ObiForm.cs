@@ -1928,8 +1928,8 @@ namespace Obi
                     Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"),
                     Directory.GetParent(mSession.Path).FullName);
                 ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem)sender).Text,
-                    delegate() { if (pipeline.ShowDialog() == DialogResult.OK) pipeline.RunScript(); });
-                progress.Show();
+                    delegate() { pipeline.RunScript(); });
+                if (pipeline.ShowDialog() == DialogResult.OK) progress.Show();
                 if (progress.Exception != null) throw progress.Exception;
             }
             catch (Exception x)
