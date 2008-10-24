@@ -117,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6C016009D4BC4FEA994BCE2FF0D814CE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_72190BF0A9D246F196F2DE920941FE3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -766,6 +772,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C016009D4BC4FEA994BCE2FF0D814CE"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Obi Help.chm"
+            "TargetName" = "8:Obi Help.chm"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_72190BF0A9D246F196F2DE920941FE3C"
@@ -1539,7 +1565,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi RC1"
         "ProductCode" = "8:{DF7B69E4-6D78-48E3-9A7A-CBF16A86D00F}"
-        "PackageCode" = "8:{F833F700-46B7-4825-9F71-3A3BBB51AEE1}"
+        "PackageCode" = "8:{88578BE2-26D3-444F-A384-DA5621056D20}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
