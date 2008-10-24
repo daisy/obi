@@ -1138,7 +1138,7 @@ Error text: {1}</value>
     <comment>Warning at export time (caption)</comment>
   </data>
   <data name="default_export_dirname" xml:space="preserve">
-    <value>{0}_DAISY3 Export</value>
+    <value>{0} DAISY3 Export</value>
     <comment>Default name for the export directory</comment>
   </data>
   <data name="ObiForm_PipelineNotFound" xml:space="preserve">

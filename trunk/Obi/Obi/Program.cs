@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Obi
@@ -81,6 +82,21 @@ namespace Obi
                     return string.Format(Localizer.Message("duration_h_mm_ss"), minutes / 60, minutes % 60, seconds_);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Get a safename for the project directory from the title.
+        /// </summary>
+        public static string SafeName(string title)
+        {
+            string invalid = "[";
+            foreach (char c in System.IO.Path.GetInvalidFileNameChars()) invalid += String.Format("\\x{0:x2}", (int)c);
+            invalid += "]+";
+            string safe = Regex.Replace(title, invalid, "_");
+            safe = Regex.Replace(safe, "^_", "");
+            safe = Regex.Replace(safe, "_$", "");
+            return safe;
         }
     }
 }
