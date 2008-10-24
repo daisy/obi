@@ -28,7 +28,7 @@ namespace Obi
 
         private double mPlaybackStartTime;        // start time in first asset
         private double mPlaybackEndTime;          // end time in last asset; negative value if until the end.
-        private bool m_IsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
+        private bool mIsQAPlaylist; // flag to indicate that master playlist is QA playlist i.e. do not contain unused phrases
 
         private enum PlayBackState { Normal, Forward, Rewind };
         private static readonly int[] PlaybackRates = { 1, 2, 4, 8 };
@@ -60,7 +60,7 @@ namespace Obi
         public Playlist(AudioPlayer player  , bool IsQAPlaylist )
         {
             mPlayer = player;
-            m_IsQAPlaylist = IsQAPlaylist;
+            mIsQAPlaylist = IsQAPlaylist;
             Reset(MasterPlaylist );
         }
 
@@ -73,7 +73,7 @@ namespace Obi
         /// </summary>
         public Playlist(AudioPlayer player, NodeSelection selection , bool IsQAPlaylist )
         {
-        m_IsQAPlaylist = IsQAPlaylist;
+            mIsQAPlaylist = IsQAPlaylist;
             mPlayer = player;
             Reset(LocalPlaylist);
             if (selection.Control is Obi.ProjectView.TOCView)
@@ -100,15 +100,13 @@ namespace Obi
                 /// </summary>
         /// <param name="player"></param>
         /// <param name="node"></param>
-        public Playlist(AudioPlayer player,ObiNode node  , bool IsQaPlaylist )
+        public Playlist(AudioPlayer player, ObiNode node, bool IsQaPlaylist)
         {
             mPlayer = player;
-            m_IsQAPlaylist = IsQaPlaylist;
+            mIsQAPlaylist = IsQaPlaylist;
             Reset(LocalPlaylist);
-                            AddPhraseNodes(node);
-                                }
-
-
+            AddPhraseNodes(node);
+        }
 
 
         /// <summary>
@@ -299,39 +297,35 @@ namespace Obi
         // In case of the master playlist, exclude unused nodes.
         private void AddPhraseNodes(urakawa.core.TreeNode node)
         {
-        if (m_IsQAPlaylist)
+            if (mIsQAPlaylist)
             {
-            node.acceptDepthFirst
-            (
-                delegate ( urakawa.core.TreeNode n )
+                node.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
                     {
-                    if (n is PhraseNode && n.getChildCount () == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                        if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
                         {
-                        mPhrases.Add ( (PhraseNode)n );
-                        mStartTimes.Add ( mTotalTime );
-                        mTotalTime += ((PhraseNode)n).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+                            mPhrases.Add((PhraseNode)n);
+                            mStartTimes.Add(mTotalTime);
+                            mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
                         }
-                    return true;
+                        return true;
                     },
-                delegate ( urakawa.core.TreeNode n ) { }
-            );
+                    delegate(urakawa.core.TreeNode n) { });
             }
-        else
+            else
             {
-            node.acceptDepthFirst
-        (
-            delegate ( urakawa.core.TreeNode n )
-                {
-                if (n is PhraseNode && n.getChildCount () == 0 )
+                node.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
                     {
-                    mPhrases.Add ( (PhraseNode)n );
-                    mStartTimes.Add ( mTotalTime );
-                    mTotalTime += ((PhraseNode)n).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
-                    }
-                return true;
-                },
-            delegate ( urakawa.core.TreeNode n ) { }
-        );
+                        if (n is PhraseNode && n.getChildCount() == 0)
+                        {
+                            mPhrases.Add((PhraseNode)n);
+                            mStartTimes.Add(mTotalTime);
+                            mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        }
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
             }
         }
 
@@ -341,18 +335,18 @@ namespace Obi
         {
             if (node is PhraseNode)
             {
-            if (!m_IsQAPlaylist || node.Used)  
-                            {
-                mPhrases.Add ( (PhraseNode)node );
-                mStartTimes.Add ( mTotalTime );
-                mTotalTime += ((PhraseNode)node).Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+                if (!mIsQAPlaylist || node.Used)
+                {
+                    mPhrases.Add((PhraseNode)node);
+                    mStartTimes.Add(mTotalTime);
+                    mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
                 }
             }
             else if (node is SectionNode)
             {
                 for (int i = 0; i < ((SectionNode)node).PhraseChildCount; ++i)
                 {
-                                        AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
+                    AddPhraseNodesFromStripOrPhrase(((SectionNode)node).PhraseChild(i));
                 }
             }
         }
@@ -713,16 +707,12 @@ namespace Obi
             if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
                 Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
-                mPlayer.Stop();
-                //mPlayer.PlaybackMode = PlaybackMode.Normal;
-                mPlayer.PlaybackFwdRwdRate = 0;
-                //System.Media.SystemSounds.Asterisk.Play();
                 mPlaylistState = AudioPlayerState.Stopped;
-                if (StateChanged != null) StateChanged(this, evargs);
-
+                mPlayer.PlaybackFwdRwdRate = 0;
                 mCurrentPhraseIndex = 0;
                 mElapsedTime = 0.0;
-                System.Diagnostics.Debug.Print("--- end of audio asset handler unset");
+                mPlayer.Stop();
+                if (StateChanged != null) StateChanged(this, evargs);
                 mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
         }
@@ -1005,7 +995,13 @@ namespace Obi
         private double mRevertTime;  // revert time
 
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
-            : base(player, selection, false)
+            : base(player, selection, true)
+        {
+            mRevertTime = revertTime;
+        }
+
+        public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
+            : base(player, node, true)
         {
             mRevertTime = revertTime;
         }
@@ -1015,7 +1011,6 @@ namespace Obi
         protected override void ReachedEndOfPlaylist()
         {
             PauseFromStopped(mRevertTime);
-            // if (base.EndOfPlaylist != null) base.EndOfPlaylist(this, new EventArgs());
         }
     }
 }
