@@ -1448,9 +1448,14 @@ namespace Obi
                 mProjectView.TransportBar.Stop();
             bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-
-            if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager().redo();
-
+            try
+                {
+                if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager ().redo ();
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 
@@ -1522,9 +1527,14 @@ namespace Obi
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-
-            if (mSession.CanUndo && !(mProjectView.Selection is TextSelection)) { mSession.Presentation.getUndoRedoManager().undo(); }
-
+            try
+                {
+                if (mSession.CanUndo && !(mProjectView.Selection is TextSelection)) { mSession.Presentation.getUndoRedoManager ().undo (); }
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 
