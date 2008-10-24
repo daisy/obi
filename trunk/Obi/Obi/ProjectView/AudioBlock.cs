@@ -223,7 +223,12 @@ namespace Obi.ProjectView
 
         public void SelectAtCurrentTime() { Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection); }
 
-        public void InitCursor(double time) { mWaveform.InitCursor(time); }
+        public void InitCursor(double time)
+        {
+            mWaveform.InitCursor(time);
+            Strip.ContentView.ScrollControlIntoView(this);
+        }
+
         public void ClearCursor() { mWaveform.ClearCursor(); }
     }
 }
