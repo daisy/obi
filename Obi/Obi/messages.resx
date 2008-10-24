@@ -1287,4 +1287,7 @@ Error text: {1}</value>
     <value>Path "{0}" is not rooted. Please choose a complete path, including the drive letter.</value>
     <comment>Path error</comment>
   </data>
+  <data name="CHMhelp_file_name" xml:space="preserve">
+    <value>Obi Help.chm</value>
+  </data>
 </root>

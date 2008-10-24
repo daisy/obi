@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 using urakawa.core;
+
 
 namespace Obi
 {
@@ -533,11 +535,23 @@ namespace Obi
         // View the help file in our own browser window.
         private void ShowHelpFile()
         {
+                try
+            {
+            System.Diagnostics.Process.Start((new Uri(Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
+                Localizer.Message ( "CHMhelp_file_name" ) ) )).ToString () );
+                        }
+        catch (System.Exception ex)
+            {
+            System.Windows.Forms.MessageBox.Show ( ex.ToString () );
+            return;
+            }
+            /*
             Dialogs.Help help = new Dialogs.Help();
             help.WebBrowser.Url = new Uri(Path.Combine(
                 Path.GetDirectoryName(GetType().Assembly.Location),
                 Localizer.Message("help_file_name")));
             help.Show();
+             */ 
         }
 
         // Help > View help in external browser (Shift+F1)
