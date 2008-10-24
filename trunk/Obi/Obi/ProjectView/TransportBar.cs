@@ -721,27 +721,28 @@ namespace Obi.ProjectView
         /// </summary>
         public void PlayOrResume()
         {
-            if (CanPlay  )
+            if (CanPlay)
             {
-                                PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
+                PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
             }
             else if (CanResumePlayback)
             {
-                                if (mCurrentPlaylist == mMasterPlaylist) // if this is master playlist, start playing local playlist from the point where master playlist is paused
+                if (mCurrentPlaylist == mMasterPlaylist)
                 {
+                    // if this is master playlist, start playing local playlist from the point where master playlist is paused
                     UpdateSelectionForPlayModeTransition();
                     Thread.Sleep(200);
                     PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
                 }
                 else
-                mCurrentPlaylist.Resume();
+                {
+                    mCurrentPlaylist.Resume();
+                }
             }
         }
 
 
-        /// <summary>
-        ///  Select currently playing phrase with current time and stops current playlist for transition to other playlist
-                /// </summary>
+        // Select currently playing phrase with current time and stops current playlist for transition to other playlist
         private void UpdateSelectionForPlayModeTransition()
         {
             PhraseNode PlaybackStartNode = mCurrentPlaylist.CurrentPhrase;
@@ -827,43 +828,22 @@ namespace Obi.ProjectView
                     (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
             }
-            else if (mView.Selection is NodeSelection )
+            else if (mView.Selection is NodeSelection)
             {
-                                                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
-
-                                                if (NoFollowingPhraseNodeInPlaylist)
-                                                    {
-                                                    if (mAfterPreviewRestoreTime > 0)
-                                                        {
-                                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
-                                                        mAfterPreviewRestoreTime = 0;
-                                                        }
-                                                    else
-                                                        {
-                                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
-                                                        }
-                                                    }
+                mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
             }
-            else 
-            {
-            if (mAfterPreviewRestoreTime > 0)
-                {
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
-                mAfterPreviewRestoreTime = 0;
-                }
             else
-                {
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
-                }
-            }
-        }
-
-        private bool NoFollowingPhraseNodeInPlaylist
-        {
-            get
             {
-                ObiNode node = FindPlaybackStartNode(mView.Selection.Node);
-                                return   node != null && ( node.IsBeforeInProject (mCurrentPlaylist.CurrentPhrase ) ||node == mCurrentPlaylist.CurrentPhrase );
+                if (mAfterPreviewRestoreTime > 0)
+                {
+                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play(mAfterPreviewRestoreTime);
+                    mAfterPreviewRestoreTime = 0;
+                }
+                else
+                {
+                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
+                }
             }
         }
 

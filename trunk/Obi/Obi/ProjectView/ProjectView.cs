@@ -1294,14 +1294,13 @@ namespace Obi.ProjectView
         /// </summary>
         public void SplitPhrase()
         {
-            bool WasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
+            bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 mPresentation.getUndoRedoManager().execute(command);
-
-                if (WasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
+                if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
