@@ -472,7 +472,7 @@ namespace Obi.ProjectView
         // Initialize playlists
         private void InitPlaylists()
         {
-            mMasterPlaylist = new Playlist(mPlayer , false);
+            mMasterPlaylist = new Playlist(mPlayer , true);
             mLocalPlaylist = null;
             mCurrentPlaylist = mMasterPlaylist;
             SetPlaylistEvents(mMasterPlaylist);
