@@ -119,7 +119,7 @@ namespace Obi.PipelineInterface
                 return;
             }
             PipelineProcess.WaitForExit();
-            System.Windows.Forms.MessageBox.Show("Task completed");
+            //System.Windows.Forms.MessageBox.Show("Task completed");
         }
     }
 }
