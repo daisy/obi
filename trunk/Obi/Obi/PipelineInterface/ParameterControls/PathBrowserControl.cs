@@ -118,7 +118,7 @@ namespace Obi.PipelineInterface.ParameterControls
         private void UpdatePathTextboxFromFolderBrowserDialog()
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.SelectedPath = mTextBox.Text;
+            //dialog.SelectedPath = mTextBox.Text;
             dialog.ShowNewFolderButton = true;
             if (dialog.ShowDialog() == DialogResult.OK) mTextBox.Text = dialog.SelectedPath;
         }
