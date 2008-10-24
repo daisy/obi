@@ -88,7 +88,7 @@ namespace Obi
             settings.SplitPhrasesOnImport = true;
             settings.SynchronizeViews = true;
             settings.UserProfile = new UserProfile();
-            settings.WrapStripContents = false;
+            settings.WrapStripContents = true;
             settings.ZoomFactor = 1.0f;
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try

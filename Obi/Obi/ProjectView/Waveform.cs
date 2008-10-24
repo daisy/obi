@@ -221,7 +221,7 @@ namespace Obi.ProjectView
                 }
                 if (mCursor != null)
                 {
-                    CheckVisibility();         
+                    CheckVisibility_Horizontal();         
                     pe.Graphics.DrawLine(settings.WaveformCursorPen,
                         new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                     Point[] points = new Point[3];
@@ -236,7 +236,7 @@ namespace Obi.ProjectView
 
         private const int X_SCROLL_INCREMENT = 48;
 
-        private void CheckVisibility()
+        private void CheckVisibility_Horizontal()
         {
             Point location = Location;
             Control parent = Parent;
