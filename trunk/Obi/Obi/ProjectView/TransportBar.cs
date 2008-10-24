@@ -835,15 +835,7 @@ namespace Obi.ProjectView
             }
             else
             {
-                if (mAfterPreviewRestoreTime > 0)
-                {
-                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play(mAfterPreviewRestoreTime);
-                    mAfterPreviewRestoreTime = 0;
-                }
-                else
-                {
-                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
-                }
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
             }
         }
 
@@ -1573,17 +1565,14 @@ namespace Obi.ProjectView
         /// </summary>
         public bool Preview(bool from, bool useSelection)
         {
-            if (!IsRecorderActive && mView.Selection != null)
+            if (!IsRecorderActive)
             {
-                if ((mState == State.Paused || mState == State.Playing) 
-                    && !useSelection )
+                if ((mState == State.Paused || mState == State.Playing) && !useSelection )
                 {
-                    // if (m_IsPreviewing) PostPreviewRestore();
-                    if (mState == State.Playing) Pause();
-                    
+                    if (mState == State.Playing) Pause();                    
                     double time = mCurrentPlaylist is PreviewPlaylist ?
                         ((PreviewPlaylist)mCurrentPlaylist).RevertTime : mCurrentPlaylist.CurrentTimeInAsset;
-                    CreateLocalPlaylistForPreview(time);
+                    CreateLocalPlaylistForPreview(time, useSelection);
                     mCurrentPlaylist.CurrentTimeInAsset = time;
                     PlayPreview(mCurrentPlaylist.CurrentPhrase, time - (from ? 0.0 : PreviewDuration), PreviewDuration, from);
                     return true;
@@ -1593,7 +1582,7 @@ namespace Obi.ProjectView
                     AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
-                    CreateLocalPlaylistForPreview(time);
+                    CreateLocalPlaylistForPreview(time, true);
                     PlayPreview((PhraseNode)s.Node, time, PreviewDuration, from);
                     return true;
                 }
@@ -1610,7 +1599,7 @@ namespace Obi.ProjectView
             {
                 AudioSelection s = (AudioSelection)mView.Selection;
                 if (mState == State.Playing) Pause();
-                CreateLocalPlaylistForPreview(s.AudioRange.SelectionBeginTime);
+                CreateLocalPlaylistForPreview(s.AudioRange.SelectionBeginTime, true);
                 PlayPreview((PhraseNode)s.Node, s.AudioRange.SelectionBeginTime,
                     s.AudioRange.SelectionEndTime - s.AudioRange.SelectionBeginTime, true);
                 return true;
@@ -1920,39 +1909,35 @@ namespace Obi.ProjectView
         protected override bool ProcessDialogKey(Keys KeyData)
         {
             if (KeyData == Keys.Tab
-                &&     this.ActiveControl != null )
+                && this.ActiveControl != null)
             {
-                    Control c = this.ActiveControl;
-                    this.SelectNextControl(c, true, true, true, true);
-                    if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
-                        System.Media.SystemSounds.Beep.Play();
-
-                    return true;
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, true, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex > this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
+                return true;
             }
             else if (KeyData == (Keys)(Keys.Shift | Keys.Tab)
-                &&    this.ActiveControl != null)
+                && this.ActiveControl != null)
             {
-                    Control c = this.ActiveControl;
-                    this.SelectNextControl(c, false, true, true, true);
-                    if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
-                        System.Media.SystemSounds.Beep.Play();
+                Control c = this.ActiveControl;
+                this.SelectNextControl(c, false, true, true, true);
+                if (this.ActiveControl != null && c.TabIndex < this.ActiveControl.TabIndex)
+                    System.Media.SystemSounds.Beep.Play();
 
-                    return true;
+                return true;
             }
             else
+            {
                 return base.ProcessDialogKey(KeyData);
+            }
         }
 
-
-
-
-
-
-
         // Create the preview playlist
-        private void CreateLocalPlaylistForPreview(double revertTime)
+        private void CreateLocalPlaylistForPreview(double revertTime, bool useSelection)
         {
-            PreviewPlaylist playlist = new PreviewPlaylist(mPlayer, mView.Selection, revertTime);
+            PreviewPlaylist playlist = useSelection ? new PreviewPlaylist(mPlayer, mView.Selection, revertTime) :
+                new PreviewPlaylist(mPlayer, mCurrentPlaylist.CurrentPhrase, revertTime);
             SetPlaylistEvents(playlist);
             mCurrentPlaylist = playlist;
         }
