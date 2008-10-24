@@ -1515,8 +1515,10 @@ namespace Obi.ProjectView
         // Nudge selection forward or backward.
         public bool Nudge(bool forward)
         {
+        bool PlaybackOnSelectionEnabledStatus = SelectionChangedPlaybackEnabled;
+        SelectionChangedPlaybackEnabled = false;
             double nudge = mView.ObiForm.Settings.NudgeTimeMs * (forward ? 1 : -1);
-            SelectionChangedPlaybackEnabled = false;
+            
             if (!IsRecorderActive && (mState == State.Paused || m_IsPreviewing))
             {
                                 double time = mCurrentPlaylist.CurrentTimeInAsset + nudge;
@@ -1532,6 +1534,8 @@ namespace Obi.ProjectView
                         new AudioRange(time));
 
                     if (mView.ObiForm.Settings.PlayOnNavigate) Preview(true, false);
+                    
+                    SelectionChangedPlaybackEnabled = PlaybackOnSelectionEnabledStatus;
                     return true;
                 }
             }
@@ -1544,11 +1548,12 @@ namespace Obi.ProjectView
                     if (time >= 0.0 && time < ((PhraseNode)s.Node).Duration)
                     {
                         mView.Selection = new AudioSelection((PhraseNode)s.Node, mView.Selection.Control, new AudioRange(time));
+                        SelectionChangedPlaybackEnabled = PlaybackOnSelectionEnabledStatus;
                         return true;
                     }
                 }
             }
-            SelectionChangedPlaybackEnabled = true;
+        SelectionChangedPlaybackEnabled = PlaybackOnSelectionEnabledStatus ;
             return false;
         }
 
@@ -1631,6 +1636,7 @@ namespace Obi.ProjectView
             
             if (mView.Selection != null && mView.Selection is AudioSelection &&   !((AudioSelection)mView.Selection).AudioRange.HasCursor)
                 m_AfterPreviewRestoreEndTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
+            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) 
                         mCurrentPlaylist.Play(from, end);
             
             m_IsPreviewing = true;
