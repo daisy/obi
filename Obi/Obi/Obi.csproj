@@ -425,7 +425,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
-    <None Include="Obi Help.chm" />
+    <None Include="Obi Help.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Obi_TemporaryKey.pfx" />
     <None Include="PipelineInterface\scripts\DTBAudioEncoder.taskScript" />
     <None Include="PipelineInterface\scripts\Z3986DTBValidator.taskScript" />
@@ -731,7 +733,9 @@
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="hi.wav" />
+    <Content Include="hi.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\icons\bookmark-new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

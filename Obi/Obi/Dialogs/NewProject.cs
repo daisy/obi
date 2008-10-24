@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Obi.Dialogs
@@ -91,7 +90,7 @@ namespace Obi.Dialogs
             return String.Format("{0}{1}{2}{1}{3}",
                 path,
                 System.IO.Path.DirectorySeparatorChar,
-                SafeName(mTitleBox.Text),
+                Program.SafeName(mTitleBox.Text),
                 filename);
         }
 
@@ -172,22 +171,6 @@ namespace Obi.Dialogs
                 e.Cancel = true;
                 mCanClose = true;
             }
-        }
-
-        /// <summary>
-        /// Get a safename for the project directory from the title.
-        /// </summary>
-        /// <param name="title">The project title.</param>
-        /// <returns>A safe name for the file system.</returns>
-        private static string SafeName(string title)
-        {
-            string invalid = "[";
-            foreach (char c in System.IO.Path.GetInvalidFileNameChars()) invalid += String.Format("\\x{0:x2}", (int)c);
-            invalid += "]+";
-            string safe = Regex.Replace(title, invalid, "_");
-            safe = Regex.Replace(safe, "^_", "");
-            safe = Regex.Replace(safe, "_$", "");
-            return safe;
         }
 
         // Generate a new GUID

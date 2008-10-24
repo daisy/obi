@@ -65,7 +65,7 @@ namespace Obi.ProjectView
 
         private void ReflowFromIndex(int index)
         {
-            for (int i = index; i < Controls.Count; ++i)
+            for (int i = index; i >= 0 && i < Controls.Count; ++i)
             {
                 int y_prev = i == 0 ? 0 : Controls[i - 1].Location.Y + Controls[i - 1].Height + Controls[i - 1].Margin.Bottom;
                 Controls[i].Location = new Point(Controls[i].Margin.Left, y_prev + Controls[i].Margin.Top);
