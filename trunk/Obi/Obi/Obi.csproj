@@ -425,6 +425,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="Obi Help.chm" />
     <None Include="Obi_TemporaryKey.pfx" />
     <None Include="PipelineInterface\scripts\DTBAudioEncoder.taskScript" />
     <None Include="PipelineInterface\scripts\Z3986DTBValidator.taskScript" />
