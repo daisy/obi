@@ -792,7 +792,7 @@ namespace Obi.ProjectView
                 {
                     // Play the audio selection (only for local playlist; play all ignores the end of the selection.)
                     mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
-                    mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
+                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)  mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
                         ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                 }
                 else 
@@ -801,19 +801,19 @@ namespace Obi.ProjectView
                     if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node)
                     {
                         // The selected node is in the playlist so play from the cursor
-                        mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.CursorTime);
+                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( ((AudioSelection)mView.Selection).AudioRange.CursorTime );
                     }
                     else
                     {
                     if (mAfterPreviewRestoreTime > 0)
                         {
-                        mCurrentPlaylist.Play ( mAfterPreviewRestoreTime);
+                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
                         mAfterPreviewRestoreTime = 0;
                         }
                     else
                         {
                         // The selected node is not in the playlist so play from the beginning
-                        mCurrentPlaylist.Play ();
+                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
                         }
                     }
                 }
@@ -825,7 +825,7 @@ namespace Obi.ProjectView
                 StripIndexSelection s = (StripIndexSelection)mView.Selection;
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
                     (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
-                mCurrentPlaylist.Play();
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
             }
             else if (mView.Selection is NodeSelection )
             {
@@ -835,22 +835,26 @@ namespace Obi.ProjectView
                                                     {
                                                     if (mAfterPreviewRestoreTime > 0)
                                                         {
-                                                        mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
+                                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
                                                         mAfterPreviewRestoreTime = 0;
                                                         }
                                                     else
-                                                        mCurrentPlaylist.Play ();
+                                                        {
+                                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
+                                                        }
                                                     }
             }
             else 
             {
             if (mAfterPreviewRestoreTime > 0)
                 {
-                mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
                 mAfterPreviewRestoreTime = 0;
                 }
             else
-                mCurrentPlaylist.Play ();
+                {
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
+                }
             }
         }
 
@@ -1892,7 +1896,7 @@ namespace Obi.ProjectView
                                         SetPlaylistEvents(mLocalPlaylist);
                                         mCurrentPlaylist = mLocalPlaylist;
                                         mCurrentPlaylist.CurrentPhrase = (PhraseNode) ENode ;
-                                        mCurrentPlaylist.Play();
+                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
                                                                                 //PlayOrResume(node.PhraseChild(0));
                                     }
             }
