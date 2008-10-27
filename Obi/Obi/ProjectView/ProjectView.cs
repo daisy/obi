@@ -1448,8 +1448,15 @@ namespace Obi.ProjectView
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     TransportBar.SelectionChangedPlaybackEnabled = false;
-                    mPresentation.getUndoRedoManager().execute(new
-                        Commands.Node.PhraseDetection(this, dialog.Threshold, dialog.Gap, dialog.LeadingSilence));
+                    CompositeCommand command = null;
+                    Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("phrase_detection_progress"),
+                        delegate()
+                        { 
+                            command = Commands.Node.SplitAudio.GetPhraseDetectionCommand(this, SelectedNodeAs<PhraseNode>(),
+                                dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
+                        });
+                    progress.ShowDialog();
+                    if (command != null) mPresentation.getUndoRedoManager().execute(command);
                     TransportBar.SelectionChangedPlaybackEnabled = true;
                 }
             }

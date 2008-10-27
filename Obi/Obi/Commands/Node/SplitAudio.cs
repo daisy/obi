@@ -120,6 +120,33 @@ namespace Obi.Commands.Node
             return null;
         }
 
+        /// <summary>
+        /// Create the phrase detection command.
+        /// </summary>
+        public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, PhraseNode phrase,
+            long threshold, double gap, double before)
+        {
+            CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            ObiNode parent = phrase.ParentAs<ObiNode>();
+            int index = phrase.Index;
+            command.append(new Commands.Node.Delete(view, phrase, false));
+            System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
+                Obi.Audio.PhraseDetection.Apply(phrase.Audio.copy(), threshold, gap, before));
+            for (int i = 0; i < phrases.Count; ++i)
+            {
+                // Copy page/heading role for the first phrase only
+                if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
+                {
+                    phrases[i].CopyAttributes(phrase);
+                }
+                phrases[i].Used = phrase.Used;
+                phrases[i].TODO = phrase.TODO;
+                if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
+                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i));
+            }
+            return command;
+        }
+
         // Create a split command preserving used/TODO status, and optionally transferring the role to the next node
         private static SplitAudio AppendSplitCommandWithProperties(ProjectView.ProjectView view, CompositeCommand command,
             PhraseNode phrase, double time, bool transferRole)

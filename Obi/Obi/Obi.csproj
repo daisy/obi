@@ -110,7 +110,6 @@
     <Compile Include="Commands\Node\Delete.cs" />
     <Compile Include="Commands\Node\MergeAudio.cs" />
     <Compile Include="Commands\Node\Paste.cs" />
-    <Compile Include="Commands\Node\PhraseDetection.cs" />
     <Compile Include="Commands\Node\RenameSection.cs" />
     <Compile Include="Commands\Node\SplitAudio.cs" />
     <Compile Include="Commands\Node\ToggleNodeTODO.cs" />

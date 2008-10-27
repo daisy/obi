@@ -1290,4 +1290,8 @@ Error text: {1}</value>
   <data name="CHMhelp_file_name" xml:space="preserve">
     <value>Obi Help.chm</value>
   </data>
+  <data name="phrase_detection_progress" xml:space="preserve">
+    <value>Phrase detection in progres...</value>
+    <comment>Progress dialog title</comment>
+  </data>
 </root>

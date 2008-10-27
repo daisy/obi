@@ -417,6 +417,9 @@ namespace Obi
             return phrase;
         }
 
+        /// <summary>
+        /// Create a list of phrase nodes from a list of audio assets.
+        /// </summary>
         public List <PhraseNode> CreatePhraseNodesFromAudioAssetList(List<ManagedAudioMedia> AssetList)
         {
             List<PhraseNode> PhraseList = new List<PhraseNode>();
