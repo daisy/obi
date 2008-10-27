@@ -252,14 +252,17 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Can assign the heading role if there is a phrase node (must have audio)
-        /// and there is no phrase role in the parent section.
+        /// and there is no phrase role in the parent section. It must also be used.
         /// </summary>
         public bool CanAssignHeadingRole
         {
             get
             {
                 PhraseNode node = SelectedNodeAs<PhraseNode>();
-                return node != null && node.Role_ != EmptyNode.Role.Heading && node.AncestorAs<SectionNode>() != null &&
+                return node != null &&
+                    node.Used &&
+                    node.Role_ != EmptyNode.Role.Heading &&
+                    node.AncestorAs<SectionNode>() != null &&
                     node.AncestorAs<SectionNode>().Heading == null;
             }
         }
@@ -838,7 +841,15 @@ namespace Obi.ProjectView
                 mSelection.Node.acceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n is ObiNode && ((ObiNode)n).Used != used) command.append(new Commands.Node.ToggleNodeUsed(this, ((ObiNode)n)));
+                        if (n is ObiNode && ((ObiNode)n).Used != used)
+                        {
+                            if (n is PhraseNode && ((PhraseNode)n).Role_ == EmptyNode.Role.Heading)
+                            {
+                                command.append(new Commands.Node.AssignRole(this, (PhraseNode)n, EmptyNode.Role.Plain));
+                                //command.append(new Commands.Node.UnsetNodeAsHeadingPhrase(this, (PhraseNode)n));
+                            }
+                            command.append(new Commands.Node.ToggleNodeUsed(this, (ObiNode)n));
+                        }
                         return true;
                     }, delegate(urakawa.core.TreeNode n) { }
                 );
