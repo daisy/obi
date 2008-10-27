@@ -375,6 +375,7 @@ namespace Obi
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
         {
+            mProjectView.TransportBar.Stop();
             string path_original = mSession.Path;
             SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
             if (dialog.ShowDialog() == DialogResult.OK)
