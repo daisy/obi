@@ -1929,6 +1929,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phrase detection in progres....
+        /// </summary>
+        internal static string phrase_detection_progress {
+            get {
+                return ResourceManager.GetString("phrase_detection_progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Applying phrase detection....
         /// </summary>
         internal static string phrase_detection_progress_dialog_title {
