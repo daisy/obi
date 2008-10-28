@@ -1294,4 +1294,10 @@ Error text: {1}</value>
     <value>Phrase detection in progres...</value>
     <comment>Progress dialog title</comment>
   </data>
+  <data name="delete_silence_phrases" xml:space="preserve">
+    <value>Your project has silence phrases. Do you want to delete them as well as the other unused phrases and sections?</value>
+  </data>
+  <data name="delete_silence_phrases_caption" xml:space="preserve">
+    <value>Delete silence phrases?</value>
+  </data>
 </root>

@@ -811,6 +811,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your project has silence phrases. Do you want to delete them as well as the other unused phrases and sections?.
+        /// </summary>
+        internal static string delete_silence_phrases {
+            get {
+                return ResourceManager.GetString("delete_silence_phrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete silence phrases?.
+        /// </summary>
+        internal static string delete_silence_phrases_caption {
+            get {
+                return ResourceManager.GetString("delete_silence_phrases_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete unused data.
         /// </summary>
         internal static string delete_unused {

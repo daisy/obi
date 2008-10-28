@@ -475,21 +475,41 @@ namespace Obi.ProjectView
 
         /// <summary>
         /// Delete all unused nodes.
+        /// Ask before deleting silence phrases (unless they are in unused sections...)
         /// </summary>
         public void DeleteUnused()
         {
             CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
+            // Collect silence node deletion commands separately in case the user wants to keep them.
+            List<ICommand> silence = new List<ICommand>();
             mPresentation.RootNode.acceptDepthFirst(
                 delegate(urakawa.core.TreeNode node)
                 {
                     if (node is ObiNode && !((ObiNode)node).Used)
                     {
-                        command.append(new Commands.Node.Delete(this, (ObiNode)node));
+                        Commands.Node.Delete delete = new Commands.Node.Delete(this, (ObiNode)node, false);
+                        if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
+                        {
+                            silence.Add(delete);
+                        }
+                        else
+                        {
+                            command.insert(delete, 0);
+                        }
                         return false;
                     }
                     return true;
                 }, delegate(urakawa.core.TreeNode node) { }
             );
+            if (silence.Count > 0)
+            {
+                if (MessageBox.Show(Localizer.Message("delete_silence_phrases"),
+                    Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    foreach (ICommand c in silence) command.append(c);
+                }
+            }
             if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
         }
 
