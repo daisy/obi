@@ -1773,7 +1773,7 @@ namespace Obi.ProjectView
 
         private void PlaybackOnSelectionChange ()
         {
-            if (mView.Selection != null)
+            if (mView.Selection != null && !(mView.Selection is StripIndexSelection))
             {
                 if (mState == State.Playing || mState == State.Paused)
                 {
