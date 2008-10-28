@@ -1009,7 +1009,19 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingStripCursor()
         {
-        return SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
+        bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+        mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+        Block PlaybackBlock = null;
+        if (mProjectView.TransportBar.CanUsePlaybackSelection)
+            {
+            PlaybackBlock = mPlaybackBlock;
+            mProjectView.TransportBar.Stop ();
+            }
+
+            bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( PlaybackBlock != null ? PlaybackBlock : item ); } );
+        mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+
+        return ReturnVal;
         }
 
         private bool SelectFollowingBlock()
@@ -1022,7 +1034,18 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingStripCursor()
         {
-        return SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexAfter ( mProjectView.TransportBar.CanUsePlaybackSelection ? mPlaybackBlock : item ); } );
+       bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+       mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+       Block PlaybackBlock = null;
+        if (mProjectView.TransportBar.CanUsePlaybackSelection)
+        {
+            PlaybackBlock = mPlaybackBlock;
+            mProjectView.TransportBar.Stop ();
+        }
+
+            bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexAfter ( PlaybackBlock != null ? PlaybackBlock : item ); } );
+       mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+       return ReturnVal;
         }
 
         private bool SelectLastBlockInStrip()
