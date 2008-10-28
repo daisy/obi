@@ -956,48 +956,51 @@ namespace Obi.ProjectView
         // Setup recording and start recording or monitoring
         private void SetupRecording(bool recording, SectionNode afterSection)
         {
-            urakawa.command.CompositeCommand command = CreateRecordingCommand();
+        if (mRecorder != null && mRecorder.State == Obi.Audio.AudioRecorderState.Stopped)
+            {
+            urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
             // warning message while resuming recording
             if ((mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted) &&
-                mView.Selection != null && mView.Selection.Node != mResumeRecordingPhrase  &&
-                MessageBox.Show(Localizer.Message("recording_resume_check"),
-                    Localizer.Message("recording_resume_check_caption"),
+                mView.Selection != null && mView.Selection.Node != mResumeRecordingPhrase &&
+                MessageBox.Show ( Localizer.Message ( "recording_resume_check" ),
+                    Localizer.Message ( "recording_resume_check_caption" ),
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.No)
-            {
-                mResumeRecordingPhrase = null;
-            }
-
-            ObiNode node = GetRecordingNode(command, afterSection);
-            InitRecordingSectionAndPhraseIndex(node, mView.ObiForm.Settings.AllowOverwrite, command);
-            // Set events
-            mRecordingSession = new RecordingSession(mView.Presentation, mRecorder);
-            mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler(
-                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e)
+                    MessageBoxIcon.Question ) == DialogResult.No)
                 {
-                    RecordingPhraseStarted(e, command, (EmptyNode)(node.GetType() == typeof(EmptyNode) ? node : null));
-                });
-            mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler(
-                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e) { RecordingPhraseEnded(e); });
-            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler(
-                delegate(object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e) { RecordingPage(e); });
+                mResumeRecordingPhrase = null;
+                }
+
+            ObiNode node = GetRecordingNode ( command, afterSection );
+            InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
+            // Set events
+            mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder );
+            mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler (
+                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e )
+                    {
+                    RecordingPhraseStarted ( e, command, (EmptyNode)(node.GetType () == typeof ( EmptyNode ) ? node : null) );
+                    } );
+            mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler (
+                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPhraseEnded ( e ); } );
+            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
+                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPage ( e ); } );
             // Actually start monitoring or recording
             if (recording)
-            {
-                StartRecording();
-            }
+                {
+                StartRecording ();
+                }
             else
-            {
+                {
                 try
-                {
-                    mRecordingSession.StartMonitoring();
-                }
+                    {
+                    mRecordingSession.StartMonitoring ();
+                    }
                 catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
                 if (mView.ObiForm.Settings.AudioClues) mVUMeterPanel.BeepEnable = true;
+                }
             }
         }
 
