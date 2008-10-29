@@ -44,13 +44,21 @@ namespace Obi.ProjectView
         {
             if (node != null)
             {
-                mWaveform.BackColor = BackColor;
-                mWaveform.AccessibleName = AccessibleName;
-                mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
-                mWaveform.Size = new Size(WaveformDefaultWidth,
-                    Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
-                mWaveform.Block = this;
-                Size = new Size(WaveformFullWidth, Height);
+                if (node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0)
+                {
+                    mWaveform.Visible = true;
+                    mWaveform.BackColor = BackColor;
+                    mWaveform.AccessibleName = AccessibleName;
+                    mWaveform.Location = new Point(0, mLabel.Height + mLabel.Margin.Bottom);
+                    mWaveform.Size = new Size(WaveformDefaultWidth,
+                        Height - mLabel.Height - mLabel.Margin.Bottom - mWaveform.Margin.Vertical - BorderHeight);
+                    mWaveform.Block = this;
+                    Size = new Size(WaveformFullWidth, Height);
+                }
+                else
+                {
+                    mWaveform.Visible = false;
+                }
             }
         }
 
@@ -113,6 +121,7 @@ namespace Obi.ProjectView
         public override void SetZoomFactorAndHeight(float zoom, int height)
         {
             base.SetZoomFactorAndHeight(zoom, height);
+            mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
             SetWaveform(mNode as PhraseNode);
         }
 

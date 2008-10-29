@@ -11,7 +11,7 @@ namespace Obi.ProjectView
     public partial class Block : UserControl, ISelectableInContentViewWithColors, ISearchable
     {
         private int mBaseHeight;                                      // base height for scaling
-        private float mBaseFontSize;                                  // base font size for scaling
+        protected float mBaseFontSize;                                // base font size for scaling
         private bool mHighlighted;                                    // if true show as highlighted
         protected EmptyNode mNode;                                    // the corresponding node
         private ISelectableInContentViewWithColors mParentContainer;  // not necessarily a strip (in the future)
