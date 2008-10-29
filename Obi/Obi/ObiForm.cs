@@ -274,8 +274,7 @@ namespace Obi
         // Open a new project after showing a file open dialog.
         private void Open()
         {
-            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-
+            if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = Localizer.Message("obi_filter");
             dialog.InitialDirectory = mSettings.DefaultPath;
@@ -370,7 +369,11 @@ namespace Obi
         }
 
         // Save the current project
-        private void Save() { mSession.Save(); }
+        private void Save()
+        {
+            mProjectView.TransportBar.Stop();
+            mSession.Save(); 
+        }
 
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
@@ -447,6 +450,7 @@ namespace Obi
         // If a project is open and unsaved, ask about what to do.
         private bool DidCloseProject()
         {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             if (!mSession.CanClose)
             {
                 DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
@@ -456,7 +460,6 @@ namespace Obi
                 if (result == DialogResult.Cancel) return false;
                 if (result == DialogResult.Yes) mSession.Save();
             }
-            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
             return true;
         }
@@ -465,6 +468,7 @@ namespace Obi
         // Before continuing, the user is given the choice to save or cancel.
         private void CleanProject()
         {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             DialogResult result = MessageBox.Show(Localizer.Message("clean_save_text"),
                 Localizer.Message("clean_save_caption"),
                 MessageBoxButtons.OKCancel,
