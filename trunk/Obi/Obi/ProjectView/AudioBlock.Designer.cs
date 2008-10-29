@@ -29,6 +29,7 @@ namespace Obi.ProjectView
         private void InitializeComponent()
         {
             this.mWaveform = new Obi.ProjectView.Waveform();
+            this.mRecordingLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mWaveform
@@ -36,6 +37,7 @@ namespace Obi.ProjectView
             this.mWaveform.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.mWaveform.BackColor = System.Drawing.Color.OliveDrab;
             this.mWaveform.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.mWaveform.FinalSelectionPosition = 0;
             this.mWaveform.Location = new System.Drawing.Point(0, 21);
             this.mWaveform.Margin = new System.Windows.Forms.Padding(0);
             this.mWaveform.Name = "mWaveform";
@@ -52,12 +54,23 @@ namespace Obi.ProjectView
             this.mWaveform.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mWaveform_MouseUp);
             this.mWaveform.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mWaveform_KeyDown);
             // 
+            // mRecordingLabel
+            // 
+            this.mRecordingLabel.AutoSize = true;
+            this.mRecordingLabel.Location = new System.Drawing.Point(0, 25);
+            this.mRecordingLabel.Name = "mRecordingLabel";
+            this.mRecordingLabel.Size = new System.Drawing.Size(80, 16);
+            this.mRecordingLabel.TabIndex = 3;
+            this.mRecordingLabel.Text = "Recording...";
+            // 
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.Controls.Add(this.mWaveform);
+            this.Controls.Add(this.mRecordingLabel);
             this.Name = "AudioBlock";
             this.Size = new System.Drawing.Size(139, 128);
+            this.Controls.SetChildIndex(this.mRecordingLabel, 0);
             this.Controls.SetChildIndex(this.mWaveform, 0);
             this.Controls.SetChildIndex(this.mLabel, 0);
             this.ResumeLayout(false);
@@ -68,5 +81,6 @@ namespace Obi.ProjectView
         #endregion
 
         private Waveform mWaveform;
+        private System.Windows.Forms.Label mRecordingLabel;
     }
 }
