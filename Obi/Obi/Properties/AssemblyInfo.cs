@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.12.0.*")]
+[assembly: AssemblyVersion("0.20.0.*")]
 
 // There is a warning about this but it is harmless (1607)
-[assembly: AssemblyInformationalVersion("1.0 beta 2")]
+[assembly: AssemblyInformationalVersion("1.0RC2")]

@@ -41,6 +41,8 @@ namespace Obi
         public event MetadataEventHandler MetadataEntryContentChanged;  // triggered after the content of a metadata entry changed
         public event MetadataEventHandler MetadataEntryNameChanged;     // triggered after the name of a metadata entry changed
 
+        public event EventHandler<urakawa.events.command.CommandEventArgs> BeforeCommandExecuted;
+
 
         /// <summary>
         /// Add a new metadata entry (with event.)
@@ -154,6 +156,21 @@ namespace Obi
             CompositeCommand command = getCommandFactory().createCompositeCommand();
             command.setShortDescription(label);
             return command;
+        }
+
+        /// <summary>
+        /// Execute a command, but warn first.
+        /// </summary>
+        public void Do(ICommand command)
+        {
+            if (command != null)
+            {
+                if (BeforeCommandExecuted != null)
+                {
+                    BeforeCommandExecuted(this, new urakawa.events.command.CommandEventArgs(command));
+                }
+                getUndoRedoManager().execute(command);
+            }
         }
 
         /// <summary>

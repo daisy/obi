@@ -66,6 +66,7 @@ namespace Obi.ProjectView
             // AudioBlock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.Controls.Add(this.mWaveform);
             this.Controls.Add(this.mRecordingLabel);
             this.Name = "AudioBlock";

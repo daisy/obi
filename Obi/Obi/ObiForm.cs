@@ -1450,18 +1450,19 @@ namespace Obi
         // Redo
         private void Redo()
         {
-            if (mProjectView.TransportBar.IsActive)
-                mProjectView.TransportBar.Stop();
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+            mProjectView.SuspendLayout_All();
             try
-                {
-                if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager ().redo ();
-                }
+            {
+                if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager().redo();
+            }
             catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            mProjectView.ResumeLayout_All();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 
@@ -1533,14 +1534,19 @@ namespace Obi
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+            mProjectView.SuspendLayout_All();
             try
+            {
+                if (mSession.CanUndo && !(mProjectView.Selection is TextSelection))
                 {
-                if (mSession.CanUndo && !(mProjectView.Selection is TextSelection)) { mSession.Presentation.getUndoRedoManager ().undo (); }
+                    mSession.Presentation.getUndoRedoManager().undo(); 
                 }
+            }
             catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            mProjectView.ResumeLayout_All();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
         }
 

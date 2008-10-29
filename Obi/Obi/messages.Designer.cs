@@ -1947,7 +1947,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phrase detection in progres....
+        ///   Looks up a localized string similar to Phrase detection in progress....
         /// </summary>
         internal static string phrase_detection_progress {
             get {

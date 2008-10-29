@@ -98,7 +98,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void AddMetadataEntry()
         {
-            if (CanAddMetadataEntry()) mPresentation.getUndoRedoManager().execute(new Commands.Metadata.AddEntry(this));
+            if (CanAddMetadataEntry()) mPresentation.Do(new Commands.Metadata.AddEntry(this));
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Obi.ProjectView
         public urakawa.metadata.Metadata AddMetadataEntry(string name)
         {
             Commands.Metadata.AddEntry cmd = new Commands.Metadata.AddEntry(this, name);
-            mPresentation.getUndoRedoManager().execute(cmd);
+            mPresentation.Do(cmd);
             return cmd.Entry;
         }
 
@@ -161,11 +161,11 @@ namespace Obi.ProjectView
                     command.append(readd);
                 }
                 if (!add.NewSectionParent.Used) AppendMakeUnused(command, add.NewSection);
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
             }
             else
             {
-                mPresentation.getUndoRedoManager().execute(add);
+                mPresentation.Do(add);
             }
         }
 
@@ -384,19 +384,19 @@ namespace Obi.ProjectView
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanCopySection)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_section")));
+                mPresentation.Do(new Commands.Node.Copy(this, true, Localizer.Message("copy_section")));
             }
             else if (CanCopyStrip)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, false, Localizer.Message("copy_section_shallow")));
+                mPresentation.Do(new Commands.Node.Copy(this, false, Localizer.Message("copy_section_shallow")));
             }
             else if (CanCopyBlock)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Copy(this, true, Localizer.Message("copy_phrase")));
+                mPresentation.Do(new Commands.Node.Copy(this, true, Localizer.Message("copy_phrase")));
             }
             else if (CanCopyAudio)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Audio.Copy(this));
+                mPresentation.Do(new Commands.Audio.Copy(this));
             }
         }
 
@@ -413,7 +413,7 @@ namespace Obi.ProjectView
                     Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
                 command.append(new Commands.Node.Copy(this, isSection));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
             }
             else if (CanRemoveBlock)
             {
@@ -421,7 +421,7 @@ namespace Obi.ProjectView
                 command.setShortDescription(Localizer.Message("cut_phrase"));
                 command.append(new Commands.Node.Copy(this, true));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
             }
             else if (CanRemoveAudio)
             {
@@ -433,7 +433,7 @@ namespace Obi.ProjectView
                 command.append(new Commands.Audio.Copy(this, deleted,
                     new AudioRange(0.0, deleted.Audio.getDuration().getTimeDeltaAsMillisecondFloat())));
                 command.append(delete);
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
             }
         }
 
@@ -445,26 +445,25 @@ namespace Obi.ProjectView
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Delete(this, mTOCView.Selection.Section,
+                mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
                     Localizer.Message("delete_section")));
             }
             else if (CanRemoveStrip)
             {
-                mPresentation.getUndoRedoManager().execute(mContentView.DeleteStripCommand());
+                mPresentation.Do(mContentView.DeleteStripCommand());
             }
             else if (CanRemoveBlock)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
                     Localizer.Message("delete_phrase")));
             }
             else if (CanRemoveAudio)
             {
-                ICommand delete = Commands.Audio.Delete.GetCommand(this);
-                if (delete != null) mPresentation.getUndoRedoManager().execute(delete);
+                mPresentation.Do(Commands.Audio.Delete.GetCommand(this));
             }
             else if (CanRemoveMetadata)
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Metadata.DeleteEntry(this));
+                mPresentation.Do(new Commands.Metadata.DeleteEntry(this));
             }
         }
 
@@ -510,7 +509,7 @@ namespace Obi.ProjectView
                     foreach (ICommand c in silence) command.append(c);
                 }
             }
-            if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+            if (command.getCount() > 0) mPresentation.Do(command);
         }
 
         /// <summary>
@@ -593,7 +592,7 @@ namespace Obi.ProjectView
         {
             if (CanMergeStripWithNext)
             {
-                mPresentation.getUndoRedoManager().execute(mContentView.MergeSelectedStripWithNextCommand());
+                mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
             }
         }
@@ -632,7 +631,7 @@ namespace Obi.ProjectView
             if (CanIncreaseLevel)
             {
                 mContentView.EventsAreEnabled = false;
-                mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
+                mPresentation.Do(new Commands.TOC.MoveSectionIn(this, mTOCView.Selection.Section));
                 mContentView.EventsAreEnabled = true;
             }
         }
@@ -646,7 +645,7 @@ namespace Obi.ProjectView
             if (CanDecreaseLevel)
             {
                 mContentView.EventsAreEnabled = false;
-                mPresentation.getUndoRedoManager().execute(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
+                mPresentation.Do(new Commands.TOC.MoveSectionOut(this, mTOCView.Selection.Section));
                 mContentView.EventsAreEnabled = true;
             }
         }
@@ -713,7 +712,7 @@ namespace Obi.ProjectView
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-                mPresentation.getUndoRedoManager().execute(mSelection.PasteCommand(this));
+                mPresentation.Do(mSelection.PasteCommand(this));
                 mTransportBar.SelectionChangedPlaybackEnabled = true;
             }
         }
@@ -780,7 +779,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void RenameSectionNode(SectionNode section, string label)
         {
-            mPresentation.getUndoRedoManager().execute(new Commands.Node.RenameSection(this, section, label));
+            mPresentation.Do(new Commands.Node.RenameSection(this, section, label));
         }
 
         /// <summary>
@@ -875,7 +874,7 @@ namespace Obi.ProjectView
                         return true;
                     }, delegate(urakawa.core.TreeNode n) { }
                 );
-                Presentation.getUndoRedoManager().execute(command);
+                Presentation.Do(command);
             }
         }
 
@@ -934,7 +933,7 @@ namespace Obi.ProjectView
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-                mPresentation.getUndoRedoManager().execute(mContentView.SplitStripCommand());
+                mPresentation.Do(mContentView.SplitStripCommand());
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
@@ -1002,7 +1001,7 @@ namespace Obi.ProjectView
         {
             if (parent.Used)
             {
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
             }
             else
             {
@@ -1017,7 +1016,7 @@ namespace Obi.ProjectView
                     c.append(command);
                 }
                 AppendMakeUnused(c, node);
-                mPresentation.getUndoRedoManager().execute(c);
+                mPresentation.Do(c);
             }
         }
 
@@ -1241,7 +1240,7 @@ namespace Obi.ProjectView
                         progress.ShowDialog();
                         if (phraseNodes.Count > 0)
                         {
-                            mPresentation.getUndoRedoManager().execute(GetImportPhraseCommands(phraseNodes));
+                            mPresentation.Do(GetImportPhraseCommands(phraseNodes));
                         }
                     }
                 }
@@ -1303,8 +1302,7 @@ namespace Obi.ProjectView
 
         public void SetRoleForSelectedBlock(EmptyNode.Role kind, string custom)
         {
-            mPresentation.getUndoRedoManager().execute(
-                new Commands.Node.AssignRole(this, SelectedNodeAs<EmptyNode>(), kind, custom));
+            mPresentation.Do(new Commands.Node.AssignRole(this, SelectedNodeAs<EmptyNode>(), kind, custom));
         }
 
         public void SetSilenceRoleForSelectedPhrase()
@@ -1317,7 +1315,7 @@ namespace Obi.ProjectView
                 command.append(silence);
                 command.setShortDescription(silence.getShortDescription());
                 if (node.Used) command.append(new Commands.Node.ToggleNodeUsed(this, node));
-                Presentation.getUndoRedoManager().execute(command);
+                Presentation.Do(command);
             }
         }
 
@@ -1332,7 +1330,7 @@ namespace Obi.ProjectView
             if (command != null)
             {
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-                mPresentation.getUndoRedoManager().execute(command);
+                mPresentation.Do(command);
                 if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = true;
             }
@@ -1361,7 +1359,7 @@ namespace Obi.ProjectView
             {
                 EmptyNode node = (EmptyNode)Selection.Node;
                 Commands.Node.ToggleNodeTODO command = new Commands.Node.ToggleNodeTODO(this, node);
-                Presentation.getUndoRedoManager().execute(command);
+                Presentation.Do(command);
             }
         }
 
@@ -1381,7 +1379,7 @@ namespace Obi.ProjectView
                 EmptyNode node = SelectedNodeAs<EmptyNode>();
                 if (node.Role_ != nodeKind || node.CustomRole != customClass)
                 {
-                    mPresentation.getUndoRedoManager().execute(new Obi.Commands.Node.AssignRole(this, node, customClass));
+                    mPresentation.Do(new Obi.Commands.Node.AssignRole(this, node, customClass));
                 }
             }
         }
@@ -1413,7 +1411,7 @@ namespace Obi.ProjectView
                     k.append(cmd);
                     cmd = k;
                 }
-                mPresentation.getUndoRedoManager().execute(cmd);
+                mPresentation.Do(cmd);
             }
         }
 
@@ -1460,7 +1458,7 @@ namespace Obi.ProjectView
                         }
                     }
                 }
-                mPresentation.getUndoRedoManager().execute(cmd);
+                mPresentation.Do(cmd);
             }
         }
 
@@ -1489,12 +1487,11 @@ namespace Obi.ProjectView
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence);
                         });
                     progress.ShowDialog();
-                    if (command != null) mPresentation.getUndoRedoManager().execute(command);
+                    mPresentation.Do(command);
                     TransportBar.SelectionChangedPlaybackEnabled = true;
                 }
             }
         }
-
 
         /// <summary>
         /// Select the phrase after the currently selected phrase in the same strip in the content view.
@@ -1794,7 +1791,7 @@ namespace Obi.ProjectView
             if (dialog.ShowDialog() == DialogResult.OK && dialog.ProjectTitle != mPresentation.Title &&
                 dialog.ProjectTitle != null && dialog.ProjectTitle != "")
             {
-                mPresentation.getUndoRedoManager().execute(new Commands.Metadata.ModifyContent(this,
+                mPresentation.Do(new Commands.Metadata.ModifyContent(this,
                     mPresentation.GetFirstMetadataItem(Metadata.DC_TITLE), dialog.ProjectTitle));
             }
             return true; // return true for keyboard handling
@@ -1839,7 +1836,7 @@ namespace Obi.ProjectView
                     command.append(new Commands.Node.ToggleNodeUsed(this, dialog.Node));
                 }
                 if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
-                if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                if (command.getCount() > 0) mPresentation.Do(command);
             }
             return true;
         }
@@ -1890,7 +1887,7 @@ namespace Obi.ProjectView
                     command.append(new Commands.Node.ToggleNodeTODO(this, dialog.Node));
                 }
                 if (command.getCount() == 1) command.setShortDescription(command.getListOfCommands()[0].getShortDescription());
-                if (command.getCount() > 0) mPresentation.getUndoRedoManager().execute(command);
+                if (command.getCount() > 0) mPresentation.Do(command);
             }
             return true;
         }
@@ -1900,8 +1897,7 @@ namespace Obi.ProjectView
             if (CanCropPhrase)
             {
                 ICommand crop = Commands.Node.SplitAudio.GetCropCommand(this);
-                // Crop may be null if the audio selection is unsuitable
-                if (crop != null) mPresentation.getUndoRedoManager().execute(crop);
+                mPresentation.Do(crop);
             }
         }
 
@@ -1963,6 +1959,16 @@ namespace Obi.ProjectView
         public void AddCustomRoleToContextMenu(string name, ObiForm form)
         {
             mContentView.AddCustomRoleToContextMenu(name, form);
+        }
+
+        public void SuspendLayout_All()
+        {
+            mContentView.SuspendLayout_All();
+        }
+
+        public void ResumeLayout_All()
+        {
+            mContentView.ResumeLayout_All();
         }
     }
 
