@@ -529,6 +529,12 @@ namespace Obi.ProjectView
             }
         }
 
+        public void Resize_All() 
+        {
+            Resize_Label();
+            Resize_Blocks(); 
+        }
+
         // Blocks are added, removed, or their width has changed after the audio scale changed.
         // Heights do not change, unless wrapping.
         private void Resize_Blocks()
@@ -728,6 +734,13 @@ namespace Obi.ProjectView
             {
                 mContentView.SelectedNode = mNode;
             }
+        }
+
+        private void Strip_LocationChanged(object sender, EventArgs e)
+        {
+            Point offset = ((ScrollableControl)Parent).AutoScrollPosition;
+            Point l = new Point(Location.X - offset.X, Location.Y - offset.Y);
+            System.Diagnostics.Debug.Print("Location changed to {0}/{1}", Location, l);
         }
     }
 }

@@ -73,6 +73,7 @@ namespace Obi.ProjectView
             this.DoubleBuffered = true;
             this.Name = "Strip";
             this.Size = new System.Drawing.Size(309, 187);
+            this.LocationChanged += new System.EventHandler(this.Strip_LocationChanged);
             this.Click += new System.EventHandler(this.Strip_Enter);
             this.Enter += new System.EventHandler(this.Strip_Enter);
             this.ResumeLayout(false);

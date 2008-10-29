@@ -117,6 +117,7 @@ namespace Obi.ProjectView
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                g.Dispose();
             }
             catch (Exception) { }
             return bitmap;
@@ -131,6 +132,7 @@ namespace Obi.ProjectView
             {
                 Graphics g = Graphics.FromImage(bitmap);
                 if (Audio != null) DrawWaveform(g, settings, highlighted);
+                g.Dispose();
             }
             catch (Exception) { }
             return bitmap;

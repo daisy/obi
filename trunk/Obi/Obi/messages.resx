@@ -1291,7 +1291,7 @@ Error text: {1}</value>
     <value>Obi Help.chm</value>
   </data>
   <data name="phrase_detection_progress" xml:space="preserve">
-    <value>Phrase detection in progres...</value>
+    <value>Phrase detection in progress...</value>
     <comment>Progress dialog title</comment>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">

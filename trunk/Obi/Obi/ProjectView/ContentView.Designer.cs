@@ -350,6 +350,7 @@ namespace Obi.ProjectView
             // 
             // ContentView
             // 
+            this.AutoScroll = true;
             this.ContextMenuStrip = this.mContextMenuStrip;
             this.Size = new System.Drawing.Size(538, 573);
             this.Click += new System.EventHandler(this.ContentView_Click);

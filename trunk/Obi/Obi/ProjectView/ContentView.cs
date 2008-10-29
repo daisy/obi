@@ -41,8 +41,8 @@ namespace Obi.ProjectView
         public ContentView()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
             InitializeShortcutKeys();
-            DoubleBuffered = true;
             mProjectView = null;
             mSelection = null;
             mFocusing = false;
@@ -52,7 +52,6 @@ namespace Obi.ProjectView
             mWaveformRenderQ = new PriorityQueue<Waveform, int>();
             mWaveformRenderWorker = null;
             SetPlaybackPhraseAndTime(null, 0.0);
-            AutoScroll = true;
         }
 
         private void AddControlAt(Control c, int index)
@@ -235,8 +234,24 @@ namespace Obi.ProjectView
         {
             Controls.Clear();
             ClearWaveformRenderQueue();
+            SuspendLayout_All();
             AddStripForSection_Safe(mProjectView.Presentation.RootNode);
+            ResumeLayout_All();
+            mProjectView.Presentation.BeforeCommandExecuted +=
+                new EventHandler<urakawa.events.command.CommandEventArgs>(Presentation_BeforeCommandExecuted);
+            mProjectView.Presentation.getUndoRedoManager().commandDone +=
+                new EventHandler<urakawa.events.undo.DoneEventArgs>(ContentView_commandDone);
             EventsAreEnabled = true;
+        }
+
+        private void ContentView_commandDone(object sender, urakawa.events.undo.DoneEventArgs e)
+        {
+            ResumeLayout_All();
+        }
+
+        private void Presentation_BeforeCommandExecuted(object sender, urakawa.events.command.CommandEventArgs e)
+        {
+            SuspendLayout_All();
         }
 
         /// <summary>
@@ -1629,6 +1644,21 @@ null;
             else
             {
                 mProjectView.ShowProjectPropertiesDialog();
+            }
+        }
+
+        public void SuspendLayout_All()
+        {
+            Invalidate();
+            foreach (Control c in Controls) c.SuspendLayout();
+        }
+
+        public void ResumeLayout_All()
+        {
+            foreach (Control c in Controls)
+            {
+                c.ResumeLayout();
+                if (c is Strip) ((Strip)c).Resize_All();
             }
         }
     }
