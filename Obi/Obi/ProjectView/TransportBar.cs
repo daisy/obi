@@ -399,7 +399,7 @@ namespace Obi.ProjectView
             else if (mState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
                 return true;
             }
             return false;
