@@ -1033,9 +1033,10 @@ namespace Obi.ProjectView
                     mView.Selection is AudioSelection ))
                 {
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
-                    command.append(Commands.Node.SplitAudio.GetSplitCommand(mView));
+                CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
+                                    if ( SplitCommand != null )  command.append( SplitCommand);
 
-                    if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor)
+                    if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
                         command.append ( new Commands.Node.DeleteWithOffset (mView , node , 1)) ;
 
                 }
