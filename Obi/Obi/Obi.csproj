@@ -258,6 +258,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="messages.hi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages.hi.resx</DependentUpon>
+    </Compile>
     <Compile Include="Metadata.cs" />
     <Compile Include="ObiForm.cs">
       <SubType>Form</SubType>
@@ -336,7 +341,7 @@
       <DependentUpon>AudioBlock.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectView\ContentView.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ProjectView\ContentView.Designer.cs">
       <DependentUpon>ContentView.cs</DependentUpon>
@@ -590,6 +595,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="messages.hi.resx">
       <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.hi.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ObiForm.hi.resx">
       <SubType>Designer</SubType>
@@ -735,48 +742,22 @@
     <Content Include="hi.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\icons\bookmark-new.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-first.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-last.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-down.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-next.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-previous.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\go-up.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-playback-pause.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-playback-start.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-playback-stop.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-record.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-seek-backward.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images\icons\media-seek-forward.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="help_en.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\icons\emblem-important.png" />
+    <Content Include="images\icons\go-down.png" />
+    <Content Include="images\icons\go-next.png" />
+    <Content Include="images\icons\go-previous.png" />
+    <Content Include="images\icons\go-up.png" />
+    <Content Include="images\icons\media-playback-pause.png" />
+    <Content Include="images\icons\media-playback-start.png" />
+    <Content Include="images\icons\media-playback-stop.png" />
+    <Content Include="images\icons\media-record.png" />
+    <Content Include="images\icons\media-seek-backward.png" />
+    <Content Include="images\icons\media-seek-forward.png" />
+    <Content Include="images\icons\nextpage.png" />
+    <Content Include="images\icons\prevpage.png" />
     <Content Include="images\obird_right_48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

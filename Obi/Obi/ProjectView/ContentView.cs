@@ -14,7 +14,7 @@ namespace Obi.ProjectView
     /// <summary>
     /// The content view shows the strips and blocks of the project.
     /// </summary>
-    public partial class ContentView : Panel, IControlWithRenamableSelection
+    public partial class ContentView : UserControl, IControlWithRenamableSelection
     {
         private ProjectView mProjectView;                            // parent project view
         private NodeSelection mSelection;                            // current selection
@@ -41,7 +41,6 @@ namespace Obi.ProjectView
         public ContentView()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
             InitializeShortcutKeys();
             mProjectView = null;
             mSelection = null;
@@ -52,26 +51,58 @@ namespace Obi.ProjectView
             mWaveformRenderQ = new PriorityQueue<Waveform, int>();
             mWaveformRenderWorker = null;
             SetPlaybackPhraseAndTime(null, 0.0);
+            mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
         }
 
+
+        // Size of the borders
+        private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
+        private int BorderWidth { get { return Bounds.Width - ClientSize.Width; } }
+
+        private int VisibleHeight { get { return Height - (mHScrollBar.Visible ? 0 : mHScrollBar.Height) - BorderHeight; } }
+        private int VisibleWidth { get { return Width - (mVScrollBar.Visible ? 0 : mVScrollBar.Width) - BorderWidth; } }
+
+        // Add a new control (normally, a strip) at the given index.
         private void AddControlAt(Control c, int index)
         {
-            Controls.Add(c);
-            Controls.SetChildIndex(c, index);
+            // Grow horizontally if necessary
+            if (mStripsPanel.Width < c.Width + c.Margin.Horizontal)
+            {
+                mStripsPanel.Width = c.Width + c.Margin.Horizontal;
+                mHScrollBar.Minimum = 0;
+                mHScrollBar.Maximum = mStripsPanel.Width - VisibleWidth;
+            }
+            mStripsPanel.Controls.Add(c);
+            mStripsPanel.Controls.SetChildIndex(c, index);
             ReflowFromControl(c);
             c.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { ReflowFromControl(c); });
         }
 
         private void ReflowFromIndex(int index)
         {
-            for (int i = index; i >= 0 && i < Controls.Count; ++i)
+            for (int i = index; i >= 0 && i < mStripsPanel.Controls.Count; ++i)
             {
-                int y_prev = i == 0 ? 0 : Controls[i - 1].Location.Y + Controls[i - 1].Height + Controls[i - 1].Margin.Bottom;
-                Controls[i].Location = new Point(Controls[i].Margin.Left, y_prev + Controls[i].Margin.Top);
+                int y_prev = i == 0 ? 0 : mStripsPanel.Controls[i - 1].Location.Y + mStripsPanel.Controls[i - 1].Height + mStripsPanel.Controls[i - 1].Margin.Bottom;
+                mStripsPanel.Controls[i].Location = new Point(mStripsPanel.Controls[i].Margin.Left, y_prev + mStripsPanel.Controls[i].Margin.Top);
+            }
+            mStripsPanel.Height = mStripsPanel.Controls.Count == 0 ? 0 :
+                mStripsPanel.Controls[mStripsPanel.Controls.Count - 1].Location.Y +
+                mStripsPanel.Controls[mStripsPanel.Controls.Count - 1].Height +
+                mStripsPanel.Controls[mStripsPanel.Controls.Count - 1].Margin.Bottom;
+            if (mStripsPanel.Height <= VisibleHeight)
+            {
+                mVScrollBar.Visible = false;
+                mHScrollBar.Width = Width;
+            }
+            else
+            {
+                mHScrollBar.Width = Width - mCornerPanel.Width;
+                mVScrollBar.Visible = true;
+                mVScrollBar.Maximum = mStripsPanel.Height - VisibleHeight;
             }
         }
 
-        private void ReflowFromControl(Control c) { ReflowFromIndex(Controls.IndexOf(c)); }
+        private void ReflowFromControl(Control c) { ReflowFromIndex(mStripsPanel.Controls.IndexOf(c)); }
 
 
         public bool CanAddStrip { get { return IsStripSelected || IsBlockOrWaveformSelected || Selection is StripIndexSelection; } }
@@ -232,7 +263,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void NewPresentation()
         {
-            Controls.Clear();
+            mStripsPanel.Controls.Clear();
             ClearWaveformRenderQueue();
             SuspendLayout_All();
             AddStripForSection_Safe(mProjectView.Presentation.RootNode);
@@ -461,19 +492,6 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Show only the selected section.
-        /// </summary>
-        public void ShowOnlySelectedSection(ObiNode node)
-        {
-            // Show only one strip
-            SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode>();
-            foreach (Control c in Controls)
-            {
-                if (c is Strip) c.Visible = ((Strip)c).Node == section;
-            }
-        }
-
-        /// <summary>
         /// Split a strip at the selected block or cursor position; i.e. create a new sibling section which
         /// inherits the children of the split section except for the phrases before the selected block or
         /// position. Do not do anything if there are no phrases before.
@@ -548,7 +566,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Views are not synchronized anymore, so make sure that all strips are visible.
         /// </summary>
-        public void UnsyncViews() { foreach (Control c in Controls) c.Visible = true; }
+        public void UnsyncViews() { foreach (Control c in mStripsPanel.Controls) c.Visible = true; }
 
         public void UpdateCursorPosition(double time) { mPlaybackBlock.UpdateCursorTime(time); }
 
@@ -578,9 +596,9 @@ namespace Obi.ProjectView
             set
             {
                 mWrapStripContents = value;
-                for (int i = Controls.Count - 1; i >= 0; --i)
+                for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
                 {
-                    Strip strip = Controls[i] as Strip;
+                    Strip strip = mStripsPanel.Controls[i] as Strip;
                     if (strip != null) strip.WrapContents = mWrapStripContents;
                 }
             }
@@ -589,7 +607,7 @@ namespace Obi.ProjectView
         public float AudioScale
         {
             get { return mProjectView == null ? 0.01f : mProjectView.AudioScale; }
-            set { foreach (Control c in Controls) if (c is Strip) ((Strip)c).AudioScale = value; }
+            set { foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).AudioScale = value; }
         }
 
         /// <summary>
@@ -601,7 +619,7 @@ namespace Obi.ProjectView
             set
             {
                 ClearWaveformRenderQueue();
-                foreach (Control c in Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
+                foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
             }
         }
 
@@ -694,7 +712,7 @@ namespace Obi.ProjectView
         // Find the strip for the given section node; return null if not found (be careful!)
         private Strip FindStrip(SectionNode section)
         {
-            foreach (Control c in Controls)
+            foreach (Control c in mStripsPanel.Controls)
             {
                 if (c is Strip && ((Strip)c).Node == section) return (Strip)c;
             }
@@ -772,8 +790,8 @@ namespace Obi.ProjectView
         {
             for (int i = 0; i < section.SectionChildCount; ++i) RemoveStripsForSection(section.SectionChild(i));
             Strip strip = FindStrip(section);
-            int index = Controls.IndexOf(strip);
-            Controls.Remove(strip);
+            int index = mStripsPanel.Controls.IndexOf(strip);
+            mStripsPanel.Controls.Remove(strip);
             ReflowFromIndex(index);
         }
 
@@ -821,8 +839,8 @@ namespace Obi.ProjectView
         // Update the colors of the view and its components.
         private void UpdateColors(ColorSettings settings)
         {
-            BackColor = settings.ContentViewBackColor;
-            foreach (Control c in Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
+            mStripsPanel.BackColor = settings.ContentViewBackColor;
+            foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
             UpdateWaveforms();
         }
 
@@ -830,7 +848,7 @@ namespace Obi.ProjectView
         private void UpdateWaveforms()
         {
             ClearWaveformRenderQueue();
-            foreach (Control c in Controls) if (c is Strip) ((Strip)c).UpdateWaveforms(AudioBlock.NORMAL_PRIORITY);
+            foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).UpdateWaveforms(AudioBlock.NORMAL_PRIORITY);
         }
 
         #region IControlWithRenamableSelection Members
@@ -883,11 +901,11 @@ namespace Obi.ProjectView
         // Update tab index for all controls after a newly added strip
         private void UpdateTabIndex(Strip strip)
         {
-            int stripIndex = Controls.IndexOf(strip);
-            int tabIndex = stripIndex > 0 ? ((Strip)Controls[stripIndex - 1]).LastTabIndex : 0;
-            for (int i = stripIndex; i < Controls.Count; ++i)
+            int stripIndex = mStripsPanel.Controls.IndexOf(strip);
+            int tabIndex = stripIndex > 0 ? ((Strip)mStripsPanel.Controls[stripIndex - 1]).LastTabIndex : 0;
+            for (int i = stripIndex; i < mStripsPanel.Controls.Count; ++i)
             {
-                tabIndex = ((Strip)Controls[i]).UpdateTabIndex(tabIndex);
+                tabIndex = ((Strip)mStripsPanel.Controls[i]).UpdateTabIndex(tabIndex);
             }
         }
 
@@ -1434,7 +1452,7 @@ namespace Obi.ProjectView
                                                         if ( this.ContainsFocus )
                 {
                                         //Strip s = ((Strip)mLayoutPanel.Controls[mLayoutPanel.Controls.Count - 1]);
-Strip s  = Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
+Strip s  = mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] :
 null;
 
                     if (s != null &&
@@ -1453,11 +1471,11 @@ null;
                 if (this.ContainsFocus)
                 {
                     //Strip s = ((Strip)mLayoutPanel.Controls[0]);
-                    Strip s = Controls.Count > 0 ? (Strip)Controls[0] : null;
+                    Strip s = mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[0] : null;
                     
                     if (s != null && s.Controls[1].ContainsFocus)
                     {
-                        Strip LastStrip = Controls.Count > 0 ? (Strip)Controls[Controls.Count - 1] :
+                        Strip LastStrip = mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] :
 null;
 
                         if (LastStrip != null)
@@ -1650,16 +1668,26 @@ null;
         public void SuspendLayout_All()
         {
             Invalidate();
-            foreach (Control c in Controls) c.SuspendLayout();
+            foreach (Control c in mStripsPanel.Controls) c.SuspendLayout();
         }
 
         public void ResumeLayout_All()
         {
-            foreach (Control c in Controls)
+            foreach (Control c in mStripsPanel.Controls)
             {
                 c.ResumeLayout();
                 if (c is Strip) ((Strip)c).Resize_All();
             }
+        }
+
+        private void mVScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            mStripsPanel.Location = new Point(mStripsPanel.Location.X, mStripsPanel.Location.Y - e.NewValue + e.OldValue);
+        }
+
+        private void mHScrollBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            mStripsPanel.Location = new Point(mStripsPanel.Location.X - e.NewValue + e.OldValue, mStripsPanel.Location.Y);
         }
     }
 

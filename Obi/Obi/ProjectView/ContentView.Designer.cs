@@ -65,6 +65,10 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mStripsPanel = new System.Windows.Forms.Panel();
+            this.mHScrollBar = new System.Windows.Forms.HScrollBar();
+            this.mVScrollBar = new System.Windows.Forms.VScrollBar();
+            this.mCornerPanel = new System.Windows.Forms.Panel();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -348,10 +352,53 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem.Text = "Pr&operties";
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
+            // mStripsPanel
+            // 
+            this.mStripsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mStripsPanel.Location = new System.Drawing.Point(0, 0);
+            this.mStripsPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.mStripsPanel.Name = "mStripsPanel";
+            this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
+            this.mStripsPanel.TabIndex = 1;
+            // 
+            // mHScrollBar
+            // 
+            this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mHScrollBar.Location = new System.Drawing.Point(0, 557);
+            this.mHScrollBar.Name = "mHScrollBar";
+            this.mHScrollBar.Size = new System.Drawing.Size(522, 16);
+            this.mHScrollBar.TabIndex = 2;
+            this.mHScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mHScrollBar_Scroll);
+            // 
+            // mVScrollBar
+            // 
+            this.mVScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mVScrollBar.Location = new System.Drawing.Point(522, 0);
+            this.mVScrollBar.Name = "mVScrollBar";
+            this.mVScrollBar.Size = new System.Drawing.Size(16, 557);
+            this.mVScrollBar.TabIndex = 3;
+            this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
+            // 
+            // mCornerPanel
+            // 
+            this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.mCornerPanel.Location = new System.Drawing.Point(522, 557);
+            this.mCornerPanel.Name = "mCornerPanel";
+            this.mCornerPanel.Size = new System.Drawing.Size(16, 16);
+            this.mCornerPanel.TabIndex = 4;
+            // 
             // ContentView
             // 
-            this.AutoScroll = true;
             this.ContextMenuStrip = this.mContextMenuStrip;
+            this.Controls.Add(this.mVScrollBar);
+            this.Controls.Add(this.mHScrollBar);
+            this.Controls.Add(this.mCornerPanel);
+            this.Controls.Add(this.mStripsPanel);
+            this.Name = "ContentView";
             this.Size = new System.Drawing.Size(538, 573);
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
@@ -398,5 +445,9 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ClearRoleMenuItem;
+        private System.Windows.Forms.Panel mStripsPanel;
+        private System.Windows.Forms.HScrollBar mHScrollBar;
+        private System.Windows.Forms.VScrollBar mVScrollBar;
+        private System.Windows.Forms.Panel mCornerPanel;
     }
 }
