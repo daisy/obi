@@ -770,7 +770,13 @@ namespace Obi
             mView_ProjectPropertiesMenuItem.Enabled = mProjectView.CanShowProjectPropertiesDialog;
             mView_ProjectPropertiesMenuItem.Visible =
                 mProjectView.CanShowProjectPropertiesDialog || !mSession.HasProject;
-        }
+            mView_AudioZoomInMenuItem.Enabled = mSession.HasProject;
+            mView_AudioZoomOutMenuItem.Enabled = mSession.HasProject;
+            mView_NormalSizeMenuItem.Enabled = mSession.HasProject;
+            mView_ZoomInMenuItem.Enabled = mSession.HasProject;
+            mView_ZoomOutMenuItem.Enabled = mSession.HasProject;
+            mView_ResetAudioSizeMenuItem.Enabled = mSession.HasProject;
+                    }
 
         private void mShowTOCViewToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
@@ -1026,11 +1032,12 @@ namespace Obi
             mNextPageToolStripMenuItem.Enabled = mProjectView.CanNavigateNextPage;
             mNextSectionToolStripMenuItem.Enabled = mProjectView.CanNavigateNextSection;
             mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
-            mRewindToolStripMenuItem.Enabled = mProjectView.CanRewind;
+            mRewindToolStripMenuItem.Enabled = mSession.HasProject &&  mProjectView.CanRewind;
+            navigationToolStripMenuItem.Enabled = mSession.HasProject;
 
 
             mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
-
+            mRecordToolStripMenuItem.Enabled = mSession.HasProject; 
             mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsListening)
             {
