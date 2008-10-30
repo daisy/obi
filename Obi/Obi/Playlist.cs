@@ -995,13 +995,13 @@ namespace Obi
         private double mRevertTime;  // revert time
 
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
-            : base(player, selection, true)
+            : base(player, selection, false)
         {
             mRevertTime = revertTime;
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
-            : base(player, node, true)
+            : base(player, node, false)
         {
             mRevertTime = revertTime;
         }
