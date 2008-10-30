@@ -885,22 +885,6 @@ namespace Obi.ProjectView
 
 
 
-        private void UpdateShowOnlySelected(bool showOnly)
-        {
-            ObiNode node = SelectedNodeAs<ObiNode>();
-            node = node is SectionNode ? (SectionNode)node :
-                node == null || node is RootNode ? null :
-                node.AncestorAs<SectionNode>();
-            if (showOnly)
-            {
-                mContentView.ShowOnlySelectedSection(node);
-            }
-            else
-            {
-                SynchronizeViews = mSynchronizeViews;
-            }
-            mContentView.MakeStripVisibleForSection((SectionNode)node);
-        }
 
         /// <summary>
         /// Set content wrapping in the content view.
