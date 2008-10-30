@@ -52,7 +52,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             mBaseFontSize = Font.SizeInPoints;
             mTimer = new Timer();
-            mTimer.Interval = 4000;
+            mTimer.Interval = 7000;
             mTimer.Tick += new EventHandler(mTimer_Tick);
         }
 
@@ -113,8 +113,9 @@ namespace Obi.ProjectView
         /// <param name="e"></param>
         private void mTimer_Tick(object sender, EventArgs e)
         {
-           mTimer.Stop();
+                   mTimer.Stop();
            mProjectView.FindInTextVisible = false;
+           System.Media.SystemSounds.Exclamation.Play ();   
         }
 
         public void FindNext()
@@ -152,7 +153,7 @@ namespace Obi.ProjectView
                 if (!Visible)
                 {
                     //debugging exception only!
-                    throw new Exception("Find next/previous not available: form is not being shown.");
+                    //throw new Exception("Find next/previous not available: form is not being shown.");
                 }
                 if (mString.Text.Length == 0)
                 {
@@ -167,12 +168,16 @@ namespace Obi.ProjectView
                 {
                     currentSelection = GetNextIndex(currentSelection);
                     mProjectView.ObiForm.Status(Localizer.Message("find_next_in_text"));
+                    mTimer.Stop ();
+                    mTimer.Start ();
                 }
                 else
                 {
                     currentSelection = GetPreviousIndex(currentSelection);
                     mProjectView.ObiForm.Status(Localizer.Message("find_prev_in_text"));
-                }
+                    mTimer.Stop ();
+                    mTimer.Start ();
+                                    }
                 Search(currentSelection, mString.Text, dir, false);
             }
         }
