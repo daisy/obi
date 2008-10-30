@@ -684,7 +684,16 @@ namespace Obi.Audio
 
                 MoniteringTimer.Enabled = true;
                 // starts playing
-                mSoundBuffer.Play(0, BufferPlayFlags.Looping);
+                try
+                    {
+                    mSoundBuffer.Play ( 0, BufferPlayFlags.Looping );
+                    }
+                catch (System.Exception ex)
+                    {
+                    EmergencyStopForSoundBufferProblem ();
+                    System.Windows.Forms.MessageBox.Show ( Localizer.Message ( "TryAgain" ) + ex.ToString () );
+                    return;
+                    }
                 m_BufferCheck = 1;
 
                 //initialise and start thread for refreshing buffer
@@ -946,7 +955,31 @@ namespace Obi.Audio
 			TriggerStateChangedEvent(e);
 		}
 
-		
+
+        private void EmergencyStopForSoundBufferProblem ()
+            {
+            if (m_IsPreviewing)
+                    m_IsPreviewing = false;
+            ////
+                StopForwardRewind ();
+                mSoundBuffer.Stop ();
+                if (RefreshThread != null && RefreshThread.IsAlive) RefreshThread.Abort ();
+                mBufferStopPosition = -1;
+                if (ResetVuMeter != null)
+                    ResetVuMeter ( this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs () );
+
+                mAudioStream.Close ();
+        ////
+			
+        mPausePosition = 0;
+			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            mState = AudioPlayerState.Stopped;
+			TriggerStateChangedEvent(e);
+	
+            }
+
+
+
 		long mStartPosition;
 
         // Set the current position in the player in bytes.
