@@ -1526,7 +1526,7 @@ namespace Obi.ProjectView
         }
 
         // Trap the delete key to prevent deleting a node during text editing
-        private bool CanUseKey(Keys key) { return !(Selection is TextSelection && key == Keys.Delete); }
+        private bool CanUseKey(Keys key) { return !( (Selection is TextSelection ||  mFindInText.ContainsFocus )  && key == Keys.Delete); }
 
         #endregion
 
