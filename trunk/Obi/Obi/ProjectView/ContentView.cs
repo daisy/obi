@@ -454,6 +454,7 @@ namespace Obi.ProjectView
         }
 
         // Scroll to the control to make sure that it is shown
+        // Avoid scrolling if at least a part is visible
         private void EnsureControlVisible(Control c)
         {
             Point location = c.Location;
@@ -465,11 +466,19 @@ namespace Obi.ProjectView
                 parent = parent.Parent;
             }
             int top = location.Y - c.Margin.Top;
+            int bottom = location.Y + c.Height;
             int left = location.X - c.Margin.Left;
+            int right = location.X + c.Width;
+            int t = top + mStripsPanel.Location.Y;
+            int b = bottom + mStripsPanel.Location.Y;
+            int l = left + mStripsPanel.Location.X;
+            int r = right + mStripsPanel.Location.X;
             int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
             int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-            mVScrollBar.Value = top < v_max ? top : v_max;
-            mHScrollBar.Value = left < h_max ? left : h_max;
+            if (t < 0 || t > VisibleHeight) mVScrollBar.Value = top < v_max ? top : v_max;
+            if (l < 0 || l > VisibleWidth) mHScrollBar.Value = left < h_max ? left : h_max;
+            //if (t < 0 || t > VisibleHeight || b < 0 || b > VisibleHeight) mHScrollBar.Value = left < h_max ? left : h_max;
+            //if (l < 0 || l > VisibleWidth || r < 0 || r > VisibleWidth) mVScrollBar.Value = top < v_max ? top : v_max;
         }
 
         public void SelectNextPhrase(ObiNode node)
