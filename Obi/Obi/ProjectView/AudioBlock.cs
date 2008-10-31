@@ -158,6 +158,7 @@ namespace Obi.ProjectView
         {
             if (CanSelectInWaveform && mWaveform.Selection != null)
             {
+                Strip.ContentView.DisableScrolling();
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }
@@ -207,6 +208,7 @@ namespace Obi.ProjectView
                 {
                     mWaveform.SelectionPointPosition = e.X;
                 }
+                Strip.ContentView.DisableScrolling();
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }

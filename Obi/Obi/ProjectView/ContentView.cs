@@ -31,6 +31,7 @@ namespace Obi.ProjectView
         private AudioBlock mPlaybackBlock;
         private bool mFocusing;
 
+        private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
 
 
@@ -54,6 +55,7 @@ namespace Obi.ProjectView
             mWaveformRenderWorker = null;
             SetPlaybackPhraseAndTime(null, 0.0);
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
+            mEnableScrolling = true;
         }
 
 
@@ -84,6 +86,7 @@ namespace Obi.ProjectView
 
         private void ReflowFromControl(Control c) { ReflowFromIndex(mStripsPanel.Controls.IndexOf(c)); }
 
+        // Update size of the strips panel and the scrollbars.
         private void UpdateSize()
         {
             int h = VisibleHeight;
@@ -102,7 +105,11 @@ namespace Obi.ProjectView
             mStripsPanel.Width = w_max;
             mStripsPanel.Height = h;
             mVScrollBar.Maximum = h - VisibleHeight + mVScrollBar.LargeChange - 1 + mVScrollBar.Width;
+            int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
+            if (mVScrollBar.Value > v_max) mVScrollBar.Value = v_max;
             mHScrollBar.Maximum = w_max - VisibleWidth + mHScrollBar.LargeChange - 1 + mHScrollBar.Height;
+            int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
+            if (mHScrollBar.Value > h_max) mHScrollBar.Value = h_max;
         }
 
 
@@ -453,32 +460,82 @@ namespace Obi.ProjectView
             }
         }
 
-        // Scroll to the control to make sure that it is shown
-        // Avoid scrolling if at least a part is visible
+        /// <summary>
+        /// Disable scrolling when clicking on an element. 
+        /// </summary>
+        public void DisableScrolling() { mEnableScrolling = false; }
+
+        // Scroll to the control to make sure that it is shown.
         private void EnsureControlVisible(Control c)
         {
-            Point location = c.Location;
-            Control parent = c.Parent;
-            while (parent != mStripsPanel)
+            if (mEnableScrolling)
             {
-                location.X += parent.Location.X;
-                location.Y += parent.Location.Y;
-                parent = parent.Parent;
+                // Find the parent strip
+                if (!(c is Strip))
+                {
+                    Control strip = c.Parent;
+                    while (!(strip is Strip)) strip = strip.Parent;
+                    EnsureControlVisible(strip);
+                }
+                // Compute the location of the control relative to the strips panel
+                // (Location is relative to its direct parent.)
+                Point location = c.Location;
+                Control parent = c.Parent;
+                while (parent != mStripsPanel)
+                {
+                    location.X += parent.Location.X;
+                    location.Y += parent.Location.Y;
+                    parent = parent.Parent;
+                }
+                // Compute the four corners of the control, including margins
+                int top = location.Y - c.Margin.Top;
+                int bottom = location.Y + c.Height + c.Margin.Bottom;
+                int left = location.X - c.Margin.Left;
+                int right = location.X + c.Width + c.Margin.Right;
+                // Four corners relative to the current strips panel location
+                int t = top + mStripsPanel.Location.Y;
+                int b = bottom + mStripsPanel.Location.Y;
+                int h = bottom - top;
+                int l = left + mStripsPanel.Location.X;
+                int r = right + mStripsPanel.Location.X;
+                int w = c.Width + c.Margin.Horizontal;
+                // Maximum values of the scrollbars (for some reason the scrollbar
+                // stops one "large change" short of the maximum...)
+                int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
+                int vh = VisibleHeight - mHScrollBar.Height;
+                int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
+                int vw = VisibleWidth - mVScrollBar.Width;
+
+                // Vertical scrolling
+                if (t < 0 || (b > vh && h > vh))
+                {
+                    // Top of control is above the visible window, so scroll to the top
+                    mVScrollBar.Value = Math.Min(top, v_max);
+                }
+                else if (b > vh)
+                {
+                    // Top of control is below the visible window; scroll to align the
+                    // bottom of the control to the bottom of the visible window; unless
+                    // the control is taller than the visible window, in which case we
+                    // want to see the top of the control in priority (this is handled
+                    // above.)
+                    mVScrollBar.Value = Math.Min(bottom - vh, v_max);
+                }
+
+                // Horizontal scrolling is the same
+                if (l < 0 || (r > vw && w > vw))
+                {
+                    mHScrollBar.Value = Math.Min(left, h_max);
+                }
+                else if (r > vw)
+                {
+                    mHScrollBar.Value = Math.Min(right - vw, h_max);
+                }
             }
-            int top = location.Y - c.Margin.Top;
-            int bottom = location.Y + c.Height;
-            int left = location.X - c.Margin.Left;
-            int right = location.X + c.Width;
-            int t = top + mStripsPanel.Location.Y;
-            int b = bottom + mStripsPanel.Location.Y;
-            int l = left + mStripsPanel.Location.X;
-            int r = right + mStripsPanel.Location.X;
-            int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
-            int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-            if (t < 0 || t > VisibleHeight) mVScrollBar.Value = top < v_max ? top : v_max;
-            if (l < 0 || l > VisibleWidth) mHScrollBar.Value = left < h_max ? left : h_max;
-            //if (t < 0 || t > VisibleHeight || b < 0 || b > VisibleHeight) mHScrollBar.Value = left < h_max ? left : h_max;
-            //if (l < 0 || l > VisibleWidth || r < 0 || r > VisibleWidth) mVScrollBar.Value = top < v_max ? top : v_max;
+            else
+            {
+                mEnableScrolling = true;
+            }
         }
 
         public void SelectNextPhrase(ObiNode node)
