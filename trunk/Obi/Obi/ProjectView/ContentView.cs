@@ -465,6 +465,24 @@ namespace Obi.ProjectView
         /// </summary>
         public void DisableScrolling() { mEnableScrolling = false; }
 
+        // Ensure that the playback cursor is visible given its position in the waveform.
+        private void EnsureCursorVisible(int x)
+        {
+            /*int x_cursor = x;
+            for (Control parent = mPlaybackBlock.Parent; parent != mStripsPanel; parent = parent.Parent)
+            {
+                x_cursor += parent.Location.X;
+            }
+            int x_ = x_cursor + mStripsPanel.Location.X;
+            int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
+            int vw = VisibleWidth - mVScrollBar.Width - mVScrollBar.LargeChange;
+            if (x_ > vw)
+            {
+                // EnsureControlVisible(mPlaybackBlock);
+                mHScrollBar.Value = Math.Min(x_ - vw, h_max);
+            }*/
+        }
+
         // Scroll to the control to make sure that it is shown.
         private void EnsureControlVisible(Control c)
         {
@@ -657,7 +675,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void UnsyncViews() { foreach (Control c in mStripsPanel.Controls) c.Visible = true; }
 
-        public void UpdateCursorPosition(double time) { mPlaybackBlock.UpdateCursorTime(time); }
+        public void UpdateCursorPosition(double time)
+        {
+            EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
+        }
 
         public void UpdateBlocksLabelInStrip(SectionNode section)
         {

@@ -65,7 +65,10 @@ namespace Obi.ProjectView
 
 
 
-        public void UpdateCursorTime(double time) { mWaveform.CursorTime = time; }
+        /// <summary>
+        /// Update the playback cursor time, and return its (horizontal) position in the waveform.
+        /// </summary>
+        public int UpdateCursorTime(double time) { return mWaveform.SetCursorTime(time); }
 
         /// <summary>
         /// True if selection in the waveform is enabled.

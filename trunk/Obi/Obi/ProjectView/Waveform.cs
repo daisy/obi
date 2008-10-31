@@ -223,7 +223,6 @@ namespace Obi.ProjectView
                 }
                 if (mCursor != null)
                 {
-                    CheckVisibility_Horizontal();         
                     pe.Graphics.DrawLine(settings.WaveformCursorPen,
                         new Point(CursorPosition, 0), new Point(CursorPosition, Height - 1));
                     Point[] points = new Point[3];
@@ -234,27 +233,6 @@ namespace Obi.ProjectView
                 }
             }
             base.OnPaint(pe);
-        }
-
-        private const int X_SCROLL_INCREMENT = 48;
-
-        private void CheckVisibility_Horizontal()
-        {
-            Point location = Location;
-            Control parent = Parent;
-            while (parent != null && !(parent.Parent is ContentView))
-            {
-                location.X += parent.Location.X;
-                location.Y += parent.Location.Y;
-                parent = parent.Parent;
-            }
-            ContentView contentView = parent == null ? null : parent.Parent as ContentView;
-            if (contentView != null &&
-                location.X + CursorPosition > contentView.Width - contentView.AutoScrollPosition.X - X_SCROLL_INCREMENT)
-            {
-                contentView.AutoScrollPosition =
-                    new Point(-contentView.AutoScrollPosition.X + X_SCROLL_INCREMENT, -contentView.AutoScrollPosition.Y);
-            }
         }
 
         // Add self to the content view rendering list.
@@ -294,15 +272,13 @@ namespace Obi.ProjectView
         }
 
         /// <summary>
-        /// Set the cursor time (during playback only.)
+        /// Set the cursor time and return the position inside the waveform.
         /// </summary>
-        public double CursorTime
+        public int SetCursorTime(double time)
         {
-            set
-            {
-                mCursor.CursorTime = value;
-                Invalidate();
-            }
+            mCursor.CursorTime = time;
+            Invalidate();
+            return XFromTime(time);
         }
 
         /// <summary>
