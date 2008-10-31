@@ -1575,7 +1575,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool Preview(bool from, bool useSelection)
         {
-            if (!IsRecorderActive)
+            if (!IsRecorderActive && PreviewDuration > 0)
             {
                 if ((mState == State.Paused || mState == State.Playing) && !useSelection )
                 {
