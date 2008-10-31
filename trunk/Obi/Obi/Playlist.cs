@@ -16,9 +16,9 @@ namespace Obi
     public class Playlist
     {
         private AudioPlayer mPlayer;              // audio player for actually playing
-        private List<PhraseNode> mPhrases;        // list of phrase nodes in playback order
+        protected List<PhraseNode> mPhrases;        // list of phrase nodes in playback order
         private List<double> mStartTimes;         // start time of every phrase
-        private int mCurrentPhraseIndex;          // index of the phrase currently playing
+        protected int mCurrentPhraseIndex;          // index of the phrase currently playing
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
@@ -406,7 +406,7 @@ namespace Obi
         }
 
         // Play the phrase at the given index in the list.
-        private void PlayPhrase(int index)
+        protected void PlayPhrase(int index)
         {
             SkipToPhrase(index);
             PlayCurrentPhrase();
@@ -646,7 +646,7 @@ namespace Obi
         /// </summary>
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
-        private void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
+        protected virtual void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
         {
             if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
             {
@@ -997,20 +997,42 @@ namespace Obi
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
             : base(player, selection, false)
         {
+        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase );
+        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
             mRevertTime = revertTime;
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
             : base(player, node, false)
         {
+        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase);
+        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
             mRevertTime = revertTime;
         }
 
         public double RevertTime { get { return mRevertTime; } }
 
+        protected override void Playlist_MoveToNextPhrase ( object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e )
+            {
+            if (base.Audioplayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
+                {
+                // Going backward so play previous phrase
+                PlayPhrase ( mCurrentPhraseIndex - 1 );
+                }
+            else if (base.Audioplayer.PlaybackFwdRwdRate >= 0 && mCurrentPhraseIndex < mPhrases.Count - 1)
+                {
+                // Going forward so play next phrase
+                PlayPhrase ( mCurrentPhraseIndex + 1 );
+                }
+            else
+                {
+                ReachedEndOfPlaylist ();
+                }
+            }
+
         protected override void ReachedEndOfPlaylist()
         {
-            PauseFromStopped(mRevertTime);
+                    PauseFromStopped(mRevertTime);
         }
     }
 }
