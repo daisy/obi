@@ -1107,7 +1107,7 @@ namespace Obi.ProjectView
         {
             ObiNode node = afterSection != null ? null :
                 (mResumeRecordingPhrase == null || !mResumeRecordingPhrase.IsRooted) ?
-                mState == State.Paused ? mCurrentPlaylist.CurrentPhrase :
+                mState == State.Paused && !(mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ? mCurrentPlaylist.CurrentPhrase :
                 mView.Selection is NodeSelection || mView.Selection is AudioSelection || mView.Selection is StripIndexSelection ?
                     mView.Selection.Node : null :
                 mResumeRecordingPhrase;
