@@ -851,11 +851,11 @@ namespace Obi.ProjectView
         {
             if (CanPause)
             {
-                if (m_IsPreviewing)
+                            if (m_IsPreviewing)
                 {
-                    mAfterPreviewRestoreTime = mCurrentPlaylist.CurrentTimeInAsset;
-                    Stop();
-                }
+                                    mAfterPreviewRestoreTime = mCurrentPlaylist.CurrentTimeInAsset;
+                                        Stop();
+                                    }
 
                 mDisplayTimer.Stop();
                 if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording|| mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring)
@@ -864,7 +864,7 @@ namespace Obi.ProjectView
                 }
                 else if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
                 {
-                    mCurrentPlaylist.Pause();
+                                    mCurrentPlaylist.Pause();
                 }
                 UpdateButtons();
             }
@@ -909,8 +909,11 @@ namespace Obi.ProjectView
                     }
                     else
                     {
+                    bool PlaybackOnSelectionStatus = SelectionChangedPlaybackEnabled;
+                    SelectionChangedPlaybackEnabled = false;
                         mCurrentPlaylist.Stop();
                         mView.SetPlaybackPhraseAndTime(null, 0.0);
+                        SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
                     }
                 }
             }
