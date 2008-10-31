@@ -546,6 +546,8 @@ namespace Obi
             z.ElapsedTimes = ElapsedTimes;
             System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(exported));
             z.WriteFileset(xuk);
+            // Write out the filtered file that is transformed for debugging.
+            z.WriteFiltered(System.Xml.XmlReader.Create(new StringReader(exported)));
         }
 
 
