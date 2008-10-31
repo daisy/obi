@@ -367,21 +367,23 @@ namespace Obi.ProjectView
             // 
             this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.mHScrollBar.LargeChange = 64;
             this.mHScrollBar.Location = new System.Drawing.Point(0, 557);
             this.mHScrollBar.Name = "mHScrollBar";
             this.mHScrollBar.Size = new System.Drawing.Size(522, 16);
             this.mHScrollBar.TabIndex = 2;
-            this.mHScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mHScrollBar_Scroll);
+            this.mHScrollBar.ValueChanged += new System.EventHandler(this.mHScrollBar_ValueChanged);
             // 
             // mVScrollBar
             // 
             this.mVScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.mVScrollBar.LargeChange = 64;
             this.mVScrollBar.Location = new System.Drawing.Point(522, 0);
             this.mVScrollBar.Name = "mVScrollBar";
             this.mVScrollBar.Size = new System.Drawing.Size(16, 557);
             this.mVScrollBar.TabIndex = 3;
-            this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
+            this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             // 
             // mCornerPanel
             // 
