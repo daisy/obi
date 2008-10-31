@@ -677,7 +677,7 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition(double time)
         {
-            EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
+            if (mPlaybackBlock != null ) EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
         }
 
         public void UpdateBlocksLabelInStrip(SectionNode section)
