@@ -98,6 +98,12 @@ namespace Obi.Export
         private string FullPath(string ext) { return System.IO.Path.Combine(mExportPath, RelativePath(ext)); }
         private string FullPath(string ext, string id) { return System.IO.Path.Combine(mExportPath, RelativePath(ext, id)); }
 
+        public void WriteFiltered(System.Xml.XmlReader input)
+        {
+            System.Xml.XmlWriter filtered = System.Xml.XmlWriter.Create(FullPath(".filtered.xuk"), mFilter.OutputSettings);
+            mFilter.Transform(input, filtered);
+        }
+
         /// <summary>
         /// Write the full fileset for the XUK input.
         /// </summary>
