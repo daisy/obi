@@ -1939,6 +1939,7 @@ namespace Obi
 
         private void PipelineToolStripItems_Click(object sender, EventArgs e)
         {
+        mProjectView.TransportBar.Enabled = false;
             try
             {
                 PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(
@@ -1956,6 +1957,7 @@ namespace Obi
                                    Localizer.Message("dtb_encode_error_caption"),
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        mProjectView.TransportBar.Enabled = true;
         }
 
 
