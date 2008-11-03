@@ -38,7 +38,16 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             if (mIntBox.Text != "" && mIntBox.Text != "-")
             {
-                int val = Convert.ToInt32(mIntBox.Text);
+            int val = m_IntData.Value ;
+            try
+                {
+                val = Convert.ToInt32 ( mIntBox.Text );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                mIntBox.Text = m_IntData.Value.ToString () ;
+                                }
 
                 if (val > m_IntData.Max || val < m_IntData.Min)
                 {
