@@ -1151,10 +1151,7 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock()
         {
-        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus)
-            mProjectView.TransportBar.Pause ();
-
-        return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( item ); } );
+                    return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive? mPlaybackBlock : item ); } );
         }
 
         private bool SelectPrecedingStripCursor()
@@ -1176,10 +1173,7 @@ namespace Obi.ProjectView
 
         private bool SelectFollowingBlock()
         {
-        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus)
-            mProjectView.TransportBar.Pause ();
-
-            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( item); });
+                        return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock : item); });
         }
 
         private bool SelectFollowingStripCursor()
@@ -1200,18 +1194,15 @@ namespace Obi.ProjectView
 
         private bool SelectLastBlockInStrip()
         {
-        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus )
-            mProjectView.TransportBar.Pause();
-
-            return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.LastBlock; });
+        if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+                     return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.LastBlock; });
         }
 
         private bool SelectFirstBlockInStrip()
         {
-        if (mProjectView.TransportBar.CanUsePlaybackSelection && this.ContainsFocus )
-            mProjectView.TransportBar.Pause ();
-
-            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop();
+        if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+            
+            //if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop();
             return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.FirstBlock; });
         }
 
@@ -1231,9 +1222,8 @@ namespace Obi.ProjectView
         private bool SelectPreviousStrip()
         {
             bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing ;
-        if (mProjectView.TransportBar.CanUsePlaybackSelection )
-            mProjectView.TransportBar.Pause ();
-
+            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+            
             Strip strip;
             if (WasPlaying
                 && (this.mPlaybackBlock.ObiNode.Index == 0 || mPlaybackBlock.Node.Role_ == EmptyNode.Role.Heading ))
@@ -1254,8 +1244,7 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip()
         {
-            if (mProjectView.TransportBar.CanUsePlaybackSelection) mProjectView.TransportBar.Pause();
-            Strip strip = StripAfter(StripFor(mSelectedItem));
+                                    Strip strip = StripAfter(StripFor( mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock : mSelectedItem));
             if (strip != null)
             {
                 mProjectView.Selection = new NodeSelection(strip.Node, this);
@@ -1275,8 +1264,7 @@ namespace Obi.ProjectView
 
         private bool SelectFirstStrip()
         {
-            if (mProjectView.TransportBar.CanUsePlaybackSelection) mProjectView.TransportBar.Pause();
-            return SelectStripFor(delegate(Strip strip)
+                        return SelectStripFor(delegate(Strip strip)
             {
                 return mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[0] : null;
             });
@@ -1284,8 +1272,7 @@ namespace Obi.ProjectView
 
         private bool SelectLastStrip()
         {
-            if (mProjectView.TransportBar.CanUsePlaybackSelection) mProjectView.TransportBar.Pause();
-            return SelectStripFor(delegate(Strip strip)
+                        return SelectStripFor(delegate(Strip strip)
             {
                 return mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] : null;
             });
@@ -1335,13 +1322,28 @@ namespace Obi.ProjectView
 
 
         /// <summary>
+        /// returns active current node from transport bar if player is active else return selected node from project view
+                /// </summary>
+        private ObiNode SelectedNodeInTransportbarOrProjectview
+            {
+            get
+                {
+                if (mProjectView.TransportBar.IsPlayerActive)
+                    return mPlaybackBlock.Node;
+                else
+                    return mProjectView.SelectedNodeAs<ObiNode> ();
+                }
+            }
+
+
+        /// <summary>
         /// Moves keyboard focus to preceding page node.
         /// </summary>
         public bool SelectPrecedingPageNode()
         {
-            if (mProjectView.SelectedNodeAs<ObiNode>() != null)
+            if (SelectedNodeInTransportbarOrProjectview != null)
             {
-                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.PrecedingNode; n != null; n = n.PrecedingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
@@ -1358,9 +1360,9 @@ namespace Obi.ProjectView
         /// </summary>
         public bool SelectNextPageNode()
         {
-            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
+            if (SelectedNodeInTransportbarOrProjectview != null)
             {
-                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
@@ -1378,9 +1380,9 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectPreviousSpecialRoleNode()
         {
-            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
+            if (SelectedNodeInTransportbarOrProjectview != null)
             {
-                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.PrecedingNode; n != null; n = n.PrecedingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
@@ -1399,9 +1401,9 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool SelectNextSpecialRoleNode()
         {
-            if (mProjectView.SelectedNodeAs<EmptyNode>() != null)
+            if (SelectedNodeInTransportbarOrProjectview != null)
             {
-                for (ObiNode n = mProjectView.SelectedNodeAs<EmptyNode>().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.FollowingNode; n != null; n = n.FollowingNode)
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
@@ -1421,9 +1423,9 @@ namespace Obi.ProjectView
         {
         if (mProjectView.Presentation != null)
             {
-            if (mProjectView.SelectedNodeAs<ObiNode> () != null)
+            if (SelectedNodeInTransportbarOrProjectview != null)
                 {
-                for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode> ().FollowingNode; n != null; n = n.FollowingNode)
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.FollowingNode; n != null; n = n.FollowingNode)
                     {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {
@@ -1450,9 +1452,9 @@ namespace Obi.ProjectView
         {
             if (mProjectView.Presentation != null)
             {
-                if (mProjectView.SelectedNodeAs<ObiNode>() != null)
+                if (SelectedNodeInTransportbarOrProjectview != null)
                 {
-                    for (ObiNode n = mProjectView.SelectedNodeAs<ObiNode>().PrecedingNode; n != null; n = n.PrecedingNode)
+                    for (ObiNode n = SelectedNodeInTransportbarOrProjectview.PrecedingNode; n != null; n = n.PrecedingNode)
                     {
                         if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {

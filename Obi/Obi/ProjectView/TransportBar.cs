@@ -443,7 +443,8 @@ namespace Obi.ProjectView
                 UpdateButtons();
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
                     UpdateButtons();
-                    if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
+                    //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
+                    if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange ();
                 });
             }
         }
@@ -535,6 +536,7 @@ namespace Obi.ProjectView
 
             if(m_IsPreviewing)  PostPreviewRestore();
 
+            /*
             if (mView.ObiForm.Settings.PlayOnNavigate)
                 {
                 bool SelectionChangedPlaybackStatus = mSelectionChangedPlayEnable;
@@ -552,7 +554,7 @@ namespace Obi.ProjectView
                     }
                 mSelectionChangedPlayEnable = SelectionChangedPlaybackStatus ;
                 }
-
+            */
         }
 
         // Simply pass the playback rate change event.
@@ -865,6 +867,7 @@ namespace Obi.ProjectView
                 else if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
                 {
                                     mCurrentPlaylist.Pause();
+                                    MoveSelectionToPlaybackPhrase ();
                 }
                 UpdateButtons();
             }
@@ -883,6 +886,32 @@ namespace Obi.ProjectView
             mRecordingSession = null;
             UpdateTimeDisplay();
         }
+
+
+        /// <summary>
+        /// move selection to current phrase in playlist
+                /// </summary>
+        public void MoveSelectionToPlaybackPhrase ()
+            {
+            if ( IsPlayerActive )
+                {
+                bool SelectionChangedPlaybackStatus = mSelectionChangedPlayEnable;
+                mSelectionChangedPlayEnable = false;
+                if (mView.Selection == null )
+                    mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, null );
+                else if (mCurrentPlaylist != null &&
+                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                    && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
+                    {
+                    if (mView.Selection.Control is ContentView)
+                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
+                    else if (mView.Selection.Control is TOCView)
+                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mView.Selection.Control );
+                    }
+                mSelectionChangedPlayEnable = SelectionChangedPlaybackStatus;
+                }
+
+            }
 
 
         // Stop
