@@ -637,7 +637,7 @@ namespace Obi.ProjectView
                 if (mProjectView.CanSplitPhrase)
                 {
                     ICommand splitCommand = Commands.Node.SplitAudio.GetSplitCommand(mProjectView);
-                    command.append(splitCommand);
+                    if (splitCommand != null ) command.append(splitCommand);
                     splitNode = Commands.Node.SplitAudio.GetSplitNode(splitCommand);
                     if (splitNode != null) cropNode = Commands.Node.SplitAudio.GetCropNode(splitCommand, splitNode);
                 }

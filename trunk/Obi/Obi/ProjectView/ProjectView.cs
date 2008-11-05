@@ -913,7 +913,7 @@ namespace Obi.ProjectView
         {
             if (CanSplitStrip)
             {
-                if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                if (mTransportBar.IsPlayerActive) mTransportBar.Pause();
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
                 TransportBar.SelectionChangedPlaybackEnabled = false;
