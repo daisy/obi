@@ -711,10 +711,13 @@ namespace Obi.ProjectView
             if (CanPaste)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
+                bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
+
                 mPresentation.Do(mSelection.PasteCommand(this));
-                mTransportBar.SelectionChangedPlaybackEnabled = true;
-            }
+
+                mTransportBar.SelectionChangedPlaybackEnabled = PlaySelectionFlagStatus;
+                            }
         }
 
         /// <summary>
@@ -914,12 +917,16 @@ namespace Obi.ProjectView
             if (CanSplitStrip)
             {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Pause();
+
+                bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode>();
-                TransportBar.SelectionChangedPlaybackEnabled = false;
+                
                 mPresentation.Do(mContentView.SplitStripCommand());
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip(OriginalSectionNode);
-                TransportBar.SelectionChangedPlaybackEnabled = true;
+
+                TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
             }
         }
 
@@ -1015,23 +1022,6 @@ namespace Obi.ProjectView
                 mNoProjectLabel.Visible = !value;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1184,6 +1174,8 @@ namespace Obi.ProjectView
         {
             if (CanImportPhrases)
             {
+            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop ();
+
                 string[] paths = SelectFilesToImport();
                 if (paths != null)
                 {
@@ -1276,7 +1268,7 @@ namespace Obi.ProjectView
         /// </summary>
         private string[] SelectFilesToImport()
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+                    OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message("audio_file_filter");
             return dialog.ShowDialog() == DialogResult.OK ? dialog.FileNames : null;
@@ -1310,13 +1302,16 @@ namespace Obi.ProjectView
         public void SplitPhrase()
         {
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
-            CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+                        CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
-                TransportBar.SelectionChangedPlaybackEnabled = false;
-                mPresentation.Do(command);
-                if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
-                TransportBar.SelectionChangedPlaybackEnabled = true;
+            bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
+            TransportBar.SelectionChangedPlaybackEnabled = false;
+
+                                                mPresentation.Do(command);
+
+                                                                if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
+                TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
             }
         }
 
@@ -1409,7 +1404,7 @@ namespace Obi.ProjectView
         {
             if (CanAddEmptyBlock)
             {
-                CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
+                            CompositeCommand cmd = Presentation.CreateCompositeCommand(Localizer.Message("add_blank_pages"));
                 int index = -1;
                 ObiNode parent = null;
                 // For every page, add a new empty block and give it a number.
@@ -1462,6 +1457,7 @@ namespace Obi.ProjectView
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection(node as PhraseNode);
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     CompositeCommand command = null;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog(Localizer.Message("phrase_detection_progress"),
@@ -1472,7 +1468,8 @@ namespace Obi.ProjectView
                         });
                     progress.ShowDialog();
                     mPresentation.Do(command);
-                    TransportBar.SelectionChangedPlaybackEnabled = true;
+
+                    TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                 }
             }
         }
@@ -1880,8 +1877,14 @@ namespace Obi.ProjectView
         {
             if (CanCropPhrase)
             {
+            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
+            bool playbackOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
+            TransportBar.SelectionChangedPlaybackEnabled = false;
+
                 ICommand crop = Commands.Node.SplitAudio.GetCropCommand(this);
                 mPresentation.Do(crop);
+
+                TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionStatus;
             }
         }
 

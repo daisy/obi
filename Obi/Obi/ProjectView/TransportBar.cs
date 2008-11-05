@@ -306,9 +306,12 @@ namespace Obi.ProjectView
         {
             if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
             {
+            bool playbackOnSelectionStatus = SelectionChangedPlaybackEnabled;
+            SelectionChangedPlaybackEnabled = false;
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset));
+                SelectionChangedPlaybackEnabled = playbackOnSelectionStatus;
 
                 PlayAudioClue (AudioCluesSelection.SelectionBegin ) ;
                 return true;
@@ -325,7 +328,7 @@ namespace Obi.ProjectView
         {
             if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
             {
-                AudioSelection selection = mView.Selection as AudioSelection;
+                            AudioSelection selection = mView.Selection as AudioSelection;
                 double begin = 0.0;
                 double end = 0.0;
                 if (selection != null && selection.Node == mCurrentPlaylist.CurrentPhrase)
@@ -338,9 +341,13 @@ namespace Obi.ProjectView
                 }
                 if (begin != end)
                 {
+                bool playbackOnSelectionStatus = SelectionChangedPlaybackEnabled;
+                SelectionChangedPlaybackEnabled = false;
                     mView.Selection = new AudioSelection((PhraseNode)selection.Node, selection.Control, new AudioRange(begin, end));
+                    SelectionChangedPlaybackEnabled = playbackOnSelectionStatus;
+
                     PlayAudioClue ( AudioCluesSelection.SelectionEnd) ;
-                    return true;
+                                        return true;
                 }
                 else
                 {
