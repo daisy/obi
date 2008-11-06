@@ -91,7 +91,7 @@ namespace Obi.Dialogs
         private void mNewCustomRole_KeyUp(object sender, KeyEventArgs e)
         {
             //Add to the list of roles
-            if (e.KeyCode == Keys.Enter) AddNewRole(mNewCustomRole.Text);
+        if (e.KeyCode == Keys.Enter)    AddNewRole ( mNewCustomRole.Text );
         }
 
         private void mAdd_Click(object sender, EventArgs e)
