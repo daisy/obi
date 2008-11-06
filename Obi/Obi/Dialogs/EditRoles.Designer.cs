@@ -45,7 +45,7 @@ namespace Obi.Dialogs
         this.mCustomRolesList.FormattingEnabled = true;
         this.mCustomRolesList.Name = "mCustomRolesList";
         this.mCustomRolesList.KeyUp += new System.Windows.Forms.KeyEventHandler ( this.mCustomRolesList_KeyUp );
-                // 
+        // 
         // mNewCustomRole
         // 
         resources.ApplyResources ( this.mNewCustomRole, "mNewCustomRole" );
@@ -90,7 +90,6 @@ namespace Obi.Dialogs
         // 
         // EditRoles
         // 
-        this.AcceptButton = this.mOk;
         resources.ApplyResources ( this, "$this" );
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.CancelButton = this.mCancel;
