@@ -36,7 +36,7 @@ namespace Obi.ProjectView
 
         private bool mPlayQAPlaylist = false; // this should be set from UI
         private bool mSelectionChangedPlayEnable; // flag for enabling / disabling playback on change of selection
-
+        private Mutex m_PlayOnSelectionChangedMutex ;
 
         private string mPrevSectionAccessibleName;   // Normal accessible name for the previous section button ???
         private string mStopButtonAccessibleName;    // Normal accessible name for the stop button ???
@@ -117,6 +117,7 @@ namespace Obi.ProjectView
             mState = State.Stopped;
             mSelectionChangedPlayEnable = true;
             AddTransportBarAccessibleName();
+            m_PlayOnSelectionChangedMutex = new Mutex ();
         }
 
         /// <summary>
@@ -451,7 +452,7 @@ namespace Obi.ProjectView
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
                     UpdateButtons();
                     //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
-                    if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange ();
+                    if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange_Safe ();
                 });
             }
         }
@@ -1810,6 +1811,14 @@ namespace Obi.ProjectView
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             }
         }
+
+
+        private void PlaybackOnSelectionChange_Safe ()
+            {
+                        m_PlayOnSelectionChangedMutex.WaitOne (4000);
+            PlaybackOnSelectionChange ();
+            m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+            }
 
 
         private void PlaybackOnSelectionChange ()
