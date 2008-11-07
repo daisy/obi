@@ -1172,6 +1172,7 @@ namespace Obi
         // Export the project as DAISY 3.
         private void ExportProject()
         {
+            mProjectView.TransportBar.Enabled = false ;
             if (CheckedPageNumbers() && CheckedForEmptySections())
             {
                 Dialogs.ExportDirectory dialog =
