@@ -64,18 +64,21 @@ namespace Obi.Commands.Node
         public static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
             EmptyNode from, EmptyNode to)
         {
-            if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
+                                if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
             if (!from.Used && to.Used) command.append(new Commands.Node.ToggleNodeUsed(view, to));
-            if (from.Role_ == EmptyNode.Role.Page)
+
+            // role of next phrase is copied to selected phrase only when next phrase is page, heading or silence.
+            // The priority is highest for page, followed by heading followed by silence. If next phrase is of higher priority only then its role is copied.
+            if (from.Role_ == EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Page)
             {
                 command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
                             }
             else if ( from.Role_ != EmptyNode.Role.Plain &&
                 (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode))
             {
-            if (from.Role_ == EmptyNode.Role.Heading)
+                        if (from.Role_ == EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
                 {
-                command.append ( new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Plain, from.CustomRole ) );
+                                command.append ( new Commands.Node.AssignRole ( view, from, EmptyNode.Role.Plain, null) );
                 command.append ( new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Heading, null) );
                 }
             else
