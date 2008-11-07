@@ -1671,13 +1671,15 @@ namespace Obi.ProjectView
                                         if (mView.Selection != null &&
                     mView.Selection.Node == m_PreviewPhraseNode)
                 {
-                                            if (mAfterPreviewRestoreTime == m_AfterPreviewRestoreEndTime )
-                                                {
-                                                mView.UpdateCursorPosition ( mAfterPreviewRestoreTime );
-                                                            //mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
-                                                }
-                                            else
-                                                            mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(mAfterPreviewRestoreTime , m_AfterPreviewRestoreEndTime));
+                if (mAfterPreviewRestoreTime == m_AfterPreviewRestoreEndTime)
+                    {
+                    mView.UpdateCursorPosition ( mAfterPreviewRestoreTime );
+                    //mView.Selection = new AudioSelection(m_PreviewPhraseNode, mView.Selection.Control, new AudioRange(m_AfterPreviewRestoreTime));
+                    }
+                else
+                    {
+                                        //mView.Selection = new AudioSelection ( m_PreviewPhraseNode, mView.Selection.Control, new AudioRange ( mAfterPreviewRestoreTime, m_AfterPreviewRestoreEndTime ) );
+                    }
                                                                                                                                                             }
                 m_IsPreviewing = false;
                 if (mState == State.Playing) Pause();
