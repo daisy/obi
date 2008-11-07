@@ -538,25 +538,7 @@ namespace Obi.ProjectView
 
             if(m_IsPreviewing)  PostPreviewRestore();
 
-            /*
-            if (mView.ObiForm.Settings.PlayOnNavigate)
-                {
-                bool SelectionChangedPlaybackStatus = mSelectionChangedPlayEnable;
-                mSelectionChangedPlayEnable = false;
-                if (mView.Selection == null && mState == State.Paused)
-                    mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, null );
-                else if (mCurrentPlaylist != null &&
-                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
-                    && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
-                    {
-                    if (mView.Selection.Control is ContentView)
-                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
-                    else if (mView.Selection.Control is TOCView)
-                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mView.Selection.Control );
-                    }
-                mSelectionChangedPlayEnable = SelectionChangedPlaybackStatus ;
-                }
-            */
+          
         }
 
         // Simply pass the playback rate change event.
@@ -1812,9 +1794,13 @@ namespace Obi.ProjectView
 
         private void PlaybackOnSelectionChange_Safe ()
             {
-                        m_PlayOnSelectionChangedMutex.WaitOne (4000);
-            PlaybackOnSelectionChange ();
-            m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+            if (mView.Selection != null && !(mView.Selection is TextSelection)
+                &&mView.Selection.Node is ObiNode)
+                {
+                m_PlayOnSelectionChangedMutex.WaitOne ();
+                PlaybackOnSelectionChange ();
+                m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+                }
             }
 
 
