@@ -675,7 +675,7 @@ namespace Obi
         /// <summary>
         /// Pause.
         /// </summary>
-        public void Pause()
+        public virtual void Pause()
         {
             if (mPlaylistState == AudioPlayerState.Playing)
             {
@@ -1011,6 +1011,16 @@ namespace Obi
         }
 
         public double RevertTime { get { return mRevertTime; } }
+
+        public override void Pause()
+            {
+                if (base.State == AudioPlayerState.Playing)
+                    {
+                    mRevertTime = base.CurrentTimeInAsset ;
+                    base.Pause () ;
+                    }
+                }
+            
 
         protected override void Playlist_MoveToNextPhrase ( object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e )
             {
