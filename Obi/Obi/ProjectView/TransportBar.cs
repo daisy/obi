@@ -548,7 +548,13 @@ namespace Obi.ProjectView
         }
 
         // Update the transport bar once the player has stopped.
-        private void Playlist_PlayerStopped(object sender, EventArgs e) { mView.SetPlaybackPhraseAndTime(null, 0.0); }
+        private void Playlist_PlayerStopped(object sender, EventArgs e) 
+            {
+            if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
+                mView.UpdateCursorPosition ( mAfterPreviewRestoreTime );
+            else
+            mView.SetPlaybackPhraseAndTime(null, 0.0); 
+            }
 
         // Adapt to changes in the presentation.
         // At the moment, simply stop.
@@ -1799,9 +1805,17 @@ namespace Obi.ProjectView
             if (mView.Selection != null && !(mView.Selection is TextSelection)
                 &&mView.Selection.Node is ObiNode)
                 {
-                m_PlayOnSelectionChangedMutex.WaitOne ();
-                PlaybackOnSelectionChange ();
-                m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+                try
+                    {
+                    m_PlayOnSelectionChangedMutex.WaitOne ();
+                    PlaybackOnSelectionChange ();
+                    m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+                    }
+                catch (System.Exception)
+                    {
+                    m_PlayOnSelectionChangedMutex.ReleaseMutex ();
+                    return;
+                    }
                 }
             }
 
