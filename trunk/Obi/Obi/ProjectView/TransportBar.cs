@@ -840,7 +840,7 @@ namespace Obi.ProjectView
                             if (m_IsPreviewing)
                 {
                                     mAfterPreviewRestoreTime = mCurrentPlaylist.CurrentTimeInAsset;
-                                        Stop();
+                                        //Stop();
                                     }
 
                 mDisplayTimer.Stop();
