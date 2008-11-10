@@ -19,6 +19,8 @@ namespace Obi.ProjectView
         private bool mNeedsRendering;        // needs to render the waveform (when size, color or data changes.)
         private AudioRange mSelection;       // selection in the waveform
 
+        private System.Threading.Mutex mPaintMutex ; // for forcing mutual exclusion in on paint event
+
         /// <summary>
         /// Create a waveform with no data to display yet.
         /// </summary>
@@ -31,6 +33,7 @@ namespace Obi.ProjectView
             mBlock = null;
             mSelection = null;
             mNeedsRendering = false;
+            mPaintMutex = new System.Threading.Mutex ();
         }
 
 
@@ -180,13 +183,14 @@ namespace Obi.ProjectView
                 au.Close();
             }
         }
-
+        
         // Repaint the waveform bitmap.
         protected override void OnPaint(PaintEventArgs pe)
         {
             ColorSettings settings = ColorSettings;
             if (settings != null && mBlock != null)
             {
+            mPaintMutex.WaitOne ();
                 if (mBitmap != null)
                 {
                     pe.Graphics.DrawImage(mBitmap, new Point(0, 0));
@@ -231,6 +235,7 @@ namespace Obi.ProjectView
                     points[2] = new Point(CursorPosition, 2 * w);
                     pe.Graphics.FillPolygon(settings.WaveformCursorBrush, points);
                 }
+            mPaintMutex.ReleaseMutex ();
             }
             base.OnPaint(pe);
         }
