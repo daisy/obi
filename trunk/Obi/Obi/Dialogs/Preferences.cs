@@ -129,13 +129,21 @@ namespace Obi.Dialogs
         // Update settings
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            UpdateProjectSettings();
-            UpdateAudioSettings();
-            UpdateUserProfile();
+        if (UpdateProjectSettings ()
+        && UpdateAudioSettings ()
+        && UpdateUserProfile ())
+            {
+            DialogResult = DialogResult.OK;
+            Close ();
+            }
+        else
+            {
+                        return;
+            }
         }
 
         // Update project settings
-        private void UpdateProjectSettings()
+        private bool UpdateProjectSettings()
         {
         if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
             && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
@@ -148,40 +156,60 @@ namespace Obi.Dialogs
         else
             {
             MessageBox.Show ( Localizer.Message ( "InvalidPaths") , Localizer.Message ("Caption_Error"));
-            return;
+            return false;
             }
 
         mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
+        return true;
         }
 
         // Update audio settings
-        private void UpdateAudioSettings()
+        private bool UpdateAudioSettings()
         {
-            mTransportBar.AudioPlayer.SetDevice(mForm, (OutputDevice)mOutputDeviceCombo.SelectedItem);
-            mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;
-            if (mCanChangeAudioSettings)
+        try
             {
-                mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
-                mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
-                mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString() == Localizer.Message("mono") ? 1 : 2;
-                mSettings.SampleRate = Convert.ToInt32(mSampleRateCombo.SelectedItem);
-                if (mPresentation != null)
+            mTransportBar.AudioPlayer.SetDevice ( mForm, (OutputDevice)mOutputDeviceCombo.SelectedItem );
+            mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( ex.ToString () );
+            return false;
+            }
+        if (mCanChangeAudioSettings)
+            {
+            mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
+            mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
+            mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
+            mSettings.SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
+            if (mPresentation != null)
                 {
-                    mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate);
+                mPresentation.UpdatePresentationAudioProperties ( mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate );
                 }
             }
+        
             mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? Audio.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? Audio.VuMeter.NoiseLevelSelection.Medium : Audio.VuMeter.NoiseLevelSelection.High;
             mSettings.AudioClues = mAudioCluesCheckBox.Checked;
-            mSettings.PreviewDuration = (int)Math.Round(1000 * mPreviewDurationUpDown.Value);
+            try
+                {
+                mSettings.PreviewDuration = (int)Math.Round ( 1000 * mPreviewDurationUpDown.Value );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                return false;
+                }
+            return true;
         }
 
         // Update user profile
-        private void UpdateUserProfile()
+        private bool UpdateUserProfile()
         {
             mSettings.UserProfile.Name = mFullNameTextbox.Text;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
             mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+            return true;
         }
     }
 }
