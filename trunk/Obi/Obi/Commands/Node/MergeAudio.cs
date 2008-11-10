@@ -65,7 +65,8 @@ namespace Obi.Commands.Node
             EmptyNode from, EmptyNode to)
         {
                                 if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
-            if (!from.Used && to.Used) command.append(new Commands.Node.ToggleNodeUsed(view, to));
+                                if ((!from.Used && to.Used) && (to.Role_ != EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Heading )) 
+                command.append(new Commands.Node.ToggleNodeUsed(view, to));
 
             // role of next phrase is copied to selected phrase only when next phrase is page, heading or silence.
             // The priority is highest for page, followed by heading followed by silence. If next phrase is of higher priority only then its role is copied.
@@ -73,8 +74,9 @@ namespace Obi.Commands.Node
             {
                 command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
                             }
-            else if ( from.Role_ != EmptyNode.Role.Plain &&
-                (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode))
+            else if ( ( to.Role_ != EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page )
+                &&  (from.Role_ != EmptyNode.Role.Plain &&
+                (from.Role_ != EmptyNode.Role.Silence || to is PhraseNode)) )
             {
                         if (from.Role_ == EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
                 {
