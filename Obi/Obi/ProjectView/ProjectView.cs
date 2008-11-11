@@ -1302,6 +1302,8 @@ namespace Obi.ProjectView
         public void SplitPhrase()
         {
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
+            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
+
                         CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {
