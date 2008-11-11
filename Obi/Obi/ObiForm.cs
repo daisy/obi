@@ -1206,6 +1206,7 @@ namespace Obi
                     }
                 }
             }
+        mProjectView.TransportBar.Enabled = true;
             Ready();
         }
 
