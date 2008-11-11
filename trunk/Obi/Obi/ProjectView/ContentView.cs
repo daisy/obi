@@ -144,7 +144,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                EmptyNode node = mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                EmptyNode node = mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock.Node: mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
                 return node != null
                     && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
