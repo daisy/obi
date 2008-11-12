@@ -598,6 +598,7 @@ namespace Obi.ProjectView
             mPauseButton.Visible = CanPause;
             mPlayButton.Visible = !mPauseButton.Visible;
             mPlayButton.Enabled = CanPlay || CanResumePlayback;
+            mFastPlayRateCombobox.Enabled = !IsRecorderActive;
             mRecordButton.Enabled =  CanRecord || CanResumeRecording;
             mRecordButton.AccessibleName = Localizer.Message(
                 mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? "start_recording" : "start_monitoring"

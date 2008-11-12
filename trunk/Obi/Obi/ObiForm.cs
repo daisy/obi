@@ -1036,7 +1036,7 @@ namespace Obi
             navigationToolStripMenuItem.Enabled = mSession.HasProject;
 
 
-            mFastPlaytoolStripMenuItem.Enabled = mProjectView.CanPlay;
+            mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             mRecordToolStripMenuItem.Enabled = mSession.HasProject; 
             mStartRecordingDirectlyToolStripMenuItem.Enabled = !mProjectView.TransportBar.IsActive;
             if (mProjectView.TransportBar.IsListening)
