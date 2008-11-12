@@ -1295,6 +1295,28 @@ namespace Obi.ProjectView
             }
         }
 
+        public void ClearRoleOfSelectedPhrase ()
+            {
+            PhraseNode node = SelectedNodeAs<PhraseNode>();
+            if (node != null)
+                {
+                if (node.Role_ != EmptyNode.Role.Silence)
+                    {
+                    SetRoleForSelectedBlock ( EmptyNode.Role.Plain, null );
+                    }
+                else
+                    {
+                    CompositeCommand command = Presentation.getCommandFactory ().createCompositeCommand ();
+                    Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole ( this, node, EmptyNode.Role.Plain );
+                    command.append ( ClearRoleCmd );
+                    command.setShortDescription ( ClearRoleCmd.getShortDescription () );
+                    if (!node.Used) command.append ( new Commands.Node.ToggleNodeUsed ( this, node ) );
+                    Presentation.Do ( command );
+                    }
+
+                }
+            }
+
         /// <summary>
         /// Split a phrase at the playback cursor time (when playback is going on),
         /// the cursor position, or at both ends of the audio selection.

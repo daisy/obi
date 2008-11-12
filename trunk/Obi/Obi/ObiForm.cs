@@ -2012,7 +2012,7 @@ namespace Obi
 
         private void mPhrases_ClearRoleMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
+        mProjectView.ClearRoleOfSelectedPhrase ();
         }
     }
 }
