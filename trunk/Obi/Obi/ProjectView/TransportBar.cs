@@ -132,7 +132,7 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Monitoring ) ; } }
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) ; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
