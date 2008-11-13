@@ -31,13 +31,13 @@ namespace Obi.ProjectView
             node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
+            node.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             UpdateColors();
             UpdateLabel();
             mBaseHeight = Height;
             mBaseFontSize = mLabel.Font.SizeInPoints;
         }
-
-
+        
         /// <summary>
         /// Get or set the color settings. Set from the strip/parent container, get from the waveform.
         /// </summary>
@@ -217,6 +217,15 @@ namespace Obi.ProjectView
             UpdateColors();
             UpdateLabel();
         }
+
+        private void Presentation_UsedStatusChanged ( object sender, NodeEventArgs<ObiNode> e )
+            {
+            if (e.Node == mNode)
+                {
+                UpdateColors ();
+                UpdateLabel ();
+                }
+            }
 
         protected virtual void UpdateLabel()
         {
