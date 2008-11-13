@@ -847,6 +847,8 @@ namespace Obi.ProjectView
         {
             if (CanSetPageNumber)
             {
+            if (TransportBar.CurrentState == TransportBar.State.Playing ) TransportBar.Pause ();
+
                 Dialogs.SetPageNumber dialog = new Dialogs.SetPageNumber(CurrentOrNextPageNumber, false, false);
                 if (dialog.ShowDialog() == DialogResult.OK) SetPageNumberOnSelectedBock(dialog.Number, dialog.Renumber);
             }
