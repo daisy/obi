@@ -1333,9 +1333,14 @@ namespace Obi.ProjectView
             {
             bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
             TransportBar.SelectionChangedPlaybackEnabled = false;
-
-                                                mPresentation.Do(command);
-
+            try
+                {
+                mPresentation.Do ( command );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
                                                                 if (wasPlaying || ObiForm.Settings.PlayOnNavigate) TransportBar.PlayOrResume(mSelection.Node);
                 TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
             }
