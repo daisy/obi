@@ -1664,6 +1664,8 @@ namespace Obi.ProjectView
             double end = from + duration;
             if (end > audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat())
                 end = audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+
+            if (from >= end) return;
             //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
             m_PreviewPhraseNode = mCurrentPlaylist.CurrentPhrase;
             m_AfterPreviewRestoreEndTime =  mAfterPreviewRestoreTime = forward ? from : end;
