@@ -1607,7 +1607,7 @@ namespace Obi.ProjectView
                     PhraseNode node = mCurrentPlaylist.CurrentPhrase;
                     double time = mCurrentPlaylist is PreviewPlaylist ?
                         ((PreviewPlaylist)mCurrentPlaylist).RevertTime : mCurrentPlaylist.CurrentTimeInAsset;
-                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) Stop ();
+                    if (mState == State.Playing ||  mState == State.Paused) Stop ();
                     CreateLocalPlaylistForPreview( node , time, useSelection);
                     mCurrentPlaylist.CurrentTimeInAsset = time;
                     PlayPreview(mCurrentPlaylist.CurrentPhrase, time - (from ? 0.0 : PreviewDuration), PreviewDuration, from);
@@ -1619,7 +1619,7 @@ namespace Obi.ProjectView
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
 
-                    if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) Stop ();
+                    if (mState == State.Playing || mState == State.Paused ) Stop ();
                     CreateLocalPlaylistForPreview ( (PhraseNode)s.Node, time, true );
                     PlayPreview((PhraseNode)s.Node, time, PreviewDuration, from);
                     return true;
