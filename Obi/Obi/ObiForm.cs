@@ -1762,20 +1762,24 @@ namespace Obi
         /// </summary>
         public static bool CheckEmpty(string path, bool checkEmpty)
         {
-            if (checkEmpty &&
+                    if (checkEmpty &&
                 (Directory.GetFiles(path).Length > 0 || Directory.GetDirectories(path).Length > 0))
             {
                 DialogResult result = MessageBox.Show(
                     String.Format(Localizer.Message("really_use_directory_text"), path),
                     Localizer.Message("really_use_directory_caption"),
                     MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                        foreach (string f in Directory.GetFiles(path)) File.Delete(f);
-                        foreach (string d in Directory.GetDirectories(path)) Directory.Delete(d, true);
+                    if (Path.GetFullPath ( path ) != Path.GetPathRoot ( path ))
+                        {
+                        foreach (string f in Directory.GetFiles ( path )) File.Delete ( f );
+                        foreach (string d in Directory.GetDirectories ( path )) Directory.Delete ( d, true );
+                        }
+                    else MessageBox.Show(Localizer.Message ("CannotDeleteAtRoot"), Localizer.Message("Caption_Error"));
                     }
                     catch (Exception e)
                     {
