@@ -1637,7 +1637,7 @@ namespace Obi.ProjectView
             {
                 AudioSelection s = (AudioSelection)mView.Selection;
                 
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing || mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused) Stop ();
+                if (mState == State.Playing  || mState == State.Paused) Stop ();
                 CreateLocalPlaylistForPreview( (PhraseNode)s.Node , s.AudioRange.SelectionBeginTime, true);
                 PlayPreview((PhraseNode)s.Node, s.AudioRange.SelectionBeginTime,
                     s.AudioRange.SelectionEndTime - s.AudioRange.SelectionBeginTime, true);
