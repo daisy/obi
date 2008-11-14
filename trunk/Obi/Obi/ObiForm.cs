@@ -643,6 +643,7 @@ namespace Obi
         {
             if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
             {
+                mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
                 Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             }
             mProjectView.Selection = null;
@@ -1349,6 +1350,7 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
             mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
             UpdateCustomClassMenu();
+             mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
         }
 
 
@@ -2014,5 +2016,12 @@ namespace Obi
         {
         mProjectView.ClearRoleOfSelectedPhrase ();
         }
+
+        private void Presentation_Changed ( object sender, urakawa.events.DataModelChangedEventArgs e )
+            {
+            if ( mProjectView.Presentation != null && mProjectView.Selection != null  && !mProjectView.TransportBar.IsActive)
+                ShowSelectionInStatusBar ();
+                        }
+
     }
 }
