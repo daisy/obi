@@ -1877,8 +1877,8 @@ namespace Obi.ProjectView
                     else if (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor) // clicked on the same phrase
                         mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                     } //-1
-                else if ( mCurrentPlaylist == mMasterPlaylist) // newly selected phrase is not in master paylist
-                    mCurrentPlaylist.Stop ();
+                else if (mCurrentPlaylist == mMasterPlaylist) // newly selected phrase is not in master paylist
+                    Stop ();
 
                     if (mCurrentPlaylist != mMasterPlaylist
                         && !mCurrentPlaylist.ContainsPhrase(PNode))
