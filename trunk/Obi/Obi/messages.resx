@@ -1300,4 +1300,7 @@ Error text: {1}</value>
   <data name="delete_silence_phrases_caption" xml:space="preserve">
     <value>Delete silence phrases?</value>
   </data>
+  <data name="CannotDeleteAtRoot" xml:space="preserve">
+    <value>Delete operation cannot be performed on drive partition</value>
+  </data>
 </root>
