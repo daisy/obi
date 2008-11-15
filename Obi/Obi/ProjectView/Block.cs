@@ -209,7 +209,11 @@ namespace Obi.ProjectView
         private void Node_ChangedPageNumber(object sender, NodeEventArgs<EmptyNode> e) { UpdateLabel(); }
 
         // Update the label when the role of the node changes
-        private void Node_ChangedKind(object sender, ChangedRoleEventArgs e) { UpdateLabel(); }
+        private void Node_ChangedKind(object sender, ChangedRoleEventArgs e) 
+            {
+            UpdateColors ();
+            UpdateLabel(); 
+            }
 
         // update label when to do status changes
         private void Node_ChangedTODOStatus(object sender, NodeEventArgs<EmptyNode> e)
