@@ -550,13 +550,6 @@ namespace Obi
             System.Windows.Forms.MessageBox.Show ( ex.ToString () );
             return;
             }
-            /*
-            Dialogs.Help help = new Dialogs.Help();
-            help.WebBrowser.Url = new Uri(Path.Combine(
-                Path.GetDirectoryName(GetType().Assembly.Location),
-                Localizer.Message("help_file_name")));
-            help.Show();
-             */ 
         }
 
         // Help > View help in external browser (Shift+F1)
@@ -574,7 +567,12 @@ namespace Obi
         }
 
         // Help > About
-        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e) { (new Dialogs.About()).ShowDialog(); }
+        private void mAboutObiToolStripMenuItem_Click(object sender, EventArgs e) 
+            {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
+
+            (new Dialogs.About()).ShowDialog(); 
+            }
 
         #endregion
 
@@ -1154,6 +1152,8 @@ namespace Obi
         // Open the preferences dialog
         private void mTools_PreferencesMenuItem_Click(object sender, EventArgs e)
         {
+        if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
+
             Dialogs.Preferences prefs = new Dialogs.Preferences(this, mSettings, mSession.Presentation, mProjectView.TransportBar);
             prefs.ShowDialog();
             Ready();
