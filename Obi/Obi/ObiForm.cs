@@ -898,21 +898,9 @@ namespace Obi
 
         private void UpdateAudioSelectionBlockMenuItems()
         {
-            if (mProjectView.Selection is AudioSelection)
-            {
-                mPhrases_AudioSelectionMenuItem.Enabled = true;
-                mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Enabled = true;
-                if (((AudioSelection)mProjectView.Selection).AudioRange.HasCursor)
-                {
-                    mPhrases_AudioSelection_EndAudioSelectionMenuItem.Enabled = true;
-                }
-            }
-            else
-            {
-                mPhrases_AudioSelectionMenuItem.Enabled = false;
-                mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Enabled = false;
-                mPhrases_AudioSelection_EndAudioSelectionMenuItem.Enabled = false;
-            }
+                    mPhrases_AudioSelectionMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
+        mPhrases_AudioSelection_BeginAudioSelectionMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
+        mPhrases_AudioSelection_EndAudioSelectionMenuItem.Enabled = mProjectView.CanMarkSelectionEnd;
         }
 
         private void mAddBlankPhraseToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.AddEmptyBlock(); }

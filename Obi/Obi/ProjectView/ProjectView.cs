@@ -346,6 +346,11 @@ namespace Obi.ProjectView
             }
         }
 
+    /// <summary> can mark selection begin from keyboard /// </summary>
+                public bool CanMarkSelectionBegin { get { return TransportBar.IsPlayerActive; } }
+
+                /// <summary> can mark selection end from keyboard /// </summary>
+        public bool CanMarkSelectionEnd { get { return TransportBar.IsPlayerActive && Selection != null && Selection is AudioSelection; } }
         /// <summary>
         /// Contents of the clipboard
         /// </summary>

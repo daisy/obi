@@ -1637,6 +1637,9 @@ namespace Obi.ProjectView
             Context_PasteBeforeMenuItem.Enabled = mProjectView.CanPasteBefore;
             Context_PasteInsideMenuItem.Enabled = mProjectView.CanPasteInside;
             Context_DeleteMenuItem.Enabled = CanRemoveAudio || CanRemoveBlock || CanRemoveStrip;
+            Context_AudioSelectionMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
+            Context_AudioSelection_BeginMenuItem.Enabled = mProjectView.CanMarkSelectionBegin;
+            Context_AudioSelection_EndMenuItem.Enabled = mProjectView.CanMarkSelectionEnd;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog ||
                 mProjectView.CanShowPhrasePropertiesDialog || mProjectView.CanShowProjectPropertiesDialog;
         }
