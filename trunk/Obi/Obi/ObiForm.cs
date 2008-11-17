@@ -960,8 +960,13 @@ namespace Obi
             for (index = items.IndexOf(mCustomRoleToolStripSeparator);
                 index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem) &&
                 items[index].Text != e.CustomClass; ++index) ;
-            if (index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem)) items.RemoveAt(index);
+            if (index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem)) 
+                {
+                mProjectView.RemoveCustomRoleFromContextMenu ( items[index].Text, this );
+                items.RemoveAt(index);
+                                                }
         }
+
 
         private void mPhrases_AssignRole_PlainMenuItem_Click(object sender, EventArgs e)
         {
