@@ -1884,6 +1884,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more fields have invalid entries. Press No to re enter values, press Yes to assign page number according to previous page.
+        /// </summary>
+        internal static string PageDialog_InvalidInput {
+            get {
+                return ResourceManager.GetString("PageDialog_InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to paste audio.
         /// </summary>
         internal static string paste_audio {

@@ -59,6 +59,22 @@ namespace Obi.Dialogs
         private void mPageKindComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             mRenumber.Enabled = mPageKindComboBox.SelectedIndex != 2;
-        }
+                    }
+
+        private void mOKButton_Click ( object sender, EventArgs e )
+            {
+            int num  = EmptyNode.SafeParsePageNumber ( mNumberBox.Text ) ;
+            if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
+                || (num > 0 && mPageKindComboBox.SelectedIndex == 2) )
+                {
+                                if ( MessageBox.Show ( Localizer.Message ("PageDialog_InvalidInput") , Localizer.Message("Caption_Error"),  MessageBoxButtons.YesNo ,MessageBoxIcon.Question , MessageBoxDefaultButton.Button2) == DialogResult.No)
+                                        return;
+                                        }
+                
+            DialogResult = DialogResult.OK;
+            Close ();
+                        }
+
+
     }
 }
