@@ -1303,4 +1303,7 @@ Error text: {1}</value>
   <data name="CannotDeleteAtRoot" xml:space="preserve">
     <value>Delete operation cannot be performed on drive partition</value>
   </data>
+  <data name="PageDialog_InvalidInput" xml:space="preserve">
+    <value>One or more fields have invalid entries. Press No to re enter values, press Yes to assign page number according to previous page</value>
+  </data>
 </root>
