@@ -216,10 +216,21 @@ namespace Obi.ProjectView
             from.AddCustomRoleToMenu(name, Context_AssignRoleMenuItem.DropDownItems, Context_AssignRole_NewCustomRoleMenuItem);
         }
 
+        public void RemoveCustomRoleFromContextMenu ( string name, ObiForm from )
+            {
+            for (int i = 3; i < Context_AssignRoleMenuItem.DropDownItems.Count - 1; i++)
+                {
+                if (Context_AssignRoleMenuItem.DropDownItems[i].Text == name)
+                    {
+                                        Context_AssignRoleMenuItem.DropDownItems.RemoveAt ( i );
+                                        }
+                }
+              
+            }
         /// <summary>
         /// Show the strip for this section node.
         /// </summary>
-        public void MakeStripVisibleForSection(SectionNode section)
+        public void MakeStripVisibleForSection ( SectionNode section )
         {
             if (section != null) EnsureControlVisible(FindStrip(section));
         }

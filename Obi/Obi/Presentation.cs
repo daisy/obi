@@ -181,7 +181,8 @@ namespace Obi
             if (mCustomClasses.ContainsKey(customClass))
             {
                 if (node != null) mCustomClasses[customClass].Remove(node);
-                if (mCustomClasses[customClass].Count == 0)
+                if (mCustomClasses[customClass].Count == 0
+                    ||    ( mCustomClasses[customClass].Count  == 1  &&  mCustomClasses[customClass] [0] == null )) // condition appended because custom class without an empty node is initialised with null entry
                 {
                     mCustomClasses.Remove(customClass);
                     if (CustomClassRemoved != null) CustomClassRemoved(this, new CustomClassEventArgs(customClass));

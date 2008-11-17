@@ -1984,6 +1984,15 @@ namespace Obi.ProjectView
             mContentView.AddCustomRoleToContextMenu(name, form);
         }
 
+
+        /// <summary>
+                ///  Remove a custom class from contents view context menu
+        /// </summary>
+                        public void RemoveCustomRoleFromContextMenu ( string name, ObiForm form )
+            {
+            mContentView.RemoveCustomRoleFromContextMenu ( name, form);
+            }
+
         public void SuspendLayout_All()
         {
             mContentView.SuspendLayout_All();
