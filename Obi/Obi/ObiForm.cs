@@ -641,6 +641,7 @@ namespace Obi
         {
             if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
             {
+            foreach (string customClass in mProjectView.Presentation.CustomClasses)RemoveCustomClassFromMenu( customClass );
                 mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
                 Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             }
@@ -921,7 +922,7 @@ namespace Obi
         // Update the custom class menu with the classes from the new project
         private void UpdateCustomClassMenu()
         {
-            foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomRoleToMenus(customClass);
+                                foreach (string customClass in mSession.Presentation.CustomClasses) AddCustomRoleToMenus(customClass);
             mSession.Presentation.CustomClassAddded += new CustomClassEventHandler(Presentation_CustomClassAddded);
             mSession.Presentation.CustomClassRemoved += new CustomClassEventHandler(Presentation_CustomClassRemoved);
         }
@@ -955,11 +956,17 @@ namespace Obi
         // Update the custom class menu to remove this class
         void Presentation_CustomClassRemoved(object sender, CustomClassEventArgs e)
         {
+        RemoveCustomClassFromMenu ( e.CustomClass );
+            }
+
+
+         private void RemoveCustomClassFromMenu ( string customClassName )   
+        {
             ToolStripItemCollection items = mPhrases_AssignRoleMenuItem.DropDownItems;
             int index;
             for (index = items.IndexOf(mCustomRoleToolStripSeparator);
                 index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem) &&
-                items[index].Text != e.CustomClass; ++index) ;
+                items[index].Text != customClassName; ++index) ;
             if (index < items.IndexOf(mPhrases_AssignRole_NewCustomRoleMenuItem)) 
                 {
                 mProjectView.RemoveCustomRoleFromContextMenu ( items[index].Text, this );
