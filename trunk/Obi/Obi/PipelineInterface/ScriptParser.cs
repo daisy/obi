@@ -106,7 +106,7 @@ namespace Obi.PipelineInterface
             PipelineProcess.StartInfo.UseShellExecute = false;
 
             PipelineProcess.StartInfo.FileName = PipelineFilePath;
-            PipelineProcess.StartInfo.Arguments = " -x -q -s \"" + mScriptFilePath + "\" -p" + Param;
+            PipelineProcess.StartInfo.Arguments = " -x -s \"" + mScriptFilePath + "\" -p" + Param;
             PipelineProcess.StartInfo.WorkingDirectory = Directory.GetParent(Directory.GetParent(mScriptFilePath).FullName).FullName;
 
             try
