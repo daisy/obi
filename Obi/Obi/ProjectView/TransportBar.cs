@@ -1615,6 +1615,8 @@ namespace Obi.ProjectView
                 }
                 else if (mView.Selection is AudioSelection)
                 {
+                if (mState == State.Playing) Pause ();
+
                                     AudioSelection s = (AudioSelection)mView.Selection;
                     double time = from ? s.AudioRange.CursorTime :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
