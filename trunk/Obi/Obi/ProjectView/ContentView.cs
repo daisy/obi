@@ -1262,7 +1262,7 @@ namespace Obi.ProjectView
                 strip.FocusStripLabel();
                 return true;
             }
-        else if (StripFor ( mSelectedItem ) != (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] || Selection is TextSelection)
+        else if (mSelectedItem != null &&  StripFor ( mSelectedItem ) != (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] || Selection is TextSelection)
             {
                 // allow base to process the key if  current strip is not last strip or some text is selected
                 return false;
