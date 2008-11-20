@@ -743,7 +743,14 @@ namespace Obi
         private void mPasteInsideToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.PasteInside(); }
         private void mDeleteToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.Delete(); }
         private void mSelectNothingToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.SelectNothing(); }
-        private void mEdit_DeleteUnusedDataMenuItem_Click(object sender, EventArgs e) { mProjectView.DeleteUnused(); }
+
+        private void mEdit_DeleteUnusedDataMenuItem_Click(object sender, EventArgs e) 
+            {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
+            mProjectView.DeleteUnused(); 
+            }
+
         private void mFindInTextToolStripMenuItem_Click(object sender, EventArgs e) { mProjectView.FindInText(); }
 
         #endregion
@@ -1487,6 +1494,8 @@ namespace Obi
             {
                 if (mSourceView == null)
                 {
+                if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
                     mSourceView = new Dialogs.ShowSource(mProjectView);
                     mSourceView.FormClosed +=
                         new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) { mSourceView = null; });
