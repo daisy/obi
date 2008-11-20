@@ -82,11 +82,11 @@ namespace Obi.Dialogs
                     parent.Label, parent.Level ) );
                 }
             m_txtTimeLength.Text = Program.FormatDuration_Long ( mNode.Duration );
-            m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_HEADING );
-            m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PAGE );
-            m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PLAIN );
-            m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
-            m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
+            if (mView.CanAssignHeadingRole || mNode.Role_ == EmptyNode.Role.Heading) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_HEADING );
+            if (mView.CanAssignARole || mNode.Role_ == EmptyNode.Role.Page ) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PAGE );
+            if ( mView.CanAssignPlainRole || mNode.Role_ == EmptyNode.Role.Plain)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_PLAIN );
+            if ( mView.CanAssignSilenceRole || mNode.Role_ == EmptyNode.Role.Silence)  m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_SILENCE );
+            if ( mView.CanAssignARole ) m_comboPhraseRole.Items.Add ( EmptyNode.LOCALIZED_CUSTOM );
             m_comboPhraseRole.SelectedItem = EmptyNode.LocalizedRoleFor ( mNode.Role_ );
             
             // load custom class combobox
