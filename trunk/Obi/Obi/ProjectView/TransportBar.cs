@@ -925,19 +925,29 @@ namespace Obi.ProjectView
                     // Stopping again deselects everything
                     if (mState == State.Stopped)
                     {
+                    mView.SetPlaybackPhraseAndTime ( null, 0.0 );
                         mView.Selection = null;
                     }
                     else
                     {
-                    bool PlaybackOnSelectionStatus = SelectionChangedPlaybackEnabled;
-                    SelectionChangedPlaybackEnabled = false;
-                        mCurrentPlaylist.Stop();
-                        mView.SetPlaybackPhraseAndTime(null, 0.0);
-                        SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
+                    StopPlaylistPlayback ();
                     }
                 }
             }
         }
+
+        private void StopPlaylistPlayback ()
+            {
+            if (mCurrentPlaylist != null && mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
+                {
+                bool PlaybackOnSelectionStatus = SelectionChangedPlaybackEnabled;
+                SelectionChangedPlaybackEnabled = false;
+                mCurrentPlaylist.Stop ();
+                mView.SetPlaybackPhraseAndTime ( null, 0.0 );
+                SelectionChangedPlaybackEnabled = PlaybackOnSelectionStatus;
+                }
+            }
+
 
 
         // Record
@@ -1070,6 +1080,8 @@ namespace Obi.ProjectView
                 mRecordingSection = node.AncestorAs<SectionNode>();
                 mRecordingInitPhraseIndex = node.Index;
             }
+        if (IsPlayerActive) StopPlaylistPlayback (); // stop if split recording starts while playback is paused
+
         }
 
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
