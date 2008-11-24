@@ -123,7 +123,25 @@
           <ncx:text>
             <xsl:value-of select="//xuk:Metadata[@name='dc:Title']/@content"/>
           </ncx:text>
-        </ncx:docTitle>
+
+            <xsl:for-each select="//obi:section">
+              <xsl:sort order="ascending" select="count(ancestor-or-self::obi:section)" data-type="number"/>
+              <xsl:if test="position()=1">
+                <xsl:choose>
+                  <xsl:when test="xuk:mChildren/obi:phrase[@kind='Heading']">
+                    <xsl:variable name="h" select="xuk:mChildren/obi:phrase[@kind='Heading']//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
+                    <ncx:audio src="{ext:RelativePathForUri($h/@src)}" clipBegin="{$h/@clipBegin}" clipEnd="{$h/@clipEnd}"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:variable name="p" select="xuk:mChildren/obi:phrase[1]//xuk:mChannelMapping[@channel=$publish-channel]/xuk:ExternalAudioMedia"/>
+                    <ncx:audio src="{ext:RelativePathForUri($p/@src)}" clipBegin="{$p/@clipBegin}" clipEnd="{$p/@clipEnd}"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+
+              </xsl:if>
+            </xsl:for-each>
+                     
+                  </ncx:docTitle>
         <ncx:navMap>
           <xsl:apply-templates mode="navPoint"/>        
         </ncx:navMap>
