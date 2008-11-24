@@ -281,7 +281,7 @@ namespace Obi.ProjectView
         public bool CanCopyBlock { get { return mContentView.CanCopyBlock && !TransportBar.IsRecorderActive; } }
         public bool CanCut { get { return CanDelete; } }
         public bool CanDecreaseLevel { get { return mTOCView.CanDecreaseLevel     &&    !(Selection is TextSelection )  ; } }
-        public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive; } }
+        public bool CanDelete { get { return mPresentation != null && Selection != null && (CanRemoveSection || CanRemoveStrip || CanRemoveBlock || CanRemoveAudio || CanRemoveMetadata) && !TransportBar.IsRecorderActive && !(Selection is TextSelection); } }
         public bool CanFastForward { get { return mTransportBar.CanFastForward; } }
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
@@ -386,6 +386,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Copy()
         {
+        if (Selection != null && Selection is TextSelection) return;
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanCopySection)
             {
@@ -410,6 +411,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Cut()
         {
+        if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection || CanRemoveStrip)
             {
@@ -447,6 +449,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Delete()
         {
+        if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop();
             if (CanRemoveSection)
             {
