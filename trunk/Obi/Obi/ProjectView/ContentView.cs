@@ -698,9 +698,11 @@ namespace Obi.ProjectView
             {
                 try
                 {
-                    BackgroundWorker UpdateStripThread = new BackgroundWorker();
-                    UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
-                    UpdateStripThread.RunWorkerAsync();
+                    //BackgroundWorker UpdateStripThread = new BackgroundWorker();
+                    //UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
+                    //UpdateStripThread.RunWorkerAsync();
+                s.UpdateBlockLabelsInStrip ();
+                System.Media.SystemSounds.Asterisk.Play ();
                 }
                 catch (System.Exception)
                 {

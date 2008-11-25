@@ -390,9 +390,17 @@ namespace Obi.ProjectView
         public string ToMatch() { return Label.ToLowerInvariant(); }
 
         /// <summary>
-        /// ???
+        ///  Updates labels of all blocks in a strip, to be used with   background worker
         /// </summary>
         public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
+            {
+            UpdateBlockLabelsInStrip () ;
+            }
+
+        /// <summary>
+        ///  Update labels of all blocks in a strip 
+                /// </summary>
+            public void UpdateBlockLabelsInStrip () 
         {
             mLabelUpdateThread.WaitOne();
             try
