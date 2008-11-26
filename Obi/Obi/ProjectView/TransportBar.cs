@@ -1628,13 +1628,18 @@ namespace Obi.ProjectView
                 else if (mView.Selection is AudioSelection)
                 {
                 if (mState == State.Playing) Pause ();
-
+                
                                     AudioSelection s = (AudioSelection)mView.Selection;
-                    double time = from ? s.AudioRange.CursorTime :
+                                    if (mState == State.Stopped && !s.AudioRange.HasCursor    &&  !useSelection) 
+                                        return false ;
+
+                                    double time = from ? (s.AudioRange.HasCursor || !useSelection? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime) :
                         (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
+
 
                     if (mState == State.Playing || mState == State.Paused ) Stop ();
                     CreateLocalPlaylistForPreview ( (PhraseNode)s.Node, time, true );
+                    
                     PlayPreview((PhraseNode)s.Node, time, PreviewDuration, from);
                     return true;
                 }
