@@ -343,7 +343,7 @@ namespace Obi
                 MessageBox.Show(string.Format(Localizer.Message("extension_warning"), path),
                     Localizer.Message("extension_warning_caption"),
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning) == DialogResult.Yes;
+                    MessageBoxIcon.Warning , MessageBoxDefaultButton.Button2) == DialogResult.Yes;
         }
 
         /// <summary>
