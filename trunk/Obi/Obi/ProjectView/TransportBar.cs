@@ -672,10 +672,11 @@ namespace Obi.ProjectView
             {
                 if (mCurrentPlaylist != mMasterPlaylist) // if this is local playlist, start playing master playlist from the point where local playlist has paused
                 {
-                    UpdateSelectionForPlayModeTransition();
-                    Thread.Sleep(200);
-                    mCurrentPlaylist = mMasterPlaylist;
-                    PlayCurrentPlaylistFromSelection();
+                    //UpdateSelectionForPlayModeTransition();
+                    //Thread.Sleep(200);
+                    //mCurrentPlaylist = mMasterPlaylist;
+                    //PlayCurrentPlaylistFromSelection();
+                PlayMasterFromPlaylistTransition ();
                 }
                 else
                     mCurrentPlaylist.Resume();
@@ -705,6 +706,28 @@ namespace Obi.ProjectView
             SetPlaylistEvents (  mQAMasterPlaylist);
             }
 
+        private void PlayMasterFromPlaylistTransition ()
+            {
+            if (mState == State.Paused && mCurrentPlaylist != null)
+                {
+                PhraseNode transitionPhrase = mCurrentPlaylist.CurrentPhrase;
+                double transitionTime = mCurrentPlaylist.CurrentTimeInAsset;
+
+                Stop ();
+
+                if (mPlayQAPlaylist)
+                    {
+                    CreateQAPlaylist ();
+                    }
+                else
+                    {
+                    mCurrentPlaylist = mMasterPlaylist;
+                    }
+                PlayCurrentPlaylistFrom ( transitionPhrase, transitionTime );
+                }
+            }
+
+
 
         /// <summary>
         /// All-purpose play function for the play button.
@@ -720,12 +743,13 @@ namespace Obi.ProjectView
             }
             else if (CanResumePlayback)
             {
-                if (mCurrentPlaylist == mMasterPlaylist)
+                if (mCurrentPlaylist == mMasterPlaylist || mCurrentPlaylist is PreviewPlaylist)
                 {
                     // if this is master playlist, start playing local playlist from the point where master playlist is paused
-                    UpdateSelectionForPlayModeTransition();
-                    Thread.Sleep(200);
-                    PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
+                    //UpdateSelectionForPlayModeTransition();
+                    //Thread.Sleep(200);
+                    //PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
+                PlayLocalPlaylistFromTransition ();
                 }
                 else
                 {
@@ -764,6 +788,24 @@ namespace Obi.ProjectView
                 PlayCurrentPlaylistFromSelection();
             }
         }
+
+        private void PlayLocalPlaylistFromTransition ()
+            {
+            if (mState == State.Paused && mCurrentPlaylist != null)
+                {
+                PhraseNode transitionPhrase = mCurrentPlaylist.CurrentPhrase;
+                double transitionTime = mCurrentPlaylist.CurrentTimeInAsset;
+
+                Stop ();
+
+                mLocalPlaylist = new Playlist ( mPlayer, transitionPhrase , mPlayQAPlaylist );
+                SetPlaylistEvents ( mLocalPlaylist );
+                mCurrentPlaylist = mLocalPlaylist;
+                PlayCurrentPlaylistFrom ( transitionPhrase , transitionTime );
+                }
+
+            }
+
 
         // Find the node to start playback from.
         private PhraseNode FindPlaybackStartNode(ObiNode node)
@@ -829,6 +871,22 @@ namespace Obi.ProjectView
             else
             {
                 if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
+            }
+        }
+
+        private  void    PlayCurrentPlaylistFrom ( PhraseNode startNode , double time )
+        {
+        if (mCurrentPlaylist != null && (mState == State.Stopped || mState == State.Paused))
+            {
+            if (startNode != null &&  mCurrentPlaylist.ContainsPhrase ( startNode ))
+                {
+                mCurrentPlaylist.CurrentPhrase = startNode;
+                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( time );
+                }
+            else
+                {
+                PlayCurrentPlaylistFromSelection ();
+                }
             }
         }
 
