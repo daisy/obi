@@ -920,7 +920,17 @@ namespace Obi.ProjectView
         // Pause recording
         private void PauseRecording()
         {
-            mRecordingSession.Stop();
+        mVUMeterPanel.BeepEnable = false;
+
+        try
+            {
+            mRecordingSession.Stop ();
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( ex.ToString () );
+            }
+
             for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
             {
                 mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
@@ -1802,7 +1812,16 @@ namespace Obi.ProjectView
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
                 mVUMeterPanel.BeepEnable = false;
-                mRecordingSession.Stop();
+
+                try
+                    {
+                    mRecordingSession.Stop ();
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+
                 // update phrases with audio assets
                 for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
                 {
