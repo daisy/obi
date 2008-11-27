@@ -712,6 +712,7 @@ namespace Obi.ProjectView
                 {
                 PhraseNode transitionPhrase = mCurrentPlaylist.CurrentPhrase;
                 double transitionTime = mCurrentPlaylist.CurrentTimeInAsset;
+                if (mCurrentPlaylist is PreviewPlaylist) transitionTime = ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
 
                 Stop ();
 
@@ -795,9 +796,10 @@ namespace Obi.ProjectView
                 {
                 PhraseNode transitionPhrase = mCurrentPlaylist.CurrentPhrase;
                 double transitionTime = mCurrentPlaylist.CurrentTimeInAsset;
+                if (mCurrentPlaylist is PreviewPlaylist) transitionTime = ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
 
                 Stop ();
-
+                //System.Media.SystemSounds.Asterisk.Play ();
                 mLocalPlaylist = new Playlist ( mPlayer, transitionPhrase , mPlayQAPlaylist );
                 SetPlaylistEvents ( mLocalPlaylist );
                 mCurrentPlaylist = mLocalPlaylist;
