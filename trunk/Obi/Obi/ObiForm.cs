@@ -371,7 +371,7 @@ namespace Obi
         // Save the current project
         private void Save()
         {
-            mProjectView.TransportBar.Stop();
+            if ( mProjectView.TransportBar.IsPlayerActive )  mProjectView.TransportBar.Stop();
             mSession.Save(); 
         }
 
