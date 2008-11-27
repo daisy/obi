@@ -672,10 +672,6 @@ namespace Obi.ProjectView
             {
                 if (mCurrentPlaylist != mMasterPlaylist) // if this is local playlist, start playing master playlist from the point where local playlist has paused
                 {
-                    //UpdateSelectionForPlayModeTransition();
-                    //Thread.Sleep(200);
-                    //mCurrentPlaylist = mMasterPlaylist;
-                    //PlayCurrentPlaylistFromSelection();
                 PlayMasterFromPlaylistTransition ();
                 }
                 else
@@ -706,6 +702,9 @@ namespace Obi.ProjectView
             SetPlaylistEvents (  mQAMasterPlaylist);
             }
 
+        /// <summary>
+        /// if playback is paused and current playlist is not master playlist, starts playing master playlist from paused position
+                /// </summary>
         private void PlayMasterFromPlaylistTransition ()
             {
             if (mState == State.Paused && mCurrentPlaylist != null)
@@ -746,11 +745,8 @@ namespace Obi.ProjectView
             {
                 if (mCurrentPlaylist == mMasterPlaylist || mCurrentPlaylist is PreviewPlaylist)
                 {
-                    // if this is master playlist, start playing local playlist from the point where master playlist is paused
-                    //UpdateSelectionForPlayModeTransition();
-                    //Thread.Sleep(200);
-                    //PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
-                PlayLocalPlaylistFromTransition ();
+                    // if this is master playlist or preview playlist, start playing local playlist from the point where master or preview playlist is paused
+                                    PlayLocalPlaylistFromPlaylistTransition ();
                 }
                 else
                 {
@@ -759,17 +755,6 @@ namespace Obi.ProjectView
             }
         }
 
-
-        // Select currently playing phrase with current time and stops current playlist for transition to other playlist
-        private void UpdateSelectionForPlayModeTransition()
-        {
-            PhraseNode PlaybackStartNode = mCurrentPlaylist.CurrentPhrase;
-            double StartTime = mCurrentPlaylist.CurrentTimeInAsset;
-            mCurrentPlaylist.Stop();
-            mView.SelectedBlockNode = PlaybackStartNode;
-            mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                new AudioRange(StartTime));
-        }
 
         /// <summary>
         /// Play a single node (phrase or section), or everything if the node is null
@@ -790,7 +775,10 @@ namespace Obi.ProjectView
             }
         }
 
-        private void PlayLocalPlaylistFromTransition ()
+        /// <summary>
+        /// If playback is paused and current playlist is not local playlist, Plays local playlist from paused position
+                /// </summary>
+        private void PlayLocalPlaylistFromPlaylistTransition ()
             {
             if (mState == State.Paused && mCurrentPlaylist != null)
                 {
@@ -799,7 +787,7 @@ namespace Obi.ProjectView
                 if (mCurrentPlaylist is PreviewPlaylist) transitionTime = ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
 
                 Stop ();
-                //System.Media.SystemSounds.Asterisk.Play ();
+                
                 mLocalPlaylist = new Playlist ( mPlayer, transitionPhrase , mPlayQAPlaylist );
                 SetPlaylistEvents ( mLocalPlaylist );
                 mCurrentPlaylist = mLocalPlaylist;
@@ -876,6 +864,11 @@ namespace Obi.ProjectView
             }
         }
 
+        /// <summary>
+        ///  Plays current playlist from given phrase and given time if this given phrase lie in current playlist
+                /// </summary>
+        /// <param name="startNode"></param>
+        /// <param name="time"></param>
         private  void    PlayCurrentPlaylistFrom ( PhraseNode startNode , double time )
         {
         if (mCurrentPlaylist != null && (mState == State.Stopped || mState == State.Paused))
