@@ -739,6 +739,9 @@ namespace Obi.ProjectView
         {
                 if (CanPlay || CanPreviewAudioSelection)
             {
+                    // for play selection stop existing playlist if active
+            if (mState == State.Paused && CanPreviewAudioSelection) Stop ();
+
                 PlayOrResume(mView.Selection == null ? null : mView.Selection.Node);
             }
             else if (CanResumePlayback)
