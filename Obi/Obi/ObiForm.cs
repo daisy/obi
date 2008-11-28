@@ -24,6 +24,7 @@ namespace Obi
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
         private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
         private bool mShowWelcomWindow; // flag for controlling showing of welcome window
+        private Timer mAutoSaveTimer;
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -369,10 +370,19 @@ namespace Obi
         }
 
         // Save the current project
-        private void Save()
+        public void Save()
         {
-            if ( mProjectView.TransportBar.IsPlayerActive )  mProjectView.TransportBar.Stop();
-            mSession.Save(); 
+        if (mSession != null && mSession.CanSave)
+            {
+            if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop ();
+
+            mSession.Save ();
+
+            // reset the  auto save timer
+            mAutoSaveTimer.Stop ();
+            mAutoSaveTimer.Start ();
+            System.Media.SystemSounds.Asterisk.Play ();
+            }
         }
 
         // Save the current project under a different name; ask for a new path first.
@@ -645,6 +655,7 @@ namespace Obi
                 mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
                 Status(String.Format(Localizer.Message("closed_project"), e.ClosedPresentation.Title));
             }
+        mAutoSaveTimer.Stop ();
             mProjectView.Selection = null;
             mProjectView.Presentation = null;
             UpdateObi();
@@ -1361,6 +1372,7 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
             UpdateCustomClassMenu();
              mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+             mAutoSaveTimer.Start ();
         }
 
 
@@ -1388,6 +1400,7 @@ namespace Obi
                 mShowStatusBarToolStripMenuItem.Checked = mStatusStrip.Visible = true;
                 mBaseFontSize = mStatusLabel.Font.SizeInPoints;
                 InitializeColorSettings();
+                InitializeAutoSaveTimer ();
 
                 if (Directory.Exists(mSettings.PipelineScriptsPath))
                 {
@@ -1408,6 +1421,25 @@ namespace Obi
                     Localizer.Message("init_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void InitializeAutoSaveTimer ()
+            {
+            mAutoSaveTimer = new Timer ();
+            mAutoSaveTimer.Enabled = false;
+            mAutoSaveTimer.Interval = mSettings.AutoSaveTimeInterval;
+                        mAutoSaveTimer.Tick += new EventHandler(mAutoSaveTimer_Tick);
+            }
+
+        private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
+            {
+            if (mSession != null && mSession.Presentation != null && mSession.CanSave)
+                {
+                if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
+                    Save ();
+                else
+                    mProjectView.TransportBar.AutoSaveOnNextRecordingEnd = true;
+                                }
+                                        }
 
 
         private void PopulatePipelineScriptsInToolsMenu()

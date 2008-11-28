@@ -17,6 +17,7 @@ namespace Obi.ProjectView
         private Audio.AudioPlayer mPlayer;           // the audio player
         private Audio.AudioRecorder mRecorder;       // the audio recorder
         private Audio.VuMeter mVuMeter;              // VU meter
+        private bool m_AutoSaveOnNextRecordingEnd ; //flag to auto save whenever recording stops or pauses next time
 
         private RecordingSession mRecordingSession;  // current recording session
         private SectionNode mRecordingSection;       // Section in which we are recording
@@ -420,6 +421,8 @@ namespace Obi.ProjectView
             mMasterPlaylist.Presentation = mView.Presentation;
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+
+            m_AutoSaveOnNextRecordingEnd = false;
             UpdateButtons();
         }
 
@@ -427,6 +430,13 @@ namespace Obi.ProjectView
         /// If true, play all when there is no selection; otherwise, play nothing.
         /// </summary>
         public bool PlayIfNoSelection { get { return mView.ObiForm.Settings.PlayIfNoSelection; } }
+        /// <summary>
+        /// Auto save whenever recording pauses or stops next
+        ///</summary>
+        public bool AutoSaveOnNextRecordingEnd 
+            { get { return m_AutoSaveOnNextRecordingEnd; }
+            set { m_AutoSaveOnNextRecordingEnd = value; }
+            }
 
         /// <summary>
         /// Set preview duration.
@@ -942,6 +952,9 @@ namespace Obi.ProjectView
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             mRecordingSession = null;
             UpdateTimeDisplay();
+
+            // optionally save project
+            SaveWhenRecordingEnds ();
         }
 
 
@@ -1839,6 +1852,9 @@ namespace Obi.ProjectView
                 UpdateButtons();
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
+
+                // save optionally
+                SaveWhenRecordingEnds ();
             }
         }
 
@@ -2108,6 +2124,18 @@ namespace Obi.ProjectView
             SetPlaylistEvents(playlist);
             mCurrentPlaylist = playlist;
         }
+
+        /// <summary>
+        /// optionally  saves the project when recording ends depending on autoSave recording ends flag
+                /// </summary>
+        private void SaveWhenRecordingEnds ()
+            {
+            if ( mView.ObiForm.Settings.AutoSave_RecordingEnd || m_AutoSaveOnNextRecordingEnd )
+                {
+                mView.ObiForm.Save ();
+                m_AutoSaveOnNextRecordingEnd = false;
+                }
+            }
 
         public bool CanUsePlaybackSelection { get { return Enabled && IsPlayerActive && mView.ObiForm.Settings.PlayOnNavigate; }}
 
