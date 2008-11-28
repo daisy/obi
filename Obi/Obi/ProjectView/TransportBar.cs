@@ -1456,11 +1456,16 @@ namespace Obi.ProjectView
                 {
                     PauseRecording();
                     mResumeRecordingPhrase = null;
+
                     if (mRecordingSection.FollowingSection != null && mRecordingSection.FollowingSection.Duration == 0)
                     {
                         //focus to next section and start recording again
+                        if ( mView.Selection != null )
                         mView.Selection = new NodeSelection(mRecordingSection.FollowingSection, mView.Selection.Control);
-                        SetupRecording(Recording);
+                        else if ( mRecordingSection != null )
+                        mView.SelectFromTransportBar ( mRecordingSection , null ) ;
+
+                                                SetupRecording(Recording);
                     }
                     else
                     {
