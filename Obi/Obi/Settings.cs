@@ -92,8 +92,8 @@ namespace Obi
             settings.UserProfile = new UserProfile();
             settings.WrapStripContents = true;
             settings.ZoomFactor = 1.0f;
-            settings.AutoSave_RecordingEnd = true;
-            settings.AutoSaveTimeInterval = 180000; // saving time interval in ms
+            settings.AutoSave_RecordingEnd = false;
+            settings.AutoSaveTimeInterval = 1800000; // saving time interval in ms
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try

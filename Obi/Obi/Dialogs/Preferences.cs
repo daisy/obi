@@ -41,8 +41,11 @@ namespace Obi.Dialogs
         {
             mDirectoryTextbox.Text = mSettings.DefaultPath;
             mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
+            int intervalMinutes = Convert.ToInt32 (mSettings.AutoSaveTimeInterval / 60000) ;
+                                                MnumAutoSaveInterval.Value = intervalMinutes ;
+            mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd; 
             mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
-        }
+                    }
 
         // Initialize audio tab
         private void InitializeAudioTab()
@@ -160,6 +163,8 @@ namespace Obi.Dialogs
             }
 
         mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
+        mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
+        mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
         return true;
         }
 

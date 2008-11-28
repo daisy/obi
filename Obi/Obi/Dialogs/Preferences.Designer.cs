@@ -40,6 +40,8 @@ namespace Obi.Dialogs
         this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox ();
         this.mTab = new System.Windows.Forms.TabControl ();
         this.mProjectTab = new System.Windows.Forms.TabPage ();
+        this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown ();
+        this.mLblAutoSaveInterval = new System.Windows.Forms.Label ();
         this.mPipelineTextbox = new System.Windows.Forms.TextBox ();
         this.mPipelineBrowseButton = new System.Windows.Forms.Button ();
         this.label9 = new System.Windows.Forms.Label ();
@@ -65,8 +67,10 @@ namespace Obi.Dialogs
         this.label4 = new System.Windows.Forms.Label ();
         this.mFullNameTextbox = new System.Windows.Forms.TextBox ();
         this.label1 = new System.Windows.Forms.Label ();
+        this.mChkAutoSaveOnRecordingEnd = new System.Windows.Forms.CheckBox ();
         this.mTab.SuspendLayout ();
         this.mProjectTab.SuspendLayout ();
+        ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit ();
         this.mAudioTab.SuspendLayout ();
         ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit ();
         this.tabPage1.SuspendLayout ();
@@ -141,6 +145,9 @@ namespace Obi.Dialogs
         // 
         // mProjectTab
         // 
+        this.mProjectTab.Controls.Add ( this.mChkAutoSaveOnRecordingEnd );
+        this.mProjectTab.Controls.Add ( this.MnumAutoSaveInterval );
+        this.mProjectTab.Controls.Add ( this.mLblAutoSaveInterval );
         this.mProjectTab.Controls.Add ( this.mPipelineTextbox );
         this.mProjectTab.Controls.Add ( this.mPipelineBrowseButton );
         this.mProjectTab.Controls.Add ( this.label9 );
@@ -151,6 +158,31 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this.mProjectTab, "mProjectTab" );
         this.mProjectTab.Name = "mProjectTab";
         this.mProjectTab.UseVisualStyleBackColor = true;
+        // 
+        // MnumAutoSaveInterval
+        // 
+        resources.ApplyResources ( this.MnumAutoSaveInterval, "MnumAutoSaveInterval" );
+        this.MnumAutoSaveInterval.Maximum = new decimal ( new int[] {
+            120,
+            0,
+            0,
+            0} );
+        this.MnumAutoSaveInterval.Minimum = new decimal ( new int[] {
+            3,
+            0,
+            0,
+            0} );
+        this.MnumAutoSaveInterval.Name = "MnumAutoSaveInterval";
+        this.MnumAutoSaveInterval.Value = new decimal ( new int[] {
+            3,
+            0,
+            0,
+            0} );
+        // 
+        // mLblAutoSaveInterval
+        // 
+        resources.ApplyResources ( this.mLblAutoSaveInterval, "mLblAutoSaveInterval" );
+        this.mLblAutoSaveInterval.Name = "mLblAutoSaveInterval";
         // 
         // mPipelineTextbox
         // 
@@ -336,6 +368,12 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this.label1, "label1" );
         this.label1.Name = "label1";
         // 
+        // mChkAutoSaveOnRecordingEnd
+        // 
+        resources.ApplyResources ( this.mChkAutoSaveOnRecordingEnd, "mChkAutoSaveOnRecordingEnd" );
+        this.mChkAutoSaveOnRecordingEnd.Name = "mChkAutoSaveOnRecordingEnd";
+        this.mChkAutoSaveOnRecordingEnd.UseVisualStyleBackColor = true;
+        // 
         // Preferences
         // 
         this.AcceptButton = this.mOKButton;
@@ -353,6 +391,7 @@ namespace Obi.Dialogs
         this.mTab.ResumeLayout ( false );
         this.mProjectTab.ResumeLayout ( false );
         this.mProjectTab.PerformLayout ();
+        ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit ();
         this.mAudioTab.ResumeLayout ( false );
         this.mAudioTab.PerformLayout ();
         ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).EndInit ();
@@ -400,5 +439,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button mPipelineBrowseButton;
         private System.Windows.Forms.TextBox mPipelineTextbox;
+        private System.Windows.Forms.Label mLblAutoSaveInterval;
+        private System.Windows.Forms.NumericUpDown MnumAutoSaveInterval;
+        private System.Windows.Forms.CheckBox mChkAutoSaveOnRecordingEnd;
     }
 }
