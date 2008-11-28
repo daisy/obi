@@ -381,8 +381,7 @@ namespace Obi
             // reset the  auto save timer
             mAutoSaveTimer.Stop ();
             mAutoSaveTimer.Start ();
-            System.Media.SystemSounds.Asterisk.Play ();
-            }
+                        }
         }
 
         // Save the current project under a different name; ask for a new path first.
