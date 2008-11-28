@@ -165,6 +165,7 @@ namespace Obi.Dialogs
         mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
         mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
+        mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
         return true;
         }
 
