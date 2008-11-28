@@ -1873,7 +1873,7 @@ namespace Obi.ProjectView
             EmptyNode node = null;
             if (IsRecording)
             {
-                node = (EmptyNode)mRecordingSection.PhraseChild(mRecordingSection.PhraseChildCount - 1);
+                node = (EmptyNode)mRecordingPhrase;
 
                 mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
