@@ -1440,6 +1440,8 @@ namespace Obi
                                 }
                                         }
 
+        public int SetAutoSaverInterval { set { if (mAutoSaveTimer != null) mAutoSaveTimer.Interval = value; } }
+
 
         private void PopulatePipelineScriptsInToolsMenu()
         {
