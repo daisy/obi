@@ -1306,4 +1306,7 @@ Error text: {1}</value>
   <data name="PageDialog_InvalidInput" xml:space="preserve">
     <value>One or more fields have invalid entries. Press No to re enter values, press Yes to assign page number according to previous page</value>
   </data>
+  <data name="Status_ProjectSaved" xml:space="preserve">
+    <value>Project saved, please continue...</value>
+  </data>
 </root>
