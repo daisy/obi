@@ -2670,6 +2670,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project saved, please continue....
+        /// </summary>
+        internal static string Status_ProjectSaved {
+            get {
+                return ResourceManager.GetString("Status_ProjectSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stereo.
         /// </summary>
         internal static string stereo {

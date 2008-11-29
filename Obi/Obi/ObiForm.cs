@@ -378,6 +378,7 @@ namespace Obi
 
             mSession.Save ();
 
+            mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
             // reset the  auto save timer
             mAutoSaveTimer.Stop ();
             mAutoSaveTimer.Start ();
