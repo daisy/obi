@@ -702,8 +702,7 @@ namespace Obi.ProjectView
                     //UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
                     //UpdateStripThread.RunWorkerAsync();
                 s.UpdateBlockLabelsInStrip ();
-                System.Media.SystemSounds.Asterisk.Play ();
-                }
+                                }
                 catch (System.Exception)
                 {
                     return;
