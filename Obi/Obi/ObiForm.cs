@@ -1200,7 +1200,7 @@ namespace Obi
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
                         Program.SafeName(string.Format(Localizer.Message("default_export_dirname"),
-                            mProjectView.Presentation.Title))), mSession.Path);
+                            "" ) ) ), mSession.Path ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     try

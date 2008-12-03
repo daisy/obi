@@ -730,7 +730,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} DAISY3 Export.
+        ///   Looks up a localized string similar to {0}DAISY3 Export.
         /// </summary>
         internal static string default_export_dirname {
             get {
