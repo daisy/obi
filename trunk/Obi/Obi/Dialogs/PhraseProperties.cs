@@ -22,6 +22,7 @@ namespace Obi.Dialogs
         public PhraseProperties(ProjectView.ProjectView view, bool SetCustomClass)
         {
             InitializeComponent();
+            CommonDialogFunctions.AssignAccessibleNames ( Controls );
             mView = view;
             mNode = view.SelectedNodeAs<EmptyNode>();
 
