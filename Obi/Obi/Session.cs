@@ -164,7 +164,7 @@ namespace Obi
         // Get a lock file, and throw an exception if there is already one.
         private void GetLock(string path)
         {
-            /*mCanDeleteLock = false;
+            mCanDeleteLock = false;
             string path_lock = path + ".lock";
             if (System.IO.File.Exists(path_lock))
             {
@@ -178,7 +178,7 @@ namespace Obi
             catch (Exception e)
             {
                 throw new Exception(string.Format(Localizer.Message("project_lock_error"), path_lock, e.Message), e);
-            }*/
+            }
         }
 
         /// <summary>
