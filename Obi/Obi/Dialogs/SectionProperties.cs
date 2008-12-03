@@ -20,6 +20,8 @@ namespace Obi.Dialogs
         public SectionProperties(ProjectView.ProjectView View)
         {
             InitializeComponent();
+            CommonDialogFunctions.AssignAccessibleNames ( Controls );
+
             mView = View;
             mNode = View.SelectedNodeAs<SectionNode>();
         }

@@ -123,6 +123,7 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\CommonDialogFunctions.cs" />
     <Compile Include="Dialogs\EditRoles.cs">
       <SubType>Form</SubType>
     </Compile>
