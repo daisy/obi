@@ -40,6 +40,7 @@ namespace Obi.Dialogs
         this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox ();
         this.mTab = new System.Windows.Forms.TabControl ();
         this.mProjectTab = new System.Windows.Forms.TabPage ();
+        this.mChkAutoSaveOnRecordingEnd = new System.Windows.Forms.CheckBox ();
         this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown ();
         this.mLblAutoSaveInterval = new System.Windows.Forms.Label ();
         this.mPipelineTextbox = new System.Windows.Forms.TextBox ();
@@ -67,7 +68,6 @@ namespace Obi.Dialogs
         this.label4 = new System.Windows.Forms.Label ();
         this.mFullNameTextbox = new System.Windows.Forms.TextBox ();
         this.label1 = new System.Windows.Forms.Label ();
-        this.mChkAutoSaveOnRecordingEnd = new System.Windows.Forms.CheckBox ();
         this.mTab.SuspendLayout ();
         this.mProjectTab.SuspendLayout ();
         ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit ();
@@ -158,6 +158,12 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this.mProjectTab, "mProjectTab" );
         this.mProjectTab.Name = "mProjectTab";
         this.mProjectTab.UseVisualStyleBackColor = true;
+        // 
+        // mChkAutoSaveOnRecordingEnd
+        // 
+        resources.ApplyResources ( this.mChkAutoSaveOnRecordingEnd, "mChkAutoSaveOnRecordingEnd" );
+        this.mChkAutoSaveOnRecordingEnd.Name = "mChkAutoSaveOnRecordingEnd";
+        this.mChkAutoSaveOnRecordingEnd.UseVisualStyleBackColor = true;
         // 
         // MnumAutoSaveInterval
         // 
@@ -367,12 +373,6 @@ namespace Obi.Dialogs
         // 
         resources.ApplyResources ( this.label1, "label1" );
         this.label1.Name = "label1";
-        // 
-        // mChkAutoSaveOnRecordingEnd
-        // 
-        resources.ApplyResources ( this.mChkAutoSaveOnRecordingEnd, "mChkAutoSaveOnRecordingEnd" );
-        this.mChkAutoSaveOnRecordingEnd.Name = "mChkAutoSaveOnRecordingEnd";
-        this.mChkAutoSaveOnRecordingEnd.UseVisualStyleBackColor = true;
         // 
         // Preferences
         // 
