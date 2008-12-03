@@ -11,42 +11,48 @@ namespace InstallerFileOperations
     public partial class FileOperations : Installer
         {
         private string m_DirectoryPath;
-        private readonly string m_PipelineCabFile;
-        private readonly string m_ExtractDirName;
+        private string m_PipelineCabFile;
+        private  string m_ExtractDirName;
 
         private List<FileSystemInfo> m_PathsInfoToRemove;
 
         public FileOperations ()
             {
             InitializeComponent ();
-            //m_DirectoryPath = System.AppDomain.CurrentDomain.BaseDirectory;
-            m_DirectoryPath = Directory.GetParent( System.Reflection.Assembly.GetExecutingAssembly ().Location).FullName ;
+                        
+                                    }
+
+        private void InitializeExtractionVariables ()
+            {
+            m_DirectoryPath = Directory.GetParent ( System.Reflection.Assembly.GetExecutingAssembly ().Location ).FullName;
             m_PipelineCabFile = "Pipeline-lite.cab";
             m_ExtractDirName = "ExtractedFiles\\";
 
             m_PathsInfoToRemove = new List<FileSystemInfo> ();
             m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, "CABARC.EXE" ) ) );
             m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, "CABINET.DLL" ) ) );
-            System.Windows.Forms.MessageBox.Show ("Dir path" +  m_DirectoryPath );
-            }
-        
+                        }
 
-        public void ExtractFiles ()
+        private void ExtractFiles ()
             {
+            InitializeExtractionVariables ();
 
-            if (File.Exists ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) ))
+            if (File.Exists ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) )
+                && File.Exists ( Path.Combine ( m_DirectoryPath, "CABARC.EXE" ) )
+                && File.Exists ( Path.Combine ( m_DirectoryPath, "CABINET.DLL" ) ))
                 {
-                DirectoryInfo extractDirInfo  = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName )) ;
+                DirectoryInfo extractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName ) );
                 if (extractDirInfo.Exists) extractDirInfo.Delete ( true );
-                extractDirInfo.Create ( );
-                
+                extractDirInfo.Create ();
+
 
                 Process extractProcess = new Process ();
                 extractProcess.StartInfo.WorkingDirectory = m_DirectoryPath;
                 extractProcess.StartInfo.FileName = Path.Combine ( m_DirectoryPath, "CABARC.EXE" );
                 extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " + m_ExtractDirName;
-                                                System.Windows.Forms.MessageBox.Show ( extractProcess.StartInfo.Arguments );
-                extractProcess.Start ();
+                extractProcess.StartInfo.UseShellExecute = false;
+                extractProcess.StartInfo.CreateNoWindow = true;
+                                extractProcess.Start ();
                 extractProcess.WaitForExit ();
 
                 // move extracted files and directories to desired location
@@ -54,16 +60,16 @@ namespace InstallerFileOperations
                 //System.Windows.Forms.MessageBox.Show ( pipelineExtractDirInfo.FullName );d
                 string newDirectory = Path.Combine ( m_DirectoryPath, "Pipeline-lite" );
                 if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
-                pipelineExtractDirInfo.MoveTo ( newDirectory);
-
+                pipelineExtractDirInfo.MoveTo ( newDirectory );
+                
                 // delete temprorary files and directories
                 m_PathsInfoToRemove.Add ( extractDirInfo );
-                m_PathsInfoToRemove.Add( new FileInfo ( Path.Combine (m_DirectoryPath, m_PipelineCabFile )) );
-                DeleteTemporaryFiles ();
-                System.Windows.Forms.MessageBox.Show ( "Done" );
+                m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) ) );
+                
+                //System.Windows.Forms.MessageBox.Show ( "Done" );
                 }
             else
-                System.Windows.Forms.MessageBox.Show ( "File not found" );
+                System.Windows.Forms.MessageBox.Show ( "Pipeline-lite could not be installed. Please install by yourself after installation is complete." , "Warning");
             }
 
         public void DeleteTemporaryFiles ()
@@ -80,17 +86,30 @@ namespace InstallerFileOperations
                 }
             }
 
-        private void FileOperations_Committed ( object sender, InstallEventArgs e )
+
+        private void ExecuteExtraction ()
             {
             try
                 {
                 ExtractFiles ();
-                                }
+                //DeleteTemporaryFiles ();
+                }
             catch (System.Exception ex)
                 {
                 System.Windows.Forms.MessageBox.Show ( ex.ToString () );
                 }
+                       
             }
+
+        private void FileOperations_Committed ( object sender, InstallEventArgs e )
+            {
+                        }
+
+        private void FileOperations_AfterInstall ( object sender, InstallEventArgs e )
+            {
+            ExecuteExtraction ();
+            }
+
 
 
         }
