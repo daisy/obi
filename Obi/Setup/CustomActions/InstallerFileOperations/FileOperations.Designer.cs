@@ -32,6 +32,7 @@ namespace InstallerFileOperations
             // FileOperations
             // 
             this.Committed += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_Committed );
+            this.AfterInstall += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_AfterInstall );
 
             }
 
