@@ -691,7 +691,7 @@ namespace Obi.Audio
                 catch (System.Exception ex)
                     {
                     EmergencyStopForSoundBufferProblem ();
-                    System.Windows.Forms.MessageBox.Show ( Localizer.Message ( "TryAgain" ) + ex.ToString () );
+                    System.Windows.Forms.MessageBox.Show ( string.Format( Localizer.Message ( "Player_TryAgain" ) , "\n\n" , ex.ToString ()) ) ;
                     return;
                     }
                 m_BufferCheck = 1;
