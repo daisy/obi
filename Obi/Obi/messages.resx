@@ -1309,4 +1309,7 @@ Error text: {1}</value>
   <data name="Status_ProjectSaved" xml:space="preserve">
     <value>Project saved, please continue...</value>
   </data>
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+    <value>Playback could not be started. Press OK to continue.... {0} {1}</value>
+  </data>
 </root>

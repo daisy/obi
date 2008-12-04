@@ -2778,6 +2778,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Playback could not be started. Press OK to continue.... {0} {1}.
+        /// </summary>
+        internal static string TransportBar_PlayerExceptionMsg {
+            get {
+                return ResourceManager.GetString("TransportBar_PlayerExceptionMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Undo.
         /// </summary>
         internal static string undo {
