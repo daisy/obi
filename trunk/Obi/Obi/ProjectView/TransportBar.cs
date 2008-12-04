@@ -671,6 +671,18 @@ namespace Obi.ProjectView
         /// Start from the current selection, or from the first phrase.
         /// </summary>
         public void PlayAll()
+            {
+            try
+                {
+                                                                PlayAll_safe ();
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
+                }
+            }
+
+        private void PlayAll_safe ()
         {
                         if (CanPlay)
             {
@@ -746,6 +758,18 @@ namespace Obi.ProjectView
         /// (depending on the relevent preference setting.)
         /// </summary>
         public void PlayOrResume()
+            {
+            try
+                {
+                                                PlayOrResume_Safe ();
+                }
+            catch ( System.Exception ex )
+                {
+                MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
+                }
+            }
+
+        private void PlayOrResume_Safe ()
         {
                 if (CanPlay || CanPreviewAudioSelection)
             {
