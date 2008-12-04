@@ -2199,7 +2199,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project is locked, probably because there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file &quot;{0}&quot;, but proceed at your own risk..
+        ///   Looks up a localized string similar to Project is locked, probably because either previous session of this project was terminated improperly or there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file &quot;{0}&quot;, but proceed at your own risk..
         /// </summary>
         internal static string project_locked {
             get {

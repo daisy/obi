@@ -1261,7 +1261,7 @@ Error text: {1}</value>
     <comment>Lock error</comment>
   </data>
   <data name="project_locked" xml:space="preserve">
-    <value>Project is locked, probably because there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file "{0}", but proceed at your own risk.</value>
+    <value>Project is locked, probably because either previous session of this project was terminated improperly or there is another session of Obi with the same project open. If you are sure that there are no other sessions of Obi you can try to remove the lock file "{0}", but proceed at your own risk.</value>
     <comment>Lock error</comment>
   </data>
   <data name="no_preceding_silence_phrase_caption" xml:space="preserve">
