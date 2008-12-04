@@ -1312,4 +1312,7 @@ Error text: {1}</value>
   <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
     <value>Playback could not be started. Press OK to continue.... {0} {1}</value>
   </data>
+  <data name="Player_TryAgain" xml:space="preserve">
+    <value>Please try again... {0} {1}</value>
+  </data>
 </root>

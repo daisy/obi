@@ -2172,6 +2172,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please try again... {0} {1}.
+        /// </summary>
+        internal static string Player_TryAgain {
+            get {
+                return ResourceManager.GetString("Player_TryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Playing audio.
         /// </summary>
         internal static string Playing {
