@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
+using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 
@@ -98,10 +99,28 @@ namespace InstallerFileOperations
                 }
             catch (System.Exception ex)
                 {
-                System.Windows.Forms.MessageBox.Show ( ex.ToString () );
+                MessageBox.Show ( "Error in installing Pipeline-lite. Please install it by yourself after installation of Obi is complete. Press OK to continue with installation." + "\n\n" +  ex.ToString () );
                 }
                        
             }
+
+        public void StartJREInstallOptionally ()
+            {
+            try
+                {
+                if (MessageBox.Show ( "Obi will need Java runtime environment (JRE) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from internet." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+                    {
+                    Process JREInstallationProcess = new Process ();
+                    JREInstallationProcess.StartInfo.FileName = "http://java.com/en/download/windows_ie.jsp";
+                    JREInstallationProcess.Start ();
+                    }
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( "Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete" + "\n\n" + ex.ToString ());
+                }
+            }
+
 
         private void RemoveCustomInstalledFiles ()
             {
@@ -118,7 +137,7 @@ namespace InstallerFileOperations
                     }
                 catch (System.Exception ex)
                     {
-                    System.Windows.Forms.MessageBox.Show ( "Some files could not be removed. Please remove them manually", "Warning" );
+                    MessageBox.Show ( "Some files could not be removed. Please remove them manually", "Warning" );
                     }
                                                                         }
 
@@ -130,6 +149,7 @@ namespace InstallerFileOperations
         private void FileOperations_AfterInstall ( object sender, InstallEventArgs e )
             {
             ExecuteExtraction ();
+            StartJREInstallOptionally ();
             }
 
         private void FileOperations_BeforeUninstall ( object sender, InstallEventArgs e )
