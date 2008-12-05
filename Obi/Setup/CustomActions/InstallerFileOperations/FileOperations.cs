@@ -15,11 +15,13 @@ namespace InstallerFileOperations
         private  string m_ExtractDirName;
 
         private List<FileSystemInfo> m_PathsInfoToRemove;
+        List<DirectoryInfo> m_UninstallDeleteDirList;
 
         public FileOperations ()
             {
             InitializeComponent ();
-                        
+
+            m_UninstallDeleteDirList = new List<DirectoryInfo> ();
                                     }
 
         private void InitializeExtractionVariables ()
@@ -44,8 +46,8 @@ namespace InstallerFileOperations
                 DirectoryInfo extractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName ) );
                 if (extractDirInfo.Exists) extractDirInfo.Delete ( true );
                 extractDirInfo.Create ();
-
-
+                m_PathsInfoToRemove.Add ( extractDirInfo );
+                
                 Process extractProcess = new Process ();
                 extractProcess.StartInfo.WorkingDirectory = m_DirectoryPath;
                 extractProcess.StartInfo.FileName = Path.Combine ( m_DirectoryPath, "CABARC.EXE" );
@@ -57,14 +59,14 @@ namespace InstallerFileOperations
 
                 // move extracted files and directories to desired location
                 DirectoryInfo pipelineExtractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, "ExtractedFiles\\Pipeline-lite" ) );
+                
                 //System.Windows.Forms.MessageBox.Show ( pipelineExtractDirInfo.FullName );d
                 string newDirectory = Path.Combine ( m_DirectoryPath, "Pipeline-lite" );
-                if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
+                                if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
                 pipelineExtractDirInfo.MoveTo ( newDirectory );
                 
                 // delete temprorary files and directories
-                m_PathsInfoToRemove.Add ( extractDirInfo );
-                m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) ) );
+                                m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) ) );
                 
                 //System.Windows.Forms.MessageBox.Show ( "Done" );
                 }
@@ -79,7 +81,7 @@ namespace InstallerFileOperations
                 if (m_PathsInfoToRemove[i].Exists)
                     {
                     if (m_PathsInfoToRemove[i] is DirectoryInfo) 
-                        ((DirectoryInfo)m_PathsInfoToRemove[i]).Delete ( true );
+                                                ((DirectoryInfo)m_PathsInfoToRemove[i]).Delete ( true );
                     else 
                         m_PathsInfoToRemove[i].Delete ();
                     }
@@ -101,6 +103,26 @@ namespace InstallerFileOperations
                        
             }
 
+        private void RemoveCustomInstalledFiles ()
+            {
+                try
+                    {
+                    m_DirectoryPath = Directory.GetParent ( System.Reflection.Assembly.GetExecutingAssembly ().Location ).FullName;
+                    m_UninstallDeleteDirList.Add ( new DirectoryInfo ( Path.Combine ( m_DirectoryPath, "ExtractedFiles" ) ) );
+                    m_UninstallDeleteDirList.Add ( new DirectoryInfo ( Path.Combine ( m_DirectoryPath, "Pipeline-lite" ) ) );
+
+                    for (int i = 0; i < m_UninstallDeleteDirList.Count; i++)
+                        {
+                        if (m_UninstallDeleteDirList[i].Exists) m_UninstallDeleteDirList[i].Delete ( true );
+                        }
+                    }
+                catch (System.Exception ex)
+                    {
+                    System.Windows.Forms.MessageBox.Show ( "Some files could not be removed. Please remove them manually", "Warning" );
+                    }
+                                                                        }
+
+
         private void FileOperations_Committed ( object sender, InstallEventArgs e )
             {
                         }
@@ -108,6 +130,16 @@ namespace InstallerFileOperations
         private void FileOperations_AfterInstall ( object sender, InstallEventArgs e )
             {
             ExecuteExtraction ();
+            }
+
+        private void FileOperations_BeforeUninstall ( object sender, InstallEventArgs e )
+            {
+            RemoveCustomInstalledFiles ();
+            }
+
+        private void FileOperations_BeforeRollback ( object sender, InstallEventArgs e )
+            {
+            RemoveCustomInstalledFiles ();
             }
 
 
