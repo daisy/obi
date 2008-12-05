@@ -190,13 +190,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_673DFA44C2B44834BD7942CA2EAB9B79"
+        "OwnerKey" = "8:_A44060C9ADC6476F89FAF9488DA56ABA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A44060C9ADC6476F89FAF9488DA56ABA"
+        "OwnerKey" = "8:_673DFA44C2B44834BD7942CA2EAB9B79"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -296,6 +296,34 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0904C6D42BAE4702AB9D5D484596C92C"
+            {
+            "Name" = "8:InstallerFileOperations.dll"
+            "Condition" = "8:"
+            "Object" = "8:_673DFA44C2B44834BD7942CA2EAB9B79"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_1E43ABC8_81FB_4E8B_8B8B_F4CE73969794"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_5E874FD97E9346C3AA2C0AD22799C0EC"
+            {
+            "Name" = "8:InstallerFileOperations.dll"
+            "Condition" = "8:"
+            "Object" = "8:_673DFA44C2B44834BD7942CA2EAB9B79"
+            "FileType" = "3:1"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_D3B429BD_F362_45DA_B4E6_0FFA80912F04"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9B6E833F30E34BB1B709EB75AE50C259"
             {
             "Name" = "8:InstallerFileOperations.dll"
@@ -1065,10 +1093,10 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi RC3.1"
         "ProductCode" = "8:{12311B35-7441-4299-991C-4954793749D3}"
-        "PackageCode" = "8:{BCEEC18D-9736-4640-8DC8-C13CEA40E15A}"
+        "PackageCode" = "8:{FC8F30FC-23A2-434E-BF8B-6E657B16F3DB}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:TRUE"
+        "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:0.30.1"

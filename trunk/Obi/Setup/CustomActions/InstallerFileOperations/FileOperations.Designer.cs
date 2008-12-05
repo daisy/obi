@@ -31,7 +31,9 @@ namespace InstallerFileOperations
             // 
             // FileOperations
             // 
+            this.BeforeUninstall += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_BeforeUninstall );
             this.Committed += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_Committed );
+            this.BeforeRollback += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_BeforeRollback );
             this.AfterInstall += new System.Configuration.Install.InstallEventHandler ( this.FileOperations_AfterInstall );
 
             }
