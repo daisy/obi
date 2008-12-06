@@ -33,7 +33,6 @@ namespace Obi.Dialogs
             this.m_txtParentSection = new System.Windows.Forms.TextBox();
             this.m_lblLocationInsideSection = new System.Windows.Forms.Label();
             this.m_txtLocationInsideSection = new System.Windows.Forms.TextBox();
-            this.m_lbParentsList = new System.Windows.Forms.ListBox();
             this.m_lblPhraseRole = new System.Windows.Forms.Label();
             this.m_comboPhraseRole = new System.Windows.Forms.ComboBox();
             this.m_lblCustomClassName = new System.Windows.Forms.Label();
@@ -43,9 +42,11 @@ namespace Obi.Dialogs
             this.m_btnCancel = new System.Windows.Forms.Button();
             this.m_lblTimeLength = new System.Windows.Forms.Label();
             this.m_txtTimeLength = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.m_comboCustomClassName = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.m_lbParentsList = new System.Windows.Forms.ListBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_lblParentSection
@@ -71,13 +72,6 @@ namespace Obi.Dialogs
             this.m_txtLocationInsideSection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.m_txtLocationInsideSection.Name = "m_txtLocationInsideSection";
             this.m_txtLocationInsideSection.ReadOnly = true;
-            // 
-            // m_lbParentsList
-            // 
-            resources.ApplyResources(this.m_lbParentsList, "m_lbParentsList");
-            this.m_lbParentsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.m_lbParentsList.FormattingEnabled = true;
-            this.m_lbParentsList.Name = "m_lbParentsList";
             // 
             // m_lblPhraseRole
             // 
@@ -134,11 +128,6 @@ namespace Obi.Dialogs
             this.m_txtTimeLength.Name = "m_txtTimeLength";
             this.m_txtTimeLength.ReadOnly = true;
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // m_comboCustomClassName
             // 
             resources.ApplyResources(this.m_comboCustomClassName, "m_comboCustomClassName");
@@ -149,14 +138,29 @@ namespace Obi.Dialogs
             // 
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.m_lbParentsList);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // m_lbParentsList
+            // 
+            resources.ApplyResources(this.m_lbParentsList, "m_lbParentsList");
+            this.m_lbParentsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.m_lbParentsList.FormattingEnabled = true;
+            this.m_lbParentsList.Name = "m_lbParentsList";
+            this.m_lbParentsList.SelectedIndexChanged += new System.EventHandler(this.m_lbParentsList_SelectedIndexChanged);
+            // 
             // PhraseProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btnCancel;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.m_comboCustomClassName);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.m_txtTimeLength);
             this.Controls.Add(this.m_lblTimeLength);
             this.Controls.Add(this.m_btnCancel);
@@ -170,13 +174,13 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lblLocationInsideSection);
             this.Controls.Add(this.m_txtParentSection);
             this.Controls.Add(this.m_lblParentSection);
-            this.Controls.Add(this.m_lbParentsList);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PhraseProperties";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.PhraseProperties_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +192,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_txtParentSection;
         private System.Windows.Forms.Label m_lblLocationInsideSection;
         private System.Windows.Forms.TextBox m_txtLocationInsideSection;
-        private System.Windows.Forms.ListBox m_lbParentsList;
         private System.Windows.Forms.Label m_lblPhraseRole;
         private System.Windows.Forms.ComboBox m_comboPhraseRole;
         private System.Windows.Forms.Label m_lblCustomClassName;
@@ -198,8 +201,9 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnCancel;
         private System.Windows.Forms.Label m_lblTimeLength;
         private System.Windows.Forms.TextBox m_txtTimeLength;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox m_comboCustomClassName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox m_lbParentsList;
     }
 }

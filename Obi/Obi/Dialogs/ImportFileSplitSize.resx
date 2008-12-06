@@ -151,7 +151,7 @@
     <value>4</value>
   </data>
   <data name="mPhraseSizeTextBox.AccessibleName" xml:space="preserve">
-    <value>Phrase size in minutes:</value>
+    <value>Phrase size in minutes</value>
   </data>
   <data name="mPhraseSizeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 39</value>

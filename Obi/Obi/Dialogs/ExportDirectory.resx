@@ -151,7 +151,7 @@
     <value>4</value>
   </data>
   <data name="mPathTextBox.AccessibleName" xml:space="preserve">
-    <value>Directory path:</value>
+    <value>Export directory:</value>
   </data>
   <data name="mPathTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>

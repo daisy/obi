@@ -40,6 +40,7 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_lblDirectoryPath, "m_lblDirectoryPath");
             this.m_lblDirectoryPath.Name = "m_lblDirectoryPath";
+            this.m_lblDirectoryPath.Click += new System.EventHandler(this.m_lblDirectoryPath_Click);
             // 
             // mPathTextBox
             // 

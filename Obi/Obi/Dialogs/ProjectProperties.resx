@@ -133,7 +133,7 @@
     <value>93, 16</value>
   </data>
   <data name="m_lblDuration.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_lblDuration.Text" xml:space="preserve">
     <value>Total &amp;duration:</value>
@@ -151,7 +151,7 @@
     <value>11</value>
   </data>
   <data name="m_txtDuration.AccessibleName" xml:space="preserve">
-    <value>Project Duration:</value>
+    <value>Total Duration:</value>
   </data>
   <data name="m_txtDuration.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -166,7 +166,7 @@
     <value>263, 22</value>
   </data>
   <data name="m_txtDuration.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;m_txtDuration.Name" xml:space="preserve">
     <value>m_txtDuration</value>
@@ -193,7 +193,7 @@
     <value>95, 16</value>
   </data>
   <data name="m_lblSectionCount.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_lblSectionCount.Text" xml:space="preserve">
     <value>Total &amp;sections:</value>
@@ -226,7 +226,7 @@
     <value>263, 22</value>
   </data>
   <data name="m_txtSectionsCount.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_txtSectionsCount.Name" xml:space="preserve">
     <value>m_txtSectionsCount</value>
@@ -253,7 +253,7 @@
     <value>94, 16</value>
   </data>
   <data name="m_lblPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="m_lblPhraseCount.Text" xml:space="preserve">
     <value>Total p&amp;hrases:</value>
@@ -286,7 +286,7 @@
     <value>263, 22</value>
   </data>
   <data name="m_txtPhraseCount.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;m_txtPhraseCount.Name" xml:space="preserve">
     <value>m_txtPhraseCount</value>
@@ -313,7 +313,7 @@
     <value>84, 16</value>
   </data>
   <data name="m_lblPageCount.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="m_lblPageCount.Text" xml:space="preserve">
     <value>Total pa&amp;ges:</value>
@@ -346,7 +346,7 @@
     <value>263, 22</value>
   </data>
   <data name="m_txtPageCount.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;m_txtPageCount.Name" xml:space="preserve">
     <value>m_txtPageCount</value>
@@ -409,7 +409,7 @@
     <value>76, 16</value>
   </data>
   <data name="m_lblTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_lblTitle.Text" xml:space="preserve">
     <value>Project &amp;title:</value>
@@ -427,7 +427,7 @@
     <value>2</value>
   </data>
   <data name="m_txtTitle.AccessibleName" xml:space="preserve">
-    <value>Title:</value>
+    <value>Project Title:</value>
   </data>
   <data name="m_txtTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -442,7 +442,7 @@
     <value>263, 22</value>
   </data>
   <data name="m_txtTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;m_txtTitle.Name" xml:space="preserve">
     <value>m_txtTitle</value>
@@ -472,7 +472,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>1</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -508,7 +508,7 @@
     <value>Project properties</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ProjectStatistics</value>
+    <value>ProjectProperties</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

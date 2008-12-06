@@ -66,5 +66,10 @@ namespace Obi.Dialogs
                 mCanClose = true;
             }
         }
+
+        private void m_lblDirectoryPath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

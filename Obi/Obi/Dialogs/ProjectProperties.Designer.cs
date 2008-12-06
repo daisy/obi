@@ -116,7 +116,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
-            // ProjectStatistics
+            // ProjectProperties
             // 
             this.AcceptButton = this.m_btnOk;
             resources.ApplyResources(this, "$this");
@@ -134,7 +134,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_lblSectionCount);
             this.Controls.Add(this.m_txtDuration);
             this.Controls.Add(this.m_lblDuration);
-            this.Name = "ProjectStatistics";
+            this.Name = "ProjectProperties";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.ProjectStatistics_Load);

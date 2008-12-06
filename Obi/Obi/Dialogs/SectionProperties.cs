@@ -82,5 +82,10 @@ namespace Obi.Dialogs
             m_txtPhraseCount.Text = mNode.PhraseChildCount.ToString();
             m_chkUsed.Checked = mNode.Used;
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

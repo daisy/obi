@@ -9,6 +9,7 @@ namespace Obi.Dialogs
         {
         public static void AssignAccessibleNames ( Control.ControlCollection   inputControlsList)
             {
+            return;
                                     if (inputControlsList != null && inputControlsList.Count > 0)
                 {
                 Control[] controlsList = new Control[inputControlsList.Count];
