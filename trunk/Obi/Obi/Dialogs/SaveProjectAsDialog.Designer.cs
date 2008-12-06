@@ -50,6 +50,7 @@ namespace Obi.Dialogs
             // 
             // mNewDirectoryTextBox
             // 
+            this.mNewDirectoryTextBox.AccessibleName = "New project directory";
             this.mNewDirectoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mNewDirectoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -69,7 +70,7 @@ namespace Obi.Dialogs
             this.mSelectButton.Margin = new System.Windows.Forms.Padding(4);
             this.mSelectButton.Name = "mSelectButton";
             this.mSelectButton.Size = new System.Drawing.Size(100, 28);
-            this.mSelectButton.TabIndex = 5;
+            this.mSelectButton.TabIndex = 4;
             this.mSelectButton.Text = "&Select";
             this.mSelectButton.UseVisualStyleBackColor = true;
             this.mSelectButton.Click += new System.EventHandler(this.mSelectButton_Click);
@@ -81,11 +82,12 @@ namespace Obi.Dialogs
             this.m_lblParentDirectoryPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
             this.m_lblParentDirectoryPath.Size = new System.Drawing.Size(62, 16);
-            this.m_lblParentDirectoryPath.TabIndex = 3;
+            this.m_lblParentDirectoryPath.TabIndex = 2;
             this.m_lblParentDirectoryPath.Text = "&Location:";
             // 
             // mLocationTextBox
             // 
+            this.mLocationTextBox.AccessibleName = "Location";
             this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -93,7 +95,7 @@ namespace Obi.Dialogs
             this.mLocationTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.mLocationTextBox.Name = "mLocationTextBox";
             this.mLocationTextBox.Size = new System.Drawing.Size(320, 22);
-            this.mLocationTextBox.TabIndex = 4;
+            this.mLocationTextBox.TabIndex = 3;
             // 
             // mOKButton
             // 
@@ -104,7 +106,7 @@ namespace Obi.Dialogs
             this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 28);
-            this.mOKButton.TabIndex = 8;
+            this.mOKButton.TabIndex = 6;
             this.mOKButton.Text = "&OK";
             this.mOKButton.UseVisualStyleBackColor = true;
             this.mOKButton.Click += new System.EventHandler(this.mOKButton_Click);
@@ -118,7 +120,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
-            this.mCancelButton.TabIndex = 9;
+            this.mCancelButton.TabIndex = 7;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
@@ -132,7 +134,7 @@ namespace Obi.Dialogs
             this.mSwitchToNewCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.mSwitchToNewCheckBox.Name = "mSwitchToNewCheckBox";
             this.mSwitchToNewCheckBox.Size = new System.Drawing.Size(136, 20);
-            this.mSwitchToNewCheckBox.TabIndex = 8;
+            this.mSwitchToNewCheckBox.TabIndex = 5;
             this.mSwitchToNewCheckBox.Text = "S&witch to new copy";
             this.mSwitchToNewCheckBox.UseVisualStyleBackColor = true;
             // 

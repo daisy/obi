@@ -128,6 +128,11 @@ namespace Obi.Dialogs
             m_comboCustomClassName.Focus ();
             }
 
+        private void m_lbParentsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
         }
 }

@@ -42,7 +42,7 @@ namespace Obi.Dialogs
             this.mContinueButton.Margin = new System.Windows.Forms.Padding(4);
             this.mContinueButton.Name = "mContinueButton";
             this.mContinueButton.Size = new System.Drawing.Size(100, 28);
-            this.mContinueButton.TabIndex = 0;
+            this.mContinueButton.TabIndex = 2;
             this.mContinueButton.Text = "C&ontinue";
             this.mContinueButton.UseVisualStyleBackColor = true;
             // 
@@ -52,7 +52,7 @@ namespace Obi.Dialogs
             this.mMessageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mMessageLabel.Name = "mMessageLabel";
             this.mMessageLabel.Size = new System.Drawing.Size(364, 80);
-            this.mMessageLabel.TabIndex = 1;
+            this.mMessageLabel.TabIndex = 0;
             this.mMessageLabel.Text = "Section \"{0}\" has no audio content and will not be exported, nor will any of its " +
                 "subsections. Do you want to continue?";
             // 
@@ -64,7 +64,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
-            this.mCancelButton.TabIndex = 2;
+            this.mCancelButton.TabIndex = 3;
             this.mCancelButton.Text = "&Cancel";
             this.mCancelButton.UseVisualStyleBackColor = true;
             // 
@@ -77,7 +77,7 @@ namespace Obi.Dialogs
             this.mKeepWarningCheckbox.Location = new System.Drawing.Point(12, 94);
             this.mKeepWarningCheckbox.Name = "mKeepWarningCheckbox";
             this.mKeepWarningCheckbox.Size = new System.Drawing.Size(337, 20);
-            this.mKeepWarningCheckbox.TabIndex = 3;
+            this.mKeepWarningCheckbox.TabIndex = 1;
             this.mKeepWarningCheckbox.Text = "Keep warning me about empty sections in this project";
             this.mKeepWarningCheckbox.UseVisualStyleBackColor = true;
             // 

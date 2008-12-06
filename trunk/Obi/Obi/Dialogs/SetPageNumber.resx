@@ -150,6 +150,9 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="mNumberBox.AccessibleName" xml:space="preserve">
+    <value>Page Number</value>
+  </data>
   <data name="mNumberBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -276,6 +279,9 @@
   <data name="&gt;&gt;mRenumber.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="mNumberOfPagesBox.AccessibleName" xml:space="preserve">
+    <value>Number of pages</value>
+  </data>
   <data name="mNumberOfPagesBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -332,6 +338,9 @@
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="mPageKindComboBox.AccessibleName" xml:space="preserve">
+    <value>Page kind</value>
   </data>
   <data name="mPageKindComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
