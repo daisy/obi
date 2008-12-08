@@ -302,6 +302,8 @@ namespace Obi.ProjectView
             ResumeLayout_All();
             UpdateSize();
             Cursor = mCursor;
+
+            UpdateBlocksLabelInSelectedNodeStrip ();
         }
 
         private void Presentation_BeforeCommandExecuted(object sender, urakawa.events.command.CommandEventArgs e)
@@ -691,9 +693,18 @@ namespace Obi.ProjectView
             if (mPlaybackBlock != null ) EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
         }
 
+        public void UpdateBlocksLabelInSelectedNodeStrip ()
+            {
+            if (mProjectView.Presentation != null && mProjectView.Selection != null)
+                {
+                if (mProjectView.Selection.Node is SectionNode) UpdateBlocksLabelInStrip ( (SectionNode)mProjectView.Selection.Node );
+                else if (mProjectView.Selection.Node is EmptyNode) UpdateBlocksLabelInStrip ( mProjectView.Selection.Node.ParentAs<SectionNode> () );
+                                }
+            }
+
         public void UpdateBlocksLabelInStrip(SectionNode section)
         {
-            Strip s = FindStrip(section);
+                    Strip s = FindStrip(section);
             if (s != null)
             {
                 try
