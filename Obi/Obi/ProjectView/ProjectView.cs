@@ -517,8 +517,9 @@ namespace Obi.ProjectView
                     foreach (ICommand c in silence) command.append(c);
                 }
             }
+        if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount() > 0) mPresentation.Do(command);
-        }
+        }   
 
         /// <summary>
         /// Cancel any audio selection.
@@ -1079,7 +1080,7 @@ namespace Obi.ProjectView
         public bool CanShowProjectPropertiesDialog { get { return mPresentation != null ; } }
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode; } }
 
-        public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
+        public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used ; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
