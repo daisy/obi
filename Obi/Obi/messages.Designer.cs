@@ -1506,6 +1506,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid date format! Recommended format is YYYY-MM-DD..
+        /// </summary>
+        internal static string Metadata_InvalidDateFormat {
+            get {
+                return ResourceManager.GetString("Metadata_InvalidDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Metadata name error.
         /// </summary>
         internal static string metadata_name_error_caption {
