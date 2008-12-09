@@ -1096,6 +1096,10 @@ namespace Obi.ProjectView
             {
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
+            // assign selection to null if metadata is selected.
+            if (mView.Selection != null && mView.Selection is MetadataSelection)
+                mView.Selection = null;
+
             // warning message while resuming recording
             if ((mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted) &&
                 mView.Selection != null && mView.Selection.Node != mResumeRecordingPhrase &&
