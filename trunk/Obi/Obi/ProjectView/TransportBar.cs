@@ -1064,21 +1064,27 @@ namespace Obi.ProjectView
         {
                     if (mView.Presentation != null&& mState != State.Playing)
             {
+            try
+                {
                 if (mState == State.Monitoring)
-                {
-                    mRecordingSession.Stop();
-                    StartRecording();
-                }
+                    {
+                    mRecordingSession.Stop ();
+                    StartRecording ();
+                    }
                 else if (CanResumeRecording)
-                {
-                    SetupRecording(Recording);
-                                    }
-                else if ( !IsRecorderActive ) 
-                {
-                    SetupRecording(Monitoring);
-                    // PrepareForRecording(false, null);
+                    {
+                    SetupRecording ( Recording );
+                    }
+                else if (!IsRecorderActive)
+                    {
+                    SetupRecording ( Monitoring );
+                    }
                 }
-
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString () , Localizer.Message ( "Caption_Error" ) );
+                if (mState == State.Monitoring || mState == State.Recording ) Stop ();
+                }
             } // presentation check ends
         }
 
@@ -1131,14 +1137,8 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                try
-                    {
-                    mRecordingSession.StartMonitoring ();
-                    }
-                catch (System.Exception ex)
-                    {
-                    MessageBox.Show ( ex.ToString () );
-                    }
+                                     mRecordingSession.StartMonitoring ();
+                                    
                 if (mView.ObiForm.Settings.AudioClues) mVUMeterPanel.BeepEnable = true;
                 }
             }
@@ -1290,17 +1290,18 @@ namespace Obi.ProjectView
         // Start recording
         void StartRecording()
         {
+        mVUMeterPanel.BeepEnable = false;
             try
             {
                 mRecordingSession.Record();
+                mDisplayTimer.Start ();
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+            MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
+            if (mState == State.Monitoring || mState == State.Recording) Stop ();
             }
-            mVUMeterPanel.BeepEnable = false;
-            mDisplayTimer.Start();
-        }
+                    }
 
 
         // Navigation
@@ -1506,12 +1507,29 @@ namespace Obi.ProjectView
                         else if ( mRecordingSection != null )
                         mView.SelectFromTransportBar ( mRecordingSection , null ) ;
 
-                                                SetupRecording(Recording);
+                    try
+                        {
+                        SetupRecording ( Recording );
+                        }
+                    catch (System.Exception ex)
+                        {
+                        MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
+                        if (mState == State.Monitoring || mState == State.Recording ) Stop ();
+                        }
                     }
                     else
                     {
                         // mView.AddSection(ProjectView.WithoutRename);
-                        SetupRecording(Recording, mRecordingSection);
+
+                    try
+                        {
+                        SetupRecording ( Recording, mRecordingSection );
+                        }
+                    catch (System.Exception ex)
+                        {
+                        MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
+                        if (mState == State.Monitoring || mState == State.Recording) Stop ();
+                        }
                     }
                 }
                 else if (mState == State.Monitoring)
@@ -1844,10 +1862,18 @@ namespace Obi.ProjectView
         public void StartRecordingDirectly()
         {
             if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing)
-            {
-                SetupRecording(Recording);
-                //PrepareForRecording(true, null);
-            }
+                {
+                try
+                    {
+                    SetupRecording ( Recording );
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( Localizer.Message ( "TransportBar_ErrorInStartingRecording" ) + "\n\n" + ex.ToString (), Localizer.Message ( "Caption_Error" ) );
+                    if (mState == State.Monitoring || mState == State.Recording) Stop ();
+                    }
+                
+                }
         }
 
 
@@ -1865,19 +1891,24 @@ namespace Obi.ProjectView
                 try
                     {
                     mRecordingSession.Stop ();
+
+
+                    // update phrases with audio assets
+                    if (mRecordingSession.RecordedAudio != null && mRecordingSession.RecordedAudio.Count > 0)
+                        {
+                        for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
+                            {
+                            mView.Presentation.UpdateAudioForPhrase ( mRecordingSection.PhraseChild ( mRecordingInitPhraseIndex + i ),
+                                mRecordingSession.RecordedAudio[i] );
+                            }
+                        }
+
                     }
                 catch (System.Exception ex)
                     {
-                    MessageBox.Show ( ex.ToString () );
+                    MessageBox.Show ( Localizer.Message ("TransportBar_ErrorInStopRecording") + "\n\n" +   ex.ToString ()  , Localizer.Message ("Caption_Error"));
                     }
-
-                // update phrases with audio assets
-                for (int i = 0; i < mRecordingSession.RecordedAudio.Count; ++i)
-                {
-                    mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
-                        mRecordingSession.RecordedAudio[i]);
-                }
-                UpdateButtons();
+UpdateButtons();
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
 
