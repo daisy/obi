@@ -2715,6 +2715,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in stopping recording. Please press Ok button to continue....
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strip cursor at {0}-{1}.
         /// </summary>
         internal static string strip_cursor_accessible_name {
@@ -2792,6 +2801,15 @@ namespace Obi {
         internal static string transport_bar {
             get {
                 return ResourceManager.GetString("transport_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in starting recording. Please press Ok button to skip recording and continue....
+        /// </summary>
+        internal static string TransportBar_ErrorInStartingRecording {
+            get {
+                return ResourceManager.GetString("TransportBar_ErrorInStartingRecording", resourceCulture);
             }
         }
         

@@ -1318,4 +1318,10 @@ Error text: {1}</value>
   <data name="Metadata_InvalidDateFormat" xml:space="preserve">
     <value>Invalid date format! Recommended format is YYYY-MM-DD.</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Error in stopping recording. Please press Ok button to continue...</value>
+  </data>
+  <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
+    <value>Error in starting recording. Please press Ok button to skip recording and continue...</value>
+  </data>
 </root>
