@@ -85,8 +85,10 @@ namespace Obi.Export
         {
             // We get a) a URI relative to the project path, and b) a stupidly escaped one that crashes the URI constructor.
             // So it's a bit convoluted, but here it is.
-            Uri absolute = new Uri(new Uri(ProjectPath + System.IO.Path.DirectorySeparatorChar), Uri.UnescapeDataString(uri));
-            return mExportUri.MakeRelativeUri(absolute).ToString();
+            //http://blogs.msdn.com/yangxind/archive/2006/11/09/don-t-use-net-system-uri-unescapedatastring-in-url-decoding.aspx
+            Uri absolute = new Uri(new Uri(ProjectPath + System.IO.Path.DirectorySeparatorChar), Uri.UnescapeDataString(Uri.UnescapeDataString(uri)));
+            string str = mExportUri.MakeRelativeUri(absolute).ToString();
+            return str;
         }
 
         /// <summary>
