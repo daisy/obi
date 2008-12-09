@@ -1197,6 +1197,7 @@ namespace Obi.ProjectView
         {
             // Suspend presentation change handler so that we don't stop when new nodes are added.
             mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
             PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
             mRecordingPhrase = phrase;
             Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
@@ -1221,8 +1222,9 @@ namespace Obi.ProjectView
             {
                 mView.Presentation.getUndoRedoManager().execute(add);
             }
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-            if (mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
+                mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
+                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
                 mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
         }
 
