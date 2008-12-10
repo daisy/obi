@@ -1152,10 +1152,19 @@ namespace Obi.ProjectView
             return command;
         }
 
+        // member variables to transfer role of recording phrase in case of 2 point split, not a good way but it is safest at this last moment
+        private bool m_IsAfterRecordingSplitTransferEnabled;
+        private EmptyNode.Role m_PhraseRoleToTransfer;
+        private bool m_ToDoStatusToTransfer;
+        private bool m_UsedStatusToTransfer;
+        private PageNumber m_PageNumberToTransfer;
+
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
         private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command)
         {
+        m_IsAfterRecordingSplitTransferEnabled = false;
+
             if (node is SectionNode)
             {
                 // Record at the end of the section, or after the cursor
@@ -1176,9 +1185,15 @@ namespace Obi.ProjectView
                 CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
                                     if ( SplitCommand != null )  command.append( SplitCommand);
 
-                    if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
-                        command.append ( new Commands.Node.DeleteWithOffset (mView , node , 1)) ;
-
+                                    if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
+                                        {
+                                        command.append ( new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
+                                        m_IsAfterRecordingSplitTransferEnabled = true;
+                                        m_PhraseRoleToTransfer = ((PhraseNode)node).Role_;
+                                        m_ToDoStatusToTransfer = ((PhraseNode)node).TODO;
+                                        m_UsedStatusToTransfer = ((PhraseNode)node).Used;
+                                        if (((PhraseNode)node).Role_ == EmptyNode.Role.Page) m_PageNumberToTransfer = ((PhraseNode)node).PageNumber.Clone () ;
+                                        }
                 }
             }
             else if (node is EmptyNode)
@@ -1203,6 +1218,21 @@ namespace Obi.ProjectView
             Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
                 mRecordingInitPhraseIndex + e.PhraseIndex);
             add.Label = command.getShortDescription();
+
+            // transfer properties if 2 point split is being performed
+            if (m_IsAfterRecordingSplitTransferEnabled)
+                {
+                m_IsAfterRecordingSplitTransferEnabled = false;
+                try
+                    {
+                    phrase.TODO = m_ToDoStatusToTransfer;
+                    phrase.Used = m_UsedStatusToTransfer;
+                    phrase.Role_ = m_PhraseRoleToTransfer;
+                    if (m_PhraseRoleToTransfer == EmptyNode.Role.Page) phrase.PageNumber = m_PageNumberToTransfer;
+                    }
+                catch (System.Exception) { }
+                }
+
             //add.UpdateSelection = false;
             if (e.PhraseIndex == 0)
             {
@@ -1227,6 +1257,7 @@ namespace Obi.ProjectView
             if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
                 mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
         }
+
 
         // Stop recording a phrase
         private void RecordingPhraseEnded(Obi.Events.Audio.Recorder.PhraseEventArgs e)
