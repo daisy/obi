@@ -1154,16 +1154,14 @@ namespace Obi.ProjectView
 
         // member variables to transfer role of recording phrase in case of 2 point split, not a good way but it is safest at this last moment
         private bool m_IsAfterRecordingSplitTransferEnabled;
-        private EmptyNode.Role m_PhraseRoleToTransfer;
-        private bool m_ToDoStatusToTransfer;
-        private bool m_UsedStatusToTransfer;
-        private PageNumber m_PageNumberToTransfer;
+                private EmptyNode m_TempNodeForPropertiesTransfer = null;
 
         // Initialize recording section/phrase index depending on the
         // context node for recording and the settings.
         private void InitRecordingSectionAndPhraseIndex(ObiNode node, bool overwrite, urakawa.command.CompositeCommand  command)
         {
         m_IsAfterRecordingSplitTransferEnabled = false;
+        m_TempNodeForPropertiesTransfer = null;
 
             if (node is SectionNode)
             {
@@ -1189,10 +1187,7 @@ namespace Obi.ProjectView
                                         {
                                         command.append ( new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
                                         m_IsAfterRecordingSplitTransferEnabled = true;
-                                        m_PhraseRoleToTransfer = ((PhraseNode)node).Role_;
-                                        m_ToDoStatusToTransfer = ((PhraseNode)node).TODO;
-                                        m_UsedStatusToTransfer = ((PhraseNode)node).Used;
-                                        if (((PhraseNode)node).Role_ == EmptyNode.Role.Page) m_PageNumberToTransfer = ((PhraseNode)node).PageNumber.Clone () ;
+                                                                                CopyPropertiesForTransfer ( (EmptyNode)node );
                                         }
                 }
             }
@@ -1220,18 +1215,11 @@ namespace Obi.ProjectView
             add.Label = command.getShortDescription();
 
             // transfer properties if 2 point split is being performed
-            if (m_IsAfterRecordingSplitTransferEnabled)
+            if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null )
                 {
                 m_IsAfterRecordingSplitTransferEnabled = false;
-                try
-                    {
-                    phrase.TODO = m_ToDoStatusToTransfer;
-                    phrase.Used = m_UsedStatusToTransfer;
-                    phrase.Role_ = m_PhraseRoleToTransfer;
-                    if (m_PhraseRoleToTransfer == EmptyNode.Role.Page) phrase.PageNumber = m_PageNumberToTransfer;
-                    }
-                catch (System.Exception) { }
-                }
+                 CopyPropertiesToRecordingNode ( (EmptyNode) phrase );
+                                }
 
             //add.UpdateSelection = false;
             if (e.PhraseIndex == 0)
@@ -1257,6 +1245,47 @@ namespace Obi.ProjectView
             if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
                 mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
         }
+
+
+        private void CopyPropertiesForTransfer ( EmptyNode node )
+            {
+            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
+            m_TempNodeForPropertiesTransfer = new EmptyNode ( mView.Presentation );
+            m_TempNodeForPropertiesTransfer.CopyAttributes ( (EmptyNode)node );
+            m_TempNodeForPropertiesTransfer.Used = ((EmptyNode)node).Used;
+            mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
+            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            }
+
+
+        private void CopyPropertiesToRecordingNode ( EmptyNode recordingNode )
+            {//1
+            if (m_TempNodeForPropertiesTransfer != null)
+                {//2
+                try
+                    {//3
+                    if (m_TempNodeForPropertiesTransfer.Role_ == EmptyNode.Role.Page)
+                        {//4
+                        recordingNode.TODO = m_TempNodeForPropertiesTransfer.TODO;
+                        recordingNode.Used = m_TempNodeForPropertiesTransfer.Used;
+                        recordingNode.Role_ = m_TempNodeForPropertiesTransfer.Role_;
+                        recordingNode.PageNumber = m_TempNodeForPropertiesTransfer.PageNumber.Clone ();
+                        }//-4
+                    else
+                        {//4
+                        recordingNode.CopyAttributes ( m_TempNodeForPropertiesTransfer );
+                        recordingNode.Used = m_TempNodeForPropertiesTransfer.Used;
+                        }//-4
+                    m_TempNodeForPropertiesTransfer = null;
+                    }//-3
+                catch (System.Exception)
+                    {//3
+                    m_TempNodeForPropertiesTransfer = null;
+                    }//-3
+                }//-2
+
+            }
 
 
         // Stop recording a phrase
