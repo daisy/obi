@@ -68,6 +68,10 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Recording)
             {
+            // check for illegal time input
+            if (mPhraseMarks != null && mPhraseMarks.Count > 0 && mPhraseMarks[mPhraseMarks.Count - 1] >= mRecorder.TimeOfAsset)
+                return;
+
                 PhraseEventArgs e = FinishedPhrase();
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mPhraseMarks.Count, 0.0));
@@ -82,6 +86,10 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Recording)
             {
+                // check for illegal time input
+            if (mPhraseMarks != null && mPhraseMarks.Count > 0    &&    mPhraseMarks[mPhraseMarks.Count - 1] >= mRecorder.TimeOfAsset)
+                return;
+
                 FinishedPhrase();
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, 0.0));
@@ -146,8 +154,13 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                        ManagedAudioMedia split = mSessionMedia.split(new urakawa.media.timing.Time(mPhraseMarks[i]));
-                        mAudioList.Insert(mSessionOffset, split);
+                    if (mPhraseMarks[i] < mSessionMedia.getDuration ().getTimeDeltaAsMillisecondFloat ())
+                        {
+                        ManagedAudioMedia split = mSessionMedia.split ( new urakawa.media.timing.Time ( mPhraseMarks[i] ) );
+                        mAudioList.Insert ( mSessionOffset, split );
+                        }
+                    else
+                        MessageBox.Show ( Localizer.Message ( "RecordingSession_SplitError" ) , Localizer.Message ("Caption_Warning"));
                     }
                     // The first asset is what remains of the session asset
                     mAudioList.Insert(mSessionOffset, mSessionMedia);

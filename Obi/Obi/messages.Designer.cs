@@ -2316,6 +2316,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Problem detected in timing of a phrase. Please press Ok to continue.
+        /// </summary>
+        internal static string RecordingSession_SplitError {
+            get {
+                return ResourceManager.GetString("RecordingSession_SplitError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Redo.
         /// </summary>
         internal static string redo {
