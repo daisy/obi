@@ -1324,4 +1324,7 @@ Error text: {1}</value>
   <data name="TransportBar_ErrorInStartingRecording" xml:space="preserve">
     <value>Error in starting recording. Please press Ok button to skip recording and continue...</value>
   </data>
+  <data name="RecordingSession_SplitError" xml:space="preserve">
+    <value>Problem detected in timing of a phrase. Please press Ok to continue</value>
+  </data>
 </root>
