@@ -209,10 +209,19 @@ namespace Obi.ProjectView
             }
             int startIndex = startingPoint;
             bool found = false;
+            int SafetyCounter = 0;
             //there might be a way to wrangle Searchables.Find(...) to do the work for us with a Predicate, but
             //as there is no FindNext or FindPrevious (especially the latter), it seems like more work than it's worth
             while (found == false)
             {
+                // added to prevent going into infinate loop
+            SafetyCounter++;
+            if (SafetyCounter > 2 * mStripsView.Searchables.Count)
+                {
+                mProjectView.ObiForm.Status ( Localizer.Message ( "finished_searching_all" ) );
+                return;
+                }
+                        
                 if (startIndex == mOriginalPosition && mNumberSearched == mStripsView.Searchables.Count)
                 {
                     mProjectView.ObiForm.Status(Localizer.Message("finished_searching_all"));
@@ -274,6 +283,8 @@ namespace Obi.ProjectView
             else if (e.KeyCode == Keys.Escape)
             {
                 mProjectView.FindInTextVisible = false;
+                if (mProjectView.CanFocusOnTOCView) mProjectView.FocusOnTOCView ();
+                else if (mProjectView.CanFocusOnContentView) mProjectView.FocusOnContentView ();
             }
             //find previous or next
             else if (e.KeyCode == Keys.F3)
