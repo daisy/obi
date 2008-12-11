@@ -37,5 +37,15 @@ namespace Obi.Dialogs
             mWebBrowser.Document.GetElementById("website").InnerText = Localizer.Message("obi_url");
             mWebBrowser.Document.GetElementById("website").SetAttribute("href", Localizer.Message("obi_url"));
         }
+
+        private void mbtnClose_Click ( object sender, System.EventArgs e )
+            {
+            Close ();
+            }
+
+        private void About_Load ( object sender, System.EventArgs e )
+            {
+
+            }
     }
 }
