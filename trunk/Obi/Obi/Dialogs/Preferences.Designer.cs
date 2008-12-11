@@ -40,9 +40,9 @@ namespace Obi.Dialogs
         this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox ();
         this.mTab = new System.Windows.Forms.TabControl ();
         this.mProjectTab = new System.Windows.Forms.TabPage ();
+        this.m_ChkAutoSaveInterval = new System.Windows.Forms.CheckBox ();
         this.mChkAutoSaveOnRecordingEnd = new System.Windows.Forms.CheckBox ();
         this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown ();
-        this.mLblAutoSaveInterval = new System.Windows.Forms.Label ();
         this.mPipelineTextbox = new System.Windows.Forms.TextBox ();
         this.mPipelineBrowseButton = new System.Windows.Forms.Button ();
         this.label9 = new System.Windows.Forms.Label ();
@@ -145,9 +145,9 @@ namespace Obi.Dialogs
         // 
         // mProjectTab
         // 
+        this.mProjectTab.Controls.Add ( this.m_ChkAutoSaveInterval );
         this.mProjectTab.Controls.Add ( this.mChkAutoSaveOnRecordingEnd );
         this.mProjectTab.Controls.Add ( this.MnumAutoSaveInterval );
-        this.mProjectTab.Controls.Add ( this.mLblAutoSaveInterval );
         this.mProjectTab.Controls.Add ( this.mPipelineTextbox );
         this.mProjectTab.Controls.Add ( this.mPipelineBrowseButton );
         this.mProjectTab.Controls.Add ( this.label9 );
@@ -158,6 +158,13 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this.mProjectTab, "mProjectTab" );
         this.mProjectTab.Name = "mProjectTab";
         this.mProjectTab.UseVisualStyleBackColor = true;
+        // 
+        // m_ChkAutoSaveInterval
+        // 
+        resources.ApplyResources ( this.m_ChkAutoSaveInterval, "m_ChkAutoSaveInterval" );
+        this.m_ChkAutoSaveInterval.Name = "m_ChkAutoSaveInterval";
+        this.m_ChkAutoSaveInterval.UseVisualStyleBackColor = true;
+        this.m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
         // 
         // mChkAutoSaveOnRecordingEnd
         // 
@@ -184,11 +191,6 @@ namespace Obi.Dialogs
             0,
             0,
             0} );
-        // 
-        // mLblAutoSaveInterval
-        // 
-        resources.ApplyResources ( this.mLblAutoSaveInterval, "mLblAutoSaveInterval" );
-        this.mLblAutoSaveInterval.Name = "mLblAutoSaveInterval";
         // 
         // mPipelineTextbox
         // 
@@ -439,8 +441,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button mPipelineBrowseButton;
         private System.Windows.Forms.TextBox mPipelineTextbox;
-        private System.Windows.Forms.Label mLblAutoSaveInterval;
         private System.Windows.Forms.NumericUpDown MnumAutoSaveInterval;
         private System.Windows.Forms.CheckBox mChkAutoSaveOnRecordingEnd;
+        private System.Windows.Forms.CheckBox m_ChkAutoSaveInterval;
     }
 }
