@@ -63,6 +63,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_47B0DFFF05544893995AE3FEEE2FDF19"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5A3D884B0DB54031A81EB73EF062CF8E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -288,6 +294,11 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
                 }
             }
         }
@@ -393,7 +404,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.5261, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.27362, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_00248D6E2588CA2314EA28FCC0F66963"
@@ -555,6 +566,26 @@
             {
             "SourcePath" = "8:..\\Obi\\bin\\Debug\\low.wav"
             "TargetName" = "8:low.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47B0DFFF05544893995AE3FEEE2FDF19"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\Release\\FindBarCollapse.wav"
+            "TargetName" = "8:FindBarCollapse.wav"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -1091,24 +1122,24 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi RC3.1"
-        "ProductCode" = "8:{12311B35-7441-4299-991C-4954793749D3}"
-        "PackageCode" = "8:{FC8F30FC-23A2-434E-BF8B-6E657B16F3DB}"
+        "ProductName" = "8:Obi 0.95"
+        "ProductCode" = "8:{B693BC9B-5B6A-49F1-9C35-67100146CBA9}"
+        "PackageCode" = "8:{5A7E308B-A2F0-40EB-89AE-C6573177623D}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.30.1"
+        "ProductVersion" = "8:1.95.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
-        "Title" = "8:Obi RC3.1"
+        "ARPHELPLINK" = "8:http://forums.daisy.org/viewforum.php?f=18"
+        "Title" = "8:Obi 0.95"
         "Subject" = "8:"
         "ARPCONTACT" = "8:The Urakawa Project Application Team"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:The Urakawa Project DAISY/NISO simple authoring tool"
-        "ARPURLINFOABOUT" = "8:http://urakawa.sourceforge.net"
+        "ARPURLINFOABOUT" = "8:http://www.daisy.org/projects/obi/"
         "ARPPRODUCTICON" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -1214,7 +1245,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi RC3.1"
+            "Name" = "8:Obi 0.95"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1228,7 +1259,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi RC3.1"
+            "Name" = "8:Obi 0.95"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1702,7 +1733,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5D74C0D378D74D17BD753426073D0BF5"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\Debug\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
