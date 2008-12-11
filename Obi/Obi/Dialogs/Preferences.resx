@@ -412,7 +412,7 @@
     <value>True</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 93</value>
+    <value>172, 89</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 20</value>
@@ -466,10 +466,10 @@
     <value>Interval in minutes</value>
   </data>
   <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 91</value>
+    <value>370, 87</value>
   </data>
   <data name="MnumAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 22</value>
+    <value>54, 22</value>
   </data>
   <data name="MnumAutoSaveInterval.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -523,7 +523,7 @@
     <value>Flat</value>
   </data>
   <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 144</value>
+    <value>508, 148</value>
   </data>
   <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -583,7 +583,7 @@
     <value>Flat</value>
   </data>
   <data name="mLastOpenCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 52</value>
+    <value>173, 53</value>
   </data>
   <data name="mLastOpenCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>

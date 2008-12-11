@@ -152,6 +152,7 @@ namespace Obi.Dialogs
         // Update project settings
         private bool UpdateProjectSettings()
         {
+        bool returnVal = true;
         if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
             && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
             {
@@ -163,16 +164,24 @@ namespace Obi.Dialogs
         else
             {
             MessageBox.Show ( Localizer.Message ( "InvalidPaths") , Localizer.Message ("Caption_Error"));
-            return false;
+            returnVal = false;
             }
 
         mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
         mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
-        mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
+        try
+            {
+            mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( ex.ToString ()  );
+            returnVal = false;
+            }
         mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
         if (mSettings.AutoSaveTimeIntervalEnabled )  mForm.StartAutoSaveTimeInterval ();
-        return true;
+        return returnVal;
         }
 
         // Update audio settings
