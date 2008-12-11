@@ -171,6 +171,7 @@ namespace Obi.Dialogs
         mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
         mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
         mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
+        if (mSettings.AutoSaveTimeIntervalEnabled )  mForm.StartAutoSaveTimeInterval ();
         return true;
         }
 
