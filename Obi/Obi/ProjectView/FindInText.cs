@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Obi.ProjectView
 {
@@ -115,7 +116,7 @@ namespace Obi.ProjectView
         {
                    mTimer.Stop();
            mProjectView.FindInTextVisible = false;
-           System.Media.SystemSounds.Exclamation.Play ();   
+           PlayFindBarCollapse ();
         }
 
         public void FindNext()
@@ -418,5 +419,15 @@ namespace Obi.ProjectView
         {
 
         }
+
+        private void PlayFindBarCollapse ()
+            {
+            string FilePath = Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "FindBarCollapse.wav" );
+            if ( mProjectView.ObiForm.Settings.AudioClues  &&   File.Exists ( FilePath ) )
+                {
+                System.Media.SoundPlayer voicePlayer = new System.Media.SoundPlayer ( FilePath );
+                voicePlayer.Play ();
+                }
+            }
     }
 }

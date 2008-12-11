@@ -71,7 +71,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.1.0.26175, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.1.0.27362, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Urakawa toolkit\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
@@ -734,6 +734,8 @@
     <Content Include="Export\Z.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="FindBarCollapse.wav" />
+    <Content Include="good.wav" />
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
