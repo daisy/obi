@@ -1400,6 +1400,9 @@
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
     <value>&amp;Export as DAISY</value>
   </data>
+  <data name="mTools_CleanUnreferencedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>Clean unreferenced audio ctrl+l</value>
+  </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+L</value>
   </data>
@@ -1540,7 +1543,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.12.0.24298, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.0.0.1147, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
