@@ -176,7 +176,7 @@ namespace Obi.Dialogs
             }
         catch (System.Exception ex)
             {
-            MessageBox.Show ( ex.ToString ()  );
+            MessageBox.Show ( ex.ToString () );
             returnVal = false;
             }
         mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
