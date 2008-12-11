@@ -49,6 +49,7 @@ namespace Obi
         public bool WrapStripContents;         // wrap strip contents in the content view
         public float ZoomFactor;               // global zoom factor
         public bool AutoSave_RecordingEnd ; // flag to audo save whenever recording ends
+        public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
@@ -93,6 +94,7 @@ namespace Obi
             settings.WrapStripContents = true;
             settings.ZoomFactor = 1.0f;
             settings.AutoSave_RecordingEnd = false;
+            settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 1800000; // saving time interval in ms
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();

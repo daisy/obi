@@ -41,8 +41,12 @@ namespace Obi.Dialogs
         {
             mDirectoryTextbox.Text = mSettings.DefaultPath;
             mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
+            m_ChkAutoSaveInterval.CheckStateChanged -= new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
+            m_ChkAutoSaveInterval.Checked = mSettings.AutoSaveTimeIntervalEnabled;
+            m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
             int intervalMinutes = Convert.ToInt32 (mSettings.AutoSaveTimeInterval / 60000) ;
                                                 MnumAutoSaveInterval.Value = intervalMinutes ;
+                                                MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
             mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd; 
             mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
                     }
@@ -164,6 +168,7 @@ namespace Obi.Dialogs
 
         mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
         mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
+        mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
         mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
         mForm.SetAutoSaverInterval = mSettings.AutoSaveTimeInterval;
         return true;
@@ -217,5 +222,10 @@ namespace Obi.Dialogs
             mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
             return true;
         }
+
+        private void m_ChkAutoSaveInterval_CheckStateChanged ( object sender, EventArgs e )
+            {
+            MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
+            }
     }
 }

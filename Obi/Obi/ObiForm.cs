@@ -381,7 +381,7 @@ namespace Obi
             mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
             // reset the  auto save timer
             mAutoSaveTimer.Stop ();
-            mAutoSaveTimer.Start ();
+            if ( mSettings.AutoSaveTimeIntervalEnabled )  mAutoSaveTimer.Start ();
                         }
         }
 
@@ -1372,7 +1372,7 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
             UpdateCustomClassMenu();
              mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-             mAutoSaveTimer.Start ();
+             if (mSettings.AutoSaveTimeIntervalEnabled )  mAutoSaveTimer.Start ();
         }
 
 
@@ -1432,7 +1432,7 @@ namespace Obi
 
         private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
             {
-            if (mSession != null && mSession.Presentation != null && mSession.CanSave)
+            if (mSession != null && mSession.Presentation != null && mSettings.AutoSaveTimeIntervalEnabled  && mSession.CanSave)
                 {
                 if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
                     Save ();
