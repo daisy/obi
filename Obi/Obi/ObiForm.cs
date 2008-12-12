@@ -1557,7 +1557,11 @@ namespace Obi
             {
                 mPeakMeter = new Obi.Audio.PeakMeterForm();
                 mPeakMeter.SourceVuMeter = mProjectView.TransportBar.VuMeter;
-                mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) { mPeakMeter = null; });
+                mPeakMeter.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e) 
+                    { 
+                    mPeakMeter = null;
+                    mShowPeakMeterMenuItem.Checked = false;
+                    });
                 if (this.WindowState != FormWindowState.Minimized)
                 {
                     //Make sure the Peak meter is displayed on the right of the Obi form.
