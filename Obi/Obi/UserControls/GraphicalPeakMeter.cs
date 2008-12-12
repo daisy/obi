@@ -14,9 +14,18 @@ namespace Obi.UserControls
 	/// </summary>
 	public partial class GraphicalPeakMeter : UserControl
 	{
+        private double[] mPeakValues;
+        private int mPeakArrayLength;
+        private bool mSourcePeaksIsNull  ;
+        private int m_DieOutCounter;
+
 		public GraphicalPeakMeter()
 		{
 			InitializeComponent();
+            mPeakValues = new double[2];
+            mPeakArrayLength = 1;
+            mSourcePeaksIsNull = true ;
+            m_DieOutCounter = 0;
 		}
 
 		private VuMeter mSourceVuMeter;
@@ -44,6 +53,7 @@ namespace Obi.UserControls
 				{
 					if (mSourceVuMeter != null)
 					{
+                    if ( mUpdateGUITimer.Enabled )  mUpdateGUITimer.Stop ();
 						mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
                         mSourceVuMeter.ResetEvent -= new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
 						mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
@@ -54,7 +64,8 @@ namespace Obi.UserControls
 						mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
                         mSourceVuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
 						mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
-					}
+                        mUpdateGUITimer.Start ();
+                        					}
 				}
 			}
 		}
@@ -81,17 +92,34 @@ namespace Obi.UserControls
             }
         }
 
-        void SourceVuMeter_UpdatePeakMeter(object sender, Obi.Events.Audio.VuMeter.UpdatePeakMeter e)
-		{
+        void SourceVuMeter_UpdatePeakMeter ( object sender, Obi.Events.Audio.VuMeter.UpdatePeakMeter e )
+            {
+            if (e.PeakValues == null) mSourcePeaksIsNull = true;
+            else mSourcePeaksIsNull = false;
+
+            if (mSourceVuMeter != null && e.PeakValues != null && e.PeakValues.Length > 0)
+                {
+
+
+                mPeakArrayLength = e.PeakValues.Length;
+                for (int i = 0; i < e.PeakValues.Length; i++)
+                    {
+                    mPeakValues[i] = e.PeakValues[i];
+                    }
+                }
+            }
+
+        private void UpdateGui ()
+            {
             if (this.InvokeRequired)
             {
-                Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler d = new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                this.Invoke(d, sender, e);
+                //Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler d = new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                //this.Invoke(d, sender, e);
             }
             else
             {
 
-                if (e.PeakValues == null)
+                if (mSourcePeaksIsNull == true )
                 {
                     for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
                     {
@@ -100,10 +128,10 @@ namespace Obi.UserControls
                 }
                 else
                 {
-                    if (e.PeakValues.Length != mPPMeter.NumberOfChannels) mPPMeter.NumberOfChannels = e.PeakValues.Length;
+                    if (mPeakArrayLength != mPPMeter.NumberOfChannels) mPPMeter.NumberOfChannels = mPeakArrayLength;
                     for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
                     {
-                        mPPMeter.SetValue(i, e.PeakValues[i]);
+                        mPPMeter.SetValue(i, mPeakValues[i]);
                     }
                 }
             }
@@ -181,5 +209,10 @@ namespace Obi.UserControls
 		{
 			mPPMeter.SetPeakOverloadCount(e.ChannelNumber, 0);
 		}
+
+        private void mUpdateGUITimer_Tick ( object sender, EventArgs e )
+            {
+            UpdateGui ();
+                                    }
 	}
 }
