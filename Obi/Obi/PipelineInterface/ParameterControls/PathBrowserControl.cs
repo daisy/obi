@@ -109,6 +109,7 @@ namespace Obi.PipelineInterface.ParameterControls
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.FileName = mTextBox.Text;
+            dialog.AddExtension = true; dialog.DefaultExt = "xml";
             dialog.CheckFileExists = false;
             dialog.CheckPathExists = true;
             dialog.OverwritePrompt = true;
