@@ -572,7 +572,7 @@ namespace Obi
         // Help > Report bug (Ctrl+Alt+R)
         private void mHelp_ReportBugMenuItem_Click(object sender, EventArgs e)
         {
-            Uri url = new Uri("http://daisy-trac.cvsdude.com/obi/newticket");
+        Uri url = new Uri (Localizer.Message( "Obi_Wiki_Url") );
             System.Diagnostics.Process.Start(url.ToString());
         }
 
