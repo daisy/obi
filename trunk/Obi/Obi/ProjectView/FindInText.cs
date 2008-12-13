@@ -397,12 +397,12 @@ namespace Obi.ProjectView
 
         private void mPreviousButton_Click(object sender, EventArgs e)
         {
-            mProjectView.FindNextInText();
+            mProjectView.FindPreviousInText();
         }
 
         private void mNextButton_Click(object sender, EventArgs e)
         {
-            mProjectView.FindPreviousInText();
+            mProjectView.FindNextInText ();
         }
 
         private void mCloseButton_Click(object sender, EventArgs e)
