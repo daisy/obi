@@ -392,7 +392,7 @@ namespace Obi.ProjectView
         /// <summary>
         ///  Updates labels of all blocks in a strip, to be used with   background worker
         /// </summary>
-        public void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
+        private void UpdateBlockLabelsInStrip(object sender, DoWorkEventArgs e)
             {
             UpdateBlockLabelsInStrip () ;
             }

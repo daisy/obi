@@ -303,7 +303,7 @@ namespace Obi.ProjectView
             UpdateSize();
             Cursor = mCursor;
 
-            UpdateBlocksLabelInSelectedNodeStrip ();
+            //UpdateBlocksLabelInSelectedNodeStrip ();
         }
 
         private void Presentation_BeforeCommandExecuted(object sender, urakawa.events.command.CommandEventArgs e)
@@ -693,7 +693,7 @@ namespace Obi.ProjectView
             if (mPlaybackBlock != null ) EnsureCursorVisible(mPlaybackBlock.UpdateCursorTime(time));
         }
 
-        public void UpdateBlocksLabelInSelectedNodeStrip ()
+        private void UpdateBlocksLabelInSelectedNodeStrip ()
             {
             if (mProjectView.Presentation != null && mProjectView.Selection != null)
                 {
@@ -702,7 +702,7 @@ namespace Obi.ProjectView
                                 }
             }
 
-        public void UpdateBlocksLabelInStrip(SectionNode section)
+        private void UpdateBlocksLabelInStrip(SectionNode section)
         {
                     Strip s = FindStrip(section);
             if (s != null)
@@ -712,7 +712,7 @@ namespace Obi.ProjectView
                     //BackgroundWorker UpdateStripThread = new BackgroundWorker();
                     //UpdateStripThread.DoWork += new DoWorkEventHandler(s.UpdateBlockLabelsInStrip);
                     //UpdateStripThread.RunWorkerAsync();
-                s.UpdateBlockLabelsInStrip ();
+                //s.UpdateBlockLabelsInStrip ();
                                 }
                 catch (System.Exception)
                 {

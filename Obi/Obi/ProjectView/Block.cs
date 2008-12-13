@@ -162,7 +162,8 @@ namespace Obi.ProjectView
             else
             {
                 mLabel.Text = Node.BaseStringShort();
-                mLabel.AccessibleName = Node.BaseString();
+                //mLabel.AccessibleName = Node.BaseString(); // commented for removing update block label threads.
+                mLabel.AccessibleName = Node.BaseStringShort();
                 mToolTip.SetToolTip(this, Node.BaseStringShort());
                 mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 AccessibleName = mLabel.AccessibleName;
