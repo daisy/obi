@@ -1526,7 +1526,7 @@ namespace Obi.ProjectView
 
         public void UpdateBlocksLabelInStrip(SectionNode node)
         {
-            if (node != null) mContentView.UpdateBlocksLabelInStrip(node);
+            // if (node != null) mContentView.UpdateBlocksLabelInStrip(node); //commented to improve efficiency
         }
 
 
