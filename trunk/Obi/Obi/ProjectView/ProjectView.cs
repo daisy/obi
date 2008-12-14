@@ -19,6 +19,7 @@ namespace Obi.ProjectView
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
+        private bool mShowOnlySelected; // is set to show only one section in contents view.
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -46,6 +47,7 @@ namespace Obi.ProjectView
             mForm = null;
             mClipboard = null;
             mTabbingTimer = null;
+            mShowOnlySelected = false;
         }
 
 
@@ -838,6 +840,7 @@ namespace Obi.ProjectView
                     }
                     // select in the control
                     mSelection = value;
+                    //UpdateShowOnlySelected ( mSelection == null ? false : mShowOnlySelected ); //@ShowSingleSection
                     if (mSelection != null)
                     {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
@@ -949,7 +952,7 @@ namespace Obi.ProjectView
             set
             {
                 mSynchronizeViews = value;
-                if (!CanShowOnlySelectedSection)
+                if (!mShowOnlySelected || !CanShowOnlySelectedSection) //@ShowSingleSection
                 {
                     if (mSynchronizeViews)
                     {
@@ -2006,6 +2009,38 @@ namespace Obi.ProjectView
         {
             mContentView.ResumeLayout_All();
         }
+
+    //@ShowSingleSection
+        /*
+        // taken from project view line 786
+public bool ShowOnlySelectedSection
+        {
+            set
+            {
+                mShowOnlySelected = value;
+                                UpdateShowOnlySelected(value);
+            }
+        }
+
+        
+        private void UpdateShowOnlySelected(bool showOnly)
+        {
+            ObiNode node = SelectedNodeAs<ObiNode>();
+            node = node is SectionNode ? (SectionNode)node :
+                node == null || node is RootNode ? null :
+                node.AncestorAs<SectionNode>();
+            if (showOnly)
+            {
+                            mContentView.ShowOnlySelectedSection(node);
+            }
+            else
+            {
+                SynchronizeViews = mSynchronizeViews;
+            }
+            mContentView.MakeStripVisibleForSection((SectionNode)node);
+        }
+        */
+
     }
 
     public class ImportingFileEventArgs
