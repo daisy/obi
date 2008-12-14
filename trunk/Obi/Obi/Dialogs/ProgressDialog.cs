@@ -57,6 +57,7 @@ namespace Obi.Dialogs
                 {
                     mException = x;
                 }
+                //Close();
             });
             worker.RunWorkerCompleted +=
                 new RunWorkerCompletedEventHandler(delegate(object sender_, RunWorkerCompletedEventArgs e_) { Close(); });
