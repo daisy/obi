@@ -178,6 +178,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}{1}phrase ({2}){3}.
+        /// </summary>
+        internal static string Block_AccessibleLabel {
+            get {
+                return ResourceManager.GetString("Block_AccessibleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create directory.
         /// </summary>
         internal static string cannot_create_directory_caption {

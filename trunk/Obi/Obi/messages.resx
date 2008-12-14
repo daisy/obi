@@ -1327,4 +1327,7 @@ Error text: {1}</value>
   <data name="RecordingSession_SplitError" xml:space="preserve">
     <value>Problem detected in timing of a phrase. Please press Ok to continue</value>
   </data>
+  <data name="Block_AccessibleLabel" xml:space="preserve">
+    <value>{0}{1}phrase ({2}){3}</value>
+  </data>
 </root>

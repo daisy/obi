@@ -161,9 +161,9 @@ namespace Obi.ProjectView
             }
             else
             {
-                mLabel.Text = Node.BaseStringShort();
+                //mLabel.Text = Node.BaseStringShort();
                 //mLabel.AccessibleName = Node.BaseString(); // commented for removing update block label threads.
-                mLabel.AccessibleName = Node.BaseStringShort();
+                mLabel.AccessibleName = GetAccessibleName;
                 mToolTip.SetToolTip(this, Node.BaseStringShort());
                 mToolTip.SetToolTip(mLabel, Node.BaseStringShort());
                 AccessibleName = mLabel.AccessibleName;
@@ -237,5 +237,23 @@ namespace Obi.ProjectView
             UpdateLabelsText();
             Size = new Size(LabelFullWidth, Height);
         }
+
+        private string GetAccessibleName
+            {
+            get
+                {
+                if (mNode == null) return "";
+                double durationMS = mNode is PhraseNode ? mNode.Duration : 0 ;
+                return String.Format ( Localizer.Message ( "Block_AccessibleLabel" ),
+                mNode.TODO ? Localizer.Message ( "phrase_short_TODO" ) : "",
+                mNode.Used ? "" : Localizer.Message ( "unused" ),
+                                                durationMS == 0.0 ? Localizer.Message ( "empty" ) : Program.FormatDuration_Long ( durationMS),
+                mNode.Role_ == EmptyNode.Role.Custom ? String.Format ( Localizer.Message ( "phrase_extra_custom" ), mNode.CustomRole) :
+                mNode.Role_== EmptyNode.Role.Page ? String.Format ( Localizer.Message ( "phrase_extra_page" ), mNode.PageNumber!= null ? mNode.PageNumber.ToString () : "" ) :
+                    Localizer.Message ( "phrase_extra_" + mNode.Role_.ToString () ) );
+        
+
+                }
+            }
     }
 }
