@@ -444,6 +444,16 @@ namespace Obi.ProjectView
         public int PreviewDuration { get { return mView.ObiForm.Settings.PreviewDuration; } }
 
         /// <summary>
+        ///  Empty node in which recording is taking place
+                /// </summary>
+        public EmptyNode RecordingPhrase { get { return mRecordingPhrase; } } 
+
+        public string RecordingPhraseToString { get { 
+            return ( mState == State.Recording && mRecordingPhrase != null && mView.Selection != null && mView.Selection.Node == mRecordingPhrase )?
+            Localizer.Message("Selected_RecordingPhrase"): "" ; } }
+
+
+        /// <summary>
         /// The parent project view. Should be set ASAP, and only once.
         /// </summary>
         public ProjectView ProjectView
