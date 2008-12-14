@@ -811,8 +811,8 @@ namespace Obi
         // 
         // mPhrases_ClearRoleMenuItem
         // 
-        this.mPhrases_ClearRoleMenuItem.Name = "mPhrases_ClearRoleMenuItem";
         resources.ApplyResources ( this.mPhrases_ClearRoleMenuItem, "mPhrases_ClearRoleMenuItem" );
+        this.mPhrases_ClearRoleMenuItem.Name = "mPhrases_ClearRoleMenuItem";
         this.mPhrases_ClearRoleMenuItem.Click += new System.EventHandler ( this.mPhrases_ClearRoleMenuItem_Click );
         // 
         // mPhrases_EditRolesMenuItem
