@@ -17,7 +17,7 @@ namespace Obi.UserControls
         private double[] mPeakValues;
         private int mPeakArrayLength;
         private bool mSourcePeaksIsNull  ;
-        private int m_DieOutCounter;
+        //private int m_DieOutCounter;
 
 		public GraphicalPeakMeter()
 		{
@@ -25,7 +25,7 @@ namespace Obi.UserControls
             mPeakValues = new double[2];
             mPeakArrayLength = 1;
             mSourcePeaksIsNull = true ;
-            m_DieOutCounter = 0;
+            //m_DieOutCounter = 0;
 		}
 
 		private VuMeter mSourceVuMeter;
