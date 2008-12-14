@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 
 namespace Obi
 {
@@ -98,6 +99,8 @@ namespace Obi
         {
             if (mProject != null)
             {
+                mProject.dataIsMissing -= new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs>(OnDataIsMissing);
+
                 // if the project could not be opened, there is no presentation so this call may fail
                 Presentation presentation = null;
                 try { presentation = Presentation; } catch (Exception) { }
@@ -152,6 +155,7 @@ namespace Obi
         {
             mProject = new urakawa.Project();
             mProject.setDataModelFactory(mDataModelFactory);
+            mProject.dataIsMissing += new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs>(OnDataIsMissing);
             mProject.openXUK(new Uri(path));
             mPath = path;
             GetLock(mPath);
@@ -159,6 +163,12 @@ namespace Obi
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.getUndoRedoManager().flushCommands();
             if (ProjectOpened != null) ProjectOpened(this, null);
+        }
+
+        void OnDataIsMissing(object sender, urakawa.events.media.data.DataIsMissingEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, Localizer.Message("open_project_error_caption"),
+                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         // Get a lock file, and throw an exception if there is already one.
