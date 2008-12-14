@@ -135,7 +135,7 @@ namespace InstallerFileOperations
                         if (m_UninstallDeleteDirList[i].Exists) m_UninstallDeleteDirList[i].Delete ( true );
                         }
                     }
-                catch (System.Exception ex)
+                 catch (System.Exception )
                     {
                     MessageBox.Show ( "Some files could not be removed. Please remove them manually", "Warning" );
                     }
