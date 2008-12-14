@@ -72,6 +72,7 @@ namespace Obi
         this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
+        this.mShowSingleSectionToolStripItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator ();
         this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
@@ -412,6 +413,7 @@ namespace Obi
             this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
             this.mWrappingInContentViewToolStripMenuItem,
+            this.mShowSingleSectionToolStripItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
@@ -505,6 +507,13 @@ namespace Obi
         this.mWrappingInContentViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
         this.mWrappingInContentViewToolStripMenuItem.Name = "mWrappingInContentViewToolStripMenuItem";
         this.mWrappingInContentViewToolStripMenuItem.CheckedChanged += new System.EventHandler ( this.mWrappingInContentViewToolStripMenuItem_CheckedChanged );
+        // 
+        // mShowSingleSectionToolStripItem
+        // 
+        resources.ApplyResources ( this.mShowSingleSectionToolStripItem, "mShowSingleSectionToolStripItem" );
+        this.mShowSingleSectionToolStripItem.CheckOnClick = true;
+        this.mShowSingleSectionToolStripItem.Name = "mShowSingleSectionToolStripItem";
+        this.mShowSingleSectionToolStripItem.Click += new System.EventHandler ( this.mShowSingleSectionToolStripItem_Click );
         // 
         // toolStripSeparator10
         // 
@@ -1222,7 +1231,6 @@ namespace Obi
 
         }
 
-        
         #endregion
 
         private System.Windows.Forms.MenuStrip mMenuStrip;
@@ -1368,6 +1376,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_NewCustomRoleMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_ClearRoleMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
+        private System.Windows.Forms.ToolStripMenuItem mShowSingleSectionToolStripItem;
     }
 }
 

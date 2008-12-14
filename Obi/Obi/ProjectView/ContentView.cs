@@ -1829,6 +1829,24 @@ namespace Obi.ProjectView
         {
             mStripsPanel.Location = new Point(mStripsPanel.Location.X, -mVScrollBar.Value);
         }
+
+    //@ShowSingleSection
+        /*
+    /// <summary>
+    /// Show only the selected section.
+    /// </summary>
+    public void ShowOnlySelectedSection ( ObiNode node )
+        {
+        // Show only one strip
+        SectionNode section = node is SectionNode ? (SectionNode)node : node.AncestorAs<SectionNode> ();
+                foreach (Control c in mStripsPanel.Controls)
+            {
+            if (c is Strip ) c.Visible = ((Strip)c).Node == section;
+            }
+        }
+        */
+
+
     }
 
     /// <summary>
