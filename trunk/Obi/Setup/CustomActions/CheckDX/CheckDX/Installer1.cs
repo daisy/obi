@@ -129,7 +129,7 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
                     {
                         Version = (Assembly.ReflectionOnlyLoad(DXList[i]).ImageRuntimeVersion);
                     }
-                    catch (System.Exception ex)
+                     catch (System.Exception )
                     {
                         //OpenDirectXLink();
                     }
@@ -158,7 +158,7 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
             {
                 Version = (Assembly.LoadWithPartialName("Microsoft.DirectX.DirectSound").ImageRuntimeVersion);
             }
-            catch (System.Exception ex)
+             catch (System.Exception )
             {
                 //OpenDirectXLink();
             }
