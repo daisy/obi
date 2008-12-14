@@ -1624,7 +1624,7 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar()
         {
-            if (mProjectView.Selection != null) Status(mProjectView.Selection.ToString());
+        if (mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString );
         }
 
         // Update all of Obi.

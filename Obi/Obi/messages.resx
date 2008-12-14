@@ -1330,4 +1330,7 @@ Error text: {1}</value>
   <data name="Block_AccessibleLabel" xml:space="preserve">
     <value>{0}{1}phrase ({2}){3}</value>
   </data>
+  <data name="Selected_RecordingPhrase" xml:space="preserve">
+    <value>:Recording Phrase</value>
+  </data>
 </root>

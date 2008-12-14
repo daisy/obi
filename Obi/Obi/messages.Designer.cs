@@ -2661,6 +2661,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to :Recording Phrase.
+        /// </summary>
+        internal static string Selected_RecordingPhrase {
+            get {
+                return ResourceManager.GetString("Selected_RecordingPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
         internal static string set_page_number_ {
