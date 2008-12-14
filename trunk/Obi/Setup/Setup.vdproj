@@ -294,6 +294,11 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.2.0"
+                    {
+                    "Name" = "8:Windows Installer 2.0"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.2.0"
+                    }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
                     "Name" = "8:Windows Installer 3.1"
@@ -404,7 +409,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.27362, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.39386, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_00248D6E2588CA2314EA28FCC0F66963"
@@ -890,7 +895,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.3200.34234, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:AudioEngine.PPMeter, Version=1.0.3268.39438, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_BA69952E80ABD61A11E6C4CF8E966FF3"
@@ -1122,19 +1127,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 0.95"
-        "ProductCode" = "8:{B693BC9B-5B6A-49F1-9C35-67100146CBA9}"
-        "PackageCode" = "8:{5A7E308B-A2F0-40EB-89AE-C6573177623D}"
+        "ProductName" = "8:Obi 0.97"
+        "ProductCode" = "8:{BD442B1A-5C9F-43F0-8A69-B4C839635551}"
+        "PackageCode" = "8:{561DBE7B-B105-4062-BAA8-DB22DFAE694F}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.95.0"
+        "ProductVersion" = "8:0.97.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://forums.daisy.org/viewforum.php?f=18"
-        "Title" = "8:Obi 0.95"
+        "Title" = "8:Obi 0.97"
         "Subject" = "8:"
         "ARPCONTACT" = "8:The Urakawa Project Application Team"
         "Keywords" = "8:"
@@ -1245,7 +1250,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 0.95"
+            "Name" = "8:Obi 0.97"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1259,7 +1264,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 0.95"
+            "Name" = "8:Obi 0.97"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
