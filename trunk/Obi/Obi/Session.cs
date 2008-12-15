@@ -194,7 +194,11 @@ namespace Obi
         /// <summary>
         /// Save the current presentation to XUK.
         /// </summary>
-        public void Save() { if (CanSave) ForceSave(); }
+        public void Save() 
+            {
+            
+                                if (CanSave) ForceSave ();
+                                        }
 
         /// <summary>
         /// Always save, regardless of change count (which gets reset.)
@@ -212,14 +216,22 @@ namespace Obi
         /// </summary>
         public void Save(string path)
         {
-            Uri prevRootUri = Presentation.getRootUri();
-            // Make sure that saving is finished before returning
-            System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
-            urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
+        try
+            {
+            Uri prevRootUri = Presentation.getRootUri ();
+                        // Make sure that saving is finished before returning
+            System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent ( false );
+            urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction ( mProject, new Uri ( path ) );
             save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
-                (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
-            save.execute();
-            wh.WaitOne();
+                ( delegate ( object sender, urakawa.events.progress.FinishedEventArgs e ) { wh.Set (); } );
+            save.execute ();
+            wh.WaitOne ();
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( Localizer.Message ( "ErrorInSaving" ) + "\n\n" + ex.ToString (),
+                    Localizer.Message ( "Caption_Error" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
         }
 
         /// <summary>
