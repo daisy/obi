@@ -108,7 +108,8 @@ namespace InstallerFileOperations
             {
             try
                 {
-                if (MessageBox.Show ( "Obi will need Java runtime environment (JRE) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from internet." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+                if (MessageBox.Show ( "Obi will need Java runtime environment (JRE) installed on this computer  for some operations. If it is not already installed on this computer, press yes to install it from internet." + "\n" + "Please note that JRE installation will take some time so it may continue even after installation of Obi is finished", "JRE installation?", MessageBoxButtons.YesNo , MessageBoxIcon.Question) 
+                    == DialogResult.Yes)
                     {
                     Process JREInstallationProcess = new Process ();
                     JREInstallationProcess.StartInfo.FileName = "http://java.com/en/download/windows_ie.jsp";
