@@ -1336,4 +1336,7 @@ Error text: {1}</value>
   <data name="Obi_Wiki_Url" xml:space="preserve">
     <value>http://daisy-trac.cvsdude.com/obi</value>
   </data>
+  <data name="ErrorInSaving" xml:space="preserve">
+    <value>An error is encountered while saving.</value>
+  </data>
 </root>

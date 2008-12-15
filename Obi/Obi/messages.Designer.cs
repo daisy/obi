@@ -1144,6 +1144,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error is encountered while saving..
+        /// </summary>
+        internal static string ErrorInSaving {
+            get {
+                return ResourceManager.GetString("ErrorInSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select the folder in which to save your DAISY book..
         /// </summary>
         internal static string export_choose_folder {
