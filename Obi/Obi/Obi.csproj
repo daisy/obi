@@ -735,7 +735,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FindBarCollapse.wav" />
-    <Content Include="good.wav" />
+    <EmbeddedResource Include="good.wav" />
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
