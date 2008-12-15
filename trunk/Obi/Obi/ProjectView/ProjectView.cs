@@ -19,7 +19,7 @@ namespace Obi.ProjectView
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
-        private bool mShowOnlySelected; // is set to show only one section in contents view.
+        //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -47,7 +47,7 @@ namespace Obi.ProjectView
             mForm = null;
             mClipboard = null;
             mTabbingTimer = null;
-            mShowOnlySelected = false;
+            //mShowOnlySelected = false;
         }
 
 
@@ -952,7 +952,7 @@ namespace Obi.ProjectView
             set
             {
                 mSynchronizeViews = value;
-                if (!mShowOnlySelected || !CanShowOnlySelectedSection) //@ShowSingleSection
+                if (!CanShowOnlySelectedSection) //@ShowSingleSection
                 {
                     if (mSynchronizeViews)
                     {
