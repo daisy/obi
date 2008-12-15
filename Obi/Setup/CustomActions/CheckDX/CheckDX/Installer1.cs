@@ -169,15 +169,30 @@ private List <string>  FindDirectXPaths(List<string> DirPaths)
             {
                 OpenDirectXLink();
             }
-        }// end function
+                                }// end function
 
         private void OpenDirectXLink()
         {
+        string installerSourceDirPath = Context.Parameters["SourcePath"];
+        string DXPath = "";
+
+        if (installerSourceDirPath != null && Directory.Exists ( installerSourceDirPath ))
+            {
+            //DXPath =  Path.Combine ( Directory.GetParent ( installerSourceDirPath ).Parent.FullName,
+                //"Prereq\\DX9C\\DXSETUP.exe" );
+            }
+        
+        if (DXPath == "" || !File.Exists ( DXPath ))
+            {
+            DXPath = "http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3";
+            }
+
+
             DialogResult result = MessageBox.Show("Installation complete.\n But application may not function properly because Required DirectX version ( ver 9 c managed ) not Installed. \n Do you want to download it from internet?", "DirectX error!", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
-                p.StartInfo.FileName = "http://www.microsoft.com/downloads/details.aspx?familyid=2da43d38-db71-4c1b-bc6a-9b6652cd92a3";
+                p.StartInfo.FileName = DXPath;
                 p.Start();
             }
         }
