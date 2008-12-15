@@ -1902,6 +1902,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please use clean unreferenced audio as soon as project opens..
+        /// </summary>
+        internal static string OpenError_UseCleanUp {
+            get {
+                return ResourceManager.GetString("OpenError_UseCleanUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not able to find output directory. \n Do you want to create it?.
         /// </summary>
         internal static string OutputDirectoryNotFound_Permission_Create {

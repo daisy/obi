@@ -167,7 +167,7 @@ namespace Obi
 
         void OnDataIsMissing(object sender, urakawa.events.media.data.DataIsMissingEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, Localizer.Message("open_project_error_caption"),
+            MessageBox.Show( Localizer.Message("OpenError_UseCleanUp") + "\n"+  e.Exception.Message, Localizer.Message("open_project_error_caption") ,
                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
