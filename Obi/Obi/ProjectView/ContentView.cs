@@ -1526,9 +1526,9 @@ namespace Obi.ProjectView
                             } // check for null presentation ends
                 
                                 } // try ends
-            catch (System.Exception ex)
+            catch (System.Exception )
                 {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show ( Localizer.Message ( "Caption_Error" ), Localizer.Message ( "Caption_Error" ) );
                 }
             return false;
                         }

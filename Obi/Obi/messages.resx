@@ -1339,4 +1339,7 @@ Error text: {1}</value>
   <data name="ErrorInSaving" xml:space="preserve">
     <value>An error is encountered while saving.</value>
   </data>
+  <data name="OpenError_UseCleanUp" xml:space="preserve">
+    <value>Please use clean unreferenced audio as soon as project opens.</value>
+  </data>
 </root>
