@@ -1105,6 +1105,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Control | Keys.PageUp] = SelectPrecedingPageNode;
             mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode;
             mShortcutKeys[Keys.Shift | Keys.F4] = SelectPreviousSpecialRoleNode;
+            mShortcutKeys[Keys.Control | Keys.Alt | Keys.F4] = SelectNextEmptyNode;
 
             mShortcutKeys[Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Down] = SelectNextStrip;
@@ -1497,7 +1498,40 @@ namespace Obi.ProjectView
             } // check for null presentation ends
         }
 
-
+        private bool SelectNextEmptyNode ()
+            {
+            try
+                {
+                if (mProjectView.Presentation != null)
+            {
+            if (SelectedNodeInTransportbarOrProjectview != null)
+                {
+                for (ObiNode n = SelectedNodeInTransportbarOrProjectview.FollowingNode; n != null; n = n.FollowingNode)
+                    {
+                    if (n is EmptyNode && !(n is PhraseNode) )
+                        {
+                        mProjectView.Selection = new NodeSelection ( n, this );
+                        return true;
+                        }
+                    }
+                }
+            for (ObiNode n = mProjectView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+                {
+                if (n is EmptyNode && !(n is PhraseNode))
+                    {
+                    mProjectView.Selection = new NodeSelection ( n, this );
+                    return true;
+                    }
+                }
+                            } // check for null presentation ends
+                
+                                } // try ends
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
+            return false;
+                        }
 
 
 
