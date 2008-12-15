@@ -1830,11 +1830,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://daisy-trac.cvsdude.com/obi.
+        ///   Looks up a localized string similar to http://www.daisy.org/projects/obi/.
         /// </summary>
         internal static string obi_url {
             get {
                 return ResourceManager.GetString("obi_url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://daisy-trac.cvsdude.com/obi.
+        /// </summary>
+        internal static string Obi_Wiki_Url {
+            get {
+                return ResourceManager.GetString("Obi_Wiki_Url", resourceCulture);
             }
         }
         
