@@ -137,6 +137,10 @@ namespace Obi.ProjectView
         // Add a new strip to the project.
         public void AddStrip()
         {
+            // quick fix to avoid a crash.
+            if ( Presentation != null && Presentation.FirstSection == null && Selection != null)
+                Selection = null ;
+
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
 
             // select parent section node if a child phrase node is selected
@@ -288,7 +292,7 @@ namespace Obi.ProjectView
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel    &&    !( Selection is TextSelection ) ; } }
-        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive; } }
+        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive    &&   Presentation != null    &&    Presentation.FirstSection != null; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
@@ -559,8 +563,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void FocusOnTOCView()
         {
-            if (CanFocusOnTOCView)
+                        if (CanFocusOnTOCView)
             {
+                            // check for first section node added for a quick fix.
+            if (Presentation.FirstSection == null) Selection = null;
+
                 SectionNode node = mSelection == null ? null :
                     mSelection.Node is SectionNode ? (SectionNode)mSelection.Node :
                     mSelection.Node.AncestorAs<SectionNode>();
@@ -1081,7 +1088,7 @@ namespace Obi.ProjectView
 
         public bool CanShowPhrasePropertiesDialog { get { return Selection != null && Selection.Node is EmptyNode; } }
         public bool CanShowProjectPropertiesDialog { get { return mPresentation != null ; } }
-        public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode; } }
+        public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null; } } // quick fix of inserting first section check to avoid a crash
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used ; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
