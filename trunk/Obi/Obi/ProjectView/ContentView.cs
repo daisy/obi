@@ -1782,7 +1782,7 @@ namespace Obi.ProjectView
         // Clear role context menu item
         private void Context_ClearRoleMenuItem_Click(object sender, EventArgs e)
         {
-            mProjectView.SetRoleForSelectedBlock(EmptyNode.Role.Plain, null);
+        mProjectView.ClearRoleOfSelectedPhrase ();
         }
 
         // Apply phrase detection context menu item
