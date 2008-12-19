@@ -899,8 +899,13 @@ namespace Obi.ProjectView
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
                 for ( int i = 0 ; i < stripControl.Node.PhraseChildCount ; i++ )
+                    {
+                    if ( i == stripControl.Node.PhraseChildCount -1 )
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
+                    else
+                    stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
 
+                }
                 return true;
                 }
             return false;
