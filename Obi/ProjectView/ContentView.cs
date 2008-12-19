@@ -34,6 +34,9 @@ namespace Obi.ProjectView
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
 
+        
+        private readonly int m_MaxVisiblePhraseCount;
+        private bool m_CreatingGUIForNewPresentation;
 
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
         private delegate void RemoveControlForSectionNodeDelegate(SectionNode node);
@@ -56,6 +59,9 @@ namespace Obi.ProjectView
             SetPlaybackPhraseAndTime(null, 0.0);
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
             mEnableScrolling = true;
+
+            m_VisibleStripsList = new List<Strip> ();
+            m_MaxVisiblePhraseCount = 300;
         }
 
 
@@ -282,7 +288,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void NewPresentation()
         {
+        m_CreatingGUIForNewPresentation = true;
             mStripsPanel.Controls.Clear();
+            m_VisibleStripsList.Clear ();
             ClearWaveformRenderQueue();
             SuspendLayout_All();
             AddStripForSection_Safe(mProjectView.Presentation.RootNode);
@@ -295,6 +303,9 @@ namespace Obi.ProjectView
             UpdateSize();
             mVScrollBar.Value = 0;
             mHScrollBar.Value = 0;
+
+            CreateBlocksForInitialStrips ();
+            m_CreatingGUIForNewPresentation = false;
         }
 
         private void ContentView_commandDone(object sender, urakawa.events.undo.DoneEventArgs e)
@@ -796,12 +807,53 @@ namespace Obi.ProjectView
                     strip.WrapContents = mWrapStripContents;
                     strip.ColorSettings = ColorSettings;
                     //for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
-                }
+                    if (!m_CreatingGUIForNewPresentation)
+                        {
+                                                    CreateBlocksInStrip ( strip );
+                        }
+
+                    }
                 AddControlAt(strip, ((SectionNode)node).Position);
             }
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             return strip;
         }
+
+        private List<Strip> m_VisibleStripsList;
+
+        public int VisibleBlocksCount
+            {
+            get
+                {
+                int count= 0 ;
+                for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                    count += m_VisibleStripsList[i].Node.PhraseChildCount;
+
+                return count;
+                }
+            }
+
+        private void CreateBlocksForInitialStrips ()
+            {
+
+            for (int i = 0; i < mStripsPanel.Controls.Count; i++)
+                {
+
+                if (mStripsPanel.Controls[i] is Strip)
+                    {
+                    Strip s = (Strip)mStripsPanel.Controls[i] ;
+                    if ( s.Node.PhraseChildCount < m_MaxVisiblePhraseCount -  VisibleBlocksCount  )
+                        {
+                    CreateBlocksInStrip (s) ;
+                                                //MessageBox.Show ( s.Node.Label );
+                        }
+                    }
+
+                }
+
+            }
+
+
 
         public bool CreateBlocksInStrip ()
             {
@@ -812,14 +864,35 @@ namespace Obi.ProjectView
             {
                                     if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
                 {
+                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount );
+
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
-                System.Media.SystemSounds.Asterisk.Play ();
-                return true;
+                m_VisibleStripsList.Add ( stripControl );
+                                return true;
                 }
             return false;
             }
+
+        private void MakeOldStripsBlocksInvisible ( int countRequired )
+            {
+            if (m_VisibleStripsList.Count > 0)
+            {
+            for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                {
+                                if (m_MaxVisiblePhraseCount - VisibleBlocksCount < countRequired)
+                    {
+                    RemoveBlocksInStrip ( m_VisibleStripsList[0] );
+                    //MessageBox.Show ( "Removed  " + m_VisibleStripsList[0].Label );
+                    m_VisibleStripsList.RemoveAt ( 0 );
+                    
+                    }
+                else
+                    return;
+                }
+                }
+                        }
 
         private bool RemoveBlocksInStrip ( Strip stripControl )
             {
