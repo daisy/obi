@@ -77,6 +77,19 @@ namespace Obi.ProjectView
             set { UpdateColors(value); }
         }
 
+        public bool IsBlocksVisible
+            {
+            get
+                {
+                if (mNode.PhraseChildCount == 0)
+                    return true;
+                else if (mBlockLayout.Controls.Count > 0)
+                    return false;
+                else
+                    return true;
+                }
+            }
+
         /// <summary>
         /// Get the content view for the strip.
         /// </summary>
@@ -302,7 +315,13 @@ namespace Obi.ProjectView
         /// Remove the following strip cursor as well
         /// (and the first one if it was the last block.)
         /// </summary>
-        public void RemoveBlock(EmptyNode node)
+        /// 
+        public void RemoveBlock ( EmptyNode node )
+            {
+            RemoveBlock ( node, true );
+            }
+
+        public void RemoveBlock(EmptyNode node, bool updateSize)
         {
             Block block = FindBlock(node);
             if (block != null)
@@ -312,7 +331,7 @@ namespace Obi.ProjectView
                 mBlockLayout.Controls.RemoveAt(index);
                 if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
                 block.SizeChanged -= new EventHandler(Block_SizeChanged);
-                Resize_Blocks();
+                if ( updateSize )  Resize_Blocks();
                 UpdateStripCursorsAccessibleName(index - 1);
                 block.Dispose ();
                 block = null;
