@@ -795,7 +795,7 @@ namespace Obi.ProjectView
                     mStrips[(SectionNode)node] = strip;
                     strip.WrapContents = mWrapStripContents;
                     strip.ColorSettings = ColorSettings;
-                    for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
+                    //for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
                 }
                 AddControlAt(strip, ((SectionNode)node).Position);
             }
@@ -803,8 +803,38 @@ namespace Obi.ProjectView
             return strip;
         }
 
+        public bool CreateBlocksInStrip ()
+            {
+            return CreateBlocksInStrip ( StripForSelection != null ? StripForSelection : null );
+            }
+
+        private  bool CreateBlocksInStrip ( Strip stripControl )
+            {
+                                    if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
+                {
+                for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
+                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+
+                System.Media.SystemSounds.Asterisk.Play ();
+                return true;
+                }
+            return false;
+            }
+
+        private bool RemoveBlocksInStrip ( Strip stripControl )
+            {
+            if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
+                {
+                for ( int i = 0 ; i < stripControl.Node.PhraseChildCount ; i++ )
+                    stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
+
+                return true;
+                }
+            return false;
+            }
+
         // Recursive function to go through all the controls in-order and add the ISearchable ones to the list
-        private void AddToSearchables(Control c, List<ISearchable> searchables)
+        private void AddToSearchables ( Control c, List<ISearchable> searchables )
         {
             if (c is ISearchable) searchables.Add((ISearchable)c);
             foreach (Control c_ in c.Controls) AddToSearchables(c_, searchables);
@@ -1117,6 +1147,8 @@ namespace Obi.ProjectView
             // Control + arrows moves the strip cursor
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
+
+            mShortcutKeys[Keys.F5] = CreateBlocksInStrip ;
         }
 
         private bool CanUseKeys { get { return mSelection == null || !(mSelection is TextSelection); } }
