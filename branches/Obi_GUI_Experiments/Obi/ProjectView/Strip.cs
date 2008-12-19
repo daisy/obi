@@ -314,6 +314,8 @@ namespace Obi.ProjectView
                 block.SizeChanged -= new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
                 UpdateStripCursorsAccessibleName(index - 1);
+                block.Dispose ();
+                block = null;
             }
         }
 
