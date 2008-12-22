@@ -1559,6 +1559,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Space] = delegate() { return TogglePlayPause(UseAudioCursor); };
             mShortcutKeys[Keys.Alt | Keys.Enter] = delegate() { return ShowNodePropertiesDialog(); };
             mShortcutKeys[Keys.F8] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
+            mShortcutKeys[Keys.F5] = delegate () { return mContentView.CreateBlocksInStrip (); };
         }
 
         // Process key press: if this is a key down event, lookup the shortcut tables;

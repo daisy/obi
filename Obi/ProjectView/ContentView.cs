@@ -150,7 +150,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                EmptyNode node = mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock.Node: mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
+                EmptyNode node = mProjectView.TransportBar.IsPlayerActive &&  mPlaybackBlock != null? mPlaybackBlock.Node: mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
                 return node != null
                     && node.Index < node.ParentAs<ObiNode>().PhraseChildCount - 1;
             }
@@ -1226,7 +1226,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
 
-            mShortcutKeys[Keys.F5] = CreateBlocksInStrip ;
+            
         }
 
         private bool CanUseKeys { get { return mSelection == null || !(mSelection is TextSelection); } }
