@@ -64,8 +64,8 @@ namespace Obi.ProjectView
             mEnableScrolling = true;
 
             m_VisibleStripsList = new List<Strip> ();
-            m_MaxVisiblePhraseCount = 200;
-            m_MaxOverLimitForPhraseVisibility = 100;
+            m_MaxVisiblePhraseCount = 600;
+            m_MaxOverLimitForPhraseVisibility = 300;
             m_BlocksVisibilityOperationMutex = new Mutex ();
         }
 
@@ -471,9 +471,16 @@ namespace Obi.ProjectView
                 if (value != mSelection)
                 {
                     ISelectableInContentView s = value == null ? null : FindSelectable(value);
+
+                    if ( s == null && IsBlockInvisibleButStripVisible ( value))
+                        { /* do nothing */ }
+                        else
+                            {
                     if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                     mSelection = value;
                     mSelectedItem = s;
+                            }
+
                     if (s != null)
                     {
                         s.SetSelectionFromContentView(mSelection);
@@ -488,6 +495,26 @@ namespace Obi.ProjectView
                 }
             }
         }
+
+        private bool IsBlockInvisibleButStripVisible ( NodeSelection sel)
+            {
+            if (sel == null)
+                return false;
+
+            ObiNode node = sel.Node;
+            if (node is EmptyNode && node.IsRooted)
+                {
+                SectionNode parent  = node.ParentAs<SectionNode>() ;
+                Strip s = FindStrip ( parent ) ;
+
+                if (s != null && s.FindBlock ((EmptyNode) node ) == null )
+                    {
+                                                            return true;
+                    }
+                }
+            return false;
+            }
+
 
         /// <summary>
         /// Disable scrolling when clicking on an element. 
@@ -1405,7 +1432,7 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip()
         {
-                                    Strip strip = StripAfter(StripFor( mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock : mSelectedItem));
+                                            Strip strip = StripAfter(StripFor( mProjectView.TransportBar.IsPlayerActive &&  mPlaybackBlock != null? mPlaybackBlock : mSelectedItem));
             if (strip != null)
             {
                 mProjectView.Selection = new NodeSelection(strip.Node, this);
