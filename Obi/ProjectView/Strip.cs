@@ -16,7 +16,7 @@ namespace Obi.ProjectView
         private Mutex mLabelUpdateThread;    // thread to update labels
         private SectionNode mNode;           // the section node for this strip
         private bool mWrap;                  // wrap contents
-
+        private bool m_IsBlocksVisibilityProcessActive;
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -31,6 +31,7 @@ namespace Obi.ProjectView
             Highlighted = false;
             mWrap = false;
             mLabelUpdateThread = new Mutex();
+            m_IsBlocksVisibilityProcessActive = false;
         }
 
         /// <summary>
@@ -89,6 +90,13 @@ namespace Obi.ProjectView
                     return true;
                 }
             }
+
+        public bool IsBlocksVisibilityProcessActive
+            {
+             get { return m_IsBlocksVisibilityProcessActive ; }
+            set { m_IsBlocksVisibilityProcessActive = value ;}
+            }
+
 
         /// <summary>
         /// Get the content view for the strip.

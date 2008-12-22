@@ -36,7 +36,10 @@ namespace Obi.ProjectView
 
         
         private readonly int m_MaxVisiblePhraseCount;
+        private readonly int m_MaxOverLimitForPhraseVisibility ;
         private bool m_CreatingGUIForNewPresentation;
+        private Mutex m_BlocksVisibilityOperationMutex;
+
 
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
         private delegate void RemoveControlForSectionNodeDelegate(SectionNode node);
@@ -61,7 +64,9 @@ namespace Obi.ProjectView
             mEnableScrolling = true;
 
             m_VisibleStripsList = new List<Strip> ();
-            m_MaxVisiblePhraseCount = 300;
+            m_MaxVisiblePhraseCount = 200;
+            m_MaxOverLimitForPhraseVisibility = 100;
+            m_BlocksVisibilityOperationMutex = new Mutex ();
         }
 
 
@@ -864,35 +869,57 @@ namespace Obi.ProjectView
             {
                                     if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
                 {
-                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount );
+                                        // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
+                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true);
 
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
                 m_VisibleStripsList.Add ( stripControl );
+                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false );
                                 return true;
                 }
             return false;
             }
 
-        private void MakeOldStripsBlocksInvisible ( int countRequired )
+        
+        private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit)
             {
-            if (m_VisibleStripsList.Count > 0)
-            {
-            for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                {
-                                if (m_MaxVisiblePhraseCount - VisibleBlocksCount < countRequired)
-                    {
-                    RemoveBlocksInStrip ( m_VisibleStripsList[0] );
-                    //MessageBox.Show ( "Removed  " + m_VisibleStripsList[0].Label );
-                    m_VisibleStripsList.RemoveAt ( 0 );
-                    
-                    }
-                else
-                    return;
-                }
-                }
+                        if (m_VisibleStripsList.Count == 0)
+                return ;
+
+            m_BlocksVisibilityOperationMutex.WaitOne ();
+            int maxVisiblePhraseCountConsidered;
+
+            if (tillOverLimit == false) // consider only normal visibility limit and no over limit. this is normal operation and can be used through threads
+                maxVisiblePhraseCountConsidered = m_MaxVisiblePhraseCount;
+            else// overlimit is true, operate in overlimit band, called when we visible phrases are more than even over limit. generally called imidiately 
+                                maxVisiblePhraseCountConsidered = m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility;
+                
+                
+                    for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                        {
+                                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired)
+                            {
+                                                        try
+                                {
+                                RemoveBlocksInStrip ( m_VisibleStripsList[0] );
+                                }
+                            catch (System.Exception ex)
+                                {
+                                
+                                }
+                            //MessageBox.Show ( "Removed  " + m_VisibleStripsList[0].Label );
+                            m_VisibleStripsList.RemoveAt ( 0 );
+                            }
+                        else
+                            {
+                            m_BlocksVisibilityOperationMutex.ReleaseMutex ();
+                            return;
+                            }
                         }
+                    m_BlocksVisibilityOperationMutex.ReleaseMutex ();
+                    }
 
         private bool RemoveBlocksInStrip ( Strip stripControl )
             {
