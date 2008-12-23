@@ -64,7 +64,7 @@ namespace Obi.ProjectView
             mEnableScrolling = true;
 
             m_VisibleStripsList = new List<Strip> ();
-            m_MaxVisiblePhraseCount = 600;
+            m_MaxVisiblePhraseCount = 700;
             m_MaxOverLimitForPhraseVisibility = 300;
             m_BlocksVisibilityOperationMutex = new Mutex ();
         }
@@ -902,15 +902,40 @@ namespace Obi.ProjectView
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
-                m_VisibleStripsList.Add ( stripControl );
+                int indexAddition =  AddStripToVisibleStripsList ( stripControl );
+                //MessageBox.Show ( indexAddition.ToString () );
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false );
                                 return true;
                 }
             return false;
             }
 
-        
-        private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit)
+        private int AddStripToVisibleStripsList ( Strip newStrip )
+            {
+            if (m_VisibleStripsList.Count > 0)
+                {
+                if (newStrip.Node.Position < m_VisibleStripsList[0].Node.Position)
+                    {
+                    m_VisibleStripsList.Insert ( 0, newStrip );
+                    return 0 ;
+                    }
+
+
+                for (int i = 0; i < m_VisibleStripsList.Count-1 ; i++)
+                    {
+                    if (newStrip.Node.Position > m_VisibleStripsList[i].Node.Position && newStrip.Node.Position < m_VisibleStripsList[i + 1].Node.Position)
+                        {
+                        m_VisibleStripsList.Insert ( i + 1, newStrip );
+                        return i+ 1 ;
+                        }
+                    }
+                }
+            m_VisibleStripsList.Add ( newStrip );
+            return m_VisibleStripsList.Count;
+            }
+
+
+private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit)
             {
                         if (m_VisibleStripsList.Count == 0)
                 return ;
