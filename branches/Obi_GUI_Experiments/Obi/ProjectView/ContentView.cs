@@ -897,14 +897,14 @@ namespace Obi.ProjectView
                                     if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
                 {
                                         // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
-                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true);
+                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
-                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false );
+                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
                                 return true;
                 }
             return false;
@@ -935,7 +935,7 @@ namespace Obi.ProjectView
             }
 
 
-private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit)
+private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit, int newStripIndex)
             {
                         if (m_VisibleStripsList.Count == 0)
                 return ;
@@ -955,7 +955,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                                                         try
                                 {
-                                RemoveBlocksInStrip ( m_VisibleStripsList[0] );
+                                RemoveBlocksInStrip ( m_VisibleStripsList[  0] );
                                 }
                             catch (System.Exception ex)
                                 {
@@ -989,6 +989,33 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 }
             return false;
             }
+
+        private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
+            {
+            if (newSectionIndex < m_VisibleStripsList.Count / 2)
+                {
+                for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                    {
+                    if (mProjectView.Selection != null && mProjectView.SelectedNodeAs<SectionNode> () != m_VisibleStripsList[i].Node)
+                                                return i;
+                        
+                    }
+                }
+                else
+                    {
+                    for ( int i = m_VisibleStripsList.Count -1 ; i >= 0 ; i-- )
+                        {
+                        if (mProjectView.Selection != null && mProjectView.SelectedNodeAs<SectionNode> () != m_VisibleStripsList[i].Node)
+                                                return i;
+                        
+                        }
+                    }
+
+                return 0 ;
+                
+
+            }
+
 
         // Recursive function to go through all the controls in-order and add the ISearchable ones to the list
         private void AddToSearchables ( Control c, List<ISearchable> searchables )
