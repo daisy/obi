@@ -549,10 +549,16 @@ namespace Obi.ProjectView
             {
                 if (mSelection != null && mSelection.Control is TOCView)
                 {
-                    if (TransportBar.IsPlayerActive)
-                        Selection = new NodeSelection(mContentView.PlaybackPhrase, mContentView);
+                if (TransportBar.IsPlayerActive)
+                    {
+                    // if block to be selected is invisible, select parent strip
+                    if ( mContentView.IsBlockInvisibleButStripVisible ( mTransportBar.CurrentPlaylist.CurrentPhrase ) )
+                    Selection = new NodeSelection ( mTransportBar.CurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mContentView );
                     else
-                        Selection = new NodeSelection(mSelection.Node, mContentView);
+                        Selection = new NodeSelection ( mContentView.PlaybackPhrase, mContentView );
+                    }// playback active check ends
+                else
+                    Selection = new NodeSelection ( mSelection.Node, mContentView );
                 }
                 //mContentView.Focus();
             }
