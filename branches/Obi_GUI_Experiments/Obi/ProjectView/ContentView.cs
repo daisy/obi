@@ -992,7 +992,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
             {
-            if (newSectionIndex < m_VisibleStripsList.Count / 2)
+                        if (newSectionIndex > m_VisibleStripsList.Count / 2)
                 {
                 for (int i = 0; i < m_VisibleStripsList.Count; i++)
                     {
