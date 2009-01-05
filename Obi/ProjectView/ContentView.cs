@@ -515,6 +515,21 @@ namespace Obi.ProjectView
             return false;
             }
 
+        public bool IsBlockInvisibleButStripVisible ( EmptyNode node )
+            {
+            if (node != null    &&     node is EmptyNode && node.IsRooted)
+                {
+                SectionNode parent = node.ParentAs<SectionNode> ();
+                Strip s = FindStrip ( parent );
+
+                if (s != null && s.FindBlock ( (EmptyNode)node ) == null)
+                    {
+                    return true;
+                    }
+                }
+            return false;
+            }
+
 
         /// <summary>
         /// Disable scrolling when clicking on an element. 

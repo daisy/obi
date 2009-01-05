@@ -1952,10 +1952,18 @@ namespace Obi.ProjectView
         {
             if (node != null)
             {
-                if (selectionControl == null)
-                    Selection = new NodeSelection(node, mContentView);
-                else
-                    Selection = new NodeSelection(node, selectionControl);
+                // if block to be selected is invisible, select parent section
+            if (mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)  node ) 
+                || (selectionControl != null && selectionControl is TOCView ) )
+                {
+                node = node.ParentAs<SectionNode> ();
+                }
+
+            if (selectionControl == null)
+                Selection = new NodeSelection ( node, mContentView );
+            else
+                                                Selection = new NodeSelection ( node, selectionControl );
+                
             }
         }
 
