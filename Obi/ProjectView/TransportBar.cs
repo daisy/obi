@@ -133,7 +133,7 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) ; } }
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit; } }
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
@@ -1106,7 +1106,7 @@ namespace Obi.ProjectView
         private void SetupRecording(bool recording, SectionNode afterSection)
         {
         if (mRecorder != null && mRecorder.State == Obi.Audio.AudioRecorderState.Stopped)
-            {
+                        {
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
             // assign selection to null if metadata is selected.
@@ -1481,6 +1481,8 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     // record into to next phrase.
+                    // check if phrase count of section is less than max limit
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.m_MaxPhrasesPerSection )
                     mRecordingSession.NextPhrase();
                 }
                 else if (mState == State.Monitoring)
@@ -1527,6 +1529,8 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    // check if phrase limit for section is not over
+                    if ( mView.IsPhraseCountWithinLimit)
                     mRecordingSession.MarkPage();
                 }
                 else if (mState == State.Monitoring)
