@@ -1032,6 +1032,9 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
             }
 
+        public Clipboard clipboard { get { return mProjectView.Clipboard; } }
+
+
 
         // Recursive function to go through all the controls in-order and add the ISearchable ones to the list
         private void AddToSearchables ( Control c, List<ISearchable> searchables )
