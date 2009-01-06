@@ -1482,7 +1482,7 @@ namespace Obi.ProjectView
                 {
                     // record into to next phrase.
                     // check if phrase count of section is less than max limit
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.m_MaxPhrasesPerSection )
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection )
                     mRecordingSession.NextPhrase();
                 }
                 else if (mState == State.Monitoring)
@@ -1530,7 +1530,7 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     // check if phrase limit for section is not over
-                    if ( mView.IsPhraseCountWithinLimit)
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection )
                     mRecordingSession.MarkPage();
                 }
                 else if (mState == State.Monitoring)
