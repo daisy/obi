@@ -20,6 +20,7 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
+        private readonly int m_MaxPhrasesPerSection;
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -48,6 +49,7 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
+            m_MaxPhrasesPerSection = 70;
         }
 
 
@@ -208,7 +210,7 @@ namespace Obi.ProjectView
             );
         }
 
-        public bool CanAddEmptyBlock { get { return mContentView.Selection != null; } }
+        public bool CanAddEmptyBlock { get { return mContentView.Selection != null    &&    IsPhraseCountWithinLimit; } }
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
@@ -219,10 +221,11 @@ namespace Obi.ProjectView
             get
             {
                 return mPresentation != null &&
-                    Selection != null &&
+                    Selection != null && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < m_MaxPhrasesPerSection   && // @max phrase
                     Selection.Node is PhraseNode &&
                     ((PhraseNode)Selection.Node).Role_ != EmptyNode.Role.Silence &&
-                    !TransportBar.IsRecorderActive;
+                    !TransportBar.IsRecorderActive    &&
+                    IsPhraseCountWithinLimit ;
             }
         }
 
@@ -294,7 +297,7 @@ namespace Obi.ProjectView
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel    &&    !( Selection is TextSelection ) ; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive    &&   Presentation != null    &&    Presentation.FirstSection != null; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
-        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
+        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive   ; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
@@ -333,10 +336,11 @@ namespace Obi.ProjectView
         {
             get
             {
-                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor;
+                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor    &&   IsPhraseCountWithinLimit ;
             }
         }
 
+        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < m_MaxPhrasesPerSection; } }
 
         public bool CanMarkPhrase
         {
@@ -357,6 +361,22 @@ namespace Obi.ProjectView
 
                 /// <summary> can mark selection end from keyboard /// </summary>
         public bool CanMarkSelectionEnd { get { return TransportBar.IsPlayerActive && Selection != null && Selection is AudioSelection; } }
+
+        // @max phrase
+        public SectionNode GetSelectedPhraseSection
+            {
+            get
+                {
+                if (Selection != null)
+                    {
+                    if (Selection.Node is SectionNode) return SelectedNodeAs<SectionNode> ();
+                    else if (Selection.Node is EmptyNode) return Selection.Node.ParentAs<SectionNode> ();
+                    }
+                return null;
+                }
+            }
+
+
         /// <summary>
         /// Contents of the clipboard
         /// </summary>
@@ -616,6 +636,15 @@ namespace Obi.ProjectView
         {
             if (CanMergeStripWithNext)
             {
+                // if total phrase count after merge is more than max phrases per section, return
+            SectionNode section = mContentView.SelectedSection ;
+            SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
+            if ((section.PhraseChildCount + next.PhraseChildCount) > m_MaxPhrasesPerSection)
+                {
+                MessageBox.Show ( "Phrase count exceeds max limit" );
+                return;
+                }
+
                 mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
             }
@@ -734,6 +763,10 @@ namespace Obi.ProjectView
         {
             if (CanPaste)
             {
+                // if clipboard has phrase and the phrase count per section is above the max limit, return
+            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  m_MaxPhrasesPerSection)
+                return;
+
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
@@ -1241,10 +1274,13 @@ namespace Obi.ProjectView
                                     }
                                 });
                         progress.ShowDialog();
-                        if (phraseNodes.Count > 0)
-                        {
-                            mPresentation.Do(GetImportPhraseCommands(phraseNodes));
-                        }
+                        if (phraseNodes.Count > 0
+                            && GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < m_MaxPhrasesPerSection))
+                            {
+                            mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                            }
+                        else
+                            MessageBox.Show ( "Cannot insert phrases" );
                     }
                 }
             }

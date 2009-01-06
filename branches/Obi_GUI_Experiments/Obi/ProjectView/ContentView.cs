@@ -145,7 +145,8 @@ namespace Obi.ProjectView
                     || mSelection is AudioSelection
                     || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0 &&
                         ((StripIndexSelection)mSelection).Index <
-                            ((StripIndexSelection)mSelection).Section.PhraseChildCount); 
+                            ((StripIndexSelection)mSelection).Section.PhraseChildCount)  &&
+                            mProjectView.IsPhraseCountWithinLimit ; 
             }
         }
 
@@ -1011,7 +1012,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                 for (int i = 0; i < m_VisibleStripsList.Count; i++)
                     {
-                    if (mProjectView.Selection != null && mProjectView.SelectedNodeAs<SectionNode> () != m_VisibleStripsList[i].Node)
+                    if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node)
                                                 return i;
                         
                     }
@@ -1020,7 +1021,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     for ( int i = m_VisibleStripsList.Count -1 ; i >= 0 ; i-- )
                         {
-                        if (mProjectView.Selection != null && mProjectView.SelectedNodeAs<SectionNode> () != m_VisibleStripsList[i].Node)
+                        if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node)
                                                 return i;
                         
                         }
