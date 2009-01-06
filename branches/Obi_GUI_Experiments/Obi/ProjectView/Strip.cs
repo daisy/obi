@@ -341,8 +341,14 @@ namespace Obi.ProjectView
                 block.SizeChanged -= new EventHandler(Block_SizeChanged);
                 if ( updateSize )  Resize_Blocks();
                 UpdateStripCursorsAccessibleName(index - 1);
-                block.Dispose ();
-                block = null;
+
+                // dispose block for freeing window handle only if it is not held in clipboard
+                if ( mContentView.clipboard == null || ( mContentView.clipboard != null && mContentView.clipboard.Node != block.Node ))
+                    {
+                                        block.Dispose ();
+                    block = null;
+                                        }
+                
             }
         }
 
