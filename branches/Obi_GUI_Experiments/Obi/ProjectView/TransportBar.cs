@@ -197,7 +197,21 @@ namespace Obi.ProjectView
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
-        public bool CanSplitPhrase { get { return IsPlayerActive || mView.Selection is AudioSelection; } }
+        public bool CanSplitPhrase { get { return (IsPlayerActive || mView.Selection is AudioSelection)    &&    IsPhraseCountWithinLimit; } }
+
+        public bool IsPhraseCountWithinLimit
+            {
+            get
+                {
+                if (IsRecorderActive && mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection)
+                    return true;
+                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> ().PhraseChildCount < mView.MaxPhrasesPerSection)
+                    return true;
+                else
+                    return mView.IsPhraseCountWithinLimit;
+                }
+            }
+
 
         /// <summary>
         /// Set color settings for the transport bar.
