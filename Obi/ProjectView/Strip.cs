@@ -84,7 +84,7 @@ namespace Obi.ProjectView
                 {
                 if (mNode.PhraseChildCount == 0)
                     return true;
-                else if (mBlockLayout.Controls.Count > 0)
+                else if (mBlockLayout.Controls.Count == 0 )
                     return false;
                 else
                     return true;
@@ -659,7 +659,7 @@ namespace Obi.ProjectView
         }
 
         // Set verbose accessible name for the strip 
-        private void SetAccessibleName()
+        public void SetAccessibleName()
         {
             if (Selection is StripIndexSelection)
             {
@@ -673,7 +673,8 @@ namespace Obi.ProjectView
                     string.Format(Localizer.Message("section_level_to_string"), mNode.IsRooted ? mNode.Level : 0),
                     mNode.PhraseChildCount == 0 ? "" :
                         mNode.PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :
-                            string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount));
+                            string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount),
+                IsBlocksVisible ? "" : " :Invisible");
             }
         }
 
