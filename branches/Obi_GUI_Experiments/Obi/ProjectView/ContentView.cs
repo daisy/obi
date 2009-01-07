@@ -922,6 +922,8 @@ namespace Obi.ProjectView
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
+
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
                                 return true;
                 }
             return false;
@@ -1427,7 +1429,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
         private bool SelectPrecedingBlock()
         {
-                    return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive? mPlaybackBlock : item ); } );
+                    return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
         }
 
         private bool SelectPrecedingStripCursor()
@@ -1449,7 +1451,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
         private bool SelectFollowingBlock()
         {
-                        return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( mProjectView.TransportBar.IsPlayerActive ? mPlaybackBlock : item); });
+                        return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item); });
         }
 
         private bool SelectFollowingStripCursor()
