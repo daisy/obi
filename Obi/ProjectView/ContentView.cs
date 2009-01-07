@@ -972,14 +972,14 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                                                         try
                                 {
-                                RemoveBlocksInStrip ( m_VisibleStripsList[  0] );
+                                RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
                                 }
                             catch (System.Exception ex)
                                 {
                                 
                                 }
                             //MessageBox.Show ( "Removed  " + m_VisibleStripsList[0].Label );
-                            m_VisibleStripsList.RemoveAt ( 0 );
+                            m_VisibleStripsList.RemoveAt ( VisibleStripIndexToMakeInvisible ( newStripIndex));
                             }
                         else
                             {
