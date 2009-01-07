@@ -918,6 +918,7 @@ namespace Obi.ProjectView
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
+                stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
@@ -1001,6 +1002,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
 
                 }
+                stripControl.SetAccessibleName () ;
                 return true;
                 }
             return false;
@@ -1031,6 +1033,21 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 
 
             }
+
+        public string InvisibleStripString ( ObiNode node )
+            {
+            if (node != null                 && node is SectionNode  
+                && m_VisibleStripsList.Count > 0 )
+                                {
+                for ( int i = 0 ; i < m_VisibleStripsList.Count ; i++ )
+                    {
+                    if (m_VisibleStripsList[i].Node == node)
+                        return "";
+                                        }
+                }
+            return " :(Invisible)";
+            }
+
 
         public Clipboard clipboard { get { return mProjectView.Clipboard; } }
 
