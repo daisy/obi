@@ -35,10 +35,10 @@ namespace Obi.ProjectView
         private Cursor mCursor;
 
         
-        private readonly int m_MaxVisiblePhraseCount;
-        private readonly int m_MaxOverLimitForPhraseVisibility ;
+        private readonly int m_MaxVisiblePhraseCount; // @phraseLimit
+        private readonly int m_MaxOverLimitForPhraseVisibility ; // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
-        private Mutex m_BlocksVisibilityOperationMutex;
+        private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
 
 
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
@@ -63,10 +63,10 @@ namespace Obi.ProjectView
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
             mEnableScrolling = true;
 
-            m_VisibleStripsList = new List<Strip> ();
-            m_MaxVisiblePhraseCount = 700;
-            m_MaxOverLimitForPhraseVisibility = 300;
-            m_BlocksVisibilityOperationMutex = new Mutex ();
+            m_VisibleStripsList = new List<Strip> (); // @phraseLimit
+            m_MaxVisiblePhraseCount = 700; //@phraseLimit
+            m_MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
+            m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
         }
 
 
@@ -146,7 +146,7 @@ namespace Obi.ProjectView
                     || (IsStripCursorSelected && ((StripIndexSelection)mSelection).Index > 0 &&
                         ((StripIndexSelection)mSelection).Index <
                             ((StripIndexSelection)mSelection).Section.PhraseChildCount)  &&
-                            mProjectView.IsPhraseCountWithinLimit ; 
+                            mProjectView.IsPhraseCountWithinLimit ; //@phraseLimit
             }
         }
 
@@ -296,7 +296,7 @@ namespace Obi.ProjectView
         {
         m_CreatingGUIForNewPresentation = true;
             mStripsPanel.Controls.Clear();
-            m_VisibleStripsList.Clear ();
+            m_VisibleStripsList.Clear (); // @phraseLimit
             ClearWaveformRenderQueue();
             SuspendLayout_All();
             AddStripForSection_Safe(mProjectView.Presentation.RootNode);
@@ -310,7 +310,7 @@ namespace Obi.ProjectView
             mVScrollBar.Value = 0;
             mHScrollBar.Value = 0;
 
-            CreateBlocksForInitialStrips ();
+            CreateBlocksForInitialStrips (); //@phraseLimit
             m_CreatingGUIForNewPresentation = false;
         }
 
@@ -496,7 +496,7 @@ namespace Obi.ProjectView
                 }
             }
         }
-
+        // @phraseLimit
         private bool IsBlockInvisibleButStripVisible ( NodeSelection sel)
             {
             if (sel == null)
@@ -515,7 +515,7 @@ namespace Obi.ProjectView
                 }
             return false;
             }
-
+        // @phraseLimit
         public bool IsBlockInvisibleButStripVisible ( EmptyNode node )
             {
             if (node != null    &&     node is EmptyNode && node.IsRooted)
@@ -868,7 +868,7 @@ namespace Obi.ProjectView
         }
 
         private List<Strip> m_VisibleStripsList;
-
+        // @phraseLimit
         public int VisibleBlocksCount
             {
             get
@@ -880,7 +880,7 @@ namespace Obi.ProjectView
                 return count;
                 }
             }
-
+        // @phraseLimit
         private void CreateBlocksForInitialStrips ()
             {
 
@@ -902,12 +902,12 @@ namespace Obi.ProjectView
             }
 
 
-
+        // @phraseLimit
         public bool CreateBlocksInStrip ()
             {
             return CreateBlocksInStrip ( StripForSelection != null ? StripForSelection : null );
             }
-
+        // @phraseLimit
         private  bool CreateBlocksInStrip ( Strip stripControl )
             {
                                     if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
@@ -935,7 +935,7 @@ namespace Obi.ProjectView
                 }
             return false;
             }
-
+        // @phraseLimit
         private int AddStripToVisibleStripsList ( Strip newStrip )
             {
             if (m_VisibleStripsList.Count > 0)
@@ -960,7 +960,7 @@ namespace Obi.ProjectView
             return m_VisibleStripsList.Count;
             }
 
-
+        // @phraseLimit
 private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit, int newStripIndex)
             {
                         if (m_VisibleStripsList.Count == 0)
@@ -999,6 +999,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     m_BlocksVisibilityOperationMutex.ReleaseMutex ();
                     }
 
+        // @phraseLimit
         private bool RemoveBlocksInStrip ( Strip stripControl )
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
@@ -1017,6 +1018,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             return false;
             }
 
+        // @phraseLimit
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
             {
                         if (newSectionIndex > m_VisibleStripsList.Count / 2)
@@ -1043,6 +1045,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
             }
 
+        // @phraseLimit
         public string InvisibleStripString ( ObiNode node )
             {
             if (node != null                 && node is SectionNode  
@@ -1057,7 +1060,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             return " :(Invisible)";
             }
 
-
+        // @phraseLimit
         public Clipboard clipboard { get { return mProjectView.Clipboard; } }
 
 
