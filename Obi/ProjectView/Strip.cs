@@ -82,9 +82,10 @@ namespace Obi.ProjectView
             {
             get
                 {
+                //MessageBox.Show ( mNode.PhraseChildCount.ToString () + ":" + mBlockLayout.Controls.Count.ToString () );
                 if (mNode.PhraseChildCount == 0)
                     return true;
-                else if (mBlockLayout.Controls.Count == 0 )
+                else if (mBlockLayout.Controls.Count < (mNode.PhraseChildCount * 2 ) + 1 )
                     return false;
                 else
                     return true;
