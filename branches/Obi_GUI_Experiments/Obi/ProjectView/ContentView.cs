@@ -854,8 +854,8 @@ namespace Obi.ProjectView
                     mStrips[(SectionNode)node] = strip;
                     strip.WrapContents = mWrapStripContents;
                     strip.ColorSettings = ColorSettings;
-                    //for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i));
-                    if (!m_CreatingGUIForNewPresentation)
+                    //for (int i = 0; i < node.PhraseChildCount; ++i) strip.AddBlockForNode(node.PhraseChild(i)); // @phraseLimit
+                    if (!m_CreatingGUIForNewPresentation) // @phraseLimit
                         {
                                                     CreateBlocksInStrip ( strip );
                         }
@@ -1217,10 +1217,36 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         {
             Control c = e.AddedChild is SectionNode ? (Control)AddStripForSection_Safe((SectionNode)e.AddedChild) :
                 // TODO: in the future, the source node will not always be a section node!
-                e.AddedChild is EmptyNode ? (Control)FindStrip((SectionNode)e.SourceTreeNode).AddBlockForNode((EmptyNode)e.AddedChild) :
+                e.AddedChild is EmptyNode ? AddBlockForNodeConsideringPhraseLimit( (Strip)FindStrip((SectionNode)e.SourceTreeNode) ,((EmptyNode)e.AddedChild) ): // @phraseLimit
                 null;
             UpdateNewControl(c);
         }
+
+        // @phraseLimit
+        private Block AddBlockForNodeConsideringPhraseLimit ( Strip stripControl , EmptyNode node)
+            {
+            Block b =  stripControl.AddBlockForNode ( node );
+
+            int indexOfNewStrip = 0;
+            // if strip is visible but not included in visible strips list, include it
+            if (stripControl.IsBlocksVisible && !m_VisibleStripsList.Contains (stripControl))
+                                indexOfNewStrip =  AddStripToVisibleStripsList ( stripControl );
+                
+                
+            int blocksCountInVisibleStrip  =  VisibleBlocksCount ;
+            
+            // remove blocks in old strips if  blocks exceed max. blocks limit and recorder is not active
+            // else remove imidiately if  if visible blocks exceed even extra limit  even if recorder is active
+                                        if (blocksCountInVisibleStrip > m_MaxVisiblePhraseCount && !mProjectView.TransportBar.IsRecorderActive)
+                {
+                                MakeOldStripsBlocksInvisible ( 1, false , indexOfNewStrip)   ;
+                }
+                else if (blocksCountInVisibleStrip > (m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility) )
+                {
+                MakeOldStripsBlocksInvisible ( 1 , true, indexOfNewStrip) ;
+                }
+            return b;
+            }
 
         private delegate void ControlInvokation(Control c);
 
