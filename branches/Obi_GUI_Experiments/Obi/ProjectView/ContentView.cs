@@ -912,9 +912,16 @@ namespace Obi.ProjectView
             {
                                     if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
                 {
+                                        // pause playback if it is active.
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
+
                                         // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
+                                        // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
+                RemoveBlocksInStrip ( stripControl );
+
+                                        // create blocks for whole strip
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
