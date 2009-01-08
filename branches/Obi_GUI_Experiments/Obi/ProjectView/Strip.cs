@@ -16,7 +16,7 @@ namespace Obi.ProjectView
         private Mutex mLabelUpdateThread;    // thread to update labels
         private SectionNode mNode;           // the section node for this strip
         private bool mWrap;                  // wrap contents
-        private bool m_IsBlocksVisibilityProcessActive;
+        private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -31,7 +31,7 @@ namespace Obi.ProjectView
             Highlighted = false;
             mWrap = false;
             mLabelUpdateThread = new Mutex();
-            m_IsBlocksVisibilityProcessActive = false;
+            m_IsBlocksVisibilityProcessActive = false; // @phraseLimit
         }
 
         /// <summary>
@@ -77,12 +77,11 @@ namespace Obi.ProjectView
             get { return mContentView == null ? null : mContentView.ColorSettings; }
             set { UpdateColors(value); }
         }
-
+// @phraseLimit
         public bool IsBlocksVisible
             {
             get
                 {
-                //MessageBox.Show ( mNode.PhraseChildCount.ToString () + ":" + mBlockLayout.Controls.Count.ToString () );
                 if (mNode.PhraseChildCount == 0)
                     return true;
                 else if (mBlockLayout.Controls.Count < (mNode.PhraseChildCount * 2 ) + 1 )
@@ -91,7 +90,7 @@ namespace Obi.ProjectView
                     return true;
                 }
             }
-
+        // @phraseLimit
         public bool IsBlocksVisibilityProcessActive
             {
              get { return m_IsBlocksVisibilityProcessActive ; }
@@ -343,7 +342,7 @@ namespace Obi.ProjectView
                 if ( updateSize )  Resize_Blocks();
                 UpdateStripCursorsAccessibleName(index - 1);
 
-                // dispose block for freeing window handle only if it is not held in clipboard
+                // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
                 if ( mContentView.clipboard == null || ( mContentView.clipboard != null && mContentView.clipboard.Node != block.Node ))
                     {
                                         block.Dispose ();
@@ -675,7 +674,7 @@ namespace Obi.ProjectView
                     mNode.PhraseChildCount == 0 ? "" :
                         mNode.PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :
                             string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount),
-                IsBlocksVisible ? "" : " :Invisible");
+                IsBlocksVisible ? "" : " :Invisible"); // @phraseLimit
             }
         }
 

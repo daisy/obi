@@ -133,7 +133,7 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit; } }
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
@@ -197,8 +197,8 @@ namespace Obi.ProjectView
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
-        public bool CanSplitPhrase { get { return (IsPlayerActive || mView.Selection is AudioSelection)    &&    IsPhraseCountWithinLimit; } }
-
+        public bool CanSplitPhrase { get { return (IsPlayerActive || mView.Selection is AudioSelection)    &&    IsPhraseCountWithinLimit; } } // @phraseLimit
+        // @phraseLimit
         public bool IsPhraseCountWithinLimit
             {
             get
@@ -1496,7 +1496,7 @@ namespace Obi.ProjectView
                 {
                     // record into to next phrase.
                     // check if phrase count of section is less than max limit
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection )
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
                     mRecordingSession.NextPhrase();
                 }
                 else if (mState == State.Monitoring)
@@ -1544,7 +1544,7 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     // check if phrase limit for section is not over
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection )
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
                     mRecordingSession.MarkPage();
                 }
                 else if (mState == State.Monitoring)
