@@ -869,7 +869,7 @@ namespace Obi.ProjectView
 
         private List<Strip> m_VisibleStripsList;
         // @phraseLimit
-        public int VisibleBlocksCount
+        private int VisibleBlocksCount
             {
             get
                 {
@@ -974,7 +974,22 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             else// overlimit is true, operate in overlimit band, called when we visible phrases are more than even over limit. generally called imidiately 
                                 maxVisiblePhraseCountConsidered = m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility;
                 
-                
+                // first clear blocks in partially visible strips
+                            for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                                {
+                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired && !m_VisibleStripsList[i].IsBlocksVisible)
+                                    {
+                                    try
+                                        {
+                                        int removeIndex = PartiallyVisibleStripIndexToMakeInvisible (newStripIndex);
+                                        if (removeIndex != -1) RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex ] );
+                                        else break;
+                                        }
+                                    catch (System.Exception) { }
+                                    }
+                                                                }
+                                                            
+    // after removing all blocks in partially visible strips, start removing blocks fully visible strips
                     for (int i = 0; i < m_VisibleStripsList.Count; i++)
                         {
                                                 if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired)
@@ -1041,9 +1056,35 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     }
 
                 return 0 ;
-                
+                            }
 
-            }
+                        // @phraseLimit
+                        private int PartiallyVisibleStripIndexToMakeInvisible ( int newSectionIndex )
+                            {
+                            if (newSectionIndex > m_VisibleStripsList.Count / 2)
+                                {
+                                for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                                    {
+                                    if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node 
+                                        && !m_VisibleStripsList[i].IsBlocksVisible)
+                                        return i;
+
+                                    }
+                                }
+                            else
+                                {
+                                for (int i = m_VisibleStripsList.Count - 1; i >= 0; i--)
+                                    {
+                                    if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node
+                                        && !m_VisibleStripsList[i].IsBlocksVisible )
+                                        return i;
+
+                                    }
+                                }
+
+                            return -1;
+                            }
+
 
         // @phraseLimit
         public string InvisibleStripString ( ObiNode node )
@@ -1194,6 +1235,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             int index = mStripsPanel.Controls.IndexOf(strip);
             mStripsPanel.Controls.Remove(strip);
             ReflowFromIndex(index);
+            if ( m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ) ; // @phraseLimit
         }
 
         // Remove the strip or block for the removed tree node
@@ -1229,7 +1271,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
             int indexOfNewStrip = 0;
             // if strip is visible but not included in visible strips list, include it
-            if (stripControl.IsBlocksVisible && !m_VisibleStripsList.Contains (stripControl))
+            if (!m_VisibleStripsList.Contains (stripControl))
                                 indexOfNewStrip =  AddStripToVisibleStripsList ( stripControl );
                 
                 
