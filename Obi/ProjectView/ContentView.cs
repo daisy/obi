@@ -919,7 +919,7 @@ namespace Obi.ProjectView
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
                                         // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
-                RemoveBlocksInStrip ( stripControl );
+                RemoveBlocksInStrip ( stripControl , -1);
 
                                         // create blocks for whole strip
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
@@ -982,7 +982,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                     try
                                         {
                                         int removeIndex = PartiallyVisibleStripIndexToMakeInvisible (newStripIndex);
-                                        if (removeIndex != -1) RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex ] );
+                                        if (removeIndex != -1) RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex ], countRequired );
                                         else break;
                                         }
                                     catch (System.Exception) { }
@@ -996,7 +996,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                                                         try
                                 {
-                                RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
+                                RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] , countRequired);
                                 }
                             catch (System.Exception ex)
                                 {
@@ -1015,17 +1015,24 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     }
 
         // @phraseLimit
-        private bool RemoveBlocksInStrip ( Strip stripControl )
+        private bool RemoveBlocksInStrip ( Strip stripControl , int countRequired)
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                for ( int i = 0 ; i < stripControl.Node.PhraseChildCount ; i++ )
+                int upperBound = countRequired < 10 ? countRequired * 2 : countRequired;
+                if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
+                    upperBound = stripControl.Node.PhraseChildCount;
+
+                for ( int i = 0 ; i <  upperBound ; i++ )
                     {
                     if ( i == stripControl.Node.PhraseChildCount -1 )
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
                     else
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
 
+
+                if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
+                    upperBound = stripControl.Node.PhraseChildCount;
                 }
                 stripControl.SetAccessibleName () ;
                 return true;
