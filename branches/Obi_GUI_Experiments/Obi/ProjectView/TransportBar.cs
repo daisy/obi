@@ -1003,6 +1003,7 @@ namespace Obi.ProjectView
 
             // optionally save project
             SaveWhenRecordingEnds ();
+            mView.MakeOldStripsBlocksInvisible (); // @phraseLimit
         }
 
 
@@ -2001,6 +2002,7 @@ UpdateButtons();
 
                 // save optionally
                 SaveWhenRecordingEnds ();
+                mView.MakeOldStripsBlocksInvisible (); // @phraseLimit
             }
         }
 

@@ -2069,6 +2069,8 @@ namespace Obi.ProjectView
             mContentView.ResumeLayout_All();
         }
 
+        public void MakeOldStripsBlocksInvisible () { mContentView.MakeOldStripsBlocksInvisible (); }
+
     //@ShowSingleSection
         /*
         // taken from project view line 786
