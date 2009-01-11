@@ -977,12 +977,12 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 // first clear blocks in partially visible strips
                             for (int i = 0; i < m_VisibleStripsList.Count; i++)
                                 {
-                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired && !m_VisibleStripsList[i].IsBlocksVisible)
+                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired )
                                     {
                                     try
                                         {
                                         int removeIndex = PartiallyVisibleStripIndexToMakeInvisible (newStripIndex);
-                                        if (removeIndex != -1) RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex ], countRequired );
+                                                                                if (removeIndex != -1) RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex ], countRequired );
                                         else break;
                                         }
                                     catch (System.Exception) { }
@@ -1015,11 +1015,20 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     }
 
         // @phraseLimit
+        public void MakeOldStripsBlocksInvisible () 
+            {
+            int countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
+
+            if ( countRequired > 0 )
+            MakeOldStripsBlocksInvisible ( countRequired , false, 0);
+            }
+
+        // @phraseLimit
         private bool RemoveBlocksInStrip ( Strip stripControl , int countRequired)
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                int upperBound = countRequired < 10 ? countRequired * 2 : countRequired;
+                int upperBound = countRequired < 15 ? countRequired * 2 : countRequired;
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
 
@@ -1088,7 +1097,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
                                     }
                                 }
-
+                            
                             return -1;
                             }
 
