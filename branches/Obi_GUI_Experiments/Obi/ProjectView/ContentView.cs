@@ -1014,13 +1014,50 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     m_BlocksVisibilityOperationMutex.ReleaseMutex ();
                     }
 
+
         // @phraseLimit
-        public void MakeOldStripsBlocksInvisible () 
+        public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) 
             {
             int countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
 
+            if (removeFromSelected &&   countRequired > 0) RemoveBlocksFromSelectedPartiallyVisibleStrip ( countRequired );
+                
+            countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
             if ( countRequired > 0 )
             MakeOldStripsBlocksInvisible ( countRequired , false, 0);
+            }
+
+        
+        // @phraseLimit
+        private void RemoveBlocksFromSelectedPartiallyVisibleStrip ( int countRequired )
+        {
+        if (mProjectView.GetSelectedPhraseSection != null && countRequired > 0 && m_VisibleStripsList.Count > 0)
+            {
+            try
+                {
+                int stripIndex = GetStripIndexInVisibleStripList ( (SectionNode)mProjectView.GetSelectedPhraseSection );
+                if (stripIndex > 0 && !m_VisibleStripsList[stripIndex].IsBlocksVisible )
+                    {
+                    countRequired = m_VisibleStripsList[stripIndex].Node.PhraseChildCount;
+                    RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex], countRequired );
+                    m_VisibleStripsList.RemoveAt ( stripIndex );
+                    }
+                }
+            catch (System.Exception) { }
+            }
+                        }
+
+        // @phraseLimit
+        private int GetStripIndexInVisibleStripList ( SectionNode node )
+            {
+            if (node != null &&  node is SectionNode)
+                {
+
+                for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                    if (m_VisibleStripsList[i].Node == node) return i;
+
+                }
+            return -1;
             }
 
         // @phraseLimit

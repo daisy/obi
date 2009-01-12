@@ -2069,7 +2069,7 @@ namespace Obi.ProjectView
             mContentView.ResumeLayout_All();
         }
 
-        public void MakeOldStripsBlocksInvisible () { mContentView.MakeOldStripsBlocksInvisible (); }
+        public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
 
     //@ShowSingleSection
         /*
