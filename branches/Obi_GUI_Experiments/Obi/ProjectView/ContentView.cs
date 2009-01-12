@@ -1598,7 +1598,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             
             Strip strip;
             if (WasPlaying
-                && (this.mPlaybackBlock.ObiNode.Index == 0 || mPlaybackBlock.Node.Role_ == EmptyNode.Role.Heading ))
+                && PlaybackBlock != null  && (this.mPlaybackBlock.ObiNode.Index == 0 || mPlaybackBlock.Node.Role_ == EmptyNode.Role.Heading ))
             {
             strip = StripBefore ( StripFor (  mSelectedItem ) );
             }
@@ -1719,7 +1719,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                        //mProjectView.Selection = new NodeSelection(n, this);
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return true;
                     }
                 }
@@ -1738,14 +1739,15 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                        //mProjectView.Selection = new NodeSelection(n, this);
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return true;
                     }
                 }
             }
             return false;
         }
-
+        
         /// <summary>
         ///  Move keyboard focus to block with some special role
         /// </summary>
@@ -1758,7 +1760,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                        //mProjectView.Selection = new NodeSelection(n, this);
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return true;
                     }
                 }
@@ -1779,7 +1782,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                     if (n is EmptyNode && ((EmptyNode)n).Role_ != EmptyNode.Role.Plain)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                        //mProjectView.Selection = new NodeSelection(n, this);
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return true;
                     }
                 }
@@ -1801,7 +1805,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {
-                        mProjectView.Selection = new NodeSelection ( n, this );
+                        //mProjectView.Selection = new NodeSelection ( n, this );
+                        SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return;
                         }
                     }
@@ -1810,7 +1815,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                 if (n is EmptyNode && ((EmptyNode)n).TODO)
                     {
-                    mProjectView.Selection = new NodeSelection ( n, this );
+                    //mProjectView.Selection = new NodeSelection ( n, this );
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                     return;
                     }
                 }
@@ -1830,7 +1836,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                         if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {
-                            mProjectView.Selection = new NodeSelection(n, this);
+                            //mProjectView.Selection = new NodeSelection(n, this);
+                        SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                             return;
                         }
                     }
@@ -1839,7 +1846,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                     {
-                        mProjectView.Selection = new NodeSelection(n, this);
+                        //mProjectView.Selection = new NodeSelection(n, this);
+                    SelectPhraseBlockOrStrip ( (EmptyNode)n ); // @phraseLimit
                         return;
                     }
                 }
@@ -1858,7 +1866,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     if (n is EmptyNode && !(n is PhraseNode) )
                         {
-                        mProjectView.Selection = new NodeSelection ( n, this );
+                        //mProjectView.Selection = new NodeSelection ( n, this );
+                        SelectPhraseBlockOrStrip ( ( EmptyNode ) n ); // @phraseLimit
                         return true;
                         }
                     }
@@ -1867,7 +1876,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 {
                 if (n is EmptyNode && !(n is PhraseNode))
                     {
-                    mProjectView.Selection = new NodeSelection ( n, this );
+                    //mProjectView.Selection = new NodeSelection ( n, this );
+                    SelectPhraseBlockOrStrip ( ( EmptyNode) n ); // @phraseLimit
                     return true;
                     }
                 }
@@ -1882,6 +1892,22 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                         }
 
 
+        // @phraseLimit
+        private void SelectPhraseBlockOrStrip ( EmptyNode node )
+            {
+            if (node != null)
+                {
+                if (IsBlockInvisibleButStripVisible ( node ))
+                    {
+                    mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
+                    }
+                else
+                    {
+                    mProjectView.Selection = new NodeSelection ( node, this );
+                    }
+                }
+
+                        }
 
 
 
