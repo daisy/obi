@@ -914,11 +914,14 @@ namespace Obi.ProjectView
                 {
                                         // pause playback if it is active.
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
-
+                
                                         // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
+                                        if ( !m_CreatingGUIForNewPresentation     &&     
+                                            (VisibleBlocksCount+ stripControl.Node.PhraseChildCount ) > ( m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility ) )
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
                                         // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
+                                        if ( !m_CreatingGUIForNewPresentation )
                 RemoveBlocksInStrip ( stripControl , -1);
 
                                         // create blocks for whole strip
@@ -928,6 +931,7 @@ namespace Obi.ProjectView
                 stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
+                                        if ( !m_CreatingGUIForNewPresentation     &&    VisibleBlocksCount > m_MaxVisiblePhraseCount )
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
 
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
