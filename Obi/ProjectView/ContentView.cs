@@ -931,8 +931,9 @@ namespace Obi.ProjectView
                 stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
-                                        if ( !m_CreatingGUIForNewPresentation     &&    VisibleBlocksCount > m_MaxVisiblePhraseCount )
-                MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
+                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > m_MaxVisiblePhraseCount)
+                    MakeOldStripsBlocksInvisible ( indexAddition );
+                //MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
 
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
                                 return true;
@@ -942,6 +943,8 @@ namespace Obi.ProjectView
         // @phraseLimit
         private int AddStripToVisibleStripsList ( Strip newStrip )
             {
+            if (m_VisibleStripsList.Contains ( newStrip )) return m_VisibleStripsList.IndexOf ( newStrip );
+
             if (m_VisibleStripsList.Count > 0)
                 {
                 if (newStrip.Node.Position < m_VisibleStripsList[0].Node.Position)
@@ -1000,14 +1003,14 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                                                         try
                                 {
-                                RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] , countRequired);
+                                                                RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] , countRequired);
                                 }
                             catch (System.Exception ex)
                                 {
                                 
                                 }
-                            //MessageBox.Show ( "Removed  " + m_VisibleStripsList[0].Label );
-                            m_VisibleStripsList.RemoveAt ( VisibleStripIndexToMakeInvisible ( newStripIndex));
+                            //MessageBox.Show ( "Removed  " + VisibleBlocksCount.ToString () );
+                            //m_VisibleStripsList.RemoveAt ( VisibleStripIndexToMakeInvisible ( newStripIndex));
                             }
                         else
                             {
@@ -1017,6 +1020,13 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                         }
                     m_BlocksVisibilityOperationMutex.ReleaseMutex ();
                     }
+
+        // @phraseLimit
+        private void MakeOldStripsBlocksInvisible ( int newStripIndex )
+            {
+            int countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
+            if (countRequired > 0) MakeOldStripsBlocksInvisible ( countRequired, false, newStripIndex );
+            }
 
 
         // @phraseLimit
@@ -1044,7 +1054,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     countRequired = m_VisibleStripsList[stripIndex].Node.PhraseChildCount;
                     RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex], countRequired );
-                    m_VisibleStripsList.RemoveAt ( stripIndex );
+                    //m_VisibleStripsList.RemoveAt ( stripIndex );
                     }
                 }
             catch (System.Exception) { }
@@ -1085,6 +1095,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     upperBound = stripControl.Node.PhraseChildCount;
                 }
                 stripControl.SetAccessibleName () ;
+                if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 return true;
                 }
             return false;
