@@ -1087,10 +1087,10 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 int upperBound = countRequired < 15 ? countRequired * 2 : countRequired;
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
-
+                /*
                 for ( int i = 0 ; i <  upperBound ; i++ )
                     {
-                    if ( i == stripControl.Node.PhraseChildCount -1 )
+                                        if ( i == stripControl.Node.PhraseChildCount -1 )
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
                     else
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
@@ -1098,7 +1098,9 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
-                }
+                                 }
+                 */ 
+            countRequired =  stripControl.RemoveAllBlocks ( true ) ;
                 stripControl.SetAccessibleName () ;
                 if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 return countRequired ;
