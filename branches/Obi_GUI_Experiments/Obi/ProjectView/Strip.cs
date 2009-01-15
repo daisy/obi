@@ -254,7 +254,7 @@ namespace Obi.ProjectView
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
                 AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
-                block.Cursor = Cursor;
+                    block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
@@ -329,26 +329,35 @@ namespace Obi.ProjectView
             RemoveBlock ( node, true );
             }
 
+        private delegate void BlockRemoveInvokation ( EmptyNode node, bool updateSize ); // @phraseLimit
+
         public void RemoveBlock(EmptyNode node, bool updateSize)
         {
-            Block block = FindBlock(node);
-            if (block != null)
+                                if (InvokeRequired)
             {
-                int index = mBlockLayout.Controls.IndexOf(block);
-                if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt(index + 1);
-                mBlockLayout.Controls.RemoveAt(index);
-                if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
-                block.SizeChanged -= new EventHandler(Block_SizeChanged);
-                if ( updateSize )  Resize_Blocks();
-                UpdateStripCursorsAccessibleName(index - 1);
+                Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
+            }
+        else
+            {
+            Block block = FindBlock ( node );
+            if (block != null)
+                {
+                int index = mBlockLayout.Controls.IndexOf ( block );
+                if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                mBlockLayout.Controls.RemoveAt ( index );
+                if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
+                block.SizeChanged -= new EventHandler ( Block_SizeChanged );
+                if (updateSize) Resize_Blocks ();
+                UpdateStripCursorsAccessibleName ( index - 1 );
 
                 // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
-                if ( mContentView.clipboard == null || ( mContentView.clipboard != null && mContentView.clipboard.Node != block.Node ))
+                if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
                     {
-                                        block.Dispose ();
+                    block.Dispose ();
                     block = null;
-                                        }
-                
+                    }
+
+                }
             }
         }
 
