@@ -360,6 +360,57 @@ namespace Obi.ProjectView
                 }
             }
         }
+        // @phraseLimit
+        public int RemoveAllBlocks ( bool updateSize )
+            {
+            int blocksRemovedCount = 0;
+            if (mBlockLayout.Controls.Count > 0)
+                {
+                                for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
+                    {
+                    if (mBlockLayout.Controls[i] is Block)
+                        {
+                        RemoveBlock ( (Block)mBlockLayout.Controls[i], updateSize );
+                        blocksRemovedCount++;
+                        }
+                    }
+                                }
+                            return blocksRemovedCount;
+            }
+        // @phraseLimit
+        private delegate void QuickBlockRemoveInvokation ( Block block, bool updateSize ); // @phraseLimit
+        // @phraseLimit
+        private void RemoveBlock (Block block,  bool updateSize )
+            {
+            if (InvokeRequired)
+                {
+                Invoke ( new QuickBlockRemoveInvokation ( RemoveBlock ), block, updateSize );
+                }
+            else
+                {
+                        //Block block = (Block) mBlockLayout.Controls[i];
+                        if (block != null)
+                            {
+                            int index = mBlockLayout.Controls.IndexOf ( block );
+                            if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                            mBlockLayout.Controls.RemoveAt ( index );
+                            if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
+                            block.SizeChanged -= new EventHandler ( Block_SizeChanged );
+                            if (updateSize) Resize_Blocks ();
+                            UpdateStripCursorsAccessibleName ( index - 1 );
+
+                            // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
+                            if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                                {
+                                block.Dispose ();
+                                block = null;
+                                }
+
+                            }
+                                    }
+            }
+
+
 
         /// <summary>
         /// Show the cursor at the current time in the waveform of the current playing block.
