@@ -922,8 +922,8 @@ namespace Obi.ProjectView
 
                                         // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
                                         if ( !m_CreatingGUIForNewPresentation )
-                RemoveBlocksInStrip ( stripControl , -1);
-
+                RemoveBlocksInStrip ( stripControl );
+            
                                         // create blocks for whole strip
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
@@ -1097,7 +1097,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             return blocksRemoved;
             }
 
-
+        
         // @phraseLimit
         private int RemoveBlocksInStrip ( Strip stripControl , int countRequired)
             {
@@ -1123,7 +1123,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 }
             return 0;
             }
-
+        
         // @phraseLimit
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
             {
