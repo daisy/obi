@@ -991,7 +991,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                         int removeIndex = PartiallyVisibleStripIndexToMakeInvisible (newStripIndex);
                                         if (removeIndex != -1)
                                             {
-                                            int blocksRemoved = RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex], countRequired );
+                                            int blocksRemoved = RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex]);
                                             countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
                                             }
                                         else break;
@@ -1007,7 +1007,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                                                         try
                                 {
-                                                                                                int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] , countRequired);
+                                                                                                int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
                                                                 countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
                                 }
                             catch (System.Exception ex)
@@ -1015,8 +1015,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                 
                                 }
                             //MessageBox.Show ( "Removed  " + VisibleBlocksCount.ToString () );
-                            //m_VisibleStripsList.RemoveAt ( VisibleStripIndexToMakeInvisible ( newStripIndex));
-                            }
+                                                        }
                         else
                             {
                             m_BlocksVisibilityOperationMutex.ReleaseMutex ();
@@ -1058,9 +1057,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 if (stripIndex > 0 && !m_VisibleStripsList[stripIndex].IsBlocksVisible )
                     {
                     countRequired = m_VisibleStripsList[stripIndex].Node.PhraseChildCount;
-                    RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex], countRequired );
-                    //m_VisibleStripsList.RemoveAt ( stripIndex );
-                    }
+                    RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex]);
+                                        }
                 }
             catch (System.Exception) { }
             }
@@ -1080,6 +1078,27 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             }
 
         // @phraseLimit
+        private int RemoveBlocksInStrip ( Strip stripControl)
+            {
+            int blocksRemoved = 0;
+            if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
+                {
+                                try
+                    {
+                    blocksRemoved =  stripControl.RemoveAllBlocks ( true );
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                stripControl.SetAccessibleName ();
+                if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
+                                }
+            return blocksRemoved;
+            }
+
+
+        // @phraseLimit
         private int RemoveBlocksInStrip ( Strip stripControl , int countRequired)
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
@@ -1087,21 +1106,18 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 int upperBound = countRequired < 15 ? countRequired * 2 : countRequired;
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
-                /*
-                for ( int i = 0 ; i <  upperBound ; i++ )
+                                for ( int i = 0 ; i <  upperBound ; i++ )
                     {
                                         if ( i == stripControl.Node.PhraseChildCount -1 )
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
                     else
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
 
-
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
                                  }
-                 */ 
-            countRequired =  stripControl.RemoveAllBlocks ( true ) ;
-                stripControl.SetAccessibleName () ;
+                 
+                            stripControl.SetAccessibleName () ;
                 if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 return countRequired ;
                 }
