@@ -300,6 +300,7 @@ namespace Obi.ProjectView
             ClearWaveformRenderQueue();
             SuspendLayout_All();
             AddStripForSection_Safe(mProjectView.Presentation.RootNode);
+            CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All();
             mProjectView.Presentation.BeforeCommandExecuted +=
                 new EventHandler<urakawa.events.command.CommandEventArgs>(Presentation_BeforeCommandExecuted);
@@ -310,7 +311,6 @@ namespace Obi.ProjectView
             mVScrollBar.Value = 0;
             mHScrollBar.Value = 0;
 
-            CreateBlocksForInitialStrips (); //@phraseLimit
             m_CreatingGUIForNewPresentation = false;
         }
 
