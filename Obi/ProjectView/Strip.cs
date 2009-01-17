@@ -754,8 +754,8 @@ namespace Obi.ProjectView
                 mLabel.BackColor =
                     mBlockLayout.BackColor =
                     mHighlighted ? settings.StripSelectedBackColor :
-                    mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
-                mLabel.ForeColor =
+                    mNode.Used ?( mNode.PhraseChildCount > 0 ? settings.StripBackColor : settings.StripWithoutPhrasesBackcolor ): settings.StripUnusedBackColor;
+                                mLabel.ForeColor =
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);
