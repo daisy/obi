@@ -1180,14 +1180,18 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         public string InvisibleStripString ( ObiNode node )
             {
-            if (node != null                 && node is SectionNode  
-                && m_VisibleStripsList.Count > 0 )
-                                {
-                for ( int i = 0 ; i < m_VisibleStripsList.Count ; i++ )
+            if (node != null && node is SectionNode)
+                {
+                if (((SectionNode)mProjectView.Selection.Node).PhraseChildCount == 0) return "";
+
+                if (m_VisibleStripsList.Count > 0)
                     {
-                    if (m_VisibleStripsList[i].Node == node)
-                        return "";
-                                        }
+                    for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                        {
+                        if (m_VisibleStripsList[i].Node == node)
+                            return "";
+                        }
+                    }
                 }
             return " :(Invisible)";
             }
