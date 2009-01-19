@@ -782,6 +782,7 @@ namespace Obi
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
             mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
+            mShowSectionContentsToolStripMenuItem.Enabled = mProjectView.CanShowSectionContents;
             mShowSingleSectionToolStripItem.Enabled = mSession.HasProject&& mProjectView.Selection != null ;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
@@ -2087,8 +2088,8 @@ namespace Obi
 
         private void mShowSectionContentsToolStripMenuItem_Click ( object sender, EventArgs e )
             {
-            //if (mProjectView.Selection != null) mProjectView.ShowSelectedSectionContents ();
-            }
+            if (mProjectView.Selection != null) mProjectView.ShowSelectedSectionContents ();
+                        }
 
 
         void mShowSingleSectionToolStripItem_Click ( object sender, System.EventArgs e )

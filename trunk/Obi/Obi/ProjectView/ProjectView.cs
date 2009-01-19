@@ -343,7 +343,7 @@ namespace Obi.ProjectView
         public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxPhrasesPerSection; } } 
 
         // @phraseLimit
-        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ); } }
+        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ); } }
 
         public bool CanMarkPhrase
         {

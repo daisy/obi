@@ -521,6 +521,7 @@ namespace Obi
         // 
         resources.ApplyResources ( this.mShowSectionContentsToolStripMenuItem, "mShowSectionContentsToolStripMenuItem" );
         this.mShowSectionContentsToolStripMenuItem.Name = "mShowSectionContentsToolStripMenuItem";
+        this.mShowSectionContentsToolStripMenuItem.Click += new System.EventHandler ( this.mShowSectionContentsToolStripMenuItem_Click );
         // 
         // toolStripSeparator10
         // 
