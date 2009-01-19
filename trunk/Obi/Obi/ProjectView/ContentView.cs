@@ -1349,12 +1349,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             int index = mStripsPanel.Controls.IndexOf(strip);
             mStripsPanel.Controls.Remove(strip);
             ReflowFromIndex(index);
-            if ( mStrips.ContainsKey (section) )     mStrips.Remove ( section ) ; // @phraseLimit
-            if ( m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ) ; // @phraseLimit
+                        if ( m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ) ; // @phraseLimit
 
             if (clipboard == null || (clipboard != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
-                strip.Dispose ();
+                strip.DestroyStripHandle ();
                 strip = null;
                 }
             else

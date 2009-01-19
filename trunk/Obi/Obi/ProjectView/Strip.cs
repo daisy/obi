@@ -846,5 +846,10 @@ namespace Obi.ProjectView
             Point l = new Point(Location.X - offset.X, Location.Y - offset.Y);
             System.Diagnostics.Debug.Print("Location changed to {0}/{1}", Location, l);
         }
+
+        public void DestroyStripHandle ()
+            {
+            this.DestroyHandle ();
+            }
     }
 }
