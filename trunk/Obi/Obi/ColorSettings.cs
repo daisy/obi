@@ -36,6 +36,7 @@ namespace Obi
         public Color StripSelectedForeColor;
         public Color StripUnusedBackColor;
         public Color StripUnusedForeColor;
+        public Color StripWithoutPhrasesBackcolor;
         public Color TOCViewBackColor;
         public Color TOCViewForeColor;
         public Color TOCViewUnusedColor;
@@ -124,6 +125,7 @@ namespace Obi
             settings.StripSelectedForeColor = SystemColors.HighlightText;
             settings.StripUnusedBackColor = SystemColors.ControlDark;
             settings.StripUnusedForeColor = SystemColors.ControlText;
+            settings.StripWithoutPhrasesBackcolor = SystemColors.GradientActiveCaption;
             settings.TOCViewBackColor = SystemColors.Window;
             settings.TOCViewForeColor = SystemColors.ControlText;
             settings.TOCViewUnusedColor = SystemColors.InactiveCaptionText;
