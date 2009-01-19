@@ -340,7 +340,10 @@ namespace Obi.ProjectView
             }
         }
         // @phraseLimit
-        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxPhrasesPerSection; } }
+        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxPhrasesPerSection; } } 
+
+        // @phraseLimit
+        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ); } }
 
         public bool CanMarkPhrase
         {
@@ -1603,8 +1606,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Space] = delegate() { return TogglePlayPause(UseAudioCursor); };
             mShortcutKeys[Keys.Alt | Keys.Enter] = delegate() { return ShowNodePropertiesDialog(); };
             mShortcutKeys[Keys.F8] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
-            mShortcutKeys[Keys.F5] = delegate () { return mContentView.CreateBlocksInStrip (); };
-        }
+                    }
 
         // Process key press: if this is a key down event, lookup the shortcut tables;
         // if the key was not handled then, proceed with the default process.
@@ -2069,6 +2071,13 @@ namespace Obi.ProjectView
         {
             mContentView.ResumeLayout_All();
         }
+
+        // @phraseLimit
+        public void ShowSelectedSectionContents ()
+            {
+            if ( CanShowSectionContents )
+                        mContentView.CreateBlocksInStrip ();
+            }
 
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
 
