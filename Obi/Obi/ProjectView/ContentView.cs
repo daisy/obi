@@ -925,17 +925,29 @@ namespace Obi.ProjectView
                 RemoveBlocksInStrip ( stripControl );
             
                                         // create blocks for whole strip
-                for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i) 
+            bool IsAllBlocksCreated = true;
+            if (stripControl.Node.PhraseChildCount <= m_MaxVisiblePhraseCount)
+                {
+                for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i)
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                }
+            else
+                {
+                for (int i = 0; i < m_MaxVisiblePhraseCount ; ++i)
+                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+
+                IsAllBlocksCreated = false;
+                }
 
                 stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                 //MessageBox.Show ( indexAddition.ToString () );
                 if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > m_MaxVisiblePhraseCount)
                     MakeOldStripsBlocksInvisible ( indexAddition );
-                //MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, false, indexAddition );
-
+                
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+
+                if (!IsAllBlocksCreated) MessageBox.Show ( "Section have more maximum visible blocks, use split section to make all blocks visible" );
                                 return true;
                 }
             return false;
