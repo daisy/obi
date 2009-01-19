@@ -1189,20 +1189,30 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         public string InvisibleStripString ( ObiNode node )
             {
+            if (IsSectionPhrasesVisible ( node ))
+                return "";
+            else if (mProjectView.GetSelectedPhraseSection != null)
+                return Localizer.Message ( "ContentsHidden_StatusMessage" );
+            else
+                return "";
+            }
+
+        public bool IsSectionPhrasesVisible ( ObiNode node )
+            {
             if (node != null && node is SectionNode)
                 {
-                if (((SectionNode)mProjectView.Selection.Node).PhraseChildCount == 0) return "";
+                if (((SectionNode)node ).PhraseChildCount == 0) return true;
 
                 if (m_VisibleStripsList.Count > 0)
                     {
                     for (int i = 0; i < m_VisibleStripsList.Count; i++)
                         {
                         if (m_VisibleStripsList[i].Node == node)
-                            return "";
+                            return true;
                         }
                     }
                 }
-            return Localizer.Message ( "ContentsHidden_StatusMessage" );
+                return false ;
             }
 
         // @phraseLimit
