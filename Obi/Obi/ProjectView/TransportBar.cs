@@ -133,7 +133,7 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) ; } }
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted; } }
         public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
@@ -197,7 +197,21 @@ namespace Obi.ProjectView
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
-        public bool CanSplitPhrase { get { return IsPlayerActive || mView.Selection is AudioSelection; } }
+        public bool CanSplitPhrase { get { return (IsPlayerActive || mView.Selection is AudioSelection)    &&    IsPhraseCountWithinLimit; } } // @phraseLimit
+        // @phraseLimit
+        public bool IsPhraseCountWithinLimit
+            {
+            get
+                {
+                if (IsRecorderActive && mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection)
+                    return true;
+                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> ().PhraseChildCount < mView.MaxPhrasesPerSection)
+                    return true;
+                else
+                    return mView.IsPhraseCountWithinLimit;
+                }
+            }
+
 
         /// <summary>
         /// Set color settings for the transport bar.
@@ -989,6 +1003,7 @@ namespace Obi.ProjectView
 
             // optionally save project
             SaveWhenRecordingEnds ();
+            mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
         }
 
 
@@ -1007,10 +1022,7 @@ namespace Obi.ProjectView
                     (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
                     && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
                     {
-                    if (mView.Selection.Control is ContentView)
-                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
-                    else if (mView.Selection.Control is TOCView)
-                        mView.Selection = new NodeSelection ( mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mView.Selection.Control );
+                    mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
                     }
                 mSelectionChangedPlayEnable = SelectionChangedPlaybackStatus;
                 }
@@ -1109,7 +1121,7 @@ namespace Obi.ProjectView
         private void SetupRecording(bool recording, SectionNode afterSection)
         {
         if (mRecorder != null && mRecorder.State == Obi.Audio.AudioRecorderState.Stopped)
-            {
+                        {
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
             // assign selection to null if metadata is selected.
@@ -1484,6 +1496,8 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     // record into to next phrase.
+                    // check if phrase count of section is less than max limit
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
                     mRecordingSession.NextPhrase();
                 }
                 else if (mState == State.Monitoring)
@@ -1530,6 +1544,8 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    // check if phrase limit for section is not over
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
                     mRecordingSession.MarkPage();
                 }
                 else if (mState == State.Monitoring)
@@ -1986,6 +2002,7 @@ UpdateButtons();
 
                 // save optionally
                 SaveWhenRecordingEnds ();
+                mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
             }
         }
 

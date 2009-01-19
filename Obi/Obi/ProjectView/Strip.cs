@@ -16,7 +16,7 @@ namespace Obi.ProjectView
         private Mutex mLabelUpdateThread;    // thread to update labels
         private SectionNode mNode;           // the section node for this strip
         private bool mWrap;                  // wrap contents
-
+        private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -31,6 +31,7 @@ namespace Obi.ProjectView
             Highlighted = false;
             mWrap = false;
             mLabelUpdateThread = new Mutex();
+            m_IsBlocksVisibilityProcessActive = false; // @phraseLimit
         }
 
         /// <summary>
@@ -76,6 +77,26 @@ namespace Obi.ProjectView
             get { return mContentView == null ? null : mContentView.ColorSettings; }
             set { UpdateColors(value); }
         }
+// @phraseLimit
+        public bool IsBlocksVisible
+            {
+            get
+                {
+                if (mNode.PhraseChildCount == 0)
+                    return true;
+                else if (mBlockLayout.Controls.Count < (mNode.PhraseChildCount * 2 ) + 1 )
+                    return false;
+                else
+                    return true;
+                }
+            }
+        // @phraseLimit
+        public bool IsBlocksVisibilityProcessActive
+            {
+             get { return m_IsBlocksVisibilityProcessActive ; }
+            set { m_IsBlocksVisibilityProcessActive = value ;}
+            }
+
 
         /// <summary>
         /// Get the content view for the strip.
@@ -233,7 +254,7 @@ namespace Obi.ProjectView
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
                 AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
-                block.Cursor = Cursor;
+                    block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
@@ -302,20 +323,94 @@ namespace Obi.ProjectView
         /// Remove the following strip cursor as well
         /// (and the first one if it was the last block.)
         /// </summary>
-        public void RemoveBlock(EmptyNode node)
-        {
-            Block block = FindBlock(node);
-            if (block != null)
+        /// 
+        public void RemoveBlock ( EmptyNode node )
             {
-                int index = mBlockLayout.Controls.IndexOf(block);
-                if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt(index + 1);
-                mBlockLayout.Controls.RemoveAt(index);
-                if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt(0);
-                block.SizeChanged -= new EventHandler(Block_SizeChanged);
-                Resize_Blocks();
-                UpdateStripCursorsAccessibleName(index - 1);
+            RemoveBlock ( node, true );
+            }
+
+        private delegate void BlockRemoveInvokation ( EmptyNode node, bool updateSize ); // @phraseLimit
+
+        public void RemoveBlock(EmptyNode node, bool updateSize)
+        {
+                                if (InvokeRequired)
+            {
+                Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
+            }
+        else
+            {
+            Block block = FindBlock ( node );
+            if (block != null)
+                {
+                int index = mBlockLayout.Controls.IndexOf ( block );
+                if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                mBlockLayout.Controls.RemoveAt ( index );
+                if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
+                block.SizeChanged -= new EventHandler ( Block_SizeChanged );
+                if (updateSize) Resize_Blocks ();
+                UpdateStripCursorsAccessibleName ( index - 1 );
+
+                // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
+                if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                    {
+                    block.Dispose ();
+                    block = null;
+                    }
+
+                }
             }
         }
+        // @phraseLimit
+        public int RemoveAllBlocks ( bool updateSize )
+            {
+            int blocksRemovedCount = 0;
+            if (mBlockLayout.Controls.Count > 0)
+                {
+                                for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
+                    {
+                    if (mBlockLayout.Controls[i] is Block)
+                        {
+                        RemoveBlock ( (Block)mBlockLayout.Controls[i], updateSize );
+                        blocksRemovedCount++;
+                        }
+                    }
+                                }
+                            return blocksRemovedCount;
+            }
+        // @phraseLimit
+        private delegate void QuickBlockRemoveInvokation ( Block block, bool updateSize ); // @phraseLimit
+        // @phraseLimit
+        private void RemoveBlock (Block block,  bool updateSize )
+            {
+            if (InvokeRequired)
+                {
+                Invoke ( new QuickBlockRemoveInvokation ( RemoveBlock ), block, updateSize );
+                }
+            else
+                {
+                        //Block block = (Block) mBlockLayout.Controls[i];
+                        if (block != null)
+                            {
+                            int index = mBlockLayout.Controls.IndexOf ( block );
+                            if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                            mBlockLayout.Controls.RemoveAt ( index );
+                            if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
+                            block.SizeChanged -= new EventHandler ( Block_SizeChanged );
+                            if (updateSize) Resize_Blocks ();
+                            UpdateStripCursorsAccessibleName ( index - 1 );
+
+                            // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
+                            if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                                {
+                                block.Dispose ();
+                                block = null;
+                                }
+
+                            }
+                                    }
+            }
+
+
 
         /// <summary>
         /// Show the cursor at the current time in the waveform of the current playing block.
@@ -624,7 +719,7 @@ namespace Obi.ProjectView
         }
 
         // Set verbose accessible name for the strip 
-        private void SetAccessibleName()
+        public void SetAccessibleName()
         {
             if (Selection is StripIndexSelection)
             {
@@ -638,7 +733,8 @@ namespace Obi.ProjectView
                     string.Format(Localizer.Message("section_level_to_string"), mNode.IsRooted ? mNode.Level : 0),
                     mNode.PhraseChildCount == 0 ? "" :
                         mNode.PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :
-                            string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount));
+                            string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount),
+                IsBlocksVisible ? "" : " :Invisible"); // @phraseLimit
             }
         }
 
@@ -658,8 +754,8 @@ namespace Obi.ProjectView
                 mLabel.BackColor =
                     mBlockLayout.BackColor =
                     mHighlighted ? settings.StripSelectedBackColor :
-                    mNode.Used ? settings.StripBackColor : settings.StripUnusedBackColor;
-                mLabel.ForeColor =
+                    mNode.Used ?( mNode.PhraseChildCount > 0 ? settings.StripBackColor : settings.StripWithoutPhrasesBackcolor ): settings.StripUnusedBackColor;
+                                mLabel.ForeColor =
                     mHighlighted ? settings.StripSelectedForeColor :
                     mNode.Used ? settings.StripForeColor : settings.StripUnusedForeColor;
                 mLabel.UpdateColors(settings);

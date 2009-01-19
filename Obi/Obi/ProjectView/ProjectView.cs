@@ -20,6 +20,7 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
+        public readonly int MaxPhrasesPerSection; // @phraseLimit
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -48,6 +49,7 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
+            MaxPhrasesPerSection = 150; // @phraseLimit
         }
 
 
@@ -208,7 +210,7 @@ namespace Obi.ProjectView
             );
         }
 
-        public bool CanAddEmptyBlock { get { return mContentView.Selection != null; } }
+        public bool CanAddEmptyBlock { get { return mContentView.Selection != null    &&    IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanAddMetadataEntry() { return mPresentation != null; }
         public bool CanAddMetadataEntry(MetadataEntryDescription d) { return mMetadataView.CanAdd(d); }
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
@@ -219,10 +221,11 @@ namespace Obi.ProjectView
             get
             {
                 return mPresentation != null &&
-                    Selection != null &&
+                    Selection != null && 
                     Selection.Node is PhraseNode &&
                     ((PhraseNode)Selection.Node).Role_ != EmptyNode.Role.Silence &&
-                    !TransportBar.IsRecorderActive;
+                    !TransportBar.IsRecorderActive    &&
+                    IsPhraseCountWithinLimit ; // @phraseLimit
             }
         }
 
@@ -294,7 +297,7 @@ namespace Obi.ProjectView
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel    &&    !( Selection is TextSelection ) ; } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive    &&   Presentation != null    &&    Presentation.FirstSection != null; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
-        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
+        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive   ; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
@@ -333,10 +336,11 @@ namespace Obi.ProjectView
         {
             get
             {
-                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor;
+                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor    &&   IsPhraseCountWithinLimit ; // @phraseLimit
             }
         }
-
+        // @phraseLimit
+        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxPhrasesPerSection; } }
 
         public bool CanMarkPhrase
         {
@@ -357,6 +361,23 @@ namespace Obi.ProjectView
 
                 /// <summary> can mark selection end from keyboard /// </summary>
         public bool CanMarkSelectionEnd { get { return TransportBar.IsPlayerActive && Selection != null && Selection is AudioSelection; } }
+
+        // @phraseLimit
+        public SectionNode GetSelectedPhraseSection
+            {
+            get
+                {
+                if (Selection != null)
+                    {
+                    if (Selection.Node is SectionNode) return SelectedNodeAs<SectionNode> ();
+                    else if (Selection.Node is EmptyNode) return Selection.Node.ParentAs<SectionNode> ();
+                    }
+                return null;
+                }
+            }
+        // @phraseLimit
+        public string InvisibleSelectedStripString { get { return mContentView.InvisibleStripString  ( Selection != null ? Selection.Node : null ); } }
+
         /// <summary>
         /// Contents of the clipboard
         /// </summary>
@@ -549,10 +570,16 @@ namespace Obi.ProjectView
             {
                 if (mSelection != null && mSelection.Control is TOCView)
                 {
-                    if (TransportBar.IsPlayerActive)
-                        Selection = new NodeSelection(mContentView.PlaybackPhrase, mContentView);
+                if (TransportBar.IsPlayerActive)
+                    {
+                    // if block to be selected is invisible, select parent strip
+                    if ( mContentView.IsBlockInvisibleButStripVisible ( mTransportBar.CurrentPlaylist.CurrentPhrase ) )
+                    Selection = new NodeSelection ( mTransportBar.CurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mContentView );
                     else
-                        Selection = new NodeSelection(mSelection.Node, mContentView);
+                        Selection = new NodeSelection ( mContentView.PlaybackPhrase, mContentView );
+                    }// playback active check ends
+                else
+                    Selection = new NodeSelection ( mSelection.Node, mContentView );
                 }
                 //mContentView.Focus();
             }
@@ -610,6 +637,15 @@ namespace Obi.ProjectView
         {
             if (CanMergeStripWithNext)
             {
+                // if total phrase count after merge is more than max phrases per section, return
+            SectionNode section = mContentView.SelectedSection ;
+            SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
+            if ((section.PhraseChildCount + next.PhraseChildCount) > MaxPhrasesPerSection) // @phraseLimit
+                {
+                MessageBox.Show ( "Phrase count exceeds max limit" );
+                return;
+                }
+
                 mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
             }
@@ -728,6 +764,10 @@ namespace Obi.ProjectView
         {
             if (CanPaste)
             {
+                // if clipboard has phrase and the phrase count per section is above the max limit, return
+            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  MaxPhrasesPerSection) // @phraseLimit
+                return;
+
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
@@ -1235,10 +1275,13 @@ namespace Obi.ProjectView
                                     }
                                 });
                         progress.ShowDialog();
-                        if (phraseNodes.Count > 0)
-                        {
-                            mPresentation.Do(GetImportPhraseCommands(phraseNodes));
-                        }
+                        if (phraseNodes.Count > 0
+                            && GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxPhrasesPerSection)) // @phraseLimit
+                            {
+                            mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                            }
+                        else
+                            MessageBox.Show ( "Cannot insert phrases" );
                     }
                 }
             }
@@ -1559,6 +1602,7 @@ namespace Obi.ProjectView
             mShortcutKeys[Keys.Space] = delegate() { return TogglePlayPause(UseAudioCursor); };
             mShortcutKeys[Keys.Alt | Keys.Enter] = delegate() { return ShowNodePropertiesDialog(); };
             mShortcutKeys[Keys.F8] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
+            mShortcutKeys[Keys.F5] = delegate () { return mContentView.CreateBlocksInStrip (); };
         }
 
         // Process key press: if this is a key down event, lookup the shortcut tables;
@@ -1951,10 +1995,18 @@ namespace Obi.ProjectView
         {
             if (node != null)
             {
-                if (selectionControl == null)
-                    Selection = new NodeSelection(node, mContentView);
-                else
-                    Selection = new NodeSelection(node, selectionControl);
+                // if block to be selected is invisible, select parent section
+            if (mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)  node ) 
+                || (selectionControl != null && selectionControl is TOCView ) )
+                {
+                node = node.ParentAs<SectionNode> ();
+                }
+
+            if (selectionControl == null)
+                Selection = new NodeSelection ( node, mContentView );
+            else
+                                                Selection = new NodeSelection ( node, selectionControl );
+                
             }
         }
 
@@ -2016,6 +2068,8 @@ namespace Obi.ProjectView
         {
             mContentView.ResumeLayout_All();
         }
+
+        public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
 
     //@ShowSingleSection
         /*
