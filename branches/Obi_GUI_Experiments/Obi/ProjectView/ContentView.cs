@@ -1331,6 +1331,17 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             mStripsPanel.Controls.Remove(strip);
             ReflowFromIndex(index);
             if ( m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ) ; // @phraseLimit
+
+            if (clipboard == null || (clipboard != null && clipboard.Node != strip.Node)) // @phraseLimit
+                {
+                strip.Dispose ();
+                strip = null;
+                }
+            else
+                {
+                strip.RemoveAllBlocks ( false  ) ;
+                                }
+
         }
 
         // Remove the strip or block for the removed tree node
