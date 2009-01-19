@@ -2085,6 +2085,11 @@ namespace Obi
                 ShowSelectionInStatusBar ();
                         }
 
+        private void mShowSectionContentsToolStripMenuItem_Click ( object sender, EventArgs e )
+            {
+            //if (mProjectView.Selection != null) mProjectView.ShowSelectedSectionContents ();
+            }
+
 
         void mShowSingleSectionToolStripItem_Click ( object sender, System.EventArgs e )
             {
