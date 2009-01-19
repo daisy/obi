@@ -642,7 +642,7 @@ namespace Obi.ProjectView
             SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
             if ((section.PhraseChildCount + next.PhraseChildCount) > MaxPhrasesPerSection) // @phraseLimit
                 {
-                MessageBox.Show ( "Phrase count exceeds max limit" );
+                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxPhrasesPerSection ) ) ) ;
                 return;
                 }
 
@@ -1281,7 +1281,8 @@ namespace Obi.ProjectView
                             mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                             }
                         else
-                            MessageBox.Show ( "Cannot insert phrases" );
+                            MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) +"\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxPhrasesPerSection ) );
+                                
                     }
                 }
             }

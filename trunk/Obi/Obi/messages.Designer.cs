@@ -450,6 +450,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Section {0} has large number of phrases, only initial {1} phrases are visible. Please split section to see all phrases together on screen..
+        /// </summary>
+        internal static string ContentHidden_SectionHasOverlimitPhrases {
+            get {
+                return ResourceManager.GetString("ContentHidden_SectionHasOverlimitPhrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phrases in section exceeds maximum phrase limit per section of {0}. .
+        /// </summary>
+        internal static string ContentsHidden_PhrasesExceedMaxLimitPerSection {
+            get {
+                return ResourceManager.GetString("ContentsHidden_PhrasesExceedMaxLimitPerSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (Contents hidden).
+        /// </summary>
+        internal static string ContentsHidden_StatusMessage {
+            get {
+                return ResourceManager.GetString("ContentsHidden_StatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to copy audio.
         /// </summary>
         internal static string copy_audio {
@@ -1907,6 +1934,15 @@ namespace Obi {
         internal static string OpenError_UseCleanUp {
             get {
                 return ResourceManager.GetString("OpenError_UseCleanUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not able to Complete operation. .
+        /// </summary>
+        internal static string Operation_Cancelled {
+            get {
+                return ResourceManager.GetString("Operation_Cancelled", resourceCulture);
             }
         }
         
