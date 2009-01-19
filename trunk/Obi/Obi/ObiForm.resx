@@ -417,7 +417,7 @@
     <value>Ctrl+Alt+T</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowTOCViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Show &amp;TOC view</value>
@@ -429,7 +429,7 @@
     <value>Ctrl+Alt+M</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowMetadataViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Show &amp;metadata view</value>
@@ -441,7 +441,7 @@
     <value>Ctrl+Alt+B</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowTransportBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Show transport &amp;bar</value>
@@ -453,25 +453,25 @@
     <value>Ctrl+Alt+U</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowStatusBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Show stat&amp;us bar</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 6</value>
+    <value>259, 6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Toggle focus TOC view / Content view F6</value>
+    <value>focus on TOC view / Content view F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mFocusOnTOCViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Toggle focus TO&amp;C view / Content view</value>
+    <value>focus on TO&amp;C view / Content view</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Focus on content view F6</value>
@@ -480,7 +480,7 @@
     <value>F6</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Focus on co&amp;ntent view</value>
@@ -496,7 +496,7 @@
     <value>Ctrl+F6</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mFocusOnTransportBarToolStripMenuItem.Text" xml:space="preserve">
     <value>Focus on tr&amp;ansport bar</value>
@@ -508,7 +508,7 @@
     <value>Ctrl+Alt+Y</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;ynchronize views</value>
@@ -520,7 +520,7 @@
     <value>Ctrl+Alt+W</value>
   </data>
   <data name="mWrappingInContentViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mWrappingInContentViewToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Wrapping in content view</value>
@@ -532,7 +532,7 @@
     <value>F5</value>
   </data>
   <data name="mShowSingleSectionToolStripItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowSingleSectionToolStripItem.Text" xml:space="preserve">
     <value>Show single section in content view</value>
@@ -540,8 +540,20 @@
   <data name="mShowSingleSectionToolStripItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="mShowSectionContentsToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Show section's contents F5</value>
+  </data>
+  <data name="mShowSectionContentsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>F5</value>
+  </data>
+  <data name="mShowSectionContentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>262, 22</value>
+  </data>
+  <data name="mShowSectionContentsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Show sectio&amp;n's contents</value>
+  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 6</value>
+    <value>259, 6</value>
   </data>
   <data name="mShowPeakMeterMenuItem.AccessibleName" xml:space="preserve">
     <value>Show peak meter Ctrl+Alt+P</value>
@@ -550,7 +562,7 @@
     <value>Ctrl+Alt+P</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowPeakMeterMenuItem.Text" xml:space="preserve">
     <value>Show &amp;peak meter</value>
@@ -562,13 +574,13 @@
     <value>Ctrl+Alt+O</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mShowSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Show sou&amp;rce view</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 6</value>
+    <value>259, 6</value>
   </data>
   <data name="mView_ZoomInMenuItem.AccessibleName" xml:space="preserve">
     <value>Zoom in Ctrl+Alt+plus</value>
@@ -580,7 +592,7 @@
     <value>Ctrl+Alt+Oemplus</value>
   </data>
   <data name="mView_ZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_ZoomInMenuItem.Text" xml:space="preserve">
     <value>Zoom &amp;in</value>
@@ -595,7 +607,7 @@
     <value>Ctrl+Alt+OemMinus</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_ZoomOutMenuItem.Text" xml:space="preserve">
     <value>Zoom &amp;out</value>
@@ -607,7 +619,7 @@
     <value>Ctrl+Alt+0</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_NormalSizeMenuItem.Text" xml:space="preserve">
     <value>Normal si&amp;ze</value>
@@ -622,7 +634,7 @@
     <value>Ctrl+Alt+Shift+Oemplus</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_AudioZoomInMenuItem.Text" xml:space="preserve">
     <value>Au&amp;dio zoom in</value>
@@ -637,7 +649,7 @@
     <value>Ctrl+Alt+Shift+OemMinus</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_AudioZoomOutMenuItem.Text" xml:space="preserve">
     <value>Audio zoom out (&amp;q)</value>
@@ -649,13 +661,13 @@
     <value>Ctrl+Alt+Shift+0</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_ResetAudioSizeMenuItem.Text" xml:space="preserve">
     <value>Reset audio size (&amp;h)</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 6</value>
+    <value>259, 6</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.AccessibleName" xml:space="preserve">
     <value>Phrase properties Alt+Enter</value>
@@ -664,7 +676,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_PhrasePropertiesMenuItem.Text" xml:space="preserve">
     <value>Phras&amp;e properties</value>
@@ -676,7 +688,7 @@
     <value>Alt+Enter</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_SectionPropertiesMenuItem.Text" xml:space="preserve">
     <value>S&amp;ection properties</value>
@@ -685,7 +697,7 @@
     <value>Project properties </value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 22</value>
+    <value>262, 22</value>
   </data>
   <data name="mView_ProjectPropertiesMenuItem.Text" xml:space="preserve">
     <value>Pro&amp;ject properties</value>
@@ -1561,7 +1573,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.0.0.31821, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=0.97.0.35104, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1834,9 +1846,6 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
   </data>
@@ -2096,6 +2105,12 @@
     <value>mShowSingleSectionToolStripItem</value>
   </data>
   <data name="&gt;&gt;mShowSingleSectionToolStripItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mShowSectionContentsToolStripMenuItem.Name" xml:space="preserve">
+    <value>mShowSectionContentsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mShowSectionContentsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">

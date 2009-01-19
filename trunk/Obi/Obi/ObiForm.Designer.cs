@@ -73,6 +73,7 @@ namespace Obi
         this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mWrappingInContentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mShowSingleSectionToolStripItem = new System.Windows.Forms.ToolStripMenuItem ();
+        this.mShowSectionContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator ();
         this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
         this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem ();
@@ -414,6 +415,7 @@ namespace Obi
             this.mSynchronizeViewsToolStripMenuItem,
             this.mWrappingInContentViewToolStripMenuItem,
             this.mShowSingleSectionToolStripItem,
+            this.mShowSectionContentsToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
@@ -514,6 +516,11 @@ namespace Obi
         this.mShowSingleSectionToolStripItem.CheckOnClick = true;
         this.mShowSingleSectionToolStripItem.Name = "mShowSingleSectionToolStripItem";
         this.mShowSingleSectionToolStripItem.Click += new System.EventHandler ( this.mShowSingleSectionToolStripItem_Click );
+        // 
+        // mShowSectionContentsToolStripMenuItem
+        // 
+        resources.ApplyResources ( this.mShowSectionContentsToolStripMenuItem, "mShowSectionContentsToolStripMenuItem" );
+        this.mShowSectionContentsToolStripMenuItem.Name = "mShowSectionContentsToolStripMenuItem";
         // 
         // toolStripSeparator10
         // 
@@ -1377,6 +1384,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_ClearRoleMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripMenuItem mShowSingleSectionToolStripItem;
+        private System.Windows.Forms.ToolStripMenuItem mShowSectionContentsToolStripMenuItem;
     }
 }
 
