@@ -893,8 +893,7 @@ namespace Obi.ProjectView
                     if ( s.Node.PhraseChildCount < m_MaxVisiblePhraseCount -  VisibleBlocksCount  )
                         {
                     CreateBlocksInStrip (s) ;
-                                                //MessageBox.Show ( s.Node.Label );
-                        }
+                                                                        }
                     }
 
                 }
@@ -941,13 +940,12 @@ namespace Obi.ProjectView
 
                 stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
-                //MessageBox.Show ( indexAddition.ToString () );
-                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > m_MaxVisiblePhraseCount)
+                                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > m_MaxVisiblePhraseCount)
                     MakeOldStripsBlocksInvisible ( indexAddition );
                 
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
-                if (!IsAllBlocksCreated) MessageBox.Show ( "Section have more maximum visible blocks, use split section to make all blocks visible" );
+                if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , m_MaxVisiblePhraseCount ) , Localizer.Message ("Caption_Warning") );
                                 return true;
                 }
             return false;
@@ -1026,8 +1024,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                 {
                                 
                                 }
-                            //MessageBox.Show ( "Removed  " + VisibleBlocksCount.ToString () );
-                                                        }
+                                                                                    }
                         else
                             {
                             m_BlocksVisibilityOperationMutex.ReleaseMutex ();
@@ -1205,7 +1202,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                         }
                     }
                 }
-            return " :(Invisible)";
+            return Localizer.Message ( "ContentsHidden_StatusMessage" );
             }
 
         // @phraseLimit

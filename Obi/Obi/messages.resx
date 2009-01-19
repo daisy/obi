@@ -1342,4 +1342,16 @@ Error text: {1}</value>
   <data name="OpenError_UseCleanUp" xml:space="preserve">
     <value>Please use clean unreferenced audio as soon as project opens.</value>
   </data>
+  <data name="ContentHidden_SectionHasOverlimitPhrases" xml:space="preserve">
+    <value>Section {0} has large number of phrases, only initial {1} phrases are visible. Please split section to see all phrases together on screen.</value>
+  </data>
+  <data name="ContentsHidden_PhrasesExceedMaxLimitPerSection" xml:space="preserve">
+    <value>Phrases in section exceeds maximum phrase limit per section of {0}. </value>
+  </data>
+  <data name="ContentsHidden_StatusMessage" xml:space="preserve">
+    <value> (Contents hidden)</value>
+  </data>
+  <data name="Operation_Cancelled" xml:space="preserve">
+    <value>Not able to Complete operation. </value>
+  </data>
 </root>
