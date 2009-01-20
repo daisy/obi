@@ -20,7 +20,8 @@ namespace Obi.ProjectView
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
         private Timer mTabbingTimer;         // ???
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
-        public readonly int MaxPhrasesPerSection; // @phraseLimit
+        public readonly int  MaxVisibleBlocksCount ; // @phraseLimit
+        public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
 
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
@@ -49,7 +50,8 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
-            MaxPhrasesPerSection = 150; // @phraseLimit
+            MaxVisibleBlocksCount = 700; // @phraseLimit
+            MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
         }
 
 
@@ -340,7 +342,7 @@ namespace Obi.ProjectView
             }
         }
         // @phraseLimit
-        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxPhrasesPerSection; } } 
+        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxVisibleBlocksCount ; } } 
 
         // @phraseLimit
         public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ); } }
@@ -643,9 +645,9 @@ namespace Obi.ProjectView
                 // if total phrase count after merge is more than max phrases per section, return
             SectionNode section = mContentView.SelectedSection ;
             SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
-            if ((section.PhraseChildCount + next.PhraseChildCount) > MaxPhrasesPerSection) // @phraseLimit
+            if ((section.PhraseChildCount + next.PhraseChildCount) > MaxVisibleBlocksCount ) // @phraseLimit
                 {
-                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxPhrasesPerSection ) ) ) ;
+                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxVisibleBlocksCount ) ) ) ;
                 return;
                 }
 
@@ -768,7 +770,7 @@ namespace Obi.ProjectView
             if (CanPaste)
             {
                 // if clipboard has phrase and the phrase count per section is above the max limit, return
-            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  MaxPhrasesPerSection) // @phraseLimit
+            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  MaxVisibleBlocksCount) // @phraseLimit
                 return;
 
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
@@ -1279,12 +1281,12 @@ namespace Obi.ProjectView
                                 });
                         progress.ShowDialog();
                         if (phraseNodes.Count > 0
-                            && GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxPhrasesPerSection)) // @phraseLimit
+                            && GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxVisibleBlocksCount)) // @phraseLimit
                             {
                             mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                             }
                         else
-                            MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) +"\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxPhrasesPerSection ) );
+                            MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) +"\\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
                                 
                     }
                 }

@@ -35,8 +35,6 @@ namespace Obi.ProjectView
         private Cursor mCursor;
 
         
-        private readonly int m_MaxVisiblePhraseCount; // @phraseLimit
-        private readonly int m_MaxOverLimitForPhraseVisibility ; // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
         private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
 
@@ -64,9 +62,7 @@ namespace Obi.ProjectView
             mEnableScrolling = true;
 
             m_VisibleStripsList = new List<Strip> (); // @phraseLimit
-            m_MaxVisiblePhraseCount = 700; //@phraseLimit
-            m_MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
-            m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
+                        m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
         }
 
 
@@ -890,7 +886,7 @@ namespace Obi.ProjectView
                 if (mStripsPanel.Controls[i] is Strip)
                     {
                     Strip s = (Strip)mStripsPanel.Controls[i] ;
-                    if ( s.Node.PhraseChildCount < m_MaxVisiblePhraseCount -  VisibleBlocksCount  )
+                    if ( s.Node.PhraseChildCount < mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  )
                         {
                     CreateBlocksInStrip (s) ;
                                                                         }
@@ -916,7 +912,7 @@ namespace Obi.ProjectView
                 
                                         // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
                                         if ( !m_CreatingGUIForNewPresentation     &&     
-                                            (VisibleBlocksCount+ stripControl.Node.PhraseChildCount ) > ( m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility ) )
+                                            (VisibleBlocksCount+ stripControl.Node.PhraseChildCount ) > ( mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility ) )
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
                                         // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
@@ -925,14 +921,14 @@ namespace Obi.ProjectView
             
                                         // create blocks for whole strip
             bool IsAllBlocksCreated = true;
-            if (stripControl.Node.PhraseChildCount <= m_MaxVisiblePhraseCount)
+            if (stripControl.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount)
                 {
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i)
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                 }
             else
                 {
-                for (int i = 0; i < m_MaxVisiblePhraseCount ; ++i)
+                for (int i = 0; i < mProjectView.MaxVisibleBlocksCount ; ++i)
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
                 IsAllBlocksCreated = false;
@@ -940,12 +936,12 @@ namespace Obi.ProjectView
 
                 stripControl.SetAccessibleName ();
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
-                                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > m_MaxVisiblePhraseCount)
+                                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount)
                     MakeOldStripsBlocksInvisible ( indexAddition );
                 
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
-                if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , m_MaxVisiblePhraseCount ) , Localizer.Message ("Caption_Warning") );
+                if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
                                 return true;
                 }
             return false;
@@ -987,9 +983,9 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             int maxVisiblePhraseCountConsidered;
 
             if (tillOverLimit == false) // consider only normal visibility limit and no over limit. this is normal operation and can be used through threads
-                maxVisiblePhraseCountConsidered = m_MaxVisiblePhraseCount;
+                maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount;
             else// overlimit is true, operate in overlimit band, called when we visible phrases are more than even over limit. generally called imidiately 
-                                maxVisiblePhraseCountConsidered = m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility;
+                                maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility;
                 
                 // first clear blocks in partially visible strips
                             for (int i = 0; i < m_VisibleStripsList.Count; i++)
@@ -1037,7 +1033,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         private void MakeOldStripsBlocksInvisible ( int newStripIndex )
             {
-            int countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
+            int countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
             if (countRequired > 0) MakeOldStripsBlocksInvisible ( countRequired, false, newStripIndex );
             }
 
@@ -1045,11 +1041,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) 
             {
-            int countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
+            int countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
 
             if (removeFromSelected &&   countRequired > 0) RemoveBlocksFromSelectedPartiallyVisibleStrip ( countRequired );
                 
-            countRequired = VisibleBlocksCount - m_MaxVisiblePhraseCount;
+            countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
             if ( countRequired > 0 )
             MakeOldStripsBlocksInvisible ( countRequired , false, 0);
             }
@@ -1404,11 +1400,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             
             // remove blocks in old strips if  blocks exceed max. blocks limit and recorder is not active
             // else remove imidiately if  if visible blocks exceed even extra limit  even if recorder is active
-                                        if (blocksCountInVisibleStrip > m_MaxVisiblePhraseCount && !mProjectView.TransportBar.IsRecorderActive)
+                                        if (blocksCountInVisibleStrip > mProjectView.MaxVisibleBlocksCount && !mProjectView.TransportBar.IsRecorderActive)
                 {
                                 MakeOldStripsBlocksInvisible ( 1, false , indexOfNewStrip)   ;
                 }
-                else if (blocksCountInVisibleStrip > (m_MaxVisiblePhraseCount + m_MaxOverLimitForPhraseVisibility) )
+                else if (blocksCountInVisibleStrip > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility) )
                 {
                 MakeOldStripsBlocksInvisible ( 1 , true, indexOfNewStrip) ;
                 }

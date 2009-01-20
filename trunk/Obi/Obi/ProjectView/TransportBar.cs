@@ -203,9 +203,9 @@ namespace Obi.ProjectView
             {
             get
                 {
-                if (IsRecorderActive && mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection)
+                if (IsRecorderActive && mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount)
                     return true;
-                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> ().PhraseChildCount < mView.MaxPhrasesPerSection)
+                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> ().PhraseChildCount < mView.MaxVisibleBlocksCount)
                     return true;
                 else
                     return mView.IsPhraseCountWithinLimit;
@@ -1497,7 +1497,7 @@ namespace Obi.ProjectView
                 {
                     // record into to next phrase.
                     // check if phrase count of section is less than max limit
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
                     mRecordingSession.NextPhrase();
                 }
                 else if (mState == State.Monitoring)
@@ -1545,7 +1545,7 @@ namespace Obi.ProjectView
                 if (mState == State.Recording)
                 {
                     // check if phrase limit for section is not over
-                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxPhrasesPerSection ) // @phraseLimit
+                    if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
                     mRecordingSession.MarkPage();
                 }
                 else if (mState == State.Monitoring)
