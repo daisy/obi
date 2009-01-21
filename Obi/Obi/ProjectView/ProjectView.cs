@@ -26,7 +26,7 @@ namespace Obi.ProjectView
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
-
+        public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
 
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace Obi.ProjectView
         public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxVisibleBlocksCount ; } } 
 
         // @phraseLimit
-        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ); } }
+        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection )    &&    Selection.Control is ContentView; } }
 
         public bool CanMarkPhrase
         {
@@ -2080,8 +2080,23 @@ namespace Obi.ProjectView
             if ( CanShowSectionContents )
                         mContentView.CreateBlocksInStrip ();
             }
-
+        // @phraseLimit
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
+
+        //@phraseLimit
+        public void ChangeVisibilityProcessState ( bool active )
+            {
+            if (active)
+                {
+                this.UseWaitCursor = true;
+                }
+            else
+                {
+                UseWaitCursor = false;
+                }
+            if (BlocksVisibilityChanged != null) BlocksVisibilityChanged ( this, new EventArgs () );
+            }
+
 
     //@ShowSingleSection
         /*
