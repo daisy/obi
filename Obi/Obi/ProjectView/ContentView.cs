@@ -36,7 +36,8 @@ namespace Obi.ProjectView
 
         
         private bool m_CreatingGUIForNewPresentation;
-        private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
+        private bool m_IsBlocksVisibilityProcessActive;
+        //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
 
 
         private delegate Strip AddStripForObiNodeDelegate(ObiNode node);
@@ -62,7 +63,8 @@ namespace Obi.ProjectView
             mEnableScrolling = true;
 
             m_VisibleStripsList = new List<Strip> (); // @phraseLimit
-                        m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
+            m_IsBlocksVisibilityProcessActive = false;
+                        //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
         }
 
 
@@ -916,37 +918,48 @@ namespace Obi.ProjectView
         // @phraseLimit
         private  bool CreateBlocksInStrip ( Strip stripControl )
             {
-                                    if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
+                                                if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
                 {
-                                        // pause playback if it is active.
+                                                                                            // pause playback if it is active.
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
-                
+
+                ChangeVisibilityProcessState ( true );
                                         // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
                                         if ( !m_CreatingGUIForNewPresentation     &&     
                                             (VisibleBlocksCount+ stripControl.Node.PhraseChildCount ) > ( mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility ) )
                 MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount , true, 0);
 
-                                        // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
-                                        if ( !m_CreatingGUIForNewPresentation )
-                RemoveBlocksInStrip ( stripControl );
-            
-                                        // create blocks for whole strip
+            int indexAddition = -1;
             bool IsAllBlocksCreated = true;
-            if (stripControl.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount)
-                {
-                for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i)
-                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
-                }
-            else
-                {
-                for (int i = 0; i < mProjectView.MaxVisibleBlocksCount ; ++i)
-                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
 
-                IsAllBlocksCreated = false;
-                }
+                                            try
+                                                {
+                                                // if any block of target invisible strip is visible, first make it invisible then make blocks for whole strip visible
+                                                if (!m_CreatingGUIForNewPresentation)
+                                                RemoveBlocksInStrip ( stripControl );
 
-                stripControl.SetAccessibleName ();
-                int indexAddition =  AddStripToVisibleStripsList ( stripControl );
+                                                // create blocks for whole strip
+                                                if (stripControl.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount)
+                                                    {
+                                                    for (int i = 0; i < stripControl.Node.PhraseChildCount; ++i)
+                                                        stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                                                    }
+                                                else
+                                                    {
+                                                    for (int i = 0; i < mProjectView.MaxVisibleBlocksCount; ++i)
+                                                        stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+
+                                                    IsAllBlocksCreated = false;
+                                                    }
+
+                                                stripControl.SetAccessibleName ();
+                                                indexAddition = AddStripToVisibleStripsList ( stripControl );
+                                                } // try ends
+                                            catch (System.Exception ex)
+                                                {
+                                                MessageBox.Show ( ex.ToString () );
+                                                }
+
                                 if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount)
                     MakeOldStripsBlocksInvisible ( indexAddition );
 
@@ -955,10 +968,14 @@ namespace Obi.ProjectView
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
                 if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
+
+                ChangeVisibilityProcessState ( false );
                                 return true;
                 }
+            ChangeVisibilityProcessState ( false );
             return false;
             }
+
         // @phraseLimit
         private int AddStripToVisibleStripsList ( Strip newStrip )
             {
@@ -987,12 +1004,25 @@ namespace Obi.ProjectView
             }
 
         // @phraseLimit
+        private void ChangeVisibilityProcessState ( bool active )
+            {
+            if (active)
+                {
+                m_IsBlocksVisibilityProcessActive = true;
+                }
+            else
+                {
+                m_IsBlocksVisibilityProcessActive = false;
+                }
+            }
+
+        // @phraseLimit
 private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit, int newStripIndex)
             {
                         if (m_VisibleStripsList.Count == 0)
                 return ;
 
-            m_BlocksVisibilityOperationMutex.WaitOne ();
+            //m_BlocksVisibilityOperationMutex.WaitOne ();
             int maxVisiblePhraseCountConsidered;
 
             if (tillOverLimit == false) // consider only normal visibility limit and no over limit. this is normal operation and can be used through threads
@@ -1015,7 +1045,10 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                             }
                                         else break;
                                         }
-                                    catch (System.Exception) { }
+                                    catch (System.Exception ex) 
+                                        {
+                                        MessageBox.Show ( ex.ToString () );
+                                        }
                                     }
                                                                 }
                                                             
@@ -1031,16 +1064,16 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                                 }
                             catch (System.Exception ex)
                                 {
-                                
+                                MessageBox.Show ( ex.ToString () );
                                 }
                                                                                     }
                         else
                             {
-                            m_BlocksVisibilityOperationMutex.ReleaseMutex ();
+                            //m_BlocksVisibilityOperationMutex.ReleaseMutex ();
                             return;
                             }
                         }
-                    m_BlocksVisibilityOperationMutex.ReleaseMutex ();
+                    //m_BlocksVisibilityOperationMutex.ReleaseMutex ();
                     }
 
         // @phraseLimit
@@ -1054,6 +1087,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) 
             {
+            ChangeVisibilityProcessState ( true );
             int countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
 
             if (removeFromSelected &&   countRequired > 0) RemoveBlocksFromSelectedPartiallyVisibleStrip ( countRequired );
@@ -1061,6 +1095,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
             if ( countRequired > 0 )
             MakeOldStripsBlocksInvisible ( countRequired , false, 0);
+        ChangeVisibilityProcessState ( false );
             }
 
         
@@ -1078,7 +1113,10 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex]);
                                         }
                 }
-            catch (System.Exception) { }
+            catch (System.Exception ex) 
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
                         }
 
@@ -1101,15 +1139,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             int blocksRemoved = 0;
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                                try
-                    {
-                    blocksRemoved =  stripControl.RemoveAllBlocks ( true );
-                    }
-                catch (System.Exception ex)
-                    {
-                    MessageBox.Show ( ex.ToString () );
-                    }
-                stripControl.SetAccessibleName ();
+                                        blocksRemoved =  stripControl.RemoveAllBlocks ( true );
+                                    stripControl.SetAccessibleName ();
                 if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                                 }
             return blocksRemoved;
@@ -1585,7 +1616,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             
         }
 
-        private bool CanUseKeys { get { return mSelection == null || !(mSelection is TextSelection); } }
+        private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection) ) && !m_IsBlocksVisibilityProcessActive ; } }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys key)
         {
