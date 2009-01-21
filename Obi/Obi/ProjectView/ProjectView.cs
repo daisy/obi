@@ -381,7 +381,7 @@ namespace Obi.ProjectView
                 }
             }
         // @phraseLimit
-        public string InvisibleSelectedStripString { get { return mContentView.InvisibleStripString  ( Selection != null ? Selection.Node : null ); } }
+        public string InvisibleSelectedStripString { get { return mContentView.InvisibleStripString  ( Selection != null ? GetSelectedPhraseSection : null ); } }
 
         /// <summary>
         /// Contents of the clipboard
