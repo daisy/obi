@@ -949,7 +949,9 @@ namespace Obi.ProjectView
                 int indexAddition =  AddStripToVisibleStripsList ( stripControl );
                                 if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount)
                     MakeOldStripsBlocksInvisible ( indexAddition );
-                
+
+                if (!m_CreatingGUIForNewPresentation) UpdateSize ();
+
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
                 if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
