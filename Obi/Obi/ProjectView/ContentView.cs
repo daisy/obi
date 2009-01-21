@@ -291,7 +291,7 @@ namespace Obi.ProjectView
         public void NewPresentation()
         {
         m_CreatingGUIForNewPresentation = true;
-            mStripsPanel.Controls.Clear();
+        ClearStripsPanel ();
             m_VisibleStripsList.Clear (); // @phraseLimit
             ClearWaveformRenderQueue();
             SuspendLayout_All();
@@ -862,8 +862,19 @@ namespace Obi.ProjectView
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             return strip;
         }
-
+        // @phraseLimit
         private List<Strip> m_VisibleStripsList;
+
+        // @phraseLimit
+        private void ClearStripsPanel ()
+            {
+            // destroy handles of all controls
+            for (int i = 0; i < mStripsPanel.Controls.Count; i++)
+                mStripsPanel.Controls[i].Dispose ();
+
+            mStripsPanel.Controls.Clear ();
+            }
+
         // @phraseLimit
         private int VisibleBlocksCount
             {
