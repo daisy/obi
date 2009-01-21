@@ -641,6 +641,11 @@ namespace Obi
             ShowSelectionInStatusBar();
         }
 
+        private void ProjectView_BlocksVisibilityChanged ( object sender, EventArgs e )
+            {
+            ShowSelectionInStatusBar ();
+            }
+
         private void Session_ProjectCreated(object sender, EventArgs e)
         {
             GotNewPresentation();
@@ -1386,6 +1391,7 @@ namespace Obi
                 InitializeComponent();
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler(ProjectView_SelectionChanged);
+                mProjectView.BlocksVisibilityChanged += new EventHandler( ProjectView_BlocksVisibilityChanged ) ;
                 mSession = new Session();
                 mSession.ProjectOpened += new EventHandler(Session_ProjectOpened);
                 mSession.ProjectCreated += new EventHandler(Session_ProjectCreated);
@@ -1710,6 +1716,7 @@ namespace Obi
                         Localizer.Message("save_settings_error_caption"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 mProjectView.SelectionChanged -= new EventHandler(ProjectView_SelectionChanged);
+                mProjectView.BlocksVisibilityChanged -= new EventHandler ( ProjectView_BlocksVisibilityChanged );
 
                 Application.Exit();
 
