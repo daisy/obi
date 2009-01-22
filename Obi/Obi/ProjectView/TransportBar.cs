@@ -198,7 +198,12 @@ namespace Obi.ProjectView
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
         public bool CanSplitPhrase { get { return (IsPlayerActive || mView.Selection is AudioSelection)    &&    IsPhraseCountWithinLimit; } } // @phraseLimit
+
         // @phraseLimit
+        /// <summary>
+        ///  Returns true if phrase count of  selected section is below below max visible phrase blocks count
+        /// it also consider active node w.r.t. recording / playback instead of selection if recording or playback is active
+                /// </summary>
         public bool IsPhraseCountWithinLimit
             {
             get
@@ -1003,6 +1008,8 @@ namespace Obi.ProjectView
 
             // optionally save project
             SaveWhenRecordingEnds ();
+
+            // makes phrase blocks invisible if these exceed max. visible blocks count during recording
             mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
         }
 
@@ -2002,6 +2009,8 @@ UpdateButtons();
 
                 // save optionally
                 SaveWhenRecordingEnds ();
+
+                // make phrase blocks invisible if these exceeded max visible phrase blocks limit during recording
                 mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
             }
         }
