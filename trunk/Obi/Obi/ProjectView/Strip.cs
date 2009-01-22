@@ -77,7 +77,12 @@ namespace Obi.ProjectView
             get { return mContentView == null ? null : mContentView.ColorSettings; }
             set { UpdateColors(value); }
         }
+
+
 // @phraseLimit
+        /// <summary>
+        /// returns true if all the blocks in strip are visible
+                /// </summary>
         public bool IsBlocksVisible
             {
             get
@@ -333,7 +338,7 @@ namespace Obi.ProjectView
 
         public void RemoveBlock(EmptyNode node, bool updateSize)
         {
-                                if (InvokeRequired)
+            if (InvokeRequired)
             {
                 Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
             }
@@ -360,13 +365,20 @@ namespace Obi.ProjectView
                 }
             }
         }
+
+
         // @phraseLimit
+        /// <summary>
+        /// Remove and dispose all blocks in strip without removing phrases
+                /// </summary>
+        /// <param name="updateSize"></param>
+        /// <returns></returns>
         public int RemoveAllBlocks ( bool updateSize )
             {
             int blocksRemovedCount = 0;
             if (mBlockLayout.Controls.Count > 0)
                 {
-                                for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
+                    for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
                     {
                     if (mBlockLayout.Controls[i] is Block)
                         {
@@ -374,12 +386,20 @@ namespace Obi.ProjectView
                         blocksRemovedCount++;
                         }
                     }
-                                }
-                            return blocksRemovedCount;
+                }
+                return blocksRemovedCount;
             }
+
+
         // @phraseLimit
         private delegate void QuickBlockRemoveInvokation ( Block block, bool updateSize ); // @phraseLimit
+
         // @phraseLimit
+        /// <summary>
+        /// Remove and dispose a single block passed as parameter
+                /// </summary>
+        /// <param name="block"></param>
+        /// <param name="updateSize"></param>
         private void RemoveBlock (Block block,  bool updateSize )
             {
             if (InvokeRequired)
@@ -407,7 +427,7 @@ namespace Obi.ProjectView
                                 }
 
                             }
-                                    }
+                        }
             }
 
 
