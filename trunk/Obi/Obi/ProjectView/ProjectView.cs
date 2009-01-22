@@ -341,7 +341,11 @@ namespace Obi.ProjectView
                 return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor    &&   IsPhraseCountWithinLimit ; // @phraseLimit
             }
         }
+
         // @phraseLimit
+        /// <summary>
+        ///  returns true if phrases in selected section are within  max visible blocks limit
+                /// </summary>
         public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxVisibleBlocksCount ; } } 
 
         // @phraseLimit
@@ -368,6 +372,9 @@ namespace Obi.ProjectView
         public bool CanMarkSelectionEnd { get { return TransportBar.IsPlayerActive && Selection != null && Selection is AudioSelection; } }
 
         // @phraseLimit
+        /// <summary>
+        /// returns selection node or parent section node of selected phrase
+                /// </summary>
         public SectionNode GetSelectedPhraseSection
             {
             get
@@ -380,7 +387,12 @@ namespace Obi.ProjectView
                 return null;
                 }
             }
+
         // @phraseLimit
+        /// <summary>
+        /// returns string to indicate that selected section  has its contents invisible
+        /// if section is visible or selection is not section selection then return null string
+                /// </summary>
         public string InvisibleSelectedStripString { get { return mContentView.InvisibleStripString  ( Selection != null ? GetSelectedPhraseSection : null ); } }
 
         /// <summary>
@@ -2075,16 +2087,25 @@ namespace Obi.ProjectView
         }
 
         // @phraseLimit
+        /// <summary>
+        /// shows contents of selected strip
+                /// </summary>
         public void ShowSelectedSectionContents ()
             {
             if ( CanShowSectionContents )
                         mContentView.CreateBlocksInStrip ();
             }
+
+
         // @phraseLimit
+        /// <summary>
+        /// makes contents of strips invisible if blocks visibility limit is exceeded. The operation is started from selected section
+                /// </summary>
+        /// <param name="removeFromSelected"></param>
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
 
         //@phraseLimit
-        public void ChangeVisibilityProcessState ( bool active )
+                public void ChangeVisibilityProcessState ( bool active )
             {
             if (active)
                 {
