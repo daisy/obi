@@ -34,7 +34,8 @@ namespace Obi.ProjectView
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
 
-        
+
+        private List<Strip> m_VisibleStripsList;  // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
@@ -495,6 +496,11 @@ namespace Obi.ProjectView
             }
         }
         // @phraseLimit
+        /// <summary>
+        /// returns true if phrase block is  invisible but the strip of phrase exists
+                /// </summary>
+        /// <param name="sel"></param>
+        /// <returns></returns>
         private bool IsBlockInvisibleButStripVisible ( NodeSelection sel)
             {
             if (sel == null)
@@ -513,7 +519,14 @@ namespace Obi.ProjectView
                 }
             return false;
             }
+
+
         // @phraseLimit
+        /// <summary>
+        /// Check if block for phrase passed as parameter is invisible while its strip is visible
+                /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool IsBlockInvisibleButStripVisible ( EmptyNode node )
             {
             if (node != null    &&     node is EmptyNode && node.IsRooted)
@@ -864,10 +877,12 @@ namespace Obi.ProjectView
             for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection(node.SectionChild(i));
             return strip;
         }
-        // @phraseLimit
-        private List<Strip> m_VisibleStripsList;
+        
 
         // @phraseLimit
+        /// <summary>
+        /// Remove all strips from strips panel and destroy their handle
+                /// </summary>
         private void ClearStripsPanel ()
             {
             // destroy handles of all controls
@@ -879,7 +894,7 @@ namespace Obi.ProjectView
 
         // @phraseLimit
         private int VisibleBlocksCount
-            {
+        {
             get
                 {
                 int count= 0 ;
@@ -889,9 +904,13 @@ namespace Obi.ProjectView
                 return count;
                 }
             }
+
         // @phraseLimit
+        /// <summary>
+        /// create prase blocks starting from begining of project such that visible blocks count is not more than MaxVisibleBlocksCount
+                /// </summary>
         private void CreateBlocksForInitialStrips ()
-            {
+        {
 
             for (int i = 0; i < mStripsPanel.Controls.Count; i++)
                 {
@@ -902,20 +921,30 @@ namespace Obi.ProjectView
                     if ( s.Node.PhraseChildCount < mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  )
                         {
                     CreateBlocksInStrip (s) ;
-                                                                        }
                     }
-
                 }
-
             }
+
+        }
 
 
         // @phraseLimit
+        /// <summary>
+        /// Make phrase block visible for selected strip
+                /// </summary>
+        /// <returns></returns>
         public bool CreateBlocksInStrip ()
             {
             return CreateBlocksInStrip ( StripForSelection != null ? StripForSelection : null );
             }
+
+
         // @phraseLimit
+        /// <summary>
+        /// Make phrase blocks visible for strip  passed as parameter
+                /// </summary>
+        /// <param name="stripControl"></param>
+        /// <returns></returns>
         private  bool CreateBlocksInStrip ( Strip stripControl )
             {
                                                 if (stripControl != null && stripControl.Node.PhraseChildCount > 0 )
@@ -970,13 +999,18 @@ namespace Obi.ProjectView
                 if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
 
                 ChangeVisibilityProcessState ( false );
-                                return true;
+                return true;
                 }
             ChangeVisibilityProcessState ( false );
             return false;
             }
 
         // @phraseLimit
+        /// <summary>
+        /// Add a strip to list of visible strips list according to order of their arrangement in stripPanel
+                /// </summary>
+        /// <param name="newStrip"></param>
+        /// <returns></returns>
         private int AddStripToVisibleStripsList ( Strip newStrip )
             {
             if (m_VisibleStripsList.Contains ( newStrip )) return m_VisibleStripsList.IndexOf ( newStrip );
@@ -988,7 +1022,6 @@ namespace Obi.ProjectView
                     m_VisibleStripsList.Insert ( 0, newStrip );
                     return 0 ;
                     }
-
 
                 for (int i = 0; i < m_VisibleStripsList.Count-1 ; i++)
                     {
@@ -1004,6 +1037,10 @@ namespace Obi.ProjectView
             }
 
         // @phraseLimit
+        /// <summary>
+        /// Indicate change in state of  blocks visibility process
+                /// </summary>
+        /// <param name="active"></param>
         private void ChangeVisibilityProcessState ( bool active )
             {
             if (active)
@@ -1017,6 +1054,12 @@ namespace Obi.ProjectView
             }
 
         // @phraseLimit
+        /// <summary>
+        /// Make blocks of strips invisible. For making invisible, the function selects farthest strip w.r.t. strip index passed as parameter
+                /// </summary>
+        /// <param name="countRequired"></param>
+        /// <param name="tillOverLimit"></param>
+        /// <param name="newStripIndex"></param>
 private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit, int newStripIndex)
             {
                         if (m_VisibleStripsList.Count == 0)
@@ -1028,45 +1071,46 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             if (tillOverLimit == false) // consider only normal visibility limit and no over limit. this is normal operation and can be used through threads
                 maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount;
             else// overlimit is true, operate in overlimit band, called when we visible phrases are more than even over limit. generally called imidiately 
-                                maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility;
+                maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility;
                 
                 // first clear blocks in partially visible strips
-                            for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                                {
-                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired )
-                                    {
-                                    try
-                                        {
-                                        int removeIndex = PartiallyVisibleStripIndexToMakeInvisible (newStripIndex);
-                                        if (removeIndex != -1)
-                                            {
-                                            int blocksRemoved = RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex]);
-                                            countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
-                                            }
-                                        else break;
-                                        }
-                                    catch (System.Exception ex) 
-                                        {
-                                        MessageBox.Show ( ex.ToString () );
-                                        }
-                                    }
-                                                                }
+            for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                {
+                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired)
+                    {
+                    try
+                        {
+                        int removeIndex = PartiallyVisibleStripIndexToMakeInvisible ( newStripIndex );
+                        if (removeIndex != -1)
+                            {
+                            int blocksRemoved = RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex] );
+                            countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
+                            }
+                        else break;
+                        }
+                    catch (System.Exception ex)
+                        {
+                        MessageBox.Show ( ex.ToString () );
+                        }
+                    }
+                }
+
                                                             
     // after removing all blocks in partially visible strips, start removing blocks fully visible strips
                     for (int i = 0; i < m_VisibleStripsList.Count; i++)
                         {
-                                                if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired)
+                        if (maxVisiblePhraseCountConsidered - VisibleBlocksCount < countRequired)
                             {
-                                                        try
+                            try
                                 {
-                                                                                                int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
-                                                                countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
+                                    int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
+                                    countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
                                 }
                             catch (System.Exception ex)
                                 {
                                 MessageBox.Show ( ex.ToString () );
                                 }
-                                                                                    }
+                            }
                         else
                             {
                             //m_BlocksVisibilityOperationMutex.ReleaseMutex ();
@@ -1077,6 +1121,10 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     }
 
         // @phraseLimit
+        /// <summary>
+                /// Make blocks of strips invisible. For making invisible, the function selects farthest strip w.r.t. strip index passed as parameter
+                /// </summary>
+        /// <param name="newStripIndex"></param>
         private void MakeOldStripsBlocksInvisible ( int newStripIndex )
             {
             int countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
@@ -1085,6 +1133,10 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
 
 
         // @phraseLimit
+        /// <summary>
+        /// Make blocks invisible for strips, starting from the selected strip. Useful in removing partially visible blocks from selected strip
+                /// </summary>
+        /// <param name="removeFromSelected"></param>
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) 
             {
             ChangeVisibilityProcessState ( true );
@@ -1095,11 +1147,15 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             countRequired = VisibleBlocksCount - mProjectView.MaxVisibleBlocksCount;
             if ( countRequired > 0 )
             MakeOldStripsBlocksInvisible ( countRequired , false, 0);
-        ChangeVisibilityProcessState ( false );
+            ChangeVisibilityProcessState ( false );
             }
 
         
         // @phraseLimit
+        /// <summary>
+        /// Make blocks invisible for strips, starting from the selected strip. Useful in removing partially visible blocks from selected strip
+                /// </summary>
+        /// <param name="countRequired"></param>
         private void RemoveBlocksFromSelectedPartiallyVisibleStrip ( int countRequired )
         {
         if (mProjectView.GetSelectedPhraseSection != null && countRequired > 0 && m_VisibleStripsList.Count > 0)
@@ -1111,16 +1167,21 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     countRequired = m_VisibleStripsList[stripIndex].Node.PhraseChildCount;
                     RemoveBlocksInStrip ( m_VisibleStripsList[stripIndex]);
-                                        }
+                    }
                 }
             catch (System.Exception ex) 
                 {
                 MessageBox.Show ( ex.ToString () );
                 }
             }
-                        }
+            }
 
         // @phraseLimit
+        /// <summary>
+        /// returns index of section node  passed as parameter in visible strips list, returns -1 if the parameter node do not lie in visible strips list
+                /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private int GetStripIndexInVisibleStripList ( SectionNode node )
             {
             if (node != null &&  node is SectionNode)
@@ -1134,20 +1195,31 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             }
 
         // @phraseLimit
+        /// <summary>
+        /// Make all phrase blocks invisible in  parameter strip
+                /// </summary>
+        /// <param name="stripControl"></param>
+        /// <returns></returns>
         private int RemoveBlocksInStrip ( Strip stripControl)
             {
             int blocksRemoved = 0;
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                                        blocksRemoved =  stripControl.RemoveAllBlocks ( true );
-                                    stripControl.SetAccessibleName ();
-                if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
-                                }
+                    blocksRemoved =  stripControl.RemoveAllBlocks ( true );
+                    stripControl.SetAccessibleName ();
+                    if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
+                    }
             return blocksRemoved;
             }
 
         
         // @phraseLimit
+        /// <summary>
+        /// Remove only required number of phrase blocks from strip
+                /// </summary>
+        /// <param name="stripControl"></param>
+        /// <param name="countRequired"></param>
+        /// <returns></returns>
         private int RemoveBlocksInStrip ( Strip stripControl , int countRequired)
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
@@ -1155,18 +1227,18 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 int upperBound = countRequired < 15 ? countRequired * 2 : countRequired;
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
-                                for ( int i = 0 ; i <  upperBound ; i++ )
-                    {
-                                        if ( i == stripControl.Node.PhraseChildCount -1 )
-                    stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
+                        for ( int i = 0 ; i <  upperBound ; i++ )
+                        {
+                            if ( i == stripControl.Node.PhraseChildCount -1 )
+                            stripControl.RemoveBlock ( stripControl.Node.PhraseChild (i) ) ;
                     else
                     stripControl.RemoveBlock ( stripControl.Node.PhraseChild ( i ) , false);
 
                 if (countRequired < 0 && countRequired > stripControl.Node.PhraseChildCount)
                     upperBound = stripControl.Node.PhraseChildCount;
-                                 }
+                }
                  
-                            stripControl.SetAccessibleName () ;
+                stripControl.SetAccessibleName () ;
                 if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 return countRequired ;
                 }
@@ -1174,14 +1246,19 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             }
         
         // @phraseLimit
+        /// <summary>
+        /// find the index of strip in visible strips list for making its blocks invisible, currently it searches the farthest index with respect to parameter index
+                /// </summary>
+        /// <param name="newSectionIndex"></param>
+        /// <returns></returns>
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
             {
-                        if (newSectionIndex > m_VisibleStripsList.Count / 2)
+                if (newSectionIndex > m_VisibleStripsList.Count / 2)
                 {
                 for (int i = 0; i < m_VisibleStripsList.Count; i++)
                     {
                     if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node)
-                                                return i;
+                        return i;
                         
                     }
                 }
@@ -1190,43 +1267,54 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     for ( int i = m_VisibleStripsList.Count -1 ; i >= 0 ; i-- )
                         {
                         if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node)
-                                                return i;
+                        return i;
                         
                         }
                     }
 
                 return 0 ;
-                            }
+            }
 
                         // @phraseLimit
-                        private int PartiallyVisibleStripIndexToMakeInvisible ( int newSectionIndex )
-                            {
-                            if (newSectionIndex > m_VisibleStripsList.Count / 2)
-                                {
-                                for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                                    {
-                                    if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node 
-                                        && !m_VisibleStripsList[i].IsBlocksVisible)
-                                        return i;
+        /// <summary>
+        /// Find the intex of partially visible strip in visible strip list for making its blocks invisible, currently it searches farthest index w.r.t. parameter index. 
+        /// Returns -1 if no partially visible strip is found.
+                /// </summary>
+        /// <param name="newSectionIndex"></param>
+        /// <returns></returns>
+            private int PartiallyVisibleStripIndexToMakeInvisible ( int newSectionIndex )
+            {
+                if (newSectionIndex > m_VisibleStripsList.Count / 2)
+                    {
+                        for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                        {
+                            if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node 
+                            && !m_VisibleStripsList[i].IsBlocksVisible)
+                                return i;
 
-                                    }
-                                }
-                            else
-                                {
-                                for (int i = m_VisibleStripsList.Count - 1; i >= 0; i--)
-                                    {
-                                    if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node
-                                        && !m_VisibleStripsList[i].IsBlocksVisible )
-                                        return i;
+                        }
+                    }
+                    else
+                    {
+                        for (int i = m_VisibleStripsList.Count - 1; i >= 0; i--)
+                        {
+                            if (mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection != m_VisibleStripsList[i].Node
+                                && !m_VisibleStripsList[i].IsBlocksVisible )
+                                    return i;
 
-                                    }
-                                }
+                        }
+                    }
                             
                             return -1;
                             }
 
 
         // @phraseLimit
+        /// <summary>
+        /// Returns a string indicating that strip of parameter node has invisible blocks , else if blocks are visible or node is not section node, returns empty string
+                /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public string InvisibleStripString ( ObiNode node )
             {
             if (IsSectionPhrasesVisible ( node ))
@@ -1237,6 +1325,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 return "";
             }
 
+        /// <summary>
+        /// Returns true if phrase blocks of parameter section node are visible else return false
+                /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool IsSectionPhrasesVisible ( ObiNode node )
             {
             if (node != null && node is SectionNode)
