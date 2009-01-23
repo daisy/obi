@@ -1527,6 +1527,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
             {
             Block b =  stripControl.AddBlockForNode ( node );
 
+            // change colors if added phrase is first phrase of section and recorder is active.
+            if (b != null && b.Node.Index == 0 && mProjectView.TransportBar.IsRecorderActive)
+                                stripControl.UpdateColors ();
+                
+
             int indexOfNewStrip = 0;
             // if strip is visible but not included in visible strips list, include it
             if (!m_VisibleStripsList.Contains (stripControl))
