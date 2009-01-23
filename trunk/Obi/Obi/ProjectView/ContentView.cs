@@ -935,7 +935,11 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool CreateBlocksInStrip ()
             {
-            return CreateBlocksInStrip ( StripForSelection != null ? StripForSelection : null );
+            Strip s = StripForSelection;
+            if (s == null && mProjectView.GetSelectedPhraseSection != null)
+                s =  FindStrip ( mProjectView.GetSelectedPhraseSection );
+
+            return CreateBlocksInStrip ( s != null ? s : null );
             }
 
 
@@ -999,9 +1003,11 @@ namespace Obi.ProjectView
                 if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
 
                 ChangeVisibilityProcessState ( false );
+                if (mProjectView.ObiForm.Settings.AudioClues && !m_CreatingGUIForNewPresentation) System.Media.SystemSounds.Exclamation.Play ();
                 return true;
                 }
             ChangeVisibilityProcessState ( false );
+            if (mProjectView.ObiForm.Settings.AudioClues && !m_CreatingGUIForNewPresentation) System.Media.SystemSounds.Exclamation.Play ();
             return false;
             }
 
