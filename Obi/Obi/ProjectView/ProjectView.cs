@@ -349,7 +349,7 @@ namespace Obi.ProjectView
         public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxVisibleBlocksCount ; } } 
 
         // @phraseLimit
-        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection )    &&    Selection.Control is ContentView; } }
+        public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection )   ; } }
 
         public bool CanMarkPhrase
         {
