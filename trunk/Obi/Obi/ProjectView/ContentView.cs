@@ -1531,6 +1531,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         // @phraseLimit
         private Block AddBlockForNodeConsideringPhraseLimit ( Strip stripControl , EmptyNode node)
             {
+            // if the node is above max phrase limit per section, do not add block and return
+            if (node.Index > mProjectView.MaxVisibleBlocksCount)
+                return null;
+
+            // else add block
             Block b =  stripControl.AddBlockForNode ( node );
 
             // change colors if added phrase is first phrase of section and recorder is active.
