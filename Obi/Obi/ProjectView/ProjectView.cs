@@ -1580,6 +1580,9 @@ namespace Obi.ProjectView
                     progress.ShowDialog();
                     mPresentation.Do(command);
 
+                    SectionNode SNode = GetSelectedPhraseSection;
+                         if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) );
+
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                 }
             }
