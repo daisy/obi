@@ -1049,14 +1049,8 @@ namespace Obi.ProjectView
         /// <param name="active"></param>
         private void ChangeVisibilityProcessState ( bool active )
             {
-            if (active)
-                {
-                m_IsBlocksVisibilityProcessActive = true;
-                }
-            else
-                {
-                m_IsBlocksVisibilityProcessActive = false;
-                }
+            m_IsBlocksVisibilityProcessActive = active;
+            if (!m_CreatingGUIForNewPresentation)  mProjectView.ChangeVisibilityProcessState ( active );
             }
 
         // @phraseLimit
