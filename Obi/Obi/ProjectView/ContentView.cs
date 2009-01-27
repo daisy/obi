@@ -918,7 +918,7 @@ namespace Obi.ProjectView
                 if (mStripsPanel.Controls[i] is Strip)
                     {
                     Strip s = (Strip)mStripsPanel.Controls[i] ;
-                    if ( s.Node.PhraseChildCount < mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  )
+                    if ( s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  )
                         {
                     CreateBlocksInStrip (s) ;
                     }
@@ -1341,8 +1341,11 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     for (int i = 0; i < m_VisibleStripsList.Count; i++)
                         {
-                        if (m_VisibleStripsList[i].Node == node && m_VisibleStripsList[i].IsBlocksVisible )
-                            return true;
+                        if (m_VisibleStripsList[i].Node == node )
+                            {
+                            if (m_VisibleStripsList[i].IsBlocksVisible) return true;
+                            else return false;
+                            }
                         }
                     }
                 }
