@@ -1039,7 +1039,7 @@ namespace Obi.ProjectView
                     }
                 }
             m_VisibleStripsList.Add ( newStrip );
-            return m_VisibleStripsList.Count;
+            return m_VisibleStripsList.Count - 1;
             }
 
         // @phraseLimit
@@ -1253,7 +1253,17 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
         /// <returns></returns>
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex)
             {
-                if (newSectionIndex > m_VisibleStripsList.Count / 2)
+            int midIndex = m_VisibleStripsList.Count / 2;
+            bool startFromZeroIndex = (newSectionIndex > midIndex ) ;
+            
+            int upperPositionDiff = Math.Abs( m_VisibleStripsList[newSectionIndex].Node.Position - m_VisibleStripsList[0].Node.Position );
+            int lowerPositionDiff = Math.Abs( m_VisibleStripsList[m_VisibleStripsList.Count - 1].Node.Position - m_VisibleStripsList[newSectionIndex].Node.Position ) ;
+            
+            if (upperPositionDiff >= lowerPositionDiff ) startFromZeroIndex = true;
+            else startFromZeroIndex =  false ;
+            
+                //if (newSectionIndex > m_VisibleStripsList.Count / 2)
+            if (startFromZeroIndex )
                 {
                 for (int i = 0; i < m_VisibleStripsList.Count; i++)
                     {
