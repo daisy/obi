@@ -1060,7 +1060,7 @@ namespace Obi.ProjectView
         /// <param name="countRequired"></param>
         /// <param name="tillOverLimit"></param>
         /// <param name="newStripIndex"></param>
-private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLimit, int newStripIndex)
+        private void MakeOldStripsBlocksInvisible ( int countRequired, bool tillOverLimit, int newStripIndex)
             {
                         if (m_VisibleStripsList.Count == 0)
                 return ;
@@ -1072,7 +1072,8 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                 maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount;
             else// overlimit is true, operate in overlimit band, called when we visible phrases are more than even over limit. generally called imidiately 
                 maxVisiblePhraseCountConsidered = mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility;
-                
+
+            Strip newStrip = m_VisibleStripsList[newStripIndex];
                 // first clear blocks in partially visible strips
             for (int i = 0; i < m_VisibleStripsList.Count; i++)
                 {
@@ -1080,7 +1081,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                     {
                     try
                         {
-                        int removeIndex = PartiallyVisibleStripIndexToMakeInvisible ( newStripIndex );
+                        int removeIndex = PartiallyVisibleStripIndexToMakeInvisible ( m_VisibleStripsList.IndexOf(newStrip) );
                         if (removeIndex != -1)
                             {
                             int blocksRemoved = RemoveBlocksInStrip ( m_VisibleStripsList[removeIndex] );
@@ -1103,7 +1104,7 @@ private void MakeOldStripsBlocksInvisible ( int countRequired , bool tillOverLim
                             {
                             try
                                 {
-                                    int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (newStripIndex)] );
+                                    int blocksRemoved =  RemoveBlocksInStrip ( m_VisibleStripsList[VisibleStripIndexToMakeInvisible (m_VisibleStripsList.IndexOf(newStrip))] );
                                     countRequired = blocksRemoved > 0 ? countRequired - blocksRemoved : countRequired;
                                 }
                             catch (System.Exception ex)
