@@ -923,9 +923,9 @@ namespace Obi.ProjectView
                     CreateBlocksInStrip (s) ;
                     }
                 }
-            }
+                        }
 
-        }
+                            }
 
 
         // @phraseLimit
@@ -1027,6 +1027,12 @@ namespace Obi.ProjectView
                     {
                     m_VisibleStripsList.Insert ( 0, newStrip );
                     return 0 ;
+                    }
+
+                if (newStrip.Node.Position > m_VisibleStripsList[m_VisibleStripsList.Count - 1].Node.Position)
+                    {
+                    m_VisibleStripsList.Add(newStrip );
+                                                            return m_VisibleStripsList.Count - 1;
                     }
 
                 for (int i = 0; i < m_VisibleStripsList.Count-1 ; i++)
