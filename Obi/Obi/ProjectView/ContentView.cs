@@ -1439,12 +1439,12 @@ namespace Obi.ProjectView
                 selection.Node is EmptyNode ? (ISelectableInContentView)FindBlock((EmptyNode)selection.Node) : null;
         }
 
-        private bool IsAudioRangeSelected { get { return mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
-        private bool IsBlockSelected { get { return mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
-        private bool IsBlockOrWaveformSelected { get { return mSelectedItem is Block; } }
+        private bool IsAudioRangeSelected { get { return mSelection != null && mSelection is AudioSelection && !((AudioSelection)mSelection).AudioRange.HasCursor; } }
+        private bool IsBlockSelected { get { return mSelectedItem != null &&  mSelectedItem is Block && mSelection.GetType() == typeof(NodeSelection); } }
+        private bool IsBlockOrWaveformSelected { get { return mSelectedItem != null &&  mSelectedItem is Block; } }
         private bool IsInView(ObiNode node) { return node is SectionNode && FindStrip((SectionNode)node) != null; }
-        private bool IsStripCursorSelected { get { return mSelection is StripIndexSelection; } }
-        private bool IsStripSelected { get { return mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
+        private bool IsStripCursorSelected { get { return mSelection != null &&  mSelection is StripIndexSelection; } }
+        private bool IsStripSelected { get { return mSelectedItem != null &&  mSelectedItem is Strip && mSelection.GetType() == typeof(NodeSelection); } }
 
         // Listen to changes in the presentation (new nodes being added or removed)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
