@@ -921,13 +921,15 @@ namespace Obi.ProjectView
                     Strip s = (Strip)mStripsPanel.Controls[i] ;
                     // make phrases in strip visible if visible phrase count is within limit, 
                     //strip lie well inside panel and visibleStripsCount is less or equal to 500
-                    if ( s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  
+                    if (s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount - VisibleBlocksCount
                         && prevPoint != s.Location
-                        && visibleStripsCount <= 500 )
+                        && visibleStripsCount <= 500)
                         {
-                    CreateBlocksInStrip (s) ;
-                    visibleStripsCount++;
-                    }
+                        CreateBlocksInStrip ( s );
+                        visibleStripsCount++;
+                        }
+                    else return;
+
                 prevPoint = s.Location;
                 }
                         }
@@ -1206,6 +1208,35 @@ namespace Obi.ProjectView
 
                 }
             return -1;
+            }
+
+        /// <summary>
+        /// Make all phrase blocks invisible in  strip of parameter  section node
+                /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int RemoveBlocksInStrip ( SectionNode node )
+            {
+            if (node != null)
+                {
+                Strip s = FindStrip ( node );
+
+                if (s != null)
+                    {
+                    try
+                        {
+                        int retVal = RemoveBlocksInStrip ( s );
+                        return retVal ;
+                        }
+                    catch ( System.Exception ex )
+                        {
+                        MessageBox.Show ( ex.ToString ()) ;
+                        return 0 ;
+                        }
+
+                    }
+                }
+            return 0 ;
             }
 
         // @phraseLimit
