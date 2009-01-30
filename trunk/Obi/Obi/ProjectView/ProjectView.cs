@@ -346,7 +346,7 @@ namespace Obi.ProjectView
         /// <summary>
         ///  returns true if phrases in selected section are within  max visible blocks limit
                 /// </summary>
-        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount < MaxVisibleBlocksCount ; } } 
+        public bool IsPhraseCountWithinLimit { get { return GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount <= MaxVisibleBlocksCount ; } } 
 
         // @phraseLimit
         public bool CanShowSectionContents { get { return GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection )   ; } }
@@ -785,7 +785,7 @@ namespace Obi.ProjectView
             if (CanPaste)
             {
                 // if clipboard has phrase and the phrase count per section is above the max limit, return
-            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  MaxVisibleBlocksCount) // @phraseLimit
+            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >  MaxVisibleBlocksCount) // @phraseLimit
                 return;
 
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
@@ -1297,7 +1297,7 @@ namespace Obi.ProjectView
                         progress.ShowDialog();
                         if (phraseNodes.Count > 0)
                             {
-                            if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxVisibleBlocksCount)) // @phraseLimit
+                            if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                 }
