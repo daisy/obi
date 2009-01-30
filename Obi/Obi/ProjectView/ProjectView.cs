@@ -1292,14 +1292,16 @@ namespace Obi.ProjectView
                                     }
                                 });
                         progress.ShowDialog();
-                        if (phraseNodes.Count > 0
-                            && GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxVisibleBlocksCount)) // @phraseLimit
+                        if (phraseNodes.Count > 0)
                             {
-                            mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                            if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count < MaxVisibleBlocksCount)) // @phraseLimit
+                                {
+                                mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                                }
+                            else
+                                MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
                             }
-                        else
-                            MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) +"\\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
-                                
+   
                     }
                 }
             }
