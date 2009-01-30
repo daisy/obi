@@ -911,17 +911,24 @@ namespace Obi.ProjectView
                 /// </summary>
         private void CreateBlocksForInitialStrips ()
         {
-
+        Point prevPoint = new Point ( -100, -100 );
+        int visibleStripsCount = 0;
             for (int i = 0; i < mStripsPanel.Controls.Count; i++)
                 {
 
                 if (mStripsPanel.Controls[i] is Strip)
                     {
                     Strip s = (Strip)mStripsPanel.Controls[i] ;
-                    if ( s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  )
+                    // make phrases in strip visible if visible phrase count is within limit, 
+                    //strip lie well inside panel and visibleStripsCount is less or equal to 500
+                    if ( s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount -  VisibleBlocksCount  
+                        && prevPoint != s.Location
+                        && visibleStripsCount <= 500 )
                         {
                     CreateBlocksInStrip (s) ;
+                    visibleStripsCount++;
                     }
+                prevPoint = s.Location;
                 }
                         }
 
