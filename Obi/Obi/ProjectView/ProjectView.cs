@@ -659,10 +659,13 @@ namespace Obi.ProjectView
             SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
             if ((section.PhraseChildCount + next.PhraseChildCount) > MaxVisibleBlocksCount ) // @phraseLimit
                 {
-                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxVisibleBlocksCount ) ) ) ;
+                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxVisibleBlocksCount ) ) ) ;
                 return;
                 }
 
+                // if next strip has no. of large phrases, first make all phrase blocks invisible to improve speed 
+             if ( next.PhraseChildCount > 30 )  mContentView.RemoveBlocksInStrip ( next );
+            
                 mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
             }
