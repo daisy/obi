@@ -104,6 +104,8 @@ namespace Obi.Export
         {
             System.Xml.XmlWriter filtered = System.Xml.XmlWriter.Create(FullPath(".filtered.xuk"), mFilter.OutputSettings);
             mFilter.Transform(input, filtered);
+            filtered.Close ();
+            filtered = null;
         }
 
         /// <summary>
