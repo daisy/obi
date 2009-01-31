@@ -22,7 +22,7 @@ namespace Obi.ProjectView
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int  MaxVisibleBlocksCount ; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
-
+    
 
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
@@ -659,7 +659,7 @@ namespace Obi.ProjectView
             SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
             if ((section.PhraseChildCount + next.PhraseChildCount) > MaxVisibleBlocksCount ) // @phraseLimit
                 {
-                MessageBox.Show ( Localizer.Message ("Operation_Cancelled" +"\n"  + string.Format ( Localizer.Message ("ContentsHidden_PhrasesExceedMaxLimitPerSection") , MaxVisibleBlocksCount ) ) ) ;
+                                                MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
                 return;
                 }
 
