@@ -1413,6 +1413,13 @@ namespace Obi.ProjectView
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
 
+            if (Selection != null && !(Selection.Node is PhraseNode) 
+                &&  GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ))
+                {
+                MessageBox.Show ( Localizer.Message ( "ContentsHidden_CannotExecuteCommand" ) );
+                return;
+                }
+
                         CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
             if (command != null)
             {

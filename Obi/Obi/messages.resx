@@ -1354,4 +1354,7 @@ Error text: {1}</value>
   <data name="Operation_Cancelled" xml:space="preserve">
     <value>Not able to Complete operation. </value>
   </data>
+  <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
+    <value>This command cannot be executed on section with hidden contents. Please make section's contents visible and try again.</value>
+  </data>
 </root>
