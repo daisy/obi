@@ -459,6 +459,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This command cannot be executed on section with hidden contents. Please make section&apos;s contents visible and try again..
+        /// </summary>
+        internal static string ContentsHidden_CannotExecuteCommand {
+            get {
+                return ResourceManager.GetString("ContentsHidden_CannotExecuteCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phrases in section exceeds maximum phrase limit per section of {0}. .
         /// </summary>
         internal static string ContentsHidden_PhrasesExceedMaxLimitPerSection {
