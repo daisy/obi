@@ -477,7 +477,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  (Contents hidden).
+        ///   Looks up a localized string similar to  (Contents hidden, use F5 to unhide).
         /// </summary>
         internal static string ContentsHidden_StatusMessage {
             get {

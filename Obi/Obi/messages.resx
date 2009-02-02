@@ -1349,7 +1349,7 @@ Error text: {1}</value>
     <value>Phrases in section exceeds maximum phrase limit per section of {0}. </value>
   </data>
   <data name="ContentsHidden_StatusMessage" xml:space="preserve">
-    <value> (Contents hidden)</value>
+    <value> (Contents hidden, use F5 to unhide)</value>
   </data>
   <data name="Operation_Cancelled" xml:space="preserve">
     <value>Not able to Complete operation. </value>
