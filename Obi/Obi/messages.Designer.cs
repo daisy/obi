@@ -468,6 +468,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation completed, the section has its contents hidden so newly added phrases will also be hidden. Please press F5 to unhide.
+        /// </summary>
+        internal static string ContentsHidden_HideNewPhrases {
+            get {
+                return ResourceManager.GetString("ContentsHidden_HideNewPhrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phrases in section exceeds maximum phrase limit per section of {0}. .
         /// </summary>
         internal static string ContentsHidden_PhrasesExceedMaxLimitPerSection {

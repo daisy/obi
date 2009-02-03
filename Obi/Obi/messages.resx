@@ -1357,4 +1357,7 @@ Error text: {1}</value>
   <data name="ContentsHidden_CannotExecuteCommand" xml:space="preserve">
     <value>This command cannot be executed on section with hidden contents. Please make section's contents visible and try again.</value>
   </data>
+  <data name="ContentsHidden_HideNewPhrases" xml:space="preserve">
+    <value>Operation completed, the section has its contents hidden so newly added phrases will also be hidden. Please press F5 to unhide</value>
+  </data>
 </root>

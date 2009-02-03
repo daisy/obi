@@ -668,7 +668,10 @@ namespace Obi.ProjectView
             
                 mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
-            }
+
+                // hide newly made phrases visible if the strip has its contents hidden
+                HideNewPhrasesInInvisibleSection ( section );
+                            }
         }
 
         /// <summary>
@@ -1300,6 +1303,8 @@ namespace Obi.ProjectView
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                                // hide new phrases if section's contents are hidden
+                                HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
                                 }
                             else
                                 MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
@@ -1594,6 +1599,9 @@ namespace Obi.ProjectView
 
                     SectionNode SNode = GetSelectedPhraseSection;
                          if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) );
+
+                    // hide newly added phrases if contents of section are hidden
+                         HideNewPhrasesInInvisibleSection ( SNode );
 
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                 }
@@ -2118,6 +2126,20 @@ namespace Obi.ProjectView
                 /// </summary>
         /// <param name="removeFromSelected"></param>
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected) { mContentView.MakeOldStripsBlocksInvisible (removeFromSelected); }
+
+        // @phraseLimit
+        /// <summary>
+        /// if parameter section has its contents hidden, makes all its new phrases hidden
+                /// </summary>
+        /// <param name="section"></param>
+        public void HideNewPhrasesInInvisibleSection ( SectionNode section )
+            {
+            if ( section != null    &&     !mContentView.IsSectionPhrasesVisible ( section ))
+                {
+                MessageBox.Show ( Localizer.Message ("ContentsHidden_HideNewPhrases" ) ) ;
+                mContentView.RemoveBlocksInStrip ( section );
+                }
+            }
 
         //@phraseLimit
                 public void ChangeVisibilityProcessState ( bool active )
