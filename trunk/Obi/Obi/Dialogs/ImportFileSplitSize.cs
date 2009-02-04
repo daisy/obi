@@ -39,18 +39,21 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            try
-            {
-                uint duration = Convert.ToUInt32(mPhraseSizeTextBox.Text);
-                mMaxPhraseDurationMinutes = duration;
-                if (duration <= 0) throw new Exception();
-            }
-            catch (System.Exception)
-            {
-                MessageBox.Show(Localizer.Message("max_phrase_duration_invalid_input"));
-                mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString();
-                mCanClose = false;
-            }
+            if (mSplitCheckBox.Checked)
+                {
+                try
+                    {
+                    uint duration = Convert.ToUInt32 ( mPhraseSizeTextBox.Text );
+                    mMaxPhraseDurationMinutes = duration;
+                    if (duration <= 0) throw new Exception ();
+                    }
+                catch (System.Exception)
+                    {
+                    MessageBox.Show ( Localizer.Message ( "max_phrase_duration_invalid_input" ) );
+                    mPhraseSizeTextBox.Text = mMaxPhraseDurationMinutes.ToString ();
+                    mCanClose = false;
+                    }
+                }
         }
 
         // Check that we have a valid value before we close, otherwise cancel.
