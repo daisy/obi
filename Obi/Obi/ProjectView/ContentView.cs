@@ -575,9 +575,13 @@ namespace Obi.ProjectView
                 if (!(c is Strip))
                 {
                     Control strip = c.Parent;
-                    while (!(strip is Strip)) strip = strip.Parent;
-                    EnsureControlVisible(strip);
-                }
+                    while (!(strip is Strip))
+                        {
+                        if (strip.Parent == null) break;
+                        strip = strip.Parent;
+                        }
+                    if (strip != null && strip is Strip ) EnsureControlVisible(strip);
+                                    }
                 // Compute the location of the control relative to the strips panel
                 // (Location is relative to its direct parent.)
                 Point location = c.Location;
