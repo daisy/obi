@@ -1301,7 +1301,8 @@ namespace Obi
                 if (MessageBox.Show(string.Format(Localizer.Message("renumber_before_export"), renumberFrom.PageNumber.ToString()),
                     Localizer.Message("renumber_before_export_caption"),
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel) return false;
-                mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
+                //mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
+                mSession.Presentation.getUndoRedoManager ().execute ( mProjectView.GetRenumberPageKindCommand ( renumberFrom, renumberNumber ) );
             }
             return true;
         }
