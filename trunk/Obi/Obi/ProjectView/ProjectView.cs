@@ -2109,6 +2109,22 @@ namespace Obi.ProjectView
             mContentView.ResumeLayout_All();
         }
 
+        public CompositeCommand GetRenumberPageKindCommand ( EmptyNode node,  PageNumber number )
+            {
+            CompositeCommand k = Presentation.CreateCompositeCommand("RenumberAll");
+                        for (ObiNode n = node ; n != null; n = n.FollowingNode)
+                {
+                                if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page     &&
+                                    ((EmptyNode)n).PageNumber.Kind == number.Kind )
+                                        {
+                                                                        k.append ( new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                        number = number.NextPageNumber ();
+                        
+                    }
+                }
+            return k;
+            }
+
         // @phraseLimit
         /// <summary>
         /// shows contents of selected strip
