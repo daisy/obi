@@ -1249,7 +1249,18 @@ namespace Obi
         // Only normal and front pages are considered, and we skip empty blocks since they're not exported.
         private bool CheckedPageNumbers()
         {
-            return CheckPageNumbers(PageKind.Front) && CheckPageNumbers(PageKind.Normal);
+        bool retVal = false;
+        try
+            {
+            retVal = CheckPageNumbers ( PageKind.Front ) && CheckPageNumbers ( PageKind.Normal );
+            }
+        catch (System.Exception ex)
+            {
+            retVal = false;
+            MessageBox.Show ( ex.ToString () );
+            }
+
+            return retVal;
         }
 
         /// <summary>
@@ -1302,21 +1313,29 @@ namespace Obi
         {
             bool cont = true;
             bool keepWarning = true;
-            mSession.Presentation.RootNode.acceptDepthFirst(
-                delegate(urakawa.core.TreeNode n)
+            try
                 {
-                    SectionNode s = n as SectionNode;
-                    if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
-                    {
-                        Dialogs.EmptySection dialog = new Dialogs.EmptySection(s.Label);
-                        cont = cont && dialog.ShowDialog() == DialogResult.OK;
-                        keepWarning = dialog.KeepWarning;
-                        return false;
-                    }
-                    return true;
-                },
-                delegate(urakawa.core.TreeNode n) { });
-            return cont;
+                mSession.Presentation.RootNode.acceptDepthFirst (
+                    delegate ( urakawa.core.TreeNode n )
+                        {
+                        SectionNode s = n as SectionNode;
+                        if (s != null && s.Used && s.FirstUsedPhrase == null && keepWarning)
+                            {
+                            Dialogs.EmptySection dialog = new Dialogs.EmptySection ( s.Label );
+                            cont = cont && dialog.ShowDialog () == DialogResult.OK;
+                            keepWarning = dialog.KeepWarning;
+                            return false;
+                            }
+                        return true;
+                        },
+                    delegate ( urakawa.core.TreeNode n ) { } );
+                return cont;
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () ) ;
+                return false ;
+                }
         }
 
         #endregion
