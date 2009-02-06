@@ -17,6 +17,7 @@ namespace Obi.UserControls
         private double[] mPeakValues;
         private int mPeakArrayLength;
         private bool mSourcePeaksIsNull  ;
+        private Obi.Events.Audio.VuMeter.PeakOverloadEventArgs mPeakOverloadObject  ;
         //private int m_DieOutCounter;
 
 		public GraphicalPeakMeter()
@@ -25,6 +26,7 @@ namespace Obi.UserControls
             mPeakValues = new double[2];
             mPeakArrayLength = 1;
             mSourcePeaksIsNull = true ;
+            mPeakOverloadObject = null ;
             //m_DieOutCounter = 0;
 		}
 
@@ -72,7 +74,8 @@ namespace Obi.UserControls
 
 		void SourceVuMeter_PeakOverload(object sender, Obi.Events.Audio.VuMeter.PeakOverloadEventArgs e)
 		{
-			mPPMeter.SetPeakOverloadCount(e.Channel - 1, mPPMeter.GetPeakOverloadCount(e.Channel - 1) + 1);
+        mPeakOverloadObject = e;
+			//mPPMeter.SetPeakOverloadCount(e.Channel - 1, mPPMeter.GetPeakOverloadCount(e.Channel - 1) + 1);
 		}
 
         void SourceVuMeter_ResetEvent(object sender, Obi.Events.Audio.VuMeter.ResetEventArgs e)
@@ -89,6 +92,7 @@ namespace Obi.UserControls
                     mPPMeter.SetValue(i, Double.NegativeInfinity);
                 }
                 mPPMeter.ForceFullFallback();
+                mPeakOverloadObject = null;
             }
         }
 
@@ -134,7 +138,14 @@ namespace Obi.UserControls
                         mPPMeter.SetValue(i, mPeakValues[i]);
                     }
                 }
-            }
+                // if peak overload, update GUI for it
+            if (mPeakOverloadObject != null)
+                {
+                mPPMeter.SetPeakOverloadCount ( mPeakOverloadObject.Channel - 1, mPPMeter.GetPeakOverloadCount ( mPeakOverloadObject.Channel - 1 ) + 1 );
+                mPeakOverloadObject = null;
+                                }
+
+                        }
 		}
 
 		private void mPPMeter_Resize(object sender, EventArgs e)
