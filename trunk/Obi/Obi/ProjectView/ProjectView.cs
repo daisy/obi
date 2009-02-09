@@ -338,7 +338,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return Selection != null && Selection is AudioSelection && !((AudioSelection)Selection).AudioRange.HasCursor    &&   IsPhraseCountWithinLimit ; // @phraseLimit
+            return Selection != null && Selection is AudioSelection && ((AudioSelection)Selection).AudioRange != null    &&   !((AudioSelection)Selection).AudioRange.HasCursor && IsPhraseCountWithinLimit; // @phraseLimit
             }
         }
 
@@ -570,7 +570,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void DeselectAudio()
         {
-            if (Selection is AudioSelection)
+            if ( Selection !=null    &&    Selection is AudioSelection)
             {
                 ((AudioSelection)Selection).AudioRange.SelectionBeginTime = 0;
                 ((AudioSelection)Selection).AudioRange.SelectionEndTime = 0;
