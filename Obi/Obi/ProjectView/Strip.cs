@@ -412,7 +412,12 @@ namespace Obi.ProjectView
                         if (block != null)
                             {
                             int index = mBlockLayout.Controls.IndexOf ( block );
-                            if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                            if (index < mBlockLayout.Controls.Count)
+                                {
+                                Control  stripCursorControl = mBlockLayout.Controls[index + 1];
+                                mBlockLayout.Controls.RemoveAt ( index + 1 );
+                                if (stripCursorControl != null && stripCursorControl is StripCursor) stripCursorControl.Dispose ();
+                                                                                                                                            }
                             mBlockLayout.Controls.RemoveAt ( index );
                             if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
                             block.SizeChanged -= new EventHandler ( Block_SizeChanged );
@@ -425,7 +430,8 @@ namespace Obi.ProjectView
                                 block.Dispose ();
                                 block = null;
                                 }
-
+                            else // in case block is held in clipboard, just destroy handle
+                                block.DestroyBlockHandle ();
                             }
                         }
             }
