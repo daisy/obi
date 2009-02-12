@@ -1016,12 +1016,12 @@ namespace Obi.ProjectView
                 if (!IsAllBlocksCreated) MessageBox.Show ( string.Format ( Localizer.Message ("ContentHidden_SectionHasOverlimitPhrases"), stripControl.Node.Label , mProjectView.MaxVisibleBlocksCount ) , Localizer.Message ("Caption_Warning") );
 
                 ChangeVisibilityProcessState ( false );
-                if (mProjectView.ObiForm.Settings.AudioClues && !m_CreatingGUIForNewPresentation) System.Media.SystemSounds.Exclamation.Play ();
+                if (!m_CreatingGUIForNewPresentation && mProjectView.ObiForm.Settings.AudioClues  &&  stripControl.Node.PhraseChildCount > 0) 
+                    PlayShowBlocksCompletedSound ();
                 return true;
                 }
             ChangeVisibilityProcessState ( false );
-            if (mProjectView.ObiForm.Settings.AudioClues && !m_CreatingGUIForNewPresentation) System.Media.SystemSounds.Exclamation.Play ();
-            return false;
+                        return false;
             }
 
         // @phraseLimit
@@ -1410,6 +1410,20 @@ namespace Obi.ProjectView
                 }
                 return false ;
             }
+// @phraseLimit
+        /// <summary>
+        /// if audioclue is enabled,  plays a sound when process of creating blocks is complete.
+                /// </summary>
+                private void PlayShowBlocksCompletedSound ()
+            {
+            string FilePath = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "ShowBlocksCompleted.wav" );
+            if (System.IO.File.Exists ( FilePath ) && mProjectView.ObiForm.Settings.AudioClues)
+                {
+                System.Media.SoundPlayer showBlocksPlayer= new System.Media.SoundPlayer ( FilePath );
+                showBlocksPlayer.Play ();
+                }
+            }
+
 
         // @phraseLimit
         public Clipboard clipboard { get { return mProjectView.Clipboard; } }
