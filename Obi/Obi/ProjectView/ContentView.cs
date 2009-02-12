@@ -577,7 +577,7 @@ namespace Obi.ProjectView
                     Control strip = c.Parent;
                     while (!(strip is Strip))
                         {
-                        if (strip.Parent == null) break;
+                        if (strip == null ||  strip.Parent == null) break;
                         strip = strip.Parent;
                         }
                     if (strip != null && strip is Strip ) EnsureControlVisible(strip);
