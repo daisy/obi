@@ -255,5 +255,8 @@ namespace Obi.ProjectView
 
                 }
             }
+
+        public void DestroyBlockHandle () { base.DestroyHandle (); }
+
     }
 }
