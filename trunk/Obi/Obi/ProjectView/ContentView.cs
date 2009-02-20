@@ -586,7 +586,7 @@ namespace Obi.ProjectView
                 // (Location is relative to its direct parent.)
                 Point location = c.Location;
                 Control parent = c.Parent;
-                while (parent != mStripsPanel)
+                while (parent != null &&  parent != mStripsPanel)
                 {
                     location.X += parent.Location.X;
                     location.Y += parent.Location.Y;
