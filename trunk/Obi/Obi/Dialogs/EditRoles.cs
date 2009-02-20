@@ -30,10 +30,13 @@ namespace Obi.Dialogs
 
         private void AddNewRole(string role)
         {
-            if (!mCustomRolesList.Items.Contains(role)) mCustomRolesList.Items.Add(role);
-            Commands.AddCustomType cmd = new Obi.Commands.AddCustomType(mProjectView, mPresentation, role);
-            mPresentation.getUndoRedoManager().execute(cmd);
+        if (!mCustomRolesList.Items.Contains ( role ))
+            {
+            mCustomRolesList.Items.Add ( role );
+            Commands.AddCustomType cmd = new Obi.Commands.AddCustomType ( mProjectView, mPresentation, role );
+            mPresentation.getUndoRedoManager ().execute ( cmd );
             mNumberOfCommandsSinceOpened++;
+            }
             mNewCustomRole.Text = "";
         }
 
