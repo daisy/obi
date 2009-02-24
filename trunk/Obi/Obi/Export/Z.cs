@@ -96,6 +96,14 @@ namespace Obi.Export
         /// </summary>
         public double TotalElapsedTime(int position) { return mElapsedTimes[position]; }
 
+        /// <summary>
+        /// Get the total elapsed time for a given section, in SMIL clock value format
+        /// </summary>
+        public string TotalElapsedTimeFormatted(int position)
+        {
+            return TimeSpan.FromTicks((long)(TotalElapsedTime(position) * TimeSpan.TicksPerMillisecond)).ToString();
+        }
+
         // Get the full path of a file for a given extension.
         private string FullPath(string ext) { return System.IO.Path.Combine(mExportPath, RelativePath(ext)); }
         private string FullPath(string ext, string id) { return System.IO.Path.Combine(mExportPath, RelativePath(ext, id)); }
