@@ -67,7 +67,7 @@
             <!-- These are always fixed for Obi. -->
             <meta name="dtb:multimediaType" content="audioNCX"/>
             <meta name="dtb:multimediaContent" content="audio"/>
-            <meta name="dtb:totalTime" content="{ext:TotalElapsedTime(count(//obi:section))}ms"/>
+            <meta name="dtb:totalTime" content="{ext:TotalElapsedTimeFormatted(count(//obi:section))}"/>
             <meta name="dtb:audioFormat" content="WAV"/>
           </x-metadata>
         </metadata>
@@ -158,7 +158,7 @@
           <smil:head>
             <smil:meta name="dtb:uid" content="{//xuk:Metadata[@name='dc:Identifier']/@content}"/>
             <smil:meta name="dtb:generator" content="{//xuk:Metadata[@name='generator']/@content}"/>
-            <smil:meta name="dtb:totalElapsedTime" content="{ext:TotalElapsedTime(position()-1)}ms"/>
+            <smil:meta name="dtb:totalElapsedTime" content="{ext:TotalElapsedTimeFormatted(position()-1)}"/>
             <!-- Keep track of which section this SMIL file is for -->
             <smil:meta name="obi:section" content="{.//xuk:mChannelMapping[@channel=$text-channel]/xuk:TextMedia/xuk:mText}"/>
           </smil:head>

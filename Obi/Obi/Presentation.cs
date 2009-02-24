@@ -471,7 +471,7 @@ namespace Obi
             visitor.setDestinationDirectory(new Uri(exportPath));
             RootNode.acceptDepthFirst(visitor);
             // TODO check that there is an audio file to write
-            visitor.writeCurrentAudioFile();
+            visitor.writeAndCloseCurrentAudioFile();
             ConvertXukToZed(exportPath, xukPath, XukString);
             getChannelsManager().removeChannel(publishChannel);
         }
