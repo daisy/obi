@@ -1006,7 +1006,7 @@ namespace Obi.ProjectView
                     MessageBox.Show ( ex.ToString () );
                     }
 
-                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount)
+                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount && IsAllBlocksCreated)
                     MakeOldStripsBlocksInvisible ( indexAddition );
 
                 if (!m_CreatingGUIForNewPresentation) UpdateSize ();
@@ -1302,6 +1302,8 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex )
             {
+            if (m_VisibleStripsList.Count == 0) return-1;
+
             int midIndex = m_VisibleStripsList.Count / 2;
             bool startFromZeroIndex = (newSectionIndex > midIndex);
 
@@ -1343,6 +1345,8 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private int PartiallyVisibleStripIndexToMakeInvisible ( int newSectionIndex )
             {
+            if (m_VisibleStripsList.Count == 0) return -1;
+
             if (newSectionIndex > m_VisibleStripsList.Count / 2)
                 {
                 for (int i = 0; i < m_VisibleStripsList.Count; i++)
