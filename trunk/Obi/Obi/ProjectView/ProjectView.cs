@@ -788,7 +788,7 @@ namespace Obi.ProjectView
             if (CanPaste)
             {
                 // if clipboard has phrase and the phrase count per section is above the max limit, return
-            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >  MaxVisibleBlocksCount) // @phraseLimit
+            if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >=  MaxVisibleBlocksCount) // @phraseLimit
                 return;
 
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop();
