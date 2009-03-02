@@ -181,7 +181,9 @@ namespace Obi.ProjectView
         {
             get
             {
-                return Enabled && (IsPlayerActive || (mView.Selection != null && mView.Selection is AudioSelection && !IsRecorderActive));
+                return Enabled && (IsPlayerActive 
+                    || (mView.Selection != null && mView.Selection is AudioSelection 
+                    && !IsRecorderActive));
             }
         }
         
@@ -190,7 +192,7 @@ namespace Obi.ProjectView
             get
             {
                 return Enabled && mView.Selection != null &&  mView.Selection is AudioSelection
-                    && ((AudioSelection)mView.Selection) != null && !((AudioSelection)mView.Selection).AudioRange.HasCursor && !IsRecorderActive;
+                    && ((AudioSelection)mView.Selection).AudioRange != null && !((AudioSelection)mView.Selection).AudioRange.HasCursor && !IsRecorderActive;
             }
         }
         
