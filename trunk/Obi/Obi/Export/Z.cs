@@ -131,6 +131,8 @@ namespace Obi.Export
             output = System.Xml.XmlWriter.Create(writer);
             mTransformer.Transform(filtered, mTransformationArguments, output);
             System.Xml.XPath.XPathDocument z = new System.Xml.XPath.XPathDocument(new System.IO.StringReader(writer.ToString()));
+            output.Close();
+            writer.Close();
             WriteXSLT(z, PACKAGE_XSLT, ".opf");
             WriteXSLT(z, NCX_XSLT, ".ncx");
             WriteSMILFiles(z);
