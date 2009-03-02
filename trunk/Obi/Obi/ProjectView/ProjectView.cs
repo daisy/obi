@@ -665,11 +665,16 @@ namespace Obi.ProjectView
 
                 // if next strip has no. of large phrases, first make all phrase blocks invisible to improve speed 
              if ( next.PhraseChildCount > 30 )  mContentView.RemoveBlocksInStrip ( next );
-            
-                mPresentation.Do(mContentView.MergeSelectedStripWithNextCommand());
-                if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip((SectionNode)mSelection.Node);
-
-                // hide newly made phrases visible if the strip has its contents hidden
+             try
+                 {
+                 mPresentation.Do ( mContentView.MergeSelectedStripWithNextCommand () );
+                 if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip ( (SectionNode)mSelection.Node );
+                 }
+             catch ( System.Exception ex)
+                 {
+                 MessageBox.Show ( ex.ToString () );
+                 }
+                                // hide newly made phrases visible if the strip has its contents hidden
                 HideNewPhrasesInInvisibleSection ( section );
                             }
         }
@@ -1451,8 +1456,14 @@ namespace Obi.ProjectView
         if (CanMergeBlockWithNext)
             {
             if (TransportBar.IsPlayerActive) TransportBar.Pause ();
-
-                        mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
+            try
+                {
+                mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
         }
 
