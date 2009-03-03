@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
+
 using urakawa.media.timing;
 using urakawa.media.data.audio;
+using urakawa.media.data;
 
 namespace Obi.Commands.Audio
 {
@@ -29,6 +33,15 @@ namespace Obi.Commands.Audio
         }
 
         public PhraseNode Deleted { get { return mDeleted; } }
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+            if (mDeleted != null && mDeleted is PhraseNode)
+                mediaList.Add ( mDeleted.Audio.getMediaData () );
+
+            return mediaList;
+            }
 
         public override void execute()
         {
