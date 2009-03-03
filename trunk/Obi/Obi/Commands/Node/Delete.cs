@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using urakawa.media.data;
 
 namespace Obi.Commands.Node
 {
@@ -51,6 +53,44 @@ namespace Obi.Commands.Node
         {
             UpdateSelection = update;
         }
+
+
+    public override List<MediaData> getListOfUsedMediaData ()
+        {
+        if (mNode != null && mNode is PhraseNode)
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+            mediaList.Add ( (MediaData)((PhraseNode)mNode).Audio.getMediaData () );
+            return mediaList;
+            }
+        else if (mNode != null && mNode is SectionNode)
+            {
+            return GetMediaDataListForSection ( (SectionNode)mNode );
+
+            }
+        else
+            return new List<MediaData> ();
+        }
+
+    private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
+        {
+        List<MediaData> mediaList = new List<MediaData> ();
+
+        sNode.acceptDepthFirst (
+                delegate ( urakawa.core.TreeNode n )
+                    {
+                    if (n != null && n is PhraseNode)
+                        {
+                        mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                        }
+                    return true;
+                    },
+                delegate ( urakawa.core.TreeNode n ) { } );
+
+        return mediaList;
+        }
+
+
 
         public override void execute()
         {
@@ -122,6 +162,45 @@ namespace Obi.Commands.Node
             mDeleted = null;
             mIndex = mParent.indexOf(mNode) + offset;
         }
+
+
+    public override List<MediaData> getListOfUsedMediaData ()
+        {
+        ObiNode node = (ObiNode)mParent.getChild ( mIndex );
+        if (node != null && node is PhraseNode)
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+            mediaList.Add ( ((PhraseNode)node).Audio.getMediaData () );
+            return mediaList;
+            }
+        else if (node != null && node is SectionNode)
+            {
+            return GetMediaDataListForSection ( (SectionNode)node );
+
+            }
+        else
+            return new List<MediaData> ();
+        }
+
+    private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
+        {
+        List<MediaData> mediaList = new List<MediaData> ();
+
+        sNode.acceptDepthFirst (
+                delegate ( urakawa.core.TreeNode n )
+                    {
+                    if (n != null && n is PhraseNode)
+                        {
+                        mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                        }
+                    return true;
+                    },
+                delegate ( urakawa.core.TreeNode n ) { } );
+
+        return mediaList;
+        }
+
+
 
         public override void execute()
         {

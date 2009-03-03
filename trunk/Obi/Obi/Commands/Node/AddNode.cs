@@ -47,11 +47,11 @@ namespace Obi.Commands.Node
                 {
                 List<MediaData> mediaList = new List<MediaData> ();
                 mediaList.Add ( (MediaData)((PhraseNode)mNode).Audio.getMediaData () );
-                                                return mediaList;
+                        return mediaList;
                 }
             else
                 {
-                                return new List<MediaData> ();
+                        return new List<MediaData> ();
                 }
             }
 

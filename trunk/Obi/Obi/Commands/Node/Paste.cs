@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.media.data ;
+
 namespace Obi.Commands.Node
 {
     public class Paste: Command
@@ -52,7 +54,44 @@ namespace Obi.Commands.Node
         /// </summary>
         public bool DeleteSelectedBlock { get { return mDeleteSelectedBlock; } }
 
-        public override void execute()
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            if (mCopy != null && mCopy is PhraseNode)
+                {
+                List<MediaData> mediaList = new List<MediaData> ();
+                mediaList.Add ( (MediaData)((PhraseNode)mCopy).Audio.getMediaData () );
+                return mediaList;
+                }
+            else if ( mCopy != null && mCopy is SectionNode )
+                {
+                return GetMediaDataListForSection ( (SectionNode)mCopy );
+                
+                }
+            else
+                return new List<MediaData> () ;
+            }
+
+        private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+
+            sNode.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n != null &&  n is PhraseNode )
+                        {
+                            mediaList.Add ( ((PhraseNode)n ).Audio.getMediaData () ) ;
+                        }
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
+    
+                return mediaList;
+            }
+
+
+        public override void execute ()
         {
             mParent.Insert(mCopy, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
