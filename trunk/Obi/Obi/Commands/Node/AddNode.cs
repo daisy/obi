@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.media.data;
+
 namespace Obi.Commands.Node
 {
     /// <summary>
@@ -37,6 +39,23 @@ namespace Obi.Commands.Node
         /// </summary>
         public AddNode(ProjectView.ProjectView view, ObiNode node)
             : this(view, node, node.ParentAs<ObiNode>(), node.Index) {}
+
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            if (mNode != null && mNode is PhraseNode)
+                {
+                List<MediaData> mediaList = new List<MediaData> ();
+                mediaList.Add ( (MediaData)((PhraseNode)mNode).Audio.getMediaData () );
+                                                return mediaList;
+                }
+            else
+                {
+                                return new List<MediaData> ();
+                }
+            }
+
+
 
         public override void execute()
         {
