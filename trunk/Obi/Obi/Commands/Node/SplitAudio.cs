@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
+
 using urakawa.command;
 using urakawa.media.data.audio;
+using urakawa.media.data;
 using urakawa.media.timing;
 
 namespace Obi.Commands.Node
@@ -186,6 +190,17 @@ namespace Obi.Commands.Node
             if (updateSelection) view.SelectedBlockNode = nodeAfter;
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
         }
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+
+            if (mNodeAfter != null && mNodeAfter is PhraseNode)
+                mediaList.Add ( mNodeAfter.Audio.getMediaData () );
+
+            return mediaList;
+            }
+
 
         public override void execute()
         {
