@@ -195,7 +195,7 @@ namespace Obi.Commands.Node
             {
             List<MediaData> mediaList = new List<MediaData> ();
 
-            if (mNodeAfter != null && mNodeAfter is PhraseNode)
+            if (mNodeAfter != null && mNodeAfter is PhraseNode && mNodeAfter.Audio != null)
                 mediaList.Add ( mNodeAfter.Audio.getMediaData () );
 
             return mediaList;

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.media.data;
+
 namespace Obi.Commands.Audio
 {
     class Copy: Command
@@ -19,6 +21,16 @@ namespace Obi.Commands.Audio
 
         public Copy(ProjectView.ProjectView view)
             : this(view, (PhraseNode)view.Selection.Node, ((AudioSelection)view.Selection).AudioRange) {}
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+            if (mNewClipboard != null && mNewClipboard.Node is PhraseNode && ((PhraseNode)mNewClipboard.Node).Audio != null )
+                mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData ());
+
+            return mediaList;
+            }
+
 
         public override void execute()
         {

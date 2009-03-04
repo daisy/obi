@@ -43,10 +43,10 @@ namespace Obi.Commands.Node
 
         public override List<MediaData> getListOfUsedMediaData ()
             {
-            if (mNode != null && mNode is PhraseNode)
+            if (mNode != null && mNode is PhraseNode && ((PhraseNode)mNode).Audio != null )
                 {
                 List<MediaData> mediaList = new List<MediaData> ();
-                mediaList.Add ( (MediaData)((PhraseNode)mNode).Audio.getMediaData () );
+                mediaList.Add ( ((PhraseNode)mNode).Audio.getMediaData () );
                         return mediaList;
                 }
             else

@@ -60,14 +60,14 @@ namespace Obi.Commands.Node
         if (mNode != null && mNode is PhraseNode)
             {
             List<MediaData> mediaList = new List<MediaData> ();
+            if ( ((PhraseNode)mNode).Audio != null )
             mediaList.Add ( ((PhraseNode)mNode).Audio.getMediaData () );
             return mediaList;
             }
         else if (mNode != null && mNode is SectionNode)
             {
             return GetMediaDataListForSection ( (SectionNode)mNode );
-
-            }
+                        }
         else
             return new List<MediaData> ();
         }
@@ -81,6 +81,7 @@ namespace Obi.Commands.Node
                     {
                     if (n != null && n is PhraseNode)
                         {
+                        if ( ((PhraseNode)n).Audio != null )
                         mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
                         }
                     return true;

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using urakawa.media.data;
+
 namespace Obi.Commands.Audio
 {
     class Paste: Command
@@ -47,6 +49,16 @@ namespace Obi.Commands.Audio
             mMediaAfter.mergeWith(after);
             Label = Localizer.Message("paste_audio");
         }
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+            if (mMediaAfter != null )
+                mediaList.Add ( mMediaAfter.getMediaData () );
+
+            return mediaList;
+            }
+
 
         public override void execute()
         {
