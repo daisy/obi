@@ -171,14 +171,14 @@ namespace Obi.Commands.Node
         if (node != null && node is PhraseNode)
             {
             List<MediaData> mediaList = new List<MediaData> ();
+            if ( ((PhraseNode)node).Audio != null )
             mediaList.Add ( ((PhraseNode)node).Audio.getMediaData () );
             return mediaList;
             }
         else if (node != null && node is SectionNode)
             {
             return GetMediaDataListForSection ( (SectionNode)node );
-
-            }
+                        }
         else
             return new List<MediaData> ();
         }
@@ -190,7 +190,7 @@ namespace Obi.Commands.Node
         sNode.acceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
-                    if (n != null && n is PhraseNode)
+                    if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null)
                         {
                         mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
                         }
