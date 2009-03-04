@@ -463,6 +463,9 @@ namespace Obi.ProjectView
                 CompositeCommand command = Presentation.CreateCompositeCommand(
                     Localizer.Message(isSection ? "cut_section" : "cut_section_shallow"));
                 command.append(new Commands.Node.Copy(this, isSection));
+                if ( CanRemoveStrip )
+                    command.append ( mContentView.DeleteStripCommand());
+                else
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
                 mPresentation.Do(command);
                 // quick fix for null selection problem while cutting single section ins single section project
