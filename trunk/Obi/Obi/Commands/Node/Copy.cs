@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+
+using urakawa.media.data;
 
 namespace Obi.Commands.Node
 {
@@ -15,6 +18,44 @@ namespace Obi.Commands.Node
         }
 
         public Copy(ProjectView.ProjectView view, bool deep) : this(view, deep, "") { }
+
+
+        public override List<MediaData> getListOfUsedMediaData ()
+            {
+            if (mNewClipboard != null && mNewClipboard.Node is PhraseNode)
+                {
+                List<MediaData> mediaList = new List<MediaData> ();
+                if (((PhraseNode)mNewClipboard.Node).Audio != null )
+                mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData () );
+                return mediaList;
+                }
+            else if (mNewClipboard != null && mNewClipboard.Node is SectionNode)
+                {
+                return GetMediaDataListForSection ( (SectionNode)mNewClipboard.Node );
+                                }
+            else
+                return new List<MediaData> ();
+            }
+
+
+        private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
+            {
+            List<MediaData> mediaList = new List<MediaData> ();
+
+            sNode.acceptDepthFirst (
+                    delegate ( urakawa.core.TreeNode n )
+                        {
+                        if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )
+                            {
+                            mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                            }
+                        return true;
+                        },
+                    delegate ( urakawa.core.TreeNode n ) { } );
+
+            return mediaList;
+            }
+
 
         public override void execute()
         {

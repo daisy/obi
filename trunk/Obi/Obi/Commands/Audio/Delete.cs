@@ -37,7 +37,7 @@ namespace Obi.Commands.Audio
         public override List<MediaData> getListOfUsedMediaData ()
             {
             List<MediaData> mediaList = new List<MediaData> ();
-            if (mDeleted != null && mDeleted is PhraseNode)
+            if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
                 mediaList.Add ( mDeleted.Audio.getMediaData () );
 
             return mediaList;
