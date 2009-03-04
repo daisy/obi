@@ -465,7 +465,9 @@ namespace Obi.ProjectView
                 command.append(new Commands.Node.Copy(this, isSection));
                 command.append(new Commands.Node.Delete(this, mSelection.Node));
                 mPresentation.Do(command);
-            }
+                // quick fix for null selection problem while cutting single section ins single section project
+                if (mPresentation.FirstSection == null) Selection = null;
+                            }
             else if (CanRemoveBlock)
             {
                 CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
