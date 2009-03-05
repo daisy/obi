@@ -1155,7 +1155,7 @@ Error text: {1}</value>
     <comment>Format for duration (used for the transport bar display)</comment>
   </data>
   <data name="export_progress_dialog_title" xml:space="preserve">
-    <value>Exporting project...</value>
+    <value>Exporting project...  please wait as it may take several minutes</value>
     <comment>Export progress dialog title</comment>
   </data>
   <data name="role_Custom" xml:space="preserve">
