@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Obi
 {
@@ -125,6 +126,27 @@ namespace Obi
                 mCanDeleteLock = false;
             }
         }
+        /// <summary>
+        /// Removes additional lock file without disturbing process for main lock file of project
+                /// </summary>
+        /// <param name="path"></param>
+        public void RemoveLock_Additional_safe ( string path )
+            {
+            // This is temporary function, will be incoperated in main function. But it may be risky to do at this time.
+            if (mCanDeleteLock)
+                {
+                string path_lock = path + ".lock";
+                try { System.IO.File.Delete ( path_lock ); }
+                catch (Exception) { }
+                // set mDeleteLock flag to false only if lock for active session is removed
+                                if (System.IO.Path.GetFullPath ( mPath )
+                    == System.IO.Path.GetFullPath ( path ))
+                    {
+                    mCanDeleteLock = false;
+                    }
+                }
+            }
+
 
         /// <summary>
         /// Notify the session that the presentation has changed.
