@@ -76,7 +76,11 @@ namespace Obi.Dialogs
             if (dialog.ShowDialog () == DialogResult.OK && ObiForm.CheckProjectPath_Safe(dialog.FileName, true))
             {
                 mLocationTextBox.Text = dialog.FileName;
+                mNewDirectoryTextBox.TextChanged -= new EventHandler ( mNewDirectoryTextBox_TextChanged );
+                mNewDirectoryTextBox.Text = Directory.GetParent ( mLocationTextBox.Text ).FullName;
+                mNewDirectoryTextBox.TextChanged += new EventHandler ( mNewDirectoryTextBox_TextChanged );
                 mUserSetLocation = true;
+                mNewDirectoryTextBox.ReadOnly = true;
             }
         }
 
@@ -124,6 +128,9 @@ namespace Obi.Dialogs
         }
 
         // Update location on the fly when the target directory changes
-        private void mNewDirectoryTextBox_TextChanged(object sender, EventArgs e) { GenerateFileName(); }
+        private void mNewDirectoryTextBox_TextChanged(object sender, EventArgs e) 
+            {
+                        GenerateFileName(); 
+            }
     }
 }
