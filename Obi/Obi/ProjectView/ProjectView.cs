@@ -566,7 +566,11 @@ namespace Obi.ProjectView
                     foreach (ICommand c in silence) command.append(c);
                 }
             }
-        if (Selection != null && mTOCView.ContainsFocus) Selection = null;
+            // handle selection to avoid exception if selected node is deleted
+        if (GetSelectedPhraseSection != null && (!mSelection.Node.Used ||  !GetSelectedPhraseSection.Used))
+            Selection = null;
+            
+        //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount() > 0) mPresentation.Do(command);
         }   
 
