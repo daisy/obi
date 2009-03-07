@@ -1366,7 +1366,7 @@ namespace Obi.ProjectView
             return command;
         }
 
-        public bool CanImportPhrases { get { return mContentView.Selection != null; } }
+        public bool CanImportPhrases { get { return mContentView.Selection != null  &&  !TransportBar.IsRecorderActive; } }
 
         /// <summary>
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
