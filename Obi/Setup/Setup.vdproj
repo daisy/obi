@@ -208,12 +208,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_00248D6E2588CA2314EA28FCC0F66963"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C01B98B85AE14B45993454544BE4B15E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -239,6 +233,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_69B42FA276EC8EC3A2E3BB8E252CF5AC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_00248D6E2588CA2314EA28FCC0F66963"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -336,7 +336,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_E440F2AA_A7D8_4A5E_B41B_CF0A8F03E057"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/sourcePath=\"[SOURCEDIR]\\\""
+            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9FC4FE02AC07454CA0BC6EB6BC7C62D4"
             {
@@ -350,7 +350,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_D5A6DE24_970B_4DEE_A950_F9BE128415D3"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
+            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B986AD99788042B4BB643B61F9DD823B"
             {
@@ -364,7 +364,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_3D8C2593_61AD_45CA_8759_806A933EA21A"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR]\\\""
+            "CustomActionData" = "8:/sourPath=\"[SOURCEDIR] \""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_C0A91C7AED174FFA8B78F79DD1D608BD"
             {
@@ -421,7 +421,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.31509, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.21274, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_00248D6E2588CA2314EA28FCC0F66963"
@@ -1181,7 +1181,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 0.99"
         "ProductCode" = "8:{58E19EF0-3450-4F76-ADF8-4AA7EB406CBC}"
-        "PackageCode" = "8:{8C6F85BB-D3D0-4E96-B1DC-8A48ABDE51D9}"
+        "PackageCode" = "8:{5D2D93A5-F39C-4016-AD76-6D0D1760B72A}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
