@@ -199,7 +199,9 @@ namespace Obi.ProjectView
         /// <summary>
         /// A phrase can be split if there is an audio selection, or when audio is playing or paused.
         /// </summary>
-        public bool CanSplitPhrase { get { return (IsPlayerActive || ( mView.Selection != null  &&   mView.Selection is AudioSelection))    &&    IsPhraseCountWithinLimit; } } // @phraseLimit
+        public bool CanSplitPhrase { get { return (IsPlayerActive 
+            || ( mView.Selection != null  &&   mView.Selection is AudioSelection   &&   ((AudioSelection)mView.Selection).AudioRange != null))    
+            &&    IsPhraseCountWithinLimit; } } // @phraseLimit
 
         // @phraseLimit
         /// <summary>
