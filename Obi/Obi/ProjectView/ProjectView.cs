@@ -535,6 +535,10 @@ namespace Obi.ProjectView
         /// </summary>
         public void DeleteUnused()
         {
+        // handle selection to avoid exception if selected node is deleted
+        if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
+            Selection = null;
+
             CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
             // Collect silence node deletion commands separately in case the user wants to keep them.
             List<ICommand> silence = new List<ICommand>();
@@ -544,8 +548,9 @@ namespace Obi.ProjectView
                     if (node is ObiNode && !((ObiNode)node).Used)
                     {
                         Commands.Node.Delete delete = new Commands.Node.Delete(this, (ObiNode)node, false);
+                        if (Selection == null) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
                         if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
-                        {
+                                                    {
                             silence.Add(delete);
                         }
                         else
@@ -566,9 +571,6 @@ namespace Obi.ProjectView
                     foreach (ICommand c in silence) command.append(c);
                 }
             }
-            // handle selection to avoid exception if selected node is deleted
-        if (GetSelectedPhraseSection != null && (!mSelection.Node.Used ||  !GetSelectedPhraseSection.Used))
-            Selection = null;
             
         //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount() > 0) mPresentation.Do(command);
