@@ -1095,7 +1095,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-                    if (mView.Presentation != null&& mState != State.Playing)
+                    if (mView.Presentation != null&& mState != State.Playing
+                        &&    !IsMetadataSelected)
             {
             try
                 {
@@ -1136,6 +1137,7 @@ namespace Obi.ProjectView
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
             // assign selection to null if metadata is selected.
+            // : this may be removed now as recording is skipped if metadata is selected
             if (mView.Selection != null && mView.Selection is MetadataSelection)
                 mView.Selection = null;
 
@@ -1960,7 +1962,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly()
         {
-            if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing)
+            if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing
+                &&    !IsMetadataSelected )
                 {
                 try
                     {
@@ -2044,6 +2047,7 @@ UpdateButtons();
         public bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
         private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
+        private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
 
         private void mToDoMarkButton_Click ( object sender, EventArgs e ) 
         {
