@@ -329,7 +329,7 @@ namespace Obi.UserControls
                 LevelGoodSoundpPlayer.Play ();
                 }
 
-            m_AfterGoodCount = -4 ;
+            m_AfterGoodCount = -5 ;
                         }
 
 
