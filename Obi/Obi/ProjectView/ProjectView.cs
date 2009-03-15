@@ -865,10 +865,12 @@ namespace Obi.ProjectView
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
                     {
+                    this.Cursor = Cursors.WaitCursor;
                         mTOCView.SetNewPresentation();
                         mContentView.NewPresentation();
                         mTransportBar.NewPresentation();
                         mMetadataView.NewPresentation();
+                        this.Cursor = Cursors.Default;
                     }
                 }
             }
@@ -2184,11 +2186,11 @@ namespace Obi.ProjectView
             {
             if (active)
                 {
-                this.UseWaitCursor = true;
+                this.Cursor = Cursors.WaitCursor;
                 }
             else
                 {
-                UseWaitCursor = false;
+                this.Cursor = Cursors.Default;
                 }
             if (BlocksVisibilityChanged != null) BlocksVisibilityChanged ( this, new EventArgs () );
             }
