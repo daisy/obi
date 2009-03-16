@@ -1225,6 +1225,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can not Export. Project is empty!.
+        /// </summary>
+        internal static string ExportError_EmptyProject {
+            get {
+                return ResourceManager.GetString("ExportError_EmptyProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are about to save a project file to {0}. It is recommended that you use the .obi file extension. Are you sure you want to keep the selected extension?.
         /// </summary>
         internal static string extension_warning {

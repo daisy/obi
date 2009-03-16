@@ -1202,6 +1202,15 @@ namespace Obi
         private void ExportProject()
         {
             mProjectView.TransportBar.Enabled = false ;
+
+            // returns if project is empty
+            if (mProjectView.Presentation.RootNode.SectionCount == 0)
+                {
+                MessageBox.Show (Localizer.Message ("ExportError_EmptyProject") );
+                mProjectView.Selection = null ; // done for precaution 
+                return ;
+                }
+
             if (CheckedPageNumbers() && CheckedForEmptySections())
             {
                 Dialogs.ExportDirectory dialog =
