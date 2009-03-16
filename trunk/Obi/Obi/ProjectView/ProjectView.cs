@@ -865,13 +865,11 @@ namespace Obi.ProjectView
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
                     {
-                    this.Cursor = Cursors.WaitCursor;
-                        mTOCView.SetNewPresentation();
+                                            mTOCView.SetNewPresentation();
                         mContentView.NewPresentation();
                         mTransportBar.NewPresentation();
                         mMetadataView.NewPresentation();
-                        this.Cursor = Cursors.Default;
-                    }
+                                            }
                 }
             }
         }
@@ -1320,6 +1318,7 @@ namespace Obi.ProjectView
                             {
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
+                                this.ObiForm.Cursor = Cursors.WaitCursor;
                                 mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                 // hide new phrases if section's contents are hidden
                                 HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
@@ -1330,6 +1329,7 @@ namespace Obi.ProjectView
    
                     }
                 }
+            this.ObiForm.Cursor = Cursors.Default;
             }
         }
 
@@ -1622,7 +1622,8 @@ namespace Obi.ProjectView
                     mPresentation.Do(command);
 
                     SectionNode SNode = GetSelectedPhraseSection;
-                         if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) );
+                         if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  
+                             MessageBox.Show (  string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) , MessageBoxButtons.OK , MessageBoxIcon.Warning);
 
                     // hide newly added phrases if contents of section are hidden
                          HideNewPhrasesInInvisibleSection ( SNode );
