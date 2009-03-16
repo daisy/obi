@@ -428,6 +428,7 @@ namespace Obi
                         });
                     progress.ShowDialog();
                     if (progress.Exception != null) throw progress.Exception;
+                    this.Cursor = Cursors.WaitCursor;
                     if (dialog.SwitchToNewProject) CloseAndOpenProject(path_new);
                 }
                 catch (Exception e)
@@ -436,6 +437,7 @@ namespace Obi
                         Localizer.Message("save_as_failed_caption"),
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            this.Cursor = Cursors.Default;
             }
             else
             {
@@ -1206,7 +1208,7 @@ namespace Obi
             // returns if project is empty
             if (mProjectView.Presentation.RootNode.SectionCount == 0)
                 {
-                MessageBox.Show (Localizer.Message ("ExportError_EmptyProject") );
+                MessageBox.Show ( Localizer.Message ( "ExportError_EmptyProject" ), Localizer.Message ( "Caption_Error" ),MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mProjectView.Selection = null ; // done for precaution 
                 return ;
                 }
@@ -1535,8 +1537,10 @@ namespace Obi
         // Unsafe version of open project
         private void OpenProject(string path)
         {
+        this.Cursor = Cursors.WaitCursor;
             mSession.Open(path);
             AddRecentProject(path);
+            this.Cursor = Cursors.Default;
         }
 
         // The project was modified.
@@ -1547,7 +1551,7 @@ namespace Obi
         }
 
         // Redo
-        private void Redo()
+        private void Redo() 
         {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             bool PlayOnSelectionStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
