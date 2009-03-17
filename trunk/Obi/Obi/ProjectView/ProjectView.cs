@@ -1442,15 +1442,16 @@ namespace Obi.ProjectView
                 MessageBox.Show ( Localizer.Message ( "ContentsHidden_CannotExecuteCommand" ) );
                 return;
                 }
-
-                        CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
-            if (command != null)
+                            
+            if (CanSplitPhrase)
             {
             bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
             TransportBar.SelectionChangedPlaybackEnabled = false;
             try
                 {
-                mPresentation.Do ( command );
+                CompositeCommand command = null;
+                command = Commands.Node.SplitAudio.GetSplitCommand ( this ) ;
+                if ( command != null ) mPresentation.Do ( command );
                 }
             catch (System.Exception ex)
                 {
