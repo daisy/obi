@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Threading;
 using urakawa.core;
 using urakawa.command;
+using AudioLib.Events.Recorder;
 
 namespace Obi.ProjectView
 {
@@ -14,9 +15,9 @@ namespace Obi.ProjectView
     {
         private ProjectView mView;                   // the parent project view
         
-        private Audio.AudioPlayer mPlayer;           // the audio player
-        private Audio.AudioRecorder mRecorder;       // the audio recorder
-        private Audio.VuMeter mVuMeter;              // VU meter
+        private AudioLib.AudioPlayer mPlayer;           // the audio player
+        private AudioLib.AudioRecorder mRecorder;       // the audio recorder
+        private AudioLib.VuMeter mVuMeter;              // VU meter
         private bool m_AutoSaveOnNextRecordingEnd ; //flag to auto save whenever recording stops or pauses next time
 
         private RecordingSession mRecordingSession;  // current recording session
@@ -90,7 +91,7 @@ namespace Obi.ProjectView
 
 
         // Pass the state change and playback rate change events from the playlist
-        public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event AudioLib.Events.Player.StateChangedHandler StateChanged;
         public event EventHandler PlaybackRateChanged;
 
 
@@ -124,7 +125,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the audio player used by the transport bar.
         /// </summary>
-        public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
+        public AudioLib.AudioPlayer AudioPlayer { get { return mPlayer; } }
         
         public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
@@ -275,7 +276,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return mPlayer.State != Obi.Audio.AudioPlayerState.Playing &&
+                return mPlayer.State != AudioLib.AudioPlayerState.Playing &&
                     mView.Selection is AudioSelection &&
                     !((AudioSelection)mView.Selection).AudioRange.HasCursor ?
                     ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime : 0.0;
@@ -329,7 +330,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionBeginTime()
         {
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
+            if (mPlayer.State == AudioLib.AudioPlayerState.Playing || mPlayer.State == AudioLib.AudioPlayerState.Paused)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
@@ -348,7 +349,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionEndTime()
         {
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
+            if (mPlayer.State == AudioLib.AudioPlayerState.Playing || mPlayer.State == AudioLib.AudioPlayerState.Paused)
             {
                             AudioSelection selection = mView.Selection as AudioSelection;
                 double begin = 0.0;
@@ -382,7 +383,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionFromCursor()
         {
-            if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
+            if ((mPlayer.State == AudioLib.AudioPlayerState.Playing || mPlayer.State == AudioLib.AudioPlayerState.Paused) &&
                 mCurrentPlaylist.CurrentTimeInAsset > 0.0)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
@@ -398,7 +399,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionToCursor()
         {
-            if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
+            if ((mPlayer.State == AudioLib.AudioPlayerState.Playing || mPlayer.State == AudioLib.AudioPlayerState.Paused) &&
                 mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat())
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
@@ -415,7 +416,7 @@ namespace Obi.ProjectView
         /// </summary>
         public bool MarkSelectionWholePhrase()
         {
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused)
+            if (mPlayer.State == AudioLib.AudioPlayerState.Playing || mPlayer.State == AudioLib.AudioPlayerState.Paused)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
@@ -497,21 +498,21 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the recorder associated with the transport bar.
         /// </summary>
-        public Audio.AudioRecorder Recorder { get { return mRecorder; } }
+        public AudioLib.AudioRecorder Recorder { get { return mRecorder; } }
 
         /// <summary>
         /// Get the VU meter associated with the transport bar.
         /// </summary>
-        public Audio.VuMeter VuMeter { get { return mVuMeter; } }
+        public AudioLib.VuMeter VuMeter { get { return mVuMeter; } }
 
 
         // Initialize audio (player, recorder, VU meter.)
         private void InitAudio()
         {
-            mPlayer = new Audio.AudioPlayer();
-            mRecorder = new Obi.Audio.AudioRecorder();
-            mRecorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(Recorder_StateChanged);
-            mVuMeter = new Obi.Audio.VuMeter(mPlayer, mRecorder);
+            mPlayer = new AudioLib.AudioPlayer();
+            mRecorder = new AudioLib.AudioRecorder();
+            mRecorder.StateChanged += new StateChangedHandler(Recorder_StateChanged);
+            mVuMeter = new AudioLib.VuMeter(mPlayer, mRecorder);
             mVUMeterPanel.VuMeter = mVuMeter;
         }
 
@@ -549,7 +550,7 @@ namespace Obi.ProjectView
         private void mDisplayTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDisplay();
-            if (mPlayer.State == Obi.Audio.AudioPlayerState.Playing)
+            if (mPlayer.State == AudioLib.AudioPlayerState.Playing)
                 {
                 mView.UpdateCursorPosition ( mCurrentPlaylist.CurrentTimeInAsset );
                                                 }
@@ -563,10 +564,10 @@ namespace Obi.ProjectView
         }
 
         // Update the transport bar according to the player state.
-        private void Playlist_PlayerStateChanged(object sender, Obi.Events.Audio.Player.StateChangedEventArgs e)
+        private void Playlist_PlayerStateChanged(object sender, AudioLib.Events.Player.StateChangedEventArgs e)
         {
-            mState = mPlayer.State == Obi.Audio.AudioPlayerState.Paused ? State.Paused :
-                mPlayer.State == Obi.Audio.AudioPlayerState.Playing ? State.Playing : State.Stopped;
+            mState = mPlayer.State == AudioLib.AudioPlayerState.Paused ? State.Paused :
+                mPlayer.State == AudioLib.AudioPlayerState.Playing ? State.Playing : State.Stopped;
             if (mState == State.Playing || mState == State.Recording)
             {
                 mDisplayTimer.Start();
@@ -614,10 +615,10 @@ namespace Obi.ProjectView
         }
 
         // Update state from the recorder.
-        private void Recorder_StateChanged(object sender, Obi.Events.Audio.Recorder.StateChangedEventArgs e)
+        private void Recorder_StateChanged(object sender, AudioLib.Events.Recorder.StateChangedEventArgs e)
         {
-            mState = mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? State.Monitoring :
-                mRecorder.State == Obi.Audio.AudioRecorderState.Recording ? State.Recording : State.Stopped;
+            mState = mRecorder.State == AudioLib.AudioRecorderState.Monitoring ? State.Monitoring :
+                mRecorder.State == AudioLib.AudioRecorderState.Recording ? State.Recording : State.Stopped;
             UpdateButtons();
             UpdateTimeDisplay();
         }
@@ -626,7 +627,7 @@ namespace Obi.ProjectView
         private void SetPlaylistEvents(Playlist playlist)
         {
             playlist.MovedToPhrase += new Playlist.MovedToPhraseHandler(Playlist_MovedToPhrase);
-            playlist.StateChanged += new Events.Audio.Player.StateChangedHandler(Playlist_PlayerStateChanged);
+            playlist.StateChanged += new AudioLib.Events.Player.StateChangedHandler(Playlist_PlayerStateChanged);
             playlist.EndOfPlaylist += new Playlist.EndOfPlaylistHandler(Playlist_PlayerStopped);
             playlist.PlaybackRateChanged += new Playlist.PlaybackRateChangedHandler(Playlist_PlaybackRateChanged);
         }
@@ -644,7 +645,7 @@ namespace Obi.ProjectView
             mFastPlayRateCombobox.Enabled = !IsRecorderActive;
             mRecordButton.Enabled =  CanRecord || CanResumeRecording;
             mRecordButton.AccessibleName = Localizer.Message(
-                mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ? "start_recording" : "start_monitoring"
+                mRecorder.State == AudioLib.AudioRecorderState.Monitoring ? "start_recording" : "start_monitoring"
             );
             mStopButton.Enabled = CanStop;
             mFastForwardButton.Enabled = CanFastForward;
@@ -888,7 +889,7 @@ namespace Obi.ProjectView
                 {
                     // Play the audio selection (only for local playlist; play all ignores the end of the selection.)
                     mCurrentPlaylist.CurrentPhrase = (PhraseNode)mView.Selection.Node;
-                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)  mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
+                    if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing)  mCurrentPlaylist.Play(((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime,
                         ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime);
                 }
                 else 
@@ -897,19 +898,19 @@ namespace Obi.ProjectView
                     if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node)
                     {
                         // The selected node is in the playlist so play from the cursor
-                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( ((AudioSelection)mView.Selection).AudioRange.CursorTime );
+                    if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play ( ((AudioSelection)mView.Selection).AudioRange.CursorTime );
                     }
                     else
                     {
                     if (mAfterPreviewRestoreTime > 0)
                         {
-                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
+                        if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play ( mAfterPreviewRestoreTime );
                         mAfterPreviewRestoreTime = 0;
                         }
                     else
                         {
                         // The selected node is not in the playlist so play from the beginning
-                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
+                        if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
                         }
                     }
                 }
@@ -921,16 +922,16 @@ namespace Obi.ProjectView
                 StripIndexSelection s = (StripIndexSelection)mView.Selection;
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(s.Index < s.Section.PhraseChildCount ?
                     (ObiNode)s.Section.PhraseChild(s.Index) : (ObiNode)s.Section);
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
+                if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play ();
             }
             else if (mView.Selection is NodeSelection)
             {
                 mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
+                if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play();
             }
             else
             {
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
+                if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play();
             }
         }
 
@@ -946,7 +947,7 @@ namespace Obi.ProjectView
             if (startNode != null &&  mCurrentPlaylist.ContainsPhrase ( startNode ))
                 {
                 mCurrentPlaylist.CurrentPhrase = startNode;
-                if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( time );
+                if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play ( time );
                 }
             else
                 {
@@ -974,11 +975,11 @@ namespace Obi.ProjectView
                                     }
 
                 mDisplayTimer.Stop();
-                if (mRecorder.State == Obi.Audio.AudioRecorderState.Recording|| mRecorder.State == Obi.Audio.AudioRecorderState.Monitoring)
+                if (mRecorder.State == AudioLib.AudioRecorderState.Recording|| mRecorder.State == AudioLib.AudioRecorderState.Monitoring)
                 {
                     PauseRecording();
                 }
-                else if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                else if (mCurrentPlaylist.State == AudioLib.AudioPlayerState.Playing)
                 {
                                     mCurrentPlaylist.Pause();
                                     MoveSelectionToPlaybackPhrase ();
@@ -1030,7 +1031,7 @@ namespace Obi.ProjectView
                 if (mView.Selection == null )
                     mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, null );
                 else if (mCurrentPlaylist != null &&
-                    (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Paused)
+                    (mCurrentPlaylist.State == AudioLib.AudioPlayerState.Paused)
                     && mView.Selection.Node != mCurrentPlaylist.CurrentPhrase)
                     {
                     mView.SelectFromTransportBar ( mCurrentPlaylist.CurrentPhrase, mView.Selection.Control );
@@ -1074,7 +1075,7 @@ namespace Obi.ProjectView
 
         private void StopPlaylistPlayback ()
             {
-            if (mCurrentPlaylist != null && mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Stopped)
+            if (mCurrentPlaylist != null && mCurrentPlaylist.State != AudioLib.AudioPlayerState.Stopped)
                 {
                 bool PlaybackOnSelectionStatus = SelectionChangedPlaybackEnabled;
                 SelectionChangedPlaybackEnabled = false;
@@ -1132,7 +1133,7 @@ namespace Obi.ProjectView
         // Setup recording and start recording or monitoring
         private void SetupRecording(bool recording, SectionNode afterSection)
         {
-        if (mRecorder != null && mRecorder.State == Obi.Audio.AudioRecorderState.Stopped)
+        if (mRecorder != null && mRecorder.State == AudioLib.AudioRecorderState.Stopped)
                         {
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
 
@@ -1156,15 +1157,15 @@ namespace Obi.ProjectView
             InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder );
-            mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler (
-                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e )
+            mRecordingSession.StartingPhrase += new Obi.Events.StartingPhraseHandler (
+                delegate ( object sender, Obi.Events.PhraseEventArgs e )
                     {
                     RecordingPhraseStarted ( e, command, (EmptyNode)(node.GetType () == typeof ( EmptyNode ) ? node : null) );
                     } );
-            mRecordingSession.FinishingPhrase += new Obi.Events.Audio.Recorder.FinishingPhraseHandler (
-                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPhraseEnded ( e ); } );
-            mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
-                delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPage ( e ); } );
+            mRecordingSession.FinishingPhrase += new Obi.Events.FinishingPhraseHandler (
+                delegate ( object sender, Obi.Events.PhraseEventArgs e ) { RecordingPhraseEnded ( e ); } );
+            mRecordingSession.FinishingPage += new Obi.Events.FinishingPageHandler (
+                delegate ( object sender, Obi.Events.PhraseEventArgs e ) { RecordingPage ( e ); } );
             // Actually start monitoring or recording
             if (recording)
                 {
@@ -1237,7 +1238,7 @@ namespace Obi.ProjectView
         }
 
         // Start recording a phrase, possibly replacing an empty node (only for the first one.)
-        private void RecordingPhraseStarted(Obi.Events.Audio.Recorder.PhraseEventArgs e,
+        private void RecordingPhraseStarted(Obi.Events.PhraseEventArgs e,
             urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
             // Suspend presentation change handler so that we don't stop when new nodes are added.
@@ -1324,7 +1325,7 @@ namespace Obi.ProjectView
 
 
         // Stop recording a phrase
-        private void RecordingPhraseEnded(Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        private void RecordingPhraseEnded(Obi.Events.PhraseEventArgs e)
         {
             PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex);
             phrase.SignalAudioChanged(this, e.Audio);
@@ -1332,7 +1333,7 @@ namespace Obi.ProjectView
         }
 
         // Start recording a new page, set the right page number
-        private void RecordingPage(Obi.Events.Audio.Recorder.PhraseEventArgs e)
+        private void RecordingPage(Obi.Events.PhraseEventArgs e)
         {
             PhraseNode phrase = (PhraseNode)mRecordingSection.PhraseChild(e.PhraseIndex + mRecordingInitPhraseIndex + 1);
             phrase.PageNumber = mView.Presentation.PageNumberFollowing(phrase);
@@ -1675,7 +1676,7 @@ namespace Obi.ProjectView
                 if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.FastForward();
 
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                if (mCurrentPlaylist.State == AudioLib.AudioPlayerState.Playing)
                     mDisplayTimer.Start ();
             }
         }
@@ -1690,7 +1691,7 @@ namespace Obi.ProjectView
                 if (mState == State.Stopped) PlayOrResume();
                 mCurrentPlaylist.Rewind();
 
-                if (mCurrentPlaylist.State == Obi.Audio.AudioPlayerState.Playing)
+                if (mCurrentPlaylist.State == AudioLib.AudioPlayerState.Playing)
                     mDisplayTimer.Start ();
             }
         }
@@ -1922,7 +1923,7 @@ namespace Obi.ProjectView
             
             if (mView.Selection != null && mView.Selection is AudioSelection &&   !((AudioSelection)mView.Selection).AudioRange.HasCursor)
                 m_AfterPreviewRestoreEndTime = ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime;
-            if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) 
+            if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) 
                         mCurrentPlaylist.Play(from, end);
             
             m_IsPreviewing = true;
@@ -1962,7 +1963,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly()
         {
-            if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing
+            if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != AudioLib.AudioPlayerState.Playing
                 &&    !IsMetadataSelected )
                 {
                 try
@@ -1985,8 +1986,8 @@ namespace Obi.ProjectView
         private void StopRecording()
         {
             if (mRecordingSession != null &&
-                (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ||
-                mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
+                (mRecordingSession.AudioRecorder.State == AudioLib.AudioRecorderState.Monitoring ||
+                mRecordingSession.AudioRecorder.State == AudioLib.AudioRecorderState.Recording))
             {
                 mVUMeterPanel.BeepEnable = false;
 
@@ -2029,7 +2030,7 @@ UpdateButtons();
             get
             {
                 return mRecordingSession != null &&
-                    mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording;
+                    mRecordingSession.AudioRecorder.State == AudioLib.AudioRecorderState.Recording;
             }
         }
 
@@ -2038,14 +2039,14 @@ UpdateButtons();
             get
             {
                 return mRecordingSession != null &&
-                    mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Monitoring;
+                    mRecordingSession.AudioRecorder.State == AudioLib.AudioRecorderState.Monitoring;
             }
         }
 
         public bool IsActive { get { return Enabled && ( IsPlayerActive || IsRecorderActive ); } }
-        private bool IsPlaying { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Playing; } }
+        private bool IsPlaying { get { return mPlayer.State == AudioLib.AudioPlayerState.Playing; } }
         public bool IsPlayerActive { get { return IsPaused || IsPlaying; } }
-        private bool IsPaused { get { return mPlayer.State == Obi.Audio.AudioPlayerState.Paused; } }
+        private bool IsPaused { get { return mPlayer.State == AudioLib.AudioPlayerState.Paused; } }
         public bool IsRecorderActive { get { return IsListening || IsRecording; } }
         private bool IsMetadataSelected { get { return mView.Selection != null && mView.Selection.Control is MetadataView  ; } }
 
@@ -2148,7 +2149,7 @@ UpdateButtons();
                         if (mView.Selection.Control.GetType () != typeof ( TOCView )
                             || mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> () != PNode.ParentAs<SectionNode> ()) // bypass if selection is in TOC and playing section is same as selected section
                             { //3
-                            if (mPlayer.State == Obi.Audio.AudioPlayerState.Paused) mCurrentPlaylist.Stop ();
+                            if (mPlayer.State == AudioLib.AudioPlayerState.Paused) mCurrentPlaylist.Stop ();
 
                             mCurrentPlaylist.CurrentPhrase = PNode;
                             if (mView.Selection is AudioSelection) mCurrentPlaylist.CurrentTimeInAsset = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
@@ -2213,7 +2214,7 @@ UpdateButtons();
                                         SetPlaylistEvents(mLocalPlaylist);
                                         mCurrentPlaylist = mLocalPlaylist;
                                         mCurrentPlaylist.CurrentPhrase = (PhraseNode) ENode ;
-                                        if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play();
+                                        if (mCurrentPlaylist.State != AudioLib.AudioPlayerState.Playing) mCurrentPlaylist.Play();
                                                                                 //PlayOrResume(node.PhraseChild(0));
                                     }
             }

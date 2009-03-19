@@ -12,7 +12,7 @@ namespace Obi.UserControls
     public partial class TextVUMeterPanel : UserControl
     {
         // member variables
-        private Audio.VuMeter m_VuMeter;    // Instance of VuMeter 
+        private AudioLib.VuMeter m_VuMeter;    // Instance of VuMeter 
                 private String m_StrLeftOverloadIndicator;
         private String m_StrRightOverloadIndicator;
         private string m_strLeftLowLevelIndicator;
@@ -39,7 +39,7 @@ namespace Obi.UserControls
             m_BeepEnabled = false;
         }
 
-        public Audio.VuMeter VuMeter
+        public AudioLib.VuMeter VuMeter
         {
             get
             {
@@ -51,11 +51,11 @@ namespace Obi.UserControls
 
                 if (m_VuMeter  != null)
                 {
-                    m_VuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent );
-                    m_VuMeter.LevelTooLowEvent += new Obi.Events.Audio.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
-                    //m_VuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
-                    m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
-                    m_VuMeter.LevelGoodEvent += new Obi.Events.Audio.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
+                    m_VuMeter.PeakOverload += new AudioLib.Events.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent );
+                    m_VuMeter.LevelTooLowEvent += new AudioLib.Events.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
+                    //m_VuMeter.UpdateForms += new AudioLib.Events.VuMeter.UpdateFormsHandler(CatchUpdateForms);
+                    m_VuMeter.ResetEvent += new AudioLib.Events.VuMeter.ResetHandler(VuMeter_ResetEvent);
+                    m_VuMeter.LevelGoodEvent += new AudioLib.Events.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
                     m_MaxLeftDB = -100.00;
                     m_MaxRightDB = -100.00;
                     mResetButton.Enabled = mShowMaxMinValues;
@@ -193,14 +193,14 @@ namespace Obi.UserControls
 
         void CatchPeakOverloadEvent(object sender, EventArgs e)
         {
-            Obi.Events.Audio.VuMeter.PeakOverloadEventArgs EventOb = e as Obi.Events.Audio.VuMeter.PeakOverloadEventArgs;
+            AudioLib.Events.VuMeter.PeakOverloadEventArgs EventOb = e as AudioLib.Events.VuMeter.PeakOverloadEventArgs;
             if (EventOb.Channel == 1)
                 m_StrLeftOverloadIndicator = "OL ";
             else
                 m_StrRightOverloadIndicator = "OL ";
 
             UpdateControls ();
-            Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
+            AudioLib.VuMeter ob_VuMeter = sender as AudioLib.VuMeter;
 
 
             // beep enabled false means this is first peak overload after text timer tick, so play beep
@@ -211,7 +211,7 @@ namespace Obi.UserControls
             }
         }
 
-        private void CatchLevelTooLowEvent(object sender, Obi.Events.Audio.VuMeter.LevelTooLowEventArgs e)
+        private void CatchLevelTooLowEvent(object sender, AudioLib.Events.VuMeter.LevelTooLowEventArgs e)
         {
         if (m_AfterGoodCount >= 0)
             {
@@ -329,7 +329,7 @@ namespace Obi.UserControls
                 LevelGoodSoundpPlayer.Play ();
                 }
 
-            m_AfterGoodCount = -5 ;
+            m_AfterGoodCount = -4 ;
                         }
 
 

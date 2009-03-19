@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using AudioLib;
 using Obi.Audio;
 
 namespace Obi.UserControls
@@ -17,7 +18,7 @@ namespace Obi.UserControls
         private double[] mPeakValues;
         private int mPeakArrayLength;
         private bool mSourcePeaksIsNull  ;
-        private Obi.Events.Audio.VuMeter.PeakOverloadEventArgs mPeakOverloadObject  ;
+        private AudioLib.Events.VuMeter.PeakOverloadEventArgs mPeakOverloadObject  ;
         //private int m_DieOutCounter;
 
 		public GraphicalPeakMeter()
@@ -56,33 +57,33 @@ namespace Obi.UserControls
 					if (mSourceVuMeter != null)
 					{
                     if ( mUpdateGUITimer.Enabled )  mUpdateGUITimer.Stop ();
-						mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        mSourceVuMeter.ResetEvent -= new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-						mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+						mSourceVuMeter.UpdatePeakMeter -= new AudioLib.Events.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                        mSourceVuMeter.ResetEvent -= new AudioLib.Events.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+						mSourceVuMeter.PeakOverload -= new AudioLib.Events.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
 					}
 					mSourceVuMeter = value;
 					if (mSourceVuMeter != null)
 					{
-						mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        mSourceVuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-						mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+						mSourceVuMeter.UpdatePeakMeter += new AudioLib.Events.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                        mSourceVuMeter.ResetEvent += new AudioLib.Events.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+						mSourceVuMeter.PeakOverload += new AudioLib.Events.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
                         mUpdateGUITimer.Start ();
                         					}
 				}
 			}
 		}
 
-		void SourceVuMeter_PeakOverload(object sender, Obi.Events.Audio.VuMeter.PeakOverloadEventArgs e)
+		void SourceVuMeter_PeakOverload(object sender, AudioLib.Events.VuMeter.PeakOverloadEventArgs e)
 		{
         mPeakOverloadObject = e;
 			//mPPMeter.SetPeakOverloadCount(e.Channel - 1, mPPMeter.GetPeakOverloadCount(e.Channel - 1) + 1);
 		}
 
-        void SourceVuMeter_ResetEvent(object sender, Obi.Events.Audio.VuMeter.ResetEventArgs e)
+        void SourceVuMeter_ResetEvent(object sender, AudioLib.Events.VuMeter.ResetEventArgs e)
         {
             if (this.InvokeRequired)
             {
-                Obi.Events.Audio.VuMeter.ResetHandler d = new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                AudioLib.Events.VuMeter.ResetHandler d = new AudioLib.Events.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
                 this.Invoke(d, sender, e);
             }
             else
@@ -96,7 +97,7 @@ namespace Obi.UserControls
             }
         }
 
-        void SourceVuMeter_UpdatePeakMeter ( object sender, Obi.Events.Audio.VuMeter.UpdatePeakMeter e )
+        void SourceVuMeter_UpdatePeakMeter ( object sender, AudioLib.Events.VuMeter.UpdatePeakMeter e )
             {
             if (e.PeakValues == null) mSourcePeaksIsNull = true;
             else mSourcePeaksIsNull = false;
@@ -117,7 +118,7 @@ namespace Obi.UserControls
             {
             if (this.InvokeRequired)
             {
-                //Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler d = new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                //AudioLib.Events.VuMeter.UpdatePeakMeterHandler d = new AudioLib.Events.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
                 //this.Invoke(d, sender, e);
             }
             else

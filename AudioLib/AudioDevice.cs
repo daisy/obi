@@ -1,23 +1,22 @@
 using System;
 using Microsoft.DirectX.DirectSound;
 
-namespace Obi.Audio
+namespace AudioLib
 {
     /// <summary>
     /// Small wrapper around DirectX devices to make it a little more friendly.
     /// </summary>
 	public abstract class AudioDevice
 	{
-        private string mName;
-
+        private DeviceInformation mDevInfo;
         /// <summary>
         /// An informative string (i.e. name) for this device.
         /// </summary>
-        public string Name { get { return mName; } }
+        public string Name { get { return mDevInfo.Description; } }
 
-		protected AudioDevice(string name) { mName = name; }
+		protected AudioDevice(DeviceInformation devInfo) { mDevInfo = devInfo; }
 
-        public override string ToString() { return mName; }
+        public override string ToString() { return Name; }
 	}
 
     public class OutputDevice: AudioDevice
@@ -32,10 +31,10 @@ namespace Obi.Audio
             get { return mDevice; }
         }
 
-        public OutputDevice(string name, Device device)
-            : base(name)
+        public OutputDevice(DeviceInformation devInfo)
+            : base(devInfo)
         {
-            mDevice = device;
+            mDevice = new Device(devInfo.DriverGuid);
         }
     }
 
@@ -48,10 +47,10 @@ namespace Obi.Audio
             get { return mCapture; }
         }
 
-        public InputDevice(string name, Capture capture)
-            : base(name)
+        public InputDevice(DeviceInformation devInfo)
+            : base(devInfo)
         {
-            mCapture = capture;
+            mCapture = new Capture(devInfo.DriverGuid);
         }
     }
 }

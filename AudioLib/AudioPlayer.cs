@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 using urakawa.media.data.audio;
+using urakawa.media.timing;
 
-// TODO change all longs to ints
+// TODO change all ints to longs
 
-namespace Obi.Audio
+namespace AudioLib
 {
     /// <summary>
     /// The four states of the audio player.
@@ -33,8 +34,11 @@ namespace Obi.Audio
 
 
         // Member variables to be re initialised only at time of starting  playback of an asset
-        private Stream mAudioStream;           // audio stream
-                private AudioMediaData mCurrentAudio;  // the audio currently playing
+
+        private Stream mCurrentAudioStream;
+        private PCMFormatInfo mCurrentAudioPCMFormat;
+        private TimeDelta mCurrentAudioDuration;
+
         private SecondaryBuffer mSoundBuffer;  // DX playback buffer
                 private int m_SizeBuffer; // Size of buffer created for playing
                         private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
@@ -43,7 +47,7 @@ namespace Obi.Audio
                                 private int mFrameSize;
                                 private int m_Channels;
         private int mSampleRate;
-        internal byte[] arUpdateVM; // array for update current amplitude to VuMeter
+        public byte[] arUpdateVM; // array for update current amplitude to VuMeter
         private int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
 
 
@@ -72,10 +76,10 @@ namespace Obi.Audio
 
         #endregion
 
-        public event Events.Audio.Player.EndOfAudioAssetHandler EndOfAudioAsset;
-        public event Events.Audio.Player.StateChangedHandler StateChanged;
-        public event Events.Audio.Player.UpdateVuMeterHandler UpdateVuMeter;
-        public event Events.Audio.Player.ResetVuMeterHandler ResetVuMeter;
+        public event Events.Player.EndOfAudioAssetHandler EndOfAudioAsset;
+        public event Events.Player.StateChangedHandler StateChanged;
+        public event Events.Player.UpdateVuMeterHandler UpdateVuMeter;
+        public event Events.Player.ResetVuMeterHandler ResetVuMeter;
 
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace Obi.Audio
         /// <summary>
         /// The audio data currently playing.
         /// </summary>
-        public AudioMediaData CurrentAudio { get { return mCurrentAudio; } }
+        public PCMFormatInfo CurrentAudioPCMFormat { get { return mCurrentAudioPCMFormat; } }
 
         /// <summary>
         /// Currently used output device.
@@ -135,7 +139,7 @@ namespace Obi.Audio
         {
             int PlayPosition = 0;
             long lCurrentPosition = 0;
-            if (mCurrentAudio != null && mCurrentAudio.getPCMLength() > 0)
+            if (mCurrentAudioStream != null && mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) > 0)
             {//1
                 if (mState == AudioPlayerState.Playing)
                 {//2
@@ -162,9 +166,9 @@ namespace Obi.Audio
                         int subtractor = (3 * m_RefreshLength) - PlayPosition;
                         lCurrentPosition = m_lPlayed - subtractor;
                     }//-3
-                    if (lCurrentPosition >= mCurrentAudio.getPCMLength())
+                    if (lCurrentPosition >= mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
                     {//3
-                        lCurrentPosition = mCurrentAudio.getPCMLength() -
+                        lCurrentPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
@@ -184,8 +188,7 @@ namespace Obi.Audio
         /// <summary>
         /// Set a new playback mode i.e. one of Normal, FastForward, Rewind 
         /// </summary>
-        /// <param name="mode">The new mode.</param>
-                    private void SetPlaybackMode( int rate )
+            private void SetPlaybackMode( int rate )
             {
             if (rate != mFwdRwdRate )
             {
@@ -196,7 +199,7 @@ namespace Obi.Audio
                     mState = AudioPlayerState.Paused;
                     mFwdRwdRate = rate ;
                     
-                    InitPlay( mCurrentAudio ,  restartPos, 0);
+                    InitPlay(restartPos, 0);
                 }
                 else if (mState == AudioPlayerState.Paused || mState == AudioPlayerState.Stopped)
                 {
@@ -216,15 +219,15 @@ namespace Obi.Audio
             if (RefreshThread != null && RefreshThread.IsAlive) RefreshThread.Abort();
             mBufferStopPosition = -1;
             if (ResetVuMeter != null)
-                ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
+                ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
 
-            mAudioStream.Close();
+            mCurrentAudioStream.Close();
         }
 
         /// <summary>
         /// Convenience method for sending a state change event only if events are enabled and there is a listener.
         /// </summary>
-		private void TriggerStateChangedEvent(Events.Audio.Player.StateChangedEventArgs e)
+		private void TriggerStateChangedEvent(Events.Player.StateChangedEventArgs e)
 		{
 			if (mEventsEnabled && StateChanged != null) StateChanged(this, e);
 		}
@@ -297,7 +300,7 @@ namespace Obi.Audio
         {
             get
             {
-                return mCurrentAudio == null ? 0 :
+                return mCurrentAudioStream == null ? 0 :
                     CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), mSampleRate, mFrameSize);
             }
             set
@@ -330,7 +333,7 @@ namespace Obi.Audio
                     mOutputDevicesList = new List<OutputDevice>(devices.Count);
                     foreach (DeviceInformation info in devices)
                     {
-                        mOutputDevicesList.Add(new OutputDevice(info.Description, new Device(info.DriverGuid)));
+                        mOutputDevicesList.Add(new OutputDevice(info));
                     }
                 }
                 return mOutputDevicesList;
@@ -346,7 +349,7 @@ namespace Obi.Audio
         {
             mDevice = device;
             mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
-            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
             TriggerStateChangedEvent(e);
         }
@@ -363,14 +366,14 @@ namespace Obi.Audio
             {
                 SetDevice(FormHandle, found);
 
-                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Stopped;
                 TriggerStateChangedEvent(e);
             }
             else if (devices.Count > 0)
             {
                 SetDevice(FormHandle, devices[0]);
-                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Stopped;
                 TriggerStateChangedEvent(e);
             }
@@ -407,20 +410,22 @@ namespace Obi.Audio
 
         /// <summary>
         ///  Plays an asset from beginning to end
-        /// <see cref=""/>
         /// </summary>
-        /// <param name="asset"></param>
-        public void Play( AudioMediaData asset)
+        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo)
         {
+            mCurrentAudioStream = stream;
+            mCurrentAudioDuration = duration;
+            mCurrentAudioPCMFormat = pcmInfo;
+
             // This is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
                 mStartPosition = 0;
 
-                if (asset != null       &&   asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() != 0)
-                    InitPlay(asset ,  0, 0);
+                if (duration.getTimeDeltaAsMillisecondFloat() != 0)
+                    InitPlay(0, 0);
                 else
-                    SimulateEmptyAssetPlaying();
+                    PlaySimulateEmpty();
 
             }
         }
@@ -428,30 +433,32 @@ namespace Obi.Audio
 
 
         /// <summary>
-        ///  Plays an asset from a specified time position its to end
-        /// <see cref=""/>
+        ///  Plays an asset from a specified time position its to ends
         /// </summary>
-        /// <param name="asset"></param>
         /// <param name="timeFrom"></param>
-        public void Play(AudioMediaData  asset, double timeFrom)
+        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double timeFrom)
         {
+            mCurrentAudioStream = stream;
+            mCurrentAudioDuration = duration;
+            mCurrentAudioPCMFormat = pcmInfo;
+
                         // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                                if (asset != null    &&     asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+                 if (duration.getTimeDeltaAsMillisecondFloat() > 0)
                 {
-                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.getPCMFormat().getBlockAlign());
-                    if (lPosition >= 0 && lPosition <= asset.getPCMLength())
+                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, pcmInfo.getBlockAlign());
+                    if (lPosition >= 0 && lPosition <= pcmInfo.getDataLength(duration))
                     {
                                                 mStartPosition = lPosition;
-                        InitPlay( asset , lPosition, 0);
+                        InitPlay(lPosition, 0);
                     }
                     else throw new Exception("Start Position is out of bounds of Audio Asset");
                 }
                 else    // if m_Asset.AudioLengthInBytes= 0 i.e. empty asset
                 {
-                    SimulateEmptyAssetPlaying();
+                    PlaySimulateEmpty();
                 }
             }
         }
@@ -460,20 +467,24 @@ namespace Obi.Audio
         /// <summary>
         /// Play an asset from a specified time position upto another specified time position
         /// </summary>
-        public void Play(AudioMediaData asset, double from, double to)
+        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double from, double to)
         {
+            mCurrentAudioStream = stream;
+            mCurrentAudioDuration = duration;
+            mCurrentAudioPCMFormat = pcmInfo;
+
             System.Diagnostics.Debug.Assert(mState == AudioPlayerState.Stopped || mState == AudioPlayerState.Paused, "Already playing?!");
-            if (asset != null && asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
+            if (duration.getTimeDeltaAsMillisecondFloat() > 0)
             {
                 long startPosition =
-                    CalculationFunctions.ConvertTimeToByte(from, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                startPosition = CalculationFunctions.AdaptToFrame(startPosition, asset.getPCMFormat().getBlockAlign());
+                    CalculationFunctions.ConvertTimeToByte(from, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                startPosition = CalculationFunctions.AdaptToFrame(startPosition, pcmInfo.getBlockAlign());
                 long endPosition =
-                    CalculationFunctions.ConvertTimeToByte(to, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                endPosition = CalculationFunctions.AdaptToFrame(endPosition, asset.getPCMFormat().getBlockAlign());
-                if (startPosition >= 0 && startPosition < endPosition && endPosition <= asset.getPCMLength())
+                    CalculationFunctions.ConvertTimeToByte(to, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                endPosition = CalculationFunctions.AdaptToFrame(endPosition, pcmInfo.getBlockAlign());
+                if (startPosition >= 0 && startPosition < endPosition && endPosition <= pcmInfo.getDataLength(duration))
                 {
-                    InitPlay(asset, startPosition, endPosition);
+                    InitPlay(startPosition, endPosition);
                 }
                 else
                 {
@@ -482,7 +493,7 @@ namespace Obi.Audio
             }
             else
             {
-                SimulateEmptyAssetPlaying();
+                PlaySimulateEmpty();
             }
         }
 
@@ -494,6 +505,7 @@ namespace Obi.Audio
             return CalculationFunctions.AdaptToFrame(CalculationFunctions.ConvertTimeToByte(time, (int)info.getSampleRate(), align), align);
         }
 
+        /*
         /// <summary>
         /// Starts a preview playback
         /// playback time returns back to restore time after previewing
@@ -507,15 +519,15 @@ namespace Obi.Audio
             {
                 if (   asset != null  &&    asset.getAudioDuration().getTimeDeltaAsMillisecondFloat() > 0)
                 {
-                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(from, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.getPCMFormat().getBlockAlign());
-                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.getPCMFormat().getSampleRate(), asset.getPCMFormat().getBlockAlign());
-                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, asset.getPCMFormat().getBlockAlign());
+                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(from, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, pcmInfo.getBlockAlign());
+                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, pcmInfo.getBlockAlign());
                     // check for valid arguments
                     if (lStartPosition < 0) lStartPosition = 0;
 
-                    if (lEndPosition > asset.getPCMLength())
-                        lEndPosition = asset.getPCMLength();
+                    if (lEndPosition > pcmInfo.getDataLength(asset.getAudioDuration()))
+                        lEndPosition = pcmInfo.getDataLength(asset.getAudioDuration());
 
                     if ( mFwdRwdRate == 0  )
                     {
@@ -541,19 +553,69 @@ namespace Obi.Audio
                 }
             }
         }
+        */
 
         /// <summary>
         ///  convenience function to start playback of an asset
         ///  first initialise player with asset followed by starting playback using PlayAssetStream function
         /// </summary>
-        /// <param name="asset"></param>
         /// <param name="lStartPosition"></param>
         /// <param name="lEndPosition"></param>
-        private void InitPlay(AudioMediaData asset, long lStartPosition, long lEndPosition)
+        private void InitPlay(long lStartPosition, long lEndPosition)
         {
             if (mState != AudioPlayerState.Playing)
             {
-                InitialiseWithAsset(asset);
+                if (mState != AudioPlayerState.Playing)
+                {
+                    WaveFormat newFormat = new WaveFormat();
+                    BufferDescription BufferDesc = new BufferDescription();
+
+                    // retrieve format from asset
+                    mFrameSize = mCurrentAudioPCMFormat.getBlockAlign();
+                    m_Channels = mCurrentAudioPCMFormat.getNumberOfChannels();
+                    newFormat.AverageBytesPerSecond = (int)mCurrentAudioPCMFormat.getSampleRate() * mCurrentAudioPCMFormat.getBlockAlign();
+                    newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudioPCMFormat.getBitDepth());
+                    newFormat.BlockAlign = Convert.ToInt16(mCurrentAudioPCMFormat.getBlockAlign());
+                    newFormat.Channels = Convert.ToInt16(mCurrentAudioPCMFormat.getNumberOfChannels());
+
+                    newFormat.FormatTag = WaveFormatTag.Pcm;
+
+                    newFormat.SamplesPerSecond = (int)mCurrentAudioPCMFormat.getSampleRate();
+
+                    // loads  format to buffer description
+                    BufferDesc.Format = newFormat;
+
+                    // enable buffer description properties
+                    BufferDesc.ControlVolume = true;
+                    BufferDesc.ControlFrequency = true;
+
+                    // calculate size of buffer so as to contain 1 second of audio
+                    m_SizeBuffer = (int)mCurrentAudioPCMFormat.getSampleRate() * mCurrentAudioPCMFormat.getBlockAlign();
+                    m_RefreshLength = (int)(mCurrentAudioPCMFormat.getSampleRate() / 2) * mCurrentAudioPCMFormat.getBlockAlign();
+
+                    // calculate the size of VuMeter Update array length
+                    m_UpdateVMArrayLength = m_SizeBuffer / 20;
+                    m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
+                    arUpdateVM = new byte[m_UpdateVMArrayLength];
+                    // reset the VuMeter (if set)
+                    if (ResetVuMeter != null)
+                        ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
+
+                    // sets the calculated size of buffer
+                    BufferDesc.BufferBytes = m_SizeBuffer;
+
+                    // Global focus is set to true so that the sound can be played in background also
+                    BufferDesc.GlobalFocus = true;
+
+                    // initialising secondary buffer
+                    // m_SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
+                    mSoundBuffer = new SecondaryBuffer(BufferDesc, mDevice.Device);
+
+                    SetPlayFrequency(m_fFastPlayFactor);
+
+                }// end of state check
+
+
                 if (mFwdRwdRate == 0)
                 {
                     PlayAssetStream(lStartPosition, lEndPosition);
@@ -564,7 +626,7 @@ namespace Obi.Audio
                 }
                 else if (mFwdRwdRate < 0)
                 {
-                    if (lStartPosition == 0) lStartPosition = mCurrentAudio.getPCMLength();
+                    if (lStartPosition == 0) lStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
                     Rewind(lStartPosition);
                 }
             }// end of state check
@@ -573,67 +635,6 @@ namespace Obi.Audio
 
         private AudioPlayerState  m_StateBeforePreview ;
         private long m_PreviewStartPosition ;
-
-        
-        /// <summary>
-        ///  Called when a new asset is passed to player for playback 
-        ///  initialises all asset dependent members excluding stream dependent members
-        /// <see cref=""/>
-        /// </summary>
-        /// <param name="audio"></param>
-        private void InitialiseWithAsset(AudioMediaData audio)
-        {
-            if (mState != AudioPlayerState.Playing)
-            {
-                mCurrentAudio = audio;
-                WaveFormat newFormat = new WaveFormat();
-                 BufferDescription  BufferDesc = new BufferDescription();
-                
-                // retrieve format from asset
-                mFrameSize = mCurrentAudio.getPCMFormat().getBlockAlign();
-                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
-                newFormat.AverageBytesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
-                                newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBitDepth());
-                newFormat.BlockAlign = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBlockAlign());
-                newFormat.Channels = Convert.ToInt16(mCurrentAudio.getPCMFormat().getNumberOfChannels());
-
-                newFormat.FormatTag = WaveFormatTag.Pcm;
-
-                newFormat.SamplesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate();
-
-                // loads  format to buffer description
-                BufferDesc.Format = newFormat;
-
-                // enable buffer description properties
-                BufferDesc.ControlVolume = true;
-                BufferDesc.ControlFrequency = true;
-
-                // calculate size of buffer so as to contain 1 second of audio
-                m_SizeBuffer = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
-                m_RefreshLength = (int)(mCurrentAudio.getPCMFormat().getSampleRate() / 2) * mCurrentAudio.getPCMFormat().getBlockAlign();
-
-                // calculate the size of VuMeter Update array length
-                m_UpdateVMArrayLength = m_SizeBuffer / 20;
-                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
-                arUpdateVM = new byte[m_UpdateVMArrayLength];
-                // reset the VuMeter (if set)
-                if (ResetVuMeter != null)
-                    ResetVuMeter ( this , new Obi.Events.Audio.Player.UpdateVuMeterEventArgs () ) ;
-
-                // sets the calculated size of buffer
-                BufferDesc.BufferBytes = m_SizeBuffer;
-
-                // Global focus is set to true so that the sound can be played in background also
-                BufferDesc.GlobalFocus = true;
-
-                // initialising secondary buffer
-                // m_SoundBuffer = new SecondaryBuffer(BufferDesc, SndDevice);
-                mSoundBuffer = new SecondaryBuffer(BufferDesc, mDevice.Device);
-
-                SetPlayFrequency(m_fFastPlayFactor);
-
-            }// end of state check
-                            } // end function
 
         /// <summary>
         ///  Called to start playback when player is already initialised with an asset
@@ -647,9 +648,9 @@ namespace Obi.Audio
             if (mState != AudioPlayerState.Playing)
             {
                 // Adjust the start and end position according to frame size
-                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
-                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
-                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudioPCMFormat.getBlockAlign());
+                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudioPCMFormat.getBlockAlign());
+                mSampleRate = (int)mCurrentAudioPCMFormat.getSampleRate();
                 
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
@@ -660,7 +661,7 @@ namespace Obi.Audio
                 {
                     // folowing one line is modified on 2 Aug 2006
                     //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-                    m_lLength = (mCurrentAudio.getPCMLength());
+                    m_lLength = (mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration));
                 }
 
                 mPrevBytePosition = lStartPosition;
@@ -669,16 +670,15 @@ namespace Obi.Audio
 
                 m_IsEndOfAsset = false;
                 
-                mAudioStream = mCurrentAudio.getAudioData();
-                mAudioStream.Position = lStartPosition;
+                mCurrentAudioStream.Position = lStartPosition;
                 
-                mSoundBuffer.Write(0, mAudioStream, m_SizeBuffer, 0);
+                mSoundBuffer.Write(0, mCurrentAudioStream, m_SizeBuffer, 0);
 
                 // Adds the length (count) of file played into a variable
                 m_lPlayed += m_SizeBuffer;
 
                 // trigger  events (modified JQ)
-                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Playing;
                 TriggerStateChangedEvent(e);
 
@@ -691,7 +691,7 @@ namespace Obi.Audio
                 catch (System.Exception ex)
                     {
                     EmergencyStopForSoundBufferProblem ();
-                    System.Windows.Forms.MessageBox.Show ( string.Format( Localizer.Message ( "Player_TryAgain" ) , "\n\n" , ex.ToString ()) ) ;
+                    //TODO System.Windows.Forms.MessageBox.Show ( string.Format( Localizer.Message ( "Player_TryAgain" ) , "\n\n" , ex.ToString ()) ) ;
                     return;
                     }
                 m_BufferCheck = 1;
@@ -733,21 +733,21 @@ namespace Obi.Audio
                     {
                         Array.Copy(mSoundBuffer.Read(ReadPosition, typeof(byte), LockFlag.None, m_UpdateVMArrayLength), arUpdateVM, m_UpdateVMArrayLength);
                         if (mEventsEnabled == true)
-                            UpdateVuMeter(this, new Events.Audio.Player.UpdateVuMeterEventArgs());  // JQ // temp for debugging tk
+                            UpdateVuMeter(this, new Events.Player.UpdateVuMeterEventArgs());  // JQ // temp for debugging tk
                     }
                 }
                 // check if play cursor is in second half , then refresh first half else second
                 // refresh front part for odd count
                 if ((m_BufferCheck % 2) == 1 && mSoundBuffer.PlayPosition > m_RefreshLength)
                 {//2
-                    mSoundBuffer.Write(0, mAudioStream, m_RefreshLength, 0);
+                    mSoundBuffer.Write(0, mCurrentAudioStream, m_RefreshLength, 0);
                     m_lPlayed = m_lPlayed + m_RefreshLength;
                     m_BufferCheck++;
                 }//-1
                 // refresh Rear half of buffer for even count
                 else if ((m_BufferCheck % 2 == 0) && mSoundBuffer.PlayPosition < m_RefreshLength)
                 {//1
-                    mSoundBuffer.Write(m_RefreshLength, mAudioStream, m_RefreshLength, 0);
+                    mSoundBuffer.Write(m_RefreshLength, mCurrentAudioStream, m_RefreshLength, 0);
                     m_lPlayed = m_lPlayed + m_RefreshLength;
                     m_BufferCheck++;
                     // end of even/ odd part of buffer;
@@ -795,12 +795,12 @@ namespace Obi.Audio
             mPausePosition = 0;
             mSoundBuffer.Stop();
             if (ResetVuMeter != null)
-                ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
+                ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
 
-            mAudioStream.Close();
+            mCurrentAudioStream.Close();
 
             // changes the state and trigger events
-            Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
 
             TriggerStateChangedEvent(e);
@@ -827,14 +827,14 @@ namespace Obi.Audio
                 
                 if (m_StateBeforePreview == AudioPlayerState.Paused)
                 {
-                    Events.Audio.Player.StateChangedEventArgs e = new Obi.Events.Audio.Player.StateChangedEventArgs( AudioPlayerState.Playing );
+                    Events.Player.StateChangedEventArgs e = new AudioLib.Events.Player.StateChangedEventArgs( AudioPlayerState.Playing );
                     mState = AudioPlayerState.Paused;
                     mPausePosition = m_PreviewStartPosition;
                     TriggerStateChangedEvent(e);
                                     }
                 else if (m_StateBeforePreview == AudioPlayerState.Stopped )
                 {
-                    Events.Audio.Player.StateChangedEventArgs e = new Obi.Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing);
+                    Events.Player.StateChangedEventArgs e = new AudioLib.Events.Player.StateChangedEventArgs(AudioPlayerState.Playing);
                                                             TriggerStateChangedEvent(e);
                 }
             }
@@ -845,29 +845,29 @@ namespace Obi.Audio
         /// Function for simulating playing for assets with no audio
         /// </summary>
         ///
-        private void SimulateEmptyAssetPlaying()
+        public void PlaySimulateEmpty()
         {
-            if (mCurrentAudio != null)
+            if (mCurrentAudioStream != null)
             {
-                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
-                mFrameSize = mCurrentAudio.getPCMFormat().getNumberOfChannels() * (mCurrentAudio.getPCMFormat().getBitDepth() / 8);
-                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                m_Channels = mCurrentAudioPCMFormat.getNumberOfChannels();
+                mFrameSize = mCurrentAudioPCMFormat.getNumberOfChannels() * (mCurrentAudioPCMFormat.getBitDepth() / 8);
+                mSampleRate = (int)mCurrentAudioPCMFormat.getSampleRate();
             } 
 
-            Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            Events.Player.StateChangedEventArgs  e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Playing;
             TriggerStateChangedEvent(e);
             
 
             Thread.Sleep(50);
 
-            e = new Events.Audio.Player.StateChangedEventArgs(mState);
+            e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
             TriggerStateChangedEvent(e);
 
             // trigger end of asset event
             if (mEventsEnabled == true)
-                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
 //            System.Media.SystemSounds.Asterisk.Play();
         }
 
@@ -879,7 +879,7 @@ namespace Obi.Audio
             if (State == AudioPlayerState.Stopped)
             {
                 m_lResumeToPosition = 0;
-                Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+                Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
                 mState = AudioPlayerState.Paused;
                 SetCurrentTimePosition(time);
                 TriggerStateChangedEvent(e);
@@ -908,7 +908,7 @@ namespace Obi.Audio
                 StopPlayback();
 
 				// Change the state and trigger event
-				Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState) ;
+				Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState) ;
                 mState = AudioPlayerState.Paused;
 				TriggerStateChangedEvent(e);
                 
@@ -917,7 +917,6 @@ namespace Obi.Audio
 
         /// <summary>
         ///  Resumes from paused position if player is in paused state
-        /// <see cref=""/>
         /// </summary>
 		public void Resume()
 		{
@@ -925,13 +924,13 @@ namespace Obi.Audio
             			if ( State.Equals(AudioPlayerState.Paused))
 			{
                 
-                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.getPCMFormat ().getBlockAlign ()  );
-                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.getPCMFormat().getBlockAlign());
+                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudioPCMFormat.getBlockAlign ()  );
+                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudioPCMFormat.getBlockAlign());
 
-                if (lPosition >= 0 && lPosition < mCurrentAudio.getPCMLength () )
+                if (lPosition >= 0 && lPosition < mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
                 {
                     mStartPosition = lPosition;
-                                        InitPlay( mCurrentAudio , lPosition, lEndPosition );
+                                        InitPlay(lPosition, lEndPosition );
                 }
                 else
                     throw new Exception("Start Position is out of bounds of Audio Asset");
@@ -950,7 +949,7 @@ namespace Obi.Audio
 			}
             
         mPausePosition = 0;
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+			Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 		}
@@ -966,13 +965,13 @@ namespace Obi.Audio
                 if (RefreshThread != null && RefreshThread.IsAlive) RefreshThread.Abort ();
                 mBufferStopPosition = -1;
                 if (ResetVuMeter != null)
-                    ResetVuMeter ( this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs () );
+                    ResetVuMeter ( this, new AudioLib.Events.Player.UpdateVuMeterEventArgs () );
 
-                mAudioStream.Close ();
+                mCurrentAudioStream.Close ();
         ////
 			
         mPausePosition = 0;
-			Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
+			Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
 			TriggerStateChangedEvent(e);
 	
@@ -983,19 +982,26 @@ namespace Obi.Audio
 		long mStartPosition;
 
         // Set the current position in the player in bytes.
-        void SetCurrentBytePosition(long position)
+        private void SetCurrentBytePosition(long position)
         {
-        if (mState != AudioPlayerState.Stopped || mCurrentAudio != null)
+        if (mState != AudioPlayerState.Stopped || mCurrentAudioStream != null)
             {
             if (position < 0) position = 0;
-            if (position > mCurrentAudio.getPCMLength ()) position = mCurrentAudio.getPCMLength () - 100;
+
+            uint pcmLength =
+                mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
+
+            if (position > pcmLength)
+            {
+                position = pcmLength - 100;
+            }
             mEventsEnabled = false;
             if (State == AudioPlayerState.Playing)
                 {
                 Stop ();
                 Thread.Sleep ( 30 );
                 mStartPosition = position;
-                InitPlay ( mCurrentAudio, position, 0 );
+                InitPlay (position, 0 );
                 }
             else if (mState.Equals ( AudioPlayerState.Paused ))
                 {
@@ -1016,8 +1022,7 @@ namespace Obi.Audio
 
         //  FastForward , Rewind playback modes
         /// <summary>
-        ///  Starts playing small chunks of audio while jumping backward in audio asset
-        /// <see cref=""/>
+        ///  Starts playing small chunks of audio while jumping backward in audio assets
         /// </summary>
         /// <param name="lStartPosition"></param>
         private  void Rewind( long lStartPosition  )
@@ -1061,16 +1066,16 @@ namespace Obi.Audio
         { //1
             
             double StepInMs = Math.Abs( 4000 * mFwdRwdRate   ) ;
-            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.getPCMFormat().getSampleRate ()  , mCurrentAudio.getPCMFormat().getBlockAlign ());
+            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudioPCMFormat.getSampleRate ()  , mCurrentAudioPCMFormat.getBlockAlign ());
             int PlayChunkLength = 1200;
-            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.getPCMFormat().getSampleRate(), mCurrentAudio.getPCMFormat().getBlockAlign());
+            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
             mPreviewTimer.Interval = PlayChunkLength + 50;
 
             long PlayStartPos = 0;
             long PlayEndPos = 0;
             if ( mFwdRwdRate > 0 )
             { //2
-                if (( mCurrentAudio.getPCMLength () - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
+                if (( mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
                 { //3
                     if (m_lChunkStartPosition > 0)
                     {
@@ -1083,14 +1088,14 @@ namespace Obi.Audio
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
 PlayAssetStream  (  PlayStartPos, PlayEndPos);
 
-if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
-    m_lChunkStartPosition = mCurrentAudio.getPCMLength();
+if (m_lChunkStartPosition > mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
+    m_lChunkStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
                                     } //-3
                 else
                 { //3
                     Stop();
                     if (mEventsEnabled)
-                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                        EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
                                 } //-3
             } //-2
             else if ( mFwdRwdRate <  0 )
@@ -1098,10 +1103,10 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
                 if (m_lChunkStartPosition >  0 )
                 { //3
-                    if (m_lChunkStartPosition < mCurrentAudio.getPCMLength())
+                    if (m_lChunkStartPosition < mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
                         m_lChunkStartPosition -= lStepInBytes;
                     else
-                        m_lChunkStartPosition = mCurrentAudio.getPCMLength() - lPlayChunkLength  ;
+                        m_lChunkStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) - lPlayChunkLength;
 
                     PlayStartPos = m_lChunkStartPosition ;
                     PlayEndPos = m_lChunkStartPosition +  lPlayChunkLength;
@@ -1114,7 +1119,7 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 {
                     Stop();
                     if (mEventsEnabled)
-                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                        EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
                                     }
                 } //-2
                             } //-1
@@ -1147,7 +1152,7 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 if (m_IsEventEnabledDelayedTillTimer)
                 {
                     if (EndOfAudioAsset != null)
-                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                        EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
                                             
                                     }
             if (mEventsEnabled == true)

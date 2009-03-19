@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-
+using AudioLib;
 using Obi.Audio;
 
 namespace Obi.Dialogs
@@ -98,8 +98,8 @@ namespace Obi.Dialogs
 
             mPreviewDurationUpDown.Value = (decimal)(mSettings.PreviewDuration / 1000.0);
             mNoiseLevelComboBox.SelectedIndex =
-                mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Low ? 0 :
-                mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
+                mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
+                mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
             mAudioCluesCheckBox.Checked = mSettings.AudioClues;
         }
 
@@ -209,8 +209,8 @@ namespace Obi.Dialogs
                 }
             }
         
-            mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? Audio.VuMeter.NoiseLevelSelection.Low :
-                mNoiseLevelComboBox.SelectedIndex == 1 ? Audio.VuMeter.NoiseLevelSelection.Medium : Audio.VuMeter.NoiseLevelSelection.High;
+            mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
+                mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
             mSettings.AudioClues = mAudioCluesCheckBox.Checked;
             try
                 {

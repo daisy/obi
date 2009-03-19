@@ -428,7 +428,7 @@ namespace Obi
         /// <summary>
         /// A new phrase is being recorded, so create and return it.
         /// </summary>
-        public PhraseNode StartRecordingPhrase(Events.Audio.Recorder.PhraseEventArgs e, SectionNode parent, int index)
+        public PhraseNode StartRecordingPhrase(Obi.Events.PhraseEventArgs e, SectionNode parent, int index)
         {
             PhraseNode phrase = CreatePhraseNode(e.Audio);
             parent.Insert(phrase, index);

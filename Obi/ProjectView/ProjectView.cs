@@ -865,11 +865,11 @@ namespace Obi.ProjectView
                     mTransportBar.Enabled = mPresentation != null;
                     if (mPresentation != null)
                     {
-                                            mTOCView.SetNewPresentation();
+                        mTOCView.SetNewPresentation();
                         mContentView.NewPresentation();
                         mTransportBar.NewPresentation();
                         mMetadataView.NewPresentation();
-                                            }
+                    }
                 }
             }
         }
@@ -1318,7 +1318,6 @@ namespace Obi.ProjectView
                             {
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
-                                this.ObiForm.Cursor = Cursors.WaitCursor;
                                 mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                 // hide new phrases if section's contents are hidden
                                 HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
@@ -1329,7 +1328,6 @@ namespace Obi.ProjectView
    
                     }
                 }
-            this.ObiForm.Cursor = Cursors.Default;
             }
         }
 
@@ -1442,16 +1440,15 @@ namespace Obi.ProjectView
                 MessageBox.Show ( Localizer.Message ( "ContentsHidden_CannotExecuteCommand" ) );
                 return;
                 }
-                            
-            if (CanSplitPhrase)
+
+                        CompositeCommand command = CanSplitPhrase ? Commands.Node.SplitAudio.GetSplitCommand(this) : null;
+            if (command != null)
             {
             bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
             TransportBar.SelectionChangedPlaybackEnabled = false;
             try
                 {
-                CompositeCommand command = null;
-                command = Commands.Node.SplitAudio.GetSplitCommand ( this ) ;
-                if ( command != null ) mPresentation.Do ( command );
+                mPresentation.Do ( command );
                 }
             catch (System.Exception ex)
                 {
@@ -1623,8 +1620,7 @@ namespace Obi.ProjectView
                     mPresentation.Do(command);
 
                     SectionNode SNode = GetSelectedPhraseSection;
-                         if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  
-                             MessageBox.Show (  string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) , MessageBoxButtons.OK , MessageBoxIcon.Warning);
+                         if ( SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)  MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ) );
 
                     // hide newly added phrases if contents of section are hidden
                          HideNewPhrasesInInvisibleSection ( SNode );
@@ -2188,11 +2184,11 @@ namespace Obi.ProjectView
             {
             if (active)
                 {
-                this.Cursor = Cursors.WaitCursor;
+                this.UseWaitCursor = true;
                 }
             else
                 {
-                this.Cursor = Cursors.Default;
+                UseWaitCursor = false;
                 }
             if (BlocksVisibilityChanged != null) BlocksVisibilityChanged ( this, new EventArgs () );
             }
