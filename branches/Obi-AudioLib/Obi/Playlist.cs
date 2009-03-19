@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using urakawa.core;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
+using urakawa.media.timing;
 
 namespace Obi
 {
@@ -403,6 +404,11 @@ namespace Obi
                 }
                 else
                 {
+                    TimeDelta dur = data.getAudioDuration();
+                    if (dur.getTimeDeltaAsMillisecondFloat() <= 0)
+                    {
+                        mPlayer.PlaySimulateEmpty();
+                    }
                     mPlayer.Play(data.getAudioData(), data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
                 }
             }
@@ -415,7 +421,12 @@ namespace Obi
                 }
                 else
                 {
-                    mPlayer.Play(data.getAudioData(), data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
+                    TimeDelta dur = data.getAudioDuration();
+                    if (dur.getTimeDeltaAsMillisecondFloat() <= 0)
+                    {
+                        mPlayer.PlaySimulateEmpty();
+                    }
+                    mPlayer.Play(data.getAudioData(), dur, data.getPCMFormat(), from, mPlaybackEndTime);
                 }
             }
             // send the state change event if the state actually changed

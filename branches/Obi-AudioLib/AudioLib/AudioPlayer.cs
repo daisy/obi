@@ -44,9 +44,10 @@ namespace AudioLib
                         private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
                                 private long m_lLength;         // Total length of audio asset being played
                                 private Thread RefreshThread; // thread for refreshing buffer while playing 
-                                private int mFrameSize;
-                                private int m_Channels;
-        private int mSampleRate;
+                                
+        //private int mFrameSize;                       
+        //private int mSampleRate;
+
         public byte[] arUpdateVM; // array for update current amplitude to VuMeter
         private int m_UpdateVMArrayLength; // length of VuMeter update array ( may be removed )
 
@@ -169,7 +170,7 @@ namespace AudioLib
                     if (lCurrentPosition >= mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
                     {//3
                         lCurrentPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) -
-                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
+                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign()));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
                     mPrevBytePosition = lCurrentPosition;
@@ -179,7 +180,7 @@ namespace AudioLib
                     lCurrentPosition = mPausePosition;
                 }//-2
                 if (mFwdRwdRate != 0) lCurrentPosition = m_lChunkStartPosition;
-                lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
+                lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mCurrentAudioPCMFormat.getBlockAlign());
             }//-1
             return lCurrentPosition;
         }
@@ -301,7 +302,7 @@ namespace AudioLib
             get
             {
                 return mCurrentAudioStream == null ? 0 :
-                    CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), mSampleRate, mFrameSize);
+                    CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
             }
             set
             {
@@ -413,21 +414,7 @@ namespace AudioLib
         /// </summary>
         public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo)
         {
-            mCurrentAudioStream = stream;
-            mCurrentAudioDuration = duration;
-            mCurrentAudioPCMFormat = pcmInfo;
-
-            // This is public function so API state will be used
-            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
-            {
-                mStartPosition = 0;
-
-                if (duration.getTimeDeltaAsMillisecondFloat() != 0)
-                    InitPlay(0, 0);
-                else
-                    PlaySimulateEmpty();
-
-            }
+            Play(stream, duration, pcmInfo, 0);
         }
 
 
@@ -438,29 +425,7 @@ namespace AudioLib
         /// <param name="timeFrom"></param>
         public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double timeFrom)
         {
-            mCurrentAudioStream = stream;
-            mCurrentAudioDuration = duration;
-            mCurrentAudioPCMFormat = pcmInfo;
-
-                        // it is public function so API state will be used
-            if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
-            {
-                 if (duration.getTimeDeltaAsMillisecondFloat() > 0)
-                {
-                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
-                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, pcmInfo.getBlockAlign());
-                    if (lPosition >= 0 && lPosition <= pcmInfo.getDataLength(duration))
-                    {
-                                                mStartPosition = lPosition;
-                        InitPlay(lPosition, 0);
-                    }
-                    else throw new Exception("Start Position is out of bounds of Audio Asset");
-                }
-                else    // if m_Asset.AudioLengthInBytes= 0 i.e. empty asset
-                {
-                    PlaySimulateEmpty();
-                }
-            }
+            Play(stream, duration, pcmInfo, timeFrom, 0);
         }
 
 
@@ -469,20 +434,37 @@ namespace AudioLib
         /// </summary>
         public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double from, double to)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("Stream cannot be null !");
+            }
+            if (duration.getTimeDeltaAsMillisecondFloat() <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Duration cannot be <= 0 !");
+            }
             mCurrentAudioStream = stream;
             mCurrentAudioDuration = duration;
             mCurrentAudioPCMFormat = pcmInfo;
 
             System.Diagnostics.Debug.Assert(mState == AudioPlayerState.Stopped || mState == AudioPlayerState.Paused, "Already playing?!");
-            if (duration.getTimeDeltaAsMillisecondFloat() > 0)
+            if (State == AudioPlayerState.Stopped
+                || State == AudioPlayerState.Paused)
             {
-                long startPosition =
-                    CalculationFunctions.ConvertTimeToByte(from, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
-                startPosition = CalculationFunctions.AdaptToFrame(startPosition, pcmInfo.getBlockAlign());
-                long endPosition =
-                    CalculationFunctions.ConvertTimeToByte(to, (int)pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
-                endPosition = CalculationFunctions.AdaptToFrame(endPosition, pcmInfo.getBlockAlign());
-                if (startPosition >= 0 && startPosition < endPosition && endPosition <= pcmInfo.getDataLength(duration))
+                long startPosition = 0;
+                if (from > 0)
+                {
+                    startPosition = CalculationFunctions.ConvertTimeToByte(from, (int) pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                    startPosition = CalculationFunctions.AdaptToFrame(startPosition, pcmInfo.getBlockAlign());
+                }
+                long endPosition = 0;
+                if (to > 0)
+                {
+                    endPosition = CalculationFunctions.ConvertTimeToByte(to, (int) pcmInfo.getSampleRate(), pcmInfo.getBlockAlign());
+                    endPosition = CalculationFunctions.AdaptToFrame(endPosition, pcmInfo.getBlockAlign());
+                }
+                if (startPosition >= 0 &&
+                    (endPosition == 0 || startPosition < endPosition) &&
+                    endPosition <= pcmInfo.getDataLength(duration))
                 {
                     InitPlay(startPosition, endPosition);
                 }
@@ -491,10 +473,7 @@ namespace AudioLib
                     throw new Exception("Start/end positions out of bounds of audio asset.");
                 }
             }
-            else
-            {
-                PlaySimulateEmpty();
-            }
+
         }
 
        
@@ -570,9 +549,6 @@ namespace AudioLib
                     WaveFormat newFormat = new WaveFormat();
                     BufferDescription BufferDesc = new BufferDescription();
 
-                    // retrieve format from asset
-                    mFrameSize = mCurrentAudioPCMFormat.getBlockAlign();
-                    m_Channels = mCurrentAudioPCMFormat.getNumberOfChannels();
                     newFormat.AverageBytesPerSecond = (int)mCurrentAudioPCMFormat.getSampleRate() * mCurrentAudioPCMFormat.getBlockAlign();
                     newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudioPCMFormat.getBitDepth());
                     newFormat.BlockAlign = Convert.ToInt16(mCurrentAudioPCMFormat.getBlockAlign());
@@ -595,7 +571,7 @@ namespace AudioLib
 
                     // calculate the size of VuMeter Update array length
                     m_UpdateVMArrayLength = m_SizeBuffer / 20;
-                    m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
+                    m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mCurrentAudioPCMFormat.getBlockAlign()));
                     arUpdateVM = new byte[m_UpdateVMArrayLength];
                     // reset the VuMeter (if set)
                     if (ResetVuMeter != null)
@@ -650,7 +626,6 @@ namespace AudioLib
                 // Adjust the start and end position according to frame size
                 lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudioPCMFormat.getBlockAlign());
                 lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudioPCMFormat.getBlockAlign());
-                mSampleRate = (int)mCurrentAudioPCMFormat.getSampleRate();
                 
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
@@ -714,7 +689,7 @@ namespace AudioLib
             int ReadPosition;
 
             // variable to prevent least count errors in clip end time
-            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, mSampleRate, mFrameSize);
+            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
 
 
             while (m_lPlayed < (m_lLength - SafeMargin))
@@ -777,7 +752,7 @@ namespace AudioLib
 
             int CurrentPlayPosition;
             CurrentPlayPosition = mSoundBuffer.PlayPosition;
-            int StopMargin = Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(70, mSampleRate, mFrameSize));
+            int StopMargin = Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(70, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign()));
             StopMargin = (int)(StopMargin * m_fFastPlayFactor);
 
             if (mBufferStopPosition < StopMargin)
@@ -847,13 +822,6 @@ namespace AudioLib
         ///
         public void PlaySimulateEmpty()
         {
-            if (mCurrentAudioStream != null)
-            {
-                m_Channels = mCurrentAudioPCMFormat.getNumberOfChannels();
-                mFrameSize = mCurrentAudioPCMFormat.getNumberOfChannels() * (mCurrentAudioPCMFormat.getBitDepth() / 8);
-                mSampleRate = (int)mCurrentAudioPCMFormat.getSampleRate();
-            } 
-
             Events.Player.StateChangedEventArgs  e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Playing;
             TriggerStateChangedEvent(e);
@@ -1016,7 +984,7 @@ namespace AudioLib
         // Set the current time position in milliseconds
 		private void SetCurrentTimePosition(double timeMs) 
 		{
-            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(timeMs, mSampleRate, mFrameSize));
+            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(timeMs, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign()));
 		}
 
 
@@ -1082,7 +1050,7 @@ namespace AudioLib
                         m_lChunkStartPosition += lStepInBytes;
                     }
                     else
-                        m_lChunkStartPosition = mFrameSize;
+                        m_lChunkStartPosition = mCurrentAudioPCMFormat.getBlockAlign();
 
                     PlayStartPos = m_lChunkStartPosition;
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
