@@ -22,8 +22,21 @@ namespace AudioLib
 
 	public class AudioRecorder
 	{
+	    private PCMFormatInfo mPCMFormat;
+
+	    public PCMFormatInfo RecordingPCMFormat
+	    {
+            get { return mPCMFormat; }
+	    }
+
+	    private string m_sFileName; // Full file path of file being recorded
+	    public string RecordedFilePath
+	    {
+            get { return m_sFileName; }
+	    }
+
+
         private double mCurrentTime;  // Time in milliseconds
-        private int mChannels;        // number of channels
 
         
         public event Events.Recorder.StateChangedHandler StateChanged;                // recorder state changed
@@ -39,13 +52,9 @@ namespace AudioLib
         private System.Windows.Forms.Timer CaptureTimer = new System.Windows.Forms.Timer();
         
 
-        // member variables which change whenever recording of a new asset starts
-        AudioMediaData mAsset; // Asset currently  being  recorded
-        private int m_bitDepth;
-        private int m_SampleRate;
-        private int m_FrameSize;
+
         WaveFormat InputFormat; // DX wave format object for DX buffers etc.
-        private string m_sFileName; // Full file path of file being recorded
+        
         private CaptureBuffer applicationBuffer; // DX Capture buffer for recording
         private bool Capturing; // Flag to indicate status of capturing
         private Notify applicationNotify;  // DX notification Object to setup capture buffer notifications
@@ -82,30 +91,6 @@ namespace AudioLib
             CaptureTimer.Tick += new EventHandler(CaptureTimer_Tick);
 		}
 
-		public int SampleRate
-		{
-			get
-			{
-				return m_SampleRate;
-
-			}
-		}
-		
-		public int BitDepth
-		{
-			get
-			{
-				return Convert.ToInt16 (m_bitDepth);
-			}
-		}
-		
-		public int Channels
-		{
-			get
-			{
-				return mChannels;
-			}
-		}
 				
 		//state of the AudioRecorder
 		public AudioRecorderState State
@@ -147,20 +132,15 @@ namespace AudioLib
             }
         }
 
-		public void StartListening(AudioMediaData  asset)
+        public void StartListening(PCMFormatInfo thePCMFormat)
 		{
+            mPCMFormat = thePCMFormat;
+
             Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Monitoring;
 			if (StateChanged != null) StateChanged(this, e);
 
-			mChannels = asset.getPCMFormat ().getNumberOfChannels () ;
-			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
-			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
-            m_FrameSize = (m_bitDepth / 8) * mChannels;
-            
-            mAsset = asset;
 			InputFormat = GetInputFormat();
-            m_sFileName = sProjectDirectory + "\\" + "Listen.wav";
              
 			CreateCaptureBuffer();
 			InitRecording(true);
@@ -170,19 +150,15 @@ namespace AudioLib
         /// <summary>
         /// Start the recording process into the given asset.
         /// </summary>
-        public void StartRecording(AudioMediaData asset)
+        public void StartRecording(PCMFormatInfo thePCMFormat)
 		{
+            mPCMFormat = thePCMFormat;
+
             Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
 	    	mState = AudioRecorderState.Recording;
 		    if (StateChanged != null) StateChanged(this, e);
         
-            mChannels = asset.getPCMFormat().getNumberOfChannels();
-			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
-			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
-            m_FrameSize = (m_bitDepth / 8) * mChannels;
-
-            mAsset = asset;
-					    InputFormat = GetInputFormat();
+            InputFormat = GetInputFormat();
             
              m_sFileName = GetFileName();
 			BinaryWriter bw = new BinaryWriter(File.Create(m_sFileName));
@@ -217,13 +193,19 @@ namespace AudioLib
                 if (null != applicationBuffer)
                     if (applicationBuffer.Capturing)
                         InitRecording(false);
-                
-                FileInfo fi = new FileInfo(m_sFileName);
 
-                if (File.Exists(m_sFileName))
+                if (! String.IsNullOrEmpty(m_sFileName))
                 {
-                    if (fi.Length == 44)
-                        File.Delete(m_sFileName);
+                    FileInfo fi = new FileInfo(m_sFileName);
+                    if (File.Exists(m_sFileName))
+                    {
+                        if (fi.Length == 44)
+                        {
+                            File.Delete(m_sFileName);
+                            m_sFileName = "";
+                        }
+
+                    }
                 }
 
             }
@@ -250,22 +232,23 @@ namespace AudioLib
                 }
             }
             FileInfo fi = new FileInfo(m_sFileName);
-            if (File.Exists(sProjectDirectory + "\\" + "Listen.wav"))
-                File.Delete(sProjectDirectory + "\\" + "Listen.wav");
+
             if (File.Exists(m_sFileName))
                 if (fi.Length == 44)
+                {
                     File.Delete(m_sFileName);
+                    m_sFileName = "";
+                }
         }
 
 		
 		public WaveFormat GetInputFormat()
-		{				
-            
-            InputFormat.Channels = Convert.ToInt16(mChannels );
-            InputFormat.SamplesPerSecond =  m_SampleRate ;
-            InputFormat.BitsPerSample = Convert.ToInt16(m_bitDepth );
-            InputFormat.AverageBytesPerSecond = m_SampleRate * m_FrameSize ;
-            InputFormat.BlockAlign = Convert.ToInt16(m_FrameSize );
+		{
+            InputFormat.Channels = Convert.ToInt16(mPCMFormat.getNumberOfChannels());
+            InputFormat.SamplesPerSecond = (int) mPCMFormat.getSampleRate() ;
+            InputFormat.BitsPerSample = Convert.ToInt16(mPCMFormat.getBitDepth() );
+            InputFormat.AverageBytesPerSecond = (int) mPCMFormat.getSampleRate() * mPCMFormat.getBlockAlign();
+            InputFormat.BlockAlign = Convert.ToInt16(mPCMFormat.getBlockAlign());
 
 			return InputFormat;
 		}
@@ -314,13 +297,13 @@ namespace AudioLib
 		{
 			int i = 0 ;
 			string sTemp ;
-			sTemp = sDir + "\\" + i.ToString() + ext ;
+			sTemp = sDir + System.IO.Path.DirectorySeparatorChar + i.ToString() + ext ;
 			//FileInfo file = new FileInfo(sTemp) ;
 
 			while (File.Exists(sTemp) && i<90000)
 			{
 				i++;
-				sTemp = sDir + "\\" + i.ToString() + ext ;
+				sTemp = sDir + System.IO.Path.DirectorySeparatorChar + i.ToString() + ext ;
 
 			}
 
@@ -426,7 +409,7 @@ namespace AudioLib
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
                         long mPosition = (long)CapturePos;
             CurrentPositionInByte = SampleCount + mPosition;
-            	mCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
+            mCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, (int) mPCMFormat.getSampleRate(), mPCMFormat.getBlockAlign());
 
             
 			LockSize = ReadPos - NextCaptureOffset;
@@ -455,7 +438,7 @@ namespace AudioLib
 
             // make update vumeter array length equal to CaptureData length
                 if (CaptureData.Length != arUpdateVM.Length
-                    && CaptureData.Length < CalculationFunctions.ConvertTimeToByte(125 , m_SampleRate, m_FrameSize))
+                    && CaptureData.Length < CalculationFunctions.ConvertTimeToByte(125, (int)mPCMFormat.getSampleRate(), mPCMFormat.getBlockAlign()))
                 {
 
                     m_UpdateVMArrayLength = CaptureData.Length;
@@ -499,7 +482,7 @@ namespace AudioLib
             
             long mLength = (long)SampleCount;
 
-            mTime = CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
+            mTime = CalculationFunctions.ConvertByteToTime(mLength, (int)mPCMFormat.getSampleRate(), mPCMFormat.getBlockAlign());
             m_MutexCaptureData.ReleaseMutex();
 }
 
@@ -550,7 +533,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
                     long mPosition = (long)CapturePos;
                     mPosition = mPosition - NextCaptureOffset;
-                    double TimeDifference = CalculationFunctions.ConvertByteToTime(mPosition, m_SampleRate, m_FrameSize);
+                    double TimeDifference = CalculationFunctions.ConvertByteToTime(mPosition, (int) mPCMFormat.getSampleRate(), mPCMFormat.getBlockAlign());
                     return mTime + TimeDifference;
                 }
             }
@@ -580,7 +563,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
 
                 // following lines added to initialise and set array length forupdating VuMeter
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
-                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
+                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mPCMFormat.getBlockAlign()));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
 
                 m_PrevSampleCount = 0;
@@ -614,12 +597,6 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     //Set the writer to null.
                     Writer = null;
                     Audiolength = 0;
-                    ///-///
-                    mAsset.appendAudioDataFromRiffWave(m_sFileName);
-
-                    // the file has been copied so it should be deleted.
-                    if (File.Exists(m_sFileName))
-                        File.Delete(m_sFileName);
                 }
 
                 SampleCount = 0;
@@ -630,7 +607,18 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                 ResetVuMeter(this, new AudioLib.Events.Recorder.UpdateVuMeterEventArgs());
         }
 
-        public void SetDevice(Control handle, string name)
+        public void DeleteRecordedFile()
+        {
+            // the file has been copied so it should be deleted.
+            if (File.Exists(m_sFileName))
+            {
+                File.Delete(m_sFileName);
+                m_sFileName = "";
+            }
+
+        }
+
+	    public void SetDevice(Control handle, string name)
         {
             List<InputDevice> devices = InputDevices;
             InputDevice found = devices.Find(delegate(InputDevice d) { return d.Name == name; });

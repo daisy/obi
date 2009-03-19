@@ -45,7 +45,7 @@ namespace AudioLib
         private SecondaryBuffer mSoundBuffer;  // DX playback buffer
                 private int m_SizeBuffer; // Size of buffer created for playing
                         private int m_RefreshLength;         // length of buffer to be refreshed during playing which is half of buffer size
-                                private long m_lLength;         // Total length of audio asset being played
+                                private long m_lPlayEnd;         // Total length of audio asset being played
                                 private Thread RefreshThread; // thread for refreshing buffer while playing 
                                 
         //private int mFrameSize;                       
@@ -157,7 +157,7 @@ namespace AudioLib
                         else
                             subtractor = mBufferStopPosition + (mSoundBuffer.Caps.BufferBytes - PlayPosition);
 
-                        lCurrentPosition = m_lLength - subtractor;
+                        lCurrentPosition = m_lPlayEnd - subtractor;
                     }//-3
                     else if (m_BufferCheck % 2 == 1)
                     {//3
@@ -225,8 +225,11 @@ namespace AudioLib
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
 
-            mCurrentAudioStream.Close();
-            mCurrentAudioStream = null;
+            if (mCurrentAudioStream != null)
+            {
+                mCurrentAudioStream.Close();
+                mCurrentAudioStream = null;
+            }
         }
 
         /// <summary>
@@ -283,7 +286,7 @@ namespace AudioLib
             }
         }
 
-
+        /*
 		public long CurrentBytePosition
 		{
 			get
@@ -295,6 +298,7 @@ namespace AudioLib
 				SetCurrentBytePosition (value) ;
 			}
 		}
+         */
 
         /// <summary>
         /// When playing, current playback position (either playing or stopped.)
@@ -635,13 +639,13 @@ namespace AudioLib
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
                 {
-                    m_lLength = (lEndPosition); // -lStartPosition;
+                    m_lPlayEnd = (lEndPosition); // -lStartPosition;
                 }
                 else
                 {
                     // folowing one line is modified on 2 Aug 2006
-                    //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-                    m_lLength = (mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration));
+                    //m_lPlayEnd = (m_Asset .SizeInBytes  - lStartPosition ) ;
+                    m_lPlayEnd = (mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration));
                 }
 
                 mPrevBytePosition = lStartPosition;
@@ -699,7 +703,7 @@ namespace AudioLib
             long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
 
 
-            while (m_lPlayed < (m_lLength - SafeMargin))
+            while (m_lPlayed < (m_lPlayEnd - SafeMargin))
             {//1
                 if (mSoundBuffer.Status.BufferLost)
                     mSoundBuffer.Restore();
@@ -739,7 +743,7 @@ namespace AudioLib
             }
 
             m_IsEndOfAsset = false;
-            int LengthDifference = (int)(m_lPlayed - m_lLength);
+            int LengthDifference = (int)(m_lPlayed - m_lPlayEnd);
             mBufferStopPosition = -1;
             // if there is no refresh after first load thenrefresh maps directly  
             if (m_BufferCheck == 1)
@@ -877,7 +881,7 @@ namespace AudioLib
 
                     mPausePosition = GetCurrentBytePosition();
                     if (!mIsFwdRwd)
-                        m_lResumeToPosition = m_lLength;
+                        m_lResumeToPosition = m_lPlayEnd;
                     else
                         m_lResumeToPosition = 0;
 
@@ -966,42 +970,41 @@ namespace AudioLib
 
 		long mStartPosition;
 
-        // Set the current position in the player in bytes.
-        private void SetCurrentBytePosition(long position)
-        {
-        if (mState != AudioPlayerState.Stopped || mCurrentAudioStream != null)
-            {
-            if (position < 0) position = 0;
-
-            uint pcmLength =
-                mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
-
-            if (position > pcmLength)
-            {
-                position = pcmLength - 100;
-            }
-            mEventsEnabled = false;
-            if (State == AudioPlayerState.Playing)
-                {
-                Stop ();
-                Thread.Sleep ( 30 );
-                mStartPosition = position;
-                InitPlay (position, 0 );
-                }
-            else if (mState.Equals ( AudioPlayerState.Paused ))
-                {
-                mStartPosition = position;
-                mPausePosition = position;
-                }
-            mEventsEnabled = true;
-            }
-        }
-
 
         // Set the current time position in milliseconds
-		private void SetCurrentTimePosition(double timeMs) 
+		private void SetCurrentTimePosition(double position) 
 		{
-            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(timeMs, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign()));
+            if (mState != AudioPlayerState.Stopped || mCurrentAudioStream != null)
+            {
+                if (position < 0) position = 0;
+
+                double duration = mCurrentAudioDuration.getTimeDeltaAsMillisecondFloat();
+                if (position > duration)
+                {
+                    position = duration;
+                }
+                mEventsEnabled = false;
+                if (State == AudioPlayerState.Playing)
+                {
+
+                    StreamProviderDelegate spd = mCurrentAudioStreamProvider;
+                    TimeDelta dur = mCurrentAudioDuration;
+                    PCMFormatInfo fmt = mCurrentAudioPCMFormat;
+
+                    Stop();
+                    Thread.Sleep(30);
+
+                    mStartPosition = CalculationFunctions.ConvertTimeToByte(position, (int) fmt.getSampleRate(), fmt.getBlockAlign());
+                    //InitPlay (position, 0 );
+                    Play(spd, dur, fmt, position);
+                }
+                else if (mState.Equals(AudioPlayerState.Paused))
+                {
+                    mStartPosition = CalculationFunctions.ConvertTimeToByte(position, (int) mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
+                    mPausePosition = mStartPosition;
+                }
+                mEventsEnabled = true;
+            }
 		}
 
 
@@ -1049,18 +1052,18 @@ namespace AudioLib
         ///Preview timer tick function
         private void PreviewTimer_Tick(object sender, EventArgs e)
         { //1
-            
-            double StepInMs = Math.Abs( 4000 * mFwdRwdRate   ) ;
-            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudioPCMFormat.getSampleRate ()  , mCurrentAudioPCMFormat.getBlockAlign ());
+
+            double StepInMs = Math.Abs(4000 * mFwdRwdRate);
+            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
             int PlayChunkLength = 1200;
-            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
+            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte(PlayChunkLength, (int)mCurrentAudioPCMFormat.getSampleRate(), mCurrentAudioPCMFormat.getBlockAlign());
             mPreviewTimer.Interval = PlayChunkLength + 50;
 
             long PlayStartPos = 0;
             long PlayEndPos = 0;
-            if ( mFwdRwdRate > 0 )
+            if (mFwdRwdRate > 0)
             { //2
-                if (( mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) - ( lStepInBytes + m_lChunkStartPosition ) ) >  lPlayChunkLength )
+                if ((mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) - (lStepInBytes + m_lChunkStartPosition)) > lPlayChunkLength)
                 { //3
                     if (m_lChunkStartPosition > 0)
                     {
@@ -1070,33 +1073,33 @@ namespace AudioLib
                         m_lChunkStartPosition = mCurrentAudioPCMFormat.getBlockAlign();
 
                     PlayStartPos = m_lChunkStartPosition;
-PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
-PlayAssetStream  (  PlayStartPos, PlayEndPos);
+                    PlayEndPos = m_lChunkStartPosition + lPlayChunkLength;
+                    PlayAssetStream(PlayStartPos, PlayEndPos);
 
-if (m_lChunkStartPosition > mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
-    m_lChunkStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
-                                    } //-3
+                    if (m_lChunkStartPosition > mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
+                        m_lChunkStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration);
+                } //-3
                 else
                 { //3
                     Stop();
                     if (mEventsEnabled)
                         EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
-                                } //-3
+                } //-3
             } //-2
-            else if ( mFwdRwdRate <  0 )
+            else if (mFwdRwdRate < 0)
             { //2
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
-                if (m_lChunkStartPosition >  0 )
+                if (m_lChunkStartPosition > 0)
                 { //3
                     if (m_lChunkStartPosition < mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration))
                         m_lChunkStartPosition -= lStepInBytes;
                     else
                         m_lChunkStartPosition = mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDuration) - lPlayChunkLength;
 
-                    PlayStartPos = m_lChunkStartPosition ;
-                    PlayEndPos = m_lChunkStartPosition +  lPlayChunkLength;
-                    PlayAssetStream (PlayStartPos, PlayEndPos);
-                    
+                    PlayStartPos = m_lChunkStartPosition;
+                    PlayEndPos = m_lChunkStartPosition + lPlayChunkLength;
+                    PlayAssetStream(PlayStartPos, PlayEndPos);
+
                     if (m_lChunkStartPosition < 0)
                         m_lChunkStartPosition = 0;
                 } //-3
@@ -1105,25 +1108,25 @@ if (m_lChunkStartPosition > mCurrentAudioPCMFormat.getDataLength(mCurrentAudioDu
                     Stop();
                     if (mEventsEnabled)
                         EndOfAudioAsset(this, new Events.Player.EndOfAudioAssetEventArgs());
-                                    }
-                } //-2
-                            } //-1
+                }
+            } //-2
+        } //-1
 
 
-                            /// <summary>
-                            /// Stop rewinding or forwarding, including the preview timer.
-                            /// </summary>
-                            private void StopForwardRewind()
-                            {
-                                if (mFwdRwdRate != 0 || mPreviewTimer.Enabled)
-                                {
-                                    mPreviewTimer.Enabled = false;
-                                                    //m_FwdRwdRate = 0 ;
-                                    m_lChunkStartPosition = 0;
-                                    mIsFwdRwd = false;
-                                    mEventsEnabled = true;
-                                }
-                            }
+        /// <summary>
+        /// Stop rewinding or forwarding, including the preview timer.
+        /// </summary>
+        private void StopForwardRewind()
+        {
+            if (mFwdRwdRate != 0 || mPreviewTimer.Enabled)
+            {
+                mPreviewTimer.Enabled = false;
+                //m_FwdRwdRate = 0 ;
+                m_lChunkStartPosition = 0;
+                mIsFwdRwd = false;
+                mEventsEnabled = true;
+            }
+        }
 
 
 

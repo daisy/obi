@@ -107,11 +107,14 @@ namespace Obi
                 mSessionOffset = mAudioList.Count;
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
+
                 AudioMediaData asset =
                     (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
                 mSessionMedia = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia();
                 mSessionMedia.setMediaData(asset);
-                mRecorder.StartRecording(asset);
+
+                mRecorder.StartRecording(asset.getPCMFormat());
+
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset, 0.0));
                 mRecordingUpdateTimer.Enabled = true;
@@ -133,9 +136,7 @@ namespace Obi
         {
             if (mRecorder.State == AudioRecorderState.Stopped)
             {
-                AudioMediaData asset =
-                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-                mRecorder.StartListening(asset);
+                mRecorder.StartListening(new PCMFormatInfo(mPresentation.getMediaDataManager().getDefaultPCMFormat()));
             }
         }
 
@@ -147,10 +148,19 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Monitoring || mRecorder.State == AudioRecorderState.Recording)
             {
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
-                if (wasRecording) FinishedPhrase();
-                mRecorder.StopRecording();
                 if (wasRecording)
                 {
+                    FinishedPhrase();
+                }
+
+                mRecorder.StopRecording();
+
+                if (wasRecording)
+                {
+                    AudioMediaData data = mSessionMedia.getMediaData();
+                    data.appendAudioDataFromRiffWave(mRecorder.RecordedFilePath);
+                    mRecorder.DeleteRecordedFile();
+
                     // Split the session asset into smaller assets starting from the end
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)

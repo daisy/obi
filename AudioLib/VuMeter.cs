@@ -184,9 +184,9 @@ namespace AudioLib
 		{
 			AudioRecorder Recorder = sender as AudioRecorder ;
 			ob_AudioRecorder = Recorder ;
-			m_FrameSize = ( Recorder.Channels * ( Recorder.BitDepth / 8 ) )   ;
-			mChannels = Recorder.Channels ;
-            m_SamplingRate = Recorder.SampleRate;
+            mChannels = Recorder.RecordingPCMFormat.getNumberOfChannels();
+            m_FrameSize = Recorder.RecordingPCMFormat.getBlockAlign();
+            m_SamplingRate = (int) Recorder.RecordingPCMFormat.getSampleRate();
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
                         m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
 
@@ -197,9 +197,9 @@ namespace AudioLib
 			Array.Copy ( m_RecorderArray , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
             //m_BufferReadInterval = ( m_arUpdatedVM.Length * 1000 ) / ( Recorder.SampleRate * m_FrameSize )  ;
-            if (Recorder != null && m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate *  m_FrameSize  )))
+            if (Recorder != null && m_BufferReadInterval != ((double)(m_arUpdatedVM.Length * 1000) / (Recorder.RecordingPCMFormat.getSampleRate() * m_FrameSize)))
             {
-                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (Recorder.SampleRate *  m_FrameSize  ));
+                m_BufferReadInterval = ((double)(m_arUpdatedVM.Length * 1000) / (Recorder.RecordingPCMFormat.getSampleRate() * m_FrameSize));
                 SetSampleCount(m_SampleTimeLength);
             }
 
@@ -560,12 +560,11 @@ namespace AudioLib
                     AudioLib.Events.VuMeter.PeakOverloadEventArgs e;
                     if (boolPlayer)
                     {
-                        e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(1,
-                            ob_AudioPlayer.CurrentBytePosition, ob_AudioPlayer.CurrentTimePosition);
+                        e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(1, ob_AudioPlayer.CurrentTimePosition);
                     }
                     else
                     {
-                        e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(1, 0, 0);
+                        e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(1, 0);
                     }
                     PeakOverload(this, e);
             }
@@ -582,12 +581,11 @@ namespace AudioLib
                 AudioLib.Events.VuMeter.PeakOverloadEventArgs e;
                 if (boolPlayer)
                 {
-                    e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(2,
-                        ob_AudioPlayer.CurrentBytePosition , ob_AudioPlayer.CurrentTimePosition );
+                    e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(2, ob_AudioPlayer.CurrentTimePosition );
                 }
                 else
                 {
-                    e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(2, 0, 0);
+                    e = new AudioLib.Events.VuMeter.PeakOverloadEventArgs(2, 0);
                 }
                 PeakOverload(this, e);
             }

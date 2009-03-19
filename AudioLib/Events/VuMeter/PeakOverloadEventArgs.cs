@@ -12,7 +12,6 @@ namespace AudioLib.Events.VuMeter
 	public class PeakOverloadEventArgs: EventArgs 
 	{
 		private int mChannel;          // channel which overloaded
-		private long mBytePosition;    // position where the overload happened (from start of recording)
 		private double mTimePosition;  // time when the overload happened (from start of recording)
 
 		public int Channel
@@ -20,14 +19,6 @@ namespace AudioLib.Events.VuMeter
 			get
 			{
 				return mChannel;
-			}
-		}
-
-		public long BytePosition
-		{
-			get
-			{
-				return mBytePosition;
 			}
 		}
 
@@ -40,20 +31,6 @@ namespace AudioLib.Events.VuMeter
 		}
 
 		/// <summary>
-		/// Create a new PeakOverload event for a given byte position.
-		/// </summary>
-		/// <param name="channel">The channel that overloaded.</param>
-		/// <param name="bytePosition">The position where the event occurred.</param>
-		/// 
-		// timePosition is added in same constructor by app team, India
-		public PeakOverloadEventArgs(int channel, long bytePosition, double timePosition)
-		{
-			mChannel = channel;
-			mBytePosition = bytePosition;
-			mTimePosition = timePosition;
-		}
-
-		/// <summary>
 		/// Create a new PeakOverload event at a given time.
 		/// </summary>
 		/// <param name="channel">The channel that overloaded.</param>
@@ -61,7 +38,6 @@ namespace AudioLib.Events.VuMeter
 		public PeakOverloadEventArgs(int channel, double timePosition)
 		{
 			mChannel = channel;
-			mBytePosition = 0;
 			mTimePosition = timePosition;
 		}       
 	}
