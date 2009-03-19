@@ -12,6 +12,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioLib", "AudioLib\AudioL
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9} = {7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\core.csproj", "{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -23,6 +26,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioEngine", "..\..\..\ura
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{58C576A9-CEBA-4274-A643-5867D377FEA3} = {58C576A9-CEBA-4274-A643-5867D377FEA3}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMeter", "..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter.csproj", "{58C576A9-CEBA-4274-A643-5867D377FEA3}"
