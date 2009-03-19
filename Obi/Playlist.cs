@@ -409,7 +409,9 @@ namespace Obi
                     {
                         mPlayer.PlaySimulateEmpty();
                     }
-                    mPlayer.Play(data.getAudioData(), data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
+                    mPlayer.Play(
+                        delegate { return data.getAudioData();}
+                        , data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
                 }
             }
             else
@@ -426,7 +428,9 @@ namespace Obi
                     {
                         mPlayer.PlaySimulateEmpty();
                     }
-                    mPlayer.Play(data.getAudioData(), dur, data.getPCMFormat(), from, mPlaybackEndTime);
+                    mPlayer.Play(
+                        delegate { return data.getAudioData(); }
+                        , dur, data.getPCMFormat(), from, mPlaybackEndTime);
                 }
             }
             // send the state change event if the state actually changed
