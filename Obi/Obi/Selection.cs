@@ -233,7 +233,8 @@ namespace Obi
 
         public override string ToString()
         {
-            return String.Format(Localizer.Message("audio_selection_to_string"), AudioRange.ToString(), Node.ToString(), Control.ToString());
+        string audioRangeString = AudioRange != null ? AudioRange.ToString () : " " ; // for precaution
+            return String.Format(Localizer.Message("audio_selection_to_string"), audioRangeString , Node.ToString(), Control.ToString());
         }
     }
 
