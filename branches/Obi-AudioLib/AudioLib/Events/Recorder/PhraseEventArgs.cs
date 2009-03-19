@@ -2,7 +2,7 @@ using System;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
 
-namespace Obi.Events.Audio.Recorder
+namespace AudioLib.Events.Audio.Recorder
 {
     /// <summary>
     /// A new phrase is being recorded.

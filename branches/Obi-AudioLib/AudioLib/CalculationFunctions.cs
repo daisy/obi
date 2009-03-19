@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Obi.Audio
+namespace AudioLib
 {
 	/// <summary>
 	/// Summary description for CalculationFunctions.

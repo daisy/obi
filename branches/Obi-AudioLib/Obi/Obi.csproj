@@ -51,18 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.3359.33734, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AudioEngine.PPMeter, Version=1.0.3200.34234, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Urakawa toolkit\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectInput.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.DirectX.DirectSound, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.DirectSound.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -71,16 +62,12 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.1.0.33681, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="urakawa, Version=1.1.0.42571, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Urakawa toolkit\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioDevice.cs" />
-    <Compile Include="Audio\AudioPlayer.cs" />
-    <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="Audio\DataManager.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>
@@ -89,9 +76,6 @@
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Audio\PhraseDetection.cs" />
-    <Compile Include="Audio\VuMeter.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ColorSettings.cs" />
     <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Audio\Copy.cs" />
@@ -221,17 +205,6 @@
       <DependentUpon>WelcomeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="EmptyNode.cs" />
-    <Compile Include="Events\Audio\Player\EndOfAudioDataEventArgs.cs" />
-    <Compile Include="Events\Audio\Player\StateChangedEventArgs.cs" />
-    <Compile Include="Events\Audio\Player\UpdateVuMeter.cs" />
-    <Compile Include="Events\Audio\Recorder\StateChangedEventArgs.cs" />
-    <Compile Include="Events\Audio\Recorder\UpdateVuMeter.cs" />
-    <Compile Include="Events\Audio\VuMeter\LevelGoodArgs.cs" />
-    <Compile Include="Events\Audio\VuMeter\LevelTooLowEventArgs.cs" />
-    <Compile Include="Events\Audio\VuMeter\PeakOverloadEventArgs.cs" />
-    <Compile Include="Events\Audio\VuMeter\ResetEventArgs.cs" />
-    <Compile Include="Events\Audio\VuMeter\UpdateFormsEventArgs.cs" />
-    <Compile Include="Events\Audio\VuMeter\UpdatePeakMeter.cs" />
     <Compile Include="Events\NodeEventHandlers.cs" />
     <Compile Include="Events\Node\ChangedCustomTypeEventArgs.cs" />
     <Compile Include="Events\Node\ObiNodeEventArgs.cs" />
@@ -247,8 +220,8 @@
     <Compile Include="Events\Node\SetPageEventArgs.cs" />
     <Compile Include="Events\Node\ShallowSwappedNodesEventArgs.cs" />
     <Compile Include="Events\Node\SplitPhraseNodeEventArgs.cs" />
+    <Compile Include="Events\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
-    <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="Export\XslResolver.cs" />
     <Compile Include="Export\Z.cs" />
@@ -768,7 +741,12 @@
     <Content Include="SelectionEnd.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ShowBlocksCompleted.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AudioLib\AudioLib.csproj">
+      <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
+      <Name>AudioLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,7 +9,7 @@ using System.Threading;
 
 using urakawa.media.data.audio;
 
-namespace Obi.Audio
+namespace AudioLib
 {
     /// <summary>
     /// The three states of the audio recorder.
@@ -26,9 +26,9 @@ namespace Obi.Audio
         private int mChannels;        // number of channels
 
         
-        public event Events.Audio.Recorder.StateChangedHandler StateChanged;                // recorder state changed
-		public event Events.Audio.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;  // send update to VU meter
-        public event Events.Audio.Recorder.ResetVuMeterHandler ResetVuMeter;                // reset the VU meter
+        public event Events.Recorder.StateChangedHandler StateChanged;                // recorder state changed
+		public event Events.Recorder.UpdateVuMeterHandler UpdateVuMeterFromRecorder;  // send update to VU meter
+        public event Events.Recorder.ResetVuMeterHandler ResetVuMeter;                // reset the VU meter
 
 
 		//member variables
@@ -52,8 +52,8 @@ namespace Obi.Audio
         private int m_iCaptureBufferSize; // Size of capture buffer
         private int m_iNotifySize; // size of bytes between two notifications
                 private BufferPositionNotify[] PositionNotify; // array containing notification  position in capture buffer
-                internal byte[] arUpdateVM; // array for updating VuMeter
-        internal int m_UpdateVMArrayLength; // Length of Vumeter array
+                public byte[] arUpdateVM; // array for updating VuMeter
+        public int m_UpdateVMArrayLength; // Length of Vumeter array
         private Mutex m_MutexCaptureData; // Implement mutual exclusion in threads updating captured data
 
 
@@ -140,7 +140,7 @@ namespace Obi.Audio
                     mInputDevicesList = new List<InputDevice>(devices.Count);
                     foreach (DeviceInformation info in devices)
                     {
-                        mInputDevicesList.Add(new InputDevice(info.Description, new Capture(info.DriverGuid)));
+                        mInputDevicesList.Add(new InputDevice(info));
                     }
                 }
                 return mInputDevicesList;
@@ -149,7 +149,7 @@ namespace Obi.Audio
 
 		public void StartListening(AudioMediaData  asset)
 		{
-            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
 			mState = AudioRecorderState.Monitoring;
 			if (StateChanged != null) StateChanged(this, e);
 
@@ -172,7 +172,7 @@ namespace Obi.Audio
         /// </summary>
         public void StartRecording(AudioMediaData asset)
 		{
-            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
 	    	mState = AudioRecorderState.Recording;
 		    if (StateChanged != null) StateChanged(this, e);
         
@@ -206,7 +206,7 @@ namespace Obi.Audio
 
             if (mState == AudioRecorderState.Recording || mState == AudioRecorderState.Monitoring)
             {
-                Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+                Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
                 mState = AudioRecorderState.Stopped;
                 if (StateChanged != null) StateChanged(this, e);
                 if (null != NotificationEvent)
@@ -234,7 +234,7 @@ namespace Obi.Audio
         /// </summary>
         internal void EmergencyStop()
         {
-            Events.Audio.Recorder.StateChangedEventArgs e = new Events.Audio.Recorder.StateChangedEventArgs(mState);
+            Events.Recorder.StateChangedEventArgs e = new Events.Recorder.StateChangedEventArgs(mState);
             mState = AudioRecorderState.Stopped;
             if (StateChanged != null) StateChanged(this, e);
             if (null != NotificationEvent)
@@ -464,7 +464,7 @@ namespace Obi.Audio
 
             // copy Capture data to an array and update it to VuMeter
                 Array.Copy( CaptureData , arUpdateVM, m_UpdateVMArrayLength);
-                if (UpdateVuMeterFromRecorder != null) UpdateVuMeterFromRecorder(this, new Events.Audio.Recorder.UpdateVuMeterEventArgs());
+                if (UpdateVuMeterFromRecorder != null) UpdateVuMeterFromRecorder(this, new Events.Recorder.UpdateVuMeterEventArgs());
 
                 if (mState != AudioRecorderState.Monitoring)
                 {
@@ -499,7 +499,7 @@ namespace Obi.Audio
             
             long mLength = (long)SampleCount;
 
-            mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
+            mTime = CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
             m_MutexCaptureData.ReleaseMutex();
 }
 
@@ -627,7 +627,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
             }
             // reset VuMeter
             if (ResetVuMeter != null)
-                ResetVuMeter(this, new Obi.Events.Audio.Recorder.UpdateVuMeterEventArgs());
+                ResetVuMeter(this, new AudioLib.Events.Recorder.UpdateVuMeterEventArgs());
         }
 
         public void SetDevice(Control handle, string name)

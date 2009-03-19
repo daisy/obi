@@ -1,3 +1,4 @@
+using AudioLib;
 using Obi.Audio;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Obi
         // The playlist sends its own version of the state changed event in order to ignore spurrious
         // stop/start events sent by the audio player when moving between assets.
         // The VUmeter event should be caught as is; the end of asset should be ignored.
-        public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event AudioLib.Events.Player.StateChangedHandler StateChanged;
 
         // The end of the playlist was reached.
         public delegate void EndOfPlaylistHandler(object sender, EventArgs e);
@@ -385,21 +386,37 @@ namespace Obi
         // Play the current phrase
         private void PlayCurrentPhrase()
         {
-            Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+            AudioLib.Events.Player.StateChangedEventArgs evargs = new AudioLib.Events.Player.StateChangedEventArgs(mPlayer.State);
             if (mPlaylistState == AudioPlayerState.Stopped)
             {
-                mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+                mPlayer.EndOfAudioAsset += new AudioLib.Events.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayerState.Playing;
             double from = mPlaybackStartTime;
             mPlaybackStartTime = 0.0;
             if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from, mPlaybackEndTime);
+                AudioMediaData data = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
+                if (data == null)
+                {
+                    mPlayer.PlaySimulateEmpty();
+                }
+                else
+                {
+                    mPlayer.Play(data.getAudioData(), data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
+                }
             }
             else
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from);
+                AudioMediaData data = mPhrases[mCurrentPhraseIndex].Audio.getMediaData();
+                if (data == null)
+                {
+                    mPlayer.PlaySimulateEmpty();
+                }
+                else
+                {
+                    mPlayer.Play(data.getAudioData(), data.getAudioDuration(), data.getPCMFormat(), from, mPlaybackEndTime);
+                }
             }
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
@@ -637,7 +654,7 @@ namespace Obi
             // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
             if (StateChanged != null)
             {
-                StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
+                StateChanged(this, new AudioLib.Events.Player.StateChangedEventArgs(AudioPlayerState.Paused));
             }
         }
 
@@ -646,7 +663,7 @@ namespace Obi
         /// </summary>
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
-        protected virtual void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
+        protected virtual void Playlist_MoveToNextPhrase(object sender, AudioLib.Events.Player.EndOfAudioAssetEventArgs e)
         {
             if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
             {
@@ -684,7 +701,7 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = 0;
                 if (StateChanged != null)
                 {
-                    StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Playing));
+                    StateChanged(this, new AudioLib.Events.Player.StateChangedEventArgs(AudioPlayerState.Playing));
                 }
             }
         }
@@ -695,7 +712,7 @@ namespace Obi
             mPlaylistState = AudioPlayerState.Paused;
             if (StateChanged != null)
             {
-                StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
+                StateChanged(this, new AudioLib.Events.Player.StateChangedEventArgs(AudioPlayerState.Stopped));
             }
         }
 
@@ -706,14 +723,14 @@ namespace Obi
         {
             if (mPlaylistState == AudioPlayerState.Playing || mPlaylistState == AudioPlayerState.Paused)
             {
-                Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs(mPlayer.State);
+                AudioLib.Events.Player.StateChangedEventArgs evargs = new AudioLib.Events.Player.StateChangedEventArgs(mPlayer.State);
                 mPlaylistState = AudioPlayerState.Stopped;
                 mPlayer.PlaybackFwdRwdRate = 0;
                 mCurrentPhraseIndex = 0;
                 mElapsedTime = 0.0;
                 mPlayer.Stop();
                 if (StateChanged != null) StateChanged(this, evargs);
-                mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+                mPlayer.EndOfAudioAsset -= new AudioLib.Events.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
             }
         }
 
@@ -729,7 +746,7 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate * -1;
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
 
-                Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs ( mPlayer.State );
+                AudioLib.Events.Player.StateChangedEventArgs evargs = new AudioLib.Events.Player.StateChangedEventArgs ( mPlayer.State );
 
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
@@ -760,7 +777,7 @@ namespace Obi
                 mPlaybackRate = 1;
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward;
-                Events.Audio.Player.StateChangedEventArgs evargs = new Events.Audio.Player.StateChangedEventArgs ( mPlayer.State );
+                AudioLib.Events.Player.StateChangedEventArgs evargs = new AudioLib.Events.Player.StateChangedEventArgs ( mPlayer.State );
 
                 if (mPlayer.State == AudioPlayerState.Paused)
                     mPlayer.Resume();
@@ -997,16 +1014,16 @@ namespace Obi
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
             : base(player, selection, false)
         {
-        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase );
-        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
+        base.Audioplayer.EndOfAudioAsset -= new AudioLib.Events.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase );
+        base.Audioplayer.EndOfAudioAsset += new AudioLib.Events.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
             mRevertTime = revertTime;
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
             : base(player, node, false)
         {
-        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase);
-        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
+        base.Audioplayer.EndOfAudioAsset -= new AudioLib.Events.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase);
+        base.Audioplayer.EndOfAudioAsset += new AudioLib.Events.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
             mRevertTime = revertTime;
         }
 
@@ -1022,7 +1039,7 @@ namespace Obi
                 }
             
 
-        protected override void Playlist_MoveToNextPhrase ( object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e )
+        protected override void Playlist_MoveToNextPhrase ( object sender, AudioLib.Events.Player.EndOfAudioAssetEventArgs e )
             {
             if (base.Audioplayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
                 {

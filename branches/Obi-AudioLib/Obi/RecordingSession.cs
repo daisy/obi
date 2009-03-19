@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-
+using AudioLib;
 using Obi.Audio;
-using Obi.Events.Audio.Recorder;
+using AudioLib.Events.Recorder;
+using Obi.Events;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
 
@@ -58,7 +59,7 @@ namespace Obi
         /// <summary>
         /// The audio recorder used by the recording session.
         /// </summary>
-        public Audio.AudioRecorder AudioRecorder { get { return mRecorder; } }
+        public AudioLib.AudioRecorder AudioRecorder { get { return mRecorder; } }
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
