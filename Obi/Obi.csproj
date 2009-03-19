@@ -51,10 +51,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.3200.34234, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Urakawa toolkit\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -62,10 +58,6 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="urakawa, Version=1.1.0.42571, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\DataManager.cs" />
@@ -743,6 +735,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\AudioEngine\AudioEngine.csproj">
+      <Project>{98012884-F06D-4B09-917E-EE92982912FB}</Project>
+      <Name>AudioEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter.csproj">
+      <Project>{58C576A9-CEBA-4274-A643-5867D377FEA3}</Project>
+      <Name>PPMeter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\core.csproj">
+      <Project>{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}</Project>
+      <Name>core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AudioLib\AudioLib.csproj">
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib</Name>
