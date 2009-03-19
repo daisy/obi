@@ -35,6 +35,9 @@ namespace AudioLib
 
         // Member variables to be re initialised only at time of starting  playback of an asset
 
+	    public delegate Stream StreamProviderDelegate();
+
+        private StreamProviderDelegate mCurrentAudioStreamProvider;
         private Stream mCurrentAudioStream;
         private PCMFormatInfo mCurrentAudioPCMFormat;
         private TimeDelta mCurrentAudioDuration;
@@ -223,6 +226,7 @@ namespace AudioLib
                 ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
 
             mCurrentAudioStream.Close();
+            mCurrentAudioStream = null;
         }
 
         /// <summary>
@@ -248,7 +252,6 @@ namespace AudioLib
 
         /// <summary>
         /// Indicate if playback is previewing
-        /// <see cref=""/>
         /// </summary>
         public bool IsPreviewing { get { return m_IsPreviewing; } }
 
@@ -412,9 +415,9 @@ namespace AudioLib
         /// <summary>
         ///  Plays an asset from beginning to end
         /// </summary>
-        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo)
+        public void Play(StreamProviderDelegate currentAudioStreamProvider, TimeDelta duration, PCMFormatInfo pcmInfo)
         {
-            Play(stream, duration, pcmInfo, 0);
+            Play(currentAudioStreamProvider, duration, pcmInfo, 0);
         }
 
 
@@ -423,18 +426,18 @@ namespace AudioLib
         ///  Plays an asset from a specified time position its to ends
         /// </summary>
         /// <param name="timeFrom"></param>
-        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double timeFrom)
+        public void Play(StreamProviderDelegate currentAudioStreamProvider, TimeDelta duration, PCMFormatInfo pcmInfo, double timeFrom)
         {
-            Play(stream, duration, pcmInfo, timeFrom, 0);
+            Play(currentAudioStreamProvider, duration, pcmInfo, timeFrom, 0);
         }
 
 
         /// <summary>
         /// Play an asset from a specified time position upto another specified time position
         /// </summary>
-        public void Play(Stream stream, TimeDelta duration, PCMFormatInfo pcmInfo, double from, double to)
+        public void Play(StreamProviderDelegate currentAudioStreamProvider, TimeDelta duration, PCMFormatInfo pcmInfo, double from, double to)
         {
-            if (stream == null)
+            if (currentAudioStreamProvider == null)
             {
                 throw new ArgumentNullException("Stream cannot be null !");
             }
@@ -442,7 +445,9 @@ namespace AudioLib
             {
                 throw new ArgumentOutOfRangeException("Duration cannot be <= 0 !");
             }
-            mCurrentAudioStream = stream;
+            mCurrentAudioStreamProvider = currentAudioStreamProvider;
+
+            mCurrentAudioStream = currentAudioStreamProvider();
             mCurrentAudioDuration = duration;
             mCurrentAudioPCMFormat = pcmInfo;
 
@@ -644,7 +649,9 @@ namespace AudioLib
                 m_lPlayed = lStartPosition;
 
                 m_IsEndOfAsset = false;
-                
+
+                mCurrentAudioStream = mCurrentAudioStreamProvider();
+
                 mCurrentAudioStream.Position = lStartPosition;
                 
                 mSoundBuffer.Write(0, mCurrentAudioStream, m_SizeBuffer, 0);
@@ -773,6 +780,7 @@ namespace AudioLib
                 ResetVuMeter(this, new AudioLib.Events.Player.UpdateVuMeterEventArgs());
 
             mCurrentAudioStream.Close();
+            mCurrentAudioStream = null;
 
             // changes the state and trigger events
             Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
@@ -914,6 +922,10 @@ namespace AudioLib
                     m_IsPreviewing = false;
 
 				                StopPlayback();
+
+                                mCurrentAudioPCMFormat = null;
+                                mCurrentAudioDuration = null;
+                                mCurrentAudioStreamProvider = null;
 			}
             
         mPausePosition = 0;
@@ -936,6 +948,11 @@ namespace AudioLib
                     ResetVuMeter ( this, new AudioLib.Events.Player.UpdateVuMeterEventArgs () );
 
                 mCurrentAudioStream.Close ();
+
+                mCurrentAudioStream = null;
+                mCurrentAudioPCMFormat = null;
+                mCurrentAudioDuration = null;
+                mCurrentAudioStreamProvider = null;
         ////
 			
         mPausePosition = 0;
