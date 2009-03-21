@@ -22,15 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "..\..\..\urakawa-sd
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioEngine", "..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\AudioEngine\AudioEngine.csproj", "{98012884-F06D-4B09-917E-EE92982912FB}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-	ProjectSection(ProjectDependencies) = postProject
-		{58C576A9-CEBA-4274-A643-5867D377FEA3} = {58C576A9-CEBA-4274-A643-5867D377FEA3}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMeter", "..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter.csproj", "{58C576A9-CEBA-4274-A643-5867D377FEA3}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -62,12 +53,6 @@ Global
 		{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}.Minimal Debug|Any CPU.Build.0 = Minimal Debug|Any CPU
 		{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7176AEC6-D8DD-46F2-B28E-5D9E0601ADB9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98012884-F06D-4B09-917E-EE92982912FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
