@@ -356,7 +356,10 @@ namespace AudioLib
         public void SetDevice(Control handle, OutputDevice device)
         {
             mDevice = device;
-            mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+            if (handle != null)
+            {
+                mDevice.Device.SetCooperativeLevel(handle, CooperativeLevel.Priority);
+            }
             Events.Player.StateChangedEventArgs e = new Events.Player.StateChangedEventArgs(mState);
             mState = AudioPlayerState.Stopped;
             TriggerStateChangedEvent(e);

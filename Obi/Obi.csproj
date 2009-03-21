@@ -735,10 +735,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\AudioEngine\AudioEngine.csproj">
-      <Project>{98012884-F06D-4B09-917E-EE92982912FB}</Project>
-      <Name>AudioEngine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter.csproj">
       <Project>{58C576A9-CEBA-4274-A643-5867D377FEA3}</Project>
       <Name>PPMeter</Name>
