@@ -1165,6 +1165,10 @@ namespace Obi.ProjectView
                 delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPhraseEnded ( e ); } );
             mRecordingSession.FinishingPage += new Events.Audio.Recorder.FinishingPageHandler (
                 delegate ( object sender, Obi.Events.Audio.Recorder.PhraseEventArgs e ) { RecordingPage ( e ); } );
+
+            // resume recording should be null to indicate that recoreding is in process and cannot be resumed.
+            mResumeRecordingPhrase = null;
+
             // Actually start monitoring or recording
             if (recording)
                 {
