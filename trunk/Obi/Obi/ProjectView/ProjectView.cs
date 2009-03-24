@@ -1295,7 +1295,16 @@ namespace Obi.ProjectView
                                 {
                                     foreach (string path in paths)
                                     {
-                                        List<PhraseNode> phrases = mPresentation.CreatePhraseNodeList(path, durationMs);
+                                    List<PhraseNode> phrases = null;
+                                    try
+                                        {
+                                        phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
+                                        }
+                                    catch (System.Exception ex)
+                                        {
+                                        MessageBox.Show ( String.Format(Localizer.Message("import_phrase_error_text"), path) + "\n\n" + ex.ToString ()) ;
+                                        continue;
+                                                                                            }
                                         foreach (PhraseNode p in phrases)
                                         {
                                             try
