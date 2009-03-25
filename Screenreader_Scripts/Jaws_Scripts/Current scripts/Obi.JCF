@@ -1,5 +1,5 @@
 [MSAAClasses]
-SysListView32=1
+SysListView32=0
 [KeyLabels]
 cancel=1|break
 back=1|Backspace
@@ -85,3 +85,4 @@ zoom=1|Zoom
 pa1=1|Pa1
 oem_clear=1|Clear
 print=1|Print Screen
+[Listview Options]

@@ -1,6 +1,8 @@
 ; JAWS scripts for Obi 1.0
-; Scripts version: 1.0.1
+; Scripts version: 1.0.1 , released on march 26, 2009
+; written for JAWS 9.0 and 10.0
 ; Written by: Avneesh Singh
+; Copywrite (c)    2009 The DAISY Consortium
 
 
 globals  String g_PrevControlClass
