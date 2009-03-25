@@ -1706,7 +1706,9 @@ namespace Obi
             Status(Localizer.Message(mProjectView.TransportBar.CurrentState.ToString()));
             UpdatePhrasesMenu();
             UpdateTransportMenu();
-        }
+            UpdateEditMenu ();
+            mProjectView.UpdateContextMenus ();
+                    }
 
         void TransportBar_PlaybackRateChanged(object sender, EventArgs e)
         {
