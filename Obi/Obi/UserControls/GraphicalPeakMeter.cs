@@ -87,6 +87,8 @@ namespace Obi.UserControls
             }
             else
             {
+            for (int i = 0; i < mPeakValues.Length; i++) mPeakValues[i] = double.NegativeInfinity;
+
                 for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
                 {
                     mPPMeter.SetValue(i, Double.NegativeInfinity);
