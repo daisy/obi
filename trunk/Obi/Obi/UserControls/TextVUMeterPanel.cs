@@ -145,7 +145,7 @@ namespace Obi.UserControls
         private void PlayBeep()
         {
         FileInfo BeepFile = new FileInfo ( Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "hi.wav" ) );
-        if (BeepFile.Exists && m_BeepEnabled)
+        if (BeepFile.Exists && m_BeepEnabled && m_AfterGoodCount > -3)
             {
                 System.Media.SoundPlayer PlayBeep = new System.Media.SoundPlayer(BeepFile.FullName);
                 PlayBeep.Play();
