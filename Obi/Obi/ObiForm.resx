@@ -930,6 +930,9 @@
   <data name="mPhrases_AssignRole_PlainMenuItem.Text" xml:space="preserve">
     <value>P&amp;lain</value>
   </data>
+  <data name="mPhrases_AssignRole_HeadingMenuItem.AccessibleName" xml:space="preserve">
+    <value>Heading Ctrl+Shift+D</value>
+  </data>
   <data name="mPhrases_AssignRole_HeadingMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+D</value>
   </data>
@@ -950,6 +953,9 @@
   </data>
   <data name="mPhrases_AssignRole_PageMenuItem.Text" xml:space="preserve">
     <value>&amp;Page</value>
+  </data>
+  <data name="mPhrases_AssignRole_SilenceMenuItem.AccessibleName" xml:space="preserve">
+    <value>Silence Ctrl+Shift+E</value>
   </data>
   <data name="mPhrases_AssignRole_SilenceMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+E</value>
@@ -1573,7 +1579,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=0.97.0.35104, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.0.0.23084, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
