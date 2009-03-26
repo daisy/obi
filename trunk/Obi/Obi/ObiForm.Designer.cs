@@ -790,8 +790,8 @@ namespace Obi
         // 
         // mPhrases_AssignRole_HeadingMenuItem
         // 
-        this.mPhrases_AssignRole_HeadingMenuItem.Name = "mPhrases_AssignRole_HeadingMenuItem";
         resources.ApplyResources ( this.mPhrases_AssignRole_HeadingMenuItem, "mPhrases_AssignRole_HeadingMenuItem" );
+        this.mPhrases_AssignRole_HeadingMenuItem.Name = "mPhrases_AssignRole_HeadingMenuItem";
         this.mPhrases_AssignRole_HeadingMenuItem.Click += new System.EventHandler ( this.mPhrases_AssignRole_HeadingMenuItem_Click );
         // 
         // mPhrases_AssignRole_PageMenuItem
@@ -802,8 +802,8 @@ namespace Obi
         // 
         // mPhrases_AssignRole_SilenceMenuItem
         // 
-        this.mPhrases_AssignRole_SilenceMenuItem.Name = "mPhrases_AssignRole_SilenceMenuItem";
         resources.ApplyResources ( this.mPhrases_AssignRole_SilenceMenuItem, "mPhrases_AssignRole_SilenceMenuItem" );
+        this.mPhrases_AssignRole_SilenceMenuItem.Name = "mPhrases_AssignRole_SilenceMenuItem";
         this.mPhrases_AssignRole_SilenceMenuItem.Click += new System.EventHandler ( this.mPhrases_AssignRole_SilenceMenuItem_Click );
         // 
         // mCustomRoleToolStripSeparator
