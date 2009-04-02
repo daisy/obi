@@ -5,6 +5,7 @@ using System.Configuration.Install;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace InstallerFileOperations
     {
@@ -106,6 +107,8 @@ namespace InstallerFileOperations
 
         public void StartJREInstallOptionally ()
             {
+            if ( !IsJREAlreadyInstalled () )
+                {
             try
                 {
                 System.Media.SystemSounds.Exclamation.Play (); // audio clue to alert.
@@ -121,9 +124,38 @@ namespace InstallerFileOperations
                 {
                 MessageBox.Show ( "Error in downloading Java runtime environment. Please install it yourself after installation of Obi is complete" + "\n\n" + ex.ToString ());
                 }
+
+            }
             }
 
+        private bool IsJREAlreadyInstalled ()
+            {
+            try
+                {
+                RegistryKey JREKey = Registry.CurrentUser.OpenSubKey ( "Software\\JavaSoft\\Java Runtime Environment" );
 
+                if (JREKey != null)
+                    {//1
+                    foreach (string subKeyString in JREKey.GetSubKeyNames ())
+                        {//2
+                        if (subKeyString.Length > 3)
+                            {//3
+                            string keyName = subKeyString.Substring ( 0, 3 );
+
+                            double numericSubKey = Convert.ToDouble ( keyName );
+                            if (numericSubKey >= 1.6)
+                                {//4
+                                return true;
+                                }//-4
+                            }//-3
+                        }//-2
+                    }//-1
+                } // try ends
+            catch ( System.Exception )
+            { return false; }
+
+            return false;
+            }
         private void RemoveCustomInstalledFiles ()
             {
                 try
