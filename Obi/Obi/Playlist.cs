@@ -1043,6 +1043,7 @@ namespace Obi
         protected override void ReachedEndOfPlaylist()
         {
                     PauseFromStopped(mRevertTime);
+                    base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
         }
     }
 }
