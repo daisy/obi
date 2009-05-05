@@ -969,14 +969,20 @@ namespace Obi
                 mPlayer.Pause();
                 mPlayer.FastPlayFactor = 1;
                 mPlayer.CurrentTimePosition = mPlayer.CurrentTimePosition - LapseBackTime;
+                mPlaylistState = AudioPlayerState.Playing;
                 mPlayer.Resume();
+                if (StateChanged != null)
+                    StateChanged ( this, new Events.Audio.Player.StateChangedEventArgs ( AudioPlayerState.Paused ) );
             }
             else
             {
                 mPlayer.Pause();
                 mPlayer.CurrentTimePosition = 10;
                 mPlayer.FastPlayFactor = 1;
+                mPlaylistState = AudioPlayerState.Playing;
                 mPlayer.Resume();
+                if (StateChanged != null)
+                    StateChanged(this, new Events.Audio.Player.StateChangedEventArgs(AudioPlayerState.Paused));
             }
         }
 
