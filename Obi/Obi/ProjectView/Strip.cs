@@ -832,7 +832,7 @@ namespace Obi.ProjectView
         // Update the label of the node after the user edited it.
         private void Label_LabelEditedByUser(object sender, EventArgs e)
         {
-            if (mLabel.Label != "")
+            if (mLabel.Label.Trim ()  != "")
             {
                 // update the label for the node
                 mContentView.RenameStrip(this);

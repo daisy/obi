@@ -492,7 +492,7 @@ namespace Obi.ProjectView
         // Cancel if the text is empty.
         private void TOCTree_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-            if (e.Node.Tag != null && e.Label != null && e.Label != "")
+            if (e.Node.Tag != null && e.Label != null && e.Label.Trim ()  != "")
             {
                 mProjectView.RenameSectionNode((SectionNode)e.Node.Tag, e.Label);
             }
