@@ -26,7 +26,7 @@ namespace Obi.Dialogs
             m_GoToPage = false;
         }
 
-        public SetPageNumber (bool goToPage )
+        public SetPageNumber (bool goToPage ): this  () 
             {
             if (goToPage)
                 {
@@ -35,6 +35,7 @@ namespace Obi.Dialogs
                 label2.Visible = false;
                 mNumberOfPagesBox.Visible = false;
                 mRenumber.Visible = false;
+                mPageKindComboBox.SelectedIndex = 1;
                 }
             }
 

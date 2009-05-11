@@ -2206,20 +2206,22 @@ namespace Obi.ProjectView
             if (BlocksVisibilityChanged != null) BlocksVisibilityChanged ( this, new EventArgs () );
             }
 
+        /// <summary>
+        /// searches page number entered in dialog box and highlight it in content view
+                /// </summary>
         public void GoToPage ()
             {
             Dialogs.SetPageNumber pageDialog = new Obi.Dialogs.SetPageNumber ( true );
-            if ( pageDialog.ShowDialog () == DialogResult.OK )
+            if ( pageDialog.ShowDialog () == DialogResult.OK && pageDialog.Number != null)
                 {
                 int pageNumber = pageDialog.Number.Number;
                 PageKind kind = pageDialog.Number.Kind;
                 EmptyNode node = null ;
-
-                for (ObiNode n = Presentation.FirstSection; n != null; n = n.FollowingNode)
+                    for (ObiNode n = Presentation.RootNode.FirstLeaf ; n != null; n = n.FollowingNode)
                     {
-                    if (n is EmptyNode)
+                        if (n is EmptyNode)
                         {
-                        EmptyNode testNode = (EmptyNode)n;
+                                EmptyNode testNode = (EmptyNode)n;
                         if (testNode.Role_ == EmptyNode.Role.Page
                             && testNode.PageNumber.Number == pageNumber
                             && testNode.PageNumber.Kind == kind)
