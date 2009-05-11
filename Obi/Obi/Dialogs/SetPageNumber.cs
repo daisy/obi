@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     {
         private PageNumber mInitialNumber;
         private int mNumberOfPages;
+        private bool m_GoToPage;
 
         public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
@@ -22,7 +23,20 @@ namespace Obi.Dialogs
             mRenumber.Checked = renumber;
             mNumberOfPagesBox.Text = mNumberOfPages.ToString();
             mNumberOfPagesBox.Enabled = canSetNumberOfPages;
+            m_GoToPage = false;
         }
+
+        public SetPageNumber (bool goToPage )
+            {
+            if (goToPage)
+                {
+                m_GoToPage = goToPage;
+                this.Text = "Go to page";
+                label2.Visible = false;
+                mNumberOfPagesBox.Visible = false;
+                mRenumber.Visible = false;
+                }
+            }
 
         public SetPageNumber() { InitializeComponent(); }
 
@@ -63,14 +77,16 @@ namespace Obi.Dialogs
 
         private void mOKButton_Click ( object sender, EventArgs e )
             {
-            int num  = EmptyNode.SafeParsePageNumber ( mNumberBox.Text ) ;
-            if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
-                || (num > 0 && mPageKindComboBox.SelectedIndex == 2) )
-                {
-                                if ( MessageBox.Show ( Localizer.Message ("PageDialog_InvalidInput") , Localizer.Message("Caption_Error"),  MessageBoxButtons.YesNo ,MessageBoxIcon.Question , MessageBoxDefaultButton.Button2) == DialogResult.No)
-                                        return;
-                                        }
+            
+                int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
+                if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
+                    || (num > 0 && mPageKindComboBox.SelectedIndex == 2))
+                    {
+                    if (MessageBox.Show ( Localizer.Message ( "PageDialog_InvalidInput" ), Localizer.Message ( "Caption_Error" ), MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 ) == DialogResult.No)
+                        return;
+                    }
                 
+
             DialogResult = DialogResult.OK;
             Close ();
                         }

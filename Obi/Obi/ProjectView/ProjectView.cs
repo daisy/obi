@@ -2206,6 +2206,42 @@ namespace Obi.ProjectView
             if (BlocksVisibilityChanged != null) BlocksVisibilityChanged ( this, new EventArgs () );
             }
 
+        public void GoToPage ()
+            {
+            Dialogs.SetPageNumber pageDialog = new Obi.Dialogs.SetPageNumber ( true );
+            if ( pageDialog.ShowDialog () == DialogResult.OK )
+                {
+                int pageNumber = pageDialog.Number.Number;
+                PageKind kind = pageDialog.Number.Kind;
+                EmptyNode node = null ;
+
+                for (ObiNode n = Presentation.FirstSection; n != null; n = n.FollowingNode)
+                    {
+                    if (n is EmptyNode)
+                        {
+                        EmptyNode testNode = (EmptyNode)n;
+                        if (testNode.Role_ == EmptyNode.Role.Page
+                            && testNode.PageNumber.Number == pageNumber
+                            && testNode.PageNumber.Kind == kind)
+                            {
+                            node = testNode;
+                            break;
+                            }
+                        }
+                    }
+                if (node != null)
+                    {
+                    Selection = new NodeSelection ( node, mContentView );
+                    }
+                else
+                    {
+                    MessageBox.Show ( "Page do not exists" );
+                    }
+
+                }
+            }
+
+
 
     //@ShowSingleSection
         /*
