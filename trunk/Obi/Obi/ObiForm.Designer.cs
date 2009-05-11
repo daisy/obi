@@ -127,6 +127,7 @@ namespace Obi
             this.mGoToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mNextTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPreviousTODOPhraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_GoToPageToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.transportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPlayAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,7 +174,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.nextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -866,7 +866,7 @@ namespace Obi
             this.mGoToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mNextTODOPhraseToolStripMenuItem,
             this.mPreviousTODOPhraseToolStripMenuItem,
-            this.nextPageToolStripMenuItem});
+            this.m_GoToPageToolStrip});
             this.mGoToToolStripMenuItem.Name = "mGoToToolStripMenuItem";
             resources.ApplyResources(this.mGoToToolStripMenuItem, "mGoToToolStripMenuItem");
             // 
@@ -881,6 +881,12 @@ namespace Obi
             resources.ApplyResources(this.mPreviousTODOPhraseToolStripMenuItem, "mPreviousTODOPhraseToolStripMenuItem");
             this.mPreviousTODOPhraseToolStripMenuItem.Name = "mPreviousTODOPhraseToolStripMenuItem";
             this.mPreviousTODOPhraseToolStripMenuItem.Click += new System.EventHandler(this.mPreviousTODOPhraseToolStripMenuItem_Click);
+            // 
+            // m_GoToPageToolStrip
+            // 
+            resources.ApplyResources(this.m_GoToPageToolStrip, "m_GoToPageToolStrip");
+            this.m_GoToPageToolStrip.Name = "m_GoToPageToolStrip";
+            this.m_GoToPageToolStrip.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click_1);
             // 
             // transportToolStripMenuItem
             // 
@@ -1203,12 +1209,6 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
-            // nextPageToolStripMenuItem
-            // 
-            this.nextPageToolStripMenuItem.Name = "nextPageToolStripMenuItem";
-            resources.ApplyResources(this.nextPageToolStripMenuItem, "nextPageToolStripMenuItem");
-            this.nextPageToolStripMenuItem.Click += new System.EventHandler(this.nextPageToolStripMenuItem_Click_1);
-            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1394,7 +1394,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripMenuItem mShowSingleSectionToolStripItem;
         private System.Windows.Forms.ToolStripMenuItem mShowSectionContentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nextPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_GoToPageToolStrip;
     }
 }
 
