@@ -1030,6 +1030,21 @@ namespace Obi
 
         protected override void Playlist_MoveToNextPhrase ( object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e )
             {
+            CallEndOfPreviewPlaylist ();
+            }
+
+
+        public void TriggerEndOfPreviewPlaylist ( double time   )
+            {
+            if (time > 0 && time < Audioplayer.CurrentAudio.getAudioDuration ().getTimeDeltaAsMillisecondFloat () )
+                {
+                mRevertTime = time;
+                CallEndOfPreviewPlaylist ();
+                }
+            }
+
+                private  void CallEndOfPreviewPlaylist ()
+            {
             if (base.Audioplayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
                 {
                 // Going backward so play previous phrase
