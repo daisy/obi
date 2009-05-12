@@ -2237,7 +2237,7 @@ namespace Obi.ProjectView
                     }
                 else
                     {
-                    MessageBox.Show ( "Page do not exists" );
+                    MessageBox.Show ( "Page does not exist" );
                     }
 
                 }
