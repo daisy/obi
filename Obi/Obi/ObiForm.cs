@@ -1226,12 +1226,14 @@ namespace Obi
                         // Need the trailing slash, otherwise exported data ends up in a folder one level
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
+                        int audioFileSectionLevel = dialog.LevelSelection ;
+                        MessageBox.Show ( audioFileSectionLevel.ToString () );
                         if (!exportPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
                         {
                             exportPath += Path.DirectorySeparatorChar;
                         }
                         ProgressDialog progress = new ProgressDialog(Localizer.Message("export_progress_dialog_title"),
-                            delegate() { mSession.Presentation.ExportToZ(exportPath, mSession.Path); });
+                            delegate() { mSession.Presentation.ExportToZ(exportPath, mSession.Path ,audioFileSectionLevel ); });
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
                         mSession.PrimaryExportPath = exportPath;
