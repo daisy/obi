@@ -163,7 +163,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mPathTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>314, 22</value>
+    <value>328, 22</value>
   </data>
   <data name="mPathTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -187,7 +187,7 @@
     <value>Flat</value>
   </data>
   <data name="mSelectButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>447, 13</value>
+    <value>461, 13</value>
   </data>
   <data name="mSelectButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -220,7 +220,7 @@
     <value>Flat</value>
   </data>
   <data name="mOKButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 110</value>
+    <value>155, 107</value>
   </data>
   <data name="mOKButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -229,7 +229,7 @@
     <value>100, 28</value>
   </data>
   <data name="mOKButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="mOKButton.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>284, 110</value>
+    <value>289, 107</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -262,7 +262,7 @@
     <value>100, 28</value>
   </data>
   <data name="mCancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="mCancelButton.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -283,16 +283,16 @@
     <value>True</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 60</value>
+    <value>12, 60</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 16</value>
+    <value>218, 16</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
-    <value>Create &amp;one file per section till:</value>
+    <value>Create &amp;one audio file per section till:</value>
   </data>
   <data name="&gt;&gt;m_lblSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_lblSelectLevelForAudioFiles</value>
@@ -310,13 +310,13 @@
     <value>Create one audio file per section till:</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 60</value>
+    <value>252, 57</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 24</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_ComboSelectLevelForAudioFiles</value>
@@ -337,7 +337,7 @@
     <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>560, 129</value>
+    <value>574, 148</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt</value>
