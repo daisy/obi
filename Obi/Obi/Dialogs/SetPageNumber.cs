@@ -58,6 +58,7 @@ namespace Obi.Dialogs
                 else
                 {
                     int number = EmptyNode.SafeParsePageNumber(mNumberBox.Text);
+                    if (m_GoToPage && number == 0) return null;
                     return number > 0 ?
                         new PageNumber(number, mPageKindComboBox.SelectedIndex == 1 ? PageKind.Normal : PageKind.Front) :
                         mInitialNumber.Clone();
@@ -85,6 +86,12 @@ namespace Obi.Dialogs
             {
             
                 int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
+            // apply a check if dialog is being used for go to page
+                if (m_GoToPage && num == 0)
+                    {
+                    MessageBox.Show ( "Please enter a valid number" );
+                    return;
+                    }
                 if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
                     || (num > 0 && mPageKindComboBox.SelectedIndex == 2))
                     {
