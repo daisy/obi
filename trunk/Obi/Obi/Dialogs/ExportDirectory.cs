@@ -25,8 +25,10 @@ namespace Obi.Dialogs
             m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 1" );
             m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 2" );
             m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 3" );
+            m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 4" );
             m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 5" );
             m_ComboSelectLevelForAudioFiles.Items.Add ( "Level 6" );
+
             
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
             
