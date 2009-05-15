@@ -1363,4 +1363,28 @@ Error text: {1}</value>
   <data name="ExportError_EmptyProject" xml:space="preserve">
     <value>Can not Export. Project is empty!</value>
   </data>
+  <data name="EachLevel" xml:space="preserve">
+    <value>Each level</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>evel 1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Level 2</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>Level 3</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>Level 4</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>Level 5</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>Level 6</value>
+  </data>
+  <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
+    <value>Please enter a valid page number</value>
+  </data>
 </root>
