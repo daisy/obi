@@ -1135,6 +1135,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Each level.
+        /// </summary>
+        internal static string EachLevel {
+            get {
+                return ResourceManager.GetString("EachLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to empty.
         /// </summary>
         internal static string empty {
@@ -1475,6 +1484,60 @@ namespace Obi {
         internal static string kind_phrase {
             get {
                 return ResourceManager.GetString("kind_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to evel 1.
+        /// </summary>
+        internal static string Level1 {
+            get {
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 2.
+        /// </summary>
+        internal static string Level2 {
+            get {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 3.
+        /// </summary>
+        internal static string Level3 {
+            get {
+                return ResourceManager.GetString("Level3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 4.
+        /// </summary>
+        internal static string Level4 {
+            get {
+                return ResourceManager.GetString("Level4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 5.
+        /// </summary>
+        internal static string Level5 {
+            get {
+                return ResourceManager.GetString("Level5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level 6.
+        /// </summary>
+        internal static string Level6 {
+            get {
+                return ResourceManager.GetString("Level6", resourceCulture);
             }
         }
         
@@ -1997,6 +2060,15 @@ namespace Obi {
         internal static string PageDialog_InvalidInput {
             get {
                 return ResourceManager.GetString("PageDialog_InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid page number.
+        /// </summary>
+        internal static string PageNumber_ReEnterValidNumber {
+            get {
+                return ResourceManager.GetString("PageNumber_ReEnterValidNumber", resourceCulture);
             }
         }
         

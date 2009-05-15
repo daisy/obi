@@ -89,7 +89,7 @@ namespace Obi.Dialogs
             // apply a check if dialog is being used for go to page
                 if (m_GoToPage && num == 0)
                     {
-                    MessageBox.Show ( "Please enter a valid number" );
+                    MessageBox.Show ( Localizer.Message ( "PageNumber_ReEnterValidNumber") );
                     return;
                     }
                 if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
