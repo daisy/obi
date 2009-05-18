@@ -113,9 +113,9 @@ namespace Obi.ProjectView
         // A new metadata entry was added.
         private void Presentation_MetadataEntryAdded(object sender, MetadataEventArgs e)
         {
-        //UpdateMetaDataListForItemAdd ( e );
+        UpdateMetaDataListForItemAdd ( e );
             // Let's not try to be clever now.
-            ImportMetadata();
+            //ImportMetadata();
             //ClearTextBoxesFromCommandEvents ();
                     }
 
@@ -141,12 +141,16 @@ namespace Obi.ProjectView
                 string itemToRemove = "";
                 List<string> ExistingItemsList = new List<string> ();
                 int i = 0;
+
+                if (mMetadataListView.Items.Count == 0)
+                    return;
+
                 for (i = 0; i < items.Count ; i++)
                     {
                     string metaDataListString = mMetadataListView.Items[i].SubItems[0].Text;
                     string itemsListString = items[i].getName() ;
-                    int q = string.CompareOrdinal ( metaDataListString, itemsListString );
-                    if (q != 0)
+
+                    if (string.CompareOrdinal ( metaDataListString, itemsListString ) != 0)
                         {
                         itemToRemove = itemsListString;
                         urakawa.metadata.Metadata m = items[i];
@@ -161,12 +165,8 @@ namespace Obi.ProjectView
 
                     ExistingItemsList.Add ( itemsListString ) ;
                     }
-
-                List<string> addables = mView.AddableMetadataNames;
-                addables.Sort ();
-                addables.Add ( Localizer.Message ( "metadata_custom" ) );
-
-                for (i = i; i < mMetadataListView.Items.Count; i++)
+                // now search items below checked items and remove the item which we have just added above.
+for (i = i; i < mMetadataListView.Items.Count; i++)
                     {
                     if (string.CompareOrdinal ( itemToRemove , mMetadataListView.Items[i].SubItems[0].Text ) == 0)
                         {
@@ -222,6 +222,15 @@ namespace Obi.ProjectView
                     if (metadataObj.getName () == entryName)
                         {
                                                 mMetadataListView.Items[i].SubItems[1].Text = metadataObj.getContent ();
+
+                        // check if custom entry at last of metadataListView is selected.
+                        // move selection to one item before so as to prevent user from adding more custom entries by pressing enter multiple times there.
+                                                if (mMetadataListView.SelectedIndices.Count > 0 && mMetadataListView.SelectedIndices[0] == mMetadataListView.Items.Count - 1
+                                                    && mMetadataListView.Items.Count > 1)
+                                                    {
+                                                    mMetadataListView.Items[mMetadataListView.Items.Count - 2].Selected = true;
+                                                    }
+
                                                 break;
                                                 }
 
