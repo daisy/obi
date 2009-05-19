@@ -2298,6 +2298,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change page number.
+        /// </summary>
+        internal static string PhraseProperties_ChangePage {
+            get {
+                return ResourceManager.GetString("PhraseProperties_ChangePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value should lie between{0} and {1}.
         /// </summary>
         internal static string Pipeline_Error_NotExpectedRange {

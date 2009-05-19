@@ -1387,4 +1387,7 @@ Error text: {1}</value>
   <data name="PageNumber_ReEnterValidNumber" xml:space="preserve">
     <value>Please enter a valid page number</value>
   </data>
+  <data name="PhraseProperties_ChangePage" xml:space="preserve">
+    <value>Change page number</value>
+  </data>
 </root>
