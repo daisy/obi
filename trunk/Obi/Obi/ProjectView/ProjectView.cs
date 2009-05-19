@@ -1999,7 +1999,7 @@ namespace Obi.ProjectView
                 CompositeCommand command =
                     mPresentation.CreateCompositeCommand(Localizer.Message("update_phrase"));
 
-                if (dialog.Role == EmptyNode.Role.Page)
+                if (dialog.Role == EmptyNode.Role.Page && dialog.PageChange)
                     {
                     Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
