@@ -14,7 +14,7 @@ namespace Obi.Dialogs
         private EmptyNode mNode;                // the node to show the information for.
         private ProjectView.ProjectView mView;  // the current view.
         private bool m_IsSetCustomClass;
-        private bool m_IsPageChange ;
+        
 
         /// <summary>
         /// Create the dialog to be shown by ShowDialog() for the given view.
@@ -27,7 +27,6 @@ namespace Obi.Dialogs
             mNode = view.SelectedNodeAs<EmptyNode>();
 
             m_IsSetCustomClass = SetCustomClass;
-            m_IsPageChange = false;
         }
 
 
@@ -64,7 +63,14 @@ namespace Obi.Dialogs
         /// <summary>
         /// Is True if page change is to be invoked
         /// </summary>
-        public bool PageChange { get { return m_IsPageChange; } }
+        public bool PageChange 
+            { 
+            get 
+                { 
+                return m_chkChangePageNumber.Checked
+                    ||    ( m_comboPhraseRole.SelectedItem == EmptyNode.LOCALIZED_PAGE &&  mNode.Role_ != EmptyNode.Role.Page );
+                } 
+            }
 
         /// <summary>
         /// Get the TODO flag from the checkbox.
@@ -106,11 +112,10 @@ namespace Obi.Dialogs
             if (mNode.Role_ == EmptyNode.Role.Page)
                 {
                 m_lblPageNumberDetails.Visible = true;
-                m_comboPageNumberDetails.Visible = true;
-                m_comboPageNumberDetails.Items.Add ( string.Concat ( mNode.PageNumber.Kind.ToString (), ": ", mNode.PageNumber.Number.ToString () ) );
-                m_comboPageNumberDetails.Items.Add ( Localizer.Message("PhraseProperties_ChangePage"));
-                m_comboPageNumberDetails.SelectedIndex = 0;
-                }
+                m_txtPageNumberDetails.Visible = true;
+                m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.Number.ToString ();
+                m_chkChangePageNumber.Visible = true;
+                    }
 
             EnableCustomClassField ();
             if (m_IsSetCustomClass) SetCustomClassOnLoad ();
@@ -139,18 +144,14 @@ namespace Obi.Dialogs
             if (m_comboPhraseRole.SelectedItem == EmptyNode.LOCALIZED_PAGE && mNode.Role_ == EmptyNode.Role.Page)
                 {
                 m_lblPageNumberDetails.Visible = true;
-                m_comboPageNumberDetails.Visible = true;
-                m_comboPageNumberDetails.SelectedIndex = 0;
+                m_txtPageNumberDetails.Visible = true;
+                m_chkChangePageNumber.Visible = true;
                 }
             else
                 {
                 m_lblPageNumberDetails.Visible = false;
-                m_comboPageNumberDetails.Visible = false;
-
-                if (m_comboPhraseRole.SelectedItem == EmptyNode.LOCALIZED_PAGE)
-                    {
-                    m_IsPageChange = true;
-                    }
+                m_txtPageNumberDetails.Visible = false;
+                m_chkChangePageNumber.Visible = false;
                 }
                         }
 
@@ -164,12 +165,6 @@ namespace Obi.Dialogs
         {
 
         }
-
-        private void m_comboPageNumberDetails_SelectionChangeCommitted ( object sender, EventArgs e )
-            {
-            m_IsPageChange = 
-                m_comboPageNumberDetails.SelectedIndex == 1 ? true : false;
-            }
 
 
         }

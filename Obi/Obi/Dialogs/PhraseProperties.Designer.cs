@@ -46,8 +46,9 @@ namespace Obi.Dialogs
         this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker ();
         this.groupBox1 = new System.Windows.Forms.GroupBox ();
         this.m_lbParentsList = new System.Windows.Forms.ListBox ();
-        this.m_comboPageNumberDetails = new System.Windows.Forms.ComboBox ();
         this.m_lblPageNumberDetails = new System.Windows.Forms.Label ();
+        this.m_txtPageNumberDetails = new System.Windows.Forms.TextBox ();
+        this.m_chkChangePageNumber = new System.Windows.Forms.CheckBox ();
         this.groupBox1.SuspendLayout ();
         this.SuspendLayout ();
         // 
@@ -155,17 +156,22 @@ namespace Obi.Dialogs
         this.m_lbParentsList.Name = "m_lbParentsList";
         this.m_lbParentsList.SelectedIndexChanged += new System.EventHandler ( this.m_lbParentsList_SelectedIndexChanged );
         // 
-        // m_comboPageNumberDetails
-        // 
-        resources.ApplyResources ( this.m_comboPageNumberDetails, "m_comboPageNumberDetails" );
-        this.m_comboPageNumberDetails.FormattingEnabled = true;
-        this.m_comboPageNumberDetails.Name = "m_comboPageNumberDetails";
-        this.m_comboPageNumberDetails.SelectionChangeCommitted += new System.EventHandler ( this.m_comboPageNumberDetails_SelectionChangeCommitted );
-        // 
         // m_lblPageNumberDetails
         // 
         resources.ApplyResources ( this.m_lblPageNumberDetails, "m_lblPageNumberDetails" );
         this.m_lblPageNumberDetails.Name = "m_lblPageNumberDetails";
+        // 
+        // m_txtPageNumberDetails
+        // 
+        resources.ApplyResources ( this.m_txtPageNumberDetails, "m_txtPageNumberDetails" );
+        this.m_txtPageNumberDetails.Name = "m_txtPageNumberDetails";
+        this.m_txtPageNumberDetails.ReadOnly = true;
+        // 
+        // m_chkChangePageNumber
+        // 
+        resources.ApplyResources ( this.m_chkChangePageNumber, "m_chkChangePageNumber" );
+        this.m_chkChangePageNumber.Name = "m_chkChangePageNumber";
+        this.m_chkChangePageNumber.UseVisualStyleBackColor = true;
         // 
         // PhraseProperties
         // 
@@ -173,8 +179,9 @@ namespace Obi.Dialogs
         resources.ApplyResources ( this, "$this" );
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.CancelButton = this.m_btnCancel;
+        this.Controls.Add ( this.m_chkChangePageNumber );
+        this.Controls.Add ( this.m_txtPageNumberDetails );
         this.Controls.Add ( this.m_lblPageNumberDetails );
-        this.Controls.Add ( this.m_comboPageNumberDetails );
         this.Controls.Add ( this.groupBox1 );
         this.Controls.Add ( this.m_comboCustomClassName );
         this.Controls.Add ( this.m_txtTimeLength );
@@ -221,7 +228,8 @@ namespace Obi.Dialogs
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox m_lbParentsList;
-        private System.Windows.Forms.ComboBox m_comboPageNumberDetails;
         private System.Windows.Forms.Label m_lblPageNumberDetails;
+        private System.Windows.Forms.TextBox m_txtPageNumberDetails;
+        private System.Windows.Forms.CheckBox m_chkChangePageNumber;
     }
 }
