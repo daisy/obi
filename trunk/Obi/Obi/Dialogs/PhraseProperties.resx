@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="m_lblParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 15</value>
+    <value>22, 17</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_lblParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -157,7 +157,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtParentSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 13</value>
+    <value>149, 15</value>
   </data>
   <data name="m_txtParentSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -184,7 +184,7 @@
     <value>True</value>
   </data>
   <data name="m_lblLocationInsideSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 45</value>
+    <value>82, 54</value>
   </data>
   <data name="m_lblLocationInsideSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -217,7 +217,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="m_txtLocationInsideSection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 43</value>
+    <value>149, 54</value>
   </data>
   <data name="m_txtLocationInsideSection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -247,7 +247,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 228</value>
+    <value>61, 238</value>
   </data>
   <data name="m_lblPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -283,7 +283,7 @@
     <value>Flat</value>
   </data>
   <data name="m_comboPhraseRole.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 225</value>
+    <value>149, 235</value>
   </data>
   <data name="m_comboPhraseRole.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -313,7 +313,7 @@
     <value>True</value>
   </data>
   <data name="m_lblCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 260</value>
+    <value>13, 272</value>
   </data>
   <data name="m_lblCustomClassName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -349,7 +349,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkUsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 287</value>
+    <value>149, 323</value>
   </data>
   <data name="m_chkUsed.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -358,7 +358,7 @@
     <value>57, 20</value>
   </data>
   <data name="m_chkUsed.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="m_chkUsed.Text" xml:space="preserve">
     <value>&amp;Used</value>
@@ -385,7 +385,7 @@
     <value>Flat</value>
   </data>
   <data name="m_chkToDo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 315</value>
+    <value>149, 351</value>
   </data>
   <data name="m_chkToDo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -394,7 +394,7 @@
     <value>60, 20</value>
   </data>
   <data name="m_chkToDo.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="m_chkToDo.Text" xml:space="preserve">
     <value>&amp;To do</value>
@@ -418,7 +418,7 @@
     <value>Flat</value>
   </data>
   <data name="m_btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 379</value>
+    <value>149, 379</value>
   </data>
   <data name="m_btnOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -427,7 +427,7 @@
     <value>100, 28</value>
   </data>
   <data name="m_btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="m_btnOk.Text" xml:space="preserve">
     <value>&amp;OK</value>
@@ -460,7 +460,7 @@
     <value>100, 28</value>
   </data>
   <data name="m_btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="m_btnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -484,7 +484,7 @@
     <value>True</value>
   </data>
   <data name="m_lblTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 197</value>
+    <value>80, 207</value>
   </data>
   <data name="m_lblTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -517,7 +517,7 @@
     <value>Bottom, Left, Right</value>
   </data>
   <data name="m_txtTimeLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 195</value>
+    <value>149, 205</value>
   </data>
   <data name="m_txtTimeLength.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -547,7 +547,7 @@
     <value>Flat</value>
   </data>
   <data name="m_comboCustomClassName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 256</value>
+    <value>148, 269</value>
   </data>
   <data name="m_comboCustomClassName.Size" type="System.Drawing.Size, System.Drawing">
     <value>367, 24</value>
@@ -583,7 +583,7 @@
     <value>0</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 72</value>
+    <value>12, 83</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>504, 115</value>
@@ -643,7 +643,7 @@
     <value>True</value>
   </data>
   <data name="m_lblPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 272</value>
+    <value>8, 302</value>
   </data>
   <data name="m_lblPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 16</value>
@@ -673,7 +673,7 @@
     <value>Page number details:</value>
   </data>
   <data name="m_txtPageNumberDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 250</value>
+    <value>149, 299</value>
   </data>
   <data name="m_txtPageNumberDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 22</value>
@@ -703,13 +703,13 @@
     <value>True</value>
   </data>
   <data name="m_chkChangePageNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 350</value>
+    <value>326, 301</value>
   </data>
   <data name="m_chkChangePageNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 20</value>
   </data>
   <data name="m_chkChangePageNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="m_chkChangePageNumber.Text" xml:space="preserve">
     <value>Change pa&amp;ge no.</value>
