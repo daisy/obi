@@ -113,7 +113,7 @@ namespace Obi.Dialogs
                 {
                 m_lblPageNumberDetails.Visible = true;
                 m_txtPageNumberDetails.Visible = true;
-                m_txtPageNumberDetails.Text = mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.Number.ToString ();
+                m_txtPageNumberDetails.Text =                     mNode.PageNumber.Kind.ToString () + ", #" + mNode.PageNumber.ToString ();
                 m_chkChangePageNumber.Visible = true;
                     }
 
