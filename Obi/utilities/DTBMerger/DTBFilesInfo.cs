@@ -13,6 +13,8 @@ namespace renamer
         private string m_NcxPath;
         private string m_BaseDirectory;
         private TimeSpan m_TotalTime;
+        private string m_Title;
+        private string m_Identifier;
         private List<string> m_SmilFilesList;
         private List<string> m_SmilPathList;
         private List<string> m_AudioFilesList;
@@ -36,6 +38,10 @@ namespace renamer
         public string BaseDirectory { get { return m_BaseDirectory; } }
 
         public TimeSpan TotalTime { get { return m_TotalTime; } }
+
+        public string Title { get { return m_Title; } }
+
+        public string Identifier { get { return  m_Identifier; } } 
 
         public List<string> SmilFilesList { get { return m_SmilFilesList; } }
 
@@ -61,7 +67,28 @@ namespace renamer
 
             string baseDirectoryPath = Directory.GetParent ( m_OpfPath ).FullName;
 
+
+            XmlNodeList dcMetaDataList = XmlDoc.GetElementsByTagName ( "dc-metadata" )[0].ChildNodes;
+
+            foreach (XmlNode n in dcMetaDataList)
+                {
+                //MessageBox.Show ( n.LocalName );
+                if (n.LocalName == "Title")
+                    {
+                    m_Title = n.InnerText;
+                    //MessageBox.Show ( m_Title );
+                    }
+
+                if (n.LocalName == "Identifier")
+                    {
+                    m_Identifier = n.InnerText;
+                    //MessageBox.Show ( m_Identifier );
+                    }
+                }
             
+
+            
+
             // extract total time of DTD
             XmlNodeList metaNodeList = XmlDoc.GetElementsByTagName ( "meta" );
             foreach (XmlNode n in metaNodeList)

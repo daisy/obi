@@ -35,7 +35,8 @@ namespace renamer
                 }
 
             // update DTB time w.r.t. combined time of all DTBs
-            double totalTime = 0;
+            TimeSpan totalTime = new TimeSpan (0);
+            
             XmlNode timeNode_FirstDTD = null;
 
             // extract time from first DTD
@@ -46,7 +47,7 @@ namespace renamer
                     {
                     timeNode_FirstDTD = n;
                     string timeString = n.Attributes.GetNamedItem ("content").Value  ;
-                    totalTime +=  TimeSpan.Parse ( timeString ).TotalMilliseconds;
+                    totalTime =  TimeSpan.Parse ( timeString )  ;
                     }
                 }
 
@@ -60,15 +61,13 @@ namespace renamer
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalTime")
                         {
                         string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                        totalTime += TimeSpan.Parse ( timeString ).TotalMilliseconds;
+                        totalTime = totalTime.Add ( TimeSpan.Parse ( timeString ) ) ;
                         }
                     }
                 } // document iterator ends
-            
-            TimeSpan ts = new TimeSpan ( 0 ,0 ,0,
-                ((int)totalTime / 1000), ((int)totalTime % 1000) );
-            string tsString = ts.Hours.ToString () + ":" + ts.Minutes.ToString () + ":" + ts.Seconds.ToString () + "." + ts.Milliseconds.ToString ();
-            //MessageBox.Show ( tsString );
+
+            string tsString = GetTimeString ( totalTime );
+            MessageBox.Show ( tsString );
 
             timeNode_FirstDTD.Attributes.GetNamedItem ( "content" ).Value = tsString;
 
@@ -257,9 +256,14 @@ namespace renamer
                     int temp = int.Parse ( playOrderString );
                     if (temp > maxPlayOrderNav) maxPlayOrderNav= temp;
 
-                    playOrderString = n.Attributes.GetNamedItem ( "value" ).Value;
-                    temp = int.Parse ( playOrderString );
-                    if (temp > maxPageValue) maxPageValue = temp;
+                    string typeString = n.Attributes.GetNamedItem ( "type" ).Value;
+                    if (typeString == "normal" )
+                        {
+                        string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
+                        temp = int.Parse ( valueString);
+                        if (temp > maxPageValue) maxPageValue = temp;
+                        }
+
                     }
                 }
 
@@ -280,11 +284,19 @@ namespace renamer
                         if (temp > playOrderNavPoints ) playOrderNavPoints = temp;
                         //MessageBox.Show ( temp.ToString () );
                         n.Attributes.GetNamedItem ( "playOrder" ).Value = (maxPlayOrderNav + temp).ToString ();
-
-                        firstNavMapNode.AppendChild ( firstNcx.ImportNode ( n , true) );
+                        //MessageBox.Show ( maxPlayOrderNav.ToString ()  + ":" + temp.ToString ());
+                        
                         }
                     }
 
+                foreach (XmlNode n in NcxDocumentsList[i].GetElementsByTagName("navMap")[0].ChildNodes  )
+                    {
+                    if ( n.LocalName == "navPoint")
+                        {
+                firstNavMapNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
+                MessageBox.Show ( n.LocalName );
+                        }
+                    }
 
                 XmlNodeList pagePoints = NcxDocumentsList[i].GetElementsByTagName ( "pageTarget" );
                 //int playOrderPagePoints = 0;
@@ -301,11 +313,18 @@ namespace renamer
 
                         //firstPageListNode.AppendChild ( firstNcx.ImportNode ( n , true) );
 
-                        playOrderString = n.Attributes.GetNamedItem ( "value" ).Value;
-                        temp = int.Parse ( playOrderString );
-                        if (temp > pageValue) pageValue = temp;
-                        n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + temp).ToString ();
+                        string typeString = n.Attributes.GetNamedItem ( "type" ).Value;
+                        if (typeString == "normal" )
+                            {
+                            string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
+                            temp = int.Parse ( valueString );
+                            if (temp > pageValue) pageValue = temp;
+                            n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + temp).ToString ();
 
+                            XmlNode textNode = n.FirstChild.FirstChild;
+                            if ( textNode.LocalName == "text") 
+                                textNode.InnerText = (maxPageValue + temp).ToString ();
+                            }
                         firstPageListNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
                         }
                     }
@@ -353,7 +372,14 @@ namespace renamer
                     {
                     string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
                     TimeSpan smilTime = TimeSpan.Parse ( timeString );
-                    n.Attributes.GetNamedItem ( "content" ).Value = baseTime.Add ( smilTime ).ToString ();
+                    smilTime = baseTime.Add ( smilTime );
+                    n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString (smilTime) ;
+                    }
+
+                if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:uid")
+                    {
+                    MessageBox.Show ( m_DTBFilesInfoList[0].Identifier );
+                    n.Attributes.GetNamedItem ( "content" ).Value = m_DTBFilesInfoList[0].Identifier;
                     }
                 }
 
@@ -385,6 +411,107 @@ namespace renamer
                 }// DTB iterator ends
 
             }
+
+
+        // Convert a number to roman numerals (lowercase)
+        private string ToRoman ( int n )
+            {
+            if (n <= 0) throw new Exception ( "Number must be greater than 0." );
+            string roman = "";
+            // Thousands
+            while (n >= 1000)
+                {
+                roman += "m";
+                n -= 1000;
+                }
+            // Hundreds
+            if (n >= 900)
+                {
+                roman += "cm";
+                n -= 900;
+                }
+            else if (n >= 500)
+                {
+                roman += "d";
+                n -= 500;
+                }
+            else if (n >= 400)
+                {
+                roman += "cd";
+                n -= 400;
+                }
+            while (n >= 100)
+                {
+                roman += "c";
+                n -= 100;
+                }
+            // Dozens
+            if (n >= 90)
+                {
+                roman += "xc";
+                n -= 90;
+                }
+            else if (n >= 50)
+                {
+                roman += "l";
+                n -= 50;
+                }
+            else if (n >= 40)
+                {
+                roman += "xl";
+                n -= 40;
+                }
+            while (n >= 10)
+                {
+                roman += "x";
+                n -= 10;
+                }
+            // Units
+            if (n >= 9)
+                {
+                roman += "ix";
+                n -= 9;
+                }
+            else if (n >= 5)
+                {
+                roman += "v";
+                n -= 5;
+                }
+            else if (n >= 4)
+                {
+                roman += "iv";
+                n -= 4;
+                }
+            while (n >= 1)
+                {
+                roman += "i";
+                --n;
+                }
+            return roman;
+            }
+
+        private string GetTimeString ( TimeSpan time )
+            {
+            return time.ToString ();
+            string strHours = time.Hours.ToString ();
+            if (strHours.Length < 2)
+                strHours = "0" + strHours;
+
+            string strMinutes = time.Minutes.ToString ();
+            if (strMinutes.Length < 2)
+                strMinutes = "0" + strMinutes;
+
+            string strSeconds = time.Seconds.ToString ();
+            if (strSeconds.Length < 2)
+                strSeconds = "0" + strSeconds;
+
+            string strMilliSeconds = time.Milliseconds.ToString ();
+            //if (strMilliSeconds.Length > 3)
+                //strMilliSeconds = strMilliSeconds.Substring ( 0, 3 );
+
+            return strHours + ":" + strMinutes + ":" + strSeconds + "." + strMilliSeconds;
+            }
+
 
 
         }
