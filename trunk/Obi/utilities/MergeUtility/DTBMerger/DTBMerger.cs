@@ -39,6 +39,13 @@ namespace DTBMerger
             RenameDTDFiles ( inputParameterList );
             DTBIntegrator integrator = new DTBIntegrator ( inputParameterList );
             integrator.IntegrateDTBs ();
+
+            // delete temporary directories, all directories excluding first directory in list
+            for (int i = 1; i < inputParameterList.Count; i++)
+                {
+                string dirPathToDelete  = Directory.GetParent ( inputParameterList[i] ).FullName;
+                Directory.Delete ( dirPathToDelete, true );
+                }
             }
 
 
