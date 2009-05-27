@@ -12,18 +12,26 @@ namespace DTBMerger
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
 
-        public DTBIntegrator ( string [] pathsList)
+        public DTBIntegrator (List<string> pathsList)
             {
             m_DTBFilesInfoList = new List<DTBFilesInfo> ();
 
-            for (int i = 0; i < pathsList.Length; i++)
+            for (int i = 0; i < pathsList.Count; i++)
                 {
                 m_DTBFilesInfoList.Add ( new DTBFilesInfo ( pathsList[i] ) );
                 }
 
             }
 
-        public void IntegrateOpf ()
+        public void IntegrateDTBs ()
+            {
+            IntegrateOpf ();
+            IntegrateNcx ();
+            UpdateAllSmilFiles ();
+            MoveSmilAndAudioFiles ();
+            }
+
+        protected void IntegrateOpf ()
             {
 
             List<XmlDocument> opfDocumentsList = new List<XmlDocument> ();
@@ -144,7 +152,7 @@ namespace DTBMerger
             writer = null;
             }
 
-        public void IntegrateNcx ()
+        protected void IntegrateNcx ()
             {
 
             List<XmlDocument> NcxDocumentsList = new List<XmlDocument> ();
@@ -294,7 +302,6 @@ namespace DTBMerger
                     if ( n.LocalName == "navPoint")
                         {
                 firstNavMapNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
-                MessageBox.Show ( n.LocalName );
                         }
                     }
 
@@ -342,13 +349,12 @@ namespace DTBMerger
             WriteXmlDocumentToFile ( firstNcx, m_DTBFilesInfoList[0].NcxPath);
             }
 
-        public void UpdateAllSmilFiles ()
+        protected void UpdateAllSmilFiles ()
             {
             TimeSpan initialTime = m_DTBFilesInfoList[0].TotalTime;
 
             for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
                 {
-                MessageBox.Show ( initialTime.ToString () );
                 foreach (string s in m_DTBFilesInfoList[i].SmilFilePathsList)
                     {
                     UpdateSmilFile ( s, initialTime );
@@ -378,7 +384,6 @@ namespace DTBMerger
 
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:uid")
                     {
-                    MessageBox.Show ( m_DTBFilesInfoList[0].Identifier );
                     n.Attributes.GetNamedItem ( "content" ).Value = m_DTBFilesInfoList[0].Identifier;
                     }
                 }
@@ -388,7 +393,7 @@ namespace DTBMerger
 
 
 
-        public void MoveSmilAndAudioFiles ()
+        protected void MoveSmilAndAudioFiles ()
             {
             string baseDirectory = m_DTBFilesInfoList[0].BaseDirectory;
             for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
