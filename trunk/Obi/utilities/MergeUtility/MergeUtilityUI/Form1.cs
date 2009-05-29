@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace MergeUtilityUI
     {
-    public partial class Form1 : Form
+    public partial class m_formDaisy3Merger : Form
         {
-        public Form1 ()
+        public m_formDaisy3Merger ()
             {
             InitializeComponent ();
             }
