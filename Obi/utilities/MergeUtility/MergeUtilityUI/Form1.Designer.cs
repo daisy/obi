@@ -37,6 +37,8 @@ namespace MergeUtilityUI
                 this.m_BtnMerge = new System.Windows.Forms.Button();
                 this.m_BtnOutputDirectory = new System.Windows.Forms.Button();
                 this.m_txtDirectoryPath = new System.Windows.Forms.TextBox();
+                this.m_btnUP = new System.Windows.Forms.Button();
+                this.m_BtnDown = new System.Windows.Forms.Button();
                 this.m_grpListOPFfiles.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -71,37 +73,40 @@ namespace MergeUtilityUI
                 // m_btnAdd
                 // 
                 this.m_btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_btnAdd.Location = new System.Drawing.Point(49, 98);
+                this.m_btnAdd.Location = new System.Drawing.Point(49, 99);
                 this.m_btnAdd.Name = "m_btnAdd";
                 this.m_btnAdd.Size = new System.Drawing.Size(75, 23);
                 this.m_btnAdd.TabIndex = 2;
                 this.m_btnAdd.Text = "&ADD";
                 this.m_btnAdd.UseVisualStyleBackColor = true;
+                this.m_btnAdd.Click += new System.EventHandler(this.m_btnAdd_Click);
                 // 
                 // m_BtnDelete
                 // 
                 this.m_BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_BtnDelete.Location = new System.Drawing.Point(49, 136);
+                this.m_BtnDelete.Location = new System.Drawing.Point(49, 144);
                 this.m_BtnDelete.Name = "m_BtnDelete";
                 this.m_BtnDelete.Size = new System.Drawing.Size(75, 23);
                 this.m_BtnDelete.TabIndex = 3;
                 this.m_BtnDelete.Text = "&Delete";
                 this.m_BtnDelete.UseVisualStyleBackColor = true;
+                this.m_BtnDelete.Click += new System.EventHandler(this.m_BtnDelete_Click);
                 // 
                 // m_BtnReset
                 // 
                 this.m_BtnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_BtnReset.Location = new System.Drawing.Point(49, 174);
+                this.m_BtnReset.Location = new System.Drawing.Point(49, 192);
                 this.m_BtnReset.Name = "m_BtnReset";
                 this.m_BtnReset.Size = new System.Drawing.Size(75, 23);
                 this.m_BtnReset.TabIndex = 4;
                 this.m_BtnReset.Text = "&Reset";
                 this.m_BtnReset.UseVisualStyleBackColor = true;
+                this.m_BtnReset.Click += new System.EventHandler(this.m_BtnReset_Click);
                 // 
                 // m_BtnMerge
                 // 
                 this.m_BtnMerge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_BtnMerge.Location = new System.Drawing.Point(49, 216);
+                this.m_BtnMerge.Location = new System.Drawing.Point(49, 232);
                 this.m_BtnMerge.Name = "m_BtnMerge";
                 this.m_BtnMerge.Size = new System.Drawing.Size(75, 23);
                 this.m_BtnMerge.TabIndex = 5;
@@ -117,6 +122,7 @@ namespace MergeUtilityUI
                 this.m_BtnOutputDirectory.TabIndex = 6;
                 this.m_BtnOutputDirectory.Text = "&Select Output Directory";
                 this.m_BtnOutputDirectory.UseVisualStyleBackColor = true;
+                this.m_BtnOutputDirectory.Click += new System.EventHandler(this.m_BtnOutputDirectory_Click);
                 // 
                 // m_txtDirectoryPath
                 // 
@@ -126,11 +132,33 @@ namespace MergeUtilityUI
                 this.m_txtDirectoryPath.Size = new System.Drawing.Size(311, 20);
                 this.m_txtDirectoryPath.TabIndex = 7;
                 // 
+                // m_btnUP
+                // 
+                this.m_btnUP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.m_btnUP.Location = new System.Drawing.Point(151, 144);
+                this.m_btnUP.Name = "m_btnUP";
+                this.m_btnUP.Size = new System.Drawing.Size(75, 23);
+                this.m_btnUP.TabIndex = 8;
+                this.m_btnUP.Text = " UP";
+                this.m_btnUP.UseVisualStyleBackColor = true;
+                // 
+                // m_BtnDown
+                // 
+                this.m_BtnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.m_BtnDown.Location = new System.Drawing.Point(151, 192);
+                this.m_BtnDown.Name = "m_BtnDown";
+                this.m_BtnDown.Size = new System.Drawing.Size(75, 23);
+                this.m_BtnDown.TabIndex = 9;
+                this.m_BtnDown.Text = "DOWN";
+                this.m_BtnDown.UseVisualStyleBackColor = true;
+                // 
                 // m_formDaisy3Merger
                 // 
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.ClientSize = new System.Drawing.Size(629, 355);
+                this.Controls.Add(this.m_BtnDown);
+                this.Controls.Add(this.m_btnUP);
                 this.Controls.Add(this.m_txtDirectoryPath);
                 this.Controls.Add(this.m_BtnOutputDirectory);
                 this.Controls.Add(this.m_BtnMerge);
@@ -158,6 +186,8 @@ namespace MergeUtilityUI
         private System.Windows.Forms.Button m_BtnMerge;
         private System.Windows.Forms.Button m_BtnOutputDirectory;
         private System.Windows.Forms.TextBox m_txtDirectoryPath;
+        private System.Windows.Forms.Button m_btnUP;
+        private System.Windows.Forms.Button m_BtnDown;
         }
     }
 
