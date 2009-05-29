@@ -38,6 +38,8 @@
     <Compile Include="DTBIntegrator.cs" />
     <Compile Include="DTBMerger.cs" />
     <Compile Include="DTBRenamer.cs" />
+    <Compile Include="PipelineInterface\ScriptParameter.cs" />
+    <Compile Include="PipelineInterface\ScriptParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
