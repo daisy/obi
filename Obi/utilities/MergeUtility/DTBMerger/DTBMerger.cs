@@ -10,9 +10,12 @@ namespace DTBMerger
         {
         private String []  m_InputPaths;
         private string m_OutputDirectory;
+        private int m_ProgressInfo;
 
         public DTBMerger ( string[] inputPaths , string outputDirectory )
             {
+            m_ProgressInfo = 0;
+
             if (inputPaths.Length == 0)
                 throw new System.Exception ( "No input DTBs" );
 
@@ -33,19 +36,25 @@ namespace DTBMerger
             m_OutputDirectory = outputDirectory ;
             }
 
+        public int ProgressInfo { get { return m_ProgressInfo; } }
+
         public void MergeDTDs ()
             {
+            m_ProgressInfo = 0;
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ();
             RenameDTDFiles ( inputParameterList );
+            m_ProgressInfo = 70;
             DTBIntegrator integrator = new DTBIntegrator ( inputParameterList );
             integrator.IntegrateDTBs ();
 
+            m_ProgressInfo = 90;
             // delete temporary directories, all directories excluding first directory in list
             for (int i = 1; i < inputParameterList.Count; i++)
                 {
                 string dirPathToDelete  = Directory.GetParent ( inputParameterList[i] ).FullName;
                 Directory.Delete ( dirPathToDelete, true );
                 }
+            m_ProgressInfo = 100;
             }
 
 
@@ -59,6 +68,7 @@ namespace DTBMerger
 
             inputParameterList.Add ( opfPath );
 
+            m_ProgressInfo += (60 / m_InputPaths.Length);
             // copy all remaining DTBs in their folders
             for (int i = 1; i < m_InputPaths.Length; i++)
                 {
@@ -70,6 +80,7 @@ namespace DTBMerger
                 copyToDirectory );
 
                 inputParameterList.Add ( opfPath );
+                m_ProgressInfo += (60 / m_InputPaths.Length);
 }
 
 return inputParameterList;
