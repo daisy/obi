@@ -39,6 +39,7 @@ namespace MergeUtilityUI
                 this.m_txtDirectoryPath = new System.Windows.Forms.TextBox();
                 this.m_btnUP = new System.Windows.Forms.Button();
                 this.m_BtnDown = new System.Windows.Forms.Button();
+                this.m_BtnExit = new System.Windows.Forms.Button();
                 this.m_grpListOPFfiles.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -112,6 +113,7 @@ namespace MergeUtilityUI
                 this.m_BtnMerge.TabIndex = 5;
                 this.m_BtnMerge.Text = "&Merge";
                 this.m_BtnMerge.UseVisualStyleBackColor = true;
+                this.m_BtnMerge.Click += new System.EventHandler(this.m_BtnMerge_Click);
                 // 
                 // m_BtnOutputDirectory
                 // 
@@ -141,6 +143,7 @@ namespace MergeUtilityUI
                 this.m_btnUP.TabIndex = 8;
                 this.m_btnUP.Text = " UP";
                 this.m_btnUP.UseVisualStyleBackColor = true;
+                this.m_btnUP.Click += new System.EventHandler(this.m_btnUP_Click);
                 // 
                 // m_BtnDown
                 // 
@@ -151,12 +154,24 @@ namespace MergeUtilityUI
                 this.m_BtnDown.TabIndex = 9;
                 this.m_BtnDown.Text = "DOWN";
                 this.m_BtnDown.UseVisualStyleBackColor = true;
+                this.m_BtnDown.Click += new System.EventHandler(this.m_BtnDown_Click);
+                // 
+                // m_BtnExit
+                // 
+                this.m_BtnExit.Location = new System.Drawing.Point(49, 266);
+                this.m_BtnExit.Name = "m_BtnExit";
+                this.m_BtnExit.Size = new System.Drawing.Size(75, 23);
+                this.m_BtnExit.TabIndex = 10;
+                this.m_BtnExit.Text = "Exit";
+                this.m_BtnExit.UseVisualStyleBackColor = true;
+                this.m_BtnExit.Click += new System.EventHandler(this.m_BtnExit_Click);
                 // 
                 // m_formDaisy3Merger
                 // 
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.ClientSize = new System.Drawing.Size(629, 355);
+                this.Controls.Add(this.m_BtnExit);
                 this.Controls.Add(this.m_BtnDown);
                 this.Controls.Add(this.m_btnUP);
                 this.Controls.Add(this.m_txtDirectoryPath);
@@ -188,6 +203,7 @@ namespace MergeUtilityUI
         private System.Windows.Forms.TextBox m_txtDirectoryPath;
         private System.Windows.Forms.Button m_btnUP;
         private System.Windows.Forms.Button m_BtnDown;
+        private System.Windows.Forms.Button m_BtnExit;
         }
     }
 
