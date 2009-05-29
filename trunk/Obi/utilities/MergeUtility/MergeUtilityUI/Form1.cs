@@ -56,28 +56,39 @@ namespace MergeUtilityUI
         }
 
         private void m_btnUP_Click(object sender, EventArgs e)
-        {
-            
+        {            
             if (m_lbOPFfiles.SelectedIndex != 0 && m_lbOPFfiles.SelectedIndex != -1)
             {
                 object item = m_lbOPFfiles.SelectedItem;
                 int index = m_lbOPFfiles.SelectedIndex;
                 m_lbOPFfiles.Items.RemoveAt(index);
+
                 m_lbOPFfiles.Items.Insert(index - 1, item);
             }         
         }
 
         private void m_BtnDown_Click(object sender, EventArgs e)
         {
-            int lCount = m_lbOPFfiles.Items.Count;
-            int index = m_lbOPFfiles.SelectedIndex;
-            if (m_lbOPFfiles.SelectedIndex != m_lbOPFfiles.Items.Count-1 && m_lbOPFfiles.SelectedIndex != -1)
+            try
+            {
+                int lCount = m_lbOPFfiles.Items.Count;
+                int index = m_lbOPFfiles.SelectedIndex;
+
+                if (m_lbOPFfiles.Items.Count != 0)
                 {
-                    object item = m_lbOPFfiles.SelectedItem;
-                    m_lbOPFfiles.Items.RemoveAt(index);
-                    m_lbOPFfiles.Items.Insert(index + 1, item);
-                  
+                    if (m_lbOPFfiles.SelectedIndex != m_lbOPFfiles.Items.Count - 1 && m_lbOPFfiles.SelectedIndex != -1)
+                    {
+                        object item = m_lbOPFfiles.SelectedItem;
+                        m_lbOPFfiles.Items.RemoveAt(index);
+                        m_lbOPFfiles.Items.Insert(index + 1, item);
+
+                    }
                 }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
         }
 
         private void m_BtnMerge_Click(object sender, EventArgs e)
@@ -96,7 +107,10 @@ namespace MergeUtilityUI
         {
             Close();
         }
-
         
       }//class
     }//namespace
+
+//class DTBinfo.book title,author we can call
+//aligning the buttons in form
+//Exit->Cancel button
