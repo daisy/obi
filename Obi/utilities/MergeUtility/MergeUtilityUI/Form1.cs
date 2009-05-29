@@ -5,11 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
+using System.ComponentModel;
 
 namespace MergeUtilityUI
     {
+    
     public partial class m_formDaisy3Merger : Form
         {
+        
+      //  string a = m_txtDirectoryPath.Text;
         public m_formDaisy3Merger ()
             {
             InitializeComponent ();
@@ -23,8 +28,8 @@ namespace MergeUtilityUI
             select_opfFile.RestoreDirectory = true;
             if (select_opfFile.ShowDialog(this) == DialogResult.OK)
             {
-                m_lbOPFfiles.Items.Add(select_opfFile.SafeFileName);                     
-            }
+                m_lbOPFfiles.Items.Add(select_opfFile.FileName);                     
+            }                 
         }
 
         private void m_BtnOutputDirectory_Click(object sender, EventArgs e)
@@ -50,5 +55,48 @@ namespace MergeUtilityUI
             m_lbOPFfiles.Items.Clear();
         }
 
+        private void m_btnUP_Click(object sender, EventArgs e)
+        {
+            
+            if (m_lbOPFfiles.SelectedIndex != 0 && m_lbOPFfiles.SelectedIndex != -1)
+            {
+                object item = m_lbOPFfiles.SelectedItem;
+                int index = m_lbOPFfiles.SelectedIndex;
+                m_lbOPFfiles.Items.RemoveAt(index);
+                m_lbOPFfiles.Items.Insert(index - 1, item);
+            }         
         }
-    }
+
+        private void m_BtnDown_Click(object sender, EventArgs e)
+        {
+            int lCount = m_lbOPFfiles.Items.Count;
+            int index = m_lbOPFfiles.SelectedIndex;
+            if (m_lbOPFfiles.SelectedIndex != m_lbOPFfiles.Items.Count-1 && m_lbOPFfiles.SelectedIndex != -1)
+                {
+                    object item = m_lbOPFfiles.SelectedItem;
+                    m_lbOPFfiles.Items.RemoveAt(index);
+                    m_lbOPFfiles.Items.Insert(index + 1, item);
+                  
+                }
+        }
+
+        private void m_BtnMerge_Click(object sender, EventArgs e)
+        {
+            string[] listOfOpfFiles =  new string[m_lbOPFfiles.Items.Count];
+            for (int i = 0; i < m_lbOPFfiles.Items.Count;i++ )
+            {
+                listOfOpfFiles[i] = m_lbOPFfiles.Items[i].ToString();
+            }
+          
+            DTBMerger.DTBMerger obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text);
+            obj.MergeDTDs();
+        }
+
+        private void m_BtnExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        
+      }//class
+    }//namespace
