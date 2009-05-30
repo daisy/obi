@@ -43,10 +43,20 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressDialogDTB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressDialogDTB.Designer.cs">
+      <DependentUpon>ProgressDialogDTB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressDialogDTB.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProgressDialogDTB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
