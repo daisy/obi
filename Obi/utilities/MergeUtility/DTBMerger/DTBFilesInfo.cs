@@ -51,6 +51,19 @@ namespace DTBMerger
 
         public List<string> AudioFilePathsList { get { return m_AudioFilePathsList; } }
 
+        public string title
+        {
+            get { return m_Title; }
+        }
+        public TimeSpan time
+        {
+            get{ return m_TotalTime; }
+        }
+        public string ID
+        {
+            get{ return m_Identifier; }
+        }
+
         public void ExtractFileNamesFromOpf ( string path   )
             {
             m_OpfPath = path;
