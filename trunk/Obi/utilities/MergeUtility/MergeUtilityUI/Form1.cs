@@ -61,6 +61,8 @@ namespace MergeUtilityUI
             {
                 object item = m_lbOPFfiles.SelectedItem;
                 int index = m_lbOPFfiles.SelectedIndex;
+                MessageBox.Show(item.ToString());
+                MessageBox.Show(index.ToString());
                 m_lbOPFfiles.Items.RemoveAt(index);
 
                 m_lbOPFfiles.Items.Insert(index - 1, item);
@@ -71,7 +73,6 @@ namespace MergeUtilityUI
         {
             try
             {
-                int lCount = m_lbOPFfiles.Items.Count;
                 int index = m_lbOPFfiles.SelectedIndex;
 
                 if (m_lbOPFfiles.Items.Count != 0)
@@ -107,10 +108,19 @@ namespace MergeUtilityUI
         {
             Close();
         }
-        
-      }//class
-    }//namespace
 
-//class DTBinfo.book title,author we can call
-//aligning the buttons in form
-//Exit->Cancel button
+        private void m_lbOPFfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_lbOPFfiles.SelectedIndex >= 0)
+            {
+                m_Txt.Clear();
+                MessageBox.Show(m_lbOPFfiles.SelectedItem.ToString());
+                DTBMerger.DTBFilesInfo fileInfo = new DTBMerger.DTBFilesInfo(m_lbOPFfiles.SelectedItem.ToString());
+                m_Txt.Multiline = true;
+                m_Txt.Text = fileInfo.title + Environment.NewLine + fileInfo.ID + Environment.NewLine + fileInfo.time;
+            }
+            
+        }
+
+       }//class
+    }//namespace
