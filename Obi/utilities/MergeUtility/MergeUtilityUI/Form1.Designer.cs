@@ -161,6 +161,7 @@ namespace MergeUtilityUI
                 // 
                 // m_btnUP
                 // 
+                this.m_btnUP.Enabled = false;
                 this.m_btnUP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_btnUP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_btnUP.Location = new System.Drawing.Point(692, 47);
@@ -173,6 +174,7 @@ namespace MergeUtilityUI
                 // 
                 // m_BtnDown
                 // 
+                this.m_BtnDown.Enabled = false;
                 this.m_BtnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_BtnDown.Location = new System.Drawing.Point(692, 106);
@@ -297,6 +299,7 @@ namespace MergeUtilityUI
                 // 
                 // m_BtnValidateInput
                 // 
+                this.m_BtnValidateInput.Enabled = false;
                 this.m_BtnValidateInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnValidateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_BtnValidateInput.Location = new System.Drawing.Point(14, 87);
