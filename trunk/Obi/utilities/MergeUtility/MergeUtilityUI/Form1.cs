@@ -52,12 +52,40 @@ namespace MergeUtilityUI
             if (saveDir.ShowDialog(this) == DialogResult.OK)
             {
                 m_txtDirectoryPath.Text = saveDir.SelectedPath;
+                checkOutDirExists(m_txtDirectoryPath.Text);
             }
             if (m_txtDirectoryPath.Text.Length > 0)
             {
                 m_StatusLabel.Text = " You have selected the path " + saveDir.SelectedPath + " to save the merged OPF files ";
             }
         }//m_BtnOutputDirectory_Click
+
+        private void checkOutDirExists(string outPath)
+        {
+            if (Directory.Exists(m_txtDirectoryPath.Text))
+            {
+                string[] fileEntries = Directory.GetFiles(m_txtDirectoryPath.Text);
+                string[] subdirectoryEntries = Directory.GetDirectories(m_txtDirectoryPath.Text);
+                if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
+                {
+                    if (MessageBox.Show("Directory" + " " + m_txtDirectoryPath.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        Directory.Delete(m_txtDirectoryPath.Text, true);
+                    else
+                    {
+                        FolderBrowserDialog saveDire = new FolderBrowserDialog();
+                        saveDire.ShowNewFolderButton = true;
+                        saveDire.SelectedPath = m_txtDirectoryPath.Text;
+
+                        if (saveDire.ShowDialog(this) == DialogResult.OK)
+                        {
+                            m_txtDirectoryPath.Text = saveDire.SelectedPath;
+                            checkOutDirExists(m_txtDirectoryPath.Text);
+
+                        }
+                    }
+                }
+            }
+        }         
 
         private void m_BtnDelete_Click(object sender, EventArgs e)
         {
@@ -205,8 +233,6 @@ namespace MergeUtilityUI
                 m_txtDTBookInfo.Multiline = true;
                 m_txtDTBookInfo.Text = fileInfo.title + Environment.NewLine + fileInfo.ID + Environment.NewLine + fileInfo.time;
             }
-            MessageBox.Show(m_lbOPFfiles.SelectedItem.ToString());
-            m_StatusLabel.Text = " You have selected " + m_lbOPFfiles.SelectedItem.ToString() + " from the ListBox.";
         }//m_lbOPFfiles_SelectedIndexChanged
 
         private void m_BtnValidateInput_Click(object sender, EventArgs e)
@@ -225,7 +251,12 @@ namespace MergeUtilityUI
             DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
-            obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), saveDir.ToString(), "", 30);
+            DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
+            FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.AllDirectories);
+            foreach (FileInfo fileInfo in opfFiles)
+            {
+                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+            }
             m_StatusLabel.Text = string.Empty;
         }//m_BtnValidateOutput_Click
 
