@@ -14,6 +14,7 @@ namespace MergeUtilityUI
     public partial class m_formDaisy3Merger : Form
         {
          private ProgressDialogDTB progress = null;
+         FolderBrowserDialog saveDir = new FolderBrowserDialog();
         
         public m_formDaisy3Merger ()
             {
@@ -175,7 +176,22 @@ namespace MergeUtilityUI
                 m_txtDTBookInfo.Text = fileInfo.title + Environment.NewLine + fileInfo.ID + Environment.NewLine + fileInfo.time;
             }
             
-        }      
+        }
 
+        private void m_BtnValidateInput_Click(object sender, EventArgs e)
+        {
+            DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
+            obj.Validate("C:\\Users\\chhavi\\Desktop\\daisy\\Obi\\trunk\\Obi\\utilities\\MergeUtility\\DTBMerger\\bin\\Debug\\Pipeline-lite\\scripts\\Z3986DTBValidator.taskScript", m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+        }
+
+        private void m_BtnValidateOutput_Click(object sender, EventArgs e)
+        {
+            DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
+            obj.Validate("C:\\Users\\chhavi\\Desktop\\daisy\\Obi\\trunk\\Obi\\utilities\\MergeUtility\\DTBMerger\\bin\\Debug\\Pipeline-lite\\scripts\\Z3986DTBValidator.taskScript", saveDir.ToString(), "", 30);
+        }
+
+
+        
+     
        }//class
     }//namespace

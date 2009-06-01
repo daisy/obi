@@ -293,6 +293,7 @@ namespace MergeUtilityUI
                 this.m_BtnValidateOutput.TabIndex = 13;
                 this.m_BtnValidateOutput.Text = "Validate &Output";
                 this.m_BtnValidateOutput.UseVisualStyleBackColor = true;
+                this.m_BtnValidateOutput.Click += new System.EventHandler(this.m_BtnValidateOutput_Click);
                 // 
                 // m_BtnValidateInput
                 // 
@@ -304,6 +305,7 @@ namespace MergeUtilityUI
                 this.m_BtnValidateInput.TabIndex = 12;
                 this.m_BtnValidateInput.Text = "Validate &Input";
                 this.m_BtnValidateInput.UseVisualStyleBackColor = true;
+                this.m_BtnValidateInput.Click += new System.EventHandler(this.m_BtnValidateInput_Click);
                 // 
                 // m_formDaisy3Merger
                 // 
