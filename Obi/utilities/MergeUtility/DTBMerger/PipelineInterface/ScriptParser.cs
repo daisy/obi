@@ -6,11 +6,11 @@ using System.Xml.XPath;
 using System.IO;
 using System.Diagnostics;
 
-namespace Obi.PipelineInterface
+namespace DTBMerger.PipelineInterface
 {
     // a common class for manipulating pipeline script files
     // Only this class interacts with physical script files
-    class ScriptParser
+    public class ScriptParser
     {
         private string mScriptFilePath;                // path to the script file
         private List<ScriptParameter> mParameterList;  // list of script parameters

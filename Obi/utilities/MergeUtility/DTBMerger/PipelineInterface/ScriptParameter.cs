@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace Obi.PipelineInterface
+namespace DTBMerger.PipelineInterface
 {
     public class ScriptParameter
     {
