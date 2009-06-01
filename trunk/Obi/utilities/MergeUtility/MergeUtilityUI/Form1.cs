@@ -135,10 +135,14 @@ namespace MergeUtilityUI
                 m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
                 m_bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
 
-                progress = new ProgressDialogDTB();
+                
                 m_bgWorker.RunWorkerAsync();
-                progress.ShowDialog();
-                progress = null;
+
+                if (m_bgWorker.IsBusy)
+                    {
+                    progress = new ProgressDialogDTB ();
+                    progress.ShowDialog ();
+                    }
 
                 while (m_bgWorker.IsBusy)
                 {
@@ -157,7 +161,6 @@ namespace MergeUtilityUI
 
             DTBMerger.DTBMerger obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text);
             obj.MergeDTDs();
-            int Num = obj.ProgressInfo;
         }//m_bgWorker_DoWork
 
         private void m_bgWorker_RunWorkerCompleted(object sender, AsyncCompletedEventArgs e)
