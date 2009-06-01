@@ -75,7 +75,7 @@ namespace DTBMerger
                 } // document iterator ends
 
             string tsString = GetTimeString ( totalTime );
-            MessageBox.Show ( tsString );
+            //MessageBox.Show ( tsString );
 
             timeNode_FirstDTD.Attributes.GetNamedItem ( "content" ).Value = tsString;
 

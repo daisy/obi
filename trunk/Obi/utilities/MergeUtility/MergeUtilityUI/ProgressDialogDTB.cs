@@ -27,6 +27,10 @@ namespace MergeUtilityUI
             m_cancel = true;
             e.Cancel = true;
         }
-
+        private void progressDialogDTB_KeyPress(Object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)27)
+            Application.Exit();
+        }
     }
 }

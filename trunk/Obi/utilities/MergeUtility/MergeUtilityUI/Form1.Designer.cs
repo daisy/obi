@@ -47,10 +47,10 @@ namespace MergeUtilityUI
                 this.m_statusStrip = new System.Windows.Forms.StatusStrip();
                 this.m_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
                 this.m_grpManipulateOPF = new System.Windows.Forms.GroupBox();
+                this.m_BtnValidateInput = new System.Windows.Forms.Button();
                 this.m_grpDaisyBookInfo = new System.Windows.Forms.GroupBox();
                 this.m_grpDirPath = new System.Windows.Forms.GroupBox();
                 this.m_BtnValidateOutput = new System.Windows.Forms.Button();
-                this.m_BtnValidateInput = new System.Windows.Forms.Button();
                 this.m_grpListOPFfiles.SuspendLayout();
                 this.m_statusStrip.SuspendLayout();
                 this.m_grpManipulateOPF.SuspendLayout();
@@ -104,9 +104,10 @@ namespace MergeUtilityUI
                 // 
                 // m_BtnDelete
                 // 
+                this.m_BtnDelete.Enabled = false;
                 this.m_BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnDelete.Location = new System.Drawing.Point(6, 106);
+                this.m_BtnDelete.Location = new System.Drawing.Point(6, 100);
                 this.m_BtnDelete.Name = "m_BtnDelete";
                 this.m_BtnDelete.Size = new System.Drawing.Size(123, 30);
                 this.m_BtnDelete.TabIndex = 5;
@@ -118,7 +119,7 @@ namespace MergeUtilityUI
                 // 
                 this.m_BtnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnReset.Location = new System.Drawing.Point(522, 86);
+                this.m_BtnReset.Location = new System.Drawing.Point(469, 86);
                 this.m_BtnReset.Name = "m_BtnReset";
                 this.m_BtnReset.Size = new System.Drawing.Size(146, 30);
                 this.m_BtnReset.TabIndex = 10;
@@ -131,7 +132,7 @@ namespace MergeUtilityUI
                 this.m_BtnMerge.Enabled = false;
                 this.m_BtnMerge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnMerge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnMerge.Location = new System.Drawing.Point(351, 86);
+                this.m_BtnMerge.Location = new System.Drawing.Point(238, 86);
                 this.m_BtnMerge.Name = "m_BtnMerge";
                 this.m_BtnMerge.Size = new System.Drawing.Size(148, 30);
                 this.m_BtnMerge.TabIndex = 9;
@@ -243,6 +244,7 @@ namespace MergeUtilityUI
                 // m_grpManipulateOPF
                 // 
                 this.m_grpManipulateOPF.Controls.Add(this.m_btnAdd);
+                this.m_grpManipulateOPF.Controls.Add(this.m_BtnValidateInput);
                 this.m_grpManipulateOPF.Controls.Add(this.m_btnUP);
                 this.m_grpManipulateOPF.Controls.Add(this.m_BtnDown);
                 this.m_grpManipulateOPF.Controls.Add(this.m_BtnDelete);
@@ -253,7 +255,20 @@ namespace MergeUtilityUI
                 this.m_grpManipulateOPF.Size = new System.Drawing.Size(846, 208);
                 this.m_grpManipulateOPF.TabIndex = 13;
                 this.m_grpManipulateOPF.TabStop = false;
-                this.m_grpManipulateOPF.Text = "Manipulation of OPF Files...";
+                this.m_grpManipulateOPF.Text = "Input of OPF Files...";
+                // 
+                // m_BtnValidateInput
+                // 
+                this.m_BtnValidateInput.Enabled = false;
+                this.m_BtnValidateInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+                this.m_BtnValidateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.m_BtnValidateInput.Location = new System.Drawing.Point(6, 150);
+                this.m_BtnValidateInput.Name = "m_BtnValidateInput";
+                this.m_BtnValidateInput.Size = new System.Drawing.Size(123, 29);
+                this.m_BtnValidateInput.TabIndex = 12;
+                this.m_BtnValidateInput.Text = "Validate &Input";
+                this.m_BtnValidateInput.UseVisualStyleBackColor = true;
+                this.m_BtnValidateInput.Click += new System.EventHandler(this.m_BtnValidateInput_Click);
                 // 
                 // m_grpDaisyBookInfo
                 // 
@@ -270,7 +285,6 @@ namespace MergeUtilityUI
                 // m_grpDirPath
                 // 
                 this.m_grpDirPath.Controls.Add(this.m_BtnValidateOutput);
-                this.m_grpDirPath.Controls.Add(this.m_BtnValidateInput);
                 this.m_grpDirPath.Controls.Add(this.m_BtnMerge);
                 this.m_grpDirPath.Controls.Add(this.m_BtnReset);
                 this.m_grpDirPath.Controls.Add(this.m_BtnCancel);
@@ -287,9 +301,10 @@ namespace MergeUtilityUI
                 // 
                 // m_BtnValidateOutput
                 // 
+                this.m_BtnValidateOutput.Enabled = false;
                 this.m_BtnValidateOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnValidateOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnValidateOutput.Location = new System.Drawing.Point(166, 86);
+                this.m_BtnValidateOutput.Location = new System.Drawing.Point(14, 86);
                 this.m_BtnValidateOutput.Name = "m_BtnValidateOutput";
                 this.m_BtnValidateOutput.Size = new System.Drawing.Size(155, 30);
                 this.m_BtnValidateOutput.TabIndex = 13;
@@ -297,21 +312,9 @@ namespace MergeUtilityUI
                 this.m_BtnValidateOutput.UseVisualStyleBackColor = true;
                 this.m_BtnValidateOutput.Click += new System.EventHandler(this.m_BtnValidateOutput_Click);
                 // 
-                // m_BtnValidateInput
-                // 
-                this.m_BtnValidateInput.Enabled = false;
-                this.m_BtnValidateInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                this.m_BtnValidateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnValidateInput.Location = new System.Drawing.Point(14, 87);
-                this.m_BtnValidateInput.Name = "m_BtnValidateInput";
-                this.m_BtnValidateInput.Size = new System.Drawing.Size(119, 29);
-                this.m_BtnValidateInput.TabIndex = 12;
-                this.m_BtnValidateInput.Text = "Validate &Input";
-                this.m_BtnValidateInput.UseVisualStyleBackColor = true;
-                this.m_BtnValidateInput.Click += new System.EventHandler(this.m_BtnValidateInput_Click);
-                // 
                 // m_formDaisy3Merger
                 // 
+                this.AcceptButton = this.m_BtnMerge;
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.ClientSize = new System.Drawing.Size(883, 630);
