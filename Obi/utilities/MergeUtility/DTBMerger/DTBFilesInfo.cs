@@ -109,7 +109,15 @@ namespace DTBMerger
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalTime")
                     {
                     string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                    m_TotalTime = TimeSpan.Parse ( timeString );
+                    if (timeString.EndsWith ( "ms" ))
+                        {
+                        double temp = Convert.ToDouble ( timeString.Replace ( "ms", "" ) );
+                        m_TotalTime = new TimeSpan ((long)  temp * 10000 );
+                        }
+                    else
+                        {
+                        m_TotalTime = TimeSpan.Parse ( timeString );
+                        }
                     }
                 }
 

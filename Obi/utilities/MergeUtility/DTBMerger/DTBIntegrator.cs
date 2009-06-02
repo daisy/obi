@@ -55,7 +55,7 @@ namespace DTBMerger
                     {
                     timeNode_FirstDTD = n;
                     string timeString = n.Attributes.GetNamedItem ("content").Value  ;
-                    totalTime =  TimeSpan.Parse ( timeString )  ;
+                    totalTime = GetTimeSpan ( timeString );
                     }
                 }
 
@@ -69,7 +69,7 @@ namespace DTBMerger
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalTime")
                         {
                         string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                        totalTime = totalTime.Add ( TimeSpan.Parse ( timeString ) ) ;
+                        totalTime = totalTime.Add ( GetTimeSpan ( timeString ) ) ;
                         }
                     }
                 } // document iterator ends
@@ -377,7 +377,7 @@ namespace DTBMerger
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalElapsedTime")
                     {
                     string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                    TimeSpan smilTime = TimeSpan.Parse ( timeString );
+                    TimeSpan smilTime = GetTimeSpan ( timeString );
                     smilTime = baseTime.Add ( smilTime );
                     n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString (smilTime) ;
                     }
@@ -515,6 +515,19 @@ namespace DTBMerger
                 //strMilliSeconds = strMilliSeconds.Substring ( 0, 3 );
 
             return strHours + ":" + strMinutes + ":" + strSeconds + "." + strMilliSeconds;
+            }
+
+        private TimeSpan GetTimeSpan ( string timeString )
+            {
+            if (timeString.EndsWith ( "ms" ))
+                        {
+                        double temp = Convert.ToDouble ( timeString.Replace ( "ms", "" ) );
+                        return new TimeSpan ((long)  temp * 10000 );
+                        }
+                    else
+                        {
+                        return TimeSpan.Parse ( timeString );
+                        }
             }
 
 

@@ -246,7 +246,11 @@ namespace MergeUtilityUI
                 m_txtDTBookInfo.Clear();
                 DTBMerger.DTBFilesInfo fileInfo = new DTBMerger.DTBFilesInfo(m_lbOPFfiles.SelectedItem.ToString());
                 m_txtDTBookInfo.Multiline = true;
-                m_txtDTBookInfo.Text = fileInfo.title + Environment.NewLine + fileInfo.ID + Environment.NewLine + fileInfo.time;
+                m_txtDTBookInfo.ReadOnly = true;
+                m_txtDTBookInfo.Text = 
+                    "Title: " + fileInfo.title + Environment.NewLine + 
+                    "Book ID: " +  fileInfo.ID + Environment.NewLine + 
+                    "Total duration: " +  fileInfo.time;
             }
         }//m_lbOPFfiles_SelectedIndexChanged
 
