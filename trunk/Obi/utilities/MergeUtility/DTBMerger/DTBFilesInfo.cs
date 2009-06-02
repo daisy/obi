@@ -41,7 +41,7 @@ namespace DTBMerger
 
         public string Title { get { return m_Title; } }
 
-        public string Identifier { get { return  m_Identifier; } } 
+        public string Identifier { get { return m_Identifier; } }
 
         public List<string> SmilFilesList { get { return m_SmilFilesList; } }
 
@@ -52,31 +52,24 @@ namespace DTBMerger
         public List<string> AudioFilePathsList { get { return m_AudioFilePathsList; } }
 
         public string title
-        {
+            {
             get { return m_Title; }
-        }
+            }
         public TimeSpan time
-        {
-            get{ return m_TotalTime; }
-        }
+            {
+            get { return m_TotalTime; }
+            }
         public string ID
-        {
-            get{ return m_Identifier; }
-        }
+            {
+            get { return m_Identifier; }
+            }
 
-        public void ExtractFileNamesFromOpf ( string path   )
+        public void ExtractFileNamesFromOpf ( string path )
             {
             m_OpfPath = path;
             m_BaseDirectory = Directory.GetParent ( m_OpfPath ).FullName;
-            // create xml reader and load xml document
-            XmlTextReader Reader = new XmlTextReader ( m_OpfPath );
-            Reader.XmlResolver = null;
 
-            XmlDocument XmlDoc = new XmlDocument ();
-            XmlDoc.XmlResolver = null;
-            XmlDoc.Load ( Reader );
-            Reader.Close ();
-            Reader = null;
+            XmlDocument XmlDoc = CommonFunctions.CreateXmlDocument ( m_OpfPath );
 
             string baseDirectoryPath = Directory.GetParent ( m_OpfPath ).FullName;
 
@@ -98,9 +91,9 @@ namespace DTBMerger
                     //MessageBox.Show ( m_Identifier );
                     }
                 }
-            
 
-            
+
+
 
             // extract total time of DTD
             XmlNodeList metaNodeList = XmlDoc.GetElementsByTagName ( "meta" );
@@ -112,7 +105,7 @@ namespace DTBMerger
                     if (timeString.EndsWith ( "ms" ))
                         {
                         double temp = Convert.ToDouble ( timeString.Replace ( "ms", "" ) );
-                        m_TotalTime = new TimeSpan ((long)  temp * 10000 );
+                        m_TotalTime = new TimeSpan ( (long)temp * 10000 );
                         }
                     else
                         {
@@ -172,7 +165,7 @@ namespace DTBMerger
                     }
                 }
 
-            
+
             //foreach (String s in AudioFilePathsList)
             //MessageBox.Show ( s );
             XmlDoc = null;
