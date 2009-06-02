@@ -36,11 +36,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Daisy3MergerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Daisy3MergerForm.Designer.cs">
+      <DependentUpon>Daisy3MergerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgressDialogDTB.cs">
@@ -50,9 +50,9 @@
       <DependentUpon>ProgressDialogDTB.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Daisy3MergerForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>Daisy3MergerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialogDTB.resx">
       <SubType>Designer</SubType>
