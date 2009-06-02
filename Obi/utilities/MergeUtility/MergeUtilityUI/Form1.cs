@@ -34,7 +34,7 @@ namespace MergeUtilityUI
 
             if (m_lbOPFfiles.Items.Count >= 2) //&& (m_txtDirectoryPath.Text != null))
             {              
-               m_BtnMerge.Enabled = true;                
+               m_BtnMerge.Enabled  = true;                
             }
             if (m_lbOPFfiles.Items.Count == 1)
             {
@@ -73,6 +73,7 @@ namespace MergeUtilityUI
                         Directory.Delete(m_txtDirectoryPath.Text, true);
                     else
                     {
+                        m_txtDirectoryPath.Clear();
                         FolderBrowserDialog saveDire = new FolderBrowserDialog();
                         saveDire.ShowNewFolderButton = true;
                         saveDire.SelectedPath = m_txtDirectoryPath.Text;
@@ -234,6 +235,7 @@ namespace MergeUtilityUI
                     m_BtnValidateInput.Enabled = true;                    
                 }
             }
+            
             if (m_lbOPFfiles.Items.Count == 1)
             {
                 m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
