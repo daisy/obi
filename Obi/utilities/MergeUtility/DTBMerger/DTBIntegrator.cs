@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +11,7 @@ namespace DTBMerger
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
 
-        public DTBIntegrator (List<string> pathsList)
+        public DTBIntegrator ( List<string> pathsList )
             {
             m_DTBFilesInfoList = new List<DTBFilesInfo> ();
 
@@ -35,27 +34,27 @@ namespace DTBMerger
             {
 
             List<XmlDocument> opfDocumentsList = new List<XmlDocument> ();
-            XmlDocument firstOpf = CreateXmlDocument ( m_DTBFilesInfoList[0].OpfPath );
+            XmlDocument firstOpf = CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[0].OpfPath );
 
-            for ( int i = 1 ; i < m_DTBFilesInfoList.Count ; i++ )
+            for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
                 {
-                opfDocumentsList.Add ( CreateXmlDocument ( m_DTBFilesInfoList[i].OpfPath ) );
+                opfDocumentsList.Add ( CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[i].OpfPath ) );
                 }
 
             // update DTB time w.r.t. combined time of all DTBs
-            TimeSpan totalTime = new TimeSpan (0);
-            
+            TimeSpan totalTime = new TimeSpan ( 0 );
+
             XmlNode timeNode_FirstDTD = null;
 
             // extract time from first DTD
             XmlNodeList metaNodeList = firstOpf.GetElementsByTagName ( "meta" );
             foreach (XmlNode n in metaNodeList)
                 {
-                if ( n.Attributes.GetNamedItem ("name").Value == "dtb:totalTime" )
+                if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalTime")
                     {
                     timeNode_FirstDTD = n;
-                    string timeString = n.Attributes.GetNamedItem ("content").Value  ;
-                    totalTime = GetTimeSpan ( timeString );
+                    string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
+                    totalTime = CommonFunctions.GetTimeSpan ( timeString );
                     }
                 }
 
@@ -69,7 +68,7 @@ namespace DTBMerger
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalTime")
                         {
                         string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                        totalTime = totalTime.Add ( GetTimeSpan ( timeString ) ) ;
+                        totalTime = totalTime.Add ( CommonFunctions.GetTimeSpan ( timeString ) );
                         }
                     }
                 } // document iterator ends
@@ -96,7 +95,7 @@ namespace DTBMerger
                             || n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/mpeg"
                      || n.Attributes.GetNamedItem ( "media-type" ).Value == "audio/x-wav")
                             { //4
-                            XmlNode copyNode = firstOpf.ImportNode ( n.Clone () , false);
+                            XmlNode copyNode = firstOpf.ImportNode ( n.Clone (), false );
                             firstDTDManifestNode.AppendChild ( copyNode );
                             } //-4
                         } //-3
@@ -104,7 +103,7 @@ namespace DTBMerger
                     } //-2
                 } //-1  DTD iterator loop
 
-// integrate nodes in spine
+            // integrate nodes in spine
             XmlNode firstSpineNode = firstOpf.GetElementsByTagName ( "spine" )[0];
 
             // collects all spine nodes from all dtds
@@ -117,60 +116,37 @@ namespace DTBMerger
                     { //2
                     if (n.LocalName == "itemref")
                         { //3
-                        XmlNode copyNode = firstOpf.ImportNode ( n.Clone () , false);
-                            firstSpineNode.AppendChild ( copyNode );
+                        XmlNode copyNode = firstOpf.ImportNode ( n.Clone (), false );
+                        firstSpineNode.AppendChild ( copyNode );
                         } //-3
 
                     } //-2
                 } //-1  DTD iterator loop
 
-            WriteXmlDocumentToFile ( firstOpf, m_DTBFilesInfoList[0].OpfPath );
+            CommonFunctions.WriteXmlDocumentToFile ( firstOpf, m_DTBFilesInfoList[0].OpfPath );
 
             }
 
-
-        private XmlDocument CreateXmlDocument ( string path )
-            {
-            // create xml reader and load xml document
-            XmlTextReader Reader = new XmlTextReader ( path );
-            Reader.XmlResolver = null;
-
-            XmlDocument XmlDoc = new XmlDocument ();
-            XmlDoc.XmlResolver = null;
-            XmlDoc.Load ( Reader );
-            Reader.Close ();
-            Reader = null;
-            return XmlDoc;
-            }
-
-        private void WriteXmlDocumentToFile (XmlDocument xmlDoc,  string path )
-            {
-            XmlTextWriter writer = new XmlTextWriter ( path, null );
-            writer.Formatting = Formatting.Indented;
-            xmlDoc.Save ( writer );
-            writer.Close ();
-            writer = null;
-            }
 
         protected void IntegrateNcx ()
             {
 
             List<XmlDocument> NcxDocumentsList = new List<XmlDocument> ();
-            XmlDocument firstNcx = CreateXmlDocument ( m_DTBFilesInfoList[0].NcxPath);
+            XmlDocument firstNcx = CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[0].NcxPath );
 
             for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
                 {
-                NcxDocumentsList.Add ( CreateXmlDocument ( m_DTBFilesInfoList[i].NcxPath) );
+                NcxDocumentsList.Add ( CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[i].NcxPath ) );
                 }
 
             // update metadata 
-            int totalPages  = 0;
+            int totalPages = 0;
             int maxPages = 0;
-            int maxDepth = 0 ;
+            int maxDepth = 0;
 
             XmlNode totalPagesNode = null;
             XmlNode maxPagesNode = null;
-            XmlNode maxDepthNode = null ;
+            XmlNode maxDepthNode = null;
 
             // extract relevant metadata from first DTD
             XmlNodeList metaNodeList = firstNcx.GetElementsByTagName ( "meta" );
@@ -179,22 +155,22 @@ namespace DTBMerger
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalPageCount")
                     {
                     totalPagesNode = n;
-                    string totalPageString  = n.Attributes.GetNamedItem ( "content" ).Value;
-                    totalPages = int.Parse (totalPageString   ) ;
+                    string totalPageString = n.Attributes.GetNamedItem ( "content" ).Value;
+                    totalPages = int.Parse ( totalPageString );
                     }
 
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:maxPageNumber")
                     {
                     maxPagesNode = n;
-                    string maxPagesString  = n.Attributes.GetNamedItem ( "content" ).Value;
-                    maxPages = int.Parse (maxPagesString  ) ;
+                    string maxPagesString = n.Attributes.GetNamedItem ( "content" ).Value;
+                    maxPages = int.Parse ( maxPagesString );
                     }
 
-                if (n.Attributes.GetNamedItem ( "name" ).Value ==  "dtb:depth" )
+                if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:depth")
                     {
-                    maxDepthNode = n ;
-                    string str  = n.Attributes.GetNamedItem ( "content" ).Value;
-                    maxDepth = int.Parse (str) ;
+                    maxDepthNode = n;
+                    string str = n.Attributes.GetNamedItem ( "content" ).Value;
+                    maxDepth = int.Parse ( str );
                     }
 
                 }
@@ -214,16 +190,16 @@ namespace DTBMerger
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:maxPageNumber")
                         {
                         string maxPagesString = n.Attributes.GetNamedItem ( "content" ).Value;
-                         int temp  = int.Parse ( maxPagesString );
-                         maxPages += temp;
-                         //if (temp > maxPages) maxPages = temp;
+                        int temp = int.Parse ( maxPagesString );
+                        maxPages += temp;
+                        //if (temp > maxPages) maxPages = temp;
                         }
 
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:depth")
                         {
                         string str = n.Attributes.GetNamedItem ( "content" ).Value;
-                         int temp  = int.Parse ( str);
-                         if (temp > maxDepth ) maxDepth = temp;
+                        int temp = int.Parse ( str );
+                        if (temp > maxDepth) maxDepth = temp;
                         }
 
                     }
@@ -239,7 +215,7 @@ namespace DTBMerger
 
             XmlNodeList navPointsList = firstNcx.GetElementsByTagName ( "navPoint" );
             int maxPlayOrderNav = 0;
-            
+
 
             foreach (XmlNode n in navPointsList)
                 {
@@ -262,13 +238,13 @@ namespace DTBMerger
                     {
                     string playOrderString = n.Attributes.GetNamedItem ( "playOrder" ).Value;
                     int temp = int.Parse ( playOrderString );
-                    if (temp > maxPlayOrderNav) maxPlayOrderNav= temp;
+                    if (temp > maxPlayOrderNav) maxPlayOrderNav = temp;
 
                     string typeString = n.Attributes.GetNamedItem ( "type" ).Value;
-                    if (typeString == "normal" )
+                    if (typeString == "normal")
                         {
                         string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
-                        temp = int.Parse ( valueString);
+                        temp = int.Parse ( valueString );
                         if (temp > maxPageValue) maxPageValue = temp;
                         }
 
@@ -289,26 +265,26 @@ namespace DTBMerger
                         {
                         string playOrderString = n.Attributes.GetNamedItem ( "playOrder" ).Value;
                         int temp = int.Parse ( playOrderString );
-                        if (temp > playOrderNavPoints ) playOrderNavPoints = temp;
+                        if (temp > playOrderNavPoints) playOrderNavPoints = temp;
                         //MessageBox.Show ( temp.ToString () );
                         n.Attributes.GetNamedItem ( "playOrder" ).Value = (maxPlayOrderNav + temp).ToString ();
                         //MessageBox.Show ( maxPlayOrderNav.ToString ()  + ":" + temp.ToString ());
-                        
+
                         }
                     }
 
-                foreach (XmlNode n in NcxDocumentsList[i].GetElementsByTagName("navMap")[0].ChildNodes  )
+                foreach (XmlNode n in NcxDocumentsList[i].GetElementsByTagName ( "navMap" )[0].ChildNodes)
                     {
-                    if ( n.LocalName == "navPoint")
+                    if (n.LocalName == "navPoint")
                         {
-                firstNavMapNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
+                        firstNavMapNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
                         }
                     }
 
                 XmlNodeList pagePoints = NcxDocumentsList[i].GetElementsByTagName ( "pageTarget" );
                 //int playOrderPagePoints = 0;
                 int pageValue = 0;
-                
+
                 foreach (XmlNode n in pagePoints)
                     {
                     if (n.LocalName == "pageTarget")
@@ -321,7 +297,7 @@ namespace DTBMerger
                         //firstPageListNode.AppendChild ( firstNcx.ImportNode ( n , true) );
 
                         string typeString = n.Attributes.GetNamedItem ( "type" ).Value;
-                        if (typeString == "normal" )
+                        if (typeString == "normal")
                             {
                             string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
                             temp = int.Parse ( valueString );
@@ -329,7 +305,7 @@ namespace DTBMerger
                             n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + temp).ToString ();
 
                             XmlNode textNode = n.FirstChild.FirstChild;
-                            if ( textNode.LocalName == "text") 
+                            if (textNode.LocalName == "text")
                                 textNode.InnerText = (maxPageValue + temp).ToString ();
                             }
                         firstPageListNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
@@ -346,7 +322,7 @@ namespace DTBMerger
 
 
 
-            WriteXmlDocumentToFile ( firstNcx, m_DTBFilesInfoList[0].NcxPath);
+            CommonFunctions.WriteXmlDocumentToFile ( firstNcx, m_DTBFilesInfoList[0].NcxPath );
             }
 
         protected void UpdateAllSmilFiles ()
@@ -360,26 +336,26 @@ namespace DTBMerger
                     UpdateSmilFile ( s, initialTime );
                     }
 
-                initialTime =  initialTime.Add ( m_DTBFilesInfoList[i].TotalTime );
+                initialTime = initialTime.Add ( m_DTBFilesInfoList[i].TotalTime );
                 }
 
 
             }
 
-        private void UpdateSmilFile ( string smilPath,  TimeSpan baseTime)
+        private void UpdateSmilFile ( string smilPath, TimeSpan baseTime )
             {
-            XmlDocument smilDoc = CreateXmlDocument ( smilPath );
+            XmlDocument smilDoc = CommonFunctions.CreateXmlDocument ( smilPath );
 
-            XmlNodeList metaNodeList = smilDoc.GetElementsByTagName ("meta") ;
+            XmlNodeList metaNodeList = smilDoc.GetElementsByTagName ( "meta" );
 
             foreach (XmlNode n in metaNodeList)
                 {
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:totalElapsedTime")
                     {
                     string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                    TimeSpan smilTime = GetTimeSpan ( timeString );
+                    TimeSpan smilTime = CommonFunctions.GetTimeSpan ( timeString );
                     smilTime = baseTime.Add ( smilTime );
-                    n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString (smilTime) ;
+                    n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString ( smilTime );
                     }
 
                 if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:uid")
@@ -388,7 +364,7 @@ namespace DTBMerger
                     }
                 }
 
-            WriteXmlDocumentToFile ( smilDoc, smilPath );
+            CommonFunctions.WriteXmlDocumentToFile ( smilDoc, smilPath );
             }
 
 
@@ -512,24 +488,10 @@ namespace DTBMerger
 
             string strMilliSeconds = time.Milliseconds.ToString ();
             //if (strMilliSeconds.Length > 3)
-                //strMilliSeconds = strMilliSeconds.Substring ( 0, 3 );
+            //strMilliSeconds = strMilliSeconds.Substring ( 0, 3 );
 
             return strHours + ":" + strMinutes + ":" + strSeconds + "." + strMilliSeconds;
             }
-
-        private TimeSpan GetTimeSpan ( string timeString )
-            {
-            if (timeString.EndsWith ( "ms" ))
-                        {
-                        double temp = Convert.ToDouble ( timeString.Replace ( "ms", "" ) );
-                        return new TimeSpan ((long)  temp * 10000 );
-                        }
-                    else
-                        {
-                        return TimeSpan.Parse ( timeString );
-                        }
-            }
-
 
 
         }
