@@ -120,7 +120,7 @@ namespace MergeUtilityUI
                 this.m_BtnReset.Location = new System.Drawing.Point(469, 86);
                 this.m_BtnReset.Name = "m_BtnReset";
                 this.m_BtnReset.Size = new System.Drawing.Size(146, 30);
-                this.m_BtnReset.TabIndex = 10;
+                this.m_BtnReset.TabIndex = 11;
                 this.m_BtnReset.Text = "&Reset";
                 this.m_BtnReset.UseVisualStyleBackColor = true;
                 this.m_BtnReset.Click += new System.EventHandler(this.m_BtnReset_Click);
@@ -191,7 +191,7 @@ namespace MergeUtilityUI
                 this.m_BtnCancel.Location = new System.Drawing.Point(692, 86);
                 this.m_BtnCancel.Name = "m_BtnCancel";
                 this.m_BtnCancel.Size = new System.Drawing.Size(139, 30);
-                this.m_BtnCancel.TabIndex = 11;
+                this.m_BtnCancel.TabIndex = 13;
                 this.m_BtnCancel.Text = "&Cancel";
                 this.m_BtnCancel.UseVisualStyleBackColor = true;
                 this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnExit_Click);
@@ -255,7 +255,6 @@ namespace MergeUtilityUI
                 this.m_grpManipulateOPF.Size = new System.Drawing.Size(846, 378);
                 this.m_grpManipulateOPF.TabIndex = 13;
                 this.m_grpManipulateOPF.TabStop = false;
-                this.m_grpManipulateOPF.Text = "Input of OPF Files...";
                 // 
                 // m_BtnValidateInput
                 // 
@@ -265,7 +264,7 @@ namespace MergeUtilityUI
                 this.m_BtnValidateInput.Location = new System.Drawing.Point(6, 219);
                 this.m_BtnValidateInput.Name = "m_BtnValidateInput";
                 this.m_BtnValidateInput.Size = new System.Drawing.Size(123, 29);
-                this.m_BtnValidateInput.TabIndex = 12;
+                this.m_BtnValidateInput.TabIndex = 6;
                 this.m_BtnValidateInput.Text = "Validate &Input";
                 this.m_BtnValidateInput.UseVisualStyleBackColor = true;
                 this.m_BtnValidateInput.Click += new System.EventHandler(this.m_BtnValidateInput_Click);
@@ -285,7 +284,6 @@ namespace MergeUtilityUI
                 this.m_grpDirPath.Size = new System.Drawing.Size(846, 131);
                 this.m_grpDirPath.TabIndex = 16;
                 this.m_grpDirPath.TabStop = false;
-                this.m_grpDirPath.Text = "Merged OPF file Path...";
                 // 
                 // m_BtnValidateOutput
                 // 
@@ -295,12 +293,12 @@ namespace MergeUtilityUI
                 this.m_BtnValidateOutput.Location = new System.Drawing.Point(14, 86);
                 this.m_BtnValidateOutput.Name = "m_BtnValidateOutput";
                 this.m_BtnValidateOutput.Size = new System.Drawing.Size(155, 30);
-                this.m_BtnValidateOutput.TabIndex = 13;
+                this.m_BtnValidateOutput.TabIndex = 10;
                 this.m_BtnValidateOutput.Text = "Validate &Output";
                 this.m_BtnValidateOutput.UseVisualStyleBackColor = true;
                 this.m_BtnValidateOutput.Click += new System.EventHandler(this.m_BtnValidateOutput_Click);
                 // 
-                // m_formDaisy3Merger
+                // Daisy3MergerForm
                 // 
                 this.AcceptButton = this.m_BtnMerge;
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,7 +308,7 @@ namespace MergeUtilityUI
                 this.Controls.Add(this.m_grpManipulateOPF);
                 this.Controls.Add(this.m_statusStrip);
                 this.Controls.Add(this.m_lblDaisy3Merger);
-                this.Name = "m_formDaisy3Merger";
+                this.Name = "Daisy3MergerForm";
                 this.Text = "DTB Merger Form";
                 this.m_grpListOPFfiles.ResumeLayout(false);
                 this.m_statusStrip.ResumeLayout(false);
