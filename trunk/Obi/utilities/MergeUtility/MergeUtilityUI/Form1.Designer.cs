@@ -48,13 +48,11 @@ namespace MergeUtilityUI
                 this.m_StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
                 this.m_grpManipulateOPF = new System.Windows.Forms.GroupBox();
                 this.m_BtnValidateInput = new System.Windows.Forms.Button();
-                this.m_grpDaisyBookInfo = new System.Windows.Forms.GroupBox();
                 this.m_grpDirPath = new System.Windows.Forms.GroupBox();
                 this.m_BtnValidateOutput = new System.Windows.Forms.Button();
                 this.m_grpListOPFfiles.SuspendLayout();
                 this.m_statusStrip.SuspendLayout();
                 this.m_grpManipulateOPF.SuspendLayout();
-                this.m_grpDaisyBookInfo.SuspendLayout();
                 this.m_grpDirPath.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -75,7 +73,7 @@ namespace MergeUtilityUI
                 this.m_grpListOPFfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_grpListOPFfiles.Location = new System.Drawing.Point(139, 25);
                 this.m_grpListOPFfiles.Name = "m_grpListOPFfiles";
-                this.m_grpListOPFfiles.Size = new System.Drawing.Size(529, 167);
+                this.m_grpListOPFfiles.Size = new System.Drawing.Size(692, 223);
                 this.m_grpListOPFfiles.TabIndex = 1;
                 this.m_grpListOPFfiles.TabStop = false;
                 this.m_grpListOPFfiles.Text = "List of Input";
@@ -86,7 +84,7 @@ namespace MergeUtilityUI
                 this.m_lbOPFfiles.ItemHeight = 16;
                 this.m_lbOPFfiles.Location = new System.Drawing.Point(18, 22);
                 this.m_lbOPFfiles.Name = "m_lbOPFfiles";
-                this.m_lbOPFfiles.Size = new System.Drawing.Size(495, 132);
+                this.m_lbOPFfiles.Size = new System.Drawing.Size(658, 180);
                 this.m_lbOPFfiles.TabIndex = 2;
                 this.m_lbOPFfiles.SelectedIndexChanged += new System.EventHandler(this.m_lbOPFfiles_SelectedIndexChanged);
                 // 
@@ -94,7 +92,7 @@ namespace MergeUtilityUI
                 // 
                 this.m_btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_btnAdd.Location = new System.Drawing.Point(6, 47);
+                this.m_btnAdd.Location = new System.Drawing.Point(6, 34);
                 this.m_btnAdd.Name = "m_btnAdd";
                 this.m_btnAdd.Size = new System.Drawing.Size(123, 33);
                 this.m_btnAdd.TabIndex = 0;
@@ -107,7 +105,7 @@ namespace MergeUtilityUI
                 this.m_BtnDelete.Enabled = false;
                 this.m_BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnDelete.Location = new System.Drawing.Point(6, 100);
+                this.m_BtnDelete.Location = new System.Drawing.Point(6, 174);
                 this.m_BtnDelete.Name = "m_BtnDelete";
                 this.m_BtnDelete.Size = new System.Drawing.Size(123, 30);
                 this.m_BtnDelete.TabIndex = 5;
@@ -165,7 +163,7 @@ namespace MergeUtilityUI
                 this.m_btnUP.Enabled = false;
                 this.m_btnUP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_btnUP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_btnUP.Location = new System.Drawing.Point(692, 47);
+                this.m_btnUP.Location = new System.Drawing.Point(6, 86);
                 this.m_btnUP.Name = "m_btnUP";
                 this.m_btnUP.Size = new System.Drawing.Size(123, 30);
                 this.m_btnUP.TabIndex = 3;
@@ -178,7 +176,7 @@ namespace MergeUtilityUI
                 this.m_BtnDown.Enabled = false;
                 this.m_BtnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnDown.Location = new System.Drawing.Point(692, 106);
+                this.m_BtnDown.Location = new System.Drawing.Point(6, 122);
                 this.m_BtnDown.Name = "m_BtnDown";
                 this.m_BtnDown.Size = new System.Drawing.Size(123, 30);
                 this.m_BtnDown.TabIndex = 4;
@@ -200,16 +198,16 @@ namespace MergeUtilityUI
                 // 
                 // m_txtDTBookInfo
                 // 
-                this.m_txtDTBookInfo.Location = new System.Drawing.Point(262, 21);
+                this.m_txtDTBookInfo.Location = new System.Drawing.Point(248, 262);
                 this.m_txtDTBookInfo.Multiline = true;
                 this.m_txtDTBookInfo.Name = "m_txtDTBookInfo";
-                this.m_txtDTBookInfo.Size = new System.Drawing.Size(569, 101);
+                this.m_txtDTBookInfo.Size = new System.Drawing.Size(583, 101);
                 this.m_txtDTBookInfo.TabIndex = 4;
                 // 
                 // m_lblDBookInfo
                 // 
                 this.m_lblDBookInfo.AutoSize = true;
-                this.m_lblDBookInfo.Location = new System.Drawing.Point(11, 53);
+                this.m_lblDBookInfo.Location = new System.Drawing.Point(6, 305);
                 this.m_lblDBookInfo.Name = "m_lblDBookInfo";
                 this.m_lblDBookInfo.Size = new System.Drawing.Size(236, 16);
                 this.m_lblDBookInfo.TabIndex = 3;
@@ -243,7 +241,9 @@ namespace MergeUtilityUI
                 // 
                 // m_grpManipulateOPF
                 // 
+                this.m_grpManipulateOPF.Controls.Add(this.m_lblDBookInfo);
                 this.m_grpManipulateOPF.Controls.Add(this.m_btnAdd);
+                this.m_grpManipulateOPF.Controls.Add(this.m_txtDTBookInfo);
                 this.m_grpManipulateOPF.Controls.Add(this.m_BtnValidateInput);
                 this.m_grpManipulateOPF.Controls.Add(this.m_btnUP);
                 this.m_grpManipulateOPF.Controls.Add(this.m_BtnDown);
@@ -252,7 +252,7 @@ namespace MergeUtilityUI
                 this.m_grpManipulateOPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_grpManipulateOPF.Location = new System.Drawing.Point(25, 75);
                 this.m_grpManipulateOPF.Name = "m_grpManipulateOPF";
-                this.m_grpManipulateOPF.Size = new System.Drawing.Size(846, 208);
+                this.m_grpManipulateOPF.Size = new System.Drawing.Size(846, 378);
                 this.m_grpManipulateOPF.TabIndex = 13;
                 this.m_grpManipulateOPF.TabStop = false;
                 this.m_grpManipulateOPF.Text = "Input of OPF Files...";
@@ -262,25 +262,13 @@ namespace MergeUtilityUI
                 this.m_BtnValidateInput.Enabled = false;
                 this.m_BtnValidateInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnValidateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_BtnValidateInput.Location = new System.Drawing.Point(6, 150);
+                this.m_BtnValidateInput.Location = new System.Drawing.Point(6, 219);
                 this.m_BtnValidateInput.Name = "m_BtnValidateInput";
                 this.m_BtnValidateInput.Size = new System.Drawing.Size(123, 29);
                 this.m_BtnValidateInput.TabIndex = 12;
                 this.m_BtnValidateInput.Text = "Validate &Input";
                 this.m_BtnValidateInput.UseVisualStyleBackColor = true;
                 this.m_BtnValidateInput.Click += new System.EventHandler(this.m_BtnValidateInput_Click);
-                // 
-                // m_grpDaisyBookInfo
-                // 
-                this.m_grpDaisyBookInfo.Controls.Add(this.m_txtDTBookInfo);
-                this.m_grpDaisyBookInfo.Controls.Add(this.m_lblDBookInfo);
-                this.m_grpDaisyBookInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_grpDaisyBookInfo.Location = new System.Drawing.Point(25, 300);
-                this.m_grpDaisyBookInfo.Name = "m_grpDaisyBookInfo";
-                this.m_grpDaisyBookInfo.Size = new System.Drawing.Size(846, 135);
-                this.m_grpDaisyBookInfo.TabIndex = 14;
-                this.m_grpDaisyBookInfo.TabStop = false;
-                this.m_grpDaisyBookInfo.Text = "Daisy Book Information";
                 // 
                 // m_grpDirPath
                 // 
@@ -319,7 +307,6 @@ namespace MergeUtilityUI
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.ClientSize = new System.Drawing.Size(883, 630);
                 this.Controls.Add(this.m_grpDirPath);
-                this.Controls.Add(this.m_grpDaisyBookInfo);
                 this.Controls.Add(this.m_grpManipulateOPF);
                 this.Controls.Add(this.m_statusStrip);
                 this.Controls.Add(this.m_lblDaisy3Merger);
@@ -329,8 +316,7 @@ namespace MergeUtilityUI
                 this.m_statusStrip.ResumeLayout(false);
                 this.m_statusStrip.PerformLayout();
                 this.m_grpManipulateOPF.ResumeLayout(false);
-                this.m_grpDaisyBookInfo.ResumeLayout(false);
-                this.m_grpDaisyBookInfo.PerformLayout();
+                this.m_grpManipulateOPF.PerformLayout();
                 this.m_grpDirPath.ResumeLayout(false);
                 this.m_grpDirPath.PerformLayout();
                 this.ResumeLayout(false);
@@ -359,7 +345,6 @@ namespace MergeUtilityUI
         private System.Windows.Forms.StatusStrip m_statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel m_StatusLabel;
         private System.Windows.Forms.GroupBox m_grpManipulateOPF;
-        private System.Windows.Forms.GroupBox m_grpDaisyBookInfo;
         private System.Windows.Forms.GroupBox m_grpDirPath;
         private System.Windows.Forms.Button m_BtnValidateOutput;
         private System.Windows.Forms.Button m_BtnValidateInput;
