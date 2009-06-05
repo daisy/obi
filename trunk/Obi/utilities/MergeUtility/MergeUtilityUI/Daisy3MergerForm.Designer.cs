@@ -115,6 +115,7 @@ namespace MergeUtilityUI
                 // 
                 // m_BtnReset
                 // 
+                this.m_BtnReset.Enabled = false;
                 this.m_BtnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.m_BtnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.m_BtnReset.Location = new System.Drawing.Point(469, 86);
@@ -201,6 +202,7 @@ namespace MergeUtilityUI
                 this.m_txtDTBookInfo.Location = new System.Drawing.Point(248, 262);
                 this.m_txtDTBookInfo.Multiline = true;
                 this.m_txtDTBookInfo.Name = "m_txtDTBookInfo";
+                this.m_txtDTBookInfo.ReadOnly = true;
                 this.m_txtDTBookInfo.Size = new System.Drawing.Size(583, 101);
                 this.m_txtDTBookInfo.TabIndex = 4;
                 // 
