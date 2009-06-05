@@ -18,9 +18,9 @@ namespace DTBDowngrader
 
         public Daisy3To202 ( string sourceOpf, string outputDirectory )
             {
-            m_InputOpfPath = sourceOpf;
+            m_InputOpfPath = CopyFiles ( sourceOpf, outputDirectory );
             m_OutputDirectory = outputDirectory;
-            m_DAISY3Info = new DTBFilesInfo ( sourceOpf );
+            m_DAISY3Info = new DTBFilesInfo ( m_InputOpfPath );
             m_InputNcxDoc = CommonFunctions.CreateXmlDocument ( m_DAISY3Info.NcxPath );
             m_NccDocument = CreateNCCSkeletonXmlDocument ();
             m_PageListOpf = new Dictionary<int, XmlNode> ();
@@ -30,6 +30,20 @@ namespace DTBDowngrader
             CreateNCCMetadata ();
 
             WriteNCCFile ();
+            }
+
+        private string CopyFiles ( string sourceOpf, string outputDirectory )
+            {
+            DirectoryInfo inputDir = Directory.GetParent ( sourceOpf );
+
+            FileInfo[] files = inputDir.GetFiles ();
+
+            foreach (FileInfo f in files)
+                {
+                f.CopyTo ( Path.Combine ( outputDirectory, f.Name ) );
+                }
+
+            return Path.Combine ( outputDirectory, new FileInfo ( sourceOpf ).Name );
             }
 
         private void WriteNCCFile ()
@@ -66,19 +80,7 @@ namespace DTBDowngrader
                 Reader.Close ();
                 Reader = null;
                 }
-            /*
-                        try
-                            {
 
-
-                            //NccXmlDoc = CommonFunctions.CreateXmlDocument ( 
-                                //Directory.GetParent (System.Reflection.Assembly.GetExecutingAssembly ().Location).FullName + "\\ncc.html" );
-                            }
-                        catch (System.Exception ex)
-                            {
-                            MessageBox.Show ( ex.ToString () );
-                            }
-             */
             return NccXmlDoc;
             }
 
@@ -144,6 +146,7 @@ namespace DTBDowngrader
                 {
                 AddPageToNCC ( m_PageListOpf[navPointPlayOrder + 1] );
                 }
+            UpdateSmilFile ( smilRef );
             }
 
         private void AddPageToNCC ( XmlNode pageNodeOpf )
@@ -167,6 +170,70 @@ namespace DTBDowngrader
             pageNode.AppendChild ( anchorNode );
             bodyNode.AppendChild ( pageNode );
             }
+
+        private void UpdateSmilFile ( string smilSRC )
+            {
+            string smilPath = smilSRC.Split ( '#' )[0];
+            smilPath = Path.Combine ( m_OutputDirectory, smilPath );
+            XmlDocument smilXmlDoc = CommonFunctions.CreateXmlDocument ( smilPath );
+
+                smilXmlDoc.RemoveChild ( smilXmlDoc.DocumentType );
+                
+                XmlDocumentType type = smilXmlDoc.CreateDocumentType ( "smil",
+                    "-//W3C//DTD SMIL01.0//EN",
+                    "http://www.w3.org/TR/REC-smil/SMIL10.dtd",
+                    null );
+
+                smilXmlDoc.InsertBefore ( type, smilXmlDoc.DocumentElement );
+                
+            XmlNodeList metaList = smilXmlDoc.GetElementsByTagName ( "meta" );
+
+            foreach (XmlNode n in metaList)
+                {
+                if (n.Attributes.GetNamedItem ( "name" ).Value.Contains ( ":totalElapsedTime" ))
+                    {
+                    TimeSpan t = CommonFunctions.GetTimeSpan ( n.Attributes.GetNamedItem ( "content" ).Value );
+                    n.Attributes.GetNamedItem ( "content" ).Value = t.ToString ();
+                    }
+
+                string name = n.Attributes.GetNamedItem ( "name" ).Value;
+                n.Attributes.GetNamedItem ( "name" ).Value = name.Replace ( "dtb:", "ncc:" );
+                }
+
+            // add layout
+            XmlNode headNode = smilXmlDoc.GetElementsByTagName ( "head" )[0];
+            XmlNode layoutNode = smilXmlDoc.CreateElement ( null, "layout", headNode.NamespaceURI );
+            headNode.AppendChild ( layoutNode );
+            XmlNode regionNode = smilXmlDoc.CreateElement ( null, "region", headNode.NamespaceURI );
+            layoutNode.AppendChild ( regionNode );
+            regionNode.Attributes.Append (
+                smilXmlDoc.CreateAttribute ( "id" ) );
+            regionNode.Attributes.GetNamedItem ( "id" ).Value = "textView";
+
+
+            CommonFunctions.WriteXmlDocumentToFile ( smilXmlDoc, smilPath );
+            smilXmlDoc = null;
+            RemoveSmilSmlns ( smilPath );
+            }
+
+        private void RemoveSmilSmlns ( string smilPath )
+            {
+            StreamReader sr = new StreamReader ( smilPath );
+            string s = sr.ReadToEnd ();
+            sr.Close ();
+            sr = null;
+            string replaceString = "<smil xmlns=\"http://www.w3.org/2001/SMIL20/\">";
+
+            s = s.Replace (
+                replaceString,
+                    "<smil>" );
+            //MessageBox.Show ( s );
+            StreamWriter sw = new StreamWriter ( smilPath );
+            sw.Write ( s );
+            sw.Close ();
+            sw = null;
+            }
+
 
         private void ExtractPageList ()
             {
@@ -200,22 +267,31 @@ namespace DTBDowngrader
             headNode.AppendChild ( titleElement );
 
             // create dc metadata
+
+            // collect non duplicate  Metadata from opf and ncx in a dictionary
+            Dictionary<string, string> XMetaData = new Dictionary<string, string> ();
+
             foreach (string s in m_DAISY3Info.DCMetadata.Keys)
                 {
-                string content = m_DAISY3Info.DCMetadata[s];
-                if (s == "dc:Format")
-                    content = "Daisy 2.02";
-
-                CreateNccMetadataNodes ( headNode, s, content );
+                XMetaData.Add ( s, m_DAISY3Info.DCMetadata[s] );
                 }
-
-            // collect non duplicate  XMetadata from opf and ncx in a dictionary
-            Dictionary<string, string> XMetaData = new Dictionary<string, string> ();
 
             foreach (string s in m_DAISY3Info.XMetaData.Keys)
                 {
                 XMetaData.Add ( s, m_DAISY3Info.XMetaData[s] );
                 }
+
+            if (XMetaData.ContainsKey ( "dc:Format" ))
+                {
+                XMetaData["dc:Format"] = "Daisy 2.02";
+                }
+
+            // remove daisy 2.02 incompatible metadata from opf metadata
+            XMetaData.Remove ( "dc:Title" );
+            XMetaData.Remove ( "generator" );
+            XMetaData.Remove ( "dtb:multimediaContent" );
+            XMetaData.Remove ( "dtb:audioFormat" );
+            XMetaData.Remove ( "dtb:totalPageCount" );
 
             foreach (string s in m_DAISY3Info.NcxMetaData.Keys)
                 {
@@ -224,12 +300,7 @@ namespace DTBDowngrader
                     XMetaData.Add ( s, m_DAISY3Info.NcxMetaData[s] );
                     }
                 }
-            // remove uid
-            if (XMetaData.ContainsKey ( "dtb:uid" ))
-                {
-                XMetaData.Remove ( "dtb:uid" );
-                }
-
+            XMetaData.Remove ( "dtb:uid" );
             if (XMetaData.ContainsKey ( "dtb:maxPageNumber" ))
                 {
                 XMetaData.Add ( "ncc:maxPageNormal", XMetaData["dtb:maxPageNumber"] );
