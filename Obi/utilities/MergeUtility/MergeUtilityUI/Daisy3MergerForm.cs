@@ -14,7 +14,6 @@ namespace MergeUtilityUI
     public partial class Daisy3MergerForm: Form
     {
         private ProgressDialogDTB progress = null;
-        FolderBrowserDialog saveDir = new FolderBrowserDialog();
 
         public Daisy3MergerForm  ()
         {
@@ -31,17 +30,16 @@ namespace MergeUtilityUI
             {
                 m_lbOPFfiles.Items.Add(select_opfFile.FileName);
             }
+             m_BtnMerge.Enabled = m_lbOPFfiles.Items.Count >= 2;             
+             m_BtnMerge.Enabled  = true;
+             m_BtnReset.Enabled = true;
 
-            if (m_lbOPFfiles.Items.Count >= 2) //&& (m_txtDirectoryPath.Text != null))
-            {              
-               m_BtnMerge.Enabled  = true;                
-            }
             if (m_lbOPFfiles.Items.Count == 1)
             {
                 m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
             }
             m_StatusLabel.Text = " The OPF Files selected has successfully been added in the Listbox ";
-        }//m_btnAdd_Click
+         }//m_btnAdd_Click
 
         private void m_BtnOutputDirectory_Click(object sender, EventArgs e)
         {
@@ -91,10 +89,17 @@ namespace MergeUtilityUI
 
         private void m_BtnDelete_Click(object sender, EventArgs e)
         {
+            try
+            {
                 m_StatusLabel.Text = " Deleting the selected file from the Listbox ";
                 m_lbOPFfiles.Items.Remove(m_lbOPFfiles.SelectedItem);
                 m_txtDTBookInfo.Clear();
-               m_StatusLabel.Text = string.Empty;           
+                m_StatusLabel.Text = string.Empty;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }//m_BtnDelete_Click
 
         private void m_BtnReset_Click(object sender, EventArgs e)
@@ -158,31 +163,40 @@ namespace MergeUtilityUI
 
         private void m_BtnMerge_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
-            if (m_txtDirectoryPath.Text == "")
+            try
             {
-                MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path", "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                m_txtDirectoryPath.Focus();
-            }
-            if (m_txtDirectoryPath.Text.Length > 0) 
-            {
-                m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
-                m_bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
+                m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
+                if (m_txtDirectoryPath.Text == "")
+                {
+                    MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path",
+                                    "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    m_txtDirectoryPath.Focus();
+                }
+                if (m_txtDirectoryPath.Text.Length > 0)
+                {
+                    m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
+                    m_bgWorker.RunWorkerCompleted +=
+                        new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
 
-                
-                m_bgWorker.RunWorkerAsync();
 
-                if (m_bgWorker.IsBusy)
+                    m_bgWorker.RunWorkerAsync();
+
+                    if (m_bgWorker.IsBusy)
                     {
-                    progress = new ProgressDialogDTB ();
-                    progress.ShowDialog ();
+                        progress = new ProgressDialogDTB();
+                        progress.ShowDialog();
                     }
 
-                while (m_bgWorker.IsBusy)
-                {
-                    Application.DoEvents();
+                    while (m_bgWorker.IsBusy)
+                    {
+                        Application.DoEvents();
+                    }
                 }
             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.ToString());
+             }
         }//m_BtnMerge_Click
                 
         private void m_bgWorker_DoWork(object sender, EventArgs e)
@@ -227,14 +241,8 @@ namespace MergeUtilityUI
 
         private void m_lbOPFfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (m_lbOPFfiles.Items.Count > 0)
-            {
-                m_BtnDelete.Enabled = true;
-               if (m_lbOPFfiles.SelectedIndex >= 0)
-                {
-                    m_BtnValidateInput.Enabled = true;                    
-                }
-            }
+           m_BtnValidateInput.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
+           m_BtnDelete.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
             
             if (m_lbOPFfiles.Items.Count == 1)
             {
@@ -258,12 +266,16 @@ namespace MergeUtilityUI
 
         private void m_BtnValidateInput_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = " Validating The Input OPF File..";
-            DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
-            string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
-            string completeScriptPath = Path.Combine(scriptPath, "scripts");
-            obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), m_lbOPFfiles.SelectedItem.ToString(), "", 30);
-            m_StatusLabel.Text = "";
+            if (m_lbOPFfiles.SelectedItems.Count != 0)
+            {
+                m_StatusLabel.Text = " Validating The Input OPF File..";
+                DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
+                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
+                string completeScriptPath = Path.Combine(scriptPath, "scripts");
+                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),
+                             m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+                m_StatusLabel.Text = "";
+            }
         }//m_BtnValidateInput_Click
 
         private void m_BtnValidateOutput_Click(object sender, EventArgs e)
