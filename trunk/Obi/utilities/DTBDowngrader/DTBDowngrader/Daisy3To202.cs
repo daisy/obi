@@ -180,7 +180,7 @@ namespace DTBDowngrader
                 smilXmlDoc.RemoveChild ( smilXmlDoc.DocumentType );
                 
                 XmlDocumentType type = smilXmlDoc.CreateDocumentType ( "smil",
-                    "-//W3C//DTD SMIL01.0//EN",
+                    "-//W3C//DTD SMIL 1.0//EN",
                     "http://www.w3.org/TR/REC-smil/SMIL10.dtd",
                     null );
 
@@ -199,6 +199,13 @@ namespace DTBDowngrader
                 string name = n.Attributes.GetNamedItem ( "name" ).Value;
                 n.Attributes.GetNamedItem ( "name" ).Value = name.Replace ( "dtb:", "ncc:" );
                 }
+            // add format 
+            XmlNode formatNode = smilXmlDoc.CreateElement ( null, "meta", metaList[0].ParentNode.NamespaceURI );
+            metaList[0].ParentNode.AppendChild ( formatNode );
+            formatNode.Attributes.Append ( smilXmlDoc.CreateAttribute ( "name" ) );
+            formatNode.Attributes.Append ( smilXmlDoc.CreateAttribute("content") );
+            formatNode.Attributes.GetNamedItem("name").Value = "dc:format" ;
+            formatNode.Attributes.GetNamedItem("content").Value = "Daisy 2.02" ;
 
             // add layout
             XmlNode headNode = smilXmlDoc.GetElementsByTagName ( "head" )[0];
@@ -210,10 +217,59 @@ namespace DTBDowngrader
                 smilXmlDoc.CreateAttribute ( "id" ) );
             regionNode.Attributes.GetNamedItem ( "id" ).Value = "textView";
 
+            // change audio attributes and find total duration
+            TimeSpan duration = new TimeSpan(0) ;
+            XmlNodeList audioNodeList = smilXmlDoc.GetElementsByTagName ( "audio" );
+            foreach (XmlNode n in audioNodeList)
+                {
+                duration =  duration.Add(
+                    CalculateTimeDifference(
+                    n.Attributes.GetNamedItem("clipBegin").Value,
+                n.Attributes.GetNamedItem ("clipEnd").Value )  );
+                
+                XmlAttribute beginAtt = smilXmlDoc.CreateAttribute ( "clip-begin" );
+                beginAtt.Value = n.Attributes.GetNamedItem ( "clipBegin" ).Value;
+                n.Attributes.RemoveNamedItem ( "clipBegin" );
+
+                XmlAttribute endAtt = smilXmlDoc.CreateAttribute ( "clip-end" );
+                endAtt.Value = n.Attributes.GetNamedItem ( "clipEnd" ).Value;
+                n.Attributes.RemoveNamedItem ( "clipEnd" );
+
+                n.Attributes.Append ( beginAtt );
+                n.Attributes.Append ( endAtt );
+                }
+
+            // add dur to seq.
+            XmlNode seqNode = smilXmlDoc.GetElementsByTagName ( "body" )[0].FirstChild;
+            if ( seqNode.LocalName == "seq")
+                {
+                seqNode.Attributes.RemoveNamedItem ( "fill" );
+                XmlAttribute att = smilXmlDoc.CreateAttribute("dur") ;
+                att.Value = duration.ToString () ;
+                seqNode.Attributes.Append (att ) ;
+                }
+
+            // add endsync attribute to par
+            XmlNodeList parList = smilXmlDoc.GetElementsByTagName ( "par" );
+            foreach (XmlNode n in parList)
+                {
+                // to do: add check if endsync already exists
+
+                n.Attributes.Append ( smilXmlDoc.CreateAttribute ( "endsync" ) );
+                n.Attributes.GetNamedItem("endsync").Value = "last" ;
+                }
 
             CommonFunctions.WriteXmlDocumentToFile ( smilXmlDoc, smilPath );
             smilXmlDoc = null;
             RemoveSmilSmlns ( smilPath );
+            }
+
+        private TimeSpan CalculateTimeDifference ( string begin, string end )
+            {
+            TimeSpan beginTime = CommonFunctions.GetTimeSpan ( begin );
+            TimeSpan endTime = CommonFunctions.GetTimeSpan ( end );
+            
+            return endTime.Subtract ( beginTime);
             }
 
         private void RemoveSmilSmlns ( string smilPath )
