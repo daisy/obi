@@ -16,12 +16,22 @@ namespace DTBDowngraderUI
             {
             InitializeComponent ();
             }
-
+        string m_inputPath;
         private void m_btnOpen_Click ( object sender, EventArgs e )
             {
             if (openFileDialog1.ShowDialog () == DialogResult.OK)
                 {
-                DTBDowngrader.Daisy3To202 d = new Daisy3To202 ( openFileDialog1.FileName, System.AppDomain.CurrentDomain.BaseDirectory );
+                m_inputPath = openFileDialog1.FileName;
+                
+                }
+            }
+
+        private void m_btnSaveDir_Click ( object sender, EventArgs e )
+            {
+            //folderBrowserDialog1.SelectedPath = "C:\\Downloads\\mp3Export1" ;
+            if (folderBrowserDialog1.ShowDialog () == DialogResult.OK)
+                {
+                DTBDowngrader.Daisy3To202 d = new Daisy3To202 ( m_inputPath, folderBrowserDialog1.SelectedPath);
                 }
             }
         }
