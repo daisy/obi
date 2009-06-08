@@ -50,10 +50,14 @@ namespace MergeUtilityUI
                 this.m_BtnValidateInput = new System.Windows.Forms.Button();
                 this.m_grpDirPath = new System.Windows.Forms.GroupBox();
                 this.m_BtnValidateOutput = new System.Windows.Forms.Button();
+                this.m_grpPageInput = new System.Windows.Forms.GroupBox();
+                this.m_rdbRenumberPages = new System.Windows.Forms.RadioButton();
+                this.m_rdbExistingNumberOfPages = new System.Windows.Forms.RadioButton();
                 this.m_grpListOPFfiles.SuspendLayout();
                 this.m_statusStrip.SuspendLayout();
                 this.m_grpManipulateOPF.SuspendLayout();
                 this.m_grpDirPath.SuspendLayout();
+                this.m_grpPageInput.SuspendLayout();
                 this.SuspendLayout();
                 // 
                 // m_lblDaisy3Merger
@@ -230,7 +234,7 @@ namespace MergeUtilityUI
                 // 
                 this.m_statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_StatusLabel});
-                this.m_statusStrip.Location = new System.Drawing.Point(0, 608);
+                this.m_statusStrip.Location = new System.Drawing.Point(0, 671);
                 this.m_statusStrip.Name = "m_statusStrip";
                 this.m_statusStrip.Size = new System.Drawing.Size(883, 22);
                 this.m_statusStrip.TabIndex = 12;
@@ -281,7 +285,7 @@ namespace MergeUtilityUI
                 this.m_grpDirPath.Controls.Add(this.m_txtDirectoryPath);
                 this.m_grpDirPath.Controls.Add(this.m_lbOutputDirPath);
                 this.m_grpDirPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_grpDirPath.Location = new System.Drawing.Point(25, 459);
+                this.m_grpDirPath.Location = new System.Drawing.Point(25, 537);
                 this.m_grpDirPath.Name = "m_grpDirPath";
                 this.m_grpDirPath.Size = new System.Drawing.Size(846, 131);
                 this.m_grpDirPath.TabIndex = 16;
@@ -300,12 +304,47 @@ namespace MergeUtilityUI
                 this.m_BtnValidateOutput.UseVisualStyleBackColor = true;
                 this.m_BtnValidateOutput.Click += new System.EventHandler(this.m_BtnValidateOutput_Click);
                 // 
+                // m_grpPageInput
+                // 
+                this.m_grpPageInput.Controls.Add(this.m_rdbRenumberPages);
+                this.m_grpPageInput.Controls.Add(this.m_rdbExistingNumberOfPages);
+                this.m_grpPageInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.m_grpPageInput.Location = new System.Drawing.Point(25, 459);
+                this.m_grpPageInput.Name = "m_grpPageInput";
+                this.m_grpPageInput.Size = new System.Drawing.Size(846, 79);
+                this.m_grpPageInput.TabIndex = 17;
+                this.m_grpPageInput.TabStop = false;
+                this.m_grpPageInput.Text = "Numbering of Pages";
+                // 
+                // m_rdbRenumberPages
+                // 
+                this.m_rdbRenumberPages.AutoSize = true;
+                this.m_rdbRenumberPages.Location = new System.Drawing.Point(469, 36);
+                this.m_rdbRenumberPages.Name = "m_rdbRenumberPages";
+                this.m_rdbRenumberPages.Size = new System.Drawing.Size(171, 20);
+                this.m_rdbRenumberPages.TabIndex = 1;
+                this.m_rdbRenumberPages.Text = "Renumber the Pages";
+                this.m_rdbRenumberPages.UseVisualStyleBackColor = true;
+                // 
+                // m_rdbExistingNumberOfPages
+                // 
+                this.m_rdbExistingNumberOfPages.AutoSize = true;
+                this.m_rdbExistingNumberOfPages.Checked = true;
+                this.m_rdbExistingNumberOfPages.Location = new System.Drawing.Point(45, 36);
+                this.m_rdbExistingNumberOfPages.Name = "m_rdbExistingNumberOfPages";
+                this.m_rdbExistingNumberOfPages.Size = new System.Drawing.Size(248, 20);
+                this.m_rdbExistingNumberOfPages.TabIndex = 0;
+                this.m_rdbExistingNumberOfPages.TabStop = true;
+                this.m_rdbExistingNumberOfPages.Text = "Use Existing Numering of Pages";
+                this.m_rdbExistingNumberOfPages.UseVisualStyleBackColor = true;
+                // 
                 // Daisy3MergerForm
                 // 
                 this.AcceptButton = this.m_BtnMerge;
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(883, 630);
+                this.ClientSize = new System.Drawing.Size(883, 693);
+                this.Controls.Add(this.m_grpPageInput);
                 this.Controls.Add(this.m_grpDirPath);
                 this.Controls.Add(this.m_grpManipulateOPF);
                 this.Controls.Add(this.m_statusStrip);
@@ -319,6 +358,8 @@ namespace MergeUtilityUI
                 this.m_grpManipulateOPF.PerformLayout();
                 this.m_grpDirPath.ResumeLayout(false);
                 this.m_grpDirPath.PerformLayout();
+                this.m_grpPageInput.ResumeLayout(false);
+                this.m_grpPageInput.PerformLayout();
                 this.ResumeLayout(false);
                 this.PerformLayout();
 
@@ -348,6 +389,9 @@ namespace MergeUtilityUI
         private System.Windows.Forms.GroupBox m_grpDirPath;
         private System.Windows.Forms.Button m_BtnValidateOutput;
         private System.Windows.Forms.Button m_BtnValidateInput;
+        private System.Windows.Forms.GroupBox m_grpPageInput;
+        private System.Windows.Forms.RadioButton m_rdbRenumberPages;
+        private System.Windows.Forms.RadioButton m_rdbExistingNumberOfPages;        
         }
     }
 
