@@ -207,7 +207,7 @@ namespace MergeUtilityUI
                 listOfOpfFiles[i] = m_lbOPFfiles.Items[i].ToString();
             }
 
-            DTBMerger.DTBMerger obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text);
+            DTBMerger.DTBMerger obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);
             obj.MergeDTDs();
         }//m_bgWorker_DoWork
 

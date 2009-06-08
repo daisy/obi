@@ -7,11 +7,14 @@ using System.Windows.Forms;
 
 namespace DTBMerger
     {
+    public enum PageMergeOptions { KeepExisting, Renumber } ;
+
     class DTBIntegrator
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
+        private PageMergeOptions m_PageMergeOptions ;
 
-        public DTBIntegrator ( List<string> pathsList )
+        public DTBIntegrator ( List<string> pathsList , PageMergeOptions pageOption)
             {
             m_DTBFilesInfoList = new List<DTBFilesInfo> ();
 
@@ -19,7 +22,7 @@ namespace DTBMerger
                 {
                 m_DTBFilesInfoList.Add ( new DTBFilesInfo ( pathsList[i] ) );
                 }
-
+            m_PageMergeOptions = pageOption;
             }
 
         public void IntegrateDTBs ()
@@ -299,15 +302,28 @@ namespace DTBMerger
                         string typeString = n.Attributes.GetNamedItem ( "type" ).Value;
                         if (typeString == "normal")
                             {
-                            string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
-                            temp = int.Parse ( valueString );
-                            if (temp > pageValue) pageValue = temp;
-                            n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + temp).ToString ();
+                            if (m_PageMergeOptions == PageMergeOptions.Renumber)
+                                {
+                                pageValue++;
+                                n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + pageValue).ToString ();
 
-                            XmlNode textNode = n.FirstChild.FirstChild;
-                            if (textNode.LocalName == "text")
-                                textNode.InnerText = (maxPageValue + temp).ToString ();
+                                XmlNode textNode = n.FirstChild.FirstChild;
+                                if (textNode.LocalName == "text")
+                                    textNode.InnerText = (maxPageValue  + pageValue).ToString ();
+
+                                /*
+                                string valueString = n.Attributes.GetNamedItem ( "value" ).Value;
+                                temp = int.Parse ( valueString );
+                                if (temp > pageValue) pageValue = temp;
+                                n.Attributes.GetNamedItem ( "value" ).Value = (maxPageValue + temp).ToString ();
+
+                                XmlNode textNode = n.FirstChild.FirstChild;
+                                if (textNode.LocalName == "text")
+                                    textNode.InnerText = (maxPageValue + temp).ToString ();
+                                 */ 
+                                }
                             }
+                                 
                         firstPageListNode.AppendChild ( firstNcx.ImportNode ( n, true ) );
                         }
                     }
