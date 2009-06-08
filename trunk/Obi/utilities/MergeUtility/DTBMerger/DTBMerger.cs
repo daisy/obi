@@ -11,8 +11,9 @@ namespace DTBMerger
         private String []  m_InputPaths;
         private string m_OutputDirectory;
         private int m_ProgressInfo;
+        private PageMergeOptions m_PageMergeOptions;
 
-        public DTBMerger ( string[] inputPaths , string outputDirectory )
+        public DTBMerger ( string[] inputPaths , string outputDirectory, PageMergeOptions pageOptions )
             {
             m_ProgressInfo = 0;
 
@@ -34,7 +35,10 @@ namespace DTBMerger
                 }
             Directory.CreateDirectory ( outputDirectory ) ;
             m_OutputDirectory = outputDirectory ;
+
+            m_PageMergeOptions = pageOptions;
             }
+
 
         public int ProgressInfo { get { return m_ProgressInfo; } }
 
@@ -44,7 +48,7 @@ namespace DTBMerger
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ();
             RenameDTDFiles ( inputParameterList );
             m_ProgressInfo = 70;
-            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList );
+            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList ,m_PageMergeOptions);
             integrator.IntegrateDTBs ();
 
             m_ProgressInfo = 90;
