@@ -56,6 +56,7 @@ namespace MergeUtilityUI
             }
             if (m_txtDirectoryPath.Text.Length > 0)
             {
+                m_BtnReset.Enabled = true;
                 m_StatusLabel.Text = " You have selected the path " + saveDir.SelectedPath + " to save the merged OPF files ";
             }
         }//m_BtnOutputDirectory_Click
@@ -83,6 +84,8 @@ namespace MergeUtilityUI
                             checkOutDirExists(m_txtDirectoryPath.Text);
 
                         }
+                        if(saveDire.ShowDialog(this) == DialogResult.Cancel)
+                        { m_txtDirectoryPath.Clear(); }
                     }
                 }
             }
@@ -196,6 +199,7 @@ namespace MergeUtilityUI
                         Application.DoEvents();
                     }
                 }
+                MessageBox.Show("Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
              catch (Exception ex)
              {
@@ -253,7 +257,12 @@ namespace MergeUtilityUI
         {
            m_BtnValidateInput.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
            m_BtnDelete.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
-            
+           m_BtnMerge.Enabled = false;
+           m_BtnMerge.Enabled = m_lbOPFfiles.Items.Count >= 2;
+           m_BtnValidateOutput.Enabled = false;
+           m_BtnReset.Enabled = false;
+           m_BtnReset.Enabled = m_lbOPFfiles.Items.Count > 0 || m_txtDirectoryPath.Text.Length > 0;
+           
             if (m_lbOPFfiles.Items.Count == 1)
             {
                 m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
@@ -301,6 +310,7 @@ namespace MergeUtilityUI
                 obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
             }
             m_StatusLabel.Text = string.Empty;
+            m_BtnValidateOutput.Enabled = false;
         }//m_BtnValidateOutput_Click                     
 
     }//class
