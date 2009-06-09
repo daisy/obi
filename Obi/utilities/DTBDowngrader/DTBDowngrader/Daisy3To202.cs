@@ -15,6 +15,8 @@ namespace DTBDowngrader
         XmlDocument m_InputNcxDoc;
         XmlDocument m_NccDocument;
         Dictionary<int, XmlNode> m_PageListOpf;
+        Dictionary<string, List<string>> m_SmilReferences;
+        Dictionary<string, string> m_SmilNccIDMap;
 
         public Daisy3To202 ( string sourceOpf, string outputDirectory )
             {
@@ -24,11 +26,13 @@ namespace DTBDowngrader
             m_InputNcxDoc = CommonFunctions.CreateXmlDocument ( m_DAISY3Info.NcxPath );
             m_NccDocument = CreateNCCSkeletonXmlDocument ();
             m_PageListOpf = new Dictionary<int, XmlNode> ();
+            m_SmilReferences = new Dictionary<string, List<string>> ();
+            m_SmilNccIDMap = new Dictionary<string, string> ();
 
             ExtractPageList ();
             CreateNccNavigationStructure ();
             CreateNCCMetadata ();
-
+            UpdateAllSmils ();
             WriteNCCFile ();
             }
 
@@ -146,9 +150,11 @@ namespace DTBDowngrader
                 {
                 AddPageToNCC ( m_PageListOpf[navPointPlayOrder + 1] );
                 }
-            UpdateSmilFile ( smilRef );
+            AddSmilReferences ( smilRef, navPointNode.Attributes.GetNamedItem ( "id" ).Value );
+            //UpdateSmilFile ( smilRef, navPointNode.Attributes.GetNamedItem ( "id" ).Value );
             }
 
+        
         private void AddPageToNCC ( XmlNode pageNodeOpf )
             {
             string nSpace = m_NccDocument.GetElementsByTagName ( "html" )[0].NamespaceURI;
@@ -159,7 +165,7 @@ namespace DTBDowngrader
             string pageType = "page-" + pageNodeOpf.Attributes.GetNamedItem ( "type" ).Value;
             CreateNccAttribute ( pageNode, "class", pageType );
             CreateNccAttribute ( pageNode, "id",
-                pageNodeOpf.Attributes.GetNamedItem ( "id" ).Value );
+        pageNodeOpf.Attributes.GetNamedItem ( "id" ).Value );
 
             XmlNode anchorNode = m_NccDocument.CreateElement ( null, "a", nSpace );
             string smilRef = pageNodeOpf.ChildNodes[1].Attributes.GetNamedItem ( "src" ).Value;
@@ -169,13 +175,37 @@ namespace DTBDowngrader
             //MessageBox.Show ( smilRef );
             pageNode.AppendChild ( anchorNode );
             bodyNode.AppendChild ( pageNode );
+
+            AddSmilReferences ( smilRef, pageNodeOpf.Attributes.GetNamedItem ( "id" ).Value );
             }
 
-        private void UpdateSmilFile ( string smilSRC )
+        private void AddSmilReferences ( string smilSRC, string nccID)
             {
-            string smilPath = smilSRC.Split ( '#' )[0];
-            smilPath = Path.Combine ( m_OutputDirectory, smilPath );
-            XmlDocument smilXmlDoc = CommonFunctions.CreateXmlDocument ( smilPath );
+            string[] smilFragments = smilSRC.Split ( '#' );
+            string smilFilename = smilFragments[0];
+            string smilID = smilFragments[1];
+
+            if ( !m_SmilReferences.ContainsKey(smilFilename ))
+                {
+                m_SmilReferences.Add (smilFilename, new List<string> ()) ;
+                }
+            m_SmilReferences[smilFilename].Add( smilID) ;
+            m_SmilNccIDMap.Add(smilID, nccID ) ;
+
+            }
+
+        private void UpdateAllSmils ()
+            {
+            foreach (string name  in m_SmilReferences.Keys)
+                {
+                UpdateSmilFile ( Path.Combine( m_DAISY3Info.BaseDirectory, name),
+m_SmilReferences[name] );
+                }
+            }
+
+        private void UpdateSmilFile ( string smilFullPath, List<string> smilIDs )
+            {
+            XmlDocument smilXmlDoc = CommonFunctions.CreateXmlDocument ( smilFullPath);
 
                 smilXmlDoc.RemoveChild ( smilXmlDoc.DocumentType );
                 
@@ -190,6 +220,11 @@ namespace DTBDowngrader
 
             foreach (XmlNode n in metaList)
                 {
+                if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:uid")
+                    {
+                    n.Attributes.GetNamedItem ( "name" ).Value = "dc:identifier";
+                    }
+
                 if (n.Attributes.GetNamedItem ( "name" ).Value.Contains ( ":totalElapsedTime" ))
                     {
                     TimeSpan t = CommonFunctions.GetTimeSpan ( n.Attributes.GetNamedItem ( "content" ).Value );
@@ -220,6 +255,7 @@ namespace DTBDowngrader
             // change audio attributes and find total duration
             TimeSpan duration = new TimeSpan(0) ;
             XmlNodeList audioNodeList = smilXmlDoc.GetElementsByTagName ( "audio" );
+            int audioId = 0;
             foreach (XmlNode n in audioNodeList)
                 {
                 duration =  duration.Add(
@@ -237,6 +273,10 @@ namespace DTBDowngrader
 
                 n.Attributes.Append ( beginAtt );
                 n.Attributes.Append ( endAtt );
+
+                n.Attributes.Append( smilXmlDoc.CreateAttribute("id") );
+                n.Attributes.GetNamedItem("id").Value ="a"+  m_DAISY3Info.Identifier + "audio" + audioId  ;
+                audioId++;
                 }
 
             // add dur to seq.
@@ -248,20 +288,94 @@ namespace DTBDowngrader
                 att.Value = duration.ToString () ;
                 seqNode.Attributes.Append (att ) ;
                 }
+            
+                // add par node, text node and seq around pars
+                XmlNodeList seqChildList = seqNode.ChildNodes;
+                MessageBox.Show ( "SmilID :" + smilIDs.Count.ToString () );
+                for ( int i = 0 ;    i < seqChildList.Count; i++ )
+                    {
+                    XmlNode parNode = seqChildList[i];
+                    if (parNode.Attributes.GetNamedItem ( "id" ) != null &&
+                        smilIDs.Contains ( parNode.Attributes.GetNamedItem ( "id" ).Value ))
+                        {
+                        string strID = parNode.Attributes.GetNamedItem ( "id" ).Value;
+                        XmlNode seqParNode = smilXmlDoc.CreateElement ( null, "par", seqNode.NamespaceURI );
+                        seqNode.AppendChild ( seqParNode );
 
+                        XmlNode textNode = smilXmlDoc.CreateElement ( null, "text", seqNode.NamespaceURI );
+                        seqParNode.AppendChild ( textNode );
+                        textNode.Attributes.Append ( smilXmlDoc.CreateAttribute ( "src" ) );
+                        textNode.Attributes.GetNamedItem ( "src" ).Value = "ncc.html#" + m_SmilNccIDMap[strID];
+
+                        textNode.Attributes.Append ( smilXmlDoc.CreateAttribute ( "id" ) );
+                        textNode.Attributes.GetNamedItem ( "id" ).Value = strID;
+                        XmlNode seqNode_FirstParChild = smilXmlDoc.CreateElement ( null, "seq", seqNode.NamespaceURI );
+                        seqParNode.AppendChild ( seqNode_FirstParChild );
+
+                        // copy all pars from primary seq to child seq
+
+                        for ( int j = i; j < seqChildList.Count ; j++ )
+                            {
+                            //MessageBox.Show ( j.ToString () );
+                            XmlNode n = seqNode.ChildNodes[j];
+                            if ( n!= null &&  n.LocalName == "par" &&
+                                n.Attributes.GetNamedItem ( "id" ) != null && 
+                                (n.Attributes.GetNamedItem("id").Value == strID 
+                                || !smilIDs.Contains(n.Attributes.GetNamedItem("id").Value  )) )
+                                {
+                            XmlNode par_internal = n.CloneNode ( true );
+
+
+                            if (par_internal.LocalName == "par"
+                                && par_internal.FirstChild.LocalName == "audio")
+                                {
+                                seqNode_FirstParChild.AppendChild ( par_internal.FirstChild );
+                                //MessageBox.Show ( n.LocalName );
+                                }
+                            else
+                                {
+                                MessageBox.Show ( n.FirstChild.Attributes.GetNamedItem ( "clip-begin" ).Value );
+                                break;
+                                }
+                                
+                                }
+                            }
+
+
+                        }
+                }//foreach id ends
+            
+            for ( int i = seqNode.ChildNodes.Count - 1; i >=0;i-- )
+                {
+                if (seqNode.ChildNodes[i].LocalName == "par"
+                    && seqNode.ChildNodes[i].FirstChild.LocalName == "audio")
+                    {
+                    seqNode.RemoveChild ( seqNode.ChildNodes[i] );
+
+                    System.Media.SystemSounds.Asterisk.Play ();
+                    }
+                else
+                    {
+                    MessageBox.Show ( seqNode.ChildNodes[i].LocalName + " : " + seqNode.ChildNodes[i].FirstChild.LocalName + " : not removed" );
+                    }
+                }
+             
+            //seqNode.RemoveAll ();
+            //seqNode.AppendChild ( ParqNodeClone );
             // add endsync attribute to par
             XmlNodeList parList = smilXmlDoc.GetElementsByTagName ( "par" );
             foreach (XmlNode n in parList)
                 {
-                // to do: add check if endsync already exists
-
-                n.Attributes.Append ( smilXmlDoc.CreateAttribute ( "endsync" ) );
-                n.Attributes.GetNamedItem("endsync").Value = "last" ;
+                if (n.Attributes.GetNamedItem ( "endsync" ) == null)
+                    {
+                    n.Attributes.Append ( smilXmlDoc.CreateAttribute ( "endsync" ) );
+                    n.Attributes.GetNamedItem ( "endsync" ).Value = "last";
+                    }
                 }
 
-            CommonFunctions.WriteXmlDocumentToFile ( smilXmlDoc, smilPath );
+            CommonFunctions.WriteXmlDocumentToFile ( smilXmlDoc, smilFullPath);
             smilXmlDoc = null;
-            RemoveSmilSmlns ( smilPath );
+            RemoveSmilSmlns ( smilFullPath);
             }
 
         private TimeSpan CalculateTimeDifference ( string begin, string end )
