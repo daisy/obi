@@ -209,6 +209,18 @@ namespace MergeUtilityUI
                 
         private void m_bgWorker_DoWork(object sender, EventArgs e)
         {
+        try
+            {
+            StartMerging ();
+            }
+        catch (System.Exception ex)
+            {
+            MessageBox.Show ( ex.ToString () );
+            }
+            }
+
+        private void StartMerging ()
+            {
             DTBMerger.DTBMerger obj = null;
             string[] listOfOpfFiles = new string[m_lbOPFfiles.Items.Count];
             for (int i = 0; i < m_lbOPFfiles.Items.Count; i++)
