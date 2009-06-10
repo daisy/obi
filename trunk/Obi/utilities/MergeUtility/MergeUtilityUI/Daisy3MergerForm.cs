@@ -184,14 +184,16 @@ namespace MergeUtilityUI
                     m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
                     m_bgWorker.RunWorkerCompleted +=
                         new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
-
-
+                    m_bgWorker.WorkerSupportsCancellation = true;
+                    
                     m_bgWorker.RunWorkerAsync();
 
                     if (m_bgWorker.IsBusy)
                     {
                         progress = new ProgressDialogDTB();
+                        progress.FormClosing += new FormClosingEventHandler ( ProgressDialog_FormClosing );
                         progress.ShowDialog();
+                        
                     }
 
                     while (m_bgWorker.IsBusy)
@@ -199,7 +201,7 @@ namespace MergeUtilityUI
                         Application.DoEvents();
                     }
                 }
-                MessageBox.Show("Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
              catch (Exception ex)
              {
@@ -238,6 +240,23 @@ namespace MergeUtilityUI
             obj.MergeDTDs();
         }//m_bgWorker_DoWork
 
+        private void ProgressDialog_FormClosing ( object sender, EventArgs e )
+            {
+            if ( progress != null &&
+                m_bgWorker.IsBusy && !m_bgWorker.CancellationPending)
+                {
+                try
+                    {
+                    m_bgWorker.CancelAsync ();
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                }
+            progress.FormClosing -= new FormClosingEventHandler ( ProgressDialog_FormClosing );
+            }
+
         private void m_bgWorker_RunWorkerCompleted(object sender, AsyncCompletedEventArgs e)
         {            
             if (progress != null)
@@ -251,7 +270,9 @@ namespace MergeUtilityUI
             }
             if (e.Error == null)
             {
-                m_StatusLabel.Text = "The Files has been merged and put in Selected output directory.";
+            if (!e.Cancelled)
+            MessageBox.Show ( "Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                //m_StatusLabel.Text = "The Files has been merged and put in Selected output directory.";
                 m_BtnValidateOutput.Enabled = true;
             }
             if (e.Error != null)
