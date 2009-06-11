@@ -2127,6 +2127,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obi do not yet support language {0}. So, GUI will not be updated for this language..
+        /// </summary>
+        internal static string Peferences_GUIDonotSupportCulture {
+            get {
+                return ResourceManager.GetString("Peferences_GUIDonotSupportCulture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output directory is not empty! Do you want to empty it?.
         /// </summary>
         internal static string Permission_EmptyOutputDirectory {
@@ -2384,6 +2393,15 @@ namespace Obi {
         internal static string please_enter_some_text {
             get {
                 return ResourceManager.GetString("please_enter_some_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obi has to be restarted for language changes to take effect. Please save your work and restart Obi..
+        /// </summary>
+        internal static string Preferences_RestartForCultureChange {
+            get {
+                return ResourceManager.GetString("Preferences_RestartForCultureChange", resourceCulture);
             }
         }
         
