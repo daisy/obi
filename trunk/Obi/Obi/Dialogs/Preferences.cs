@@ -229,7 +229,19 @@ namespace Obi.Dialogs
         {
             mSettings.UserProfile.Name = mFullNameTextbox.Text;
             mSettings.UserProfile.Organization = mOrganizationTextbox.Text;
-            mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+            
+            if (mCultureBox.SelectedItem.ToString() == "en-US" 
+                || mCultureBox.SelectedItem.ToString() == "hi-IN")
+                {
+                mSettings.UserProfile.Culture = (CultureInfo)mCultureBox.SelectedItem;
+                MessageBox.Show ("Please save changes to project and restart Obi for language changes to take effect") ;
+                }
+            else
+                {
+                MessageBox.Show ( "Obi GUI do not yet support culture: " + mCultureBox.SelectedItem.ToString() );
+                return false;
+                }
+
             return true;
         }
 
