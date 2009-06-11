@@ -13,16 +13,21 @@ namespace Obi
         /// </summary>
         [STAThread]
         static void Main(string[] args)
-        {
+            {
             //language switch, loads culture from settings 
-        // strCulture is "hi-IN" for hindi, "en-US" for english
-        string strCulture = Settings.GetSettings ().UserProfile.Culture.Name;
-             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo( strCulture);
-             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo ( strCulture );
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(args.Length == 0 ? new ObiForm() : new ObiForm(args[0]));
-        }
+            // strCulture is "hi-IN" for hindi, "en-US" for english
+            string strCulture = Settings.GetSettings ().UserProfile.Culture.Name;
+
+            if ( !string.IsNullOrEmpty (strCulture )
+                && ( strCulture == "en-US" || strCulture == "hi-IN") )
+                                {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo ( strCulture );
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo ( strCulture );
+                }
+            Application.EnableVisualStyles ();
+            Application.SetCompatibleTextRenderingDefault ( false );
+            Application.Run ( args.Length == 0 ? new ObiForm () : new ObiForm ( args[0] ) );
+            }
 
 
         /// <summary>
