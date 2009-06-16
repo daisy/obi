@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 using urakawa.core;
 using urakawa.media;
+using urakawa.media.timing ;
 using urakawa.property.channel;
 using urakawa.metadata;
 
@@ -16,16 +17,21 @@ namespace Obi.Export
         {
         private Presentation m_Presentation;
         private string m_ExportDirectory;
+        private Dictionary<string, string> m_MetadataMap;
+        private Dictionary<string, string> m_SmilMetadata;
         private int m_PageFrontCount;
         private int m_PageNormalCount;
         private int m_PageSpecialCount;
-        int m_IdCounter;
+        private int m_MaxPageNormal;
+        private int m_IdCounter;
+        private Time m_SmilElapseTime;
+
 
         public DAISY202Export ( Presentation presentation, string exportDirectory)
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
-
+            m_MetadataMap = CreateDAISY3To2MetadataMap ();
             }
 
 
@@ -51,19 +57,27 @@ namespace Obi.Export
         public void CreateDAISY202Files ()
             {
             List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode );
-            MessageBox.Show ( "starting ncc main function" );
+            
             CreateFileSet ( sectionsList );
+            
             }
-
+        
 
         private void CreateFileSet ( List<SectionNode> sectionsList )
             {
             XmlDocument nccDocument = CreateNCCStubDocument ();
-            
+
+            m_IdCounter = 0;
             // initialize page counts to 0
             m_PageFrontCount = 0;
             m_PageNormalCount = 0;
             m_PageSpecialCount = 0;
+            m_MaxPageNormal = 0;
+
+            // generate smil metadata dictionary.
+            m_SmilMetadata = PopulateSmilMetadataDictionary ();
+            m_SmilElapseTime = new Time ();
+            
 
             for (int i = 0; i < sectionsList.Count; i++)
                 {
@@ -77,8 +91,9 @@ namespace Obi.Export
                     }
                 }
 
-            // to do: change class of first heading to title
-            CreateNCCMetadata ( nccDocument );
+
+            int tocItemsCount = sectionsList.Count + m_PageFrontCount + m_PageNormalCount + m_PageSpecialCount;
+            CreateNCCMetadata ( nccDocument , tocItemsCount.ToString ());
             // to do: write ncc file
             WriteXmlDocumentToFile (nccDocument,
                 Path.Combine ( m_ExportDirectory,"ncc.html")  );
@@ -86,11 +101,18 @@ namespace Obi.Export
         
         private void CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex)
             {
-            
+            Time sectionDuration = new Time () ;
             string nccFileName = "ncc.html";
             XmlNode bodyNode = nccDocument.GetElementsByTagName ( "body" )[0];
             XmlNode headingNode = nccDocument.CreateElement (null, "h" + section.Level.ToString () , bodyNode.NamespaceURI);
-            CreateAppendXmlAttribute ( nccDocument, headingNode, "class", "section" );
+            if (sectionIndex == 0)
+                {
+                CreateAppendXmlAttribute ( nccDocument, headingNode, "class", "title" );
+                }
+            else
+                {
+                CreateAppendXmlAttribute ( nccDocument, headingNode, "class", "section" );
+                }
             string headingID = "h" + IncrementID;
             CreateAppendXmlAttribute ( nccDocument, headingNode, "id", headingID);
             bodyNode.AppendChild ( headingNode );
@@ -102,6 +124,7 @@ namespace Obi.Export
 
             // create main seq
             XmlNode mainSeq = smilDocument.CreateElement ( null, "seq", smilBodyNode.NamespaceURI );
+            CreateAppendXmlAttribute ( smilDocument, mainSeq, "id", "sq" + IncrementID ); 
             // declare aseq node which is parent of audio elements
             XmlNode seqNode_AudioParent= null;
             smilBodyNode.AppendChild ( mainSeq );
@@ -117,11 +140,34 @@ namespace Obi.Export
                     XmlNode pageNode = null ;
                     if (phrase.Role_ == EmptyNode.Role.Page)
                         {
+                        string strClassVal = null;
+                        // increment page counts and get page kind
+                        switch (phrase.PageNumber.Kind)
+                            {
+                        case PageKind.Front:
+                        m_PageFrontCount++;
+                        strClassVal = "page-front";
+                        break;
+
+                        case PageKind.Normal:
+                        m_PageNormalCount++;
+                        if (phrase.PageNumber.Number > m_MaxPageNormal) m_MaxPageNormal = phrase.PageNumber.Number;
+                        strClassVal = "page-normal";
+                        break;
+
+                        case PageKind.Special:
+                        m_PageSpecialCount++;
+                        strClassVal = "page-special";
+                        break;
+
+                            }
+
                         pageNode = nccDocument.CreateElement ( null, "span", bodyNode.NamespaceURI );
-                        CreateAppendXmlAttribute ( nccDocument, pageNode, "type", phrase.PageNumber.Kind + "-page" );
+                        CreateAppendXmlAttribute ( nccDocument, pageNode, "class", strClassVal );
                         pageID = "p" + IncrementID;
                         CreateAppendXmlAttribute ( nccDocument, pageNode, "id", pageID );
                         bodyNode.AppendChild ( pageNode );
+                        
                         }
 
                     // create smil nodes
@@ -133,6 +179,8 @@ namespace Obi.Export
                         // create par 
                         XmlNode parNode = smilDocument.CreateElement ( null, "par", smilBodyNode.NamespaceURI );
                         mainSeq.AppendChild ( parNode );
+                        CreateAppendXmlAttribute ( smilDocument, parNode, "endsync", "last" );
+                        CreateAppendXmlAttribute ( smilDocument, parNode, "id", "pr" + IncrementID );
 
                         XmlNode txtNode = smilDocument.CreateElement ( null, "text", smilBodyNode.NamespaceURI );
                         parNode.AppendChild ( txtNode );
@@ -140,16 +188,17 @@ namespace Obi.Export
                         CreateAppendXmlAttribute ( smilDocument, txtNode, "id",txtID );
                         if ( pageID != null)
                             {
-                            CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + pageID);
+                            CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName +"#" + pageID);
                             }
                         else
                             {
-                        CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + headingID );
+                        CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName +"#" +  headingID );
                             }
 
                         // create seq which will hol audio children 
                         seqNode_AudioParent = smilDocument.CreateElement ( null, "seq", smilBodyNode.NamespaceURI );
                         parNode.AppendChild ( seqNode_AudioParent );
+                        CreateAppendXmlAttribute ( smilDocument, seqNode_AudioParent, "id", "sq" + IncrementID );
 
                         // add anchor and href to ncc elements
                         XmlNode anchorNode = nccDocument.CreateElement ( null, "a", bodyNode.NamespaceURI );
@@ -163,6 +212,7 @@ namespace Obi.Export
                             }
                         else if ( pageNode != null )
                             {
+                            
                             pageNode.AppendChild ( anchorNode );
                         CreateAppendXmlAttribute ( nccDocument, anchorNode, "href", smilFileName + "#" + txtID );
                             
@@ -180,12 +230,19 @@ namespace Obi.Export
 
                     XmlNode audioNode = smilDocument.CreateElement ( null, "audio", smilBodyNode.NamespaceURI );
                     seqNode_AudioParent.AppendChild ( audioNode );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "src", externalMedia.getSrc() );
+                    string relativeSRC = Path.GetFileName ( externalMedia.getSrc () );
+                    CreateAppendXmlAttribute ( smilDocument, audioNode, "src", relativeSRC);
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-begin", externalMedia.getClipBegin().ToString () );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-end", externalMedia.getClipEnd().ToString() );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "id", "aud"+IncrementID);
+                    sectionDuration =  sectionDuration.addTimeDelta( externalMedia.getDuration () );
                     }// if for phrasenode ends
                 } // for loop ends
+
+            CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", sectionDuration.ToString () );
+
+            AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString () );
+            m_SmilElapseTime=  m_SmilElapseTime.addTime ( sectionDuration );
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory,smilFileName ) );
@@ -200,6 +257,43 @@ namespace Obi.Export
             node.Attributes.Append ( attr );
             return attr;
             }
+
+        private void AddSmilHeadElements ( XmlDocument smilDocument, string elapseTime )
+            {
+            XmlNode headNode = smilDocument.GetElementsByTagName ( "head" )[0];
+            
+            // add metadata from dictionary
+            foreach (string s in m_SmilMetadata.Keys)
+                {
+                XmlNode metaNode = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( metaNode );
+
+                CreateAppendXmlAttribute ( smilDocument, metaNode, "name", s );
+                CreateAppendXmlAttribute ( smilDocument, metaNode, "content", m_SmilMetadata[s] );
+                }
+            // add dc:format
+            XmlNode formatNode = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+            headNode.AppendChild ( formatNode );
+            CreateAppendXmlAttribute ( smilDocument, formatNode, "name", "dc:format" );
+            CreateAppendXmlAttribute ( smilDocument, formatNode, "content", "Daisy 2.02" );
+
+
+            XmlNode metaNode1 = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( metaNode1 );
+
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "name", "ncc:totalElapsedTime" );
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "content", elapseTime);
+
+            XmlNode layoutNode = smilDocument.CreateElement ( null, "layout", headNode.NamespaceURI );
+            headNode.AppendChild ( layoutNode );
+            XmlNode regionNode = smilDocument.CreateElement ( null, "region", headNode.NamespaceURI );
+            layoutNode.AppendChild ( regionNode );
+            regionNode.Attributes.Append (
+                smilDocument.CreateAttribute ( "id" ) );
+            regionNode.Attributes.GetNamedItem ( "id" ).Value = "textView";
+
+            }
+
 
         private XmlDocument CreateNCCStubDocument ()
             {
@@ -219,16 +313,10 @@ namespace Obi.Export
             nccDocument.AppendChild ( htmlNode );
             
             
-                
-            try
-                {
                 CreateAppendXmlAttribute ( nccDocument, htmlNode, "lang", "en" );
                 CreateAppendXmlAttribute ( nccDocument, htmlNode, "xml:lang", "en" );
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+                
+            
             XmlNode headNode = nccDocument.CreateElement ( null, "head", htmlNode.NamespaceURI );
             htmlNode.AppendChild ( headNode );
             XmlNode bodyNode =  nccDocument.CreateElement ( null, "body", htmlNode.NamespaceURI );
@@ -241,8 +329,8 @@ namespace Obi.Export
             {
             XmlDocument smilDocument = new XmlDocument ();
             smilDocument.XmlResolver = null;
-
-            smilDocument.CreateXmlDeclaration ( "1.0", "utf-8", null );
+            
+            smilDocument.AppendChild( smilDocument.CreateXmlDeclaration ( "1.0", "utf-8", null ));
             smilDocument.AppendChild( smilDocument.CreateDocumentType ( "smil",
                 "-//W3C//DTD SMIL 1.0//EN",
                     "http://www.w3.org/TR/REC-smil/SMIL10.dtd",
@@ -289,10 +377,102 @@ namespace Obi.Export
             }
 
 
-        private void CreateNCCMetadata ( XmlDocument nccDocument )
+        private void CreateNCCMetadata ( XmlDocument nccDocument , string tocItems)
             {
-            Dictionary<string, string> metadataMap = CreateDAISY3To2MetadataMap ();
+            
+            List<urakawa.metadata.Metadata> items = m_Presentation.getListOfMetadata ();
+            items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
+            {
+                int names = a.getName ().CompareTo ( b.getName () );
+                return names == 0 ? a.getContent ().CompareTo ( b.getContent () ) : names;
+            } );
 
+
+            XmlNode headNode = nccDocument.GetElementsByTagName ( "head" )[0];
+
+            // create first meta node
+            XmlNode firstMetaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                    headNode.AppendChild ( firstMetaNode);
+            CreateAppendXmlAttribute( nccDocument,firstMetaNode,"content","text/html; charset=utf-8" ) ;
+            CreateAppendXmlAttribute ( nccDocument, firstMetaNode, "http-equiv", "Content-type" );
+            //<meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
+
+            // add existing metadata items to ncc
+            foreach (urakawa.metadata.Metadata m in items)
+                {
+                if (m_MetadataMap.ContainsKey ( m.getName () ))
+                    {
+                    XmlNode metaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                    headNode.AppendChild ( metaNode );
+                    CreateAppendXmlAttribute ( nccDocument, metaNode, "name", m_MetadataMap[m.getName ()] );
+                    CreateAppendXmlAttribute ( nccDocument, metaNode, "content", m.getContent () );
+                    }
+                }
+
+                // to do add more metadata items.
+            // add dc:format
+            XmlNode formatNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+            headNode.AppendChild ( formatNode );
+            CreateAppendXmlAttribute ( nccDocument, formatNode, "name", "dc:format" );
+            CreateAppendXmlAttribute ( nccDocument, formatNode, "content", "Daisy 2.02" );
+
+            // ncc:charset
+            XmlNode charsetNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+            headNode.AppendChild ( charsetNode );
+            CreateAppendXmlAttribute ( nccDocument, charsetNode, "name", "ncc:charset" );
+            CreateAppendXmlAttribute ( nccDocument, charsetNode, "content", "utf-8" );
+
+
+                XmlNode pageMetaNode = null;
+                // ncc:pageFront
+                pageMetaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( pageMetaNode );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "name", "ncc:pageFront" );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "content", m_PageFrontCount.ToString () );
+
+                //  ncc:maxPageNormal and pageNormal
+                pageMetaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( pageMetaNode );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "name", "ncc:maxPageNormal" );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "content", m_MaxPageNormal.ToString () );
+
+                // ncc:pageNormal
+                pageMetaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( pageMetaNode );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "name", "ncc:pageNormal" );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "content", m_PageNormalCount.ToString () );
+
+
+                // ncc:pageSpecial
+                pageMetaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( pageMetaNode );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "name", "ncc:pageSpecial" );
+                CreateAppendXmlAttribute ( nccDocument, pageMetaNode, "content", m_PageSpecialCount.ToString () );
+
+                
+                // ncc:prodNotes
+                // ncc:tocItems
+                XmlNode tocItemNode  = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( tocItemNode );
+                CreateAppendXmlAttribute ( nccDocument, tocItemNode, "name", "ncc:tocItems" );
+                CreateAppendXmlAttribute ( nccDocument, tocItemNode, "content", tocItems);
+
+                // ncc:totalTime
+            XmlNode totalTimeNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( totalTimeNode);
+                CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "name", "ncc:totalTime" );
+                CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ());
+                
+
+                
+
+            
+            }
+
+        private Dictionary<string, string> PopulateSmilMetadataDictionary ()
+            {
+            Dictionary<string, string> metadataItems = new Dictionary<string,string> () ;
+            /*
             List<urakawa.metadata.Metadata> items = m_Presentation.getListOfMetadata ();
             items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
             {
@@ -307,29 +487,35 @@ namespace Obi.Export
                 {
                 if ( metadataMap.ContainsKey(m.getName () ))
                     {
-                    XmlNode metaNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
-                    headNode.AppendChild ( metaNode );
-                    CreateAppendXmlAttribute ( nccDocument, metaNode, "name", metadataMap[m.getName ()] );
-                    CreateAppendXmlAttribute(nccDocument,metaNode,"content", m.getContent() ) ;
+                    */
+                    urakawa.metadata.Metadata identifier  =  m_Presentation.GetFirstMetadataItem ("dc:Identifier") ;
+                    if ( identifier != null )
+                        {
+                     metadataItems.Add (m_MetadataMap[identifier.getName ()] ,
+                    identifier.getContent() ) ;
                     }
 
-                // to do add more metadata items.
-                //  ncc:maxPageNormal
-                // ncc:pageFront
-                // ncc:pageNormal
-                // ncc:pageSpecial
-                // ncc:prodNotes
-                // ncc:tocItems
+                urakawa.metadata.Metadata format = m_Presentation.GetFirstMetadataItem ( "dc:Format" );
+                if (format!= null)
+                    {
+                    metadataItems.Add ( m_MetadataMap[format.getName ()],
+                   format.getContent () );
+                    }
 
 
-                }
+                urakawa.metadata.Metadata generator = m_Presentation.GetFirstMetadataItem ( "generator" );
+                if (generator  != null)
+                    {
+                    metadataItems.Add ( m_MetadataMap[generator.getName ()],
+                   generator.getContent () );
+                    }
 
 
+                return metadataItems;
             }
 
 
-
-        Dictionary<string, string> CreateDAISY3To2MetadataMap ()
+        private  Dictionary<string, string> CreateDAISY3To2MetadataMap ()
             {
             Dictionary<string, string> MetadataMap = new Dictionary<string, string> ();
 
