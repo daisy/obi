@@ -368,7 +368,7 @@ namespace Obi
         }
 
         // Access a channel which we know exist and is the only channel by this name.
-        private Channel GetSingleChannelByName(string name)
+        internal Channel GetSingleChannelByName(string name)
         {
             List<Channel> channels = getChannelsManager().getListOfChannels(name);
             if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
@@ -459,7 +459,7 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZ(string exportPath, string xukPath, int audioFileSectionLevel )
+        public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format ,int audioFileSectionLevel )
         {
             UpdatePublicationMetadata();
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode   &&   ((SectionNode)node).Level <= audioFileSectionLevel ; };
@@ -472,7 +472,16 @@ namespace Obi
             RootNode.acceptDepthFirst(visitor);
             // TODO check that there is an audio file to write
             visitor.writeAndCloseCurrentAudioFile();
-            ConvertXukToZed(exportPath, xukPath, XukString);
+
+            if (format == Obi.Export.ExportFormat.DAISY3_0)
+                {
+                ConvertXukToZed ( exportPath, xukPath, XukString );
+                }
+            else
+                {
+                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export ( this, exportPath );
+                export202.CreateDAISY202Files ();
+                }
             getChannelsManager().removeChannel(publishChannel);
         }
  
