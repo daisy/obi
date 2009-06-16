@@ -13,8 +13,11 @@ using urakawa.metadata;
 
 namespace Obi.Export
     {
+   public  enum ExportFormat { DAISY3_0, DAISY2_02 } ;
+
     public class DAISY202Export
         {
+
         private Presentation m_Presentation;
         private string m_ExportDirectory;
         private Dictionary<string, string> m_MetadataMap;
