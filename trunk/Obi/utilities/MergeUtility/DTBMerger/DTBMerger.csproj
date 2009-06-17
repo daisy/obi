@@ -39,6 +39,7 @@
     <Compile Include="DTBIntegrator.cs" />
     <Compile Include="DTBMerger.cs" />
     <Compile Include="DTBRenamer.cs" />
+    <Compile Include="Integrator_DAISY2.cs" />
     <Compile Include="PipelineInterface\ScriptParameter.cs" />
     <Compile Include="PipelineInterface\ScriptParser.cs" />
     <Compile Include="PipelineInterface\ScriptsFunctions.cs" />

@@ -184,6 +184,7 @@ namespace DTBMerger
             {
             XmlDocument nccDocument = CommonFunctions.CreateXmlDocument ( nccPath );
 
+            m_OpfPath = nccPath;
             m_BaseDirectory = Directory.GetParent ( nccPath ).FullName;
             m_NcxPath = null;
 

@@ -9,7 +9,7 @@ namespace DTBMerger
     {
     public enum PageMergeOptions { KeepExisting, Renumber } ;
 
-    class DTBIntegrator
+    public partial class DTBIntegrator
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
         private PageMergeOptions m_PageMergeOptions ;
