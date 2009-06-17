@@ -103,7 +103,7 @@ return inputParameterList;
                 string destinationPath = Path.Combine ( destinationDirectory, f.Name );
                 f.CopyTo ( destinationPath );
 
-                if (f.Extension == ".opf")
+                if (f.Extension == ".opf" || f.Extension == ".html")
                     opfPath = destinationPath;
                 }
             return opfPath;
@@ -120,6 +120,38 @@ return inputParameterList;
                 DTBRenamer renamer = new DTBRenamer ( opfPathsList[i], prefix );
                 renamer.RenameDTBFilesSet ();
                 }
+            }
+
+        public void MergeDAISY2DTDs ()
+            {
+            m_ProgressInfo = 0;
+            List<string> inputParameterList = CopyAllDTDsToOutputDirectory ();
+            //foreach (string s in inputParameterList)
+                //MessageBox.Show ( s );
+
+            for (int i = 0; i < inputParameterList.Count; i++)
+                {
+                string prefix = Convert.ToChar ( ((int)'a') + i ).ToString ();
+                prefix = prefix + "_";
+                //MessageBox.Show ( prefix.ToString () );
+
+                DTBRenamer renamer = new DTBRenamer ( inputParameterList[i], prefix );
+                renamer.Rename2_02DTBFilesSet();
+                }
+
+
+            m_ProgressInfo = 70;
+            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList, m_PageMergeOptions );
+            integrator.IntegrateDAISY2DTBs();
+
+            m_ProgressInfo = 90;
+            // delete temporary directories, all directories excluding first directory in list
+            for (int i = 1; i < inputParameterList.Count; i++)
+                {
+                string dirPathToDelete = Directory.GetParent ( inputParameterList[i] ).FullName;
+                Directory.Delete ( dirPathToDelete, true );
+                }
+            m_ProgressInfo = 100;
             }
 
 
