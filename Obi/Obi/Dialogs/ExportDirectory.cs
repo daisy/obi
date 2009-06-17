@@ -13,13 +13,22 @@ namespace Obi.Dialogs
     {
         private string mXukPath;  // path to XUK project (for relative paths)
         private bool mCanClose;   // can prevent from closing on problem
+        private Export.ExportFormat mExportFormat;
+
+        public Export.ExportFormat ExportFormatSelected
+        {
+            get 
+            {
+                return mExportFormat;    
+            }
+        }
 
         public ExportDirectory(string path, string xukPath)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
             mXukPath = xukPath;
-            mCanClose = true;
+            mCanClose = true; 
 
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message("EachLevel"));
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level1") );
@@ -81,6 +90,14 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
+            if (m_rdbDaisy3.Checked)
+            {
+               mExportFormat = Obi.Export.ExportFormat.DAISY3_0;
+            }
+            else if(m_rdbDaisy202.Checked)
+            {
+               mExportFormat = Obi.Export.ExportFormat.DAISY2_02;
+            }
         }
 
         private void SelectDirectoryPath_FormClosing(object sender, FormClosingEventArgs e)
@@ -90,11 +107,6 @@ namespace Obi.Dialogs
                 e.Cancel = true;
                 mCanClose = true;
             }
-        }
-
-        private void m_lblDirectoryPath_Click(object sender, EventArgs e)
-        {
-
-        }
+        }              
     }
 }
