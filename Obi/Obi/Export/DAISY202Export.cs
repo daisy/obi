@@ -194,15 +194,16 @@ namespace Obi.Export
                         parNode.AppendChild ( txtNode );
                         string txtID = "txt" + IncrementID;
                         CreateAppendXmlAttribute ( smilDocument, txtNode, "id", txtID );
-                        if (pageNode != null)
-                            {
-                            CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + pageID );
-                            }
-                        else
+
+                        if ( isFirstPhrase )
                             {
                             CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + headingID );
                             }
-
+                        else if (pageNode != null)
+                            {
+                            CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + pageID );
+                            }
+                        
                         // create seq which will hol audio children 
                         seqNode_AudioParent = smilDocument.CreateElement ( null, "seq", smilBodyNode.NamespaceURI );
                         parNode.AppendChild ( seqNode_AudioParent );
