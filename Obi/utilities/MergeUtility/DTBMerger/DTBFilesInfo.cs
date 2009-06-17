@@ -28,7 +28,15 @@ namespace DTBMerger
             m_SmilFilesList = new List<string> ();
             m_SmilPathList = new List<string> ();
 
-            ExtractFileNamesFromOpf ( path );
+            if (Path.GetExtension ( path ) == ".opf")
+                {
+                ExtractFileNamesFromOpf ( path );
+                }
+            else if (Path.GetExtension ( path ) == ".html"
+                || Path.GetExtension ( path ) == ".htm")
+                {
+                ExtractInfoFromNcc ( path );
+                }
             }
 
         public string OpfPath { get { return m_OpfPath; } }
@@ -171,6 +179,74 @@ namespace DTBMerger
             XmlDoc = null;
 
             }
+
+        private void ExtractInfoFromNcc ( string nccPath )
+            {
+            XmlDocument nccDocument = CommonFunctions.CreateXmlDocument ( nccPath );
+
+            m_BaseDirectory = Directory.GetParent ( nccPath ).FullName;
+            m_NcxPath = null;
+
+            XmlNodeList metadataNodeList = nccDocument.GetElementsByTagName ( "meta" );
+
+            foreach (XmlNode n in metadataNodeList)
+                {
+                if (n.Attributes.GetNamedItem ( "name" ) != null)
+                    {
+                    if (n.Attributes.GetNamedItem ( "name" ).Value == "ncc:totalTime")
+                        {
+                        string strTime = n.Attributes.GetNamedItem ( "content" ).Value;
+                        m_TotalTime = CommonFunctions.GetTimeSpan ( strTime );
+                        }
+                    if (n.Attributes.GetNamedItem ( "name" ).Value == "ncc:title")
+                        {
+                        m_Title = n.Attributes.GetNamedItem ( "content" ).Value;
+                        }
+                    }
+                }
+
+            XmlNodeList anchorNodesList = nccDocument.GetElementsByTagName ( "a" );
+
+            foreach (XmlNode n in anchorNodesList)
+                {
+                string strFileName = n.Attributes.GetNamedItem ( "href" ).Value;
+                strFileName = strFileName.Split ( '#' )[0];
+
+                if (!m_SmilFilesList.Contains ( strFileName ))
+                    {
+                    m_SmilFilesList.Add ( strFileName );
+                    m_SmilPathList.Add ( Path.Combine ( m_BaseDirectory, strFileName ) );
+                    }
+                }
+
+            // populate audio files lists by scanning each smil file
+            foreach (string smilPath in m_SmilPathList)
+                {
+                AddAudioFileInfoFromSmilFile ( smilPath );
+                }
+
+            }
+
+        private void AddAudioFileInfoFromSmilFile ( string smilPath )
+            {
+            XmlDocument smilDocument = CommonFunctions.CreateXmlDocument ( smilPath );
+
+            XmlNodeList audioNodesList = smilDocument.GetElementsByTagName ( "audio" );
+
+            foreach (XmlNode n in audioNodesList)
+                {
+                string strFileName = n.Attributes.GetNamedItem ( "src" ).Value;
+                strFileName = strFileName.Split ( '#' )[0];
+
+                if (!m_AudioFilesList.Contains ( strFileName ))
+                    {
+                    m_AudioFilesList.Add ( strFileName );
+                    m_AudioFilePathsList.Add ( Path.Combine ( m_BaseDirectory, strFileName ) );
+                    }
+                }
+            smilDocument = null;
+            }
+
 
 
         }
