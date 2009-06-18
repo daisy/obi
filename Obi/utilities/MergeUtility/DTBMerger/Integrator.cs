@@ -9,12 +9,12 @@ namespace DTBMerger
     {
     public enum PageMergeOptions { KeepExisting, Renumber } ;
 
-    public partial class DTBIntegrator
+    public partial class Integrator
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
         private PageMergeOptions m_PageMergeOptions ;
 
-        public DTBIntegrator ( List<string> pathsList , PageMergeOptions pageOption)
+        public Integrator ( List<string> pathsList , PageMergeOptions pageOption)
             {
             m_DTBFilesInfoList = new List<DTBFilesInfo> ();
 
@@ -25,7 +25,7 @@ namespace DTBMerger
             m_PageMergeOptions = pageOption;
             }
 
-        public void IntegrateDTBs ()
+        public void IntegrateDAISY3DTBs ()
             {
             IntegrateOpf ();
             IntegrateNcx ();

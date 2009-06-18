@@ -6,14 +6,14 @@ using System.Windows.Forms;
 
 namespace DTBMerger
     {
-    public class DTBMerger
+    public class Merger
         {
         private String[] m_InputPaths;
         private string m_OutputDirectory;
         private int m_ProgressInfo;
         private PageMergeOptions m_PageMergeOptions;
 
-        public DTBMerger ( string[] inputPaths, string outputDirectory, PageMergeOptions pageOptions )
+        public Merger ( string[] inputPaths, string outputDirectory, PageMergeOptions pageOptions )
             {
             m_ProgressInfo = 0;
 
@@ -53,13 +53,13 @@ namespace DTBMerger
                 prefix = prefix + "_";
                 //MessageBox.Show ( prefix.ToString () );
 
-                DTBRenamer renamer = new DTBRenamer ( inputParameterList[i], prefix );
-                renamer.RenameDTBFilesSet ();
+                Renamer renamer = new Renamer ( inputParameterList[i], prefix );
+                renamer.RenameDAISY3FilesSet();
                 }
 
             m_ProgressInfo = 70;
-            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList, m_PageMergeOptions );
-            integrator.IntegrateDTBs ();
+            Integrator integrator = new Integrator ( inputParameterList, m_PageMergeOptions );
+            integrator.IntegrateDAISY3DTBs();
 
             m_ProgressInfo = 90;
             // delete temporary directories, all directories excluding first directory in list
@@ -122,7 +122,7 @@ namespace DTBMerger
                 string destinationPath = Path.Combine ( destinationDirectory, f.Name );
                 f.CopyTo ( destinationPath );
 
-                if (isDAISY3 && f.Extension == ".opf")
+                if (isDAISY3    &&    string.Compare( f.Extension, ".opf", true) == 0 )
                     {
                     opfPath = destinationPath;
                     }
@@ -149,14 +149,14 @@ namespace DTBMerger
                 prefix = prefix + "_";
                 //MessageBox.Show ( prefix.ToString () );
 
-                DTBRenamer renamer = new DTBRenamer ( inputParameterList[i], prefix );
+                Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.Rename2_02DTBFilesSet ();
                 }
 
 
             m_ProgressInfo = 70;
-            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList, m_PageMergeOptions );
-            integrator.IntegrateDAISY2DTBs ();
+            Integrator integrator = new Integrator ( inputParameterList, m_PageMergeOptions );
+            integrator.IntegrateDAISY2_02DTBs();
 
             m_ProgressInfo = 90;
             // delete temporary directories, all directories excluding first directory in list
