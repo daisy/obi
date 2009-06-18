@@ -8,12 +8,12 @@ namespace DTBMerger
     {
     public class DTBMerger
         {
-        private String []  m_InputPaths;
+        private String[] m_InputPaths;
         private string m_OutputDirectory;
         private int m_ProgressInfo;
         private PageMergeOptions m_PageMergeOptions;
 
-        public DTBMerger ( string[] inputPaths , string outputDirectory, PageMergeOptions pageOptions )
+        public DTBMerger ( string[] inputPaths, string outputDirectory, PageMergeOptions pageOptions )
             {
             m_ProgressInfo = 0;
 
@@ -22,19 +22,19 @@ namespace DTBMerger
 
             for (int i = 0; i < inputPaths.Length; i++)
                 {
-                if ( !File.Exists ( inputPaths[i] ))
+                if (!File.Exists ( inputPaths[i] ))
                     {
-                    throw new System.IO.FileNotFoundException (inputPaths[i] + " do not exists") ;
+                    throw new System.IO.FileNotFoundException ( inputPaths[i] + " do not exists" );
                     }
                 }
             m_InputPaths = inputPaths;
-            
-            if ( Directory.Exists (outputDirectory ) )
+
+            if (Directory.Exists ( outputDirectory ))
                 {
-            Directory.Delete (outputDirectory,true ) ;
+                Directory.Delete ( outputDirectory, true );
                 }
-            Directory.CreateDirectory ( outputDirectory ) ;
-            m_OutputDirectory = outputDirectory ;
+            Directory.CreateDirectory ( outputDirectory );
+            m_OutputDirectory = outputDirectory;
 
             m_PageMergeOptions = pageOptions;
             }
@@ -45,30 +45,41 @@ namespace DTBMerger
         public void MergeDTDs ()
             {
             m_ProgressInfo = 0;
-            List<string> inputParameterList = CopyAllDTDsToOutputDirectory ();
-            RenameDTDFiles ( inputParameterList );
+            List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( true );
+
+            for (int i = 0; i < inputParameterList.Count; i++)
+                {
+                string prefix = Convert.ToChar ( ((int)'a') + i ).ToString ();
+                prefix = prefix + "_";
+                //MessageBox.Show ( prefix.ToString () );
+
+                DTBRenamer renamer = new DTBRenamer ( inputParameterList[i], prefix );
+                renamer.RenameDTBFilesSet ();
+                }
+
             m_ProgressInfo = 70;
-            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList ,m_PageMergeOptions);
+            DTBIntegrator integrator = new DTBIntegrator ( inputParameterList, m_PageMergeOptions );
             integrator.IntegrateDTBs ();
 
             m_ProgressInfo = 90;
             // delete temporary directories, all directories excluding first directory in list
             for (int i = 1; i < inputParameterList.Count; i++)
                 {
-                string dirPathToDelete  = Directory.GetParent ( inputParameterList[i] ).FullName;
+                string dirPathToDelete = Directory.GetParent ( inputParameterList[i] ).FullName;
                 Directory.Delete ( dirPathToDelete, true );
                 }
             m_ProgressInfo = 100;
             }
 
 
-        private List<string> CopyAllDTDsToOutputDirectory ()
+        private List<string> CopyAllDTDsToOutputDirectory ( bool isDAISY3 )
             {
             List<string> inputParameterList = new List<string> ();
             // copy first DTB to output directory
-            string opfPath =  CopyDTBFiles (
+            string opfPath = CopyDTBFiles (
                 Directory.GetParent ( m_InputPaths[0] ).FullName,
-                m_OutputDirectory );
+                m_OutputDirectory,
+                isDAISY3 );
 
             inputParameterList.Add ( opfPath );
 
@@ -76,24 +87,32 @@ namespace DTBMerger
             // copy all remaining DTBs in their folders
             for (int i = 1; i < m_InputPaths.Length; i++)
                 {
-                string copyToDirectory = Path.Combine ( m_OutputDirectory, i.ToString () ) ;
-                Directory.CreateDirectory (copyToDirectory );
+                string copyToDirectory = Path.Combine ( m_OutputDirectory, i.ToString () );
+                Directory.CreateDirectory ( copyToDirectory );
 
-                opfPath =  CopyDTBFiles (
+                opfPath = CopyDTBFiles (
                 Directory.GetParent ( m_InputPaths[i] ).FullName,
-                copyToDirectory );
+                copyToDirectory,
+                isDAISY3 );
 
                 inputParameterList.Add ( opfPath );
                 m_ProgressInfo += (60 / m_InputPaths.Length);
-}
+                }
 
-return inputParameterList;
+            // for debugging purpose
+            foreach (string s in inputParameterList)
+                {
+                if (!File.Exists ( s ))
+                    System.Diagnostics.Debug.Fail ( "input parameter filepath is invalid", "problem in copy before starting merge operation" );
+                }
+
+            return inputParameterList;
 
             }
 
-        private string CopyDTBFiles ( string sourceDirectory , string destinationDirectory )
+        private string CopyDTBFiles ( string sourceDirectory, string destinationDirectory, bool isDAISY3 )
             {
-            string[] sourceFilePaths = Directory.GetFiles ( sourceDirectory , "*.*", SearchOption.TopDirectoryOnly);
+            string[] sourceFilePaths = Directory.GetFiles ( sourceDirectory, "*.*", SearchOption.TopDirectoryOnly );
 
             string opfPath = "";
 
@@ -103,31 +122,26 @@ return inputParameterList;
                 string destinationPath = Path.Combine ( destinationDirectory, f.Name );
                 f.CopyTo ( destinationPath );
 
-                if (f.Extension == ".opf" || f.Extension == ".html")
+                if (isDAISY3 && f.Extension == ".opf")
+                    {
                     opfPath = destinationPath;
+                    }
+                else if (!isDAISY3 &&
+                    (string.Compare ( f.Name, "ncc.html", true ) == 0 || string.Compare ( f.Name, "ncc.htm", true ) == 0))
+                    {
+                    opfPath = destinationPath;
+                    }
                 }
             return opfPath;
             }
 
-        private void RenameDTDFiles ( List<string> opfPathsList)
-            {
-            for (int i = 0; i < opfPathsList.Count; i++)
-                {
-                string prefix = Convert.ToChar( ((int)'a') + i ).ToString  ();
-                prefix = prefix + "_";
-                //MessageBox.Show ( prefix.ToString () );
-
-                DTBRenamer renamer = new DTBRenamer ( opfPathsList[i], prefix );
-                renamer.RenameDTBFilesSet ();
-                }
-            }
-
+        
         public void MergeDAISY2DTDs ()
             {
             m_ProgressInfo = 0;
-            List<string> inputParameterList = CopyAllDTDsToOutputDirectory ();
+            List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( false );
             //foreach (string s in inputParameterList)
-                //MessageBox.Show ( s );
+            //MessageBox.Show ( s );
 
             for (int i = 0; i < inputParameterList.Count; i++)
                 {
@@ -136,13 +150,13 @@ return inputParameterList;
                 //MessageBox.Show ( prefix.ToString () );
 
                 DTBRenamer renamer = new DTBRenamer ( inputParameterList[i], prefix );
-                renamer.Rename2_02DTBFilesSet();
+                renamer.Rename2_02DTBFilesSet ();
                 }
 
 
             m_ProgressInfo = 70;
             DTBIntegrator integrator = new DTBIntegrator ( inputParameterList, m_PageMergeOptions );
-            integrator.IntegrateDAISY2DTBs();
+            integrator.IntegrateDAISY2DTBs ();
 
             m_ProgressInfo = 90;
             // delete temporary directories, all directories excluding first directory in list
