@@ -233,7 +233,8 @@ namespace Obi.Dialogs
             if (mCultureBox.SelectedItem.ToString () == "en-US"
                 || mCultureBox.SelectedItem.ToString () == "hi-IN")
                 {
-                MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
+                if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
+                    MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
                 }
             else
                 {
