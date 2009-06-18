@@ -1396,4 +1396,10 @@ Error text: {1}</value>
   <data name="Preferences_RestartForCultureChange" xml:space="preserve">
     <value>Obi has to be restarted for language changes to take effect. Please save your work and restart Obi.</value>
   </data>
+  <data name="Caption_Warning" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+  <data name="Pipeline_DuplicateScript" xml:space="preserve">
+    <value>Duplicate pipeline script named {0}found. This will not be loaded. Please press Ok button to continue.</value>
+  </data>
 </root>
