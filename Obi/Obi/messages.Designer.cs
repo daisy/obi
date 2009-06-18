@@ -322,6 +322,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        internal static string Caption_Warning {
+            get {
+                return ResourceManager.GetString("Caption_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi Help.chm.
         /// </summary>
         internal static string CHMhelp_file_name {
@@ -2312,6 +2321,15 @@ namespace Obi {
         internal static string PhraseProperties_ChangePage {
             get {
                 return ResourceManager.GetString("PhraseProperties_ChangePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate pipeline script named {0}found. This will not be loaded. Please press Ok button to continue..
+        /// </summary>
+        internal static string Pipeline_DuplicateScript {
+            get {
+                return ResourceManager.GetString("Pipeline_DuplicateScript", resourceCulture);
             }
         }
         
