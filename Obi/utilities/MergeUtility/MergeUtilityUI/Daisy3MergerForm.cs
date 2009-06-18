@@ -13,19 +13,36 @@ namespace MergeUtilityUI
 
     public partial class Daisy3MergerForm: Form
     {
-        private ProgressDialogDTB progress = null;        
-
-        public Daisy3MergerForm  ()
+        private ProgressDialogDTB progress = null;
+        private bool daisy3Option = false;
+        private bool daisy202option = false;
+        
+        public Daisy3MergerForm ()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        public Daisy3MergerForm(bool option3,bool option202)
+        {
+            InitializeComponent(); 
+            daisy3Option = option3;
+            daisy202option = option202;
         }
 
         private void m_btnAdd_Click(object sender, EventArgs e)
         {
             m_rdbExistingNumberOfPages.Checked = true;
             OpenFileDialog select_opfFile = new OpenFileDialog();
-            select_opfFile.Filter = "OPF Files (*.opf)|*.opf";
-            select_opfFile.FilterIndex = 1;
+
+            if (daisy3Option == true)
+            {
+                select_opfFile.Filter = "OPF Files (*.opf)|*.opf";
+            }
+            else if (daisy202option == true)
+            {
+                select_opfFile.Filter = "HTML Files (*.html)|*.html";
+            }
+            
             select_opfFile.RestoreDirectory = true;
             if (select_opfFile.ShowDialog(this) == DialogResult.OK)
             {
@@ -63,65 +80,163 @@ namespace MergeUtilityUI
 
         private void checkOutDirExists(string outPath)
         {
-            if (Directory.Exists(m_txtDirectoryPath.Text))
+            try
             {
-                string[] fileEntries = Directory.GetFiles(m_txtDirectoryPath.Text);
-                string[] subdirectoryEntries = Directory.GetDirectories(m_txtDirectoryPath.Text);
-                if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
+                if (Directory.Exists(m_txtDirectoryPath.Text))
                 {
-                    if (MessageBox.Show("Directory" + " " + m_txtDirectoryPath.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        Directory.Delete(m_txtDirectoryPath.Text, true);
-                    else
+                    string[] fileEntries = Directory.GetFiles(m_txtDirectoryPath.Text);
+                    string[] subdirectoryEntries = Directory.GetDirectories(m_txtDirectoryPath.Text);
+                    if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
                     {
-                        m_txtDirectoryPath.Clear();
-                        FolderBrowserDialog saveDire = new FolderBrowserDialog();
-                        saveDire.ShowNewFolderButton = true;
-                        saveDire.SelectedPath = m_txtDirectoryPath.Text;
-
-                        if (saveDire.ShowDialog(this) == DialogResult.OK)
+                        if (MessageBox.Show("Directory" + " " + m_txtDirectoryPath.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            Directory.Delete(m_txtDirectoryPath.Text, true);
+                        else
                         {
-                            m_txtDirectoryPath.Text = saveDire.SelectedPath;
-                            checkOutDirExists(m_txtDirectoryPath.Text);
+                            m_txtDirectoryPath.Clear();
+                            FolderBrowserDialog saveDire = new FolderBrowserDialog();
+                            saveDire.ShowNewFolderButton = true;
+                            saveDire.SelectedPath = m_txtDirectoryPath.Text;
 
+                            if (saveDire.ShowDialog(this) == DialogResult.OK)
+                            {
+                                m_txtDirectoryPath.Text = saveDire.SelectedPath;
+                                checkOutDirExists(m_txtDirectoryPath.Text);
+
+                            }
+                            else if (saveDire.ShowDialog(this) == DialogResult.Cancel)
+                            { m_txtDirectoryPath.Clear(); }
                         }
-                        if(saveDire.ShowDialog(this) == DialogResult.Cancel)
-                        { m_txtDirectoryPath.Clear(); }
                     }
                 }
             }
-        }         
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }//checkOutDirExists    
 
-        private void m_BtnDelete_Click(object sender, EventArgs e)
+        private void m_BtnMerge_Click(object sender, EventArgs e)
         {
             try
             {
-                m_StatusLabel.Text = " Deleted the selected file from the Listbox ";
-                m_lbOPFfiles.Items.Remove(m_lbOPFfiles.SelectedItem);
-                m_txtDTBookInfo.Clear();                
+                if (m_lbOPFfiles.Items.Count >= 2)
+                {
+                    m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
+                    if (m_txtDirectoryPath.Text == "")
+                    {
+                        MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path",
+                                        "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        m_txtDirectoryPath.Focus();
+                        m_StatusLabel.Text = "Click Browse button to select the Directory to save the merged files..";
+                    }
+                    if (m_txtDirectoryPath.Text.Length > 0)
+                    {
+                        m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
+                        m_bgWorker.RunWorkerCompleted +=
+                            new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
+                        m_bgWorker.WorkerSupportsCancellation = true;
+
+                        m_bgWorker.RunWorkerAsync();
+
+                        if (m_bgWorker.IsBusy)
+                        {
+                            progress = new ProgressDialogDTB();
+                            progress.FormClosing += new FormClosingEventHandler(ProgressDialog_FormClosing);
+                            progress.ShowDialog(this);
+                        }
+
+                        while (m_bgWorker.IsBusy)
+                        {
+                            Application.DoEvents();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Either there are no files or only one file in the Listbox to merge. Minimum 2 files are needed for merging. Please add some files in Listbox.Click Add button.","Listbox Empty",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    m_btnAdd.Focus();
+                }
             }
-            catch(Exception ex)
+             catch (Exception ex)
+             {
+                 MessageBox.Show(ex.ToString());
+             }
+        }//m_BtnMerge_Click
+                
+        private void m_bgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                StartMerging();                
+            }
+            catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }//m_BtnDelete_Click
+         }//m_bgWorker_DoWork
 
-        private void m_BtnReset_Click(object sender, EventArgs e)
-        {
-            m_StatusLabel.Text = " Cleared all the Text ";
-            m_txtDirectoryPath.Clear();
-            m_lbOPFfiles.Items.Clear();
-            m_txtDTBookInfo.Clear();
-            m_BtnMerge.Enabled = false;
-            m_BtnValidateInput.Enabled = false;
-            m_BtnValidateOutput.Enabled = false;
-            m_btnUP.Enabled = false;
-            m_BtnDown.Enabled = false;
-            m_rdbExistingNumberOfPages.Checked = false;
-            m_rdbRenumberPages.Checked = false;
-            m_BtnDelete.Enabled = false;
-            m_BtnReset.Enabled = false;
-        }//m_BtnReset_Click
-
+        private void StartMerging ()
+            {
+            DTBMerger.Merger obj = null;
+            string[] listOfOpfFiles = new string[m_lbOPFfiles.Items.Count];
+            for (int i = 0; i < m_lbOPFfiles.Items.Count; i++)
+            {
+                listOfOpfFiles[i] = m_lbOPFfiles.Items[i].ToString();
+            }
+            if (m_rdbExistingNumberOfPages.Checked)
+            {
+                obj = new DTBMerger.Merger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
+            }
+            else if (m_rdbRenumberPages.Checked)
+            {
+                obj = new DTBMerger.Merger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
+            }
+            obj.MergeDTDs();
+        }//StartMerging()
+        
+        private void ProgressDialog_FormClosing ( object sender, EventArgs e )
+            {
+            if ( progress != null && m_bgWorker.IsBusy && !m_bgWorker.CancellationPending )
+                {
+                  try
+                  {
+                    m_bgWorker.CancelAsync();
+                  }
+                  catch (System.Exception ex)
+                  {
+                    MessageBox.Show ( ex.ToString () );
+                  }
+                }
+            progress.FormClosing -= new FormClosingEventHandler ( ProgressDialog_FormClosing );
+        }//ProgressDialog_FormClosing
+        
+        private void m_bgWorker_RunWorkerCompleted(object sender, AsyncCompletedEventArgs e)
+        {            
+            if (progress != null)
+            {
+                progress.Close();
+                progress = null;
+            }
+            if ( e.Cancelled )
+            {
+                MessageBox.Show(" Progress was cancelled ");
+                //m_StatusLabel.Text = " Progress was cancelled ";                
+            }
+            if (e.Error == null)
+            {
+                if (!e.Cancelled)
+                {
+                    MessageBox.Show("Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    m_BtnValidateOutput.Enabled = true;
+                }
+            }
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+                m_StatusLabel.Text = "Failed in merging the files";                
+            }            
+        }//m_bgWorker_RunWorkerCompleted
+               
         private void m_btnUP_Click(object sender, EventArgs e)
         {
             m_StatusLabel.Text = " You have selected " + m_lbOPFfiles.SelectedItem.ToString() + " to move up.";
@@ -143,7 +258,7 @@ namespace MergeUtilityUI
                 MessageBox.Show(exp.Message);
             }
         }//m_btnUP_Click
-        
+
         private void m_BtnDown_Click(object sender, EventArgs e)
         {
             m_StatusLabel.Text = " You have selected " + m_lbOPFfiles.SelectedItem.ToString() + " to move down.";
@@ -167,131 +282,10 @@ namespace MergeUtilityUI
             }
         }//m_BtnDown_Click
 
-        private void m_BtnMerge_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
-                if (m_txtDirectoryPath.Text == "")
-                {
-                    MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path",
-                                    "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    m_txtDirectoryPath.Focus();
-                    m_StatusLabel.Text = "Click Browse button to select the Directory to save the merged files..";
-                }
-                if (m_txtDirectoryPath.Text.Length > 0)
-                {
-                    m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
-                    m_bgWorker.RunWorkerCompleted +=
-                        new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
-                    m_bgWorker.WorkerSupportsCancellation = true;
-                    
-                    m_bgWorker.RunWorkerAsync();
-
-                    if (m_bgWorker.IsBusy)
-                    {
-                        progress = new ProgressDialogDTB();
-                        progress.FormClosing += new FormClosingEventHandler ( ProgressDialog_FormClosing );
-                        progress.ShowDialog();
-                        
-                    }
-
-                    while (m_bgWorker.IsBusy)
-                    {
-                        Application.DoEvents();
-                    }
-                }
-                
-            }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.ToString());
-             }
-        }//m_BtnMerge_Click
-                
-        private void m_bgWorker_DoWork(object sender, EventArgs e)
-        {
-        try
-            {
-            StartMerging ();
-            }
-        catch (System.Exception ex)
-            {
-            MessageBox.Show ( ex.ToString () );
-            }
-            }
-
-        private void StartMerging ()
-            {
-            DTBMerger.DTBMerger obj = null;
-            string[] listOfOpfFiles = new string[m_lbOPFfiles.Items.Count];
-            for (int i = 0; i < m_lbOPFfiles.Items.Count; i++)
-            {
-                listOfOpfFiles[i] = m_lbOPFfiles.Items[i].ToString();
-            }
-            if (m_rdbExistingNumberOfPages.Checked)
-            {
-                obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
-            }
-            else if (m_rdbRenumberPages.Checked)
-            {
-                obj = new DTBMerger.DTBMerger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
-            }
-            obj.MergeDTDs();
-        }//m_bgWorker_DoWork
-
-        private void ProgressDialog_FormClosing ( object sender, EventArgs e )
-            {
-            if ( progress != null &&
-                m_bgWorker.IsBusy && !m_bgWorker.CancellationPending)
-                {
-                try
-                    {
-                    m_bgWorker.CancelAsync ();
-                    }
-                catch (System.Exception ex)
-                    {
-                    MessageBox.Show ( ex.ToString () );
-                    }
-                }
-            progress.FormClosing -= new FormClosingEventHandler ( ProgressDialog_FormClosing );
-            }
-
-        private void m_bgWorker_RunWorkerCompleted(object sender, AsyncCompletedEventArgs e)
-        {            
-            if (progress != null)
-            {
-                progress.Close();
-                progress = null;
-            }
-            if (e.Cancelled)
-            {
-                m_StatusLabel.Text = " Progress was cancelled ";
-            }
-            if (e.Error == null)
-            {
-            if (!e.Cancelled)
-            MessageBox.Show ( "Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information );
-                //m_StatusLabel.Text = "The Files has been merged and put in Selected output directory.";
-                m_BtnValidateOutput.Enabled = true;
-            }
-            if (e.Error != null)
-            {
-                m_StatusLabel.Text = "Failed in merging the files";
-            }            
-        }//m_bgWorker_RunWorkerCompleted
-
-        private void m_BtnExit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void m_lbOPFfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
            m_BtnValidateInput.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
            m_BtnDelete.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
-           m_BtnMerge.Enabled = false;
-           m_BtnMerge.Enabled = m_lbOPFfiles.Items.Count >= 2;
            m_BtnValidateOutput.Enabled = false;
            m_BtnReset.Enabled = false;
            m_BtnReset.Enabled = m_lbOPFfiles.Items.Count > 0 || m_txtDirectoryPath.Text.Length > 0;
@@ -346,5 +340,45 @@ namespace MergeUtilityUI
             m_BtnValidateOutput.Enabled = false;
         }//m_BtnValidateOutput_Click                     
 
+        private void m_BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                m_StatusLabel.Text = " Deleted the selected file from the Listbox ";
+                m_lbOPFfiles.Items.Remove(m_lbOPFfiles.SelectedItem);
+                m_txtDTBookInfo.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }//m_BtnDelete_Click
+
+        private void m_BtnReset_Click(object sender, EventArgs e)
+        {
+            m_StatusLabel.Text = " Cleared all the Text ";
+            m_txtDirectoryPath.Clear();
+            m_lbOPFfiles.Items.Clear();
+            m_txtDTBookInfo.Clear();
+            m_BtnMerge.Enabled = false;
+            m_BtnValidateInput.Enabled = false;
+            m_BtnValidateOutput.Enabled = false;
+            m_btnUP.Enabled = false;
+            m_BtnDown.Enabled = false;
+            m_rdbExistingNumberOfPages.Checked = false;
+            m_rdbRenumberPages.Checked = false;
+            m_BtnDelete.Enabled = false;
+            m_BtnReset.Enabled = false;
+        }//m_BtnReset_Click
+
+        private void m_BtnExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }//m_BtnExit_Click
+
+       /* private void Daisy3MergerForm_Load(object sender, EventArgs e)
+        {
+            ShowDialog();
+        } */       
     }//class
 }//namespace

@@ -42,6 +42,12 @@
     <Compile Include="Daisy3MergerForm.Designer.cs">
       <DependentUpon>Daisy3MergerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DaisyMergerOptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DaisyMergerOptionForm.Designer.cs">
+      <DependentUpon>DaisyMergerOptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgressDialogDTB.cs">
       <SubType>Form</SubType>
@@ -53,6 +59,10 @@
     <EmbeddedResource Include="Daisy3MergerForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Daisy3MergerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DaisyMergerOptionForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DaisyMergerOptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressDialogDTB.resx">
       <SubType>Designer</SubType>
