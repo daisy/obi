@@ -117,10 +117,712 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_lblDaisy3Merger.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="m_lblDaisy3Merger.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15.75pt, style=Bold, Underline</value>
+  </data>
+  <data name="m_lblDaisy3Merger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 32</value>
+  </data>
+  <data name="m_lblDaisy3Merger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 25</value>
+  </data>
+  <data name="m_lblDaisy3Merger.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_lblDaisy3Merger.Text" xml:space="preserve">
+    <value>DAISY3 MERGER</value>
+  </data>
+  <data name="m_lblDaisy3Merger.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomLeft</value>
+  </data>
+  <data name="&gt;&gt;m_lblDaisy3Merger.Name" xml:space="preserve">
+    <value>m_lblDaisy3Merger</value>
+  </data>
+  <data name="&gt;&gt;m_lblDaisy3Merger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblDaisy3Merger.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_lblDaisy3Merger.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_BtnReset.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="m_BtnReset.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnReset.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>482, 85</value>
+  </data>
+  <data name="m_BtnReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 30</value>
+  </data>
+  <data name="m_BtnReset.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="m_BtnReset.Text" xml:space="preserve">
+    <value>&amp;Reset</value>
+  </data>
+  <data name="&gt;&gt;m_BtnReset.Name" xml:space="preserve">
+    <value>m_BtnReset</value>
+  </data>
+  <data name="&gt;&gt;m_BtnReset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnReset.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnReset.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_BtnMerge.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnMerge.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnMerge.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnMerge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 85</value>
+  </data>
+  <data name="m_BtnMerge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 30</value>
+  </data>
+  <data name="m_BtnMerge.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="m_BtnMerge.Text" xml:space="preserve">
+    <value>&amp;Merge</value>
+  </data>
+  <data name="&gt;&gt;m_BtnMerge.Name" xml:space="preserve">
+    <value>m_BtnMerge</value>
+  </data>
+  <data name="&gt;&gt;m_BtnMerge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnMerge.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnMerge.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_BtnOutputDirectory.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnOutputDirectory.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnOutputDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 29</value>
+  </data>
+  <data name="m_BtnOutputDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 30</value>
+  </data>
+  <data name="m_BtnOutputDirectory.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="m_BtnOutputDirectory.Text" xml:space="preserve">
+    <value>&amp;Browse</value>
+  </data>
+  <data name="&gt;&gt;m_BtnOutputDirectory.Name" xml:space="preserve">
+    <value>m_BtnOutputDirectory</value>
+  </data>
+  <data name="&gt;&gt;m_BtnOutputDirectory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnOutputDirectory.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnOutputDirectory.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_txtDirectoryPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 37</value>
+  </data>
+  <data name="m_txtDirectoryPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>484, 22</value>
+  </data>
+  <data name="m_txtDirectoryPath.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;m_txtDirectoryPath.Name" xml:space="preserve">
+    <value>m_txtDirectoryPath</value>
+  </data>
+  <data name="&gt;&gt;m_txtDirectoryPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtDirectoryPath.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_txtDirectoryPath.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnCancel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 85</value>
+  </data>
+  <data name="m_BtnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 30</value>
+  </data>
+  <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="m_BtnCancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Name" xml:space="preserve">
+    <value>m_BtnCancel</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_lbOutputDirPath.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lbOutputDirPath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 11.25pt</value>
+  </data>
+  <data name="m_lbOutputDirPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 39</value>
+  </data>
+  <data name="m_lbOutputDirPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 18</value>
+  </data>
+  <data name="m_lbOutputDirPath.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_lbOutputDirPath.Text" xml:space="preserve">
+    <value>Output Directory Path :</value>
+  </data>
+  <data name="&gt;&gt;m_lbOutputDirPath.Name" xml:space="preserve">
+    <value>m_lbOutputDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_lbOutputDirPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbOutputDirPath.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_lbOutputDirPath.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <metadata name="m_bgWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="m_statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>139, 17</value>
+    <value>0, 592</value>
   </metadata>
+  <data name="m_StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 17</value>
+  </data>
+  <data name="m_StatusLabel.Text" xml:space="preserve">
+    <value>Please Click Add Button to add the OPF files in Listbox...    </value>
+  </data>
+  <data name="m_statusStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 592</value>
+  </data>
+  <data name="m_statusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>883, 22</value>
+  </data>
+  <data name="m_statusStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;m_statusStrip.Name" xml:space="preserve">
+    <value>m_statusStrip</value>
+  </data>
+  <data name="&gt;&gt;m_statusStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_statusStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_statusStrip.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_BtnValidateOutput.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnValidateOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnValidateOutput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnValidateOutput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 85</value>
+  </data>
+  <data name="m_BtnValidateOutput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_BtnValidateOutput.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_BtnValidateOutput.Text" xml:space="preserve">
+    <value>Validate &amp;Output</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Name" xml:space="preserve">
+    <value>m_BtnValidateOutput</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpDirPath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
+  </data>
+  <data name="m_grpDirPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 467</value>
+  </data>
+  <data name="m_grpDirPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>846, 121</value>
+  </data>
+  <data name="m_grpDirPath.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;m_grpDirPath.Name" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_grpDirPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpDirPath.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpDirPath.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_rdbRenumberPages.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdbRenumberPages.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="m_rdbRenumberPages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>557, 21</value>
+  </data>
+  <data name="m_rdbRenumberPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 21</value>
+  </data>
+  <data name="m_rdbRenumberPages.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="m_rdbRenumberPages.Text" xml:space="preserve">
+    <value>Auto Renumber Pages</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Name" xml:space="preserve">
+    <value>m_rdbRenumberPages</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Parent" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 21</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 21</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_rdbExistingNumberOfPages.Text" xml:space="preserve">
+    <value>Keep existing page numbers</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Name" xml:space="preserve">
+    <value>m_rdbExistingNumberOfPages</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Parent" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpPageInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
+  </data>
+  <data name="m_grpPageInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 405</value>
+  </data>
+  <data name="m_grpPageInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>846, 56</value>
+  </data>
+  <data name="m_grpPageInput.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_grpPageInput.Text" xml:space="preserve">
+    <value>Page numbering options</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Name" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_lbOPFfiles.ItemHeight" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_lbOPFfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 21</value>
+  </data>
+  <data name="m_lbOPFfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>658, 180</value>
+  </data>
+  <data name="m_lbOPFfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;m_lbOPFfiles.Name" xml:space="preserve">
+    <value>m_lbOPFfiles</value>
+  </data>
+  <data name="&gt;&gt;m_lbOPFfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lbOPFfiles.Parent" xml:space="preserve">
+    <value>m_grpListOPFfiles</value>
+  </data>
+  <data name="&gt;&gt;m_lbOPFfiles.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpListOPFfiles.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
+  </data>
+  <data name="m_grpListOPFfiles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 12</value>
+  </data>
+  <data name="m_grpListOPFfiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>683, 214</value>
+  </data>
+  <data name="m_grpListOPFfiles.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="m_grpListOPFfiles.Text" xml:space="preserve">
+    <value>List of Input</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOPFfiles.Name" xml:space="preserve">
+    <value>m_grpListOPFfiles</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOPFfiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOPFfiles.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_grpListOPFfiles.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="m_BtnDelete.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnDelete.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnDelete.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 152</value>
+  </data>
+  <data name="m_BtnDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_BtnDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="m_BtnDelete.Text" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDelete.Name" xml:space="preserve">
+    <value>m_BtnDelete</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDelete.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDelete.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="m_BtnDown.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnDown.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnDown.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 107</value>
+  </data>
+  <data name="m_BtnDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_BtnDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="m_BtnDown.Text" xml:space="preserve">
+    <value>Move Dow&amp;n</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDown.Name" xml:space="preserve">
+    <value>m_BtnDown</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDown.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_BtnDown.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="m_btnUP.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_btnUP.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnUP.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_btnUP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 71</value>
+  </data>
+  <data name="m_btnUP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_btnUP.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_btnUP.Text" xml:space="preserve">
+    <value>Move &amp;Up</value>
+  </data>
+  <data name="&gt;&gt;m_btnUP.Name" xml:space="preserve">
+    <value>m_btnUP</value>
+  </data>
+  <data name="&gt;&gt;m_btnUP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnUP.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_btnUP.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="m_BtnValidateInput.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnValidateInput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnValidateInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnValidateInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 197</value>
+  </data>
+  <data name="m_BtnValidateInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 29</value>
+  </data>
+  <data name="m_BtnValidateInput.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="m_BtnValidateInput.Text" xml:space="preserve">
+    <value>Validate &amp;Input</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateInput.Name" xml:space="preserve">
+    <value>m_BtnValidateInput</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateInput.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateInput.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="m_txtDTBookInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 241</value>
+  </data>
+  <data name="m_txtDTBookInfo.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_txtDTBookInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>583, 70</value>
+  </data>
+  <data name="m_txtDTBookInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;m_txtDTBookInfo.Name" xml:space="preserve">
+    <value>m_txtDTBookInfo</value>
+  </data>
+  <data name="&gt;&gt;m_txtDTBookInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_txtDTBookInfo.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_txtDTBookInfo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="m_btnAdd.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_btnAdd.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_btnAdd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 21</value>
+  </data>
+  <data name="m_btnAdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_btnAdd.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="m_btnAdd.Text" xml:space="preserve">
+    <value>&amp;Add</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Name" xml:space="preserve">
+    <value>m_btnAdd</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_btnAdd.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_lblDBookInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_lblDBookInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 277</value>
+  </data>
+  <data name="m_lblDBookInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 16</value>
+  </data>
+  <data name="m_lblDBookInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="m_lblDBookInfo.Text" xml:space="preserve">
+    <value>Information about the Daisy Book</value>
+  </data>
+  <data name="&gt;&gt;m_lblDBookInfo.Name" xml:space="preserve">
+    <value>m_lblDBookInfo</value>
+  </data>
+  <data name="&gt;&gt;m_lblDBookInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_lblDBookInfo.Parent" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_lblDBookInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_grpManipulateOPF.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
+  </data>
+  <data name="m_grpManipulateOPF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 75</value>
+  </data>
+  <data name="m_grpManipulateOPF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>846, 324</value>
+  </data>
+  <data name="m_grpManipulateOPF.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;m_grpManipulateOPF.Name" xml:space="preserve">
+    <value>m_grpManipulateOPF</value>
+  </data>
+  <data name="&gt;&gt;m_grpManipulateOPF.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpManipulateOPF.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpManipulateOPF.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>883, 614</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>DTB Merger Form</value>
+  </data>
+  <data name="&gt;&gt;m_bgWorker.Name" xml:space="preserve">
+    <value>m_bgWorker</value>
+  </data>
+  <data name="&gt;&gt;m_bgWorker.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_StatusLabel.Name" xml:space="preserve">
+    <value>m_StatusLabel</value>
+  </data>
+  <data name="&gt;&gt;m_StatusLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Daisy3MergerForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
