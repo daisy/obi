@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace DTBMerger
     {
-    public partial class DTBIntegrator
+    public partial class Integrator
         {
 
-        public void IntegrateDAISY2DTBs ()
+        public void IntegrateDAISY2_02DTBs ()
             {
             IntegrateNCCForDAISY2 ();
             UpdateAllSmilFilesForDAISY2 ();
