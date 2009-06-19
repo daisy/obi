@@ -38,6 +38,7 @@ namespace MergeUtilityUI
         private void DaisyMergerOptionForm_Load(object sender, EventArgs e)
         {
             m_rdbDaisy3.Checked = true;
+
         }       
     }
 }
