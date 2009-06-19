@@ -14,7 +14,7 @@ namespace MergeUtilityUI
             {
             Application.EnableVisualStyles ();
             Application.SetCompatibleTextRenderingDefault ( false );
-            Application.Run ( new DaisyMergerOptionForm () );
+            Application.Run ( new Daisy3MergerForm() );
             }
         }
     }

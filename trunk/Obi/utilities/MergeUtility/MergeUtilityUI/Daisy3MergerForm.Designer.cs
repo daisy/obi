@@ -248,7 +248,7 @@ namespace MergeUtilityUI
                 this.Controls.Add(this.m_statusStrip);
                 this.Controls.Add(this.m_lblDaisy3Merger);
                 this.Name = "Daisy3MergerForm";
-                //this.Load += new System.EventHandler(this.Daisy3MergerForm_Load);
+                this.Load += new System.EventHandler(this.Daisy3MergerForm_Load);
                 this.m_statusStrip.ResumeLayout(false);
                 this.m_statusStrip.PerformLayout();
                 this.m_grpDirPath.ResumeLayout(false);
@@ -260,6 +260,7 @@ namespace MergeUtilityUI
                 this.m_grpManipulateOPF.PerformLayout();
                 this.ResumeLayout(false);
                 this.PerformLayout();
+
             }
 
         #endregion

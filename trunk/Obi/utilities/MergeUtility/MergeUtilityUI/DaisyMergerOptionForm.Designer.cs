@@ -84,6 +84,7 @@ namespace MergeUtilityUI
             // 
             // m_btnCancel
             // 
+            this.m_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_btnCancel.Location = new System.Drawing.Point(326, 144);
@@ -96,15 +97,18 @@ namespace MergeUtilityUI
             // 
             // DaisyMergerOptionForm
             // 
+            this.AcceptButton = this.m_btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btnCancel;
             this.ClientSize = new System.Drawing.Size(516, 196);
             this.Controls.Add(this.m_btnOK);
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DaisyMergerOptionForm";
             this.Text = "Daisy Export Merging Form... ";
-            //this.Load += new System.EventHandler(this.DaisyMergerOptionForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
