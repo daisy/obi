@@ -333,13 +333,22 @@ namespace MergeUtilityUI
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
             DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
+            
             FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.AllDirectories);
-            foreach (FileInfo fileInfo in opfFiles)
+            FileInfo[] htmlFiles = dir.GetFiles("*.html ", SearchOption.AllDirectories);
+            if (daisy3Option == true)
             {
-                if (daisy3Option == true)
-                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
-                if(daisy202option == true)
-                obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                foreach (FileInfo fileInfo in opfFiles)
+                {
+                    obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                }
+            }
+            if (daisy202option == true)
+            {
+                foreach (FileInfo fileInfo in htmlFiles)
+                {
+                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                }
             }
             m_StatusLabel.Text = string.Empty;
             m_BtnValidateOutput.Enabled = false;
