@@ -20,14 +20,7 @@ namespace MergeUtilityUI
         public Daisy3MergerForm ()
         {
             InitializeComponent();            
-        }
-
-        public Daisy3MergerForm(bool option3,bool option202)
-        {
-            InitializeComponent(); 
-            daisy3Option = option3;
-            daisy202option = option202;
-        }
+        }        
 
         private void m_btnAdd_Click(object sender, EventArgs e)
         {
@@ -388,9 +381,25 @@ namespace MergeUtilityUI
             Close();
         }//m_BtnExit_Click
 
-       /* private void Daisy3MergerForm_Load(object sender, EventArgs e)
+        private void Daisy3MergerForm_Load(object sender, EventArgs e)
         {
-            ShowDialog();
-        } */       
+            ShowOptionWindow();
+        }
+
+        private void ShowOptionWindow()
+        {
+            DaisyMergerOptionForm opfrm = new DaisyMergerOptionForm();
+            opfrm.ShowDialog();
+
+            switch (opfrm.chooseOption)
+            {
+                case DaisyMergerOptionForm.Option.d3:
+                     daisy3Option = true;
+                     break;
+                case DaisyMergerOptionForm.Option.d202:
+                     daisy202option = true;
+                     break;
+            }        
+        }        
     }//class
 }//namespace

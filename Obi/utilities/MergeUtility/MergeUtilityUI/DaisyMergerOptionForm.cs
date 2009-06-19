@@ -9,22 +9,31 @@ using System.Windows.Forms;
 namespace MergeUtilityUI
 {
     public partial class DaisyMergerOptionForm : Form
-    {
-        Daisy3MergerForm mergerFrm;
-        
+    {        
+        public enum Option { d3 , d202 };
+        private Option mOpt;
+
         public DaisyMergerOptionForm()
         {
             InitializeComponent();
+            mOpt = Option.d3;
         }
 
+        public Option chooseOption { get { return mOpt; } }       
+        
         private void m_btnOK_Click(object sender, EventArgs e)
         {                     
-            if (m_rdbDaisy3.Checked || m_rdbDaisy202.Checked)
+            if (m_rdbDaisy3.Checked) 
             {
-                mergerFrm = new Daisy3MergerForm(m_rdbDaisy3.Checked , m_rdbDaisy202.Checked);
-                mergerFrm.ShowDialog();
+                mOpt = Option.d3;
+                Close();
             }
-            else 
+            else if (m_rdbDaisy202.Checked)
+            {
+                mOpt = Option.d202;
+                Close();
+            }
+            else
             {
                 MessageBox.Show(" Please select one of the Export on which merging can take place");
             }
@@ -32,13 +41,7 @@ namespace MergeUtilityUI
 
         private void m_btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        private void DaisyMergerOptionForm_Load(object sender, EventArgs e)
-        {
-            m_rdbDaisy3.Checked = true;
-
-        }       
+            Close();            
+        }          
     }
 }
