@@ -191,7 +191,14 @@ namespace MergeUtilityUI
             {
                 obj = new DTBMerger.Merger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
             }
-            obj.MergeDTDs();
+            if (daisy3Option == true)
+            {
+                obj.MergeDTDs();
+            }
+            if(daisy202option == true)
+            {
+                obj.MergeDAISY2DTDs();
+            }
         }//StartMerging()
         
         private void ProgressDialog_FormClosing ( object sender, EventArgs e )
@@ -318,8 +325,10 @@ namespace MergeUtilityUI
                 DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
                 string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
                 string completeScriptPath = Path.Combine(scriptPath, "scripts");
-                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),
-                             m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+                if (daisy3Option == true)
+                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+                if (daisy202option == true)
+                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbOPFfiles.SelectedItem.ToString(), "", 30);
                 m_StatusLabel.Text = "";
             }
         }//m_BtnValidateInput_Click
@@ -334,7 +343,10 @@ namespace MergeUtilityUI
             FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.AllDirectories);
             foreach (FileInfo fileInfo in opfFiles)
             {
+                if (daisy3Option == true)
                 obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                if(daisy202option == true)
+                obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
             }
             m_StatusLabel.Text = string.Empty;
             m_BtnValidateOutput.Enabled = false;
