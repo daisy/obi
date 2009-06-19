@@ -389,17 +389,23 @@ namespace MergeUtilityUI
         private void ShowOptionWindow()
         {
             DaisyMergerOptionForm opfrm = new DaisyMergerOptionForm();
-            opfrm.ShowDialog();
-
-            switch (opfrm.chooseOption)
-            {
+            if (opfrm.ShowDialog () == DialogResult.OK)
+                {
+                switch (opfrm.chooseOption)
+                    {
                 case DaisyMergerOptionForm.Option.d3:
-                     daisy3Option = true;
-                     break;
+                daisy3Option = true;
+                break;
                 case DaisyMergerOptionForm.Option.d202:
-                     daisy202option = true;
-                     break;
-            }        
+                daisy202option = true;
+                break;
+                    }
+                }
+            else
+                {
+                this.Close ();
+                }
         }        
+
     }//class
 }//namespace

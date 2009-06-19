@@ -22,7 +22,8 @@ namespace MergeUtilityUI
         public Option chooseOption { get { return mOpt; } }       
         
         private void m_btnOK_Click(object sender, EventArgs e)
-        {                     
+        {
+        this.DialogResult = DialogResult.OK;
             if (m_rdbDaisy3.Checked) 
             {
                 mOpt = Option.d3;
