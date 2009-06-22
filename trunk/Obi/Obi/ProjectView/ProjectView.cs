@@ -2211,36 +2211,49 @@ namespace Obi.ProjectView
                 /// </summary>
         public void GoToPage ()
             {
-            Dialogs.SetPageNumber pageDialog = new Obi.Dialogs.SetPageNumber ( true );
-            if ( pageDialog.ShowDialog () == DialogResult.OK && pageDialog.Number != null)
+            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase ();
+            if (GoToDialog.ShowDialog () == DialogResult.OK )
                 {
-                int pageNumber = pageDialog.Number.Number;
-                PageKind kind = pageDialog.Number.Kind;
-                EmptyNode node = null ;
-                    for (ObiNode n = Presentation.RootNode.FirstLeaf ; n != null; n = n.FollowingNode)
+                if (GoToDialog.Number != null)
                     {
-                        if (n is EmptyNode)
+                    int pageNumber = GoToDialog.Number.Number;
+                    PageKind kind = GoToDialog.Number.Kind;
+                    EmptyNode node = null;
+                    for (ObiNode n = Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
                         {
-                                EmptyNode testNode = (EmptyNode)n;
-                        if (testNode.Role_ == EmptyNode.Role.Page
-                            && testNode.PageNumber.Number == pageNumber
-                            && testNode.PageNumber.Kind == kind)
+                        if (n is EmptyNode)
                             {
-                            node = testNode;
-                            break;
+                            EmptyNode testNode = (EmptyNode)n;
+                            if (testNode.Role_ == EmptyNode.Role.Page
+                                && testNode.PageNumber.Number == pageNumber
+                                && testNode.PageNumber.Kind == kind)
+                                {
+                                node = testNode;
+                                break;
+                                }
                             }
                         }
+                    if (node != null)
+                        {
+                        Selection = new NodeSelection ( node, mContentView );
+                        }
+                    else
+                        {
+                        MessageBox.Show ( "Page does not exist" );
+                        }
                     }
-                if (node != null)
+                else if (GoToDialog.PhraseIndex != null)
                     {
-                    Selection = new NodeSelection ( node, mContentView );
-                    }
-                else
-                    {
-                    MessageBox.Show ( "Page does not exist" );
-                    }
-
-                }
+                    int phraseIndex =(int)  GoToDialog.PhraseIndex - 1;
+                    SectionNode section = GetSelectedPhraseSection;
+                    if (section != null && section.PhraseChildCount > phraseIndex)
+                        {
+                        Selection = new NodeSelection ( section.PhraseChild(phraseIndex) , mContentView );
+                        }
+                        }
+                
+                    
+                } // dialog OK check ends
             }
 
 
