@@ -1402,4 +1402,16 @@ Error text: {1}</value>
   <data name="Pipeline_DuplicateScript" xml:space="preserve">
     <value>Duplicate pipeline script named {0}found. This will not be loaded. Please press Ok button to continue.</value>
   </data>
+  <data name="GoToPageOrPhrase_MoreThanPhraseCount" xml:space="preserve">
+    <value>Phrase index {0} is more than total phrases in section. If you want to move to last phrase index: {1} in section, press Yes.</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Invalid input. Please enter a valid value.</value>
+  </data>
+  <data name="GoToPageOrPhrase_PageNumberLabel" xml:space="preserve">
+    <value>&amp;Page number:</value>
+  </data>
+  <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
+    <value>&amp;Phrase index:</value>
+  </data>
 </root>

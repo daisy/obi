@@ -2246,7 +2246,21 @@ namespace Obi.ProjectView
                     {
                     int phraseIndex =(int)  GoToDialog.PhraseIndex - 1;
                     SectionNode section = GetSelectedPhraseSection;
-                    if (section != null && section.PhraseChildCount > phraseIndex)
+                    if (phraseIndex >= section.PhraseChildCount )
+                        {
+                        // for message box display, phrase index should start from 1 so it should be incremented for display.
+                        if (MessageBox.Show ( string.Format ( Localizer.Message ( "GoToPageOrPhrase_MoreThanPhraseCount" ),( phraseIndex + 1).ToString (), (section.PhraseChildCount ).ToString () ),
+"?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes)
+                            {
+                            phraseIndex = section.PhraseChildCount - 1;
+                            }
+                        else
+                            {
+                            return;
+                            }
+                        }
+                    
+                    if (section != null )
                         {
                         Selection = new NodeSelection ( section.PhraseChild(phraseIndex) , mContentView );
                         }
