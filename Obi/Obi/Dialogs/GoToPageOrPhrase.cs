@@ -19,14 +19,18 @@ namespace Obi.Dialogs
             base.m_GoToPage = true;
             base.Text = "Go to page";
             base.label2.Visible = false;
-            base.label1.Location = new Point ( 40, 22 );
-            base.label3.Location = new Point ( 60, 64 );
-            base.mNumberBox.Location = new Point ( 150, 20 );
-            base.mPageKindComboBox.Location = new Point ( 150, 62 );
-            base.Size = new Size ( 320, 175 );
+            base.label1.Location = new Point(50, 56);
+            base.label3.Location = new Point(50, 94);
+            base.mNumberBox.Location = new Point(150, 56);
+            base.mPageKindComboBox.Location = new Point(150, 92);
+            base.Size = new Size(370, 200);
             base.mNumberOfPagesBox.Visible = false;
             base.mRenumber.Visible = false;
             base.mPageKindComboBox.SelectedIndex = 1;
+            m_btnOk.Location = new Point(70, 130);
+            base.mCancelButton.Location = new Point(200, 130);
+            m_radPhrase.Location = new Point(50, 20);
+            m_radPage.Location = new Point(180, 20);
             base.mOKButton.Visible = false;
             }
 
@@ -71,6 +75,19 @@ namespace Obi.Dialogs
             base.mOKButton_Click ( sender, e );
             }
 
+        private void m_radPage_CheckedChanged(object sender, EventArgs e)
+        {
+            base.label1.Text = "Page Number";
+            base.label3.Visible = true;
+            base.mPageKindComboBox.Visible = true;
+        }
+
+        private void m_radPhrase_CheckedChanged(object sender, EventArgs e)
+        {
+            base.label1.Text = "Phrase Index";
+            base.label3.Visible = false;
+            base.mPageKindComboBox.Visible = false;
+        }
 
         }
     }
