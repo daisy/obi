@@ -1333,6 +1333,33 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phrase index {0} is more than total phrases in section. If you want to move to last phrase index: {1} in section, press Yes..
+        /// </summary>
+        internal static string GoToPageOrPhrase_MoreThanPhraseCount {
+            get {
+                return ResourceManager.GetString("GoToPageOrPhrase_MoreThanPhraseCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Page number:.
+        /// </summary>
+        internal static string GoToPageOrPhrase_PageNumberLabel {
+            get {
+                return ResourceManager.GetString("GoToPageOrPhrase_PageNumberLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Phrase index:.
+        /// </summary>
+        internal static string GoToPageOrPhrase_PhraseIndexLabel {
+            get {
+                return ResourceManager.GetString("GoToPageOrPhrase_PhraseIndexLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to help_en.html.
         /// </summary>
         internal static string help_file_name {
@@ -1475,6 +1502,15 @@ namespace Obi {
         internal static string Invalid_ScriptParameters {
             get {
                 return ResourceManager.GetString("Invalid_ScriptParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid input. Please enter a valid value..
+        /// </summary>
+        internal static string InvalidInput {
+            get {
+                return ResourceManager.GetString("InvalidInput", resourceCulture);
             }
         }
         
