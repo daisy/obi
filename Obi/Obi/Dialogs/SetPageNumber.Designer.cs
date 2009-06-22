@@ -127,14 +127,14 @@ namespace Obi.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox mNumberBox;
-        private System.Windows.Forms.Button mOKButton;
-        private System.Windows.Forms.Button mCancelButton;
-        private System.Windows.Forms.CheckBox mRenumber;
-        private System.Windows.Forms.TextBox mNumberOfPagesBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox mPageKindComboBox;
-        private System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.Label label1;
+        protected  System.Windows.Forms.TextBox mNumberBox;
+        protected System.Windows.Forms.Button mOKButton;
+        protected System.Windows.Forms.Button mCancelButton;
+        protected System.Windows.Forms.CheckBox mRenumber;
+        protected System.Windows.Forms.TextBox mNumberOfPagesBox;
+        protected System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.ComboBox mPageKindComboBox;
+        protected System.Windows.Forms.Label label3;
     }
 }

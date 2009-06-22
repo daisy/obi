@@ -12,7 +12,7 @@ namespace Obi.Dialogs
     {
         private PageNumber mInitialNumber;
         private int mNumberOfPages;
-        private bool m_GoToPage;
+        protected bool m_GoToPage;
 
         public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
@@ -46,7 +46,7 @@ namespace Obi.Dialogs
 
         public SetPageNumber() { InitializeComponent(); }
 
-        public PageNumber Number
+        public virtual PageNumber Number
         {
             get
             {
@@ -82,7 +82,7 @@ namespace Obi.Dialogs
             mRenumber.Enabled = mPageKindComboBox.SelectedIndex != 2;
                     }
 
-        private void mOKButton_Click ( object sender, EventArgs e )
+        protected void mOKButton_Click ( object sender, EventArgs e )
             {
             
                 int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
