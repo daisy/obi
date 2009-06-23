@@ -44,8 +44,8 @@ namespace MergeUtilityUI
                 this.m_grpPageInput = new System.Windows.Forms.GroupBox();
                 this.m_rdbRenumberPages = new System.Windows.Forms.RadioButton();
                 this.m_rdbExistingNumberOfPages = new System.Windows.Forms.RadioButton();
-                this.m_grpListOPFfiles = new System.Windows.Forms.GroupBox();
-                this.m_lbOPFfiles = new System.Windows.Forms.ListBox();
+                this.m_grpListDTBfiles = new System.Windows.Forms.GroupBox();
+                this.m_lbDTBfiles = new System.Windows.Forms.ListBox();
                 this.m_BtnDelete = new System.Windows.Forms.Button();
                 this.m_BtnDown = new System.Windows.Forms.Button();
                 this.m_btnUP = new System.Windows.Forms.Button();
@@ -53,12 +53,12 @@ namespace MergeUtilityUI
                 this.m_txtDTBookInfo = new System.Windows.Forms.TextBox();
                 this.m_btnAdd = new System.Windows.Forms.Button();
                 this.m_lblDBookInfo = new System.Windows.Forms.Label();
-                this.m_grpManipulateOPF = new System.Windows.Forms.GroupBox();
+                this.m_grpManipulateDTB = new System.Windows.Forms.GroupBox();
                 this.m_statusStrip.SuspendLayout();
                 this.m_grpDirPath.SuspendLayout();
                 this.m_grpPageInput.SuspendLayout();
-                this.m_grpListOPFfiles.SuspendLayout();
-                this.m_grpManipulateOPF.SuspendLayout();
+                this.m_grpListDTBfiles.SuspendLayout();
+                this.m_grpManipulateDTB.SuspendLayout();
                 this.SuspendLayout();
                 // 
                 // m_lblDaisy3Merger
@@ -162,19 +162,19 @@ namespace MergeUtilityUI
                 this.m_rdbExistingNumberOfPages.TabStop = true;
                 this.m_rdbExistingNumberOfPages.UseVisualStyleBackColor = true;
                 // 
-                // m_grpListOPFfiles
+                // m_grpListDTBfiles
                 // 
-                this.m_grpListOPFfiles.Controls.Add(this.m_lbOPFfiles);
-                resources.ApplyResources(this.m_grpListOPFfiles, "m_grpListOPFfiles");
-                this.m_grpListOPFfiles.Name = "m_grpListOPFfiles";
-                this.m_grpListOPFfiles.TabStop = false;
+                this.m_grpListDTBfiles.Controls.Add(this.m_lbDTBfiles);
+                resources.ApplyResources(this.m_grpListDTBfiles, "m_grpListDTBfiles");
+                this.m_grpListDTBfiles.Name = "m_grpListDTBfiles";
+                this.m_grpListDTBfiles.TabStop = false;
                 // 
-                // m_lbOPFfiles
+                // m_lbDTBfiles
                 // 
-                this.m_lbOPFfiles.FormattingEnabled = true;
-                resources.ApplyResources(this.m_lbOPFfiles, "m_lbOPFfiles");
-                this.m_lbOPFfiles.Name = "m_lbOPFfiles";
-                this.m_lbOPFfiles.SelectedIndexChanged += new System.EventHandler(this.m_lbOPFfiles_SelectedIndexChanged);
+                this.m_lbDTBfiles.FormattingEnabled = true;
+                resources.ApplyResources(this.m_lbDTBfiles, "m_lbDTBfiles");
+                this.m_lbDTBfiles.Name = "m_lbDTBfiles";
+                this.m_lbDTBfiles.SelectedIndexChanged += new System.EventHandler(this.m_lbDTBfiles_SelectedIndexChanged);
                 // 
                 // m_BtnDelete
                 // 
@@ -222,19 +222,19 @@ namespace MergeUtilityUI
                 resources.ApplyResources(this.m_lblDBookInfo, "m_lblDBookInfo");
                 this.m_lblDBookInfo.Name = "m_lblDBookInfo";
                 // 
-                // m_grpManipulateOPF
+                // m_grpManipulateDTB
                 // 
-                this.m_grpManipulateOPF.Controls.Add(this.m_lblDBookInfo);
-                this.m_grpManipulateOPF.Controls.Add(this.m_btnAdd);
-                this.m_grpManipulateOPF.Controls.Add(this.m_txtDTBookInfo);
-                this.m_grpManipulateOPF.Controls.Add(this.m_BtnValidateInput);
-                this.m_grpManipulateOPF.Controls.Add(this.m_btnUP);
-                this.m_grpManipulateOPF.Controls.Add(this.m_BtnDown);
-                this.m_grpManipulateOPF.Controls.Add(this.m_BtnDelete);
-                this.m_grpManipulateOPF.Controls.Add(this.m_grpListOPFfiles);
-                resources.ApplyResources(this.m_grpManipulateOPF, "m_grpManipulateOPF");
-                this.m_grpManipulateOPF.Name = "m_grpManipulateOPF";
-                this.m_grpManipulateOPF.TabStop = false;
+                this.m_grpManipulateDTB.Controls.Add(this.m_lblDBookInfo);
+                this.m_grpManipulateDTB.Controls.Add(this.m_btnAdd);
+                this.m_grpManipulateDTB.Controls.Add(this.m_txtDTBookInfo);
+                this.m_grpManipulateDTB.Controls.Add(this.m_BtnValidateInput);
+                this.m_grpManipulateDTB.Controls.Add(this.m_btnUP);
+                this.m_grpManipulateDTB.Controls.Add(this.m_BtnDown);
+                this.m_grpManipulateDTB.Controls.Add(this.m_BtnDelete);
+                this.m_grpManipulateDTB.Controls.Add(this.m_grpListDTBfiles);
+                resources.ApplyResources(this.m_grpManipulateDTB, "m_grpManipulateDTB");
+                this.m_grpManipulateDTB.Name = "m_grpManipulateDTB";
+                this.m_grpManipulateDTB.TabStop = false;
                 // 
                 // Daisy3MergerForm
                 // 
@@ -244,7 +244,7 @@ namespace MergeUtilityUI
                 this.CancelButton = this.m_BtnCancel;
                 this.Controls.Add(this.m_grpPageInput);
                 this.Controls.Add(this.m_grpDirPath);
-                this.Controls.Add(this.m_grpManipulateOPF);
+                this.Controls.Add(this.m_grpManipulateDTB);
                 this.Controls.Add(this.m_statusStrip);
                 this.Controls.Add(this.m_lblDaisy3Merger);
                 this.Name = "Daisy3MergerForm";
@@ -255,9 +255,9 @@ namespace MergeUtilityUI
                 this.m_grpDirPath.PerformLayout();
                 this.m_grpPageInput.ResumeLayout(false);
                 this.m_grpPageInput.PerformLayout();
-                this.m_grpListOPFfiles.ResumeLayout(false);
-                this.m_grpManipulateOPF.ResumeLayout(false);
-                this.m_grpManipulateOPF.PerformLayout();
+                this.m_grpListDTBfiles.ResumeLayout(false);
+                this.m_grpManipulateDTB.ResumeLayout(false);
+                this.m_grpManipulateDTB.PerformLayout();
                 this.ResumeLayout(false);
                 this.PerformLayout();
 
@@ -280,8 +280,8 @@ namespace MergeUtilityUI
         private System.Windows.Forms.GroupBox m_grpPageInput;
         private System.Windows.Forms.RadioButton m_rdbRenumberPages;
         private System.Windows.Forms.RadioButton m_rdbExistingNumberOfPages;
-        private System.Windows.Forms.GroupBox m_grpListOPFfiles;
-        private System.Windows.Forms.ListBox m_lbOPFfiles;
+        private System.Windows.Forms.GroupBox m_grpListDTBfiles;
+        private System.Windows.Forms.ListBox m_lbDTBfiles;
         private System.Windows.Forms.Button m_BtnDelete;
         private System.Windows.Forms.Button m_BtnDown;
         private System.Windows.Forms.Button m_btnUP;
@@ -289,7 +289,7 @@ namespace MergeUtilityUI
         private System.Windows.Forms.TextBox m_txtDTBookInfo;
         private System.Windows.Forms.Button m_btnAdd;
         private System.Windows.Forms.Label m_lblDBookInfo;
-        private System.Windows.Forms.GroupBox m_grpManipulateOPF;        
+        private System.Windows.Forms.GroupBox m_grpManipulateDTB;        
         }
     }
 

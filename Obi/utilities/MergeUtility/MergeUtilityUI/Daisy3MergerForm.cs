@@ -25,36 +25,41 @@ namespace MergeUtilityUI
         private void m_btnAdd_Click(object sender, EventArgs e)
         {
             m_rdbExistingNumberOfPages.Checked = true;
-            OpenFileDialog select_opfFile = new OpenFileDialog();
+            OpenFileDialog select_File = new OpenFileDialog();
 
             if (daisy3Option == true)
             {
-                select_opfFile.Filter = "OPF Files (*.opf)|*.opf";
+                select_File.Filter = "OPF Files (*.opf)|*.opf";
             }
             else if (daisy202option == true)
             {
-                select_opfFile.Filter = "HTML Files (*.html)|*.html";
+                select_File.Filter = "HTML Files (*.html)|*.html";
             }
             
-            select_opfFile.RestoreDirectory = true;
-            if (select_opfFile.ShowDialog(this) == DialogResult.OK)
+            select_File.RestoreDirectory = true;
+            if (select_File.ShowDialog(this) == DialogResult.OK)
             {
-                m_lbOPFfiles.Items.Add(select_opfFile.FileName);
+                m_lbDTBfiles.Items.Add(select_File.FileName);
             }
-             m_BtnMerge.Enabled = m_lbOPFfiles.Items.Count >= 2;
-             m_BtnReset.Enabled = m_lbOPFfiles.Items.Count >= 1;
+             m_BtnMerge.Enabled = m_lbDTBfiles.Items.Count >= 2;
+             m_BtnReset.Enabled = m_lbDTBfiles.Items.Count >= 1;
 
-            if (m_lbOPFfiles.Items.Count == 1)
+            if (m_lbDTBfiles.Items.Count == 1)
             {
-                m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
+                if (daisy3Option == true)
+                    m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
+                if (daisy202option == true)
+                    m_StatusLabel.Text = "  Please select at least two NCC Files for merging ";
             }
-
-            m_StatusLabel.Text = " The OPF Files selected has successfully been added in the Listbox ";            
+            if (daisy3Option == true)
+                m_StatusLabel.Text = " The OPF Files selected has successfully been added in the Listbox ";
+            if (daisy202option == true)
+                m_StatusLabel.Text = " The NCC Files selected has successfully been added in the Listbox ";
          }//m_btnAdd_Click
 
         private void m_BtnOutputDirectory_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = "Select the  output Directory where you want to put the merged OPF files";
+            m_StatusLabel.Text = "Select the  output Directory where you want to put the merged files";
             FolderBrowserDialog saveDir = new FolderBrowserDialog();
             saveDir.ShowNewFolderButton = true;
             saveDir.SelectedPath = m_txtDirectoryPath.Text;
@@ -67,7 +72,7 @@ namespace MergeUtilityUI
             if (m_txtDirectoryPath.Text.Length > 0)
             {
                 m_BtnReset.Enabled = true;
-                m_StatusLabel.Text = " You have selected the path " + saveDir.SelectedPath + " to save the merged OPF files ";
+                m_StatusLabel.Text = " You have selected the path " + saveDir.SelectedPath + " to save the merged files ";
             }
         }//m_BtnOutputDirectory_Click
 
@@ -112,7 +117,7 @@ namespace MergeUtilityUI
         {
             try
             {
-                if (m_lbOPFfiles.Items.Count >= 2)
+                if (m_lbDTBfiles.Items.Count >= 2)
                 {
                     m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
                     if (m_txtDirectoryPath.Text == "")
@@ -171,18 +176,18 @@ namespace MergeUtilityUI
         private void StartMerging ()
             {
             DTBMerger.Merger obj = null;
-            string[] listOfOpfFiles = new string[m_lbOPFfiles.Items.Count];
-            for (int i = 0; i < m_lbOPFfiles.Items.Count; i++)
+            string[] listOfDTBFiles = new string[m_lbDTBfiles.Items.Count];
+            for (int i = 0; i < m_lbDTBfiles.Items.Count; i++)
             {
-                listOfOpfFiles[i] = m_lbOPFfiles.Items[i].ToString();
+                listOfDTBFiles[i] = m_lbDTBfiles.Items[i].ToString();
             }
             if (m_rdbExistingNumberOfPages.Checked)
             {
-                obj = new DTBMerger.Merger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
+                obj = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
             }
             else if (m_rdbRenumberPages.Checked)
             {
-                obj = new DTBMerger.Merger(listOfOpfFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
+                obj = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
             }
             if (daisy3Option == true)
             {
@@ -226,7 +231,7 @@ namespace MergeUtilityUI
             {
                 if (!e.Cancelled)
                 {
-                    MessageBox.Show("Files has been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     m_BtnValidateOutput.Enabled = true;
                 }
             }
@@ -239,17 +244,17 @@ namespace MergeUtilityUI
                
         private void m_btnUP_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = " You have selected " + m_lbOPFfiles.SelectedItem.ToString() + " to move up.";
+            m_StatusLabel.Text = " You have selected " + m_lbDTBfiles.SelectedItem.ToString() + " to move up.";
             try
             {
-                if (m_lbOPFfiles.Items.Count != 0)
+                if (m_lbDTBfiles.Items.Count != 0)
                 {
-                    if (m_lbOPFfiles.SelectedIndex != 0 && m_lbOPFfiles.SelectedIndex != -1)
+                    if (m_lbDTBfiles.SelectedIndex != 0 && m_lbDTBfiles.SelectedIndex != -1)
                     {
-                        object item = m_lbOPFfiles.SelectedItem;
-                        int index = m_lbOPFfiles.SelectedIndex;
-                        m_lbOPFfiles.Items.RemoveAt(index);
-                        m_lbOPFfiles.Items.Insert(index - 1, item);
+                        object item = m_lbDTBfiles.SelectedItem;
+                        int index = m_lbDTBfiles.SelectedIndex;
+                        m_lbDTBfiles.Items.RemoveAt(index);
+                        m_lbDTBfiles.Items.Insert(index - 1, item);
                     }
                 }
             }
@@ -261,18 +266,18 @@ namespace MergeUtilityUI
 
         private void m_BtnDown_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = " You have selected " + m_lbOPFfiles.SelectedItem.ToString() + " to move down.";
+            m_StatusLabel.Text = " You have selected " + m_lbDTBfiles.SelectedItem.ToString() + " to move down.";
             try
             {
-                int index = m_lbOPFfiles.SelectedIndex;
+                int index = m_lbDTBfiles.SelectedIndex;
 
-                if (m_lbOPFfiles.Items.Count != 0)
+                if (m_lbDTBfiles.Items.Count != 0)
                 {
-                    if (m_lbOPFfiles.SelectedIndex != m_lbOPFfiles.Items.Count - 1 && m_lbOPFfiles.SelectedIndex != -1)
+                    if (m_lbDTBfiles.SelectedIndex != m_lbDTBfiles.Items.Count - 1 && m_lbDTBfiles.SelectedIndex != -1)
                     {
-                        object item = m_lbOPFfiles.SelectedItem;
-                        m_lbOPFfiles.Items.RemoveAt(index);
-                        m_lbOPFfiles.Items.Insert(index + 1, item);
+                        object item = m_lbDTBfiles.SelectedItem;
+                        m_lbDTBfiles.Items.RemoveAt(index);
+                        m_lbDTBfiles.Items.Insert(index + 1, item);
                     }
                 }
             }
@@ -282,25 +287,28 @@ namespace MergeUtilityUI
             }
         }//m_BtnDown_Click
 
-        private void m_lbOPFfiles_SelectedIndexChanged(object sender, EventArgs e)
+        private void m_lbDTBfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
-           m_BtnValidateInput.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
-           m_BtnDelete.Enabled = m_lbOPFfiles.Items.Count > 0 && m_lbOPFfiles.SelectedIndex >= 0;
+           m_BtnValidateInput.Enabled = m_lbDTBfiles.Items.Count > 0 && m_lbDTBfiles.SelectedIndex >= 0;
+           m_BtnDelete.Enabled = m_lbDTBfiles.Items.Count > 0 && m_lbDTBfiles.SelectedIndex >= 0;
            m_BtnValidateOutput.Enabled = false;
            m_BtnReset.Enabled = false;
-           m_BtnReset.Enabled = m_lbOPFfiles.Items.Count > 0 || m_txtDirectoryPath.Text.Length > 0;
+           m_BtnReset.Enabled = m_lbDTBfiles.Items.Count > 0 || m_txtDirectoryPath.Text.Length > 0;
            
-            if (m_lbOPFfiles.Items.Count == 1)
+            if (m_lbDTBfiles.Items.Count == 1)
             {
-                m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
+                if (daisy3Option == true)
+                    m_StatusLabel.Text = "  Please select at least two OPF Files for merging ";
+                if (daisy202option == true)
+                    m_StatusLabel.Text = "  Please select at least two NCC Files for merging ";
             }
-            this.m_btnUP.Enabled = this.m_lbOPFfiles.SelectedIndex > 0;
-            this.m_BtnDown.Enabled = this.m_lbOPFfiles.SelectedIndex > -1 && m_lbOPFfiles.SelectedIndex < m_lbOPFfiles.Items.Count - 1;
+            this.m_btnUP.Enabled = this.m_lbDTBfiles.SelectedIndex > 0;
+            this.m_BtnDown.Enabled = this.m_lbDTBfiles.SelectedIndex > -1 && m_lbDTBfiles.SelectedIndex < m_lbDTBfiles.Items.Count - 1;
 
-            if (m_lbOPFfiles.SelectedIndex >= 0)
+            if (m_lbDTBfiles.SelectedIndex >= 0)
             {
                 m_txtDTBookInfo.Clear();
-                DTBMerger.DTBFilesInfo fileInfo = new DTBMerger.DTBFilesInfo(m_lbOPFfiles.SelectedItem.ToString());
+                DTBMerger.DTBFilesInfo fileInfo = new DTBMerger.DTBFilesInfo(m_lbDTBfiles.SelectedItem.ToString());
                 m_txtDTBookInfo.Multiline = true;
                 m_txtDTBookInfo.ReadOnly = true;
                 m_txtDTBookInfo.Text = 
@@ -312,23 +320,30 @@ namespace MergeUtilityUI
 
         private void m_BtnValidateInput_Click(object sender, EventArgs e)
         {
-            if (m_lbOPFfiles.SelectedItems.Count != 0)
+            if (m_lbDTBfiles.SelectedItems.Count != 0)
             {
-                m_StatusLabel.Text = " Validating The Input OPF File..";
+                if (daisy3Option == true)
+                    m_StatusLabel.Text = " Validating The Input OPF File..";
+                if (daisy202option == true)
+                    m_StatusLabel.Text = " Validating The Input NCC File..";
+               
                 DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
                 string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
                 string completeScriptPath = Path.Combine(scriptPath, "scripts");
                 if (daisy3Option == true)
-                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbDTBfiles.SelectedItem.ToString(), "", 30);
                 if (daisy202option == true)
-                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbOPFfiles.SelectedItem.ToString(), "", 30);
+                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbDTBfiles.SelectedItem.ToString(), "", 30);
                 m_StatusLabel.Text = "";
             }
         }//m_BtnValidateInput_Click
 
         private void m_BtnValidateOutput_Click(object sender, EventArgs e)
         {
-            m_StatusLabel.Text = " Validating the Output Directory merged OPF files..... ";
+            if (daisy3Option == true)
+                m_StatusLabel.Text = " Validating The Output OPF File..";
+            if (daisy202option == true)
+                m_StatusLabel.Text = " Validating The Output NCC File..";
             DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
@@ -359,7 +374,7 @@ namespace MergeUtilityUI
             try
             {
                 m_StatusLabel.Text = " Deleted the selected file from the Listbox ";
-                m_lbOPFfiles.Items.Remove(m_lbOPFfiles.SelectedItem);
+                m_lbDTBfiles.Items.Remove(m_lbDTBfiles.SelectedItem);
                 m_txtDTBookInfo.Clear();
             }
             catch (Exception ex)
@@ -372,7 +387,7 @@ namespace MergeUtilityUI
         {
             m_StatusLabel.Text = " Cleared all the Text ";
             m_txtDirectoryPath.Clear();
-            m_lbOPFfiles.Items.Clear();
+            m_lbDTBfiles.Items.Clear();
             m_txtDTBookInfo.Clear();
             m_BtnMerge.Enabled = false;
             m_BtnValidateInput.Enabled = false;
