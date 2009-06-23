@@ -2245,25 +2245,26 @@ namespace Obi.ProjectView
                 else if (GoToDialog.PhraseIndex != null)
                     {
                     int phraseIndex =(int)  GoToDialog.PhraseIndex - 1;
-                    SectionNode section = GetSelectedPhraseSection;
-                    if (phraseIndex >= section.PhraseChildCount )
+                    SectionNode section = GetSelectedPhraseSection != null? GetSelectedPhraseSection : mPresentation.FirstSection ;
+
+                    if (section != null)
                         {
-                        // for message box display, phrase index should start from 1 so it should be incremented for display.
-                        if (MessageBox.Show ( string.Format ( Localizer.Message ( "GoToPageOrPhrase_MoreThanPhraseCount" ),( phraseIndex + 1).ToString (), (section.PhraseChildCount ).ToString () ),
-"?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes)
+                        if (phraseIndex >= section.PhraseChildCount)
                             {
-                            phraseIndex = section.PhraseChildCount - 1;
+                            // for message box display, phrase index should start from 1 so it should be incremented for display.
+                            if (MessageBox.Show ( string.Format ( Localizer.Message ( "GoToPageOrPhrase_MoreThanPhraseCount" ), (phraseIndex + 1).ToString (), (section.PhraseChildCount).ToString () ),
+    "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes)
+                                {
+                                phraseIndex = section.PhraseChildCount - 1;
+                                }
+                            else
+                                {
+                                return;
+                                }
                             }
-                        else
-                            {
-                            return;
-                            }
-                        }
-                    
-                    if (section != null )
-                        {
-                        Selection = new NodeSelection ( section.PhraseChild(phraseIndex) , mContentView );
-                        }
+
+                        Selection = new NodeSelection ( section.PhraseChild ( phraseIndex ), mContentView );
+                        } // section null check ends
                         }
                 
                     
