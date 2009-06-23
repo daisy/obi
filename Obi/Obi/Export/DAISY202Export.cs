@@ -146,7 +146,7 @@ namespace Obi.Export
 
                     string pageID = null;
                     XmlNode pageNode = null;
-                    if (phrase.Role_ == EmptyNode.Role.Page)
+                    if (!isFirstPhrase   &&   phrase.Role_ == EmptyNode.Role.Page)
                         {
                         string strClassVal = null;
                         // increment page counts and get page kind
