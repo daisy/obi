@@ -63,7 +63,7 @@ namespace MergeUtilityUI
             this.KeyPreview = true;
             this.Name = "ProgressDialogDTB";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Merging OPF Files... Please Wait";
+            this.Text = "Merging Files... Please Wait";
             this.ResumeLayout(false);
 
         }

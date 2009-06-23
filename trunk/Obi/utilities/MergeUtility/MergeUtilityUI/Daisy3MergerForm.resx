@@ -336,12 +336,6 @@
   <metadata name="m_statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 592</value>
   </metadata>
-  <data name="m_StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 17</value>
-  </data>
-  <data name="m_StatusLabel.Text" xml:space="preserve">
-    <value>Please Click Add Button to add the OPF files in Listbox...    </value>
-  </data>
   <data name="m_statusStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 592</value>
   </data>
@@ -363,26 +357,11 @@
   <data name="&gt;&gt;m_statusStrip.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="m_BtnValidateOutput.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="m_StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>313, 17</value>
   </data>
-  <data name="m_BtnValidateOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_BtnValidateOutput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="m_BtnValidateOutput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 85</value>
-  </data>
-  <data name="m_BtnValidateOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 30</value>
-  </data>
-  <data name="m_BtnValidateOutput.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="m_BtnValidateOutput.Text" xml:space="preserve">
-    <value>Validate &amp;Output</value>
+  <data name="m_StatusLabel.Text" xml:space="preserve">
+    <value>Please Click Add Button to add the DTB files in Listbox...    </value>
   </data>
   <data name="&gt;&gt;m_BtnValidateOutput.Name" xml:space="preserve">
     <value>m_BtnValidateOutput</value>
@@ -419,6 +398,90 @@
   </data>
   <data name="&gt;&gt;m_grpDirPath.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="m_BtnValidateOutput.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnValidateOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnValidateOutput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnValidateOutput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 85</value>
+  </data>
+  <data name="m_BtnValidateOutput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_BtnValidateOutput.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="m_BtnValidateOutput.Text" xml:space="preserve">
+    <value>Validate &amp;Output</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Name" xml:space="preserve">
+    <value>m_BtnValidateOutput</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnValidateOutput.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Name" xml:space="preserve">
+    <value>m_rdbRenumberPages</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.Parent" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_rdbRenumberPages.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Name" xml:space="preserve">
+    <value>m_rdbExistingNumberOfPages</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.Parent" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_rdbExistingNumberOfPages.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_grpPageInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
+  </data>
+  <data name="m_grpPageInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 405</value>
+  </data>
+  <data name="m_grpPageInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>846, 56</value>
+  </data>
+  <data name="m_grpPageInput.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="m_grpPageInput.Text" xml:space="preserve">
+    <value>Page numbering options</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Name" xml:space="preserve">
+    <value>m_grpPageInput</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_grpPageInput.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="m_rdbRenumberPages.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -480,82 +543,55 @@
   <data name="&gt;&gt;m_rdbExistingNumberOfPages.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="m_grpPageInput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
-  </data>
-  <data name="m_grpPageInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 405</value>
-  </data>
-  <data name="m_grpPageInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>846, 56</value>
-  </data>
-  <data name="m_grpPageInput.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lbDTBfiles.ItemHeight" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="m_grpPageInput.Text" xml:space="preserve">
-    <value>Page numbering options</value>
-  </data>
-  <data name="&gt;&gt;m_grpPageInput.Name" xml:space="preserve">
-    <value>m_grpPageInput</value>
-  </data>
-  <data name="&gt;&gt;m_grpPageInput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_grpPageInput.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;m_grpPageInput.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_lbOPFfiles.ItemHeight" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="m_lbOPFfiles.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_lbDTBfiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 21</value>
   </data>
-  <data name="m_lbOPFfiles.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_lbDTBfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>658, 180</value>
   </data>
-  <data name="m_lbOPFfiles.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lbDTBfiles.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;m_lbOPFfiles.Name" xml:space="preserve">
-    <value>m_lbOPFfiles</value>
+  <data name="&gt;&gt;m_lbDTBfiles.Name" xml:space="preserve">
+    <value>m_lbDTBfiles</value>
   </data>
-  <data name="&gt;&gt;m_lbOPFfiles.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_lbDTBfiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_lbOPFfiles.Parent" xml:space="preserve">
-    <value>m_grpListOPFfiles</value>
+  <data name="&gt;&gt;m_lbDTBfiles.Parent" xml:space="preserve">
+    <value>m_grpListDTBfiles</value>
   </data>
-  <data name="&gt;&gt;m_lbOPFfiles.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_lbDTBfiles.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_grpListOPFfiles.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="m_grpListDTBfiles.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
   </data>
-  <data name="m_grpListOPFfiles.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_grpListDTBfiles.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 12</value>
   </data>
-  <data name="m_grpListOPFfiles.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_grpListDTBfiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>683, 214</value>
   </data>
-  <data name="m_grpListOPFfiles.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_grpListDTBfiles.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="m_grpListOPFfiles.Text" xml:space="preserve">
+  <data name="m_grpListDTBfiles.Text" xml:space="preserve">
     <value>List of Input</value>
   </data>
-  <data name="&gt;&gt;m_grpListOPFfiles.Name" xml:space="preserve">
-    <value>m_grpListOPFfiles</value>
+  <data name="&gt;&gt;m_grpListDTBfiles.Name" xml:space="preserve">
+    <value>m_grpListDTBfiles</value>
   </data>
-  <data name="&gt;&gt;m_grpListOPFfiles.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_grpListDTBfiles.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_grpListOPFfiles.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+  <data name="&gt;&gt;m_grpListDTBfiles.Parent" xml:space="preserve">
+    <value>m_grpManipulateDTB</value>
   </data>
-  <data name="&gt;&gt;m_grpListOPFfiles.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_grpListDTBfiles.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="m_BtnDelete.Enabled" type="System.Boolean, mscorlib">
@@ -586,7 +622,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_BtnDelete.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_BtnDelete.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -619,7 +655,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_BtnDown.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_BtnDown.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -652,7 +688,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnUP.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_btnUP.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -685,7 +721,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_BtnValidateInput.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_BtnValidateInput.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -709,7 +745,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_txtDTBookInfo.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_txtDTBookInfo.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -739,7 +775,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_btnAdd.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -766,33 +802,33 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_lblDBookInfo.Parent" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+    <value>m_grpManipulateDTB</value>
   </data>
   <data name="&gt;&gt;m_lblDBookInfo.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="m_grpManipulateOPF.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="m_grpManipulateDTB.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
   </data>
-  <data name="m_grpManipulateOPF.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_grpManipulateDTB.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 75</value>
   </data>
-  <data name="m_grpManipulateOPF.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_grpManipulateDTB.Size" type="System.Drawing.Size, System.Drawing">
     <value>846, 324</value>
   </data>
-  <data name="m_grpManipulateOPF.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_grpManipulateDTB.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;m_grpManipulateOPF.Name" xml:space="preserve">
-    <value>m_grpManipulateOPF</value>
+  <data name="&gt;&gt;m_grpManipulateDTB.Name" xml:space="preserve">
+    <value>m_grpManipulateDTB</value>
   </data>
-  <data name="&gt;&gt;m_grpManipulateOPF.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_grpManipulateDTB.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_grpManipulateOPF.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_grpManipulateDTB.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;m_grpManipulateOPF.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_grpManipulateDTB.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
