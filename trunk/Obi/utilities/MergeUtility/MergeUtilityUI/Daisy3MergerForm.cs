@@ -19,7 +19,11 @@ namespace MergeUtilityUI
         
         public Daisy3MergerForm ()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
+            m_bgWorker.RunWorkerCompleted +=
+                new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
+            m_bgWorker.WorkerSupportsCancellation = true;
         }        
 
         private void m_btnAdd_Click(object sender, EventArgs e)
@@ -129,13 +133,14 @@ namespace MergeUtilityUI
                     }
                     if (m_txtDirectoryPath.Text.Length > 0)
                     {
-                        m_bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(m_bgWorker_DoWork);
-                        m_bgWorker.RunWorkerCompleted +=
-                            new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
-                        m_bgWorker.WorkerSupportsCancellation = true;
-
-                        m_bgWorker.RunWorkerAsync();
-
+                        if (!m_bgWorker.IsBusy)
+                        {
+                            m_bgWorker.RunWorkerAsync();
+                        }
+                        else
+                        {
+                            MessageBox.Show(" Please be patient, earlier task is in progress ");
+                        }
                         if (m_bgWorker.IsBusy)
                         {
                             progress = new ProgressDialogDTB();
@@ -154,6 +159,7 @@ namespace MergeUtilityUI
                     MessageBox.Show("Either there are no files or only one file in the Listbox to merge. Minimum 2 files are needed for merging. Please add some files in Listbox.Click Add button.","Listbox Empty",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     m_btnAdd.Focus();
                 }
+                MessageBox.Show("Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
              catch (Exception ex)
              {
@@ -224,15 +230,14 @@ namespace MergeUtilityUI
             }
             if ( e.Cancelled )
             {
-                MessageBox.Show(" Progress was cancelled ");
-                //m_StatusLabel.Text = " Progress was cancelled ";                
+                MessageBox.Show(" Progress was cancelled ");                               
             }
             if (e.Error == null)
             {
                 if (!e.Cancelled)
                 {
-                    MessageBox.Show("Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    m_BtnValidateOutput.Enabled = true;
+                  m_StatusLabel.Text = "Files have been merged and put in the given directory path. " ;
+                  m_BtnValidateOutput.Enabled = true;
                 }
             }
             if (e.Error != null)
