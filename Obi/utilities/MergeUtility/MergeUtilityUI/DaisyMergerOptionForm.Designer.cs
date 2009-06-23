@@ -46,7 +46,7 @@ namespace MergeUtilityUI
             this.groupBox1.Size = new System.Drawing.Size(446, 85);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Choose the Merging on type of Export";
+            this.groupBox1.Text = " Type of files to be Merged ";
             // 
             // m_rdbDaisy202
             // 
