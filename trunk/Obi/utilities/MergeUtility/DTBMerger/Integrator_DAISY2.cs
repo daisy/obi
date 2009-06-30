@@ -46,14 +46,14 @@ namespace DTBMerger
                 {
                 if (n.Attributes.GetNamedItem ( "class" ).Value == "page-normal")
                     {
-                    XmlNode anchorNode = n.SelectSingleNode(".//firstNS:a",
-                    firstDocNSManager ) ;
+                    XmlNode anchorNode = n.SelectSingleNode ( ".//firstNS:a",
+                    firstDocNSManager );
                     if (anchorNode == null)
                         {
                         MessageBox.Show ( n.Attributes.GetNamedItem ( "id" ).Value );
                         continue;
                         }
-                    string strPageNo = anchorNode .InnerText;
+                    string strPageNo = anchorNode.InnerText;
                     int pageNo = int.Parse ( strPageNo );
                     if (pageNo > maxNormalPageNo) maxNormalPageNo = pageNo;
                     }
@@ -84,7 +84,7 @@ namespace DTBMerger
                 firstDocNSManager );
             int previousPageNo = -1;
             List<XmlNode> duplicatePageNodeList = new List<XmlNode> ();
-            MessageBox.Show ( pageNodesList.Count.ToString () ); 
+            
             foreach (XmlNode n in pageNodesList)
                 {
                 if (n.Attributes.GetNamedItem ( "class" ).Value == "page-normal")
@@ -106,29 +106,27 @@ namespace DTBMerger
                         }
                     else
                         {
-            // do not renumber             
+                        // do not renumber             
                         // only remove consective duplicate page numbers
                         int pageNo = int.Parse ( pageAnchorNode.InnerText );
-                        
-                        if (previousPageNo == pageNo)
 
+                        if (previousPageNo == pageNo)
                             {
                             // duplicate page so add to duplicate page list
                             duplicatePageNodeList.Add ( n );
-                            
+
                             // add div so as to  remove duplicate span.
-                            XmlAttribute AttrID = (XmlAttribute) n.Attributes.GetNamedItem ( "id" ).Clone ();
-                            XmlNode newAnchor = pageAnchorNode.CloneNode(true) ;
+                            XmlAttribute AttrID = (XmlAttribute)n.Attributes.GetNamedItem ( "id" ).Clone ();
+                            XmlNode newAnchor = pageAnchorNode.CloneNode ( true );
                             XmlNode divNode = firstNccDocument.CreateElement ( null, "div", firstNCCBodyNode.NamespaceURI );
                             divNode.Attributes.Append ( AttrID );
                             divNode.Attributes.Append (
-                                firstNccDocument.CreateAttribute ("class") ) ;
+                                firstNccDocument.CreateAttribute ( "class" ) );
                             divNode.Attributes.GetNamedItem ( "class" ).Value = "group";
                             divNode.AppendChild ( newAnchor );
 
-                            n.ParentNode.InsertBefore( divNode, n );
+                            n.ParentNode.InsertBefore ( divNode, n );
 
-                            MessageBox.Show ( pageNo.ToString () );
                             }
                         if (pageNo > maxNormalPageNo) maxNormalPageNo = pageNo;
                         previousPageNo = pageNo;
@@ -136,7 +134,7 @@ namespace DTBMerger
                     }
                 }
 
-            
+
             // remove duplicate page span nodes
             for (int i = 0; i < duplicatePageNodeList.Count; i++)
                 {
@@ -286,7 +284,7 @@ namespace DTBMerger
 
         private void UpdateMasterSmilFile ()
             {
-            string masterSmilPath = Path.Combine ( m_DTBFilesInfoList[0].BaseDirectory, "master.smil") ;
+            string masterSmilPath = Path.Combine ( m_DTBFilesInfoList[0].BaseDirectory, "master.smil" );
             if (File.Exists ( masterSmilPath ))
                 {
                 XmlDocument masterSmilDocument = CommonFunctions.CreateXmlDocument ( masterSmilPath );
@@ -294,23 +292,50 @@ namespace DTBMerger
                 // clear all children of body
                 bodyNode.RemoveAll ();
 
-                // calculate total time in master smil
-                TimeSpan totalTime = new TimeSpan () ;
-                
-                for (int i = 0; i < m_DTBFilesInfoList.Count; i++)
+                // load the ncc document
+                XmlDocument firstNccDocument = CommonFunctions.CreateXmlDocument ( m_DTBFilesInfoList[0].OpfPath );
+                XmlNamespaceManager firstDocNSManager = new XmlNamespaceManager ( firstNccDocument.NameTable );
+                firstDocNSManager.AddNamespace ( "firstNS",
+                    firstNccDocument.DocumentElement.NamespaceURI );
+
+                XmlNodeList smilRefNodesList = firstNccDocument.SelectNodes ( "//firstNS:body/firstNS:h1 | //firstNS:body/firstNS:h2 | //firstNS:body/firstNS:h3 | //firstNS:body/firstNS:h4 | //firstNS:body/firstNS:h5 | //firstNS:body/firstNS:h6",
+                    firstDocNSManager );
+
+                List<string> smilFilesList = new List<string> ();
+                foreach (XmlNode n in smilRefNodesList)
                     {
-                    totalTime = totalTime.Add ( m_DTBFilesInfoList[i].time  );
-                    foreach (string smilFileName in m_DTBFilesInfoList[i].SmilFilesList)
+                    XmlNode anchorNode = n.SelectSingleNode ( ".//firstNS:a",
+                        firstDocNSManager );
+                    string smilFilename = anchorNode.Attributes.GetNamedItem ( "href" ).Value;
+                    smilFilename = smilFilename.Split ( '#' )[0];
+                    if (!smilFilesList.Contains ( smilFilename ))
                         {
+
+                        smilFilesList.Add ( smilFilename );
+
+                        // addsmil entry to master.smil
                         XmlNode refNode = masterSmilDocument.CreateElement ( null, "ref", bodyNode.NamespaceURI );
                         bodyNode.AppendChild ( refNode );
+
                         refNode.Attributes.Append (
-                            masterSmilDocument.CreateAttribute ( "id" ) );
-                        refNode.Attributes.GetNamedItem ( "id" ).Value = "ms_" + Path.GetFileNameWithoutExtension( smilFileName ) ;
+                            masterSmilDocument.CreateAttribute ( "title" ) );
+                        refNode.Attributes.GetNamedItem ( "title" ).Value = anchorNode.InnerText;
+
                         refNode.Attributes.Append (
                             masterSmilDocument.CreateAttribute ( "src" ) );
-                        refNode.Attributes.GetNamedItem ( "src" ).Value = smilFileName;
+                        refNode.Attributes.GetNamedItem ( "src" ).Value = smilFilename;
+
+                        refNode.Attributes.Append (
+                            masterSmilDocument.CreateAttribute ( "id" ) );
+                        refNode.Attributes.GetNamedItem ( "id" ).Value = "ms_" + Path.GetFileNameWithoutExtension ( smilFilename );
                         }
+                    }
+                // calculate total time in master smil
+                TimeSpan totalTime = new TimeSpan ();
+
+                for (int i = 0; i < m_DTBFilesInfoList.Count; i++)
+                    {
+                    totalTime = totalTime.Add ( m_DTBFilesInfoList[i].time );
                     }
 
                 // update time in smil metadata
@@ -318,15 +343,16 @@ namespace DTBMerger
 
                 foreach (XmlNode n in metaDataList)
                     {
-                    if ( n.ParentNode.LocalName == "head" &&
-                        n.Attributes.GetNamedItem("name") != null
-                    && n.Attributes.GetNamedItem("name").Value == "ncc:timeInThisSmil" )
+                    if (n.ParentNode.LocalName == "head" &&
+                        n.Attributes.GetNamedItem ( "name" ) != null
+                    && n.Attributes.GetNamedItem ( "name" ).Value == "ncc:timeInThisSmil")
                         {
-                        n.Attributes.GetNamedItem("content").Value = totalTime.ToString () ;
+                        n.Attributes.GetNamedItem ( "content" ).Value = totalTime.ToString ();
                         }
                     }
 
-                CommonFunctions.WriteXmlDocumentToFile ( masterSmilDocument, masterSmilPath ) ;
+                firstNccDocument = null;
+                CommonFunctions.WriteXmlDocumentToFile ( masterSmilDocument, masterSmilPath );
                 }
             else
                 MessageBox.Show ( "master smil do not exist at: " + masterSmilPath );
