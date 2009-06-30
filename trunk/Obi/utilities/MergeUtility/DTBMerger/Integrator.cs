@@ -335,8 +335,63 @@ namespace DTBMerger
                 maxPageValue += pageValue;
                 }
 
+            // create namespage manager for first ncc document
+            XmlNamespaceManager firstDocNSManager = new XmlNamespaceManager ( firstNcx.NameTable );
+            firstDocNSManager.AddNamespace ( "firstNS",
+                firstNcx.DocumentElement.NamespaceURI );
 
+            if (m_PageMergeOptions == PageMergeOptions.KeepExisting)
+                {
+                XmlNodeList duplicateRemovePageList = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
+                    firstDocNSManager );
+                int previousPage = -1;
+                bool isPageDeleted = false ; // flag to indicate if any page is deleted.
 
+                for (int i = 0; i < duplicateRemovePageList.Count; i++)
+                    {
+                    string pageType = duplicateRemovePageList[i].Attributes.GetNamedItem("type").Value ; 
+                    if ( pageType == "normal")
+                        {
+int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("value").Value  );
+    if ( previousPage == pageNo )
+        {
+        XmlNode parent = duplicateRemovePageList[i].ParentNode ;
+        parent.RemoveChild ( duplicateRemovePageList[i]);
+        parent = null ;
+        isPageDeleted  = true ;
+        }
+                        previousPage = pageNo ;
+                        
+                        }
+
+                    } // end of for loop
+
+                // fix the play order
+                if (isPageDeleted)
+                    {
+                    XmlNodeList playOrderAttrList = firstNcx.SelectNodes ( "/firstNS:ncx//@playOrder",
+                        firstDocNSManager );
+                    
+                    Dictionary<int, XmlAttribute> attrDictionary = new Dictionary<int, XmlAttribute> ();
+                    List<int> sortList = new List<int> ();
+
+                    foreach (XmlNode n in playOrderAttrList)
+                        {
+                        int playOrder = int.Parse ( ((XmlAttribute)n).Value ) ;
+
+                        attrDictionary.Add ( playOrder, (XmlAttribute)n );
+                        sortList.Add ( playOrder );
+                        }
+                    sortList.Sort ();
+
+                    for (int i = 0; i < sortList.Count; i++)
+                        {
+                        XmlAttribute attr = attrDictionary[ sortList[i]] ;
+                        attr.Value = i.ToString () ;
+                        }
+                    }
+
+                } // end of page renumbering option check
 
             CommonFunctions.WriteXmlDocumentToFile ( firstNcx, m_DTBFilesInfoList[0].NcxPath );
             }
