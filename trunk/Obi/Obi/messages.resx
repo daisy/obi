@@ -1414,4 +1414,10 @@ Error text: {1}</value>
   <data name="GoToPageOrPhrase_PhraseIndexLabel" xml:space="preserve">
     <value>&amp;Phrase index:</value>
   </data>
+  <data name="obi_DAISY2ExportPath_Description" xml:space="preserve">
+    <value>DAISY 2.02 export path</value>
+  </data>
+  <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
+    <value>DAISY 3.0 export path</value>
+  </data>
 </root>
