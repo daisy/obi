@@ -1992,6 +1992,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DAISY 2.02 export path.
+        /// </summary>
+        internal static string obi_DAISY2ExportPath_Description {
+            get {
+                return ResourceManager.GetString("obi_DAISY2ExportPath_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DAISY 3.0 export path.
+        /// </summary>
+        internal static string obi_DAISY3ExportPath_Description {
+            get {
+                return ResourceManager.GetString("obi_DAISY3ExportPath_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obi project file (*.obi)|*.obi|Any file|*.*.
         /// </summary>
         internal static string obi_filter {

@@ -1239,6 +1239,7 @@ namespace Obi
                         progress.ShowDialog();
                         if (progress.Exception != null) throw progress.Exception;
                         mSession.PrimaryExportPath = exportPath;
+                        mProjectView.SetExportPathMetadata ( dialog.ExportFormatSelected, exportPath );
                         mSession.ForceSave();
                         MessageBox.Show(String.Format(Localizer.Message("saved_as_daisy_text"), exportPath),
                             Localizer.Message("saved_as_daisy_caption"), MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -44,6 +44,8 @@ namespace Obi
 
         public static readonly string GENERATOR = "generator";
         public static readonly string OBI_XUK_VERSION = "obi:xukversion";
+        public static readonly string OBI_DAISY3ExportPath = "obi:DAISY3.0ExportPath";
+        public static readonly string OBI_DAISY2ExportPath = "obi:DAISY2.02ExportPath";
     }
 
     /// <summary>
@@ -330,6 +332,16 @@ namespace Obi
                 Metadata.OBI_XUK_VERSION,
                 MetadataOccurrence.Required,
                 Localizer.Message("obi_xuk_version_description"),
+                false, true);
+            DAISY_ENTRIES[Metadata.OBI_DAISY3ExportPath] = new MetadataEntryDescription (
+                Metadata.OBI_DAISY3ExportPath,
+                MetadataOccurrence.Optional,
+                Localizer.Message ( "obi_DAISY3ExportPath_Description" ),
+                false, true);
+            DAISY_ENTRIES[Metadata.OBI_DAISY2ExportPath] = new MetadataEntryDescription (
+                Metadata.OBI_DAISY2ExportPath,
+                MetadataOccurrence.Optional,
+                Localizer.Message ( "obi_DAISY2ExportPath_Description" ),
                 false, true);
         }
     }
