@@ -28,6 +28,7 @@ namespace Obi.Export
         private int m_MaxPageNormal;
         private int m_IdCounter;
         private Time m_SmilElapseTime;
+        private Dictionary<string, string> m_SmilFile_TitleMap;
 
 
         public DAISY202Export ( Presentation presentation, string exportDirectory )
@@ -35,6 +36,7 @@ namespace Obi.Export
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
             m_MetadataMap = CreateDAISY3To2MetadataMap ();
+            m_SmilFile_TitleMap = new Dictionary<string, string> ();
             }
 
 
@@ -79,6 +81,7 @@ namespace Obi.Export
 
             // generate smil metadata dictionary.
             m_SmilMetadata = PopulateSmilMetadataDictionary ();
+            m_SmilFile_TitleMap.Clear ();
             m_SmilElapseTime = new Time ();
 
 
@@ -97,9 +100,38 @@ namespace Obi.Export
 
             int tocItemsCount = sectionsList.Count + m_PageFrontCount + m_PageNormalCount + m_PageSpecialCount;
             CreateNCCMetadata ( nccDocument, tocItemsCount.ToString () );
-            // to do: write ncc file
+            
+            // write ncc file
             WriteXmlDocumentToFile ( nccDocument,
                 Path.Combine ( m_ExportDirectory, "ncc.html" ) );
+
+            // create master.smil file
+            XmlDocument smilDocument = CreateSmilStubDocument ();
+            XmlNode bodyNode = smilDocument.GetElementsByTagName ( "body" )[0];
+
+            foreach (string smilFileName in m_SmilFile_TitleMap.Keys)
+                {
+                XmlNode refNode = smilDocument.CreateElement ( null, "ref", bodyNode.NamespaceURI );
+                bodyNode.AppendChild ( refNode );
+                CreateAppendXmlAttribute ( smilDocument, refNode, "title", m_SmilFile_TitleMap[smilFileName] );
+                CreateAppendXmlAttribute ( smilDocument, refNode, "src", smilFileName );
+                CreateAppendXmlAttribute ( smilDocument, refNode, "id", "ms_" + Path.GetFileNameWithoutExtension ( smilFileName ) );
+                }
+            
+            // add dc:title, this is mandatory for master.smil
+            urakawa.metadata.Metadata titleMetadata = m_Presentation.GetFirstMetadataItem ( "dc:Title" );
+            if (titleMetadata != null)
+                {
+                XmlNode masterSmilHeadNode = smilDocument.GetElementsByTagName ( "head" )[0];
+                XmlNode smilTitleMetadataNode = smilDocument.CreateElement ( null, "meta", masterSmilHeadNode.NamespaceURI );
+                masterSmilHeadNode.AppendChild ( smilTitleMetadataNode );
+                CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "name", "dc:title" );
+                CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.getContent () );
+                }
+            AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString () );
+
+            WriteXmlDocumentToFile ( smilDocument,
+                Path.Combine ( m_ExportDirectory, "master.smil" ) );
             }
 
         private void CreateElementsForSection ( XmlDocument nccDocument, SectionNode section, int sectionIndex )
@@ -247,11 +279,13 @@ namespace Obi.Export
                     seqNode_AudioParent.AppendChild ( audioNode );
                     string relativeSRC = Path.GetFileName ( externalMedia.getSrc () );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "src", relativeSRC );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-begin", externalMedia.getClipBegin ().ToString () );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-end", externalMedia.getClipEnd ().ToString () );
+                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-begin",
+                        GetNPTSmiltime( externalMedia.getClipBegin ().getTime () ));
+                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-end",
+                        GetNPTSmiltime( externalMedia.getClipEnd ().getTime () ));
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "id", "aud" + IncrementID );
                     sectionDuration = sectionDuration.addTimeDelta ( externalMedia.getDuration () );
-
+                    
                     // copy audio element if phrase has  heading role and is not first phrase
                     if (phrase.Role_ == EmptyNode.Role.Heading && !isFirstPhrase)
                         {
@@ -264,16 +298,25 @@ namespace Obi.Export
                     }// if for phrasenode ends
                 } // for loop ends
 
-            CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", sectionDuration.ToString () );
+            string strDurTime = sectionDuration.getTime ().TotalSeconds.ToString () + "s";
+            CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
 
-            AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString () );
+            AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
             m_SmilElapseTime = m_SmilElapseTime.addTime ( sectionDuration );
+            m_SmilFile_TitleMap.Add ( smilFileName, section.Label );
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory, smilFileName ) );
             }
 
         private string IncrementID { get { return (++m_IdCounter).ToString (); } }
+
+        private string GetNPTSmiltime (TimeSpan time)
+            {
+            string strTime ="npt=" + time.TotalSeconds.ToString () + "s" ;
+            return strTime;
+            }
+
 
         private XmlAttribute CreateAppendXmlAttribute ( XmlDocument xmlDoc, XmlNode node, string name, string val )
             {
@@ -283,7 +326,7 @@ namespace Obi.Export
             return attr;
             }
 
-        private void AddSmilHeadElements ( XmlDocument smilDocument, string elapseTime )
+        private void AddSmilHeadElements ( XmlDocument smilDocument, string elapseTime , string timeInSmil )
             {
             XmlNode headNode = smilDocument.GetElementsByTagName ( "head" )[0];
 
@@ -302,12 +345,21 @@ namespace Obi.Export
             CreateAppendXmlAttribute ( smilDocument, formatNode, "name", "dc:format" );
             CreateAppendXmlAttribute ( smilDocument, formatNode, "content", "Daisy 2.02" );
 
+            if (elapseTime != null)
+                {
+                XmlNode metaNode1 = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( metaNode1 );
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "name", "ncc:totalElapsedTime" );
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "content", elapseTime );
+                }
 
-            XmlNode metaNode1 = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
-            headNode.AppendChild ( metaNode1 );
-
-            CreateAppendXmlAttribute ( smilDocument, metaNode1, "name", "ncc:totalElapsedTime" );
-            CreateAppendXmlAttribute ( smilDocument, metaNode1, "content", elapseTime );
+            if (timeInSmil != null)
+                {
+                XmlNode metaNode1 = smilDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( metaNode1 );
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "name", "ncc:timeInThisSmil" );
+                CreateAppendXmlAttribute ( smilDocument, metaNode1, "content", timeInSmil );
+                }
 
             XmlNode layoutNode = smilDocument.CreateElement ( null, "layout", headNode.NamespaceURI );
             headNode.AppendChild ( layoutNode );
