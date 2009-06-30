@@ -862,7 +862,7 @@ namespace Obi.ProjectView
                 if (mStrips.ContainsKey ( (SectionNode)node ))
                     {
                     strip = mStrips[(SectionNode)node];
-                    if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation ) 
+                    if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation)
                         CreateBlocksInStrip ( strip );
                     }
                 else
@@ -893,8 +893,18 @@ namespace Obi.ProjectView
             {
             // destroy handles of all controls
             for (int i = 0; i < mStripsPanel.Controls.Count; i++)
+                {
                 mStripsPanel.Controls[i].Dispose ();
-
+                }
+            // dispose visible strips also
+            for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                {
+                if (m_VisibleStripsList[i] != null)
+                    {
+                    m_VisibleStripsList[i].Dispose ();
+                    m_VisibleStripsList[i] = null;
+                    }
+                }
             mStripsPanel.Controls.Clear ();
             }
 
@@ -1304,7 +1314,7 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private int VisibleStripIndexToMakeInvisible ( int newSectionIndex )
             {
-            if (m_VisibleStripsList.Count == 0) return-1;
+            if (m_VisibleStripsList.Count == 0) return -1;
 
             int midIndex = m_VisibleStripsList.Count / 2;
             bool startFromZeroIndex = (newSectionIndex > midIndex);
