@@ -16,6 +16,7 @@ namespace DTBMerger
             IntegrateNCCForDAISY2 ();
             UpdateAllSmilFilesForDAISY2 ();
             MoveSmilAndAudioFiles ();
+            UpdateMasterSmilFile ();
             }
 
         private void IntegrateNCCForDAISY2 ()
@@ -31,13 +32,28 @@ namespace DTBMerger
                 }
 
             // get max page normal
+            // create namespage manager for first ncc document
+            XmlNamespaceManager firstDocNSManager = new XmlNamespaceManager ( firstNccDocument.NameTable );
+            firstDocNSManager.AddNamespace ( "firstNS",
+                firstNccDocument.DocumentElement.NamespaceURI );
+
+            XmlNodeList spanNodesList = firstNccDocument.SelectNodes ( "/firstNS:html/firstNS:body//firstNS:span",
+                firstDocNSManager );
+
             int maxNormalPageNo = 0;
-            XmlNodeList spanNodesList = firstNccDocument.GetElementsByTagName ( "span" );
+            //XmlNodeList spanNodesList = firstNccDocument.GetElementsByTagName ( "span" );
             foreach (XmlNode n in spanNodesList)
                 {
                 if (n.Attributes.GetNamedItem ( "class" ).Value == "page-normal")
                     {
-                    string strPageNo = n.FirstChild.InnerText;
+                    XmlNode anchorNode = n.SelectSingleNode(".//firstNS:a",
+                    firstDocNSManager ) ;
+                    if (anchorNode == null)
+                        {
+                        MessageBox.Show ( n.Attributes.GetNamedItem ( "id" ).Value );
+                        continue;
+                        }
+                    string strPageNo = anchorNode .InnerText;
                     int pageNo = int.Parse ( strPageNo );
                     if (pageNo > maxNormalPageNo) maxNormalPageNo = pageNo;
                     }
@@ -62,25 +78,71 @@ namespace DTBMerger
                 maxNormalPageNo = 0;
                 }
 
-            XmlNodeList pageNodesList = firstNccDocument.GetElementsByTagName ( "span" );
+
+
+            XmlNodeList pageNodesList = firstNccDocument.SelectNodes ( "/firstNS:html/firstNS:body//firstNS:span",
+                firstDocNSManager );
+            int previousPageNo = -1;
+            List<XmlNode> duplicatePageNodeList = new List<XmlNode> ();
+            MessageBox.Show ( pageNodesList.Count.ToString () ); 
             foreach (XmlNode n in pageNodesList)
                 {
                 if (n.Attributes.GetNamedItem ( "class" ).Value == "page-normal")
                     {
+                    XmlNode pageAnchorNode = n.SelectSingleNode ( ".//firstNS:a",
+                            firstDocNSManager );
+                    if (pageAnchorNode == null)
+                        {
+                        System.Diagnostics.Debug.Fail ( "span node is not complete, ID:", n.Attributes.GetNamedItem ( "id" ).Value );
+                        }
+
                     if (m_PageMergeOptions == PageMergeOptions.Renumber)
                         {
                         maxNormalPageNo++;
 
                         XmlText txtNode = firstNccDocument.CreateTextNode ( maxNormalPageNo.ToString () );
-                        n.FirstChild.RemoveChild ( n.FirstChild.FirstChild );
-                        n.FirstChild.AppendChild ( txtNode );
+                        pageAnchorNode.RemoveChild ( pageAnchorNode.FirstChild );
+                        pageAnchorNode.AppendChild ( txtNode );
                         }
                     else
                         {
-                        int pageNo = int.Parse ( n.FirstChild.InnerText );
+            // do not renumber             
+                        // only remove consective duplicate page numbers
+                        int pageNo = int.Parse ( pageAnchorNode.InnerText );
+                        
+                        if (previousPageNo == pageNo)
+
+                            {
+                            // duplicate page so add to duplicate page list
+                            duplicatePageNodeList.Add ( n );
+                            
+                            // add div so as to  remove duplicate span.
+                            XmlAttribute AttrID = (XmlAttribute) n.Attributes.GetNamedItem ( "id" ).Clone ();
+                            XmlNode newAnchor = pageAnchorNode.CloneNode(true) ;
+                            XmlNode divNode = firstNccDocument.CreateElement ( null, "div", firstNCCBodyNode.NamespaceURI );
+                            divNode.Attributes.Append ( AttrID );
+                            divNode.Attributes.Append (
+                                firstNccDocument.CreateAttribute ("class") ) ;
+                            divNode.Attributes.GetNamedItem ( "class" ).Value = "group";
+                            divNode.AppendChild ( newAnchor );
+
+                            n.ParentNode.InsertBefore( divNode, n );
+
+                            MessageBox.Show ( pageNo.ToString () );
+                            }
                         if (pageNo > maxNormalPageNo) maxNormalPageNo = pageNo;
+                        previousPageNo = pageNo;
                         }
                     }
+                }
+
+            
+            // remove duplicate page span nodes
+            for (int i = 0; i < duplicatePageNodeList.Count; i++)
+                {
+                XmlNode parent = duplicatePageNodeList[i].ParentNode;
+                parent.RemoveChild ( duplicatePageNodeList[i] );
+                parent = null;
                 }
 
             // update metadata
@@ -222,6 +284,55 @@ namespace DTBMerger
             CommonFunctions.WriteXmlDocumentToFile ( smilDoc, smilPath );
             }
 
+        private void UpdateMasterSmilFile ()
+            {
+            string masterSmilPath = Path.Combine ( m_DTBFilesInfoList[0].BaseDirectory, "master.smil") ;
+            if (File.Exists ( masterSmilPath ))
+                {
+                XmlDocument masterSmilDocument = CommonFunctions.CreateXmlDocument ( masterSmilPath );
+                XmlNode bodyNode = masterSmilDocument.GetElementsByTagName ( "body" )[0];
+                // clear all children of body
+                bodyNode.RemoveAll ();
+
+                // calculate total time in master smil
+                TimeSpan totalTime = new TimeSpan () ;
+                
+                for (int i = 0; i < m_DTBFilesInfoList.Count; i++)
+                    {
+                    totalTime = totalTime.Add ( m_DTBFilesInfoList[i].time  );
+                    foreach (string smilFileName in m_DTBFilesInfoList[i].SmilFilesList)
+                        {
+                        XmlNode refNode = masterSmilDocument.CreateElement ( null, "ref", bodyNode.NamespaceURI );
+                        bodyNode.AppendChild ( refNode );
+                        refNode.Attributes.Append (
+                            masterSmilDocument.CreateAttribute ( "id" ) );
+                        refNode.Attributes.GetNamedItem ( "id" ).Value = "ms_" + Path.GetFileNameWithoutExtension( smilFileName ) ;
+                        refNode.Attributes.Append (
+                            masterSmilDocument.CreateAttribute ( "src" ) );
+                        refNode.Attributes.GetNamedItem ( "src" ).Value = smilFileName;
+                        }
+                    }
+
+                // update time in smil metadata
+                XmlNodeList metaDataList = masterSmilDocument.GetElementsByTagName ( "meta" );
+
+                foreach (XmlNode n in metaDataList)
+                    {
+                    if ( n.ParentNode.LocalName == "head" &&
+                        n.Attributes.GetNamedItem("name") != null
+                    && n.Attributes.GetNamedItem("name").Value == "ncc:timeInThisSmil" )
+                        {
+                        n.Attributes.GetNamedItem("content").Value = totalTime.ToString () ;
+                        }
+                    }
+
+                CommonFunctions.WriteXmlDocumentToFile ( masterSmilDocument, masterSmilPath ) ;
+                }
+            else
+                MessageBox.Show ( "master smil do not exist at: " + masterSmilPath );
+
+
+            }
 
         }
     }
