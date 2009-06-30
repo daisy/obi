@@ -86,7 +86,6 @@ namespace DTBMerger
 
             foreach (XmlNode n in dcMetaDataList)
                 {
-                //MessageBox.Show ( n.LocalName );
                 if (n.LocalName == "Title")
                     {
                     m_Title = n.InnerText;
