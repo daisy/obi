@@ -2093,9 +2093,20 @@ mSession.SaveToBackup ();
 
         private void PipelineToolStripItems_Click(object sender, EventArgs e)
         {
-        mProjectView.TransportBar.Enabled = false;
+            bool daisy3Option = false;
+            bool daisy202option = false;
+            string abc = null;
+            mProjectView.TransportBar.Enabled = false;
             try
             {
+                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
+                if (rdfrm.ShowDialog() == DialogResult.OK)
+                {
+                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                        daisy3Option = true;
+                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
+                        daisy202option = true;
+                }
                 PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(
                     mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName,
                     Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"),
