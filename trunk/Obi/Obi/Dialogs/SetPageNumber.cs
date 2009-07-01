@@ -26,25 +26,8 @@ namespace Obi.Dialogs
             m_GoToPage = false;
         }
 
-        public SetPageNumber (bool goToPage ): this  () 
-            {
-            if (goToPage)
-                {
-                m_GoToPage = goToPage;
-                this.Text = "Go to page";
-                label2.Visible = false;
-                label1.Location = new Point(40,22);
-                label3.Location = new Point(60, 64);
-                this.mNumberBox.Location = new Point(150,20);
-                this.mPageKindComboBox.Location = new Point(150,62);
-                this.Size = new Size(320,175);
-                mNumberOfPagesBox.Visible = false;
-                mRenumber.Visible = false;
-                mPageKindComboBox.SelectedIndex = 1;
-                }
-            }
 
-        public SetPageNumber() { InitializeComponent(); }
+      public SetPageNumber() { InitializeComponent(); }
 
         public virtual PageNumber Number
         {
