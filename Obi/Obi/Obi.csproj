@@ -123,6 +123,12 @@
     <Compile Include="Dialogs\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\chooseDaisy3orDaisy202.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\chooseDaisy3orDaisy202.Designer.cs">
+      <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\CommonDialogFunctions.cs" />
     <Compile Include="Dialogs\EditRoles.cs">
       <SubType>Form</SubType>
@@ -742,6 +748,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FindBarCollapse.wav" />
+    <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.resx">
+      <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\GoToPageOrPhrase.resx">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
       <SubType>Designer</SubType>
