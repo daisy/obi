@@ -191,6 +191,8 @@ namespace Obi.Dialogs
                 {
                 mTransportBar.AudioPlayer.SetDevice ( mForm, (OutputDevice)mOutputDeviceCombo.SelectedItem );
                 mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;
+                mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
+                mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
                 }
             catch (System.Exception ex)
                 {
@@ -199,8 +201,6 @@ namespace Obi.Dialogs
                 }
             if (mCanChangeAudioSettings)
                 {
-                mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
-                mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
                 mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
                 mSettings.SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
                 if (mPresentation != null)
