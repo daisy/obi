@@ -2305,7 +2305,7 @@ UpdateButtons();
             {
             if ( mView.ObiForm.Settings.AutoSave_RecordingEnd || m_AutoSaveOnNextRecordingEnd )
                 {
-                mView.ObiForm.Save ();
+                mView.ObiForm.SaveToBackup();
                 m_AutoSaveOnNextRecordingEnd = false;
                 }
             }

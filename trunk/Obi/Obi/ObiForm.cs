@@ -25,6 +25,7 @@ namespace Obi
         private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
         private bool mShowWelcomWindow; // flag for controlling showing of welcome window
         private Timer mAutoSaveTimer;
+        private bool m_IsSaveActive;
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -38,6 +39,7 @@ namespace Obi
             mShowWelcomWindow = true;
             InitializeObi();
             if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject);
+            m_IsSaveActive = false;
                     }
 
         /// <summary>
@@ -48,6 +50,7 @@ namespace Obi
             mShowWelcomWindow = false;
             InitializeObi();
             OpenProject_Safe(path);
+            m_IsSaveActive = false;
         }
 
         #endregion
@@ -372,18 +375,48 @@ namespace Obi
         // Save the current project
         public void Save()
         {
-        if (mSession != null && mSession.CanSave)
+        if (mSession != null && mSession.CanSave
+            && !m_IsSaveActive)
             {
+            m_IsSaveActive = true;
             if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop ();
-
+            
             mSession.Save ();
 
             mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
             // reset the  auto save timer
             mAutoSaveTimer.Stop ();
             if ( mSettings.AutoSaveTimeIntervalEnabled )  mAutoSaveTimer.Start ();
+            m_IsSaveActive = false;
                         }
         }
+
+        /// <summary>
+        /// Saves project to a backup .obi file
+        /// </summary>
+        public void SaveToBackup ()
+            {
+            if (mSession != null && mSession.CanSave
+                && !m_IsSaveActive)
+                {
+                m_IsSaveActive = true;
+                mFile_SaveProjectMenuItem.Enabled = false;
+                mFile_SaveProjectAsMenuItem.Enabled = false;
+
+                if (mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop ();
+
+mSession.SaveToBackup ();
+                    //mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
+                    // reset the  auto save timer
+                    mAutoSaveTimer.Stop ();
+                    if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
+                
+                mFile_SaveProjectMenuItem.Enabled = true;
+                mFile_SaveProjectAsMenuItem.Enabled = true;
+                m_IsSaveActive = false;
+                }
+            }
+
 
         // Save the current project under a different name; ask for a new path first.
         private void SaveAs()
@@ -393,6 +426,7 @@ namespace Obi
             SaveProjectAsDialog dialog = new SaveProjectAsDialog(path_original);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+            m_IsSaveActive = true;
                 string path_new = dialog.NewProjectPath;
                 try
                 {
@@ -438,6 +472,7 @@ namespace Obi
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             this.Cursor = Cursors.Default;
+            m_IsSaveActive = false;
             }
             else
             {
@@ -1476,12 +1511,17 @@ namespace Obi
 
         private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
             {
-            if (mSession != null && mSession.Presentation != null && mSettings.AutoSaveTimeIntervalEnabled  && mSession.CanSave)
+            if (mSession != null && mSession.Presentation != null 
+                && mSettings.AutoSaveTimeIntervalEnabled  && mSession.CanSave)
                 {
                 if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
-                    Save ();
+                    {
+                    SaveToBackup ();
+                    }
                 else
+                    {
                     mProjectView.TransportBar.AutoSaveOnNextRecordingEnd = true;
+                    }
                                 }
                                         }
 
