@@ -2089,32 +2089,65 @@ mSession.SaveToBackup ();
                 strip.AudioScale /= AUDIO_SCALE_INCREMENT;
             }
         }
-
+        private string chooseDaisyType()
+        {
+            string exportDirPath = mProjectView.GetDAISYExportPath(Obi.Export.ExportFormat.DAISY2_02);
+            string newDirPath = null;
+            Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
+            if (rdfrm.ShowDialog() == DialogResult.OK)
+            {
+                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                {
+                    if (exportDirPath != null)
+                    {
+                        newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
+                    }                        
+                    else
+                    {
+                        newDirPath = "";
+                    }
+                 }
+                
+                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
+                {
+                    if (exportDirPath != null)
+                    {
+                        newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                    }
+                    else
+                    {
+                        newDirPath = "";
+                    }
+                }
+                    
+            }
+            return newDirPath;
+        }
+        
         private void mView_ResetAudioSizeMenuItem_Click(object sender, EventArgs e)
         {
             AudioScale = AudioScale;
         }
 
-        private void PipelineToolStripItems_Click(object sender, EventArgs e)
+        private void PipelineToolStripItems_Click(object sender, EventArgs e) 
         {
-            bool daisy3Option = false;
-            bool daisy202option = false;
-            string abc = null;
-            mProjectView.TransportBar.Enabled = false;
-            try
+            string dirPath = null; 
+            Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202(); 
+            mProjectView.TransportBar.Enabled = false; 
+            if (((ToolStripMenuItem) sender).Text == "Fileset renamer" || ((ToolStripMenuItem) sender).Text == "Convert audio to MP3") 
             {
-                Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
-                if (rdfrm.ShowDialog() == DialogResult.OK)
-                {
-                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
-                        daisy3Option = true;
-                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
-                        daisy202option = true;
-                }
-                PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(
-                    mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName,
-                    Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"),
-                    Directory.GetParent(mSession.Path).FullName);
+                dirPath = chooseDaisyType();
+            }
+            else 
+            {
+                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02) 
+                    dirPath = Path.Combine(mSession.PrimaryExportPath, "ncc.html"); 
+                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0) 
+                    dirPath = Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"); 
+            } 
+            try 
+            { 
+                PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm( mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, dirPath, Directory.GetParent(mSession.Path).FullName); 
                 ProgressDialog progress = new ProgressDialog(((ToolStripMenuItem)sender).Text,
                     delegate() { pipeline.RunScript(); });
                 if (pipeline.ShowDialog() == DialogResult.OK) progress.Show();
