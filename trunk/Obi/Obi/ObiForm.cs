@@ -26,6 +26,7 @@ namespace Obi
         private bool mShowWelcomWindow; // flag for controlling showing of welcome window
         private Timer mAutoSaveTimer;
         private bool m_IsSaveActive;
+        private bool m_IsAutoSaveActive;
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -1516,7 +1517,9 @@ mSession.SaveToBackup ();
                 {
                 if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
                     {
+                    m_IsAutoSaveActive = true;
                     SaveToBackup ();
+                    m_IsAutoSaveActive = false;
                     }
                 else
                     {
@@ -1525,6 +1528,7 @@ mSession.SaveToBackup ();
                                 }
                                         }
 
+        public bool IsAutoSaveActive {  get { return m_IsAutoSaveActive ; } }
         public int SetAutoSaverInterval { set { if (mAutoSaveTimer != null) mAutoSaveTimer.Interval = value; } }
         public void StartAutoSaveTimeInterval ()
             {

@@ -169,6 +169,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg..
+        /// </summary>
+        internal static string AutoSave_Error {
+            get {
+                return ResourceManager.GetString("AutoSave_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blank phrase.
         /// </summary>
         internal static string blank_phrase {

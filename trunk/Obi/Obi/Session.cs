@@ -284,11 +284,12 @@ namespace Obi
                 Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath ) );
                 Save ( m_BackupProjectFilePath );
                 Presentation.setRootUri ( prevUri );
-                System.Media.SystemSounds.Asterisk.Play ();
+                
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ( ex.ToString () );
+                MessageBox.Show ( Localizer.Message("AutoSave_Error") + "\n\n" +
+                    ex.ToString () );
                 }
             }
 

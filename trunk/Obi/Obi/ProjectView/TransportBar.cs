@@ -603,7 +603,17 @@ namespace Obi.ProjectView
         // At the moment, simply stop.
         private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (mState != State.Stopped) Stop();
+        if (mState != State.Stopped)
+            {
+            if (IsPlayerActive && mView.ObiForm.IsAutoSaveActive)
+                {
+                // do not stop, auto save should not disturb playback
+                }
+            else
+                {
+                Stop ();
+                }
+            }
         }
 
         // Adapt to changes in used status.
