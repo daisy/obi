@@ -1420,4 +1420,7 @@ Error text: {1}</value>
   <data name="obi_DAISY3ExportPath_Description" xml:space="preserve">
     <value>DAISY 3.0 export path</value>
   </data>
+  <data name="AutoSave_Error" xml:space="preserve">
+    <value>Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg.</value>
+  </data>
 </root>
