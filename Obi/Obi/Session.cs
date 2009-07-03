@@ -14,7 +14,10 @@ namespace Obi
         private string mPath;                        // path of the XUK file to save to
         private int mChangesCount;                   // changes since (or before) last save
         private bool mCanDeleteLock;                 // flag to delete the lock on closign (when obtained successfully)
-        private string m_BackupProjectFilePath;
+
+        private string m_BackupProjectFilePath_temp;
+        private string m_BackupDirPath;
+        private int m_BackupFileCounter;
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
@@ -170,10 +173,8 @@ namespace Obi
             Presentation.setRootUri ( new Uri ( path ) );
             if (ProjectCreated != null) ProjectCreated ( this, null );
 
-            m_BackupProjectFilePath = System.IO.Path.Combine (
-                        System.IO.Path.GetDirectoryName ( path ),
-                        "backup_" + System.IO.Path.GetFileName ( path ) );
-            
+            SetupBackupFilesForNewSession ( path );
+
             ForceSave ();
             }
 
@@ -192,10 +193,8 @@ namespace Obi
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.getUndoRedoManager ().flushCommands ();
 
-            m_BackupProjectFilePath = System.IO.Path.Combine (
-                        System.IO.Path.GetDirectoryName ( path ),
-                        "backup_" + System.IO.Path.GetFileName ( path ) );
-            
+            SetupBackupFilesForNewSession ( path );
+
             if (ProjectOpened != null) ProjectOpened ( this, null );
             }
 
@@ -275,20 +274,22 @@ namespace Obi
             {
             try
                 {
-                if (!File.Exists ( m_BackupProjectFilePath ))
+                if (!File.Exists ( m_BackupProjectFilePath_temp ))
                     {
-                    File.Create ( m_BackupProjectFilePath ).Close ();
+                    File.Create ( m_BackupProjectFilePath_temp ).Close ();
                     }
 
                 Uri prevUri = Presentation.getRootUri ();
-                Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath ) );
-                Save ( m_BackupProjectFilePath );
+                Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
+                Save ( m_BackupProjectFilePath_temp );
                 Presentation.setRootUri ( prevUri );
-                
+
+                // move backup file to backupfolder
+                File.Move ( m_BackupProjectFilePath_temp, GetNextBackupFilePath () );
                 }
             catch (System.Exception ex)
                 {
-                MessageBox.Show ( Localizer.Message("AutoSave_Error") + "\n\n" +
+                MessageBox.Show ( Localizer.Message ( "AutoSave_Error" ) + "\n\n" +
                     ex.ToString () );
                 }
             }
@@ -301,6 +302,58 @@ namespace Obi
             if (mPath != null) System.IO.File.Delete ( mPath );
             Close ();
             }
+
+        /// <summary>
+        /// Setup backup directory and temp backup file when a project is loaded
+        /// </summary>
+        /// <param name="path"></param>
+        private void SetupBackupFilesForNewSession ( string path )
+            {
+            string projectDirPath = Directory.GetParent ( path ).FullName;
+            m_BackupDirPath = System.IO.Path.Combine ( projectDirPath, "Backup" );
+            try
+                {
+                m_BackupProjectFilePath_temp = System.IO.Path.Combine (
+            System.IO.Path.GetDirectoryName ( path ),
+            "backup_" + System.IO.Path.GetFileName ( path ) );
+
+                if (!Directory.Exists ( m_BackupDirPath ))
+                    {
+                    Directory.CreateDirectory ( m_BackupDirPath );
+                    }
+                else
+                    {
+                    string[] filesArray = Directory.GetFiles ( m_BackupDirPath );
+
+                    for (int i = 0; i < filesArray.Length; i++)
+                        {
+                        File.Delete ( filesArray[i] );
+                        }
+                    }
+                } // try ends
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
+
+            m_BackupFileCounter = 0;
+            }
+
+        private string GetNextBackupFilePath ()
+            {
+            m_BackupFileCounter++;
+            string nextBackupPath = System.IO.Path.Combine ( m_BackupDirPath,
+                m_BackupFileCounter.ToString () + ".obi" );
+
+            while (File.Exists ( nextBackupPath ) && m_BackupFileCounter < 2000)
+                {
+                m_BackupFileCounter++;
+                nextBackupPath = System.IO.Path.Combine ( m_BackupDirPath,
+                m_BackupFileCounter.ToString () + ".obi" );
+                }
+            return nextBackupPath;
+            }
+
         }
 
     public class ProjectClosedEventArgs : EventArgs
