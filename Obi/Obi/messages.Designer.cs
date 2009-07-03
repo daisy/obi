@@ -793,6 +793,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}DAISY 2.02 export.
+        /// </summary>
+        internal static string Default_DAISY2_02export_dirname {
+            get {
+                return ResourceManager.GetString("Default_DAISY2_02export_dirname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please choose a default project directory below..
         /// </summary>
         internal static string default_directory_browser {
