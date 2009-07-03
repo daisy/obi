@@ -18,6 +18,7 @@ namespace Obi
         private string m_BackupProjectFilePath_temp;
         private string m_BackupDirPath;
         private int m_BackupFileCounter;
+        private readonly string m_Backup_LastFilename = "Prev_Session_Last.obi";
 
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
@@ -104,6 +105,12 @@ namespace Obi
             {
             if (mProject != null)
                 {
+                // save to backup
+                if (Presentation != null)
+                    {
+                    SaveLastBackupAndClearIncrementalFiles ();
+                    }
+
                 mProject.dataIsMissing -= new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
 
                 // if the project could not be opened, there is no presentation so this call may fail
@@ -270,28 +277,35 @@ namespace Obi
         /// <summary>
         /// save project to backup file for recovery purpose
         /// </summary>
-        public void SaveToBackup ()
+        public string SaveToBackup ()
             {
-            try
+            if (m_BackupDirPath != null && Directory.Exists ( m_BackupDirPath ))
                 {
-                if (!File.Exists ( m_BackupProjectFilePath_temp ))
+                try
                     {
-                    File.Create ( m_BackupProjectFilePath_temp ).Close ();
+                    if (!File.Exists ( m_BackupProjectFilePath_temp ))
+                        {
+                        File.Create ( m_BackupProjectFilePath_temp ).Close ();
+                        }
+
+                    Uri prevUri = Presentation.getRootUri ();
+                    Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
+                    Save ( m_BackupProjectFilePath_temp );
+                    Presentation.setRootUri ( prevUri );
+
+                    string backupPath = GetNextBackupFilePath ();
+                    // move backup file to backupfolder
+                    File.Move ( m_BackupProjectFilePath_temp, backupPath );
+                    return backupPath;
                     }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( Localizer.Message ( "AutoSave_Error" ) + "\n\n" +
+                        ex.ToString () );
+                    }
+                } // backup dir check ends
 
-                Uri prevUri = Presentation.getRootUri ();
-                Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
-                Save ( m_BackupProjectFilePath_temp );
-                Presentation.setRootUri ( prevUri );
-
-                // move backup file to backupfolder
-                File.Move ( m_BackupProjectFilePath_temp, GetNextBackupFilePath () );
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( Localizer.Message ( "AutoSave_Error" ) + "\n\n" +
-                    ex.ToString () );
-                }
+            return null;
             }
 
         /// <summary>
@@ -324,12 +338,17 @@ namespace Obi
                 else
                     {
                     string[] filesArray = Directory.GetFiles ( m_BackupDirPath );
+                    string previousSessionLastFilePath = System.IO.Path.Combine ( m_BackupDirPath, m_Backup_LastFilename );
 
                     for (int i = 0; i < filesArray.Length; i++)
                         {
-                        File.Delete ( filesArray[i] );
+                        if (filesArray[i] != previousSessionLastFilePath)
+                            {
+                            File.Delete ( filesArray[i] );
+                            }
                         }
                     }
+
                 } // try ends
             catch (System.Exception ex)
                 {
@@ -338,6 +357,36 @@ namespace Obi
 
             m_BackupFileCounter = 0;
             }
+
+        private void SaveLastBackupAndClearIncrementalFiles ()
+            {
+            if (m_BackupDirPath != null && Directory.Exists ( m_BackupDirPath ))
+                {
+                string lastIncrmentalFile = SaveToBackup ();
+
+                try
+                    {
+                    // rename the last backup file
+                    string previousSessionFile = System.IO.Path.Combine ( m_BackupDirPath, m_Backup_LastFilename );
+
+                    if (lastIncrmentalFile != null)
+                        {
+                        if (File.Exists ( previousSessionFile ))
+                            {
+                            File.Delete ( previousSessionFile );
+                            }
+
+                        File.Move ( lastIncrmentalFile, previousSessionFile );
+                        }
+
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                }
+            }
+
 
         private string GetNextBackupFilePath ()
             {
