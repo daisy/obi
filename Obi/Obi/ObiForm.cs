@@ -2125,32 +2125,34 @@ namespace Obi
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202 ();
             if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
                 {
-                if (rdfrm.ShowDialog () == DialogResult.OK)
+                    if (rdfrm.ShowDialog() == DialogResult.OK)
                     {
-                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                        if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
                         {
-                        if (exportDaisy3Path != null)
+                            if (exportDaisy3Path != null)
                             {
-                            newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
+                                newDirPath = Path.Combine(exportDaisy3Path, "obi_dtb.opf");
                             }
-                        else
+                            else
                             {
-                            newDirPath = "";
+                                newDirPath = "";
                             }
                         }
 
-                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
+                        if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
                         {
-                        if (exportDaisy202Path != null)
+                            if (exportDaisy202Path != null)
                             {
-                            newDirPath = Path.Combine ( exportDaisy202Path, "ncc.html" );
+                                newDirPath = Path.Combine(exportDaisy202Path, "ncc.html");
                             }
-                        else
+                            else
                             {
-                            newDirPath = "";
+                                newDirPath = "";
                             }
                         }
                     }
+                    else
+                        return null;
                 }
             else
                 {
@@ -2169,13 +2171,16 @@ namespace Obi
 
         private void PipelineToolStripItems_Click ( object sender, EventArgs e )
             {
-            string dirPath = null;
+            string exportFilePath = null;
             mProjectView.TransportBar.Enabled = false;
-            dirPath = chooseDaisyType ( ((ToolStripMenuItem)sender).Text );
+            exportFilePath = chooseDaisyType(((ToolStripMenuItem)sender).Text);
+            if (exportFilePath == null)
+                return;
+
 
             try
                 {
-                PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm ( mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, dirPath, Directory.GetParent ( mSession.Path ).FullName );
+                    PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, exportFilePath, Directory.GetParent(mSession.Path).FullName);
                 ProgressDialog progress = new ProgressDialog ( ((ToolStripMenuItem)sender).Text,
                     delegate () { pipeline.RunScript (); } );
                 if (pipeline.ShowDialog () == DialogResult.OK) progress.Show ();
