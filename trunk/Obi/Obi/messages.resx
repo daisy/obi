@@ -1423,4 +1423,7 @@ Error text: {1}</value>
   <data name="AutoSave_Error" xml:space="preserve">
     <value>Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg.</value>
   </data>
+  <data name="Default_DAISY2_02export_dirname" xml:space="preserve">
+    <value>{0}DAISY 2.02 export</value>
+  </data>
 </root>
