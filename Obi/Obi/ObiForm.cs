@@ -2091,7 +2091,8 @@ mSession.SaveToBackup ();
         }
         private string chooseDaisyType(string toolStripText)
         {
-            string exportDirPath = mProjectView.GetDAISYExportPath(Obi.Export.ExportFormat.DAISY2_02);
+            string exportDaisy202Path = mProjectView.GetDAISYExportPath(Obi.Export.ExportFormat.DAISY2_02);
+            string exportDaisy3Path = mProjectView.GetDAISYExportPath(Obi.Export.ExportFormat.DAISY3_0);
             string newDirPath = null;
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
             if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
@@ -2100,9 +2101,9 @@ mSession.SaveToBackup ();
                 {
                     if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
                     {
-                        if (exportDirPath != null)
+                        if (exportDaisy3Path != null)
                         {
-                            newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
+                            newDirPath = Path.Combine(exportDaisy3Path, "obi_dtb.opf");
                         }
                         else
                         {
@@ -2112,24 +2113,23 @@ mSession.SaveToBackup ();
 
                     if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
                     {
-                        if (exportDirPath != null)
+                        if (exportDaisy202Path != null)
                         {
-                            newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                            newDirPath = Path.Combine(exportDaisy202Path, "ncc.html");
                         }
                         else
                         {
                             newDirPath = "";
                         }
                     }
-                 }
-               
+                 }               
             }
             else
             {
                 if (toolStripText == "DAISY 2.02 DTB Light Validator")
-                    newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                    newDirPath = Path.Combine(exportDaisy202Path, "ncc.html");
                 if (toolStripText == "DAISY 3 Validator")
-                    newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
+                    newDirPath = Path.Combine(exportDaisy3Path, "obi_dtb.opf");
             }
             return newDirPath;
         }
