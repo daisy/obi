@@ -2096,10 +2096,10 @@ mSession.SaveToBackup ();
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
             if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
             {
-               if (rdfrm.ShowDialog() == DialogResult.OK)
-               {               
-                   if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
-                   {                    
+                if (rdfrm.ShowDialog() == DialogResult.OK)
+                {
+                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                    {
                         if (exportDirPath != null)
                         {
                             newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
@@ -2121,7 +2121,15 @@ mSession.SaveToBackup ();
                             newDirPath = "";
                         }
                     }
-               }                                    
+                 }
+               
+            }
+            else
+            {
+                if (toolStripText == "DAISY 2.02 DTB Light Validator")
+                    newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                if (toolStripText == "DAISY 3 Validator")
+                    newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
             }
             return newDirPath;
         }
@@ -2135,15 +2143,8 @@ mSession.SaveToBackup ();
         {
             string dirPath = null;
             mProjectView.TransportBar.Enabled = false;
-            if(((ToolStripMenuItem) sender).Text == "DAISY 2.02 DTB Light Validator")
-                dirPath = Path.Combine(mSession.PrimaryExportPath,"ncc.html");
-            if (((ToolStripMenuItem)sender).Text == "DAISY 3 Validator")
-                dirPath = Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf");
-            else
-            {
-                dirPath = chooseDaisyType(((ToolStripMenuItem)sender).Text);
-            }
-           
+            dirPath = chooseDaisyType(((ToolStripMenuItem)sender).Text);
+                      
             try 
             { 
                 PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm( mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, dirPath, Directory.GetParent(mSession.Path).FullName); 
