@@ -2089,37 +2089,39 @@ mSession.SaveToBackup ();
                 strip.AudioScale /= AUDIO_SCALE_INCREMENT;
             }
         }
-        private string chooseDaisyType()
+        private string chooseDaisyType(string toolStripText)
         {
             string exportDirPath = mProjectView.GetDAISYExportPath(Obi.Export.ExportFormat.DAISY2_02);
             string newDirPath = null;
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202();
-            if (rdfrm.ShowDialog() == DialogResult.OK)
+            if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
             {
-                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
-                {
-                    if (exportDirPath != null)
-                    {
-                        newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
-                    }                        
-                    else
-                    {
-                        newDirPath = "";
+               if (rdfrm.ShowDialog() == DialogResult.OK)
+               {               
+                   if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                   {                    
+                        if (exportDirPath != null)
+                        {
+                            newDirPath = Path.Combine(exportDirPath, "obi_dtb.opf");
+                        }
+                        else
+                        {
+                            newDirPath = "";
+                        }
                     }
-                 }
-                
-                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
-                {
-                    if (exportDirPath != null)
+
+                    if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
                     {
-                        newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                        if (exportDirPath != null)
+                        {
+                            newDirPath = Path.Combine(exportDirPath, "ncc.html");
+                        }
+                        else
+                        {
+                            newDirPath = "";
+                        }
                     }
-                    else
-                    {
-                        newDirPath = "";
-                    }
-                }
-                    
+               }                                    
             }
             return newDirPath;
         }
@@ -2131,20 +2133,17 @@ mSession.SaveToBackup ();
 
         private void PipelineToolStripItems_Click(object sender, EventArgs e) 
         {
-            string dirPath = null; 
-            Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202(); 
-            mProjectView.TransportBar.Enabled = false; 
-            if (((ToolStripMenuItem) sender).Text == "Fileset renamer" || ((ToolStripMenuItem) sender).Text == "Convert audio to MP3") 
+            string dirPath = null;
+            mProjectView.TransportBar.Enabled = false;
+            if(((ToolStripMenuItem) sender).Text == "DAISY 2.02 DTB Light Validator")
+                dirPath = Path.Combine(mSession.PrimaryExportPath,"ncc.html");
+            if (((ToolStripMenuItem)sender).Text == "DAISY 3 Validator")
+                dirPath = Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf");
+            else
             {
-                dirPath = chooseDaisyType();
+                dirPath = chooseDaisyType(((ToolStripMenuItem)sender).Text);
             }
-            else 
-            {
-                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02) 
-                    dirPath = Path.Combine(mSession.PrimaryExportPath, "ncc.html"); 
-                if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0) 
-                    dirPath = Path.Combine(mSession.PrimaryExportPath, "obi_dtb.opf"); 
-            } 
+           
             try 
             { 
                 PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm( mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, dirPath, Directory.GetParent(mSession.Path).FullName); 
