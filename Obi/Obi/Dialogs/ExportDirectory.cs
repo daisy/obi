@@ -13,8 +13,7 @@ namespace Obi.Dialogs
     {
         private string mXukPath;  // path to XUK project (for relative paths)
         private bool mCanClose;   // can prevent from closing on problem
-        private Export.ExportFormat m_ExportFormat ;
-
+   
         public ExportDirectory(string path, string xukPath)
         {
             InitializeComponent();
@@ -33,8 +32,6 @@ namespace Obi.Dialogs
             
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
 
-            m_ExportFormat = Obi.Export.ExportFormat.DAISY3_0;
-            m_rdbDaisy3.Checked = true;
         }
 
         /// <summary>
@@ -56,18 +53,6 @@ namespace Obi.Dialogs
                 }
             }
         }
-
-
-        /// <summary>
-        /// choose if export should be in DAISY 3.0 file set or DAISY 2.02 file set
-        /// </summary>
-        public Export.ExportFormat ExportFormatSelected
-            {
-            get
-                {
-                return m_ExportFormat;
-                }
-            }
 
 
         /// <summary>
@@ -97,14 +82,6 @@ namespace Obi.Dialogs
         private void mOKButton_Click(object sender, EventArgs e)
         {
             mCanClose = ObiForm.CheckProjectDirectory_Safe(DirectoryPath, true);
-            if (m_rdbDaisy3.Checked)
-            {
-               m_ExportFormat = Obi.Export.ExportFormat.DAISY3_0;
-            }
-            else if(m_rdbDaisy202.Checked)
-            {
-               m_ExportFormat = Obi.Export.ExportFormat.DAISY2_02;
-            }
         }
 
         private void SelectDirectoryPath_FormClosing(object sender, FormClosingEventArgs e)
