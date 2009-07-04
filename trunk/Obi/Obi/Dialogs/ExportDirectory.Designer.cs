@@ -36,10 +36,6 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_lblSelectLevelForAudioFiles = new System.Windows.Forms.Label();
             this.m_ComboSelectLevelForAudioFiles = new System.Windows.Forms.ComboBox();
-            this.m_rdbDaisy3 = new System.Windows.Forms.RadioButton();
-            this.m_rdbDaisy202 = new System.Windows.Forms.RadioButton();
-            this.m_grpDaisyExport = new System.Windows.Forms.GroupBox();
-            this.m_grpDaisyExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_lblDirectoryPath
@@ -86,35 +82,12 @@ namespace Obi.Dialogs
             this.m_ComboSelectLevelForAudioFiles.FormattingEnabled = true;
             this.m_ComboSelectLevelForAudioFiles.Name = "m_ComboSelectLevelForAudioFiles";
             // 
-            // m_rdbDaisy3
-            // 
-            resources.ApplyResources(this.m_rdbDaisy3, "m_rdbDaisy3");
-            this.m_rdbDaisy3.Checked = true;
-            this.m_rdbDaisy3.Name = "m_rdbDaisy3";
-            this.m_rdbDaisy3.TabStop = true;
-            this.m_rdbDaisy3.UseVisualStyleBackColor = true;
-            // 
-            // m_rdbDaisy202
-            // 
-            resources.ApplyResources(this.m_rdbDaisy202, "m_rdbDaisy202");
-            this.m_rdbDaisy202.Name = "m_rdbDaisy202";
-            this.m_rdbDaisy202.UseVisualStyleBackColor = true;
-            // 
-            // m_grpDaisyExport
-            // 
-            this.m_grpDaisyExport.Controls.Add(this.m_rdbDaisy3);
-            this.m_grpDaisyExport.Controls.Add(this.m_rdbDaisy202);
-            resources.ApplyResources(this.m_grpDaisyExport, "m_grpDaisyExport");
-            this.m_grpDaisyExport.Name = "m_grpDaisyExport";
-            this.m_grpDaisyExport.TabStop = false;            
-            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.m_grpDaisyExport);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
             this.Controls.Add(this.m_lblSelectLevelForAudioFiles);
             this.Controls.Add(this.mCancelButton);
@@ -128,8 +101,6 @@ namespace Obi.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectDirectoryPath_FormClosing);
-            this.m_grpDaisyExport.ResumeLayout(false);
-            this.m_grpDaisyExport.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,8 +115,5 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.Label m_lblSelectLevelForAudioFiles;
         private System.Windows.Forms.ComboBox m_ComboSelectLevelForAudioFiles;
-        private System.Windows.Forms.RadioButton m_rdbDaisy3;
-        private System.Windows.Forms.RadioButton m_rdbDaisy202;
-        private System.Windows.Forms.GroupBox m_grpDaisyExport;
     }
 }
