@@ -58,6 +58,7 @@ namespace Obi.Dialogs
             // 
             // m_OKBtn
             // 
+            this.m_OKBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_OKBtn.Location = new System.Drawing.Point(63, 49);
             this.m_OKBtn.Name = "m_OKBtn";
             this.m_OKBtn.Size = new System.Drawing.Size(75, 23);
@@ -65,9 +66,11 @@ namespace Obi.Dialogs
             this.m_OKBtn.Text = "OK";
             this.m_OKBtn.UseVisualStyleBackColor = true;
             this.m_OKBtn.Click += new System.EventHandler(this.m_OKBtn_Click);
+            this.m_OKBtn.Enter += new System.EventHandler(this.m_OKBtn_Click);
             // 
             // m_BtnCancel
             // 
+            this.m_BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_BtnCancel.Location = new System.Drawing.Point(153, 49);
             this.m_BtnCancel.Name = "m_BtnCancel";
             this.m_BtnCancel.Size = new System.Drawing.Size(75, 23);
@@ -75,11 +78,14 @@ namespace Obi.Dialogs
             this.m_BtnCancel.Text = "Cancel";
             this.m_BtnCancel.UseVisualStyleBackColor = true;
             this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
+            this.m_BtnCancel.Leave += new System.EventHandler(this.m_BtnCancel_Click);
             // 
             // chooseDaisy3orDaisy202
             // 
+            this.AcceptButton = this.m_OKBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_BtnCancel;
             this.ClientSize = new System.Drawing.Size(295, 97);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.m_OKBtn);
