@@ -13,7 +13,7 @@ using urakawa.metadata;
 
 namespace Obi.Export
     {
-   public  enum ExportFormat { DAISY3_0, DAISY2_02 } ;
+    public enum ExportFormat { DAISY3_0, DAISY2_02 } ;
 
     public class DAISY202Export
         {
@@ -100,7 +100,7 @@ namespace Obi.Export
 
             int tocItemsCount = sectionsList.Count + m_PageFrontCount + m_PageNormalCount + m_PageSpecialCount;
             CreateNCCMetadata ( nccDocument, tocItemsCount.ToString () );
-            
+
             // write ncc file
             WriteXmlDocumentToFile ( nccDocument,
                 Path.Combine ( m_ExportDirectory, "ncc.html" ) );
@@ -117,7 +117,7 @@ namespace Obi.Export
                 CreateAppendXmlAttribute ( smilDocument, refNode, "src", smilFileName );
                 CreateAppendXmlAttribute ( smilDocument, refNode, "id", "ms_" + Path.GetFileNameWithoutExtension ( smilFileName ) );
                 }
-            
+
             // add dc:title, this is mandatory for master.smil
             urakawa.metadata.Metadata titleMetadata = m_Presentation.GetFirstMetadataItem ( "dc:Title" );
             if (titleMetadata != null)
@@ -178,7 +178,7 @@ namespace Obi.Export
 
                     string pageID = null;
                     XmlNode pageNode = null;
-                    if (!isFirstPhrase   &&   phrase.Role_ == EmptyNode.Role.Page)
+                    if (!isFirstPhrase && phrase.Role_ == EmptyNode.Role.Page)
                         {
                         string strClassVal = null;
                         // increment page counts and get page kind
@@ -227,7 +227,7 @@ namespace Obi.Export
                         string txtID = "txt" + IncrementID;
                         CreateAppendXmlAttribute ( smilDocument, txtNode, "id", txtID );
 
-                        if ( isFirstPhrase )
+                        if (isFirstPhrase)
                             {
                             CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + headingID );
                             }
@@ -235,7 +235,7 @@ namespace Obi.Export
                             {
                             CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + pageID );
                             }
-                        
+
                         // create seq which will hol audio children 
                         seqNode_AudioParent = smilDocument.CreateElement ( null, "seq", smilBodyNode.NamespaceURI );
                         parNode.AppendChild ( seqNode_AudioParent );
@@ -280,12 +280,12 @@ namespace Obi.Export
                     string relativeSRC = Path.GetFileName ( externalMedia.getSrc () );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "src", relativeSRC );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-begin",
-                        GetNPTSmiltime( externalMedia.getClipBegin ().getTime () ));
+                        GetNPTSmiltime ( externalMedia.getClipBegin ().getTime () ) );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-end",
-                        GetNPTSmiltime( externalMedia.getClipEnd ().getTime () ));
+                        GetNPTSmiltime ( externalMedia.getClipEnd ().getTime () ) );
                     CreateAppendXmlAttribute ( smilDocument, audioNode, "id", "aud" + IncrementID );
                     sectionDuration = sectionDuration.addTimeDelta ( externalMedia.getDuration () );
-                    
+
                     // copy audio element if phrase has  heading role and is not first phrase
                     if (phrase.Role_ == EmptyNode.Role.Heading && !isFirstPhrase)
                         {
@@ -298,7 +298,10 @@ namespace Obi.Export
                     }// if for phrasenode ends
                 } // for loop ends
 
-            string strDurTime = sectionDuration.getTime ().TotalSeconds.ToString () + "s";
+
+            string strDurTime = TruncateTimeToDecimalPlaces ( sectionDuration.getTime ().TotalSeconds.ToString (), 3 );
+            //string strDurTime = Math.Round ( sectionDuration.getTime ().TotalSeconds, 3, MidpointRounding.ToEven).ToString ();
+            strDurTime = strDurTime + "s";
             CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
 
             AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
@@ -311,9 +314,9 @@ namespace Obi.Export
 
         private string IncrementID { get { return (++m_IdCounter).ToString (); } }
 
-        private string GetNPTSmiltime (TimeSpan time)
+        private string GetNPTSmiltime ( TimeSpan time )
             {
-            string strTime ="npt=" + time.TotalSeconds.ToString () + "s" ;
+            string strTime = "npt=" + time.TotalSeconds.ToString () + "s";
             return strTime;
             }
 
@@ -548,7 +551,7 @@ namespace Obi.Export
             XmlNode totalTimeNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
             headNode.AppendChild ( totalTimeNode );
             CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "name", "ncc:totalTime" );
-            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString () );
+            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ().Split ( '.' )[0] );
 
 
 
@@ -643,6 +646,19 @@ namespace Obi.Export
             //MetadataMap.Add ( "obi:xukversion", "obi:xukversion" );
 
             return MetadataMap;
+            }
+
+        private string TruncateTimeToDecimalPlaces ( string strTime, int decimalPlaces )
+            {
+            int decimalIndex = strTime.IndexOf ( "." );
+            if (strTime.Length > decimalIndex + decimalPlaces + 1)
+                {
+                if (decimalIndex == 0)
+                    return strTime.Split ( '.' )[0];
+
+                strTime = strTime.Substring ( 0, decimalIndex + decimalPlaces + 1 );
+                }
+            return strTime;
             }
 
         }
