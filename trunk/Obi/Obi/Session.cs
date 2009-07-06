@@ -74,11 +74,11 @@ namespace Obi
         public string PrimaryExportPath
             {
             get { return Presentation.RootNode.PrimaryExportDirectory; }
-            set
-                {
-                Presentation.RootNode.PrimaryExportDirectory = value;
-                PresentationHasChanged ( 1 );
-                }
+            //set
+                //{
+                //Presentation.RootNode.PrimaryExportDirectory = value;
+                //PresentationHasChanged ( 1 );
+                //}
             }
 
         /// <summary>

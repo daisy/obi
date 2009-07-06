@@ -1620,8 +1620,25 @@ namespace Obi
             this.Cursor = Cursors.WaitCursor;
             mSession.Open ( path );
             AddRecentProject ( path );
+            // stores primary export path in metadata if it is stored in Obi 1.0 way
+            UpdateExportMetadataFromPrimaryExportPath ();
             this.Cursor = Cursors.Default;
             }
+
+        // temporary function to get export path, which was stored in msession.primaryExportPath in Obi 1.0
+        // and store it in metadata
+        private void UpdateExportMetadataFromPrimaryExportPath ()
+            {
+            if ( mSession != null && mProjectView != null
+                &&    mProjectView.GetDAISYExportPath ( Export.ExportFormat.DAISY3_0, Path.GetDirectoryName (mSession.Path )) == null 
+                &&     Path.IsPathRooted( mSession.PrimaryExportPath )) 
+                {
+                mProjectView.SetExportPathMetadata (Obi.Export.ExportFormat.DAISY3_0,
+                    mSession.PrimaryExportPath,
+                    Path.GetDirectoryName( mSession.Path ) ) ;
+                }
+            }
+
 
         // The project was modified.
         private void ProjectHasChanged ( int change )
