@@ -10,30 +10,28 @@ namespace Obi.Dialogs
 {
     public partial class chooseDaisy3orDaisy202 : Form
     {
-         private Obi.Export.ExportFormat obj = new Obi.Export.ExportFormat();
+         private Obi.Export.ExportFormat m_ExportFormat = new Obi.Export.ExportFormat();
         public chooseDaisy3orDaisy202()
         {
             InitializeComponent();
+            m_ExportFormat = Obi.Export.ExportFormat.DAISY3_0;
         }
-        public Obi.Export.ExportFormat chooseOption { get { return obj; } }       
+
+        public Obi.Export.ExportFormat chooseOption { get { return m_ExportFormat; } }       
+
         private void m_OKBtn_Click(object sender, EventArgs e)
         {
              this.DialogResult = DialogResult.OK;
             if (m_radBtnDaisy3.Checked)
             {
-                obj = Obi.Export.ExportFormat.DAISY3_0;
+                m_ExportFormat = Obi.Export.ExportFormat.DAISY3_0;
                 Close();
             }
             else if (m_radBtnDaisy202.Checked)
             {
-                obj = Obi.Export.ExportFormat.DAISY2_02;
+                m_ExportFormat = Obi.Export.ExportFormat.DAISY2_02;
                 Close();
             }
-            else
-            {
-                MessageBox.Show(" Please select one of the Export on which merging can take place");
-            }
-
         }
 
         private void m_BtnCancel_Click(object sender, EventArgs e)
