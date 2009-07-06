@@ -1302,8 +1302,11 @@ namespace Obi
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
-                        //mSession.PrimaryExportPath = exportPath;
-                        if ( exportPath != null )  mProjectView.SetExportPathMetadata ( chooseDialog.chooseOption, exportPath );
+                        
+                        if ( exportPath != null )  
+                            mProjectView.SetExportPathMetadata ( chooseDialog.chooseOption,
+                                exportPath,
+                                Directory.GetParent(mSession.Path).FullName);
                         mSession.ForceSave ();
                         MessageBox.Show ( String.Format ( Localizer.Message ( "saved_as_daisy_text" ), exportPath ),
                             Localizer.Message ( "saved_as_daisy_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Information );
@@ -2119,8 +2122,8 @@ namespace Obi
             }
         private string chooseDaisyType ( string toolStripText )
             {
-            string exportDaisy202Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY2_02 );
-            string exportDaisy3Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY3_0 );
+            string exportDaisy202Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY2_02 , Path.GetDirectoryName(mSession.Path));
+            string exportDaisy3Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY3_0, Path.GetDirectoryName ( mSession.Path ) );
             string newDirPath = null;
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202 ();
             if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
