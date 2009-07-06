@@ -2177,9 +2177,19 @@ namespace Obi
             else
                 {
                 if (toolStripText == "DAISY 2.02 DTB Light Validator")
-                    newDirPath = Path.Combine ( exportDaisy202Path, "ncc.html" );
+                    {
+                    if (exportDaisy202Path != null)
+                        newDirPath = Path.Combine ( exportDaisy202Path, "ncc.html" );
+                    else
+                        newDirPath = "";
+                    }
                 if (toolStripText == "DAISY 3 Validator")
-                    newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
+                    {
+                    if (exportDaisy3Path != null)
+                        newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
+                    else
+                        newDirPath = "";
+                    }
                 }
             return newDirPath;
             }
