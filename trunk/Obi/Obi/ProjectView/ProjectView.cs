@@ -180,7 +180,14 @@ namespace Obi.ProjectView
             }
 
 
-        public void SetExportPathMetadata ( Obi.Export.ExportFormat format, string exportPath )
+        /// <summary>
+        /// stores path of DAISY export directory in metadata
+        /// Stores relative path if export directory lies inside project directory else stores absolute path
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="exportPath"></param>
+        /// <param name="projectDirectory"></param>
+        public void SetExportPathMetadata ( Obi.Export.ExportFormat format, string exportPath  , string projectDirectory)
             {
             string exportMetadataName = null;
             if (format == Obi.Export.ExportFormat.DAISY3_0)
@@ -191,7 +198,14 @@ namespace Obi.ProjectView
                 {
                 exportMetadataName = Metadata.OBI_DAISY2ExportPath;
                 }
+            
+            // if export directory is inside project directory, save relative path
+            if ( exportPath.StartsWith (projectDirectory) )
+                {
+                if ( !projectDirectory.EndsWith ("\\")) projectDirectory = projectDirectory + System.IO.Path.DirectorySeparatorChar;
 
+                exportPath = exportPath.Replace ( projectDirectory, "") ;                
+                }
             urakawa.metadata.Metadata m = mPresentation.GetFirstMetadataItem ( exportMetadataName );
             if (m == null)
                 {
@@ -204,7 +218,14 @@ namespace Obi.ProjectView
             mPresentation.Do ( cmd );
             }
 
-        public string GetDAISYExportPath ( Obi.Export.ExportFormat format )
+        /// <summary>
+        /// returns absolute export path for specified format of DAISY fileset passed in parameter.
+        /// if that particular DAISY export do not exists, returns null
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="projectDirectory"></param>
+        /// <returns></returns>
+        public string GetDAISYExportPath ( Obi.Export.ExportFormat format, string projectDirectory )
             {
             if (mPresentation == null)
                 return null;
@@ -219,8 +240,16 @@ namespace Obi.ProjectView
                 m = mPresentation.GetFirstMetadataItem ( Metadata.OBI_DAISY2ExportPath );
                 }
 
-            return m != null ?
+            string exportPath = m != null ?
                         m.getContent () : null;
+            
+            // create absolute path if export path is relative
+            if ( !string.IsNullOrEmpty (exportPath )
+                &&    !System.IO.Path.IsPathRooted ( exportPath ))
+                {
+                exportPath = System.IO.Path.Combine ( projectDirectory, exportPath );
+                }
+            return exportPath ;
             }
 
         
