@@ -1126,7 +1126,7 @@ Error text: {1}</value>
     <value>Do you want to save changes before saving project to a new location? </value>
   </data>
   <data name="no_primary_export_directory" xml:space="preserve">
-    <value>The primary export directory for this project was not found. Please select an export path or export the project to DAISY3.</value>
+    <value>DAISY export directory was not found. Please select an export path or export the project to DAISY.</value>
     <comment>Pipeline interface error message</comment>
   </data>
   <data name="section_unexported" xml:space="preserve">
