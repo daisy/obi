@@ -12,6 +12,7 @@ namespace DTBMerger
         private string m_OutputDirectory;
         private int m_ProgressInfo;
         private PageMergeOptions m_PageMergeOptions;
+        private bool m_RequestedForCancel;
 
         public Merger ( string[] inputPaths, string outputDirectory, PageMergeOptions pageOptions )
             {
@@ -44,8 +45,10 @@ namespace DTBMerger
 
         public void MergeDTDs ()
             {
+            m_RequestedForCancel = false;
             m_ProgressInfo = 0;
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( true );
+            if (m_RequestedForCancel) return;
 
             for (int i = 0; i < inputParameterList.Count; i++)
                 {
@@ -56,6 +59,7 @@ namespace DTBMerger
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.RenameDAISY3FilesSet();
                 }
+            if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
             Integrator integrator = new Integrator ( inputParameterList, m_PageMergeOptions );
@@ -80,6 +84,7 @@ namespace DTBMerger
                 Directory.GetParent ( m_InputPaths[0] ).FullName,
                 m_OutputDirectory,
                 isDAISY3 );
+            if (m_RequestedForCancel) return null;
 
             inputParameterList.Add ( opfPath );
 
@@ -87,6 +92,7 @@ namespace DTBMerger
             // copy all remaining DTBs in their folders
             for (int i = 1; i < m_InputPaths.Length; i++)
                 {
+                if (m_RequestedForCancel) return null;
                 string copyToDirectory = Path.Combine ( m_OutputDirectory, i.ToString () );
                 Directory.CreateDirectory ( copyToDirectory );
 
@@ -131,6 +137,7 @@ namespace DTBMerger
                     {
                     opfPath = destinationPath;
                     }
+                if (m_RequestedForCancel) return null;
                 }
             return opfPath;
             }
@@ -138,8 +145,10 @@ namespace DTBMerger
         
         public void MergeDAISY2DTDs ()
             {
+            m_RequestedForCancel = false;
             m_ProgressInfo = 0;
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( false );
+            if (m_RequestedForCancel) return;
             //foreach (string s in inputParameterList)
             //MessageBox.Show ( s );
 
@@ -152,7 +161,7 @@ namespace DTBMerger
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.Rename2_02DTBFilesSet ();
                 }
-
+            if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
             Integrator integrator = new Integrator ( inputParameterList, m_PageMergeOptions );
@@ -168,6 +177,10 @@ namespace DTBMerger
             m_ProgressInfo = 100;
             }
 
+        public void RequestCancel ()
+            {
+            m_RequestedForCancel = true;
+            }
 
         }
     }

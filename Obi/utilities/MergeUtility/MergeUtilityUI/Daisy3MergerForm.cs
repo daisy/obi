@@ -16,6 +16,7 @@ namespace MergeUtilityUI
         private ProgressDialogDTB progress = null;
         private bool daisy3Option = false;
         private bool daisy202option = false;
+        private DTBMerger.Merger m_Merger = null;
         
         public Daisy3MergerForm ()
         {
@@ -24,6 +25,7 @@ namespace MergeUtilityUI
             m_bgWorker.RunWorkerCompleted +=
                 new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
             m_bgWorker.WorkerSupportsCancellation = true;
+            m_Merger = null;
         }        
 
         private void m_btnAdd_Click(object sender, EventArgs e)
@@ -181,7 +183,7 @@ namespace MergeUtilityUI
 
         private void StartMerging ()
             {
-            DTBMerger.Merger obj = null;
+            m_Merger = null;
             string[] listOfDTBFiles = new string[m_lbDTBfiles.Items.Count];
             for (int i = 0; i < m_lbDTBfiles.Items.Count; i++)
             {
@@ -189,19 +191,19 @@ namespace MergeUtilityUI
             }
             if (m_rdbExistingNumberOfPages.Checked)
             {
-                obj = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
+                m_Merger = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
             }
             else if (m_rdbRenumberPages.Checked)
             {
-                obj = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
+                m_Merger = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
             }
             if (daisy3Option == true)
             {
-                obj.MergeDTDs();
+                m_Merger.MergeDTDs();
             }
             if(daisy202option == true)
             {
-                obj.MergeDAISY2DTDs();
+                m_Merger.MergeDAISY2DTDs();
             }
         }//StartMerging()
         
@@ -212,6 +214,7 @@ namespace MergeUtilityUI
                   try
                   {
                     m_bgWorker.CancelAsync();
+                    m_Merger.RequestCancel ();
                   }
                   catch (System.Exception ex)
                   {
@@ -332,13 +335,13 @@ namespace MergeUtilityUI
                 if (daisy202option == true)
                     m_StatusLabel.Text = " Validating The Input NCC File..";
                
-                DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
+                DTBMerger.PipelineInterface.ScriptsFunctions m_Merger = new DTBMerger.PipelineInterface.ScriptsFunctions();
                 string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
                 string completeScriptPath = Path.Combine(scriptPath, "scripts");
                 if (daisy3Option == true)
-                obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbDTBfiles.SelectedItem.ToString(), "", 30);
+                m_Merger.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbDTBfiles.SelectedItem.ToString(), "", 30);
                 if (daisy202option == true)
-                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbDTBfiles.SelectedItem.ToString(), "", 30);
+                    m_Merger.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbDTBfiles.SelectedItem.ToString(), "", 30);
                 m_StatusLabel.Text = "";
             }
         }//m_BtnValidateInput_Click
@@ -349,7 +352,7 @@ namespace MergeUtilityUI
                 m_StatusLabel.Text = " Validating The Output OPF File..";
             if (daisy202option == true)
                 m_StatusLabel.Text = " Validating The Output NCC File..";
-            DTBMerger.PipelineInterface.ScriptsFunctions obj = new DTBMerger.PipelineInterface.ScriptsFunctions();
+            DTBMerger.PipelineInterface.ScriptsFunctions m_Merger = new DTBMerger.PipelineInterface.ScriptsFunctions();
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
             DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
@@ -360,14 +363,14 @@ namespace MergeUtilityUI
             {
                 foreach (FileInfo fileInfo in opfFiles)
                 {
-                    obj.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                    m_Merger.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
                 }
             }
             if (daisy202option == true)
             {
                 foreach (FileInfo fileInfo in htmlFiles)
                 {
-                    obj.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                    m_Merger.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
                 }
             }
             m_StatusLabel.Text = string.Empty;
