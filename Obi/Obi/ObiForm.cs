@@ -1576,8 +1576,9 @@ namespace Obi
             foreach (KeyValuePair<string, FileInfo> k in mPipelineInfo.ScriptsInfo)
                 {
                 PipelineMenuItem = new ToolStripMenuItem ();
-                PipelineMenuItem.Text = k.Key;
-                PipelineMenuItem.AccessibleName = k.Key;
+                PipelineMenuItem.Tag = k.Key;
+                PipelineMenuItem.Text =mPipelineInfo.TaskScriptNameToNiceNameMap[ k.Key];
+                PipelineMenuItem.AccessibleName = mPipelineInfo.TaskScriptNameToNiceNameMap[k.Key];
                 PipelineMenuItem.Name = "PipelineMenu";
                 PipelineMenuItem.Enabled = mSession.HasProject;
                 mMenuStrip.Items.Add ( PipelineMenuItem );
@@ -2143,7 +2144,7 @@ namespace Obi
             string exportDaisy3Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY3_0, Path.GetDirectoryName ( mSession.Path ) );
             string newDirPath = null;
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202 ();
-            if (toolStripText == "Fileset renamer" || toolStripText == "Convert audio to MP3")
+            if (toolStripText == "DTBAudioEncoder" || toolStripText == "FilesetRenamer")
                 {
                     if (rdfrm.ShowDialog() == DialogResult.OK)
                     {
@@ -2176,14 +2177,14 @@ namespace Obi
                 }
             else
                 {
-                if (toolStripText == "DAISY 2.02 DTB Light Validator")
+                if (toolStripText == "Daisy202DTBValidator")
                     {
                     if (exportDaisy202Path != null)
                         newDirPath = Path.Combine ( exportDaisy202Path, "ncc.html" );
                     else
                         newDirPath = "";
                     }
-                if (toolStripText == "DAISY 3 Validator")
+                if (toolStripText == "Z3986DTBValidator")
                     {
                     if (exportDaisy3Path != null)
                         newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
@@ -2203,14 +2204,22 @@ namespace Obi
             {
             string exportFilePath = null;
             mProjectView.TransportBar.Enabled = false;
-            exportFilePath = chooseDaisyType(((ToolStripMenuItem)sender).Text);
+            ToolStripMenuItem clickedItem = ((ToolStripMenuItem)sender);
+            if (clickedItem.Tag != null && clickedItem.Tag is string )
+                {
+                //exportFilePath = chooseDaisyType ( ((ToolStripMenuItem)sender).Text );
+                exportFilePath = chooseDaisyType ( ((string)clickedItem.Tag) );
+                }
             if (exportFilePath == null)
                 return;
 
 
             try
                 {
-                    PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, exportFilePath, Directory.GetParent(mSession.Path).FullName);
+                    //PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm(mPipelineInfo.ScriptsInfo[((ToolStripMenuItem)sender).Text].FullName, 
+                PipelineInterface.PipelineInterfaceForm pipeline = new PipelineInterface.PipelineInterfaceForm ( mPipelineInfo.ScriptsInfo[(string)clickedItem.Tag].FullName, 
+                        exportFilePath, 
+                        Directory.GetParent(mSession.Path).FullName);
                 ProgressDialog progress = new ProgressDialog ( ((ToolStripMenuItem)sender).Text,
                     delegate () { pipeline.RunScript (); } );
                 if (pipeline.ShowDialog () == DialogResult.OK) progress.Show ();

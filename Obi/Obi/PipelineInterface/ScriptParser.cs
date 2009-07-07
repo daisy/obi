@@ -14,6 +14,7 @@ namespace Obi.PipelineInterface
     {
         private string mScriptFilePath;                // path to the script file
         private List<ScriptParameter> mParameterList;  // list of script parameters
+        private string m_Name; // name of script
         private string mNiceName;                      // nice name for the script itself
 
         public ScriptParser(string ScriptPath)
@@ -26,9 +27,19 @@ namespace Obi.PipelineInterface
             doc.XmlResolver = null;
             doc.Load(reader);
             reader.Close();
+            XmlNode taskScriptNode = doc.DocumentElement;
+            if (taskScriptNode.Attributes.GetNamedItem ( "name" ) != null)
+                {
+                m_Name = taskScriptNode.Attributes.GetNamedItem ( "name" ).Value; 
+                }
             mNiceName = GetScriptNiceName(doc, mScriptFilePath);
             PopulateParameterList(doc);
         }
+
+        /// <summary>
+        /// Returns name of script. it should be unique
+        /// </summary>
+        public string Name { get { return m_Name; } }
 
         /// <summary>
         /// Get the nice name of the script.

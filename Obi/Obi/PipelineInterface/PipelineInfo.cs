@@ -8,6 +8,7 @@ namespace Obi.PipelineInterface
     public class PipelineInfo
         {
         private Dictionary<string, FileInfo> m_ScriptsInfo = new Dictionary<string, FileInfo> ();
+        private Dictionary<string, string> m_TaskScriptNameToNiceNameMap = new Dictionary<string,string> ();
 
         public PipelineInfo ( string ScriptsDirectory )
             {
@@ -22,9 +23,10 @@ namespace Obi.PipelineInterface
                 {
                 ScriptFileInfo = new FileInfo ( s );
                 ScriptParser parser = new ScriptParser ( ScriptFileInfo.FullName );
-                if (!m_ScriptsInfo.ContainsKey ( parser.NiceName ))
+                if (!m_ScriptsInfo.ContainsKey ( parser.Name ))
                     {
-                    m_ScriptsInfo.Add ( parser.NiceName, ScriptFileInfo );
+                    m_ScriptsInfo.Add ( parser.Name, ScriptFileInfo );
+                    m_TaskScriptNameToNiceNameMap.Add ( parser.Name, parser.NiceName);
                     }
                 else
                     {
@@ -40,7 +42,13 @@ namespace Obi.PipelineInterface
             get { return m_ScriptsInfo; }
             }
 
-
+        public Dictionary<string, string> TaskScriptNameToNiceNameMap
+            {
+            get
+                {
+                return m_TaskScriptNameToNiceNameMap;
+                }
+            }
 
         }
     }
