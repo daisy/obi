@@ -18,9 +18,7 @@ namespace Obi
 
         private string m_BackupProjectFilePath_temp;
         private string m_BackupDirPath;
-        private int m_BackupFileCounter;
-        private readonly string m_Backup_LastFilename = "Prev_Session_Last.obi";
-
+        
         public event ProjectClosedEventHandler ProjectClosed;   // the project was closed
         public event EventHandler ProjectCreated;               // a new project was created
         public event EventHandler ProjectOpened;                // a project was opened
@@ -109,7 +107,7 @@ namespace Obi
                 // save to backup
                 if (Presentation != null)
                     {
-                    //SaveLastBackupAndClearIncrementalFiles ();
+                    
                     SaveToBackup ();
                     }
 
@@ -295,9 +293,21 @@ namespace Obi
                     Save ( m_BackupProjectFilePath_temp );
                     Presentation.setRootUri ( prevUri );
 
-                    string backupPath = GetNextBackupFilePath ();
+                    if (!Directory.Exists ( m_BackupDirPath ))
+                        {
+                        Directory.CreateDirectory ( m_BackupDirPath );
+                        }
+
+                    string backupPath = System.IO.Path.Combine ( m_BackupDirPath,
+                        System.IO.Path.GetFileName ( m_BackupProjectFilePath_temp ) );
                     // move backup file to backupfolder
+                    if (File.Exists ( backupPath ))
+                        {
+                        File.Delete ( backupPath );
+                        }
+
                     File.Move ( m_BackupProjectFilePath_temp, backupPath );
+                    
                     return backupPath;
                     }
                 catch (System.Exception ex)
@@ -331,57 +341,12 @@ namespace Obi
                 {
                 m_BackupProjectFilePath_temp = System.IO.Path.Combine (
             System.IO.Path.GetDirectoryName ( path ),
-            "backup_" + System.IO.Path.GetFileName ( path ) );
+            "Backup_" + System.IO.Path.GetFileName ( path ) );
 
                 if (!Directory.Exists ( m_BackupDirPath ))
                     {
                     Directory.CreateDirectory ( m_BackupDirPath );
                     }
-                else
-                    {
-                    string[] filesArray = Directory.GetFiles ( m_BackupDirPath );
-
-                    string previousSessionLastFilePath = System.IO.Path.Combine ( m_BackupDirPath, m_Backup_LastFilename );
-
-                    int lastFileNo = 0;
-
-                    for (int i = 0; i < filesArray.Length; i++)
-                        {
-                        int fileNumericName = 0;
-                        //MessageBox.Show ( System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ) );
-                        int.TryParse ( System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ), out fileNumericName );
-
-                        if (fileNumericName > lastFileNo)
-                            {
-                            lastFileNo = fileNumericName;
-                            }
-                        }
-
-                    string lastFileToRename = "";
-                    for (int i = 0; i < filesArray.Length; i++)
-                        {
-                        if (System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ) != lastFileNo.ToString ())
-                            {
-                            File.Delete ( filesArray[i] );
-                            //MessageBox.Show ( filesArray[i] );
-                            }
-                        else
-                            {
-                            lastFileToRename = filesArray[i];
-                            }
-                        }
-
-                    // renaming last file to prev session name.
-                    if (File.Exists ( lastFileToRename ))
-                        {
-                        if ( File.Exists ( previousSessionLastFilePath ) )
-                            {
-                            File.Delete ( previousSessionLastFilePath ) ;
-                            }
-                        File.Move ( lastFileToRename, previousSessionLastFilePath ) ;
-                        }
-                    }
-
                 
                 } // try ends
             catch (System.Exception ex)
@@ -389,52 +354,6 @@ namespace Obi
                 MessageBox.Show ( ex.ToString () );
                 }
 
-            m_BackupFileCounter = 0;
-            }
-
-        private void SaveLastBackupAndClearIncrementalFiles ()
-            {
-            if (m_BackupDirPath != null && Directory.Exists ( m_BackupDirPath ))
-                {
-                string lastIncrmentalFile = SaveToBackup ();
-
-                try
-                    {
-                    // rename the last backup file
-                    string previousSessionFile = System.IO.Path.Combine ( m_BackupDirPath, m_Backup_LastFilename );
-
-                    if (lastIncrmentalFile != null)
-                        {
-                        if (File.Exists ( previousSessionFile ))
-                            {
-                            File.Delete ( previousSessionFile );
-                            }
-
-                        File.Move ( lastIncrmentalFile, previousSessionFile );
-                        }
-
-                    }
-                catch (System.Exception ex)
-                    {
-                    MessageBox.Show ( ex.ToString () );
-                    }
-                }
-            }
-
-
-        private string GetNextBackupFilePath ()
-            {
-            m_BackupFileCounter++;
-            string nextBackupPath = System.IO.Path.Combine ( m_BackupDirPath,
-                m_BackupFileCounter.ToString () + ".obi" );
-
-            while (File.Exists ( nextBackupPath ) && m_BackupFileCounter < 2000)
-                {
-                m_BackupFileCounter++;
-                nextBackupPath = System.IO.Path.Combine ( m_BackupDirPath,
-                m_BackupFileCounter.ToString () + ".obi" );
-                }
-            return nextBackupPath;
             }
 
         }
