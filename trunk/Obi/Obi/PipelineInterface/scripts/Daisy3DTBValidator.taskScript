@@ -4,7 +4,7 @@
 <!ENTITY ValidatorTaskParamsSimpleStatic SYSTEM "../ValidatorTaskParamsSimpleStatic.paramGroup">
 ]>
 <taskScript version="2.0" name="Z3986DTBValidator">
-	<nicename>DAISY 3 Validator</nicename>
+	<nicename>DAISY 3.0 Validator</nicename>
 	<description>Validate a DAISY/NISO DTB with ZedVal</description>
   <!-- <documentation uri="doc/DTBAudioEncoder.html"/> -->
 	<comment>This script is used in Obi</comment>
