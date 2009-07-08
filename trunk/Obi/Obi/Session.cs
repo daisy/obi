@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 
@@ -108,7 +109,8 @@ namespace Obi
                 // save to backup
                 if (Presentation != null)
                     {
-                    SaveLastBackupAndClearIncrementalFiles ();
+                    //SaveLastBackupAndClearIncrementalFiles ();
+                    SaveToBackup ();
                     }
 
                 mProject.dataIsMissing -= new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
@@ -338,17 +340,49 @@ namespace Obi
                 else
                     {
                     string[] filesArray = Directory.GetFiles ( m_BackupDirPath );
+
                     string previousSessionLastFilePath = System.IO.Path.Combine ( m_BackupDirPath, m_Backup_LastFilename );
+
+                    int lastFileNo = 0;
 
                     for (int i = 0; i < filesArray.Length; i++)
                         {
-                        if (filesArray[i] != previousSessionLastFilePath)
+                        int fileNumericName = 0;
+                        //MessageBox.Show ( System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ) );
+                        int.TryParse ( System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ), out fileNumericName );
+
+                        if (fileNumericName > lastFileNo)
+                            {
+                            lastFileNo = fileNumericName;
+                            }
+                        }
+
+                    string lastFileToRename = "";
+                    for (int i = 0; i < filesArray.Length; i++)
+                        {
+                        if (System.IO.Path.GetFileNameWithoutExtension ( filesArray[i] ) != lastFileNo.ToString ())
                             {
                             File.Delete ( filesArray[i] );
+                            //MessageBox.Show ( filesArray[i] );
                             }
+                        else
+                            {
+                            lastFileToRename = filesArray[i];
+                            }
+                        }
+
+                    // renaming last file to prev session name.
+                    if (File.Exists ( lastFileToRename ))
+                        {
+                        if ( File.Exists ( previousSessionLastFilePath ) )
+                            {
+                            File.Delete ( previousSessionLastFilePath ) ;
+                            }
+                        File.Move ( lastFileToRename, previousSessionLastFilePath ) ;
                         }
                     }
 
+                
                 } // try ends
             catch (System.Exception ex)
                 {
