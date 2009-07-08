@@ -64,4 +64,25 @@
 			<value>${bitrate}</value>
 		</parameter>
 	</task>
+
+
+	<task name="int_daisy_prettyPrinter" interactive="false">
+		<parameter>
+			<name>input</name>
+			<value>${input}</value>
+		</parameter>
+
+		<parameter>
+			<name>output</name>
+			<value>${output}</value>
+		</parameter>
+
+		<parameter>
+			<name>linebreak</name>
+			<value>DOS</value>
+		</parameter>
+				
+	</task>
+
+
 </taskScript>
