@@ -38,7 +38,7 @@
 
 	<parameter name="filesetRenamerExclude" value="OpfFile, DtbookFile, Z3986DtbookFile, Xhtml10File, CssFile, ImageFile" required="false">
 		<nicename>File types to exclude</nicename>
-		<description>comma separated list of file types to exclude from renaming, see documentation</description>
+		<description>comma separated list of file types to exclude from renaming.</description>
 		<datatype>
 			<string/>
 		</datatype>
@@ -54,7 +54,7 @@
 
 	<parameter name="filesetRenamerMaxFilenameLength" value="60" required="false">
 		<nicename>Max filename length</nicename>
-		<description>The maximum number of characters in the output filename, excluding extension. Default is 60.</description>
+		<description>Max. number of characters in output filename, excluding extension. Default is 60.</description>
 		<datatype>
 			<integer/>
 		</datatype>
