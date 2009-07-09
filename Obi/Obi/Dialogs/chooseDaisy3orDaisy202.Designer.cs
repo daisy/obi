@@ -39,10 +39,10 @@ namespace Obi.Dialogs
         this.m_radBtnDaisy3.AutoSize = true;
         this.m_radBtnDaisy3.Location = new System.Drawing.Point ( 36, 12 );
         this.m_radBtnDaisy3.Name = "m_radBtnDaisy3";
-        this.m_radBtnDaisy3.Size = new System.Drawing.Size ( 63, 17 );
+        this.m_radBtnDaisy3.Size = new System.Drawing.Size ( 75, 17 );
         this.m_radBtnDaisy3.TabIndex = 0;
         this.m_radBtnDaisy3.TabStop = true;
-        this.m_radBtnDaisy3.Text = "DAISY3";
+        this.m_radBtnDaisy3.Text = "DAISY 3.0";
         this.m_radBtnDaisy3.UseVisualStyleBackColor = true;
         // 
         // m_radBtnDaisy202
@@ -50,10 +50,10 @@ namespace Obi.Dialogs
         this.m_radBtnDaisy202.AutoSize = true;
         this.m_radBtnDaisy202.Location = new System.Drawing.Point ( 174, 12 );
         this.m_radBtnDaisy202.Name = "m_radBtnDaisy202";
-        this.m_radBtnDaisy202.Size = new System.Drawing.Size ( 75, 17 );
+        this.m_radBtnDaisy202.Size = new System.Drawing.Size ( 81, 17 );
         this.m_radBtnDaisy202.TabIndex = 1;
         this.m_radBtnDaisy202.TabStop = true;
-        this.m_radBtnDaisy202.Text = "DAISY202";
+        this.m_radBtnDaisy202.Text = "DAISY 2.02";
         this.m_radBtnDaisy202.UseVisualStyleBackColor = true;
         // 
         // m_OKBtn
