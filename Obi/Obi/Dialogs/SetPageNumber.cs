@@ -70,7 +70,7 @@ namespace Obi.Dialogs
             
                 int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
             // apply a check if dialog is being used for go to page
-                if (m_GoToPage && num == 0)
+                if (m_GoToPage && num == 0 && mPageKindComboBox.SelectedIndex < 2)
                     {
                     MessageBox.Show ( Localizer.Message ( "PageNumber_ReEnterValidNumber") );
                     return;

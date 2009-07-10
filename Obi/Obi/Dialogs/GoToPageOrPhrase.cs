@@ -88,7 +88,7 @@ namespace Obi.Dialogs
             {
             int phraseIndex = 0;
             int.TryParse ( base.mNumberBox.Text, out phraseIndex );
-            if (phraseIndex < 1)
+            if (phraseIndex < 1 &&  this.mPageKindComboBox.SelectedIndex < 2)
                 {
                 MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
                 return;
