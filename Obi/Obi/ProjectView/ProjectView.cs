@@ -187,7 +187,7 @@ namespace Obi.ProjectView
         /// <param name="format"></param>
         /// <param name="exportPath"></param>
         /// <param name="projectDirectory"></param>
-        public void SetExportPathMetadata ( Obi.Export.ExportFormat format, string exportPath  , string projectDirectory)
+        public void SetExportPathMetadata ( Obi.Export.ExportFormat format, string exportPath, string projectDirectory )
             {
             string exportMetadataName = null;
             if (format == Obi.Export.ExportFormat.DAISY3_0)
@@ -198,13 +198,13 @@ namespace Obi.ProjectView
                 {
                 exportMetadataName = Metadata.OBI_DAISY2ExportPath;
                 }
-            
-            // if export directory is inside project directory, save relative path
-            if ( exportPath.StartsWith (projectDirectory) )
-                {
-                if ( !projectDirectory.EndsWith ("\\")) projectDirectory = projectDirectory + System.IO.Path.DirectorySeparatorChar;
 
-                exportPath = exportPath.Replace ( projectDirectory, "") ;                
+            // if export directory is inside project directory, save relative path
+            if (exportPath.StartsWith ( projectDirectory ))
+                {
+                if (!projectDirectory.EndsWith ( "\\" )) projectDirectory = projectDirectory + System.IO.Path.DirectorySeparatorChar;
+
+                exportPath = exportPath.Replace ( projectDirectory, "" );
                 }
             urakawa.metadata.Metadata m = mPresentation.GetFirstMetadataItem ( exportMetadataName );
             if (m == null)
@@ -212,9 +212,9 @@ namespace Obi.ProjectView
                 m = AddMetadataEntry ( exportMetadataName );
                 }
 
-            Commands.Metadata.ModifyContent cmd = new Commands.Metadata.ModifyContent ( this, 
-                m, 
-                exportPath);
+            Commands.Metadata.ModifyContent cmd = new Commands.Metadata.ModifyContent ( this,
+                m,
+                exportPath );
             mPresentation.Do ( cmd );
             }
 
@@ -242,17 +242,17 @@ namespace Obi.ProjectView
 
             string exportPath = m != null ?
                         m.getContent () : null;
-            
+
             // create absolute path if export path is relative
-            if ( !string.IsNullOrEmpty (exportPath )
-                &&    !System.IO.Path.IsPathRooted ( exportPath ))
+            if (!string.IsNullOrEmpty ( exportPath )
+                && !System.IO.Path.IsPathRooted ( exportPath ))
                 {
                 exportPath = System.IO.Path.Combine ( projectDirectory, exportPath );
                 }
-            return exportPath ;
+            return exportPath;
             }
 
-        
+
         /// <summary>
         /// Insert a new subsection in the book as the last child of the selected section node in the TOC view.
         /// </summary>
@@ -2299,11 +2299,23 @@ namespace Obi.ProjectView
                             {
                             EmptyNode testNode = (EmptyNode)n;
                             if (testNode.Role_ == EmptyNode.Role.Page
-                                && testNode.PageNumber.Number == pageNumber
                                 && testNode.PageNumber.Kind == kind)
                                 {
-                                node = testNode;
-                                break;
+                                // test special pages and other pages separately
+                                if (testNode.PageNumber.Kind == PageKind.Special)
+                                    {
+                                    if (testNode.PageNumber.ArabicNumberOrLabel == GoToDialog.Number.ArabicNumberOrLabel)
+                                        {
+                                        node = testNode;
+                                        break;
+                                        }
+                                    }
+                                else if (testNode.PageNumber.Number == pageNumber) // if not special compare int number
+                                    {
+                                    node = testNode;
+                                    break;
+                                    }
+
                                 }
                             }
                         }
