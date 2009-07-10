@@ -130,8 +130,9 @@ namespace MergeUtilityUI
                     {
                         MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path",
                                         "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        m_txtDirectoryPath.Focus();
+                        m_BtnOutputDirectory.Focus();
                         m_StatusLabel.Text = "Click Browse button to select the Directory to save the merged files..";
+                        return;
                     }
                     if (m_txtDirectoryPath.Text.Length > 0)
                     {
@@ -142,6 +143,7 @@ namespace MergeUtilityUI
                         else
                         {
                             MessageBox.Show(" Please be patient, earlier task is in progress ");
+                            return;
                         }
                         if (m_bgWorker.IsBusy)
                         {
@@ -337,7 +339,7 @@ namespace MergeUtilityUI
                 string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
                 string completeScriptPath = Path.Combine(scriptPath, "scripts");
                 if (daisy3Option == true)
-                m_Merger.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"),m_lbDTBfiles.SelectedItem.ToString(), "", 30);
+                    m_Merger.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
                 if (daisy202option == true)
                     m_Merger.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbDTBfiles.SelectedItem.ToString(), "", 30);
                 m_StatusLabel.Text = "";
