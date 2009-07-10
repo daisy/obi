@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <taskScript version="2.0" name="Daisy202DTBValidator">
-	<nicename>DAISY 2.02 DTB Light Validator</nicename>
+	<nicename>DAISY 2.02 Light Validator</nicename>
 	<description>Validate a Daisy 2.02 DTB</description>
 <!--   	<documentation uri="../../doc/scripts/Daisy202DTBValidator.html"/>-->
      <comment>
