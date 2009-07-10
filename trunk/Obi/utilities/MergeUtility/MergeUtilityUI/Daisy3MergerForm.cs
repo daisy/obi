@@ -161,7 +161,7 @@ namespace MergeUtilityUI
                     MessageBox.Show("Either there are no files or only one file in the Listbox to merge. Minimum 2 files are needed for merging. Please add some files in Listbox.Click Add button.","Listbox Empty",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     m_btnAdd.Focus();
                 }
-                MessageBox.Show("Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
              catch (Exception ex)
              {
@@ -213,8 +213,8 @@ namespace MergeUtilityUI
                 {
                   try
                   {
-                    m_bgWorker.CancelAsync();
-                    m_Merger.RequestCancel ();
+                  m_Merger.RequestCancel ();
+                    //m_bgWorker.CancelAsync();
                   }
                   catch (System.Exception ex)
                   {
@@ -231,16 +231,14 @@ namespace MergeUtilityUI
                 progress.Close();
                 progress = null;
             }
-            if ( e.Cancelled )
-            {
-                MessageBox.Show(" Progress was cancelled ");                               
-            }
+            
             if (e.Error == null)
             {
-                if (!e.Cancelled)
+                if ( m_Merger != null && !m_Merger.IsCancelled )
                 {
                   m_StatusLabel.Text = "Files have been merged and put in the given directory path. " ;
                   m_BtnValidateOutput.Enabled = true;
+                  MessageBox.Show ( "Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information );
                 }
             }
             if (e.Error != null)
