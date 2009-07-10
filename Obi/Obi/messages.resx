@@ -1367,7 +1367,7 @@ Error text: {1}</value>
     <value>Each level</value>
   </data>
   <data name="Level1" xml:space="preserve">
-    <value>evel 1</value>
+    <value>Level 1</value>
   </data>
   <data name="Level2" xml:space="preserve">
     <value>Level 2</value>

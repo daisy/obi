@@ -39,10 +39,10 @@ namespace Obi.Dialogs
         this.m_radBtnDaisy3.AutoSize = true;
         this.m_radBtnDaisy3.Location = new System.Drawing.Point ( 36, 12 );
         this.m_radBtnDaisy3.Name = "m_radBtnDaisy3";
-        this.m_radBtnDaisy3.Size = new System.Drawing.Size ( 75, 17 );
+        this.m_radBtnDaisy3.Size = new System.Drawing.Size ( 66, 17 );
         this.m_radBtnDaisy3.TabIndex = 0;
         this.m_radBtnDaisy3.TabStop = true;
-        this.m_radBtnDaisy3.Text = "DAISY 3.0";
+        this.m_radBtnDaisy3.Text = "DAISY 3";
         this.m_radBtnDaisy3.UseVisualStyleBackColor = true;
         // 
         // m_radBtnDaisy202
