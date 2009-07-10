@@ -43,6 +43,8 @@ namespace DTBMerger
 
         public int ProgressInfo { get { return m_ProgressInfo; } }
 
+        public bool IsCancelled { get { return m_RequestedForCancel; } }
+
         public void MergeDTDs ()
             {
             m_RequestedForCancel = false;
