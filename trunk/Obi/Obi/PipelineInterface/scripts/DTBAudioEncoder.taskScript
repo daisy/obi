@@ -57,7 +57,7 @@
 		</parameter>
 		<parameter>
 			<name>outDir</name>
-			<value>${output}</value>
+			<value>${output}/tmp</value>
 		</parameter>
 		<parameter>
 			<name>bitrate</name>
@@ -69,7 +69,7 @@
 	<task name="int_daisy_prettyPrinter" interactive="false">
 		<parameter>
 			<name>input</name>
-			<value>${input}</value>
+			<value>${output}/tmp/$filename{input}</value>
 		</parameter>
 
 		<parameter>
@@ -83,6 +83,11 @@
 		</parameter>
 				
 	</task>
-
+	<task name="pipeline_system_deleter" interactive="false">
+		<parameter>
+			<name>delete</name>
+			<value>${output}/tmp</value>
+		</parameter>					
+	</task>
 
 </taskScript>
