@@ -9,7 +9,7 @@ namespace DTBMerger.PipelineInterface
         {
 
         
-        public void Validate ( string scriptPath, string dtbPath, string errorFilePath, int timeTolerance )
+        public static void Validate ( string scriptPath, string dtbPath, string errorFilePath, int timeTolerance )
             {
             ScriptParser validatorParser = new ScriptParser ( scriptPath ); 
             
@@ -25,7 +25,26 @@ namespace DTBMerger.PipelineInterface
                     }
 
                 }
-            validatorParser.ExecuteScript ();
+            validatorParser.ExecuteScript (true);
+            }
+
+        public static void PrettyPrinter ( string scriptPath, string dtbPath, string outputDir )
+            {
+            ScriptParser prettyPrinterParser = new ScriptParser ( scriptPath );
+
+            foreach (ScriptParameter p in prettyPrinterParser.ParameterList)
+                {
+                if (p.Name == "input")
+                    {
+                    p.ParameterValue = dtbPath;
+                    }
+                if (p.Name == "output")
+                    {
+                    p.ParameterValue = outputDir;
+                    }
+
+                }
+            prettyPrinterParser.ExecuteScript (false);
             }
 
         }

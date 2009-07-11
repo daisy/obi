@@ -15,7 +15,7 @@ namespace DTBMerger.PipelineInterface
         private string mScriptFilePath;                // path to the script file
         private List<ScriptParameter> mParameterList;  // list of script parameters
         private string mNiceName;                      // nice name for the script itself
-
+        
         public ScriptParser(string ScriptPath)
         {
             mParameterList = new List<ScriptParameter>();
@@ -79,7 +79,7 @@ namespace DTBMerger.PipelineInterface
         /// <summary>
         ///  executes script
         /// </summary>
-        public void ExecuteScript()
+        public void ExecuteScript( bool showTaskCompleteDialog )
         {
             foreach (ScriptParameter p in ParameterList)
             {
@@ -106,7 +106,10 @@ namespace DTBMerger.PipelineInterface
             PipelineProcess.StartInfo.UseShellExecute = false;
 
             PipelineProcess.StartInfo.FileName = PipelineFilePath;
+            if ( showTaskCompleteDialog )
             PipelineProcess.StartInfo.Arguments = " -x -s \"" + mScriptFilePath + "\" -p" + Param;
+            else
+            PipelineProcess.StartInfo.Arguments = " -x -q -s \"" + mScriptFilePath + "\" -p" + Param;
             PipelineProcess.StartInfo.WorkingDirectory = Directory.GetParent(Directory.GetParent(mScriptFilePath).FullName).FullName;
 
             try
