@@ -18,6 +18,7 @@ namespace MergeUtilityUI
         private bool daisy202option = false;
         private DTBMerger.Merger m_Merger = null;
         
+        
         public Daisy3MergerForm ()
         {
             InitializeComponent();
@@ -191,22 +192,54 @@ namespace MergeUtilityUI
             {
                 listOfDTBFiles[i] = m_lbDTBfiles.Items[i].ToString();
             }
+
+        // create temp directory
+        string outputDirTemp = Path.Combine ( m_txtDirectoryPath.Text, "temp" );
+        if (Directory.Exists ( outputDirTemp ))
+            {
+            Directory.Delete ( outputDirTemp, true );
+            }
+        Directory.CreateDirectory ( outputDirTemp );
+
             if (m_rdbExistingNumberOfPages.Checked)
             {
-                m_Merger = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.KeepExisting);                
+                m_Merger = new DTBMerger.Merger(listOfDTBFiles, outputDirTemp, DTBMerger.PageMergeOptions.KeepExisting);                
             }
             else if (m_rdbRenumberPages.Checked)
             {
-                m_Merger = new DTBMerger.Merger(listOfDTBFiles, m_txtDirectoryPath.Text, DTBMerger.PageMergeOptions.Renumber);
+            m_Merger = new DTBMerger.Merger ( listOfDTBFiles, outputDirTemp, DTBMerger.PageMergeOptions.Renumber );
             }
+            
             if (daisy3Option == true)
             {
                 m_Merger.MergeDTDs();
             }
-            if(daisy202option == true)
+            else if(daisy202option == true)
             {
                 m_Merger.MergeDAISY2DTDs();
             }
+
+            // apply pretty printer script and remove temp directory
+            string prettyPrinterInputFileName  = Path.GetFileName( listOfDTBFiles [0]  );
+            string dtbPath = Path.Combine ( outputDirTemp, prettyPrinterInputFileName );
+        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript" );
+        if (File.Exists ( prettyPrinterPath ))
+            {
+            DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter ( prettyPrinterPath,
+                dtbPath,
+                m_txtDirectoryPath.Text );
+
+            // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
+            string[] filesArray = Directory.GetFiles ( m_txtDirectoryPath.Text,
+                prettyPrinterInputFileName,
+                SearchOption.TopDirectoryOnly );
+
+            if (filesArray != null && filesArray.Length > 0)
+                {
+                Directory.Delete ( outputDirTemp,true );
+                }
+            }
+
         }//StartMerging()
         
         private void ProgressDialog_FormClosing ( object sender, EventArgs e )
@@ -335,13 +368,12 @@ namespace MergeUtilityUI
                 if (daisy202option == true)
                     m_StatusLabel.Text = " Validating The Input NCC File..";
                
-                DTBMerger.PipelineInterface.ScriptsFunctions m_Merger = new DTBMerger.PipelineInterface.ScriptsFunctions();
                 string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
                 string completeScriptPath = Path.Combine(scriptPath, "scripts");
                 if (daisy3Option == true)
-                    m_Merger.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
+                    DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
                 if (daisy202option == true)
-                    m_Merger.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), m_lbDTBfiles.SelectedItem.ToString(), "", 30);
+                    DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
                 m_StatusLabel.Text = "";
             }
         }//m_BtnValidateInput_Click
@@ -352,7 +384,7 @@ namespace MergeUtilityUI
                 m_StatusLabel.Text = " Validating The Output OPF File..";
             if (daisy202option == true)
                 m_StatusLabel.Text = " Validating The Output NCC File..";
-            DTBMerger.PipelineInterface.ScriptsFunctions m_Merger = new DTBMerger.PipelineInterface.ScriptsFunctions();
+            
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
             DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
@@ -363,14 +395,14 @@ namespace MergeUtilityUI
             {
                 foreach (FileInfo fileInfo in opfFiles)
                 {
-                    m_Merger.Validate(Path.Combine(completeScriptPath, "Z3986DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Z3986DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
                 }
             }
             if (daisy202option == true)
             {
                 foreach (FileInfo fileInfo in htmlFiles)
                 {
-                    m_Merger.Validate(Path.Combine(completeScriptPath, "Daisy202DTBValidator.taskScript"), fileInfo.FullName, "", 30);
+                DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
                 }
             }
             m_StatusLabel.Text = string.Empty;
