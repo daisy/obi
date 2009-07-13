@@ -464,6 +464,8 @@ namespace Obi
             UpdatePublicationMetadata();
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode   &&   ((SectionNode)node).Level <= audioFileSectionLevel ; };
             TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+
+            RemoveAllPublishChannels (); // remove any publish channel, in case they exist
             PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
             Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
             visitor.setDestinationChannel(publishChannel);
@@ -514,6 +516,22 @@ namespace Obi
                 }
             }
         }
+
+        /// <summary>
+        /// Remove all publish channels. It is useful for removing uncleared published channels that could not be removed due to export faliure.
+        /// </summary>
+        public void RemoveAllPublishChannels ()
+            {
+            List<Channel> channels = getChannelsManager ().getListOfChannels ( PUBLISH_AUDIO_CHANNEL_NAME );
+            if (channels != null && channels.Count > 0)
+                {
+                for (int i = channels.Count - 1; i >= 0; i--)
+                    {
+                    getChannelsManager ().removeChannel ( channels[i] );
+                    }
+                }
+
+            }
 
         /// <summary>
         /// XUK as a string.
