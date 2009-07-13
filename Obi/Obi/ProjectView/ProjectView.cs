@@ -2293,6 +2293,11 @@ namespace Obi.ProjectView
                     int pageNumber = GoToDialog.Number.Number;
                     PageKind kind = GoToDialog.Number.Kind;
                     EmptyNode node = null;
+                    EmptyNode firstSpecialPageMatch = null; // holds first match of special page
+
+                    //flag to indicate if iterations has passed through selected node.   is true if iteration is moved ahead of selected node
+                    bool isAfterSelection =( Selection == null || ( Selection != null && Presentation.FirstSection == Selection.Node)) ? true : false; 
+
                     for (ObiNode n = Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
                         {
                         if (n is EmptyNode)
@@ -2306,8 +2311,14 @@ namespace Obi.ProjectView
                                     {
                                     if (testNode.PageNumber.ArabicNumberOrLabel == GoToDialog.Number.ArabicNumberOrLabel)
                                         {
-                                        node = testNode;
-                                        break;
+                                        if ( firstSpecialPageMatch == null )  firstSpecialPageMatch = testNode;
+
+                                        if (Selection != null 
+                                            && isAfterSelection )
+                                            {
+                                            node = testNode;
+                                            break;
+                                            }
                                         }
                                     }
                                 else if (testNode.PageNumber.Number == pageNumber) // if not special compare int number
@@ -2318,7 +2329,21 @@ namespace Obi.ProjectView
 
                                 }
                             }
+                        // check if iterations has passed selected node
+                        if (Selection != null &&
+                            Selection.Node == n)
+                            {
+                            isAfterSelection = true;
+                            }
                         }
+
+                    // check if special page is null
+                    if (kind == PageKind.Special
+                        && node == null && firstSpecialPageMatch != null)
+                        {
+                        node = firstSpecialPageMatch;
+                        }
+
                     if (node != null)
                         {
                         Selection = new NodeSelection ( node, mContentView );
