@@ -222,7 +222,7 @@ namespace MergeUtilityUI
             // apply pretty printer script and remove temp directory
             string prettyPrinterInputFileName  = Path.GetFileName( listOfDTBFiles [0]  );
             string dtbPath = Path.Combine ( outputDirTemp, prettyPrinterInputFileName );
-        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript" );
+        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden" );
         if (File.Exists ( prettyPrinterPath ))
             {
             DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter ( prettyPrinterPath,
@@ -361,20 +361,33 @@ namespace MergeUtilityUI
 
         private void m_BtnValidateInput_Click(object sender, EventArgs e)
         {
-            if (m_lbDTBfiles.SelectedItems.Count != 0)
+        if (m_lbDTBfiles.SelectedItems.Count != 0)
             {
+            if (daisy3Option == true)
+                m_StatusLabel.Text = " Validating The Input OPF File..";
+            if (daisy202option == true)
+                m_StatusLabel.Text = " Validating The Input NCC File..";
+
+            string scriptPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite" );
+            string completeScriptPath = Path.Combine ( scriptPath, "scripts" );
+
+            try
+                {
                 if (daisy3Option == true)
-                    m_StatusLabel.Text = " Validating The Input OPF File..";
-                if (daisy202option == true)
-                    m_StatusLabel.Text = " Validating The Input NCC File..";
-               
-                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
-                string completeScriptPath = Path.Combine(scriptPath, "scripts");
-                if (daisy3Option == true)
+                    {
                     DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
+                    }
                 if (daisy202option == true)
+                    {
                     DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
-                m_StatusLabel.Text = "";
+                    }
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
+
+            m_StatusLabel.Text = "";
             }
         }//m_BtnValidateInput_Click
 
@@ -391,22 +404,31 @@ namespace MergeUtilityUI
             
             FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.AllDirectories);
             FileInfo[] htmlFiles = dir.GetFiles("*.html ", SearchOption.AllDirectories);
-            if (daisy3Option == true)
-            {
-                foreach (FileInfo fileInfo in opfFiles)
+            try
                 {
-                DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Z3986DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                if (daisy3Option == true)
+                    {
+                    foreach (FileInfo fileInfo in opfFiles)
+                        {
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Z3986DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                        }
+                    }
+                if (daisy202option == true)
+                    {
+                    foreach (FileInfo fileInfo in htmlFiles)
+                        {
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                        }
+                    }
+
+                m_BtnValidateOutput.Enabled = false;
                 }
-            }
-            if (daisy202option == true)
-            {
-                foreach (FileInfo fileInfo in htmlFiles)
+            catch (System.Exception ex)
                 {
-                DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                MessageBox.Show ( ex.ToString ()) ;
                 }
-            }
             m_StatusLabel.Text = string.Empty;
-            m_BtnValidateOutput.Enabled = false;
+
         }//m_BtnValidateOutput_Click                     
 
         private void m_BtnDelete_Click(object sender, EventArgs e)
