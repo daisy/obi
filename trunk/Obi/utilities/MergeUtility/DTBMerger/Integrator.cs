@@ -214,8 +214,19 @@ namespace DTBMerger
 
             // get navMap  and pageList of first DTD
             XmlNode firstNavMapNode = firstNcx.GetElementsByTagName ( "navMap" )[0];
-            XmlNode firstPageListNode = firstNcx.GetElementsByTagName ( "pageList" )[0];
+            XmlNodeList ncxPageList = firstNcx.GetElementsByTagName ( "pageList" ) ;
+            XmlNode firstPageListNode = null;
 
+            if ( ncxPageList != null && ncxPageList.Count > 0 )
+                {
+            firstPageListNode = ncxPageList[0];
+                }
+            else
+                {
+                // create pagelist node in ncx
+                firstPageListNode = firstNcx.CreateElement ( null, "pageList", firstNavMapNode.NamespaceURI );
+                firstNavMapNode.ParentNode.AppendChild ( firstPageListNode ) ;
+                }
             XmlNodeList navPointsList = firstNcx.GetElementsByTagName ( "navPoint" );
             int maxPlayOrderNav = 0;
 
@@ -340,7 +351,7 @@ namespace DTBMerger
             firstDocNSManager.AddNamespace ( "firstNS",
                 firstNcx.DocumentElement.NamespaceURI );
 
-            if (m_PageMergeOptions == PageMergeOptions.KeepExisting)
+            if (m_PageMergeOptions == PageMergeOptions.KeepExisting && firstPageListNode.ChildNodes.Count > 0 )
                 {
                 XmlNodeList duplicateRemovePageList = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
                     firstDocNSManager );
@@ -392,6 +403,14 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
                     }
 
                 } // end of page renumbering option check
+
+            // if page list do not have children, remove it
+            if (firstPageListNode.ChildNodes.Count == 0)
+                {
+                XmlNode parentNode = firstPageListNode.ParentNode;
+                parentNode.RemoveChild ( firstPageListNode );
+                }
+
 
             CommonFunctions.WriteXmlDocumentToFile ( firstNcx, m_DTBFilesInfoList[0].NcxPath );
             }
