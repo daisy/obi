@@ -290,6 +290,7 @@ namespace DTBMerger
                 {
                 string sourcePath = Path.Combine ( baseDirectoryPath, strKey );
                 string destinationPath = Path.Combine ( baseDirectoryPath, m_SmilMap[strKey] );
+
                 File.Move ( sourcePath, destinationPath );
                 //MessageBox.Show ( destinationPath );
                 }
