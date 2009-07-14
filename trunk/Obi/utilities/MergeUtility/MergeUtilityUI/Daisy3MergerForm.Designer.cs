@@ -171,8 +171,8 @@ namespace MergeUtilityUI
                 // 
                 // m_lbDTBfiles
                 // 
-                this.m_lbDTBfiles.FormattingEnabled = true;
                 resources.ApplyResources(this.m_lbDTBfiles, "m_lbDTBfiles");
+                this.m_lbDTBfiles.FormattingEnabled = true;
                 this.m_lbDTBfiles.Name = "m_lbDTBfiles";
                 this.m_lbDTBfiles.SelectedIndexChanged += new System.EventHandler(this.m_lbDTBfiles_SelectedIndexChanged);
                 // 
