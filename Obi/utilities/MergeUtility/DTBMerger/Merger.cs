@@ -52,14 +52,18 @@ namespace DTBMerger
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( true );
             if (m_RequestedForCancel) return;
 
+            int alphabetCounter  = 1 ;
+
             for (int i = 0; i < inputParameterList.Count; i++)
                 {
                 string prefix = Convert.ToChar ( ((int)'a') + i ).ToString ();
-                prefix = prefix + "_";
+                prefix = prefix + alphabetCounter.ToString () +  "_";
                 //MessageBox.Show ( prefix.ToString () );
 
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.RenameDAISY3FilesSet();
+
+                if (alphabetCounter % 26 == 0) alphabetCounter++;
                 }
             if (m_RequestedForCancel) return;
 
@@ -151,17 +155,17 @@ namespace DTBMerger
             m_ProgressInfo = 0;
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( false );
             if (m_RequestedForCancel) return;
-            //foreach (string s in inputParameterList)
-            //MessageBox.Show ( s );
-
+            
+            int alphabetCounter = 1;
             for (int i = 0; i < inputParameterList.Count; i++)
                 {
                 string prefix = Convert.ToChar ( ((int)'a') + i ).ToString ();
-                prefix = prefix + "_";
+                prefix = prefix + alphabetCounter.ToString () +  "_";
                 //MessageBox.Show ( prefix.ToString () );
 
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.Rename2_02DTBFilesSet ();
+                if (alphabetCounter % 26 == 0) alphabetCounter++;
                 }
             if (m_RequestedForCancel) return;
 
