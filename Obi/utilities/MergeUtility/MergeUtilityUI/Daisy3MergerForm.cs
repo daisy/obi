@@ -220,34 +220,18 @@ namespace MergeUtilityUI
             }
 
             // apply pretty printer script and remove temp directory
-            try
+            string prettyPrinterInputFileName = Path.GetFileName(listOfDTBFiles[0]);
+            string dtbPath = Path.Combine(outputDirTemp, prettyPrinterInputFileName);
+            string prettyPrinterPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden");
+            if (File.Exists(prettyPrinterPath))
             {
-                string prettyPrinterInputFileName = Path.GetFileName(listOfDTBFiles[0]);
-                MessageBox.Show(prettyPrinterInputFileName);
-                string dtbPath = Path.Combine(outputDirTemp, prettyPrinterInputFileName);
-                MessageBox.Show(dtbPath);
-                string prettyPrinterPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden");
-                MessageBox.Show(prettyPrinterPath);
-                if (File.Exists(prettyPrinterPath))
+               DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter(prettyPrinterPath, dtbPath, m_txtDirectoryPath.Text);
+               // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
+               string[] filesArray = Directory.GetFiles(m_txtDirectoryPath.Text, prettyPrinterInputFileName, SearchOption.TopDirectoryOnly);
+                if (filesArray != null && filesArray.Length > 0)
                 {
-                    DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter(prettyPrinterPath,
-                        dtbPath,
-                        m_txtDirectoryPath.Text);
-
-                    // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
-                    string[] filesArray = Directory.GetFiles(m_txtDirectoryPath.Text,
-                        prettyPrinterInputFileName,
-                        SearchOption.TopDirectoryOnly);
-
-                    if (filesArray != null && filesArray.Length > 0)
-                    {
-                        Directory.Delete(outputDirTemp, true);
-                    }
+                   Directory.Delete(outputDirTemp, true);
                 }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
             }
         }//StartMerging()
         
