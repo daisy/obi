@@ -27,6 +27,7 @@ namespace Obi.Export
         private int m_PageSpecialCount;
         private int m_MaxPageNormal;
         private int m_IdCounter;
+        private int m_ExportedSectionCount;
         private Time m_SmilElapseTime;
         private Dictionary<string, string> m_SmilFile_TitleMap;
 
@@ -78,6 +79,7 @@ namespace Obi.Export
             m_PageNormalCount = 0;
             m_PageSpecialCount = 0;
             m_MaxPageNormal = 0;
+            m_ExportedSectionCount = 0;
 
             // generate smil metadata dictionary.
             m_SmilMetadata = PopulateSmilMetadataDictionary ();
@@ -98,7 +100,7 @@ namespace Obi.Export
                 }
 
 
-            int tocItemsCount = sectionsList.Count + m_PageFrontCount + m_PageNormalCount + m_PageSpecialCount;
+            int tocItemsCount = m_ExportedSectionCount + m_PageFrontCount + m_PageNormalCount + m_PageSpecialCount;
             CreateNCCMetadata ( nccDocument, tocItemsCount.ToString () );
 
             // write ncc file
@@ -298,18 +300,29 @@ namespace Obi.Export
                     }// if for phrasenode ends
                 } // for loop ends
 
+            // check if heading node have some children else remove it.
+            // it is possible that all phrases are empty phrases or unused phrases, so there are no anchor children of heading node.
+            if (headingNode.ChildNodes.Count == 0)
+                {
+                bodyNode.RemoveChild ( headingNode );
+                }
+            else
+                {
+                // first increment exported section count
+                m_ExportedSectionCount++;
 
-            string strDurTime = TruncateTimeToDecimalPlaces ( sectionDuration.getTime ().TotalSeconds.ToString (), 3 );
-            //string strDurTime = Math.Round ( sectionDuration.getTime ().TotalSeconds, 3, MidpointRounding.ToEven).ToString ();
-            strDurTime = strDurTime + "s";
-            CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
+                string strDurTime = TruncateTimeToDecimalPlaces ( sectionDuration.getTime ().TotalSeconds.ToString (), 3 );
+                //string strDurTime = Math.Round ( sectionDuration.getTime ().TotalSeconds, 3, MidpointRounding.ToEven).ToString ();
+                strDurTime = strDurTime + "s";
+                CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
 
-            AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
-            m_SmilElapseTime = m_SmilElapseTime.addTime ( sectionDuration );
-            m_SmilFile_TitleMap.Add ( smilFileName, section.Label );
+                AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
+                m_SmilElapseTime = m_SmilElapseTime.addTime ( sectionDuration );
+                m_SmilFile_TitleMap.Add ( smilFileName, section.Label );
 
-            WriteXmlDocumentToFile ( smilDocument,
-                Path.Combine ( m_ExportDirectory, smilFileName ) );
+                WriteXmlDocumentToFile ( smilDocument,
+                    Path.Combine ( m_ExportDirectory, smilFileName ) );
+                }
             }
 
         private string IncrementID { get { return (++m_IdCounter).ToString (); } }
