@@ -191,7 +191,6 @@ namespace MergeUtilityUI
             for (int i = 0; i < m_lbDTBfiles.Items.Count; i++)
             {
                 listOfDTBFiles[i] = m_lbDTBfiles.Items[i].ToString();
-                MessageBox.Show(m_lbDTBfiles.Items[i].ToString());
             }
             // create temp directory
         string outputDirTemp = Path.Combine ( m_txtDirectoryPath.Text, "temp" );
