@@ -191,9 +191,9 @@ namespace MergeUtilityUI
             for (int i = 0; i < m_lbDTBfiles.Items.Count; i++)
             {
                 listOfDTBFiles[i] = m_lbDTBfiles.Items[i].ToString();
+                MessageBox.Show(m_lbDTBfiles.Items[i].ToString());
             }
-
-        // create temp directory
+            // create temp directory
         string outputDirTemp = Path.Combine ( m_txtDirectoryPath.Text, "temp" );
         if (Directory.Exists ( outputDirTemp ))
             {
@@ -220,26 +220,35 @@ namespace MergeUtilityUI
             }
 
             // apply pretty printer script and remove temp directory
-            string prettyPrinterInputFileName  = Path.GetFileName( listOfDTBFiles [0]  );
-            string dtbPath = Path.Combine ( outputDirTemp, prettyPrinterInputFileName );
-        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden" );
-        if (File.Exists ( prettyPrinterPath ))
+            try
             {
-            DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter ( prettyPrinterPath,
-                dtbPath,
-                m_txtDirectoryPath.Text );
-
-            // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
-            string[] filesArray = Directory.GetFiles ( m_txtDirectoryPath.Text,
-                prettyPrinterInputFileName,
-                SearchOption.TopDirectoryOnly );
-
-            if (filesArray != null && filesArray.Length > 0)
+                string prettyPrinterInputFileName = Path.GetFileName(listOfDTBFiles[0]);
+                MessageBox.Show(prettyPrinterInputFileName);
+                string dtbPath = Path.Combine(outputDirTemp, prettyPrinterInputFileName);
+                MessageBox.Show(dtbPath);
+                string prettyPrinterPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden");
+                MessageBox.Show(prettyPrinterPath);
+                if (File.Exists(prettyPrinterPath))
                 {
-                Directory.Delete ( outputDirTemp,true );
+                    DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter(prettyPrinterPath,
+                        dtbPath,
+                        m_txtDirectoryPath.Text);
+
+                    // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
+                    string[] filesArray = Directory.GetFiles(m_txtDirectoryPath.Text,
+                        prettyPrinterInputFileName,
+                        SearchOption.TopDirectoryOnly);
+
+                    if (filesArray != null && filesArray.Length > 0)
+                    {
+                        Directory.Delete(outputDirTemp, true);
+                    }
                 }
             }
-
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
         }//StartMerging()
         
         private void ProgressDialog_FormClosing ( object sender, EventArgs e )
@@ -402,8 +411,8 @@ namespace MergeUtilityUI
             string completeScriptPath = Path.Combine(scriptPath, "scripts");
             DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
             
-            FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.AllDirectories);
-            FileInfo[] htmlFiles = dir.GetFiles("*.html ", SearchOption.AllDirectories);
+            FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.TopDirectoryOnly);
+            FileInfo[] htmlFiles = dir.GetFiles("*.html ", SearchOption.TopDirectoryOnly);
             try
                 {
                 if (daisy3Option == true)
