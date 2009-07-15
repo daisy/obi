@@ -501,8 +501,19 @@ namespace Obi.Export
                     nccDocument.CreateTextNode ( titleMetadata.getContent () ) );
                 }
 
+            // add dc:date from produced date in case dc:date do not exists
+            urakawa.metadata.Metadata producedDateMetadata = m_Presentation.GetFirstMetadataItem (Metadata.DTB_PRODUCED_DATE  );
+            if ( m_Presentation.GetFirstMetadataItem ( Metadata.DC_DATE ) == null
+                &&    producedDateMetadata != null)
+                {
+                XmlNode dateMetadataNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
+                headNode.AppendChild ( dateMetadataNode );
+                CreateAppendXmlAttribute ( nccDocument, dateMetadataNode, "name",  "dc:date");
+                CreateAppendXmlAttribute ( nccDocument, dateMetadataNode,"content",  producedDateMetadata.getContent ()  );
+                }
 
-            // add existing metadata items to ncc
+
+            // add existing metadata items to nccn
             foreach (urakawa.metadata.Metadata m in items)
                 {
                 if (m_MetadataMap.ContainsKey ( m.getName () ))
