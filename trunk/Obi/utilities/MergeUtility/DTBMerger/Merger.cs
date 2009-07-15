@@ -52,6 +52,7 @@ namespace DTBMerger
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( true );
             if (m_RequestedForCancel) return;
 
+            /*
             int alphabetCounter  = 1 ;
 
             for (int i = 0; i < inputParameterList.Count; i++)
@@ -63,8 +64,11 @@ namespace DTBMerger
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
                 renamer.RenameDAISY3FilesSet();
 
-                if (alphabetCounter % 26 == 0) alphabetCounter++;
+                if ( (i + 1 ) % 26 == 0) alphabetCounter++;
                 }
+             */
+
+            RenameInputDTBs ( inputParameterList );
             if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
@@ -148,25 +152,32 @@ namespace DTBMerger
             return opfPath;
             }
 
-        
+        private void RenameInputDTBs ( List<string> inputParameterList )
+            {
+            int alphabetCounter = 1;
+            for (int i = 0; i < inputParameterList.Count; i++)
+                {
+                string prefix = Convert.ToChar ( ((int)'a') + (i % 26) ).ToString ();
+                prefix = prefix + alphabetCounter.ToString () + "_";
+                //MessageBox.Show ( prefix.ToString () );
+
+                Renamer renamer = new Renamer ( inputParameterList[i], prefix );
+                renamer.Rename2_02DTBFilesSet ();
+                if ((i + 1) % 26 == 0) alphabetCounter++;
+
+                if (m_RequestedForCancel) return;
+                }
+            }
+
+
         public void MergeDAISY2DTDs ()
             {
             m_RequestedForCancel = false;
             m_ProgressInfo = 0;
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( false );
             if (m_RequestedForCancel) return;
-            
-            int alphabetCounter = 1;
-            for (int i = 0; i < inputParameterList.Count; i++)
-                {
-                string prefix = Convert.ToChar ( ((int)'a') + i ).ToString ();
-                prefix = prefix + alphabetCounter.ToString () +  "_";
-                //MessageBox.Show ( prefix.ToString () );
 
-                Renamer renamer = new Renamer ( inputParameterList[i], prefix );
-                renamer.Rename2_02DTBFilesSet ();
-                if (alphabetCounter % 26 == 0) alphabetCounter++;
-                }
+            RenameInputDTBs ( inputParameterList );
             if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
