@@ -20,7 +20,7 @@
 		</datatype>
 	</parameter>
 	
-	<parameter name="filesetRenamerOutputPath" value="" required="true">
+	<parameter name="filesetRenamerOutputPath" value="Renamed" required="true">
 		<nicename>Output directory</nicename>
 		<description>Select the output directory</description>
 		<datatype>
