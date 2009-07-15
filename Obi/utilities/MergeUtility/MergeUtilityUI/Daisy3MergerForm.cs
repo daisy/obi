@@ -192,7 +192,8 @@ namespace MergeUtilityUI
             {
                 listOfDTBFiles[i] = m_lbDTBfiles.Items[i].ToString();
             }
-            // create temp directory
+
+        // create temp directory
         string outputDirTemp = Path.Combine ( m_txtDirectoryPath.Text, "temp" );
         if (Directory.Exists ( outputDirTemp ))
             {
@@ -219,19 +220,26 @@ namespace MergeUtilityUI
             }
 
             // apply pretty printer script and remove temp directory
-            string prettyPrinterInputFileName = Path.GetFileName(listOfDTBFiles[0]);
-            string dtbPath = Path.Combine(outputDirTemp, prettyPrinterInputFileName);
-            string prettyPrinterPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden");
-            if (File.Exists(prettyPrinterPath))
+            string prettyPrinterInputFileName  = Path.GetFileName( listOfDTBFiles [0]  );
+            string dtbPath = Path.Combine ( outputDirTemp, prettyPrinterInputFileName );
+        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden" );
+        if (File.Exists ( prettyPrinterPath ))
             {
-               DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter(prettyPrinterPath, dtbPath, m_txtDirectoryPath.Text);
-               // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
-               string[] filesArray = Directory.GetFiles(m_txtDirectoryPath.Text, prettyPrinterInputFileName, SearchOption.TopDirectoryOnly);
-                if (filesArray != null && filesArray.Length > 0)
+            DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter ( prettyPrinterPath,
+                dtbPath,
+                m_txtDirectoryPath.Text );
+
+            // check if pretty printer has worked well by checking if ncc.html or .opf files are at output
+            string[] filesArray = Directory.GetFiles ( m_txtDirectoryPath.Text,
+                prettyPrinterInputFileName,
+                SearchOption.TopDirectoryOnly );
+
+            if (filesArray != null && filesArray.Length > 0)
                 {
-                   Directory.Delete(outputDirTemp, true);
+                Directory.Delete ( outputDirTemp,true );
                 }
             }
+
         }//StartMerging()
         
         private void ProgressDialog_FormClosing ( object sender, EventArgs e )
