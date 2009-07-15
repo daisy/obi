@@ -797,6 +797,8 @@ namespace Obi.ProjectView
             {
             if (CanIncreaseLevel)
                 {
+                if (mTransportBar.IsActive) mTransportBar.Stop ();
+
                 mContentView.EventsAreEnabled = false;
                 mPresentation.Do ( new Commands.TOC.MoveSectionIn ( this, mTOCView.Selection.Section ) );
                 mContentView.EventsAreEnabled = true;
@@ -811,6 +813,8 @@ namespace Obi.ProjectView
             {
             if (CanDecreaseLevel)
                 {
+                if (mTransportBar.IsActive) mTransportBar.Stop ();
+
                 mContentView.EventsAreEnabled = false;
                 mPresentation.Do ( new Commands.TOC.MoveSectionOut ( this, mTOCView.Selection.Section ) );
                 mContentView.EventsAreEnabled = true;
