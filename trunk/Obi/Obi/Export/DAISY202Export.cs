@@ -130,7 +130,7 @@ namespace Obi.Export
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "name", "dc:title" );
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.getContent () );
                 }
-            AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString () );
+            AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString ().Split ( '.' )[0] );
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory, "master.smil" ) );
@@ -155,7 +155,9 @@ namespace Obi.Export
             bodyNode.AppendChild ( headingNode );
 
             // create smil document
-            string smilFileName = sectionIndex.ToString () + ".smil";
+            string smilNumericFrag = (sectionIndex + 1).ToString ();
+            if (smilNumericFrag.Length == 1) smilNumericFrag =  "0" + smilNumericFrag;
+            string smilFileName =smilNumericFrag + ".smil";
             XmlDocument smilDocument = CreateSmilStubDocument ();
             XmlNode smilBodyNode = smilDocument.GetElementsByTagName ( "body" )[0];
 
