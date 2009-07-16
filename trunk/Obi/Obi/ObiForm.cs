@@ -1147,7 +1147,7 @@ namespace Obi
 
 
         private void PreviewFromtoolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.Preview ( ProjectView.TransportBar.From, ProjectView.TransportBar.UseAudioCursor ); }
-        private void PreviewUptotoolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.Preview ( ProjectView.TransportBar.Upto, ProjectView.TransportBar.UseSelection ); }
+        private void PreviewUptotoolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.Preview ( ProjectView.TransportBar.Upto, ProjectView.TransportBar.UseAudioCursor ); }
         private void PreviewSelectedAudiotoolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.PreviewAudioSelection (); }
         private void previousSectionToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.PrevSection (); }
         private void previousPageToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.TransportBar.PrevPage (); }
@@ -1240,7 +1240,7 @@ namespace Obi
         // Export the project as DAISY 3.
         private void ExportProject ()
             {
-            mProjectView.TransportBar.Enabled = false;
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
 
             // returns if project is empty
             if (mProjectView.Presentation.RootNode.SectionCount == 0)
@@ -1270,7 +1270,7 @@ namespace Obi
                 return;
                 }
 
-            //Default_DAISY2_02export_dirname
+            mProjectView.TransportBar.Enabled = false;
 
             if (CheckedPageNumbers () && CheckedForEmptySections ())
                 {
