@@ -83,7 +83,7 @@ namespace Obi
         /// <summary>
         /// Get the current (Obi) presentation.
         /// </summary>
-        public Presentation Presentation { get { return mProject == null ? null : (Presentation)mProject.getPresentation ( 0 ); } }
+        public Presentation Presentation { get { return mProject == null ? null : mProject.getListOfPresentations().Count == 0 ? null : (Presentation)mProject.getPresentation ( 0 ); } }
 
         /// <summary>
         /// Get the description of the top redo command.
