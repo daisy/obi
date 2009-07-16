@@ -106,7 +106,9 @@ namespace MergeUtilityUI
             this.Controls.Add(this.m_btnCancel);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(532, 212);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(532, 212);
             this.Name = "DaisyMergerOptionForm";
             this.Text = "Choose DTB files to Merge ";
             this.groupBox1.ResumeLayout(false);
