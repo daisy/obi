@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
+using System.Xml;
 
 namespace MergeUtilityUI
 {
@@ -17,7 +18,8 @@ namespace MergeUtilityUI
         private bool daisy3Option = false;
         private bool daisy202option = false;
         private DTBMerger.Merger m_Merger = null;
-        
+        private string m_PipelineLiteDir;
+
         
         public Daisy3MergerForm ()
         {
@@ -27,7 +29,31 @@ namespace MergeUtilityUI
                 new System.ComponentModel.RunWorkerCompletedEventHandler(m_bgWorker_RunWorkerCompleted);
             m_bgWorker.WorkerSupportsCancellation = true;
             m_Merger = null;
-        }        
+            LoadSettings ();
+        }
+
+        private void LoadSettings ()
+            {
+            string settingsFilePath = Path.Combine (
+                System.AppDomain.CurrentDomain.BaseDirectory,
+                "DTBMerger_settings.xml" );
+            XmlDocument settingsDocument = DTBMerger.CommonFunctions.CreateXmlDocument ( settingsFilePath );
+            string pipelinePath = settingsDocument.GetElementsByTagName ( "pipelineLitePath" )[0].InnerText;
+            if (!pipelinePath.EndsWith ( "\\" )) pipelinePath = pipelinePath + "\\";
+            
+            if ( Path.IsPathRooted ( pipelinePath ))
+                {
+                m_PipelineLiteDir = pipelinePath ;
+                }
+            else
+                {
+                m_PipelineLiteDir = Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, pipelinePath ) ;
+                }
+            if (!Directory.Exists ( m_PipelineLiteDir ))
+                {
+                MessageBox.Show ( "Pipeline-lite not found at: " + m_PipelineLiteDir, "WARNING" );
+                }
+            }
 
         private void m_btnAdd_Click(object sender, EventArgs e)
         {
@@ -222,7 +248,7 @@ namespace MergeUtilityUI
             // apply pretty printer script and remove temp directory
             string prettyPrinterInputFileName  = Path.GetFileName( listOfDTBFiles [0]  );
             string dtbPath = Path.Combine ( outputDirTemp, prettyPrinterInputFileName );
-        string prettyPrinterPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite\\scripts\\PrettyPrinter.taskScript-hidden" );
+        string prettyPrinterPath = Path.Combine ( m_PipelineLiteDir , "scripts\\PrettyPrinter.taskScript-hidden" );
         if (File.Exists ( prettyPrinterPath ))
             {
             DTBMerger.PipelineInterface.ScriptsFunctions.PrettyPrinter ( prettyPrinterPath,
@@ -368,8 +394,8 @@ namespace MergeUtilityUI
             if (daisy202option == true)
                 m_StatusLabel.Text = " Validating The Input NCC File..";
 
-            string scriptPath = Path.Combine ( AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite" );
-            string completeScriptPath = Path.Combine ( scriptPath, "scripts" );
+            
+            string completeScriptPath = Path.Combine ( m_PipelineLiteDir , "scripts" );
 
             try
                 {
@@ -398,8 +424,8 @@ namespace MergeUtilityUI
             if (daisy202option == true)
                 m_StatusLabel.Text = " Validating The Output NCC File..";
             
-            string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pipeline-lite");
-            string completeScriptPath = Path.Combine(scriptPath, "scripts");
+            
+            string completeScriptPath = Path.Combine(m_PipelineLiteDir ,"scripts");
             DirectoryInfo dir = new DirectoryInfo(m_txtDirectoryPath.Text);
             
             FileInfo[] opfFiles = dir.GetFiles("*.opf ", SearchOption.TopDirectoryOnly);
