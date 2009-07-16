@@ -57,7 +57,7 @@ namespace MergeUtilityUI
 
         private void m_btnAdd_Click(object sender, EventArgs e)
         {
-            m_rdbExistingNumberOfPages.Checked = true;
+            
             OpenFileDialog select_File = new OpenFileDialog();
 
             if (daisy3Option == true)
@@ -390,9 +390,9 @@ namespace MergeUtilityUI
         if (m_lbDTBfiles.SelectedItems.Count != 0)
             {
             if (daisy3Option == true)
-                m_StatusLabel.Text = " Validating The Input OPF File..";
+                m_StatusLabel.Text = " Validating The Input OPF File..  Please Wait ";
             if (daisy202option == true)
-                m_StatusLabel.Text = " Validating The Input NCC File..";
+                m_StatusLabel.Text = " Validating The Input NCC File..  Please Wait ";
 
             
             string completeScriptPath = Path.Combine ( m_PipelineLiteDir , "scripts" );
@@ -420,9 +420,9 @@ namespace MergeUtilityUI
         private void m_BtnValidateOutput_Click(object sender, EventArgs e)
         {
             if (daisy3Option == true)
-                m_StatusLabel.Text = " Validating The Output OPF File..";
+                m_StatusLabel.Text = " Validating The Output OPF File.. Please wait";
             if (daisy202option == true)
-                m_StatusLabel.Text = " Validating The Output NCC File..";
+                m_StatusLabel.Text = " Validating The Output NCC File.. Please wait";
             
             
             string completeScriptPath = Path.Combine(m_PipelineLiteDir ,"scripts");
