@@ -460,6 +460,20 @@ namespace Obi
                             mSession.Presentation.setRootUri ( new Uri ( path_new ) );
                             mSession.Save ( path_new );
                             mSession.Presentation.setRootUri ( prevUri );
+
+                            // delete the original copied project file ( .obi file ) from new directory in case the new project has different project file name
+                            if (Path.GetFileName ( prevUri.LocalPath ) != Path.GetFileName ( path_new )
+                                && File.Exists ( path_new ))
+                                {
+                                string copiedProjectFilePath = Path.Combine ( dir_new.FullName,
+                                    Path.GetFileName ( prevUri.LocalPath ) );
+
+                                if (File.Exists ( copiedProjectFilePath ))
+                                    File.Delete ( copiedProjectFilePath );
+
+                                if (File.Exists ( copiedProjectFilePath + ".lock" ))
+                                    File.Delete ( copiedProjectFilePath + ".lock" );
+                                }
                             } );
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
