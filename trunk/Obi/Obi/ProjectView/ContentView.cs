@@ -863,7 +863,14 @@ namespace Obi.ProjectView
                     {
                     strip = mStrips[(SectionNode)node];
                     if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation)
+                        {
                         CreateBlocksInStrip ( strip );
+                        }
+                    else if (strip != null && m_VisibleStripsList != null && !m_VisibleStripsList.Contains ( strip ))
+                        {
+                        // just add strip to visible strip list
+                        AddStripToVisibleStripsList ( strip );
+                        }
                     }
                 else
                     {
