@@ -2053,7 +2053,7 @@ namespace Obi.ProjectView
             get
                 {
                 if (mProjectView.TransportBar.IsPlayerActive)
-                    return mPlaybackBlock.Node;
+                    return mPlaybackBlock != null ? mPlaybackBlock.Node: null;
                 else
                     return mProjectView.SelectedNodeAs<ObiNode> ();
                 }
