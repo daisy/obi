@@ -68,7 +68,7 @@ namespace DTBMerger
                 }
              */
 
-            RenameInputDTBs ( inputParameterList );
+            RenameInputDTBs ( inputParameterList, true );
             if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
@@ -152,7 +152,7 @@ namespace DTBMerger
             return opfPath;
             }
 
-        private void RenameInputDTBs ( List<string> inputParameterList )
+        private void RenameInputDTBs ( List<string> inputParameterList, bool isDAISY3 )
             {
             int alphabetCounter = 1;
             for (int i = 0; i < inputParameterList.Count; i++)
@@ -162,7 +162,14 @@ namespace DTBMerger
                 //MessageBox.Show ( prefix.ToString () );
 
                 Renamer renamer = new Renamer ( inputParameterList[i], prefix );
-                renamer.Rename2_02DTBFilesSet ();
+                if (isDAISY3)
+                    {
+                    renamer.RenameDAISY3FilesSet ();
+                    }
+                else
+                    {
+                    renamer.Rename2_02DTBFilesSet ();
+                    }
                 if ((i + 1) % 26 == 0) alphabetCounter++;
 
                 if (m_RequestedForCancel) return;
@@ -177,7 +184,7 @@ namespace DTBMerger
             List<string> inputParameterList = CopyAllDTDsToOutputDirectory ( false );
             if (m_RequestedForCancel) return;
 
-            RenameInputDTBs ( inputParameterList );
+            RenameInputDTBs ( inputParameterList , false);
             if (m_RequestedForCancel) return;
 
             m_ProgressInfo = 70;
