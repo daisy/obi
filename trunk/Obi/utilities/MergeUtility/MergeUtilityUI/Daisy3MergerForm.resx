@@ -163,7 +163,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_BtnReset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>515, 77</value>
+    <value>394, 77</value>
   </data>
   <data name="m_BtnReset.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 30</value>
@@ -184,7 +184,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_BtnReset.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_BtnMerge.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -217,7 +217,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_BtnMerge.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_BtnOutputDirectory.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -247,7 +247,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_BtnOutputDirectory.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_txtDirectoryPath.AccessibleName" xml:space="preserve">
     <value>Output Directory Path</value>
@@ -271,7 +271,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_txtDirectoryPath.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="m_BtnCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -286,7 +286,7 @@
     <value>125, 30</value>
   </data>
   <data name="m_BtnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="m_BtnCancel.Text" xml:space="preserve">
     <value>&amp;Cancel</value>
@@ -301,7 +301,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_BtnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="m_lbOutputDirPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -331,7 +331,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_lbOutputDirPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="m_bgWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -366,6 +366,57 @@
   <data name="m_StatusLabel.Text" xml:space="preserve">
     <value>Please Click Add Button to add the DTB files in Listbox...    </value>
   </data>
+  <data name="m_BtnHelp.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnHelp.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnHelp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>566, 77</value>
+  </data>
+  <data name="m_BtnHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 30</value>
+  </data>
+  <data name="m_BtnHelp.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="m_BtnHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="&gt;&gt;m_BtnHelp.Name" xml:space="preserve">
+    <value>m_BtnHelp</value>
+  </data>
+  <data name="&gt;&gt;m_BtnHelp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BtnHelp.Parent" xml:space="preserve">
+    <value>m_grpDirPath</value>
+  </data>
+  <data name="&gt;&gt;m_BtnHelp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_BtnValidateOutput.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_BtnValidateOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_BtnValidateOutput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="m_BtnValidateOutput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 77</value>
+  </data>
+  <data name="m_BtnValidateOutput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 30</value>
+  </data>
+  <data name="m_BtnValidateOutput.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="m_BtnValidateOutput.Text" xml:space="preserve">
+    <value>Validate &amp;Output</value>
+  </data>
   <data name="&gt;&gt;m_BtnValidateOutput.Name" xml:space="preserve">
     <value>m_BtnValidateOutput</value>
   </data>
@@ -376,7 +427,7 @@
     <value>m_grpDirPath</value>
   </data>
   <data name="&gt;&gt;m_BtnValidateOutput.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_grpDirPath.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
@@ -401,39 +452,6 @@
   </data>
   <data name="&gt;&gt;m_grpDirPath.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="m_BtnValidateOutput.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_BtnValidateOutput.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="m_BtnValidateOutput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="m_BtnValidateOutput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 77</value>
-  </data>
-  <data name="m_BtnValidateOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 30</value>
-  </data>
-  <data name="m_BtnValidateOutput.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="m_BtnValidateOutput.Text" xml:space="preserve">
-    <value>Validate &amp;Output</value>
-  </data>
-  <data name="&gt;&gt;m_BtnValidateOutput.Name" xml:space="preserve">
-    <value>m_BtnValidateOutput</value>
-  </data>
-  <data name="&gt;&gt;m_BtnValidateOutput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_BtnValidateOutput.Parent" xml:space="preserve">
-    <value>m_grpDirPath</value>
-  </data>
-  <data name="&gt;&gt;m_BtnValidateOutput.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;m_rdbRenumberPages.Name" xml:space="preserve">
     <value>m_rdbRenumberPages</value>
@@ -622,7 +640,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_BtnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 157</value>
+    <value>14, 149</value>
   </data>
   <data name="m_BtnDelete.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 30</value>
@@ -655,7 +673,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="m_BtnDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 112</value>
+    <value>14, 102</value>
   </data>
   <data name="m_BtnDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 30</value>

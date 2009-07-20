@@ -482,8 +482,6 @@ namespace MergeUtilityUI
             m_BtnValidateOutput.Enabled = false;
             m_btnUP.Enabled = false;
             m_BtnDown.Enabled = false;
-            m_rdbExistingNumberOfPages.Checked = false;
-            m_rdbRenumberPages.Checked = false;
             m_BtnDelete.Enabled = false;
             m_BtnReset.Enabled = false;
             }//m_BtnReset_Click
@@ -532,6 +530,11 @@ namespace MergeUtilityUI
                 return;
                 }
             }
+
+        private void m_BtnHelp_Click(object sender, EventArgs e)
+        {
+            ShowHelpFile();
+        }
 
 
         }//class

@@ -54,6 +54,7 @@ namespace MergeUtilityUI
                 this.m_btnAdd = new System.Windows.Forms.Button();
                 this.m_lblDBookInfo = new System.Windows.Forms.Label();
                 this.m_grpManipulateDTB = new System.Windows.Forms.GroupBox();
+                this.m_BtnHelp = new System.Windows.Forms.Button();
                 this.m_statusStrip.SuspendLayout();
                 this.m_grpDirPath.SuspendLayout();
                 this.m_grpPageInput.SuspendLayout();
@@ -121,6 +122,7 @@ namespace MergeUtilityUI
                 // 
                 // m_grpDirPath
                 // 
+                this.m_grpDirPath.Controls.Add(this.m_BtnHelp);
                 this.m_grpDirPath.Controls.Add(this.m_BtnValidateOutput);
                 this.m_grpDirPath.Controls.Add(this.m_BtnMerge);
                 this.m_grpDirPath.Controls.Add(this.m_BtnReset);
@@ -236,6 +238,13 @@ namespace MergeUtilityUI
                 this.m_grpManipulateDTB.Name = "m_grpManipulateDTB";
                 this.m_grpManipulateDTB.TabStop = false;
                 // 
+                // m_BtnHelp
+                // 
+                resources.ApplyResources(this.m_BtnHelp, "m_BtnHelp");
+                this.m_BtnHelp.Name = "m_BtnHelp";
+                this.m_BtnHelp.UseVisualStyleBackColor = true;
+                this.m_BtnHelp.Click += new System.EventHandler(this.m_BtnHelp_Click);
+                // 
                 // Daisy3MergerForm
                 // 
                 this.AcceptButton = this.m_BtnMerge;
@@ -289,7 +298,8 @@ namespace MergeUtilityUI
         private System.Windows.Forms.TextBox m_txtDTBookInfo;
         private System.Windows.Forms.Button m_btnAdd;
         private System.Windows.Forms.Label m_lblDBookInfo;
-        private System.Windows.Forms.GroupBox m_grpManipulateDTB;        
+        private System.Windows.Forms.GroupBox m_grpManipulateDTB;
+        private System.Windows.Forms.Button m_BtnHelp;        
         }
     }
 
