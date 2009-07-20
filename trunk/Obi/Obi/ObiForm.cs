@@ -2089,19 +2089,45 @@ namespace Obi
         // View > Zoom in (Ctrl+Alt++)
         private void mView_ZoomInMenuItem_Click ( object sender, EventArgs e )
             {
-            ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
+            if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+
+            try
+                {
+                ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
 
         // View > Zoom out (Ctrl+Alt+-)
         private void mView_ZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
-            ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
+            if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+            try
+                {
+                ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
 
         // View > Normal size (Ctrl+Alt+0)
         private void mView_NormalSizeMenuItem_Click ( object sender, EventArgs e )
             {
-            ZoomFactor = 1.0f;
+            if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+
+            try
+                {
+                ZoomFactor = 1.0f;
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
 
         // View > Project properties (Alt+Enter)
@@ -2129,29 +2155,47 @@ namespace Obi
 
         private void mView_AudioZoomInMenuItem_Click ( object sender, EventArgs e )
             {
-            ProjectView.Strip strip = mProjectView.StripForSelection;
-            if (strip == null)
+            if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+            try
                 {
-                AudioScale *= AUDIO_SCALE_INCREMENT;
+                ProjectView.Strip strip = mProjectView.StripForSelection;
+                if (strip == null)
+                    {
+                    AudioScale *= AUDIO_SCALE_INCREMENT;
+                    }
+                else
+                    {
+                    strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                    }
                 }
-            else
+            catch (System.Exception ex)
                 {
-                strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                MessageBox.Show ( ex.ToString () );
                 }
             }
 
         private void mView_AudioZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
-            ProjectView.Strip strip = mProjectView.StripForSelection;
-            if (strip == null)
+            if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+            try
                 {
-                AudioScale /= AUDIO_SCALE_INCREMENT;
+                ProjectView.Strip strip = mProjectView.StripForSelection;
+                if (strip == null)
+                    {
+                    AudioScale /= AUDIO_SCALE_INCREMENT;
+                    }
+                else
+                    {
+                    strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+                    }
                 }
-            else
+            catch (System.Exception ex)
                 {
-                strip.AudioScale /= AUDIO_SCALE_INCREMENT;
+                MessageBox.Show ( ex.ToString () );
                 }
             }
+
+
         private string chooseDaisyType ( string toolStripText )
             {
             string exportDaisy202Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY2_02 , Path.GetDirectoryName(mSession.Path));
