@@ -94,6 +94,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DTB Merger-Help.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DTBMerger_settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
