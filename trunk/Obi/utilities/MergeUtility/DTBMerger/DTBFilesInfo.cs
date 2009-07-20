@@ -202,6 +202,10 @@ namespace DTBMerger
                         {
                         m_Title = n.Attributes.GetNamedItem ( "content" ).Value;
                         }
+                    if (n.Attributes.GetNamedItem ( "name" ).Value == "dc:identifier")
+                        {
+                        m_Identifier = n.Attributes.GetNamedItem ( "content" ).Value;
+                        }
                     }
                 }
 
