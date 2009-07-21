@@ -239,22 +239,27 @@ namespace DTBMerger
 
         protected void UpdateAllSmilFilesForDAISY2 ()
             {
-            TimeSpan initialTime = m_DTBFilesInfoList[0].TotalTime;
+            TimeSpan initialTime = new TimeSpan ();
+            double bookDuration= 0 ;
+            foreach (string s in m_DTBFilesInfoList[0].SmilFilePathsList)
+                {
+                initialTime= initialTime.Add( UpdateSmilFileForDAISY2 ( s, initialTime, false) );
+                }
 
             for (int i = 1; i < m_DTBFilesInfoList.Count; i++)
                 {
                 foreach (string s in m_DTBFilesInfoList[i].SmilFilePathsList)
                     {
-                    UpdateSmilFileForDAISY2 ( s, initialTime );
+                    initialTime = initialTime.Add ( UpdateSmilFileForDAISY2 ( s, initialTime , true) );
                     }
 
-                initialTime = initialTime.Add ( m_DTBFilesInfoList[i].TotalTime );
+                //initialTime = initialTime.Add ( m_DTBFilesInfoList[i].TotalTime );
                 }
 
 
             }
 
-        private void UpdateSmilFileForDAISY2 ( string smilPath, TimeSpan baseTime )
+        private TimeSpan UpdateSmilFileForDAISY2 ( string smilPath, TimeSpan baseTime, bool canWrite )
             {
             XmlDocument smilDoc = CommonFunctions.CreateXmlDocument ( smilPath );
 
@@ -266,10 +271,10 @@ namespace DTBMerger
                     {
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "ncc:totalElapsedTime")
                         {
-                        string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
-                        TimeSpan smilTime = CommonFunctions.GetTimeSpan ( timeString );
-                        smilTime = baseTime.Add ( smilTime );
-                        n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString ( smilTime );
+                        //string timeString = n.Attributes.GetNamedItem ( "content" ).Value;
+                        //TimeSpan smilTime = CommonFunctions.GetTimeSpan ( timeString );
+                        //smilTime = baseTime.Add ( smilTime );
+                        n.Attributes.GetNamedItem ( "content" ).Value = GetTimeString ( baseTime);
                         }
 
                     if (n.Attributes.GetNamedItem ( "name" ).Value == "dc:identifier")
@@ -278,8 +283,17 @@ namespace DTBMerger
                         }
                     } //null check ends
                 } // foreach ends
+            if (canWrite)
+                {
+                CommonFunctions.WriteXmlDocumentToFile ( smilDoc, smilPath );
+                }
 
-            CommonFunctions.WriteXmlDocumentToFile ( smilDoc, smilPath );
+            // get duration of current smil
+            XmlNode firstSeqNode = smilDoc.GetElementsByTagName ( "body" )[0].FirstChild ;
+            string strDur = firstSeqNode.Attributes.GetNamedItem ( "dur" ).Value;
+            strDur = strDur.Replace ( "s", "" );
+            double duration =  double.Parse ( strDur );
+            return new TimeSpan ( Convert.ToInt64 ( 10000000 * duration ) );
             }
 
         private void UpdateMasterSmilFile ()
