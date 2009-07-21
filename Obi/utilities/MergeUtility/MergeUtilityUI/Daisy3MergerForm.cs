@@ -19,6 +19,8 @@ namespace MergeUtilityUI
         private bool daisy202option = false;
         private DTBMerger.Merger m_Merger = null;
         private string m_PipelineLiteDir;
+        private int m_ValidatorTimeTolerance = 50;
+
 
 
         public Daisy3MergerForm ()
@@ -28,8 +30,17 @@ namespace MergeUtilityUI
             m_bgWorker.RunWorkerCompleted +=
                 new System.ComponentModel.RunWorkerCompletedEventHandler ( m_bgWorker_RunWorkerCompleted );
             m_bgWorker.WorkerSupportsCancellation = true;
+            
             m_Merger = null;
-            LoadSettings ();
+
+            try
+                {
+                LoadSettings ();
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
             }
 
         private void LoadSettings ()
@@ -53,6 +64,12 @@ namespace MergeUtilityUI
                 {
                 MessageBox.Show ( "Pipeline-lite not found at: " + m_PipelineLiteDir, "WARNING" );
                 }
+
+            string strTimeTolerance = settingsDocument.GetElementsByTagName ( "validatorTimeTolerance" )[0].InnerText;
+            int timeTolerance = 0;
+            int.TryParse ( strTimeTolerance, out timeTolerance );
+            if (timeTolerance > 0) m_ValidatorTimeTolerance = timeTolerance;
+            
             }
 
         private void m_btnAdd_Click ( object sender, EventArgs e )
@@ -401,11 +418,11 @@ namespace MergeUtilityUI
                     {
                     if (daisy3Option == true)
                         {
-                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", m_ValidatorTimeTolerance );
                         }
                     if (daisy202option == true)
                         {
-                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", 30 );
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), m_lbDTBfiles.SelectedItem.ToString (), "", m_ValidatorTimeTolerance );
                         }
                     }
                 catch (System.Exception ex)
@@ -436,14 +453,14 @@ namespace MergeUtilityUI
                     {
                     foreach (FileInfo fileInfo in opfFiles)
                         {
-                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Z3986DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy3DTBValidator.taskScript" ), fileInfo.FullName, "", m_ValidatorTimeTolerance );
                         }
                     }
                 if (daisy202option == true)
                     {
                     foreach (FileInfo fileInfo in htmlFiles)
                         {
-                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), fileInfo.FullName, "", 30 );
+                        DTBMerger.PipelineInterface.ScriptsFunctions.Validate ( Path.Combine ( completeScriptPath, "Daisy202DTBValidator.taskScript" ), fileInfo.FullName, "", m_ValidatorTimeTolerance );
                         }
                     }
 
