@@ -66,13 +66,17 @@ namespace MergeUtilityUI
                 }
             else if (daisy202option == true)
                 {
-                select_File.Filter = "HTML Files (*.html)|*.html";
+                select_File.Filter = "HTML Files (*.html)|*.html| HTM Files (*.htm)|*.htm";
                 }
 
             select_File.RestoreDirectory = true;
             if (select_File.ShowDialog ( this ) == DialogResult.OK)
                 {
                 m_lbDTBfiles.Items.Add ( select_File.FileName );
+                if (daisy3Option == true)
+                    m_StatusLabel.Text = " The OPF Files selected has successfully been added in the Listbox ";
+                if (daisy202option == true)
+                    m_StatusLabel.Text = " The NCC Files selected has successfully been added in the Listbox ";
                 }
             m_BtnMerge.Enabled = m_lbDTBfiles.Items.Count >= 2;
             m_BtnReset.Enabled = m_lbDTBfiles.Items.Count >= 1;
@@ -84,11 +88,7 @@ namespace MergeUtilityUI
                 if (daisy202option == true)
                     m_StatusLabel.Text = "  Please select at least two NCC Files for merging ";
                 }
-            if (daisy3Option == true)
-                m_StatusLabel.Text = " The OPF Files selected has successfully been added in the Listbox ";
-            if (daisy202option == true)
-                m_StatusLabel.Text = " The NCC Files selected has successfully been added in the Listbox ";
-            }//m_btnAdd_Click
+           }//m_btnAdd_Click
 
         private void m_BtnOutputDirectory_Click ( object sender, EventArgs e )
             {
@@ -540,7 +540,6 @@ namespace MergeUtilityUI
             {
             ShowHelpFile ();
             }
-
-
+        
         }//class
     }//namespace
