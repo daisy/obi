@@ -130,7 +130,8 @@ namespace Obi.Export
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "name", "dc:title" );
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.getContent () );
                 }
-            AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString ().Split ( '.' )[0] );
+            //AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString ().Split ( '.' )[0] );
+            AddSmilHeadElements ( smilDocument, null,GetStringTotalTimeRoundedOff( m_SmilElapseTime.copy().getTime ())  );
 
             WriteXmlDocumentToFile ( smilDocument,
                 Path.Combine ( m_ExportDirectory, "master.smil" ) );
@@ -577,7 +578,8 @@ namespace Obi.Export
             XmlNode totalTimeNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
             headNode.AppendChild ( totalTimeNode );
             CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "name", "ncc:totalTime" );
-            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ().Split ( '.' )[0] );
+            //CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ().Split ( '.' )[0] );
+            CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", GetStringTotalTimeRoundedOff ( m_SmilElapseTime.copy().getTime () ) );
 
 
 
@@ -685,6 +687,18 @@ namespace Obi.Export
                 strTime = strTime.Substring ( 0, decimalIndex + decimalPlaces + 1 );
                 }
             return strTime;
+            }
+
+        private string GetStringTotalTimeRoundedOff ( TimeSpan time )
+            {
+            string strMS = time.Milliseconds.ToString ();
+            int compareDigit = int.Parse ( strMS.Substring ( 0, 1 ) );
+            if (compareDigit > 5)
+                {
+                TimeSpan additiveSpan = new TimeSpan ( Convert.ToInt64 ( .5 * 10000000 ) );
+                time = time.Add ( additiveSpan );
+                }
+            return time.ToString ().Split ( '.' )[0];
             }
 
         }
