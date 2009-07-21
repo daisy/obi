@@ -536,6 +536,11 @@ namespace MergeUtilityUI
             ShowHelpFile();
         }
 
+        private void Daisy3MergerForm_HelpRequested ( object sender, HelpEventArgs hlpevent )
+            {
+            ShowHelpFile ();
+            }
+
 
         }//class
     }//namespace
