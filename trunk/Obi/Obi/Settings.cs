@@ -95,7 +95,7 @@ namespace Obi
             settings.ZoomFactor = 1.0f;
             settings.AutoSave_RecordingEnd = false;
             settings.AutoSaveTimeIntervalEnabled= true;
-            settings.AutoSaveTimeInterval = 1800000; // saving time interval in ms
+            settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
