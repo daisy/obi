@@ -105,7 +105,7 @@ namespace Obi
             if (mProject != null)
                 {
                 // save to backup
-                if (Presentation != null)
+                if (Presentation != null && CanSave)
                     {
                     
                     SaveToBackup ();
