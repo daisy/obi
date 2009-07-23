@@ -2090,44 +2090,27 @@ namespace Obi
         private void mView_ZoomInMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-
-            try
-                {
+ 
                 ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+                
             }
 
         // View > Zoom out (Ctrl+Alt+-)
         private void mView_ZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-            try
-                {
+            
                 ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
+
                 }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
-            }
 
         // View > Normal size (Ctrl+Alt+0)
         private void mView_NormalSizeMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
 
-            try
-                {
                 ZoomFactor = 1.0f;
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+                
             }
 
         // View > Project properties (Alt+Enter)
@@ -2156,8 +2139,7 @@ namespace Obi
         private void mView_AudioZoomInMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-            try
-                {
+            
                 ProjectView.Strip strip = mProjectView.StripForSelection;
                 if (strip == null)
                     {
@@ -2167,18 +2149,13 @@ namespace Obi
                     {
                     strip.AudioScale *= AUDIO_SCALE_INCREMENT;
                     }
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+
             }
 
         private void mView_AudioZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-            try
-                {
+
                 ProjectView.Strip strip = mProjectView.StripForSelection;
                 if (strip == null)
                     {
@@ -2188,11 +2165,7 @@ namespace Obi
                     {
                     strip.AudioScale /= AUDIO_SCALE_INCREMENT;
                     }
-                }
-            catch (System.Exception ex)
-                {
-                MessageBox.Show ( ex.ToString () );
-                }
+
             }
 
 
