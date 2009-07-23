@@ -18,7 +18,7 @@ namespace Obi.Dialogs
 
             m_radPage.Checked = true;
             base.m_GoToPage = true; // To do: remove all go to page dependency from parent set page form
-            base.Text = "Go to page";
+            base.Text = Localizer.Message ( "GoToPageOrPhrase_Title" );
             base.label2.Visible = false;
             base.label1.Location = new Point ( 50, 75 );
             base.label3.Location = new Point ( 50, 110 );

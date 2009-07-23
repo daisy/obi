@@ -1378,6 +1378,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to page or phrase.
+        /// </summary>
+        internal static string GoToPageOrPhrase_Title {
+            get {
+                return ResourceManager.GetString("GoToPageOrPhrase_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to help_en.html.
         /// </summary>
         internal static string help_file_name {
