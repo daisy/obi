@@ -89,7 +89,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_radBtnDaisy202);
             this.Controls.Add(this.m_radBtnDaisy3);
             this.Name = "chooseDaisy3orDaisy202";
-            this.Text = "Choose Daisy3 or Daisy2.02";
+            this.Text = "DAISY Standard Selection";
             this.ResumeLayout(false);
             this.PerformLayout();
 
