@@ -47,13 +47,19 @@ namespace InstallerFileOperations
                 {
                 DirectoryInfo extractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName ) );
                 if (extractDirInfo.Exists) extractDirInfo.Delete ( true );
+                // added on 24 July 2009 for direct extract
+                string pipelineLitePath = Path.Combine ( m_DirectoryPath, "Pipeline-lite") ;
+                if ( Directory.Exists ( pipelineLitePath)) Directory.Delete ( pipelineLitePath, true ) ;
+                
                 extractDirInfo.Create ();
                 m_PathsInfoToRemove.Add ( extractDirInfo );
                 
                 Process extractProcess = new Process ();
                 extractProcess.StartInfo.WorkingDirectory = m_DirectoryPath;
                 extractProcess.StartInfo.FileName = Path.Combine ( m_DirectoryPath, "CABARC.EXE" );
-                extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " + m_ExtractDirName;
+                // pipeline-lite should be extracted directly instead of using extract directory
+                //extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " + m_ExtractDirName;
+                extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " ;
                 extractProcess.StartInfo.UseShellExecute = false;
                 extractProcess.StartInfo.CreateNoWindow = true;
                                 extractProcess.Start ();
@@ -64,8 +70,8 @@ namespace InstallerFileOperations
                 
                 //System.Windows.Forms.MessageBox.Show ( pipelineExtractDirInfo.FullName );d
                 string newDirectory = Path.Combine ( m_DirectoryPath, "Pipeline-lite" );
-                                if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
-                pipelineExtractDirInfo.MoveTo ( newDirectory );
+                                //if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
+                //pipelineExtractDirInfo.MoveTo ( newDirectory );
                 
                 // delete temprorary files and directories
                                 m_PathsInfoToRemove.Add ( new FileInfo ( Path.Combine ( m_DirectoryPath, m_PipelineCabFile ) ) );
@@ -169,6 +175,7 @@ namespace InstallerFileOperations
 
                     for (int i = 0; i < m_UninstallDeleteDirList.Count; i++)
                         {
+                        
                         if (m_UninstallDeleteDirList[i].Exists) m_UninstallDeleteDirList[i].Delete ( true );
                         }
                     }
@@ -197,6 +204,11 @@ namespace InstallerFileOperations
         private void FileOperations_BeforeRollback ( object sender, InstallEventArgs e )
             {
             RemoveCustomInstalledFiles ();
+            }
+
+        private void FileOperations_AfterUninstall ( object sender, InstallEventArgs e )
+            {
+
             }
 
 
