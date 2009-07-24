@@ -69,7 +69,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnReset
             // 
-            this.m_BtnReset.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnReset, "m_BtnReset" );
             this.m_BtnReset.Name = "m_BtnReset";
             this.m_BtnReset.UseVisualStyleBackColor = true;
@@ -77,7 +76,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnMerge
             // 
-            this.m_BtnMerge.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnMerge, "m_BtnMerge" );
             this.m_BtnMerge.Name = "m_BtnMerge";
             this.m_BtnMerge.UseVisualStyleBackColor = true;
@@ -85,7 +83,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnOutputDirectory
             // 
-            this.m_BtnOutputDirectory.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnOutputDirectory, "m_BtnOutputDirectory" );
             this.m_BtnOutputDirectory.Name = "m_BtnOutputDirectory";
             this.m_BtnOutputDirectory.UseVisualStyleBackColor = true;
@@ -139,7 +136,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnHelp
             // 
-            this.m_BtnHelp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnHelp, "m_BtnHelp" );
             this.m_BtnHelp.Name = "m_BtnHelp";
             this.m_BtnHelp.UseVisualStyleBackColor = true;
@@ -147,7 +143,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnValidateOutput
             // 
-            this.m_BtnValidateOutput.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnValidateOutput, "m_BtnValidateOutput" );
             this.m_BtnValidateOutput.Name = "m_BtnValidateOutput";
             this.m_BtnValidateOutput.UseVisualStyleBackColor = true;
@@ -192,7 +187,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnDelete
             // 
-            this.m_BtnDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnDelete, "m_BtnDelete" );
             this.m_BtnDelete.Name = "m_BtnDelete";
             this.m_BtnDelete.UseVisualStyleBackColor = true;
@@ -200,7 +194,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnDown
             // 
-            this.m_BtnDown.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnDown, "m_BtnDown" );
             this.m_BtnDown.Name = "m_BtnDown";
             this.m_BtnDown.UseVisualStyleBackColor = true;
@@ -208,7 +201,6 @@ namespace MergeUtilityUI
             // 
             // m_btnUP
             // 
-            this.m_btnUP.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_btnUP, "m_btnUP" );
             this.m_btnUP.Name = "m_btnUP";
             this.m_btnUP.UseVisualStyleBackColor = true;
@@ -216,7 +208,6 @@ namespace MergeUtilityUI
             // 
             // m_BtnValidateInput
             // 
-            this.m_BtnValidateInput.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources ( this.m_BtnValidateInput, "m_BtnValidateInput" );
             this.m_BtnValidateInput.Name = "m_BtnValidateInput";
             this.m_BtnValidateInput.UseVisualStyleBackColor = true;
