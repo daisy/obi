@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MergeUtilityUI
 {
@@ -43,6 +44,28 @@ namespace MergeUtilityUI
         private void m_btnCancel_Click(object sender, EventArgs e)
         {
             Close();            
-        }          
+        }
+
+
+        private void ShowHelpFile ()
+            {
+            try
+                {
+                System.Diagnostics.Process.Start ( (new Uri ( Path.Combine ( Path.GetDirectoryName ( GetType ().Assembly.Location ),
+                     "DTB Merger-Help.htm" ) )).ToString () );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                return;
+                }
+            }
+
+        private void DaisyMergerOptionForm_HelpRequested ( object sender, HelpEventArgs hlpevent )
+            {
+            ShowHelpFile ();
+            }
+
+        
     }
 }
