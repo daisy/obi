@@ -46,7 +46,7 @@ namespace Obi.PipelineInterface.ParameterControls
                 this.mIntBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                 this.mIntBox.Location = new System.Drawing.Point(48, 23);
                 this.mIntBox.Name = "mIntBox";
-                this.mIntBox.Size = new System.Drawing.Size(236, 22);
+                this.mIntBox.Size = new System.Drawing.Size(74, 22);
                 this.mIntBox.TabIndex = 2;
                 this.mIntBox.TextChanged += new System.EventHandler(this.mIntBox_TextChanged);
                 // 
