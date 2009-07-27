@@ -45,14 +45,14 @@ namespace InstallerFileOperations
                 && File.Exists ( Path.Combine ( m_DirectoryPath, "CABARC.EXE" ) )
                 && File.Exists ( Path.Combine ( m_DirectoryPath, "CABINET.DLL" ) ))
                 {
-                DirectoryInfo extractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName ) );
-                if (extractDirInfo.Exists) extractDirInfo.Delete ( true );
+                //DirectoryInfo extractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, m_ExtractDirName ) );
+                //if (extractDirInfo.Exists) extractDirInfo.Delete ( true );
                 // added on 24 July 2009 for direct extract
                 string pipelineLitePath = Path.Combine ( m_DirectoryPath, "Pipeline-lite") ;
                 if ( Directory.Exists ( pipelineLitePath)) Directory.Delete ( pipelineLitePath, true ) ;
                 
-                extractDirInfo.Create ();
-                m_PathsInfoToRemove.Add ( extractDirInfo );
+                //extractDirInfo.Create ();
+                //m_PathsInfoToRemove.Add ( extractDirInfo );
                 
                 Process extractProcess = new Process ();
                 extractProcess.StartInfo.WorkingDirectory = m_DirectoryPath;
@@ -66,10 +66,11 @@ namespace InstallerFileOperations
                 extractProcess.WaitForExit ();
 
                 // move extracted files and directories to desired location
-                DirectoryInfo pipelineExtractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, "ExtractedFiles\\Pipeline-lite" ) );
+                //DirectoryInfo pipelineExtractDirInfo = new DirectoryInfo ( Path.Combine ( m_DirectoryPath, "ExtractedFiles\\Pipeline-lite" ) );
                 
                 //System.Windows.Forms.MessageBox.Show ( pipelineExtractDirInfo.FullName );d
                 string newDirectory = Path.Combine ( m_DirectoryPath, "Pipeline-lite" );
+                m_PathsInfoToRemove.Add ( new DirectoryInfo ( newDirectory ) ) ;
                                 //if (Directory.Exists ( newDirectory )) Directory.Delete ( newDirectory, true );
                 //pipelineExtractDirInfo.MoveTo ( newDirectory );
                 
