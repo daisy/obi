@@ -117,6 +117,7 @@ namespace MergeUtilityUI
             if (saveDir.ShowDialog ( this ) == DialogResult.OK)
                 {
                 m_txtDirectoryPath.Text = saveDir.SelectedPath;
+                checkIfDriveSelected(saveDir);
                 checkOutDirExists ( m_txtDirectoryPath.Text );
                 }
             if (m_txtDirectoryPath.Text.Length > 0)
@@ -148,10 +149,10 @@ namespace MergeUtilityUI
                             if (saveDire.ShowDialog ( this ) == DialogResult.OK)
                                 {
                                 m_txtDirectoryPath.Text = saveDire.SelectedPath;
+                                checkIfDriveSelected(saveDire);
                                 checkOutDirExists ( m_txtDirectoryPath.Text );
-
                                 }
-                            else if (saveDire.ShowDialog ( this ) == DialogResult.Cancel)
+                            else 
                             { m_txtDirectoryPath.Clear (); }
                             }
                         }
@@ -161,7 +162,22 @@ namespace MergeUtilityUI
                 {
                 MessageBox.Show ( ex.Message );
                 }
-            }//checkOutDirExists    
+            }//checkOutDirExists 
+
+        private void checkIfDriveSelected(FolderBrowserDialog browserDialog)
+        {
+            string[] fixedDrives = Environment.GetLogicalDrives();
+            foreach (string drive in fixedDrives)
+            {
+                if (m_txtDirectoryPath.Text.Equals(drive, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show(" Its a root directory , you cannot save here. Please select some other Directory. ", "Root Directory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    m_txtDirectoryPath.Clear();
+                    browserDialog.ShowDialog();
+                    m_txtDirectoryPath.Text = browserDialog.SelectedPath;                    
+                }
+            }
+        }
 
         private void m_BtnMerge_Click ( object sender, EventArgs e )
             {
