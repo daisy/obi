@@ -75,8 +75,8 @@ namespace Obi.Dialogs
                     MessageBox.Show ( Localizer.Message ( "PageNumber_ReEnterValidNumber") );
                     return;
                     }
-                if ((num == 0 && mPageKindComboBox.SelectedIndex < 2)
-                    || (num > 0 && mPageKindComboBox.SelectedIndex == 2))
+                if ((num == 0 && mPageKindComboBox.SelectedIndex < 2))
+                    //|| (num > 0 && mPageKindComboBox.SelectedIndex == 2)) // message should not appear for assigning special pages.
                     {
                     if (MessageBox.Show ( Localizer.Message ( "PageDialog_InvalidInput" ), Localizer.Message ( "Caption_Error" ), MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 ) == DialogResult.No)
                         return;
