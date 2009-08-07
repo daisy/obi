@@ -142,18 +142,19 @@ namespace MergeUtilityUI
                         else
                             {
                             m_txtDirectoryPath.Clear ();
-                            FolderBrowserDialog saveDire = new FolderBrowserDialog ();
-                            saveDire.ShowNewFolderButton = true;
-                            saveDire.SelectedPath = m_txtDirectoryPath.Text;
+                            FolderBrowserDialog saveNewDir = new FolderBrowserDialog ();
+                            saveNewDir.ShowNewFolderButton = true;
+                            saveNewDir.SelectedPath = m_txtDirectoryPath.Text;
 
-                            if (saveDire.ShowDialog ( this ) == DialogResult.OK)
+                            if (saveNewDir.ShowDialog(this) == DialogResult.OK)
                                 {
-                                m_txtDirectoryPath.Text = saveDire.SelectedPath;
-                                checkIfDriveSelected(saveDire);
-                                checkOutDirExists ( m_txtDirectoryPath.Text );
+                                    m_txtDirectoryPath.Text = saveNewDir.SelectedPath;
+                                    checkIfDriveSelected(saveNewDir);
+                                    checkOutDirExists ( m_txtDirectoryPath.Text );
                                 }
                             else 
-                            { m_txtDirectoryPath.Clear (); }
+                            {
+                                m_txtDirectoryPath.Clear (); }
                             }
                         }
                     }
@@ -173,9 +174,21 @@ namespace MergeUtilityUI
                 {
                     MessageBox.Show(" Its a root directory , you cannot save here. Please select some other Directory. ", "Root Directory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     m_txtDirectoryPath.Clear();
-                    browserDialog.ShowDialog();
-                    m_txtDirectoryPath.Text = browserDialog.SelectedPath;                    
-                }
+                    m_txtDirectoryPath.Text = browserDialog.SelectedPath;
+                    if (browserDialog.ShowDialog(this) == DialogResult.OK)
+                    {
+                        m_txtDirectoryPath.Text = browserDialog.SelectedPath;
+                        if (m_txtDirectoryPath.Text.Equals(drive, StringComparison.OrdinalIgnoreCase))
+                        {
+                            checkIfDriveSelected(browserDialog);
+                        }
+                    }
+                    else
+                    {
+                        m_txtDirectoryPath.Clear();
+                        return;
+                    }
+                 }
             }
         }
 
