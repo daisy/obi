@@ -181,8 +181,12 @@ namespace Obi.Audio
                         //sets the detection flag
                         boolPhraseDetected = true;
 
-                        alPhrases.Add(((j - Counter) * BlockTime) - BeforePhraseInMS);
-
+                        // changing following time calculations to reduce concatination of rounding off errors 
+                        //alPhrases.Add(((j - Counter) * BlockTime) - BeforePhraseInMS);
+                        double phraseMarkTime = CalculationFunctions.ConvertByteToTime ( (j - Counter) * SampleCount * m_AudioAsset.getPCMFormat ().getBlockAlign (),
+                            (int) m_AudioAsset.getPCMFormat ().getSampleRate (),
+                            (int) m_AudioAsset.getPCMFormat ().getBlockAlign () );
+                        alPhrases.Add ( phraseMarkTime - BeforePhraseInMS );
 
                         SpeechBlockCount = 0;
                         Counter = 0;
