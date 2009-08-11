@@ -13,13 +13,14 @@ namespace DTBMerger
 
         public void IntegrateDAISY2_02DTBs ()
             {
-            IntegrateNCCForDAISY2 ();
-            UpdateAllSmilFilesForDAISY2 ();
+            // first get total time from smil files as total time in ncc file has rounding off errors
+            TimeSpan totalTime =  UpdateAllSmilFilesForDAISY2 ();
+            IntegrateNCCForDAISY2 ( totalTime);
             MoveSmilAndAudioFiles ();
             UpdateMasterSmilFile ();
             }
 
-        private void IntegrateNCCForDAISY2 ()
+        private void IntegrateNCCForDAISY2 ( TimeSpan totalTime)
             {
 
             List<XmlDocument> nccDocumentsList = new List<XmlDocument> ();
@@ -146,13 +147,15 @@ namespace DTBMerger
             // update metadata
 
             // add totalTimes for all DTBs
+            /*
             TimeSpan totalTime = new TimeSpan ();
 
             for (int i = 0; i < m_DTBFilesInfoList.Count; i++)
                 {
                 totalTime = totalTime.Add ( m_DTBFilesInfoList[i].time );
                 }
-            string strTotalTime = totalTime.ToString ();
+             */
+            string strTotalTime = CommonFunctions.GetStringTotalTimeRoundedOff ( totalTime);
 
             int pageFront = 0;
             int pageNormal = 0;
@@ -237,7 +240,7 @@ namespace DTBMerger
             }
 
 
-        protected void UpdateAllSmilFilesForDAISY2 ()
+        private TimeSpan UpdateAllSmilFilesForDAISY2 ()
             {
             TimeSpan initialTime = new TimeSpan ();
             double bookDuration= 0 ;
@@ -255,8 +258,7 @@ namespace DTBMerger
 
                 //initialTime = initialTime.Add ( m_DTBFilesInfoList[i].TotalTime );
                 }
-
-
+            return initialTime;
             }
 
         private TimeSpan UpdateSmilFileForDAISY2 ( string smilPath, TimeSpan baseTime, bool canWrite )

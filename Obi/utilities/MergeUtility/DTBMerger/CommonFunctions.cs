@@ -81,7 +81,18 @@ namespace DTBMerger
                 }
             }
 
-
+        public static string GetStringTotalTimeRoundedOff ( TimeSpan time )
+            {
+            string strMS = time.Milliseconds.ToString ();
+            int compareDigit = 0;
+            int.TryParse ( strMS.Substring ( 0, 1 ), out compareDigit );
+            if (compareDigit >= 5)
+                {
+                TimeSpan additiveSpan = new TimeSpan ( Convert.ToInt64 ( .5 * 10000000 ) );
+                time = time.Add ( additiveSpan );
+                }
+            return time.ToString ().Split ( '.' )[0];
+            }
 
         }
     }
