@@ -13,11 +13,12 @@ namespace Obi.Audio
     public class PhraseDetection
     {
         public static readonly double DEFAULT_GAP = 300.0;              // default gap for phrase detection
-        public static readonly double DEFAULT_LEADING_SILENCE = 100.0;  // default leading silence
+        public static readonly double DEFAULT_LEADING_SILENCE = 50.0;  // default leading silence
         public static readonly double DEFAULT_THRESHOLD = 280.0;
 
         private static  AudioMediaData m_AudioAsset;
-
+        private static  readonly int m_FrequencyDivisor = 2000; // frequency inin hz to observe.
+        
         
 
         // NewDetection
@@ -131,6 +132,7 @@ namespace Obi.Audio
 
             long Iterations = Convert.ToInt64(m_AudioAsset.getAudioDuration ().getTimeDeltaAsMillisecondFloat ()  / BlockTime);
             long SampleCount = Convert.ToInt64(m_AudioAsset.getPCMFormat ().getSampleRate ()  / (1000 / BlockTime));
+            double errorCompensatingCoefficient  = GetErrorCompensatingConstant ( SampleCount );
             long SpeechBlockCount = 0;
 
             long lCurrentSum = 0;
@@ -183,7 +185,7 @@ namespace Obi.Audio
 
                         // changing following time calculations to reduce concatination of rounding off errors 
                         //alPhrases.Add(((j - Counter) * BlockTime) - BeforePhraseInMS);
-                        double phraseMarkTime = CalculationFunctions.ConvertByteToTime ( (j - Counter) * SampleCount * m_AudioAsset.getPCMFormat ().getBlockAlign (),
+                        double phraseMarkTime = CalculationFunctions.ConvertByteToTime (Convert.ToInt64(errorCompensatingCoefficient  * (j - Counter)) * SampleCount * m_AudioAsset.getPCMFormat ().getBlockAlign (),
                             (int) m_AudioAsset.getPCMFormat ().getSampleRate (),
                             (int) m_AudioAsset.getPCMFormat ().getBlockAlign () );
                         alPhrases.Add ( phraseMarkTime - BeforePhraseInMS );
@@ -244,7 +246,7 @@ namespace Obi.Audio
             long AverageValue = 0;
 
             // number of samples from which peak is selected
-                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.getPCMFormat ().getSampleRate () / 2000 ) ;
+                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.getPCMFormat ().getSampleRate () / m_FrequencyDivisor) ;
 
             // number of blocks iterated
             long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount ) ;
@@ -310,6 +312,30 @@ int SampleValue2 = 0 ;
             return SampleValue1 ;
 
         }
+
+        /// <summary>
+        /// computes multiplying factor to compensate errors due to rounding off in average peak calculation functions
+        /// </summary>
+        /// <param name="SampleCount"></param>
+        /// <returns></returns>
+        private static double GetErrorCompensatingConstant ( long SampleCount )
+            {
+            // number of samples from which peak is selected
+            long PeakCount = Convert.ToInt64 ( m_AudioAsset.getPCMFormat ().getSampleRate () / m_FrequencyDivisor );
+
+            // number of blocks iterated
+            long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount );
+            
+            double roundedOffSampleCount = AverageCount * PeakCount;
+            
+            double errorCoeff = roundedOffSampleCount  / SampleCount;
+
+            if (errorCoeff < 0.90 || errorCoeff  > 1.1)
+                {
+                errorCoeff  = 1.0;
+                }
+            return errorCoeff;
+            }
 
 
     }
