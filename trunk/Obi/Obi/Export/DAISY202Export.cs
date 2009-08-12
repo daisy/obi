@@ -332,7 +332,8 @@ namespace Obi.Export
 
         private string GetNPTSmiltime ( TimeSpan time )
             {
-            string strTime = "npt=" + time.TotalSeconds.ToString () + "s";
+            double dTime = Math.Round ( time.TotalSeconds, 3, MidpointRounding.ToEven );
+            string strTime = "npt=" + dTime.ToString () + "s";
             return strTime;
             }
 
