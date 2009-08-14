@@ -787,6 +787,18 @@ namespace Obi.Audio
             {
                 Thread.Sleep(50);
                 CurrentPlayPosition = mSoundBuffer.PlayPosition;
+
+                if (UpdateVuMeter != null)
+                    {
+                    // trigger VuMeter events in this trailing part. Need cleanup, should be placed in another function to avoid duplicacy. But first it should work.
+                    if (CurrentPlayPosition < ((m_SizeBuffer) - m_UpdateVMArrayLength))
+                        {
+                        Array.Copy ( mSoundBuffer.Read ( CurrentPlayPosition, typeof ( byte ), LockFlag.None, m_UpdateVMArrayLength ), arUpdateVM, m_UpdateVMArrayLength );
+                        if (mEventsEnabled == true && UpdateVuMeter != null)
+                            UpdateVuMeter ( this, new Events.Audio.Player.UpdateVuMeterEventArgs () );  
+                        }
+                    }
+
             }
 
 
