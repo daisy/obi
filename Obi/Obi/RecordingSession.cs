@@ -146,7 +146,7 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Monitoring || mRecorder.State == AudioRecorderState.Recording)
             {
                 bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
-                if (wasRecording) FinishedPhrase();
+                if (wasRecording   &&   mPhraseMarks.Count > 0 ) FinishedPhrase();
                 mRecorder.StopRecording();
                 if (wasRecording)
                 {
