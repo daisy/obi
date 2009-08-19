@@ -13,7 +13,8 @@ namespace Obi.ProjectView
     public partial class TransportBar : UserControl
     {
         private ProjectView mView;                   // the parent project view
-        
+        private bool m_IsProjectEmpty; // is true if project has no sections
+
         private Audio.AudioPlayer mPlayer;           // the audio player
         private Audio.AudioRecorder mRecorder;       // the audio recorder
         private Audio.VuMeter mVuMeter;              // VU meter
@@ -125,18 +126,18 @@ namespace Obi.ProjectView
         /// Get the audio player used by the transport bar.
         /// </summary>
         public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
-        
-        public bool CanFastForward { get { return Enabled && !IsRecorderActive; } }
+
+        public bool CanFastForward { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
-        public bool CanNavigatePrevPage { get { return Enabled && mRecordingSession == null; } }
-        public bool CanNavigatePrevSection { get { return Enabled && mRecordingSession == null; } }
+        public bool CanNavigatePrevPage { get { return Enabled && ( IsPlayerActive || CanPlay ) ; } }
+        public bool CanNavigatePrevSection { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
-        public bool CanPlay { get { return Enabled && mState == State.Stopped; } }
+        public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty; } }
         public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused; } }
         public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   mState != State.Playing; } }
-        public bool CanRewind { get { return Enabled && !IsRecorderActive; } }
+        public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
         public bool CanNavigatePrevPhrase
@@ -444,6 +445,7 @@ namespace Obi.ProjectView
             mMasterPlaylist.Presentation = mView.Presentation;
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+            m_IsProjectEmpty = mView.Presentation.FirstSection == null;
 
             m_AutoSaveOnNextRecordingEnd = false;
             UpdateButtons();
@@ -598,11 +600,16 @@ namespace Obi.ProjectView
             else
             mView.SetPlaybackPhraseAndTime(null, 0.0); 
             }
-
+        
         // Adapt to changes in the presentation.
         // At the moment, simply stop.
         private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
+        // set project empty flag depending on zero sections in presentation
+        if (mView.Presentation != null)
+            {
+                m_IsProjectEmpty = mView.Presentation.FirstSection == null ;
+            }
         if (mState != State.Stopped)
             {
             if (IsPlayerActive && mView.ObiForm.IsAutoSaveActive)
