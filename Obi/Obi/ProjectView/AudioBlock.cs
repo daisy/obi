@@ -151,7 +151,13 @@ namespace Obi.ProjectView
             get
             {
                 long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
-                return time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);
+                int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);
+                // workaround to prevent visibility problem in block layout, waveform should remain below blocklayout width of 32768
+                if (w > 32600) 
+                    {
+                    w = 32600;
+                    }
+                return w;
             }
         }
 
