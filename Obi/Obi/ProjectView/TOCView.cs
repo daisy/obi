@@ -91,7 +91,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if the selected node can be removed (deleted or cut)
         /// </summary>
-        public bool CanRemoveSection { get { return IsSectionSelected; } }
+        public bool CanRemoveSection { get { return IsSectionSelected   &&   !mProjectView.TransportBar.IsRecorderActive; } }
 
         /// <summary>
         /// True if the selected node can be renamed.
