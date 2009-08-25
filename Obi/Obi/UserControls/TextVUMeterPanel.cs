@@ -89,6 +89,12 @@ namespace Obi.UserControls
                         UpdateRunningValues();
                     else 
                         UpdateRunningLowValues();
+
+                    if (m_StrLeftOverloadIndicator == Localizer.Message ("TextVuMeter_OverloadIndicator" )
+                        || m_StrRightOverloadIndicator == Localizer.Message ( "TextVuMeter_OverloadIndicator" ))
+                        {
+                        mResetButton.Enabled = true;
+                        }
                                                                }
             
                                                            m_AfterGoodCount++;
@@ -195,11 +201,13 @@ namespace Obi.UserControls
         {
             Obi.Events.Audio.VuMeter.PeakOverloadEventArgs EventOb = e as Obi.Events.Audio.VuMeter.PeakOverloadEventArgs;
             if (EventOb.Channel == 1)
-                m_StrLeftOverloadIndicator = "OL ";
+                //m_StrLeftOverloadIndicator = "OL ";
+                m_StrLeftOverloadIndicator = Localizer.Message ( "TextVuMeter_OverloadIndicator" );
             else
-                m_StrRightOverloadIndicator = "OL ";
+                //m_StrRightOverloadIndicator = "OL ";
+                m_StrRightOverloadIndicator = Localizer.Message ( "TextVuMeter_OverloadIndicator" );
 
-            UpdateControls ();
+            //UpdateControls ();
             Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
 
 
@@ -219,8 +227,10 @@ namespace Obi.UserControls
             if (m_VuMeter.Channels == 2) m_MinRightDB = e.LowLevelValue;
 
 
-            m_strLeftLowLevelIndicator = "Low:";
-            m_strRightLowLevelIndicator = "Low:";
+            //m_strLeftLowLevelIndicator = "Low:";
+             //m_strRightLowLevelIndicator = "Low:";
+             m_strLeftLowLevelIndicator = Localizer.Message ( "TextVuMeter_LowIndicator" );
+             m_strRightLowLevelIndicator = Localizer.Message ( "TextVuMeter_LowIndicator" );
             PlayLevelTooLowBeep ();
             }
         }

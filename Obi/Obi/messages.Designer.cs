@@ -3075,6 +3075,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Low:.
+        /// </summary>
+        internal static string TextVuMeter_LowIndicator {
+            get {
+                return ResourceManager.GetString("TextVuMeter_LowIndicator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OL .
+        /// </summary>
+        internal static string TextVuMeter_OverloadIndicator {
+            get {
+                return ResourceManager.GetString("TextVuMeter_OverloadIndicator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}{1} ({2}) - {3}.
         /// </summary>
         internal static string title_bar {
