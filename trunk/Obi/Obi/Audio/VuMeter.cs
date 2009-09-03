@@ -566,6 +566,7 @@ namespace Obi.Audio
                     {
                         e = new Events.Audio.VuMeter.PeakOverloadEventArgs(1, 0, 0);
                     }
+                if ( PeakOverload != null )
                     PeakOverload(this, e);
             }
             else
@@ -588,7 +589,8 @@ namespace Obi.Audio
                 {
                     e = new Events.Audio.VuMeter.PeakOverloadEventArgs(2, 0, 0);
                 }
-                PeakOverload(this, e);
+                if (PeakOverload != null)
+                    PeakOverload(this, e);
             }
             else
             {

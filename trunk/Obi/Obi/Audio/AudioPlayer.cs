@@ -1125,8 +1125,11 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 else
                 {
                     Stop();
-                    if (mEventsEnabled)
-                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                    if (mEventsEnabled
+                        && EndOfAudioAsset != null)
+                        {
+                        EndOfAudioAsset ( this, new Events.Audio.Player.EndOfAudioAssetEventArgs () );
+                        }
                                     }
                 } //-2
                             } //-1
