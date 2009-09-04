@@ -444,6 +444,7 @@ namespace Obi.ProjectView
         {
             mMasterPlaylist.Presentation = mView.Presentation;
             mCurrentPlaylist = mMasterPlaylist;
+            mResumeRecordingPhrase = null;
             mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             m_IsProjectEmpty = mView.Presentation.FirstSection == null;
