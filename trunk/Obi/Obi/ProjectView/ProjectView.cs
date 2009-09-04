@@ -1559,7 +1559,15 @@ namespace Obi.ProjectView
                 if (TransportBar.IsPlayerActive) TransportBar.Pause ();
                 try
                     {
+                    bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                    TransportBar.SelectionChangedPlaybackEnabled = false;
+
+                    if (Selection == null && mContentView.PlaybackBlock != null)
+                        {
+                        Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );
+                        }
                     mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
+                    TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
                     }
                 catch (System.Exception ex)
                     {
