@@ -2082,6 +2082,10 @@ namespace Obi.ProjectView
 
         public bool ShowPhrasePropertiesDialog ( bool SetCustomClassName )
             {
+            // if custom class is to be set then playback should be paused else allowed to continue.
+            if (SetCustomClassName && TransportBar.IsPlayerActive)
+                TransportBar.Pause ();
+
             Dialogs.PhraseProperties dialog = new Dialogs.PhraseProperties ( this, SetCustomClassName );
             if (dialog.ShowDialog () == DialogResult.OK)
                 {
