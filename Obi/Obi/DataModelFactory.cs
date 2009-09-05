@@ -8,7 +8,7 @@ namespace Obi
     public class DataModelFactory : urakawa.DataModelFactory
     {
         public static readonly string NS = "http://www.daisy.org/urakawa/obi";  // Obi-specific namespace
-        public static readonly string XUK_VERSION = "xuk/obi;beta";             // versioning for Obi XUK files
+        public static readonly string XUK_VERSION = "xuk/obi;1.0";             // versioning for Obi XUK files
 
         /// <summary>
         /// The generator string for XUK export identifies the version of Obi and of the toolkit used.
