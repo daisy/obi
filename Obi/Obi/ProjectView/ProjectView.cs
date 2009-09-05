@@ -1562,7 +1562,10 @@ namespace Obi.ProjectView
                     bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
 
-                    if (Selection == null && mContentView.PlaybackBlock != null)
+                    // if selection is null or selection node is not phrase node, but at the same time, playback block is active
+                    // then select phrase node from playback node
+                    if ( ( Selection == null || ( Selection != null && !(Selection.Node is PhraseNode) ))
+                        && mContentView.PlaybackBlock != null)
                         {
                         Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );
                         }
