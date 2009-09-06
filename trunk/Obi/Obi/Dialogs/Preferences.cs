@@ -236,8 +236,9 @@ namespace Obi.Dialogs
                 if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
                     MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
                 }
-            else
+            else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name )
                 {
+                // show this message only if selected culture is different from application's existing culture.
                 MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
                     mCultureBox.SelectedItem.ToString () ) );
                 }

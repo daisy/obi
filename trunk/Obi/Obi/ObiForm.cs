@@ -2337,7 +2337,7 @@ namespace Obi
 
         private void nextPageToolStripMenuItem_Click_1 ( object sender, EventArgs e )
             {
-            mProjectView.GoToPage ();
+            mProjectView.GoToPageOrPhrase ();
             }
         }
     }

@@ -2300,9 +2300,9 @@ namespace Obi.ProjectView
             }
 
         /// <summary>
-        /// searches page number entered in dialog box and highlight it in content view
+        /// searches page number or phrase index entered in dialog box and highlight it in content view
         /// </summary>
-        public void GoToPage ()
+        public void GoToPageOrPhrase ()
             {
             Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase ();
             if (GoToDialog.ShowDialog () == DialogResult.OK)
