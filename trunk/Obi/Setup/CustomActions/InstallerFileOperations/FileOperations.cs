@@ -141,8 +141,11 @@ namespace InstallerFileOperations
                 {
                 RegistryKey JREKey = Registry.CurrentUser.OpenSubKey ( "Software\\JavaSoft\\Java Runtime Environment" );
 
-                if (JREKey == null) 
+                if (JREKey == null
+                    || (JREKey != null && JREKey.GetValueNames ().Length == 0))
+                    {
                     JREKey = Registry.LocalMachine.OpenSubKey ( "Software\\JavaSoft\\Java Runtime Environment" );
+                    }
 
                 if (JREKey != null)
                     {//1
