@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0DD587BFF14019D3D55831A3B7744199"
+        "OwnerKey" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_108B34500EE74A668BFA6AA5EF98EF7C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -51,20 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_340472C0A8C94CB388E00CBA682691CB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3B7ECD98981F47919D717BCC603FACEE"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_443BE430542F39BB4B0EA924B00B334B"
-        "OwnerKey" = "8:_340472C0A8C94CB388E00CBA682691CB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -81,7 +75,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5CC15B3F32BE40348070919255E4CBD1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_668A1B1208714EDB92FCCFA2EA0E2C96"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -123,7 +129,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8C8B4F60AA674B0A8584A2DB82DA2984"
+        "MsmKey" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -213,12 +219,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E7989D7010424903B62FA3F8154C55F2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E82BB5C16F0445979C3ADFD70D7AED24"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -238,7 +238,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E7989D7010424903B62FA3F8154C55F2"
+        "OwnerKey" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0DD587BFF14019D3D55831A3B7744199"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5CC15B3F32BE40348070919255E4CBD1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -251,18 +263,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AC765BB998E34797BC4B930FC4135042"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_340472C0A8C94CB388E00CBA682691CB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_443BE430542F39BB4B0EA924B00B334B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -465,6 +465,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0DD587BFF14019D3D55831A3B7744199"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DTBMerger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0DD587BFF14019D3D55831A3B7744199"
+                    {
+                    "Name" = "8:DTBMerger.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DTBMerger.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_108B34500EE74A668BFA6AA5EF98EF7C"
             {
             "SourcePath" = "8:Licences\\lgpl.txt"
@@ -596,37 +627,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_340472C0A8C94CB388E00CBA682691CB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MergeUtilityUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_340472C0A8C94CB388E00CBA682691CB"
-                    {
-                    "Name" = "8:MergeUtilityUI.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Debug\\MergeUtilityUI.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B7ECD98981F47919D717BCC603FACEE"
             {
             "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\package.xslt"
@@ -645,37 +645,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_443BE430542F39BB4B0EA924B00B334B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DTBMerger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_443BE430542F39BB4B0EA924B00B334B"
-                    {
-                    "Name" = "8:DTBMerger.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DTBMerger.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478DFB874BE84E468E4FAFF8EE180B53"
@@ -702,6 +671,57 @@
             {
             "SourcePath" = "8:..\\..\\dist\\Pipeline packaging files\\Pipeline-lite.cab"
             "TargetName" = "8:Pipeline-lite.cab"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CC15B3F32BE40348070919255E4CBD1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DTBMerger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5CC15B3F32BE40348070919255E4CBD1"
+                    {
+                    "Name" = "8:DTBMerger.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\utilities\\MergeUtility\\DTBMerger\\bin\\Release\\DTBMerger.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_668A1B1208714EDB92FCCFA2EA0E2C96"
+            {
+            "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Release\\DTBMerger_settings.xml"
+            "TargetName" = "8:DTBMerger_settings.xml"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -809,10 +829,21 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C8B4F60AA674B0A8584A2DB82DA2984"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_848E4111CBDD421E86CA3F513CA40E8F"
             {
-            "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Debug\\DTBMerger_settings.xml"
-            "TargetName" = "8:DTBMerger_settings.xml"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MergeUtilityUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_848E4111CBDD421E86CA3F513CA40E8F"
+                    {
+                    "Name" = "8:MergeUtilityUI.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Release\\MergeUtilityUI.exe"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -1164,37 +1195,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E7989D7010424903B62FA3F8154C55F2"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DTBMerger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E7989D7010424903B62FA3F8154C55F2"
-                    {
-                    "Name" = "8:DTBMerger.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\utilities\\MergeUtility\\MergeUtilityUI\\bin\\Debug\\DTBMerger.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E82BB5C16F0445979C3ADFD70D7AED24"
             {
             "SourcePath" = "8:Licences\\License.rtf"
@@ -1360,19 +1360,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 1.1 RC1"
-        "ProductCode" = "8:{BC1537A5-8849-4900-8E60-42EDC3FD65E1}"
-        "PackageCode" = "8:{97B59238-163D-4BA2-9355-FA1A1CB3B648}"
+        "ProductName" = "8:Obi 1.0.7 test"
+        "ProductCode" = "8:{350A3C36-F85D-4995-BF8A-A25D13DFB967}"
+        "PackageCode" = "8:{41C01287-974D-4086-B4BB-99091203E7D5}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
-        "DetectNewerInstalledVersion" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
+        "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.00.5"
+        "ProductVersion" = "8:1.00.7"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://forums.daisy.org/viewforum.php?f=18"
-        "Title" = "8:Obi 1.1 RC1"
+        "Title" = "8:Obi 1.0.7 test"
         "Subject" = "8:"
         "ARPCONTACT" = "8:The Urakawa Project Application Team"
         "Keywords" = "8:"
@@ -1483,7 +1483,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 1.1 RC1"
+            "Name" = "8:Obi 1.0.7"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1495,7 +1495,7 @@
             "Icon" = "8:_9C20083F5AC541BB9A68D0CA14309F6D"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C011746624C1419392F93BD7D39A9754"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_80AC2D4AE37F4B8EA7AA00EEEDB48D23"
             {
             "Name" = "8:DTB Merger"
             "Arguments" = "8:"
@@ -1503,7 +1503,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_340472C0A8C94CB388E00CBA682691CB"
+            "Target" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
             "Folder" = "8:_BF79706BAEEE421381CB56E45BBD7479"
             "WorkingFolder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Icon" = "8:"
@@ -1511,7 +1511,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 1.1 RC1"
+            "Name" = "8:Obi 1.0.7"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
