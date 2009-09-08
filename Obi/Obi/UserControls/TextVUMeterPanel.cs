@@ -209,7 +209,7 @@ namespace Obi.UserControls
 
             //UpdateControls ();
             Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
-
+            System.Media.SystemSounds.Asterisk.Play ();
 
             // beep enabled false means this is first peak overload after text timer tick, so play beep
             if (m_OverLoadBeepEnabled== false)
