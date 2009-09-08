@@ -2401,6 +2401,13 @@ namespace Obi.ProjectView
                 } // dialog OK check ends
             }
 
+        /// <summary>
+        /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling
+        /// </summary>
+        public void DisableScrollingInContentsView ()
+            {
+            mContentView.DisableScrolling ();
+            }
 
 
         //@ShowSingleSection
