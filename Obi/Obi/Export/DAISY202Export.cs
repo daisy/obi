@@ -156,8 +156,7 @@ namespace Obi.Export
             bodyNode.AppendChild ( headingNode );
 
             // create smil document
-            string smilNumericFrag = (sectionIndex + 1).ToString ();
-            if (smilNumericFrag.Length == 1) smilNumericFrag =  "0" + smilNumericFrag;
+            string smilNumericFrag = (sectionIndex + 1).ToString ().PadLeft ( 3, '0' );
             string smilFileName =smilNumericFrag + ".smil";
             XmlDocument smilDocument = CreateSmilStubDocument ();
             XmlNode smilBodyNode = smilDocument.GetElementsByTagName ( "body" )[0];
