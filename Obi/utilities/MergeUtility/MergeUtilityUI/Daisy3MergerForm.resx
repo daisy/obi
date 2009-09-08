@@ -340,7 +340,7 @@
     <value>0, 610</value>
   </metadata>
   <data name="m_StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>361, 17</value>
+    <value>395, 17</value>
   </data>
   <data name="m_StatusLabel.Text" xml:space="preserve">
     <value>Please Click Add Button to add the DTB files in Listbox or press F1 for help</value>
@@ -834,6 +834,9 @@
   <data name="&gt;&gt;m_grpManipulateDTB.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="m_FolderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>125, 58</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -857,6 +860,12 @@
   </data>
   <data name="&gt;&gt;m_StatusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_FolderBrowserDialog.Name" xml:space="preserve">
+    <value>m_FolderBrowserDialog</value>
+  </data>
+  <data name="&gt;&gt;m_FolderBrowserDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Daisy3MergerForm</value>

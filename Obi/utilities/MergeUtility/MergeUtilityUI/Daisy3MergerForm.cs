@@ -110,20 +110,18 @@ namespace MergeUtilityUI
         private void m_BtnOutputDirectory_Click ( object sender, EventArgs e )
             {
             m_StatusLabel.Text = "Select the  output Directory where you want to put the merged files";
-            FolderBrowserDialog saveDir = new FolderBrowserDialog ();
-            saveDir.ShowNewFolderButton = true;
-            saveDir.SelectedPath = m_txtDirectoryPath.Text;
-
-            if (saveDir.ShowDialog ( this ) == DialogResult.OK)
+            m_FolderBrowserDialog.ShowNewFolderButton = true;
+            m_FolderBrowserDialog.SelectedPath = m_txtDirectoryPath.Text;
+            if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                m_txtDirectoryPath.Text = saveDir.SelectedPath;
-                checkIfDriveSelected(saveDir);
+                    m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
+                    checkIfDriveSelected();
                 checkOutDirExists ( m_txtDirectoryPath.Text );
                 }
             if (m_txtDirectoryPath.Text.Length > 0)
                 {
                 m_BtnReset.Enabled = true;
-                m_StatusLabel.Text = " You have selected the path " + saveDir.SelectedPath + " to save the merged files ";
+                m_StatusLabel.Text = " You have selected the path " + m_FolderBrowserDialog.SelectedPath + " to save the merged files ";
                 }
             }//m_BtnOutputDirectory_Click
 
@@ -142,14 +140,13 @@ namespace MergeUtilityUI
                         else
                             {
                             m_txtDirectoryPath.Clear ();
-                            FolderBrowserDialog saveNewDir = new FolderBrowserDialog ();
-                            saveNewDir.ShowNewFolderButton = true;
-                            saveNewDir.SelectedPath = m_txtDirectoryPath.Text;
+                            m_FolderBrowserDialog.ShowNewFolderButton = true;
+                            m_FolderBrowserDialog.SelectedPath = m_txtDirectoryPath.Text;
 
-                            if (saveNewDir.ShowDialog(this) == DialogResult.OK)
+                            if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
                                 {
-                                    m_txtDirectoryPath.Text = saveNewDir.SelectedPath;
-                                    checkIfDriveSelected(saveNewDir);
+                                    m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
+                                    checkIfDriveSelected();
                                     checkOutDirExists ( m_txtDirectoryPath.Text );
                                 }
                             else 
@@ -165,7 +162,7 @@ namespace MergeUtilityUI
                 }
             }//checkOutDirExists 
 
-        private void checkIfDriveSelected(FolderBrowserDialog browserDialog)
+        private void checkIfDriveSelected()
         {
             string[] fixedDrives = Environment.GetLogicalDrives();
             foreach (string drive in fixedDrives)
@@ -174,13 +171,13 @@ namespace MergeUtilityUI
                 {
                     MessageBox.Show(" Its a root directory , you cannot save here. Please select some other Directory. ", "Root Directory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     m_txtDirectoryPath.Clear();
-                    m_txtDirectoryPath.Text = browserDialog.SelectedPath;
-                    if (browserDialog.ShowDialog(this) == DialogResult.OK)
+                    m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
+                    if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
                     {
-                        m_txtDirectoryPath.Text = browserDialog.SelectedPath;
+                        m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
                         if (m_txtDirectoryPath.Text.Equals(drive, StringComparison.OrdinalIgnoreCase))
                         {
-                            checkIfDriveSelected(browserDialog);
+                            checkIfDriveSelected();
                         }
                     }
                     else
