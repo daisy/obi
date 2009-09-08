@@ -915,8 +915,13 @@ namespace Obi.ProjectView
                     mCurrentPlaylist.CurrentPhrase = FindPlaybackStartNode(mView.Selection.Node);
                     if (mCurrentPlaylist.CurrentPhrase == mView.Selection.Node)
                     {
-                        // The selected node is in the playlist so play from the cursor
-                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing) mCurrentPlaylist.Play ( ((AudioSelection)mView.Selection).AudioRange.CursorTime );
+                    // The selected node is in the playlist so play from the cursor
+                    if (mCurrentPlaylist.State != Obi.Audio.AudioPlayerState.Playing)
+                        {
+                        // First disable scrol to avoid jumping scrolling of screen on starting playback @AudioScrol
+                        mView.DisableScrollingInContentsView ();
+                        mCurrentPlaylist.Play ( ((AudioSelection)mView.Selection).AudioRange.CursorTime );
+                        }
                     }
                     else
                     {
