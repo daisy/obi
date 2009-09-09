@@ -165,15 +165,20 @@ namespace Obi.ProjectView
 
                     ExistingItemsList.Add ( itemsListString );
                     }
-                // now search items below checked items and remove the item which we have just added above.
-                for (i = i; i < mMetadataListView.Items.Count; i++)
+
+                // remove only if metadata is not custom
+                if (itemToRemove != Localizer.Message ( "metadata_custom" ))
                     {
-                    if (string.CompareOrdinal ( itemToRemove, mMetadataListView.Items[i].SubItems[0].Text ) == 0)
+                    // now search items below checked items and remove the item which we have just added above.
+                    for (i = i; i < mMetadataListView.Items.Count; i++)
                         {
-                        mMetadataListView.Items.RemoveAt ( i );
-                        break;
+                        if (string.CompareOrdinal ( itemToRemove, mMetadataListView.Items[i].SubItems[0].Text ) == 0)
+                            {
+                            mMetadataListView.Items.RemoveAt ( i );
+                            break;
+                            }
                         }
-                    }
+                    } // check for custom ends
 
                 m_IsImportingMetadata = false;
                 this.mMetadataListView.SelectedIndexChanged += new System.EventHandler ( this.mMetadataListView_SelectedIndexChanged );
