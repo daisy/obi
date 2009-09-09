@@ -109,7 +109,7 @@ namespace MergeUtilityUI
 
         private void m_BtnOutputDirectory_Click ( object sender, EventArgs e )
             {
-            m_StatusLabel.Text = "Select the  output Directory where you want to put the merged files";
+            m_StatusLabel.Text = "Select the  output Directory where you want to place the merged files";
             m_FolderBrowserDialog.ShowNewFolderButton = true;
             m_FolderBrowserDialog.SelectedPath = m_txtDirectoryPath.Text;
             if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
@@ -195,7 +195,7 @@ namespace MergeUtilityUI
                 {
                 if (m_lbDTBfiles.Items.Count >= 2)
                     {
-                    m_StatusLabel.Text = "You have selected all the files from the listbox for merging. ";
+                    m_StatusLabel.Text = "Merging all DTBs in listbox. ";
                     if (m_txtDirectoryPath.Text == "")
                         {
                         MessageBox.Show ( "Output Directory Path cannot be empty, Please select the output Directory Path",
@@ -340,7 +340,7 @@ namespace MergeUtilityUI
                 {
                 if (m_Merger != null && !m_Merger.IsCancelled)
                     {
-                    m_StatusLabel.Text = "Files have been merged and put in the given directory path. ";
+                    m_StatusLabel.Text = "Files have been merged and placed in the given directory path. ";
                     m_BtnValidateOutput.Enabled = true;
                     MessageBox.Show ( "Files have been merged and put in the respective directory " + m_txtDirectoryPath.Text + " .", "Files Merged in Directory", MessageBoxButtons.OK, MessageBoxIcon.Information );
                     }
@@ -348,7 +348,7 @@ namespace MergeUtilityUI
             if (e.Error != null)
                 {
                 MessageBox.Show ( e.Error.Message );
-                m_StatusLabel.Text = "Failed in merging the files";
+                m_StatusLabel.Text = "Failed in merging the DTBs";
                 }
             }//m_bgWorker_RunWorkerCompleted
 
