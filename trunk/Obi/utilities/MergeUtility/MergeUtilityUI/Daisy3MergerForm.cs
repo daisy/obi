@@ -139,7 +139,8 @@ namespace MergeUtilityUI
                             {
                                 Directory.Delete(m_txtDirectoryPath.Text, true);
                             }
-                            m_txtDirectoryPath.Clear();
+                            else
+                                m_txtDirectoryPath.Clear();
                         }
                     }
                     flag = true;
