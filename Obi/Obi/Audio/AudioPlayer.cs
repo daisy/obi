@@ -878,8 +878,11 @@ namespace Obi.Audio
             TriggerStateChangedEvent(e);
 
             // trigger end of asset event
-            if (mEventsEnabled == true)
-                EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+            if (mEventsEnabled == true
+                && EndOfAudioAsset != null)
+                {
+                EndOfAudioAsset ( this, new Events.Audio.Player.EndOfAudioAssetEventArgs () );
+                }
 //            System.Media.SystemSounds.Asterisk.Play();
         }
 
@@ -1101,8 +1104,12 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 else
                 { //3
                     Stop();
-                    if (mEventsEnabled)
-                        EndOfAudioAsset(this, new Events.Audio.Player.EndOfAudioAssetEventArgs());
+                    if (mEventsEnabled
+                        && EndOfAudioAsset != null)
+                        {
+                        EndOfAudioAsset ( this, new Events.Audio.Player.EndOfAudioAssetEventArgs () );
+                        }
+
                                 } //-3
             } //-2
             else if ( mFwdRwdRate <  0 )
