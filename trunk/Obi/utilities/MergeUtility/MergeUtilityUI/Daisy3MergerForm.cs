@@ -115,7 +115,8 @@ namespace MergeUtilityUI
             if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
-                    if ((checkIfDriveSelected()) || (checkOutDirExists(m_txtDirectoryPath.Text))) { return; }                   
+                    if (checkIfDriveSelected()) { return; }
+                    if (!checkOutDirExists(m_txtDirectoryPath.Text)) { return; }
                 }
             if (m_txtDirectoryPath.Text.Length > 0)
                 {
@@ -131,6 +132,7 @@ namespace MergeUtilityUI
                 {
                     if (Directory.Exists(m_txtDirectoryPath.Text))
                     {
+                        flag = true;
                         string[] fileEntries = Directory.GetFiles(m_txtDirectoryPath.Text);
                         string[] subdirectoryEntries = Directory.GetDirectories(m_txtDirectoryPath.Text);
                         if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
@@ -142,8 +144,8 @@ namespace MergeUtilityUI
                             else
                                 m_txtDirectoryPath.Clear();
                         }
+
                     }
-                    flag = true;
                 }
                 catch (Exception ex)
                 {
