@@ -383,22 +383,35 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
                     XmlNodeList playOrderAttrList = firstNcx.SelectNodes ( "/firstNS:ncx//@playOrder",
                         firstDocNSManager );
                     
-                    Dictionary<int, XmlAttribute> attrDictionary = new Dictionary<int, XmlAttribute> ();
+                    Dictionary<int,List <XmlAttribute>> attrDictionary = new Dictionary<int, List <XmlAttribute>> ();
                     List<int> sortList = new List<int> ();
 
                     foreach (XmlNode n in playOrderAttrList)
                         {
                         int playOrder = int.Parse ( ((XmlAttribute)n).Value ) ;
 
-                        attrDictionary.Add ( playOrder, (XmlAttribute)n );
-                        sortList.Add ( playOrder );
+                        if (!attrDictionary.ContainsKey ( playOrder ))
+                            {
+List<XmlAttribute> attrList = new List<XmlAttribute> ();
+                            attrList.Add ( (XmlAttribute)n );
+                            attrDictionary.Add ( playOrder, attrList );
+                            sortList.Add ( playOrder );
+                            }
+                        else
+                            {
+                            attrDictionary[playOrder].Add ( (XmlAttribute)n );
+                            }
                         }
                     sortList.Sort ();
 
                     for (int i = 0; i < sortList.Count; i++)
                         {
-                        XmlAttribute attr = attrDictionary[ sortList[i]] ;
-                        attr.Value = i.ToString () ;
+                      List<XmlAttribute> attrList = attrDictionary[ sortList[i]] ;
+
+                        foreach ( XmlAttribute attr  in attrList )
+                            {
+                                                    attr.Value = (i+1).ToString () ;
+                            }
                         }
                     }
 
@@ -415,33 +428,34 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
 
                 } // end of page renumbering option check
 
-            // if pages are renumbered then it is important to set max normal pages metadata accordingly
-            if (m_PageMergeOptions == PageMergeOptions.Renumber)
-                {
-                XmlNodeList renumberedPageList  = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
+            // Pages are updated a lot so it is important to set max normal pages metadata accordingly
+                XmlNodeList finalPageList= firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
                         firstDocNSManager );
-
-                int maxNormalPageValue = 0 ;
-                for (int i = 0; i < renumberedPageList.Count; i++)
+                if (finalPageList != null && finalPageList.Count > 0)
                     {
-                    string pageType = renumberedPageList[i].Attributes.GetNamedItem("type").Value ;
-                    if (pageType == "normal")
+                    int maxNormalPageValue = 0;
+                    for (int i = 0; i < finalPageList.Count; i++)
                         {
-                        int pageNo = int.Parse ( renumberedPageList[i].Attributes.GetNamedItem ( "value" ).Value );
-
-                        if (pageNo > maxNormalPageValue)
+                        string pageType = finalPageList[i].Attributes.GetNamedItem ( "type" ).Value;
+                        if (pageType == "normal")
                             {
-                            maxNormalPageValue = pageNo;
+                            int pageNo = int.Parse ( finalPageList[i].Attributes.GetNamedItem ( "value" ).Value );
+
+                            if (pageNo > maxNormalPageValue)
+                                {
+                                maxNormalPageValue = pageNo;
+                                }
                             }
                         }
+                    // update in metadata
+                    if (maxPagesNode.Attributes.GetNamedItem ( "content" ) != null)
+                        {
+                        maxPagesNode.Attributes.GetNamedItem ( "content" ).Value = maxNormalPageValue.ToString ();
                         }
-                // update in metadata
-                if ( maxPagesNode.Attributes.GetNamedItem ( "content" ) != null )
-                    {
-                    maxPagesNode.Attributes.GetNamedItem ( "content" ).Value =  maxNormalPageValue.ToString ();
-                    }
 
-                } //end of update page metadata
+                    }//end of update page metadata
+
+                 
 
 
             // if page list do not have children, remove it
