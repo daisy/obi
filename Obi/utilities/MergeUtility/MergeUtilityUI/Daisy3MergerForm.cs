@@ -232,6 +232,7 @@ namespace MergeUtilityUI
             catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
+                m_Merger.RequestCancel ();
                 }
             }//m_bgWorker_DoWork
 
