@@ -402,6 +402,17 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
                         }
                     }
 
+                // if page node deleted, update total page metadata
+                if (isPageDeleted)
+                    {
+                    XmlNodeList totalPageList = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
+                        firstDocNSManager );
+                    if (totalPagesNode.Attributes.GetNamedItem ( "content" ) != null)
+                        {
+                        totalPagesNode.Attributes.GetNamedItem ( "content" ).Value = totalPageList.Count.ToString (); 
+                        }
+                    }
+
                 } // end of page renumbering option check
 
             // if pages are renumbered then it is important to set max normal pages metadata accordingly
@@ -425,18 +436,10 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
                         }
                         }
                 // update in metadata
-                metaNodeList = firstNcx.GetElementsByTagName ( "meta" );
-                foreach (XmlNode n in metaNodeList)
+                if ( maxPagesNode.Attributes.GetNamedItem ( "content" ) != null )
                     {
-                    if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:maxPageNumber")
-                        {
-                        if ( n.Attributes.GetNamedItem ( "content" ) != null )
-                            {
-                            n.Attributes.GetNamedItem ( "content" ).Value = maxNormalPageValue.ToString ();
-                            }
-                        }
+                    maxPagesNode.Attributes.GetNamedItem ( "content" ).Value =  maxNormalPageValue.ToString ();
                     }
-
 
                 } //end of update page metadata
 
