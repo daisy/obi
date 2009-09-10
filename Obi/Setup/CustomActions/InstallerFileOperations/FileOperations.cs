@@ -59,7 +59,8 @@ namespace InstallerFileOperations
                 extractProcess.StartInfo.FileName = Path.Combine ( m_DirectoryPath, "CABARC.EXE" );
                 // pipeline-lite should be extracted directly instead of using extract directory
                 //extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " + m_ExtractDirName;
-                extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " ;
+                //extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile + " " ;
+                extractProcess.StartInfo.Arguments = "-p x " + m_PipelineCabFile ;
                 extractProcess.StartInfo.UseShellExecute = false;
                 extractProcess.StartInfo.CreateNoWindow = true;
                                 extractProcess.Start ();
