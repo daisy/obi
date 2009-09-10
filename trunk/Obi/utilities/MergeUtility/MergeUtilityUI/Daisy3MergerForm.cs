@@ -115,8 +115,7 @@ namespace MergeUtilityUI
             if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
-                    checkIfDriveSelected();
-                checkOutDirExists ( m_txtDirectoryPath.Text );
+                    if ((checkIfDriveSelected()) || (checkOutDirExists(m_txtDirectoryPath.Text))) { return; }                   
                 }
             if (m_txtDirectoryPath.Text.Length > 0)
                 {
@@ -125,45 +124,36 @@ namespace MergeUtilityUI
                 }
             }//m_BtnOutputDirectory_Click
 
-        private void checkOutDirExists ( string outPath )
+            private bool checkOutDirExists(string outPath)
             {
-            try
+                bool flag = false;
+                try
                 {
-                if (Directory.Exists ( m_txtDirectoryPath.Text ))
+                    if (Directory.Exists(m_txtDirectoryPath.Text))
                     {
-                    string[] fileEntries = Directory.GetFiles ( m_txtDirectoryPath.Text );
-                    string[] subdirectoryEntries = Directory.GetDirectories ( m_txtDirectoryPath.Text );
-                    if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
+                        string[] fileEntries = Directory.GetFiles(m_txtDirectoryPath.Text);
+                        string[] subdirectoryEntries = Directory.GetDirectories(m_txtDirectoryPath.Text);
+                        if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
                         {
-                        if (MessageBox.Show ( "Directory" + " " + m_txtDirectoryPath.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo ) == DialogResult.Yes)
-                            Directory.Delete ( m_txtDirectoryPath.Text, true );
-                        else
+                            if (MessageBox.Show("Directory" + " " + m_txtDirectoryPath.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
-                            m_txtDirectoryPath.Clear ();
-                            m_FolderBrowserDialog.ShowNewFolderButton = true;
-                            m_FolderBrowserDialog.SelectedPath = m_txtDirectoryPath.Text;
-
-                            if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
-                                {
-                                    m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
-                                    checkIfDriveSelected();
-                                    checkOutDirExists ( m_txtDirectoryPath.Text );
-                                }
-                            else 
-                            {
-                                m_txtDirectoryPath.Clear (); }
+                                Directory.Delete(m_txtDirectoryPath.Text, true);
                             }
+                            m_txtDirectoryPath.Clear();
                         }
                     }
+                    flag = true;
                 }
-            catch (Exception ex)
+                catch (Exception ex)
                 {
-                MessageBox.Show ( ex.Message );
+                    MessageBox.Show(ex.Message);
                 }
+                return flag;
             }//checkOutDirExists 
 
-        private void checkIfDriveSelected()
+        private bool checkIfDriveSelected()
         {
+            bool flag = false;
             string[] fixedDrives = Environment.GetLogicalDrives();
             foreach (string drive in fixedDrives)
             {
@@ -171,23 +161,12 @@ namespace MergeUtilityUI
                 {
                     MessageBox.Show(" Its a root directory , you cannot save here. Please select some other Directory. ", "Root Directory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     m_txtDirectoryPath.Clear();
-                    m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
-                    if (m_FolderBrowserDialog.ShowDialog(this) == DialogResult.OK)
-                    {
-                        m_txtDirectoryPath.Text = m_FolderBrowserDialog.SelectedPath;
-                        if (m_txtDirectoryPath.Text.Equals(drive, StringComparison.OrdinalIgnoreCase))
-                        {
-                            checkIfDriveSelected();
-                        }
-                    }
-                    else
-                    {
-                        m_txtDirectoryPath.Clear();
-                        return;
-                    }
-                 }
+                    flag = true;
+                }
             }
+            return flag;
         }
+
 
         private void m_BtnMerge_Click ( object sender, EventArgs e )
             {
