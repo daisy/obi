@@ -404,6 +404,43 @@ int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("val
 
                 } // end of page renumbering option check
 
+            // if pages are renumbered then it is important to set max normal pages metadata accordingly
+            if (m_PageMergeOptions == PageMergeOptions.Renumber)
+                {
+                XmlNodeList renumberedPageList  = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
+                        firstDocNSManager );
+
+                int maxNormalPageValue = 0 ;
+                for (int i = 0; i < renumberedPageList.Count; i++)
+                    {
+                    string pageType = renumberedPageList[i].Attributes.GetNamedItem("type").Value ;
+                    if (pageType == "normal")
+                        {
+                        int pageNo = int.Parse ( renumberedPageList[i].Attributes.GetNamedItem ( "value" ).Value );
+
+                        if (pageNo > maxNormalPageValue)
+                            {
+                            maxNormalPageValue = pageNo;
+                            }
+                        }
+                        }
+                // update in metadata
+                metaNodeList = firstNcx.GetElementsByTagName ( "meta" );
+                foreach (XmlNode n in metaNodeList)
+                    {
+                    if (n.Attributes.GetNamedItem ( "name" ).Value == "dtb:maxPageNumber")
+                        {
+                        if ( n.Attributes.GetNamedItem ( "content" ) != null )
+                            {
+                            n.Attributes.GetNamedItem ( "content" ).Value = maxNormalPageValue.ToString ();
+                            }
+                        }
+                    }
+
+
+                } //end of update page metadata
+
+
             // if page list do not have children, remove it
             if (firstPageListNode.ChildNodes.Count == 0)
                 {
