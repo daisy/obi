@@ -340,7 +340,7 @@
     <value>0, 610</value>
   </metadata>
   <data name="m_StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>395, 17</value>
+    <value>361, 17</value>
   </data>
   <data name="m_StatusLabel.Text" xml:space="preserve">
     <value>Please Click Add Button to add the DTB files in Listbox or press F1 for help</value>
