@@ -2,4 +2,5 @@
 <settings>
 <pipelineLitePath>Pipeline-lite</pipelineLitePath>
 <validatorTimeTolerance>50</validatorTimeTolerance>
+<removeDuplicatePagesD3>true</removeDuplicatePagesD3>
 </settings>
