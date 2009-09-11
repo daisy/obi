@@ -13,6 +13,7 @@ namespace DTBMerger
         {
         private List<DTBFilesInfo> m_DTBFilesInfoList;
         private PageMergeOptions m_PageMergeOptions ;
+        private bool m_CanRemoveDuplicatePagesInDAISY3;
 
         public Integrator ( List<string> pathsList , PageMergeOptions pageOption)
             {
@@ -25,6 +26,16 @@ namespace DTBMerger
             m_PageMergeOptions = pageOption;
             }
 
+        /// <summary>
+        /// A flag to disable removal of duplicate pages in daisy 3, a precaution due to last minutes changes
+        /// </summary>
+        public bool CanRemoveDuplicatePagesInDAISY3
+            {
+            get { return m_CanRemoveDuplicatePagesInDAISY3; }
+            set { m_CanRemoveDuplicatePagesInDAISY3 = value; }
+            }
+
+
         public void IntegrateDAISY3DTBs ()
             {
             IntegrateOpf ();
@@ -32,6 +43,7 @@ namespace DTBMerger
             UpdateAllSmilFiles ();
             MoveSmilAndAudioFiles ();
             }
+
 
         protected void IntegrateOpf ()
             {
@@ -351,83 +363,84 @@ namespace DTBMerger
             firstDocNSManager.AddNamespace ( "firstNS",
                 firstNcx.DocumentElement.NamespaceURI );
 
-            if (m_PageMergeOptions == PageMergeOptions.KeepExisting && firstPageListNode.ChildNodes.Count > 0 )
-                {
+            if (m_PageMergeOptions == PageMergeOptions.KeepExisting && firstPageListNode.ChildNodes.Count > 0
+                && m_CanRemoveDuplicatePagesInDAISY3)
+                { // 1
                 XmlNodeList duplicateRemovePageList = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
                     firstDocNSManager );
                 int previousPage = -1;
-                bool isPageDeleted = false ; // flag to indicate if any page is deleted.
+                bool isPageDeleted = false; // flag to indicate if any page is deleted.
 
                 for (int i = 0; i < duplicateRemovePageList.Count; i++)
-                    {
-                    string pageType = duplicateRemovePageList[i].Attributes.GetNamedItem("type").Value ; 
-                    if ( pageType == "normal")
-                        {
-int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem("value").Value  );
-    if ( previousPage == pageNo )
-        {
-        XmlNode parent = duplicateRemovePageList[i].ParentNode ;
-        parent.RemoveChild ( duplicateRemovePageList[i]);
-        parent = null ;
-        isPageDeleted  = true ;
-        }
-                        previousPage = pageNo ;
-                        
-                        }
+                    { //2
+                    string pageType = duplicateRemovePageList[i].Attributes.GetNamedItem ( "type" ).Value;
+                    if (pageType == "normal")
+                        { //3
+                        int pageNo = int.Parse ( duplicateRemovePageList[i].Attributes.GetNamedItem ( "value" ).Value );
+                        if (previousPage == pageNo)
+                            { //4
+                            XmlNode parent = duplicateRemovePageList[i].ParentNode;
+                            parent.RemoveChild ( duplicateRemovePageList[i] );
+                            parent = null;
+                            isPageDeleted = true;
+                            } //-4
+                        previousPage = pageNo;
 
-                    } // end of for loop
+                        } //-3
+
+                    } // end of for loop -2
 
                 // fix the play order
                 if (isPageDeleted)
-                    {
+                    { //2
                     XmlNodeList playOrderAttrList = firstNcx.SelectNodes ( "/firstNS:ncx//@playOrder",
                         firstDocNSManager );
-                    
-                    Dictionary<int,List <XmlAttribute>> attrDictionary = new Dictionary<int, List <XmlAttribute>> ();
+
+                    Dictionary<int, List<XmlAttribute>> attrDictionary = new Dictionary<int, List<XmlAttribute>> ();
                     List<int> sortList = new List<int> ();
 
                     foreach (XmlNode n in playOrderAttrList)
-                        {
-                        int playOrder = int.Parse ( ((XmlAttribute)n).Value ) ;
+                        { //3
+                        int playOrder = int.Parse ( ((XmlAttribute)n).Value );
 
                         if (!attrDictionary.ContainsKey ( playOrder ))
-                            {
-List<XmlAttribute> attrList = new List<XmlAttribute> ();
+                            { //4
+                            List<XmlAttribute> attrList = new List<XmlAttribute> ();
                             attrList.Add ( (XmlAttribute)n );
                             attrDictionary.Add ( playOrder, attrList );
                             sortList.Add ( playOrder );
-                            }
+                            } //-4
                         else
-                            {
+                            { //4
                             attrDictionary[playOrder].Add ( (XmlAttribute)n );
-                            }
-                        }
+                            } //-4
+                        } //-3
                     sortList.Sort ();
 
                     for (int i = 0; i < sortList.Count; i++)
-                        {
-                      List<XmlAttribute> attrList = attrDictionary[ sortList[i]] ;
+                        { //3
+                        List<XmlAttribute> attrList = attrDictionary[sortList[i]];
 
-                        foreach ( XmlAttribute attr  in attrList )
-                            {
-                                                    attr.Value = (i+1).ToString () ;
-                            }
-                        }
-                    }
+                        foreach (XmlAttribute attr in attrList)
+                            { //4
+                            attr.Value = (i + 1).ToString ();
+                            } //-4
+                        } //-3
+                    } //-2
 
                 // if page node deleted, update total page metadata
                 if (isPageDeleted)
-                    {
+                    { //2
                     XmlNodeList totalPageList = firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
                         firstDocNSManager );
                     if (totalPagesNode.Attributes.GetNamedItem ( "content" ) != null)
-                        {
-                        totalPagesNode.Attributes.GetNamedItem ( "content" ).Value = totalPageList.Count.ToString (); 
-                        }
-                    }
+                        { //3
+                        totalPagesNode.Attributes.GetNamedItem ( "content" ).Value = totalPageList.Count.ToString ();
+                        } //-3
+                    } //-2
 
-                } // end of page renumbering option check
-
+                } // end of page renumbering option check -1
+            
             // Pages are updated a lot so it is important to set max normal pages metadata accordingly
                 XmlNodeList finalPageList= firstPageListNode.SelectNodes ( ".//firstNS:pageTarget",
                         firstDocNSManager );

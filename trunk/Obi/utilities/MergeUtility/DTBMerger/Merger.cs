@@ -13,6 +13,7 @@ namespace DTBMerger
         private int m_ProgressInfo;
         private PageMergeOptions m_PageMergeOptions;
         private bool m_RequestedForCancel;
+        private bool m_CanRemoveDuplicatePagesInDAISY3 = true;
 
         public Merger ( string[] inputPaths, string outputDirectory, PageMergeOptions pageOptions )
             {
@@ -73,6 +74,7 @@ namespace DTBMerger
 
             m_ProgressInfo = 70;
             Integrator integrator = new Integrator ( inputParameterList, m_PageMergeOptions );
+            integrator.CanRemoveDuplicatePagesInDAISY3 = CanRemoveDuplicatePagesInDAISY3;
             integrator.IntegrateDAISY3DTBs();
 
             m_ProgressInfo = 90;
@@ -204,6 +206,12 @@ namespace DTBMerger
         public void RequestCancel ()
             {
             m_RequestedForCancel = true;
+            }
+
+        public bool CanRemoveDuplicatePagesInDAISY3
+            {
+            get { return m_CanRemoveDuplicatePagesInDAISY3; }
+            set { m_CanRemoveDuplicatePagesInDAISY3 = value; }
             }
 
         }

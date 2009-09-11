@@ -20,7 +20,7 @@ namespace MergeUtilityUI
         private DTBMerger.Merger m_Merger = null;
         private string m_PipelineLiteDir;
         private int m_ValidatorTimeTolerance = 50;
-
+        private bool m_CanRemoveDuplicatePagesInDAISY3;
 
 
         public Daisy3MergerForm ()
@@ -70,6 +70,9 @@ namespace MergeUtilityUI
             int.TryParse ( strTimeTolerance, out timeTolerance );
             if (timeTolerance > 0) m_ValidatorTimeTolerance = timeTolerance;
             
+            // remove duplicate page in DAISY 3 flag
+            string strRemoveDuplicatePages = settingsDocument.GetElementsByTagName ( "removeDuplicatePagesD3" )[0].InnerText ;
+            m_CanRemoveDuplicatePagesInDAISY3 = strRemoveDuplicatePages == "false" ? false : true;
             }
 
         private void m_btnAdd_Click ( object sender, EventArgs e )
@@ -261,9 +264,11 @@ namespace MergeUtilityUI
                 {
                 m_Merger = new DTBMerger.Merger ( listOfDTBFiles, outputDirTemp, DTBMerger.PageMergeOptions.Renumber );
                 }
-
+            
             if (daisy3Option == true)
                 {
+                // assign can remove duplicate flag, it is added for precaution due to last minute changes
+                m_Merger.CanRemoveDuplicatePagesInDAISY3 = m_CanRemoveDuplicatePagesInDAISY3;
                 m_Merger.MergeDTDs ();
                 }
             else if (daisy202option == true)
