@@ -78,7 +78,7 @@ namespace Obi
             settings.MaxPhraseDurationMinutes = 10;
             settings.NewProjectDialogSize = new Size(0, 0);
             settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Medium;
-            settings.NudgeTimeMs = 250.0;
+            settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
