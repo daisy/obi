@@ -966,7 +966,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AC765BB998E34797BC4B930FC4135042"
@@ -1068,7 +1068,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C01B98B85AE14B45993454544BE4B15E"
@@ -1360,19 +1360,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 1.0.8"
-        "ProductCode" = "8:{162E8B01-AE5C-43ED-B9C8-B805B932D7E2}"
-        "PackageCode" = "8:{A6BF5D5F-B98F-4063-AEA1-63006253AD81}"
+        "ProductName" = "8:Obi 1.1"
+        "ProductCode" = "8:{F697B33A-709B-44F0-9BD1-51AF1D680212}"
+        "PackageCode" = "8:{D1792F4E-42FE-491A-A1D0-49D97EE595C6}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.00.8"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:http://forums.daisy.org/viewforum.php?f=18"
-        "Title" = "8:Obi 1.0.8"
+        "ARPHELPLINK" = "8:http://www.daisy.org/forums/forum/8"
+        "Title" = "8:Obi 1.1"
         "Subject" = "8:"
         "ARPCONTACT" = "8:The Urakawa Project Application Team"
         "Keywords" = "8:"
@@ -1483,7 +1483,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 1.0.7"
+            "Name" = "8:Obi 1.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1511,7 +1511,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 1.0.7"
+            "Name" = "8:Obi 1.1"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
