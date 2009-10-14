@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using AudioLib;
 
 namespace AudioFormatConverterUI
     {
@@ -16,6 +17,8 @@ namespace AudioFormatConverterUI
         public m_audioFormatConverterForm ()
          {
             InitializeComponent ();
+            m_cb_channel.SelectedIndex = 0;
+            m_cb_sampleRate.SelectedIndex = 0; 
          }
 
         private void m_btn_Add_Click(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace AudioFormatConverterUI
                 {
                     foreach (string audioFileName in addFile.FileNames)
                     {
-                        string filename = Path.GetFileName(audioFileName);
+                        string filename = Path.GetFullPath(audioFileName);
                         addFile.CheckFileExists = true;
                         addFile.CheckPathExists = true;
                         m_lb_addFiles.Items.Add(filename);  
@@ -120,5 +123,40 @@ namespace AudioFormatConverterUI
             m_lb_addFiles.Items.Clear();
             m_txt_Browse.Clear();
         }
+
+        private void m_btn_Start_Click ( object sender, EventArgs e )
+            {
+            IWavFormatConverter audioConverter = new WavFormatConverter ( true);
+            int samplingRate = int.Parse( m_cb_sampleRate.SelectedItem.ToString() );
+            int channels = m_cb_channel.SelectedIndex + 1;
+            int bitDepth = 16 ;
+                        string outputDirectory = m_txt_Browse.Text;
+                        if (!Directory.Exists ( outputDirectory )) return;
+
+            int listPositionIndex = 0;
+
+            while (m_lb_addFiles.Items.Count > listPositionIndex    &&    listPositionIndex < 50)
+                {
+                string filePath = (string) m_lb_addFiles.Items[listPositionIndex];
+                MessageBox.Show ( filePath );
+                try
+                    {
+                    if (Path.GetExtension ( filePath ) == ".wav")
+                        {
+                        audioConverter.ConvertSampleRate ( filePath, outputDirectory, channels, samplingRate, bitDepth );
+                        }
+                    else if (Path.GetExtension ( filePath ) == ".mp3")
+                        {
+                        audioConverter.UnCompressMp3File ( filePath, outputDirectory, channels,samplingRate, bitDepth) ;
+                        }
+                    m_lb_addFiles.Items.RemoveAt (0) ;
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    listPositionIndex++;
+                    }
+                }
+            }
     }//m_audioFormatConverterForm Class
     }//AudioFormatConverterUI Namespace
