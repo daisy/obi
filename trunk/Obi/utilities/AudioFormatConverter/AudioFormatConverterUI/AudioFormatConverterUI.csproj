@@ -42,6 +42,7 @@
     <Compile Include="audioFormatConverterForm.Designer.cs">
       <DependentUpon>audioFormatConverterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommonFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="audioFormatConverterForm.resx">
@@ -72,6 +73,11 @@
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
