@@ -131,6 +131,8 @@ namespace AudioFormatConverterUI
             int channels = m_cb_channel.SelectedIndex + 1;
             int bitDepth = 16 ;
                         string outputDirectory = m_txt_Browse.Text;
+                        string convertedFilePath= null;
+
                         if (!Directory.Exists ( outputDirectory )) return;
 
             int listPositionIndex = 0;
@@ -138,17 +140,34 @@ namespace AudioFormatConverterUI
             while (m_lb_addFiles.Items.Count > listPositionIndex    &&    listPositionIndex < 50)
                 {
                 string filePath = (string) m_lb_addFiles.Items[listPositionIndex];
-                MessageBox.Show ( filePath );
+                //MessageBox.Show ( filePath );
                 try
                     {
                     if (Path.GetExtension ( filePath ) == ".wav")
                         {
-                        audioConverter.ConvertSampleRate ( filePath, outputDirectory, channels, samplingRate, bitDepth );
+                        convertedFilePath = audioConverter.ConvertSampleRate ( filePath, outputDirectory, channels, samplingRate, bitDepth );
                         }
                     else if (Path.GetExtension ( filePath ) == ".mp3")
                         {
-                        audioConverter.UnCompressMp3File ( filePath, outputDirectory, channels,samplingRate, bitDepth) ;
+                        convertedFilePath=  audioConverter.UnCompressMp3File ( filePath, outputDirectory, channels,samplingRate, bitDepth) ;
                         }
+                    // rename converted file to appropriate name
+                    string newFilePath = Path.Combine ( outputDirectory,
+                        Path.GetFileNameWithoutExtension( filePath ) ) + ".wav";
+                    //MessageBox.Show ( newFilePath );
+                    if (File.Exists ( newFilePath))
+                        {
+                        if (MessageBox.Show ( "File: " + Path.GetFileName ( newFilePath ) + "  already exists. Do you want to overwrite it?", "Warning", MessageBoxButtons.YesNo ) == DialogResult.Yes)
+                            {
+                            File.Delete ( newFilePath );
+                            File.Move ( convertedFilePath, newFilePath );
+                            }
+                        }
+                    else
+                        {
+                        File.Move ( convertedFilePath, newFilePath );
+                        }
+
                     m_lb_addFiles.Items.RemoveAt (0) ;
                     }
                 catch (System.Exception ex)
@@ -158,5 +177,6 @@ namespace AudioFormatConverterUI
                     }
                 }
             }
+
     }//m_audioFormatConverterForm Class
     }//AudioFormatConverterUI Namespace
