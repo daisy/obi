@@ -66,38 +66,9 @@ namespace AudioFormatConverterUI
                 {
                 m_txt_Browse.Text = browserDialog.SelectedPath;
                 if (CheckIfDriveSelected ()) { return; }
-                if (!CheckOutDirExists ()) { return; }
                 }
             }
-        private bool CheckOutDirExists ()
-            {
-            bool flag = false;
-            try
-                {
-                if (Directory.Exists ( m_txt_Browse.Text ))
-                    {
-                    flag = true;
-                    string[] fileEntries = Directory.GetFiles ( m_txt_Browse.Text );
-                    string[] subdirectoryEntries = Directory.GetDirectories ( m_txt_Browse.Text );
-                    if (fileEntries.Length != 0 || subdirectoryEntries.Length != 0)
-                        {
-                        if (MessageBox.Show ( "Directory" + " " + m_txt_Browse.Text + " " + "is not empty. If you want to empty it anyways press Yes if not then press No and then choose again", "Choose Directory", MessageBoxButtons.YesNo ) == DialogResult.Yes)
-                            {
-                            Directory.Delete ( m_txt_Browse.Text, true );
-                            }
-                        else
-                            m_txt_Browse.Clear ();
-                        }
-
-                    }
-                }
-            catch (Exception ex)
-                {
-                MessageBox.Show ( ex.Message );
-                }
-            return flag;
-            }//CheckOutDirExists 
-
+     
         private bool CheckIfDriveSelected ()
             {
             bool flag = false;
@@ -187,6 +158,7 @@ namespace AudioFormatConverterUI
                     listPositionIndex++;
                     }
                 }
+                m_txt_Browse.Clear();
             }
 
         private void LoadSettings ()
