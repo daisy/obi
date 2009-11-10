@@ -108,6 +108,11 @@ namespace AudioFormatConverterUI
 
         private void m_btn_Start_Click ( object sender, EventArgs e )
             {
+            StartConversion ();
+            }
+
+        private void StartConversion ()
+            {
             IWavFormatConverter audioConverter = new WavFormatConverter ( true );
             int samplingRate = int.Parse ( m_cb_sampleRate.SelectedItem.ToString () );
             int channels = m_cb_channel.SelectedIndex + 1;
