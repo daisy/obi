@@ -187,5 +187,36 @@ namespace AudioFormatConverterUI
 
             }
 
+        private void SaveSettings ()
+            {
+            string settingsFilePath = Path.Combine (
+                System.AppDomain.CurrentDomain.BaseDirectory,
+                "settings.xml" );
+
+            XmlNode samplingRateNode = m_SettingsDocument.GetElementsByTagName ( "samplingrate" )[0];
+            samplingRateNode.RemoveAll ();
+            samplingRateNode.AppendChild (
+                m_SettingsDocument.CreateTextNode ( m_cb_sampleRate.Items[m_cb_sampleRate.SelectedIndex].ToString()  ) );
+
+            XmlNode channelsNode = m_SettingsDocument.GetElementsByTagName ( "channels" )[0];
+            channelsNode.RemoveAll ();
+            channelsNode.AppendChild (
+                m_SettingsDocument.CreateTextNode ( (m_cb_channel.SelectedIndex + 1).ToString () ) );
+
+            CommonFunctions.WriteXmlDocumentToFile ( m_SettingsDocument, settingsFilePath );
+            }
+
+        private void m_audioFormatConverterForm_FormClosing ( object sender, FormClosingEventArgs e )
+            {
+            try
+                {
+                SaveSettings ();
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                }
+            }
+
         }//m_audioFormatConverterForm Class
     }//AudioFormatConverterUI Namespace
