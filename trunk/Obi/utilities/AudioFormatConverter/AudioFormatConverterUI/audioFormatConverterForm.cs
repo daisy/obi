@@ -178,9 +178,9 @@ namespace AudioFormatConverterUI
                     }
                 }
                 
-            
-            //   m_txt_Browse.Clear();
                 m_btn_Start.Enabled = false;
+                m_btnDelete.Enabled = false;
+                MessageBox.Show("Files have been converted");
             }
 
         private void LoadSettings ()
