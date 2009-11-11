@@ -132,6 +132,7 @@ namespace AudioFormatConverterUI
             int bitDepth = 16;
             string outputDirectory = m_txt_Browse.Text;
             string convertedFilePath = null;
+            bool flag = false;
 
             if (!Directory.Exists ( outputDirectory )) return;
 
@@ -173,6 +174,7 @@ namespace AudioFormatConverterUI
                     }
                 catch (System.Exception ex)
                     {
+                    flag = true;
                     MessageBox.Show ( ex.ToString () );
                     listPositionIndex++;
                     }
@@ -180,7 +182,11 @@ namespace AudioFormatConverterUI
                 
                 m_btn_Start.Enabled = false;
                 m_btnDelete.Enabled = false;
-                MessageBox.Show("Files have been converted");
+                if (flag == false)
+                    MessageBox.Show("Files have been converted");
+                else
+                    MessageBox.Show("Some files have not been converted properly");
+                m_lb_addFiles.Items.Clear();
             }
 
         private void LoadSettings ()
