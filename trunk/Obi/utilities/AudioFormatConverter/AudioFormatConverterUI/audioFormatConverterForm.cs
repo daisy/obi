@@ -39,7 +39,7 @@ namespace AudioFormatConverterUI
             addFile.Multiselect = true;
             //addFile.SafeFileNames = true;
             addFile.Filter = " MP3 Files(*.mp3)|*.mp3| Wave Files (*.wav)|*.wav| All Files (*.*)|*.*";
-            
+
             if (addFile.ShowDialog ( this ) == DialogResult.OK)
                 {
                 if (addFile.FileNames.Length > 0)
@@ -54,9 +54,9 @@ namespace AudioFormatConverterUI
                     }
 
                 }
-                m_btn_Start.Enabled = m_lb_addFiles.Items.Count >= 1;
-                m_btnDelete.Enabled = m_lb_addFiles.Items.Count >= 1;
-                m_btnReset.Enabled = m_lb_addFiles.Items.Count >= 1;
+            m_btn_Start.Enabled = m_lb_addFiles.Items.Count >= 1;
+            m_btnDelete.Enabled = m_lb_addFiles.Items.Count >= 1;
+            m_btnReset.Enabled = m_lb_addFiles.Items.Count >= 1;
             }
 
         private void m_btn_Browse_Click ( object sender, EventArgs e )
@@ -71,7 +71,7 @@ namespace AudioFormatConverterUI
                 if (CheckIfDriveSelected ()) { return; }
                 }
             }
-     
+
         private bool CheckIfDriveSelected ()
             {
             bool flag = false;
@@ -115,11 +115,11 @@ namespace AudioFormatConverterUI
 
         private void m_btn_Start_Click ( object sender, EventArgs e )
             {
-                if (m_txt_Browse.Text == "")
+            if (m_txt_Browse.Text == "")
                 {
-                    MessageBox.Show("Output Directory Path cannot be empty, Please select the output Directory Path",
-                                    "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                MessageBox.Show ( "Output Directory Path cannot be empty, Please select the output Directory Path",
+                                "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                return;
                 }
             StartConversion ();
             }
@@ -137,7 +137,7 @@ namespace AudioFormatConverterUI
             if (!Directory.Exists ( outputDirectory )) return;
 
             int listPositionIndex = 0;
-            
+
 
             while (m_lb_addFiles.Items.Count > listPositionIndex && listPositionIndex < 50)
                 {
@@ -179,14 +179,14 @@ namespace AudioFormatConverterUI
                     listPositionIndex++;
                     }
                 }
-                
-                m_btn_Start.Enabled = false;
-                m_btnDelete.Enabled = false;
-                if (flag == false)
-                    MessageBox.Show("Files have been converted");
-                else
-                    MessageBox.Show("Some files have not been converted properly");
-                m_lb_addFiles.Items.Clear();
+
+            m_btn_Start.Enabled = false;
+            m_btnDelete.Enabled = false;
+            if (flag == false)
+                MessageBox.Show ( "Files have been converted" );
+            else
+                MessageBox.Show ( "Some files have not been converted properly" );
+            m_lb_addFiles.Items.Clear ();
             }
 
         private void LoadSettings ()
@@ -224,7 +224,7 @@ namespace AudioFormatConverterUI
             XmlNode samplingRateNode = m_SettingsDocument.GetElementsByTagName ( "samplingrate" )[0];
             samplingRateNode.RemoveAll ();
             samplingRateNode.AppendChild (
-                m_SettingsDocument.CreateTextNode ( m_cb_sampleRate.Items[m_cb_sampleRate.SelectedIndex].ToString()  ) );
+                m_SettingsDocument.CreateTextNode ( m_cb_sampleRate.Items[m_cb_sampleRate.SelectedIndex].ToString () ) );
 
             XmlNode channelsNode = m_SettingsDocument.GetElementsByTagName ( "channels" )[0];
             channelsNode.RemoveAll ();
@@ -246,5 +246,30 @@ namespace AudioFormatConverterUI
                 }
             }
 
+        private void ShowHelpFile ()
+            {
+            try
+                {
+                System.Diagnostics.Process.Start ( (new Uri ( Path.Combine ( Path.GetDirectoryName ( GetType ().Assembly.Location ),
+                     "Audio Format Converter-Help.htm" ) )).ToString () );
+                }
+            catch (System.Exception ex)
+                {
+                MessageBox.Show ( ex.ToString () );
+                return;
+                }
+            }
+
+        private void m_btn_Help_Click ( object sender, EventArgs e )
+            {
+            ShowHelpFile (); 
+            }
+
+        
+        private void m_audioFormatConverterForm_HelpRequested ( object sender, HelpEventArgs hlpevent )
+            {
+            ShowHelpFile ();
+            }
+        
         }//m_audioFormatConverterForm Class
     }//AudioFormatConverterUI Namespace
