@@ -55,7 +55,6 @@ namespace AudioFormatConverterUI
 
                 }
             m_btn_Start.Enabled = m_lb_addFiles.Items.Count >= 1;
-            m_btnDelete.Enabled = m_lb_addFiles.Items.Count >= 1;
             m_btnReset.Enabled = m_lb_addFiles.Items.Count >= 1;
             }
 
@@ -97,7 +96,6 @@ namespace AudioFormatConverterUI
             try
                 {
                 m_lb_addFiles.Items.Remove ( m_lb_addFiles.SelectedItem );
-                m_btnDelete.Enabled = m_lb_addFiles.Items.Count >= 1;
                 m_btn_Start.Enabled = m_lb_addFiles.Items.Count >= 1;
                 }
             catch (Exception ex)
@@ -117,7 +115,7 @@ namespace AudioFormatConverterUI
             {
             if (m_txt_Browse.Text == "")
                 {
-                MessageBox.Show ( "Output Directory Path cannot be empty, Please select the output Directory Path",
+                MessageBox.Show ( "Output Directory Path cannot be empty. Please select the output Directory Path",
                                 "Select Directory", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return;
                 }
@@ -126,6 +124,14 @@ namespace AudioFormatConverterUI
 
         private void StartConversion ()
             {
+                m_btn_Add.Enabled = false;
+                m_btn_Browse.Enabled = false;
+                m_btn_cancel.Enabled = false;
+                m_btn_Help.Enabled = false;
+                m_btn_Start.Enabled = false;
+                m_btnReset.Enabled = false;
+                m_btnDelete.Enabled = false;
+            
             IWavFormatConverter audioConverter = new WavFormatConverter ( true );
             int samplingRate = int.Parse ( m_cb_sampleRate.SelectedItem.ToString () );
             int channels = m_cb_channel.SelectedIndex + 1;
@@ -180,15 +186,22 @@ namespace AudioFormatConverterUI
                     }
                 }
 
-            m_btn_Start.Enabled = false;
-            m_btnDelete.Enabled = false;
             if (flag == false)
                 MessageBox.Show ( "Files have been converted" );
             else
                 MessageBox.Show ( "Some files have not been converted properly" );
-            m_lb_addFiles.Items.Clear ();
+
+            m_lb_addFiles.Items.Clear();
+            m_btn_Add.Enabled = true;
+            m_btn_Start.Enabled = false;
+            m_btnDelete.Enabled = false;
+            m_btn_Browse.Enabled = true;
+            m_btn_cancel.Enabled = true;
+            m_btn_Help.Enabled = true;
+            m_btnReset.Enabled = true;
             }
 
+       
         private void LoadSettings ()
             {
             string settingsFilePath = Path.Combine (
@@ -270,6 +283,11 @@ namespace AudioFormatConverterUI
             {
             ShowHelpFile ();
             }
+
+        private void m_lb_addFiles_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            m_btnDelete.Enabled = m_lb_addFiles.Items.Count >= 1 && m_lb_addFiles.SelectedIndex >= 0;
+        }
         
         }//m_audioFormatConverterForm Class
     }//AudioFormatConverterUI Namespace
