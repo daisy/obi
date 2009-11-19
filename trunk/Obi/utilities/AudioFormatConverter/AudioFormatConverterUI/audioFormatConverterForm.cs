@@ -126,11 +126,11 @@ namespace AudioFormatConverterUI
             {
                 m_btn_Add.Enabled = false;
                 m_btn_Browse.Enabled = false;
-                m_btn_cancel.Enabled = false;
-                m_btn_Help.Enabled = false;
                 m_btn_Start.Enabled = false;
                 m_btnReset.Enabled = false;
                 m_btnDelete.Enabled = false;
+                m_cb_channel.Enabled = false;
+                m_cb_sampleRate.Enabled = false;
             
             IWavFormatConverter audioConverter = new WavFormatConverter ( true );
             int samplingRate = int.Parse ( m_cb_sampleRate.SelectedItem.ToString () );
@@ -196,9 +196,9 @@ namespace AudioFormatConverterUI
             m_btn_Start.Enabled = false;
             m_btnDelete.Enabled = false;
             m_btn_Browse.Enabled = true;
-            m_btn_cancel.Enabled = true;
-            m_btn_Help.Enabled = true;
             m_btnReset.Enabled = true;
+            m_cb_channel.Enabled = true;
+            m_cb_sampleRate.Enabled = true;
             }
 
        
