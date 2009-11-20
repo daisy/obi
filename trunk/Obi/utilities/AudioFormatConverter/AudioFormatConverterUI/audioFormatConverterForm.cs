@@ -186,12 +186,14 @@ namespace AudioFormatConverterUI
                     }
                 }
 
-            if (flag == false)
-                MessageBox.Show ( "Files have been converted" );
-            else
-                MessageBox.Show ( "Some files have not been converted properly" );
+                if (flag == false)
+                {
+                    MessageBox.Show("Files have been converted");
+                }
+                else
+                    MessageBox.Show("Some files have not been converted properly");
 
-            m_lb_addFiles.Items.Clear();
+            
             m_btn_Add.Enabled = true;
             m_btn_Start.Enabled = false;
             m_btnDelete.Enabled = false;
