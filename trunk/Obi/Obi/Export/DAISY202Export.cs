@@ -581,11 +581,13 @@ namespace Obi.Export
             //CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", m_SmilElapseTime.ToString ().Split ( '.' )[0] );
             CreateAppendXmlAttribute ( nccDocument, totalTimeNode, "content", GetStringTotalTimeRoundedOff ( m_SmilElapseTime.copy().getTime () ) );
 
+            XmlNode multimediaType  = nccDocument.CreateElement(null, "meta", headNode.NamespaceURI);
+            headNode.AppendChild(multimediaType);
+            CreateAppendXmlAttribute(nccDocument, multimediaType, "name", "ncc:multimediaType");
+            CreateAppendXmlAttribute(nccDocument, multimediaType, "content", "audioNcc");
 
-
-
-
-            }
+        
+        }
 
         private Dictionary<string, string> PopulateSmilMetadataDictionary ()
             {
