@@ -1457,6 +1457,54 @@ namespace Obi.ProjectView
             return command;
             }
 
+        private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes )
+            {
+            CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
+            ObiNode parent = GetSelectedPhraseSection;
+
+            List<SectionNode> sectionsList = new List<SectionNode> ();
+
+            foreach (PhraseNode pNode in phraseNodes)
+                {
+               Commands.Command  addSectionCmd =  new Commands.Node.AddSectionNode( this, mTOCView );
+               addSectionCmd.UpdateSelection = true;
+                command.append ( addSectionCmd ) ;
+                command.append ( new Commands.Node.AddNode ( this, pNode ) );
+                }
+            /*
+            int index;
+            if (mContentView.Selection.Node is SectionNode)
+                {
+                // Import into a section, at 0 or at the selected index
+                parent = mContentView.Selection.Node;
+                index = mContentView.Selection is StripIndexSelection ?
+                    ((StripIndexSelection)mContentView.Selection).Index : 0;
+                }
+            else
+                {
+                // Import after a phrase; if this is an empty phrase, we'll handle that later.
+                parent = mContentView.Selection.Node.ParentAs<ObiNode> ();
+                index = mContentView.Selection.Node.Index + 1;
+                }
+            // Add all nodes in order
+            for (int i = 0; i < phraseNodes.Count; ++i)
+                {
+                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], parent, index + i ) );
+                }
+            if (mContentView.Selection.Node.GetType () == typeof ( EmptyNode ))
+                {
+                // If the selection was an empty node, then remove (so that the first phrase is "imported into it".)
+                // Remember to keep its attributes so that if we import audio into a page, it keeps its page number.
+                Commands.Node.MergeAudio.AppendCopyNodeAttributes ( command, this, (EmptyNode)mContentView.Selection.Node,
+                    phraseNodes[0] );
+                Commands.Node.Delete delete = new Commands.Node.Delete ( this, mContentView.Selection.Node );
+                delete.UpdateSelection = false;
+                command.append ( delete );
+                }
+             */ 
+            return command;
+            }
+
         public bool CanImportPhrases { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
 
         /// <summary>
