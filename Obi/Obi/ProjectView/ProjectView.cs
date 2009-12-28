@@ -1350,6 +1350,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void ImportPhrases ()
             {
+            bool createSectionForEachPhrase = false;
             if (CanImportPhrases)
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop ();
@@ -1367,6 +1368,7 @@ namespace Obi.ProjectView
                         // convert from minutes to milliseconds
                         double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Length );
+                        Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
                         Dialogs.ProgressDialog progress =
                             new Dialogs.ProgressDialog ( Localizer.Message ( "import_audio_progress_dialog_title" ),
                                 delegate ()
@@ -1383,11 +1385,17 @@ namespace Obi.ProjectView
                                             MessageBox.Show ( String.Format ( Localizer.Message ( "import_phrase_error_text" ), path ) + "\n\n" + ex.ToString () );
                                             continue;
                                             }
+                                        if (createSectionForEachPhrase && phrases != null && phrases.Count > 0
+                                            && !phrase_SectionNameMap.ContainsKey ( phrases[0] ))
+                                            {
+                                            phrase_SectionNameMap.Add ( phrases[0], System.IO.Path.GetFileNameWithoutExtension ( path ) );
+                                            }
                                         foreach (PhraseNode p in phrases)
                                             {
                                             try
                                                 {
                                                 phraseNodes.Add ( p );
+                                                
                                                 }
                                             catch (Exception)
                                                 {
@@ -1406,7 +1414,14 @@ namespace Obi.ProjectView
                             if (GetSelectedPhraseSection != null && (GetSelectedPhraseSection.PhraseChildCount + phraseNodes.Count <= MaxVisibleBlocksCount)) // @phraseLimit
                                 {
                                 this.ObiForm.Cursor = Cursors.WaitCursor;
-                                mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                                if (createSectionForEachPhrase)
+                                    {
+                                    mPresentation.Do ( GetImportSectionsFromAudioCommands( phraseNodes, phrase_SectionNameMap ) );
+                                    }
+                                else
+                                    {
+                                    mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
+                                    }
                                 // hide new phrases if section's contents are hidden
                                 HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
                                 }
@@ -1457,51 +1472,24 @@ namespace Obi.ProjectView
             return command;
             }
 
-        private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes )
+        private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes,Dictionary<PhraseNode, string> phrase_SectionNameMap )
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
-            ObiNode parent = GetSelectedPhraseSection;
+            SectionNode newSectionNode = null;
+            
+            for (int i = 0; i < phraseNodes.Count; i++)
+                {
+                if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
+                    {
+                    Commands.Command addSectionCmd = new Commands.Node.AddSectionNode ( this, mTOCView, phrase_SectionNameMap[phraseNodes[i]] );
+                    addSectionCmd.UpdateSelection = true;
+                    command.append ( addSectionCmd );
+                    newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+                    }
 
-            List<SectionNode> sectionsList = new List<SectionNode> ();
+                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode, newSectionNode.PhraseChildCount  ) );
+                }
 
-            foreach (PhraseNode pNode in phraseNodes)
-                {
-               Commands.Command  addSectionCmd =  new Commands.Node.AddSectionNode( this, mTOCView );
-               addSectionCmd.UpdateSelection = true;
-                command.append ( addSectionCmd ) ;
-                command.append ( new Commands.Node.AddNode ( this, pNode ) );
-                }
-            /*
-            int index;
-            if (mContentView.Selection.Node is SectionNode)
-                {
-                // Import into a section, at 0 or at the selected index
-                parent = mContentView.Selection.Node;
-                index = mContentView.Selection is StripIndexSelection ?
-                    ((StripIndexSelection)mContentView.Selection).Index : 0;
-                }
-            else
-                {
-                // Import after a phrase; if this is an empty phrase, we'll handle that later.
-                parent = mContentView.Selection.Node.ParentAs<ObiNode> ();
-                index = mContentView.Selection.Node.Index + 1;
-                }
-            // Add all nodes in order
-            for (int i = 0; i < phraseNodes.Count; ++i)
-                {
-                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], parent, index + i ) );
-                }
-            if (mContentView.Selection.Node.GetType () == typeof ( EmptyNode ))
-                {
-                // If the selection was an empty node, then remove (so that the first phrase is "imported into it".)
-                // Remember to keep its attributes so that if we import audio into a page, it keeps its page number.
-                Commands.Node.MergeAudio.AppendCopyNodeAttributes ( command, this, (EmptyNode)mContentView.Selection.Node,
-                    phraseNodes[0] );
-                Commands.Node.Delete delete = new Commands.Node.Delete ( this, mContentView.Selection.Node );
-                delete.UpdateSelection = false;
-                command.append ( delete );
-                }
-             */ 
             return command;
             }
 
