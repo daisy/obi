@@ -29,6 +29,8 @@ namespace Obi.Dialogs
         /// </summary>
         public bool SplitPhrases { get { return mSplitCheckBox.Checked; } }
 
+        public bool createSectionForEachPhrase { get { return mCreateAudioFilePerSectionCheckBox.Checked; } }
+        //  create a porpety for section import
         /// <summary>
         /// Maximum durations of imported phrases.
         /// </summary>

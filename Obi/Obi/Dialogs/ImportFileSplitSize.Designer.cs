@@ -34,6 +34,7 @@ namespace Obi.Dialogs
             this.mOKButton = new System.Windows.Forms.Button();
             this.mCancelButton = new System.Windows.Forms.Button();
             this.mSplitCheckBox = new System.Windows.Forms.CheckBox();
+            this.mCreateAudioFilePerSectionCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -69,12 +70,19 @@ namespace Obi.Dialogs
             this.mSplitCheckBox.UseVisualStyleBackColor = true;
             this.mSplitCheckBox.CheckedChanged += new System.EventHandler(this.mSplitCheckBox_CheckedChanged);
             // 
+            // mCreateAudioFilePerSectionCheckBox
+            // 
+            resources.ApplyResources(this.mCreateAudioFilePerSectionCheckBox, "mCreateAudioFilePerSectionCheckBox");
+            this.mCreateAudioFilePerSectionCheckBox.Name = "mCreateAudioFilePerSectionCheckBox";
+            this.mCreateAudioFilePerSectionCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ImportFileSplitSize
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.mCreateAudioFilePerSectionCheckBox);
             this.Controls.Add(this.mSplitCheckBox);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
@@ -99,5 +107,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mOKButton;
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.CheckBox mSplitCheckBox;
+        private System.Windows.Forms.CheckBox mCreateAudioFilePerSectionCheckBox;
     }
 }

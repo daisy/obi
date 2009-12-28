@@ -1350,7 +1350,6 @@ namespace Obi.ProjectView
         /// </summary>
         public void ImportPhrases ()
             {
-            bool createSectionForEachPhrase = false;
             if (CanImportPhrases)
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop ();
@@ -1365,7 +1364,8 @@ namespace Obi.ProjectView
                         {
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
-                        // convert from minutes to milliseconds
+                        bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
+                         // convert from minutes to milliseconds
                         double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Length );
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
