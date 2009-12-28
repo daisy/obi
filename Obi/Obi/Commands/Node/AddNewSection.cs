@@ -6,6 +6,7 @@ namespace Obi.Commands.Node
         protected int mIndex;                             // the index where the section node is inserted
         private SectionNode mNode;                        // the new section node
         private IControlWithRenamableSelection mControl;  // control in which the section is added
+        private string m_SectionName = null ;
 
         /// <summary>
         /// Add a new section node in the context of the previous selection. Pass along the control
@@ -21,6 +22,13 @@ namespace Obi.Commands.Node
             view.SelectAndRenameSelection(new NodeSelection(mNode, mControl));
             Label = Localizer.Message("add_section");
         }
+
+        public AddSectionNode ( ProjectView.ProjectView view, IControlWithRenamableSelection control, string sectionName)
+            : this( view, control )   
+            {
+            m_SectionName = sectionName;
+            
+            }
 
         // Set parent and index for the new node
         protected virtual void SetParentAndIndex(ProjectView.ProjectView view)
@@ -53,6 +61,11 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             mParent.Insert(mNode, mIndex);
+
+            if (m_SectionName != null && m_SectionName.Length > 0)
+                {
+                View.RenameSectionNode ( mNode, m_SectionName );
+                }
             if (mRedo)
             {
                 View.Selection = new NodeSelection(mNode, mControl);
