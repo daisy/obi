@@ -1476,7 +1476,8 @@ namespace Obi.ProjectView
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
             SectionNode newSectionNode = null;
-            
+            int phraseInsertIndex = 0;
+
             for (int i = 0; i < phraseNodes.Count; i++)
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
@@ -1485,9 +1486,11 @@ namespace Obi.ProjectView
                     addSectionCmd.UpdateSelection = true;
                     command.append ( addSectionCmd );
                     newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+                    phraseInsertIndex = 0;
                     }
 
-                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode, newSectionNode.PhraseChildCount  ) );
+                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
+                ++phraseInsertIndex;
                 }
 
             return command;
