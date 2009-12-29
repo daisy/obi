@@ -408,6 +408,21 @@
   <data name="mTab.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="m_ChkAutoSaveInterval.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 89</value>
+  </data>
+  <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 20</value>
+  </data>
+  <data name="m_ChkAutoSaveInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
+    <value>Auto save &amp;interval in minutes:</value>
+  </data>
   <data name="&gt;&gt;m_ChkAutoSaveInterval.Name" xml:space="preserve">
     <value>m_ChkAutoSaveInterval</value>
   </data>
@@ -419,6 +434,21 @@
   </data>
   <data name="&gt;&gt;m_ChkAutoSaveInterval.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 123</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 20</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.Text" xml:space="preserve">
+    <value>Auto save whenever recording ends</value>
   </data>
   <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.Name" xml:space="preserve">
     <value>mChkAutoSaveOnRecordingEnd</value>
@@ -432,6 +462,18 @@
   <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
+    <value>Interval in minutes</value>
+  </data>
+  <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 87</value>
+  </data>
+  <data name="MnumAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 22</value>
+  </data>
+  <data name="MnumAutoSaveInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
   <data name="&gt;&gt;MnumAutoSaveInterval.Name" xml:space="preserve">
     <value>MnumAutoSaveInterval</value>
   </data>
@@ -443,6 +485,24 @@
   </data>
   <data name="&gt;&gt;MnumAutoSaveInterval.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
+    <value>Pipeline scripts directory</value>
+  </data>
+  <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 153</value>
+  </data>
+  <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>328, 22</value>
+  </data>
+  <data name="mPipelineTextbox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="&gt;&gt;mPipelineTextbox.Name" xml:space="preserve">
     <value>mPipelineTextbox</value>
@@ -456,6 +516,27 @@
   <data name="&gt;&gt;mPipelineTextbox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="mPipelineBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="mPipelineBrowseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>508, 148</value>
+  </data>
+  <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mPipelineBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 31</value>
+  </data>
+  <data name="mPipelineBrowseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="mPipelineBrowseButton.Text" xml:space="preserve">
+    <value>&amp;Browse</value>
+  </data>
   <data name="&gt;&gt;mPipelineBrowseButton.Name" xml:space="preserve">
     <value>mPipelineBrowseButton</value>
   </data>
@@ -468,6 +549,21 @@
   <data name="&gt;&gt;mPipelineBrowseButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 155</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 16</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>&amp;Pipeline scripts directory:</value>
+  </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
   </data>
@@ -479,6 +575,27 @@
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="mLastOpenCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mLastOpenCheckBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="mLastOpenCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 53</value>
+  </data>
+  <data name="mLastOpenCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mLastOpenCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 20</value>
+  </data>
+  <data name="mLastOpenCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="mLastOpenCheckBox.Text" xml:space="preserve">
+    <value>Open &amp;last project when starting Obi</value>
   </data>
   <data name="&gt;&gt;mLastOpenCheckBox.Name" xml:space="preserve">
     <value>mLastOpenCheckBox</value>
@@ -502,7 +619,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mProjectTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 237</value>
+    <value>616, 287</value>
   </data>
   <data name="mProjectTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -532,7 +649,7 @@
     <value>102, 16</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>23</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
     <value>millisecond(ms)</value>
@@ -559,7 +676,7 @@
     <value>100, 16</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>23</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>&amp;Nudge duration</value>
@@ -583,7 +700,7 @@
     <value>159, 22</value>
   </data>
   <data name="mNudgeDurationUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;mNudgeDurationUpDown.Name" xml:space="preserve">
     <value>mNudgeDurationUpDown</value>
@@ -619,7 +736,7 @@
     <value>160, 24</value>
   </data>
   <data name="mNoiseLevelComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>26</value>
   </data>
   <data name="&gt;&gt;mNoiseLevelComboBox.Name" xml:space="preserve">
     <value>mNoiseLevelComboBox</value>
@@ -646,7 +763,7 @@
     <value>79, 16</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>25</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>&amp;Noise level:</value>
@@ -679,7 +796,7 @@
     <value>94, 20</value>
   </data>
   <data name="mAudioCluesCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>27</value>
   </data>
   <data name="mAudioCluesCheckBox.Text" xml:space="preserve">
     <value>&amp;Audio clues</value>
@@ -1002,345 +1119,6 @@
   <data name="&gt;&gt;mAudioTab.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;mCultureBox.Name" xml:space="preserve">
-    <value>mCultureBox</value>
-  </data>
-  <data name="&gt;&gt;mCultureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mCultureBox.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;mCultureBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;mOrganizationTextbox.Name" xml:space="preserve">
-    <value>mOrganizationTextbox</value>
-  </data>
-  <data name="&gt;&gt;mOrganizationTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mOrganizationTextbox.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;mOrganizationTextbox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;mFullNameTextbox.Name" xml:space="preserve">
-    <value>mFullNameTextbox</value>
-  </data>
-  <data name="&gt;&gt;mFullNameTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mFullNameTextbox.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;mFullNameTextbox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
-  </data>
-  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 237</value>
-  </data>
-  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>User profile</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>mTab</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="mTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 316</value>
-  </data>
-  <data name="mTab.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;mTab.Name" xml:space="preserve">
-    <value>mTab</value>
-  </data>
-  <data name="&gt;&gt;mTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mTab.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 89</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 20</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="m_ChkAutoSaveInterval.Text" xml:space="preserve">
-    <value>Auto save &amp;interval in minutes:</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAutoSaveInterval.Name" xml:space="preserve">
-    <value>m_ChkAutoSaveInterval</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAutoSaveInterval.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAutoSaveInterval.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;m_ChkAutoSaveInterval.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="mChkAutoSaveOnRecordingEnd.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mChkAutoSaveOnRecordingEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 123</value>
-  </data>
-  <data name="mChkAutoSaveOnRecordingEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 20</value>
-  </data>
-  <data name="mChkAutoSaveOnRecordingEnd.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="mChkAutoSaveOnRecordingEnd.Text" xml:space="preserve">
-    <value>Auto save whenever recording ends</value>
-  </data>
-  <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.Name" xml:space="preserve">
-    <value>mChkAutoSaveOnRecordingEnd</value>
-  </data>
-  <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="MnumAutoSaveInterval.AccessibleName" xml:space="preserve">
-    <value>Interval in minutes</value>
-  </data>
-  <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 87</value>
-  </data>
-  <data name="MnumAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 22</value>
-  </data>
-  <data name="MnumAutoSaveInterval.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;MnumAutoSaveInterval.Name" xml:space="preserve">
-    <value>MnumAutoSaveInterval</value>
-  </data>
-  <data name="&gt;&gt;MnumAutoSaveInterval.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MnumAutoSaveInterval.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;MnumAutoSaveInterval.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="mPipelineTextbox.AccessibleName" xml:space="preserve">
-    <value>Pipeline scripts directory</value>
-  </data>
-  <data name="mPipelineTextbox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 153</value>
-  </data>
-  <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mPipelineTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>328, 22</value>
-  </data>
-  <data name="mPipelineTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;mPipelineTextbox.Name" xml:space="preserve">
-    <value>mPipelineTextbox</value>
-  </data>
-  <data name="&gt;&gt;mPipelineTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mPipelineTextbox.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;mPipelineTextbox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="mPipelineBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="mPipelineBrowseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 148</value>
-  </data>
-  <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mPipelineBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
-  </data>
-  <data name="mPipelineBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="mPipelineBrowseButton.Text" xml:space="preserve">
-    <value>&amp;Browse</value>
-  </data>
-  <data name="&gt;&gt;mPipelineBrowseButton.Name" xml:space="preserve">
-    <value>mPipelineBrowseButton</value>
-  </data>
-  <data name="&gt;&gt;mPipelineBrowseButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mPipelineBrowseButton.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;mPipelineBrowseButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 155</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 16</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>&amp;Pipeline scripts directory:</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="mLastOpenCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="mLastOpenCheckBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="mLastOpenCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 53</value>
-  </data>
-  <data name="mLastOpenCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mLastOpenCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 20</value>
-  </data>
-  <data name="mLastOpenCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="mLastOpenCheckBox.Text" xml:space="preserve">
-    <value>Open &amp;last project when starting Obi</value>
-  </data>
-  <data name="&gt;&gt;mLastOpenCheckBox.Name" xml:space="preserve">
-    <value>mLastOpenCheckBox</value>
-  </data>
-  <data name="&gt;&gt;mLastOpenCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mLastOpenCheckBox.Parent" xml:space="preserve">
-    <value>mProjectTab</value>
-  </data>
-  <data name="&gt;&gt;mLastOpenCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1387,7 +1165,7 @@
     <value>500, 24</value>
   </data>
   <data name="mCultureBox.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>33</value>
   </data>
   <data name="&gt;&gt;mCultureBox.Name" xml:space="preserve">
     <value>mCultureBox</value>
@@ -1414,7 +1192,7 @@
     <value>72, 16</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>32</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>&amp;Language:</value>
@@ -1444,7 +1222,7 @@
     <value>500, 22</value>
   </data>
   <data name="mOrganizationTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>31</value>
   </data>
   <data name="&gt;&gt;mOrganizationTextbox.Name" xml:space="preserve">
     <value>mOrganizationTextbox</value>
@@ -1471,7 +1249,7 @@
     <value>86, 16</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>30</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>&amp;Organization:</value>
@@ -1501,7 +1279,7 @@
     <value>500, 22</value>
   </data>
   <data name="mFullNameTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>29</value>
   </data>
   <data name="&gt;&gt;mFullNameTextbox.Name" xml:space="preserve">
     <value>mFullNameTextbox</value>
@@ -1528,7 +1306,7 @@
     <value>69, 16</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>28</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Full &amp;name:</value>
@@ -1544,6 +1322,60 @@
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>616, 287</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>User profile</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>mTab</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="mTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="mTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="mTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>624, 316</value>
+  </data>
+  <data name="mTab.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;mTab.Name" xml:space="preserve">
+    <value>mTab</value>
+  </data>
+  <data name="&gt;&gt;mTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTab.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
