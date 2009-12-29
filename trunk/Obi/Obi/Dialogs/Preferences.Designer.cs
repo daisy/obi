@@ -48,6 +48,9 @@ namespace Obi.Dialogs
             this.label9 = new System.Windows.Forms.Label();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mAudioTab = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.mNudgeDurationUpDown = new System.Windows.Forms.NumericUpDown();
             this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.mAudioCluesCheckBox = new System.Windows.Forms.CheckBox();
@@ -68,16 +71,13 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.mNudgeDurationUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mAudioTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -245,6 +245,21 @@ namespace Obi.Dialogs
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // mNudgeDurationUpDown
+            // 
+            resources.ApplyResources(this.mNudgeDurationUpDown, "mNudgeDurationUpDown");
+            this.mNudgeDurationUpDown.Name = "mNudgeDurationUpDown";
+            // 
             // mNoiseLevelComboBox
             // 
             this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -383,21 +398,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // mNudgeDurationUpDown
-            // 
-            resources.ApplyResources(this.mNudgeDurationUpDown, "mNudgeDurationUpDown");
-            this.mNudgeDurationUpDown.Name = "mNudgeDurationUpDown";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -418,10 +418,10 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
