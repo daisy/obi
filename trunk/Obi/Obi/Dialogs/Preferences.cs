@@ -97,6 +97,7 @@ namespace Obi.Dialogs
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
 
             mPreviewDurationUpDown.Value = (decimal)(mSettings.PreviewDuration / 1000.0);
+            mNudgeDurationUpDown.Value = (decimal)mSettings.NudgeTimeMs;
             mNoiseLevelComboBox.SelectedIndex =
                 mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
@@ -215,6 +216,7 @@ namespace Obi.Dialogs
             try
                 {
                 mSettings.PreviewDuration = (int)Math.Round ( 1000 * mPreviewDurationUpDown.Value );
+                mSettings.NudgeTimeMs = (int)mNudgeDurationUpDown.Value;
                 }
             catch (System.Exception ex)
                 {
@@ -236,7 +238,7 @@ namespace Obi.Dialogs
                 if (mSettings.UserProfile.Culture.ToString () != mCultureBox.SelectedItem.ToString ())
                     MessageBox.Show ( Localizer.Message ( "Preferences_RestartForCultureChange" ) );
                 }
-            else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name )
+            else if (mSettings.UserProfile.Culture.Name != ((CultureInfo)mCultureBox.SelectedItem).Name)
                 {
                 // show this message only if selected culture is different from application's existing culture.
                 MessageBox.Show ( string.Format ( Localizer.Message ( "Peferences_GUIDonotSupportCulture" ),
