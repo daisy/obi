@@ -873,6 +873,136 @@ namespace Obi.ProjectView
             System.Diagnostics.Debug.Print("Location changed to {0}/{1}", Location, l);
         }
 
+        private int m_BlocksDisplayedCount = 20;
+
+        public void LoadBlocksInLayoutIfRequired ()
+            {
+            int initIndex = GetFirstPhraseReloadIndex;
+            Console.WriteLine ( "Init index : " + initIndex.ToString () );
+            if (initIndex >= 0)
+                {
+                LoadBlocksLayout ( initIndex );
+                }
+            }
+
+        private int GetFirstPhraseReloadIndex
+            {
+            get
+                {
+                int reloadIndex = -1;
+                
+
+                if (mBlockLayout.Controls.Count == 0 && mNode.PhraseChildCount > 0)
+                    {
+                    reloadIndex = 0;
+                    return reloadIndex;
+                    }
+
+                int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index;
+                int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
+                if (mContentView.SelectedPhraseNode == null)
+                    {
+                    Console.WriteLine ( "Selection is null" );
+                    }
+
+                if (mContentView.SelectedPhraseNode  != null
+                    && mContentView.SelectedPhraseNode is EmptyNode)
+                    {
+                    int selectedIndex = mContentView.SelectedPhraseNode.Index;
+                    if (selectedIndex < frontThresholdIndex)
+                        {
+                        //reloadIndex = frontThresholdIndex- selectedIndex;
+                        reloadIndex = selectedIndex - 4 ;
+                        }
+                    else if (selectedIndex > rearThresholdIndex)
+                        {
+                        reloadIndex = selectedIndex - rearThresholdIndex;
+                        }
+                    }
+                return reloadIndex;
+                }
+            }
+
+
+        private void LoadBlocksLayout ( int startingIndex )
+            {
+            if (startingIndex < 0)
+                return;
+
+            int maxCountDisplay = mNode.PhraseChildCount > m_BlocksDisplayedCount ? m_BlocksDisplayedCount : mNode.PhraseChildCount;
+
+            if (mNode.PhraseChildCount < m_BlocksDisplayedCount
+                || mBlockLayout.Controls.Count == 0)
+                {
+                Console.WriteLine ( mNode.PhraseChildCount.ToString () + ":" + m_BlocksDisplayedCount + ":" + maxCountDisplay.ToString () );
+                int lastBlockIndex = LastBlock != null &&  LastBlock.Node.Index >= 0 ? LastBlock.Node.Index: 0 ;
+                for (int i = lastBlockIndex 
+                    ; i < maxCountDisplay
+                    ; i++)
+                    {
+                    AddBlockForNode ( mNode.PhraseChild(i) );
+                    }
+                }
+            else
+                {
+                int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index;
+                int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
+                int initIndex = GetFirstPhraseReloadIndex;
+
+                if (initIndex > 0 &&
+                    initIndex < FirstBlock.Node.Index)
+                    {
+                    MessageBox.Show ( "create in front" );
+                    int countToAdd = FirstBlock.Node.Index - initIndex;
+                    // first add blocks in front
+                    for (int i = 0; i < countToAdd; i++)
+                        {
+                        MessageBox.Show ( mNode.PhraseChild ( i + initIndex ).Index.ToString () ); 
+                        AddBlockForNode ( mNode.PhraseChild(i + initIndex) );
+                        }
+
+                    // now remove blocks from rear
+                    int lastBlockIndexInLayout = LastBlock.Node.Index;
+
+                    for (int i = 0; i < countToAdd; i++)
+                        {
+                        //MessageBox.Show ( mNode.PhraseChild ( lastBlockIndexInLayout - i ).Index.ToString () );
+                        RemoveBlock ( mNode.PhraseChild(lastBlockIndexInLayout - i), true );
+                        }
+
+                    }
+                else if (initIndex > 0
+                    && initIndex > FirstBlock.Node.Index)
+                    {
+                    MessageBox.Show ( "inside" );
+                    int countToAdd = initIndex - FirstBlock.Node.Index ;
+                    int removeStartIndex = FirstBlock.Node.Index;
+                    // first remove blocks from front
+                    for (int i = 0; i < countToAdd; i++)
+                        {
+                        if (countToAdd - 1 == i)
+                            {
+                            RemoveBlock ( mNode.PhraseChild(i + removeStartIndex), true );
+                            }
+                        else
+                            {
+                            RemoveBlock ( mNode.PhraseChild(i + removeStartIndex), false );
+                            }
+                        }
+
+
+                    // now add blocks at rear
+                    for (int i = 0; i < countToAdd; i++)
+                        {
+                        AddBlockForNode ( mNode.PhraseChild(i + initIndex + m_BlocksDisplayedCount) );
+                        }
+                    }
+
+                }
+
+            }
+
+
         public void DestroyStripHandle ()
             {
             this.DestroyHandle ();
