@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic ;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -254,7 +255,16 @@ namespace Obi.ProjectView
                 {
                     StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
                 }
-                Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
+            Block block = null ;//@
+            if (m_EmptyNode_BlocksMap.ContainsKey ( node ))
+                {
+                block = m_EmptyNode_BlocksMap[node];
+                }
+            else
+                {
+                block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+                m_EmptyNode_BlocksMap.Add ( node, block ); //@
+                }
                 mBlockLayout.Controls.Add(block);
                 mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
                 AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
@@ -263,6 +273,7 @@ namespace Obi.ProjectView
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
+
                 return block;
             }
         }
@@ -355,8 +366,17 @@ namespace Obi.ProjectView
                 if (updateSize) Resize_Blocks ();
                 UpdateStripCursorsAccessibleName ( index - 1 );
 
+                if (node.IsRooted) // @
+                    {
+                    block.DestroyBlockHandle ();
+                    }
+                else
+                    {
+                    m_EmptyNode_BlocksMap.Remove ( node );
+                    }
                 // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
-                if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
+                if ( !node.IsRooted &&
+                    ( mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node)) )
                     {
                     block.Dispose ();
                     block = null;
@@ -874,6 +894,7 @@ namespace Obi.ProjectView
         }
 
         private int m_BlocksDisplayedCount = 20;
+        private Dictionary<EmptyNode, Block> m_EmptyNode_BlocksMap = new Dictionary<EmptyNode, Block> ();
 
         public void LoadBlocksInLayoutIfRequired ()
             {
@@ -930,9 +951,9 @@ namespace Obi.ProjectView
             }
 
 
-        private void LoadBlocksLayout ( int startingIndex )
+        private void LoadBlocksLayout ( int initIndex )
             {
-            if (startingIndex < 0)
+            if (initIndex < 0)
                 return;
 
             int maxCountDisplay = mNode.PhraseChildCount > m_BlocksDisplayedCount ? m_BlocksDisplayedCount : mNode.PhraseChildCount;
@@ -953,12 +974,12 @@ namespace Obi.ProjectView
                 {
                 int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index;
                 int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
-                int initIndex = GetFirstPhraseReloadIndex;
+                 
 
                 if (initIndex >= 0 &&
                     initIndex < FirstBlock.Node.Index)
                     {
-                    MessageBox.Show ( "create in front" );
+                    //MessageBox.Show ( "create in front" );
                     int countToAdd = FirstBlock.Node.Index - initIndex;
                     // first add blocks in front
                     for (int i = 0; i < countToAdd; i++)
@@ -980,7 +1001,7 @@ namespace Obi.ProjectView
                 else if (initIndex > 0
                     && initIndex > FirstBlock.Node.Index)
                     {
-                    MessageBox.Show ( "inside" );
+                    //MessageBox.Show ( "inside" );
                     int countToAdd = initIndex - FirstBlock.Node.Index ;
                     int removeStartIndex = FirstBlock.Node.Index;
                     // first remove blocks from front
