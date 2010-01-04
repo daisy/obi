@@ -898,8 +898,11 @@ namespace Obi.ProjectView
                     return reloadIndex;
                     }
 
-                int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index;
-                int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
+                //int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index ;
+                //Console.WriteLine ( "FrontThreshold index " + frontThresholdIndex.ToString () );
+                //int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
+                int margin = (int)m_BlocksDisplayedCount / 4;
+
                 if (mContentView.SelectedPhraseNode == null)
                     {
                     Console.WriteLine ( "Selection is null" );
@@ -909,16 +912,19 @@ namespace Obi.ProjectView
                     && mContentView.SelectedPhraseNode is EmptyNode)
                     {
                     int selectedIndex = mContentView.SelectedPhraseNode.Index;
-                    if (selectedIndex < frontThresholdIndex)
+                    if (selectedIndex <= (FirstBlock.Node.Index + margin ))
                         {
                         //reloadIndex = frontThresholdIndex- selectedIndex;
-                        reloadIndex = selectedIndex - 4 ;
+                        reloadIndex = FirstBlock.Node.Index - margin;
+                        if (reloadIndex < 0) reloadIndex = 0;
                         }
-                    else if (selectedIndex > rearThresholdIndex)
+                    else if (selectedIndex >= LastBlock.Node.Index - margin )
                         {
-                        reloadIndex = selectedIndex - rearThresholdIndex;
+                        reloadIndex = FirstBlock.Node.Index + margin;
+                        if (reloadIndex >= mNode.PhraseChildCount) reloadIndex = mNode.PhraseChildCount - m_BlocksDisplayedCount - 1;
                         }
                     }
+                Console.WriteLine ( "load index " + reloadIndex.ToString () );
                 return reloadIndex;
                 }
             }
@@ -949,7 +955,7 @@ namespace Obi.ProjectView
                 int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
                 int initIndex = GetFirstPhraseReloadIndex;
 
-                if (initIndex > 0 &&
+                if (initIndex >= 0 &&
                     initIndex < FirstBlock.Node.Index)
                     {
                     MessageBox.Show ( "create in front" );
@@ -957,7 +963,7 @@ namespace Obi.ProjectView
                     // first add blocks in front
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        MessageBox.Show ( mNode.PhraseChild ( i + initIndex ).Index.ToString () ); 
+                        //MessageBox.Show ( mNode.PhraseChild ( i + initIndex ).Index.ToString () ); 
                         AddBlockForNode ( mNode.PhraseChild(i + initIndex) );
                         }
 
@@ -994,7 +1000,8 @@ namespace Obi.ProjectView
                     // now add blocks at rear
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        AddBlockForNode ( mNode.PhraseChild(i + initIndex + m_BlocksDisplayedCount) );
+                        //MessageBox.Show ( mNode.PhraseChild ( i + initIndex + m_BlocksDisplayedCount ).Index.ToString () ); 
+                        AddBlockForNode ( mNode.PhraseChild( LastBlock.Node.Index + 1 ) );
                         }
                     }
 
