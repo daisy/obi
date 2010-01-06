@@ -266,14 +266,45 @@ namespace Obi.ProjectView
                 m_EmptyNode_BlocksMap.Add ( node, block ); //@
                 }
                 mBlockLayout.Controls.Add(block);
-                mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
-                AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+                
+                //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
+                AddCursorAtBlockLayoutIndex(2 + 2 * node.Index );
+                // set all index with each add. this is heavy operation so should be removed after experiments
+                if (mBlockLayout.Controls.Count > 3)
+                    {
+                    List<int> indexList = new List<int> ();
+                    Dictionary<int, Block> blocksMap = new Dictionary<int, Block> ();
+                    foreach (Control c in mBlockLayout.Controls)
+                        {
+                        if (c is Block)
+                            {
+                            int bIndex = ((Block)c).Node.Index  ;
+                            indexList.Add (bIndex );
+                            blocksMap.Add ( bIndex, (Block)c );
+                            }
+                        }
+                    indexList.Sort ();
+                    int firstNodeIndex = indexList[0];
+                    Console.WriteLine ( "first index " + firstNodeIndex.ToString () );
+                    foreach (int i in indexList)
+                        {
+                        mBlockLayout.Controls.SetChildIndex ( blocksMap[i] , 1 + 2 * (i - firstNodeIndex) );
+                        Console.WriteLine ( "Block is added at " + (1 + 2 * (i - firstNodeIndex)).ToString () );
+                        
+                        }
+                    }
+                else
+                    {
+                    mBlockLayout.Controls.SetChildIndex ( block, 1 );
+                    //AddCursorAtBlockLayoutIndex ( 2 );
+                    }
+                //
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                     block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
                 Resize_Blocks();
-                UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
-
+                //UpdateStripCursorsAccessibleName(2 + 2 * node.Index); @ temprorary disabled for experiments
+                CheckControlTypeAtINdex ();
                 return block;
             }
         }
@@ -343,6 +374,7 @@ namespace Obi.ProjectView
         public void RemoveBlock ( EmptyNode node )
             {
             RemoveBlock ( node, true );
+            CheckControlTypeAtINdex ();
             }
 
         private delegate void BlockRemoveInvokation ( EmptyNode node, bool updateSize ); // @phraseLimit
@@ -359,7 +391,11 @@ namespace Obi.ProjectView
             if (block != null)
                 {
                 int index = mBlockLayout.Controls.IndexOf ( block );
+                
+                if (!(mBlockLayout.Controls[index+1] is StripCursor)) MessageBox.Show ( "This index should be for stripCursor :" + index.ToString () );
+
                 if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
+                if (!(mBlockLayout.Controls[index] is Block)) MessageBox.Show ( "This index should be for block :" + index.ToString () );
                 mBlockLayout.Controls.RemoveAt ( index );
                 if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
                 block.SizeChanged -= new EventHandler ( Block_SizeChanged );
@@ -1007,14 +1043,9 @@ namespace Obi.ProjectView
                     // first remove blocks from front
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        if (countToAdd - 1 == i)
-                            {
+                        
                             RemoveBlock ( mNode.PhraseChild(i + removeStartIndex), true );
-                            }
-                        else
-                            {
-                            RemoveBlock ( mNode.PhraseChild(i + removeStartIndex), false );
-                            }
+                            
                         }
 
 
@@ -1035,5 +1066,31 @@ namespace Obi.ProjectView
             {
             this.DestroyHandle ();
             }
+
+        void CheckControlTypeAtINdex ()
+            {
+            for ( int i = 0 ; i < mBlockLayout.Controls.Count ; i++ )
+                {
+                if (i % 2 == 0)
+                    {
+                    if (!(mBlockLayout.Controls[i] is StripCursor))
+                        {
+                        //MessageBox.Show ( "Iterating : this index should be for block " + i.ToString () );
+                        Console.WriteLine ( "Iterating : this index should be for strip cursor" + i.ToString () );
+                        }
+                    }
+                else // index is odd
+                    {
+                    if (!(mBlockLayout.Controls[i] is Block))
+                        {
+                        //MessageBox.Show ( "Iterating : this index should be for strip cursor" + i.ToString () );
+                        
+                        Console.WriteLine ( "Iterating : this index should be for block " + i.ToString () );
+                        }
+                    }
+
+                }
+            }
+
     }
 }
