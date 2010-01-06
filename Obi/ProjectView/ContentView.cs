@@ -479,6 +479,7 @@ namespace Obi.ProjectView
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
+                        if (mSelection != null && mSelection.Node is EmptyNode) CreateBlocksInStrip ();
                         }
 
                     if (s != null)
@@ -802,11 +803,39 @@ namespace Obi.ProjectView
             {
             set
                 {
-                mWrapStripContents = value;
-                for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
+                SectionNode selectedSection = mProjectView.GetSelectedPhraseSection;
+                if (mProjectView.Presentation != null && selectedSection == null)
                     {
-                    Strip strip = mStripsPanel.Controls[i] as Strip;
-                    if (strip != null) strip.WrapContents = mWrapStripContents;
+                    MessageBox.Show ( "A section or phrase should be select to wrap" );
+                    return;
+                    }
+                
+                mWrapStripContents = value;
+
+                if (mWrapStripContents)
+                    {
+                    for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
+                        {
+                        Strip strip = mStripsPanel.Controls[i] as Strip;
+                        if (strip != null)
+                            {
+                            if (strip.Node == selectedSection)
+                                {
+                                strip.WrapContents = mWrapStripContents;
+                                }
+                            else
+                                {
+                                //MessageBox.Show ( strip.Node.Label );
+                                RemoveStripsForSection_Safe ( strip.Node);
+                                }
+                            }
+                        }
+
+                    }
+                else // is unwrap
+                    {
+                    RemoveStripsForSection_Safe ( selectedSection);
+                    AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
                     }
                 UpdateSize ();
                 }
@@ -970,8 +999,9 @@ namespace Obi.ProjectView
             Strip s = StripForSelection;
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
-
-            return CreateBlocksInStrip ( s != null ? s : null );
+            s.LoadBlocksInLayoutIfRequired ();
+            return true;
+            //return CreateBlocksInStrip ( s != null ? s : null );
             }
 
 
@@ -1586,7 +1616,7 @@ namespace Obi.ProjectView
 
             if (clipboard == null || (clipboard != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
-                strip.DestroyStripHandle ();
+                if ( strip != null )  strip.DestroyStripHandle ();
                 strip = null;
                 }
             else
