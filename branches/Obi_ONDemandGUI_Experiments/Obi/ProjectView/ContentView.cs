@@ -298,7 +298,15 @@ namespace Obi.ProjectView
             m_VisibleStripsList.Clear (); // @phraseLimit
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
-            AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
+            if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
+                {
+                AddStripForSection_Safe ( mProjectView.Presentation.FirstSection );
+                mProjectView.SynchronizeViews = false;
+                }
+            else
+                {
+                AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
+                }
             CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All ();
             mProjectView.Presentation.BeforeCommandExecuted +=
@@ -803,6 +811,7 @@ namespace Obi.ProjectView
             {
             set
                 {
+                if (mProjectView.Presentation == null) return;
                 SectionNode selectedSection = mProjectView.GetSelectedPhraseSection;
                 if (mProjectView.Presentation != null && selectedSection == null)
                     {
@@ -814,23 +823,9 @@ namespace Obi.ProjectView
 
                 if (mWrapStripContents)
                     {
-                    for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
-                        {
-                        Strip strip = mStripsPanel.Controls[i] as Strip;
-                        if (strip != null)
-                            {
-                            if (strip.Node == selectedSection)
-                                {
-                                strip.WrapContents = mWrapStripContents;
-                                }
-                            else
-                                {
-                                //MessageBox.Show ( strip.Node.Label );
-                                RemoveStripsForSection_Safe ( strip.Node);
-                                }
-                            }
-                        }
-
+                    CreateStripForWrappedContent ();
+                    mProjectView.SynchronizeViews = false;
+                    
                     }
                 else // is unwrap
                     {
@@ -840,6 +835,30 @@ namespace Obi.ProjectView
                 UpdateSize ();
                 }
             }
+
+        private void CreateStripForWrappedContent ()
+            {
+            SectionNode selectedSection = mProjectView.GetSelectedPhraseSection;
+            for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
+                {
+                Strip strip = mStripsPanel.Controls[i] as Strip;
+                if (strip != null)
+                    {
+                    if ( ( selectedSection == null && i == 0 )
+                        || ( selectedSection != null &&  strip.Node == selectedSection) )
+                        {
+                        strip.WrapContents = mWrapStripContents;
+                        }
+                    else
+                        {
+                        //MessageBox.Show ( strip.Node.Label );
+                        RemoveStripsForSection_Safe ( strip.Node );
+                        }
+                    }
+                }
+
+            }
+
 
         public float AudioScale
             {
