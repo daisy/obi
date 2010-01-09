@@ -935,7 +935,10 @@ namespace Obi.ProjectView
                     }
                 AddControlAt ( strip, ((SectionNode)node).Position );
                 }
-            for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection ( node.SectionChild ( i ) );
+            if (!mWrapStripContents)
+                {
+                for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection ( node.SectionChild ( i ) );
+                }
             return strip;
             }
 
@@ -1015,6 +1018,7 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool CreateBlocksInStrip ()
             {
+            if (mWrapStripContents) CreateStripForWrappedContent ();
             Strip s = StripForSelection;
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
