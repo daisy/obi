@@ -265,6 +265,9 @@ namespace Obi.ProjectView
                 block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
                 m_EmptyNode_BlocksMap.Add ( node, block ); //@
                 }
+                // avoid re adding of blocks, this is temporary fix till dynamic adding and removing stablizes
+                if ( mBlockLayout.Controls.Contains (block ) ) return  block;
+
                 mBlockLayout.Controls.Add(block);
                 
                 //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
