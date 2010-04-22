@@ -999,7 +999,8 @@ namespace Obi.ProjectView
                         && prevPoint != s.Location
                         && visibleStripsCount <= 500)
                         {
-                        CreateBlocksInStrip ( s );
+                        //CreateBlocksInStrip ( s );
+                        s.LoadBlocksInLayoutIfRequired ();
                         visibleStripsCount++;
                         }
                     else return;
@@ -1022,6 +1023,7 @@ namespace Obi.ProjectView
             Strip s = StripForSelection;
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
+            
             s.LoadBlocksInLayoutIfRequired ();
             return true;
             //return CreateBlocksInStrip ( s != null ? s : null );
