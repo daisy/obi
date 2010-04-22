@@ -936,7 +936,7 @@ namespace Obi.ProjectView
         private Dictionary<EmptyNode, Block> m_EmptyNode_BlocksMap = new Dictionary<EmptyNode, Block> ();
 
         public void LoadBlocksInLayoutIfRequired ()
-            {
+           {
             int initIndex = GetFirstPhraseReloadIndex;
             Console.WriteLine ( "Init index : " + initIndex.ToString () );
             if (initIndex >= 0)
@@ -951,7 +951,7 @@ namespace Obi.ProjectView
                 {
                 int reloadIndex = -1;
                 
-
+                // if no block is visible but there are phrases in section
                 if (mBlockLayout.Controls.Count == 0 && mNode.PhraseChildCount > 0)
                     {
                     reloadIndex = 0;
@@ -996,7 +996,7 @@ namespace Obi.ProjectView
                 return;
 
             int maxCountDisplay = mNode.PhraseChildCount > m_BlocksDisplayedCount ? m_BlocksDisplayedCount : mNode.PhraseChildCount;
-
+            
             if (mNode.PhraseChildCount < m_BlocksDisplayedCount
                 || mBlockLayout.Controls.Count == 0)
                 {
@@ -1007,6 +1007,7 @@ namespace Obi.ProjectView
                     ; i++)
                     {
                     AddBlockForNode ( mNode.PhraseChild(i) );
+                    
                     }
                 }
             else
@@ -1023,7 +1024,7 @@ namespace Obi.ProjectView
                     // first add blocks in front
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        //MessageBox.Show ( mNode.PhraseChild ( i + initIndex ).Index.ToString () ); 
+                        //MessageBox.Show ("Adding " +   mNode.PhraseChild ( i + initIndex ).Index.ToString () ); 
                         AddBlockForNode ( mNode.PhraseChild(i + initIndex) );
                         }
 
@@ -1032,7 +1033,7 @@ namespace Obi.ProjectView
 
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        //MessageBox.Show ( mNode.PhraseChild ( lastBlockIndexInLayout - i ).Index.ToString () );
+                        //MessageBox.Show ("Removing " +   mNode.PhraseChild ( lastBlockIndexInLayout - i ).Index.ToString () );
                         RemoveBlock ( mNode.PhraseChild(lastBlockIndexInLayout - i), true );
                         }
 
@@ -1042,22 +1043,37 @@ namespace Obi.ProjectView
                     {
                     //MessageBox.Show ( "inside" );
                     int countToAdd = initIndex - FirstBlock.Node.Index ;
-                    int removeStartIndex = FirstBlock.Node.Index;
-                    // first remove blocks from front
-                    for (int i = 0; i < countToAdd; i++)
-                        {
-                        
-                            RemoveBlock ( mNode.PhraseChild(i + removeStartIndex), true );
-                            
-                        }
 
+                    if (LastBlock.Node.Index == mNode.PhraseChildCount - 1)
+                        {
+                        //MessageBox.Show ( "already showing to end " );
+                        return;
+                        }
 
                     // now add blocks at rear
                     for (int i = 0; i < countToAdd; i++)
                         {
-                        //MessageBox.Show ( mNode.PhraseChild ( i + initIndex + m_BlocksDisplayedCount ).Index.ToString () ); 
+                        
+                        MessageBox.Show ( "adding " + (LastBlock.Node.Index + 1 ).ToString () ); 
+                        try
+                            {
                         AddBlockForNode ( mNode.PhraseChild( LastBlock.Node.Index + 1 ) );
+                            }
+                        catch ( System.Exception ex )
+                            {
+                            countToAdd = i;
+                            break;
+                            MessageBox.Show ( ex.ToString () );
+                            }
                         }
+                    int removeStartIndex = FirstBlock.Node.Index;
+                    // first remove blocks from front
+                    for (int i = 0; i < countToAdd; i++)
+                        {
+                        RemoveBlock ( mNode.PhraseChild ( removeStartIndex ), true );
+
+                        }
+
                     }
 
                 }
