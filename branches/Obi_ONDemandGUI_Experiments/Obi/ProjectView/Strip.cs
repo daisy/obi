@@ -266,7 +266,11 @@ namespace Obi.ProjectView
                 m_EmptyNode_BlocksMap.Add ( node, block ); //@
                 }
                 // avoid re adding of blocks, this is temporary fix till dynamic adding and removing stablizes
-                if ( mBlockLayout.Controls.Contains (block ) ) return  block;
+            if (mBlockLayout.Controls.Contains ( block ))
+                {
+                // this problem is now fixed so this if block should be removed in future.
+                                return block;
+                }
 
                 mBlockLayout.Controls.Add(block);
                 
@@ -1012,13 +1016,12 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                int frontThresholdIndex = ((int)m_BlocksDisplayedCount / 4) + FirstBlock.Node.Index;
-                int rearThresholdIndex = ((int)m_BlocksDisplayedCount * 3 / 4) + FirstBlock.Node.Index;
-                 
+                
 
                 if (initIndex >= 0 &&
                     initIndex < FirstBlock.Node.Index)
                     {
+                    
                     //MessageBox.Show ( "create in front" );
                     int countToAdd = FirstBlock.Node.Index - initIndex;
                     // first add blocks in front
@@ -1046,7 +1049,7 @@ namespace Obi.ProjectView
 
                     if (LastBlock.Node.Index == mNode.PhraseChildCount - 1)
                         {
-                        //MessageBox.Show ( "already showing to end " );
+                                                //MessageBox.Show ( "already showing to end " );
                         return;
                         }
 
@@ -1054,7 +1057,7 @@ namespace Obi.ProjectView
                     for (int i = 0; i < countToAdd; i++)
                         {
                         
-                        MessageBox.Show ( "adding " + (LastBlock.Node.Index + 1 ).ToString () ); 
+                        //MessageBox.Show ( "adding " + (LastBlock.Node.Index + 1 ).ToString () ); 
                         try
                             {
                         AddBlockForNode ( mNode.PhraseChild( LastBlock.Node.Index + 1 ) );
