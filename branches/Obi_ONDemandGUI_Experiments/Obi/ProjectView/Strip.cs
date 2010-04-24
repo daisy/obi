@@ -312,6 +312,8 @@ namespace Obi.ProjectView
                 Resize_Blocks();
                 //UpdateStripCursorsAccessibleName(2 + 2 * node.Index); @ temprorary disabled for experiments
                 CheckControlTypeAtINdex ();
+
+                RemoveBlockDynamically ( block );
                 return block;
             }
         }
@@ -424,8 +426,10 @@ namespace Obi.ProjectView
                     block.Dispose ();
                     block = null;
                     }
-
+                // add block if mBlockLayout has less blocks than limit
+                AddBlockDynamically ( index );
                 }
+                
             }
         }
 
@@ -1103,6 +1107,40 @@ RemoveBlock (FirstBlock, true ) ;
                     RemoveBlock (LastBlock, true ) ;
                     }
                 }
+            }
+
+        private int VisibleBlocksCount
+            {
+        get
+            {
+            return (mBlockLayout.Controls.Count / 2) - 1;
+        }
+        }
+
+        public void AddBlockDynamically ( int removedIndex )
+            {
+            if (VisibleBlocksCount < m_BlocksDisplayedCount
+                && VisibleBlocksCount < mNode.PhraseChildCount)
+                {
+                 
+                int midIndex = mBlockLayout.Controls.Count / 2;
+
+                // add block from distant end.
+                if (removedIndex > midIndex
+                    && FirstBlock.Node.Index != 0)
+                    {
+                    // add in front
+                    AddBlockForNode ( mNode.PhraseChild ( FirstBlock.Node.Index - 1 )  );
+                    
+                    }
+                else if ( LastBlock.Node.Index < mNode.PhraseChildCount - 1)
+                    {
+                    // add in rear
+                    AddBlockForNode ( mNode.PhraseChild ( LastBlock.Node.Index + 1 )  ) ;
+                    
+                    }
+                }
+
             }
 
 
