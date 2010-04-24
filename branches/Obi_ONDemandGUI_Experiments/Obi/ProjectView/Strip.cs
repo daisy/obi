@@ -1083,6 +1083,28 @@ namespace Obi.ProjectView
 
             }
 
+        public void RemoveBlockDynamically ( Block addedBlock )
+            {
+            // if blocks in layout are more than m_blocksDisplayCount then remove the block
+            // which is at distant corner of added block.
+            if (mBlockLayout.Controls.Count > (m_BlocksDisplayedCount * 2) + 1)
+                {
+                int addedBlockIndex = mBlockLayout.Controls.GetChildIndex ( addedBlock );
+                int midIndex = mBlockLayout.Controls.Count / 2;
+
+                if (addedBlockIndex > midIndex)
+                    {
+                    // remove from front
+RemoveBlock (FirstBlock, true ) ;
+                    }
+                else
+                    {
+                    // remove from rear
+                    RemoveBlock (LastBlock, true ) ;
+                    }
+                }
+            }
+
 
         public void DestroyStripHandle ()
             {

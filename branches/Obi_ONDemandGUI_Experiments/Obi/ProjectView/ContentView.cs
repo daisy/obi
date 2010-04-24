@@ -1710,6 +1710,9 @@ namespace Obi.ProjectView
                 {
                 MakeOldStripsBlocksInvisible ( 1, true, indexOfNewStrip );
                 }
+
+            // add code to remove
+            stripControl.RemoveBlockDynamically ( b );
             return b;
             }
 
