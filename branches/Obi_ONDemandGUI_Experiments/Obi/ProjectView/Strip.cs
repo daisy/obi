@@ -251,6 +251,12 @@ namespace Obi.ProjectView
             }
             else
             {
+                return AddBlockForNode_Internal ( node ) ;
+                }
+            }
+
+        private Block AddBlockForNode_Internal (EmptyNode node)
+            {
                 if (mBlockLayout.Controls.Count == 0)
                 {
                     StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
@@ -315,7 +321,7 @@ namespace Obi.ProjectView
 
                 RemoveBlockDynamically ( block );
                 return block;
-            }
+            
         }
 
         /// <summary>
@@ -390,18 +396,19 @@ namespace Obi.ProjectView
 
         public void RemoveBlock(EmptyNode node, bool updateSize)
         {
-            if (InvokeRequired)
+        if (InvokeRequired)
             {
-                Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
+            Invoke ( new BlockRemoveInvokation ( RemoveBlock ), node, updateSize );
             }
         else
             {
+
             Block block = FindBlock ( node );
             if (block != null)
                 {
                 int index = mBlockLayout.Controls.IndexOf ( block );
-                
-                if (!(mBlockLayout.Controls[index+1] is StripCursor)) MessageBox.Show ( "This index should be for stripCursor :" + index.ToString () );
+
+                if (!(mBlockLayout.Controls[index + 1] is StripCursor)) MessageBox.Show ( "This index should be for stripCursor :" + index.ToString () );
 
                 if (index < mBlockLayout.Controls.Count) mBlockLayout.Controls.RemoveAt ( index + 1 );
                 if (!(mBlockLayout.Controls[index] is Block)) MessageBox.Show ( "This index should be for block :" + index.ToString () );
@@ -420,8 +427,8 @@ namespace Obi.ProjectView
                     m_EmptyNode_BlocksMap.Remove ( node );
                     }
                 // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
-                if ( !node.IsRooted &&
-                    ( mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node)) )
+                if (!node.IsRooted &&
+                    (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node)))
                     {
                     block.Dispose ();
                     block = null;
@@ -429,7 +436,6 @@ namespace Obi.ProjectView
                 // add block if mBlockLayout has less blocks than limit
                 AddBlockDynamically ( index );
                 }
-                
             }
         }
 
@@ -475,6 +481,12 @@ namespace Obi.ProjectView
                 }
             else
                 {
+                RemoveBlock_Internal ( block, updateSize ) ;
+                }
+            }
+
+        private void RemoveBlock_Internal (Block block,  bool updateSize )
+            {
                         //Block block = (Block) mBlockLayout.Controls[i];
                         if (block != null)
                             {
@@ -500,7 +512,7 @@ namespace Obi.ProjectView
                             else // in case block is held in clipboard, just destroy handle
                                 block.DestroyBlockHandle ();
                             }
-                        }
+                        
             }
 
 
@@ -1036,6 +1048,7 @@ namespace Obi.ProjectView
                         }
 
                     // now remove blocks from rear
+                    /*
                     int lastBlockIndexInLayout = LastBlock.Node.Index;
 
                     for (int i = 0; i < countToAdd; i++)
@@ -1043,7 +1056,7 @@ namespace Obi.ProjectView
                         //MessageBox.Show ("Removing " +   mNode.PhraseChild ( lastBlockIndexInLayout - i ).Index.ToString () );
                         RemoveBlock ( mNode.PhraseChild(lastBlockIndexInLayout - i), true );
                         }
-
+                    */
                     }
                 else if (initIndex > 0
                     && initIndex > FirstBlock.Node.Index)
@@ -1073,6 +1086,7 @@ namespace Obi.ProjectView
                             MessageBox.Show ( ex.ToString () );
                             }
                         }
+                    /*
                     int removeStartIndex = FirstBlock.Node.Index;
                     // first remove blocks from front
                     for (int i = 0; i < countToAdd; i++)
@@ -1080,7 +1094,7 @@ namespace Obi.ProjectView
                         RemoveBlock ( mNode.PhraseChild ( removeStartIndex ), true );
 
                         }
-
+                    */
                     }
 
                 }
@@ -1093,18 +1107,19 @@ namespace Obi.ProjectView
             // which is at distant corner of added block.
             if (mBlockLayout.Controls.Count > (m_BlocksDisplayedCount * 2) + 1)
                 {
+                //System.Media.SystemSounds.Beep.Play ();
                 int addedBlockIndex = mBlockLayout.Controls.GetChildIndex ( addedBlock );
                 int midIndex = mBlockLayout.Controls.Count / 2;
 
                 if (addedBlockIndex > midIndex)
                     {
                     // remove from front
-RemoveBlock (FirstBlock, true ) ;
+RemoveBlock_Internal (FirstBlock, true ) ;
                     }
                 else
                     {
                     // remove from rear
-                    RemoveBlock (LastBlock, true ) ;
+                    RemoveBlock_Internal (LastBlock, true ) ;
                     }
                 }
             }
@@ -1122,7 +1137,7 @@ RemoveBlock (FirstBlock, true ) ;
             if (VisibleBlocksCount < m_BlocksDisplayedCount
                 && VisibleBlocksCount < mNode.PhraseChildCount)
                 {
-                 
+                //System.Media.SystemSounds.Asterisk.Play ();
                 int midIndex = mBlockLayout.Controls.Count / 2;
 
                 // add block from distant end.
@@ -1130,13 +1145,13 @@ RemoveBlock (FirstBlock, true ) ;
                     && FirstBlock.Node.Index != 0)
                     {
                     // add in front
-                    AddBlockForNode ( mNode.PhraseChild ( FirstBlock.Node.Index - 1 )  );
+                    AddBlockForNode_Internal ( mNode.PhraseChild ( FirstBlock.Node.Index - 1 )  );
                     
                     }
                 else if ( LastBlock.Node.Index < mNode.PhraseChildCount - 1)
                     {
                     // add in rear
-                    AddBlockForNode ( mNode.PhraseChild ( LastBlock.Node.Index + 1 )  ) ;
+                    AddBlockForNode_Internal ( mNode.PhraseChild ( LastBlock.Node.Index + 1 )  ) ;
                     
                     }
                 }
