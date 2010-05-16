@@ -50,7 +50,7 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
-            MaxVisibleBlocksCount = 700; // @phraseLimit
+            MaxVisibleBlocksCount = 40; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             }
 
@@ -2298,6 +2298,11 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionContents ()
             {
+            //
+            if (Selection != null && Selection.Node is SectionNode)//@singleSection
+                {
+                mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node );
+                }
             if (CanShowSectionContents)
                 mContentView.CreateBlocksInStrip ();
             }

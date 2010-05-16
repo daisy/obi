@@ -55,7 +55,7 @@ namespace Obi.ProjectView
             mSelection = null;
             mFocusing = false;
             mIsEnteringView = false;
-            mWrapStripContents = false;
+            mWrapStripContents = true; //@singleSection
             mStrips = new Dictionary<SectionNode, Strip> ();
             mWaveformRenderQ = new PriorityQueue<Waveform, int> ();
             mWaveformRenderWorker = null;
@@ -305,7 +305,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
+                AddStripForSection_Safe ( mProjectView.Presentation.RootNode ); //this will not be called in single section
                 }
             CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All ();
@@ -819,7 +819,8 @@ namespace Obi.ProjectView
                     return;
                     }
                 
-                mWrapStripContents = value;
+                //mWrapStripContents = value;
+                mWrapStripContents = true; //@singleSection
 
                 if (mWrapStripContents)
                     {
@@ -937,7 +938,7 @@ namespace Obi.ProjectView
                 }
             if (!mWrapStripContents)
                 {
-                for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection ( node.SectionChild ( i ) );
+                for (int i = 0; i < node.SectionChildCount; ++i) AddStripForSection ( node.SectionChild ( i ) ); // this will not be called in single section
                 }
             return strip;
             }
@@ -1011,6 +1012,20 @@ namespace Obi.ProjectView
 
             }
 
+        public void CreateStripForSelectedSection ( SectionNode node )//@singleSection
+            {
+            // first remove existing strip
+            foreach ( Control c in mStripsPanel.Controls )
+                {
+                if (c is Strip)
+                    {
+                    RemoveStripsForSection_Safe ( ((Strip)c).Node );
+                    }
+                }
+            
+            // now add strip for section in parameter
+            AddStripForSection ( node );
+            }
 
         // @phraseLimit
         /// <summary>
@@ -1023,9 +1038,16 @@ namespace Obi.ProjectView
             Strip s = StripForSelection;
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
-            
-            s.LoadBlocksInLayoutIfRequired ();
-            return true;
+
+            if (s != null)
+                {
+                s.LoadBlocksInLayoutIfRequired ();
+                return true;
+                }
+            else
+                {
+                return false;
+                }
             //return CreateBlocksInStrip ( s != null ? s : null );
             }
 
@@ -2005,6 +2027,9 @@ namespace Obi.ProjectView
             bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing;
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
+            SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
+            if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection ); //@singleSection
+
             Strip strip;
             if (WasPlaying
                 && PlaybackBlock != null && (this.mPlaybackBlock.ObiNode.Index == 0 || mPlaybackBlock.Node.Role_ == EmptyNode.Role.Heading))
@@ -2025,6 +2050,22 @@ namespace Obi.ProjectView
 
         private bool SelectNextStrip ()
             {
+            
+            SectionNode nextSection = mProjectView.GetSelectedPhraseSection.FollowingSection; //@singleSection : starts
+            if (mProjectView.TransportBar.IsPlayerActive && nextSection != null) mProjectView.TransportBar.Stop ();
+            if (mProjectView.Selection.Node is PhraseNode && nextSection != null)
+                {
+                mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
+                foreach (Control c in mStripsPanel.Controls)
+                    {
+                    if (c is Strip )
+                        {
+                        if ( ((Strip)c).Node == mProjectView.GetSelectedPhraseSection )  ((Strip)c).FocusStripLabel ();
+                        }
+                    }
+                }
+                        if (nextSection != null) CreateStripForSelectedSection ( nextSection ); //@singleSection: ends
+                        
             Strip strip = StripAfter ( StripFor ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem ) );
             if (strip != null)
                 {
