@@ -2086,6 +2086,9 @@ namespace Obi.ProjectView
 
         private bool SelectFirstStrip ()
             {
+            SectionNode section = mProjectView.Presentation.FirstSection; //@singleSection
+            if (section != null ) CreateStripForSelectedSection ( section); //@singleSection
+
             return SelectStripFor ( delegate ( Strip strip )
 {
     return mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[0] : null;
@@ -2094,6 +2097,28 @@ namespace Obi.ProjectView
 
         private bool SelectLastStrip ()
             {
+            
+                ObiNode n = null;
+                for (n = mProjectView.Presentation.RootNode.LastLeaf;
+                    !(n is SectionNode);
+                    n = n.PrecedingNode)
+                { }
+
+                SectionNode section = (SectionNode) n;
+                if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
+                if (mProjectView.Selection.Node is PhraseNode && section != null)
+                    {
+                    mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
+                    foreach (Control c in mStripsPanel.Controls)
+                        {
+                        if (c is Strip)
+                            {
+                            if (((Strip)c).Node == mProjectView.GetSelectedPhraseSection) ((Strip)c).FocusStripLabel ();
+                            }
+                        }
+                    }
+                if (section != null) CreateStripForSelectedSection ( section ); //@singleSection: ends
+                
             return SelectStripFor ( delegate ( Strip strip )
 {
     return mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] : null;
