@@ -2378,6 +2378,34 @@ namespace Obi.ProjectView
             {
             if (node != null)
                 {
+                //@singleSection: all of the part in this if block refactored, old part is commented below
+                // no need to change anything in functions like next / previous page, todo, special node etc. changing this function did the behaviour of single section
+                SectionNode parentSection = node.ParentAs<SectionNode> ();
+                bool isParentSectionVisible = false;
+
+                //check if strip layout contains this section strip
+                foreach (Control c in mStripsPanel.Controls)
+                    {
+                    if (c is Strip)
+                        {
+                        if (((Strip)c).Node == parentSection) isParentSectionVisible = true;
+                        }
+                    }
+
+                if (!isParentSectionVisible)
+                    {
+                    if (MessageBox.Show ( "The special role phrase is not in current section. Will you like to show the section containing the phrase?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
+                        {
+                        CreateStripForSelectedSection ( parentSection, true );
+                        }
+                    else
+                        {
+                        return;
+                        }
+                    }
+
+                mProjectView.Selection = new NodeSelection ( node, this );
+                /*
                 if (IsBlockInvisibleButStripVisible ( node ))
                     {
                     mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
@@ -2386,6 +2414,7 @@ namespace Obi.ProjectView
                     {
                     mProjectView.Selection = new NodeSelection ( node, this );
                     }
+                 */ 
                 }
 
             }
