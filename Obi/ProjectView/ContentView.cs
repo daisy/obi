@@ -1012,17 +1012,20 @@ namespace Obi.ProjectView
 
             }
 
-        public void CreateStripForSelectedSection ( SectionNode node )//@singleSection
+        public void CreateStripForSelectedSection ( SectionNode node, bool removeExisting )//@singleSection
             {
             // first remove existing strip
-            foreach ( Control c in mStripsPanel.Controls )
+            if (removeExisting)
                 {
-                if (c is Strip)
+                foreach (Control c in mStripsPanel.Controls)
                     {
-                    RemoveStripsForSection_Safe ( ((Strip)c).Node );
+                    if (c is Strip)
+                        {
+                        RemoveStripsForSection_Safe ( ((Strip)c).Node );
+                        }
                     }
+
                 }
-            
             // now add strip for section in parameter
             AddStripForSection ( node );
             }
@@ -1678,7 +1681,10 @@ namespace Obi.ProjectView
             {
             if (e.RemovedChild is SectionNode)
                 {
-                RemoveStripsForSection_Safe ( (SectionNode)e.RemovedChild );
+                
+                    
+                    RemoveStripsForSection_Safe ( (SectionNode)e.RemovedChild );
+                      
                 }
             else if (e.RemovedChild is EmptyNode)
                 {
@@ -2028,7 +2034,7 @@ namespace Obi.ProjectView
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
             SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
-            if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection ); //@singleSection
+            if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection , true); //@singleSection
 
             Strip strip;
             if (WasPlaying
@@ -2064,7 +2070,7 @@ namespace Obi.ProjectView
                         }
                     }
                 }
-                        if (nextSection != null) CreateStripForSelectedSection ( nextSection ); //@singleSection: ends
+                        if (nextSection != null) CreateStripForSelectedSection ( nextSection , true); //@singleSection: ends
                         
             Strip strip = StripAfter ( StripFor ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem ) );
             if (strip != null)
@@ -2087,7 +2093,7 @@ namespace Obi.ProjectView
         private bool SelectFirstStrip ()
             {
             SectionNode section = mProjectView.Presentation.FirstSection; //@singleSection
-            if (section != null ) CreateStripForSelectedSection ( section); //@singleSection
+            if (section != null ) CreateStripForSelectedSection ( section, true); //@singleSection
 
             return SelectStripFor ( delegate ( Strip strip )
 {
@@ -2117,7 +2123,7 @@ namespace Obi.ProjectView
                             }
                         }
                     }
-                if (section != null) CreateStripForSelectedSection ( section ); //@singleSection: ends
+                if (section != null) CreateStripForSelectedSection ( section , true); //@singleSection: ends
                 
             return SelectStripFor ( delegate ( Strip strip )
 {

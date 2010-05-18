@@ -581,6 +581,20 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveStrip)
                 {
+                // first create landing strip
+                if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
+                    {
+                    SectionNode section = (SectionNode)Selection.Node;
+                    SectionNode landingSectionNode = section.FollowingSection;
+                    if (landingSectionNode == null) landingSectionNode  = section.PrecedingSection;
+
+                    if (landingSectionNode  != null)
+                        {
+                        mContentView.CreateStripForSelectedSection ( landingSectionNode, false );
+                        }
+                    
+                    }//@singleSection: end
+
                 mPresentation.Do ( mContentView.DeleteStripCommand () );
                 }
             else if (CanRemoveBlock)
@@ -2301,7 +2315,7 @@ namespace Obi.ProjectView
             //
             if (Selection != null && Selection.Node is SectionNode)//@singleSection
                 {
-                mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node );
+                mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true );
                 }
             if (CanShowSectionContents)
                 mContentView.CreateBlocksInStrip ();
