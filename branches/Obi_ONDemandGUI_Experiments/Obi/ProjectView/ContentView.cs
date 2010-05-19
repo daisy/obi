@@ -1014,6 +1014,8 @@ namespace Obi.ProjectView
 
         public void CreateStripForSelectedSection ( SectionNode node, bool removeExisting )//@singleSection
             {
+            if (IsStripVisible ( node )) return;
+
             // first remove existing strip
             if (removeExisting)
                 {
@@ -1026,8 +1028,26 @@ namespace Obi.ProjectView
                     }
 
                 }
+
             // now add strip for section in parameter
             AddStripForSection ( node );
+            }
+
+        /// <summary>
+        /// returns true if the single section shown in content view is the section passed as parameter
+        /// </summary>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        public bool IsStripVisible ( SectionNode section )
+            {
+            foreach (Control c in mStripsPanel.Controls)
+                {
+                if (c is Strip && ((Strip)c).Node == section)
+                    {
+                    return true;
+                    }
+                }
+            return false;
             }
 
         // @phraseLimit

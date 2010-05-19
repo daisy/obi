@@ -50,7 +50,7 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
-            MaxVisibleBlocksCount = 40; // @phraseLimit
+            MaxVisibleBlocksCount = 700; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             }
 
@@ -686,6 +686,9 @@ namespace Obi.ProjectView
                 {
                 if (mSelection != null && mSelection.Control is TOCView)
                     {
+                    // show the selected section in content view
+                    if (GetSelectedPhraseSection != null) mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection , true); //@singleSection
+
                     if (TransportBar.IsPlayerActive)
                         {
                         // if block to be selected is invisible, select parent strip
@@ -2317,8 +2320,9 @@ namespace Obi.ProjectView
                 {
                 mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true );
                 }
-            if (CanShowSectionContents)
-                mContentView.CreateBlocksInStrip ();
+//@singleSection: commented following two lines as this is not required with single section
+            //if (CanShowSectionContents)
+                //mContentView.CreateBlocksInStrip ();
             }
 
 
