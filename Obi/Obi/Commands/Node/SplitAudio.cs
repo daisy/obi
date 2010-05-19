@@ -146,7 +146,9 @@ namespace Obi.Commands.Node
                 phrases[i].Used = phrase.Used;
                 phrases[i].TODO = phrase.TODO;
                 if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
-                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i));
+
+// in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
+                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i, false));
             }
             return command;
         }

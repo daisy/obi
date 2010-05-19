@@ -280,8 +280,9 @@ namespace Obi.ProjectView
                     }
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
+                    // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
                     command.append ( new
-                        Commands.Node.AddNode ( mProjectView, next.PhraseChild ( i ), section, section.PhraseChildCount + i ) );
+                        Commands.Node.AddNode ( mProjectView, next.PhraseChild ( i ), section, section.PhraseChildCount + i, false ) );
                     }
                 command.append ( DeleteStripCommand ( next ) );
                 }
