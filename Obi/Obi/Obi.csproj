@@ -69,13 +69,13 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.3365.29736, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="AudioLib, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\utilities\AudioFormatConverter\AudioLib\bin\Release\AudioLib.dll</HintPath>
+      <HintPath>..\utilities\AudioFormatConverter\AudioLib\bin\Debug\AudioLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\AudioDevice.cs" />
+    <Compile Include="Audio\AudioFormatConverter.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
     <Compile Include="Audio\CalculationFunctions.cs" />
