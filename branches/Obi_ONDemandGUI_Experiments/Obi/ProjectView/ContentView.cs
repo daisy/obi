@@ -1000,8 +1000,8 @@ namespace Obi.ProjectView
                         && prevPoint != s.Location
                         && visibleStripsCount <= 500)
                         {
-                        //CreateBlocksInStrip ( s );
-                        s.LoadBlocksInLayoutIfRequired ();
+                        //CreateBlocksInStrip ( s );// uncomment for prev block loading
+                        s.LoadBlocksInLayoutIfRequired (); // //@singleSection : comment to restore old block loading
                         visibleStripsCount++;
                         }
                     else return;
@@ -1062,16 +1062,19 @@ namespace Obi.ProjectView
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
 
+            //@singleSection : comment this code for restoring  old block loading
             if (s != null)
                 {
-                s.LoadBlocksInLayoutIfRequired ();
+                //s.LoadBlocksInLayoutIfRequired ();
                 return true;
                 }
             else
                 {
                 return false;
                 }
-            //return CreateBlocksInStrip ( s != null ? s : null );
+            // commentting end for restoring
+
+            //return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
             }
 
 
