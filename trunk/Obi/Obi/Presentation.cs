@@ -9,6 +9,7 @@ using urakawa.command;
 using urakawa.media.data.audio;
 using urakawa.property.channel;
 using urakawa.publish;
+using urakawa.media.data;
 
 namespace Obi
 {
@@ -378,24 +379,38 @@ namespace Obi
         }
 
         // Create a media object from a sound file.
-        private ManagedAudioMedia ImportAudioFromFile(string path)
-        {
-            if (!getMediaDataManager().getEnforceSinglePCMFormat())
+        private ManagedAudioMedia ImportAudioFromFile ( string path )
             {
-                Stream input = File.OpenRead(path);
-                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader(input);
-                input.Close();
-                DataManager.setDefaultBitDepth(info.getBitDepth());
-                DataManager.setDefaultNumberOfChannels(info.getNumberOfChannels());
-                DataManager.setDefaultSampleRate(info.getSampleRate());
-                DataManager.setEnforceSinglePCMFormat(true);
-            }
-            AudioMediaData data = getMediaDataFactory().createAudioMediaData();
-            data.appendAudioDataFromRiffWave(path);
-            ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory().createAudioMedia();
-            media.setMediaData(data);
+            string dataProviderDirectory = ((urakawa.media.data.FileDataProviderManager)this.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+
+            if (!getMediaDataManager ().getEnforceSinglePCMFormat ())
+                {
+                Stream input = File.OpenRead ( path );
+                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader ( input );
+                input.Close ();
+                DataManager.setDefaultBitDepth ( info.getBitDepth () );
+                DataManager.setDefaultNumberOfChannels ( info.getNumberOfChannels () );
+                DataManager.setDefaultSampleRate ( info.getSampleRate () );
+                DataManager.setEnforceSinglePCMFormat ( true );
+                }
+
+            AudioMediaData data = getMediaDataFactory ().createAudioMediaData ();
+
+            if (path.StartsWith ( dataProviderDirectory ))
+                {
+                FileDataProvider dataProv = (FileDataProvider)this.getDataProviderFactory ().createDataProvider ( FileDataProviderFactory.AUDIO_WAV_MIME_TYPE );
+                dataProv.InitByMovingExistingFile ( path );
+                data.AppendPcmData ( dataProv );
+                }
+            else
+                {
+                data.appendAudioDataFromRiffWave ( path );
+                }
+
+            ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory ().createAudioMedia ();
+            media.setMediaData ( data );
             return media;
-        }
+            }
 
         // Create a list of ManagedAudioMedia from audio file being imported
         // Split by duration, unless 0 or less.
