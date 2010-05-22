@@ -178,6 +178,14 @@ namespace Obi
             mChangesCount = 0;
             Presentation.Initialize ( this, title, createTitleSection, id, settings );
             Presentation.setRootUri ( new Uri ( path ) );
+
+            // create data directory if it is not created
+            string dataDirectory = ((urakawa.media.data.FileDataProviderManager)Presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            if ( !Directory.Exists (dataDirectory ) )
+                {
+                Directory.CreateDirectory ( dataDirectory );
+                }
+
             if (ProjectCreated != null) ProjectCreated ( this, null );
 
             SetupBackupFilesForNewSession ( path );

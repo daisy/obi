@@ -16,14 +16,13 @@ namespace Obi.Audio
             int channels = presentation.DataManager.getDefaultPCMFormat().getNumberOfChannels();
             int bitDepth = presentation.DataManager.getDefaultPCMFormat().getBitDepth();
             int numberOfFiles = fileName.Length;
-            string convertedFiles = null;
+            string convertedFile = null;
             string[] listOfConvertedFiles = new string[numberOfFiles];
-            string filePath;
-
+            string directoryPath = ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            
             for (int i = 0; i < numberOfFiles; i++)
             {
 
-                filePath = Path.GetDirectoryName(fileName[i]);
                 try
                 {
                     if (fileName[i].EndsWith(".wav"))
@@ -34,16 +33,16 @@ namespace Obi.Audio
                         if (wavStream != null) wavStream.Close();
                         if (newFilePCMInfo.getSampleRate() == samplingRate && newFilePCMInfo.getNumberOfChannels() == channels && newFilePCMInfo.getBitDepth() == bitDepth)
                         {
-                            convertedFiles = fileName[i];
+                            convertedFile = fileName[i];
                         }
                         else
-                            convertedFiles = audioConverter.ConvertSampleRate(fileName[i], filePath, channels, samplingRate, bitDepth);
+                            convertedFile = audioConverter.ConvertSampleRate(fileName[i], directoryPath, channels, samplingRate, bitDepth);
                     }
                     else if (fileName[i].EndsWith(".mp3"))
                     {
-                        convertedFiles = audioConverter.UnCompressMp3File(fileName[i], filePath, channels, samplingRate, bitDepth);
+                        convertedFile = audioConverter.UnCompressMp3File(fileName[i], directoryPath, channels, samplingRate, bitDepth);
                     }
-                    listOfConvertedFiles[i] = convertedFiles;
+                    listOfConvertedFiles[i] = convertedFile;
                 }
                 catch (System.Exception ex)
                 {
