@@ -1108,7 +1108,7 @@ namespace Obi.ProjectView
                                 {
                                 stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                                 }
-                            }
+                                                        }
                         }
                     else
                         {
@@ -1122,28 +1122,29 @@ namespace Obi.ProjectView
                             shouldRemoveBlocks = true;
                             }
                         else
-                            {
+                            {//2
                             
                             ObiNode currentNode = selectedNode.FollowingNode;
 
                             for (int i = 0; i < extraBlocksCount; i++)
-                                {
+                                {//3
                                 if (!(currentNode is EmptyNode) ||
                                     currentNode.ParentAs<SectionNode> () != stripControl.Node)
-                                    {
+                                    {//4
                                     break;
-                                    }
+                                    }//-4
 
                                 Block currentNodeBlock = stripControl.FindBlock ( (EmptyNode)currentNode );
                                 if (currentNodeBlock == null)
-                                    {
+                                    {//4
                                     shouldRemoveBlocks = false;
                                     stripControl.AddBlockForNode ( (EmptyNode)currentNode );
-                                    }
-                                }
-                            currentNode = currentNode.FollowingNode;
-                            }
-
+                                    }//-4
+                                currentNode = currentNode.FollowingNode;
+                                }//-3
+                            
+                            }//-2
+                        
                         }
 
                     if (shouldRemoveBlocks)
@@ -1153,7 +1154,8 @@ namespace Obi.ProjectView
                                                         int currentPhraseIndex = mProjectView.Selection.Node.Index;
                                                         if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
                                                         if (40 >= currentPhraseIndex + 15) return true;
-
+                                                        if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
+                                                        
                                                         //System.Media.SystemSounds.Asterisk.Play ();
                                                         EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChild ( currentPhraseIndex + 15 );
                                                         stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, false );
@@ -1166,11 +1168,7 @@ namespace Obi.ProjectView
                     }
                 return true;
 
-
-                /*
-                
-                 */ 
-                }
+}
             
             return true;
             }
