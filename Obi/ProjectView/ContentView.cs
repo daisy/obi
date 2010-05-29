@@ -487,7 +487,7 @@ namespace Obi.ProjectView
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
-                        if (mSelection != null && mSelection.Node is EmptyNode) CreateBlocksInStrip ();
+                        if (mSelection != null && mSelection.Node is EmptyNode) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
                         }
 
                     if (s != null)
@@ -1000,8 +1000,8 @@ namespace Obi.ProjectView
                         && prevPoint != s.Location
                         && visibleStripsCount <= 500)
                         {
-                        //CreateBlocksInStrip ( s );// uncomment for prev block loading
-                        s.LoadBlocksInLayoutIfRequired (); // //@singleSection : comment to restore old block loading
+                        CreateBlocksInStrip ( s );// uncomment for prev block loading
+                        //s.LoadBlocksInLayoutIfRequired (); // //@singleSection : comment to restore old block loading
                         visibleStripsCount++;
                         }
                     else return;
@@ -1063,18 +1063,116 @@ namespace Obi.ProjectView
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
 
             //@singleSection : comment this code for restoring  old block loading
-            if (s != null)
-                {
+            //if (s != null)
+                //{
                 //s.LoadBlocksInLayoutIfRequired ();
-                return true;
-                }
-            else
-                {
-                return false;
-                }
+                //return true;
+                //}
+            //else
+                //{
+                //return false;
+                //}
             // commentting end for restoring
 
-            //return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
+            return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
+            }
+
+        //@singleSection
+        private bool CreateLimitedBlocksInStrip ( Strip stripControl )
+            {
+            if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
+                {
+                // pause playback if it is active.
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
+
+                int defaultVisibleCount = 40;
+                int extraBlocksCount = 15;
+                int blockLotSizeToRemove = 5;
+                bool shouldRemoveBlocks = true;
+
+                try
+                    {
+                    if (mProjectView.Selection == null ||
+                        (mProjectView.Selection != null && !(mProjectView.Selection.Node is EmptyNode)))
+                        {
+                        // check if block for defaultBlockCount index is there
+                        Block v = stripControl.FindBlock ( stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
+    stripControl.Node.PhraseChild ( defaultVisibleCount - 1 ) );
+
+                        if (v == null)
+                            {
+                            shouldRemoveBlocks = false;
+                            int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
+
+                            for (int i = 0; i < maxCount; ++i)
+                                {
+                                stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                                }
+                            }
+                        }
+                    else
+                        {
+                        ObiNode selectedNode = mProjectView.Selection.Node;
+
+                        Block lastBlockInStrip = stripControl.LastBlock;
+                        if (lastBlockInStrip != null
+                                                        && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15)
+                                || (lastBlockInStrip.Node == stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ))))
+                            {
+                            shouldRemoveBlocks = true;
+                            }
+                        else
+                            {
+                            
+                            ObiNode currentNode = selectedNode.FollowingNode;
+
+                            for (int i = 0; i < extraBlocksCount; i++)
+                                {
+                                if (!(currentNode is EmptyNode) ||
+                                    currentNode.ParentAs<SectionNode> () != stripControl.Node)
+                                    {
+                                    break;
+                                    }
+
+                                Block currentNodeBlock = stripControl.FindBlock ( (EmptyNode)currentNode );
+                                if (currentNodeBlock == null)
+                                    {
+                                    shouldRemoveBlocks = false;
+                                    stripControl.AddBlockForNode ( (EmptyNode)currentNode );
+                                    }
+                                }
+                            currentNode = currentNode.FollowingNode;
+                            }
+
+                        }
+
+                    if (shouldRemoveBlocks)
+                        {
+                        if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
+                            {
+                                                        int currentPhraseIndex = mProjectView.Selection.Node.Index;
+                                                        if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
+                                                        if (40 >= currentPhraseIndex + 15) return true;
+
+                                                        //System.Media.SystemSounds.Asterisk.Play ();
+                                                        EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChild ( currentPhraseIndex + 15 );
+                                                        stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, false );
+                            }
+                        }
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                return true;
+
+
+                /*
+                
+                 */ 
+                }
+            
+            return true;
             }
 
 
@@ -1086,6 +1184,7 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private bool CreateBlocksInStrip ( Strip stripControl )
             {
+            return CreateLimitedBlocksInStrip ( stripControl );
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
                 // pause playback if it is active.
