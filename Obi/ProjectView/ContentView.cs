@@ -1172,6 +1172,29 @@ namespace Obi.ProjectView
             
             return true;
             }
+        //@singleSection
+        public void CreateBlocksTillEndInStrip ( Strip stripControl )
+            {
+            Block lastBlock = stripControl.LastBlock ;
+            if ( lastBlock != null )
+                {
+                EmptyNode lastNode = lastBlock.Node ;
+                // start from beginning and create blocks for nodes for after the last block node.
+                bool shouldStartCreating = false ;
+                for ( int i = 0 ; i < stripControl.Node.PhraseChildCount ; i++ )
+                    {
+                    EmptyNode node = stripControl.Node.PhraseChild ( i );
+                    if ( shouldStartCreating )
+                        {
+                        stripControl.AddBlockForNode ( node);
+                        }
+                    if ( node == lastNode )
+                        {
+                        shouldStartCreating = true ;
+                        }
+                    }
+                }
+        }
 
 
         // @phraseLimit
@@ -2124,6 +2147,8 @@ namespace Obi.ProjectView
         private bool SelectLastBlockInStrip ()
             {
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+            if (mProjectView.Selection != null) CreateBlocksTillEndInStrip ( mStrips[mProjectView.GetSelectedPhraseSection] );//@singleSection
+
             return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.LastBlock; } );
             }
 
