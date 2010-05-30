@@ -261,7 +261,9 @@ namespace Obi.ProjectView
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                     block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
-                Resize_Blocks();
+
+                Resize_Blocks(); 
+
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
                 return block;
             }
@@ -677,8 +679,18 @@ namespace Obi.ProjectView
         {
             get
             {
+            float sizeMultiplier = 1;//@singleSection
+                // determine how many blocks are visible w.r.t. total no. of phrases
+            if (LastBlock != null ) //@singleSection
+                {
+                int lastBlockIndex = mBlockLayout.Controls.IndexOf ( LastBlock ) / 2;
+                if (lastBlockIndex > 0  && ( mNode.PhraseChildCount - lastBlockIndex ) < 15)
+                    {
+                                        sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
+                    }
+                }
                 // If there are no contents, still show space for the block layout
-                return mBlockLayout.Location.Y + Math.Max(mBlockHeight, mBlockLayout.Height) +
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight,Convert.ToInt32 ( mBlockLayout.Height * sizeMultiplier) ) +
                     mBlockLayout.Margin.Bottom + BorderHeight;
             }
         }
