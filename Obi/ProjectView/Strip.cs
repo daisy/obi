@@ -684,9 +684,11 @@ namespace Obi.ProjectView
             if (LastBlock != null ) //@singleSection
                 {
                 int lastBlockIndex = mBlockLayout.Controls.IndexOf ( LastBlock ) / 2;
-                if (lastBlockIndex > 0  && ( mNode.PhraseChildCount - lastBlockIndex ) < 15)
-                    {
+                if (lastBlockIndex > 0  && (( mNode.PhraseChildCount - lastBlockIndex ) < 15
+                    ||    lastBlockIndex <= 40    ||    lastBlockIndex %10 == 0))
+                                    {
                                         sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
+                                        //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
                     }
                 }
                 // If there are no contents, still show space for the block layout
