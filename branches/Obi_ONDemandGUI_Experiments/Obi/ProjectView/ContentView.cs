@@ -1184,32 +1184,12 @@ namespace Obi.ProjectView
         //@singleSection
         public void CreateBlocksTillEndInStrip ( Strip stripControl )
             {
-            CreateBlocksTillNodeInStrip ( stripControl, null );
-            /*
-            Block lastBlock = stripControl.LastBlock ;
-            if ( lastBlock != null )
-                {
-                EmptyNode lastNode = lastBlock.Node ;
-                // start from beginning and create blocks for nodes for after the last block node.
-                bool shouldStartCreating = false ;
-                for ( int i = 0 ; i < stripControl.Node.PhraseChildCount ; i++ )
-                    {
-                    EmptyNode node = stripControl.Node.PhraseChild ( i );
-                    if ( shouldStartCreating )
-                        {
-                        stripControl.AddBlockForNode ( node);
-                        }
-                    if ( node == lastNode )
-                        {
-                        shouldStartCreating = true ;
-                        }
-                    }
-                }
-             */ 
+            CreateBlocksTillNodeInStrip ( stripControl, null , false);
+            
         }
               
         //@singleSection
-        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate )
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate , bool considerStripHaltFlag)
             {
             Block lastBlock = stripControl.LastBlock;
             if (lastBlock != null)
@@ -1219,6 +1199,13 @@ namespace Obi.ProjectView
                 bool shouldStartCreating = false;
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; i++)
                     {
+                    //System.Media.SystemSounds.Asterisk.Play ();
+                    if (considerStripHaltFlag && i % 5 == 0 && stripControl.ShouldStopAddingBlocks)
+                        {
+                        Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
+                        break;
+                        }
+
                     EmptyNode node = stripControl.Node.PhraseChild ( i );
                     if (shouldStartCreating)
                         {
@@ -2608,7 +2595,7 @@ namespace Obi.ProjectView
                             }
                         iterationNode = iterationNode.FollowingNode;
                         }
-                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  iterationNode );
+                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  iterationNode, false );
                     }
 
                 mProjectView.Selection = new NodeSelection ( node, this );
@@ -2954,6 +2941,26 @@ namespace Obi.ProjectView
         private void mVScrollBar_ValueChanged ( object sender, EventArgs e )
             {
             mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );
+            StartCreatingBlockForScroll ();
+            }
+
+        BackgroundWorker m_ScrolBackgroundWorker = new BackgroundWorker ();
+        private void StartCreatingBlockForScroll ()
+            {
+            if (m_ScrolBackgroundWorker.IsBusy) return;
+            m_ScrolBackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(m_ScrolBackgroundWorker_RunWorkerCompleted);
+            m_ScrolBackgroundWorker.RunWorkerAsync ();
+            }
+
+        private void m_ScrolBackgroundWorker_RunWorkerCompleted ( object sender, EventArgs e )
+            {
+            Strip s = null;
+            foreach (Strip c in mStripsPanel.Controls)
+                {
+                if (c is Strip) s = (Strip)c;
+                }
+                        s.ShouldStopAddingBlocks = false;
+            CreateBlocksTillNodeInStrip ( s, null, true ) ;
             }
 
         //@ShowSingleSection
