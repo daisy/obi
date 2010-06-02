@@ -487,7 +487,7 @@ namespace Obi.ProjectView
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
-                        if (mSelection != null && mSelection.Node is EmptyNode) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
+                        if (mSelection != null && ( mSelection.Node is EmptyNode || mSelection is StripIndexSelection )) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
                         }
 
                     if (s != null)
@@ -1089,12 +1089,15 @@ namespace Obi.ProjectView
                 int extraBlocksCount = 15;
                 int blockLotSizeToRemove = 5;
                 bool shouldRemoveBlocks = true;
-
+                
                 try
                     {
                     if (mProjectView.Selection == null ||
-                        (mProjectView.Selection != null && !(mProjectView.Selection.Node is EmptyNode)))
+                        (mProjectView.Selection != null && 
+                        !(mProjectView.Selection.Node is EmptyNode) &&
+                        !(mProjectView.Selection is StripIndexSelection) ))
                         {
+                        
                         // check if block for defaultBlockCount index is there
                         Block v = stripControl.FindBlock ( stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
     stripControl.Node.PhraseChild ( defaultVisibleCount - 1 ) );
@@ -1112,7 +1115,13 @@ namespace Obi.ProjectView
                         }
                     else
                         {
-                        ObiNode selectedNode = mProjectView.Selection.Node;
+                        ObiNode selectedNode = null;
+                        if (mProjectView.Selection is StripIndexSelection)
+                            {
+                            selectedNode = ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection;
+                            
+                            }
+                        if ( selectedNode == null )  selectedNode = mProjectView.Selection.Node;
 
                         Block lastBlockInStrip = stripControl.LastBlock;
                         if (lastBlockInStrip != null
