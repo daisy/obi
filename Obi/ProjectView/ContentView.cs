@@ -1175,6 +1175,8 @@ namespace Obi.ProjectView
         //@singleSection
         public void CreateBlocksTillEndInStrip ( Strip stripControl )
             {
+            CreateBlocksTillNodeInStrip ( stripControl, null );
+            /*
             Block lastBlock = stripControl.LastBlock ;
             if ( lastBlock != null )
                 {
@@ -1194,7 +1196,40 @@ namespace Obi.ProjectView
                         }
                     }
                 }
+             */ 
         }
+              
+        //@singleSection
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate )
+            {
+            Block lastBlock = stripControl.LastBlock;
+            if (lastBlock != null)
+                {
+                EmptyNode lastNode = lastBlock.Node;
+                // start from beginning and create blocks for nodes for after the last block node.
+                bool shouldStartCreating = false;
+                for (int i = 0; i < stripControl.Node.PhraseChildCount; i++)
+                    {
+                    EmptyNode node = stripControl.Node.PhraseChild ( i );
+                    if (shouldStartCreating)
+                        {
+                        stripControl.AddBlockForNode ( node );
+                        }
+
+                    if (node != null && node == nodeOfLastBlockToCreate)
+                        {
+                        // if nod is null then keep on creating block till end of strip
+                        break;
+                        }
+
+                    if (node == lastNode)
+                        {
+                        shouldStartCreating = true;
+                        }
+                    }
+                }
+            }
+
 
 
         // @phraseLimit
@@ -2527,13 +2562,15 @@ namespace Obi.ProjectView
                 // no need to change anything in functions like next / previous page, todo, special node etc. changing this function did the behaviour of single section
                 SectionNode parentSection = node.ParentAs<SectionNode> ();
                 bool isParentSectionVisible = false;
+                Strip strip = null ;
 
                 //check if strip layout contains this section strip
                 foreach (Control c in mStripsPanel.Controls)
                     {
                     if (c is Strip)
                         {
-                        if (((Strip)c).Node == parentSection) isParentSectionVisible = true;
+                        strip = ((Strip)c) ;
+                        if (strip.Node == parentSection) isParentSectionVisible = true;
                         }
                     }
 
@@ -2547,6 +2584,22 @@ namespace Obi.ProjectView
                         {
                         return;
                         }
+                    }
+                else
+                    {
+                    // if parent section is visible, then check if target phrase is visible
+                    // if not, create phrases till it.
+                    ObiNode iterationNode = node;
+                    for (int i = 0; i < 15; i++)
+                        {
+                        if (!(iterationNode is EmptyNode)
+                            ||    iterationNode.ParentAs<SectionNode> () != node.ParentAs<SectionNode> ())
+                            {
+                            break;
+                            }
+                        iterationNode = iterationNode.FollowingNode;
+                        }
+                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  iterationNode );
                     }
 
                 mProjectView.Selection = new NodeSelection ( node, this );
