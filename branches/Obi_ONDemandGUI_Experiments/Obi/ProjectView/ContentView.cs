@@ -2963,7 +2963,7 @@ namespace Obi.ProjectView
                 {
                 if (c is Strip) s = (Strip)c;
                 }
-                        s.ShouldStopAddingBlocks = false;
+                        //s.ShouldStopAddingBlocks = false;
             CreateBlocksTillNodeInStrip ( s, null, true ) ;
             }
 
