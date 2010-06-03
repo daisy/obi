@@ -1200,7 +1200,8 @@ namespace Obi.ProjectView
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; i++)
                     {
                     //System.Media.SystemSounds.Asterisk.Play ();
-                    if (considerStripHaltFlag && i % 5 == 0 && stripControl.ShouldStopAddingBlocks)
+                    if (considerStripHaltFlag && stripControl.ShouldStopAddingBlocks
+                        &&   (i % 5 == 0 || i <= 1 )  )
                         {
                         Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
                         break;
@@ -2941,10 +2942,12 @@ namespace Obi.ProjectView
         private void mVScrollBar_ValueChanged ( object sender, EventArgs e )
             {
             mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );
-            StartCreatingBlockForScroll ();
+            
             }
 
-        BackgroundWorker m_ScrolBackgroundWorker = new BackgroundWorker ();
+        BackgroundWorker m_ScrolBackgroundWorker = new BackgroundWorker ();//@singleSection
+
+        //@singleSection
         private void StartCreatingBlockForScroll ()
             {
             if (m_ScrolBackgroundWorker.IsBusy) return;
@@ -2952,6 +2955,7 @@ namespace Obi.ProjectView
             m_ScrolBackgroundWorker.RunWorkerAsync ();
             }
 
+        //@singleSection
         private void m_ScrolBackgroundWorker_RunWorkerCompleted ( object sender, EventArgs e )
             {
             Strip s = null;
@@ -2961,6 +2965,14 @@ namespace Obi.ProjectView
                 }
                         s.ShouldStopAddingBlocks = false;
             CreateBlocksTillNodeInStrip ( s, null, true ) ;
+            }
+
+        //@singleSection
+        private void mVScrollBar_Scroll ( object sender, ScrollEventArgs e )
+            {
+            if ( e.ScrollOrientation == ScrollOrientation.VerticalScroll 
+                && e.OldValue < e.NewValue)
+            StartCreatingBlockForScroll ();
             }
 
         //@ShowSingleSection
