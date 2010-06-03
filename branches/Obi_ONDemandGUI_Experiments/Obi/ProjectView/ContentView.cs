@@ -2551,7 +2551,7 @@ namespace Obi.ProjectView
 
 
         // @phraseLimit
-        private void SelectPhraseBlockOrStrip ( EmptyNode node )
+        public void SelectPhraseBlockOrStrip ( EmptyNode node )
             {
             if (node != null)
                 {
@@ -2582,8 +2582,10 @@ namespace Obi.ProjectView
                         return;
                         }
                     }
-                else
+                
+                if ( strip.FindBlock ( node ) == null)
                     {
+                    
                     // if parent section is visible, then check if target phrase is visible
                     // if not, create phrases till it.
                     ObiNode iterationNode = node;
