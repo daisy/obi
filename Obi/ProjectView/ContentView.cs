@@ -1107,8 +1107,13 @@ namespace Obi.ProjectView
                             shouldRemoveBlocks = false;
                             int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
 
-                            for (int i = 0; i < maxCount; ++i)
+                            for (int i = 0; i < 80 && !stripControl.ShouldStopAddingBlocks; ++i)
                                 {
+                                if (maxCount < defaultVisibleCount && i >= maxCount - 1)
+                                                                        {
+                                    Console.WriteLine ( "Adding block stopped at " + i.ToString () );
+                                    break;
+                                    }
                                 stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                                 }
                                                         }
