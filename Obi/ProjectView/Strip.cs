@@ -208,19 +208,23 @@ namespace Obi.ProjectView
         }
 
         //@singleSection
-        private bool m_ShouldStopAddingBlocks = false;
         public bool ShouldStopAddingBlocks
             {
             get
                 {
-                return m_ShouldStopAddingBlocks;
-                }
-            set
-                {
-                m_ShouldStopAddingBlocks = value;
+                if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
+                                         && mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y > (mContentView.Location.Y + mContentView.Size.Height))
+                    {
+                    return true;
+                    }
+                else
+                    {
+                    return false;
+                    }
                 }
             }
 
+        
         /// <summary>
         /// Set the zoom factor for the strip and its contents.
         /// </summary>
@@ -279,11 +283,6 @@ namespace Obi.ProjectView
                 Resize_Blocks(); 
 
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
-
-                if (block.Location.Y > (mContentView.Location.Y + mContentView.Size.Height))
-                    {
-                    m_ShouldStopAddingBlocks = true;
-                    }
 
                 return block;
             }
