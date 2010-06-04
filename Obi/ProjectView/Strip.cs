@@ -208,7 +208,7 @@ namespace Obi.ProjectView
         }
 
         //@singleSection
-        public bool ShouldStopAddingBlocks
+        public bool IsContentViewFilledWithBlocks
             {
             get
                 {
@@ -422,7 +422,7 @@ namespace Obi.ProjectView
                     if (mBlockLayout.Controls[i] is Block)
                         {
                         if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
-                            ||    (removeHiddenBlocks && !ShouldStopAddingBlocks) )
+                            ||    (removeHiddenBlocks && !IsContentViewFilledWithBlocks ) )
                             {
                             Console.WriteLine ("Removal of block till " + i.ToString ()) ;
                             break;

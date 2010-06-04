@@ -1107,7 +1107,7 @@ namespace Obi.ProjectView
                             shouldRemoveBlocks = false;
                             int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
 
-                            for (int i = 0; i < 80 && !stripControl.ShouldStopAddingBlocks; ++i)
+                            for (int i = 0; i < 100 && !stripControl.IsContentViewFilledWithBlocks; ++i)
                                 {
                                 if (maxCount < defaultVisibleCount && i >= maxCount - 1)
                                                                         {
@@ -1143,8 +1143,10 @@ namespace Obi.ProjectView
                             for (int i = 0; i < extraBlocksCount; i++)
                                 {//3
                                 if (!(currentNode is EmptyNode) ||
-                                    currentNode.ParentAs<SectionNode> () != stripControl.Node)
+                                    currentNode.ParentAs<SectionNode> () != stripControl.Node
+                                    || stripControl.IsContentViewFilledWithBlocks)
                                     {//4
+                                    Console.WriteLine ( "Adding extra blocks exit at " + i.ToString () );
                                     break;
                                     }//-4
 
@@ -1172,6 +1174,7 @@ namespace Obi.ProjectView
                                                         
                                                         //System.Media.SystemSounds.Asterisk.Play ();
                                                         EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChild ( currentPhraseIndex + 15 );
+                            if ( stripControl.IsContentViewFilledWithBlocks )
                                                         stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase,true,  false );
                             }
                         }
@@ -1205,7 +1208,7 @@ namespace Obi.ProjectView
                 for (int i = 0; i < stripControl.Node.PhraseChildCount; i++)
                     {
                     //System.Media.SystemSounds.Asterisk.Play ();
-                    if (considerStripHaltFlag && stripControl.ShouldStopAddingBlocks
+                    if (considerStripHaltFlag && stripControl.IsContentViewFilledWithBlocks
                         &&   (i % 5 == 0 || i <= 1 )  )
                         {
                         Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
@@ -2970,7 +2973,7 @@ namespace Obi.ProjectView
                 {
                 if (c is Strip) s = (Strip)c;
                 }
-                        //s.ShouldStopAddingBlocks = false;
+                        
             CreateBlocksTillNodeInStrip ( s, null, true ) ;
             }
 
