@@ -1246,7 +1246,8 @@ namespace Obi.ProjectView
         private bool CreateBlocksInStrip ( Strip stripControl )
             {
             return CreateLimitedBlocksInStrip ( stripControl );
-            if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
+            if (stripControl != null && 
+stripControl.Node.PhraseChildCount > 0)
                 {
                 // pause playback if it is active.
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
