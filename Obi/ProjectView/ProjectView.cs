@@ -777,7 +777,8 @@ namespace Obi.ProjectView
                     MessageBox.Show ( ex.ToString () );
                     }
                 // hide newly made phrases visible if the strip has its contents hidden
-                HideNewPhrasesInInvisibleSection ( section );
+                //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
+                mContentView.CreateBlocksInStrip (); //@singleSection: new statement
                 }
             }
 
@@ -1440,7 +1441,8 @@ namespace Obi.ProjectView
                                     mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                     }
                                 // hide new phrases if section's contents are hidden
-                                HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
+                                //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
+                                mContentView.CreateBlocksInStrip (); //@singleSection: new
                                 }
                             else
                                 MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
@@ -1781,8 +1783,8 @@ namespace Obi.ProjectView
                         MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
 
                     // hide newly added phrases if contents of section are hidden
-                    HideNewPhrasesInInvisibleSection ( SNode );
-
+                    //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
+                    mContentView.CreateBlocksInStrip (); //@singleSection: new
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                     }
                 }
