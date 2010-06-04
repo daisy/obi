@@ -1167,12 +1167,12 @@ namespace Obi.ProjectView
                             {
                                                         int currentPhraseIndex = mProjectView.Selection.Node.Index;
                                                         if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
-                                                        //if (40 >= currentPhraseIndex + 15) return true;
+                                                        
                                                         if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
                                                         
                                                         //System.Media.SystemSounds.Asterisk.Play ();
                                                         EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChild ( currentPhraseIndex + 15 );
-                                                        stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, false );
+                                                        stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase,true,  false );
                             }
                         }
                     }

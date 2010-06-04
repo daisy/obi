@@ -411,7 +411,7 @@ namespace Obi.ProjectView
                 return blocksRemovedCount;
             }
 
-        public int RemoveAllFollowingBlocks (EmptyNode node,  bool updateSize )
+        public int RemoveAllFollowingBlocks (EmptyNode node, bool removeHiddenBlocks ,bool updateSize )
             {
             int blocksRemovedCount = 0;
             int limitIndex = node.Index;
@@ -421,9 +421,10 @@ namespace Obi.ProjectView
                     {
                     if (mBlockLayout.Controls[i] is Block)
                         {
-                        if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex)
+                        if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
+                            ||    (removeHiddenBlocks && !ShouldStopAddingBlocks) )
                             {
-                            
+                            Console.WriteLine ("Removal of block till " + i.ToString ()) ;
                             break;
                             }
 
@@ -434,7 +435,6 @@ namespace Obi.ProjectView
                 }
             return blocksRemovedCount;
             }
-
 
 
         // @phraseLimit
