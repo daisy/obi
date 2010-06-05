@@ -480,7 +480,7 @@ namespace Obi.ProjectView
                     {
                     ISelectableInContentView s = value == null ? null : FindSelectable ( value );
 
-                    if (s == null && IsBlockInvisibleButStripVisible ( value ))
+                    if (s == null && IsBlockInvisibleButStripVisible ( value ) && this == null)//@singleSection: last check added to make it compulsory to go to else
                     { /* do nothing */ }
                     else
                         {
@@ -1109,7 +1109,8 @@ namespace Obi.ProjectView
 
                             for (int i = 0; i < 100 && !stripControl.IsContentViewFilledWithBlocks; ++i)
                                 {
-                                if (maxCount < defaultVisibleCount && i >= maxCount - 1)
+                                if ((maxCount < defaultVisibleCount && i >= maxCount - 1)
+                                    || i >= stripControl.Node.PhraseChildCount )
                                                                         {
                                     Console.WriteLine ( "Adding block stopped at " + i.ToString () );
                                     break;
