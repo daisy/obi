@@ -1173,7 +1173,8 @@ namespace Obi.ProjectView
                                                         if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
                                                         
                                                         //System.Media.SystemSounds.Asterisk.Play ();
-                                                        EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChild ( currentPhraseIndex + 15 );
+                            EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ?   stripControl.Node.PhraseChild ( currentPhraseIndex + 15 ):
+                                stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
                             if ( stripControl.IsContentViewFilledWithBlocks )
                                                         stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase,true,  false );
                             }
@@ -1916,11 +1917,11 @@ stripControl.Node.PhraseChildCount > 0)
             // else remove imidiately if  if visible blocks exceed even extra limit  even if recorder is active
             if (blocksCountInVisibleStrip > mProjectView.MaxVisibleBlocksCount && !mProjectView.TransportBar.IsRecorderActive)
                 {
-                MakeOldStripsBlocksInvisible ( 1, false, indexOfNewStrip );
+                //MakeOldStripsBlocksInvisible ( 1, false, indexOfNewStrip );
                 }
             else if (blocksCountInVisibleStrip > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility))
                 {
-                MakeOldStripsBlocksInvisible ( 1, true, indexOfNewStrip );
+                //MakeOldStripsBlocksInvisible ( 1, true, indexOfNewStrip );
                 }
 
             
