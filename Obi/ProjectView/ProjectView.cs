@@ -2221,6 +2221,12 @@ namespace Obi.ProjectView
             {
             if (node != null)
                 {
+                //@singleSection: added this if block and code inside it, 
+                if (mContentView.ContainsFocus && node is EmptyNode)
+                    {
+                    mContentView.SelectPhraseBlockOrStrip ((EmptyNode) node );
+                    return;
+                    }
                 // if block to be selected is invisible, select parent section
                 if (mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)node )
                     || (selectionControl != null && selectionControl is TOCView))
