@@ -2233,10 +2233,12 @@ stripControl.Node.PhraseChildCount > 0)
             else
                 strip = mSelectedItem is Strip ? StripBefore ( StripFor ( mSelectedItem ) ) : StripFor ( mSelectedItem );
 
+            if (strip == null) strip = ActiveStrip;//@singleSection
             if (strip != null)
                 {
                 mProjectView.Selection = new NodeSelection ( strip.Node, this );
                 strip.FocusStripLabel ();
+                
                 return true;
                 }
             return false;
@@ -2627,7 +2629,21 @@ stripControl.Node.PhraseChildCount > 0)
 
             }
 
-
+        //@singleSection
+        public Strip ActiveStrip
+            {
+            get
+                {
+                foreach (Control c in mStripsPanel.Controls)
+                    {
+                    if (c is Strip)
+                        {
+                        return ((Strip) c) ;
+                        }
+                    }
+                return null;
+                }
+            }
 
 
         // Toggle play/pause in the transport bar
