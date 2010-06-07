@@ -360,6 +360,12 @@
     <Compile Include="ProjectView\ContentView.Designer.cs">
       <DependentUpon>ContentView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\ContentViewLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\ContentViewLabel.Designer.cs">
+      <DependentUpon>ContentViewLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\StripCursor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -760,6 +766,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="good.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\ContentViewLabel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ContentViewLabel.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
