@@ -1138,14 +1138,14 @@ namespace Obi.ProjectView
                             }
                         else
                             {//2
-                            
+                            //Console.WriteLine ( "inside " );
                             ObiNode currentNode = selectedNode.FollowingNode;
 
-                            for (int i = 0; i < extraBlocksCount; i++)
+                            for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
                                 {//3
-                                if (!(currentNode is EmptyNode) ||
-                                    currentNode.ParentAs<SectionNode> () != stripControl.Node
-                                    || stripControl.IsContentViewFilledWithBlocks)
+                                if (currentNode == null  ||
+                                    !(currentNode is EmptyNode) ||
+                                    currentNode.ParentAs<SectionNode> () != stripControl.Node)
                                     {//4
                                     Console.WriteLine ( "Adding extra blocks exit at " + i.ToString () );
                                     break;
