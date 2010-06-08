@@ -1463,7 +1463,6 @@ stripControl.Node.PhraseChildCount > 0)
         /// <param name="countRequired"></param>
         private void RemoveBlocksFromSelectedPartiallyVisibleStrip ( int countRequired )
             {
-            MessageBox.Show ( "Partially visible" );
             if (mProjectView.GetSelectedPhraseSection != null && countRequired > 0 && m_VisibleStripsList.Count > 0)
                 {
                 try
@@ -1510,7 +1509,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (node != null)
                 {
                 Strip s = FindStrip ( node );
-                MessageBox.Show ( "removing strip " ) ;
+
                 if (s != null)
                     {
                     try
@@ -1537,7 +1536,6 @@ stripControl.Node.PhraseChildCount > 0)
         /// <returns></returns>
         private int RemoveBlocksInStrip ( Strip stripControl )
             {
-            MessageBox.Show ( "removing blocks " );
             int blocksRemoved = 0;
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
@@ -1558,7 +1556,6 @@ stripControl.Node.PhraseChildCount > 0)
         /// <returns></returns>
         private int RemoveBlocksInStrip ( Strip stripControl, int countRequired )
             {
-            
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
                 int upperBound = countRequired < 15 ? countRequired * 2 : countRequired;
@@ -1880,7 +1877,6 @@ stripControl.Node.PhraseChildCount > 0)
                 // TODO in the future, the parent of a removed empty node
                 // will not always be a section node!
                 Strip strip = FindStrip ( (SectionNode)e.SourceTreeNode );
-                MessageBox.Show ( "removing block in event" );
                 if (strip != null) strip.RemoveBlock ( (EmptyNode)e.RemovedChild );
                 }
             }
@@ -1904,7 +1900,7 @@ stripControl.Node.PhraseChildCount > 0)
 
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
-            return b;
+
             // change colors if added phrase is first phrase of section and recorder is active.
             if (b != null && b.Node.Index == 0 && mProjectView.TransportBar.IsRecorderActive)
                 stripControl.UpdateColors ();
