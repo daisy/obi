@@ -28,37 +28,39 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitializeComponent ()
             {
-            this.m_lblStaticLabel = new System.Windows.Forms.Label ();
-            this.m_lblSectionName = new System.Windows.Forms.Label ();
-            this.SuspendLayout ();
-            // 
-            // m_lblStaticLabel
-            // 
-            this.m_lblStaticLabel.AutoSize = true;
-            this.m_lblStaticLabel.Location = new System.Drawing.Point ( 10, 4 );
-            this.m_lblStaticLabel.Name = "m_lblStaticLabel";
-            this.m_lblStaticLabel.Size = new System.Drawing.Size ( 144, 13 );
-            this.m_lblStaticLabel.TabIndex = 0;
-            this.m_lblStaticLabel.Text = "Showing contents of section:";
-            // 
-            // m_lblSectionName
-            // 
-            this.m_lblSectionName.AutoSize = true;
-            this.m_lblSectionName.Location = new System.Drawing.Point ( 155, 0 );
-            this.m_lblSectionName.Name = "m_lblSectionName";
-            this.m_lblSectionName.Size = new System.Drawing.Size ( 0, 13 );
-            this.m_lblSectionName.TabIndex = 1;
-            // 
-            // ContentViewLabel
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF ( 6F, 13F );
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add ( this.m_lblSectionName );
-            this.Controls.Add ( this.m_lblStaticLabel );
-            this.Name = "ContentViewLabel";
-            this.Size = new System.Drawing.Size ( 150, 20 );
-            this.ResumeLayout ( false );
-            this.PerformLayout ();
+                this.m_lblStaticLabel = new System.Windows.Forms.Label();
+                this.m_lblSectionName = new System.Windows.Forms.Label();
+                this.SuspendLayout();
+                // 
+                // m_lblStaticLabel
+                // 
+                this.m_lblStaticLabel.AutoSize = true;
+                this.m_lblStaticLabel.Location = new System.Drawing.Point(10, 4);
+                this.m_lblStaticLabel.Name = "m_lblStaticLabel";
+                this.m_lblStaticLabel.Size = new System.Drawing.Size(144, 13);
+                this.m_lblStaticLabel.TabIndex = 0;
+                this.m_lblStaticLabel.Text = "Showing contents of section:";
+                // 
+                // m_lblSectionName
+                // 
+                this.m_lblSectionName.AutoSize = true;
+                this.m_lblSectionName.BackColor = System.Drawing.SystemColors.Control;
+                this.m_lblSectionName.Location = new System.Drawing.Point(151, 4);
+                this.m_lblSectionName.Name = "m_lblSectionName";
+                this.m_lblSectionName.Size = new System.Drawing.Size(104, 13);
+                this.m_lblSectionName.TabIndex = 1;
+                this.m_lblSectionName.Text = "No section selected.";
+                // 
+                // ContentViewLabel
+                // 
+                this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+                this.Controls.Add(this.m_lblSectionName);
+                this.Controls.Add(this.m_lblStaticLabel);
+                this.Name = "ContentViewLabel";
+                this.Size = new System.Drawing.Size(297, 22);
+                this.ResumeLayout(false);
+                this.PerformLayout();
 
             }
 
