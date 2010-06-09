@@ -69,6 +69,8 @@ namespace Obi.ProjectView
         this.mHScrollBar = new System.Windows.Forms.HScrollBar ();
         this.mVScrollBar = new System.Windows.Forms.VScrollBar ();
         this.mCornerPanel = new System.Windows.Forms.Panel ();
+        this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel ();
+        this.contentViewLabel2 = new Obi.ProjectView.ContentViewLabel ();
         this.mContextMenuStrip.SuspendLayout ();
         this.SuspendLayout ();
         // 
@@ -394,9 +396,28 @@ namespace Obi.ProjectView
         this.mCornerPanel.Size = new System.Drawing.Size ( 16, 16 );
         this.mCornerPanel.TabIndex = 4;
         // 
+        // contentViewLabel1
+        // 
+        this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+        this.contentViewLabel1.Location = new System.Drawing.Point ( 0, 0 );
+        this.contentViewLabel1.Name = "contentViewLabel1";
+        this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
+        this.contentViewLabel1.Size = new System.Drawing.Size ( 297, 22 );
+        this.contentViewLabel1.TabIndex = 5;
+        // 
+        // contentViewLabel2
+        // 
+        this.contentViewLabel2.Location = new System.Drawing.Point ( 0, 0 );
+        this.contentViewLabel2.Name = "contentViewLabel2";
+        this.contentViewLabel2.Name_SectionDisplayed = "No section selected.";
+        this.contentViewLabel2.Size = new System.Drawing.Size ( 297, 22 );
+        this.contentViewLabel2.TabIndex = 6;
+        // 
         // ContentView
         // 
         this.ContextMenuStrip = this.mContextMenuStrip;
+        this.Controls.Add ( this.contentViewLabel2 );
+        this.Controls.Add ( this.contentViewLabel1 );
         this.Controls.Add ( this.mVScrollBar );
         this.Controls.Add ( this.mHScrollBar );
         this.Controls.Add ( this.mCornerPanel );
@@ -404,6 +425,7 @@ namespace Obi.ProjectView
         this.Name = "ContentView";
         this.Size = new System.Drawing.Size ( 538, 573 );
         this.Click += new System.EventHandler ( this.ContentView_Click );
+        this.Resize += new System.EventHandler ( this.ContentView_Resize );
         this.Enter += new System.EventHandler ( this.StripsView_Enter );
         this.mContextMenuStrip.ResumeLayout ( false );
         this.ResumeLayout ( false );
@@ -452,5 +474,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.HScrollBar mHScrollBar;
         private System.Windows.Forms.VScrollBar mVScrollBar;
         private System.Windows.Forms.Panel mCornerPanel;
+        private ContentViewLabel contentViewLabel1;
+        private ContentViewLabel contentViewLabel2;
     }
 }
