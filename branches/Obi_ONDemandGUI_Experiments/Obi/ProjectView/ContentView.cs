@@ -3004,10 +3004,9 @@ stripControl.Node.PhraseChildCount > 0)
             StartCreatingBlockForScroll ();
             }
 
+        //@singleSection
         private void ContentView_Resize ( object sender, EventArgs e )
             {
-
-            //@singleSection
             if (ActiveStrip != null )
                 {
                 CreateLimitedBlocksInStrip ( ActiveStrip );
