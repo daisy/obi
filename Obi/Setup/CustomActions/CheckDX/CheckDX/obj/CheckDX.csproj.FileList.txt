@@ -1,5 +1,0 @@
-bin\Debug\CheckDX.dll
-bin\Debug\CheckDX.pdb
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\CheckDX.dll
-obj\Debug\CheckDX.pdb
