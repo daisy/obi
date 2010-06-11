@@ -17,6 +17,8 @@ namespace Obi.ProjectView
         public const int BLOCK_SELECTED_PRIORITY = 3;
         public const int WAVEFORM_SELECTED_PRIORITY = 4;
 
+        //@singleSection: height and width is increased by 20%, height is increased from properties of designer from 128 to 154
+
         /// <summary>
         /// Create a new audio block for a phrase node in a strip.
         /// </summary>
@@ -151,7 +153,8 @@ namespace Obi.ProjectView
             get
             {
                 long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
-                int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);
+                //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
+                int w = time == 0.0 ? LabelFullWidth : (int)Math.Round ( time * AudioScale * 1.2f);//@singleSection: updated
                 // workaround to prevent visibility problem in block layout, waveform should remain below blocklayout width of 32768
                 if (w > 32600) 
                     {
