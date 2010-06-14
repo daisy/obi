@@ -2437,6 +2437,7 @@ namespace Obi.ProjectView
                         {
                         //@singleSection
                         //Selection = new NodeSelection ( node, mContentView );
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
                         mContentView.SelectPhraseBlockOrStrip ( node );
                         }
                     else
@@ -2466,6 +2467,7 @@ namespace Obi.ProjectView
                             }
                         //@singleSection
                         //Selection = new NodeSelection ( section.PhraseChild ( phraseIndex ), mContentView );
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
                         mContentView.SelectPhraseBlockOrStrip ( section.PhraseChild ( phraseIndex ) );
                         } // section null check ends
                     }
