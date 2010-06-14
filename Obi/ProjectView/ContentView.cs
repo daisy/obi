@@ -2596,7 +2596,7 @@ stripControl.Node.PhraseChildCount > 0)
                         }
                     }
                 
-                if ( strip.FindBlock ( node ) == null)
+                if ( node != null &&  strip.FindBlock ( node ) == null)
                     {
                     
                     // if parent section is visible, then check if target phrase is visible
@@ -2614,7 +2614,7 @@ stripControl.Node.PhraseChildCount > 0)
                     if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  iterationNode, false );
                     }
 
-                mProjectView.Selection = new NodeSelection ( node, this );
+                if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
                 /*
                 if (IsBlockInvisibleButStripVisible ( node ))
                     {
