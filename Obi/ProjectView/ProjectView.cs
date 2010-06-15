@@ -1133,7 +1133,8 @@ namespace Obi.ProjectView
             {
             set
                 {
-                mSynchronizeViews = value;
+                //mSynchronizeViews = value;//@singleSection: original 
+                mSynchronizeViews =  false;//@singleSection: new
                 if (!CanShowOnlySelectedSection) //@ShowSingleSection
                     {
                     if (mSynchronizeViews)
