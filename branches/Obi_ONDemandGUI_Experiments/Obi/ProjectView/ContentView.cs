@@ -1851,7 +1851,8 @@ stripControl.Node.PhraseChildCount > 0)
             ReflowFromIndex ( index );
             if (m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ); // @phraseLimit
 
-            if (clipboard == null || (clipboard != null && clipboard.Node != strip.Node)) // @phraseLimit
+            if (clipboard == null || 
+                (clipboard != null && strip != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
                 if ( strip != null )  strip.DestroyStripHandle ();
                 strip = null;
@@ -1896,9 +1897,10 @@ stripControl.Node.PhraseChildCount > 0)
         private Block AddBlockForNodeConsideringPhraseLimit ( Strip stripControl, EmptyNode node )
             {
             // if the node is above max phrase limit per section, do not add block and return
-            if (node.Index > mProjectView.MaxVisibleBlocksCount)
+            if (node.Index > mProjectView.MaxVisibleBlocksCount   
+                ||  stripControl == null)//@singleSection: this null check shuld surely be replaced by strip creation code
                 return null;
-
+            
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
 
