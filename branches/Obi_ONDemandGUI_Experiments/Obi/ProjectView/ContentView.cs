@@ -911,6 +911,7 @@ namespace Obi.ProjectView
                 if (mStrips.ContainsKey ( (SectionNode)node ))
                     {
                     strip = mStrips[(SectionNode)node];
+                    if (strip != null) strip.RefreshStrip ();
                     if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation)
                         {
                         CreateBlocksInStrip ( strip );
