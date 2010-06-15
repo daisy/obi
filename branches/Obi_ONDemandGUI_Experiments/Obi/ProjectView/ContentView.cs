@@ -2253,6 +2253,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (mProjectView.Selection.Node is PhraseNode && nextSection != null)
                 {
                 mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
+                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop ();
                 foreach (Control c in mStripsPanel.Controls)
                     {
                     if (c is Strip )
