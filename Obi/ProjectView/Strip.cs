@@ -932,6 +932,16 @@ namespace Obi.ProjectView
             System.Diagnostics.Debug.Print("Location changed to {0}/{1}", Location, l);
         }
 
+        //@singleSection
+        /// <summary>
+        /// updates strip without updating its blocks
+        /// </summary>
+        public void RefreshStrip ()
+            {
+            Label = mNode.Label;
+            //UpdateColors ();
+            }
+
         public void DestroyStripHandle ()
             {
             this.DestroyHandle ();
