@@ -1012,10 +1012,22 @@ namespace Obi.ProjectView
                 }
 
             }
-
-        public void CreateStripForSelectedSection ( SectionNode node, bool removeExisting )//@singleSection
+        public Strip CreateStripForAddedSectionNode ( SectionNode node, bool removeExisting )//@singleSection
             {
-            if (IsStripVisible ( node )) return;
+            if (this.ContainsFocus)
+                {
+                return CreateStripForSelectedSection ( node, removeExisting );
+                }
+            else
+                {
+                return null;
+                }
+            }
+
+
+        public Strip CreateStripForSelectedSection ( SectionNode node, bool removeExisting )//@singleSection
+            {
+            if (IsStripVisible ( node )) return null;
 
             // first remove existing strip
             if (removeExisting)
@@ -1031,7 +1043,7 @@ namespace Obi.ProjectView
                 }
 
             // now add strip for section in parameter
-            AddStripForSection ( node );
+            return AddStripForSection ( node );
             }
 
         /// <summary>
@@ -1887,7 +1899,9 @@ stripControl.Node.PhraseChildCount > 0)
         // Add a new strip for a newly added section node or a new block for a newly added empty node.
         private void TreeNodeAdded ( urakawa.events.core.ChildAddedEventArgs e )
             {
-            Control c = e.AddedChild is SectionNode ? (Control)AddStripForSection_Safe ( (SectionNode)e.AddedChild ) :
+            //@singleSection : AddStripForSection_Safe replaced by CreateStripForAddedSectionNode
+            // this will remove existing strips before creating new strip in content view
+            Control c = e.AddedChild is SectionNode ? (Control)CreateStripForAddedSectionNode( (SectionNode)e.AddedChild , true) :
                 // TODO: in the future, the source node will not always be a section node!
                 e.AddedChild is EmptyNode ? AddBlockForNodeConsideringPhraseLimit ( (Strip)FindStrip ( (SectionNode)e.SourceTreeNode ), ((EmptyNode)e.AddedChild) ) : // @phraseLimit
                 null;
