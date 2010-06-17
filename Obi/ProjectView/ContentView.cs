@@ -843,7 +843,8 @@ namespace Obi.ProjectView
             for (int i = mStripsPanel.Controls.Count - 1; i >= 0; --i)
                 {
                 Strip strip = mStripsPanel.Controls[i] as Strip;
-                if (strip != null)
+                //@singleSection: adding check for mStripsPanel.Controls.Count because it is not necessary in unsync state that selected node is shown
+                if (strip != null && mStripsPanel.Controls.Count >= 1)
                     {
                     if ( ( selectedSection == null && i == 0 )
                         || ( selectedSection != null &&  strip.Node == selectedSection) )
@@ -1041,7 +1042,7 @@ namespace Obi.ProjectView
                     }
 
                 }
-
+            
             // now add strip for section in parameter
             return AddStripForSection ( node );
             }
@@ -1899,6 +1900,7 @@ stripControl.Node.PhraseChildCount > 0)
         // Add a new strip for a newly added section node or a new block for a newly added empty node.
         private void TreeNodeAdded ( urakawa.events.core.ChildAddedEventArgs e )
             {
+            
             //@singleSection : AddStripForSection_Safe replaced by CreateStripForAddedSectionNode
             // this will remove existing strips before creating new strip in content view
             Control c = e.AddedChild is SectionNode ? (Control)CreateStripForAddedSectionNode( (SectionNode)e.AddedChild , true) :
@@ -1912,9 +1914,19 @@ stripControl.Node.PhraseChildCount > 0)
         private Block AddBlockForNodeConsideringPhraseLimit ( Strip stripControl, EmptyNode node )
             {
             // if the node is above max phrase limit per section, do not add block and return
-            if (node.Index > mProjectView.MaxVisibleBlocksCount   
-                ||  stripControl == null)//@singleSection: this null check shuld surely be replaced by strip creation code
-                return null;
+            if (node.Index > mProjectView.MaxVisibleBlocksCount
+                || stripControl == null)//@singleSection: this null check shuld surely be replaced by strip creation code
+                {
+                //@singleSection : if no strip is visible in content view, make the parent strip of empty node visible 
+                if (ActiveStrip == null)
+                    {
+                    stripControl =  CreateStripForSelectedSection ( node.ParentAs<SectionNode> (), true );
+                    }
+                else
+                    {
+                    return null;
+                    }
+                }
             
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
