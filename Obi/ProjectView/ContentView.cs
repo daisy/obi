@@ -912,9 +912,17 @@ namespace Obi.ProjectView
                 {
                 if (mStrips.ContainsKey ( (SectionNode)node ))
                     {
-                    strip = mStrips[(SectionNode)node];
-                    if (strip != null) strip.RefreshStrip ();
-                    if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation)
+                    //@singleSection : code change start
+                    strip = new Strip ( (SectionNode)node, this );
+                    mStrips[(SectionNode)node] = strip;
+                    strip.WrapContents = mWrapStripContents;
+                    strip.ColorSettings = ColorSettings;
+                    //@singleSection : ends
+                    // following commented temporarily to avoid bugs due to old strips
+                    //strip = mStrips[(SectionNode)node];
+                    //if (strip != null) strip.RefreshStrip ();
+                    //if (strip != null && !strip.IsBlocksVisible && !m_CreatingGUIForNewPresentation)//@singleSection
+                    if (strip != null && !m_CreatingGUIForNewPresentation)
                         {
                         CreateBlocksInStrip ( strip );
                         }
