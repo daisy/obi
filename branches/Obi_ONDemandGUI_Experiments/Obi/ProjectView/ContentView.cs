@@ -166,6 +166,7 @@ namespace Obi.ProjectView
             get
                 {
                 return IsStripSelected &&
+                    mSelection.Node.IsRooted && //@singleSection
                      (mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode> ().SectionChildCount - 1 ||
                         ((SectionNode)mSelection.Node).SectionChildCount > 0);
                 }
