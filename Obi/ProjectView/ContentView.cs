@@ -114,7 +114,8 @@ namespace Obi.ProjectView
                 }
             mStripsPanel.Width = w_max;
             mStripsPanel.Height = h;
-            mVScrollBar.Maximum = h - VisibleHeight + mVScrollBar.LargeChange - 1 + mVScrollBar.Width;
+            //mVScrollBar.Maximum = h - VisibleHeight + mVScrollBar.LargeChange - 1 + mVScrollBar.Width;//@singleSection: original
+            mVScrollBar.Maximum = PredictedMaxStripsLayoutHeight - VisibleHeight + mVScrollBar.LargeChange - 1 + mVScrollBar.Width;//@singleSection: new
             int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
             if (mVScrollBar.Value > v_max) mVScrollBar.Value = v_max;
             mHScrollBar.Maximum = w_max - VisibleWidth + mHScrollBar.LargeChange - 1 + mHScrollBar.Height;
@@ -1162,7 +1163,7 @@ namespace Obi.ProjectView
                             }
                         else
                             {//2
-                            //Console.WriteLine ( "inside " );
+                            
                             ObiNode currentNode = selectedNode.FollowingNode;
 
                             for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
@@ -1186,6 +1187,7 @@ namespace Obi.ProjectView
                             
                             }//-2
                         
+                        UpdateSize ();
                         }
 
                     if (shouldRemoveBlocks)
@@ -2682,6 +2684,21 @@ stripControl.Node.PhraseChildCount > 0)
                         }
                     }
                 return null;
+                }
+            }
+
+        //@singleSection
+        private int PredictedMaxStripsLayoutHeight
+            {
+            get
+                {
+                int height = 0;
+                foreach (Control c in mStripsPanel.Controls)
+                    {
+                    height += c is Strip ? ((Strip)c).PredictedStripHeight : 0;
+                    }
+                Console.WriteLine ( "predicted scroll height " + height + " " + mStripsPanel.Height.ToString () );
+                return height > mStripsPanel.Height ? height : mStripsPanel.Height; 
                 }
             }
 
