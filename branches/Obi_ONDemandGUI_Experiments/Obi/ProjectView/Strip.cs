@@ -698,7 +698,11 @@ namespace Obi.ProjectView
         {
             get
             {
+            
+            return mBlockLayout.Location.Y + Math.Max ( mBlockHeight, mBlockLayout.Height ) +
+                mBlockLayout.Margin.Bottom + BorderHeight;
             float sizeMultiplier = 1;//@singleSection
+            System.Media.SystemSounds.Asterisk.Play ();
                 // determine how many blocks are visible w.r.t. total no. of phrases
             if (LastBlock != null ) //@singleSection
                 {
@@ -711,11 +715,36 @@ namespace Obi.ProjectView
                                         //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
                     }
                 }
+            Console.WriteLine ( "block layout height " + this.Size.ToString()); 
                 // If there are no contents, still show space for the block layout
-                return mBlockLayout.Location.Y + Math.Max(mBlockHeight,Convert.ToInt32 ( mBlockLayout.Height * sizeMultiplier) ) +
+                return mBlockLayout.Location.Y + Math.Max(mBlockHeight,mBlockLayout.Height*2  ) +
                     mBlockLayout.Margin.Bottom + BorderHeight;
             }
         }
+
+        //@singleSection
+        public int PredictedStripHeight
+            {
+            get
+                {
+                float sizeMultiplier = 1;//@singleSection
+                // determine how many blocks are visible w.r.t. total no. of phrases
+                if (LastBlock != null) //@singleSection
+                    {
+                    int lastBlockIndex = mBlockLayout.Controls.IndexOf ( LastBlock ) / 2;
+                    if (lastBlockIndex > 0)
+                    //&&                   (( mNode.PhraseChildCount - lastBlockIndex ) < 15
+                    //||    lastBlockIndex <= 40    ||    lastBlockIndex %10 == 0))
+                        {
+                        sizeMultiplier = mNode.PhraseChildCount / lastBlockIndex;
+                        //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
+                        }
+                    }
+                // If there are no contents, still show space for the block layout
+                return mBlockLayout.Location.Y + Math.Max ( mBlockHeight, Convert.ToInt32 ( mBlockLayout.Height * sizeMultiplier ) ) +
+                    mBlockLayout.Margin.Bottom + BorderHeight;
+                }
+            }
 
         public void Resize_All() 
         {
