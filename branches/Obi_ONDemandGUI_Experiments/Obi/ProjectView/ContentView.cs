@@ -1113,7 +1113,7 @@ namespace Obi.ProjectView
                 int extraBlocksCount = 15;
                 int blockLotSizeToRemove = 5;
                 bool shouldRemoveBlocks = true;
-                
+                bool wasPlaybackOn = false;
                 try
                     {
                     if (mProjectView.Selection == null ||
@@ -1131,7 +1131,11 @@ namespace Obi.ProjectView
                             shouldRemoveBlocks = false;
                             int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
                             // pause playback if it is active.
-                            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
+                            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                {
+                                wasPlaybackOn = true;
+                                mProjectView.TransportBar.Pause ();
+                                }
                             for (int i = 0; i < 100 && !stripControl.IsContentViewFilledWithBlocks; ++i)
                                 {
                                 if ((maxCount < defaultVisibleCount && i >= maxCount )
@@ -1167,7 +1171,11 @@ namespace Obi.ProjectView
                             
                             ObiNode currentNode = selectedNode.FollowingNode;
                             // pause playback if it is active.
-                            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
+                            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                {
+                                wasPlaybackOn = true;
+                                mProjectView.TransportBar.Pause ();
+                                }
                             for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
                                 {//3
                                 if (currentNode == null  ||
@@ -1209,11 +1217,17 @@ namespace Obi.ProjectView
                             if (stripControl.IsContentViewFilledWithBlocks)
                                 {
                                 // pause playback if it is active.
-                                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
+                                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                    {
+                                    wasPlaybackOn = true;
+                                    mProjectView.TransportBar.Pause ();
+                                    }
                                 stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, true, false );
+                                UpdateSize ();
                                 }
                             }
                         }
+                    if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
                     }
                 catch (System.Exception ex)
                     {
