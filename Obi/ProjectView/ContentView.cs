@@ -2650,7 +2650,7 @@ stripControl.Node.PhraseChildCount > 0)
 
                 if (!isParentSectionVisible)
                     {
-                    if (MessageBox.Show ( "The special role phrase is not in current section. Will you like to show the section containing the phrase?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
+                    if (MessageBox.Show ( "The required phrase is not in current section. Will you like to show the section containing the phrase?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
                         {
                         CreateStripForSelectedSection ( parentSection, true );
                         }
@@ -2660,7 +2660,7 @@ stripControl.Node.PhraseChildCount > 0)
                         }
                     }
                 
-                if ( node != null &&  strip.FindBlock ( node ) == null)
+                if ( node != null && strip != null &&  strip.FindBlock ( node ) == null)
                     {
                     
                     // if parent section is visible, then check if target phrase is visible
