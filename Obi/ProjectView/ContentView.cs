@@ -480,6 +480,7 @@ namespace Obi.ProjectView
                 {
                 if (value != mSelection)
                     {
+                    if (value != null && (value.Node is EmptyNode || value is StripIndexSelection)) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
                     ISelectableInContentView s = value == null ? null : FindSelectable ( value );
 
                     if (s == null && IsBlockInvisibleButStripVisible ( value ) && this == null)//@singleSection: last check added to make it compulsory to go to else
@@ -489,7 +490,7 @@ namespace Obi.ProjectView
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
-                        if (mSelection != null && ( mSelection.Node is EmptyNode || mSelection is StripIndexSelection )) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
+                        
                         }
 
                     if (s != null)
@@ -1106,8 +1107,7 @@ namespace Obi.ProjectView
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                // pause playback if it is active.
-                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
+                
 
                 int defaultVisibleCount = 40;
                 int extraBlocksCount = 15;
@@ -1130,7 +1130,8 @@ namespace Obi.ProjectView
                             {
                             shouldRemoveBlocks = false;
                             int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
-                            
+                            // pause playback if it is active.
+                            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
                             for (int i = 0; i < 100 && !stripControl.IsContentViewFilledWithBlocks; ++i)
                                 {
                                 if ((maxCount < defaultVisibleCount && i >= maxCount )
@@ -1165,7 +1166,8 @@ namespace Obi.ProjectView
                             {//2
                             
                             ObiNode currentNode = selectedNode.FollowingNode;
-
+                            // pause playback if it is active.
+                            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
                             for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
                                 {//3
                                 if (currentNode == null  ||
@@ -1202,8 +1204,14 @@ namespace Obi.ProjectView
                                                         //System.Media.SystemSounds.Asterisk.Play ();
                             EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ?   stripControl.Node.PhraseChild ( currentPhraseIndex + 15 ):
                                 stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
-                            if ( stripControl.IsContentViewFilledWithBlocks )
-                                                        stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase,true,  false );
+
+
+                            if (stripControl.IsContentViewFilledWithBlocks)
+                                {
+                                // pause playback if it is active.
+                                if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();            
+                                stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, true, false );
+                                }
                             }
                         }
                     }
