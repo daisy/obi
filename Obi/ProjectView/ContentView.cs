@@ -1053,7 +1053,7 @@ namespace Obi.ProjectView
                     }
 
                 }
-            
+            //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
             return AddStripForSection ( node );
             }
@@ -2290,6 +2290,7 @@ stripControl.Node.PhraseChildCount > 0)
             bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing;
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
 
+            if (mProjectView.GetSelectedPhraseSection == null) return false;
             SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
             if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection , true); //@singleSection
 
@@ -2315,18 +2316,23 @@ stripControl.Node.PhraseChildCount > 0)
 
         private bool SelectNextStrip ()
             {
-            
-            SectionNode nextSection = mProjectView.GetSelectedPhraseSection.FollowingSection; //@singleSection : starts
+            //@singleSection : starts
+            SectionNode currentlySelectedSection = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node.ParentAs<SectionNode> () :
+                mProjectView.GetSelectedPhraseSection;
+
+            if (currentlySelectedSection  == null) return false;
+
+            SectionNode nextSection = currentlySelectedSection.FollowingSection; 
             if (mProjectView.TransportBar.IsPlayerActive && nextSection != null) mProjectView.TransportBar.Stop ();
-            if (mProjectView.Selection.Node is PhraseNode && nextSection != null)
+            if (currentlySelectedSection is PhraseNode && nextSection != null)
                 {
-                mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
+                mProjectView.Selection = new NodeSelection ( currentlySelectedSection, this );
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop ();
                 foreach (Control c in mStripsPanel.Controls)
                     {
                     if (c is Strip )
                         {
-                        if ( ((Strip)c).Node == mProjectView.GetSelectedPhraseSection )  ((Strip)c).FocusStripLabel ();
+                        if ( ((Strip)c).Node == currentlySelectedSection )  ((Strip)c).FocusStripLabel ();
                         }
                     }
                 }
