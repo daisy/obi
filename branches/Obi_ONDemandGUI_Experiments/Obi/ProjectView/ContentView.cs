@@ -1114,6 +1114,7 @@ namespace Obi.ProjectView
                 int blockLotSizeToRemove = 5;
                 bool shouldRemoveBlocks = true;
                 bool wasPlaybackOn = false;
+                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
                 try
                     {
                     if (mProjectView.Selection == null ||
@@ -1133,6 +1134,7 @@ namespace Obi.ProjectView
                             // pause playback if it is active.
                             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                 {
+                                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
@@ -1173,6 +1175,7 @@ namespace Obi.ProjectView
                             // pause playback if it is active.
                             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                 {
+                                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
@@ -1219,6 +1222,7 @@ namespace Obi.ProjectView
                                 // pause playback if it is active.
                                 if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                     {
+                                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
                                     wasPlaybackOn = true;
                                     mProjectView.TransportBar.Pause ();
                                     }
@@ -1227,12 +1231,14 @@ namespace Obi.ProjectView
                                 }
                             }
                         }
-                    if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
+                    
                     }
                 catch (System.Exception ex)
                     {
                     MessageBox.Show ( ex.ToString () );
                     }
+                if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
+                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 return true;
 
 }

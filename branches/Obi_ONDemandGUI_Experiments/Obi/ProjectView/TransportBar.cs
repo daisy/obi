@@ -27,6 +27,7 @@ namespace Obi.ProjectView
         private int mRecordingInitPhraseIndex;       // Phrase child in which we are recording
         
         private State mState;                        // transport bar state (composite of player/recorder states)
+        private bool m_CanMoveSelectionToPlaybackPhrase = true;//@singleSection
 
         // Playlists
         private Playlist mCurrentPlaylist;           // playlist currently playing, null when not playing
@@ -203,6 +204,13 @@ namespace Obi.ProjectView
         public bool CanSplitPhrase { get { return (IsPlayerActive 
             || ( mView.Selection != null  &&   mView.Selection is AudioSelection   &&   ((AudioSelection)mView.Selection).AudioRange != null))    
             &&    IsPhraseCountWithinLimit; } } // @phraseLimit
+
+        //@singleSection
+        public bool CanMoveSelectionToPlaybackPhrase
+            {
+            get { return m_CanMoveSelectionToPlaybackPhrase; }
+            set { m_CanMoveSelectionToPlaybackPhrase = value; }
+        }
 
         // @phraseLimit
         /// <summary>
@@ -1047,6 +1055,7 @@ namespace Obi.ProjectView
                 /// </summary>
         public void MoveSelectionToPlaybackPhrase ()
             {
+            if (!CanMoveSelectionToPlaybackPhrase) return;//@singleSection
             if ( IsPlayerActive )
                 {
                 bool SelectionChangedPlaybackStatus = mSelectionChangedPlayEnable;
