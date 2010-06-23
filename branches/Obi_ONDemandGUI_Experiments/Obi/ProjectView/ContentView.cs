@@ -2317,14 +2317,17 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectNextStrip ()
             {
             //@singleSection : starts
-            SectionNode currentlySelectedSection = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node.ParentAs<SectionNode> () :
+            SectionNode currentlySelectedSection = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> () :
                 mProjectView.GetSelectedPhraseSection;
 
             if (currentlySelectedSection  == null) return false;
 
             SectionNode nextSection = currentlySelectedSection.FollowingSection; 
             if (mProjectView.TransportBar.IsPlayerActive && nextSection != null) mProjectView.TransportBar.Stop ();
-            if (currentlySelectedSection is PhraseNode && nextSection != null)
+
+            if (nextSection != null &&
+                (mProjectView.Selection == null || 
+                (mProjectView.Selection != null && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection ) ) ) )
                 {
                 mProjectView.Selection = new NodeSelection ( currentlySelectedSection, this );
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop ();
