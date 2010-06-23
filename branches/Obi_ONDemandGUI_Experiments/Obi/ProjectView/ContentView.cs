@@ -1118,6 +1118,7 @@ namespace Obi.ProjectView
                 try
                     {
                     if (mProjectView.Selection == null ||
+                        stripControl.FirstBlock == null || //this means that no block is created in strip
                         (mProjectView.Selection != null && 
                         !(mProjectView.Selection.Node is EmptyNode) &&
                         !(mProjectView.Selection is StripIndexSelection) ))
