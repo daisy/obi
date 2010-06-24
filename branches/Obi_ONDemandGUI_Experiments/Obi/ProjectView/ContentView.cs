@@ -1911,7 +1911,7 @@ stripControl.Node.PhraseChildCount > 0)
                 if ( strip != null )  strip.DestroyStripHandle ();
                 strip = null;
                 }
-            else
+            else if (strip != null)
                 {
                 strip.RemoveAllBlocks ( false );
                 }
