@@ -1164,6 +1164,7 @@ namespace Obi.ProjectView
 
                         Block lastBlockInStrip = stripControl.LastBlock;
                         if (lastBlockInStrip != null
+                            && lastBlockInStrip.Node.IsRooted
                                                         && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15)
                                 || (lastBlockInStrip.Node == stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ))))
                             {
