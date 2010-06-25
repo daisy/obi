@@ -581,6 +581,20 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveStrip)
                 {
+                // first create landing strip
+                if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
+                    {
+                    SectionNode section = (SectionNode)Selection.Node;
+                    SectionNode landingSectionNode = section.FollowingSection;
+                    if (landingSectionNode == null) landingSectionNode  = section.PrecedingSection;
+
+                    if (landingSectionNode  != null)
+                        {
+                        mContentView.CreateStripForSelectedSection ( landingSectionNode, false );
+                        }
+                    
+                    }//@singleSection: end
+
                 mPresentation.Do ( mContentView.DeleteStripCommand () );
                 }
             else if (CanRemoveBlock)
@@ -672,6 +686,9 @@ namespace Obi.ProjectView
                 {
                 if (mSelection != null && mSelection.Control is TOCView)
                     {
+                    // show the selected section in content view
+                    if (GetSelectedPhraseSection != null) mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection , true); //@singleSection
+
                     if (TransportBar.IsPlayerActive)
                         {
                         // if block to be selected is invisible, select parent strip
@@ -760,7 +777,8 @@ namespace Obi.ProjectView
                     MessageBox.Show ( ex.ToString () );
                     }
                 // hide newly made phrases visible if the strip has its contents hidden
-                HideNewPhrasesInInvisibleSection ( section );
+                //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
+                mContentView.CreateBlocksInStrip (); //@singleSection: new statement
                 }
             }
 
@@ -1115,7 +1133,8 @@ namespace Obi.ProjectView
             {
             set
                 {
-                mSynchronizeViews = value;
+                //mSynchronizeViews = value;//@singleSection: original 
+                mSynchronizeViews =  false;//@singleSection: new
                 if (!CanShowOnlySelectedSection) //@ShowSingleSection
                     {
                     if (mSynchronizeViews)
@@ -1423,7 +1442,8 @@ namespace Obi.ProjectView
                                     mPresentation.Do ( GetImportPhraseCommands ( phraseNodes ) );
                                     }
                                 // hide new phrases if section's contents are hidden
-                                HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );
+                                //HideNewPhrasesInInvisibleSection ( GetSelectedPhraseSection );//@singleSection: original
+                                mContentView.CreateBlocksInStrip (); //@singleSection: new
                                 }
                             else
                                 MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
@@ -1507,7 +1527,7 @@ namespace Obi.ProjectView
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message ( "audio_file_filter" );
-            return dialog.ShowDialog () == DialogResult.OK ? Audio.AudioFormatConverter.ConvertFile(dialog.FileNames, mPresentation) : null;
+            return dialog.ShowDialog () == DialogResult.OK ? dialog.FileNames : null;
             }
 
         public void SelectNothing () { Selection = null; }
@@ -1764,8 +1784,8 @@ namespace Obi.ProjectView
                         MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
 
                     // hide newly added phrases if contents of section are hidden
-                    HideNewPhrasesInInvisibleSection ( SNode );
-
+                    //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
+                    mContentView.CreateBlocksInStrip (); //@singleSection: new
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                     }
                 }
@@ -2202,6 +2222,12 @@ namespace Obi.ProjectView
             {
             if (node != null)
                 {
+                //@singleSection: added this if block and code inside it, 
+                if (mContentView.ContainsFocus && node is EmptyNode)
+                    {
+                    mContentView.SelectPhraseBlockOrStrip ((EmptyNode) node );
+                    return;
+                    }
                 // if block to be selected is invisible, select parent section
                 if (mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)node )
                     || (selectionControl != null && selectionControl is TOCView))
@@ -2298,8 +2324,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void ShowSelectedSectionContents ()
             {
-            if (CanShowSectionContents)
-                mContentView.CreateBlocksInStrip ();
+            //
+            if (Selection != null && Selection.Node is SectionNode)//@singleSection
+                {
+                mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true );
+                }
+//@singleSection: commented following two lines as this is not required with single section
+            //if (CanShowSectionContents)
+                //mContentView.CreateBlocksInStrip ();
             }
 
 
@@ -2404,7 +2436,10 @@ namespace Obi.ProjectView
 
                     if (node != null)
                         {
-                        Selection = new NodeSelection ( node, mContentView );
+                        //@singleSection
+                        //Selection = new NodeSelection ( node, mContentView );
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
+                        mContentView.SelectPhraseBlockOrStrip ( node );
                         }
                     else
                         {
@@ -2431,8 +2466,10 @@ namespace Obi.ProjectView
                                 return;
                                 }
                             }
-
-                        Selection = new NodeSelection ( section.PhraseChild ( phraseIndex ), mContentView );
+                        //@singleSection
+                        //Selection = new NodeSelection ( section.PhraseChild ( phraseIndex ), mContentView );
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
+                        mContentView.SelectPhraseBlockOrStrip ( section.PhraseChild ( phraseIndex ) );
                         } // section null check ends
                     }
 
