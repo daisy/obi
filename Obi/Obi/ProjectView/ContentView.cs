@@ -480,7 +480,8 @@ namespace Obi.ProjectView
                 {
                 if (value != mSelection)
                     {
-                    if (value != null && (value.Node is EmptyNode || value is StripIndexSelection)) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
+                    if (value != null) CreateSelectedStripAndPhraseBlocks ( value );//@singleSection: creates strip to be selected
+                    //if (value != null && (value.Node is EmptyNode || value is StripIndexSelection)) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
                     ISelectableInContentView s = value == null ? null : FindSelectable ( value );
 
                     if (s == null && IsBlockInvisibleButStripVisible ( value ) && this == null)//@singleSection: last check added to make it compulsory to go to else
@@ -1024,6 +1025,31 @@ namespace Obi.ProjectView
                 }
 
             }
+
+        //@singleSection
+        private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
+            {
+            if (selectionValue == null) return;
+
+            if (selectionValue.Node is SectionNode ||
+                selectionValue.Node is EmptyNode ||
+                selectionValue is StripIndexSelection)
+                {
+                Strip currentlyActiveStrip = ActiveStrip ;
+                if (currentlyActiveStrip == null
+                    || (currentlyActiveStrip != null
+                    && selectionValue.Node != currentlyActiveStrip.Node))
+                    {
+                    CreateStripForSelectedSection ( selectionValue.Node is SectionNode ? (SectionNode) selectionValue.Node :
+                                                selectionValue.Node.ParentAs<SectionNode> () , 
+                                                true);
+
+                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
+                    }
+                }
+            
+            }
+
         public Strip CreateStripForAddedSectionNode ( SectionNode node, bool removeExisting )//@singleSection
             {
             if (this.ContainsFocus)
