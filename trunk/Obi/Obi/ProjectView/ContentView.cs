@@ -261,6 +261,7 @@ namespace Obi.ProjectView
                 command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
                 command.setShortDescription ( Localizer.Message ( "merge_sections" ) );
                 SectionNode section = SelectedSection;
+                command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( section, this ) ) );
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
                 if (!section.Used) mProjectView.AppendMakeUnused ( command, next );
                 // Delete nodes in reverse order so that they are added back in the right order on redo
@@ -283,7 +284,7 @@ namespace Obi.ProjectView
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
                     command.append ( new
-                        Commands.Node.AddNode ( mProjectView, next.PhraseChild ( i ), section, section.PhraseChildCount + i ) );
+                        Commands.Node.AddNode ( mProjectView, next.PhraseChild ( i ), section, section.PhraseChildCount + i , false) );
                     }
                 command.append ( DeleteStripCommand ( next ) );
                 }
@@ -715,6 +716,7 @@ namespace Obi.ProjectView
                 SectionNode section = node.ParentAs<SectionNode> ();
                 command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
                 command.setShortDescription ( Localizer.Message ( "split_section" ) );
+                command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( node, this ) ) );
                 // Add a sibling with a new label
                 SectionNode sibling = mProjectView.Presentation.CreateSectionNode ();
                 sibling.Label = section.Label + "*";
@@ -1052,7 +1054,7 @@ namespace Obi.ProjectView
 
         public Strip CreateStripForAddedSectionNode ( SectionNode node, bool removeExisting )//@singleSection
             {
-            if (this.ContainsFocus)
+            if (ActiveStrip == null)
                 {
                 return CreateStripForSelectedSection ( node, removeExisting );
                 }
