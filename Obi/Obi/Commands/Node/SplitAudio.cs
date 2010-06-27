@@ -133,6 +133,7 @@ namespace Obi.Commands.Node
             CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
             ObiNode parent = phrase.ParentAs<ObiNode>();
             int index = phrase.Index;
+            
             command.append(new Commands.Node.Delete(view, phrase, false));
             System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
                 Obi.Audio.PhraseDetection.Apply(phrase.Audio.copy(), threshold, gap, before));
@@ -148,7 +149,7 @@ namespace Obi.Commands.Node
                 if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
 
 // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
-                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i, false));
+                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i,i==0? true: false));
             }
             return command;
         }
