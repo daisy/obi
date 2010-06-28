@@ -2449,8 +2449,10 @@ namespace Obi.ProjectView
                 else if (GoToDialog.PhraseIndex != null)
                     {
                     int phraseIndex = (int)GoToDialog.PhraseIndex - 1;
-                    SectionNode section = GetSelectedPhraseSection != null ? GetSelectedPhraseSection : mPresentation.FirstSection;
-
+                    SectionNode section = GetSelectedPhraseSection != null ? GetSelectedPhraseSection : 
+                        mContentView.ActiveStrip != null ? mContentView.ActiveStrip.Node ://@singleSection
+                        mPresentation.FirstSection;
+                    
                     if (section != null && section.PhraseChildCount > 0)
                         {
                         if (phraseIndex >= section.PhraseChildCount)
