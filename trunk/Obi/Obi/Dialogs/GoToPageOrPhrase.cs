@@ -72,7 +72,7 @@ namespace Obi.Dialogs
                     {
                     int phraseIndex = 0;
                     int.TryParse ( base.mNumberBox.Text, out phraseIndex );
-                    if (phraseIndex > 1)
+                    if (phraseIndex >= 1)
                         return phraseIndex;
                     else
                         return null;
