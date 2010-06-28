@@ -85,7 +85,7 @@ namespace Obi
         /// </summary>
         public override string ToString()
         {
-            return String.Format(Localizer.Message("node_selection_to_string"), Node.ToString(), Control.ToString());
+            return String.Format(Localizer.Message("node_selection_to_string"), Node != null? Node.ToString(): "", Control.ToString());
         }
 
         public SectionNode Section { get { return Node as SectionNode; } }
