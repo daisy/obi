@@ -149,8 +149,12 @@ namespace Obi.Commands.Node
                 if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
 
 // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
-                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i,i==0? true: false));
+                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i,false));
             }
+            if ( phrases.Count > 0 && view.Selection != null) 
+                {
+                command.append ( new UpdateSelection ( view,new NodeSelection( phrases[0], view.Selection.Control )));
+                }
             return command;
         }
 
