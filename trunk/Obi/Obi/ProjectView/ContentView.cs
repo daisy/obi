@@ -1225,7 +1225,7 @@ namespace Obi.ProjectView
                             {
                             shouldRemoveBlocks = true;
                             }
-                        else
+                        else if ( selectedNode != null && selectedNode.IsRooted )
                             {//2
                             
                             ObiNode currentNode = selectedNode.FollowingNode;
@@ -1262,7 +1262,7 @@ namespace Obi.ProjectView
 
                     if (shouldRemoveBlocks)
                         {
-                        if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
+                        if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.IsRooted)
                             {
                                                         int currentPhraseIndex = mProjectView.Selection.Node.Index;
                                                         if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
@@ -2026,7 +2026,7 @@ stripControl.Node.PhraseChildCount > 0)
             
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
-
+            
             // change colors if added phrase is first phrase of section and recorder is active.
             if (b != null && b.Node.Index == 0 && mProjectView.TransportBar.IsRecorderActive)
                 stripControl.UpdateColors ();
