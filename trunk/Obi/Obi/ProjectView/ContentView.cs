@@ -1038,12 +1038,38 @@ namespace Obi.ProjectView
                 selectionValue is StripIndexSelection)
                 {
                 Strip currentlyActiveStrip = ActiveStrip ;
+                SectionNode sectionToBeSelected = selectionValue.Node is SectionNode ? (SectionNode)selectionValue.Node :
+                                                selectionValue.Node.ParentAs<SectionNode> ();
+                
+                // remove irrelevant strips in case there are more than single strip in content view
+                bool stripForSectionToBeSelectedExists = false;
+
+                if (mStripsPanel.Controls.Count > 1)
+                    {
+                    foreach (Control c in mStripsPanel.Controls)
+                        {
+                        if (c is Strip)
+                            {
+                            Strip iterationStrip = (Strip)c;
+                            if (iterationStrip.Node == sectionToBeSelected)
+                                {
+                                stripForSectionToBeSelectedExists = true ;
+                                Console.WriteLine ("the required strip exists " + iterationStrip.Node.Label ) ;
+                                }
+                            else
+                                {
+                                RemoveStripsForSection_Safe ( iterationStrip.Node );
+                                }
+                            }
+                        }
+                    }
+                if ( stripForSectionToBeSelectedExists ) return ;
+
                 if (currentlyActiveStrip == null
                     || (currentlyActiveStrip != null
-                    && selectionValue.Node != currentlyActiveStrip.Node))
+                    && sectionToBeSelected != currentlyActiveStrip.Node))
                     {
-                    CreateStripForSelectedSection ( selectionValue.Node is SectionNode ? (SectionNode) selectionValue.Node :
-                                                selectionValue.Node.ParentAs<SectionNode> () , 
+                    CreateStripForSelectedSection ( sectionToBeSelected,
                                                 true);
 
                     if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
