@@ -762,6 +762,9 @@ namespace Obi.ProjectView
                     command.append ( new
                         Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false ) );
                     }
+                //@singleSection  work around to avoid triggering strip creation due to unknown selection of split phrase
+                if (splitNode != null) command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( splitNode, this ) ) );
+
                 command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) ) );
                 }
             return command;
