@@ -782,6 +782,11 @@ namespace Obi.ProjectView
 
         public void UpdateCursorPosition ( double time )
             {
+            if (PlaybackBlock == null && m_EnableFindPlaybackBlockDuringCursorUpdate && mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)//@singleSection
+                {
+                m_EnableFindPlaybackBlockDuringCursorUpdate = false;
+                SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                }
             if (mPlaybackBlock != null) EnsureCursorVisible ( mPlaybackBlock.UpdateCursorTime ( time ) );
             }
 
@@ -1164,6 +1169,7 @@ namespace Obi.ProjectView
             return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
             }
 
+        bool m_EnableFindPlaybackBlockDuringCursorUpdate = false;
         //@singleSection
         private bool CreateLimitedBlocksInStrip ( Strip stripControl )
             {
@@ -1305,6 +1311,8 @@ namespace Obi.ProjectView
                 if (wasPlaybackOn)
                     {
                     mProjectView.TransportBar.PlayOrResume ();
+                    //SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                    m_EnableFindPlaybackBlockDuringCursorUpdate = true;
                     }
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 return true;
