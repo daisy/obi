@@ -1101,14 +1101,19 @@ namespace Obi.ProjectView
             // first remove existing strip
             if (removeExisting)
                 {
+               Strip requiredExistingStrip = null;
                 foreach (Control c in mStripsPanel.Controls)
                     {
-                    if (c is Strip)
+                    if (c is Strip && ((Strip)c).Node == node)
+                        {
+                        requiredExistingStrip = (Strip) c ;
+                        }
+                    else if (c is Strip )
                         {
                         RemoveStripsForSection_Safe ( ((Strip)c).Node );
                         }
                     }
-
+                if (requiredExistingStrip != null) return requiredExistingStrip;
                 }
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
@@ -1297,7 +1302,10 @@ namespace Obi.ProjectView
                     {
                     MessageBox.Show ( ex.ToString () );
                     }
-                if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
+                if (wasPlaybackOn)
+                    {
+                    mProjectView.TransportBar.PlayOrResume ();
+                    }
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 return true;
 
