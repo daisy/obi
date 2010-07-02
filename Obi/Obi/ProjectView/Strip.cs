@@ -252,6 +252,29 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool IsBlockForEmptyNodeExists ( EmptyNode node )
+            {
+            if ( mBlockLayout.Controls.Count == 0 ) return false;
+
+            int startIndexForIteration = node.Index - FirstBlock.Node.Index;
+            
+            int blockControlIndex = (startIndexForIteration * 2) + 1;
+
+            if (blockControlIndex >= mBlockLayout.Controls.Count) return false;
+
+            if (mBlockLayout.Controls[blockControlIndex] is Block
+                && ((Block) mBlockLayout.Controls[blockControlIndex]).Node == node)
+                {
+                //Console.WriteLine ( "IsBlockForEmptyNodeExists true" );
+                return true;
+                }
+            else
+                {
+                //Console.WriteLine ( "IsBlockForEmptyNodeExists false" );
+                return false ;
+                }
+            }
+
 
         private delegate Block BlockInvokation(EmptyNode node);
 
@@ -268,6 +291,7 @@ namespace Obi.ProjectView
             }
             else
             {
+            if (IsBlockForEmptyNodeExists ( node)) return FindBlock (node );
                 if (mBlockLayout.Controls.Count == 0)
                 {
                     StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
