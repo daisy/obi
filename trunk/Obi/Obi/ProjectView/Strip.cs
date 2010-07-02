@@ -256,12 +256,13 @@ namespace Obi.ProjectView
             {
             if ( mBlockLayout.Controls.Count == 0 ) return false;
 
-            int startIndexForIteration = node.Index - FirstBlock.Node.Index;
-            
+            //int startIndexForIteration = node.Index - FirstBlock.Node.Index;
+            // in future if first block is not 0 index phrase then it is better to use find block function
+            int startIndexForIteration = node.Index ;
             int blockControlIndex = (startIndexForIteration * 2) + 1;
 
             if (blockControlIndex >= mBlockLayout.Controls.Count) return false;
-
+            //Console.WriteLine ( "phrase index " + node.Index + "  first node " + FirstBlock.Node.Index );
             if (mBlockLayout.Controls[blockControlIndex] is Block
                 && ((Block) mBlockLayout.Controls[blockControlIndex]).Node == node)
                 {
