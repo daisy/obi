@@ -1364,6 +1364,7 @@ namespace Obi.ProjectView
                         shouldStartCreating = true;
                         }
                     }
+                UpdateSize ();
                 }
             }
 
