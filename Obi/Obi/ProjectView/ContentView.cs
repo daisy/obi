@@ -1071,8 +1071,11 @@ namespace Obi.ProjectView
                             }
                         }
                     }
-                if ( stripForSectionToBeSelectedExists ) return ;
-
+                if (stripForSectionToBeSelectedExists)
+                    {
+                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
+                    return;
+                    }
                 if (currentlyActiveStrip == null
                     || (currentlyActiveStrip != null
                     && sectionToBeSelected != currentlyActiveStrip.Node))
@@ -1080,8 +1083,9 @@ namespace Obi.ProjectView
                     CreateStripForSelectedSection ( sectionToBeSelected,
                                                 true);
 
-                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
+                    
                     }
+                if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
                 }
             
             }
