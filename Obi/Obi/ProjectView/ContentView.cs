@@ -66,6 +66,7 @@ namespace Obi.ProjectView
             m_VisibleStripsList = new List<Strip> (); // @phraseLimit
             m_IsBlocksVisibilityProcessActive = false;
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
+            this.contentViewLabel1.contentView = this;
             }
 
 
@@ -897,6 +898,9 @@ namespace Obi.ProjectView
                 ClearWaveformRenderQueue ();
                 foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
                 UpdateSize ();
+                this.contentViewLabel1.contentView = this;
+                this.contentViewLabel1.zoomFactor = ZoomFactor;
+                mHScrollBar.Location = new Point(mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
                 }
             }
 
@@ -3174,9 +3178,9 @@ stripControl.Node.PhraseChildCount > 0)
         //@singleSection
         private void mVScrollBar_Scroll ( object sender, ScrollEventArgs e )
             {
-            if ( e.ScrollOrientation == ScrollOrientation.VerticalScroll 
+                if (e.ScrollOrientation == ScrollOrientation.VerticalScroll
                 && e.OldValue < e.NewValue)
-            StartCreatingBlockForScroll ();
+                    StartCreatingBlockForScroll();                
             }
 
         //@singleSection
@@ -3186,6 +3190,7 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 CreateLimitedBlocksInStrip ( ActiveStrip );
                 }
+                this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
             }
 
         //@ShowSingleSection
