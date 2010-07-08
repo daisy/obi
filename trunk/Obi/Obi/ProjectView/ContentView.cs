@@ -1258,6 +1258,8 @@ namespace Obi.ProjectView
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
+                            //RemoveAllblocksInStripIfRequired ( stripControl, currentNode );
+
                             for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
                                 {//3
                                 if (currentNode == null  ||
@@ -1339,13 +1341,23 @@ namespace Obi.ProjectView
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate , bool considerStripHaltFlag)
             {
+            Block firstBlock = stripControl.FirstBlock;
             Block lastBlock = stripControl.LastBlock;
-            if (lastBlock != null)
+            if (firstBlock != null  &&  lastBlock != null)
                 {
-                EmptyNode lastNode = lastBlock.Node;
+                EmptyNode startNode = lastBlock.Node;
+                int startNodeIndex = firstBlock.Node.Index;
+
+                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, nodeOfLastBlockToCreate );
+                if (firstNodeAfterRemove  != null)
+                    {
+                    startNode = firstNodeAfterRemove;
+                    startNodeIndex = firstNodeAfterRemove.Index;
+                    Console.WriteLine ( "Start node aftger removal " + startNode.Index );
+                    }
                 // start from beginning and create blocks for nodes for after the last block node.
-                bool shouldStartCreating = false;
-                for (int i = 0; i < stripControl.Node.PhraseChildCount; i++)
+                bool shouldStartCreating = stripControl.Node.PhraseChild ( startNodeIndex ) == startNode ? true : false;
+                for (int i = startNodeIndex; i < stripControl.Node.PhraseChildCount; i++)
                     {
                     //System.Media.SystemSounds.Asterisk.Play ();
                     if (considerStripHaltFlag && stripControl.IsContentViewFilledWithBlocks
@@ -1367,7 +1379,7 @@ namespace Obi.ProjectView
                         break;
                         }
 
-                    if (node == lastNode)
+                    if (node == startNode)
                         {
                         shouldStartCreating = true;
                         }
@@ -1376,7 +1388,65 @@ namespace Obi.ProjectView
                 }
             }
 
+        //@singleSection
+        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node )
+            {
+            Block firstBlock = stripControl.FirstBlock;
+            Block lastBlock = stripControl.LastBlock;
+            EmptyNode startNode = null;
+            if (firstBlock != null && lastBlock != null)
+                {
 
+                //check if height of strip is more than 3 times the content view height
+                // or if difference between currently selected node and target node is more than 100
+                EmptyNode currentlySelectedNode = null;
+                if (mProjectView.Selection != null)
+                    {
+                    currentlySelectedNode = mProjectView.Selection is StripIndexSelection ? (EmptyNode)((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                        mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
+                    }
+
+                if (((Math.Abs ( node.Index - stripControl.OffsetForFirstPhrase ) >= 250)
+                    //|| stripControl.Size.Height > this.Size.Height * 3
+                   || node.Index < firstBlock.Node.Index)
+                    &&
+                    stripControl.FindBlock ( (EmptyNode)node ) == null)
+                    {
+                    int startNodeIndex = 0;
+                    // see if last block and target nodes lie on either side of 250 threshold
+                    if (firstBlock.Node.Index > node.Index)
+                        {
+                        startNodeIndex = Convert.ToInt32 ( node.Index / 250 ) * 250;
+                        startNode = stripControl.Node.PhraseChild ( startNodeIndex );
+                        Console.WriteLine ( "required node less than first block : " + startNodeIndex );
+                        }
+                    else if (node.Index - firstBlock.Node.Index > 250)
+                        {
+
+                        int thresholdAboveLastNode = 0;
+                        for (int i = 1; thresholdAboveLastNode <= firstBlock.Node.Index; ++i)
+                            {
+                            thresholdAboveLastNode = i * 250;
+                            }
+                        Console.WriteLine ( "Threshold index " + thresholdAboveLastNode );
+
+                        startNode = stripControl.Node.PhraseChild ( thresholdAboveLastNode );
+                        startNodeIndex = thresholdAboveLastNode;
+
+                        }
+
+                    System.Media.SystemSounds.Asterisk.Play ();
+                    stripControl.RemoveAllBlocks ( false );
+                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
+                    Console.WriteLine ( "Remove aall executed " );
+                    }
+                else
+                    {
+                    Console.WriteLine ( "Remove aall skipped" );
+                    }
+                }
+            return startNode;
+            }
 
         // @phraseLimit
         /// <summary>
@@ -2765,17 +2835,28 @@ stripControl.Node.PhraseChildCount > 0)
                     
                     // if parent section is visible, then check if target phrase is visible
                     // if not, create phrases till it.
-                    ObiNode iterationNode = node;
-                    for (int i = 0; i < 15; i++)
+                    ObiNode targetNode = node;
+                    
+                    if (strip.OffsetForFirstPhrase < node.Index)
                         {
-                        if (!(iterationNode is EmptyNode)
-                            ||    iterationNode.ParentAs<SectionNode> () != node.ParentAs<SectionNode> ())
+
+                        ObiNode iterationNode = node;
+                        for (int i = 0; i < 15; i++)
                             {
-                            break;
+                            if (!(iterationNode is EmptyNode)
+                                || iterationNode.ParentAs<SectionNode> () != node.ParentAs<SectionNode> ())
+                                {
+                                break;
+                                }
+                            else
+                                {
+                                targetNode = iterationNode;
+                                }
+                            iterationNode = iterationNode.FollowingNode;
                             }
-                        iterationNode = iterationNode.FollowingNode;
                         }
-                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  iterationNode, false );
+                    
+                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  targetNode, false );
                     }
 
                 if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
