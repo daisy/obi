@@ -1348,7 +1348,7 @@ namespace Obi.ProjectView
                 EmptyNode startNode = lastBlock.Node;
                 int startNodeIndex = firstBlock.Node.Index;
 
-                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, nodeOfLastBlockToCreate );
+                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate: stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount -1 ));
                 if (firstNodeAfterRemove  != null)
                     {
                     startNode = firstNodeAfterRemove;
