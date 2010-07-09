@@ -901,6 +901,8 @@ namespace Obi.ProjectView
                 this.contentViewLabel1.contentView = this;
                 this.contentViewLabel1.zoomFactor = ZoomFactor;
                 mHScrollBar.Location = new Point(mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
+                mVScrollBar.Height = mVScrollBar.Location.Y + this.Height - contentViewLabel1.Height - mHScrollBar.Height;
+                mCornerPanel.Location = new Point(mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
                 }
             }
 
