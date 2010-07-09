@@ -17,6 +17,7 @@ namespace Obi.ProjectView
         private SectionNode mNode;           // the section node for this strip
         private bool mWrap;                  // wrap contents
         private bool m_IsBlocksVisibilityProcessActive; // @phraseLimit
+        private int m_OffsetForFirstPhrase = 0;//@singleSection
 
         /// <summary>
         /// This constructor is used by the designer.
@@ -224,7 +225,25 @@ namespace Obi.ProjectView
                 }
             }
 
-        
+        //@singleSection
+        public int OffsetForFirstPhrase
+            {
+            get
+                {
+                return m_OffsetForFirstPhrase;
+                }
+            }
+
+//@singleSection
+        public int BlocksLayoutTopPosition
+            {
+            get
+                {
+                Console.WriteLine ( "blocks layout upper y : " + mBlockLayout.Location.Y );
+                return mBlockLayout.Location.Y;
+                }
+            }
+
         /// <summary>
         /// Set the zoom factor for the strip and its contents.
         /// </summary>
@@ -308,7 +327,11 @@ namespace Obi.ProjectView
                 Resize_Blocks(); 
 
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
-
+                if (mBlockLayout.Controls.IndexOf ( block ) == 1)
+                    {
+                    m_OffsetForFirstPhrase = node.Index;
+                    Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
+                    }
                 return block;
             }
         }
@@ -528,7 +551,8 @@ namespace Obi.ProjectView
         public void SetSelectedIndexFromStripCursor(StripCursor cursor)
         {
             int index = mBlockLayout.Controls.IndexOf(cursor) / 2;
-            mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);
+            //mContentView.SelectionFromStrip = new StripIndexSelection(Node, mContentView, index);//@singleSection: original
+            mContentView.SelectionFromStrip = new StripIndexSelection ( Node, mContentView, index + OffsetForFirstPhrase);//@singleSection new
         }
 
         /// <summary>
