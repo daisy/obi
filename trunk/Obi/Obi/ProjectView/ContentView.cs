@@ -1260,7 +1260,16 @@ namespace Obi.ProjectView
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
-                            //RemoveAllblocksInStripIfRequired ( stripControl, currentNode );
+
+                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, selectedNode);
+
+                            if (intendedFirstNodeAfterRemoval != null)
+                                {
+                                int intermediateBlocksCount = selectedNode.Index - intendedFirstNodeAfterRemoval.Index;
+                                Console.WriteLine ( "selection removal : extra block : intermediate count " + extraBlocksCount + " " + intermediateBlocksCount );
+                                extraBlocksCount += intermediateBlocksCount;
+                                currentNode = intendedFirstNodeAfterRemoval;
+                                }
 
                             for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
                                 {//3
@@ -1351,6 +1360,7 @@ namespace Obi.ProjectView
                 int startNodeIndex = firstBlock.Node.Index;
 
                 EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate: stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount -1 ));
+                
                 if (firstNodeAfterRemove  != null)
                     {
                     startNode = firstNodeAfterRemove;
@@ -1407,12 +1417,12 @@ namespace Obi.ProjectView
                     currentlySelectedNode = mProjectView.Selection is StripIndexSelection ? (EmptyNode)((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
                         mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
                     }
-
-                if (((Math.Abs ( node.Index - stripControl.OffsetForFirstPhrase ) >= 250)
+Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBlock.Node.Index)  ) ;
+                if (((Math.Abs ( node.Index - firstBlock.Node.Index ) >= 250)
                     //|| stripControl.Size.Height > this.Size.Height * 3
-                   || node.Index < firstBlock.Node.Index)
-                    &&
-                    stripControl.FindBlock ( (EmptyNode)node ) == null)
+                   || node.Index < firstBlock.Node.Index) )
+                    //&&
+                    //stripControl.FindBlock ( (EmptyNode)node ) == null)
                     {
                     int startNodeIndex = 0;
                     // see if last block and target nodes lie on either side of 250 threshold
@@ -1422,7 +1432,7 @@ namespace Obi.ProjectView
                         startNode = stripControl.Node.PhraseChild ( startNodeIndex );
                         Console.WriteLine ( "required node less than first block : " + startNodeIndex );
                         }
-                    else if (node.Index - firstBlock.Node.Index > 250)
+                    else if (node.Index - firstBlock.Node.Index >= 250)
                         {
 
                         int thresholdAboveLastNode = 0;
@@ -2858,7 +2868,7 @@ stripControl.Node.PhraseChildCount > 0)
                             }
                         }
                     
-                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  targetNode, false );
+                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  node, false );
                     }
 
                 if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
