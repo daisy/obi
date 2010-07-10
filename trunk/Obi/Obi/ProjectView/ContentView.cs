@@ -2382,6 +2382,8 @@ stripControl.Node.PhraseChildCount > 0)
 
         private bool SelectPrecedingBlock ()
             {
+            CreateBlocksInPreviousThresholdsSlot ();//@singleSection
+
             return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
             }
 
@@ -2395,11 +2397,34 @@ stripControl.Node.PhraseChildCount > 0)
                 PlaybackBlock = mPlaybackBlock;
                 mProjectView.TransportBar.Stop ();
                 }
+            CreateBlocksInPreviousThresholdsSlot ();//@singleSection
 
             bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( PlaybackBlock != null ? PlaybackBlock : item ); } );
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
 
             return ReturnVal;
+            }
+
+        //@singleSection
+        private void CreateBlocksInPreviousThresholdsSlot ()
+            {
+            EmptyNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node :
+                mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : 
+                mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection :null;
+
+            if (currentlySelectedNode != null)
+                {
+                Console.WriteLine ( "currently selected node in blocks : " + currentlySelectedNode );
+                Strip s = FindStrip ( currentlySelectedNode.ParentAs<SectionNode> () );
+                if (currentlySelectedNode.Index > 0 && s != null && s.OffsetForFirstPhrase == currentlySelectedNode.Index)
+                    {
+                    if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Pause ();
+
+                    CreateBlocksTillNodeInStrip ( s, (EmptyNode)currentlySelectedNode.PrecedingNode, false );
+                    Console.WriteLine ( "creating node till : " + currentlySelectedNode.PrecedingNode.Index );
+                    
+                    }
+                }
             }
 
         private bool SelectFollowingBlock ()
