@@ -1367,6 +1367,15 @@ namespace Obi.ProjectView
                     startNodeIndex = firstNodeAfterRemove.Index;
                     Console.WriteLine ( "Start node aftger removal " + startNode.Index );
                     }
+
+                bool wasPlaybackOn = false;
+                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
+                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                    {
+                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                    wasPlaybackOn = true;
+                    mProjectView.TransportBar.Pause ();
+                    }
                 // start from beginning and create blocks for nodes for after the last block node.
                 bool shouldStartCreating = stripControl.Node.PhraseChild ( startNodeIndex ) == startNode ? true : false;
                 for (int i = startNodeIndex; i < stripControl.Node.PhraseChildCount; i++)
@@ -1397,6 +1406,9 @@ namespace Obi.ProjectView
                         }
                     }
                 UpdateSize ();
+
+                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
+                if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
                 }
             }
 
