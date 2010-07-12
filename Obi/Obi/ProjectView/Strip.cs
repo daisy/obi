@@ -318,8 +318,11 @@ namespace Obi.ProjectView
                 }
                 Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
                 mBlockLayout.Controls.Add(block);
-                mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
-                AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+                //@singleSection: following 2 lines replaced
+                //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
+                //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+                mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index- OffsetForFirstPhrase) );
+                AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
                     block.Cursor = Cursor;
                 block.SizeChanged += new EventHandler(Block_SizeChanged);
