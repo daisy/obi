@@ -591,7 +591,8 @@ namespace Obi.ProjectView
         /// </summary>
         public int StripIndexAfter(ISelectableInContentView item)
         {
-            int lastIndex = Node.PhraseChildCount;
+            //int lastIndex = Node.PhraseChildCount;//@singleSection: original
+        int lastIndex = Node.PhraseChildCount - OffsetForFirstPhrase;//@singleSection: new
             int index = item is Strip ?
                 ((Strip)item).Selection is StripIndexSelection ? ((StripIndexSelection)((Strip)item).Selection).Index + 1 : 0 :
                 item is Block ? (mBlockLayout.Controls.IndexOf((Control)item) + 1) / 2 :
