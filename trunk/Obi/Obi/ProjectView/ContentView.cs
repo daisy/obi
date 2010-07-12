@@ -2472,9 +2472,15 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectFirstBlockInStrip ()
             {
             if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
-            if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount >0) CreateBlocksTillNodeInStrip( mStrips[mProjectView.GetSelectedPhraseSection], mProjectView.GetSelectedPhraseSection.PhraseChild(0),true );//@singleSection
+            //if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount >0) CreateBlocksTillNodeInStrip( mStrips[mProjectView.GetSelectedPhraseSection], mProjectView.GetSelectedPhraseSection.PhraseChild(0),true );//@singleSection
+            if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection
+                {
+                SelectPhraseBlockOrStrip ( mProjectView.GetSelectedPhraseSection.PhraseChild ( 0 ) );
+                return true;
+                }
+            return false;//@singleSection
             //if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop();
-            return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.FirstBlock; } );
+            //return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.FirstBlock; } );//@singleSection: commented
             }
 
         private delegate Strip SelectStripFunction ( Strip strip );
