@@ -2385,7 +2385,8 @@ stripControl.Node.PhraseChildCount > 0)
                 int index = f ( strip, mSelectedItem );
                 if (index >= 0)
                     {
-                    mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index );
+                    //mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index ); //@singleSection: original
+                    mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index + strip.OffsetForFirstPhrase);//@singleSection: new
                     return true;
                     }
                 }
