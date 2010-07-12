@@ -321,6 +321,11 @@ namespace Obi.ProjectView
                 //@singleSection: following 2 lines replaced
                 //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
                 //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+                if (mBlockLayout.Controls.Count == 0)//@singleSection
+                    {
+                    m_OffsetForFirstPhrase = node.Index;
+                    Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
+                    }
                 mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index- OffsetForFirstPhrase) );
                 AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
                 block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
@@ -332,8 +337,8 @@ namespace Obi.ProjectView
                 UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
                 if (mBlockLayout.Controls.IndexOf ( block ) == 1)
                     {
-                    m_OffsetForFirstPhrase = node.Index;
-                    Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
+                    //m_OffsetForFirstPhrase = node.Index;
+                    //Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
                     }
                 return block;
             }
