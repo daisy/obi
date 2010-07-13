@@ -277,7 +277,8 @@ namespace Obi.ProjectView
 
             //int startIndexForIteration = node.Index - FirstBlock.Node.Index;
             // in future if first block is not 0 index phrase then it is better to use find block function
-            int startIndexForIteration = node.Index ;
+            //int startIndexForIteration = node.Index ;
+            int startIndexForIteration = node.Index- OffsetForFirstPhrase;
             int blockControlIndex = (startIndexForIteration * 2) + 1;
 
             if (blockControlIndex >= mBlockLayout.Controls.Count) return false;
@@ -474,7 +475,7 @@ namespace Obi.ProjectView
         public int RemoveAllFollowingBlocks (EmptyNode node, bool removeHiddenBlocks ,bool updateSize )
             {
             int blocksRemovedCount = 0;
-            int limitIndex = node.Index;
+            int limitIndex = node.Index - OffsetForFirstPhrase;//@singleSection
             if (mBlockLayout.Controls.Count > 0)
                 {
                 for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)

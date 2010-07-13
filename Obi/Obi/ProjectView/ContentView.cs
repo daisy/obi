@@ -1421,8 +1421,10 @@ namespace Obi.ProjectView
             if (firstBlock != null && lastBlock != null)
                 {
 
-                //check if height of strip is more than 3 times the content view height
-                // or if difference between currently selected node and target node is more than 100
+                int phraseBlocksLotInterval = 250;
+
+                //check if 
+                // if difference between currently selected node and target node is more than phrase block lot interval defined above
                 EmptyNode currentlySelectedNode = null;
                 if (mProjectView.Selection != null)
                     {
@@ -1430,9 +1432,8 @@ namespace Obi.ProjectView
                         mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
                     }
 Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBlock.Node.Index)  ) ;
-                if (((Math.Abs ( node.Index - firstBlock.Node.Index ) >= 250)
-                    //|| stripControl.Size.Height > this.Size.Height * 3
-                   || node.Index < firstBlock.Node.Index) )
+                if (((Math.Abs ( node.Index - firstBlock.Node.Index ) >= phraseBlocksLotInterval)
+                                       || node.Index < firstBlock.Node.Index) )
                     //&&
                     //stripControl.FindBlock ( (EmptyNode)node ) == null)
                     {
@@ -1440,17 +1441,17 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     // see if last block and target nodes lie on either side of 250 threshold
                     if (firstBlock.Node.Index > node.Index)
                         {
-                        startNodeIndex = Convert.ToInt32 ( node.Index / 250 ) * 250;
+                        startNodeIndex = Convert.ToInt32 ( node.Index / phraseBlocksLotInterval) * phraseBlocksLotInterval;
                         startNode = stripControl.Node.PhraseChild ( startNodeIndex );
                         Console.WriteLine ( "required node less than first block : " + startNodeIndex );
                         }
-                    else if (node.Index - firstBlock.Node.Index >= 250)
+                    else if (node.Index - firstBlock.Node.Index >= phraseBlocksLotInterval)
                         {
 
                         int thresholdAboveLastNode = 0;
                         for (int i = 1; thresholdAboveLastNode <= firstBlock.Node.Index; ++i)
                             {
-                            thresholdAboveLastNode = i * 250;
+                            thresholdAboveLastNode = i * phraseBlocksLotInterval;
                             }
                         Console.WriteLine ( "Threshold index " + thresholdAboveLastNode );
 
