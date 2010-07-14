@@ -344,6 +344,61 @@ namespace Obi.ProjectView
             }
         }
 
+        //@singleSection
+        private delegate Block BlockRangeCreationInvokation(EmptyNode startNode,EmptyNode endNode);
+
+        //@singleSection
+        public Block AddsRangeOfBlocks(EmptyNode startNode, EmptyNode endNode)
+        {
+            if (InvokeRequired)
+            {
+                return (Block)Invoke(new BlockRangeCreationInvokation(AddsRangeOfBlocks), startNode, endNode);
+            }
+            else
+                {
+                for (int i = startNode.Index; i <= endNode.Index; ++i)
+                    {
+                    CreateBlockForNode ( mNode.PhraseChild ( i),endNode.Index == i ?  true : false);
+                    }
+
+                return null ;
+                }
+            }
+
+        //@singleSection
+        private Block CreateBlockForNode ( EmptyNode node , bool updateSize)
+            {
+            if (IsBlockForEmptyNodeExists ( node )) return FindBlock ( node );
+            if (mBlockLayout.Controls.Count == 0)
+                {
+                StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
+
+                m_OffsetForFirstPhrase = node.Index;//@singleSection
+                Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
+                }
+            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+            mBlockLayout.Controls.Add ( block );
+            //@singleSection: following 2 lines replaced
+            //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
+            //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+
+            mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
+            AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
+            block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
+            block.Cursor = Cursor;
+            block.SizeChanged += new EventHandler ( Block_SizeChanged );
+
+            if ( updateSize )  Resize_Blocks ();
+
+            UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
+            if (mBlockLayout.Controls.IndexOf ( block ) == 1)
+                {
+                m_OffsetForFirstPhrase = node.Index;
+                Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
+                }
+            return block;
+            }
+
         /// <summary>
         /// Return the block after the selection. In the case of a strip it is the first block.
         /// Return null if this goes past the last block, there are no blocks, or nothing was selected
