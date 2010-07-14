@@ -1376,6 +1376,7 @@ namespace Obi.ProjectView
                     wasPlaybackOn = true;
                     mProjectView.TransportBar.Pause ();
                     }
+                if ( !considerStripHaltFlag ) stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate : stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1 ) );
                 // start from beginning and create blocks for nodes for after the last block node.
                 bool shouldStartCreating = stripControl.Node.PhraseChild ( startNodeIndex ) == startNode ? true : false;
                 for (int i = startNodeIndex; i < stripControl.Node.PhraseChildCount; i++)
