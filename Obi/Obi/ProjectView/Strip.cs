@@ -214,7 +214,7 @@ namespace Obi.ProjectView
             get
                 {
                 if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
-                                         && mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y > (mContentView.Location.Y + mContentView.Size.Height))
+                                         && mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y > (mContentView.Location.Y + mContentView.Size.Height + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Size.Height ))
                     {
                     return true;
                     }
