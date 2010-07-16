@@ -1435,4 +1435,7 @@ Error text: {1}</value>
   <data name="TextVuMeter_OverloadIndicator" xml:space="preserve">
     <value>OL </value>
   </data>
+  <data name="ContentViewLabel_NoSection" xml:space="preserve">
+    <value>No section displayed</value>
+  </data>
 </root>

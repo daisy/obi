@@ -513,6 +513,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No section displayed.
+        /// </summary>
+        internal static string ContentViewLabel_NoSection {
+            get {
+                return ResourceManager.GetString("ContentViewLabel_NoSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to copy audio.
         /// </summary>
         internal static string copy_audio {

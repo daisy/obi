@@ -23,6 +23,7 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             m_ZoomFactor = 1.0f;
+            Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );
         }
         public ContentView contentView
         {
