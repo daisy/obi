@@ -1423,6 +1423,7 @@ namespace Obi.ProjectView
                 {
 
                 int phraseBlocksLotInterval = 250;
+                if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
 
                 //check if 
                 // if difference between currently selected node and target node is more than phrase block lot interval defined above
