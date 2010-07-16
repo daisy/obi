@@ -35,9 +35,8 @@ namespace Obi.ProjectView
                 // m_lblStaticLabel
                 // 
                 this.m_lblStaticLabel.AutoSize = true;
-                this.m_lblStaticLabel.BackColor = System.Drawing.SystemColors.ControlLight;
                 this.m_lblStaticLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_lblStaticLabel.Location = new System.Drawing.Point(10, 5);
+                this.m_lblStaticLabel.Location = new System.Drawing.Point(10, 4);
                 this.m_lblStaticLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                 this.m_lblStaticLabel.Name = "m_lblStaticLabel";
                 this.m_lblStaticLabel.Size = new System.Drawing.Size(175, 16);
@@ -49,7 +48,7 @@ namespace Obi.ProjectView
                 this.m_lblSectionName.AutoSize = true;
                 this.m_lblSectionName.BackColor = System.Drawing.SystemColors.ControlLight;
                 this.m_lblSectionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.m_lblSectionName.Location = new System.Drawing.Point(181, 5);
+                this.m_lblSectionName.Location = new System.Drawing.Point(181, 4);
                 this.m_lblSectionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                 this.m_lblSectionName.Name = "m_lblSectionName";
                 this.m_lblSectionName.Size = new System.Drawing.Size(130, 16);
@@ -61,13 +60,14 @@ namespace Obi.ProjectView
                 this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
                 this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
                 this.AutoSize = true;
+                this.BackColor = System.Drawing.SystemColors.ControlLight;
                 this.Controls.Add(this.m_lblSectionName);
                 this.Controls.Add(this.m_lblStaticLabel);
                 this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+                this.Margin = new System.Windows.Forms.Padding(4);
                 this.Name = "ContentViewLabel";
-                this.Size = new System.Drawing.Size(532, 27);
-                this.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentViewLabel_Paint);
+                this.Size = new System.Drawing.Size(399, 22);
+            //    this.Paint += new System.Windows.Forms.PaintEventHandler(this.ContentViewLabel_Paint);
                 this.ResumeLayout(false);
                 this.PerformLayout();
 
