@@ -22,6 +22,7 @@ namespace Obi.ProjectView
         public ContentViewLabel()
         {
             InitializeComponent();
+            m_ZoomFactor = 1.0f;
         }
         public ContentView contentView
         {
@@ -82,13 +83,17 @@ namespace Obi.ProjectView
         {
             if (mCont != null)
             {
-            this.Size = new Size(this.Size.Width, Convert.ToInt32(22 * zoomFactor));
-            this.Location = new Point(this.Location.X, mCont.Height - this.Height);
-            m_lblSectionName.Font = new Font(Font.FontFamily, zoomFactor * this.Font.Size);
-            m_lblStaticLabel.Font = new Font(Font.FontFamily, zoomFactor * this.Font.Size);
-            m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X,this.Height / 2 - m_lblStaticLabel.Height / 2);
-            m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, this.Height / 2 - m_lblSectionName.Height / 2);
-            Console.WriteLine("ht of font " + m_lblSectionName.Height);
+                int contentViewLabelHeight = Convert.ToInt32(22 * zoomFactor) ;
+
+                m_lblSectionName.Font = new Font ( Font.FontFamily, zoomFactor * this.Font.Size );
+                m_lblStaticLabel.Font = new Font ( Font.FontFamily, zoomFactor * this.Font.Size );
+                m_lblStaticLabel.Location = new Point ( m_lblStaticLabel.Location.X, contentViewLabelHeight / 2 - m_lblStaticLabel.Height / 2 );
+                m_lblSectionName.Location = new Point ( m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, contentViewLabelHeight / 2 - m_lblSectionName.Height / 2 );
+                Console.WriteLine ( "ht of font " + m_lblSectionName.Height );
+
+            this.Size = new Size(this.Size.Width, contentViewLabelHeight);
+            this.Location = new Point ( this.Location.X, mCont.Height - contentViewLabelHeight );
+            
             }
         //    InvertColor(false);    
          }
