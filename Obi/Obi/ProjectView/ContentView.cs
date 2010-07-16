@@ -1416,14 +1416,21 @@ namespace Obi.ProjectView
         //@singleSection
         private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node )
             {
+            int phraseBlocksLotInterval = 250;
+            if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
+            return RemoveAllblocksInStripIfRequired ( stripControl, node, phraseBlocksLotInterval );
+            }
+
+
+        //@singleSection
+        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node, int phraseBlocksLotInterval )
+            {
             Block firstBlock = stripControl.FirstBlock;
             Block lastBlock = stripControl.LastBlock;
             EmptyNode startNode = null;
             if (firstBlock != null && lastBlock != null)
                 {
 
-                int phraseBlocksLotInterval = 250;
-                if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
 
                 //check if 
                 // if difference between currently selected node and target node is more than phrase block lot interval defined above
@@ -1474,6 +1481,40 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 }
             return startNode;
             }
+
+        public void RecreateContentsWhileInitializingRecording ()
+            {
+            if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode)
+                {
+                SectionNode section = (SectionNode)mProjectView.Selection.Node;
+                Strip stripControl = FindStrip ( section );
+
+                if (stripControl == null) return;
+                Block firstBlock = stripControl.FirstBlock;
+                Block lastBlock = stripControl.LastBlock;
+
+                if (firstBlock != null && lastBlock != null
+                    && lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index)
+                    {
+                    EmptyNode lastNodeOfSection = stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
+
+
+                    System.Media.SystemSounds.Asterisk.Play ();
+                    stripControl.RemoveAllBlocks ( false );
+                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
+
+                    // now create some blocks before recording phrase 
+                    if (stripControl.Node.PhraseChildCount > 2)
+                        {
+                        for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)
+                            {
+                            stripControl.AddBlockForNode ( section.PhraseChild ( i ) );
+                            }
+
+                        }
+                    }
+                }
+                }
 
         // @phraseLimit
         /// <summary>

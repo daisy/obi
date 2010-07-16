@@ -2481,6 +2481,11 @@ namespace Obi.ProjectView
                 } // dialog OK check ends
             }
 
+
+        //@singleSection
+        public void RecreateContentsWhileInitializingRecording () { mContentView.RecreateContentsWhileInitializingRecording (); }
+
+
         /// <summary>
         /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling
         /// </summary>
