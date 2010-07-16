@@ -306,6 +306,7 @@ namespace Obi.ProjectView
                 {
                 AddStripForSection_Safe ( mProjectView.Presentation.FirstSection );
                 mProjectView.SynchronizeViews = false;
+                contentViewLabel1.Name_SectionDisplayed = mProjectView.Presentation.FirstSection.Label; //@singleSection
                 }
             else
                 {
@@ -1068,6 +1069,7 @@ namespace Obi.ProjectView
                             if (iterationStrip.Node == sectionToBeSelected)
                                 {
                                 stripForSectionToBeSelectedExists = true ;
+                                contentViewLabel1.Name_SectionDisplayed = sectionToBeSelected.Label;
                                 Console.WriteLine ("the required strip exists " + iterationStrip.Node.Label ) ;
                                 }
                             else
@@ -1128,10 +1130,15 @@ namespace Obi.ProjectView
                         RemoveStripsForSection_Safe ( ((Strip)c).Node );
                         }
                     }
-                if (requiredExistingStrip != null) return requiredExistingStrip;
+                if (requiredExistingStrip != null)
+                    {
+                    contentViewLabel1.Name_SectionDisplayed = requiredExistingStrip.Node.Label;
+                    return requiredExistingStrip;
+                    }
                 }
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
+            contentViewLabel1.Name_SectionDisplayed = node.Label;
             return AddStripForSection ( node );
             }
 
