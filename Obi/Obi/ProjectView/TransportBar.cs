@@ -1186,7 +1186,7 @@ namespace Obi.ProjectView
                 }
 
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
-            if (mResumeRecordingPhrase == null) mView.RecreateContentsWhileInitializingRecording ();
+            mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
 
             // save the selection before starting recording
             ObiNode selectionNode = mResumeRecordingPhrase != null ? mResumeRecordingPhrase :

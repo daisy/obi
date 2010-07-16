@@ -2483,7 +2483,7 @@ namespace Obi.ProjectView
 
 
         //@singleSection
-        public void RecreateContentsWhileInitializingRecording () { mContentView.RecreateContentsWhileInitializingRecording (); }
+        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) { mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase ); }
 
 
         /// <summary>
