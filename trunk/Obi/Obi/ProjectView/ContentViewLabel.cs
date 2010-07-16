@@ -12,11 +12,13 @@ namespace Obi.ProjectView
     {
         private Graphics g;
         private ContentView mCont = null;
-        private SolidBrush brushRect = new SolidBrush(Color.LightGray);
-        private SolidBrush brushRect1 = new SolidBrush(Color.Black);
+        private SolidBrush brushRect = new SolidBrush(Color.Turquoise);
+     //   private SolidBrush brushRect1 = new SolidBrush(Color.Black);
         private float m_ZoomFactor;
-        private bool mFlagInvert = false;
-        
+    //    private bool mFlagInvert = false;
+        private Rectangle contentRect;
+        private float height;
+
         public ContentViewLabel()
         {
             InitializeComponent();
@@ -24,15 +26,23 @@ namespace Obi.ProjectView
         public ContentView contentView
         {
             get { return mCont; }
-            set { mCont = value; }
+            set {
+                mCont = value;
+            if (mCont == null)
+            {
+                MessageBox.Show("null");
+                Console.WriteLine("cony val" + mCont);
+            }
+             }
         } 
         public float zoomFactor
         {
             get { return m_ZoomFactor; }
             set
             {
-                m_ZoomFactor = value;
+                m_ZoomFactor = value;                
                 ZoomLabel();
+                Console.WriteLine("displayed" + zoomFactor);
             }            
         }      
 
@@ -42,37 +52,43 @@ namespace Obi.ProjectView
             set { m_lblSectionName.Text = value; }
         }
 
-        private void ContentViewLabel_Paint(object sender, PaintEventArgs e)
-        {            
-            g = this.CreateGraphics();
+     /*   private void ContentViewLabel_Paint(object sender, PaintEventArgs e)
+        {
             if (mCont != null)
             {
-                Rectangle contentRect;
-                contentRect = new Rectangle(10, 0, mCont.Size.Width, Convert.ToInt32(22 * zoomFactor));
-                if (mFlagInvert)
-                {                   
-                    g.FillRectangle(brushRect1, contentRect);
-                    m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X, contentRect.Height / 2 - m_lblStaticLabel.Height / 2);
-                    m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, contentRect.Height / 2 - m_lblSectionName.Height / 2);                
-                }
+                 contentRect = new Rectangle(10, 0, mCont.Size.Width, Convert.ToInt32(height));
+                 Console.WriteLine("ht of rect 1 " + height);
+                 g = this.CreateGraphics();
+                        if (mCont != null)
+                              
+                   if (mFlagInvert)
+                   {                   
+                       g.FillRectangle(brushRect1, contentRect);
+                       m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X, contentRect.Height / 2 - m_lblStaticLabel.Height / 2);
+                       m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, contentRect.Height / 2 - m_lblSectionName.Height / 2);                
+                   }
 
-                else
-                {
-                    g.FillRectangle(brushRect, contentRect);
-                    m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X, contentRect.Height / 2 - m_lblStaticLabel.Height / 2);
-                    m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, contentRect.Height / 2 - m_lblSectionName.Height / 2);                
-                }                
-            }           
+                   else
+                   {
+                       g.FillRectangle(brushRect, contentRect);
+                       m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X, contentRect.Height / 2 - m_lblStaticLabel.Height / 2);
+                       m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, contentRect.Height / 2 - m_lblSectionName.Height / 2);                
+                   } 
+            }                      
         }
+    */
 
         public void ZoomLabel()
         {
-            this.Size = new Size(Convert.ToInt32( this.Size.Width * zoomFactor),Convert.ToInt32( this.Size.Height * zoomFactor));
+            if (mCont != null)
+            {
+            this.Size = new Size(this.Size.Width, Convert.ToInt32(22 * zoomFactor));
+            this.Location = new Point(this.Location.X, mCont.Height - this.Height);
             m_lblSectionName.Font = new Font(Font.FontFamily, zoomFactor * this.Font.Size);
             m_lblStaticLabel.Font = new Font(Font.FontFamily, zoomFactor * this.Font.Size);
-            if(mCont!= null)
-            {
-            this.Location = new Point(this.Location.X, mCont.Height - this.Size.Height);
+            m_lblStaticLabel.Location = new Point(m_lblStaticLabel.Location.X,this.Height / 2 - m_lblStaticLabel.Height / 2);
+            m_lblSectionName.Location = new Point(m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, this.Height / 2 - m_lblSectionName.Height / 2);
+            Console.WriteLine("ht of font " + m_lblSectionName.Height);
             }
         //    InvertColor(false);    
          }
