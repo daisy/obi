@@ -67,6 +67,7 @@ namespace Obi.ProjectView
             m_IsBlocksVisibilityProcessActive = false;
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
+            mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
             }
 
 
@@ -3381,7 +3382,15 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 CreateLimitedBlocksInStrip ( ActiveStrip );
                 }
-                this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
+                //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
+            }
+
+        private void mStripsPanel_ControlRemoved ( object sender, EventArgs e )
+            {
+            if (mStripsPanel.Controls.Count == 0)
+                {
+                contentViewLabel1.Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );
+                }
             }
 
         //@ShowSingleSection
