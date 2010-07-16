@@ -1482,11 +1482,14 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             return startNode;
             }
 
-        public void RecreateContentsWhileInitializingRecording ()
+        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
             {
-            if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode)
+            if ( recordingResumePhrase != null
+                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode) )
                 {
-                SectionNode section = (SectionNode)mProjectView.Selection.Node;
+                SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode> ():
+                    (SectionNode)mProjectView.Selection.Node;
+
                 Strip stripControl = FindStrip ( section );
 
                 if (stripControl == null) return;
