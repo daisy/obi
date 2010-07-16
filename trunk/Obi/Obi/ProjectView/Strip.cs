@@ -291,7 +291,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                //Console.WriteLine ( "IsBlockForEmptyNodeExists false" );
+                Console.WriteLine ( "IsBlockForEmptyNodeExists is false for : " + node.ToString () );
                 return false ;
                 }
             }
