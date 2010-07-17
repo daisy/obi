@@ -2096,7 +2096,11 @@ stripControl.Node.PhraseChildCount > 0)
         private void Presentation_RenamedSectionNode ( object sender, NodeEventArgs<SectionNode> e )
             {
             Strip strip = FindStrip ( e.Node );
-            if (strip != null) strip.Label = e.Node.Label;
+            if (strip != null)
+                {
+                strip.Label = e.Node.Label;
+                contentViewLabel1.Name_SectionDisplayed = strip.Label;//@singleSection
+                }
             }
 
         // Handle change of used status
