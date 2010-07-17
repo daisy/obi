@@ -3349,6 +3349,27 @@ stripControl.Node.PhraseChildCount > 0)
             
             }
 
+        //@singleSection
+        private void CreatePhrasesAccordingToVScrollBarValue ( int scrollValue )
+            {
+            Strip currentlyActiveStrip = ActiveStrip ;
+            if (currentlyActiveStrip != null)
+                {
+                int indexOfPhraseToBeShown = Convert.ToInt32 ( (scrollValue * currentlyActiveStrip.Node.PhraseChildCount) / currentlyActiveStrip.PredictedStripHeight );
+                Console.WriteLine ( "Index of phrase to be shown for verticle scroll " + indexOfPhraseToBeShown );
+                CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                    currentlyActiveStrip.Node.PhraseChild ( indexOfPhraseToBeShown ),
+                    false);
+                // adjust location of strips panel such that the phrase blocks at end are shown.
+                if ( mStripsPanel.Height > (this.Height - mHScrollBar.Location.Y ))
+                    {
+                    int stripsPanelYLocation = (this.Height - mHScrollBar.Location.Y) - mStripsPanel.Height;
+                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripsPanelYLocation );
+                    Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation );
+                    }
+                }
+            }
+
         BackgroundWorker m_ScrolBackgroundWorker = new BackgroundWorker ();//@singleSection
 
         //@singleSection
