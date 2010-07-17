@@ -23,8 +23,9 @@ namespace Obi.ProjectView
         public ContentViewLabel()
         {
             InitializeComponent();
-            m_contentViewLabelHeight = Convert.ToInt32(22 * zoomFactor);
             m_ZoomFactor = 1.0f;
+            m_contentViewLabelHeight = Convert.ToInt32(22 * zoomFactor);
+            
             Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );
         }
         public ContentView contentView
@@ -53,7 +54,7 @@ namespace Obi.ProjectView
             g = this.CreateGraphics();
             //  g.Clear(Color.Transparent);
             int m_contentRectHeight = Convert.ToInt32(18 * zoomFactor);
-            m_contentRectHeight = Convert.ToInt32(18 * zoomFactor);
+            //m_contentRectHeight = Convert.ToInt32(18 * zoomFactor);
             contentRect = new Rectangle(10, ((m_contentViewLabelHeight / 2) - (m_contentRectHeight / 2)), mCont.Size.Width, m_contentRectHeight);
             g.FillRectangle(brushRect, contentRect);
 
