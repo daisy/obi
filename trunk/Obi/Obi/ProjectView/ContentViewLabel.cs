@@ -13,11 +13,13 @@ namespace Obi.ProjectView
         private Graphics g;
         private ContentView mCont = null;
         private SolidBrush brushRect = new SolidBrush(Color.LightGray);
-      //  private SolidBrush blackRect = new SolidBrush(SystemColors.ControlText);
-       // private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
+        private SolidBrush blackRect = new SolidBrush(SystemColors.ControlText);
+        private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
+        private SolidBrush brushRect2 = new SolidBrush(SystemColors.ControlLight);
+
         private float m_ZoomFactor;
-        private bool mFlagInvert;
-        private bool mFlagSectionSelected;
+        private bool mFlagInvert = false;
+        private bool mFlagSectionSelected = false;
         private bool mSectionFocus;
         private Rectangle contentRect;
         private float height;
@@ -45,7 +47,9 @@ namespace Obi.ProjectView
         public bool sectionSelected
         {
             get { return mFlagSectionSelected; }
-            set { mFlagSectionSelected = value; }
+            set { mFlagSectionSelected = value;
+            InvertColor();
+                }            
         }
 
         public float zoomFactor
@@ -54,7 +58,7 @@ namespace Obi.ProjectView
             set
             {
                 m_ZoomFactor = value;
-                ZoomLabel();                
+                ZoomLabel();
             }
         }
 
@@ -72,18 +76,20 @@ namespace Obi.ProjectView
             contentRect = new Rectangle(10, ((m_contentViewLabelHeight / 2) - (m_contentRectHeight / 2)), mCont.Size.Width, m_contentRectHeight);
             g.FillRectangle(brushRect, contentRect);
 
-          /*   if (mCont != null)
+             if (mCont != null)
              {
-                if (mFlagInvert && mFlagSectionSelected)
+                 if (mFlagInvert && mFlagSectionSelected)
                  {
                      g.DrawRectangle(rectPen, contentRect);
                      g.FillRectangle(blackRect, contentRect);
                  }
-                 else if(mFlagInvert && !mFlagSectionSelected)
+                 else if (mFlagInvert && !mFlagSectionSelected)
                      g.FillRectangle(blackRect, contentRect);
-                 else
+                 else if (!mFlagInvert && mFlagSectionSelected)
                      g.FillRectangle(brushRect, contentRect);
-             }*/
+                 else if (!mFlagInvert && !mFlagSectionSelected)
+                     g.FillRectangle(brushRect2, contentRect);
+             }
         }
         public void ZoomLabel()
         {
@@ -127,7 +133,7 @@ namespace Obi.ProjectView
                 m_lblStaticLabel.ForeColor = SystemColors.ControlText;
                 m_lblSectionName.BackColor = SystemColors.ControlLight;
                 m_lblStaticLabel.BackColor = SystemColors.ControlLight;
-                this.BackColor = SystemColors.Highlight;
+                this.BackColor = SystemColors.ControlLight;
             }
             if (!mFlagInvert && !mFlagSectionSelected)
             {
