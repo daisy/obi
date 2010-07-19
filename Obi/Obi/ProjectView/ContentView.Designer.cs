@@ -369,7 +369,7 @@ namespace Obi.ProjectView
             this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mHScrollBar.LargeChange = 64;
-            this.mHScrollBar.Location = new System.Drawing.Point(0, 536);
+            this.mHScrollBar.Location = new System.Drawing.Point(0, 533);
             this.mHScrollBar.Name = "mHScrollBar";
             this.mHScrollBar.Size = new System.Drawing.Size(522, 16);
             this.mHScrollBar.TabIndex = 2;
@@ -382,7 +382,7 @@ namespace Obi.ProjectView
             this.mVScrollBar.LargeChange = 64;
             this.mVScrollBar.Location = new System.Drawing.Point(522, 0);
             this.mVScrollBar.Name = "mVScrollBar";
-            this.mVScrollBar.Size = new System.Drawing.Size(16, 537);
+            this.mVScrollBar.Size = new System.Drawing.Size(16, 533);
             this.mVScrollBar.TabIndex = 3;
             this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
@@ -390,7 +390,7 @@ namespace Obi.ProjectView
             // mCornerPanel
             // 
             this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCornerPanel.Location = new System.Drawing.Point(522, 537);
+            this.mCornerPanel.Location = new System.Drawing.Point(522, 533);
             this.mCornerPanel.Name = "mCornerPanel";
             this.mCornerPanel.Size = new System.Drawing.Size(16, 16);
             this.mCornerPanel.TabIndex = 4;
@@ -400,13 +400,14 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.contentViewLabel1.AutoSize = true;
+            this.contentViewLabel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.contentViewLabel1.contentView = null;
             this.contentViewLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contentViewLabel1.Location = new System.Drawing.Point(-10, 549);
             this.contentViewLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.contentViewLabel1.Name = "contentViewLabel1";
             this.contentViewLabel1.Name_SectionDisplayed = "No section selected.";
-            this.contentViewLabel1.Size = new System.Drawing.Size(538, 21);
+            this.contentViewLabel1.Size = new System.Drawing.Size(548, 22);
             this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
