@@ -68,8 +68,9 @@ namespace Obi.ProjectView
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
+            
             }
-
+        
 
         // Size of the borders
         private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
@@ -395,6 +396,7 @@ namespace Obi.ProjectView
                 {
                 if (mProjectView != null) throw new Exception ( "Cannot set the project view again!" );
                 mProjectView = value;
+                mProjectView.SelectionChanged += new EventHandler ( ProjectView_SelectionChanged );//@singleSection
                 }
             }
 
@@ -3409,6 +3411,28 @@ stripControl.Node.PhraseChildCount > 0)
                 }
                 //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
             }
+
+        //@singleSection
+        private void ProjectView_SelectionChanged ( object sender, EventArgs e ) 
+            {
+            if (mProjectView.GetSelectedPhraseSection == null) return;
+            Strip currentlyActiveStrip = ActiveStrip;
+
+            if (currentlyActiveStrip == null) return;
+
+            if (mProjectView.GetSelectedPhraseSection == currentlyActiveStrip.Node )
+                {
+                
+                contentViewLabel1.sectionSelected = true;
+                Console.WriteLine ( " content view  label selected = true " );
+                }
+            else
+                {
+                contentViewLabel1.sectionSelected = false;
+                Console.WriteLine ( " content view  label selected = false " );
+                }
+            }
+        
 
         private void mStripsPanel_ControlRemoved ( object sender, EventArgs e )
             {
