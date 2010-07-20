@@ -3425,7 +3425,11 @@ stripControl.Node.PhraseChildCount > 0)
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e ) 
             {
-            if (mProjectView.GetSelectedPhraseSection == null) return;
+            if (mProjectView.GetSelectedPhraseSection == null)
+                {
+                contentViewLabel1.sectionSelected = false;
+                return;
+                }
             Strip currentlyActiveStrip = ActiveStrip;
 
             if (currentlyActiveStrip == null) return;
