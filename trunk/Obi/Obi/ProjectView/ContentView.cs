@@ -3365,6 +3365,11 @@ stripControl.Node.PhraseChildCount > 0)
                 if ( mStripsPanel.Height > (this.Height - mHScrollBar.Location.Y ))
                     {
                     int stripsPanelYLocation = this.Height  - mStripsPanel.Height;
+                    if (indexOfPhraseToBeShown == 0)
+                        {
+                        stripsPanelYLocation = 0;
+                        
+                        }
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripsPanelYLocation );
                     Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation + " " + mStripsPanel.Size  );
                     CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
@@ -3485,7 +3490,9 @@ stripControl.Node.PhraseChildCount > 0)
             }      
             timer1.Stop();
             if (mScroll)
-            { CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
+            {
+            mEnableScrolling = false;
+                CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
         }
 
         //@ShowSingleSection
