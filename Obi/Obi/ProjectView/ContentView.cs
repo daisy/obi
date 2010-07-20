@@ -3479,15 +3479,10 @@ stripControl.Node.PhraseChildCount > 0)
                         this.mVScrollBar.Value = mVScrollBar.Height * (i);
                     }
                 }
-            }
-        }
-
-        private void ContentView_MouseUp(object sender, MouseEventArgs e)
-        {
+            }      
+            timer1.Stop();
             if (mScroll)
-            {
-                CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value);
-            }
+            { CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
         }
 
         //@ShowSingleSection
