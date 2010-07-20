@@ -3347,7 +3347,7 @@ stripControl.Node.PhraseChildCount > 0)
 
         private void mVScrollBar_ValueChanged ( object sender, EventArgs e )
             {
-                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );      
+                //mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );      
             }
 
         //@singleSection
@@ -3364,9 +3364,9 @@ stripControl.Node.PhraseChildCount > 0)
                 // adjust location of strips panel such that the phrase blocks at end are shown.
                 if ( mStripsPanel.Height > (this.Height - mHScrollBar.Location.Y ))
                     {
-                    int stripsPanelYLocation = (this.Height - mHScrollBar.Location.Y) - mStripsPanel.Height;
+                    int stripsPanelYLocation = this.Height  - mStripsPanel.Height;
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripsPanelYLocation );
-                    Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation );
+                    Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation + " " + mStripsPanel.Size  );
                     }
                 }
             }
