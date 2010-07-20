@@ -3367,6 +3367,9 @@ stripControl.Node.PhraseChildCount > 0)
                     int stripsPanelYLocation = this.Height  - mStripsPanel.Height;
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripsPanelYLocation );
                     Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation + " " + mStripsPanel.Size  );
+                    CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                    currentlyActiveStrip.Node.PhraseChild ( indexOfPhraseToBeShown ),
+                    true );
                     }
                 }
             }
