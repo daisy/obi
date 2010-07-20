@@ -398,6 +398,7 @@ namespace Obi.ProjectView
             // 
             // timer1
             // 
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // contentViewLabel1
@@ -405,7 +406,7 @@ namespace Obi.ProjectView
             this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.contentViewLabel1.AutoSize = true;
-            this.contentViewLabel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.contentViewLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.contentViewLabel1.contentView = null;
             this.contentViewLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contentViewLabel1.invertColor = false;
@@ -431,7 +432,6 @@ namespace Obi.ProjectView
             this.Click += new System.EventHandler(this.ContentView_Click);
             this.Resize += new System.EventHandler(this.ContentView_Resize);
             this.Enter += new System.EventHandler(this.StripsView_Enter);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ContentView_MouseUp);
             this.mContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
