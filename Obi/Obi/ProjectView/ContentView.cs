@@ -3470,12 +3470,12 @@ stripControl.Node.PhraseChildCount > 0)
                         break;
                     if (mVScrollBar.Value < ((mVScrollBar.Height * (i - 1) + mid)))
                     {
-                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * (i - 1)));
+                      //  mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * (i - 1)));
                         this.mVScrollBar.Value = mVScrollBar.Height * (i - 1);
                     }
                     else if (mVScrollBar.Value > ((mVScrollBar.Height * (i - 1) + mid)))
                     {
-                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * i));
+                     //   mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * i));
                         this.mVScrollBar.Value = mVScrollBar.Height * (i);
                     }
                 }
