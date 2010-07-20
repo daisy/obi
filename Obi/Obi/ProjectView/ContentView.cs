@@ -30,7 +30,7 @@ namespace Obi.ProjectView
         // cursor stuff
         private AudioBlock mPlaybackBlock;
         private bool mFocusing;
-
+        private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
 
@@ -3347,8 +3347,7 @@ stripControl.Node.PhraseChildCount > 0)
 
         private void mVScrollBar_ValueChanged ( object sender, EventArgs e )
             {
-            mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );
-            
+                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );      
             }
 
         //@singleSection
@@ -3397,9 +3396,20 @@ stripControl.Node.PhraseChildCount > 0)
         //@singleSection
         private void mVScrollBar_Scroll ( object sender, ScrollEventArgs e )
             {
+                mScroll = true;
+                this.mVScrollBar.Maximum = PredictedMaxStripsLayoutHeight;
+                int height;
+                timer1.Start();
                 if (e.ScrollOrientation == ScrollOrientation.VerticalScroll
-                && e.OldValue < e.NewValue)
-                    StartCreatingBlockForScroll();                
+                    && e.OldValue < e.NewValue)
+                {// StartCreatingBlockForScroll (); 
+                }
+
+                height = mStripsPanel.Location.Y - PredictedMaxStripsLayoutHeight;
+                if (PredictedMaxStripsLayoutHeight < this.Size.Height)
+                {
+                    this.mStripsPanel.Location = new Point(mStripsPanel.Location.X, this.Size.Height + height);
+                }                
             }
 
         //@singleSection
@@ -3415,16 +3425,11 @@ stripControl.Node.PhraseChildCount > 0)
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e ) 
             {
-            if (mProjectView.GetSelectedPhraseSection == null)
-                {
-                contentViewLabel1.sectionSelected = false;
-                return;
-                }
-
+            if (mProjectView.GetSelectedPhraseSection == null) return;
             Strip currentlyActiveStrip = ActiveStrip;
 
             if (currentlyActiveStrip == null) return;
-            //System.Media.SystemSounds.Asterisk.Play ();
+
             if (mProjectView.GetSelectedPhraseSection == currentlyActiveStrip.Node )
                 {
                 
@@ -3446,6 +3451,40 @@ stripControl.Node.PhraseChildCount > 0)
                 contentViewLabel1.Name_SectionDisplayed = Localizer.Message ( "ContentViewLabel_NoSection" );
                 }
             }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int interval;
+            int mid;
+            interval = this.mStripsPanel.Height / this.mVScrollBar.Height;
+            mid = this.mVScrollBar.Height / 2;
+            for (int i = 1; i <= interval; i++)
+            {
+                if ((mVScrollBar.Value > (i - 1) * mVScrollBar.Height) && (mVScrollBar.Value < (mVScrollBar.Height * i)))
+                {
+                    if (i == interval)
+                        break;
+                    if (mVScrollBar.Value < ((mVScrollBar.Height * (i - 1) + mid)))
+                    {
+                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * (i - 1)));
+                        this.mVScrollBar.Value = mVScrollBar.Height * (i - 1);
+                    }
+                    else if (mVScrollBar.Value > ((mVScrollBar.Height * (i - 1) + mid)))
+                    {
+                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * i));
+                        this.mVScrollBar.Value = mVScrollBar.Height * (i);
+                    }
+                }
+            }
+        }
+
+        private void ContentView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (mScroll)
+            {
+                CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value);
+            }
+        }
 
         //@ShowSingleSection
         /*

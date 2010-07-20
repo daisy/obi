@@ -12,7 +12,7 @@ namespace Obi.ProjectView
     {
         private Graphics g;
         private ContentView mCont = null;
-        private SolidBrush brushRect = new SolidBrush(Color.LightGray);
+        private SolidBrush brushRect = new SolidBrush(SystemColors.ControlLight);
         private SolidBrush blackRect = new SolidBrush(SystemColors.ControlText);
         private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
         private SolidBrush brushRect2 = new SolidBrush(SystemColors.ControlLight);
