@@ -1592,6 +1592,11 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                                     Console.WriteLine ( "previous blocks created " );
                                     }//-4
+                                else
+                                    {
+                                    //strips panel contains initial phrases and is near top so take it to top to show label of strip
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                                    }
                                 }//-3
                             else
                                 {//3
