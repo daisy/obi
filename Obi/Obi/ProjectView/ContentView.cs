@@ -634,7 +634,10 @@ namespace Obi.ProjectView
                 if (t < 0 || (b > vh && h > vh))
                     {
                     // Top of control is above the visible window, so scroll to the top
-                    mVScrollBar.Value = Math.Min ( top, v_max );
+                    //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
+                    //mVScrollBar.Value = Math.Min ( top, v_max );
+                    mStripsPanel.Location =new Point ( mStripsPanel.Location.X ,
+                        Math.Min ( top, v_max ) );
                     }
                 else if (b > vh)
                     {
@@ -643,7 +646,10 @@ namespace Obi.ProjectView
                     // the control is taller than the visible window, in which case we
                     // want to see the top of the control in priority (this is handled
                     // above.)
-                    mVScrollBar.Value = Math.Min ( bottom - vh, v_max );
+                    //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
+                    //mVScrollBar.Value = Math.Min ( bottom - vh, v_max );
+                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                        Math.Min ( bottom - vh, v_max ) );
                     }
 
                 // Horizontal scrolling is the same
@@ -1358,9 +1364,15 @@ namespace Obi.ProjectView
             CreateBlocksTillNodeInStrip ( stripControl, null , false);
             
         }
-              
+        /*
         //@singleSection
-        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate , bool considerStripHaltFlag)
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
+            {
+            CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag );
+            }
+        */
+        //@singleSection
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag)
             {
             Block firstBlock = stripControl.FirstBlock;
             Block lastBlock = stripControl.LastBlock;
@@ -1398,6 +1410,7 @@ namespace Obi.ProjectView
                         Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
                         break;
                         }
+                    
 
                     EmptyNode node = stripControl.Node.PhraseChild ( i );
                     if (shouldStartCreating)
@@ -1492,6 +1505,119 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             return startNode;
             }
 
+        //@ssingleSection :  large increment up or scroll
+        public bool ScrollUp_LargeIncrement ()
+            {
+            ScrollMStripsPanel ( mHScrollBar.Location.Y * -1 );
+            return true;
+            }
+
+        //@ssingleSection :  large increment down for scroll
+        public bool ScrollDown_LargeIncrement ()
+            {
+            ScrollMStripsPanel ( mHScrollBar.Location.Y);
+            return true;
+            }
+
+
+        //@singleSection : base function for strips panel scroll
+        public void ScrollMStripsPanel (int interval)
+            {
+            Strip currentlyActiveStrip = ActiveStrip;
+
+            if (currentlyActiveStrip != null)
+                {
+                Block firstBlock = currentlyActiveStrip.FirstBlock ;
+                Block lastBlock = currentlyActiveStrip.LastBlock ;
+                if( firstBlock != null && lastBlock != null )
+                    {
+                    int contentViewVisibleHeight = mHScrollBar.Location.Y;
+
+                    if (interval > 0)
+                        {
+                        int nextThresholdIndex = firstBlock.Node.Index + 249;
+                        bool setStripsPanelToInitialPosition = false;
+
+                        Console.WriteLine ( "strips panel space " + (mStripsPanel.Height + mStripsPanel.Location.Y) );
+                        if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount)
+                            {
+                            nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
+
+                            }
+                        else if (nextThresholdIndex == lastBlock.Node.Index
+                            && mStripsPanel.Height + mStripsPanel.Location.Y < contentViewVisibleHeight)
+                            {
+
+                            nextThresholdIndex = nextThresholdIndex + 259;
+                            if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount) nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
+                            setStripsPanelToInitialPosition = true;
+                            }
+                        Console.WriteLine ( "threshold index : " + nextThresholdIndex );
+                        // create blocks for additional interval
+                        CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                            currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
+                            false );
+
+                        if (!setStripsPanelToInitialPosition)
+                            {
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                mStripsPanel.Location.Y - interval );
+
+                            if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
+                                {
+                                mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                    (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
+                                }
+                            }
+                        Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
+                        }
+                    else if ( interval < 0 ) // move strips panel down
+                        {
+                        if (mStripsPanel.Location.Y  > interval)
+                            {//2
+                            //MessageBox.Show ( "inside " );
+                            if (mStripsPanel.Location.Y >= currentlyActiveStrip.BlocksLayoutTopPosition * -1)
+                                {//3
+                                Console.WriteLine ( "Scroll while creating previous phrases " );
+                                if (firstBlock.Node.Index > 0)
+                                    {//4
+                                    int prevThreshold = firstBlock.Node.Index - 1;
+
+                                    CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                            currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
+                            false );
+
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                        (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
+
+                                    Console.WriteLine ( "previous blocks created " );
+                                    }//-4
+                                }//-3
+                            else
+                                {//3
+                                if (firstBlock.Node.Index == 0)
+                                    {
+
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                                    }
+                                else
+                                    {
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
+                                    }
+                                Console.WriteLine ( "adjusted upto label " );
+                                }//-3
+                            }//-2
+                        else // just move strips panel down
+                            {//2
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                        mStripsPanel.Location.Y - interval );//interval is negetive
+                            Console.WriteLine ( "just moved strips panel down " );
+                            }//-2
+                        Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
+                        }
+                    }
+                }
+            }
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
             {
             if ( recordingResumePhrase != null
@@ -2396,6 +2522,8 @@ stripControl.Node.PhraseChildCount > 0)
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
 
+            mShortcutKeys[Keys.Control | Keys.Down] = ScrollDown_LargeIncrement;
+            mShortcutKeys[Keys.Control | Keys.Up] = ScrollUp_LargeIncrement;
 
             }
 
