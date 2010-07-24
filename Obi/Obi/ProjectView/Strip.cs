@@ -213,9 +213,11 @@ namespace Obi.ProjectView
             {
             get
                 {
+                int stripsPanelLocation = this.Parent != null ? this.Parent.Location.Y : 0;
                 if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
-                                         && mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y > (mContentView.Location.Y + mContentView.Size.Height + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Size.Height ))
+                    && ( mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + stripsPanelLocation) > (mContentView.Location.Y + mContentView.Size.Height + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Size.Height ))
                     {
+                    //Console.WriteLine ( mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + .Y );
                     return true;
                     }
                 else
