@@ -1364,15 +1364,15 @@ namespace Obi.ProjectView
             CreateBlocksTillNodeInStrip ( stripControl, null , false);
             
         }
-        /*
+        
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
             {
-            CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag );
+            CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
             }
-        */
+        
         //@singleSection
-        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag)
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag, int pixelDepth)
             {
             Block firstBlock = stripControl.FirstBlock;
             Block lastBlock = stripControl.LastBlock;
@@ -1398,19 +1398,23 @@ namespace Obi.ProjectView
                     wasPlaybackOn = true;
                     mProjectView.TransportBar.Pause ();
                     }
-                if ( !considerStripHaltFlag ) stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate : stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1 ) );
+                if ( !considerStripHaltFlag && pixelDepth == 0) stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate : stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1 ) );
                 // start from beginning and create blocks for nodes for after the last block node.
                 bool shouldStartCreating = stripControl.Node.PhraseChild ( startNodeIndex ) == startNode ? true : false;
                 for (int i = startNodeIndex; i < stripControl.Node.PhraseChildCount; i++)
                     {
                     //System.Media.SystemSounds.Asterisk.Play ();
                     if (considerStripHaltFlag && stripControl.IsContentViewFilledWithBlocks
-                        &&   (i % 5 == 0 || i <= 1 )  )
+                        && (i % 5 == 0 || i <= 1))
                         {
                         Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
                         break;
                         }
-                    
+                    else if ( pixelDepth > 0 && stripControl.IsContentViewFilledWithBlocksTillPixelDepth ( pixelDepth ))
+                        {
+                        Console.WriteLine ( "block creation quit index for scroll for pixcel depth" + i.ToString () );
+                        break;
+                        }
 
                     EmptyNode node = stripControl.Node.PhraseChild ( i );
                     if (shouldStartCreating)
@@ -1545,7 +1549,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                             }
                         else if (nextThresholdIndex == lastBlock.Node.Index
-                            && mStripsPanel.Height + mStripsPanel.Location.Y < contentViewVisibleHeight)
+                            && mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
 
                             nextThresholdIndex = nextThresholdIndex + 259;
@@ -1556,7 +1560,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         // create blocks for additional interval
                         CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                             currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
-                            false );
+                            false,
+                           contentViewVisibleHeight + interval );
 
                         if (!setStripsPanelToInitialPosition)
                             {
@@ -1566,7 +1571,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
                                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                    (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
+                                    (mStripsPanel.Height - contentViewVisibleHeight ) * -1 );
                                 }
                             }
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
