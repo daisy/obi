@@ -1593,7 +1593,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
                                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                    (mStripsPanel.Height - contentViewVisibleHeight ) * -1 );
+                                    (mStripsPanel.Height - (contentViewVisibleHeight / 2 ) ) * -1 );
                                 }
                             }
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
