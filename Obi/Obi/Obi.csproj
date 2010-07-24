@@ -437,6 +437,12 @@
     <Compile Include="ProjectView\TransportBar.Designer.cs">
       <DependentUpon>TransportBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProjectView\VerticleScrollPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectView\VerticleScrollPane.Designer.cs">
+      <DependentUpon>VerticleScrollPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectView\Waveform.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -787,12 +793,14 @@
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="good.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <Content Include="good.wav" />
     <EmbeddedResource Include="ProjectView\ContentViewLabel.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectView\VerticleScrollPane.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>VerticleScrollPane.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
