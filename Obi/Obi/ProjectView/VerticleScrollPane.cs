@@ -10,10 +10,17 @@ namespace Obi.ProjectView
 {
     public partial class VerticleScrollPane : UserControl
     {
+        private ContentView mContentView = null;
         public VerticleScrollPane()
         {
             InitializeComponent();
         }
+
+        public ContentView contentView
+        {
+            get { return mContentView; }
+            set { mContentView = value; }
+        } 
 
         private void m_BtnGoToBegining_Click(object sender, EventArgs e)
         {
