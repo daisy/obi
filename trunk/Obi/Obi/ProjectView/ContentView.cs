@@ -1440,6 +1440,25 @@ namespace Obi.ProjectView
                 }
             }
 
+        public void CreatePhraseBlocksForFillingContentView ( Strip stripControl)
+            {
+            Block lastBlock = stripControl.LastBlock;
+            if (lastBlock != null)
+                {
+                for (int i = lastBlock.Node.Index + 1;
+                    i < stripControl.Node.PhraseChildCount;
+                    i++)
+                    {
+                    if (stripControl.IsContentViewFilledWithBlocks)
+                        {
+                        Console.WriteLine ( " content view fill while fill up " + i );
+                        break;
+                        }
+                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                    }
+                }
+            }
+
         //@singleSection
         private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node )
             {
@@ -1548,8 +1567,9 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
 
                             }
-                        else if (nextThresholdIndex == lastBlock.Node.Index
-                            && mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
+                        else if (nextThresholdIndex <= lastBlock.Node.Index
+                            && currentlyActiveStrip.IsContentViewFilledWithBlocks )
+                            //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
 
                             nextThresholdIndex = nextThresholdIndex + 259;
@@ -1567,6 +1587,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             {
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                 mStripsPanel.Location.Y - interval );
+
+                            CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
 
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
