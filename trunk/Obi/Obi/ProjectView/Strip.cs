@@ -271,6 +271,22 @@ namespace Obi.ProjectView
             }
         }
 
+    //@singleSection
+    public bool IsContentViewFilledWithBlocksTillPixelDepth ( int pixelDepth )
+        {
+        //Console.WriteLine ( "pixel check : " + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + " " + this.Parent.Location.Y );
+            if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
+                                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + this.Parent.Location.Y) > (mContentView.Location.Y + pixelDepth))
+                {
+                return true;
+                }
+            else
+                {
+                return false;
+                }
+            
+        }
+
         public bool IsBlockForEmptyNodeExists ( EmptyNode node )
             {
             if ( mBlockLayout.Controls.Count == 0 ) return false;
