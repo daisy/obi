@@ -1528,6 +1528,23 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             return startNode;
             }
 
+
+//@ssingleSection :  small increment up or scroll
+        public bool ScrollUp_SmallIncrement ()
+            {
+            int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 ) * -1;
+            ScrollMStripsPanel ( scrollIncrement);
+            return true;
+            }
+
+        //@ssingleSection :  small increment down or scroll
+        public bool ScrollDown_SmallIncrement ()
+            {
+            int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 );
+            ScrollMStripsPanel ( scrollIncrement);
+            return true;
+            }
+
         //@ssingleSection :  large increment up or scroll
         public bool ScrollUp_LargeIncrement ()
             {
@@ -1650,6 +1667,49 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     }
                 }
             }
+
+
+        //@singleSection : Scroll to top
+        public bool ScrollStripsPanel_Top ()
+            {
+            Strip currentlyActiveStrip = ActiveStrip;
+
+            if (currentlyActiveStrip != null)
+                {
+                CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                                currentlyActiveStrip.Node.PhraseChild ( 0 ),
+                                false );
+
+                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+
+                return true;
+                }
+            return false;
+            }
+
+        //@singleSection : Scroll to bottom
+        public bool ScrollStripsPanel_Bottom ()
+            {
+            Strip currentlyActiveStrip = ActiveStrip;
+
+            if (currentlyActiveStrip != null)
+                {
+                int startPhrase = currentlyActiveStrip.Node.PhraseChildCount- 50 ;
+                // set to nearest threshold before this start phrase
+                startPhrase = Convert.ToInt32 ( startPhrase / 250 ) * 250;
+
+                CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                                currentlyActiveStrip.Node.PhraseChild ( startPhrase ),
+                                false );
+
+                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
+                    (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
+
+                return true;
+                }
+            return false;
+            }
+
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
             {
             if ( recordingResumePhrase != null

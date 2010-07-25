@@ -10,7 +10,10 @@ namespace Obi.ProjectView
 {
     public partial class VerticleScrollPane : UserControl
     {
-        private ContentView mContentView = null;
+
+        private ContentView m_ContentView = null;
+        private Strip m_ActiveStrip = null ;
+
         public VerticleScrollPane()
         {
             InitializeComponent();
@@ -18,9 +21,15 @@ namespace Obi.ProjectView
 
         public ContentView contentView
         {
-            get { return mContentView; }
-            set { mContentView = value; }
-        } 
+            get { return m_ContentView; }
+            set { m_ContentView = value; }
+        }
+
+        public Strip ActiveStrip
+            {
+            get { return m_ActiveStrip; }
+            set { m_ActiveStrip = value; }
+            }
 
         private void m_BtnGoToBegining_Click(object sender, EventArgs e)
         {
