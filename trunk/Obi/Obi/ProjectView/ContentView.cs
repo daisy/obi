@@ -637,7 +637,7 @@ namespace Obi.ProjectView
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( top, v_max );
                     mStripsPanel.Location =new Point ( mStripsPanel.Location.X ,
-                        Math.Min ( top, v_max ) );
+                        Math.Min ( top, v_max )* -1);
                     }
                 else if (b > vh)
                     {
@@ -649,7 +649,7 @@ namespace Obi.ProjectView
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( bottom - vh, v_max );
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                        Math.Min ( bottom - vh, v_max ) );
+                        Math.Min ( bottom - vh, v_max ) * -1);
                     }
 
                 // Horizontal scrolling is the same
