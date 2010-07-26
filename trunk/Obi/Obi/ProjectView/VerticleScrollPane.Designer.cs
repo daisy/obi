@@ -31,10 +31,10 @@ namespace Obi.ProjectView
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerticleScrollPane));
             this.m_BtnGoToBegining = new System.Windows.Forms.Button();
-            this.m_BtnOneLineUp = new System.Windows.Forms.Button();
+            this.m_BtnSmallIncrementUp = new System.Windows.Forms.Button();
             this.m_BtnLargeIncrementUp = new System.Windows.Forms.Button();
             this.m_BtnLargeIncrementDown = new System.Windows.Forms.Button();
-            this.m_BtnOneLineDown = new System.Windows.Forms.Button();
+            this.m_BtnSmallIncrementDown = new System.Windows.Forms.Button();
             this.m_BtnGoToEnd = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.m_VerticalScrollTooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -55,19 +55,19 @@ namespace Obi.ProjectView
             this.m_BtnGoToBegining.UseVisualStyleBackColor = false;
             this.m_BtnGoToBegining.Click += new System.EventHandler(this.m_BtnGoToBegining_Click);
             // 
-            // m_BtnOneLineUp
+            // m_BtnSmallIncrementUp
             // 
-            this.m_BtnOneLineUp.AccessibleDescription = "Button";
-            this.m_BtnOneLineUp.AccessibleName = "Move One line up ";
-            this.m_BtnOneLineUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.m_BtnOneLineUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnOneLineUp.Image")));
-            this.m_BtnOneLineUp.Location = new System.Drawing.Point(2, 111);
-            this.m_BtnOneLineUp.Name = "m_BtnOneLineUp";
-            this.m_BtnOneLineUp.Size = new System.Drawing.Size(25, 50);
-            this.m_BtnOneLineUp.TabIndex = 1;
-            this.m_VerticalScrollTooltip.SetToolTip(this.m_BtnOneLineUp, "One line Up");
-            this.m_BtnOneLineUp.UseVisualStyleBackColor = false;
-            this.m_BtnOneLineUp.Click += new System.EventHandler(this.m_BtnOneLineUp_Click);
+            this.m_BtnSmallIncrementUp.AccessibleDescription = "Button";
+            this.m_BtnSmallIncrementUp.AccessibleName = "Move One line up ";
+            this.m_BtnSmallIncrementUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.m_BtnSmallIncrementUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementUp.Image")));
+            this.m_BtnSmallIncrementUp.Location = new System.Drawing.Point(2, 111);
+            this.m_BtnSmallIncrementUp.Name = "m_BtnSmallIncrementUp";
+            this.m_BtnSmallIncrementUp.Size = new System.Drawing.Size(25, 50);
+            this.m_BtnSmallIncrementUp.TabIndex = 1;
+            this.m_VerticalScrollTooltip.SetToolTip(this.m_BtnSmallIncrementUp, "One line Up");
+            this.m_BtnSmallIncrementUp.UseVisualStyleBackColor = false;
+            this.m_BtnSmallIncrementUp.Click += new System.EventHandler(this.m_BtnSmallIncrementUp_Click);
             // 
             // m_BtnLargeIncrementUp
             // 
@@ -97,19 +97,19 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementDown.UseVisualStyleBackColor = false;
             this.m_BtnLargeIncrementDown.Click += new System.EventHandler(this.m_BtnLargeIncrementDown_Click);
             // 
-            // m_BtnOneLineDown
+            // m_BtnSmallIncrementDown
             // 
-            this.m_BtnOneLineDown.AccessibleDescription = "Button";
-            this.m_BtnOneLineDown.AccessibleName = "Move one line Down ";
-            this.m_BtnOneLineDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.m_BtnOneLineDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnOneLineDown.Image")));
-            this.m_BtnOneLineDown.Location = new System.Drawing.Point(2, 423);
-            this.m_BtnOneLineDown.Name = "m_BtnOneLineDown";
-            this.m_BtnOneLineDown.Size = new System.Drawing.Size(25, 50);
-            this.m_BtnOneLineDown.TabIndex = 4;
-            this.m_VerticalScrollTooltip.SetToolTip(this.m_BtnOneLineDown, "One Line Down");
-            this.m_BtnOneLineDown.UseVisualStyleBackColor = false;
-            this.m_BtnOneLineDown.Click += new System.EventHandler(this.m_BtnOneLineDown_Click);
+            this.m_BtnSmallIncrementDown.AccessibleDescription = "Button";
+            this.m_BtnSmallIncrementDown.AccessibleName = "Move one line Down ";
+            this.m_BtnSmallIncrementDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.m_BtnSmallIncrementDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementDown.Image")));
+            this.m_BtnSmallIncrementDown.Location = new System.Drawing.Point(2, 423);
+            this.m_BtnSmallIncrementDown.Name = "m_BtnSmallIncrementDown";
+            this.m_BtnSmallIncrementDown.Size = new System.Drawing.Size(25, 50);
+            this.m_BtnSmallIncrementDown.TabIndex = 4;
+            this.m_VerticalScrollTooltip.SetToolTip(this.m_BtnSmallIncrementDown, "One Line Down");
+            this.m_BtnSmallIncrementDown.UseVisualStyleBackColor = false;
+            this.m_BtnSmallIncrementDown.Click += new System.EventHandler(this.m_BtnSmallIncrementDown_Click);
             // 
             // m_BtnGoToEnd
             // 
@@ -146,10 +146,10 @@ namespace Obi.ProjectView
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.m_BtnGoToEnd);
-            this.Controls.Add(this.m_BtnOneLineDown);
+            this.Controls.Add(this.m_BtnSmallIncrementDown);
             this.Controls.Add(this.m_BtnLargeIncrementDown);
             this.Controls.Add(this.m_BtnLargeIncrementUp);
-            this.Controls.Add(this.m_BtnOneLineUp);
+            this.Controls.Add(this.m_BtnSmallIncrementUp);
             this.Controls.Add(this.m_BtnGoToBegining);
             this.Name = "VerticleScrollPane";
             this.Size = new System.Drawing.Size(30, 563);
@@ -162,10 +162,10 @@ namespace Obi.ProjectView
         #endregion
 
         private System.Windows.Forms.Button m_BtnGoToBegining;
-        private System.Windows.Forms.Button m_BtnOneLineUp;
+        private System.Windows.Forms.Button m_BtnSmallIncrementUp;
         private System.Windows.Forms.Button m_BtnLargeIncrementUp;
         private System.Windows.Forms.Button m_BtnLargeIncrementDown;
-        private System.Windows.Forms.Button m_BtnOneLineDown;
+        private System.Windows.Forms.Button m_BtnSmallIncrementDown;
         private System.Windows.Forms.Button m_BtnGoToEnd;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.ToolTip m_VerticalScrollTooltip;
