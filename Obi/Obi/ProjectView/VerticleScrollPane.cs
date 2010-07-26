@@ -33,37 +33,78 @@ namespace Obi.ProjectView
 
         private void m_BtnGoToBegining_Click(object sender, EventArgs e)
         {
-
+            if (m_ContentView != null)
+            {
+              scrollButtons(false);
+              m_ContentView.ScrollStripsPanel_Top();
+              scrollButtons(true);
+            }
         }
-
-        private void m_BtnOneLineUp_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void m_BtnLargeIncrementUp_Click(object sender, EventArgs e)
         {
-
+            if (m_ContentView != null)
+            {
+                scrollButtons(false);
+                m_ContentView.ScrollUp_LargeIncrement();
+                scrollButtons(true);
+            }
         }
 
         private void m_BtnLargeIncrementDown_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void m_BtnOneLineDown_Click(object sender, EventArgs e)
-        {
-
-        }
+            if (m_ContentView != null)
+            {
+                scrollButtons(false);
+                m_ContentView.ScrollDown_LargeIncrement();
+                scrollButtons(true);
+            }
+        }       
 
         private void m_BtnGoToEnd_Click(object sender, EventArgs e)
         {
+            if (m_ContentView != null)
+            {
+                scrollButtons(false);
+                m_ContentView.ScrollStripsPanel_Bottom();
+                scrollButtons(true);
+            }
+        }
 
+        private void m_BtnSmallIncrementUp_Click(object sender, EventArgs e)
+        {
+            if (m_ContentView != null)
+            {
+                scrollButtons(false);
+                m_ContentView.ScrollUp_SmallIncrement();
+                scrollButtons(true);
+            }
+        }
+
+        private void m_BtnSmallIncrementDown_Click(object sender, EventArgs e)
+        {
+            if (m_ContentView != null)
+            {
+                scrollButtons(false);
+                m_ContentView.ScrollDown_SmallIncrement();
+                scrollButtons(true);
+            }
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             trackBar1.Capture = false;            
         }
+
+        public void scrollButtons(bool value)
+        {
+            m_BtnGoToBegining.Enabled = value;
+            m_BtnGoToEnd.Enabled = value;
+            m_BtnLargeIncrementDown.Enabled = value;
+            m_BtnLargeIncrementUp.Enabled = value ;
+            m_BtnSmallIncrementDown.Enabled = value;
+            m_BtnSmallIncrementUp.Enabled = value;
+        }      
+
     }
 }
