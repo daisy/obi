@@ -12,7 +12,8 @@ namespace Obi.ProjectView
     {
 
         private ContentView m_ContentView = null;
-        
+        private bool m_CanScrollUp = true;
+        private bool m_CanScrollDown = true;
 
         public VerticleScrollPane()
         {
@@ -35,6 +36,32 @@ namespace Obi.ProjectView
                     trackBar1.Value = 100 - value;
                     }
                     }
+            }
+
+        public bool CanScrollUp
+            {
+            get { return m_CanScrollUp; }
+            set
+                {
+                m_CanScrollUp = value;
+                m_BtnGoToBegining.Enabled =
+                    m_BtnLargeIncrementUp.Enabled = 
+                    m_BtnSmallIncrementUp.Enabled = m_CanScrollUp;
+                TrackBarValueInPercentage = 0;
+                }
+            }
+
+        public bool CanScrollDown
+            {
+            get { return m_CanScrollDown; }
+            set
+                {
+                m_CanScrollDown = value;
+                m_BtnGoToEnd.Enabled =
+                m_BtnLargeIncrementDown.Enabled =
+                 m_BtnSmallIncrementDown.Enabled = m_CanScrollDown;
+                TrackBarValueInPercentage = 100;
+                }
             }
 
         private void m_BtnGoToBegining_Click(object sender, EventArgs e)
