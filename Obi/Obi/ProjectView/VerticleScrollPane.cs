@@ -12,7 +12,7 @@ namespace Obi.ProjectView
     {
 
         private ContentView m_ContentView = null;
-        private Strip m_ActiveStrip = null ;
+        
 
         public VerticleScrollPane()
         {
@@ -25,10 +25,16 @@ namespace Obi.ProjectView
             set { m_ContentView = value; }
         }
 
-        public Strip ActiveStrip
+        public int TrackBarValueInPercentage
             {
-            get { return m_ActiveStrip; }
-            set { m_ActiveStrip = value; }
+            get { return trackBar1.Value; }
+            set 
+                {
+                if (value >= 0 && value <= 100)
+                    {
+                    trackBar1.Value = value;
+                    }
+                    }
             }
 
         private void m_BtnGoToBegining_Click(object sender, EventArgs e)
