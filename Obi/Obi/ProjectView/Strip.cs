@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using System.Collections.Generic ;
 
 namespace Obi.ProjectView
 {
@@ -289,6 +290,28 @@ namespace Obi.ProjectView
             
         }
 
+        //@singleSection
+        public List<int> GetBoundaryPhrasesIndexForVisiblePhrases ( int startY, int endY )
+            {
+            List<int> boundaryIndex = new List<int> ();
+            
+            foreach (Control c in mBlockLayout.Controls)
+                {
+                if (c is Block)
+                    {
+                    Block b = (Block)c;
+                    if (b.Location.Y >= startY && boundaryIndex.Count == 0) boundaryIndex.Add ( b.Node.Index );
+
+                    if ( boundaryIndex.Count == 1 && 
+                        ( b.Location.Y > endY || b == LastBlock ))
+                        {
+                        boundaryIndex.Add ( b.Node.Index ) ;
+                        }
+                    }
+                }
+            return boundaryIndex;
+            }
+        //@singleSection
         public bool IsBlockForEmptyNodeExists ( EmptyNode node )
             {
             if ( mBlockLayout.Controls.Count == 0 ) return false;
