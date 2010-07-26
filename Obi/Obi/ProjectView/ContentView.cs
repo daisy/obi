@@ -33,8 +33,6 @@ namespace Obi.ProjectView
         private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
-        private int mDeltaPos;
-
         private List<Strip> m_VisibleStripsList;  // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
@@ -69,7 +67,7 @@ namespace Obi.ProjectView
             verticleScrollPane1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
             this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);
-            this.MouseMove += new MouseEventHandler(ContentView_MouseWheel); 
+            //this.MouseMove += new MouseEventHandler(ContentView_MouseWheel); 
             
             }
         
@@ -1684,6 +1682,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
 
+                CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                 return true;
                 }
             return false;
@@ -1696,14 +1695,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
             if (currentlyActiveStrip != null)
                 {
-                int startPhrase = currentlyActiveStrip.Node.PhraseChildCount- 50 ;
-                // set to nearest threshold before this start phrase
-                startPhrase = Convert.ToInt32 ( startPhrase / 250 ) * 250;
 
-                CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                                currentlyActiveStrip.Node.PhraseChild ( startPhrase ),
-                                false );
-
+                CreateBlocksTillEndInStrip ( currentlyActiveStrip );
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
 
@@ -3693,7 +3686,8 @@ stripControl.Node.PhraseChildCount > 0)
             int increment = Convert.ToInt32(mHScrollBar.Location.Y * 0.4);
             if (e.Delta > 0)
                 increment = increment * (-1);
-            ScrollMStripsPanel(increment);          
+            ScrollMStripsPanel(increment);
+            Console.WriteLine ( "mouse wheel scrolling " + increment );
         }
 
         private void timer1_Tick(object sender, EventArgs e)
