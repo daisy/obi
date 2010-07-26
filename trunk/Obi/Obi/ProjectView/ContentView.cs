@@ -1678,6 +1678,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             int endY = startY + mHScrollBar.Location.Y;
 
             List<int> boundaryPhraseIndexes = currentlyActiveStrip.GetBoundaryPhrasesIndexForVisiblePhrases ( startY, endY );
+            if (boundaryPhraseIndexes == null || boundaryPhraseIndexes.Count == 0) return 0 ;
+
             int percentageValue = 0;
             if (boundaryPhraseIndexes[0] == 0)
                 {
@@ -1702,7 +1704,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             {
             Strip currentlyActiveStrip = ActiveStrip;
 
-            if (currentlyActiveStrip != null)
+            if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                                 currentlyActiveStrip.Node.PhraseChild ( 0 ),
@@ -1722,7 +1724,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             {
             Strip currentlyActiveStrip = ActiveStrip;
 
-            if (currentlyActiveStrip != null)
+            if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0 )
                 {
 
                 CreateBlocksTillEndInStrip ( currentlyActiveStrip );
