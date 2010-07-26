@@ -66,10 +66,11 @@ namespace Obi.ProjectView
             m_IsBlocksVisibilityProcessActive = false;
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
+            verticleScrollPane1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
             this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);
             this.MouseMove += new MouseEventHandler(ContentView_MouseWheel); 
-            //mVScrollBar.Visible = false;//@singleSection : dmade invisible for placing scroll button panel
+            
             }
         
 
