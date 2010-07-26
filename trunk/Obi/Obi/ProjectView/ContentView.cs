@@ -66,8 +66,8 @@ namespace Obi.ProjectView
             this.contentViewLabel1.contentView = this;
             verticleScrollPane1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
-            this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);
-            //this.MouseMove += new MouseEventHandler(ContentView_MouseWheel); 
+            this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);//@singleSection
+            mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged  );//@singleSection
             
             }
         
@@ -1148,7 +1148,7 @@ namespace Obi.ProjectView
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
             contentViewLabel1.Name_SectionDisplayed = node.Label;
-            verticleScrollPane1.TrackBarValueInPercentage = 0;
+            verticleScrollPane1.CanScrollUp = false;
             return AddStripForSection ( node );
             }
 
@@ -1734,6 +1734,52 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 return true;
                 }
             return false;
+            }
+
+        //@singleSection
+        public void mStripsPanel_LocationChanged ( object sender, EventArgs e )
+            {
+            if (mStripsPanel.Location.Y >= 0)
+                {
+                Strip currentlyActiveStrip = ActiveStrip;
+
+                if (currentlyActiveStrip != null )
+                    {
+                    if (currentlyActiveStrip.FirstBlock == null ||
+                        (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
+                        {
+                        verticleScrollPane1.CanScrollUp = false;
+                        }
+                    else if ( Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition 
+                        && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index > 0)
+                        {
+                        // set position of strip panel to hide label -- for precaution
+                        mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
+                        Console.WriteLine ( "precautionary setting of strips label for threshold index " );
+                        }
+                    }
+                }
+            else if (mStripsPanel.Location.Y < 0)
+                {
+                verticleScrollPane1.CanScrollUp = true;
+                }
+
+            if (mStripsPanel.Location.Y + mStripsPanel.Height <= mHScrollBar.Location.Y)
+                {
+                Strip currentlyActiveStrip = ActiveStrip;
+                if (currentlyActiveStrip != null)
+                    {
+                    if (currentlyActiveStrip.LastBlock == null
+                        || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
+                        {
+                        verticleScrollPane1.CanScrollDown = false;
+                        }
+                    }
+                }
+            else
+                {
+                verticleScrollPane1.CanScrollDown = true;
+                }
             }
 
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
