@@ -68,7 +68,7 @@ namespace Obi.ProjectView
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
-            
+            mVScrollBar.Visible = false;//@singleSection : dmade invisible for placing scroll button panel
             }
         
 
@@ -2614,8 +2614,8 @@ stripControl.Node.PhraseChildCount > 0)
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
 
-            mShortcutKeys[Keys.Control | Keys.Down] = ScrollDown_LargeIncrement;
-            mShortcutKeys[Keys.Control | Keys.Up] = ScrollUp_LargeIncrement;
+            mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrement;
+            mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrement;
 
             }
 
