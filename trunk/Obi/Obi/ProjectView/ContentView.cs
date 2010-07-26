@@ -1148,6 +1148,7 @@ namespace Obi.ProjectView
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
             contentViewLabel1.Name_SectionDisplayed = node.Label;
+            verticleScrollPane1.TrackBarValueInPercentage = 0;
             return AddStripForSection ( node );
             }
 
@@ -1665,9 +1666,36 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
                     }
-                }
+                verticleScrollPane1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
+                }// check ends for currently active strip
+
             }
 
+        //@singleSection
+        private int EstimateScrollPercentage (Strip currentlyActiveStrip)
+            {
+            int startY = Math.Abs( mStripsPanel.Location.Y ) ;
+            int endY = startY + mHScrollBar.Location.Y;
+
+            List<int> boundaryPhraseIndexes = currentlyActiveStrip.GetBoundaryPhrasesIndexForVisiblePhrases ( startY, endY );
+            int percentageValue = 0;
+            if (boundaryPhraseIndexes[0] == 0)
+                {
+                percentageValue =  0;
+                }
+            else if (boundaryPhraseIndexes.Count == 2 && currentlyActiveStrip.Node.PhraseChildCount > 0
+                && boundaryPhraseIndexes[1] == currentlyActiveStrip.Node.PhraseChildCount - 1)
+                {
+                percentageValue = 100;
+                }
+            else if ( boundaryPhraseIndexes.Count == 2  && currentlyActiveStrip.Node.PhraseChildCount > 0 )
+                {
+                int midIndexVisible = Convert.ToInt32 ( (boundaryPhraseIndexes[0] + boundaryPhraseIndexes[1]) / 2 );
+                percentageValue = Convert.ToInt32 ( (midIndexVisible * 100) / currentlyActiveStrip.Node.PhraseChildCount );
+                }
+            Console.WriteLine ( "estimated percentage of scroll " + percentageValue );
+            return percentageValue ;
+            }
 
         //@singleSection : Scroll to top
         public bool ScrollStripsPanel_Top ()
@@ -3233,7 +3261,7 @@ stripControl.Node.PhraseChildCount > 0)
                     {
                     height += c is Strip ? ((Strip)c).PredictedStripHeight : 0;
                     }
-                Console.WriteLine ( "predicted scroll height " + height + " " + mStripsPanel.Height.ToString () );
+                //Console.WriteLine ( "predicted scroll height " + height + " " + mStripsPanel.Height.ToString () );
                 return height > mStripsPanel.Height ? height : mStripsPanel.Height; 
                 }
             }
@@ -3664,12 +3692,12 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 
                 contentViewLabel1.sectionSelected = true;
-                Console.WriteLine ( " content view  label selected = true " );
+                
                 }
             else
                 {
                 contentViewLabel1.sectionSelected = false;
-                Console.WriteLine ( " content view  label selected = false " );
+                
                 }
             }
         
