@@ -27,12 +27,12 @@ namespace Obi.ProjectView
 
         public int TrackBarValueInPercentage
             {
-            get { return trackBar1.Value; }
+            get { return 100 - trackBar1.Value; }
             set 
                 {
                 if (value >= 0 && value <= 100)
                     {
-                    trackBar1.Value = value;
+                    trackBar1.Value = 100 - value;
                     }
                     }
             }
