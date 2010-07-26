@@ -423,7 +423,7 @@ namespace Obi.ProjectView
         // 
         // verticleScrollPane1
         // 
-        this.verticleScrollPane1.ActiveStrip = null;
+        
         this.verticleScrollPane1.contentView = null;
         this.verticleScrollPane1.Dock = System.Windows.Forms.DockStyle.Right;
         this.verticleScrollPane1.Location = new System.Drawing.Point ( 508, 0 );

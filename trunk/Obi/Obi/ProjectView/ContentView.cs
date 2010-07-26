@@ -1683,6 +1683,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
 
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
+                verticleScrollPane1.TrackBarValueInPercentage = 0;
                 return true;
                 }
             return false;
@@ -1699,7 +1700,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 CreateBlocksTillEndInStrip ( currentlyActiveStrip );
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
-
+                verticleScrollPane1.TrackBarValueInPercentage = 100;
                 return true;
                 }
             return false;
