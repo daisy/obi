@@ -33,14 +33,13 @@ namespace Obi.ProjectView
         private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
-
+        private int mDeltaPos;
 
         private List<Strip> m_VisibleStripsList;  // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
-
-
+       
         private delegate Strip AddStripForObiNodeDelegate ( ObiNode node );
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
 
@@ -68,6 +67,8 @@ namespace Obi.ProjectView
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
+            this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);
+            this.MouseMove += new MouseEventHandler(ContentView_MouseWheel); 
             //mVScrollBar.Visible = false;//@singleSection : dmade invisible for placing scroll button panel
             }
         
@@ -3686,6 +3687,14 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             }
 
+        private void ContentView_MouseWheel(object sender, MouseEventArgs e)
+        {
+            int increment = Convert.ToInt32(mHScrollBar.Location.Y * 0.4);
+            if (e.Delta > 0)
+                increment = increment * (-1);
+            ScrollMStripsPanel(increment);          
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             int interval;
@@ -3716,6 +3725,8 @@ stripControl.Node.PhraseChildCount > 0)
             mEnableScrolling = false;
                 CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
         }
+                 
+        
 
         //@ShowSingleSection
         /*
