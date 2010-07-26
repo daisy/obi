@@ -68,7 +68,7 @@ namespace Obi.ProjectView
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
-            mVScrollBar.Visible = false;//@singleSection : dmade invisible for placing scroll button panel
+            //mVScrollBar.Visible = false;//@singleSection : dmade invisible for placing scroll button panel
             }
         
 
