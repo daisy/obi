@@ -309,6 +309,7 @@ namespace Obi.ProjectView
                 AddStripForSection_Safe ( mProjectView.Presentation.FirstSection );
                 mProjectView.SynchronizeViews = false;
                 contentViewLabel1.Name_SectionDisplayed = mProjectView.Presentation.FirstSection.Label; //@singleSection
+                verticleScrollPane1.CanScrollUp = false; //@singleSection
                 }
             else
                 {
