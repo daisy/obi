@@ -18,6 +18,7 @@ namespace Obi.ProjectView
         public VerticleScrollPane ()
             {
             InitializeComponent ();
+            TrackBarValueInPercentage = 0;
             }
 
         public ContentView contentView
@@ -48,7 +49,7 @@ namespace Obi.ProjectView
                     m_BtnLargeIncrementUp.Enabled =
                     m_BtnSmallIncrementUp.Enabled = m_CanScrollUp;
 
-                TrackBarValueInPercentage = 0;
+                if ( !m_CanScrollUp ) TrackBarValueInPercentage = 0;
                 }
             }
 
@@ -62,7 +63,7 @@ namespace Obi.ProjectView
                 m_BtnLargeIncrementDown.Enabled =
                  m_BtnSmallIncrementDown.Enabled = m_CanScrollDown;
 
-                TrackBarValueInPercentage = 100;
+                if (!m_CanScrollDown)  TrackBarValueInPercentage = 100;
                 }
             }
 
