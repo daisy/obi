@@ -1457,6 +1457,7 @@ namespace Obi.ProjectView
                         }
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                     }
+                UpdateSize ();
                 }
             }
 
