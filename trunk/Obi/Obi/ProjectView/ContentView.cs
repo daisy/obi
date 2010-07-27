@@ -1585,7 +1585,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount)
                             {
                             nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
-
+                            
                             }
                         else if (nextThresholdIndex <= lastBlock.Node.Index
                             && currentlyActiveStrip.IsContentViewFilledWithBlocks )
@@ -1612,8 +1612,17 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
-                                mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                    (mStripsPanel.Height - (contentViewVisibleHeight / 2 ) ) * -1 );
+                                // check if the section is too small and the last block is less than mid of strips panel
+                                if ( lastBlock.Location.Y -firstBlock.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition
+                                    < Convert.ToInt32 ( contentViewVisibleHeight * .75 ))
+                                    {
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                                    }
+                                else
+                                    {
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                        (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1 );
+                                    }
                                 }
                             }
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
