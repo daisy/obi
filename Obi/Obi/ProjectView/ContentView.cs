@@ -1578,6 +1578,16 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                     if (interval > 0)
                         {
+                        // check if the section is too small and the last block is less than mid of strips panel
+                                if ( firstBlock.Node.Index == 0 && lastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1
+                                    && lastBlock.Location.Y -firstBlock.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition
+                                    < contentViewVisibleHeight )
+                                    {
+                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                                    return;
+                                    }
+                                    
+
                         int nextThresholdIndex = firstBlock.Node.Index + 249;
                         bool setStripsPanelToInitialPosition = false;
 
@@ -1612,17 +1622,10 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
-                                // check if the section is too small and the last block is less than mid of strips panel
-                                if ( lastBlock.Location.Y -firstBlock.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition
-                                    < Convert.ToInt32 ( contentViewVisibleHeight * .75 ))
-                                    {
-                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
-                                    }
-                                else
-                                    {
+                                
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                         (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1 );
-                                    }
+                                    
                                 }
                             }
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
