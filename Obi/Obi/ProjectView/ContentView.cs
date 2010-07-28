@@ -1279,7 +1279,7 @@ namespace Obi.ProjectView
                                 mProjectView.TransportBar.Pause ();
                                 }
 
-                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, selectedNode);
+                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, selectedNode, true);
 
                             if (intendedFirstNodeAfterRemoval != null)
                                 {
@@ -1383,7 +1383,10 @@ namespace Obi.ProjectView
                 EmptyNode startNode = lastBlock.Node;
                 int startNodeIndex = firstBlock.Node.Index;
 
-                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate: stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount -1 ));
+                if ( nodeOfLastBlockToCreate == null ) stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount -1 ) ;
+                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, 
+                    nodeOfLastBlockToCreate,
+                    nodeOfLastBlockToCreate.Index >= firstBlock.Node.Index? true : false );
                 
                 if (firstNodeAfterRemove  != null)
                     {
@@ -1463,11 +1466,11 @@ namespace Obi.ProjectView
             }
 
         //@singleSection
-        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node )
+        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node  , bool isScrollDown)
             {
-            int phraseBlocksLotInterval = 250;
-            if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
-            return RemoveAllblocksInStripIfRequired ( stripControl, node, phraseBlocksLotInterval );
+            //int phraseBlocksLotInterval = PhraseCountInLot ( stripControl,true ) ;
+            //if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
+            return RemoveAllblocksInStripIfRequired ( stripControl, node, PhraseCountInLot ( stripControl, isScrollDown));
             }
 
 
@@ -1586,9 +1589,9 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
                                     return;
                                     }
-                                    
 
-                        int nextThresholdIndex = firstBlock.Node.Index + 249;
+                                int indexIncrement_PhraseLot = PhraseCountInLot ( currentlyActiveStrip, true ) -1 ;
+                                int nextThresholdIndex = firstBlock.Node.Index + indexIncrement_PhraseLot;
                         bool setStripsPanelToInitialPosition = false;
 
                         Console.WriteLine ( "strips panel space " + (mStripsPanel.Height + mStripsPanel.Location.Y) );
@@ -1602,7 +1605,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
 
-                            nextThresholdIndex = nextThresholdIndex + 259;
+                            nextThresholdIndex = nextThresholdIndex + indexIncrement_PhraseLot;
                             if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount) nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
                             setStripsPanelToInitialPosition = true;
                             }
@@ -1683,6 +1686,36 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 verticleScrollPane1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
                 }// check ends for currently active strip
 
+            }
+
+        private int PhraseCountInLot ( Strip currentlyActiveStrip, bool isScrollDown )
+            {
+            int phraseLotSize = 250;
+
+            if (ZoomFactor < 1.0f)
+                {
+                phraseLotSize = 300;
+                }
+            else if (ZoomFactor >= 1.0f && ZoomFactor <= 1.5)
+                {
+                phraseLotSize = 250;
+                }
+            else if (ZoomFactor > 1.5)
+                {
+                phraseLotSize = 126;
+                }
+            if (!isScrollDown)
+                {
+                phraseLotSize = (phraseLotSize / 2) ;
+                }
+
+            
+                if (currentlyActiveStrip.Node.PhraseChildCount <= (phraseLotSize * 6 / 5))
+                    {
+                phraseLotSize = currentlyActiveStrip.Node.PhraseChildCount;
+                }
+            Console.WriteLine ("Calculated phrase lot size " + phraseLotSize ) ;
+            return phraseLotSize;
             }
 
         //@singleSection
