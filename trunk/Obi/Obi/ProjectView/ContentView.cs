@@ -600,7 +600,16 @@ namespace Obi.ProjectView
                         if (strip == null || strip.Parent == null) break;
                         strip = strip.Parent;
                         }
-                    if (strip != null && strip is Strip) EnsureControlVisible ( strip );
+                    if (strip != null && strip is Strip)
+                        {
+                        //@singleSection: adding following if block to prevent useless shifting of strip
+                        if (strip.Parent == mStripsPanel
+                            && (mStripsPanel.Location.Y + strip.Bottom < 0 || mStripsPanel.Location.Y + strip.Top > mStripsPanel.Margin.Top + strip.Margin.Top))
+                            {
+                            Console.WriteLine ( "explicitly ensure visibility of parent strip " );
+                            EnsureControlVisible ( strip );
+                            }
+                        }
                     }
                 // Compute the location of the control relative to the strips panel
                 // (Location is relative to its direct parent.)
