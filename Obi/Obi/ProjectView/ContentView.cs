@@ -636,9 +636,11 @@ namespace Obi.ProjectView
                 // Maximum values of the scrollbars (for some reason the scrollbar
                 // stops one "large change" short of the maximum...)
                 int v_max = mVScrollBar.Maximum - mVScrollBar.LargeChange + 1;
-                int vh = VisibleHeight - mHScrollBar.Height;
+                //int vh = VisibleHeight - mHScrollBar.Height; //@singleSection: original, replaced by below line
+                int vh = mHScrollBar.Location.Y; //@singleSection : new
                 int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
-                int vw = VisibleWidth - mVScrollBar.Width;
+                //int vw = VisibleWidth - mVScrollBar.Width; //@singleSection: original, replaced by following
+                int vw = verticleScrollPane1.Location.X; //@singleSection : new
 
                 // Vertical scrolling
                 if (t < 0 || (b > vh && h > vh))
