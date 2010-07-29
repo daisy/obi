@@ -153,6 +153,7 @@ namespace Obi.ProjectView
             get
             {
                 long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
+                // originally, 1 second should has width of 10 pixels
                 //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
                 int w = time == 0.0 ? LabelFullWidth : (int)Math.Round ( time * AudioScale * 1.2f);//@singleSection: updated
                 // workaround to prevent visibility problem in block layout, waveform should remain below blocklayout width of 32768

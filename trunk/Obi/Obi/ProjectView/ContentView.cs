@@ -1656,14 +1656,25 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                 if (firstBlock.Node.Index > 0)
                                     {//4
                                     int prevThreshold = firstBlock.Node.Index - 1;
+                                    System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
+                                    stopWatch.Start ();
 
-                                    CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                            currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
-                            false );
+                                    int requiredPhraseCount =  currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight (mHScrollBar.Location.Y, verticleScrollPane1.Location.X, 
+                                        currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
+
+                                    currentlyActiveStrip.RemoveAllBlocks ( false );
+                                    currentlyActiveStrip.AddsRangeOfBlocks ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold - requiredPhraseCount ),
+                                        currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
+                                    UpdateSize ();
+                                    currentlyActiveStrip.UpdateColors ();
+                                    //CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                            //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
+                            //false );
 
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                         (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
-
+                                    stopWatch.Stop ();
+                                    Console.WriteLine ( "stop watch " + stopWatch.Elapsed.TotalMilliseconds );
                                     Console.WriteLine ( "previous blocks created " );
                                     }//-4
                                 else

@@ -311,6 +311,33 @@ namespace Obi.ProjectView
                 }
             return boundaryIndex;
             }
+
+        //@singleSection
+        public int GetPhraseCountForContentViewVisibleHeight ( int visibleHeight,int visibleWidth,  EmptyNode node, bool checkWithFollowingPhrases )
+            {
+            int expectedRows = Convert.ToInt32 ( visibleHeight / (103 * mContentView.ZoomFactor)) + 1 ;
+            int expectedMilliseconds = Convert.ToInt32 ( (visibleWidth / 12) * mContentView.ZoomFactor ) * expectedRows * 1000;
+            // use time for this
+            double time = 0;
+            int phraseCount = 0;
+            double maxAllowedTimePerPhrase = Convert.ToInt32 ( (visibleWidth / 12) * mContentView.ZoomFactor ) * 1000;
+
+            for (int i = node.Index; i >= 0; --i)
+                {
+                double phraseDuration = mNode.PhraseChild ( i ).Duration ;
+                time += phraseDuration < maxAllowedTimePerPhrase ? phraseDuration : maxAllowedTimePerPhrase;
+                phraseCount++;
+
+                if (time > expectedMilliseconds)
+                    {
+                    Console.WriteLine ( " phrase count for visible page is " + phraseCount );
+                    break;
+                    }
+                }
+
+            return phraseCount;
+            }
+
         //@singleSection
         public bool IsBlockForEmptyNodeExists ( EmptyNode node )
             {
