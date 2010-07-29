@@ -401,7 +401,7 @@ namespace Obi.ProjectView
                     {
                     CreateBlockForNode ( mNode.PhraseChild ( i),endNode.Index == i ?  true : false);
                     }
-
+                    UpdateColors();
                 return null ;
                 }
             }

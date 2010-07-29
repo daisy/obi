@@ -1375,8 +1375,7 @@ namespace Obi.ProjectView
         public void CreateBlocksTillEndInStrip ( Strip stripControl )
             {
             CreateBlocksTillNodeInStrip ( stripControl, null , false);
-            
-        }
+            }
         
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
@@ -1450,7 +1449,7 @@ namespace Obi.ProjectView
                         }
                     }
                 UpdateSize ();
-
+                stripControl.UpdateColors();
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
                 }
