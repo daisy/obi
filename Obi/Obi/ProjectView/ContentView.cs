@@ -1322,6 +1322,7 @@ namespace Obi.ProjectView
                             }//-2
                         
                         UpdateSize ();
+                        if (!shouldRemoveBlocks) stripControl.UpdateColors ();
                         }
 
                     if (shouldRemoveBlocks)
@@ -1472,6 +1473,7 @@ namespace Obi.ProjectView
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                     }
                 UpdateSize ();
+                stripControl.UpdateColors ();
                 }
             }
 
@@ -1625,7 +1627,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
                             false,
                            contentViewVisibleHeight + interval );
-
+                        
                         if (!setStripsPanelToInitialPosition)
                             {
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
