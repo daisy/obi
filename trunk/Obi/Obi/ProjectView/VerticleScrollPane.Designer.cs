@@ -47,7 +47,7 @@ namespace Obi.ProjectView
             this.m_BtnGoToBegining.AccessibleName = "Go To Begining ";
             this.m_BtnGoToBegining.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnGoToBegining.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnGoToBegining.Image")));
-            this.m_BtnGoToBegining.Location = new System.Drawing.Point(3, 31);
+            this.m_BtnGoToBegining.Location = new System.Drawing.Point(2, 33);
             this.m_BtnGoToBegining.Name = "m_BtnGoToBegining";
             this.m_BtnGoToBegining.Size = new System.Drawing.Size(25, 50);
             this.m_BtnGoToBegining.TabIndex = 0;
@@ -61,7 +61,7 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementUp.AccessibleName = "Move One line up ";
             this.m_BtnSmallIncrementUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnSmallIncrementUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementUp.Image")));
-            this.m_BtnSmallIncrementUp.Location = new System.Drawing.Point(2, 188);
+            this.m_BtnSmallIncrementUp.Location = new System.Drawing.Point(2, 168);
             this.m_BtnSmallIncrementUp.Name = "m_BtnSmallIncrementUp";
             this.m_BtnSmallIncrementUp.Size = new System.Drawing.Size(25, 50);
             this.m_BtnSmallIncrementUp.TabIndex = 1;
@@ -75,7 +75,7 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementUp.AccessibleName = "Move up to Large Increment";
             this.m_BtnLargeIncrementUp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnLargeIncrementUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnLargeIncrementUp.Image")));
-            this.m_BtnLargeIncrementUp.Location = new System.Drawing.Point(3, 108);
+            this.m_BtnLargeIncrementUp.Location = new System.Drawing.Point(2, 100);
             this.m_BtnLargeIncrementUp.Name = "m_BtnLargeIncrementUp";
             this.m_BtnLargeIncrementUp.Size = new System.Drawing.Size(25, 50);
             this.m_BtnLargeIncrementUp.TabIndex = 2;
@@ -89,7 +89,7 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementDown.AccessibleName = "Move Down to Large Increment";
             this.m_BtnLargeIncrementDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnLargeIncrementDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnLargeIncrementDown.Image")));
-            this.m_BtnLargeIncrementDown.Location = new System.Drawing.Point(3, 427);
+            this.m_BtnLargeIncrementDown.Location = new System.Drawing.Point(2, 411);
             this.m_BtnLargeIncrementDown.Name = "m_BtnLargeIncrementDown";
             this.m_BtnLargeIncrementDown.Size = new System.Drawing.Size(25, 50);
             this.m_BtnLargeIncrementDown.TabIndex = 3;
@@ -103,7 +103,7 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementDown.AccessibleName = "Move one line Down ";
             this.m_BtnSmallIncrementDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnSmallIncrementDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementDown.Image")));
-            this.m_BtnSmallIncrementDown.Location = new System.Drawing.Point(0, 352);
+            this.m_BtnSmallIncrementDown.Location = new System.Drawing.Point(2, 341);
             this.m_BtnSmallIncrementDown.Name = "m_BtnSmallIncrementDown";
             this.m_BtnSmallIncrementDown.Size = new System.Drawing.Size(25, 50);
             this.m_BtnSmallIncrementDown.TabIndex = 4;
@@ -117,7 +117,7 @@ namespace Obi.ProjectView
             this.m_BtnGoToEnd.AccessibleName = "Go to end ";
             this.m_BtnGoToEnd.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.m_BtnGoToEnd.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnGoToEnd.Image")));
-            this.m_BtnGoToEnd.Location = new System.Drawing.Point(2, 510);
+            this.m_BtnGoToEnd.Location = new System.Drawing.Point(2, 479);
             this.m_BtnGoToEnd.Name = "m_BtnGoToEnd";
             this.m_BtnGoToEnd.Size = new System.Drawing.Size(25, 50);
             this.m_BtnGoToEnd.TabIndex = 5;
@@ -128,7 +128,7 @@ namespace Obi.ProjectView
             // trackBar1
             // 
             this.trackBar1.Enabled = false;
-            this.trackBar1.Location = new System.Drawing.Point(0, 258);
+            this.trackBar1.Location = new System.Drawing.Point(0, 247);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -154,7 +154,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.m_BtnSmallIncrementUp);
             this.Controls.Add(this.m_BtnGoToBegining);
             this.Name = "VerticleScrollPane";
-            this.Size = new System.Drawing.Size(30, 563);
+            this.Size = new System.Drawing.Size(30, 529);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
