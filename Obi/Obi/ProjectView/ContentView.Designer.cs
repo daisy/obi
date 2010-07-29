@@ -393,9 +393,9 @@ namespace Obi.ProjectView
             // mCornerPanel
             // 
             this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCornerPanel.Location = new System.Drawing.Point(515, 533);
+            this.mCornerPanel.Location = new System.Drawing.Point(509, 529);
             this.mCornerPanel.Name = "mCornerPanel";
-            this.mCornerPanel.Size = new System.Drawing.Size(30, 16);
+            this.mCornerPanel.Size = new System.Drawing.Size(29, 22);
             this.mCornerPanel.TabIndex = 4;
             // 
             // timer1
@@ -408,7 +408,7 @@ namespace Obi.ProjectView
             this.verticleScrollPane1.CanScrollDown = true;
             this.verticleScrollPane1.CanScrollUp = true;
             this.verticleScrollPane1.contentView = null;
-            this.verticleScrollPane1.Location = new System.Drawing.Point(507, 0);
+            this.verticleScrollPane1.Location = new System.Drawing.Point(518, -10);
             this.verticleScrollPane1.Name = "verticleScrollPane1";
             this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
             this.verticleScrollPane1.TabIndex = 6;
@@ -436,6 +436,7 @@ namespace Obi.ProjectView
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
+            this.Controls.Add(this.mCornerPanel);
             this.Controls.Add(this.verticleScrollPane1);
             this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.mHScrollBar);
