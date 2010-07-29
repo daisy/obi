@@ -66,9 +66,9 @@ namespace Obi.ProjectView
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
-            this.mCornerPanel = new System.Windows.Forms.Panel();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
+            this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
@@ -363,16 +363,8 @@ namespace Obi.ProjectView
             this.mStripsPanel.Location = new System.Drawing.Point(0, 0);
             this.mStripsPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mStripsPanel.Name = "mStripsPanel";
-            this.mStripsPanel.Size = new System.Drawing.Size(505, 557);
+            this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
             this.mStripsPanel.TabIndex = 1;
-            // 
-            // mCornerPanel
-            // 
-            this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCornerPanel.Location = new System.Drawing.Point(505, 533);
-            this.mCornerPanel.Name = "mCornerPanel";
-            this.mCornerPanel.Size = new System.Drawing.Size(33, 16);
-            this.mCornerPanel.TabIndex = 4;
             // 
             // mHScrollBar
             // 
@@ -381,7 +373,7 @@ namespace Obi.ProjectView
             this.mHScrollBar.LargeChange = 64;
             this.mHScrollBar.Location = new System.Drawing.Point(0, 533);
             this.mHScrollBar.Name = "mHScrollBar";
-            this.mHScrollBar.Size = new System.Drawing.Size(505, 16);
+            this.mHScrollBar.Size = new System.Drawing.Size(510, 18);
             this.mHScrollBar.TabIndex = 2;
             this.mHScrollBar.ValueChanged += new System.EventHandler(this.mHScrollBar_ValueChanged);
             // 
@@ -398,6 +390,14 @@ namespace Obi.ProjectView
             this.mVScrollBar.ValueChanged += new System.EventHandler(this.mVScrollBar_ValueChanged);
             this.mVScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.mVScrollBar_Scroll);
             // 
+            // mCornerPanel
+            // 
+            this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.mCornerPanel.Location = new System.Drawing.Point(515, 533);
+            this.mCornerPanel.Name = "mCornerPanel";
+            this.mCornerPanel.Size = new System.Drawing.Size(30, 16);
+            this.mCornerPanel.TabIndex = 4;
+            // 
             // timer1
             // 
             this.timer1.Interval = 1000;
@@ -408,9 +408,9 @@ namespace Obi.ProjectView
             this.verticleScrollPane1.CanScrollDown = true;
             this.verticleScrollPane1.CanScrollUp = true;
             this.verticleScrollPane1.contentView = null;
-            this.verticleScrollPane1.Location = new System.Drawing.Point(505, 0);
+            this.verticleScrollPane1.Location = new System.Drawing.Point(507, 0);
             this.verticleScrollPane1.Name = "verticleScrollPane1";
-            this.verticleScrollPane1.Size = new System.Drawing.Size(33, 533);
+            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
             this.verticleScrollPane1.TabIndex = 6;
             this.verticleScrollPane1.TabStop = false;
             this.verticleScrollPane1.TrackBarValueInPercentage = 100;
@@ -436,9 +436,8 @@ namespace Obi.ProjectView
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
-            this.Controls.Add(this.mCornerPanel);
-            this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.verticleScrollPane1);
+            this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.mHScrollBar);
             this.Controls.Add(this.mVScrollBar);
             this.Controls.Add(this.mStripsPanel);
