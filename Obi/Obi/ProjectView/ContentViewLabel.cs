@@ -70,6 +70,8 @@ namespace Obi.ProjectView
 
         private void ContentViewLabel_Paint(object sender, PaintEventArgs e)
         {
+        if (mCont == null) return;
+
             g = this.CreateGraphics();
             Pen rectPen = new Pen(Color.White, 2F);
             int m_contentRectHeight = Convert.ToInt32(19 * zoomFactor);
