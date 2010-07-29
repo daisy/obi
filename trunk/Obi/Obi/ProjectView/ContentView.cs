@@ -3780,7 +3780,7 @@ stripControl.Node.PhraseChildCount > 0)
                 //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
             this.verticleScrollPane1.Location =new Point ( this.Width - verticleScrollPane1.Width , 0 ) ;
             this.verticleScrollPane1.Size = new Size ( verticleScrollPane1.Width, mHScrollBar.Location.Y );
-            mHScrollBar.Size = new Size ( mHScrollBar.Height, verticleScrollPane1.Location.X );
+            mHScrollBar.Size = new Size ( verticleScrollPane1.Location.X, mHScrollBar.Height );
             }
 
         //@singleSection
