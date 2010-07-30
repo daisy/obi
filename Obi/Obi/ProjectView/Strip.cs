@@ -343,6 +343,7 @@ namespace Obi.ProjectView
             {
             if ( mBlockLayout.Controls.Count == 0 ) return false;
 
+            if (node.Index < OffsetForFirstPhrase) return false;
             //int startIndexForIteration = node.Index - FirstBlock.Node.Index;
             // in future if first block is not 0 index phrase then it is better to use find block function
             //int startIndexForIteration = node.Index ;
