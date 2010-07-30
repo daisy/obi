@@ -1662,14 +1662,14 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                     int requiredPhraseCount =  currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight (mHScrollBar.Location.Y, verticleScrollPane1.Location.X, 
                                         currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
 
-                                    currentlyActiveStrip.RemoveAllBlocks ( false );
-                                    currentlyActiveStrip.AddsRangeOfBlocks ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold - requiredPhraseCount ),
-                                        currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
-                                    UpdateSize ();
-                                    currentlyActiveStrip.UpdateColors ();
-                                    //CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                            //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
-                            //false );
+                                    //currentlyActiveStrip.RemoveAllBlocks ( false );
+                                    //currentlyActiveStrip.AddsRangeOfBlocks ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold - requiredPhraseCount ),
+                                        //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
+                                    //UpdateSize ();
+                                    //currentlyActiveStrip.UpdateColors ();
+                                    CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                            currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
+                            false );
 
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                         (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
@@ -2568,7 +2568,20 @@ stripControl.Node.PhraseChildCount > 0)
                     return null;
                     }
                 }
-            
+            Block lastBlock = stripControl.LastBlock;
+            if (lastBlock != null )
+                                {
+                                int phraseLotSize = PhraseCountInLot ( stripControl, true );
+                                int nextThreshold = (Convert.ToInt32 ( lastBlock.Node.Index / phraseLotSize ) * phraseLotSize) + 1;
+
+                                if (node.Index > nextThreshold
+                                    || (stripControl.IsContentViewFilledWithBlocks && node.Index >  lastBlock.Node.Index ))
+                                    {
+                                    //here no need for applying check for nodes before threshold as it is handled in add blok for node function in strip
+                                    //Console.WriteLine ( "exiting before making block " );
+                                    return null;
+                                    }
+                }
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
             
