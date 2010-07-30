@@ -595,6 +595,15 @@ namespace Obi.ProjectView
                 return blocksRemovedCount;
             }
 
+        //@singleSection
+        public int RemoveAllFollowingBlocks ( bool removeHiddenBlocks, bool updateSize )
+            {
+            if ( FirstBlock == null ) return 0 ;
+
+            return RemoveAllFollowingBlocks ( FirstBlock.Node, removeHiddenBlocks, updateSize );
+            }
+
+//@singleSection
         public int RemoveAllFollowingBlocks (EmptyNode node, bool removeHiddenBlocks ,bool updateSize )
             {
             int blocksRemovedCount = 0;

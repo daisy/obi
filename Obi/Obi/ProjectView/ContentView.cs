@@ -1693,6 +1693,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                 else
                                     {
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
+                                    //remove blocks below the content view
+                                    currentlyActiveStrip.RemoveAllFollowingBlocks ( true, true) ;
                                     }
                                 Console.WriteLine ( "adjusted upto label " );
                                 }//-3
