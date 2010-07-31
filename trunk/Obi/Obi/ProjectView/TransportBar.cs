@@ -1046,7 +1046,7 @@ namespace Obi.ProjectView
             SaveWhenRecordingEnds ();
 
             // makes phrase blocks invisible if these exceed max. visible blocks count during recording
-            mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
+            //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
         }
 
 
@@ -2067,7 +2067,7 @@ UpdateButtons();
                 SaveWhenRecordingEnds ();
 
                 // make phrase blocks invisible if these exceeded max visible phrase blocks limit during recording
-                mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit
+                //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit @singleSection: legacy code commented
             }
         }
 
