@@ -586,6 +586,7 @@ namespace Obi.ProjectView
             else if (mState == State.Stopped)
             {
                 mDisplayTimer.Stop();
+                 mView.SetPlaybackPhraseAndTime ( null, 0);//added on 31 july ,2010 
             }
             if (StateChanged != null) StateChanged(this, e);
             UpdateTimeDisplay();
