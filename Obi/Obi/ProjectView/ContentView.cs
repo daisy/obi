@@ -2572,7 +2572,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (lastBlock != null )
                                 {
                                 int phraseLotSize = PhraseCountInLot ( stripControl, true );
-                                int nextThreshold = (Convert.ToInt32 ( lastBlock.Node.Index / phraseLotSize ) * phraseLotSize) + 1;
+                                int nextThreshold = (Convert.ToInt32 ( lastBlock.Node.Index / phraseLotSize ) + 1) * phraseLotSize;
 
                                 if (node.Index > nextThreshold
                                     || (stripControl.IsContentViewFilledWithBlocks && node.Index >  lastBlock.Node.Index ))
