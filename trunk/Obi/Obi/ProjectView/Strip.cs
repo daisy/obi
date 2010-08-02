@@ -1176,6 +1176,176 @@ namespace Obi.ProjectView
             //UpdateColors ();
             }
 
+
+        //@singleSection
+        private System.Windows.Forms.FlowLayoutPanel m_BackgroundBlockLayout;
+        private FlowLayoutPanel CreateBackUpLayout ()
+            {
+            FlowLayoutPanel backupBlockLayout = new FlowLayoutPanel ();
+            backupBlockLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            backupBlockLayout.BackColor = System.Drawing.Color.GreenYellow;
+            backupBlockLayout.Location = new System.Drawing.Point ( this.Width, 78 );
+            backupBlockLayout.Margin = new System.Windows.Forms.Padding ( 3, 0, 3, 0 );
+            backupBlockLayout.Name = "m_BackgroundBlockLayout";
+            backupBlockLayout.Size = new System.Drawing.Size ( 303, 109 );
+            backupBlockLayout.TabIndex = 1;
+            backupBlockLayout.WrapContents = true;
+            backupBlockLayout.Click += new System.EventHandler ( this.Strip_Enter );
+
+            this.Controls.Add ( backupBlockLayout );
+            return backupBlockLayout;
+            }
+
+
+        EmptyNode m_BackgroundPhrasesLoadStartNode;
+        EmptyNode m_BackgroundPhrasesLoadEndNode;
+        public void LoadBackUpLayout ( EmptyNode startNode, EmptyNode endNode )
+            {
+            m_BackgroundBlockLayout = CreateBackUpLayout ();
+            m_BackgroundPhrasesLoadStartNode = startNode;
+            m_BackgroundPhrasesLoadEndNode = endNode;
+            m_BackgroundPhrasesLoadStartIndex = -1;
+            m_BackgroundPhrasesloadTimer.Interval = 600;
+            m_BackgroundPhrasesloadTimer.Tick += new EventHandler ( BackgroundPhrasesloadTimer_tick );
+            m_BackgroundPhrasesloadTimer.Start ();
+
+            }
+
+        System.Windows.Forms.Timer m_BackgroundPhrasesloadTimer = new System.Windows.Forms.Timer ();
+
+        int m_BackgroundPhrasesLoadStartIndex = -1;
+        int m_BackgroundPhrasesLoadEndIndex = -1;
+        private void BackgroundPhrasesloadTimer_tick ( object sender, EventArgs e )
+            {
+            m_BackgroundPhrasesloadTimer.Stop ();
+
+            if (m_BackgroundPhrasesLoadStartIndex == -1)
+                m_BackgroundPhrasesLoadStartIndex = m_BackgroundPhrasesLoadStartNode.Index;
+            else
+                m_BackgroundPhrasesLoadStartIndex = m_BackgroundPhrasesLoadEndIndex + 1;
+
+            m_BackgroundPhrasesLoadEndIndex = m_BackgroundPhrasesLoadStartIndex + 10;
+            if (m_BackgroundPhrasesLoadEndIndex > m_BackgroundPhrasesLoadEndNode.Index) m_BackgroundPhrasesLoadEndIndex = m_BackgroundPhrasesLoadEndNode.Index;
+
+            BackUpLayoutBlockAddsRangeOfBlocks ( mNode.PhraseChild ( m_BackgroundPhrasesLoadStartIndex ), mNode.PhraseChild ( m_BackgroundPhrasesLoadEndIndex ) );
+
+            if (m_BackgroundPhrasesLoadEndIndex == m_BackgroundPhrasesLoadEndNode.Index)
+                {
+                m_BackgroundPhrasesLoadStartIndex = -1;
+                m_BackgroundPhrasesloadTimer.Stop ();
+                UpdateColors ();
+                Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+                }
+            else
+                {
+                m_BackgroundPhrasesloadTimer.Start ();
+                Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+                }
+            }
+
+        //@singleSection
+        public Block BackUpLayoutBlockAddsRangeOfBlocks ( EmptyNode startNode, EmptyNode endNode )
+            {
+            if (InvokeRequired)
+                {
+                return (Block)Invoke ( new BlockRangeCreationInvokation ( BackUpLayoutBlockAddsRangeOfBlocks ), startNode, endNode );
+                }
+            else
+                {
+                for (int i = startNode.Index; i <= endNode.Index; ++i)
+                    {
+                    BackupLayout_CreateBlockForNode ( mNode.PhraseChild ( i ), endNode.Index == i ? true : false );
+
+                    }
+
+                return null;
+                }
+            }
+
+
+        //@singleSection
+        private Block BackupLayout_CreateBlockForNode ( EmptyNode node, bool updateSize )
+            {
+            //MessageBox.Show ( node.Index.ToString () );
+            if (m_BackgroundBlockLayout.Controls.Count == 0)
+                {
+                //@ StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
+                int index = 0;
+                StripCursor cursor = new StripCursor ();
+                cursor.SetHeight ( mBlockHeight );
+                cursor.ColorSettings = ColorSettings;
+                cursor.TabStop = false;
+                cursor.SetAccessibleNameForIndex ( index / 2 );
+                m_BackgroundBlockLayout.Controls.Add ( cursor );
+                m_BackgroundBlockLayout.Controls.SetChildIndex ( cursor, index );
+                }
+            Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
+            m_BackgroundBlockLayout.Controls.Add ( block );
+            //@singleSection: following 2 lines replaced
+            //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
+            //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
+
+            m_BackgroundBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index) );
+            //@ AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
+            //--
+            StripCursor cursor1 = new StripCursor ();
+            int index1 = 2 + 2 * node.Index;
+            cursor1.SetHeight ( mBlockHeight );
+            cursor1.ColorSettings = ColorSettings;
+            cursor1.TabStop = false;
+            cursor1.SetAccessibleNameForIndex ( index1 / 2 );
+            m_BackgroundBlockLayout.Controls.Add ( cursor1 );
+            m_BackgroundBlockLayout.Controls.SetChildIndex ( cursor1, index1 );
+            //---
+
+            block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
+            block.Cursor = Cursor;
+            block.SizeChanged += new EventHandler ( Block_SizeChanged );
+
+            //@ if (updateSize) Resize_Blocks ();
+
+            //@ UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
+            //---
+            m_BackgroundBlockLayout.AutoSize = true;
+            m_BackgroundBlockLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            m_BackgroundBlockLayout.WrapContents = true;
+            // The width of the block layout should fit the available space, unless it's narrower.
+            // This may be overridden however by the minimum width to fit the widest waveform.
+            int width_fit = mContentView.ClientRectangle.Width - Margin.Horizontal - BorderWidth -
+                m_BackgroundBlockLayout.Margin.Horizontal;
+            m_BackgroundBlockLayout.MaximumSize =
+                new Size ( Math.Max ( BlockLayoutMinimumWidth, Math.Min ( BlockLayoutFullWidth, width_fit ) ), 0 );
+            Size = new Size ( WidthForContents, HeightForContents );
+            //---
+            //System.Media.SystemSounds.Asterisk.Play ();
+            return block;
+            }
+
+        public void ReplaceBlockLayout ()
+            {
+            if (m_BackgroundBlockLayout.Controls.Count == 0) return;
+            Point layoutPoint = mBlockLayout.Location;
+            mBlockLayout.Dispose ();
+            m_BackgroundBlockLayout.Location = layoutPoint;
+            mBlockLayout = m_BackgroundBlockLayout;
+            }
+
+        //@singleSection
+        public void MoveCurrentBlocklayoutToBackground ()
+            {
+            if (m_BackgroundBlockLayout != null)
+                {
+                m_BackgroundBlockLayout.Dispose ();
+                }
+            m_BackgroundBlockLayout = mBlockLayout;
+            m_BackgroundBlockLayout.Location = new Point ( this.Width, this.Location.Y );
+            mBlockLayout = CreateBackUpLayout ();
+            mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
+            Resize_All ();
+            Console.WriteLine ( "move to background " );
+            }
+
+
         public void DestroyStripHandle ()
             {
             this.DestroyHandle ();
