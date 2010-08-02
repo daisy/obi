@@ -1589,6 +1589,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 Block lastBlock = currentlyActiveStrip.LastBlock ;
                 if( firstBlock != null && lastBlock != null )
                     {
+                    mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                     int contentViewVisibleHeight = mHScrollBar.Location.Y;
 
                     if (interval > 0)
@@ -1707,6 +1708,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             }//-2
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
+                    mProjectView.ObiForm.Cursor = Cursors.Default;
                     }
                 verticleScrollPane1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
                 }// check ends for currently active strip
@@ -1778,6 +1780,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                                 currentlyActiveStrip.Node.PhraseChild ( 0 ),
                                 false );
@@ -1786,6 +1789,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                 verticleScrollPane1.TrackBarValueInPercentage = 0;
+
+                mProjectView.ObiForm.Cursor = Cursors.Default;
                 return true;
                 }
             return false;
@@ -1798,12 +1803,13 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0 )
                 {
-
+                mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 CreateBlocksTillEndInStrip ( currentlyActiveStrip );
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
                 verticleScrollPane1.TrackBarValueInPercentage = 100;
                 return true;
+                mProjectView.ObiForm.Cursor = Cursors.Default;
                 }
             return false;
             }
