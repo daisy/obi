@@ -331,6 +331,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string Caption_Information {
+            get {
+                return ResourceManager.GetString("Caption_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning!.
         /// </summary>
         internal static string Caption_Warning {
@@ -2618,6 +2627,15 @@ namespace Obi {
         internal static string recording_resume_check_caption {
             get {
                 return ResourceManager.GetString("recording_resume_check_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not able to find paused phrase! Starting Recording from existing selection..
+        /// </summary>
+        internal static string RecordingResumePhrasesDeleted {
+            get {
+                return ResourceManager.GetString("RecordingResumePhrasesDeleted", resourceCulture);
             }
         }
         

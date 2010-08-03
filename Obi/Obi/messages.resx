@@ -1438,4 +1438,10 @@ Error text: {1}</value>
   <data name="ContentViewLabel_NoSection" xml:space="preserve">
     <value>No section displayed</value>
   </data>
+  <data name="Caption_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
+    <value>Not able to find paused phrase! Starting Recording from existing selection.</value>
+  </data>
 </root>
