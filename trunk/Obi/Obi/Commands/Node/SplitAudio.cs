@@ -132,9 +132,9 @@ namespace Obi.Commands.Node
         {
             CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
             ObiNode parent = phrase.ParentAs<ObiNode>();
-            int index = phrase.Index;
+            int index = phrase.Index+1;
             
-            command.append(new Commands.Node.Delete(view, phrase, false));
+            
             System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
                 Obi.Audio.PhraseDetection.Apply(phrase.Audio.copy(), threshold, gap, before));
             for (int i = 0; i < phrases.Count; ++i)
@@ -155,6 +155,7 @@ namespace Obi.Commands.Node
                 {
                 command.append ( new UpdateSelection ( view,new NodeSelection( phrases[0], view.Selection.Control )));
                 }
+            command.append ( new Commands.Node.Delete ( view, phrase, false ) );//@singleSection: moved delete command last for improve undo selection
             return command;
         }
 
