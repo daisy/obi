@@ -1102,9 +1102,13 @@ namespace Obi.ProjectView
                     }
                 if (requiredExistingStrip != null )
                     {
-                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateLimitedBlocksInStrip ( requiredExistingStrip, (EmptyNode) selectionValue.Node ) ;
+                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
+                        {
+                        CreateLimitedBlocksInStrip ( requiredExistingStrip, selectionValue is StripIndexSelection ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection : (EmptyNode)selectionValue.Node );
+                        }
                     return;
                     }
+
                 if (currentlyActiveStrip == null
                     || (currentlyActiveStrip != null
                     && sectionToBeSelected != currentlyActiveStrip.Node))
@@ -1114,7 +1118,10 @@ namespace Obi.ProjectView
 
                     
                     }
-                if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateLimitedBlocksInStrip( currentlyActiveStrip, (EmptyNode) selectionValue.Node) ;
+                if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
+                    {
+                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, selectionValue is StripIndexSelection ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection : (EmptyNode)selectionValue.Node );
+                    }
                 }
             
             }
@@ -2960,7 +2967,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (mProjectView.TransportBar.IsPlayerActive 
                 && 
                 (mProjectView.Selection == null
-                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode ))) 
+                || (mProjectView.Selection != null && !(mProjectView.Selection.Node is SectionNode )))) 
                 {
                 mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
             }
