@@ -1078,7 +1078,7 @@ namespace Obi.ProjectView
                                                 selectionValue.Node.ParentAs<SectionNode> ();
                 
                 // remove irrelevant strips in case there are more than single strip in content view
-                bool stripForSectionToBeSelectedExists = false;
+                Strip requiredExistingStrip = null;
 
                 if (mStripsPanel.Controls.Count > 1)
                     {
@@ -1089,7 +1089,7 @@ namespace Obi.ProjectView
                             Strip iterationStrip = (Strip)c;
                             if (iterationStrip.Node == sectionToBeSelected)
                                 {
-                                stripForSectionToBeSelectedExists = true ;
+                                requiredExistingStrip = iterationStrip;
                                 contentViewLabel1.Name_SectionDisplayed = sectionToBeSelected.Label;
                                 Console.WriteLine ("the required strip exists " + iterationStrip.Node.Label ) ;
                                 }
@@ -1100,9 +1100,9 @@ namespace Obi.ProjectView
                             }
                         }
                     }
-                if (stripForSectionToBeSelectedExists)
+                if (requiredExistingStrip != null )
                     {
-                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
+                    if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateLimitedBlocksInStrip ( requiredExistingStrip, (EmptyNode) selectionValue.Node ) ;
                     return;
                     }
                 if (currentlyActiveStrip == null
@@ -1114,7 +1114,7 @@ namespace Obi.ProjectView
 
                     
                     }
-                if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateBlocksInStrip ();
+                if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection) CreateLimitedBlocksInStrip( currentlyActiveStrip, (EmptyNode) selectionValue.Node) ;
                 }
             
             }
@@ -1210,7 +1210,7 @@ namespace Obi.ProjectView
 
         bool m_EnableFindPlaybackBlockDuringCursorUpdate = false;
         //@singleSection
-        private bool CreateLimitedBlocksInStrip ( Strip stripControl )
+        private bool CreateLimitedBlocksInStrip ( Strip stripControl, EmptyNode requiredEmptyNode )
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
@@ -1218,7 +1218,7 @@ namespace Obi.ProjectView
 
                 int defaultVisibleCount = 40;
                 int extraBlocksCount = 15;
-                int blockLotSizeToRemove = 5;
+                
                 bool shouldRemoveBlocks = true;
                 bool wasPlaybackOn = false;
                 bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
@@ -1257,6 +1257,13 @@ namespace Obi.ProjectView
                                     }
                                 stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                                 }
+
+                            if (requiredEmptyNode != null)
+                                {
+                                Block requiredBlock = stripControl.FindBlock ( requiredEmptyNode );
+                                if (requiredBlock == null) CreateBlocksTillNodeInStrip ( stripControl, requiredEmptyNode, false );
+                                }
+
                                                         }
                         }
                     else
@@ -1273,14 +1280,19 @@ namespace Obi.ProjectView
                         if (lastBlockInStrip != null
                             && lastBlockInStrip.Node.IsRooted
                             && selectedNode.IsRooted
-                                                        && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15)
+                                                        && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15
+                                                        && requiredEmptyNode == null)
                                 || (lastBlockInStrip.Node == stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ))))
                             {
                             shouldRemoveBlocks = true;
                             }
                         else if ( selectedNode != null && selectedNode.IsRooted )
                             {//2
-                            
+
+                            if (requiredEmptyNode != null && lastBlockInStrip != null && lastBlockInStrip.Node.IsRooted)
+                                {
+                                if (lastBlockInStrip.Node.Index < requiredEmptyNode.Index) CreateBlocksTillNodeInStrip ( stripControl, requiredEmptyNode, false );
+                                }
                             //ObiNode currentNode = selectedNode.FollowingNode; // lets start from selected node
                             ObiNode currentNode = selectedNode;
 
@@ -1907,7 +1919,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
         /// <returns></returns>
         private bool CreateBlocksInStrip ( Strip stripControl )
             {
-            return CreateLimitedBlocksInStrip ( stripControl );
+            return CreateLimitedBlocksInStrip ( stripControl, null );
             if (stripControl != null && 
 stripControl.Node.PhraseChildCount > 0)
                 {
@@ -3810,7 +3822,7 @@ stripControl.Node.PhraseChildCount > 0)
             {
             if (ActiveStrip != null )
                 {
-                CreateLimitedBlocksInStrip ( ActiveStrip );
+                CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
                 //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
             this.verticleScrollPane1.Location =new Point ( this.Width - verticleScrollPane1.Width , 0 ) ;
