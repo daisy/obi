@@ -1281,7 +1281,9 @@ namespace Obi.ProjectView
                         else if ( selectedNode != null && selectedNode.IsRooted )
                             {//2
                             
-                            ObiNode currentNode = selectedNode.FollowingNode;
+                            //ObiNode currentNode = selectedNode.FollowingNode; // lets start from selected node
+                            ObiNode currentNode = selectedNode;
+
                             // pause playback if it is active.
                             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                 {
