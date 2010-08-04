@@ -2957,7 +2957,13 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectPreviousStrip ()
             {
             bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing;
-            if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+            if (mProjectView.TransportBar.IsPlayerActive 
+                && 
+                (mProjectView.Selection == null
+                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode ))) 
+                {
+                mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
+            }
 
             if (mProjectView.GetSelectedPhraseSection == null) return false;
             SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
