@@ -622,6 +622,8 @@ namespace Obi.ProjectView
                 {
                 for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
                     {
+                    if ( i >= mBlockLayout.Controls.Count) continue;
+
                     if (mBlockLayout.Controls[i] is Block)
                         {
                         if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
