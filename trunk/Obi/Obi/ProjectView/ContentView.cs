@@ -1348,9 +1348,17 @@ namespace Obi.ProjectView
 
                     if (shouldRemoveBlocks)
                         {
-                        if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.Selection.Node.IsRooted)
+                        if (mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted
+                            && ( mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
                             {
-                                                        int currentPhraseIndex = mProjectView.Selection.Node.Index;
+                            int currentPhraseIndex = mProjectView.Selection is StripIndexSelection ? (( StripIndexSelection) mProjectView.Selection) .EmptyNodeForSelection.Index: mProjectView.Selection.Node.Index;
+                                                        if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
+                                                            && (mProjectView.Selection.Node.isSiblingOf (mSelection.Node)    ||    mProjectView.Selection.Node == mSelection.Node))
+                                                            {
+                                                            int contentViewSelectionIndex = mSelection is StripIndexSelection ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : mSelection.Node.Index;
+                                                            if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
+                                                            
+                                                                                                                        }
                                                         if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
                                                         
                                                         if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
