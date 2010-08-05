@@ -1416,7 +1416,7 @@ namespace Obi.ProjectView
             
             ObiNode currentlySelectedNode = mProjectView.Selection is StripIndexSelection? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection: mProjectView.Selection.Node;
 
-            if (currentlySelectedNode is SectionNode )
+            if (currentlySelectedNode != null &&  currentlySelectedNode is SectionNode )
                 {
                 if (((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
                     {
@@ -1428,7 +1428,8 @@ namespace Obi.ProjectView
                     return;
                     }
                 }
-            
+            if ( currentlySelectedNode == null || ( currentlySelectedNode != null && !currentlySelectedNode.IsRooted )) return ;
+
             Strip stripControl = FindStrip ( currentlySelectedNode.ParentAs<SectionNode> () );
 
             if (stripControl != null    &&    stripControl.IsContentViewFilledWithBlocks)
