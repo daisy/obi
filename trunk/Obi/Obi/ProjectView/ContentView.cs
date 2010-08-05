@@ -511,6 +511,8 @@ namespace Obi.ProjectView
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus ();
                         mFocusing = false;
+
+                        RemoveBlocksBelowContentViewVisibleArea ();//@singleSection: explicitly call remove after rearrangement of strip panel
                         }
                     }
                 }
@@ -1401,6 +1403,65 @@ namespace Obi.ProjectView
             
             return true;
             }
+
+        //@singleSection
+        private void RemoveBlocksBelowContentViewVisibleArea ()
+            {
+            if (mProjectView.Selection == null) return;
+            
+            ObiNode currentlySelectedNode = mProjectView.Selection is StripIndexSelection? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection: mProjectView.Selection.Node;
+
+            if (currentlySelectedNode is SectionNode )
+                {
+                if (((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
+                    {
+                    currentlySelectedNode = currentlySelectedNode.PhraseChildCount >40?  ((SectionNode)currentlySelectedNode).PhraseChild ( 40 ): 
+                    currentlySelectedNode.PhraseChild ( currentlySelectedNode.PhraseChildCount - 1 );
+                    }
+                else 
+                    {
+                    return;
+                    }
+                }
+            
+            Strip stripControl = FindStrip ( currentlySelectedNode.ParentAs<SectionNode> () );
+
+            if (stripControl != null    &&    stripControl.IsContentViewFilledWithBlocks)
+                {
+                
+                bool wasPlaybackOn = false;
+                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase ;
+                // pause playback if it is active.
+                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                    {
+                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                    wasPlaybackOn = true;
+                    mProjectView.TransportBar.Pause ();
+                    }
+
+                try
+                    {
+                    EmptyNode lastIntentedVisiblePhrase = (EmptyNode)currentlySelectedNode;
+                    stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, true, false );
+                    Console.WriteLine ( "remove explicitly  atmost till " + lastIntentedVisiblePhrase);
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+
+                UpdateSize ();
+
+                if (wasPlaybackOn)
+                    {
+                    mProjectView.TransportBar.PlayOrResume ();
+                    //SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                    m_EnableFindPlaybackBlockDuringCursorUpdate = true;
+                    }
+                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
+                }
+            }
+
         //@singleSection
         public void CreateBlocksTillEndInStrip ( Strip stripControl )
             {
