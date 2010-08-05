@@ -50,7 +50,7 @@ namespace Obi.ProjectView
             mClipboard = null;
             mTabbingTimer = null;
             //mShowOnlySelected = false;
-            MaxVisibleBlocksCount = 700; // @phraseLimit
+            MaxVisibleBlocksCount = 1250; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
             }
 
