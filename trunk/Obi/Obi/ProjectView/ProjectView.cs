@@ -2485,6 +2485,8 @@ namespace Obi.ProjectView
         //@singleSection
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) { mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase ); }
 
+        //@singleSection
+        public bool IsContentViewScrollActive { get { return mContentView.IsScrollActive; } }
 
         /// <summary>
         /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling
