@@ -1353,7 +1353,12 @@ namespace Obi.ProjectView
                         if (mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted
                             && ( mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
                             {
-                            int currentPhraseIndex = mProjectView.Selection is StripIndexSelection ? (( StripIndexSelection) mProjectView.Selection) .EmptyNodeForSelection.Index: mProjectView.Selection.Node.Index;
+                            ObiNode currentPhraseNode = mProjectView.Selection is StripIndexSelection ? (( StripIndexSelection) mProjectView.Selection) .EmptyNodeForSelection: 
+                                mProjectView.Selection.Node;
+
+                            int currentPhraseIndex = (currentPhraseNode != null && currentPhraseNode.IsRooted) ? currentPhraseNode.Index : -1;
+                            if (currentPhraseIndex == -1) return true;
+
                                                         if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
                                                             && (mProjectView.Selection.Node.isSiblingOf (mSelection.Node)    ||    mProjectView.Selection.Node == mSelection.Node))
                                                             {
