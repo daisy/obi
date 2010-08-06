@@ -1699,6 +1699,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                     < contentViewVisibleHeight )
                                     {
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                                    mProjectView.ObiForm.Cursor = Cursors.Default;
+                                    m_IsScrollActive = false;
                                     return;
                                     }
 
@@ -1713,7 +1715,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             
                             }
                         else if (nextThresholdIndex <= lastBlock.Node.Index
-                            && currentlyActiveStrip.IsContentViewFilledWithBlocks )
+                            && currentlyActiveStrip.IsContentViewFilledWithBlocks 
+                            && lastBlock.Node.Index < currentlyActiveStrip.Node.PhraseChildCount - 1)
                             //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
 
