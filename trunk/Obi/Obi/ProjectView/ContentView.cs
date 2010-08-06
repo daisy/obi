@@ -1977,6 +1977,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
             {
+            
             if ( recordingResumePhrase != null
                 || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode) )
                 {
@@ -1986,6 +1987,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 Strip stripControl = FindStrip ( section );
 
                 if (stripControl == null) return;
+                if (recordingResumePhrase != null && stripControl.FindBlock ( recordingResumePhrase ) != null) return;
+
                 Block firstBlock = stripControl.FirstBlock;
                 Block lastBlock = stripControl.LastBlock;
 
