@@ -2003,6 +2003,12 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
 
                     // now create some blocks before recording phrase 
+                    if (recordingResumePhrase != null)
+                        {
+                        stripControl.AddBlockForNode ( recordingResumePhrase );
+                        CreatePhraseBlocksForFillingContentView ( stripControl );
+                        return;
+                        }
                     if (stripControl.Node.PhraseChildCount > 2)
                         {
                         for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)
