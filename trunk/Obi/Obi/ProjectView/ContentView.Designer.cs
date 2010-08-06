@@ -393,9 +393,9 @@ namespace Obi.ProjectView
             // mCornerPanel
             // 
             this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mCornerPanel.Location = new System.Drawing.Point(509, 529);
+            this.mCornerPanel.Location = new System.Drawing.Point(509, 532);
             this.mCornerPanel.Name = "mCornerPanel";
-            this.mCornerPanel.Size = new System.Drawing.Size(29, 22);
+            this.mCornerPanel.Size = new System.Drawing.Size(29, 18);
             this.mCornerPanel.TabIndex = 4;
             // 
             // timer1
