@@ -2764,6 +2764,7 @@ stripControl.Node.PhraseChildCount > 0)
             mStripsPanel.BackColor = settings.ContentViewBackColor;
             foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ColorSettings = settings;
             UpdateWaveforms ();
+            contentViewLabel1.invertColor = SystemInformation.HighContrast;
             }
 
         // Update all waveforms after colors have been set
