@@ -41,14 +41,18 @@ namespace Obi.ProjectView
         public bool invertColor
         {
             get { return mFlagInvert; }
-            set { mFlagInvert = value; }
+            set 
+                { 
+                mFlagInvert = value;
+                UpdateColors ();
+                }
         }
 
         public bool sectionSelected
         {
             get { return mFlagSectionSelected; }
             set { mFlagSectionSelected = value;
-            InvertColor();
+            UpdateColors();
                 }            
         }
 
@@ -110,7 +114,7 @@ namespace Obi.ProjectView
             //    InvertColor(false);
          }
 
-       public void InvertColor()
+       public void UpdateColors()
         {
 
             if (mFlagInvert && mFlagSectionSelected)
