@@ -1993,11 +1993,18 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 Block lastBlock = stripControl.LastBlock;
 
                 if (firstBlock != null && lastBlock != null
-                    && lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index)
+                    && ( lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index    
+                    ||    ( recordingResumePhrase != null &&  lastBlock.Node.Index < recordingResumePhrase.Index ) ) )
                     {
-                    EmptyNode lastNodeOfSection = stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
+                    EmptyNode lastVisiblePhraseIntended = recordingResumePhrase != null ? recordingResumePhrase:
+                        stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
 
-
+                    if (lastVisiblePhraseIntended.Index < lastBlock.Node.Index + 10)
+                        {
+                        CreateBlocksTillNodeInStrip ( stripControl, lastVisiblePhraseIntended, false );
+                        if (recordingResumePhrase != null) CreatePhraseBlocksForFillingContentView ( stripControl );
+                        return;
+                        }
                     System.Media.SystemSounds.Asterisk.Play ();
                     stripControl.RemoveAllBlocks ( false );
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
@@ -2009,6 +2016,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         CreatePhraseBlocksForFillingContentView ( stripControl );
                         return;
                         }
+
                     if (stripControl.Node.PhraseChildCount > 2)
                         {
                         for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)
