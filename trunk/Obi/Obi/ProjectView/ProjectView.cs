@@ -1529,7 +1529,7 @@ namespace Obi.ProjectView
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message ( "audio_file_filter" );
-            return dialog.ShowDialog () == DialogResult.OK ? dialog.FileNames : null;
+            return dialog.ShowDialog () == DialogResult.OK ? Audio.AudioFormatConverter.ConvertFiles ( dialog.FileNames, mPresentation ) : null;
             }
 
         public void SelectNothing () { Selection = null; }
