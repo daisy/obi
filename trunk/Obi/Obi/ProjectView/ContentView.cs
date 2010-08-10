@@ -3499,7 +3499,14 @@ stripControl.Node.PhraseChildCount > 0)
                     }
 
                 if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
-                /*
+
+                //if playback is active, update playback block
+                if (mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock == null)
+                    {
+                    SetPlaybackPhraseAndTime ( mProjectView.TransportBar.PlaybackPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                    }                    
+
+                                /*
                 if (IsBlockInvisibleButStripVisible ( node ))
                     {
                     mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
