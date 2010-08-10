@@ -44,7 +44,8 @@ namespace Obi.ProjectView
         private float mBaseFontSize;
         private TOCView m_TocView; //@singleSection
         private List<SectionNode> m_SectionsList;//@singleSection
-        private SectionNode m_SectionActiveInContentView;
+        private SectionNode m_SectionActiveInContentView; //@singleSection
+        private ObiNode m_FindStartNode; //@singleSection
 
         public FindInText()
         {
@@ -178,6 +179,23 @@ namespace Obi.ProjectView
         /// </summary>
         private void FindAnother(SearchDirection dir)
         {
+            //@singleSection:
+            // first check if current selection is in sync with selection at time of initialization
+        if (mProjectView.Selection != null)
+            {
+            if (m_TocView == null 
+                && mStripsView != null
+                && mProjectView.Selection.Control is TOCView)
+                {
+                StartNewSearch ( mStripsView );
+                }
+            else if (mStripsView == null
+                && m_TocView != null
+                && mProjectView.Selection.Control is ContentView)
+                {
+                StartNewSearch ( m_TocView);
+                }
+            }
             if (!mFoundFirst)
             {
                 InitialSearch();
@@ -368,7 +386,17 @@ namespace Obi.ProjectView
         private void mString_TextChanged(object sender, EventArgs e)
         {
             //if the text has been cleared, pretend it's a new search
-            if (mString.Text == "") StartNewSearch(mStripsView);
+        if (mString.Text == "")
+            {
+            if (mProjectView.Selection != null && mProjectView.Selection.Control is TOCView && m_TocView != null)
+                {
+                StartNewSearch ( m_TocView );
+                }
+            else if ( mStripsView != null )
+                {
+                StartNewSearch ( mStripsView );
+                }
+            }
         }
 
         /// <summary>
@@ -594,7 +622,7 @@ namespace Obi.ProjectView
                 }
 
             }
-        private ObiNode m_InitiallySelectedNode;
+        
         //@singleSection
         List<SectionNode> GetSectionsList ( RootNode rNode )
             {
