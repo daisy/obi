@@ -1333,6 +1333,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find reached starting point of search....
+        /// </summary>
+        internal static string Find_ReachedInitialPoint {
+            get {
+                return ResourceManager.GetString("Find_ReachedInitialPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Searched all text..
         /// </summary>
         internal static string finished_searching_all {
