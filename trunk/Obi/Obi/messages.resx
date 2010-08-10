@@ -1444,4 +1444,7 @@ Error text: {1}</value>
   <data name="RecordingResumePhrasesDeleted" xml:space="preserve">
     <value>Not able to find paused phrase! Starting Recording from existing selection.</value>
   </data>
+  <data name="Find_ReachedInitialPoint" xml:space="preserve">
+    <value>Find reached starting point of search...</value>
+  </data>
 </root>
