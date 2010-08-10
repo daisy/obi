@@ -42,6 +42,9 @@ namespace Obi.ProjectView
         private SearchDirection mLastDirection;
         private Timer mTimer;
         private float mBaseFontSize;
+        private TOCView m_TocView; //@singleSection
+        private List<SectionNode> m_SectionsList;//@singleSection
+        private SectionNode m_SectionActiveInContentView;
 
         public FindInText()
         {
@@ -55,6 +58,8 @@ namespace Obi.ProjectView
             mTimer = new Timer();
             mTimer.Interval = 7000;
             mTimer.Tick += new EventHandler(mTimer_Tick);
+            m_SectionsList = null;//@singleSection
+            m_SectionActiveInContentView = null; //@singleSection
         }
 
         /// <summary>
@@ -95,9 +100,26 @@ namespace Obi.ProjectView
         /// <summary>
         /// This function displays the find in text form.
         /// </summary>
-        public void StartNewSearch(ContentView strips)
+        //public void StartNewSearch(ContentView strips)
+        public void StartNewSearch ( Control view)
         {
-            mStripsView = strips;
+        if (view is ContentView)//@singleSection
+            {
+            mStripsView = (ContentView)view;
+            m_TocView = null;
+            m_SectionActiveInContentView = null;
+            if (mProjectView.GetSelectedPhraseSection != null) m_SectionActiveInContentView = mProjectView.GetSelectedPhraseSection;
+            if (m_SectionActiveInContentView == null) m_SectionActiveInContentView = mStripsView.ActiveStrip.Node;
+            }
+        else if (view is TOCView)
+            {
+            m_TocView = (TOCView)view;
+            mStripsView = null;
+            }
+        else
+            {
+            throw new System.Exception ( "Find should receive TocView or ContentView instance " );
+            }
             mProjectView.FindInTextVisible = true;
             mFoundFirst = false;
             mNumberSearched = 0;
@@ -105,6 +127,7 @@ namespace Obi.ProjectView
             mString.SelectAll();
             mString.Focus();
             mProjectView.ObiForm.Status(Localizer.Message("find_in_text_init"));
+            if ( m_TocView != null )  m_SectionsList = GetSectionsList ( mProjectView.Presentation.RootNode );//@singleSection: done at last to allow find control open without delay
         }
 
         /// <summary>
@@ -133,11 +156,21 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitialSearch()
         {
-            mOriginalPosition = GetCurrentIndex();
+        if (m_TocView != null)//@singleSection
+            {
+            SearchSections ( mString.Text, SearchDirection.NEXT );
+            }
+        else 
+            {
+            SearchInSection ( mString.Text, SearchDirection.NEXT );
+            return;
+            //@singleSection : below is original
+            mOriginalPosition = GetCurrentIndex ();
             mLastDirection = SearchDirection.NEXT;
             //if nothing is selected, start at the top
             if (mOriginalPosition == -1) mOriginalPosition = 0;
-            Search(mOriginalPosition, mString.Text, SearchDirection.NEXT, true);
+            Search ( mOriginalPosition, mString.Text, SearchDirection.NEXT, true );
+            }
         }
 
         /// <summary>
@@ -164,22 +197,33 @@ namespace Obi.ProjectView
                 }
 
                 //this returns an index into the StripsView.Searchables collection
-                int currentSelection = GetCurrentIndex();
-                if (dir == SearchDirection.NEXT)
+                int currentSelection  = -1 ;
+                //if ( m_TocView == null )  currentSelection = GetCurrentIndex();//@singleSection: if added
+                if (dir == SearchDirection.NEXT )
                 {
-                    currentSelection = GetNextIndex(currentSelection);
+                    //if ( m_TocView == null ) currentSelection = GetNextIndex(currentSelection);//@singleSection
                     mProjectView.ObiForm.Status(Localizer.Message("find_next_in_text"));
                     mTimer.Stop ();
                     mTimer.Start ();
                 }
                 else
                 {
-                    currentSelection = GetPreviousIndex(currentSelection);
+                    //if ( m_TocView == null ) currentSelection = GetPreviousIndex(currentSelection);//@singleSectionn
                     mProjectView.ObiForm.Status(Localizer.Message("find_prev_in_text"));
                     mTimer.Stop ();
                     mTimer.Start ();
                                     }
-                Search(currentSelection, mString.Text, dir, false);
+                                if (m_TocView != null) //@singleSection
+                                    {
+                                    SearchSections ( mString.Text, dir );
+                                    }
+                                else 
+                                    {
+                                    SearchInSection ( mString.Text, dir );
+                                    //@singleSection : Original is below
+                                    //Search ( currentSelection, mString.Text, dir, false );
+                                    }
+
             }
         }
 
@@ -404,6 +448,172 @@ namespace Obi.ProjectView
         {
             mProjectView.FindNextInText ();
         }
+
+        //@singleSection
+        private ObiNode SearchInSection ( string searchString, SearchDirection direction )
+            {
+            if (m_SectionActiveInContentView == null) return null;
+
+            EmptyNode currentlySelectedNode = mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
+
+            ObiNode foundNode = null;
+            if (direction == SearchDirection.NEXT)
+                {
+
+                int iterationIndex = currentlySelectedNode == null ? -1 : currentlySelectedNode.Index;
+                
+                for (int i = 0; i < m_SectionActiveInContentView.PhraseChildCount; ++i)
+                    {
+                    ++iterationIndex;
+                    if (iterationIndex >= m_SectionActiveInContentView.PhraseChildCount)
+                        {
+                        iterationIndex = 0;
+                        System.Media.SystemSounds.Beep.Play ();
+                        }
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort ().Contains ( searchString.ToLower () ))
+                        {
+                        foundNode = m_SectionActiveInContentView.PhraseChild (iterationIndex);
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
+                                                }
+
+                    if ( iterationIndex == m_SectionActiveInContentView.PhraseChildCount - 1 
+                        && m_SectionActiveInContentView.Label.ToLower().Contains ( searchString.ToLower ()) )
+                        {
+                        foundNode = m_SectionActiveInContentView ;
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
+                        }
+
+                    }
+                
+                }
+            else
+                {
+                int iterationIndex = currentlySelectedNode == null ? m_SectionActiveInContentView.PhraseChildCount : currentlySelectedNode.Index;
+                
+                for (int i = m_SectionActiveInContentView.PhraseChildCount- 1; i >= 0; --i)
+                    {
+                    --iterationIndex;
+                    if (iterationIndex < 0)
+                        {
+                        iterationIndex = m_SectionActiveInContentView.PhraseChildCount - 1;
+                        System.Media.SystemSounds.Beep.Play ();
+                        }
+                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort().ToLower ().Contains ( searchString.ToLower () ))
+                        {
+                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
+                                                }
+
+                                            if (iterationIndex == 0
+                                                && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
+                                                {
+                                                foundNode = m_SectionActiveInContentView;
+                                                if (!mFoundFirst) mFoundFirst = true;
+                                                break;
+                                                }
+
+                    }
+                
+                }
+            if ( foundNode != null && mStripsView != null ) 
+                {
+                if (foundNode is EmptyNode)
+                    {
+                    mStripsView.SelectPhraseBlockOrStrip ( (EmptyNode)foundNode );
+                    }
+                else
+                    {
+                    mProjectView.Selection = new NodeSelection ( foundNode, mStripsView );
+                    }
+
+                return foundNode ;
+                }
+                
+                return null;
+                }
+            
+
+        //@singleSection
+        private SectionNode SearchSections ( string searchString, SearchDirection direction )
+            {
+            
+            if (m_SectionsList.Count == 0) return null;
+            SectionNode currentlySelectedSection = mProjectView.GetSelectedPhraseSection;
+            
+
+            if (direction == SearchDirection.NEXT)
+                {
+                int selectedSectionIndexInList = currentlySelectedSection == null ? 0 : m_SectionsList.IndexOf ( currentlySelectedSection );
+                int iterationIndex = selectedSectionIndexInList;
+                SectionNode nextSection = null;
+                for (int i = 0; i < m_SectionsList.Count; ++i)
+                    {
+                    ++iterationIndex;
+                    if (iterationIndex >= m_SectionsList.Count)
+                        {
+                        iterationIndex = 0;
+                        System.Media.SystemSounds.Beep.Play ();
+                        }
+                    if (m_SectionsList[iterationIndex].Label.ToLower ().Contains ( searchString.ToLower () ))
+                        {
+                        nextSection = m_SectionsList[iterationIndex];
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
+                        
+                        }
+                    }
+                if (m_TocView != null && nextSection != null) mProjectView.Selection = new NodeSelection ( nextSection, m_TocView );
+                return nextSection;
+                }
+            else
+                {
+                int selectedSectionIndexInList = currentlySelectedSection == null ? m_SectionsList.Count - 1 : m_SectionsList.IndexOf ( currentlySelectedSection );
+                int iterationIndex = selectedSectionIndexInList;
+                SectionNode previousSection = null;
+                for (int i = m_SectionsList.Count - 1; i >= 0; --i)
+                    {
+                    --iterationIndex;
+                    if (iterationIndex < 0)
+                        {
+                        iterationIndex = m_SectionsList.Count - 1;
+                        System.Media.SystemSounds.Beep.Play ();
+                        }
+                    if (m_SectionsList[iterationIndex].Label.ToLower ().Contains ( searchString.ToLower () ))
+                        {
+                        previousSection = m_SectionsList[iterationIndex];
+                        if (!mFoundFirst) mFoundFirst = true;
+                        break;
+                        
+                        }
+                    }
+                if ( m_TocView != null && previousSection != null ) mProjectView.Selection = new NodeSelection ( previousSection, m_TocView ) ;
+                return previousSection;
+                }
+
+            }
+        private ObiNode m_InitiallySelectedNode;
+        //@singleSection
+        List<SectionNode> GetSectionsList ( RootNode rNode )
+            {
+            List<SectionNode> m_SectionsList = new List<SectionNode> ();
+            rNode.acceptDepthFirst (
+                    delegate ( urakawa.core.TreeNode n )
+                        {
+
+                        if (n is SectionNode && ((SectionNode)n).Used)
+                            {
+
+                            m_SectionsList.Add ( (SectionNode)n );
+                            }
+                        return true;
+                        },
+                    delegate ( urakawa.core.TreeNode n ) { } );
+
+            return m_SectionsList;
+            }
 
         private void mCloseButton_Click(object sender, EventArgs e)
         {
