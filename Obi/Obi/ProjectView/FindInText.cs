@@ -129,6 +129,7 @@ namespace Obi.ProjectView
             mString.Focus();
             mProjectView.ObiForm.Status(Localizer.Message("find_in_text_init"));
             if ( m_TocView != null )  m_SectionsList = GetSectionsList ( mProjectView.Presentation.RootNode );//@singleSection: done at last to allow find control open without delay
+            m_FindStartNode = null; //@singleSection
         }
 
         /// <summary>
@@ -489,7 +490,7 @@ namespace Obi.ProjectView
                 {
 
                 int iterationIndex = currentlySelectedNode == null ? -1 : currentlySelectedNode.Index;
-                
+
                 for (int i = 0; i < m_SectionActiveInContentView.PhraseChildCount; ++i)
                     {
                     ++iterationIndex;
@@ -498,29 +499,29 @@ namespace Obi.ProjectView
                         iterationIndex = 0;
                         System.Media.SystemSounds.Beep.Play ();
                         }
-                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort ().Contains ( searchString.ToLower () ))
+                    if (m_SectionActiveInContentView.PhraseChild ( iterationIndex ).BaseStringShort ().Contains ( searchString.ToLower () ))
                         {
-                        foundNode = m_SectionActiveInContentView.PhraseChild (iterationIndex);
+                        foundNode = m_SectionActiveInContentView.PhraseChild ( iterationIndex );
                         if (!mFoundFirst) mFoundFirst = true;
                         break;
-                                                }
+                        }
 
-                    if ( iterationIndex == m_SectionActiveInContentView.PhraseChildCount - 1 
-                        && m_SectionActiveInContentView.Label.ToLower().Contains ( searchString.ToLower ()) )
+                    if (iterationIndex == m_SectionActiveInContentView.PhraseChildCount - 1
+                        && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
                         {
-                        foundNode = m_SectionActiveInContentView ;
+                        foundNode = m_SectionActiveInContentView;
                         if (!mFoundFirst) mFoundFirst = true;
                         break;
                         }
 
                     }
-                
+
                 }
             else
                 {
                 int iterationIndex = currentlySelectedNode == null ? m_SectionActiveInContentView.PhraseChildCount : currentlySelectedNode.Index;
-                
-                for (int i = m_SectionActiveInContentView.PhraseChildCount- 1; i >= 0; --i)
+
+                for (int i = m_SectionActiveInContentView.PhraseChildCount - 1; i >= 0; --i)
                     {
                     --iterationIndex;
                     if (iterationIndex < 0)
@@ -528,28 +529,35 @@ namespace Obi.ProjectView
                         iterationIndex = m_SectionActiveInContentView.PhraseChildCount - 1;
                         System.Media.SystemSounds.Beep.Play ();
                         }
-                    if (m_SectionActiveInContentView.PhraseChild(iterationIndex).BaseStringShort().ToLower ().Contains ( searchString.ToLower () ))
+                    if (m_SectionActiveInContentView.PhraseChild ( iterationIndex ).BaseStringShort ().ToLower ().Contains ( searchString.ToLower () ))
                         {
-                        foundNode = m_SectionActiveInContentView.PhraseChild(iterationIndex);
-                        if (!mFoundFirst) mFoundFirst = true;
+                        foundNode = m_SectionActiveInContentView.PhraseChild ( iterationIndex );
                         break;
-                                                }
+                        }
 
-                                            if (iterationIndex == 0
-                                                && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
-                                                {
-                                                foundNode = m_SectionActiveInContentView;
-                                                if (!mFoundFirst) mFoundFirst = true;
-                                                break;
-                                                }
+                    if (iterationIndex == 0
+                        && m_SectionActiveInContentView.Label.ToLower ().Contains ( searchString.ToLower () ))
+                        {
+                        foundNode = m_SectionActiveInContentView;
+                        break;
+                        }
 
                     }
-                
+
                 }
-            if ( foundNode != null && mStripsView != null ) 
+            if (foundNode != null && mStripsView != null)
                 {
+                if (m_FindStartNode != null && m_FindStartNode == foundNode)
+                    mProjectView.ObiForm.Status ( Localizer.Message ( "Find_ReachedInitialPoint" ) );
+
+                if (!mFoundFirst)
+                    {
+                    mFoundFirst = true;
+                    m_FindStartNode = foundNode;
+                    }
                 if (foundNode is EmptyNode)
                     {
+
                     mStripsView.SelectPhraseBlockOrStrip ( (EmptyNode)foundNode );
                     }
                 else
@@ -557,11 +565,11 @@ namespace Obi.ProjectView
                     mProjectView.Selection = new NodeSelection ( foundNode, mStripsView );
                     }
 
-                return foundNode ;
+                return foundNode;
                 }
-                
-                return null;
-                }
+
+            return null;
+            }
             
 
         //@singleSection
@@ -570,14 +578,14 @@ namespace Obi.ProjectView
             
             if (m_SectionsList.Count == 0) return null;
             SectionNode currentlySelectedSection = mProjectView.GetSelectedPhraseSection;
-            
 
+            SectionNode foundSectionNode = null;
             if (direction == SearchDirection.NEXT)
                 {
-                int selectedSectionIndexInList = currentlySelectedSection == null ? 0 : m_SectionsList.IndexOf ( currentlySelectedSection );
-                int iterationIndex = selectedSectionIndexInList;
-                SectionNode nextSection = null;
-                for (int i = 0; i < m_SectionsList.Count; ++i)
+                //int selectedSectionIndexInList = currentlySelectedSection == null ? 0 : m_SectionsList.IndexOf ( currentlySelectedSection );
+                int iterationIndex = currentlySelectedSection == null ? -1 : m_SectionsList.IndexOf ( currentlySelectedSection );
+
+                                for (int i = 0; i < m_SectionsList.Count; ++i)
                     {
                     ++iterationIndex;
                     if (iterationIndex >= m_SectionsList.Count)
@@ -587,20 +595,17 @@ namespace Obi.ProjectView
                         }
                     if (m_SectionsList[iterationIndex].Label.ToLower ().Contains ( searchString.ToLower () ))
                         {
-                        nextSection = m_SectionsList[iterationIndex];
-                        if (!mFoundFirst) mFoundFirst = true;
+                        foundSectionNode = m_SectionsList[iterationIndex];
                         break;
                         
                         }
                     }
-                if (m_TocView != null && nextSection != null) mProjectView.Selection = new NodeSelection ( nextSection, m_TocView );
-                return nextSection;
+                
                 }
             else
                 {
-                int selectedSectionIndexInList = currentlySelectedSection == null ? m_SectionsList.Count - 1 : m_SectionsList.IndexOf ( currentlySelectedSection );
-                int iterationIndex = selectedSectionIndexInList;
-                SectionNode previousSection = null;
+                int iterationIndex = currentlySelectedSection == null ? m_SectionsList.Count : m_SectionsList.IndexOf ( currentlySelectedSection );
+                
                 for (int i = m_SectionsList.Count - 1; i >= 0; --i)
                     {
                     --iterationIndex;
@@ -611,18 +616,31 @@ namespace Obi.ProjectView
                         }
                     if (m_SectionsList[iterationIndex].Label.ToLower ().Contains ( searchString.ToLower () ))
                         {
-                        previousSection = m_SectionsList[iterationIndex];
-                        if (!mFoundFirst) mFoundFirst = true;
-                        break;
-                        
+                       foundSectionNode = m_SectionsList[iterationIndex];
+                                                break;
                         }
-                    }
-                if ( m_TocView != null && previousSection != null ) mProjectView.Selection = new NodeSelection ( previousSection, m_TocView ) ;
-                return previousSection;
-                }
 
+                    }
+                
+                }
+            if (foundSectionNode != null && m_TocView != null)
+                {
+                if (m_FindStartNode != null && m_FindStartNode == foundSectionNode)
+                    mProjectView.ObiForm.Status ( Localizer.Message ( "Find_ReachedInitialPoint" ) );
+
+                if (!mFoundFirst)
+                    {
+                    mFoundFirst = true;
+                    m_FindStartNode = foundSectionNode;
+                    }
+                mProjectView.Selection = new NodeSelection ( foundSectionNode, m_TocView );
+                
+                return foundSectionNode;
+                }
+            return null;
             }
         
+
         //@singleSection
         List<SectionNode> GetSectionsList ( RootNode rNode )
             {
