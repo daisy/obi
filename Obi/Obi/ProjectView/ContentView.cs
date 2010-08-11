@@ -2047,9 +2047,9 @@ stripControl.Node.PhraseChildCount > 0)
 
                 ChangeVisibilityProcessState ( true );
                 // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
-                if (!m_CreatingGUIForNewPresentation &&
-                    (VisibleBlocksCount + stripControl.Node.PhraseChildCount) > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility))
-                    MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, true, 0 );
+                //if (!m_CreatingGUIForNewPresentation &&
+                    //(VisibleBlocksCount + stripControl.Node.PhraseChildCount) > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility))
+                    //MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, true, 0 ); //@singleSection
 
                 int indexAddition = -1;
                 bool IsAllBlocksCreated = true;
@@ -2082,8 +2082,8 @@ stripControl.Node.PhraseChildCount > 0)
                     MessageBox.Show ( ex.ToString () );
                     }
 
-                if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount && IsAllBlocksCreated)
-                    MakeOldStripsBlocksInvisible ( indexAddition );
+                //if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount && IsAllBlocksCreated)
+                    //MakeOldStripsBlocksInvisible ( indexAddition );//@singleSection
 
                 if (!m_CreatingGUIForNewPresentation) UpdateSize ();
 
@@ -2148,6 +2148,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (!m_CreatingGUIForNewPresentation) mProjectView.ChangeVisibilityProcessState ( active );
             }
 
+        /*@singleSection
         // @phraseLimit
         /// <summary>
         /// Make blocks of strips invisible. For making invisible, the function selects farthest strip w.r.t. strip index passed as parameter
@@ -2215,6 +2216,7 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             //m_BlocksVisibilityOperationMutex.ReleaseMutex ();
             }
+        
 
         // @phraseLimit
         /// <summary>
@@ -2271,7 +2273,7 @@ stripControl.Node.PhraseChildCount > 0)
                     }
                 }
             }
-
+        */
         // @phraseLimit
         /// <summary>
         /// returns index of section node  passed as parameter in visible strips list, returns -1 if the parameter node do not lie in visible strips list
@@ -2290,6 +2292,7 @@ stripControl.Node.PhraseChildCount > 0)
             return -1;
             }
 
+        
         /// <summary>
         /// Make all phrase blocks invisible in  strip of parameter  section node
         /// </summary>
@@ -2369,7 +2372,7 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             return 0;
             }
-
+        
         // @phraseLimit
         /// <summary>
         /// find the index of strip in visible strips list for making its blocks invisible, currently it searches the farthest index with respect to parameter index
@@ -2723,7 +2726,9 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
-            
+            return b;
+
+            /*
             // change colors if added phrase is first phrase of section and recorder is active.
             if (b != null && b.Node.Index == 0 && mProjectView.TransportBar.IsRecorderActive)
                 stripControl.UpdateColors ();
@@ -2747,9 +2752,9 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 //MakeOldStripsBlocksInvisible ( 1, true, indexOfNewStrip );
                 }
-
+            */
             
-            return b;
+            
             }
 
         private delegate void ControlInvokation ( Control c );
