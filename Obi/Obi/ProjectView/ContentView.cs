@@ -1779,6 +1779,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                         (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
+
+                                    CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                                     stopWatch.Stop ();
                                     Console.WriteLine ( "stop watch " + stopWatch.Elapsed.TotalMilliseconds );
                                     Console.WriteLine ( "previous blocks created " );
