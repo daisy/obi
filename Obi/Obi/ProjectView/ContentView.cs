@@ -1989,7 +1989,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                 if (stripControl == null) return;
                 if (recordingResumePhrase != null && stripControl.FindBlock ( recordingResumePhrase ) != null) return;
-
+                
                 Block firstBlock = stripControl.FirstBlock;
                 Block lastBlock = stripControl.LastBlock;
 
@@ -1999,15 +1999,16 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     {
                     EmptyNode lastVisiblePhraseIntended = recordingResumePhrase != null ? recordingResumePhrase:
                         stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
-
+                    
                     if (lastVisiblePhraseIntended.Index < lastBlock.Node.Index + 10)
                         {
                         CreateBlocksTillNodeInStrip ( stripControl, lastVisiblePhraseIntended, false );
                         if (recordingResumePhrase != null) CreatePhraseBlocksForFillingContentView ( stripControl );
                         return;
                         }
-                    System.Media.SystemSounds.Asterisk.Play ();
-                    stripControl.RemoveAllBlocks ( false );
+                    //System.Media.SystemSounds.Asterisk.Play ();
+                    //stripControl.RemoveAllBlocks ( false );
+                    stripControl.CreateNewLayout ( false );
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
 
                     // now create some blocks before recording phrase 
@@ -2017,7 +2018,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         CreatePhraseBlocksForFillingContentView ( stripControl );
                         return;
                         }
-
+                    
                     if (stripControl.Node.PhraseChildCount > 2)
                         {
                         for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)

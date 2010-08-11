@@ -1349,6 +1349,21 @@ namespace Obi.ProjectView
             Console.WriteLine ( "move to background " );
             }
 
+        //@singleSection
+        public void CreateNewLayout ( bool preserveExistingLayout )
+            {
+            FlowLayoutPanel oldBlocklayout = mBlockLayout;
+            oldBlocklayout.SendToBack ();
+            mBlockLayout = CreateBackUpLayout ();
+            mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
+            mBlockLayout.BringToFront ();
+            Resize_All ();
+            if (!preserveExistingLayout)
+                {
+                this.Controls.Remove ( oldBlocklayout );
+                oldBlocklayout.Dispose ();
+                }
+            }
 
         public void DestroyStripHandle ()
             {
