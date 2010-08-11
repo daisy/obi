@@ -1444,7 +1444,7 @@ namespace Obi.ProjectView
 
             Strip stripControl = FindStrip ( currentlySelectedNode.ParentAs<SectionNode> () );
 
-            if (stripControl != null    &&    stripControl.IsContentViewFilledWithBlocks)
+            if (stripControl != null    &&    stripControl.IsContentViewFilledWithBlocks && !RestrictDynamicLoadingForRecording(stripControl.Node) )
                 {
                 
                 bool wasPlaybackOn = false;
@@ -1499,6 +1499,9 @@ namespace Obi.ProjectView
             Block lastBlock = stripControl.LastBlock;
             if (firstBlock != null  &&  lastBlock != null)
                 {
+                //recording restriction check
+                if (RestrictDynamicLoadingForRecording ( stripControl.Node ) && stripControl.FindBlock ( mProjectView.TransportBar.RecordingPhrase ) != null) return ;
+
                 EmptyNode startNode = lastBlock.Node;
                 int startNodeIndex = firstBlock.Node.Index;
 
