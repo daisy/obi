@@ -687,7 +687,21 @@ namespace Obi.ProjectView
                 if (mSelection != null && mSelection.Control is TOCView)
                     {
                     // show the selected section in content view
-                    if (GetSelectedPhraseSection != null) mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection , true); //@singleSection
+                    Strip currentlyActiveStrip = mContentView.ActiveStrip;
+
+                    if (GetSelectedPhraseSection != null)//@singleSection
+                        {
+                        if (GetSelectedPhraseSection != currentlyActiveStrip.Node && mContentView.RestrictDynamicLoadingForRecording ( currentlyActiveStrip.Node ))
+                            {
+                            MessageBox.Show ( Localizer.Message ("RecordingRestriction_CannotCreateStrip") ,Localizer.Message("Caption_Information") , MessageBoxButtons.OK  );
+                            currentlyActiveStrip.Focus ();
+                            }
+                        else
+                            {
+                            mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection, true ); 
+                            }
+                        }
+                    
 
                     if (TransportBar.IsPlayerActive)
                         {

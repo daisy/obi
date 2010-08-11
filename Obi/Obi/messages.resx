@@ -1447,4 +1447,7 @@ Error text: {1}</value>
   <data name="Find_ReachedInitialPoint" xml:space="preserve">
     <value>Find reached starting point of search...</value>
   </data>
+  <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
+    <value>Recording active! Cannot show contents of section other than section being recorded.</value>
+  </data>
 </root>

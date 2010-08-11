@@ -2640,6 +2640,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recording active! Cannot show contents of section other than section being recorded..
+        /// </summary>
+        internal static string RecordingRestriction_CannotCreateStrip {
+            get {
+                return ResourceManager.GetString("RecordingRestriction_CannotCreateStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not able to find paused phrase! Starting Recording from existing selection..
         /// </summary>
         internal static string RecordingResumePhrasesDeleted {
