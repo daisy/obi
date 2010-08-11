@@ -1339,11 +1339,11 @@ namespace Obi.ProjectView
             //iterating over the layout panel seems to be the way to search the sections 
             if (mContentView.ContainsFocus)
                 {
-                mFindInText.StartNewSearch ( mContentView );
+                mFindInText.StartNewSearch ( mTOCView, mContentView,  FindViews.ContentView);
                 }
             else
                 {
-                mFindInText.StartNewSearch ( mTOCView );
+                mFindInText.StartNewSearch ( mTOCView, mContentView, FindViews.TocView);
                 }
             }
         public void FindNextInText ()
@@ -2342,13 +2342,14 @@ namespace Obi.ProjectView
                 //mContentView.CreateBlocksInStrip ();
             }
 
-
+        /*@singleSection
         // @phraseLimit
         /// <summary>
         /// makes contents of strips invisible if blocks visibility limit is exceeded. The operation is started from selected section
         /// </summary>
         /// <param name="removeFromSelected"></param>
         public void MakeOldStripsBlocksInvisible ( bool removeFromSelected ) { mContentView.MakeOldStripsBlocksInvisible ( removeFromSelected ); }
+        */
 
         // @phraseLimit
         /// <summary>

@@ -20,6 +20,8 @@ namespace Obi.ProjectView
         string ToMatch();
     }
 
+    public enum FindViews { TocView, ContentView } ;
+
     /// <summary>
     /// Find text in searchable controls (right now this means that we search strip titles, block annotations)
     /// </summary>
@@ -33,7 +35,7 @@ namespace Obi.ProjectView
     /// </remarks>
     public partial class FindInText : UserControl
     {
-        private ContentView mStripsView;
+        private ContentView m_ContentView;
         private int mOriginalPosition;
         private int mNumberSearched;
         private bool mFoundFirst;
@@ -46,10 +48,12 @@ namespace Obi.ProjectView
         private List<SectionNode> m_SectionsList;//@singleSection
         private SectionNode m_SectionActiveInContentView; //@singleSection
         private ObiNode m_FindStartNode; //@singleSection
+        private FindViews m_ViewToSearchIn;
+        
 
         public FindInText()
         {
-            mStripsView = null;
+            m_ContentView = null;
             mOriginalPosition = 0;
             mNumberSearched = 0;
             mProjectView = null;
@@ -102,25 +106,12 @@ namespace Obi.ProjectView
         /// This function displays the find in text form.
         /// </summary>
         //public void StartNewSearch(ContentView strips)
-        public void StartNewSearch ( Control view)
+        public void StartNewSearch (TOCView tocView, ContentView contentView, FindViews view )
         {
-        if (view is ContentView)//@singleSection
-            {
-            mStripsView = (ContentView)view;
-            m_TocView = null;
-            m_SectionActiveInContentView = null;
-            if (mProjectView.GetSelectedPhraseSection != null) m_SectionActiveInContentView = mProjectView.GetSelectedPhraseSection;
-            if (m_SectionActiveInContentView == null) m_SectionActiveInContentView = mStripsView.ActiveStrip.Node;
-            }
-        else if (view is TOCView)
-            {
-            m_TocView = (TOCView)view;
-            mStripsView = null;
-            }
-        else
-            {
-            throw new System.Exception ( "Find should receive TocView or ContentView instance " );
-            }
+        m_ContentView = contentView;
+        m_TocView = tocView;
+        m_ViewToSearchIn = view;
+            
             mProjectView.FindInTextVisible = true;
             mFoundFirst = false;
             mNumberSearched = 0;
@@ -128,7 +119,17 @@ namespace Obi.ProjectView
             mString.SelectAll();
             mString.Focus();
             mProjectView.ObiForm.Status(Localizer.Message("find_in_text_init"));
-            if ( m_TocView != null )  m_SectionsList = GetSectionsList ( mProjectView.Presentation.RootNode );//@singleSection: done at last to allow find control open without delay
+
+            if (view == FindViews.ContentView)
+                {
+                m_SectionActiveInContentView = null;
+                if (mProjectView.GetSelectedPhraseSection != null) m_SectionActiveInContentView = mProjectView.GetSelectedPhraseSection;
+                if (m_SectionActiveInContentView == null) m_SectionActiveInContentView = m_ContentView.ActiveStrip.Node;
+                }
+            else
+                {
+                m_SectionsList = GetSectionsList ( mProjectView.Presentation.RootNode );//@singleSection: done at last to allow find control open without delay
+                }
             m_FindStartNode = null; //@singleSection
         }
 
@@ -158,7 +159,12 @@ namespace Obi.ProjectView
         /// </summary>
         private void InitialSearch()
         {
-        if (m_TocView != null)//@singleSection
+        //@singleSection:
+        // first check if current selection is in sync with selection at time of initialization
+        ChangeSearchViewsIfRequired ();
+
+
+        if (m_ViewToSearchIn == FindViews.TocView)//@singleSection
             {
             SearchSections ( mString.Text, SearchDirection.NEXT );
             }
@@ -175,6 +181,24 @@ namespace Obi.ProjectView
             }
         }
 
+        //@singleSection
+        private void ChangeSearchViewsIfRequired ()
+            {
+            if (mProjectView.Selection != null)
+                {
+                if (mProjectView.Selection.Control is TOCView
+                    && m_ViewToSearchIn == FindViews.ContentView)
+                    {
+                    StartNewSearch ( m_TocView, m_ContentView, FindViews.TocView );
+                    }
+                else if (mProjectView.Selection.Control is ContentView
+                    && m_ViewToSearchIn == FindViews.TocView)
+                    {
+                    StartNewSearch ( m_TocView, m_ContentView, FindViews.ContentView );
+                    }
+                }
+            }
+
         /// <summary>
         /// Search for the next or previous occurrence of the text.  
         /// </summary>
@@ -182,21 +206,8 @@ namespace Obi.ProjectView
         {
             //@singleSection:
             // first check if current selection is in sync with selection at time of initialization
-        if (mProjectView.Selection != null)
-            {
-            if (m_TocView == null 
-                && mStripsView != null
-                && mProjectView.Selection.Control is TOCView)
-                {
-                StartNewSearch ( mStripsView );
-                }
-            else if (mStripsView == null
-                && m_TocView != null
-                && mProjectView.Selection.Control is ContentView)
-                {
-                StartNewSearch ( m_TocView);
-                }
-            }
+        ChangeSearchViewsIfRequired ();
+
             if (!mFoundFirst)
             {
                 InitialSearch();
@@ -232,7 +243,7 @@ namespace Obi.ProjectView
                     mTimer.Stop ();
                     mTimer.Start ();
                                     }
-                                if (m_TocView != null) //@singleSection
+                                if (m_ViewToSearchIn == FindViews.TocView) //@singleSection
                                     {
                                     SearchSections ( mString.Text, dir );
                                     }
@@ -254,9 +265,9 @@ namespace Obi.ProjectView
         /// <param name="direction">NEXT or PREVIOUS</param>
         private void Search(int startingPoint, String searchString, SearchDirection direction, bool isInitialSearch)
         {
-            if (startingPoint < 0 || startingPoint >= mStripsView.Searchables.Count)
-                throw new Exception("Search index " + startingPoint + "out of bounds.  Min = 0, Max = " + mStripsView.Searchables.Count);
-            if (mStripsView.Searchables.Count == 0)
+            if (startingPoint < 0 || startingPoint >= m_ContentView.Searchables.Count)
+                throw new Exception("Search index " + startingPoint + "out of bounds.  Min = 0, Max = " + m_ContentView.Searchables.Count);
+            if (m_ContentView.Searchables.Count == 0)
             {
                 mProjectView.ObiForm.Status(Localizer.Message("nothing_to_search"));
                 return;
@@ -280,13 +291,13 @@ namespace Obi.ProjectView
             {
                 // added to prevent going into infinate loop
             SafetyCounter++;
-            if (SafetyCounter > 2 * mStripsView.Searchables.Count)
+            if (SafetyCounter > 2 * m_ContentView.Searchables.Count)
                 {
                 mProjectView.ObiForm.Status ( Localizer.Message ( "finished_searching_all" ) );
                 return;
                 }
                         
-                if (startIndex == mOriginalPosition && mNumberSearched == mStripsView.Searchables.Count)
+                if (startIndex == mOriginalPosition && mNumberSearched == m_ContentView.Searchables.Count)
                 {
                     mProjectView.ObiForm.Status(Localizer.Message("finished_searching_all"));
                     mNumberSearched = 0;
@@ -295,9 +306,9 @@ namespace Obi.ProjectView
 
                 mNumberSearched++;
                 string to_match = mString.Text.ToLowerInvariant();
-                if (mStripsView.Searchables[startIndex].ToMatch().Contains(to_match))
+                if (m_ContentView.Searchables[startIndex].ToMatch().Contains(to_match))
                 {
-                    SetSelection(mStripsView.Searchables[startIndex]);
+                    SetSelection(m_ContentView.Searchables[startIndex]);
                     found = true;
                 }
                 else
@@ -362,7 +373,7 @@ namespace Obi.ProjectView
             //maybe the user wants to start a new search
             else if (e.KeyCode == Keys.F && Control.ModifierKeys == Keys.Control)
             {
-                StartNewSearch(mStripsView);
+                StartNewSearch(m_TocView, m_ContentView, m_ViewToSearchIn);
             }
         }
 
@@ -389,14 +400,9 @@ namespace Obi.ProjectView
             //if the text has been cleared, pretend it's a new search
         if (mString.Text == "")
             {
-            if (mProjectView.Selection != null && mProjectView.Selection.Control is TOCView && m_TocView != null)
-                {
-                StartNewSearch ( m_TocView );
-                }
-            else if ( mStripsView != null )
-                {
-                StartNewSearch ( mStripsView );
-                }
+            
+                StartNewSearch ( m_TocView, m_ContentView, m_ViewToSearchIn  );
+                
             }
         }
 
@@ -412,10 +418,10 @@ namespace Obi.ProjectView
             //for now, the easiest thing is look for something that is selected in the Searchables collection
             else
             {
-                foreach (ISearchable c in mStripsView.Searchables)
+                foreach (ISearchable c in m_ContentView.Searchables)
                 {
-                    if (c is Strip && ((Strip)c).Highlighted) return mStripsView.Searchables.IndexOf((Strip)c);
-                    else if (c is Block && ((Block)c).Highlighted) return mStripsView.Searchables.IndexOf((Block)c);
+                    if (c is Strip && ((Strip)c).Highlighted) return m_ContentView.Searchables.IndexOf((Strip)c);
+                    else if (c is Block && ((Block)c).Highlighted) return m_ContentView.Searchables.IndexOf((Block)c);
                 }
             }
             return 0;
@@ -429,7 +435,7 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private int GetPreviousIndex(int currentSelection)
         {
-            if (currentSelection <= 0) return mStripsView.Searchables.Count - 1;
+            if (currentSelection <= 0) return m_ContentView.Searchables.Count - 1;
             else return currentSelection-1;
         }
         /// <summary>
@@ -439,7 +445,7 @@ namespace Obi.ProjectView
         /// <returns></returns>
         private int GetNextIndex(int currentSelection)
         {
-            if (currentSelection >= mStripsView.Searchables.Count-1) return 0;
+            if (currentSelection >= m_ContentView.Searchables.Count-1) return 0;
             else return currentSelection+1;
         }
         /// <summary>
@@ -545,7 +551,7 @@ namespace Obi.ProjectView
                     }
 
                 }
-            if (foundNode != null && mStripsView != null)
+            if (foundNode != null && m_ContentView != null)
                 {
                 if (m_FindStartNode != null && m_FindStartNode == foundNode)
                     mProjectView.ObiForm.Status ( Localizer.Message ( "Find_ReachedInitialPoint" ) );
@@ -558,11 +564,11 @@ namespace Obi.ProjectView
                 if (foundNode is EmptyNode)
                     {
 
-                    mStripsView.SelectPhraseBlockOrStrip ( (EmptyNode)foundNode );
+                    m_ContentView.SelectPhraseBlockOrStrip ( (EmptyNode)foundNode );
                     }
                 else
                     {
-                    mProjectView.Selection = new NodeSelection ( foundNode, mStripsView );
+                    mProjectView.Selection = new NodeSelection ( foundNode, m_ContentView );
                     }
 
                 return foundNode;
@@ -633,6 +639,7 @@ namespace Obi.ProjectView
                     mFoundFirst = true;
                     m_FindStartNode = foundSectionNode;
                     }
+                m_TocView.Focus ();
                 mProjectView.Selection = new NodeSelection ( foundSectionNode, m_TocView );
                 
                 return foundSectionNode;
