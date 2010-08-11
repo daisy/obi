@@ -1357,12 +1357,13 @@ namespace Obi.ProjectView
             mBlockLayout = CreateBackUpLayout ();
             mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
             mBlockLayout.BringToFront ();
-            Resize_All ();
+            
             if (!preserveExistingLayout)
                 {
                 this.Controls.Remove ( oldBlocklayout );
                 oldBlocklayout.Dispose ();
                 }
+            Resize_All ();
             }
 
         public void DestroyStripHandle ()
