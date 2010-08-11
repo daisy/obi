@@ -1632,9 +1632,11 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         }
 
                     System.Media.SystemSounds.Asterisk.Play ();
-                    stripControl.RemoveAllBlocks ( false );
+                    //stripControl.RemoveAllBlocks ( false );
+                    stripControl.CreateNewLayout ( false );
+                    UpdateSize ();
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
-                    Console.WriteLine ( "Remove aall executed " );
+                    Console.WriteLine ( "Remove block layout executed " );
                     }
                 else
                     {
