@@ -1232,6 +1232,7 @@ namespace Obi.ProjectView
                 bool shouldRemoveBlocks = true;
                 bool wasPlaybackOn = false;
                 bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
+                int phraseLotSize = PhraseCountInLot ( stripControl, true );
                 try
                     {
                     if (mProjectView.Selection == null ||
@@ -1245,7 +1246,7 @@ namespace Obi.ProjectView
                         Block v = stripControl.FindBlock ( stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
     stripControl.Node.PhraseChild ( defaultVisibleCount - 1 ) );
 
-                        if (v == null)
+                        if (v == null || !stripControl.IsContentViewFilledWithBlocks)
                             {
                             shouldRemoveBlocks = false;
                             int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
@@ -1256,7 +1257,7 @@ namespace Obi.ProjectView
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
-                            for (int i = 0; i < 100 && !stripControl.IsContentViewFilledWithBlocks; ++i)
+                            for (int i = 0; i < phraseLotSize && !stripControl.IsContentViewFilledWithBlocks; ++i)
                                 {
                                 if ((maxCount < defaultVisibleCount && i >= maxCount )
                                     || i >= stripControl.Node.PhraseChildCount )
