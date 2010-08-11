@@ -1146,6 +1146,13 @@ namespace Obi.ProjectView
             {
             if (IsStripVisible ( node )) return null;
 
+            //Check for recording, return if section to be created is not recording section
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording && mProjectView.TransportBar.RecordingPhrase != null)
+                {
+                
+                //if (mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == node) return null;
+                }
+
             // first remove existing strip
             if (removeExisting)
                 {
@@ -3098,6 +3105,7 @@ stripControl.Node.PhraseChildCount > 0)
 
             if (mProjectView.GetSelectedPhraseSection == null) return false;
             SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
+            if ( RestrictDynamicLoadingForRecording( previousSection)) return true ;
             if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection , true); //@singleSection
 
             Strip strip;
@@ -3129,6 +3137,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (currentlySelectedSection  == null) return false;
 
             SectionNode nextSection = currentlySelectedSection.FollowingSection; 
+            if ( RestrictDynamicLoadingForRecording( nextSection )) return true ;
             if (mProjectView.TransportBar.IsPlayerActive && nextSection != null) mProjectView.TransportBar.Stop ();
 
             if (nextSection != null &&
@@ -3168,6 +3177,7 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectFirstStrip ()
             {
             SectionNode section = mProjectView.Presentation.FirstSection; //@singleSection
+            if ( RestrictDynamicLoadingForRecording( section))  return true ;
             if (section != null ) CreateStripForSelectedSection ( section, true); //@singleSection
 
             return SelectStripFor ( delegate ( Strip strip )
@@ -3186,6 +3196,7 @@ stripControl.Node.PhraseChildCount > 0)
                 { }
 
                 SectionNode section = (SectionNode) n;
+            if ( RestrictDynamicLoadingForRecording( section)) return true ;
                 if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
                 if (mProjectView.Selection.Node is PhraseNode && section != null)
                     {
@@ -3546,6 +3557,19 @@ stripControl.Node.PhraseChildCount > 0)
                     }
                 return null;
                 }
+            }
+
+        //@singleSection
+        public bool RestrictDynamicLoadingForRecording ( SectionNode sectionToBeShown)
+            {
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording
+                && mProjectView.TransportBar.RecordingPhrase != null
+                &&    sectionToBeShown != null
+                && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () != sectionToBeShown)
+                {
+                return true;
+                }
+            return false;
             }
 
         //@singleSection
