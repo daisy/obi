@@ -1828,7 +1828,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             }//-2
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
-
+                    ReturnFocusFromVerticalScrollPanel ();
                     m_IsScrollActive = false;
                     mProjectView.ObiForm.Cursor = Cursors.Default;
                     }
@@ -1913,7 +1913,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                 verticleScrollPane1.TrackBarValueInPercentage = 0;
-
+                ReturnFocusFromVerticalScrollPanel ();
                 m_IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 return true;
@@ -1934,12 +1934,23 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
                 verticleScrollPane1.TrackBarValueInPercentage = 100;
+                ReturnFocusFromVerticalScrollPanel ();
                 m_IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 return true;
                 
                 }
             return false;
+            }
+
+        private void ReturnFocusFromVerticalScrollPanel ()
+            {
+            if (mSelectedItem != null && mSelectedItem is Control
+                && !((Control)mSelectedItem).Focused)
+                {
+                DisableScrolling ();
+                ((Control)mSelectedItem).Focus ();
+                }
             }
 
         //@singleSection
