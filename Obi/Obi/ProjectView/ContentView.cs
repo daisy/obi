@@ -266,28 +266,37 @@ namespace Obi.ProjectView
                 SectionNode section = SelectedSection;
                 command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( section, this ) ) );
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
-                if (!section.Used) mProjectView.AppendMakeUnused ( command, next );
+                //if (!section.Used) mProjectView.AppendMakeUnused ( command, next );
                 // Delete nodes in reverse order so that they are added back in the right order on redo
                 // and remove the heading role if there is any in the next section
-                for (int i = next.PhraseChildCount - 1; i >= 0; --i)
-                    {
+                //for (int i = next.PhraseChildCount - 1; i >= 0; --i)
+                    //{
                     // Remove the role before removing the node because it needs to be attached to
                     // inform its parent that it is not a heading anymore.
-                    if (next.PhraseChild ( i ).Role_ == EmptyNode.Role.Heading)
-                        {
-                        Commands.Node.AssignRole role =
-                            new Commands.Node.AssignRole ( mProjectView, next.PhraseChild ( i ), EmptyNode.Role.Plain );
-                        role.UpdateSelection = false;
-                        command.append ( role );
-                        }
-                    Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, next.PhraseChild ( i ) );
-                    delete.UpdateSelection = false;
-                    command.append ( delete );
-                    }
+                    //if (next.PhraseChild ( i ).Role_ == EmptyNode.Role.Heading)
+                        //{
+                        //Commands.Node.AssignRole role =
+                            //new Commands.Node.AssignRole ( mProjectView, next.PhraseChild ( i ), EmptyNode.Role.Plain );
+                        //role.UpdateSelection = false;
+                        //command.append ( role );
+                        //}
+                    //Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, next.PhraseChild ( i ) );
+                    //delete.UpdateSelection = false;
+                    //command.append ( delete );
+                    //}
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
+                    EmptyNode newPhraseNode = (EmptyNode) next.PhraseChild ( i ).copy ( false, true );
+                    if (newPhraseNode.Role_ == EmptyNode.Role.Heading)
+                        {
+                        newPhraseNode.Role_ = EmptyNode.Role.Plain;
+                        }
+                    if (!section.Used && newPhraseNode.Used)
+                        {
+                        newPhraseNode.Used = section.Used;
+                        }
                     command.append ( new
-                        Commands.Node.AddNode ( mProjectView, next.PhraseChild ( i ), section, section.PhraseChildCount + i , false) );
+                        Commands.Node.AddNode ( mProjectView, newPhraseNode, section, section.PhraseChildCount + i, false ) );
                     }
                 command.append ( DeleteStripCommand ( next ) );
                 }
