@@ -1516,6 +1516,19 @@ namespace Obi.ProjectView
                         && stripControl.DisplayPreviousLayout ( nodeOfLastBlockToCreate))
                         {
                         UpdateSize ();
+                        /*
+                        Block firstBlockInNewLayout = stripControl.FirstBlock;
+                        if (firstBlockInNewLayout != null && firstBlockInNewLayout.Node.Index > 0)
+                            {
+                            int prevThresholdForBackground = firstBlockInNewLayout.Node.Index - PhraseCountInLot ( stripControl, true );
+                            EmptyNode backgroundFirstNodeForStrip = prevThresholdForBackground > 0? stripControl.Node.PhraseChild ( prevThresholdForBackground) : 
+                                stripControl.Node.PhraseChild (0) ;
+                            EmptyNode backgroundLastNodeForStrip = firstBlockInNewLayout.Node.Index + 10 > stripControl.Node.PhraseChildCount - 1 ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
+                                stripControl.Node.PhraseChild ( firstBlockInNewLayout.Node.Index + 10 );
+
+                            stripControl.LoadBackUpLayout ( backgroundFirstNodeForStrip, backgroundLastNodeForStrip );
+                            }
+                         */
                         return;
                         }
                     startNode = firstNodeAfterRemove;

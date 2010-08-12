@@ -1238,7 +1238,8 @@ namespace Obi.ProjectView
                 m_BackgroundPhrasesLoadStartIndex = -1;
                 m_BackgroundPhrasesloadTimer.Stop ();
                 UpdateColors ();
-                Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+                m_BackgroundBlockLayout.Location =new Point ( mBlockLayout.Location.X, m_BackgroundBlockLayout.Height * -1 ) ;
+                Console.WriteLine ( "background layout created " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
                 }
             else
                 {
@@ -1371,7 +1372,9 @@ namespace Obi.ProjectView
             FlowLayoutPanel removePanel = mBlockLayout;
             removePanel.SendToBack ();
             this.Controls.Remove ( removePanel );
+
             mBlockLayout = m_BackgroundBlockLayout;
+            m_OffsetForFirstPhrase = FirstBlock.Node.Index;
             mBlockLayout.Location = layoutLocation;
             mBlockLayout.BringToFront ();
             Resize_All ();
