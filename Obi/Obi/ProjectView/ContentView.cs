@@ -1512,6 +1512,12 @@ namespace Obi.ProjectView
                 
                 if (firstNodeAfterRemove  != null)
                     {
+                    if (firstNodeAfterRemove.Index < firstBlock.Node.Index
+                        && stripControl.DisplayPreviousLayout ( nodeOfLastBlockToCreate))
+                        {
+                        UpdateSize ();
+                        return;
+                        }
                     startNode = firstNodeAfterRemove;
                     startNodeIndex = firstNodeAfterRemove.Index;
                     Console.WriteLine ( "Start node aftger removal " + startNode.Index );
@@ -1583,8 +1589,8 @@ namespace Obi.ProjectView
                         }
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                     }
-                UpdateSize ();
-                stripControl.UpdateColors ();
+                                UpdateSize ();
+                                stripControl.UpdateColors ();
                 }
             }
 
@@ -1646,7 +1652,16 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                     System.Media.SystemSounds.Asterisk.Play ();
                     //stripControl.RemoveAllBlocks ( false );
-                    stripControl.CreateNewLayout ( false );
+                    if (startNode.Index > firstBlock.Node.Index)
+                        {
+                        // if next nodes are to be created, current nodes are backed up
+                        stripControl.MoveCurrentBlocklayoutToBackground ();
+                        
+                        }
+                    else
+                        {
+                        stripControl.CreateNewLayout ( false );
+                        }
                     UpdateSize ();
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
                     Console.WriteLine ( "Remove block layout executed " );
@@ -1768,7 +1783,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         {
                         if (mStripsPanel.Location.Y  > interval)
                             {//2
-                            //MessageBox.Show ( "inside " );
+                            
                             if (mStripsPanel.Location.Y >= currentlyActiveStrip.BlocksLayoutTopPosition * -1)
                                 {//3
                                 Console.WriteLine ( "Scroll while creating previous phrases " );
@@ -1776,7 +1791,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                     {//4
                                     int prevThreshold = firstBlock.Node.Index - 1;
                                     System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
-                                    stopWatch.Start ();
+                                    //stopWatch.Start ();
 
                                     int requiredPhraseCount =  currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight (mHScrollBar.Location.Y, verticleScrollPane1.Location.X, 
                                         currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
@@ -1790,10 +1805,26 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
                             false );
 
-                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                        (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
+                                    stopWatch.Start ();
+                                    Block lastBlockInNewLayout = currentlyActiveStrip.LastBlock;
+                                    Block expectedLastBlock = null;
+                                    if (lastBlockInNewLayout != null &&  lastBlockInNewLayout.Node.Index > prevThreshold
+                                        &&
+                                        ( expectedLastBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) ) ) != null 
+                                        && expectedLastBlock.Bottom < lastBlockInNewLayout.Bottom)
+                                            {
+                                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                                (expectedLastBlock.Bottom + currentlyActiveStrip.BlocksLayoutTopPosition - contentViewVisibleHeight) * -1 );
+                                            
+                                        }
+                                    else
+                                        {
+                                        mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                            (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
 
-                                    CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
+                                        CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );    
+                                        }
+                                    
                                     stopWatch.Stop ();
                                     Console.WriteLine ( "stop watch " + stopWatch.Elapsed.TotalMilliseconds );
                                     Console.WriteLine ( "previous blocks created " );
