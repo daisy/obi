@@ -1339,14 +1339,45 @@ namespace Obi.ProjectView
             {
             if (m_BackgroundBlockLayout != null)
                 {
+                this.Controls.Remove ( m_BackgroundBlockLayout );
                 m_BackgroundBlockLayout.Dispose ();
                 }
             m_BackgroundBlockLayout = mBlockLayout;
-            m_BackgroundBlockLayout.Location = new Point ( this.Width, this.Location.Y );
+            m_BackgroundBlockLayout.Location = new Point ( this.Location.X, m_BackgroundBlockLayout.Height * -1 );
             mBlockLayout = CreateBackUpLayout ();
             mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
             Resize_All ();
-            Console.WriteLine ( "move to background " );
+            Console.WriteLine ( "move to background  " + "size : " + m_BackgroundBlockLayout.Size + " location : " + m_BackgroundBlockLayout.Location);
+            }
+
+
+        //@singleSection
+        public bool DisplayPreviousLayout ( EmptyNode expectedLastPhrase)
+            {
+            if (m_BackgroundBlockLayout == null || m_BackgroundBlockLayout.Controls.Count < 2) return false;
+
+            bool isExpectedPhraseExists = false;
+            for (int i = m_BackgroundBlockLayout.Controls.Count - 1; i >= 0; --i)
+                {
+                if (m_BackgroundBlockLayout.Controls[i] is Block && ((Block)m_BackgroundBlockLayout.Controls[i]).Node == expectedLastPhrase)
+                    {
+                    isExpectedPhraseExists = true;
+                    break;
+                    }
+                }
+            if (!isExpectedPhraseExists) return false;
+
+            Point layoutLocation = new Point ( mBlockLayout.Location.X , mBlockLayout.Location.Y ) ;
+            FlowLayoutPanel removePanel = mBlockLayout;
+            removePanel.SendToBack ();
+            this.Controls.Remove ( removePanel );
+            mBlockLayout = m_BackgroundBlockLayout;
+            mBlockLayout.Location = layoutLocation;
+            mBlockLayout.BringToFront ();
+            Resize_All ();
+            if (removePanel != null )   removePanel.Dispose ();
+            Console.WriteLine ( "Displaying previous layout  : size : location " + mBlockLayout.Size + " : " + mBlockLayout.Location);
+            return true;
             }
 
         //@singleSection
