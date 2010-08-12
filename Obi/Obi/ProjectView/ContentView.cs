@@ -1652,10 +1652,14 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         {
 
                         int thresholdAboveLastNode = 0;
-                        for (int i = 1; thresholdAboveLastNode <= firstBlock.Node.Index; ++i)
+                        /*
+                        for (int i = 1; thresholdAboveLastNode <= node.Index; ++i)
                             {
                             thresholdAboveLastNode = i * phraseBlocksLotInterval;
                             }
+                        thresholdAboveLastNode = thresholdAboveLastNode - phraseBlocksLotInterval;
+                         */ 
+                        thresholdAboveLastNode = Convert.ToInt32 ( node.Index / phraseBlocksLotInterval ) * phraseBlocksLotInterval;
                         Console.WriteLine ( "Threshold index " + thresholdAboveLastNode );
 
                         startNode = stripControl.Node.PhraseChild ( thresholdAboveLastNode );
