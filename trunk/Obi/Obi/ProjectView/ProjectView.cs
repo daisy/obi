@@ -373,7 +373,7 @@ namespace Obi.ProjectView
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel && !(Selection is TextSelection); } }
         public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive && Presentation != null && Presentation.FirstSection != null; } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
-        public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
+        //public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
         public bool CanNavigateNextPhrase { get { return mTransportBar.CanNavigateNextPhrase; } }
         public bool CanNavigateNextSection { get { return mTransportBar.CanNavigateNextSection; } }
@@ -387,6 +387,20 @@ namespace Obi.ProjectView
             get
             { return mPresentation != null && mTOCView.CanPasteInside ( mClipboard ) && !TransportBar.IsRecorderActive; }
             }
+
+        public bool CanMergeStripWithNext
+            {
+            get
+                {
+                //return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive;  //@singleSection: commented
+                return this.Selection != null && this.Selection.Node is SectionNode &&
+                    mSelection.Node.IsRooted && //@singleSection
+                    !TransportBar.IsRecorderActive &&
+                     (mSelection.Node.Index < mSelection.Node.ParentAs<ObiNode> ().SectionChildCount - 1 ||
+                        ((SectionNode)mSelection.Node).SectionChildCount > 0);
+                }
+            }
+
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -774,7 +788,7 @@ namespace Obi.ProjectView
             if (CanMergeStripWithNext)
                 {
                 // if total phrase count after merge is more than max phrases per section, return
-                SectionNode section = mContentView.SelectedSection;
+                SectionNode section = (SectionNode)Selection.Node;
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
                 if ((section.PhraseChildCount + next.PhraseChildCount) > MaxVisibleBlocksCount) // @phraseLimit
                     {
@@ -782,24 +796,73 @@ namespace Obi.ProjectView
                     return;
                     }
 
-                // if next strip has no. of large phrases, first make all phrase blocks invisible to improve speed 
-                //if (next.PhraseChildCount > 30) mContentView.RemoveBlocksInStrip ( next );
-                
                 try
                     {
-                    mPresentation.Do ( mContentView.MergeSelectedStripWithNextCommand () );
+                    //mPresentation.Do ( mContentView.MergeSelectedStripWithNextCommand () );
+                    mPresentation.Do ( MergeSelectedStripWithNextCommand () );
                     if (mSelection != null && mSelection.Node is SectionNode) UpdateBlocksLabelInStrip ( (SectionNode)mSelection.Node );
                     }
                 catch (System.Exception ex)
                     {
                     MessageBox.Show ( ex.ToString () );
                     }
-                
+
                 // hide newly made phrases visible if the strip has its contents hidden
                 //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
                 mContentView.CreateBlocksInStrip (); //@singleSection: new statement
                 }
             }
+
+        //@singleSection: moved from contentview to enable merge enable in TOC view
+        /// <summary>
+        /// Get a command to merge the selected strip with the next one. If the next strip is a child or a sibling, then
+        /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
+        /// a lower level, merging is not possible.
+        /// </summary>
+        public ICommand MergeSelectedStripWithNextCommand ()
+            {
+            CompositeCommand command = null;
+            if (CanMergeStripWithNext)
+                {
+                command = Presentation.getCommandFactory ().createCompositeCommand ();
+                command.setShortDescription ( Localizer.Message ( "merge_sections" ) );
+                SectionNode section = (SectionNode)Selection.Node;
+                command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section, Selection.Control ) ) );
+                SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
+
+                for (int i = 0; i < next.PhraseChildCount; ++i)
+                    {
+                    EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).copy ( false, true );
+                    if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
+                    if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
+
+                    command.append ( new
+                        Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false ) );
+                    }
+                //command.append ( mContentView.DeleteStripCommand ( next ) );
+                // add shallow delete command
+                Commands.Node.Delete delete = new Commands.Node.Delete ( this, next, Localizer.Message ( "delete_section_shallow" ) );
+                if (next.SectionChildCount > 0)
+                    {
+                    CompositeCommand deleteCommand = this.Presentation.getCommandFactory ().createCompositeCommand ();
+                    command.setShortDescription ( delete.getShortDescription () );
+                    for (int i = 0; i < next.SectionChildCount; ++i)
+                        {
+                        deleteCommand.append ( new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
+                        }
+                    deleteCommand.append ( delete );
+                    command.append ( deleteCommand );//
+                    }
+                else
+                    {
+                    command.append ( delete );
+                    }
+                }
+            return command;
+            }
+
+
+        
 
         /// <summary>
         /// Show or hide the Metadata view.
