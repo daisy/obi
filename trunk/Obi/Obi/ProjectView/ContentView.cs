@@ -1577,7 +1577,7 @@ namespace Obi.ProjectView
                         }
                     else if ( pixelDepth > 0 && stripControl.IsContentViewFilledWithBlocksTillPixelDepth ( pixelDepth ))
                         {
-                        Console.WriteLine ( "block creation quit index for scroll for pixcel depth" + i.ToString () );
+                        Console.WriteLine ( "block creation quit index for scroll for pixcel depth" + i + " depth " + pixelDepth);
                         break;
                         }
 
@@ -1808,28 +1808,34 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                         // create blocks for additional interval
                         System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
                         stopWatch.Start ();
-                        CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
-                            currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
-                            false,
-                           contentViewDepth + interval  );
-                        
+
                         if (!setStripsPanelToInitialPosition)
                             {
+                            CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                            currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
+                            false,
+                           contentViewDepth + interval );
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                 mStripsPanel.Location.Y - interval );
 
-                            CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
+                            if (mStripsPanel.Height + mStripsPanel.Location.Y < this.Height)
+                                CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
 
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
-                                
-                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                        (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1 );
-                                    
+                                mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+    (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1 );
                                 }
-                            stopWatch.Stop ();
-                            Console.WriteLine ( "time while croll down " + stopWatch.ElapsedMilliseconds );
                             }
+                        else
+                            {
+                            CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                        currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
+                        true,
+                       0 );
+                            }
+                        stopWatch.Stop ();
+                        Console.WriteLine ( "time while croll down " + stopWatch.ElapsedMilliseconds );
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
                         }
                     else if ( interval < 0 ) // move strips panel down
