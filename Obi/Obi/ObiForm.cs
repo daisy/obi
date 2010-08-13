@@ -27,6 +27,7 @@ namespace Obi
         private Timer mAutoSaveTimer;
         private bool m_IsSaveActive;
         private bool m_IsAutoSaveActive;
+        private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -190,6 +191,7 @@ namespace Obi
         // Create a new project by asking initial information through a dialog.
         private void NewProject ()
             {
+            m_IsStatusBarEnabled = true;
             if (mProjectView.Presentation != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
             if (DidCloseProject ())
                 {
@@ -1445,7 +1447,26 @@ namespace Obi
         /// <summary>
         /// Display a message in the status bar.
         /// </summary>
-        public void Status ( string message ) { mStatusLabel.Text = message; }
+        public void Status ( string message ) 
+            { 
+            if ( IsStatusBarEnabled ) mStatusLabel.Text = message; 
+            }
+
+        /// <summary>
+        /// Status bar can be disabled for issues like long operations
+        /// </summary>
+        public bool IsStatusBarEnabled
+            {
+            get
+                {
+                return m_IsStatusBarEnabled;
+                }
+            set
+                {
+                m_IsStatusBarEnabled = value;
+                if (m_IsStatusBarEnabled) ShowSelectionInStatusBar ();
+                }
+            }
 
         // Update the status bar to say "Ready."
         public void Ready ()
@@ -1506,6 +1527,7 @@ namespace Obi
             try
                 {
                 InitializeComponent ();
+                m_IsStatusBarEnabled = true;
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler ( ProjectView_SelectionChanged );
                 mProjectView.BlocksVisibilityChanged += new EventHandler ( ProjectView_BlocksVisibilityChanged );
@@ -1632,6 +1654,7 @@ namespace Obi
         // Unsafe version of open project
         private void OpenProject ( string path )
             {
+            m_IsStatusBarEnabled = true;
             this.Cursor = Cursors.WaitCursor;
             mSession.Open ( path );
             AddRecentProject ( path );
@@ -1776,7 +1799,7 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar ()
             {
-            if (mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString + mProjectView.InvisibleSelectedStripString );
+            if (IsStatusBarEnabled &&  mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString + mProjectView.InvisibleSelectedStripString );
             }
 
         // Update all of Obi.
