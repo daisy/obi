@@ -165,6 +165,7 @@ namespace Obi.ProjectView
                 }
             }
 
+        /*//@singleSection: moved to project view to enable merge in TOC
         public bool CanMergeStripWithNext
             {
             get
@@ -175,7 +176,7 @@ namespace Obi.ProjectView
                         ((SectionNode)mSelection.Node).SectionChildCount > 0);
                 }
             }
-
+        */
 
         /// <summary>
         /// Current color settings used by the application.
@@ -251,6 +252,7 @@ namespace Obi.ProjectView
             if (section != null) EnsureControlVisible ( FindStrip ( section ) );
             }
 
+        /*//@singleSection: moved to project view to enable merge in toc
         /// <summary>
         /// Get a command to merge the selected strip with the next one. If the next strip is a child or a sibling, then
         /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
@@ -302,7 +304,8 @@ namespace Obi.ProjectView
                 }
             return command;
             }
-
+                 */ 
+         
         /// <summary>
         /// Set a new presentation for this view.
         /// </summary>
@@ -3819,7 +3822,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection;
             Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
             Context_SplitSectionMenuItem.Enabled = CanSplitStrip;
-            Context_MergeSectionWithNextMenuItem.Enabled = CanMergeStripWithNext;
+            Context_MergeSectionWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
