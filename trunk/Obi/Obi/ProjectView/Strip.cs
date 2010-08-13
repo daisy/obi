@@ -279,8 +279,10 @@ namespace Obi.ProjectView
         {
         //Console.WriteLine ( "pixel check : " + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + " " + this.Parent.Location.Y );
             if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
-                                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + this.Parent.Location.Y) > (mContentView.Location.Y + pixelDepth))
+                                     && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + mBlockLayout.Location.Y + 
+                                     this.Parent.Location.Y) > pixelDepth)
                 {
+                //Console.WriteLine ( "pixel depth in strip " + pixelDepth );
                 return true;
                 }
             else
