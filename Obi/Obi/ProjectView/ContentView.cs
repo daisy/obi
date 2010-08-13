@@ -1553,7 +1553,14 @@ namespace Obi.ProjectView
                     wasPlaybackOn = true;
                     mProjectView.TransportBar.Pause ();
                     }
-                if ( !considerStripHaltFlag && pixelDepth == 0) stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate : stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1 ) );
+                if (!considerStripHaltFlag && pixelDepth == 0)
+                    {
+                    // add some extra blocks to avoid irregular look at bottom of strip
+                    int intendedLastNodeIndex = nodeOfLastBlockToCreate.Index + 10 >= stripControl.Node.PhraseChildCount ? stripControl.Node.PhraseChildCount - 1 :
+                            nodeOfLastBlockToCreate.Index + 10;
+                    nodeOfLastBlockToCreate = stripControl.Node.PhraseChild ( intendedLastNodeIndex );
+                    stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate != null ? nodeOfLastBlockToCreate : stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) );
+                    }
                 // start from beginning and create blocks for nodes for after the last block node.
                 bool shouldStartCreating = stripControl.Node.PhraseChild ( startNodeIndex ) == startNode ? true : false;
                 for (int i = startNodeIndex; i < stripControl.Node.PhraseChildCount; i++)
@@ -1597,6 +1604,7 @@ namespace Obi.ProjectView
 
         public void CreatePhraseBlocksForFillingContentView ( Strip stripControl)
             {
+            if (stripControl.IsContentViewFilledWithBlocks) return;
             Block lastBlock = stripControl.LastBlock;
             if (lastBlock != null)
                 {
@@ -1821,7 +1829,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                                     int requiredPhraseCount =  currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight (mHScrollBar.Location.Y, verticleScrollPane1.Location.X, 
                                         currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
-
+                                    stopWatch.Start ();
                                     //currentlyActiveStrip.RemoveAllBlocks ( false );
                                     //currentlyActiveStrip.AddsRangeOfBlocks ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold - requiredPhraseCount ),
                                         //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
@@ -1831,7 +1839,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
                             false );
 
-                                    stopWatch.Start ();
+                                    
                                     Block lastBlockInNewLayout = currentlyActiveStrip.LastBlock;
                                     Block expectedLastBlock = null;
                                     if (lastBlockInNewLayout != null &&  lastBlockInNewLayout.Node.Index > prevThreshold
@@ -1847,7 +1855,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                         {
                                         mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                             (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
-
+                                        
                                         CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );    
                                         }
                                     
