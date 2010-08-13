@@ -689,9 +689,10 @@ namespace Obi.ProjectView
                     // show the selected section in content view
                     Strip currentlyActiveStrip = mContentView.ActiveStrip;
 
-                    if (GetSelectedPhraseSection != null)//@singleSection
+                    if (GetSelectedPhraseSection != null )//@singleSection
                         {
-                        if (GetSelectedPhraseSection != currentlyActiveStrip.Node && mContentView.RestrictDynamicLoadingForRecording ( currentlyActiveStrip.Node ))
+                        if ( currentlyActiveStrip != null   
+                        &&   GetSelectedPhraseSection != currentlyActiveStrip.Node && mContentView.RestrictDynamicLoadingForRecording ( currentlyActiveStrip.Node ))
                             {
                             MessageBox.Show ( Localizer.Message ("RecordingRestriction_CannotCreateStrip") ,Localizer.Message("Caption_Information") , MessageBoxButtons.OK  );
                             currentlyActiveStrip.Focus ();
