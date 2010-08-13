@@ -651,9 +651,31 @@ namespace Obi
             mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( TransportBar_StateChanged );
             }
 
-        private void ObiForm_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e ) { ProjectHasChanged ( 1 ); }
-        private void ObiForm_commandUnDone ( object sender, urakawa.events.undo.UnDoneEventArgs e ) { ProjectHasChanged ( -1 ); }
-        private void ObiForm_commandReDone ( object sender, urakawa.events.undo.ReDoneEventArgs e ) { ProjectHasChanged ( 1 ); }
+        private void ObiForm_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e ) 
+            { 
+            ProjectHasChanged ( 1 );
+            if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
+            }
+
+        private void ObiForm_commandUnDone ( object sender, urakawa.events.undo.UnDoneEventArgs e ) 
+            { 
+            ProjectHasChanged ( -1 );
+            if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
+            }
+
+        private void ObiForm_commandReDone ( object sender, urakawa.events.undo.ReDoneEventArgs e ) 
+            { 
+            ProjectHasChanged ( 1 );
+            if ( !IsStatusBarEnabled)  IsStatusBarEnabled = true;//@singleSection
+            }
+
+        private void ObiForm_BeforeCommandExecuted (object sender , urakawa.events.command.CommandEventArgs e )//@singleSection
+            {
+            if (e.SourceCommand is urakawa.command.CompositeCommand)
+                {
+                IsStatusBarEnabled = false;
+                }
+            }
 
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load ( object sender, EventArgs e )
@@ -712,6 +734,7 @@ namespace Obi
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
                 mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+                mProjectView.Presentation.BeforeCommandExecuted -= new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted );//@singleSection
                 Status ( String.Format ( Localizer.Message ( "closed_project" ), e.ClosedPresentation.Title ) );
                 }
             mAutoSaveTimer.Stop ();
@@ -1517,6 +1540,7 @@ namespace Obi
             mSession.Presentation.getUndoRedoManager ().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs> ( ObiForm_commandUnDone );
             UpdateCustomClassMenu ();
             mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted);//@singleSection
             if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
             }
 
@@ -1694,12 +1718,17 @@ namespace Obi
             mProjectView.SuspendLayout_All ();
             try
                 {
-                if (mSession.CanRedo) mSession.Presentation.getUndoRedoManager ().redo ();
+                if (mSession.CanRedo)
+                    {
+                    IsStatusBarEnabled = false;//@singleSection
+                    mSession.Presentation.getUndoRedoManager ().redo ();
+                    }
                 }
             catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
                 }
+            if (!IsStatusBarEnabled) IsStatusBarEnabled = true;
             mProjectView.ResumeLayout_All ();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
             }
@@ -1783,6 +1812,7 @@ namespace Obi
                 {
                 if (mSession.CanUndo && !(mProjectView.Selection is TextSelection))
                     {
+                    IsStatusBarEnabled = false;//@singleSection
                     mSession.Presentation.getUndoRedoManager ().undo ();
                     }
                 }
@@ -1790,6 +1820,7 @@ namespace Obi
                 {
                 MessageBox.Show ( ex.ToString () );
                 }
+            if (!IsStatusBarEnabled) IsStatusBarEnabled = true;//@singleSection
             mProjectView.ResumeLayout_All ();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
             }

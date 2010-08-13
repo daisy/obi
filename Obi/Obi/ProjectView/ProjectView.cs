@@ -783,8 +783,8 @@ namespace Obi.ProjectView
                     }
 
                 // if next strip has no. of large phrases, first make all phrase blocks invisible to improve speed 
-                if (next.PhraseChildCount > 30) mContentView.RemoveBlocksInStrip ( next );
-                ObiForm.IsStatusBarEnabled = false;
+                //if (next.PhraseChildCount > 30) mContentView.RemoveBlocksInStrip ( next );
+                
                 try
                     {
                     mPresentation.Do ( mContentView.MergeSelectedStripWithNextCommand () );
@@ -794,7 +794,7 @@ namespace Obi.ProjectView
                     {
                     MessageBox.Show ( ex.ToString () );
                     }
-                ObiForm.IsStatusBarEnabled = true;
+                
                 // hide newly made phrases visible if the strip has its contents hidden
                 //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
                 mContentView.CreateBlocksInStrip (); //@singleSection: new statement
@@ -1137,10 +1137,9 @@ namespace Obi.ProjectView
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode> ();
-                ObiForm.IsStatusBarEnabled = false;
-
+                
                 mPresentation.Do ( mContentView.SplitStripCommand () );
-                ObiForm.IsStatusBarEnabled = true;
+                
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip ( OriginalSectionNode );
 
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
@@ -1804,11 +1803,10 @@ namespace Obi.ProjectView
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
                     progress.ShowDialog ();
-                    ObiForm.IsStatusBarEnabled = false;
+                    
                     mPresentation.Do ( command );
 
-                    ObiForm.IsStatusBarEnabled = true;
-                    SectionNode SNode = GetSelectedPhraseSection;
+SectionNode SNode = GetSelectedPhraseSection;
                     if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
                         MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
 
