@@ -61,6 +61,7 @@ namespace Obi.Commands.Node
         {
             mParent.Insert(mNode, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
+            TriggerProgressChanged ();
         }
 
         public override void unExecute()

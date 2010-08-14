@@ -649,6 +649,7 @@ namespace Obi
             mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler ( TransportBar_StateChanged );
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler ( TransportBar_PlaybackRateChanged );
             mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( TransportBar_StateChanged );
+            mProjectView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler ( Progress_Changed );
             }
 
         private void ObiForm_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e ) 
@@ -2319,6 +2320,30 @@ namespace Obi
             mProjectView.TransportBar.Enabled = true;
             }
 
+        //@singleSection
+        private void Progress_Changed ( object sender, System.ComponentModel.ProgressChangedEventArgs e )
+            {
+            if (!mHasProgressBar)
+                {
+                ShowProgressBar ();
+                mStatusProgressBar.Style = ProgressBarStyle.Continuous;
+                mStatusProgressBar.Minimum = 0;
+                mStatusProgressBar.Maximum = 100;
+                }
+            if (e.ProgressPercentage == 0 && mHasProgressBar && mStatusProgressBar.Value > 1)
+                {
+                mStatusProgressBar.Style = ProgressBarStyle.Continuous;
+                mStatusProgressBar.Minimum = 0;
+                mStatusProgressBar.Maximum = 100;
+                mStatusProgressBar.Value = 0;
+                }
+            else if ( e.ProgressPercentage != mStatusProgressBar.Value )
+                {
+                mStatusProgressBar.Value = e.ProgressPercentage;
+                
+                }
+            Console.WriteLine ( "obi form progressbar val " + e.ProgressPercentage );
+            }
 
         private bool mHasProgressBar;
 
