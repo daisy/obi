@@ -2339,6 +2339,7 @@ namespace Obi
                 }
             else if ( e.ProgressPercentage != mStatusProgressBar.Value )
                 {
+                if (mStatusProgressBar.Maximum != 100) mStatusProgressBar.Maximum = 100;
                 mStatusProgressBar.Value = e.ProgressPercentage;
                 
                 }

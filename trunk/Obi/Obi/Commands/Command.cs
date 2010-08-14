@@ -158,6 +158,7 @@ namespace Obi.Commands
         public override void execute()
         {
             View.Selection = mSelectionAfter;
+            TriggerProgressChanged ();
         }
     }
 }

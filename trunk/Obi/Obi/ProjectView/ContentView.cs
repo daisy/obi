@@ -761,7 +761,9 @@ namespace Obi.ProjectView
                 Commands.Node.AddNode add = new Commands.Node.AddNode ( mProjectView, sibling, section.ParentAs<ObiNode> (),
                     section.Index + 1 );
                 add.UpdateSelection = false;
+                add.ProgressPercentage = 0;
                 command.append ( add );
+
                 // Change parents of children to insert the section at the right position in strip order
                 for (int i = section.SectionChildCount - 1; i >= 0; --i)
                     {
@@ -785,10 +787,17 @@ namespace Obi.ProjectView
                     }
                 // Move children from the context phrase to the new sibling
                 int sectionOffset = node.Index + (splitNode != null ? 1 : 0);
+                int progressPercent = 0;
+                int progressInterval = (section.PhraseChildCount - sectionOffset) > 40 ? (section.PhraseChildCount - sectionOffset) / 40 : 1;
                 for (int i = section.PhraseChildCount - 1; i >= sectionOffset; --i)
                     {
-                    command.append ( new Commands.Node.Delete ( mProjectView, section.PhraseChild ( i ), false ) );
+                    Commands.Command delete = new Commands.Node.Delete ( mProjectView, section.PhraseChild ( i ), false );
+                    
+                    if (i % progressInterval == 0) delete.ProgressPercentage = ++progressPercent ;
+                    
+                    command.append ( delete);
                     }
+                progressInterval = 45;
                 if (cropNode != null) command.append ( new Commands.Node.Delete ( mProjectView, cropNode, section, node.Index + 2, false ) );
                 if (splitNode != null)
                     {
@@ -797,13 +806,19 @@ namespace Obi.ProjectView
                     }
                 if (cropNode != null) command.append ( new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
                 int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
+
+                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) / 45 : 1;
                 for (int i = sectionOffset; i < section.PhraseChildCount; ++i)
                     {
-                    command.append ( new
-                        Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false ) );
+                    Commands.Command addCmd = new
+                        Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false );
+                    if ( i % progressInterval == 0 ) addCmd.ProgressPercentage = ++progressPercent ;
+                    command.append ( addCmd);
                     }
-                
-                command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) ) );
+                progressPercent = 100 ;
+                Commands.Command updateSelectionCmd = new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) ) ;
+                updateSelectionCmd.ProgressPercentage = progressPercent ;
+                command.append ( updateSelectionCmd);
                 }
             return command;
             }
