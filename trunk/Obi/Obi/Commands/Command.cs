@@ -77,7 +77,7 @@ namespace Obi.Commands
             }
 
         //@singleSection: this has to be triggered from derived classes as command execute has to be abstract
-        protected void TriggerProgressChanged () { if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( "command", m_ProgressPercentage ); }
+        protected void TriggerProgressChanged () { if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( ProjectView.ProjectView.ProgressBar_Command, m_ProgressPercentage ); }
 
         /// <summary>
         /// Reset the selection to what it was before the command was executed.

@@ -807,7 +807,7 @@ namespace Obi.ProjectView
                 if (cropNode != null) command.append ( new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
                 int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
 
-                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) / 45 : 1;
+                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset)  * 2 / 45 : 1;//multiplied by 2 to report progress with increment of 2
                 for (int i = sectionOffset; i < section.PhraseChildCount; ++i)
                     {
                     Commands.Command addCmd = new
