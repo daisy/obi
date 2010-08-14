@@ -64,7 +64,7 @@ namespace Obi.ProjectView
             m_IsBlocksVisibilityProcessActive = false;
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
-            verticleScrollPane1.contentView = this;
+            verticalScrollToolStripContainer1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
             this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);//@singleSection
             mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged  );//@singleSection
@@ -655,8 +655,8 @@ namespace Obi.ProjectView
                 int vh = mHScrollBar.Location.Y; //@singleSection : new
                 int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
                 //int vw = VisibleWidth - mVScrollBar.Width; //@singleSection: original, replaced by following
-                int vw = verticleScrollPane1.Location.X; //@singleSection : new
-
+                int vw = verticalScrollToolStripContainer1.Location.X; //@singleSection : new
+                
                 // Vertical scrolling
                 if (t < 0 || (b > vh && h > vh))
                     {
@@ -1189,7 +1189,7 @@ namespace Obi.ProjectView
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
             contentViewLabel1.Name_SectionDisplayed = node.Label;
-            verticleScrollPane1.CanScrollUp = false;
+            verticalScrollToolStripContainer1.CanScrollUp = false;
             return AddStripForSection ( node );
             }
 
@@ -1854,7 +1854,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                     System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
                                     //stopWatch.Start ();
 
-                                    int requiredPhraseCount =  currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight (mHScrollBar.Location.Y, verticleScrollPane1.Location.X, 
+                                    int requiredPhraseCount = currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight(mHScrollBar.Location.Y, verticalScrollToolStripContainer1.Location.X, 
                                         currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
                                     stopWatch.Start ();
                                     //currentlyActiveStrip.RemoveAllBlocks ( false );
@@ -1924,7 +1924,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     m_IsScrollActive = false;
                     mProjectView.ObiForm.Cursor = Cursors.Default;
                     }
-                verticleScrollPane1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
+                    verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);
                 }// check ends for currently active strip
 
             }
@@ -2004,7 +2004,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
 
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
-                verticleScrollPane1.TrackBarValueInPercentage = 0;
+                verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
                 ReturnFocusFromVerticalScrollPanel ();
                 m_IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
@@ -2025,7 +2025,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 CreateBlocksTillEndInStrip ( currentlyActiveStrip );
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
-                verticleScrollPane1.TrackBarValueInPercentage = 100;
+                verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
                 ReturnFocusFromVerticalScrollPanel ();
                 m_IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
@@ -2062,7 +2062,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     if (currentlyActiveStrip.FirstBlock == null ||
                         (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
-                        verticleScrollPane1.CanScrollUp = false;
+                            verticalScrollToolStripContainer1.CanScrollUp = false;
                         }
                     else if ( Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition 
                         && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index > 0)
@@ -2075,7 +2075,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 }
             else if (mStripsPanel.Location.Y < 0)
                 {
-                verticleScrollPane1.CanScrollUp = true;
+                    verticalScrollToolStripContainer1.CanScrollUp = true;
                 }
 
             if (mStripsPanel.Location.Y + mStripsPanel.Height <= mHScrollBar.Location.Y)
@@ -2086,13 +2086,13 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     if (currentlyActiveStrip.LastBlock == null
                         || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
-                        verticleScrollPane1.CanScrollDown = false;
+                            verticalScrollToolStripContainer1.CanScrollDown = false;
                         }
                     }
                 }
             else
                 {
-                verticleScrollPane1.CanScrollDown = true;
+                    verticalScrollToolStripContainer1.CanScrollDown = true;
                 }
             }
 
@@ -4120,9 +4120,9 @@ stripControl.Node.PhraseChildCount > 0)
                 CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
                 //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
-            this.verticleScrollPane1.Location =new Point ( this.Width - verticleScrollPane1.Width , 0 ) ;
-            this.verticleScrollPane1.Size = new Size ( verticleScrollPane1.Width, mHScrollBar.Location.Y );
-            mHScrollBar.Size = new Size ( verticleScrollPane1.Location.X, mHScrollBar.Height );
+                this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
+                this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
+                mHScrollBar.Size = new Size(verticalScrollToolStripContainer1.Location.X, mHScrollBar.Height);
             }
 
         //@singleSection
