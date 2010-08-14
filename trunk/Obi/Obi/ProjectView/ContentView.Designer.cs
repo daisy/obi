@@ -409,10 +409,14 @@ namespace Obi.ProjectView
             // 
             this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.verticalScrollToolStripContainer1.CanScrollDown = true;
+            this.verticalScrollToolStripContainer1.CanScrollUp = true;
+            this.verticalScrollToolStripContainer1.contentView = null;
             this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(518, 0);
             this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
             this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(30, 533);
             this.verticalScrollToolStripContainer1.TabIndex = 6;
+            this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
             // contentViewLabel1
             // 
