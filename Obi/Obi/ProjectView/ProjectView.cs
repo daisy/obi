@@ -810,7 +810,7 @@ namespace Obi.ProjectView
 
                 // hide newly made phrases visible if the strip has its contents hidden
                 //HideNewPhrasesInInvisibleSection ( section );//@singleSection: original
-                mContentView.CreateBlocksInStrip (); //@singleSection: new statement
+                //mContentView.CreateBlocksInStrip (); //@singleSection: new statement
                 }
             }
 
@@ -831,17 +831,15 @@ namespace Obi.ProjectView
                 command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section, Selection.Control ) ) );
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
 
-                int progressInterval = next.PhraseChildCount / 80;
+                int progressInterval = next.PhraseChildCount> 90? (next.PhraseChildCount * 2 / 90) : 1 ; // interval multiplied by 2 as we want to report with increment of 2
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
                     EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).copy ( false, true );
                     if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
                     if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
-                    int progressPercentage = -1;
-                    if (i % progressInterval == 0) progressPercentage = ( i * 80 /  next.PhraseChildCount);
-
+                    
                     Commands.Command add = new Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false );
-                    add.ProgressPercentage = progressPercentage;
+                    if (i % progressInterval == 0) add.ProgressPercentage = (i * 90 / next.PhraseChildCount); 
                     command.append (add );
                     }
                 Console.WriteLine ( "add in merge complete" );
@@ -1208,8 +1206,14 @@ namespace Obi.ProjectView
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 SectionNode OriginalSectionNode = null;
                 if (mSelection != null && mSelection.Node is EmptyNode) OriginalSectionNode = mSelection.Node.ParentAs<SectionNode> ();
-                
-                mPresentation.Do ( mContentView.SplitStripCommand () );
+                try
+                    {
+                    mPresentation.Do ( mContentView.SplitStripCommand () );
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
                 
                 if (OriginalSectionNode != null) UpdateBlocksLabelInStrip ( OriginalSectionNode );
 
@@ -2584,6 +2588,11 @@ SectionNode SNode = GetSelectedPhraseSection;
 
         //@singleSection
         public bool IsContentViewScrollActive { get { return mContentView.IsScrollActive; } }
+
+        //@singleSection
+        public const string ProgressBar_Command = "command";
+        public const string ProgressBar_Navigation = "navigation" ;
+        public const string ProgressBar_Waveform = "waveform";
 
         //@singleSection
         /// <summary>

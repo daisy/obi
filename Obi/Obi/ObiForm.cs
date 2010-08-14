@@ -2323,25 +2323,22 @@ namespace Obi
         //@singleSection
         private void Progress_Changed ( object sender, System.ComponentModel.ProgressChangedEventArgs e )
             {
-            if (!mHasProgressBar)
+            if (!mHasProgressBar 
+                || (mHasProgressBar && ((string) mStatusProgressBar.Tag) == ProjectView.ProjectView.ProgressBar_Waveform) )
                 {
+                if (mHasProgressBar) BackgroundOperation_Done ();
                 ShowProgressBar ();
                 mStatusProgressBar.Style = ProgressBarStyle.Continuous;
                 mStatusProgressBar.Minimum = 0;
                 mStatusProgressBar.Maximum = 100;
+                mStatusProgressBar.Tag = "";
                 }
-            if (e.ProgressPercentage == 0 && mHasProgressBar && mStatusProgressBar.Value > 1)
-                {
-                mStatusProgressBar.Style = ProgressBarStyle.Continuous;
-                mStatusProgressBar.Minimum = 0;
-                mStatusProgressBar.Maximum = 100;
-                mStatusProgressBar.Value = 0;
-                }
-            else if ( e.ProgressPercentage != mStatusProgressBar.Value )
+            
+            if ( mHasProgressBar &&  e.ProgressPercentage != mStatusProgressBar.Value )
                 {
                 if (mStatusProgressBar.Maximum != 100) mStatusProgressBar.Maximum = 100;
                 mStatusProgressBar.Value = e.ProgressPercentage;
-                
+                if (mStatusProgressBar.Value == 100) BackgroundOperation_Done (); //closes progressbar
                 }
             Console.WriteLine ( "obi form progressbar val " + e.ProgressPercentage );
             }
@@ -2361,11 +2358,18 @@ namespace Obi
                 }
             }
 
+        private void ShowProgressBar_Background ()
+            {
+            ShowProgressBar ();
+            mStatusProgressBar.Tag = ProjectView.ProjectView.ProgressBar_Waveform;
+            mStatusProgressBar.Style = ProgressBarStyle.Blocks;
+            }
+
         public void BackgroundOperation_AddItem ()
             {
             if (mStatusProgressBar.ProgressBar != null)
                 {
-                ShowProgressBar ();
+                ShowProgressBar_Background ();
                 ++mStatusProgressBar.Maximum;
                 }
             }
@@ -2374,8 +2378,8 @@ namespace Obi
             {
             if (mStatusProgressBar.ProgressBar != null)
                 {
-                ShowProgressBar ();
-                if (mStatusProgressBar.Value < mStatusProgressBar.Maximum) ++mStatusProgressBar.Value;
+                ShowProgressBar_Background ();
+                if (mStatusProgressBar.Value < mStatusProgressBar.Maximum/3) ++mStatusProgressBar.Value; //@singleSection: experiment
                 }
             }
 
