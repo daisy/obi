@@ -1753,6 +1753,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             return true;
             }
 
+        //@singleSection
+        public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32 ( ZoomFactor * 100 ); } }
 
         //@singleSection : base function for strips panel scroll
         public void ScrollMStripsPanel (int interval)
@@ -1769,7 +1771,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                     m_IsScrollActive = true;
 
                     int contentViewVisibleHeight = mHScrollBar.Location.Y;
-                    int contentViewDepth = this.Height + lastBlock.Height;
+                    
 
                     if (interval > 0)
                         {
@@ -1788,7 +1790,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                 int nextThresholdIndex = firstBlock.Node.Index + indexIncrement_PhraseLot;
                         bool setStripsPanelToInitialPosition = false;
 
-                        Console.WriteLine ( "strips panel space " + (mStripsPanel.Height + mStripsPanel.Location.Y) );
+                        //Console.WriteLine ( "strips panel space " + (mStripsPanel.Height + mStripsPanel.Location.Y) );
                         if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount)
                             {
                             nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
@@ -1814,7 +1816,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                             currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
                             false,
-                           contentViewDepth + interval );
+                           ContentViewDepthForCreatingBlocks + interval );
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                 mStripsPanel.Location.Y - interval );
 

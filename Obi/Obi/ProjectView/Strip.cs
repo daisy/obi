@@ -216,7 +216,7 @@ namespace Obi.ProjectView
                 {
                 int stripsPanelLocation = this.Parent != null ? this.Parent.Location.Y : 0;
                 if (mBlockLayout != null && mBlockLayout.Controls.Count > 0
-                    && ( mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + stripsPanelLocation) > (mContentView.Location.Y + mContentView.Size.Height + mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Size.Height ))
+                    && (mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + stripsPanelLocation) > mContentView.ContentViewDepthForCreatingBlocks)
                     {
                     //Console.WriteLine ( mBlockLayout.Controls[mBlockLayout.Controls.Count - 1].Location.Y + .Y );
                     return true;
@@ -243,7 +243,7 @@ namespace Obi.ProjectView
             get
                 {
                 Console.WriteLine ( "blocks layout upper y : " + mBlockLayout.Location.Y );
-                return mBlockLayout.Location.Y;
+                return mBlockLayout.Location.Y ;
                 }
             }
 
