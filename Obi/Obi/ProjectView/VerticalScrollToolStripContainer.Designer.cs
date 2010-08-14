@@ -67,14 +67,14 @@ namespace Obi.ProjectView
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(27, 45);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 40);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnGoToBegining,
             this.m_BtnLargeIncrementUp,
             this.m_BtnSmallIncrementUp});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 15);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(37, 195);
+            this.toolStrip2.Size = new System.Drawing.Size(36, 176);
             this.toolStrip2.TabIndex = 1;
             // 
             // m_BtnGoToBegining
@@ -84,7 +84,7 @@ namespace Obi.ProjectView
             this.m_BtnGoToBegining.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnGoToBegining.Margin = new System.Windows.Forms.Padding(4, 1, 0, 10);
             this.m_BtnGoToBegining.Name = "m_BtnGoToBegining";
-            this.m_BtnGoToBegining.Size = new System.Drawing.Size(31, 44);
+            this.m_BtnGoToBegining.Size = new System.Drawing.Size(30, 44);
             this.m_BtnGoToBegining.Text = "toolStripButton1";
             this.m_BtnGoToBegining.Click += new System.EventHandler(this.m_BtnGoToBegining_Click);
             // 
@@ -95,7 +95,7 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnLargeIncrementUp.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnLargeIncrementUp.Name = "m_BtnLargeIncrementUp";
-            this.m_BtnLargeIncrementUp.Size = new System.Drawing.Size(28, 44);
+            this.m_BtnLargeIncrementUp.Size = new System.Drawing.Size(23, 44);
             this.m_BtnLargeIncrementUp.Text = "toolStripButton2";
             this.m_BtnLargeIncrementUp.Click += new System.EventHandler(this.m_BtnLargeIncrementUp_Click);
             // 
@@ -106,21 +106,21 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnSmallIncrementUp.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnSmallIncrementUp.Name = "m_BtnSmallIncrementUp";
-            this.m_BtnSmallIncrementUp.Size = new System.Drawing.Size(28, 44);
+            this.m_BtnSmallIncrementUp.Size = new System.Drawing.Size(23, 44);
             this.m_BtnSmallIncrementUp.Text = "toolStripButton3";
             this.m_BtnSmallIncrementUp.Click += new System.EventHandler(this.m_BtnSmallIncrementUp_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(27, 45);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 40);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnSmallIncrementDown,
             this.m_BtnLargeIncrementDown,
             this.m_BtnGoToEnd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 234);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 200);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(37, 176);
+            this.toolStrip1.Size = new System.Drawing.Size(36, 176);
             this.toolStrip1.TabIndex = 0;
             // 
             // m_BtnSmallIncrementDown
@@ -130,7 +130,7 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnSmallIncrementDown.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnSmallIncrementDown.Name = "m_BtnSmallIncrementDown";
-            this.m_BtnSmallIncrementDown.Size = new System.Drawing.Size(28, 44);
+            this.m_BtnSmallIncrementDown.Size = new System.Drawing.Size(23, 44);
             this.m_BtnSmallIncrementDown.Text = "toolStripButton4";
             this.m_BtnSmallIncrementDown.Click += new System.EventHandler(this.m_BtnSmallIncrementDown_Click);
             // 
@@ -141,7 +141,7 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnLargeIncrementDown.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnLargeIncrementDown.Name = "m_BtnLargeIncrementDown";
-            this.m_BtnLargeIncrementDown.Size = new System.Drawing.Size(28, 44);
+            this.m_BtnLargeIncrementDown.Size = new System.Drawing.Size(23, 44);
             this.m_BtnLargeIncrementDown.Text = "toolStripButton5";
             this.m_BtnLargeIncrementDown.Click += new System.EventHandler(this.m_BtnLargeIncrementDown_Click);
             // 
@@ -152,14 +152,14 @@ namespace Obi.ProjectView
             this.m_BtnGoToEnd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnGoToEnd.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnGoToEnd.Name = "m_BtnGoToEnd";
-            this.m_BtnGoToEnd.Size = new System.Drawing.Size(28, 44);
+            this.m_BtnGoToEnd.Size = new System.Drawing.Size(23, 44);
             this.m_BtnGoToEnd.Text = "toolStripButton6";
             this.m_BtnGoToEnd.Click += new System.EventHandler(this.m_BtnGoToEnd_Click);
             // 
             // trackBar1
             // 
             this.trackBar1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.trackBar1.Location = new System.Drawing.Point(-2, 415);
+            this.trackBar1.Location = new System.Drawing.Point(-2, 390);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
