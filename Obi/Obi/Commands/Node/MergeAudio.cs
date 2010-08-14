@@ -122,6 +122,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             Merge(View, mNode, mNextNode, UpdateSelection);
+            TriggerProgressChanged ();
         }
 
         public override void unExecute()

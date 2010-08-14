@@ -15,6 +15,7 @@ namespace Obi.Commands
         private NodeSelection mSelectionBefore;  // the selection before the command happened
         private string mLabel;                   // command label (can be overridden)
         protected bool mRedo;                    // true if redo, false on first execution
+        private int m_ProgressPercentage = -1; //@singleSection: triggers progress changed event if value is positive
 
         public bool UpdateSelection;             // flag to set the selection update
 
@@ -33,6 +34,7 @@ namespace Obi.Commands
             mLabel = label;
             mRedo = false;
             UpdateSelection = true;
+            m_ProgressPercentage = -1; //@singleSection
         }
 
         /// <summary>
@@ -47,6 +49,7 @@ namespace Obi.Commands
         public virtual bool canExecute() { return true; }
 
         public abstract void execute();
+        
 
         /// <summary>
         /// Set the label for the command (if not using default.)
@@ -58,11 +61,32 @@ namespace Obi.Commands
         /// </summary>
         public ProjectView.ProjectView View { get { return mView; } }
 
+        /// <summary>
+        /// set progress percentage for progress changed event, event is triggered only if positive value is assigned
+        /// </summary>
+        public int ProgressPercentage 
+            {
+            protected get
+                {
+                return m_ProgressPercentage;
+                }
+            set 
+                { 
+                m_ProgressPercentage = value; 
+                } 
+            }
+
+        //@singleSection: this has to be triggered from derived classes as command execute has to be abstract
+        protected void TriggerProgressChanged () { if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( "command", m_ProgressPercentage ); }
 
         /// <summary>
         /// Reset the selection to what it was before the command was executed.
         /// </summary>
-        public virtual void unExecute() { if (UpdateSelection) mView.Selection = mSelectionBefore; }
+        public virtual void unExecute() 
+            {
+            if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( "command",100 -  m_ProgressPercentage );//@singleSection
+            if (UpdateSelection) mView.Selection = mSelectionBefore; 
+            }
 
         /// <summary>
         /// Get the selection before the command was executed.

@@ -27,6 +27,7 @@ namespace Obi.ProjectView
         public event EventHandler SelectionChanged;             // triggered when the selection changes
         public event EventHandler FindInTextVisibilityChanged;  // triggered when the search bar is shown or hidden
         public event EventHandler BlocksVisibilityChanged; // triggered when phrase blocks are bbecoming  visible or invisible // @phraseLimit
+        public event ProgressChangedEventHandler ProgressChanged; //Updates the toolstrip progress bar on obi form
 
 
         /// <summary>
@@ -830,15 +831,20 @@ namespace Obi.ProjectView
                 command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section, Selection.Control ) ) );
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
 
+                int progressInterval = next.PhraseChildCount / 80;
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
                     EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).copy ( false, true );
                     if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
                     if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
+                    int progressPercentage = -1;
+                    if (i % progressInterval == 0) progressPercentage = ( i * 80 /  next.PhraseChildCount);
 
-                    command.append ( new
-                        Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false ) );
+                    Commands.Command add = new Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false );
+                    add.ProgressPercentage = progressPercentage;
+                    command.append (add );
                     }
+                Console.WriteLine ( "add in merge complete" );
                 //command.append ( mContentView.DeleteStripCommand ( next ) );
                 // add shallow delete command
                 Commands.Node.Delete delete = new Commands.Node.Delete ( this, next, Localizer.Message ( "delete_section_shallow" ) );
@@ -850,11 +856,13 @@ namespace Obi.ProjectView
                         {
                         deleteCommand.append ( new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
                         }
+                    delete.ProgressPercentage = 100;
                     deleteCommand.append ( delete );
                     command.append ( deleteCommand );//
                     }
                 else
                     {
+                    delete.ProgressPercentage = 100;
                     command.append ( delete );
                     }
                 }
@@ -2576,6 +2584,19 @@ SectionNode SNode = GetSelectedPhraseSection;
 
         //@singleSection
         public bool IsContentViewScrollActive { get { return mContentView.IsScrollActive; } }
+
+        //@singleSection
+        /// <summary>
+        /// < Triggers progress changed event which updates progressbar on obi form.
+        /// parameter purpose can be command, navigate , waveform.
+        /// </summary>
+        /// <param name="purpose"></param>
+        /// <param name="progressInPercent"></param>
+        public void TriggerProgressChangedEvent ( string purpose, int progressInPercent)
+            {
+            if ( ProgressChanged != null ) 
+                ProgressChanged (this, new ProgressChangedEventArgs ( progressInPercent, purpose )) ;
+            }
 
         /// <summary>
         /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling

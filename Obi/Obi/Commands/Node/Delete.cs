@@ -97,6 +97,7 @@ namespace Obi.Commands.Node
         {
             mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
+            TriggerProgressChanged ();
         }
 
         public override void unExecute()
@@ -207,6 +208,7 @@ namespace Obi.Commands.Node
         {
             mDeleted = (ObiNode)mParent.getChild(mIndex);
             mParent.removeChild(mIndex);
+            TriggerProgressChanged ();
         }
 
         public override void unExecute()

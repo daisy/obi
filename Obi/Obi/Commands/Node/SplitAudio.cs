@@ -213,6 +213,7 @@ namespace Obi.Commands.Node
         public override void execute()
         {
             Split(View, mNode, mNodeAfter, mSplitTime, UpdateSelection);
+            TriggerProgressChanged ();
         }
 
         public override void unExecute()
