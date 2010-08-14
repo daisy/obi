@@ -812,7 +812,7 @@ namespace Obi.ProjectView
                     {
                     Commands.Command addCmd = new
                         Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false );
-                    if ( i % progressInterval == 0 ) addCmd.ProgressPercentage = ++progressPercent ;
+                    if ( i % progressInterval == 0 ) addCmd.ProgressPercentage = progressPercent += 2;
                     command.append ( addCmd);
                     }
                 progressPercent = 100 ;
