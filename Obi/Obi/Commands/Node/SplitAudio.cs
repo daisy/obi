@@ -127,35 +127,53 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create the phrase detection command.
         /// </summary>
-        public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, PhraseNode phrase,
+        public static CompositeCommand GetPhraseDetectionCommand(ProjectView.ProjectView view, ObiNode node,
             long threshold, double gap, double before)
         {
-            CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
-            ObiNode parent = phrase.ParentAs<ObiNode>();
-            int index = phrase.Index+1;
-            
-            
-            System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList(
-                Obi.Audio.PhraseDetection.Apply(phrase.Audio.copy(), threshold, gap, before));
-            for (int i = 0; i < phrases.Count; ++i)
+        List<PhraseNode> phraseNodesList = new List<PhraseNode> ();
+        if (node is PhraseNode)
             {
-                // Copy page/heading role for the first phrase only
-                if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
-                {
-                    phrases[i].CopyAttributes(phrase);
-                }
-                phrases[i].Used = phrase.Used;
-                phrases[i].TODO = phrase.TODO;
-                if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
-
-// in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
-                command.append(new Commands.Node.AddNode(view, phrases[i], parent, index + i,false));
+            phraseNodesList.Add ( (PhraseNode)node );
             }
-            if ( phrases.Count > 0 && view.Selection != null) 
+        else if (node is SectionNode)
+            {
+            SectionNode section = (SectionNode)node;
+            for (int i = 0; i < section.PhraseChildCount; i++)
                 {
-                command.append ( new UpdateSelection ( view,new NodeSelection( phrases[0], view.Selection.Control )));
+                if (section.PhraseChild ( i ) is PhraseNode && ((PhraseNode)section.PhraseChild(i)).Role_ != EmptyNode.Role.Silence) 
+                    phraseNodesList.Add ((PhraseNode)  section.PhraseChild (i) );
                 }
-            command.append ( new Commands.Node.Delete ( view, phrase, false ) );//@singleSection: moved delete command last for improve undo selection
+            }
+            CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            ObiNode parent = node is SectionNode ? node : node.ParentAs<ObiNode> ();
+            for (int j = 0; j < phraseNodesList.Count; j++)
+                {
+                PhraseNode phrase = phraseNodesList[j];
+                int index = phrase.Index + 1;
+
+
+                System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList (
+                    Obi.Audio.PhraseDetection.Apply ( phrase.Audio.copy (), threshold, gap, before ) );
+                for (int i = 0; i < phrases.Count; ++i)
+                    {
+                    // Copy page/heading role for the first phrase only
+                    if (i == 0 || (phrase.Role_ != EmptyNode.Role.Page && phrase.Role_ != EmptyNode.Role.Heading))
+                        {
+                        phrases[i].CopyAttributes ( phrase );
+                        }
+                    phrases[i].Used = phrase.Used;
+                    phrases[i].TODO = phrase.TODO;
+                    if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
+
+                    // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
+                    command.append ( new Commands.Node.AddNode ( view, phrases[i], parent, index + i, false ) );
+                    }
+                if (node is PhraseNode &&  phrases.Count > 0 && view.Selection != null)
+                    {
+                    command.append ( new UpdateSelection ( view, new NodeSelection ( phrases[0], view.Selection.Control ) ) );
+                    }
+                command.append ( new Commands.Node.Delete ( view, phrase, false ) );//@singleSection: moved delete command last for improve undo selection
+                }
             return command;
         }
 

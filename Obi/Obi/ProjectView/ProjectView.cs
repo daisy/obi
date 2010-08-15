@@ -299,9 +299,8 @@ namespace Obi.ProjectView
                 {
                 return mPresentation != null &&
                     Selection != null &&
-                    Selection.Node is PhraseNode &&
-                    ((PhraseNode)Selection.Node).Role_ != EmptyNode.Role.Silence &&
-                    !TransportBar.IsRecorderActive &&
+                    ((Selection.Node is PhraseNode && ((PhraseNode)Selection.Node).Role_ != EmptyNode.Role.Silence) || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)) &&
+                                        !TransportBar.IsRecorderActive &&
                     IsPhraseCountWithinLimit; // @phraseLimit
                 }
             }
@@ -1874,7 +1873,7 @@ namespace Obi.ProjectView
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ()
                             {
-                            command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, SelectedNodeAs<PhraseNode> (),
+                            command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, Selection.Node,
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
                     progress.ShowDialog ();
