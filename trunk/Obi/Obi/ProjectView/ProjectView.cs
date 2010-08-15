@@ -1860,8 +1860,13 @@ namespace Obi.ProjectView
             if (CanApplyPhraseDetection)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
-                ObiNode node;
-                for (node = SelectedNodeAs<EmptyNode> ();
+                ObiNode node = null;
+                if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount> 0 )
+                    {
+                    node = ((SectionNode)Selection.Node).PhraseChild(0) ;
+                    }
+
+                for (node =node != null?node:  SelectedNodeAs<EmptyNode> ();
                     node != null && !(node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence);
                     node = node.PrecedingNode) { }
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
