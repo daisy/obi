@@ -1441,10 +1441,21 @@ namespace Obi.ProjectView
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
+        public bool CanMergePhraseWithFollowingPhrasesInSection { get { return CanMergeBlockWithNext; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
 
         public bool IsBlockUsed { get { return mContentView.IsBlockUsed; } }
         public bool IsStripUsed { get { return mContentView.IsStripUsed; } }
+
+        public bool CanMergeWithPhrasesBeforeInSection 
+            { 
+            get 
+                { 
+                EmptyNode node   =  mContentView.PlaybackBlock != null? mContentView.PlaybackBlock.Node : 
+                    Selection != null && Selection.Node is EmptyNode ? (EmptyNode) Selection.Node : null ;
+                return node != null && node.IsRooted && node.Index > 0 && !TransportBar.IsRecorderActive ;
+                }
+            }
 
         /// <summary>
         /// True when there is a block that is selected that is TODO, or a block playing back that is TODO.
@@ -1816,6 +1827,45 @@ namespace Obi.ProjectView
                     }
                 }
             }
+
+        public void MergePhraseWithFollowingPhrasesInSection () { MergeRangeOfPhrasesInSection ( true ); }
+        public void MergeWithPhrasesBeforeInSection  () { MergeRangeOfPhrasesInSection ( false); }
+
+        private void MergeRangeOfPhrasesInSection ( bool mergeWithFollowing)
+            {
+        if ( ( mergeWithFollowing && CanMergePhraseWithFollowingPhrasesInSection )
+            || (!mergeWithFollowing && CanMergeWithPhrasesBeforeInSection ))
+                {
+                if (mTransportBar.IsPlayerActive)
+                    {
+                    TransportBar.MoveSelectionToPlaybackPhrase ();
+                    mTransportBar.Stop ();
+                    }
+
+                bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
+
+                SectionNode section = ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
+
+                EmptyNode startNode = mergeWithFollowing ? (EmptyNode)Selection.Node :
+                    section.PhraseChild ( 0 );
+                EmptyNode endNode = mergeWithFollowing ? section.PhraseChild ( section.PhraseChildCount - 1 ) :
+                    (EmptyNode)Selection.Node;
+                    
+
+                try
+                    {
+                    mPresentation.Do ( GetMergeRangeOfPhrasesInSectionCommand ( section, startNode, endNode));
+                    
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
+                }
+        }
+
 
         public ICommand GetMergeRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
