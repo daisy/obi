@@ -1249,6 +1249,7 @@ namespace Obi.ProjectView
                 try
                     {
                     mPresentation.Do ( GetDeleteRangeOfPhrasesInSectionCommand ( section, startNode, section.PhraseChild ( section.PhraseChildCount - 1 ) ) );
+                    
                     }
                 catch (System.Exception ex)
                     {
@@ -1815,6 +1816,31 @@ namespace Obi.ProjectView
                     }
                 }
             }
+
+        public ICommand GetMergeRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
+            {
+            CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Merge_RangeOfPhrases" ) );
+            command.append ( new Commands.UpdateSelection ( this, Selection ) );
+
+            int startIndex = startNode.Index;
+            int endIndex = endNode.Index;
+    
+
+            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1; // multiplied by 2 to increment progress by 2
+            int progressPercent = 0;
+            for (int i = endIndex-1; i >= startIndex; i--)
+                {
+
+                ICommand mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
+                //if (i == startIndex) progressPercent = 98;
+                //if ((i - startIndex) % progressInterval == 0) mergeCommand.ProgressPercentage = progressPercent += 2;
+                command.append ( mergeCommand);
+                }
+            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section.PhraseChild(startIndex) , Selection.Control ) ) );
+
+            return command;
+            }
+
 
         public void ToggleEmptyNodeTo_DoMark ()
             {

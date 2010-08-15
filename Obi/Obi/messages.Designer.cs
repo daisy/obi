@@ -901,6 +901,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete range of phrases.
+        /// </summary>
+        internal static string Delete_RangeOfPhrases {
+            get {
+                return ResourceManager.GetString("Delete_RangeOfPhrases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete section (deep).
         /// </summary>
         internal static string delete_section {
@@ -1718,6 +1727,15 @@ namespace Obi {
         internal static string merge_phrase_with_next {
             get {
                 return ResourceManager.GetString("merge_phrase_with_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge range of phrases.
+        /// </summary>
+        internal static string Merge_RangeOfPhrases {
+            get {
+                return ResourceManager.GetString("Merge_RangeOfPhrases", resourceCulture);
             }
         }
         
