@@ -1262,8 +1262,26 @@ namespace Obi.ProjectView
         public ICommand GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Delete_RangeOfPhrases" ) );
+            command.append ( new Commands.UpdateSelection ( this,Selection ) );
+
             int startIndex = startNode.Index;
             int endIndex = endNode.Index < section.PhraseChildCount ? endNode.Index : section.PhraseChildCount - 1;
+
+            ObiNode updateSelectionNode = null;
+            if (endIndex < section.PhraseChildCount - 1)
+                {
+                updateSelectionNode = section.PhraseChild ( endIndex + 1 );
+                }
+            else if (startIndex > 0)
+                {
+                updateSelectionNode = section.PhraseChild ( startIndex - 1 );
+                }
+            else
+                {
+                updateSelectionNode = section;
+                }
+            if ( updateSelectionNode != null ) 
+            command.append ( new Commands.UpdateSelection (this, new NodeSelection (updateSelectionNode, Selection.Control )) );
 
             int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
@@ -1274,21 +1292,7 @@ namespace Obi.ProjectView
                 if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;
                 command.append ( deleteCommand );
                 }
-             ObiNode postDeleteSelectionNode = null ; 
-            if (endIndex < section.PhraseChildCount - 1)
-                {
-                postDeleteSelectionNode = section.PhraseChild ( endIndex + 1 );
-                }
-            else if (startIndex > 0)
-                {
-                postDeleteSelectionNode = section.PhraseChild (startIndex - 1 );
-                }
-            else
-                    {
-                    postDeleteSelectionNode = section ;
-                    }
-            //if ( postDeleteSelectionNode != null ) 
-                //command.append ( new Commands.UpdateSelection (this, new NodeSelection (postDeleteSelectionNode, Selection.Control )) );
+             
             
             return command;
             }
