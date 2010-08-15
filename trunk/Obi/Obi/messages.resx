@@ -1450,4 +1450,12 @@ Error text: {1}</value>
   <data name="RecordingRestriction_CannotCreateStrip" xml:space="preserve">
     <value>Recording active! Cannot show contents of section other than section being recorded.</value>
   </data>
+  <data name="Delete_RangeOfPhrases" xml:space="preserve">
+    <value>Delete range of phrases</value>
+    <comment>command</comment>
+  </data>
+  <data name="Merge_RangeOfPhrases" xml:space="preserve">
+    <value>Merge range of phrases</value>
+    <comment>command</comment>
+  </data>
 </root>
