@@ -401,6 +401,16 @@ namespace Obi.ProjectView
                 }
             }
 
+        public bool CanDeleteFollowingPhrasesInSection
+            {
+            get
+                {
+                return Selection != null
+                && (Selection.Node is EmptyNode || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0))
+                && !TransportBar.IsRecorderActive;
+                }
+            }
+
         public bool CanPause { get { return mTransportBar.CanPause; } }
         public bool CanPlay { get { return mTransportBar.CanPlay; } }
         public bool CanPlaySelection { get { return mTransportBar.CanPlay && mSelection != null; } }
@@ -677,6 +687,7 @@ namespace Obi.ProjectView
             //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount () > 0) mPresentation.Do ( command );
             }
+
 
         /// <summary>
         /// Cancel any audio selection.
@@ -1219,6 +1230,69 @@ namespace Obi.ProjectView
                 TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
                 }
             }
+
+        //@singleSection
+        public void DeleteFollowingPhrasesInSection ()
+            {
+            if (CanDeleteFollowingPhrasesInSection)
+                {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
+
+                bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
+
+                SectionNode section = Selection.Node is SectionNode ? (SectionNode)Selection.Node : ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
+                EmptyNode startNode = Selection.Node is SectionNode && section.PhraseChildCount > 0 ? section.PhraseChild ( 0 ) :
+                    Selection.Node is EmptyNode ? (EmptyNode)Selection.Node :
+                    null;
+
+                try
+                    {
+                    mPresentation.Do ( GetDeleteRangeOfPhrasesInSectionCommand ( section, startNode, section.PhraseChild ( section.PhraseChildCount - 1 ) ) );
+                    }
+                catch (System.Exception ex)
+                    {
+                    MessageBox.Show ( ex.ToString () );
+                    }
+                TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
+                }
+            }
+
+        //@singleSection
+        public ICommand GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
+            {
+            CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Delete_RangeOfPhrases" ) );
+            int startIndex = startNode.Index;
+            int endIndex = endNode.Index < section.PhraseChildCount ? endNode.Index : section.PhraseChildCount - 1;
+
+            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1; // multiplied by 2 to increment progress by 2
+            int progressPercent = 0;
+            for (int i = endIndex; i >= startIndex; i--)
+                {
+                Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
+                if (i == startIndex) progressPercent = 98;
+                if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;
+                command.append ( deleteCommand );
+                }
+             ObiNode postDeleteSelectionNode = null ; 
+            if (endIndex < section.PhraseChildCount - 1)
+                {
+                postDeleteSelectionNode = section.PhraseChild ( endIndex + 1 );
+                }
+            else if (startIndex > 0)
+                {
+                postDeleteSelectionNode = section.PhraseChild (startIndex - 1 );
+                }
+            else
+                    {
+                    postDeleteSelectionNode = section ;
+                    }
+            //if ( postDeleteSelectionNode != null ) 
+                //command.append ( new Commands.UpdateSelection (this, new NodeSelection (postDeleteSelectionNode, Selection.Control )) );
+            
+            return command;
+            }
+
 
         /// <summary>
         /// Set the synchronize views flag for this view and resynchronize the views if necessary.
