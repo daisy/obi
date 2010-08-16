@@ -1401,7 +1401,8 @@ namespace Obi.ProjectView
                                                         if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
                                                             && (mProjectView.Selection.Node.isSiblingOf (mSelection.Node)    ||    mProjectView.Selection.Node == mSelection.Node))
                                                             {
-                                                            int contentViewSelectionIndex = mSelection is StripIndexSelection ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : mSelection.Node.Index;
+                                                            int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1 ) :
+                                                                mSelection.Node.Index;
                                                             if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
                                                             
                                                                                                                         }
