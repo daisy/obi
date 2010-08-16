@@ -18,7 +18,7 @@ namespace Obi.Commands.Node
         private Time mSplitTime;           // the split time of the new merged node
 
 
-        private MergeAudio(ProjectView.ProjectView view, PhraseNode node, PhraseNode next)
+        public MergeAudio(ProjectView.ProjectView view, PhraseNode node, PhraseNode next)
             : base(view)
         {
             mNode = node;
