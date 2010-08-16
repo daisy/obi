@@ -1874,19 +1874,45 @@ namespace Obi.ProjectView
 
             int startIndex = startNode.Index;
             int endIndex = endNode.Index;
-    
-
-            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1; // multiplied by 2 to increment progress by 2
+            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section.PhraseChild ( startIndex ), Selection.Control ) ) );
+            EmptyNode phraseRole = null;
+            
+            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1*2 ; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
             for (int i = endIndex-1; i >= startIndex; i--)
                 {
+                EmptyNode node = section.PhraseChild ( i );
+                EmptyNode next = section.PhraseChild ( i+1 );
+                if (node is PhraseNode)
+                    {
+                    if (next.Role_ == EmptyNode.Role.Heading)
+                        {
+                        phraseRole = next;
+                                                }
+                    
+                                        if (next is PhraseNode)
+                        {
+                        Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)node, (PhraseNode)next );
+                        mergeCmd.UpdateSelection = false;
+                        if (i == startIndex) progressPercent = 98;
+                        if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
+                        command.append ( mergeCmd);
+                        }
+                    else
+                        {
+                        command.append ( new Commands.Node.Delete ( this, next,false ) );
+                        }
+                    }
+                else
+                    {
+                                        command.append ( new Commands.Node.Delete ( this, node, false ) );
+                    }
 
-                ICommand mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
-                //if (i == startIndex) progressPercent = 98;
-                //if ((i - startIndex) % progressInterval == 0) mergeCommand.ProgressPercentage = progressPercent += 2;
-                command.append ( mergeCommand);
+                //ICommand mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
+                
+                //command.append ( mergeCommand);
                 }
-            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section.PhraseChild(startIndex) , Selection.Control ) ) );
+            if ( phraseRole != null )  command.insert ( new Commands.Node.AssignRole (this, startNode, phraseRole.Role_ ),0) ;
 
             return command;
             }
