@@ -383,40 +383,7 @@ namespace Obi.ProjectView
             }
             else
             {
-            if (IsBlockForEmptyNodeExists ( node)) return FindBlock (node );
-
-            // if node index is just one less than offset of strip then allow insert else return null
-            if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 1) return null;
-
-                if (mBlockLayout.Controls.Count == 0)
-                {
-                    StripCursor cursor = AddCursorAtBlockLayoutIndex(0);
-
-                    m_OffsetForFirstPhrase = node.Index;//@singleSection
-                    Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
-                }
-                
-                Block block = node is PhraseNode ? new AudioBlock((PhraseNode)node, this) : new Block(node, this);
-                mBlockLayout.Controls.Add(block);
-                //@singleSection: following 2 lines replaced
-                //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
-                //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-                
-                mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index- OffsetForFirstPhrase) );
-                AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
-                block.SetZoomFactorAndHeight(mContentView.ZoomFactor, mBlockHeight);
-                    block.Cursor = Cursor;
-                block.SizeChanged += new EventHandler(Block_SizeChanged);
-
-                Resize_Blocks(); 
-
-                UpdateStripCursorsAccessibleName(2 + 2 * node.Index);
-                if (mBlockLayout.Controls.IndexOf ( block ) == 1)
-                    {
-                    m_OffsetForFirstPhrase = node.Index;
-                    Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
-                    }
-                return block;
+            return CreateBlockForNode ( node, true );
             }
         }
 
@@ -444,11 +411,16 @@ namespace Obi.ProjectView
         //@singleSection
         private Block CreateBlockForNode ( EmptyNode node , bool updateSize)
             {
+            // first check if blocks count has exceeded handle limit 
+            if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 1000)
+                return null;
+
+
             if (IsBlockForEmptyNodeExists ( node )) return FindBlock ( node );
+
             // if node index is just one less than offset of strip then allow insert else return null
             if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 1) return null;
-                
-                
+
             if (mBlockLayout.Controls.Count == 0)
                 {
                 StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
@@ -456,6 +428,7 @@ namespace Obi.ProjectView
                 m_OffsetForFirstPhrase = node.Index;//@singleSection
                 Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
                 }
+
             Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
             mBlockLayout.Controls.Add ( block );
             //@singleSection: following 2 lines replaced
@@ -468,7 +441,7 @@ namespace Obi.ProjectView
             block.Cursor = Cursor;
             block.SizeChanged += new EventHandler ( Block_SizeChanged );
 
-            if ( updateSize )  Resize_Blocks ();
+            if ( updateSize )  Resize_Blocks  ();
 
             UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
             if (mBlockLayout.Controls.IndexOf ( block ) == 1)
