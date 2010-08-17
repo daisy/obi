@@ -1284,12 +1284,12 @@ namespace Obi.ProjectView
             if ( updateSelectionNode != null ) 
             command.append ( new Commands.UpdateSelection (this, new NodeSelection (updateSelectionNode, Selection.Control )) );
 
-            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1; // multiplied by 2 to increment progress by 2
+            int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1*2; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
             for (int i = endIndex; i >= startIndex; i--)
                 {
                 Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
-                if (i == startIndex) progressPercent = 98;
+                if (i == startIndex || progressPercent > 98) progressPercent = 98;
                 if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;
                 command.append ( deleteCommand );
                 }
@@ -1894,7 +1894,7 @@ namespace Obi.ProjectView
                         {
                         Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)node, (PhraseNode)next );
                         mergeCmd.UpdateSelection = false;
-                        if (i == startIndex) progressPercent = 98;
+                        if (i == startIndex || progressPercent > 98) progressPercent = 98;
                         if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
                         command.append ( mergeCmd);
                         }
