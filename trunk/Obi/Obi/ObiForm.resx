@@ -835,7 +835,7 @@
     <value>Ctrl+B</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mAddBlankPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Add &amp;blank phrase</value>
@@ -847,7 +847,7 @@
     <value>Ctrl+Shift+B</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mAddEmptyPagesToolStripMenuItem.Text" xml:space="preserve">
     <value>Add empty &amp;pages</value>
@@ -859,7 +859,7 @@
     <value>Ctrl+I</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mImportAudioFileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Import audio files</value>
@@ -871,7 +871,7 @@
     <value>Ctrl+Q</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mSplitPhraseToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Split phrase</value>
@@ -907,7 +907,7 @@
     <value>Merge with &amp;preceding phrases in section</value>
   </data>
   <data name="mMergeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mMergeToolStripMenuItem.Text" xml:space="preserve">
     <value>Merge</value>
@@ -919,7 +919,7 @@
     <value>Ctrl+Alt+Q</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
     <value>C&amp;rop audio</value>
@@ -928,7 +928,7 @@
     <value>F9</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.Text" xml:space="preserve">
     <value>Phrase is &amp;TODO</value>
@@ -940,13 +940,13 @@
     <value>Ctrl+K</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhraseIsUsedToolStripMenuItem.Text" xml:space="preserve">
     <value>Phrase is &amp;used</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="mPhrases_AssignRole_PlainMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 22</value>
@@ -1000,7 +1000,7 @@
     <value>(&amp;New custom role...)</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_AssignRoleMenuItem.Text" xml:space="preserve">
     <value>&amp;Assign role</value>
@@ -1012,19 +1012,19 @@
     <value>Ctrl+Shift+C</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_ClearRoleMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear role</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_EditRolesMenuItem.Text" xml:space="preserve">
     <value>E&amp;dit custom roles...</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Apply phrase detection Ctrl+Shift+P</value>
@@ -1037,6 +1037,21 @@
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
     <value>Apply p&amp;hrase detection</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value> Apply phrase detection in project</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 22</value>
+  </data>
+  <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
+    <value> Apply phrase detection in p&amp;roject</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Phrase Detection</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Begin audio selection Ctrl+[</value>
@@ -1069,7 +1084,7 @@
     <value>&amp;End audio selection</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mPhrases_AudioSelectionMenuItem.Text" xml:space="preserve">
     <value>Audi&amp;o selection</value>
@@ -1111,7 +1126,7 @@
     <value>Pa&amp;ge / Phrase</value>
   </data>
   <data name="mGoToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mGoToToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Go to...</value>
@@ -1120,7 +1135,7 @@
     <value>Delete following phrases in section</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 22</value>
+    <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
     <value>Delete following phrases</value>
@@ -1624,7 +1639,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.33468, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.34785, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2356,6 +2371,24 @@
   <data name="&gt;&gt;mMergeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergePhraseWithNextToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergePhraseWithFollowingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mMergePhraseWithPrecedingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Name" xml:space="preserve">
     <value>mCropAudiotoolStripMenuItem</value>
   </data>
@@ -2440,10 +2473,22 @@
   <data name="&gt;&gt;toolStripSeparator19.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Name" xml:space="preserve">
+    <value>mPhraseDetectionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mPhraseDetectionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mPhrases_ApplyPhraseDetectionMenuItem.Name" xml:space="preserve">
     <value>mPhrases_ApplyPhraseDetectionMenuItem</value>
   </data>
   <data name="&gt;&gt;mPhrases_ApplyPhraseDetectionMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>mApplyPhraseDetectionInProjectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mApplyPhraseDetectionInProjectToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhrases_AudioSelectionMenuItem.Name" xml:space="preserve">
@@ -2486,6 +2531,12 @@
     <value>m_GoToPageToolStrip</value>
   </data>
   <data name="&gt;&gt;m_GoToPageToolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mDeleteFollowingPhrasesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;transportToolStripMenuItem.Name" xml:space="preserve">
@@ -2757,30 +2808,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergePhraseWithNextToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithNextToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergePhraseWithFollowingPhrasesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Name" xml:space="preserve">
-    <value>mMergePhraseWithPrecedingPhrasesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Name" xml:space="preserve">
-    <value>mDeleteFollowingPhrasesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mDeleteFollowingPhrasesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
