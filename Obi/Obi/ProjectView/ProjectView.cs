@@ -2085,11 +2085,11 @@ SectionNode SNode = GetSelectedPhraseSection;
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
                 ObiNode node = null;
-                if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
+                /*   if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
                     {
                     node = ((SectionNode)Selection.Node).PhraseChild ( 0 );
                     }
-                // first find silence phrase from first section
+               */ // first find silence phrase from first section
                 SectionNode firstSection = mPresentation.FirstSection;
                 PhraseNode silencePhrase = null ;
                 for ( int i = 0 ; i < firstSection.PhraseChildCount ; i++ )

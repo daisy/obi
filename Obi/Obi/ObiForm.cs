@@ -981,6 +981,7 @@ namespace Obi
             mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             mDeleteFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
+            mApplyPhraseDetectionInProjectToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
             mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
@@ -2440,6 +2441,11 @@ namespace Obi
         private void mDeleteFollowingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.DeleteFollowingPhrasesInSection();
+        }
+
+        private void mApplyPhraseDetectionInProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.ApplyPhraseDetectionInWholeProject();
         }
         }
     }
