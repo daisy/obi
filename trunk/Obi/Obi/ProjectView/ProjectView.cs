@@ -2078,6 +2078,70 @@ SectionNode SNode = GetSelectedPhraseSection;
                 }
             }
 
+        public void ApplyPhraseDetectionInWholeProject ()
+            {
+            if (CanApplyPhraseDetection)
+                {
+                if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
+                ObiNode node = null;
+                if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
+                    {
+                    node = ((SectionNode)Selection.Node).PhraseChild ( 0 );
+                    }
+                // first find silence phrase from first section
+                SectionNode firstSection = mPresentation.FirstSection;
+                PhraseNode silencePhrase = null ;
+                for ( int i = 0 ; i < firstSection.PhraseChildCount ; i++ )
+                    {
+                    if ( firstSection.PhraseChild(i) is PhraseNode && firstSection.PhraseChild(i).Role_ == EmptyNode.Role.Silence )
+                        {
+                        silencePhrase = (PhraseNode) firstSection.PhraseChild(i) ;
+                        break;
+                        }
+                    }
+
+                
+                Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase );
+                if (dialog.ShowDialog () == DialogResult.OK)
+                    {
+                    bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                    TransportBar.SelectionChangedPlaybackEnabled = false;
+                    //CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "PhraseDetection_WholeProject" ) );
+                    List<CompositeCommand> listOfCommands = new List<CompositeCommand> ();
+                    List<SectionNode> sectionsList = mPresentation.RootNode.GetAllSections ();
+
+                    Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
+                        delegate ()
+                            {
+                            for (int i = 0; i < sectionsList.Count; i++)
+                                {
+                                if (sectionsList[i].PhraseChildCount > 0)
+                                    {
+                                    listOfCommands.Add( Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, sectionsList[i],
+                                        dialog.Threshold, dialog.Gap, dialog.LeadingSilence ) );
+                                    }
+                                }
+                            } );
+                    progress.ShowDialog ();
+                    MessageBox.Show ( "Scanning of all files complete " );
+                    for (int i = 0; i < listOfCommands.Count; ++i)
+                        {
+                        mPresentation.Do ( listOfCommands[i] );
+                        
+                        }
+                    SectionNode SNode = GetSelectedPhraseSection;
+                    if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
+                        MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
+
+                    // hide newly added phrases if contents of section are hidden
+                    //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
+                    mContentView.CreateBlocksInStrip (); //@singleSection: new
+                    TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
+                    }
+                }
+            }
+
+
         /// <summary>
         /// Select the phrase after the currently selected phrase in the same strip in the content view.
         /// If no phrase is selected, select the first phrase of the currently selected strip.
