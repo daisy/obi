@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using urakawa.command;
 using urakawa.core;
@@ -323,6 +324,28 @@ namespace Obi
                 return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
             }
         }
+
+        /// <summary>
+        /// returns list of all the sections descending from root. This may be time consuming for large project
+        /// </summary>
+        /// <returns></returns>
+        public List<SectionNode> GetAllSections ()
+            {
+            List<SectionNode> m_SectionsList = new List<SectionNode> ();
+            this.acceptDepthFirst (
+                    delegate ( urakawa.core.TreeNode n )
+                        {
+                                                if (n is SectionNode )
+                            {
+                                                                                m_SectionsList.Add ( (SectionNode)n );
+                            }
+                        return true;
+                        },
+                    delegate ( urakawa.core.TreeNode n ) { } );
+
+            return m_SectionsList;
+            }
+
 
         public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
