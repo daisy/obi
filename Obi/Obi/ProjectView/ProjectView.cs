@@ -2111,10 +2111,12 @@ SectionNode SNode = GetSelectedPhraseSection;
                     List<SectionNode> sectionsList = mPresentation.RootNode.GetAllSections ();
 
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
-                        delegate ()
+                        delegate ( Dialogs.ProgressDialog progress1)
                             {
                             for (int i = 0; i < sectionsList.Count; i++)
                                 {
+                                if (progress1.CancelOperation) break;
+
                                 if (sectionsList[i].PhraseChildCount > 0)
                                     {
                                     listOfCommands.Add( Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, sectionsList[i],
