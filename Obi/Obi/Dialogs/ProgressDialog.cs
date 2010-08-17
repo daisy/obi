@@ -41,6 +41,8 @@ namespace Obi.Dialogs
         {
             mOperation = operation;
             Text = title;
+            this.Size = new Size(this.Width, 74);
+            m_BtnCancel.Visible = false;
         }
 
         //@singleSection
@@ -89,6 +91,11 @@ namespace Obi.Dialogs
         }
 
         public bool CancelOperation { get { return m_IsCancelled ; } }
+
+        private void m_BtnCancel_Click(object sender, EventArgs e)
+        {
+            m_IsCancelled = true;
+        }
                
 
     }

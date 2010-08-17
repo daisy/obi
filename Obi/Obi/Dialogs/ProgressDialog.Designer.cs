@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private void InitializeComponent()
         {
             this.mProgressBar = new System.Windows.Forms.ProgressBar();
+            this.m_BtnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mProgressBar
@@ -40,16 +41,27 @@ namespace Obi.Dialogs
             this.mProgressBar.TabIndex = 1;
             this.mProgressBar.UseWaitCursor = true;
             // 
+            // m_BtnCancel
+            // 
+            this.m_BtnCancel.Location = new System.Drawing.Point(305, 41);
+            this.m_BtnCancel.Name = "m_BtnCancel";
+            this.m_BtnCancel.Size = new System.Drawing.Size(75, 23);
+            this.m_BtnCancel.TabIndex = 2;
+            this.m_BtnCancel.Text = "&Cancel";
+            this.m_BtnCancel.UseVisualStyleBackColor = true;
+            this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
+            // 
             // ProgressDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 47);
+            this.ClientSize = new System.Drawing.Size(384, 67);
             this.ControlBox = false;
+            this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.mProgressBar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(400, 74);
+            this.MaximumSize = new System.Drawing.Size(400, 105);
             this.MinimumSize = new System.Drawing.Size(400, 74);
             this.Name = "ProgressDialog";
             this.ShowIcon = false;
@@ -66,5 +78,6 @@ namespace Obi.Dialogs
         #endregion
 
         private System.Windows.Forms.ProgressBar mProgressBar;
+        private System.Windows.Forms.Button m_BtnCancel;
     }
 }
