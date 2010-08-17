@@ -178,6 +178,7 @@ namespace Obi
             this.mMergePhraseWithFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mDeleteFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -711,7 +712,8 @@ namespace Obi
             this.toolStripSeparator19,
             this.mPhrases_ApplyPhraseDetectionMenuItem,
             this.mPhrases_AudioSelectionMenuItem,
-            this.mGoToToolStripMenuItem});
+            this.mGoToToolStripMenuItem,
+            this.mDeleteFollowingPhrasesToolStripMenuItem});
             this.mPhrasesToolStripMenuItem.Name = "mPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mPhrasesToolStripMenuItem, "mPhrasesToolStripMenuItem");
             // 
@@ -1222,13 +1224,15 @@ namespace Obi
             // 
             // mMergePhraseWithFollowingPhrasesToolStripMenuItem
             // 
-            this.mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name = "mMergePhraseWithFollowingPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mMergePhraseWithFollowingPhrasesToolStripMenuItem, "mMergePhraseWithFollowingPhrasesToolStripMenuItem");
+            this.mMergePhraseWithFollowingPhrasesToolStripMenuItem.Name = "mMergePhraseWithFollowingPhrasesToolStripMenuItem";
+            this.mMergePhraseWithFollowingPhrasesToolStripMenuItem.Click += new System.EventHandler(this.mMergePhraseWithFollowingPhrasesToolStripMenuItem_Click);
             // 
             // mMergePhraseWithPrecedingPhrasesToolStripMenuItem
             // 
-            this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Name = "mMergePhraseWithPrecedingPhrasesToolStripMenuItem";
             resources.ApplyResources(this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem, "mMergePhraseWithPrecedingPhrasesToolStripMenuItem");
+            this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Name = "mMergePhraseWithPrecedingPhrasesToolStripMenuItem";
+            this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Click += new System.EventHandler(this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
@@ -1243,6 +1247,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mDeleteFollowingPhrasesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mDeleteFollowingPhrasesToolStripMenuItem, "mDeleteFollowingPhrasesToolStripMenuItem");
+            this.mDeleteFollowingPhrasesToolStripMenuItem.Name = "mDeleteFollowingPhrasesToolStripMenuItem";
+            this.mDeleteFollowingPhrasesToolStripMenuItem.Click += new System.EventHandler(this.mDeleteFollowingPhrasesToolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1419,6 +1429,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithFollowingPhrasesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithPrecedingPhrasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDeleteFollowingPhrasesToolStripMenuItem;
     }
 }
 
