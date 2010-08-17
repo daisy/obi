@@ -978,6 +978,9 @@ namespace Obi
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
+            mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
+            mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
+            mDeleteFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
             mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
@@ -2423,5 +2426,20 @@ namespace Obi
             {
             mProjectView.GoToPageOrPhrase ();
             }
+
+        private void mMergePhraseWithFollowingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergePhraseWithFollowingPhrasesInSection();
+        }
+
+        private void mMergePhraseWithPrecedingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeWithPhrasesBeforeInSection();
+        }
+
+        private void mDeleteFollowingPhrasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.DeleteFollowingPhrasesInSection();
+        }
         }
     }
