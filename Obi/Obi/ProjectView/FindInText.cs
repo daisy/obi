@@ -128,7 +128,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                m_SectionsList = GetSectionsList ( mProjectView.Presentation.RootNode );//@singleSection: done at last to allow find control open without delay
+                m_SectionsList = mProjectView.Presentation.RootNode.GetListOfAllSections () ;//@singleSection: done at last to allow find control open without delay
                 }
             m_FindStartNode = null; //@singleSection
         }
@@ -647,27 +647,7 @@ namespace Obi.ProjectView
             return null;
             }
         
-
-        //@singleSection
-        List<SectionNode> GetSectionsList ( RootNode rNode )
-            {
-            List<SectionNode> m_SectionsList = new List<SectionNode> ();
-            rNode.acceptDepthFirst (
-                    delegate ( urakawa.core.TreeNode n )
-                        {
-
-                        if (n is SectionNode && ((SectionNode)n).Used)
-                            {
-
-                            m_SectionsList.Add ( (SectionNode)n );
-                            }
-                        return true;
-                        },
-                    delegate ( urakawa.core.TreeNode n ) { } );
-
-            return m_SectionsList;
-            }
-
+        
         private void mCloseButton_Click(object sender, EventArgs e)
         {
             mProjectView.FindInTextVisible = false;

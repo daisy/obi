@@ -293,7 +293,7 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
-        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.FirstSection != null; } }
+        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.getChildCount() > 0; } }
         public bool CanApplyPhraseDetection
             {
             get
@@ -2084,12 +2084,8 @@ SectionNode SNode = GetSelectedPhraseSection;
             if (CanApplyPhraseDetectionInWholeProject)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
-                ObiNode node = null;
-                /*   if (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0)
-                    {
-                    node = ((SectionNode)Selection.Node).PhraseChild ( 0 );
-                    }
-               */ // first find silence phrase from first section
+                
+                // first find silence phrase from first section
                 SectionNode firstSection = mPresentation.FirstSection;
                 PhraseNode silencePhrase = null ;
                 for ( int i = 0 ; i < firstSection.PhraseChildCount ; i++ )
@@ -2109,7 +2105,7 @@ SectionNode SNode = GetSelectedPhraseSection;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     //CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "PhraseDetection_WholeProject" ) );
                     List<CompositeCommand> listOfCommands = new List<CompositeCommand> ();
-                    List<SectionNode> sectionsList = mPresentation.RootNode.GetAllSections ();
+                    List<SectionNode> sectionsList = mPresentation.RootNode.GetListOfAllSections ();
 
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)

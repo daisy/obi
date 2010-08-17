@@ -329,7 +329,7 @@ namespace Obi
         /// returns list of all the sections descending from root. This may be time consuming for large project
         /// </summary>
         /// <returns></returns>
-        public List<SectionNode> GetAllSections ()
+        public List<SectionNode> GetListOfAllSections ()
             {
             List<SectionNode> m_SectionsList = new List<SectionNode> ();
             this.acceptDepthFirst (
