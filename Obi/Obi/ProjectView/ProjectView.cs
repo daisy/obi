@@ -293,6 +293,7 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
+        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.FirstSection != null; } }
         public bool CanApplyPhraseDetection
             {
             get
@@ -2080,7 +2081,7 @@ SectionNode SNode = GetSelectedPhraseSection;
 
         public void ApplyPhraseDetectionInWholeProject ()
             {
-            if (CanApplyPhraseDetection)
+            if (CanApplyPhraseDetectionInWholeProject)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
                 ObiNode node = null;
@@ -2125,12 +2126,21 @@ SectionNode SNode = GetSelectedPhraseSection;
                                 }
                             } );
                     progress.ShowDialog ();
-                    MessageBox.Show ( "Scanning of all files complete " );
-                    for (int i = 0; i < listOfCommands.Count; ++i)
+                    //MessageBox.Show ( "Scanning of all files complete " );
+
+                    progress = null;
+                    progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
+                        delegate ( Dialogs.ProgressDialog progress1 )
+                            {
+                                                for (int i = 0; i < listOfCommands.Count; ++i)
                         {
+                        if (progress1.CancelOperation) break;
                         mPresentation.Do ( listOfCommands[i] );
                         
                         }
+                    } );
+                    progress.ShowDialog ();
+
                     SectionNode SNode = GetSelectedPhraseSection;
                     if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
                         MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
