@@ -1134,7 +1134,10 @@ namespace Obi.ProjectView
                     {
                     if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
                         {
-                        CreateLimitedBlocksInStrip ( requiredExistingStrip, selectionValue is StripIndexSelection ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection : (EmptyNode)selectionValue.Node );
+                        EmptyNode eNode = selectionValue is StripIndexSelection ? ( ((StripIndexSelection)selectionValue).Index < requiredExistingStrip.Node.PhraseChildCount ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection :
+                            requiredExistingStrip.Node.PhraseChild (requiredExistingStrip.Node.PhraseChildCount - 1 ) ): 
+                                (EmptyNode)selectionValue.Node  ;
+                        CreateLimitedBlocksInStrip ( requiredExistingStrip, eNode);
                         }
                     return;
                     }
@@ -1143,14 +1146,19 @@ namespace Obi.ProjectView
                     || (currentlyActiveStrip != null
                     && sectionToBeSelected != currentlyActiveStrip.Node))
                     {
-                    CreateStripForSelectedSection ( sectionToBeSelected,
+                    currentlyActiveStrip =  CreateStripForSelectedSection ( sectionToBeSelected,
                                                 true);
 
                     
                     }
                 if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
                     {
-                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, selectionValue is StripIndexSelection ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection : (EmptyNode)selectionValue.Node );
+                    //if (currentlyActiveStrip == null) MessageBox.Show ( "active is null " );
+                    //if (selectionValue is StripIndexSelection ) MessageBox.Show ("selection is  " + (( StripIndexSelection) selectionValue).Index.ToString () );
+                    EmptyNode eNode = selectionValue is StripIndexSelection ?( ((StripIndexSelection)selectionValue).Index < currentlyActiveStrip.Node.PhraseChildCount ?    ((StripIndexSelection)selectionValue).EmptyNodeForSelection  :
+                            currentlyActiveStrip.Node.PhraseChild (currentlyActiveStrip.Node.PhraseChildCount - 1 ) ): 
+                                (EmptyNode)selectionValue.Node  ;
+                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode);
                     }
                 }
             
@@ -1319,7 +1327,8 @@ namespace Obi.ProjectView
                         ObiNode selectedNode = null;
                         if (mProjectView.Selection is StripIndexSelection)
                             {
-                            selectedNode = ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection;
+                            selectedNode = ((StripIndexSelection)mProjectView.Selection).Index < stripControl.Node.PhraseChildCount? ( (StripIndexSelection)mProjectView.Selection ).EmptyNodeForSelection:
+                               stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) ;
                             
                             }
                         if ( selectedNode == null )  selectedNode = mProjectView.Selection.Node;
