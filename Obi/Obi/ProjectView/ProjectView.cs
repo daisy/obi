@@ -2123,19 +2123,25 @@ SectionNode SNode = GetSelectedPhraseSection;
                             } );
                     progress.ShowDialog ();
                     //MessageBox.Show ( "Scanning of all files complete " );
-
-                    progress = null;
-                    progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
-                        delegate ( Dialogs.ProgressDialog progress1 )
-                            {
-                                                for (int i = 0; i < listOfCommands.Count; ++i)
+                    
+                    //Dialogs.ProgressDialog  progress2 = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
+                        //delegate ( Dialogs.ProgressDialog progress1 )
+                            //{
+                    try
                         {
-                        if (progress1.CancelOperation) break;
-                        mPresentation.Do ( listOfCommands[i] );
-                        
+                        for (int i = 0; i < listOfCommands.Count; ++i)
+                            {
+                            //if (progress1.CancelOperation) break;
+                            mPresentation.Do ( listOfCommands[i] );
+                            //MessageBox.Show ( "command " + i.ToString () );
+                            }
                         }
-                    } );
-                    progress.ShowDialog ();
+                    catch (System.Exception ex)
+                        {
+                        MessageBox.Show ( ex.ToString () );
+                        }
+                    //} );
+                    //progress2.ShowDialog ();
 
                     SectionNode SNode = GetSelectedPhraseSection;
                     if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
@@ -2143,7 +2149,7 @@ SectionNode SNode = GetSelectedPhraseSection;
 
                     // hide newly added phrases if contents of section are hidden
                     //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
-                    mContentView.CreateBlocksInStrip (); //@singleSection: new
+                    //mContentView.CreateBlocksInStrip (); //@singleSection: new
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                     }
                 }
