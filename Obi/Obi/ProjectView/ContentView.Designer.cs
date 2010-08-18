@@ -40,6 +40,9 @@ namespace Obi.ProjectView
             this.Context_ImportAudioFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SplitPhraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_MergeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergePhraseWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_CropAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PhraseIsUsedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +56,8 @@ namespace Obi.ProjectView
             this.Context_AssignRole_NewCustomRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_ClearRoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_BeginMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AudioSelection_EndMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,22 +68,17 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_PasteInsideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_DeleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
+            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
-            this.Context_Merge_MergePhraseWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_PhraseDetection_ApplyPhraseDetectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_DeleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.mStripsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -111,9 +111,9 @@ namespace Obi.ProjectView
             this.Context_PasteBeforeMenuItem,
             this.Context_PasteInsideMenuItem,
             this.Context_DeleteMenuItem,
+            this.Context_DeleteFollowingPhrasesMenuItem,
             this.toolStripSeparator5,
-            this.Context_PropertiesMenuItem,
-            this.Context_DeleteFollowingPhrasesMenuItem});
+            this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
             this.mContextMenuStrip.Size = new System.Drawing.Size(204, 578);
             // 
@@ -181,13 +181,32 @@ namespace Obi.ProjectView
             // Context_MergeMenuItem
             // 
             this.Context_MergeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Context_Merge_MergePhraseWithNextMenuItem,
+            this.Context_MergePhraseWithNextMenuItem,
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem,
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem});
             this.Context_MergeMenuItem.Name = "Context_MergeMenuItem";
             this.Context_MergeMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_MergeMenuItem.Text = "Me&rge";
-            this.Context_MergeMenuItem.Click += new System.EventHandler(this.Context_MergePhraseWithNextMenuItem_Click);
+            this.Context_MergeMenuItem.Text = "Mer&ge";
+            // 
+            // Context_MergePhraseWithNextMenuItem
+            // 
+            this.Context_MergePhraseWithNextMenuItem.Name = "Context_MergePhraseWithNextMenuItem";
+            this.Context_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.Context_MergePhraseWithNextMenuItem.Text = "Merge phrase with ne&xt";
+            // 
+            // Context_Merge_MergeWithFollowingPhrasesMenuItem
+            // 
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Name = "Context_Merge_MergeWithFollowingPhrasesMenuItem";
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Text = "Merge with fo&llowing phrases ";
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithFollowingPhrasesMenuItem_Click);
+            // 
+            // Context_Merge_MergeWithPrecedingPhrasesMenuItem
+            // 
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Name = "Context_Merge_MergeWithPrecedingPhrasesMenuItem";
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text = "Merge with preceding phra&ses in section";
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click);
             // 
             // Context_CropAudioMenuItem
             // 
@@ -282,12 +301,24 @@ namespace Obi.ProjectView
             // Context_PhraseDetectionMenuItem
             // 
             this.Context_PhraseDetectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Context_PhraseDetection_ApplyPhraseDetectionMenuItem,
+            this.Context_ApplyPhraseDetectionMenuItem,
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem});
             this.Context_PhraseDetectionMenuItem.Name = "Context_PhraseDetectionMenuItem";
             this.Context_PhraseDetectionMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_PhraseDetectionMenuItem.Text = "P&hrase detection";
-            this.Context_PhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
+            this.Context_PhraseDetectionMenuItem.Text = "P&hrase Detection";
+            // 
+            // Context_ApplyPhraseDetectionMenuItem
+            // 
+            this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
+            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection";
+            // 
+            // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
+            // 
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem";
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Apply phrase detection in &project";
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Click += new System.EventHandler(this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
             // 
@@ -359,6 +390,13 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem.Text = "&Delete";
             this.Context_DeleteMenuItem.Click += new System.EventHandler(this.Context_DeleteMenuItem_Click);
             // 
+            // Context_DeleteFollowingPhrasesMenuItem
+            // 
+            this.Context_DeleteFollowingPhrasesMenuItem.Name = "Context_DeleteFollowingPhrasesMenuItem";
+            this.Context_DeleteFollowingPhrasesMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.Context_DeleteFollowingPhrasesMenuItem.Text = "Dele&te following phrases";
+            this.Context_DeleteFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_DeleteFollowingPhrasesMenuItem_Click);
+            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -382,6 +420,19 @@ namespace Obi.ProjectView
             this.mStripsPanel.Name = "mStripsPanel";
             this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
             this.mStripsPanel.TabIndex = 1;
+            // 
+            // verticleScrollPane1
+            // 
+            this.verticleScrollPane1.CanScrollDown = true;
+            this.verticleScrollPane1.CanScrollUp = true;
+            this.verticleScrollPane1.contentView = null;
+            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
+            this.verticleScrollPane1.Name = "verticleScrollPane1";
+            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
+            this.verticleScrollPane1.TabIndex = 6;
+            this.verticleScrollPane1.TabStop = false;
+            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
+            this.verticleScrollPane1.Visible = false;
             // 
             // mHScrollBar
             // 
@@ -450,55 +501,6 @@ namespace Obi.ProjectView
             this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // verticleScrollPane1
-            // 
-            this.verticleScrollPane1.CanScrollDown = true;
-            this.verticleScrollPane1.CanScrollUp = true;
-            this.verticleScrollPane1.contentView = null;
-            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
-            this.verticleScrollPane1.Name = "verticleScrollPane1";
-            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
-            this.verticleScrollPane1.TabIndex = 6;
-            this.verticleScrollPane1.TabStop = false;
-            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
-            this.verticleScrollPane1.Visible = false;
-            // 
-            // Context_Merge_MergePhraseWithNextMenuItem
-            // 
-            this.Context_Merge_MergePhraseWithNextMenuItem.Name = "Context_Merge_MergePhraseWithNextMenuItem";
-            this.Context_Merge_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.Context_Merge_MergePhraseWithNextMenuItem.Text = "Merge phrase with next";
-            // 
-            // Context_Merge_MergeWithFollowingPhrasesMenuItem
-            // 
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Name = "Context_Merge_MergeWithFollowingPhrasesMenuItem";
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Text = "Merge with following phrases";
-            // 
-            // Context_Merge_MergeWithPrecedingPhrasesMenuItem
-            // 
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Name = "Context_Merge_MergeWithPrecedingPhrasesMenuItem";
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text = "Merge with preceding phrases in section";
-            // 
-            // Context_PhraseDetection_ApplyPhraseDetectionMenuItem
-            // 
-            this.Context_PhraseDetection_ApplyPhraseDetectionMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionMenuItem";
-            this.Context_PhraseDetection_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.Context_PhraseDetection_ApplyPhraseDetectionMenuItem.Text = "Apply phrase detection";
-            // 
-            // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
-            // 
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem";
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Apply phrase detection in project";
-            // 
-            // Context_DeleteFollowingPhrasesMenuItem
-            // 
-            this.Context_DeleteFollowingPhrasesMenuItem.Name = "Context_DeleteFollowingPhrasesMenuItem";
-            this.Context_DeleteFollowingPhrasesMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_DeleteFollowingPhrasesMenuItem.Text = "Delete following phrases";
-            // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
@@ -532,7 +534,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionWithNextMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_ImportAudioFilesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SplitPhraseMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_MergeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_CropAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseIsTODOMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseIsUsedMenuItem;
@@ -544,7 +545,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_SilenceMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem Context_AssignRole_NewCustomRoleMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AudioSelectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AudioSelection_BeginMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_AudioSelection_EndMenuItem;
@@ -566,10 +566,12 @@ namespace Obi.ProjectView
         private System.Windows.Forms.Timer timer1;
         private VerticleScrollPane verticleScrollPane1;
         private VerticalScrollToolStripContainer verticalScrollToolStripContainer1;
-        private System.Windows.Forms.ToolStripMenuItem Context_Merge_MergePhraseWithNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Merge_MergeWithFollowingPhrasesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_Merge_MergeWithPrecedingPhrasesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetection_ApplyPhraseDetectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergePhraseWithNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ApplyPhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteFollowingPhrasesMenuItem;
     }

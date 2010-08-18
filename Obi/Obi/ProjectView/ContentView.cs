@@ -3887,7 +3887,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
-            Context_MergeMenuItem.Enabled = CanMergeBlockWithNext;
+            Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus ; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
@@ -3901,7 +3901,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
-            Context_PhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
             Context_CutMenuItem.Enabled = (CanRemoveAudio || CanRemoveBlock || CanRemoveStrip) && !mProjectView.TransportBar.IsRecorderActive;
             Context_CopyMenuItem.Enabled = CanCopyAudio || CanCopyBlock || CanCopyStrip;
             Context_PasteMenuItem.Enabled = mProjectView.CanPaste;
@@ -3913,6 +3913,10 @@ stripControl.Node.PhraseChildCount > 0)
             Context_AudioSelection_EndMenuItem.Enabled = mProjectView.CanMarkSelectionEnd;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog ||
                 mProjectView.CanShowPhrasePropertiesDialog || mProjectView.CanShowProjectPropertiesDialog;
+            Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
+            Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
+            Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
+            Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
             }
 
         private bool CanSetSelectedPhraseUsedStatus
@@ -3947,8 +3951,18 @@ stripControl.Node.PhraseChildCount > 0)
         // Split phrase context context menu item
         private void Context_SplitPhraseMenuItem_Click ( object sender, EventArgs e ) { mProjectView.SplitPhrase (); }
 
-        // Merge phrase with next context menu item
+        // Merge phrase context menu item
         private void Context_MergePhraseWithNextMenuItem_Click ( object sender, EventArgs e ) { mProjectView.MergeBlockWithNext (); }
+
+        private void Context_Merge_MergeWithFollowingPhrasesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergePhraseWithFollowingPhrasesInSection();
+        }
+
+        private void Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeWithPhrasesBeforeInSection();
+        }
 
         // Crop audio context menu item
         private void Context_CropAudioMenuItem_Click ( object sender, EventArgs e ) { mProjectView.CropPhrase (); }
@@ -4003,6 +4017,17 @@ stripControl.Node.PhraseChildCount > 0)
         private void Context_ApplyPhraseDetectionMenuItem_Click ( object sender, EventArgs e )
             {
             mProjectView.ApplyPhraseDetection ();
+            }
+
+            private void Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.ApplyPhraseDetectionInWholeProject();
+            }
+                
+        // Delete following phrases context menu item
+            private void Context_DeleteFollowingPhrasesMenuItem_Click(object sender, EventArgs e)
+            {
+                mProjectView.DeleteFollowingPhrasesInSection();
             }
 
         private void Context_AudioSelection_BeginMenuItem_Click ( object sender, EventArgs e )
@@ -4233,10 +4258,8 @@ stripControl.Node.PhraseChildCount > 0)
             {
             mEnableScrolling = false;
                 CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
-        }
-                 
-        
-
+        }   
+               
         //@ShowSingleSection
         /*
     /// <summary>
