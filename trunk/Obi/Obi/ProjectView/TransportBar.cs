@@ -18,7 +18,7 @@ namespace Obi.ProjectView
         private Audio.AudioPlayer mPlayer;           // the audio player
         private Audio.AudioRecorder mRecorder;       // the audio recorder
         private Audio.VuMeter mVuMeter;              // VU meter
-        private bool m_AutoSaveOnNextRecordingEnd ; //flag to auto save whenever recording stops or pauses next time
+        //private bool m_AutoSaveOnNextRecordingEnd ; //flag to auto save whenever recording stops or pauses next time//@singleSection:commented
 
         private RecordingSession mRecordingSession;  // current recording session
         private SectionNode mRecordingSection;       // Section in which we are recording
@@ -457,7 +457,7 @@ namespace Obi.ProjectView
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             m_IsProjectEmpty = mView.Presentation.FirstSection == null;
 
-            m_AutoSaveOnNextRecordingEnd = false;
+            //m_AutoSaveOnNextRecordingEnd = false;
             UpdateButtons();
         }
 
@@ -465,14 +465,14 @@ namespace Obi.ProjectView
         /// If true, play all when there is no selection; otherwise, play nothing.
         /// </summary>
         public bool PlayIfNoSelection { get { return mView.ObiForm.Settings.PlayIfNoSelection; } }
-        /// <summary>
+        /*/// <summary>//@singleSection: commented
         /// Auto save whenever recording pauses or stops next
         ///</summary>
         public bool AutoSaveOnNextRecordingEnd 
             { get { return m_AutoSaveOnNextRecordingEnd; }
             set { m_AutoSaveOnNextRecordingEnd = value; }
             }
-
+        */
         /// <summary>
         /// Set preview duration.
         /// </summary>
@@ -1044,7 +1044,7 @@ namespace Obi.ProjectView
             UpdateTimeDisplay();
 
             // optionally save project
-            SaveWhenRecordingEnds ();
+            //SaveWhenRecordingEnds ();//@singleSection
 
             // makes phrase blocks invisible if these exceed max. visible blocks count during recording
             //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit :@singleSection: legagy code commented
@@ -2071,7 +2071,7 @@ UpdateButtons();
                 mResumeRecordingPhrase = null;
 
                 // save optionally
-                SaveWhenRecordingEnds ();
+                //SaveWhenRecordingEnds ();//@singleSection
 
                 // make phrase blocks invisible if these exceeded max visible phrase blocks limit during recording
                 //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit @singleSection: legacy code commented
@@ -2346,7 +2346,7 @@ UpdateButtons();
             mCurrentPlaylist = playlist;
         }
 
-        /// <summary>
+        /*/// <summary>//@singleSection: commented
         /// optionally  saves the project when recording ends depending on autoSave recording ends flag
                 /// </summary>
         private void SaveWhenRecordingEnds ()
@@ -2356,7 +2356,7 @@ UpdateButtons();
                 mView.ObiForm.SaveToBackup();
                 m_AutoSaveOnNextRecordingEnd = false;
                 }
-            }
+            }*/
 
         public bool CanUsePlaybackSelection { get { return Enabled && IsPlayerActive && mView.ObiForm.Settings.PlayOnNavigate; }}
 
