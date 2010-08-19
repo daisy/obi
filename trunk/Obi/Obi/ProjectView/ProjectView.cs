@@ -2084,7 +2084,15 @@ SectionNode SNode = GetSelectedPhraseSection;
             if (CanApplyPhraseDetectionInWholeProject)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
-                
+
+                List<SectionNode> listOfAllSections = mPresentation.RootNode.GetListOfAllSections ();
+                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections );
+                sectionsSelectionDialog.ShowDialog () ;
+                if (sectionsSelectionDialog.DialogResult == DialogResult.Cancel) return;
+
+                List<SectionNode> sectionsList = sectionsSelectionDialog.SelectedSections;
+                if (sectionsList.Count == 0) return;
+
                 // first find silence phrase from first section
                 SectionNode firstSection = mPresentation.FirstSection;
                 PhraseNode silencePhrase = null ;
@@ -2105,7 +2113,7 @@ SectionNode SNode = GetSelectedPhraseSection;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     //CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "PhraseDetection_WholeProject" ) );
                     List<CompositeCommand> listOfCommands = new List<CompositeCommand> ();
-                    List<SectionNode> sectionsList = mPresentation.RootNode.GetListOfAllSections ();
+                    
 
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)

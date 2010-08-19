@@ -11,28 +11,33 @@ namespace Obi.Dialogs
     public partial class SelectPhraseDetectionSections : Form
     {
         private int m_SectionRangeCount;
-        List<string> mOriginalSectionList = new List<string>();
-        List<string> mSelectedSectionList = new List<string>();
+        List<SectionNode> mOriginalSectionList = new List<SectionNode>();
+        List <SectionNode> mSelectedSectionList = new List<SectionNode>();
         
         public SelectPhraseDetectionSections()
         {
             InitializeComponent();
-            for(int i = 1; i<= 360; i++)
-            {
-                mOriginalSectionList.Add(i.ToString());
-            }
-            m_SectionRangeCount = mOriginalSectionList.Count / 100;
-            m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { 1 });    
-            for (int i = 1; i <= m_SectionRangeCount; i++)
-            {
-                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });                
-                m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });                
-            }
-            m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { mOriginalSectionList.Count });
-            m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { mOriginalSectionList.Count });
-        }
+            //for(int i = 1; i<= 360; i++)
+            //{
+                //mOriginalSectionList.Add(i.ToString());
+            //}
+                    }
 
-        public List<string> SelectedSections
+        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList ):this     ()
+            {
+            mOriginalSectionList = sectionsList;
+            m_SectionRangeCount = mOriginalSectionList.Count / 100;
+            m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { 1 } );
+            for (int i = 1; i <= m_SectionRangeCount; i++)
+                {
+                m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { i * 100 } );
+                m_cb_EndRangeForNumberOfSections.Items.AddRange ( new object[] { i * 100 } );
+                }
+            m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { mOriginalSectionList.Count } );
+            m_cb_EndRangeForNumberOfSections.Items.AddRange ( new object[] { mOriginalSectionList.Count } );
+
+            }
+        public List<SectionNode> SelectedSections 
         {
             get { return mSelectedSectionList; }
         }
@@ -45,7 +50,7 @@ namespace Obi.Dialogs
            else
            {
                for (int i = startRange; i < endRange; i++)
-                   m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(i);
+                   m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(mOriginalSectionList[ i]);
            }
         }
 
@@ -58,13 +63,17 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i <= m_lb_listOfSelectedSectionsForPhraseDetection.Items.Count; i++ )
-                mSelectedSectionList.Add(i.ToString());              
+        for (int i = 0; i < m_lb_listOfSelectedSectionsForPhraseDetection.Items.Count; i++)
+            {
+            mSelectedSectionList.Add ( (SectionNode)m_lb_listOfSelectedSectionsForPhraseDetection.Items[i] );
+            }
+        DialogResult = DialogResult.OK;
             Close();
         }
 
         private void m_btn_Cancel_Click(object sender, EventArgs e)
         {
+        this.DialogResult = DialogResult.Cancel;
             Close();
         }
          
