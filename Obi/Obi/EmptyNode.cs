@@ -220,7 +220,8 @@ namespace Obi
             if (mRole != role || mCustomRole != customRole)
             {
                 ChangedRoleEventArgs args = new ChangedRoleEventArgs(this, mRole, mCustomRole);
-                if (mRole == EmptyNode.Role.Heading) AncestorAs<SectionNode>().UnsetHeading(this as PhraseNode);
+                if (mRole == EmptyNode.Role.Heading && this.IsRooted) AncestorAs<SectionNode> ().UnsetHeading ( this as PhraseNode ); //@singleSection: allow clearing of heading role without a parent
+
                 mRole = role;
                 mCustomRole = customRole;
                 if (role != Role.Page) mPageNumber = null;
