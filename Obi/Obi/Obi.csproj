@@ -225,6 +225,12 @@
     <Compile Include="Dialogs\ExportDirectory.Designer.cs">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectPhraseDetectionSections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectPhraseDetectionSections.Designer.cs">
+      <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SetPageNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -800,6 +806,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="good.wav" />
+    <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\ContentViewLabel.resx">
       <DependentUpon>ContentViewLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
