@@ -27,6 +27,7 @@ namespace Obi
         private Timer mAutoSaveTimer;
         private bool m_IsSaveActive;
         private bool m_IsAutoSaveActive;
+        private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
 
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
@@ -659,19 +660,22 @@ namespace Obi
             }
 
         private void ObiForm_commandUnDone ( object sender, urakawa.events.undo.UnDoneEventArgs e ) 
-            { 
+            {
+            CanAutoSave = true;//@singleSection
             ProjectHasChanged ( -1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
             }
 
         private void ObiForm_commandReDone ( object sender, urakawa.events.undo.ReDoneEventArgs e ) 
-            { 
+            {
+            CanAutoSave = true;//@singleSection
             ProjectHasChanged ( 1 );
             if ( !IsStatusBarEnabled)  IsStatusBarEnabled = true;//@singleSection
             }
 
         private void ObiForm_BeforeCommandExecuted (object sender , urakawa.events.command.CommandEventArgs e )//@singleSection
             {
+            CanAutoSave = false;//@singleSection
             if (e.SourceCommand is urakawa.command.CompositeCommand)
                 {
                 IsStatusBarEnabled = false;
@@ -1547,6 +1551,7 @@ namespace Obi
             mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted);//@singleSection
             if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
+            m_CanAutoSave = true; //@singleSection
             }
 
 
@@ -1608,22 +1613,36 @@ namespace Obi
 
         private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
             {
+            if (!m_CanAutoSave && mSession != null && mSession.Presentation != null
+                && mSettings.AutoSaveTimeIntervalEnabled && mSession.CanSave)//@singleSection
+                {
+                //keep on checking after interval of 5 seconds if CanAutoSave is true
+                mAutoSaveTimer.Interval = 5000;
+                return;
+                }
+            else
+                {
+                mAutoSaveTimer.Interval = mSettings.AutoSaveTimeInterval;
+                }
+
             if (mSession != null && mSession.Presentation != null
                 && mSettings.AutoSaveTimeIntervalEnabled && mSession.CanSave)
                 {
-                if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
-                    {
+                //if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
+                    //{
                     m_IsAutoSaveActive = true;
                     SaveToBackup ();
                     m_IsAutoSaveActive = false;
-                    }
-                else
-                    {
-                    mProjectView.TransportBar.AutoSaveOnNextRecordingEnd = true;
-                    }
+                    Console.WriteLine ( "auto save executed " );
+                    //}
+                //else
+                    //{
+                    //mProjectView.TransportBar.AutoSaveOnNextRecordingEnd = true;
+                    //}
                 }
             }
 
+        public bool CanAutoSave { set { m_CanAutoSave = value == true? !mProjectView.TransportBar.IsRecorderActive : value; } }//@singleSection
         public bool IsAutoSaveActive { get { return m_IsAutoSaveActive; } }
         public int SetAutoSaverInterval { set { if (mAutoSaveTimer != null) mAutoSaveTimer.Interval = value; } }
         public void StartAutoSaveTimeInterval ()
@@ -1725,6 +1744,7 @@ namespace Obi
                 {
                 if (mSession.CanRedo)
                     {
+                    CanAutoSave= false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
                     mSession.Presentation.getUndoRedoManager ().redo ();
                     }
@@ -1734,6 +1754,7 @@ namespace Obi
                 MessageBox.Show ( ex.ToString () );
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;
+            CanAutoSave = true;//@singleSection
             mProjectView.ResumeLayout_All ();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
             }
@@ -1817,6 +1838,7 @@ namespace Obi
                 {
                 if (mSession.CanUndo && !(mProjectView.Selection is TextSelection))
                     {
+                    CanAutoSave = false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
                     mSession.Presentation.getUndoRedoManager ().undo ();
                     }
@@ -1826,6 +1848,7 @@ namespace Obi
                 MessageBox.Show ( ex.ToString () );
                 }
             if (!IsStatusBarEnabled) IsStatusBarEnabled = true;//@singleSection
+            CanAutoSave = true;//@singleSection
             mProjectView.ResumeLayout_All ();
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = PlayOnSelectionStatus;
             }
@@ -1874,6 +1897,7 @@ namespace Obi
         /// </summary>
         void TransportBar_StateChanged ( object sender, EventArgs e )
             {
+           CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
             Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) );
             UpdatePhrasesMenu ();
             UpdateTransportMenu ();
