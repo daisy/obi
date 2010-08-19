@@ -1516,12 +1516,6 @@ namespace Obi.ProjectView
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 }
             }
-
-        //@singleSection
-        public void CreateBlocksTillEndInStrip ( Strip stripControl )
-            {
-            CreateBlocksTillNodeInStrip ( stripControl, null , false);
-            }
         
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
@@ -2047,7 +2041,9 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 {
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
-                CreateBlocksTillEndInStrip ( currentlyActiveStrip );
+                CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
+                    currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 ),
+                    false );
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
@@ -3680,8 +3676,22 @@ stripControl.Node.PhraseChildCount > 0)
                             iterationNode = iterationNode.FollowingNode;
                             }
                         }
-                    
-                    if (strip != null) CreateBlocksTillNodeInStrip ( strip,(EmptyNode)  node, false );
+
+                    if (strip != null)
+                        {
+                        this.Cursor = Cursors.WaitCursor;
+                        IsScrollActive = true;
+                        try
+                            {
+                            CreateBlocksTillNodeInStrip ( strip, (EmptyNode)node, false );
+                            }
+                        catch (System.Exception ex)
+                            {
+                            MessageBox.Show ( ex.ToString () );
+                            }
+                        this.Cursor = Cursors.Default;
+                        IsScrollActive = true;
+                        }
                     }
 
                 if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
