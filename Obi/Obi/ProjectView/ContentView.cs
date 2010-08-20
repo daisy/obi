@@ -1844,8 +1844,15 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                             if (Math.Abs ( mStripsPanel.Location.Y ) > mStripsPanel.Height - contentViewVisibleHeight)
                                 {
+                                int cordY = (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1;
+                                Block newLastBlock = currentlyActiveStrip.LastBlock;
+                                if (newLastBlock != null
+                                    && (lastBlock.Bottom + currentlyActiveStrip.BlocksLayoutTopPosition) < contentViewVisibleHeight)
+                                    {
+                                    cordY = currentlyActiveStrip.BlocksLayoutTopPosition * -1;
+                                    }
                                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-    (mStripsPanel.Height - (contentViewVisibleHeight / 2)) * -1 );
+    cordY);
                                 }
                             }
                         else
