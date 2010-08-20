@@ -2091,8 +2091,8 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
 
                 if (currentlyActiveStrip != null )
                     {
-                    if (currentlyActiveStrip.FirstBlock == null ||
-                        (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
+                    if ((currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
+                        ||     (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
                             verticalScrollToolStripContainer1.CanScrollUp = false;
                         }
@@ -2115,7 +2115,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 Strip currentlyActiveStrip = ActiveStrip;
                 if (currentlyActiveStrip != null)
                     {
-                    if (currentlyActiveStrip.LastBlock == null
+                    if ((currentlyActiveStrip.LastBlock == null  && currentlyActiveStrip.Node.PhraseChildCount == 0 )
                         || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
                             verticalScrollToolStripContainer1.CanScrollDown = false;
