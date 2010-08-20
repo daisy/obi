@@ -411,8 +411,8 @@ namespace Obi.ProjectView
         //@singleSection
         private Block CreateBlockForNode ( EmptyNode node , bool updateSize)
             {
-            // first check if blocks count has exceeded handle limit 
-            if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 1000)
+            // first check if blocks count has exceeded handle limit : ( nodes limit * 2 ) +1
+            if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 2001)
                 return null;
 
 
