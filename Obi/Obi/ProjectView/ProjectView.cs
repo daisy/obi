@@ -2085,15 +2085,27 @@ SectionNode SNode = GetSelectedPhraseSection;
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
 
-                List<SectionNode> listOfAllSections = mPresentation.RootNode.GetListOfAllSections ();
-                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections );
+                List<SectionNode> listOfAllSections = new List<SectionNode> ();
+                List<PhraseNode> listOfAllSilencePhrases = new List<PhraseNode> ();
+                mPresentation.RootNode.acceptDepthFirst (
+                    delegate ( urakawa.core.TreeNode n )
+                        {
+                        if (n is SectionNode) listOfAllSections.Add ( (SectionNode)n );
+                        if (n is PhraseNode && ((PhraseNode)n).Role_ == EmptyNode.Role.Silence) listOfAllSilencePhrases.Add ( (PhraseNode)n );
+                        return true;
+                        },
+                    delegate ( urakawa.core.TreeNode n ) { } );
+
+                Dialogs.SelectPhraseDetectionSections sectionsSelectionDialog = new Obi.Dialogs.SelectPhraseDetectionSections ( listOfAllSections, listOfAllSilencePhrases );
                 sectionsSelectionDialog.ShowDialog () ;
                 if (sectionsSelectionDialog.DialogResult == DialogResult.Cancel) return;
 
                 List<SectionNode> sectionsList = sectionsSelectionDialog.SelectedSections;
                 if (sectionsList.Count == 0) return;
 
-                // first find silence phrase from first section
+                PhraseNode silencePhrase = sectionsSelectionDialog.SelectedSilencePhrase ;
+
+/*                // first find silence phrase from first section
                 SectionNode firstSection = mPresentation.FirstSection;
                 PhraseNode silencePhrase = null ;
                 for ( int i = 0 ; i < firstSection.PhraseChildCount ; i++ )
@@ -2104,7 +2116,7 @@ SectionNode SNode = GetSelectedPhraseSection;
                         break;
                         }
                     }
-
+                */
                 
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( silencePhrase );
                 if (dialog.ShowDialog () == DialogResult.OK)
