@@ -1197,7 +1197,7 @@ namespace Obi.ProjectView
             
             // save the selection before starting recording
             ObiNode selectionNode = mResumeRecordingPhrase != null ? mResumeRecordingPhrase :
-                mView.GetSelectedPhraseSection != null ? mView.Selection.Node : null;
+                mView.GetSelectedPhraseSection != null ? (mView.Selection is StripIndexSelection && ( (StripIndexSelection)mView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mView.Selection).EmptyNodeForSelection :mView.Selection.Node ): null;
             if (selectionNode != null && mView.GetSelectedPhraseSection != null) command.append ( new Commands.UpdateSelection (mView, new NodeSelection ( selectionNode, mView.Selection.Control ) ) );
 
             ObiNode node = GetRecordingNode ( command, afterSection );
