@@ -1790,6 +1790,10 @@ namespace Obi.ProjectView
                     CompositeCommand command = null;
                     command = Commands.Node.SplitAudio.GetSplitCommand ( this );
                     if (command != null) mPresentation.Do ( command );
+
+                    // reselect the selected node: work around for disable scrolling problem. 
+                    //earlier selection was assigned twice before command, it do not happen now so this happens post command execution
+                    Selection = new NodeSelection ( Selection.Node, mContentView );
                     }
                 catch (System.Exception ex)
                     {
