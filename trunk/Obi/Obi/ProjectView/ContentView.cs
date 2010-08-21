@@ -1944,6 +1944,15 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                                         mStripsPanel.Location.Y - interval );//interval is negetive
                             Console.WriteLine ( "just moved strips panel down " );
                             }//-2
+                        // adjust strip panel location if it is more than Y=0
+                        if (mStripsPanel.Location.Y > 0)
+                            {
+                            Block newFirstBlock = null;
+                            int cordY =  ( newFirstBlock == null || ( newFirstBlock != null && newFirstBlock.Node.Index == 0 ))? 0:
+                                currentlyActiveStrip.BlocksLayoutTopPosition * -1;
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X, cordY ) ;
+                            Console.WriteLine("Strips panel has to be adjusted as it moved ahead 0 position" ) ;
+                            }
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
                     ReturnFocusFromVerticalScrollPanel ();
