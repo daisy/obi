@@ -1361,8 +1361,14 @@ namespace Obi.ProjectView
                                 mProjectView.TransportBar.Pause ();
                                 }
                             ObiNode nodeForRemoveReference = requiredEmptyNode != null && requiredEmptyNode.Index > selectedNode.Index? requiredEmptyNode: selectedNode ;
-                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, nodeForRemoveReference, true);
-
+                            EmptyNode intendedFirstNodeAfterRemoval = null;
+                            Block firstBlock = stripControl.FirstBlock ;
+                            // do not allow removal of block layout till phrase to be selected is  100 more than last phrase index of lot
+                            // this will prevent refreshing of layout on clicking phrase beyond 250 phrases lot size. But a better way is preffered than this.
+                            if (firstBlock != null && nodeForRemoveReference.Index - firstBlock.Node.Index >= phraseLotSize + 100)
+                                {
+                                intendedFirstNodeAfterRemoval = RemoveAllblocksInStripIfRequired ( stripControl, nodeForRemoveReference, true );
+                                }
                             if (intendedFirstNodeAfterRemoval != null)
                                 {
                                 int intermediateBlocksCount = selectedNode.Index - intendedFirstNodeAfterRemoval.Index;
