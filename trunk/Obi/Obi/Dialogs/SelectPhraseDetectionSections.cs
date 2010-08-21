@@ -11,23 +11,22 @@ namespace Obi.Dialogs
     public partial class SelectPhraseDetectionSections : Form
     {
         private int m_SectionRangeCount;
-        List<SectionNode> m_OriginalSectionList = new List<SectionNode>();
-        List <SectionNode> m_SelectedSectionList = new List<SectionNode>();
-        List<string> m_SilencePhrases = new List<string>();
+        List<SectionNode> m_OriginalSectionList = null;
+        List<SectionNode> m_SelectedSectionList = new List<SectionNode> ();
+        List<PhraseNode> m_SilencePhrases = null;
+        private PhraseNode m_SelectedSilencePhrase;
         private int m_StartRange;
         private int m_EndRange;
         public SelectPhraseDetectionSections()
         {
             InitializeComponent();
-            for(int i = 1; i<= 36; i++)
-            {
-                m_SilencePhrases.Add(i.ToString());
-            }
+            
         }
 
-        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList ):this     ()
+        public SelectPhraseDetectionSections ( List<SectionNode> sectionsList, List<PhraseNode> silencePhraseList ):this     ()
             {
             m_OriginalSectionList = sectionsList;
+            m_SilencePhrases = silencePhraseList;
             m_SectionRangeCount = m_OriginalSectionList.Count / 100;
             m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { 1 } );
             for (int i = 1; i <= m_SectionRangeCount; i++)
@@ -38,6 +37,11 @@ namespace Obi.Dialogs
             m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { m_OriginalSectionList.Count -1 } );
             m_cb_EndRangeForNumberOfSections.Items.AddRange ( new object[] { m_OriginalSectionList.Count } );
         //    updateCombobox();
+            m_cb_SilencePhrase.Items.Add ( "Use default values" );
+            for (int i = 0; i < m_SilencePhrases.Count; i++)
+                {
+                m_cb_SilencePhrase.Items.Add ( m_SilencePhrases[i]) ;
+                }
             }
 
         public List<SectionNode> SelectedSections 
@@ -45,12 +49,7 @@ namespace Obi.Dialogs
             get { return m_SelectedSectionList; }
         }
 
-        public List<string> SilencePhrases
-        {
-            get { return m_SilencePhrases; }
-        }
-
-        private void m_btn_Display_Click(object sender, EventArgs e)
+private void m_btn_Display_Click(object sender, EventArgs e)
         { 
             if (m_cb_EndRangeForNumberOfSections.Items.Count >= 1 && m_cb_StartRangeForNumberOfSections.Items.Count >= 1) 
             {
@@ -83,6 +82,7 @@ namespace Obi.Dialogs
             {
             m_SelectedSectionList.Add ( (SectionNode)m_lb_listOfSelectedSectionsForPhraseDetection.Items[i] );
             }
+        m_SelectedSilencePhrase = m_cb_SilencePhrase.SelectedIndex > 0 ? m_SilencePhrases[m_cb_SilencePhrase.SelectedIndex - 1] : null;
         DialogResult = DialogResult.OK;
             Close();
         }
@@ -124,11 +124,11 @@ namespace Obi.Dialogs
         {
             updateCombobox();
         }
-
+        public PhraseNode SelectedSilencePhrase { get { return m_SelectedSilencePhrase; } }
         private void m_btn_ShowSilencePhrases_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < m_SilencePhrases.Count ; i ++)
-               m_cb_SilencePhrase.Items.AddRange(new object[] {i});
+            //for(int i = 0; i < m_SilencePhrases.Count ; i ++)
+               //m_cb_SilencePhrase.Items.AddRange(new object[] {i});
         }
     }
 }
