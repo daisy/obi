@@ -48,6 +48,7 @@ namespace Obi.Commands.Node
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, end, false);
                         after = split.Node;
+                        command.append ( new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
                         command.append(new Commands.Node.DeleteWithOffset(view, phrase, 1));
                     }
                     if (begin > 0.0)
@@ -55,9 +56,10 @@ namespace Obi.Commands.Node
                         split = AppendSplitCommandWithProperties(view, command, phrase, begin,
                             view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
                         after = split.NodeAfter;
-                        command.append(new Commands.Node.Delete(view, phrase));
+                        command.append ( new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
+                        command.append(new Commands.Node.Delete(view, phrase, false));
                     }
-                    command.append(new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));
+                    //command.append(new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));
                     return command;
                 }
             }
