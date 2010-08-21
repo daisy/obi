@@ -2148,7 +2148,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
             {
             
             if ( recordingResumePhrase != null
-                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode) )
+                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode   &&  !(mProjectView.Selection is StripIndexSelection) ) )
                 {
                 SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode> ():
                     (SectionNode)mProjectView.Selection.Node;
