@@ -1360,8 +1360,8 @@ namespace Obi.ProjectView
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
-
-                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, selectedNode, true);
+                            ObiNode nodeForRemoveReference = requiredEmptyNode != null && requiredEmptyNode.Index > selectedNode.Index? requiredEmptyNode: selectedNode ;
+                            EmptyNode intendedFirstNodeAfterRemoval =  RemoveAllblocksInStripIfRequired ( stripControl, nodeForRemoveReference, true);
 
                             if (intendedFirstNodeAfterRemoval != null)
                                 {
