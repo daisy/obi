@@ -1842,8 +1842,24 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ),
                             false,
                            ContentViewDepthForCreatingBlocks + interval );
+
+                            // check if strips panel can be located up by full interval
+                            int pixelsUp = interval;
+                            Block lastBlockAfterScroll = currentlyActiveStrip.LastBlock;
+                            if (lastBlockAfterScroll != null && lastBlockAfterScroll.Node.Index > nextThresholdIndex)
+                                {
+                                // find block with threshold index
+                                Block thresholdIndexBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ) );
+                                if (thresholdIndexBlock != null)
+                                    {
+                                    int thresholdBlockBottom = LocationOfBlockInStripPanel ( thresholdIndexBlock).Y + thresholdIndexBlock.Height ;
+                                    int newPixelsUp = (mStripsPanel.Location.Y + thresholdBlockBottom) - contentViewVisibleHeight;
+                                    if (newPixelsUp < pixelsUp && newPixelsUp > 0) pixelsUp = newPixelsUp;
+                                    Console.WriteLine ( " showing till threshold block while scroll down " + pixelsUp + " interval " + interval + " thresholdd " + thresholdIndexBlock.Location + " " + lastBlockAfterScroll.Location);
+                                    }
+                                }
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                mStripsPanel.Location.Y - interval );
+                                mStripsPanel.Location.Y - pixelsUp );
 
                             if (mStripsPanel.Height + mStripsPanel.Location.Y < this.Height)
                                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
@@ -1969,6 +1985,22 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                 }// check ends for currently active strip
 
             }
+
+        //@singleSection
+        public Point LocationOfBlockInStripPanel ( Block block )
+            {
+            Point location = new Point ( block.Location.X, block.Location.Y );
+
+            Control parent = block.Parent;
+            while (parent != null && parent != mStripsPanel)
+                {
+                location.X += parent.Location.X;
+                location.Y += parent.Location.Y;
+                parent = parent.Parent;
+                }
+            return location;
+            }
+
 
         private int PhraseCountInLot ( Strip currentlyActiveStrip, bool isScrollDown )
             {
