@@ -40,8 +40,9 @@ namespace Obi.Dialogs
             m_cb_SilencePhrase.Items.Add ( "Use default values" );
             for (int i = 0; i < m_SilencePhrases.Count; i++)
                 {
-                m_cb_SilencePhrase.Items.Add ( m_SilencePhrases[i]) ;
+                m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i] );
                 }
+            m_cb_SilencePhrase.SelectedIndex = 0;
             }
 
         public List<SectionNode> SelectedSections 
