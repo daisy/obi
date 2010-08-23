@@ -636,8 +636,17 @@ namespace Obi.ProjectView
                     location.Y += parent.Location.Y;
                     parent = parent.Parent;
                     }
+                //@singleSection: take care that strip label is not visible if first block is not first phrase of section
+                int stripLabelOffset = 0;
+                if (c is Strip || c is Block)
+                    {
+                    Strip c_Strip = c is Strip ? (Strip)c: ((Block)c).Strip;
+                    if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
+                    Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
+                    }
                 // Compute the four corners of the control, including margins
                 int top = location.Y - c.Margin.Top;
+                if ( top < stripLabelOffset ) top = stripLabelOffset ;//@singleSection
                 int bottom = location.Y + c.Height + c.Margin.Bottom;
                 int left = location.X - c.Margin.Left;
                 int right = location.X + c.Width + c.Margin.Right;
