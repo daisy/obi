@@ -42,14 +42,19 @@ namespace Obi.Dialogs
                     m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
                     m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
                 }
-                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count - 1 });
-                m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+                if (m_OriginalSectionList.Count > 2)
+                {
+                    m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count - 1 });
+                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+                }
+                else
+                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });                
             }
         
             m_cb_SilencePhrase.Items.Add ( "Use default values" );
             for (int i = 0; i < m_SilencePhrases.Count; i++)
                 {
-                m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i] );
+                m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i].BaseStringShort());
                 }
             m_cb_SilencePhrase.SelectedIndex = 0;
             }
@@ -73,8 +78,8 @@ namespace Obi.Dialogs
 
                     else if (m_StartRange < m_EndRange)
                     {
-                        for (int i = m_StartRange; i < m_EndRange; i++)
-                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i]);
+                        for (int i = m_StartRange; i <= m_EndRange; i++)
+                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i -1]);
                     }
                     else if (m_StartRange == m_EndRange)
                     {
@@ -98,8 +103,8 @@ namespace Obi.Dialogs
 
                         else if (m_StartRange < m_EndRange)
                         {
-                            for (int i = m_StartRange; i < m_EndRange; i++)
-                                m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i]);
+                            for (int i = m_StartRange; i <= m_EndRange; i++)
+                                m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i - 1]);
                         }
                         else if (m_StartRange == m_EndRange)
                         {
