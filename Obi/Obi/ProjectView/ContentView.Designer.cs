@@ -186,14 +186,14 @@ namespace Obi.ProjectView
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem});
             this.Context_MergeMenuItem.Name = "Context_MergeMenuItem";
             this.Context_MergeMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_MergeMenuItem.Text = "Mer&ge";
+            this.Context_MergeMenuItem.Text = "Mer&ge phrases";
             // 
             // Context_MergePhraseWithNextMenuItem
             // 
             this.Context_MergePhraseWithNextMenuItem.Name = "Context_MergePhraseWithNextMenuItem";
             this.Context_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(287, 22);
             this.Context_MergePhraseWithNextMenuItem.Text = "Merge phrase with ne&xt";
-            this.Context_MergePhraseWithNextMenuItem.Click += new System.EventHandler(Context_MergePhraseWithNextMenuItem_Click); 
+            this.Context_MergePhraseWithNextMenuItem.Click += new System.EventHandler(this.Context_MergePhraseWithNextMenuItem_Click);
             // 
             // Context_Merge_MergeWithFollowingPhrasesMenuItem
             // 
@@ -313,7 +313,7 @@ namespace Obi.ProjectView
             this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
             this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(249, 22);
             this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection";
-            this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(Context_ApplyPhraseDetectionMenuItem_Click); 
+            this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
             // 
             // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
             // 
