@@ -221,6 +221,7 @@ namespace Obi.ProjectView
             Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard);
             Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
+            Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
         }
 
 
@@ -447,6 +448,7 @@ namespace Obi.ProjectView
         // Properties context menu item
         private void Context_PropertiesMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowSectionPropertiesDialog(); }
 
+        private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
