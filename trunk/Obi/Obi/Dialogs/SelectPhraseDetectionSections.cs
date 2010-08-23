@@ -28,15 +28,24 @@ namespace Obi.Dialogs
             m_OriginalSectionList = sectionsList;
             m_SilencePhrases = silencePhraseList;
             m_SectionRangeCount = m_OriginalSectionList.Count / 100;
-            m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { 1 } );
-            for (int i = 1; i <= m_SectionRangeCount; i++)
+           
+            if (m_OriginalSectionList.Count == 1)
+            {
+                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+                m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+            }
+            else if (m_OriginalSectionList.Count > 1)
+            {
+                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { 1 });
+                for (int i = 1; i <= m_SectionRangeCount; i++)
                 {
-                m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { i * 100 } );
-                m_cb_EndRangeForNumberOfSections.Items.AddRange ( new object[] { i * 100 } );
+                    m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
+                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
                 }
-            m_cb_StartRangeForNumberOfSections.Items.AddRange ( new object[] { m_OriginalSectionList.Count -1 } );
-            m_cb_EndRangeForNumberOfSections.Items.AddRange ( new object[] { m_OriginalSectionList.Count } );
-        //    updateCombobox();
+                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count - 1 });
+                m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+            }
+        
             m_cb_SilencePhrase.Items.Add ( "Use default values" );
             for (int i = 0; i < m_SilencePhrases.Count; i++)
                 {
@@ -50,24 +59,54 @@ namespace Obi.Dialogs
             get { return m_SelectedSectionList; }
         }
 
-private void m_btn_Display_Click(object sender, EventArgs e)
-        { 
+        private void m_btn_Display_Click(object sender, EventArgs e)
+        {
             if (m_cb_EndRangeForNumberOfSections.Items.Count >= 1 && m_cb_StartRangeForNumberOfSections.Items.Count >= 1) 
             {
                 m_lb_listOfSelectedSectionsForPhraseDetection.Items.Clear();
-                if((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) && (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
+                if ((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) && (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
                 {
-                m_StartRange = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
-                m_EndRange = int.Parse(m_cb_EndRangeForNumberOfSections.Items[m_cb_EndRangeForNumberOfSections.SelectedIndex].ToString());
-                if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
-            
+                    m_StartRange = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
+                    m_EndRange = int.Parse(m_cb_EndRangeForNumberOfSections.Items[m_cb_EndRangeForNumberOfSections.SelectedIndex].ToString());
+
+                    if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
+
+                    else if (m_StartRange < m_EndRange)
+                    {
+                        for (int i = m_StartRange; i < m_EndRange; i++)
+                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i]);
+                    }
+                    else if (m_StartRange == m_EndRange)
+                    {
+                        m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange]);
+                    }
+                }
                 else
                 {
-                    for (int i = m_StartRange; i < m_EndRange; i++)
-                       m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i]);                                            
-                }
-                }
+                    m_cb_EndRangeForNumberOfSections.SelectAll();
+                    m_cb_StartRangeForNumberOfSections.SelectAll();
+                    m_StartRange =  Convert.ToInt32(m_cb_StartRangeForNumberOfSections.SelectedText);
+                    m_EndRange = Convert.ToInt32(m_cb_EndRangeForNumberOfSections.SelectedText);
+                    if (m_EndRange <= m_OriginalSectionList.Count)
+                    {
+                        if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
+
+                        else if (m_StartRange < m_EndRange)
+                        {
+                            for (int i = m_StartRange; i < m_EndRange; i++)
+                                m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[i]);
+                        }
+                        else if (m_StartRange == m_EndRange)
+                        {
+                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange]);
+                        }
+                    }
+                    else
+                        MessageBox.Show("End value is greater than total number of sections");
+                }               
             }
+            m_cb_StartRangeForNumberOfSections.SelectedIndex = -1;
+            m_cb_EndRangeForNumberOfSections.SelectedIndex = -1;
         }
 
         private void m_btn_RemoveFromList_Click(object sender, EventArgs e)
@@ -126,10 +165,6 @@ private void m_btn_Display_Click(object sender, EventArgs e)
             updateCombobox();
         }
         public PhraseNode SelectedSilencePhrase { get { return m_SelectedSilencePhrase; } }
-        private void m_btn_ShowSilencePhrases_Click(object sender, EventArgs e)
-        {
-            //for(int i = 0; i < m_SilencePhrases.Count ; i ++)
-               //m_cb_SilencePhrase.Items.AddRange(new object[] {i});
-        }
+        
     }
 }
