@@ -53,7 +53,7 @@ namespace Obi.Dialogs
             // 
             this.m_cb_StartRangeForNumberOfSections.AccessibleName = "Start Section Range";
             this.m_cb_StartRangeForNumberOfSections.FormattingEnabled = true;
-            this.m_cb_StartRangeForNumberOfSections.Location = new System.Drawing.Point(139, 29);
+            this.m_cb_StartRangeForNumberOfSections.Location = new System.Drawing.Point(160, 34);
             this.m_cb_StartRangeForNumberOfSections.Name = "m_cb_StartRangeForNumberOfSections";
             this.m_cb_StartRangeForNumberOfSections.Size = new System.Drawing.Size(121, 21);
             this.m_cb_StartRangeForNumberOfSections.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace Obi.Dialogs
             // 
             this.m_cb_EndRangeForNumberOfSections.AccessibleName = "End Section Range";
             this.m_cb_EndRangeForNumberOfSections.FormattingEnabled = true;
-            this.m_cb_EndRangeForNumberOfSections.Location = new System.Drawing.Point(139, 70);
+            this.m_cb_EndRangeForNumberOfSections.Location = new System.Drawing.Point(160, 70);
             this.m_cb_EndRangeForNumberOfSections.Name = "m_cb_EndRangeForNumberOfSections";
             this.m_cb_EndRangeForNumberOfSections.Size = new System.Drawing.Size(121, 21);
             this.m_cb_EndRangeForNumberOfSections.TabIndex = 3;
@@ -80,7 +80,7 @@ namespace Obi.Dialogs
             // startSectionRange
             // 
             this.startSectionRange.AutoSize = true;
-            this.startSectionRange.Location = new System.Drawing.Point(24, 37);
+            this.startSectionRange.Location = new System.Drawing.Point(37, 37);
             this.startSectionRange.Name = "startSectionRange";
             this.startSectionRange.Size = new System.Drawing.Size(96, 13);
             this.startSectionRange.TabIndex = 0;
@@ -89,7 +89,7 @@ namespace Obi.Dialogs
             // endSectionRange
             // 
             this.endSectionRange.AutoSize = true;
-            this.endSectionRange.Location = new System.Drawing.Point(27, 78);
+            this.endSectionRange.Location = new System.Drawing.Point(40, 73);
             this.endSectionRange.Name = "endSectionRange";
             this.endSectionRange.Size = new System.Drawing.Size(93, 13);
             this.endSectionRange.TabIndex = 2;
@@ -97,7 +97,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Display
             // 
-            this.m_btn_Display.Location = new System.Drawing.Point(185, 100);
+            this.m_btn_Display.Location = new System.Drawing.Point(206, 102);
             this.m_btn_Display.Name = "m_btn_Display";
             this.m_btn_Display.Size = new System.Drawing.Size(75, 23);
             this.m_btn_Display.TabIndex = 4;
@@ -107,10 +107,10 @@ namespace Obi.Dialogs
             // 
             // m_btn_RemoveFromList
             // 
-            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(185, 29);
+            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(185, 25);
             this.m_btn_RemoveFromList.Name = "m_btn_RemoveFromList";
             this.m_btn_RemoveFromList.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_RemoveFromList.TabIndex = 7;
+            this.m_btn_RemoveFromList.TabIndex = 8;
             this.m_btn_RemoveFromList.Text = "Re&move";
             this.m_btn_RemoveFromList.UseVisualStyleBackColor = true;
             this.m_btn_RemoveFromList.Click += new System.EventHandler(this.m_btn_RemoveFromList_Click);
@@ -120,7 +120,7 @@ namespace Obi.Dialogs
             this.m_btn_OK.Location = new System.Drawing.Point(209, 333);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_OK.TabIndex = 10;
+            this.m_btn_OK.TabIndex = 12;
             this.m_btn_OK.Text = "&OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
@@ -142,29 +142,29 @@ namespace Obi.Dialogs
             this.m_grpSelectRange.Controls.Add(this.startSectionRange);
             this.m_grpSelectRange.Controls.Add(this.m_cb_StartRangeForNumberOfSections);
             this.m_grpSelectRange.Controls.Add(this.m_btn_Display);
-            this.m_grpSelectRange.Location = new System.Drawing.Point(182, 21);
+            this.m_grpSelectRange.Location = new System.Drawing.Point(161, 21);
             this.m_grpSelectRange.Name = "m_grpSelectRange";
-            this.m_grpSelectRange.Size = new System.Drawing.Size(275, 140);
+            this.m_grpSelectRange.Size = new System.Drawing.Size(296, 140);
             this.m_grpSelectRange.TabIndex = 0;
             this.m_grpSelectRange.TabStop = false;
             // 
             // m_lbl_SelectSilencePhrase
             // 
             this.m_lbl_SelectSilencePhrase.AutoSize = true;
-            this.m_lbl_SelectSilencePhrase.Location = new System.Drawing.Point(12, 27);
+            this.m_lbl_SelectSilencePhrase.Location = new System.Drawing.Point(4, 27);
             this.m_lbl_SelectSilencePhrase.Name = "m_lbl_SelectSilencePhrase";
             this.m_lbl_SelectSilencePhrase.Size = new System.Drawing.Size(108, 13);
-            this.m_lbl_SelectSilencePhrase.TabIndex = 8;
+            this.m_lbl_SelectSilencePhrase.TabIndex = 10;
             this.m_lbl_SelectSilencePhrase.Text = "Select silen&ce phrase";
             // 
             // m_cb_SilencePhrase
             // 
             this.m_cb_SilencePhrase.AccessibleName = "Select Silence Phrase";
             this.m_cb_SilencePhrase.FormattingEnabled = true;
-            this.m_cb_SilencePhrase.Location = new System.Drawing.Point(139, 24);
+            this.m_cb_SilencePhrase.Location = new System.Drawing.Point(118, 24);
             this.m_cb_SilencePhrase.Name = "m_cb_SilencePhrase";
-            this.m_cb_SilencePhrase.Size = new System.Drawing.Size(121, 21);
-            this.m_cb_SilencePhrase.TabIndex = 9;
+            this.m_cb_SilencePhrase.Size = new System.Drawing.Size(142, 21);
+            this.m_cb_SilencePhrase.TabIndex = 11;
             // 
             // m_grpRemove
             // 
@@ -172,7 +172,7 @@ namespace Obi.Dialogs
             this.m_grpRemove.Location = new System.Drawing.Point(182, 242);
             this.m_grpRemove.Name = "m_grpRemove";
             this.m_grpRemove.Size = new System.Drawing.Size(275, 68);
-            this.m_grpRemove.TabIndex = 11;
+            this.m_grpRemove.TabIndex = 7;
             this.m_grpRemove.TabStop = false;
             // 
             // m_btn_Cancel
@@ -180,7 +180,7 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.Location = new System.Drawing.Point(367, 333);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.m_btn_Cancel.TabIndex = 11;
+            this.m_btn_Cancel.TabIndex = 13;
             this.m_btn_Cancel.Text = "Cance&l";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
@@ -192,7 +192,7 @@ namespace Obi.Dialogs
             this.m_grpSilencePhrase.Location = new System.Drawing.Point(182, 174);
             this.m_grpSilencePhrase.Name = "m_grpSilencePhrase";
             this.m_grpSilencePhrase.Size = new System.Drawing.Size(275, 62);
-            this.m_grpSilencePhrase.TabIndex = 12;
+            this.m_grpSilencePhrase.TabIndex = 9;
             this.m_grpSilencePhrase.TabStop = false;
             // 
             // SelectPhraseDetectionSections
