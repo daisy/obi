@@ -107,7 +107,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_RemoveFromList
             // 
-            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(185, 25);
+            this.m_btn_RemoveFromList.Location = new System.Drawing.Point(206, 25);
             this.m_btn_RemoveFromList.Name = "m_btn_RemoveFromList";
             this.m_btn_RemoveFromList.Size = new System.Drawing.Size(75, 23);
             this.m_btn_RemoveFromList.TabIndex = 8;
@@ -153,25 +153,25 @@ namespace Obi.Dialogs
             this.m_lbl_SelectSilencePhrase.AutoSize = true;
             this.m_lbl_SelectSilencePhrase.Location = new System.Drawing.Point(4, 27);
             this.m_lbl_SelectSilencePhrase.Name = "m_lbl_SelectSilencePhrase";
-            this.m_lbl_SelectSilencePhrase.Size = new System.Drawing.Size(108, 13);
+            this.m_lbl_SelectSilencePhrase.Size = new System.Drawing.Size(77, 13);
             this.m_lbl_SelectSilencePhrase.TabIndex = 10;
-            this.m_lbl_SelectSilencePhrase.Text = "Select silen&ce phrase";
+            this.m_lbl_SelectSilencePhrase.Text = "Silen&ce phrase";
             // 
             // m_cb_SilencePhrase
             // 
             this.m_cb_SilencePhrase.AccessibleName = "Select Silence Phrase";
             this.m_cb_SilencePhrase.FormattingEnabled = true;
-            this.m_cb_SilencePhrase.Location = new System.Drawing.Point(118, 24);
+            this.m_cb_SilencePhrase.Location = new System.Drawing.Point(87, 24);
             this.m_cb_SilencePhrase.Name = "m_cb_SilencePhrase";
-            this.m_cb_SilencePhrase.Size = new System.Drawing.Size(142, 21);
+            this.m_cb_SilencePhrase.Size = new System.Drawing.Size(194, 21);
             this.m_cb_SilencePhrase.TabIndex = 11;
             // 
             // m_grpRemove
             // 
             this.m_grpRemove.Controls.Add(this.m_btn_RemoveFromList);
-            this.m_grpRemove.Location = new System.Drawing.Point(182, 242);
+            this.m_grpRemove.Location = new System.Drawing.Point(161, 242);
             this.m_grpRemove.Name = "m_grpRemove";
-            this.m_grpRemove.Size = new System.Drawing.Size(275, 68);
+            this.m_grpRemove.Size = new System.Drawing.Size(296, 68);
             this.m_grpRemove.TabIndex = 7;
             this.m_grpRemove.TabStop = false;
             // 
@@ -189,9 +189,9 @@ namespace Obi.Dialogs
             // 
             this.m_grpSilencePhrase.Controls.Add(this.m_cb_SilencePhrase);
             this.m_grpSilencePhrase.Controls.Add(this.m_lbl_SelectSilencePhrase);
-            this.m_grpSilencePhrase.Location = new System.Drawing.Point(182, 174);
+            this.m_grpSilencePhrase.Location = new System.Drawing.Point(161, 174);
             this.m_grpSilencePhrase.Name = "m_grpSilencePhrase";
-            this.m_grpSilencePhrase.Size = new System.Drawing.Size(275, 62);
+            this.m_grpSilencePhrase.Size = new System.Drawing.Size(296, 62);
             this.m_grpSilencePhrase.TabIndex = 9;
             this.m_grpSilencePhrase.TabStop = false;
             // 
