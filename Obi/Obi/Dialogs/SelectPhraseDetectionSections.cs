@@ -61,7 +61,7 @@ namespace Obi.Dialogs
 
         private void m_btn_Display_Click(object sender, EventArgs e)
         {
-            if (m_cb_EndRangeForNumberOfSections.Items.Count >= 1 && m_cb_StartRangeForNumberOfSections.Items.Count >= 1) 
+            if ((m_cb_EndRangeForNumberOfSections.Items.Count >= 1) && (m_cb_StartRangeForNumberOfSections.Items.Count >= 1)) 
             {
                 m_lb_listOfSelectedSectionsForPhraseDetection.Items.Clear();
                 if ((m_cb_EndRangeForNumberOfSections.SelectedIndex != -1) && (m_cb_StartRangeForNumberOfSections.SelectedIndex != -1))
@@ -78,15 +78,20 @@ namespace Obi.Dialogs
                     }
                     else if (m_StartRange == m_EndRange)
                     {
-                        m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange]);
+                        m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange - 1]);
                     }
                 }
                 else
                 {
                     m_cb_EndRangeForNumberOfSections.SelectAll();
                     m_cb_StartRangeForNumberOfSections.SelectAll();
-                    m_StartRange =  Convert.ToInt32(m_cb_StartRangeForNumberOfSections.SelectedText);
-                    m_EndRange = Convert.ToInt32(m_cb_EndRangeForNumberOfSections.SelectedText);
+                    if (m_cb_StartRangeForNumberOfSections.SelectedText == "" || m_cb_EndRangeForNumberOfSections.SelectedText == "")
+                        MessageBox.Show("Start or end value is missing");
+                    else
+                    {
+                        m_StartRange = Convert.ToInt32(m_cb_StartRangeForNumberOfSections.SelectedText);
+                        m_EndRange = Convert.ToInt32(m_cb_EndRangeForNumberOfSections.SelectedText);
+                    }
                     if (m_EndRange <= m_OriginalSectionList.Count)
                     {
                         if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
@@ -98,7 +103,7 @@ namespace Obi.Dialogs
                         }
                         else if (m_StartRange == m_EndRange)
                         {
-                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange]);
+                            m_lb_listOfSelectedSectionsForPhraseDetection.Items.Add(m_OriginalSectionList[m_StartRange - 1]);
                         }
                     }
                     else
