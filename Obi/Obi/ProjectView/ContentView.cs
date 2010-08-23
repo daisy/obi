@@ -1615,11 +1615,11 @@ namespace Obi.ProjectView
                     if (node != null && node == nodeOfLastBlockToCreate)
                         {
                         // if node is null then keep on creating block till end of strip
-                        if (node.Index != stripControl.Node.PhraseChildCount - 1 && node.Index < startNodeIndex + 250 
+                        if (node.Index != stripControl.Node.PhraseChildCount - 1 && node.Index - firstBlock.Node.Index < 350
                             && !considerStripHaltFlag && pixelDepth > 0)
                             {
-                            int nextLastIndex = node.Index + 50 >= stripControl.Node.PhraseChildCount ? stripControl.Node.PhraseChildCount - 1 :
-                                node.Index + 50;
+                            int nextLastIndex = node.Index + 100 >= stripControl.Node.PhraseChildCount ? stripControl.Node.PhraseChildCount - 1 :
+                                node.Index + 100;
                             nodeOfLastBlockToCreate = stripControl.Node.PhraseChild ( nextLastIndex );
                             }
                         else
@@ -1822,7 +1822,7 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             
                             }
                         else if (nextThresholdIndex <= lastBlock.Node.Index
-                            && currentlyActiveStrip.IsContentViewFilledWithBlocks 
+                            && (currentlyActiveStrip.IsContentViewFilledWithBlocks || lastBlock.Node.Index - firstBlock.Node.Index > indexIncrement_PhraseLot +1)
                             && lastBlock.Node.Index < currentlyActiveStrip.Node.PhraseChildCount - 1)
                             //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
