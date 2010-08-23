@@ -1971,8 +1971,10 @@ Console.WriteLine ("offset difference is : " + Math.Abs ( node.Index - firstBloc
                             }//-2
                         else // just move strips panel down
                             {//2
+                            int cordY = mStripsPanel.Location.Y - interval; //interval is negetive
+                            if (currentlyActiveStrip.OffsetForFirstPhrase > 0 && cordY > (currentlyActiveStrip.BlocksLayoutTopPosition * -1)) cordY = (currentlyActiveStrip.BlocksLayoutTopPosition * -1);
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                        mStripsPanel.Location.Y - interval );//interval is negetive
+                                        cordY);//interval is negetive
                             Console.WriteLine ( "just moved strips panel down " );
                             }//-2
                         // adjust strip panel location if it is more than Y=0
