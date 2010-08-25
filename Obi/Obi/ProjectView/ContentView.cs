@@ -1438,6 +1438,11 @@ namespace Obi.ProjectView
                                                             if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
                                                             
                                                                                                                         }
+                                                                                                                    if (requiredEmptyNode != null && currentPhraseIndex < requiredEmptyNode.Index)
+                                                                                                                        {
+                                                                                                                        currentPhraseIndex = requiredEmptyNode.Index;
+                                                                                                                        }
+
                                                         if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
                                                         
                                                         if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
