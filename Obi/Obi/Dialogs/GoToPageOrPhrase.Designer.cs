@@ -126,7 +126,7 @@ namespace Obi.Dialogs
                 this.mPhraseIndexComboBox.Location = new System.Drawing.Point(189, 130);
                 this.mPhraseIndexComboBox.Name = "mPhraseIndexComboBox";
                 this.mPhraseIndexComboBox.Size = new System.Drawing.Size(121, 24);
-                this.mPhraseIndexComboBox.TabIndex = 10;
+                this.mPhraseIndexComboBox.TabIndex = 4;
                 this.mPhraseIndexComboBox.Visible = false;
                 // 
                 // GoToPageOrPhrase

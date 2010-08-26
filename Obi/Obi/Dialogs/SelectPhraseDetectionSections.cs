@@ -74,7 +74,7 @@ namespace Obi.Dialogs
                     m_StartRange = int.Parse(m_cb_StartRangeForNumberOfSections.Items[m_cb_StartRangeForNumberOfSections.SelectedIndex].ToString());
                     m_EndRange = int.Parse(m_cb_EndRangeForNumberOfSections.Items[m_cb_EndRangeForNumberOfSections.SelectedIndex].ToString());
 
-                    if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
+                    if (m_StartRange > m_EndRange) { MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart")); }
 
                     else if (m_StartRange < m_EndRange)
                     {
@@ -91,15 +91,18 @@ namespace Obi.Dialogs
                     m_cb_EndRangeForNumberOfSections.SelectAll();
                     m_cb_StartRangeForNumberOfSections.SelectAll();
                     if (m_cb_StartRangeForNumberOfSections.SelectedText == "" || m_cb_EndRangeForNumberOfSections.SelectedText == "")
-                        MessageBox.Show("Start or end value is missing");
+                    {
+                        MessageBox.Show(Localizer.Message("SelectPhraseDetection_MissingStartOrEndVal"));
+                        return;
+                    }
                     else
                     {
-                        m_StartRange = Convert.ToInt32(m_cb_StartRangeForNumberOfSections.SelectedText);
-                        m_EndRange = Convert.ToInt32(m_cb_EndRangeForNumberOfSections.SelectedText);
+                        int.TryParse(m_cb_StartRangeForNumberOfSections.SelectedText, out m_StartRange);
+                        int.TryParse(m_cb_EndRangeForNumberOfSections.SelectedText, out m_EndRange);
                     }
-                    if (m_EndRange <= m_OriginalSectionList.Count)
+                    if ((m_StartRange >= 1 && m_StartRange <= m_OriginalSectionList.Count) && (m_EndRange >= 1 && m_EndRange <= m_OriginalSectionList.Count))
                     {
-                        if (m_StartRange > m_EndRange) { MessageBox.Show("End value is smaller than start value."); }
+                        if (m_StartRange > m_EndRange) { MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndValIsSmallerThanStart")); }
 
                         else if (m_StartRange < m_EndRange)
                         {
@@ -112,11 +115,17 @@ namespace Obi.Dialogs
                         }
                     }
                     else
-                        MessageBox.Show("End value is greater than total number of sections");
+                    {
+                        if (m_EndRange > m_OriginalSectionList.Count || m_StartRange > m_OriginalSectionList.Count)
+                            MessageBox.Show(Localizer.Message("SelectPhraseDetection_EndOrStartValMoreThanSectionCount"));
+                        else
+                            MessageBox.Show(Localizer.Message("InvalidInput"));
+                    }
                 }               
             }
             m_cb_StartRangeForNumberOfSections.SelectedIndex = -1;
             m_cb_EndRangeForNumberOfSections.SelectedIndex = -1;
+            m_btn_RemoveFromList.Enabled = true;
         }
 
         private void m_btn_RemoveFromList_Click(object sender, EventArgs e)

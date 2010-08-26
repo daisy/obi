@@ -47,7 +47,7 @@ namespace Obi.Dialogs
             m_PhraseCount = sectionPhraseCount;
             for (int i = 1; i <= (m_PhraseCount/125); i++)
             {
-            mPhraseIndexComboBox.Items.AddRange(new object [] {125 * i});
+            mPhraseIndexComboBox.Items.AddRange(new object [] {(125 * i) + 1});
             }
             mPhraseIndexComboBox.Items.AddRange(new object [] {m_PhraseCount});
             }
@@ -96,15 +96,21 @@ namespace Obi.Dialogs
             {
             int phraseIndex = 0;
             int.TryParse(base.mNumberBox.Text, out phraseIndex);
-            phraseIndex = showSelectedPhraseIndex();
+            
             if (m_radPage.Checked && phraseIndex < 1 && this.mPageKindComboBox.SelectedIndex < 2)
                 {
                 MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
                 return;
                 }
-            else
+            else if(m_radPhrase.Checked)
                 {
-                mNumberBox.Text = phraseIndex.ToString () ;
+                    mNumberBox.Text = "1";
+                phraseIndex = showSelectedPhraseIndex();
+                if (phraseIndex < 1) 
+                {
+                     MessageBox.Show(Localizer.Message ("InvalidInput"));
+                     return;                 
+                }
                 }
             base.mOKButton_Click ( sender, e );
             }
@@ -142,23 +148,24 @@ namespace Obi.Dialogs
             {
                 if(mPhraseIndexComboBox.SelectedIndex != -1)
                 {
-                    phraseIndex = int.Parse(mPhraseIndexComboBox.Items[mPhraseIndexComboBox.SelectedIndex].ToString());    
+                    int.TryParse(mPhraseIndexComboBox.Items[mPhraseIndexComboBox.SelectedIndex].ToString(), out phraseIndex);    
                 }
                 else
                 {
                     mPhraseIndexComboBox.SelectAll();
-                    if (mPhraseIndexComboBox.SelectedText == "")
-                        MessageBox.Show("Value is missing");
-                    else
-                        phraseIndex = Convert.ToInt32(mPhraseIndexComboBox.SelectedText);
-                    if (phraseIndex <= m_PhraseCount) { }
-                    else
-                        MessageBox.Show("Phrase index value exceeds the total number of phrases in section");
+                    
+                    if (mPhraseIndexComboBox.SelectedText == "")   
+                        MessageBox.Show(Localizer.Message ( "GotoPage_MissingVal")); 
+                                         
+                    else 
+                        int.TryParse(mPhraseIndexComboBox.SelectedText, out phraseIndex);
                 }
+                }
+                return phraseIndex;
             }
            // mPhraseIndexComboBox.SelectedIndex = -1;
-            return phraseIndex;
+            
         }
 
-        }
+        
     }
