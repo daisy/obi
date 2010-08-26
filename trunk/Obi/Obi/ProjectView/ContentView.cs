@@ -3930,7 +3930,8 @@ stripControl.Node.PhraseChildCount > 0)
                     if (s != null &&
                         ((s.ContainsFocus && s.LastBlock == null) || (s.LastBlock != null && s.LastBlock.ContainsFocus)))
                         {
-                        SelectFirstStrip ();
+                        //SelectFirstStrip ();
+                        s.FocusStripLabel (); //@singleSection
                         System.Media.SystemSounds.Beep.Play ();
                         return true;
                         }
@@ -3943,6 +3944,7 @@ stripControl.Node.PhraseChildCount > 0)
                     Strip s = mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[0] : null;
                     if (s != null && s.Controls[1].ContainsFocus)
                         {
+                        /* //@singleSection
                         Strip LastStrip = mStripsPanel.Controls.Count > 0 ?
                             (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] : null;
                         if (LastStrip != null)
@@ -3956,7 +3958,19 @@ stripControl.Node.PhraseChildCount > 0)
                                 {
                                 return SelectLastStrip ();
                                 }
+                         */ 
+                        if ( s.LastBlock != null )//@singleSection
+                            {
+                            System.Media.SystemSounds.Beep.Play ();
+                            return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return s.LastBlock; } );
                             }
+                        else
+                            {
+                            System.Media.SystemSounds.Beep.Play ();
+                            s.FocusStripLabel () ;
+                            return true ;
+                            }
+
                         }
                     }
                 }
