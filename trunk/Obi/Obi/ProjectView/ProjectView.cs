@@ -2765,7 +2765,7 @@ SectionNode SNode = GetSelectedPhraseSection;
         /// </summary>
         public void GoToPageOrPhrase ()
             {
-            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase ();
+            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase (GetSelectedPhraseSection != null? GetSelectedPhraseSection.PhraseChildCount: mPresentation.FirstSection.PhraseChildCount);
             if (GoToDialog.ShowDialog () == DialogResult.OK)
                 {
                 if (GoToDialog.Number != null)
