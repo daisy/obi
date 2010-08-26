@@ -146,3 +146,4 @@ namespace Obi.ProjectView
         }
     }
 }
+
