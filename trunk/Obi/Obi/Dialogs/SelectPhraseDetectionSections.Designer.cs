@@ -107,6 +107,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_RemoveFromList
             // 
+            this.m_btn_RemoveFromList.Enabled = false;
             this.m_btn_RemoveFromList.Location = new System.Drawing.Point(206, 25);
             this.m_btn_RemoveFromList.Name = "m_btn_RemoveFromList";
             this.m_btn_RemoveFromList.Size = new System.Drawing.Size(75, 23);

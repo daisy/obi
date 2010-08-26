@@ -1458,4 +1458,19 @@ Error text: {1}</value>
     <value>Merge range of phrases</value>
     <comment>command</comment>
   </data>
+  <data name="GotoPageOrPhrase_EnterNumeric" xml:space="preserve">
+    <value>Invalid input. Please enter a numeric value.</value>
+  </data>
+  <data name="GotoPage_MissingVal" xml:space="preserve">
+    <value>Value is missing</value>
+  </data>
+  <data name="SelectPhraseDetection_EndOrStartValMoreThanSectionCount" xml:space="preserve">
+    <value>Start or end value is greater than total number of sections</value>
+  </data>
+  <data name="SelectPhraseDetection_EndValIsSmallerThanStart" xml:space="preserve">
+    <value>End value is smaller than start value.</value>
+  </data>
+  <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
+    <value>Start or end value is missing</value>
+  </data>
 </root>
