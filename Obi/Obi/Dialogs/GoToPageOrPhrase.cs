@@ -10,7 +10,9 @@ namespace Obi.Dialogs
     {
     public partial class GoToPageOrPhrase : SetPageNumber
         {
-
+        private int m_PhraseCount = 450;
+        private int m_SelectedPhraseIndex;
+       
         public GoToPageOrPhrase ()
             : base ()
             {
@@ -23,6 +25,7 @@ namespace Obi.Dialogs
             base.label1.Location = new Point ( 50, 75 );
             base.label3.Location = new Point ( 50, 110 );
             base.mNumberBox.Location = new Point ( 150, 75 );
+            mPhraseIndexComboBox.Location = new Point(150, 75);
             base.mPageKindComboBox.Location = new Point ( 150, 108 );
             base.Size = new Size ( 370, 210 );
             base.mNumberOfPagesBox.Visible = false;
@@ -40,7 +43,11 @@ namespace Obi.Dialogs
             base.mPageKindComboBox.TabIndex = 4;
             m_btnOk.TabIndex = 5;
             base.mCancelButton.TabIndex = 6;
-
+            for (int i = 1; i <= (m_PhraseCount/125); i++)
+            {
+            mPhraseIndexComboBox.Items.AddRange(new object [] {125 * i});
+            }
+            mPhraseIndexComboBox.Items.AddRange(new object [] {m_PhraseCount});
             }
 
         public override PageNumber Number
@@ -58,6 +65,10 @@ namespace Obi.Dialogs
                 }
             }
 
+        public int SelectedPhraseIndex
+        {
+            get { return m_SelectedPhraseIndex; }
+        }
 
         /// <summary>
         /// Gets  user's input for phrase index inside selected section in case phrase radio button is checked.
@@ -87,13 +98,14 @@ namespace Obi.Dialogs
         private void m_btnOk_Click ( object sender, EventArgs e )
             {
             int phraseIndex = 0;
-            int.TryParse ( base.mNumberBox.Text, out phraseIndex );
+            int.TryParse(base.mNumberBox.Text, out phraseIndex);
+            phraseIndex = showSelectedPhraseIndex();
             if (phraseIndex < 1 &&  this.mPageKindComboBox.SelectedIndex < 2)
                 {
                 MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
                 return;
                 }
-
+            
             base.mOKButton_Click ( sender, e );
             }
 
@@ -104,6 +116,8 @@ namespace Obi.Dialogs
                 base.label1.Text = Localizer.Message("GoToPageOrPhrase_PageNumberLabel") ;
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = true;
+                mNumberBox.Visible = true;
+                mPhraseIndexComboBox.Visible = false;
                 base.mPageKindComboBox.Visible = true;
                 }
             }
@@ -116,8 +130,34 @@ namespace Obi.Dialogs
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = false;
                 base.mPageKindComboBox.Visible = false;
+                mNumberBox.Visible = false;
+                mPhraseIndexComboBox.Visible = true;
                 }
             }
+
+        public int showSelectedPhraseIndex()
+        {
+            if(mPhraseIndexComboBox.Items.Count >=1)
+            {
+                if(mPhraseIndexComboBox.SelectedIndex != -1)
+                {
+                    m_SelectedPhraseIndex = int.Parse(mPhraseIndexComboBox.Items[mPhraseIndexComboBox.SelectedIndex].ToString());    
+                }
+                else
+                {
+                    mPhraseIndexComboBox.SelectAll();
+                    if (mPhraseIndexComboBox.SelectedText == "")
+                        MessageBox.Show("Value is missing");
+                    else
+                        m_SelectedPhraseIndex = Convert.ToInt32(mPhraseIndexComboBox.SelectedText);
+                    if (m_SelectedPhraseIndex <= m_PhraseCount) { }
+                    else
+                        MessageBox.Show("Phrase index value exceeds the total number of phrases in section");
+                }
+            }
+           // mPhraseIndexComboBox.SelectedIndex = -1;
+            return m_SelectedPhraseIndex;
+        }
 
         }
     }

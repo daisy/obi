@@ -32,6 +32,7 @@ namespace Obi.Dialogs
                 this.m_radPage = new System.Windows.Forms.RadioButton();
                 this.m_radPhrase = new System.Windows.Forms.RadioButton();
                 this.m_grpSearchPagePhrase = new System.Windows.Forms.GroupBox();
+                this.mPhraseIndexComboBox = new System.Windows.Forms.ComboBox();
                 this.m_grpSearchPagePhrase.SuspendLayout();
                 this.SuspendLayout();
                 // 
@@ -119,6 +120,15 @@ namespace Obi.Dialogs
                 this.m_grpSearchPagePhrase.TabStop = false;
                 this.m_grpSearchPagePhrase.Text = "GoTo Page or Phrase";
                 // 
+                // mPhraseIndexComboBox
+                // 
+                this.mPhraseIndexComboBox.FormattingEnabled = true;
+                this.mPhraseIndexComboBox.Location = new System.Drawing.Point(189, 130);
+                this.mPhraseIndexComboBox.Name = "mPhraseIndexComboBox";
+                this.mPhraseIndexComboBox.Size = new System.Drawing.Size(121, 24);
+                this.mPhraseIndexComboBox.TabIndex = 10;
+                this.mPhraseIndexComboBox.Visible = false;
+                // 
                 // GoToPageOrPhrase
                 // 
                 this.AcceptButton = this.m_btnOk;
@@ -127,8 +137,10 @@ namespace Obi.Dialogs
                 this.ClientSize = new System.Drawing.Size(389, 208);
                 this.Controls.Add(this.m_btnOk);
                 this.Controls.Add(this.m_grpSearchPagePhrase);
+                this.Controls.Add(this.mPhraseIndexComboBox);
                 this.Name = "GoToPageOrPhrase";
                 this.Text = "GoToPageOrPhrase";
+                this.Controls.SetChildIndex(this.mPhraseIndexComboBox, 0);
                 this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.m_btnOk, 0);
                 this.Controls.SetChildIndex(this.label1, 0);
@@ -153,5 +165,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.RadioButton m_radPage;
         private System.Windows.Forms.RadioButton m_radPhrase;
         private System.Windows.Forms.GroupBox m_grpSearchPagePhrase;
+        private System.Windows.Forms.ComboBox mPhraseIndexComboBox;
         }
     }
