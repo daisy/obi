@@ -132,7 +132,7 @@ namespace Obi
                 // mSettings.WrapStrips = false;
                 // mProjectView.WrapStrips = false;
                 mSettings.WrapStripContents = value;
-                mWrappingInContentViewToolStripMenuItem.Checked = value;
+               // mWrappingInContentViewToolStripMenuItem.Checked = value;
                 mProjectView.WrapStripContents = value;
                 }
             }
@@ -868,7 +868,7 @@ namespace Obi
             mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView && mProjectView.CanToggleFocusToContentsView;
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
-            mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
+           // mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
             mShowSectionContentsToolStripMenuItem.Enabled = mProjectView.CanShowSectionContents;
             mShowSingleSectionToolStripItem.Enabled = mSession.HasProject && mProjectView.Selection != null;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
@@ -930,11 +930,11 @@ namespace Obi
             }
 
         // Check/uncheck "Wrapping in content view"
-        private void mWrappingInContentViewToolStripMenuItem_CheckedChanged ( object sender, EventArgs e )
+       /* private void mWrappingInContentViewToolStripMenuItem_CheckedChanged ( object sender, EventArgs e )
             {
             WrapStripContents = mWrappingInContentViewToolStripMenuItem.Checked;
             }
-
+        */
         private void mShowSourceToolStripMenuItem_Click ( object sender, EventArgs e ) { ShowSource (); }
 
         #endregion
@@ -1505,8 +1505,6 @@ namespace Obi
             {
             Status ( Localizer.Message ( "ready" ) );
             }
-
-
         // Utility functions
 
 
