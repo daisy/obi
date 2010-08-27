@@ -118,9 +118,9 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementDown,
             this.m_BtnLargeIncrementDown,
             this.m_BtnGoToEnd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 282);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 295);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(36, 195);
+            this.toolStrip1.Size = new System.Drawing.Size(36, 176);
             this.toolStrip1.TabIndex = 0;
             // 
             // m_BtnSmallIncrementDown
@@ -160,7 +160,7 @@ namespace Obi.ProjectView
             // 
             this.trackBar1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.trackBar1.Enabled = false;
-            this.trackBar1.Location = new System.Drawing.Point(-2, 180);
+            this.trackBar1.Location = new System.Drawing.Point(-2, 188);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
