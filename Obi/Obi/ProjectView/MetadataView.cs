@@ -512,6 +512,14 @@ namespace Obi.ProjectView
                 string entryName = mMetadataListView.SelectedItems[0].Text;
                 if (IsDateMetadataSelected)
                     {
+                    // first check if this is year only format: this format is not accepted by default date stuff of c#
+                    string strYearVal = mContentTextbox.Text;
+                    int yearOnlyDate = 0;
+                    int.TryParse ( strYearVal, out yearOnlyDate );
+                    if (yearOnlyDate > 0 && strYearVal.Length == 4)
+                        {
+                        return strYearVal;
+                        }
                     try
                         {
                         DateTime dateEntry = DateTime.Parse ( mContentTextbox.Text );

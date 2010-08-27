@@ -1316,7 +1316,7 @@ Error text: {1}</value>
     <value>Please try again... {0} {1}</value>
   </data>
   <data name="Metadata_InvalidDateFormat" xml:space="preserve">
-    <value>Invalid date format! Recommended format is YYYY-MM-DD.</value>
+    <value>Invalid date format! Recommended format is YYYY-MM-DD or YYYY.</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value>Error in stopping recording. Please press Ok button to continue...</value>
