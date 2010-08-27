@@ -79,7 +79,7 @@ namespace Obi.Dialogs
                 if (m_radPhrase.Checked)
                     {
                     int phraseIndex = 0;
-                    phraseIndex = showSelectedPhraseIndex ();
+                    phraseIndex = ExtractPhraseIndexFromCombobox ();
                     if (phraseIndex >= 1)
                         return phraseIndex;
                     else
@@ -102,17 +102,24 @@ namespace Obi.Dialogs
                 MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
                 return;
                 }
-            else if(m_radPhrase.Checked)
+            else if (m_radPhrase.Checked)
                 {
-                    mNumberBox.Text = "1";
-                phraseIndex = showSelectedPhraseIndex();
-                if (phraseIndex < 1) 
+                phraseIndex = ExtractPhraseIndexFromCombobox ();
+                if (phraseIndex < 1)
+                    {
+                    MessageBox.Show ( Localizer.Message ( "InvalidInput" ) );
+                    return;
+                    }
+                else
+                    {
+                    DialogResult = DialogResult.OK;
+                    Close ();
+                    }
+                }
+            else
                 {
-                     MessageBox.Show(Localizer.Message ("InvalidInput"));
-                     return;                 
+                base.mOKButton_Click ( sender, e );
                 }
-                }
-            base.mOKButton_Click ( sender, e );
             }
 
         private void m_radPage_CheckedChanged ( object sender, EventArgs e )
@@ -141,7 +148,7 @@ namespace Obi.Dialogs
                                 }
             }
 
-        public int showSelectedPhraseIndex()
+        public int ExtractPhraseIndexFromCombobox()
         {
         int phraseIndex = 0;
             if(mPhraseIndexComboBox.Items.Count >=1)
