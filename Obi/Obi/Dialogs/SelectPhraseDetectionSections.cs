@@ -57,6 +57,7 @@ namespace Obi.Dialogs
                 m_cb_SilencePhrase.Items.Add ( (i + 1) + ". Section: " + m_SilencePhrases[i].ParentAs<SectionNode> ().Label + ": " + m_SilencePhrases[i].BaseStringShort());
                 }
             m_cb_SilencePhrase.SelectedIndex = 0;
+            
             }
 
         public List<SectionNode> SelectedSections 
@@ -92,7 +93,7 @@ namespace Obi.Dialogs
                     m_cb_StartRangeForNumberOfSections.SelectAll();
                     if (m_cb_StartRangeForNumberOfSections.SelectedText == "" || m_cb_EndRangeForNumberOfSections.SelectedText == "")
                     {
-                        MessageBox.Show(Localizer.Message("SelectPhraseDetection_MissingStartOrEndVal"));
+                       // MessageBox.Show(Localizer.Message("SelectPhraseDetection_MissingStartOrEndVal"));
                         return;
                     }
                     else
