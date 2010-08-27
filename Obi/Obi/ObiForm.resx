@@ -513,18 +513,6 @@
   <data name="mSynchronizeViewsToolStripMenuItem.Text" xml:space="preserve">
     <value>S&amp;ynchronize views</value>
   </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Wrapping in content view W Ctrl+Alt+W</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+W</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 22</value>
-  </data>
-  <data name="mWrappingInContentViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Wrapping in content view</value>
-  </data>
   <data name="mShowSingleSectionToolStripItem.AccessibleName" xml:space="preserve">
     <value>Show single section in contents view F5</value>
   </data>
@@ -1639,7 +1627,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.34785, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.22542, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1912,6 +1900,9 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
   </data>
@@ -2153,18 +2144,6 @@
     <value>mFocusOnTransportBarToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mFocusOnTransportBarToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Name" xml:space="preserve">
-    <value>mSynchronizeViewsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mWrappingInContentViewToolStripMenuItem.Name" xml:space="preserve">
-    <value>mWrappingInContentViewToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mWrappingInContentViewToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mShowSingleSectionToolStripItem.Name" xml:space="preserve">
@@ -2808,6 +2787,12 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Name" xml:space="preserve">
+    <value>mSynchronizeViewsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mSynchronizeViewsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
