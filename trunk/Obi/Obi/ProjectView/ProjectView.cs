@@ -293,7 +293,7 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
-        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.getChildCount() > 0; } }
+        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.getChildCount() > 0 && !TransportBar.IsRecorderActive; } }
         public bool CanApplyPhraseDetection
             {
             get
