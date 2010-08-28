@@ -85,7 +85,8 @@ namespace Obi.ProjectView
             this.m_BtnGoToBegining.Margin = new System.Windows.Forms.Padding(4, 1, 0, 10);
             this.m_BtnGoToBegining.Name = "m_BtnGoToBegining";
             this.m_BtnGoToBegining.Size = new System.Drawing.Size(30, 44);
-            this.m_BtnGoToBegining.Text = "toolStripButton1";
+            this.m_BtnGoToBegining.Text = "Go to beginning";
+            this.m_BtnGoToBegining.ToolTipText = "Go to beginning";
             this.m_BtnGoToBegining.Click += new System.EventHandler(this.m_BtnGoToBegining_Click);
             // 
             // m_BtnLargeIncrementUp
@@ -96,7 +97,8 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementUp.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnLargeIncrementUp.Name = "m_BtnLargeIncrementUp";
             this.m_BtnLargeIncrementUp.Size = new System.Drawing.Size(27, 44);
-            this.m_BtnLargeIncrementUp.Text = "toolStripButton2";
+            this.m_BtnLargeIncrementUp.Text = "Large increment up";
+            this.m_BtnLargeIncrementUp.ToolTipText = "Large increment up";
             this.m_BtnLargeIncrementUp.Click += new System.EventHandler(this.m_BtnLargeIncrementUp_Click);
             // 
             // m_BtnSmallIncrementUp
@@ -107,7 +109,8 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementUp.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnSmallIncrementUp.Name = "m_BtnSmallIncrementUp";
             this.m_BtnSmallIncrementUp.Size = new System.Drawing.Size(27, 44);
-            this.m_BtnSmallIncrementUp.Text = "toolStripButton3";
+            this.m_BtnSmallIncrementUp.Text = "Go one line up";
+            this.m_BtnSmallIncrementUp.ToolTipText = "Go one line up";
             this.m_BtnSmallIncrementUp.Click += new System.EventHandler(this.m_BtnSmallIncrementUp_Click);
             // 
             // toolStrip1
@@ -120,7 +123,7 @@ namespace Obi.ProjectView
             this.m_BtnGoToEnd});
             this.toolStrip1.Location = new System.Drawing.Point(0, 295);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(36, 176);
+            this.toolStrip1.Size = new System.Drawing.Size(36, 195);
             this.toolStrip1.TabIndex = 0;
             // 
             // m_BtnSmallIncrementDown
@@ -131,7 +134,8 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementDown.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnSmallIncrementDown.Name = "m_BtnSmallIncrementDown";
             this.m_BtnSmallIncrementDown.Size = new System.Drawing.Size(27, 44);
-            this.m_BtnSmallIncrementDown.Text = "toolStripButton4";
+            this.m_BtnSmallIncrementDown.Text = "Go one line down";
+            this.m_BtnSmallIncrementDown.ToolTipText = "Go one line down";
             this.m_BtnSmallIncrementDown.Click += new System.EventHandler(this.m_BtnSmallIncrementDown_Click);
             // 
             // m_BtnLargeIncrementDown
@@ -142,7 +146,8 @@ namespace Obi.ProjectView
             this.m_BtnLargeIncrementDown.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnLargeIncrementDown.Name = "m_BtnLargeIncrementDown";
             this.m_BtnLargeIncrementDown.Size = new System.Drawing.Size(27, 44);
-            this.m_BtnLargeIncrementDown.Text = "toolStripButton5";
+            this.m_BtnLargeIncrementDown.Text = "Large increment down";
+            this.m_BtnLargeIncrementDown.ToolTipText = "Large increment down";
             this.m_BtnLargeIncrementDown.Click += new System.EventHandler(this.m_BtnLargeIncrementDown_Click);
             // 
             // m_BtnGoToEnd
@@ -153,7 +158,8 @@ namespace Obi.ProjectView
             this.m_BtnGoToEnd.Margin = new System.Windows.Forms.Padding(7, 1, 0, 10);
             this.m_BtnGoToEnd.Name = "m_BtnGoToEnd";
             this.m_BtnGoToEnd.Size = new System.Drawing.Size(27, 44);
-            this.m_BtnGoToEnd.Text = "toolStripButton6";
+            this.m_BtnGoToEnd.Text = "Go to end";
+            this.m_BtnGoToEnd.ToolTipText = "Go to end";
             this.m_BtnGoToEnd.Click += new System.EventHandler(this.m_BtnGoToEnd_Click);
             // 
             // trackBar1
