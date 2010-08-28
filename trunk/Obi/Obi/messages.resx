@@ -1473,4 +1473,7 @@ Error text: {1}</value>
   <data name="SelectPhraseDetection_MissingStartOrEndVal" xml:space="preserve">
     <value>Start or end value is missing</value>
   </data>
+  <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
+    <value>No Pipeline scripts found in this location</value>
+  </data>
 </root>

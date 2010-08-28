@@ -153,18 +153,27 @@ namespace Obi.Dialogs
         // Update project settings
         private bool UpdateProjectSettings ()
             {
+                string[] getFiles = System.IO.Directory.GetFiles(mPipelineTextbox.Text, "*.taskScript", System.IO.SearchOption.AllDirectories); 
             bool returnVal = true;
             if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
                 && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
                 {
                 if (ObiForm.CheckProjectDirectory_Safe ( mDirectoryTextbox.Text, false ))
                     mSettings.DefaultPath = mDirectoryTextbox.Text;
-
-                mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
+                if (getFiles.Length > 0)
+                    mSettings.PipelineScriptsPath = mPipelineTextbox.Text;
+                else
+                {
+                    MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
+                    returnVal = false;
+                }
                 }
             else
                 {
-                MessageBox.Show ( Localizer.Message ( "InvalidPaths" ), Localizer.Message ( "Caption_Error" ) );
+                if(!System.IO.Directory.Exists(mDirectoryTextbox.Text))
+                MessageBox.Show ( Localizer.Message ( "InvalidPaths" ) + " : " + mDirectoryTextbox.Text, Localizer.Message ( "Caption_Error" ));
+                else if (!System.IO.Directory.Exists(mPipelineTextbox.Text))
+                MessageBox.Show(Localizer.Message("InvalidPaths") + " : " + mPipelineTextbox.Text, Localizer.Message("Caption_Error"));
                 returnVal = false;
                 }
 
