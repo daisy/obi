@@ -3991,6 +3991,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
+            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus ; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
@@ -4005,6 +4006,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             Context_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             Context_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
             Context_CutMenuItem.Enabled = (CanRemoveAudio || CanRemoveBlock || CanRemoveStrip) && !mProjectView.TransportBar.IsRecorderActive;
             Context_CopyMenuItem.Enabled = CanCopyAudio || CanCopyBlock || CanCopyStrip;
             Context_PasteMenuItem.Enabled = mProjectView.CanPaste;
