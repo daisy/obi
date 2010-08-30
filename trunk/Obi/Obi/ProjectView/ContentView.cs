@@ -1772,32 +1772,37 @@ namespace Obi.ProjectView
 
 
 //@ssingleSection :  small increment up or scroll
-        public bool ScrollUp_SmallIncrement ()
+        public bool ScrollUp_SmallIncrement (bool updateSelection)
             {
             int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 ) * -1;
-            ScrollMStripsPanel ( scrollIncrement);
+            ScrollMStripsPanel (scrollIncrement, updateSelection);
             return true;
             }
 
         //@ssingleSection :  small increment down or scroll
-        public bool ScrollDown_SmallIncrement ()
+        public bool ScrollDown_SmallIncrement ( bool updateSelection )
             {
             int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 );
-            ScrollMStripsPanel ( scrollIncrement);
+            ScrollMStripsPanel (scrollIncrement, updateSelection);
             return true;
             }
+
+        //@singleSection
+        public bool ScrollUp_LargeIncrementWithSelection () { return ScrollUp_LargeIncrement ( true ); }
 
         //@ssingleSection :  large increment up or scroll
-        public bool ScrollUp_LargeIncrement ()
+        public bool ScrollUp_LargeIncrement ( bool updateSelection )
             {
-            ScrollMStripsPanel ( mHScrollBar.Location.Y * -1 );
+            ScrollMStripsPanel (mHScrollBar.Location.Y * -1 , updateSelection);
             return true;
             }
 
+        //@singleSection
+        public bool ScrollDown_LargeIncrementWithSelection () { return ScrollDown_LargeIncrement ( true ); }
         //@ssingleSection :  large increment down for scroll
-        public bool ScrollDown_LargeIncrement ()
+        public bool ScrollDown_LargeIncrement ( bool updateSelection )
             {
-            ScrollMStripsPanel ( mHScrollBar.Location.Y);
+            ScrollMStripsPanel (mHScrollBar.Location.Y, updateSelection);
             return true;
             }
 
@@ -1805,7 +1810,7 @@ namespace Obi.ProjectView
         public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32 ( ZoomFactor * 100 ); } }
 
         //@singleSection : base function for strips panel scroll
-        public void ScrollMStripsPanel (int interval)
+        public void ScrollMStripsPanel (int interval, bool updateBlockSelection)
             {
             Strip currentlyActiveStrip = ActiveStrip;
 
@@ -1815,6 +1820,18 @@ namespace Obi.ProjectView
                 Block lastBlock = currentlyActiveStrip.LastBlock ;
                 if( firstBlock != null && lastBlock != null )
                     {
+                    int selectedItemDepthFromContentViewOrigin = -1 ;
+                    if ( mProjectView.Selection != null && ( mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection ))
+                        {
+                        // compute the depth of selected item from content view origin.
+                        EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection : (EmptyNode) mProjectView.Selection.Node ;
+                        if ( currentlySelectedEmptyNode != null )
+                            {
+                        int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel ( currentlyActiveStrip.FindBlock(currentlySelectedEmptyNode )).Y ;
+                            selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel ;
+                            Console.WriteLine (" depth of selected item in content view " +  selectedItemDepthFromContentViewOrigin ) ;
+                            }
+                        }
                     mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                     IsScrollActive = true;
 
@@ -2002,9 +2019,18 @@ namespace Obi.ProjectView
                             }
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
-                    ReturnFocusFromVerticalScrollPanel ();
+                    //ReturnFocusFromVerticalScrollPanel ();
                     IsScrollActive = false;
                     mProjectView.ObiForm.Cursor = Cursors.Default;
+
+                    //update selection if flag is true
+                    if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0)
+                        {
+                        int depthOfBlockInsTrip = Math.Abs ( mStripsPanel.Location.Y ) + selectedItemDepthFromContentViewOrigin - currentlyActiveStrip.Location.Y;
+                        Block blockToBeSelected = currentlyActiveStrip.FindBlockAtLocationInStrip ( depthOfBlockInsTrip );
+                        if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                        Console.WriteLine ( "selected block location " + (LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y) );
+                        }
                     }
                     verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);
                 }// check ends for currently active strip
@@ -3149,8 +3175,8 @@ stripControl.Node.PhraseChildCount > 0)
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
 
-            mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrement;
-            mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrement;
+            mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
+            mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrementWithSelection;
 
             }
 
@@ -4330,7 +4356,7 @@ stripControl.Node.PhraseChildCount > 0)
             int increment = Convert.ToInt32(mHScrollBar.Location.Y * 0.4);
             if (e.Delta > 0)
                 increment = increment * (-1);
-            ScrollMStripsPanel(increment);
+            ScrollMStripsPanel(increment, true);
             Console.WriteLine ( "mouse wheel scrolling " + increment );
         }
 

@@ -506,12 +506,28 @@ namespace Obi.ProjectView
         System.Diagnostics.Debug.Assert ( (index - OffsetForFirstPhrase) * 2 < mBlockLayout.Controls.Count, "No strip cursor at index" );
         System.Diagnostics.Debug.Assert ( mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 && mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] is StripCursor );
         return mBlockLayout.Controls.Count > (index - OffsetForFirstPhrase) * 2 ? (StripCursor)mBlockLayout.Controls[(index - OffsetForFirstPhrase) * 2] : null;
-        } 
+        }
+
+        //@singleSection
+        public Block FindBlockAtLocationInStrip ( int depth )
+            {
+            if ( depth < 0  || mBlockLayout.Controls.Count == 0) return null ;
+
+            for (int i = 0; i < mBlockLayout.Controls.Count;  i++)
+                {
+                if (mBlockLayout.Controls[i] is Block
+                    && mBlockLayout.Controls[i].Location.Y + mBlockLayout.Location.Y >= depth - (mBlockLayout.Controls[i].Height / 4 )  )
+                    {
+                    return (Block)mBlockLayout.Controls[i];
+                    }
+                }
+            return null;
+            }
 
         /// <summary>
         /// Focus on the label.
         /// </summary>
-        public void FocusStripLabel() { mLabel.Focus(); }
+        public void FocusStripLabel () { mLabel.Focus (); }
 
         /// <summary>
         /// Remove the block for the given node.
