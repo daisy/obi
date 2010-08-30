@@ -4354,12 +4354,21 @@ stripControl.Node.PhraseChildCount > 0)
             }
 
         private void ContentView_MouseWheel(object sender, MouseEventArgs e)
-        {
+        {                   
+            int interval;
             int increment = Convert.ToInt32(mHScrollBar.Location.Y * 0.4);
+            if (e.Delta < 0)
+                interval = -e.Delta / 120;
+            else
+                interval = e.Delta / 120;
             if (e.Delta > 0)
                 increment = increment * (-1);
-            ScrollMStripsPanel(increment, true);
-            Console.WriteLine ( "mouse wheel scrolling " + increment );
+
+            if (IsScrollActive)
+            { }
+            else
+                ScrollMStripsPanel(increment * interval, false);
+            Console.WriteLine("mouse wheel scrolling " + increment);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
