@@ -1789,7 +1789,7 @@ namespace Obi.ProjectView
 
         //@singleSection
         public bool ScrollUp_LargeIncrementWithSelection () { return ScrollUp_LargeIncrement ( true ); }
-
+        public bool ScrollUp_SmallIncrementWithSelection() { return ScrollUp_SmallIncrement(true); }
         //@ssingleSection :  large increment up or scroll
         public bool ScrollUp_LargeIncrement ( bool updateSelection )
             {
@@ -1805,6 +1805,7 @@ namespace Obi.ProjectView
             ScrollMStripsPanel (mHScrollBar.Location.Y, updateSelection);
             return true;
             }
+        public bool ScrollDown_SmallIncrementWithSelection() { return ScrollDown_SmallIncrement(true); }
 
         //@singleSection
         public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32 ( ZoomFactor * 100 ); } }
@@ -3164,8 +3165,8 @@ stripControl.Node.PhraseChildCount > 0)
             mShortcutKeys[Keys.Shift | Keys.F4] = SelectPreviousSpecialRoleNode;
             mShortcutKeys[Keys.Control | Keys.Alt | Keys.F4] = SelectNextEmptyNode;
 
-            mShortcutKeys[Keys.Up] = SelectPreviousStrip;
-            mShortcutKeys[Keys.Down] = SelectNextStrip;
+            mShortcutKeys[Keys.Control |  Keys.Up] = SelectPreviousStrip;
+            mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
 
@@ -3177,7 +3178,8 @@ stripControl.Node.PhraseChildCount > 0)
 
             mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
             mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrementWithSelection;
-
+            mShortcutKeys[Keys.Down ] = ScrollDown_SmallIncrementWithSelection;
+            mShortcutKeys[Keys.Up ] = ScrollUp_SmallIncrementWithSelection;
             }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
