@@ -82,7 +82,7 @@ namespace Obi.ProjectView
             if (m_ContentView != null)
                 {
                 UpdateScrollButtons ( false );
-                m_ContentView.ScrollUp_LargeIncrement ();
+                m_ContentView.ScrollUp_LargeIncrement (false);
                 UpdateScrollButtons ( true );
                 }
             }
@@ -92,7 +92,7 @@ namespace Obi.ProjectView
             if (m_ContentView != null)
                 {
                 UpdateScrollButtons ( false );
-                m_ContentView.ScrollDown_LargeIncrement ();
+                m_ContentView.ScrollDown_LargeIncrement (false);
                 UpdateScrollButtons ( true );
                 }
             }
@@ -112,7 +112,7 @@ namespace Obi.ProjectView
             if (m_ContentView != null)
                 {
                 UpdateScrollButtons ( false );
-                m_ContentView.ScrollUp_SmallIncrement ();
+                m_ContentView.ScrollUp_SmallIncrement (false);
                 UpdateScrollButtons ( true );
                 }
             }
@@ -122,7 +122,7 @@ namespace Obi.ProjectView
             if (m_ContentView != null)
                 {
                 UpdateScrollButtons ( false );
-                m_ContentView.ScrollDown_SmallIncrement ();
+                m_ContentView.ScrollDown_SmallIncrement (false);
                 UpdateScrollButtons ( true );
                 }
             }
