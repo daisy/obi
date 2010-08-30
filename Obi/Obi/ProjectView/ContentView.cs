@@ -3769,7 +3769,7 @@ stripControl.Node.PhraseChildCount > 0)
                             MessageBox.Show ( ex.ToString () );
                             }
                         this.Cursor = Cursors.Default;
-                        IsScrollActive = true;
+                        IsScrollActive = false;
                         }
                     }
 
