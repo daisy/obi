@@ -516,7 +516,7 @@ namespace Obi.ProjectView
             for (int i = 0; i < mBlockLayout.Controls.Count;  i++)
                 {
                 if (mBlockLayout.Controls[i] is Block
-                    && mBlockLayout.Controls[i].Location.Y + mBlockLayout.Location.Y >= depth - (mBlockLayout.Controls[i].Height / 4 )  )
+                    && mBlockLayout.Controls[i].Location.Y + mBlockLayout.Location.Y >= depth   )
                     {
                     return (Block)mBlockLayout.Controls[i];
                     }
@@ -1389,6 +1389,21 @@ namespace Obi.ProjectView
                 oldBlocklayout.Dispose ();
                 }
             Resize_All ();
+            }
+
+        //@singleSection
+        public Block FirstBlockInNextLineOrPrevious ( EmptyNode node , bool nextLine)
+            {
+            if ( node == null ) return null ;
+            Block currentBlock = FindBlock ( node );
+            if (currentBlock != null)
+                {
+                int blockHeight = nextLine ? currentBlock.Height : Convert.ToInt32 (currentBlock.Height * 1.2) * -1 ;
+                return FindBlockAtLocationInStrip ( currentBlock.Location.Y + mBlockLayout.Location.Y + blockHeight);
+                }
+            Console.WriteLine ( " returning null " );
+            return null;
+
             }
 
         public void DestroyStripHandle ()

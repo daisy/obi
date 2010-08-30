@@ -37,7 +37,7 @@ namespace Obi.ProjectView
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
-       
+
         private delegate Strip AddStripForObiNodeDelegate ( ObiNode node );
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
 
@@ -65,12 +65,12 @@ namespace Obi.ProjectView
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
-            mStripsPanel.ControlRemoved += new ControlEventHandler( mStripsPanel_ControlRemoved);
-            this.MouseWheel += new MouseEventHandler(ContentView_MouseWheel);//@singleSection
-            mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged  );//@singleSection
-            
+            mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
+            this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
+            mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged );//@singleSection
+
             }
-        
+
 
         // Size of the borders
         private int BorderHeight { get { return Bounds.Height - ClientSize.Height; } }
@@ -304,8 +304,8 @@ namespace Obi.ProjectView
                 }
             return command;
             }
-                 */ 
-         
+                 */
+
         /// <summary>
         /// Set a new presentation for this view.
         /// </summary>
@@ -511,7 +511,7 @@ namespace Obi.ProjectView
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
-                        
+
                         }
 
                     if (s != null)
@@ -640,13 +640,13 @@ namespace Obi.ProjectView
                 int stripLabelOffset = 0;
                 if (c is Strip || c is Block)
                     {
-                    Strip c_Strip = c is Strip ? (Strip)c: ((Block)c).Strip;
+                    Strip c_Strip = c is Strip ? (Strip)c : ((Block)c).Strip;
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
                     Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
                 // Compute the four corners of the control, including margins
                 int top = location.Y - c.Margin.Top;
-                if ( top < stripLabelOffset ) top = stripLabelOffset ;//@singleSection
+                if (top < stripLabelOffset) top = stripLabelOffset;//@singleSection
                 int bottom = location.Y + c.Height + c.Margin.Bottom;
                 int left = location.X - c.Margin.Left;
                 int right = location.X + c.Width + c.Margin.Right;
@@ -665,15 +665,15 @@ namespace Obi.ProjectView
                 int h_max = mHScrollBar.Maximum - mHScrollBar.LargeChange + 1;
                 //int vw = VisibleWidth - mVScrollBar.Width; //@singleSection: original, replaced by following
                 int vw = verticalScrollToolStripContainer1.Location.X; //@singleSection : new
-                
+
                 // Vertical scrolling
                 if (t < 0 || (b > vh && h > vh))
                     {
                     // Top of control is above the visible window, so scroll to the top
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( top, v_max );
-                    mStripsPanel.Location =new Point ( mStripsPanel.Location.X ,
-                        Math.Min ( top, v_max )* -1);
+                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                        Math.Min ( top, v_max ) * -1 );
                     }
                 else if (b > vh)
                     {
@@ -685,7 +685,7 @@ namespace Obi.ProjectView
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( bottom - vh, v_max );
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                        Math.Min ( bottom - vh, v_max ) * -1);
+                        Math.Min ( bottom - vh, v_max ) * -1 );
                     }
 
                 // Horizontal scrolling is the same
@@ -801,10 +801,10 @@ namespace Obi.ProjectView
                 for (int i = section.PhraseChildCount - 1; i >= sectionOffset; --i)
                     {
                     Commands.Command delete = new Commands.Node.Delete ( mProjectView, section.PhraseChild ( i ), false );
-                    
-                    if (i % progressInterval == 0) delete.ProgressPercentage = ++progressPercent ;
-                    
-                    command.append ( delete);
+
+                    if (i % progressInterval == 0) delete.ProgressPercentage = ++progressPercent;
+
+                    command.append ( delete );
                     }
                 progressInterval = 45;
                 if (cropNode != null) command.append ( new Commands.Node.Delete ( mProjectView, cropNode, section, node.Index + 2, false ) );
@@ -816,18 +816,18 @@ namespace Obi.ProjectView
                 if (cropNode != null) command.append ( new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
                 int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
 
-                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset)  * 2 / 45 : 1;//multiplied by 2 to report progress with increment of 2
+                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) * 2 / 45 : 1;//multiplied by 2 to report progress with increment of 2
                 for (int i = sectionOffset; i < section.PhraseChildCount; ++i)
                     {
                     Commands.Command addCmd = new
                         Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false );
-                    if ( i % progressInterval == 0 ) addCmd.ProgressPercentage = progressPercent += 2;
-                    command.append ( addCmd);
+                    if (i % progressInterval == 0) addCmd.ProgressPercentage = progressPercent += 2;
+                    command.append ( addCmd );
                     }
-                progressPercent = 100 ;
-                Commands.Command updateSelectionCmd = new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) ) ;
-                updateSelectionCmd.ProgressPercentage = progressPercent ;
-                command.append ( updateSelectionCmd);
+                progressPercent = 100;
+                Commands.Command updateSelectionCmd = new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) );
+                updateSelectionCmd.ProgressPercentage = progressPercent;
+                command.append ( updateSelectionCmd );
                 }
             return command;
             }
@@ -894,7 +894,7 @@ namespace Obi.ProjectView
                     MessageBox.Show ( "A section or phrase should be select to wrap" );
                     return;
                     }
-                
+
                 //mWrapStripContents = value;
                 mWrapStripContents = true; //@singleSection
 
@@ -902,11 +902,11 @@ namespace Obi.ProjectView
                     {
                     CreateStripForWrappedContent ();
                     mProjectView.SynchronizeViews = false;
-                    
+
                     }
                 else // is unwrap
                     {
-                    RemoveStripsForSection_Safe ( selectedSection);
+                    RemoveStripsForSection_Safe ( selectedSection );
                     AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
                     }
                 UpdateSize ();
@@ -922,8 +922,8 @@ namespace Obi.ProjectView
                 //@singleSection: adding check for mStripsPanel.Controls.Count because it is not necessary in unsync state that selected node is shown
                 if (strip != null && mStripsPanel.Controls.Count >= 1)
                     {
-                    if ( ( selectedSection == null && i == 0 )
-                        || ( selectedSection != null &&  strip.Node == selectedSection) )
+                    if ((selectedSection == null && i == 0)
+                        || (selectedSection != null && strip.Node == selectedSection))
                         {
                         strip.WrapContents = mWrapStripContents;
                         }
@@ -961,9 +961,9 @@ namespace Obi.ProjectView
                 UpdateSize ();
                 this.contentViewLabel1.contentView = this;
                 this.contentViewLabel1.zoomFactor = ZoomFactor;
-                mHScrollBar.Location = new Point(mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
+                mHScrollBar.Location = new Point ( mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
                 mVScrollBar.Height = mVScrollBar.Location.Y + this.Height - contentViewLabel1.Height - mHScrollBar.Height;
-                mCornerPanel.Location = new Point(mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height);
+                mCornerPanel.Location = new Point ( mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
                 }
             }
 
@@ -1112,10 +1112,10 @@ namespace Obi.ProjectView
                 selectionValue.Node is EmptyNode ||
                 selectionValue is StripIndexSelection)
                 {
-                Strip currentlyActiveStrip = ActiveStrip ;
+                Strip currentlyActiveStrip = ActiveStrip;
                 SectionNode sectionToBeSelected = selectionValue.Node is SectionNode ? (SectionNode)selectionValue.Node :
                                                 selectionValue.Node.ParentAs<SectionNode> ();
-                
+
                 // remove irrelevant strips in case there are more than single strip in content view
                 Strip requiredExistingStrip = null;
 
@@ -1130,7 +1130,7 @@ namespace Obi.ProjectView
                                 {
                                 requiredExistingStrip = iterationStrip;
                                 contentViewLabel1.Name_SectionDisplayed = sectionToBeSelected.Label;
-                                Console.WriteLine ("the required strip exists " + iterationStrip.Node.Label ) ;
+                                Console.WriteLine ( "the required strip exists " + iterationStrip.Node.Label );
                                 }
                             else
                                 {
@@ -1139,14 +1139,14 @@ namespace Obi.ProjectView
                             }
                         }
                     }
-                if (requiredExistingStrip != null )
+                if (requiredExistingStrip != null)
                     {
                     if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
                         {
-                        EmptyNode eNode = selectionValue is StripIndexSelection ? ( ((StripIndexSelection)selectionValue).Index < requiredExistingStrip.Node.PhraseChildCount ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection :
-                            requiredExistingStrip.Node.PhraseChild (requiredExistingStrip.Node.PhraseChildCount - 1 ) ): 
-                                (EmptyNode)selectionValue.Node  ;
-                        CreateLimitedBlocksInStrip ( requiredExistingStrip, eNode);
+                        EmptyNode eNode = selectionValue is StripIndexSelection ? (((StripIndexSelection)selectionValue).Index < requiredExistingStrip.Node.PhraseChildCount ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection :
+                            requiredExistingStrip.Node.PhraseChild ( requiredExistingStrip.Node.PhraseChildCount - 1 )) :
+                                (EmptyNode)selectionValue.Node;
+                        CreateLimitedBlocksInStrip ( requiredExistingStrip, eNode );
                         }
                     return;
                     }
@@ -1155,22 +1155,22 @@ namespace Obi.ProjectView
                     || (currentlyActiveStrip != null
                     && sectionToBeSelected != currentlyActiveStrip.Node))
                     {
-                    currentlyActiveStrip =  CreateStripForSelectedSection ( sectionToBeSelected,
-                                                true);
+                    currentlyActiveStrip = CreateStripForSelectedSection ( sectionToBeSelected,
+                                                true );
 
-                    
+
                     }
                 if (selectionValue.Node is EmptyNode || selectionValue is StripIndexSelection)
                     {
                     //if (currentlyActiveStrip == null) MessageBox.Show ( "active is null " );
                     //if (selectionValue is StripIndexSelection ) MessageBox.Show ("selection is  " + (( StripIndexSelection) selectionValue).Index.ToString () );
-                    EmptyNode eNode = selectionValue is StripIndexSelection ?( ((StripIndexSelection)selectionValue).Index < currentlyActiveStrip.Node.PhraseChildCount ?    ((StripIndexSelection)selectionValue).EmptyNodeForSelection  :
-                            currentlyActiveStrip.Node.PhraseChild (currentlyActiveStrip.Node.PhraseChildCount - 1 ) ): 
-                                (EmptyNode)selectionValue.Node  ;
-                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode);
+                    EmptyNode eNode = selectionValue is StripIndexSelection ? (((StripIndexSelection)selectionValue).Index < currentlyActiveStrip.Node.PhraseChildCount ? ((StripIndexSelection)selectionValue).EmptyNodeForSelection :
+                            currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 )) :
+                                (EmptyNode)selectionValue.Node;
+                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode );
                     }
                 }
-            
+
             }
 
         public Strip CreateStripForAddedSectionNode ( SectionNode node, bool removeExisting )//@singleSection
@@ -1193,21 +1193,21 @@ namespace Obi.ProjectView
             //Check for recording, return if section to be created is not recording section
             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording && mProjectView.TransportBar.RecordingPhrase != null)
                 {
-                
+
                 //if (mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == node) return null;
                 }
 
             // first remove existing strip
             if (removeExisting)
                 {
-               Strip requiredExistingStrip = null;
+                Strip requiredExistingStrip = null;
                 foreach (Control c in mStripsPanel.Controls)
                     {
                     if (c is Strip && ((Strip)c).Node == node)
                         {
-                        requiredExistingStrip = (Strip) c ;
+                        requiredExistingStrip = (Strip)c;
                         }
-                    else if (c is Strip )
+                    else if (c is Strip)
                         {
                         RemoveStripsForSection_Safe ( ((Strip)c).Node );
                         }
@@ -1256,14 +1256,14 @@ namespace Obi.ProjectView
 
             //@singleSection : comment this code for restoring  old block loading
             //if (s != null)
-                //{
-                //s.LoadBlocksInLayoutIfRequired ();
-                //return true;
-                //}
+            //{
+            //s.LoadBlocksInLayoutIfRequired ();
+            //return true;
+            //}
             //else
-                //{
-                //return false;
-                //}
+            //{
+            //return false;
+            //}
             // commentting end for restoring
 
             return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
@@ -1275,11 +1275,11 @@ namespace Obi.ProjectView
             {
             if (stripControl != null && stripControl.Node.PhraseChildCount > 0)
                 {
-                
+
 
                 int defaultVisibleCount = 40;
                 int extraBlocksCount = 15;
-                
+
                 bool shouldRemoveBlocks = true;
                 bool wasPlaybackOn = false;
                 bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
@@ -1291,10 +1291,9 @@ namespace Obi.ProjectView
 
                     if (mProjectView.Selection == null ||
                         stripControl.FirstBlock == null || //this means that no block is created in strip
-                        (mProjectView.Selection != null && 
+                        (mProjectView.Selection != null &&
                         !(mProjectView.Selection.Node is EmptyNode) &&
-                        !(mProjectView.Selection is StripIndexSelection) ))
-                        
+                        !(mProjectView.Selection is StripIndexSelection)))
                         {
                         if (requiredEmptyNode != null)
                             {
@@ -1304,67 +1303,67 @@ namespace Obi.ProjectView
                                 CreateBlocksTillNodeInStrip ( stripControl, requiredEmptyNode, false );
                                 shouldRemoveBlocks = false;
                                 }
-                                }
+                            }
                         else
                             {
-                        // check if block for defaultBlockCount index is there
-                        Block v = stripControl.FindBlock ( stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
-    stripControl.Node.PhraseChild ( defaultVisibleCount - 1 ) );
+                            // check if block for defaultBlockCount index is there
+                            Block v = stripControl.FindBlock ( stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) :
+        stripControl.Node.PhraseChild ( defaultVisibleCount - 1 ) );
 
-                        if (v == null || !stripControl.IsContentViewFilledWithBlocks)
-                            {
-                            shouldRemoveBlocks = false;
-                            int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
-                            // pause playback if it is active.
-                            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                            if (v == null || !stripControl.IsContentViewFilledWithBlocks)
                                 {
-                                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
-                                wasPlaybackOn = true;
-                                mProjectView.TransportBar.Pause ();
-                                }
-                            for (int i = 0; i < phraseLotSize && !stripControl.IsContentViewFilledWithBlocks; ++i)
-                                {
-                                if ((maxCount < defaultVisibleCount && i >= maxCount )
-                                    || i >= stripControl.Node.PhraseChildCount )
-                                                                        {
-                                    Console.WriteLine ( "Adding block stopped at " + i.ToString () );
-                                    //MessageBox.Show ( maxCount.ToString ()  );
-                                    break;
+                                shouldRemoveBlocks = false;
+                                int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
+                                // pause playback if it is active.
+                                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                    {
+                                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                                    wasPlaybackOn = true;
+                                    mProjectView.TransportBar.Pause ();
                                     }
-                                stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                                for (int i = 0; i < phraseLotSize && !stripControl.IsContentViewFilledWithBlocks; ++i)
+                                    {
+                                    if ((maxCount < defaultVisibleCount && i >= maxCount)
+                                        || i >= stripControl.Node.PhraseChildCount)
+                                        {
+                                        Console.WriteLine ( "Adding block stopped at " + i.ToString () );
+                                        //MessageBox.Show ( maxCount.ToString ()  );
+                                        break;
+                                        }
+                                    stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
+                                    }
                                 }
-                            }
-                            
 
-                                                        }
+
+                            }
                         }
                     else
                         {
                         ObiNode selectedNode = null;
                         if (mProjectView.Selection is StripIndexSelection)
                             {
-                            selectedNode = ((StripIndexSelection)mProjectView.Selection).Index < stripControl.Node.PhraseChildCount? ( (StripIndexSelection)mProjectView.Selection ).EmptyNodeForSelection:
-                               stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) ;
-                            
+                            selectedNode = ((StripIndexSelection)mProjectView.Selection).Index < stripControl.Node.PhraseChildCount ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                               stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
+
                             }
-                        if ( selectedNode == null )  selectedNode = mProjectView.Selection.Node;
+                        if (selectedNode == null) selectedNode = mProjectView.Selection.Node;
 
                         Block lastBlockInStrip = stripControl.LastBlock;
                         if (lastBlockInStrip != null
                             && lastBlockInStrip.Node.IsRooted
                             && selectedNode.IsRooted
-                                                        && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15 
+                                                        && ((lastBlockInStrip.Node.Index - selectedNode.Index >= 15
                                                         && requiredEmptyNode == null)
                                 || (lastBlockInStrip.Node == stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ) && requiredEmptyNode == null)))
                             {
                             shouldRemoveBlocks = true;
                             }
-                        else if ( selectedNode != null && selectedNode.IsRooted )
+                        else if (selectedNode != null && selectedNode.IsRooted)
                             {//2
                             Console.WriteLine ( "required node " + requiredEmptyNode );
                             if (requiredEmptyNode != null && lastBlockInStrip != null && lastBlockInStrip.Node.IsRooted)
                                 {
-                                if (lastBlockInStrip.Node.Index < requiredEmptyNode.Index || stripControl.OffsetForFirstPhrase > requiredEmptyNode.Index) 
+                                if (lastBlockInStrip.Node.Index < requiredEmptyNode.Index || stripControl.OffsetForFirstPhrase > requiredEmptyNode.Index)
                                     CreateBlocksTillNodeInStrip ( stripControl, requiredEmptyNode, false );
                                 }
                             //ObiNode currentNode = selectedNode.FollowingNode; // lets start from selected node
@@ -1377,9 +1376,9 @@ namespace Obi.ProjectView
                                 wasPlaybackOn = true;
                                 mProjectView.TransportBar.Pause ();
                                 }
-                            ObiNode nodeForRemoveReference = requiredEmptyNode != null && requiredEmptyNode.Index > selectedNode.Index? requiredEmptyNode: selectedNode ;
+                            ObiNode nodeForRemoveReference = requiredEmptyNode != null && requiredEmptyNode.Index > selectedNode.Index ? requiredEmptyNode : selectedNode;
                             EmptyNode intendedFirstNodeAfterRemoval = null;
-                            Block firstBlock = stripControl.FirstBlock ;
+                            Block firstBlock = stripControl.FirstBlock;
                             // do not allow removal of block layout till phrase to be selected is  100 more than last phrase index of lot
                             // this will prevent refreshing of layout on clicking phrase beyond 250 phrases lot size. But a better way is preffered than this.
                             if (firstBlock != null && nodeForRemoveReference.Index - firstBlock.Node.Index >= phraseLotSize + 100)
@@ -1394,9 +1393,9 @@ namespace Obi.ProjectView
                                 currentNode = intendedFirstNodeAfterRemoval;
                                 }
 
-                            for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ; i++)
+                            for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks; i++)
                                 {//3
-                                if (currentNode == null  ||
+                                if (currentNode == null ||
                                     !(currentNode is EmptyNode) ||
                                     currentNode.ParentAs<SectionNode> () != stripControl.Node)
                                     {//4
@@ -1412,9 +1411,9 @@ namespace Obi.ProjectView
                                     }//-4
                                 currentNode = currentNode.FollowingNode;
                                 }//-3
-                            
+
                             }//-2
-                        
+
                         UpdateSize ();
                         if (!shouldRemoveBlocks) stripControl.UpdateColors ();
                         }
@@ -1422,33 +1421,33 @@ namespace Obi.ProjectView
                     if (shouldRemoveBlocks)
                         {
                         if (mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted
-                            && ( mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
+                            && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
                             {
-                            ObiNode currentPhraseNode = mProjectView.Selection is StripIndexSelection ? (( StripIndexSelection) mProjectView.Selection) .EmptyNodeForSelection: 
+                            ObiNode currentPhraseNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
                                 mProjectView.Selection.Node;
 
                             int currentPhraseIndex = (currentPhraseNode != null && currentPhraseNode.IsRooted) ? currentPhraseNode.Index : -1;
                             if (currentPhraseIndex == -1) return true;
 
-                                                        if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
-                                                            && (mProjectView.Selection.Node.isSiblingOf (mSelection.Node)    ||    mProjectView.Selection.Node == mSelection.Node))
-                                                            {
-                                                            int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1 ) :
-                                                                mSelection.Node.Index;
-                                                            if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
-                                                            
-                                                                                                                        }
-                                                                                                                    if (requiredEmptyNode != null && currentPhraseIndex < requiredEmptyNode.Index)
-                                                                                                                        {
-                                                                                                                        currentPhraseIndex = requiredEmptyNode.Index;
-                                                                                                                        }
+                            if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
+                                && (mProjectView.Selection.Node.isSiblingOf ( mSelection.Node ) || mProjectView.Selection.Node == mSelection.Node))
+                                {
+                                int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1) :
+                                    mSelection.Node.Index;
+                                if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
 
-                                                        if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
-                                                        
-                                                        if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount-1 ;
-                                                        
-                                                        //System.Media.SystemSounds.Asterisk.Play ();
-                            EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ?   stripControl.Node.PhraseChild ( currentPhraseIndex + 15 ):
+                                }
+                            if (requiredEmptyNode != null && currentPhraseIndex < requiredEmptyNode.Index)
+                                {
+                                currentPhraseIndex = requiredEmptyNode.Index;
+                                }
+
+                            if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
+
+                            if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount - 1;
+
+                            //System.Media.SystemSounds.Asterisk.Play ();
+                            EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ? stripControl.Node.PhraseChild ( currentPhraseIndex + 15 ) :
                                 stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
 
 
@@ -1466,7 +1465,7 @@ namespace Obi.ProjectView
                                 }
                             }
                         }
-                    
+
                     }
                 catch (System.Exception ex)
                     {
@@ -1481,47 +1480,47 @@ namespace Obi.ProjectView
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 return true;
 
-}
-            
+                }
+
             return true;
             }
 
         //@singleSection
-        private void RemoveBlocksBelowContentViewVisibleArea ( EmptyNode nodeSelected)
+        private void RemoveBlocksBelowContentViewVisibleArea ( EmptyNode nodeSelected )
             {
             if (mProjectView.Selection == null) return;
-            
-            ObiNode currentlySelectedNode = mProjectView.Selection is StripIndexSelection? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection: mProjectView.Selection.Node;
-            
+
+            ObiNode currentlySelectedNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : mProjectView.Selection.Node;
+
             if (currentlySelectedNode == null
-                ||    (currentlySelectedNode != null && nodeSelected != null
-                && nodeSelected.Index > currentlySelectedNode.Index) )
+                || (currentlySelectedNode != null && nodeSelected != null
+                && nodeSelected.Index > currentlySelectedNode.Index))
                 {
                 currentlySelectedNode = nodeSelected;
-                                }
-                            
+                }
+
             Console.WriteLine ( "currently selected node while removal " + currentlySelectedNode );
-            if (currentlySelectedNode != null &&  currentlySelectedNode is SectionNode )
+            if (currentlySelectedNode != null && currentlySelectedNode is SectionNode)
                 {
                 if (((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
                     {
-                    currentlySelectedNode = currentlySelectedNode.PhraseChildCount > 40?  ((SectionNode)currentlySelectedNode).PhraseChild ( 40 ): 
+                    currentlySelectedNode = currentlySelectedNode.PhraseChildCount > 40 ? ((SectionNode)currentlySelectedNode).PhraseChild ( 40 ) :
                     currentlySelectedNode.PhraseChild ( currentlySelectedNode.PhraseChildCount - 1 );
-                                        }
-                else 
+                    }
+                else
                     {
                     return;
                     }
                 }
-            if ( currentlySelectedNode == null || ( currentlySelectedNode != null && !currentlySelectedNode.IsRooted )) return ;
+            if (currentlySelectedNode == null || (currentlySelectedNode != null && !currentlySelectedNode.IsRooted)) return;
 
             Strip stripControl = FindStrip ( currentlySelectedNode.ParentAs<SectionNode> () );
 
-            if (stripControl != null    &&    stripControl.IsContentViewFilledWithBlocks && !RestrictDynamicLoadingForRecording(stripControl.Node) )
+            if (stripControl != null && stripControl.IsContentViewFilledWithBlocks && !RestrictDynamicLoadingForRecording ( stripControl.Node ))
                 {
-                
+
                 bool wasPlaybackOn = false;
-                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase ;
+                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
                 // pause playback if it is active.
                 if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                     {
@@ -1534,7 +1533,7 @@ namespace Obi.ProjectView
                     {
                     EmptyNode lastIntentedVisiblePhrase = (EmptyNode)currentlySelectedNode;
                     stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, true, false );
-                    Console.WriteLine ( "remove explicitly  atmost till " + lastIntentedVisiblePhrase);
+                    Console.WriteLine ( "remove explicitly  atmost till " + lastIntentedVisiblePhrase );
                     }
                 catch (System.Exception ex)
                     {
@@ -1552,41 +1551,41 @@ namespace Obi.ProjectView
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 }
             }
-        
+
         //@singleSection
         public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag )
             {
             CreateBlocksTillNodeInStrip ( stripControl, nodeOfLastBlockToCreate, considerStripHaltFlag, 0 );
             }
-        
+
         //@singleSection
-        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag, int pixelDepth)
+        public void CreateBlocksTillNodeInStrip ( Strip stripControl, EmptyNode nodeOfLastBlockToCreate, bool considerStripHaltFlag, int pixelDepth )
             {
             Block firstBlock = stripControl.FirstBlock;
             Block lastBlock = stripControl.LastBlock;
-            if ((firstBlock != null  &&  lastBlock != null)
-                ||    ( stripControl.Node.PhraseChildCount > 0 && nodeOfLastBlockToCreate.Index < stripControl.Node.PhraseChildCount ))
+            if ((firstBlock != null && lastBlock != null)
+                || (stripControl.Node.PhraseChildCount > 0 && nodeOfLastBlockToCreate.Index < stripControl.Node.PhraseChildCount))
                 {
                 //recording restriction check
-                if (RestrictDynamicLoadingForRecording ( stripControl.Node ) && stripControl.FindBlock ( mProjectView.TransportBar.RecordingPhrase ) != null) return ;
+                if (RestrictDynamicLoadingForRecording ( stripControl.Node ) && stripControl.FindBlock ( mProjectView.TransportBar.RecordingPhrase ) != null) return;
 
                 int phraseLotSize = PhraseCountInLot ( stripControl, true ); //used only in case when strip has no blocks
                 int startThreshold = Convert.ToInt32 ( nodeOfLastBlockToCreate.Index / phraseLotSize ) * phraseLotSize;//used only in case when strip has no blocks
-                EmptyNode startNode = lastBlock != null? lastBlock.Node : stripControl.Node.PhraseChild ( startThreshold);
-                int startNodeIndex = firstBlock != null ? firstBlock.Node.Index : startThreshold ;
-                
-                if ( nodeOfLastBlockToCreate == null ) nodeOfLastBlockToCreate = stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount -1 ) ;
-                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl, 
+                EmptyNode startNode = lastBlock != null ? lastBlock.Node : stripControl.Node.PhraseChild ( startThreshold );
+                int startNodeIndex = firstBlock != null ? firstBlock.Node.Index : startThreshold;
+
+                if (nodeOfLastBlockToCreate == null) nodeOfLastBlockToCreate = stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
+                EmptyNode firstNodeAfterRemove = RemoveAllblocksInStripIfRequired ( stripControl,
                     nodeOfLastBlockToCreate,
-                    firstBlock != null &&  nodeOfLastBlockToCreate.Index >= firstBlock.Node.Index? true : false );
-                
-                if (firstNodeAfterRemove  != null || firstBlock == null)
+                    firstBlock != null && nodeOfLastBlockToCreate.Index >= firstBlock.Node.Index ? true : false );
+
+                if (firstNodeAfterRemove != null || firstBlock == null)
                     {
-                    if ((firstBlock == null ||  firstNodeAfterRemove.Index < firstBlock.Node.Index )
-                        && stripControl.DisplayPreviousLayout ( nodeOfLastBlockToCreate))
+                    if ((firstBlock == null || firstNodeAfterRemove.Index < firstBlock.Node.Index)
+                        && stripControl.DisplayPreviousLayout ( nodeOfLastBlockToCreate ))
                         {
                         UpdateSize ();
-                        
+
                         return;
                         }
                     else if (firstNodeAfterRemove != null)
@@ -1611,7 +1610,7 @@ namespace Obi.ProjectView
                     int intendedLastNodeIndex = nodeOfLastBlockToCreate.Index + 10 >= stripControl.Node.PhraseChildCount ? stripControl.Node.PhraseChildCount - 1 :
                             nodeOfLastBlockToCreate.Index + 10;
                     nodeOfLastBlockToCreate = stripControl.Node.PhraseChild ( intendedLastNodeIndex );
-                    
+
                     stripControl.AddsRangeOfBlocks ( startNode, nodeOfLastBlockToCreate );
                     startNode = nodeOfLastBlockToCreate;
                     startNodeIndex = nodeOfLastBlockToCreate.Index;
@@ -1627,9 +1626,9 @@ namespace Obi.ProjectView
                         Console.WriteLine ( "block creation quit index for scroll " + i.ToString () );
                         break;
                         }
-                    else if ( pixelDepth > 0 && stripControl.IsContentViewFilledWithBlocksTillPixelDepth ( pixelDepth ))
+                    else if (pixelDepth > 0 && stripControl.IsContentViewFilledWithBlocksTillPixelDepth ( pixelDepth ))
                         {
-                        Console.WriteLine ( "block creation quit index for scroll for pixcel depth" + i + " depth " + pixelDepth);
+                        Console.WriteLine ( "block creation quit index for scroll for pixcel depth" + i + " depth " + pixelDepth );
                         break;
                         }
 
@@ -1642,7 +1641,7 @@ namespace Obi.ProjectView
                     if (node != null && node == nodeOfLastBlockToCreate)
                         {
                         // if node is null then keep on creating block till end of strip
-                        if (node.Index != stripControl.Node.PhraseChildCount - 1 &&  firstBlock != null && node.Index - firstBlock.Node.Index < 350
+                        if (node.Index != stripControl.Node.PhraseChildCount - 1 && firstBlock != null && node.Index - firstBlock.Node.Index < 350
                             && !considerStripHaltFlag && pixelDepth > 0)
                             {
                             int nextLastIndex = node.Index + 100 >= stripControl.Node.PhraseChildCount ? stripControl.Node.PhraseChildCount - 1 :
@@ -1651,7 +1650,7 @@ namespace Obi.ProjectView
                             }
                         else
                             {
-                            
+
                             break;
                             }
                         }
@@ -1668,7 +1667,7 @@ namespace Obi.ProjectView
                 }
             }
 
-        public void CreatePhraseBlocksForFillingContentView ( Strip stripControl)
+        public void CreatePhraseBlocksForFillingContentView ( Strip stripControl )
             {
             if (stripControl.IsContentViewFilledWithBlocks) return;
             Block lastBlock = stripControl.LastBlock;
@@ -1685,17 +1684,17 @@ namespace Obi.ProjectView
                         }
                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                     }
-                                UpdateSize ();
-                                stripControl.UpdateColors ();
+                UpdateSize ();
+                stripControl.UpdateColors ();
                 }
             }
 
         //@singleSection
-        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node  , bool isScrollDown)
+        private EmptyNode RemoveAllblocksInStripIfRequired ( Strip stripControl, ObiNode node, bool isScrollDown )
             {
             //int phraseBlocksLotInterval = PhraseCountInLot ( stripControl,true ) ;
             //if (stripControl.Node.PhraseChildCount <= 300) phraseBlocksLotInterval = stripControl.Node.PhraseChildCount;
-            return RemoveAllblocksInStripIfRequired ( stripControl, node, PhraseCountInLot ( stripControl, isScrollDown));
+            return RemoveAllblocksInStripIfRequired ( stripControl, node, PhraseCountInLot ( stripControl, isScrollDown ) );
             }
 
 
@@ -1741,10 +1740,10 @@ namespace Obi.ProjectView
 
                         }
                     }
-                
+
                 if (startNode != null)
                     {
-                    
+
                     System.Media.SystemSounds.Asterisk.Play ();
                     //stripControl.RemoveAllBlocks ( false );
                     if (startNode.Index > firstBlock.Node.Index)
@@ -1766,16 +1765,16 @@ namespace Obi.ProjectView
                 {
                 Console.WriteLine ( "Remove aall skipped" );
                 }
-                
+
             return startNode;
             }
 
 
-//@ssingleSection :  small increment up or scroll
-        public bool ScrollUp_SmallIncrement (bool updateSelection)
+        //@ssingleSection :  small increment up or scroll
+        public bool ScrollUp_SmallIncrement ( bool updateSelection )
             {
             int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 ) * -1;
-            ScrollMStripsPanel (scrollIncrement, updateSelection);
+            ScrollMStripsPanel ( scrollIncrement, updateSelection );
             return true;
             }
 
@@ -1783,17 +1782,76 @@ namespace Obi.ProjectView
         public bool ScrollDown_SmallIncrement ( bool updateSelection )
             {
             int scrollIncrement = Convert.ToInt32 ( mHScrollBar.Location.Y / 5 );
-            ScrollMStripsPanel (scrollIncrement, updateSelection);
+            ScrollMStripsPanel ( scrollIncrement, updateSelection );
+            return true;
+            }
+
+        //@singleSection
+        public bool ScrollUp_SmallIncrementWithSelection ()
+            {
+            return MoveToNextOrPreviousLineInStrip ( false );
+            }
+
+        //@singleSection
+        public bool ScrollDown_SmallIncrementWithSelection ()
+            {
+            return MoveToNextOrPreviousLineInStrip ( true );
+            }
+
+        //@singleSection
+        private bool MoveToNextOrPreviousLineInStrip ( bool nextLine )
+            {
+            Strip currentlyActiveStrip = ActiveStrip;
+            if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
+                {
+                if (Selection != null)
+                    {
+                    EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                        mProjectView.Selection.Node is SectionNode ? mProjectView.Selection.Node.PhraseChild ( 0 ) :
+                        mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
+                    if (currentlySelectedEmptyNode != null)
+                        {
+                        Block blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                        if (nextLine)
+                            {
+                            if (blockToBeSelected != null && LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y < mHScrollBar.Location.Y - blockToBeSelected.Height)
+                                {
+                                mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                return true;
+                                }
+                            else
+                                {
+                                return ScrollDown_SmallIncrement ( true );
+                                }
+                            }
+                        else
+                            {
+                            if (blockToBeSelected != null &&
+    LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y > 0 && blockToBeSelected.Node != currentlySelectedEmptyNode)
+                                {
+                                mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                return true;
+                                }
+                            else
+                                {
+                                return ScrollUp_SmallIncrement ( true );
+                                }
+                            }
+
+                        }
+                    }
+                }
+
             return true;
             }
 
         //@singleSection
         public bool ScrollUp_LargeIncrementWithSelection () { return ScrollUp_LargeIncrement ( true ); }
-        public bool ScrollUp_SmallIncrementWithSelection() { return ScrollUp_SmallIncrement(true); }
+
         //@ssingleSection :  large increment up or scroll
         public bool ScrollUp_LargeIncrement ( bool updateSelection )
             {
-            ScrollMStripsPanel (mHScrollBar.Location.Y * -1 , updateSelection);
+            ScrollMStripsPanel ( mHScrollBar.Location.Y * -1, updateSelection );
             return true;
             }
 
@@ -1802,70 +1860,70 @@ namespace Obi.ProjectView
         //@ssingleSection :  large increment down for scroll
         public bool ScrollDown_LargeIncrement ( bool updateSelection )
             {
-            ScrollMStripsPanel (mHScrollBar.Location.Y, updateSelection);
+            ScrollMStripsPanel ( mHScrollBar.Location.Y, updateSelection );
             return true;
             }
-        public bool ScrollDown_SmallIncrementWithSelection() { return ScrollDown_SmallIncrement(true); }
+
 
         //@singleSection
         public int ContentViewDepthForCreatingBlocks { get { return this.Height + Convert.ToInt32 ( ZoomFactor * 100 ); } }
 
         //@singleSection : base function for strips panel scroll
-        public void ScrollMStripsPanel (int interval, bool updateBlockSelection)
+        public void ScrollMStripsPanel ( int interval, bool updateBlockSelection )
             {
             Strip currentlyActiveStrip = ActiveStrip;
 
             if (currentlyActiveStrip != null)
                 {
-                Block firstBlock = currentlyActiveStrip.FirstBlock ;
-                Block lastBlock = currentlyActiveStrip.LastBlock ;
-                if( firstBlock != null && lastBlock != null )
+                Block firstBlock = currentlyActiveStrip.FirstBlock;
+                Block lastBlock = currentlyActiveStrip.LastBlock;
+                if (firstBlock != null && lastBlock != null)
                     {
-                    int selectedItemDepthFromContentViewOrigin = -1 ;
-                    if ( mProjectView.Selection != null && ( mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection ))
+                    int selectedItemDepthFromContentViewOrigin = -1;
+                    if (mProjectView.Selection != null && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
                         {
                         // compute the depth of selected item from content view origin.
-                        EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection : (EmptyNode) mProjectView.Selection.Node ;
-                        if ( currentlySelectedEmptyNode != null )
+                        EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : (EmptyNode)mProjectView.Selection.Node;
+                        if (currentlySelectedEmptyNode != null)
                             {
-                        int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel ( currentlyActiveStrip.FindBlock(currentlySelectedEmptyNode )).Y ;
-                            selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel ;
-                            Console.WriteLine (" depth of selected item in content view " +  selectedItemDepthFromContentViewOrigin ) ;
+                            int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel ( currentlyActiveStrip.FindBlock ( currentlySelectedEmptyNode ) ).Y;
+                            selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel;
+                            Console.WriteLine ( " depth of selected item in content view " + selectedItemDepthFromContentViewOrigin );
                             }
                         }
                     mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                     IsScrollActive = true;
 
                     int contentViewVisibleHeight = mHScrollBar.Location.Y;
-                    
+
 
                     if (interval > 0)
                         {
                         // check if the section is too small and the last block is less than mid of strips panel
-                                if ( firstBlock.Node.Index == 0 && lastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1
-                                    && lastBlock.Location.Y -firstBlock.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition
-                                    < contentViewVisibleHeight )
-                                    {
-                                    mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
-                                    mProjectView.ObiForm.Cursor = Cursors.Default;
-                                    IsScrollActive = false;
-                                    return;
-                                    }
+                        if (firstBlock.Node.Index == 0 && lastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1
+                            && lastBlock.Location.Y - firstBlock.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition
+                            < contentViewVisibleHeight)
+                            {
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
+                            mProjectView.ObiForm.Cursor = Cursors.Default;
+                            IsScrollActive = false;
+                            return;
+                            }
 
-                                int indexIncrement_PhraseLot = PhraseCountInLot ( currentlyActiveStrip, true ) -1 ;
-                                int nextThresholdIndex = firstBlock.Node.Index + indexIncrement_PhraseLot;
+                        int indexIncrement_PhraseLot = PhraseCountInLot ( currentlyActiveStrip, true ) - 1;
+                        int nextThresholdIndex = firstBlock.Node.Index + indexIncrement_PhraseLot;
                         bool setStripsPanelToInitialPosition = false;
 
                         //Console.WriteLine ( "strips panel space " + (mStripsPanel.Height + mStripsPanel.Location.Y) );
                         if (nextThresholdIndex >= currentlyActiveStrip.Node.PhraseChildCount)
                             {
                             nextThresholdIndex = currentlyActiveStrip.Node.PhraseChildCount - 1;
-                            
+
                             }
                         else if (nextThresholdIndex <= lastBlock.Node.Index
-                            && (currentlyActiveStrip.IsContentViewFilledWithBlocks || lastBlock.Node.Index - firstBlock.Node.Index > indexIncrement_PhraseLot +1)
+                            && (currentlyActiveStrip.IsContentViewFilledWithBlocks || lastBlock.Node.Index - firstBlock.Node.Index > indexIncrement_PhraseLot + 1)
                             && lastBlock.Node.Index < currentlyActiveStrip.Node.PhraseChildCount - 1)
-                            //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
+                        //&& mStripsPanel.Height + mStripsPanel.Location.Y <= contentViewVisibleHeight + 1)
                             {
 
                             nextThresholdIndex = nextThresholdIndex + indexIncrement_PhraseLot;
@@ -1893,10 +1951,10 @@ namespace Obi.ProjectView
                                 Block thresholdIndexBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( nextThresholdIndex ) );
                                 if (thresholdIndexBlock != null)
                                     {
-                                    int thresholdBlockBottom = LocationOfBlockInStripPanel ( thresholdIndexBlock).Y + thresholdIndexBlock.Height ;
+                                    int thresholdBlockBottom = LocationOfBlockInStripPanel ( thresholdIndexBlock ).Y + thresholdIndexBlock.Height;
                                     int newPixelsUp = (mStripsPanel.Location.Y + thresholdBlockBottom) - contentViewVisibleHeight;
                                     if (newPixelsUp < pixelsUp && newPixelsUp > 0) pixelsUp = newPixelsUp;
-                                    Console.WriteLine ( " showing till threshold block while scroll down " + pixelsUp + " interval " + interval + " thresholdd " + thresholdIndexBlock.Location + " " + lastBlockAfterScroll.Location);
+                                    Console.WriteLine ( " showing till threshold block while scroll down " + pixelsUp + " interval " + interval + " thresholdd " + thresholdIndexBlock.Location + " " + lastBlockAfterScroll.Location );
                                     }
                                 }
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
@@ -1915,7 +1973,7 @@ namespace Obi.ProjectView
                                     cordY = currentlyActiveStrip.BlocksLayoutTopPosition * -1;
                                     }
                                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-    cordY);
+    cordY );
                                 }
                             }
                         else
@@ -1929,11 +1987,11 @@ namespace Obi.ProjectView
                         Console.WriteLine ( "time while croll down " + stopWatch.ElapsedMilliseconds );
                         Console.WriteLine ( "Strips panel location after scroll " + mStripsPanel.Location );
                         }
-                    else if ( interval < 0 ) // move strips panel down
+                    else if (interval < 0) // move strips panel down
                         {
-                        if (mStripsPanel.Location.Y  > interval)
+                        if (mStripsPanel.Location.Y > interval)
                             {//2
-                            
+
                             if (mStripsPanel.Location.Y >= currentlyActiveStrip.BlocksLayoutTopPosition * -1)
                                 {//3
                                 Console.WriteLine ( "Scroll while creating previous phrases " );
@@ -1943,38 +2001,38 @@ namespace Obi.ProjectView
                                     System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch ();
                                     //stopWatch.Start ();
 
-                                    int requiredPhraseCount = currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight(mHScrollBar.Location.Y, verticalScrollToolStripContainer1.Location.X, 
+                                    int requiredPhraseCount = currentlyActiveStrip.GetPhraseCountForContentViewVisibleHeight ( mHScrollBar.Location.Y, verticalScrollToolStripContainer1.Location.X,
                                         currentlyActiveStrip.Node.PhraseChild ( prevThreshold ), true );
                                     stopWatch.Start ();
                                     //currentlyActiveStrip.RemoveAllBlocks ( false );
                                     //currentlyActiveStrip.AddsRangeOfBlocks ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold - requiredPhraseCount ),
-                                        //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
+                                    //currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) );
                                     //UpdateSize ();
                                     //currentlyActiveStrip.UpdateColors ();
                                     CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                             currentlyActiveStrip.Node.PhraseChild ( prevThreshold ),
                             false );
 
-                                    
+
                                     Block lastBlockInNewLayout = currentlyActiveStrip.LastBlock;
                                     Block expectedLastBlock = null;
-                                    if (lastBlockInNewLayout != null &&  lastBlockInNewLayout.Node.Index > prevThreshold
+                                    if (lastBlockInNewLayout != null && lastBlockInNewLayout.Node.Index > prevThreshold
                                         &&
-                                        ( expectedLastBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) ) ) != null 
+                                        (expectedLastBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) )) != null
                                         && expectedLastBlock.Bottom < lastBlockInNewLayout.Bottom)
-                                            {
-                                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                                (expectedLastBlock.Bottom + currentlyActiveStrip.BlocksLayoutTopPosition - contentViewVisibleHeight) * -1 );
-                                            
+                                        {
+                                        mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                                            (expectedLastBlock.Bottom + currentlyActiveStrip.BlocksLayoutTopPosition - contentViewVisibleHeight) * -1 );
+
                                         }
                                     else
                                         {
                                         mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                                             (mStripsPanel.Height - contentViewVisibleHeight) * -1 );
-                                        
-                                        CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );    
+
+                                        CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                                         }
-                                    
+
                                     stopWatch.Stop ();
                                     Console.WriteLine ( "stop watch " + stopWatch.Elapsed.TotalMilliseconds );
                                     Console.WriteLine ( "previous blocks created " );
@@ -1996,7 +2054,7 @@ namespace Obi.ProjectView
                                     {
                                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
                                     //remove blocks below the content view
-                                    currentlyActiveStrip.RemoveAllFollowingBlocks ( true, true) ;
+                                    currentlyActiveStrip.RemoveAllFollowingBlocks ( true, true );
                                     }
                                 Console.WriteLine ( "adjusted upto label " );
                                 }//-3
@@ -2006,17 +2064,17 @@ namespace Obi.ProjectView
                             int cordY = mStripsPanel.Location.Y - interval; //interval is negetive
                             if (currentlyActiveStrip.OffsetForFirstPhrase > 0 && cordY > (currentlyActiveStrip.BlocksLayoutTopPosition * -1)) cordY = (currentlyActiveStrip.BlocksLayoutTopPosition * -1);
                             mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                                        cordY);//interval is negetive
+                                        cordY );//interval is negetive
                             Console.WriteLine ( "just moved strips panel down " );
                             }//-2
                         // adjust strip panel location if it is more than Y=0
                         if (mStripsPanel.Location.Y > 0)
                             {
                             Block newFirstBlock = null;
-                            int cordY =  ( newFirstBlock == null || ( newFirstBlock != null && newFirstBlock.Node.Index == 0 ))? 0:
+                            int cordY = (newFirstBlock == null || (newFirstBlock != null && newFirstBlock.Node.Index == 0)) ? 0 :
                                 currentlyActiveStrip.BlocksLayoutTopPosition * -1;
-                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X, cordY ) ;
-                            Console.WriteLine("Strips panel has to be adjusted as it moved ahead 0 position" ) ;
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X, cordY );
+                            Console.WriteLine ( "Strips panel has to be adjusted as it moved ahead 0 position" );
                             }
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
@@ -2033,7 +2091,7 @@ namespace Obi.ProjectView
                         Console.WriteLine ( "selected block location " + (LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y) );
                         }
                     }
-                    verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);
+                verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
                 }// check ends for currently active strip
 
             }
@@ -2072,44 +2130,44 @@ namespace Obi.ProjectView
                 }
             if (!isScrollDown)
                 {
-                phraseLotSize = (phraseLotSize / 2) ;
+                phraseLotSize = (phraseLotSize / 2);
                 }
 
-            
-                if (currentlyActiveStrip.Node.PhraseChildCount <= (phraseLotSize * 6 / 5))
-                    {
+
+            if (currentlyActiveStrip.Node.PhraseChildCount <= (phraseLotSize * 6 / 5))
+                {
                 phraseLotSize = currentlyActiveStrip.Node.PhraseChildCount;
                 }
-            Console.WriteLine ("Calculated phrase lot size " + phraseLotSize ) ;
+            Console.WriteLine ( "Calculated phrase lot size " + phraseLotSize );
             return phraseLotSize;
             }
 
         //@singleSection
-        private int EstimateScrollPercentage (Strip currentlyActiveStrip)
+        private int EstimateScrollPercentage ( Strip currentlyActiveStrip )
             {
-            int startY = Math.Abs( mStripsPanel.Location.Y ) ;
+            int startY = Math.Abs ( mStripsPanel.Location.Y );
             int endY = startY + mHScrollBar.Location.Y;
 
             List<int> boundaryPhraseIndexes = currentlyActiveStrip.GetBoundaryPhrasesIndexForVisiblePhrases ( startY, endY );
-            if (boundaryPhraseIndexes == null || boundaryPhraseIndexes.Count == 0) return 0 ;
+            if (boundaryPhraseIndexes == null || boundaryPhraseIndexes.Count == 0) return 0;
 
             int percentageValue = 0;
             if (boundaryPhraseIndexes[0] == 0)
                 {
-                percentageValue =  0;
+                percentageValue = 0;
                 }
             else if (boundaryPhraseIndexes.Count == 2 && currentlyActiveStrip.Node.PhraseChildCount > 0
                 && boundaryPhraseIndexes[1] == currentlyActiveStrip.Node.PhraseChildCount - 1)
                 {
                 percentageValue = 100;
                 }
-            else if ( boundaryPhraseIndexes.Count == 2  && currentlyActiveStrip.Node.PhraseChildCount > 0 )
+            else if (boundaryPhraseIndexes.Count == 2 && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                 int midIndexVisible = Convert.ToInt32 ( (boundaryPhraseIndexes[0] + boundaryPhraseIndexes[1]) / 2 );
                 percentageValue = Convert.ToInt32 ( (midIndexVisible * 100) / currentlyActiveStrip.Node.PhraseChildCount );
                 }
             Console.WriteLine ( "estimated percentage of scroll " + percentageValue );
-            return percentageValue ;
+            return percentageValue;
             }
 
         //@singleSection : Scroll to top
@@ -2120,7 +2178,7 @@ namespace Obi.ProjectView
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
-                IsScrollActive = true ;
+                IsScrollActive = true;
 
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                                 currentlyActiveStrip.Node.PhraseChild ( 0 ),
@@ -2143,21 +2201,21 @@ namespace Obi.ProjectView
             {
             Strip currentlyActiveStrip = ActiveStrip;
 
-            if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0 )
+            if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                     currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 ),
                     false );
-                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 
-                    (mStripsPanel.Height - (mHScrollBar.Location.Y - 10 )) * -1  );
+                mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
+                    (mStripsPanel.Height - (mHScrollBar.Location.Y - 10)) * -1 );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
                 ReturnFocusFromVerticalScrollPanel ();
                 IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 return true;
-                
+
                 }
             return false;
             }
@@ -2174,20 +2232,20 @@ namespace Obi.ProjectView
 
         //@singleSection
         private bool m_IsScrollActive = false;
-        public bool IsScrollActive 
-            { 
-            get 
-                { 
-                return m_IsScrollActive; 
+        public bool IsScrollActive
+            {
+            get
+                {
+                return m_IsScrollActive;
                 }
             set
                 {
-                m_IsScrollActive = value ;
+                m_IsScrollActive = value;
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
             }
-            
-            
+
+
         //@singleSection
         public void mStripsPanel_LocationChanged ( object sender, EventArgs e )
             {
@@ -2195,14 +2253,14 @@ namespace Obi.ProjectView
                 {
                 Strip currentlyActiveStrip = ActiveStrip;
 
-                if (currentlyActiveStrip != null )
+                if (currentlyActiveStrip != null)
                     {
                     if ((currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
-                        ||     (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
+                        || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
-                            verticalScrollToolStripContainer1.CanScrollUp = false;
+                        verticalScrollToolStripContainer1.CanScrollUp = false;
                         }
-                    else if ( Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition 
+                    else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
                         && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index > 0)
                         {
                         // set position of strip panel to hide label -- for precaution
@@ -2213,7 +2271,7 @@ namespace Obi.ProjectView
                 }
             else if (mStripsPanel.Location.Y < 0)
                 {
-                    verticalScrollToolStripContainer1.CanScrollUp = true;
+                verticalScrollToolStripContainer1.CanScrollUp = true;
                 }
 
             if (mStripsPanel.Location.Y + mStripsPanel.Height <= mHScrollBar.Location.Y)
@@ -2221,43 +2279,43 @@ namespace Obi.ProjectView
                 Strip currentlyActiveStrip = ActiveStrip;
                 if (currentlyActiveStrip != null)
                     {
-                    if ((currentlyActiveStrip.LastBlock == null  && currentlyActiveStrip.Node.PhraseChildCount == 0 )
+                    if ((currentlyActiveStrip.LastBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
                         || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
-                            verticalScrollToolStripContainer1.CanScrollDown = false;
+                        verticalScrollToolStripContainer1.CanScrollDown = false;
                         }
                     }
                 }
             else
                 {
-                    verticalScrollToolStripContainer1.CanScrollDown = true;
+                verticalScrollToolStripContainer1.CanScrollDown = true;
                 }
             }
 
-        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase)
+        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase )
             {
-            
-            if ( recordingResumePhrase != null
-                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode   &&  !(mProjectView.Selection is StripIndexSelection) ) )
+
+            if (recordingResumePhrase != null
+                || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
                 {
-                SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode> ():
+                SectionNode section = recordingResumePhrase != null ? recordingResumePhrase.ParentAs<SectionNode> () :
                     (SectionNode)mProjectView.Selection.Node;
 
                 Strip stripControl = FindStrip ( section );
 
                 if (stripControl == null) return;
                 if (recordingResumePhrase != null && stripControl.FindBlock ( recordingResumePhrase ) != null) return;
-                
+
                 Block firstBlock = stripControl.FirstBlock;
                 Block lastBlock = stripControl.LastBlock;
 
                 if (firstBlock != null && lastBlock != null
-                    && ( lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index    
-                    ||    ( recordingResumePhrase != null &&  lastBlock.Node.Index < recordingResumePhrase.Index ) ) )
+                    && (lastBlock.Node.Index < stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 ).Index
+                    || (recordingResumePhrase != null && lastBlock.Node.Index < recordingResumePhrase.Index)))
                     {
-                    EmptyNode lastVisiblePhraseIntended = recordingResumePhrase != null ? recordingResumePhrase:
+                    EmptyNode lastVisiblePhraseIntended = recordingResumePhrase != null ? recordingResumePhrase :
                         stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
-                    
+
                     if (lastVisiblePhraseIntended.Index < lastBlock.Node.Index + 10)
                         {
                         CreateBlocksTillNodeInStrip ( stripControl, lastVisiblePhraseIntended, false );
@@ -2277,7 +2335,7 @@ namespace Obi.ProjectView
                         CreatePhraseBlocksForFillingContentView ( stripControl );
                         return;
                         }
-                    
+
                     if (stripControl.Node.PhraseChildCount > 2)
                         {
                         for (int i = stripControl.Node.PhraseChildCount - 3; i < stripControl.Node.PhraseChildCount; ++i)
@@ -2288,7 +2346,7 @@ namespace Obi.ProjectView
                         }
                     }
                 }
-                }
+            }
 
         // @phraseLimit
         /// <summary>
@@ -2299,7 +2357,7 @@ namespace Obi.ProjectView
         private bool CreateBlocksInStrip ( Strip stripControl )
             {
             return CreateLimitedBlocksInStrip ( stripControl, null );
-            if (stripControl != null && 
+            if (stripControl != null &&
 stripControl.Node.PhraseChildCount > 0)
                 {
                 // pause playback if it is active.
@@ -2308,8 +2366,8 @@ stripControl.Node.PhraseChildCount > 0)
                 ChangeVisibilityProcessState ( true );
                 // make blocks visible w.r.t. over limit, remove blocks only if new blocks take count even above over limit
                 //if (!m_CreatingGUIForNewPresentation &&
-                    //(VisibleBlocksCount + stripControl.Node.PhraseChildCount) > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility))
-                    //MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, true, 0 ); //@singleSection
+                //(VisibleBlocksCount + stripControl.Node.PhraseChildCount) > (mProjectView.MaxVisibleBlocksCount + mProjectView.MaxOverLimitForPhraseVisibility))
+                //MakeOldStripsBlocksInvisible ( stripControl.Node.PhraseChildCount, true, 0 ); //@singleSection
 
                 int indexAddition = -1;
                 bool IsAllBlocksCreated = true;
@@ -2343,7 +2401,7 @@ stripControl.Node.PhraseChildCount > 0)
                     }
 
                 //if (!m_CreatingGUIForNewPresentation && VisibleBlocksCount > mProjectView.MaxVisibleBlocksCount && IsAllBlocksCreated)
-                    //MakeOldStripsBlocksInvisible ( indexAddition );//@singleSection
+                //MakeOldStripsBlocksInvisible ( indexAddition );//@singleSection
 
                 if (!m_CreatingGUIForNewPresentation) UpdateSize ();
 
@@ -2552,7 +2610,7 @@ stripControl.Node.PhraseChildCount > 0)
             return -1;
             }
 
-        
+
         /// <summary>
         /// Make all phrase blocks invisible in  strip of parameter  section node
         /// </summary>
@@ -2632,7 +2690,7 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             return 0;
             }
-        
+
         // @phraseLimit
         /// <summary>
         /// find the index of strip in visible strips list for making its blocks invisible, currently it searches the farthest index with respect to parameter index
@@ -2908,10 +2966,10 @@ stripControl.Node.PhraseChildCount > 0)
             ReflowFromIndex ( index );
             if (m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ); // @phraseLimit
 
-            if (clipboard == null || 
+            if (clipboard == null ||
                 (clipboard != null && strip != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
-                if ( strip != null )  strip.DestroyStripHandle ();
+                if (strip != null) strip.DestroyStripHandle ();
                 strip = null;
                 }
             else if (strip != null)
@@ -2926,10 +2984,10 @@ stripControl.Node.PhraseChildCount > 0)
             {
             if (e.RemovedChild is SectionNode)
                 {
-                
-                    
-                    RemoveStripsForSection_Safe ( (SectionNode)e.RemovedChild );
-                      
+
+
+                RemoveStripsForSection_Safe ( (SectionNode)e.RemovedChild );
+
                 }
             else if (e.RemovedChild is EmptyNode)
                 {
@@ -2943,10 +3001,10 @@ stripControl.Node.PhraseChildCount > 0)
         // Add a new strip for a newly added section node or a new block for a newly added empty node.
         private void TreeNodeAdded ( urakawa.events.core.ChildAddedEventArgs e )
             {
-            
+
             //@singleSection : AddStripForSection_Safe replaced by CreateStripForAddedSectionNode
             // this will remove existing strips before creating new strip in content view
-            Control c = e.AddedChild is SectionNode ? (Control)CreateStripForAddedSectionNode( (SectionNode)e.AddedChild , true) :
+            Control c = e.AddedChild is SectionNode ? (Control)CreateStripForAddedSectionNode ( (SectionNode)e.AddedChild, true ) :
                 // TODO: in the future, the source node will not always be a section node!
                 e.AddedChild is EmptyNode ? AddBlockForNodeConsideringPhraseLimit ( (Strip)FindStrip ( (SectionNode)e.SourceTreeNode ), ((EmptyNode)e.AddedChild) ) : // @phraseLimit
                 null;
@@ -2963,7 +3021,7 @@ stripControl.Node.PhraseChildCount > 0)
                 //@singleSection : if no strip is visible in content view, make the parent strip of empty node visible 
                 if (ActiveStrip == null)
                     {
-                    stripControl =  CreateStripForSelectedSection ( node.ParentAs<SectionNode> (), true );
+                    stripControl = CreateStripForSelectedSection ( node.ParentAs<SectionNode> (), true );
                     }
                 else
                     {
@@ -2971,18 +3029,18 @@ stripControl.Node.PhraseChildCount > 0)
                     }
                 }
             Block lastBlock = stripControl.LastBlock;
-            if (lastBlock != null )
-                                {
-                                int phraseLotSize = PhraseCountInLot ( stripControl, true );
-                                int nextThreshold = (Convert.ToInt32 ( lastBlock.Node.Index / phraseLotSize ) + 1) * phraseLotSize;
+            if (lastBlock != null)
+                {
+                int phraseLotSize = PhraseCountInLot ( stripControl, true );
+                int nextThreshold = (Convert.ToInt32 ( lastBlock.Node.Index / phraseLotSize ) + 1) * phraseLotSize;
 
-                                if (node.Index > nextThreshold
-                                    || (stripControl.IsContentViewFilledWithBlocks && node.Index >  lastBlock.Node.Index ))
-                                    {
-                                    //here no need for applying check for nodes before threshold as it is handled in add blok for node function in strip
-                                    //Console.WriteLine ( "exiting before making block " );
-                                    return null;
-                                    }
+                if (node.Index > nextThreshold
+                    || (stripControl.IsContentViewFilledWithBlocks && node.Index > lastBlock.Node.Index))
+                    {
+                    //here no need for applying check for nodes before threshold as it is handled in add blok for node function in strip
+                    //Console.WriteLine ( "exiting before making block " );
+                    return null;
+                    }
                 }
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
@@ -3013,8 +3071,8 @@ stripControl.Node.PhraseChildCount > 0)
                 //MakeOldStripsBlocksInvisible ( 1, true, indexOfNewStrip );
                 }
             */
-            
-            
+
+
             }
 
         private delegate void ControlInvokation ( Control c );
@@ -3165,7 +3223,7 @@ stripControl.Node.PhraseChildCount > 0)
             mShortcutKeys[Keys.Shift | Keys.F4] = SelectPreviousSpecialRoleNode;
             mShortcutKeys[Keys.Control | Keys.Alt | Keys.F4] = SelectNextEmptyNode;
 
-            mShortcutKeys[Keys.Control |  Keys.Up] = SelectPreviousStrip;
+            mShortcutKeys[Keys.Control | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
@@ -3178,8 +3236,8 @@ stripControl.Node.PhraseChildCount > 0)
 
             mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
             mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrementWithSelection;
-            mShortcutKeys[Keys.Down ] = ScrollDown_SmallIncrementWithSelection;
-            mShortcutKeys[Keys.Up ] = ScrollUp_SmallIncrementWithSelection;
+            mShortcutKeys[Keys.Down] = ScrollDown_SmallIncrementWithSelection;
+            mShortcutKeys[Keys.Up] = ScrollUp_SmallIncrementWithSelection;
             }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
@@ -3230,7 +3288,7 @@ stripControl.Node.PhraseChildCount > 0)
                 if (index >= 0)
                     {
                     //mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index ); //@singleSection: original
-                    mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index + strip.OffsetForFirstPhrase);//@singleSection: new
+                    mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index + strip.OffsetForFirstPhrase );//@singleSection: new
                     return true;
                     }
                 }
@@ -3266,8 +3324,8 @@ stripControl.Node.PhraseChildCount > 0)
         private void CreateBlocksInPreviousThresholdsSlot ()
             {
             EmptyNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node :
-                mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : 
-                mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection) mProjectView.Selection).EmptyNodeForSelection :null;
+                mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node :
+                mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : null;
 
             if (currentlySelectedNode != null)
                 {
@@ -3279,7 +3337,7 @@ stripControl.Node.PhraseChildCount > 0)
 
                     CreateBlocksTillNodeInStrip ( s, (EmptyNode)currentlySelectedNode.PrecedingNode, false );
                     Console.WriteLine ( "creating node till : " + currentlySelectedNode.PrecedingNode.Index );
-                    
+
                     }
                 }
             }
@@ -3315,7 +3373,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection
                 {
                 SectionNode section = mProjectView.GetSelectedPhraseSection;
-                SelectPhraseBlockOrStrip ( section.PhraseChild (section.PhraseChildCount -1 ) );
+                SelectPhraseBlockOrStrip ( section.PhraseChild ( section.PhraseChildCount - 1 ) );
                 return true;
                 }
             return false;
@@ -3351,18 +3409,18 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectPreviousStrip ()
             {
             bool WasPlaying = mProjectView.TransportBar.CurrentState == TransportBar.State.Playing;
-            if (mProjectView.TransportBar.IsPlayerActive 
-                && 
+            if (mProjectView.TransportBar.IsPlayerActive
+                &&
                 (mProjectView.Selection == null
-                || (mProjectView.Selection != null && !(mProjectView.Selection.Node is SectionNode )))) 
+                || (mProjectView.Selection != null && !(mProjectView.Selection.Node is SectionNode))))
                 {
                 mProjectView.TransportBar.MoveSelectionToPlaybackPhrase ();
-            }
+                }
 
             if (mProjectView.GetSelectedPhraseSection == null) return false;
-            SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection ; //@singleSection
-            if ( RestrictDynamicLoadingForRecording( mProjectView.GetSelectedPhraseSection)) return true ;
-            if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection , true); //@singleSection
+            SectionNode previousSection = mProjectView.GetSelectedPhraseSection.PrecedingSection; //@singleSection
+            if (RestrictDynamicLoadingForRecording ( mProjectView.GetSelectedPhraseSection )) return true;
+            if (previousSection != null && mProjectView.Selection.Node is SectionNode) CreateStripForSelectedSection ( previousSection, true ); //@singleSection
 
             Strip strip;
             if (WasPlaying
@@ -3378,7 +3436,7 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 mProjectView.Selection = new NodeSelection ( strip.Node, this );
                 strip.FocusStripLabel ();
-                
+
                 return true;
                 }
             return false;
@@ -3390,28 +3448,28 @@ stripControl.Node.PhraseChildCount > 0)
             SectionNode currentlySelectedSection = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> () :
                 mProjectView.GetSelectedPhraseSection;
 
-            if (currentlySelectedSection  == null) return false;
+            if (currentlySelectedSection == null) return false;
 
-            SectionNode nextSection = currentlySelectedSection.FollowingSection; 
-            if ( RestrictDynamicLoadingForRecording( currentlySelectedSection)) return true ;
+            SectionNode nextSection = currentlySelectedSection.FollowingSection;
+            if (RestrictDynamicLoadingForRecording ( currentlySelectedSection )) return true;
             if (mProjectView.TransportBar.IsPlayerActive && nextSection != null) mProjectView.TransportBar.Stop ();
 
             if (nextSection != null &&
-                (mProjectView.Selection == null || 
-                (mProjectView.Selection != null && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection ) ) ) )
+                (mProjectView.Selection == null ||
+                (mProjectView.Selection != null && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))))
                 {
                 mProjectView.Selection = new NodeSelection ( currentlySelectedSection, this );
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop ();
                 foreach (Control c in mStripsPanel.Controls)
                     {
-                    if (c is Strip )
+                    if (c is Strip)
                         {
-                        if ( ((Strip)c).Node == currentlySelectedSection )  ((Strip)c).FocusStripLabel ();
+                        if (((Strip)c).Node == currentlySelectedSection) ((Strip)c).FocusStripLabel ();
                         }
                     }
                 }
-                        if (nextSection != null) CreateStripForSelectedSection ( nextSection , true); //@singleSection: ends
-                        
+            if (nextSection != null) CreateStripForSelectedSection ( nextSection, true ); //@singleSection: ends
+
             Strip strip = StripAfter ( StripFor ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem ) );
             if (strip != null)
                 {
@@ -3433,8 +3491,8 @@ stripControl.Node.PhraseChildCount > 0)
         private bool SelectFirstStrip ()
             {
             SectionNode section = mProjectView.Presentation.FirstSection; //@singleSection
-            if ( RestrictDynamicLoadingForRecording( ActiveStrip.Node))  return true ;
-            if (section != null ) CreateStripForSelectedSection ( section, true); //@singleSection
+            if (RestrictDynamicLoadingForRecording ( ActiveStrip.Node )) return true;
+            if (section != null) CreateStripForSelectedSection ( section, true ); //@singleSection
 
             return SelectStripFor ( delegate ( Strip strip )
 {
@@ -3444,29 +3502,29 @@ stripControl.Node.PhraseChildCount > 0)
 
         private bool SelectLastStrip ()
             {
-            
-                ObiNode n = null;
-                for (n = mProjectView.Presentation.RootNode.LastLeaf;
-                    !(n is SectionNode);
-                    n = n.PrecedingNode)
-                { }
 
-                SectionNode section = (SectionNode) n;
-            if ( RestrictDynamicLoadingForRecording( ActiveStrip.Node)) return true ;
-                if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
-                if (mProjectView.Selection.Node is PhraseNode && section != null)
+            ObiNode n = null;
+            for (n = mProjectView.Presentation.RootNode.LastLeaf;
+                !(n is SectionNode);
+                n = n.PrecedingNode)
+            { }
+
+            SectionNode section = (SectionNode)n;
+            if (RestrictDynamicLoadingForRecording ( ActiveStrip.Node )) return true;
+            if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
+            if (mProjectView.Selection.Node is PhraseNode && section != null)
+                {
+                mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
+                foreach (Control c in mStripsPanel.Controls)
                     {
-                    mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
-                    foreach (Control c in mStripsPanel.Controls)
+                    if (c is Strip)
                         {
-                        if (c is Strip)
-                            {
-                            if (((Strip)c).Node == mProjectView.GetSelectedPhraseSection) ((Strip)c).FocusStripLabel ();
-                            }
+                        if (((Strip)c).Node == mProjectView.GetSelectedPhraseSection) ((Strip)c).FocusStripLabel ();
                         }
                     }
-                if (section != null) CreateStripForSelectedSection ( section , true); //@singleSection: ends
-                
+                }
+            if (section != null) CreateStripForSelectedSection ( section, true ); //@singleSection: ends
+
             return SelectStripFor ( delegate ( Strip strip )
 {
     return mStripsPanel.Controls.Count > 0 ? (Strip)mStripsPanel.Controls[mStripsPanel.Controls.Count - 1] : null;
@@ -3524,7 +3582,7 @@ stripControl.Node.PhraseChildCount > 0)
             get
                 {
                 if (mProjectView.TransportBar.IsPlayerActive)
-                    return mPlaybackBlock != null ? mPlaybackBlock.Node: null;
+                    return mPlaybackBlock != null ? mPlaybackBlock.Node : null;
                 else
                     return mProjectView.SelectedNodeAs<ObiNode> ();
                 }
@@ -3724,19 +3782,19 @@ stripControl.Node.PhraseChildCount > 0)
                 // no need to change anything in functions like next / previous page, todo, special node etc. changing this function did the behaviour of single section
                 SectionNode parentSection = node.ParentAs<SectionNode> ();
                 bool isParentSectionVisible = false;
-                Strip strip = null ;
+                Strip strip = null;
 
                 //check if strip layout contains this section strip
                 foreach (Control c in mStripsPanel.Controls)
                     {
                     if (c is Strip)
                         {
-                        strip = ((Strip)c) ;
+                        strip = ((Strip)c);
                         if (strip.Node == parentSection) isParentSectionVisible = true;
                         }
                     }
                 //restrict dynamic loading for recording check
-                if (RestrictDynamicLoadingForRecording ( strip.Node ) )
+                if (RestrictDynamicLoadingForRecording ( strip.Node ))
                     {
                     if (mProjectView.Selection == null
                         || (mProjectView.Selection != null && mProjectView.Selection.Node != mProjectView.TransportBar.RecordingPhrase))
@@ -3745,7 +3803,7 @@ stripControl.Node.PhraseChildCount > 0)
                         }
                     return;
                     }
-                
+
                 if (!isParentSectionVisible)
                     {
                     if (MessageBox.Show ( "The required phrase is not in current section. Will you like to show the section containing the phrase?", "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes)
@@ -3757,14 +3815,14 @@ stripControl.Node.PhraseChildCount > 0)
                         return;
                         }
                     }
-                
-                if ( node != null && strip != null &&  strip.FindBlock ( node ) == null)
+
+                if (node != null && strip != null && strip.FindBlock ( node ) == null)
                     {
-                    
+
                     // if parent section is visible, then check if target phrase is visible
                     // if not, create phrases till it.
                     ObiNode targetNode = node;
-                    
+
                     if (strip.OffsetForFirstPhrase < node.Index)
                         {
 
@@ -3801,24 +3859,24 @@ stripControl.Node.PhraseChildCount > 0)
                         }
                     }
 
-                if ( node != null )  mProjectView.Selection = new NodeSelection ( node, this );
+                if (node != null) mProjectView.Selection = new NodeSelection ( node, this );
 
                 //if playback is active, update playback block
                 if (mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock == null)
                     {
                     SetPlaybackPhraseAndTime ( mProjectView.TransportBar.PlaybackPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                    }                    
+                    }
 
-                                /*
-                if (IsBlockInvisibleButStripVisible ( node ))
-                    {
-                    mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
-                    }
-                else
-                    {
-                    mProjectView.Selection = new NodeSelection ( node, this );
-                    }
-                 */ 
+                /*
+if (IsBlockInvisibleButStripVisible ( node ))
+    {
+    mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
+    }
+else
+    {
+    mProjectView.Selection = new NodeSelection ( node, this );
+    }
+ */
                 }
 
             }
@@ -3832,7 +3890,7 @@ stripControl.Node.PhraseChildCount > 0)
                     {
                     if (c is Strip)
                         {
-                        return ((Strip) c) ;
+                        return ((Strip)c);
                         }
                     }
                 return null;
@@ -3840,11 +3898,11 @@ stripControl.Node.PhraseChildCount > 0)
             }
 
         //@singleSection
-        public bool RestrictDynamicLoadingForRecording ( SectionNode sectionShown)
+        public bool RestrictDynamicLoadingForRecording ( SectionNode sectionShown )
             {
             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording
                 && mProjectView.TransportBar.RecordingPhrase != null
-                && sectionShown  != null
+                && sectionShown != null
                 && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == sectionShown)
                 {
                 return true;
@@ -3863,7 +3921,7 @@ stripControl.Node.PhraseChildCount > 0)
                     height += c is Strip ? ((Strip)c).PredictedStripHeight : 0;
                     }
                 //Console.WriteLine ( "predicted scroll height " + height + " " + mStripsPanel.Height.ToString () );
-                return height > mStripsPanel.Height ? height : mStripsPanel.Height; 
+                return height > mStripsPanel.Height ? height : mStripsPanel.Height;
                 }
             }
 
@@ -3986,8 +4044,8 @@ stripControl.Node.PhraseChildCount > 0)
                                 {
                                 return SelectLastStrip ();
                                 }
-                         */ 
-                        if ( s.LastBlock != null )//@singleSection
+                         */
+                        if (s.LastBlock != null)//@singleSection
                             {
                             System.Media.SystemSounds.Beep.Play ();
                             return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return s.LastBlock; } );
@@ -3995,8 +4053,8 @@ stripControl.Node.PhraseChildCount > 0)
                         else
                             {
                             System.Media.SystemSounds.Beep.Play ();
-                            s.FocusStripLabel () ;
-                            return true ;
+                            s.FocusStripLabel ();
+                            return true;
                             }
 
                         }
@@ -4022,7 +4080,7 @@ stripControl.Node.PhraseChildCount > 0)
             Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
-            Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus ; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
+            Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
             Context_PhraseIsTODOMenuItem.Checked = mProjectView.IsCurrentBlockTODO;
             Context_PhraseIsUsedMenuItem.Enabled = CanSetSelectedPhraseUsedStatus;
             Context_PhraseIsUsedMenuItem.Checked = mProjectView.IsBlockUsed;
@@ -4087,15 +4145,15 @@ stripControl.Node.PhraseChildCount > 0)
         // Merge phrase context menu item
         private void Context_MergePhraseWithNextMenuItem_Click ( object sender, EventArgs e ) { mProjectView.MergeBlockWithNext (); }
 
-        private void Context_Merge_MergeWithFollowingPhrasesMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MergePhraseWithFollowingPhrasesInSection();
-        }
+        private void Context_Merge_MergeWithFollowingPhrasesMenuItem_Click ( object sender, EventArgs e )
+            {
+            mProjectView.MergePhraseWithFollowingPhrasesInSection ();
+            }
 
-        private void Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click(object sender, EventArgs e)
-        {
-            mProjectView.MergeWithPhrasesBeforeInSection();
-        }
+        private void Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click ( object sender, EventArgs e )
+            {
+            mProjectView.MergeWithPhrasesBeforeInSection ();
+            }
 
         // Crop audio context menu item
         private void Context_CropAudioMenuItem_Click ( object sender, EventArgs e ) { mProjectView.CropPhrase (); }
@@ -4152,15 +4210,15 @@ stripControl.Node.PhraseChildCount > 0)
             mProjectView.ApplyPhraseDetection ();
             }
 
-            private void Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click(object sender, EventArgs e)
+        private void Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click ( object sender, EventArgs e )
             {
-                mProjectView.ApplyPhraseDetectionInWholeProject();
+            mProjectView.ApplyPhraseDetectionInWholeProject ();
             }
-                
+
         // Delete following phrases context menu item
-            private void Context_DeleteFollowingPhrasesMenuItem_Click(object sender, EventArgs e)
+        private void Context_DeleteFollowingPhrasesMenuItem_Click ( object sender, EventArgs e )
             {
-                mProjectView.DeleteFollowingPhrasesInSection();
+            mProjectView.DeleteFollowingPhrasesInSection ();
             }
 
         private void Context_AudioSelection_BeginMenuItem_Click ( object sender, EventArgs e )
@@ -4233,31 +4291,31 @@ stripControl.Node.PhraseChildCount > 0)
 
         private void mVScrollBar_ValueChanged ( object sender, EventArgs e )
             {
-                //mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );      
+            //mStripsPanel.Location = new Point ( mStripsPanel.Location.X, -mVScrollBar.Value );      
             }
 
         //@singleSection
         private void CreatePhrasesAccordingToVScrollBarValue ( int scrollValue )
             {
-            Strip currentlyActiveStrip = ActiveStrip ;
+            Strip currentlyActiveStrip = ActiveStrip;
             if (currentlyActiveStrip != null)
                 {
                 int indexOfPhraseToBeShown = Convert.ToInt32 ( (scrollValue * currentlyActiveStrip.Node.PhraseChildCount) / currentlyActiveStrip.PredictedStripHeight );
                 Console.WriteLine ( "Index of phrase to be shown for verticle scroll " + indexOfPhraseToBeShown );
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                     currentlyActiveStrip.Node.PhraseChild ( indexOfPhraseToBeShown ),
-                    false);
+                    false );
                 // adjust location of strips panel such that the phrase blocks at end are shown.
-                if ( mStripsPanel.Height > (this.Height - mHScrollBar.Location.Y ))
+                if (mStripsPanel.Height > (this.Height - mHScrollBar.Location.Y))
                     {
-                    int stripsPanelYLocation = this.Height  - mStripsPanel.Height;
+                    int stripsPanelYLocation = this.Height - mStripsPanel.Height;
                     if (indexOfPhraseToBeShown == 0)
                         {
                         stripsPanelYLocation = 0;
-                        
+
                         }
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripsPanelYLocation );
-                    Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation + " " + mStripsPanel.Size  );
+                    Console.WriteLine ( "Y location of strip panel after scroll is " + stripsPanelYLocation + " " + mStripsPanel.Size );
                     CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                     currentlyActiveStrip.Node.PhraseChild ( indexOfPhraseToBeShown ),
                     true );
@@ -4271,7 +4329,7 @@ stripControl.Node.PhraseChildCount > 0)
         private void StartCreatingBlockForScroll ()
             {
             if (m_ScrolBackgroundWorker.IsBusy) return;
-            m_ScrolBackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(m_ScrolBackgroundWorker_RunWorkerCompleted);
+            m_ScrolBackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler ( m_ScrolBackgroundWorker_RunWorkerCompleted );
             m_ScrolBackgroundWorker.RunWorkerAsync ();
             }
 
@@ -4283,44 +4341,44 @@ stripControl.Node.PhraseChildCount > 0)
                 {
                 if (c is Strip) s = (Strip)c;
                 }
-                        
-            CreateBlocksTillNodeInStrip ( s, null, true ) ;
+
+            CreateBlocksTillNodeInStrip ( s, null, true );
             }
 
         //@singleSection
         private void mVScrollBar_Scroll ( object sender, ScrollEventArgs e )
             {
-                mScroll = true;
-                this.mVScrollBar.Maximum = PredictedMaxStripsLayoutHeight;
-                int height;
-                timer1.Start();
-                if (e.ScrollOrientation == ScrollOrientation.VerticalScroll
-                    && e.OldValue < e.NewValue)
+            mScroll = true;
+            this.mVScrollBar.Maximum = PredictedMaxStripsLayoutHeight;
+            int height;
+            timer1.Start ();
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll
+                && e.OldValue < e.NewValue)
                 {// StartCreatingBlockForScroll (); 
                 }
 
-                height = mStripsPanel.Location.Y - PredictedMaxStripsLayoutHeight;
-                if (PredictedMaxStripsLayoutHeight < this.Size.Height)
+            height = mStripsPanel.Location.Y - PredictedMaxStripsLayoutHeight;
+            if (PredictedMaxStripsLayoutHeight < this.Size.Height)
                 {
-                    this.mStripsPanel.Location = new Point(mStripsPanel.Location.X, this.Size.Height + height);
-                }                
+                this.mStripsPanel.Location = new Point ( mStripsPanel.Location.X, this.Size.Height + height );
+                }
             }
 
         //@singleSection
         private void ContentView_Resize ( object sender, EventArgs e )
             {
-            if (ActiveStrip != null )
+            if (ActiveStrip != null)
                 {
                 CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
-                //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
-                this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
-                this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
-                mHScrollBar.Size = new Size(verticalScrollToolStripContainer1.Location.X, mHScrollBar.Height);
+            //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
+            this.verticalScrollToolStripContainer1.Location = new Point ( this.Width - verticalScrollToolStripContainer1.Width, 0 );
+            this.verticalScrollToolStripContainer1.Size = new Size ( verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y );
+            mHScrollBar.Size = new Size ( verticalScrollToolStripContainer1.Location.X, mHScrollBar.Height );
             }
 
         //@singleSection
-        private void ProjectView_SelectionChanged ( object sender, EventArgs e ) 
+        private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
             if (mProjectView.GetSelectedPhraseSection == null)
                 {
@@ -4331,19 +4389,19 @@ stripControl.Node.PhraseChildCount > 0)
 
             if (currentlyActiveStrip == null) return;
 
-            if (mProjectView.GetSelectedPhraseSection == currentlyActiveStrip.Node )
+            if (mProjectView.GetSelectedPhraseSection == currentlyActiveStrip.Node)
                 {
-                
+
                 contentViewLabel1.sectionSelected = true;
-                
+
                 }
             else
                 {
                 contentViewLabel1.sectionSelected = false;
-                
+
                 }
             }
-        
+
 
         private void mStripsPanel_ControlRemoved ( object sender, EventArgs e )
             {
@@ -4353,10 +4411,10 @@ stripControl.Node.PhraseChildCount > 0)
                 }
             }
 
-        private void ContentView_MouseWheel(object sender, MouseEventArgs e)
-        {                   
+        private void ContentView_MouseWheel ( object sender, MouseEventArgs e )
+            {
             int interval;
-            int increment = Convert.ToInt32(mHScrollBar.Location.Y * 0.4);
+            int increment = Convert.ToInt32 ( mHScrollBar.Location.Y * 0.4 );
             if (e.Delta < 0)
                 interval = -e.Delta / 120;
             else
@@ -4367,41 +4425,42 @@ stripControl.Node.PhraseChildCount > 0)
             if (IsScrollActive)
             { }
             else
-                ScrollMStripsPanel(increment * interval, false);
-            Console.WriteLine("mouse wheel scrolling " + increment);
-        }
+                ScrollMStripsPanel ( increment * interval, false );
+            Console.WriteLine ( "mouse wheel scrolling " + increment );
+            }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
+        private void timer1_Tick ( object sender, EventArgs e )
+            {
             int interval;
             int mid;
             interval = this.mStripsPanel.Height / this.mVScrollBar.Height;
             mid = this.mVScrollBar.Height / 2;
             for (int i = 1; i <= interval; i++)
-            {
-                if ((mVScrollBar.Value > (i - 1) * mVScrollBar.Height) && (mVScrollBar.Value < (mVScrollBar.Height * i)))
                 {
+                if ((mVScrollBar.Value > (i - 1) * mVScrollBar.Height) && (mVScrollBar.Value < (mVScrollBar.Height * i)))
+                    {
                     if (i == interval)
                         break;
                     if (mVScrollBar.Value < ((mVScrollBar.Height * (i - 1) + mid)))
-                    {
-                      //  mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * (i - 1)));
+                        {
+                        //  mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * (i - 1)));
                         this.mVScrollBar.Value = mVScrollBar.Height * (i - 1);
-                    }
+                        }
                     else if (mVScrollBar.Value > ((mVScrollBar.Height * (i - 1) + mid)))
-                    {
-                     //   mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * i));
+                        {
+                        //   mStripsPanel.Location = new Point(mStripsPanel.Location.X, (-mVScrollBar.Height * i));
                         this.mVScrollBar.Value = mVScrollBar.Height * (i);
+                        }
                     }
                 }
-            }      
-            timer1.Stop();
+            timer1.Stop ();
             if (mScroll)
-            {
-            mEnableScrolling = false;
-                CreatePhrasesAccordingToVScrollBarValue(mVScrollBar.Value); }
-        }   
-               
+                {
+                mEnableScrolling = false;
+                CreatePhrasesAccordingToVScrollBarValue ( mVScrollBar.Value );
+                }
+            }
+
         //@ShowSingleSection
         /*
     /// <summary>
