@@ -3872,6 +3872,7 @@ stripControl.Node.PhraseChildCount > 0)
                             {
                             MessageBox.Show ( ex.ToString () );
                             }
+                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip);
                         this.Cursor = Cursors.Default;
                         IsScrollActive = false;
                         }
