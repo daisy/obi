@@ -290,7 +290,7 @@ namespace Obi.ProjectView
         public bool CanAddEmptyBlock { get { return mContentView.Selection != null && IsPhraseCountWithinLimit; } } // @phraseLimit
         public bool CanAddMetadataEntry () { return mPresentation != null; }
         public bool CanAddMetadataEntry ( MetadataEntryDescription d ) { return mMetadataView.CanAdd ( d ); }
-        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip); } }
+        public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) ; } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
         public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.getChildCount() > 0 && !TransportBar.IsRecorderActive; } }
