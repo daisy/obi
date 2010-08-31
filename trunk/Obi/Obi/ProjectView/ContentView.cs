@@ -1807,7 +1807,7 @@ namespace Obi.ProjectView
                 if (Selection != null)
                     {
                     EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
-                        mProjectView.Selection.Node is SectionNode ? mProjectView.Selection.Node.PhraseChild ( 0 ) :
+                        mProjectView.Selection.Node is SectionNode ? currentlyActiveStrip.FirstBlock.Node:
                         mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
                     if (currentlySelectedEmptyNode != null)
                         {
@@ -1821,7 +1821,17 @@ namespace Obi.ProjectView
                                 }
                             else
                                 {
-                                return ScrollDown_SmallIncrement ( true );
+                                ScrollDown_SmallIncrement ( false);
+                                //if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode)
+                                    //{
+                                    //mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                                    //}
+                                //else
+                                    //{
+                                    blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                                    if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    else mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node; 
+                                    //}
                                 }
                             }
                         else
@@ -1834,7 +1844,13 @@ namespace Obi.ProjectView
                                 }
                             else
                                 {
-                                return ScrollUp_SmallIncrement ( true );
+                                ScrollUp_SmallIncrement ( false);
+                                blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                                if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                else if ( currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index )
+                                    {
+                                    mProjectView.SelectedBlockNode = currentlyActiveStrip.LastBlock.Node;
+                                    }
                                 }
                             }
 
@@ -2083,7 +2099,7 @@ namespace Obi.ProjectView
                     mProjectView.ObiForm.Cursor = Cursors.Default;
 
                     //update selection if flag is true
-                    if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0)
+                    if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0 )
                         {
                         int depthOfBlockInsTrip = Math.Abs ( mStripsPanel.Location.Y ) + selectedItemDepthFromContentViewOrigin - currentlyActiveStrip.Location.Y;
                         Block blockToBeSelected = currentlyActiveStrip.FindBlockAtLocationInStrip ( depthOfBlockInsTrip );
