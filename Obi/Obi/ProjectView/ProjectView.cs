@@ -683,10 +683,11 @@ namespace Obi.ProjectView
                     {
                     foreach (ICommand c in silence) command.append ( c );
                     }
-                }
+                 }
 
             //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount () > 0) mPresentation.Do ( command );
+            MessageBox.Show(" All the unused phrases are deleted. ", "Unused phrases deleted",MessageBoxButtons.OK);
             }
 
 
