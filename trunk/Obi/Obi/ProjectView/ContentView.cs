@@ -3402,6 +3402,7 @@ stripControl.Node.PhraseChildCount > 0)
             if (mProjectView.Selection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 0) //@singleSection
                 {
                 SelectPhraseBlockOrStrip ( mProjectView.GetSelectedPhraseSection.PhraseChild ( 0 ) );
+                mStripsPanel.Location = new Point ( mStripsPanel.Location.X, 0 );
                 return true;
                 }
             return false;//@singleSection
