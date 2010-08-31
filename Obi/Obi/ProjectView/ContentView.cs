@@ -2258,6 +2258,7 @@ namespace Obi.ProjectView
             set
                 {
                 m_IsScrollActive = value;
+                if (!mProjectView.TransportBar.Enabled ) mProjectView.TransportBar.Enabled = m_IsScrollActive;
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
             }
@@ -3873,6 +3874,7 @@ stripControl.Node.PhraseChildCount > 0)
                             MessageBox.Show ( ex.ToString () );
                             }
                         verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip);
+                        
                         this.Cursor = Cursors.Default;
                         IsScrollActive = false;
                         }
