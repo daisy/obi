@@ -981,6 +981,7 @@ namespace Obi
             mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
+            mMergeToolStripMenuItem.Enabled = mProjectView.Presentation != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
