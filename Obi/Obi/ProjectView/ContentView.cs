@@ -33,7 +33,7 @@ namespace Obi.ProjectView
         private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
-        private List<Strip> m_VisibleStripsList;  // @phraseLimit
+        //private List<Strip> m_VisibleStripsList;  // @phraseLimit
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
@@ -60,7 +60,7 @@ namespace Obi.ProjectView
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
             mEnableScrolling = true;
 
-            m_VisibleStripsList = new List<Strip> (); // @phraseLimit
+            //m_VisibleStripsList = new List<Strip> (); // @phraseLimit
             m_IsBlocksVisibilityProcessActive = false;
             //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
             this.contentViewLabel1.contentView = this;
@@ -313,7 +313,7 @@ namespace Obi.ProjectView
             {
             m_CreatingGUIForNewPresentation = true;
             ClearStripsPanel ();
-            m_VisibleStripsList.Clear (); // @phraseLimit
+            //m_VisibleStripsList.Clear (); // @phraseLimit
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
@@ -1006,11 +1006,7 @@ namespace Obi.ProjectView
                         {
                         CreateBlocksInStrip ( strip );
                         }
-                    else if (strip != null && m_VisibleStripsList != null && !m_VisibleStripsList.Contains ( strip ))
-                        {
-                        // just add strip to visible strip list
-                        //AddStripToVisibleStripsList ( strip );//@singleSection:commented
-                        }
+                    
                     }
                 else
                     {
@@ -1046,15 +1042,7 @@ namespace Obi.ProjectView
                 {
                 mStripsPanel.Controls[i].Dispose ();
                 }
-            // dispose visible strips also
-            for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                {
-                if (m_VisibleStripsList[i] != null)
-                    {
-                    m_VisibleStripsList[i].Dispose ();
-                    m_VisibleStripsList[i] = null;
-                    }
-                }
+                
             mStripsPanel.Controls.Clear ();
             }
 
@@ -1064,9 +1052,13 @@ namespace Obi.ProjectView
             get
                 {
                 int count = 0;
-                for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                    count += m_VisibleStripsList[i].Node.PhraseChildCount;
-
+                foreach (Control c in mStripsPanel.Controls)
+                    {
+                    if (c is Strip)
+                        {
+                        count += ((Strip)c).Node.PhraseChildCount;
+                        }
+                    }
                 return count;
                 }
             }
@@ -2390,24 +2382,6 @@ namespace Obi.ProjectView
             }
 
         
-        // @phraseLimit
-        /// <summary>
-        /// returns index of section node  passed as parameter in visible strips list, returns -1 if the parameter node do not lie in visible strips list
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        private int GetStripIndexInVisibleStripList ( SectionNode node )
-            {
-            if (node != null && node is SectionNode)
-                {
-
-                for (int i = 0; i < m_VisibleStripsList.Count; i++)
-                    if (m_VisibleStripsList[i].Node == node) return i;
-
-                }
-            return -1;
-            }
-
         //@phraseLimit: required in @singleSection also
         /// <summary>
         /// Make all phrase blocks invisible in  strip of parameter  section node
@@ -2451,7 +2425,7 @@ namespace Obi.ProjectView
                 {
                 blocksRemoved = stripControl.RemoveAllBlocks ( true );
                 stripControl.SetAccessibleName ();
-                if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
+                //if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 }
             return blocksRemoved;
             }
@@ -2483,7 +2457,7 @@ namespace Obi.ProjectView
                     }
 
                 stripControl.SetAccessibleName ();
-                if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
+                //if (!stripControl.IsBlocksVisible) m_VisibleStripsList.Remove ( stripControl );
                 return countRequired;
                 }
             return 0;
@@ -2502,14 +2476,18 @@ namespace Obi.ProjectView
                 {
                 if (((SectionNode)node).PhraseChildCount == 0) return true;
 
-                if (m_VisibleStripsList.Count > 0)
+                if (mStripsPanel.Controls.Count > 0)
                     {
-                    for (int i = 0; i < m_VisibleStripsList.Count; i++)
+                    foreach ( Control c in mStripsPanel.Controls )
                         {
-                        if (m_VisibleStripsList[i].Node == node)
+                        if ( c is Strip )
                             {
-                            if (m_VisibleStripsList[i].IsBlocksVisible) return true;
-                            else return false;
+                            Strip s = (Strip)c;
+                            if (s.Node == node)
+                                {
+                                if (s.IsBlocksVisible) return true;
+                                else return false;
+                                }
                             }
                         }
                     }
@@ -2670,7 +2648,7 @@ namespace Obi.ProjectView
             int index = mStripsPanel.Controls.IndexOf ( strip );
             mStripsPanel.Controls.Remove ( strip );
             ReflowFromIndex ( index );
-            if (m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ); // @phraseLimit
+            //if (m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ); // @phraseLimit
 
             if (clipboard == null ||
                 (clipboard != null && strip != null && clipboard.Node != strip.Node)) // @phraseLimit
