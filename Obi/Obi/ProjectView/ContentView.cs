@@ -33,7 +33,7 @@ namespace Obi.ProjectView
         private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
-        //private List<Strip> m_VisibleStripsList;  // @phraseLimit
+        
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
@@ -60,9 +60,9 @@ namespace Obi.ProjectView
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
             mEnableScrolling = true;
 
-            //m_VisibleStripsList = new List<Strip> (); // @phraseLimit
+            
             m_IsBlocksVisibilityProcessActive = false;
-            //m_BlocksVisibilityOperationMutex = new Mutex ();// @phraseLimit
+            
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
@@ -313,7 +313,7 @@ namespace Obi.ProjectView
             {
             m_CreatingGUIForNewPresentation = true;
             ClearStripsPanel ();
-            //m_VisibleStripsList.Clear (); // @phraseLimit
+            
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
@@ -2648,8 +2648,7 @@ namespace Obi.ProjectView
             int index = mStripsPanel.Controls.IndexOf ( strip );
             mStripsPanel.Controls.Remove ( strip );
             ReflowFromIndex ( index );
-            //if (m_VisibleStripsList.Contains ( strip )) m_VisibleStripsList.Remove ( strip ); // @phraseLimit
-
+            
             if (clipboard == null ||
                 (clipboard != null && strip != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
