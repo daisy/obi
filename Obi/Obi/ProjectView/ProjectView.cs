@@ -487,12 +487,6 @@ namespace Obi.ProjectView
                 }
             }
 
-        // @phraseLimit
-        /// <summary>
-        /// returns string to indicate that selected section  has its contents invisible
-        /// if section is visible or selection is not section selection then return null string
-        /// </summary>
-        public string InvisibleSelectedStripString { get { return mContentView.InvisibleStripString ( Selection != null ? GetSelectedPhraseSection : null ); } }
 
         /// <summary>
         /// Contents of the clipboard
