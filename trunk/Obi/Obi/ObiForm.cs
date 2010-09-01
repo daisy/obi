@@ -1835,9 +1835,10 @@ namespace Obi
             mProjectView.SuspendLayout_All ();
             try
                 {
-                if (mSession.CanUndo 
-                    && (!(mProjectView.Selection is TextSelection)    ||   mProjectView.Selection.Control is ProjectView.ContentView))//@singleSection: allow undo for text selection in content view, no complexity like toc view there
+                if (mSession.CanUndo )
+                    //&& (!(mProjectView.Selection is TextSelection)    ||   mProjectView.Selection.Control is ProjectView.ContentView))//@singleSection: allow undo for text selection in content view, no complexity like toc view there
                     {
+                    if (mProjectView.Selection is TextSelection) mProjectView.SelectedSectionNode = (SectionNode) mProjectView.Selection.Node;
                     CanAutoSave = false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
                     mSession.Presentation.getUndoRedoManager ().undo ();
@@ -1858,7 +1859,7 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar ()
             {
-            if (IsStatusBarEnabled &&  mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString + mProjectView.InvisibleSelectedStripString );
+            if (IsStatusBarEnabled &&  mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString );
             }
 
         // Update all of Obi.
