@@ -1186,6 +1186,8 @@ namespace Obi.ProjectView
             backupBlockLayout.TabIndex = 1;
             backupBlockLayout.WrapContents = true;
             backupBlockLayout.Click += new System.EventHandler ( this.Strip_Enter );
+            backupBlockLayout.BackColor = mHighlighted ? ColorSettings.StripSelectedBackColor :
+                    mNode.Used ? (mNode.PhraseChildCount > 0 ? ColorSettings.StripBackColor : ColorSettings.StripWithoutPhrasesBackcolor) : ColorSettings.StripUnusedBackColor;
 
             this.Controls.Add ( backupBlockLayout );
             return backupBlockLayout;
