@@ -1815,16 +1815,18 @@ namespace Obi.ProjectView
                             else
                                 {
                                 ScrollDown_SmallIncrement ( false);
-                                //if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode)
-                                    //{
-                                    //mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
-                                    //}
-                                //else
-                                    //{
-                                    blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
-                                    if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
-                                    else mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node; 
-                                    //}
+
+                                if (blockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    }
+                                else
+                                    {
+                                    mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                                    }
+                                if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
+                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState !=  TransportBar.State.Playing)
+                                    mProjectView.TransportBar.PlayOrResume ();
                                 }
                             }
                         else
@@ -1839,11 +1841,18 @@ namespace Obi.ProjectView
                                 {
                                 ScrollUp_SmallIncrement ( false);
                                 blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
-                                if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
-                                else if ( currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index )
+                                if (blockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    }
+                                else if (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index)
                                     {
                                     mProjectView.SelectedBlockNode = currentlyActiveStrip.LastBlock.Node;
                                     }
+                                if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
+                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
+                                    mProjectView.TransportBar.PlayOrResume ();
+
                                 }
                             }
 
@@ -3736,7 +3745,7 @@ else
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
-            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 ;
+            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
