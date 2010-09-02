@@ -1835,10 +1835,10 @@ namespace Obi
             mProjectView.SuspendLayout_All ();
             try
                 {
-                if (mSession.CanUndo )
+                    if (mSession.CanUndo && mProjectView.Selection != null && !(mProjectView.Selection is TextSelection))
                     //&& (!(mProjectView.Selection is TextSelection)    ||   mProjectView.Selection.Control is ProjectView.ContentView))//@singleSection: allow undo for text selection in content view, no complexity like toc view there
                     {
-                    if (mProjectView.Selection is TextSelection) mProjectView.SelectedSectionNode = (SectionNode) mProjectView.Selection.Node;
+                  //  if (mProjectView.Selection is TextSelection) mProjectView.SelectedSectionNode = (SectionNode) mProjectView.Selection.Node;
                     CanAutoSave = false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
                     mSession.Presentation.getUndoRedoManager ().undo ();
