@@ -1884,7 +1884,8 @@ namespace Obi.ProjectView
                 {
                 EmptyNode node = section.PhraseChild ( i );
                 EmptyNode next = section.PhraseChild ( i+1 );
-                if (node is PhraseNode)
+                if (node is PhraseNode
+                    || (!(node is PhraseNode) && !(next is PhraseNode)) )
                     {
                     if (next.Role_ == EmptyNode.Role.Heading)
                         {
