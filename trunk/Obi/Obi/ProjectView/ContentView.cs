@@ -1815,16 +1815,18 @@ namespace Obi.ProjectView
                             else
                                 {
                                 ScrollDown_SmallIncrement ( false);
-                                //if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode)
-                                    //{
-                                    //mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
-                                    //}
-                                //else
-                                    //{
-                                    blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
-                                    if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
-                                    else mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node; 
-                                    //}
+
+                                if (blockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    }
+                                else
+                                    {
+                                    mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                                    }
+                                if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
+                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState !=  TransportBar.State.Playing)
+                                    mProjectView.TransportBar.PlayOrResume ();
                                 }
                             }
                         else
@@ -1839,11 +1841,18 @@ namespace Obi.ProjectView
                                 {
                                 ScrollUp_SmallIncrement ( false);
                                 blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
-                                if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
-                                else if ( currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index )
+                                if (blockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    }
+                                else if (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index)
                                     {
                                     mProjectView.SelectedBlockNode = currentlyActiveStrip.LastBlock.Node;
                                     }
+                                if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
+                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
+                                    mProjectView.TransportBar.PlayOrResume ();
+
                                 }
                             }
 
