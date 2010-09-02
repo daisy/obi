@@ -153,11 +153,12 @@ namespace Obi.Dialogs
         // Update project settings
         private bool UpdateProjectSettings ()
             {
-                string[] getFiles = System.IO.Directory.GetFiles(mPipelineTextbox.Text, "*.taskScript", System.IO.SearchOption.AllDirectories); 
+            
             bool returnVal = true;
             if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
                 && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
                 {
+                    string[] getFiles = System.IO.Directory.GetFiles(mPipelineTextbox.Text, "*.taskScript", System.IO.SearchOption.AllDirectories); 
                 if (ObiForm.CheckProjectDirectory_Safe ( mDirectoryTextbox.Text, false ))
                     mSettings.DefaultPath = mDirectoryTextbox.Text;
                 if (getFiles.Length > 0)
