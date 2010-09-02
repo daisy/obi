@@ -3745,7 +3745,8 @@ else
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
-            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected;
+            if(mProjectView.GetSelectedPhraseSection != null)
+            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && !(mProjectView.GetSelectedPhraseSection.PhraseChildCount == 1) ;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus; // made consistent with drop down menu. if not suitable the commented lines around can be restored.

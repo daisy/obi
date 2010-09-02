@@ -981,7 +981,8 @@ namespace Obi
             mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
-            mMergeToolStripMenuItem.Enabled = mProjectView.Presentation != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode;
+            if(mProjectView.GetSelectedPhraseSection != null)
+            mMergeToolStripMenuItem.Enabled = mProjectView.Presentation != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && !(mProjectView.GetSelectedPhraseSection.PhraseChildCount == 1);
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
@@ -1149,7 +1150,7 @@ namespace Obi
             mFastForwardToolStripMenuItem.Enabled = mProjectView.CanFastForward;
             mRewindToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanRewind;
             navigationToolStripMenuItem.Enabled = mSession.HasProject;
-
+        
 
             mFastPlaytoolStripMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             mRecordToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.TransportBar.CanRecord;
