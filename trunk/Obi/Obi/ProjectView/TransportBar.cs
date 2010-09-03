@@ -1086,7 +1086,7 @@ namespace Obi.ProjectView
         {
             if (CanStop)
             {
-                if (IsRecorderActive || CanResumeRecording)
+                if ((IsRecorderActive || CanResumeRecording) && !IsPlayerActive )
                 {
                     StopRecording();
                 }
@@ -1411,6 +1411,7 @@ namespace Obi.ProjectView
                 mResumeRecordingPhrase;
             if (node == null)
             {
+            
                 SectionNode section = mView.Presentation.CreateSectionNode();
                 ICommand add = null;
                 if (afterSection == null)
@@ -2047,7 +2048,7 @@ namespace Obi.ProjectView
         // Stop recording
         private void StopRecording()
         {
-            if (mRecordingSession != null &&
+            if (mRecordingSession != null && 
                 (mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Monitoring ||
                 mRecordingSession.AudioRecorder.State == Obi.Audio.AudioRecorderState.Recording))
             {
@@ -2082,6 +2083,12 @@ UpdateButtons();
 
                 // make phrase blocks invisible if these exceeded max visible phrase blocks limit during recording
                 //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit @singleSection: legacy code commented
+            }
+        else if (mResumeRecordingPhrase != null)
+            {
+            mRecordingSession = null;
+            mResumeRecordingPhrase = null;
+
             }
         }
 
