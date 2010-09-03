@@ -1656,7 +1656,14 @@ namespace Obi.ProjectView
                 UpdateSize ();
                 stripControl.UpdateColors ();
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
-                if (wasPlaybackOn) mProjectView.TransportBar.PlayOrResume ();
+                if (wasPlaybackOn)
+                    {
+                    // if IScrollActive flag is true, it will not allow playback
+                    bool isScrollActiveStatus = IsScrollActive;
+                    if (IsScrollActive) IsScrollActive = false;
+                    mProjectView.TransportBar.PlayOrResume ();
+                    IsScrollActive = isScrollActiveStatus;
+                    }
                 }
             }
 
@@ -1666,6 +1673,14 @@ namespace Obi.ProjectView
             Block lastBlock = stripControl.LastBlock;
             if (lastBlock != null)
                 {
+                bool wasPlaybackOn = false;
+                bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
+                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                    {
+                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                    wasPlaybackOn = true;
+                    mProjectView.TransportBar.Pause ();
+                    }
                 for (int i = lastBlock.Node.Index + 1;
                     i < stripControl.Node.PhraseChildCount;
                     i++)
@@ -1679,6 +1694,15 @@ namespace Obi.ProjectView
                     }
                 UpdateSize ();
                 stripControl.UpdateColors ();
+                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
+                if (wasPlaybackOn)
+                    {
+                    // if IScrollActive flag is true, it will not allow playback
+                    bool isScrollActiveStatus = IsScrollActive;
+                    if (IsScrollActive) IsScrollActive = false;
+                    mProjectView.TransportBar.PlayOrResume ();
+                    IsScrollActive = isScrollActiveStatus;
+                    }
                 }
             }
 
