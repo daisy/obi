@@ -1086,7 +1086,7 @@ namespace Obi.ProjectView
         {
             if (CanStop)
             {
-                if (IsRecorderActive)
+                if (IsRecorderActive || CanResumeRecording)
                 {
                     StopRecording();
                 }
