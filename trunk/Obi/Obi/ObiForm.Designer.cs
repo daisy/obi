@@ -70,8 +70,7 @@ namespace Obi
             this.mFocusOnTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnStripsViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFocusOnTransportBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowSingleSectionToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mShowSectionContentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -178,7 +177,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mSynchronizeViewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -419,8 +417,6 @@ namespace Obi
             this.mFocusOnStripsViewToolStripMenuItem,
             this.mFocusOnTransportBarToolStripMenuItem,
             this.mSynchronizeViewsToolStripMenuItem,
-            this.mShowSingleSectionToolStripItem,
-            this.mShowSectionContentsToolStripMenuItem,
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
@@ -497,18 +493,14 @@ namespace Obi
             this.mFocusOnTransportBarToolStripMenuItem.Name = "mFocusOnTransportBarToolStripMenuItem";
             this.mFocusOnTransportBarToolStripMenuItem.Click += new System.EventHandler(this.mFocusOnTransportBarToolStripMenuItem_Click);
             // 
-            // mShowSingleSectionToolStripItem
+            // mSynchronizeViewsToolStripMenuItem
             // 
-            resources.ApplyResources(this.mShowSingleSectionToolStripItem, "mShowSingleSectionToolStripItem");
-            this.mShowSingleSectionToolStripItem.CheckOnClick = true;
-            this.mShowSingleSectionToolStripItem.Name = "mShowSingleSectionToolStripItem";
-            this.mShowSingleSectionToolStripItem.Click += new System.EventHandler(this.mShowSingleSectionToolStripItem_Click);
-            // 
-            // mShowSectionContentsToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mShowSectionContentsToolStripMenuItem, "mShowSectionContentsToolStripMenuItem");
-            this.mShowSectionContentsToolStripMenuItem.Name = "mShowSectionContentsToolStripMenuItem";
-            this.mShowSectionContentsToolStripMenuItem.Click += new System.EventHandler(this.mShowSectionContentsToolStripMenuItem_Click);
+            resources.ApplyResources(this.mSynchronizeViewsToolStripMenuItem, "mSynchronizeViewsToolStripMenuItem");
+            this.mSynchronizeViewsToolStripMenuItem.Checked = true;
+            this.mSynchronizeViewsToolStripMenuItem.CheckOnClick = true;
+            this.mSynchronizeViewsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
+            this.mSynchronizeViewsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator10
             // 
@@ -1237,15 +1229,6 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
-            // mSynchronizeViewsToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mSynchronizeViewsToolStripMenuItem, "mSynchronizeViewsToolStripMenuItem");
-            this.mSynchronizeViewsToolStripMenuItem.Checked = true;
-            this.mSynchronizeViewsToolStripMenuItem.CheckOnClick = true;
-            this.mSynchronizeViewsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mSynchronizeViewsToolStripMenuItem.Name = "mSynchronizeViewsToolStripMenuItem";
-            this.mSynchronizeViewsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.mSynchronizeViewsToolStripMenuItem_CheckedChanged);
-            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1426,8 +1409,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_AssignRole_NewCustomRoleMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mPhrases_ClearRoleMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
-        private System.Windows.Forms.ToolStripMenuItem mShowSingleSectionToolStripItem;
-        private System.Windows.Forms.ToolStripMenuItem mShowSectionContentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_GoToPageToolStrip;
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mMergePhraseWithFollowingPhrasesToolStripMenuItem;
