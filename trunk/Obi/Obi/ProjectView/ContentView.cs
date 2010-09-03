@@ -1904,9 +1904,13 @@ namespace Obi.ProjectView
                         EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : (EmptyNode)mProjectView.Selection.Node;
                         if (currentlySelectedEmptyNode != null)
                             {
-                            int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel ( currentlyActiveStrip.FindBlock ( currentlySelectedEmptyNode ) ).Y;
-                            selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel;
-                            Console.WriteLine ( " depth of selected item in content view " + selectedItemDepthFromContentViewOrigin );
+                            Block currentlySelectedBlock = currentlyActiveStrip.FindBlock ( currentlySelectedEmptyNode );
+                            if (currentlySelectedBlock != null)
+                                {
+                                int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel (currentlySelectedBlock).Y;
+                                selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel;
+                                Console.WriteLine ( " depth of selected item in content view " + selectedItemDepthFromContentViewOrigin );
+                                }
                             }
                         }
                     mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
