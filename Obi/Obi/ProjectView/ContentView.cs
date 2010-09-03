@@ -802,7 +802,7 @@ namespace Obi.ProjectView
                     {
                     Commands.Command delete = new Commands.Node.Delete ( mProjectView, section.PhraseChild ( i ), false );
 
-                    if (i % progressInterval == 0) delete.ProgressPercentage = ++progressPercent;
+                    if (i % progressInterval == 0 && progressPercent < 100 ) delete.ProgressPercentage = ++progressPercent;
 
                     command.append ( delete );
                     }
@@ -816,12 +816,12 @@ namespace Obi.ProjectView
                 if (cropNode != null) command.append ( new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
                 int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
 
-                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) * 2 / 45 : 1;//multiplied by 2 to report progress with increment of 2
+                progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) * 2 / 45 : 2;//multiplied by 2 to report progress with increment of 2
                 for (int i = sectionOffset; i < section.PhraseChildCount; ++i)
                     {
                     Commands.Command addCmd = new
                         Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false );
-                    if (i % progressInterval == 0) addCmd.ProgressPercentage = progressPercent += 2;
+                    if (i % progressInterval == 0 && progressPercent < 98) addCmd.ProgressPercentage = progressPercent += 2;
                     command.append ( addCmd );
                     }
                 progressPercent = 100;
