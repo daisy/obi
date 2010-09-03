@@ -3738,14 +3738,14 @@ else
             {
             Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection;
             Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
-            Context_SplitSectionMenuItem.Enabled = CanSplitStrip;
+            Context_SplitSectionMenuItem.Enabled = CanSplitStrip && !mProjectView.TransportBar.IsRecorderActive;
             Context_MergeSectionWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
             Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
-            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1;
+            Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
             //Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus && !mProjectView.TransportBar.IsActive;
             Context_PhraseIsTODOMenuItem.Enabled = mProjectView.CanSetTODOStatus; // made consistent with drop down menu. if not suitable the commented lines around can be restored.
