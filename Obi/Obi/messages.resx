@@ -1485,4 +1485,7 @@ Error text: {1}</value>
   <data name="StatusBar_CommandExecuting" xml:space="preserve">
     <value>Executing {0}</value>
   </data>
+  <data name="StatusBar_RecordingInPhrase" xml:space="preserve">
+    <value> Recording in {0}.. </value>
+  </data>
 </root>

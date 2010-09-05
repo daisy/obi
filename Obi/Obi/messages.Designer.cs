@@ -3156,6 +3156,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Recording in {0}.. .
+        /// </summary>
+        internal static string StatusBar_RecordingInPhrase {
+            get {
+                return ResourceManager.GetString("StatusBar_RecordingInPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stereo.
         /// </summary>
         internal static string stereo {
