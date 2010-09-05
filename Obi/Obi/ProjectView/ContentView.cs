@@ -2918,6 +2918,8 @@ namespace Obi.ProjectView
 
             mShortcutKeys[Keys.Control | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
+            mShortcutKeys[Keys.Control  | Keys.Shift | Keys.Up] = SelectPreviousStrip;
+            mShortcutKeys[Keys.Control  | Keys.Shift | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
 
