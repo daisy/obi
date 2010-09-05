@@ -1476,4 +1476,13 @@ Error text: {1}</value>
   <data name="Preferences_PipelineScriptNotFound" xml:space="preserve">
     <value>No Pipeline scripts found in this location</value>
   </data>
+  <data name="StatusBar_NothingSelected" xml:space="preserve">
+    <value>Nothing selected</value>
+  </data>
+  <data name="Executing {0}" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusBar_CommandExecuting" xml:space="preserve">
+    <value>Executing {0}</value>
+  </data>
 </root>
