@@ -191,22 +191,22 @@ namespace Obi.ProjectView
             // Context_MergePhraseWithNextMenuItem
             // 
             this.Context_MergePhraseWithNextMenuItem.Name = "Context_MergePhraseWithNextMenuItem";
-            this.Context_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.Context_MergePhraseWithNextMenuItem.Text = "Merge phrase with ne&xt";
+            this.Context_MergePhraseWithNextMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.Context_MergePhraseWithNextMenuItem.Text = "Merge with ne&xt phrase";
             this.Context_MergePhraseWithNextMenuItem.Click += new System.EventHandler(this.Context_MergePhraseWithNextMenuItem_Click);
             // 
             // Context_Merge_MergeWithFollowingPhrasesMenuItem
             // 
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Name = "Context_Merge_MergeWithFollowingPhrasesMenuItem";
-            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
+            this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Size = new System.Drawing.Size(233, 22);
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Text = "Merge with fo&llowing phrases ";
             this.Context_Merge_MergeWithFollowingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithFollowingPhrasesMenuItem_Click);
             // 
             // Context_Merge_MergeWithPrecedingPhrasesMenuItem
             // 
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Name = "Context_Merge_MergeWithPrecedingPhrasesMenuItem";
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size = new System.Drawing.Size(287, 22);
-            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text = "Merge with preceding phra&ses in section";
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Text = "Merge with preceding phra&ses";
             this.Context_Merge_MergeWithPrecedingPhrasesMenuItem.Click += new System.EventHandler(this.Context_Merge_MergeWithPrecedingPhrasesMenuItem_Click);
             // 
             // Context_CropAudioMenuItem
@@ -311,15 +311,15 @@ namespace Obi.ProjectView
             // Context_ApplyPhraseDetectionMenuItem
             // 
             this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
-            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection";
+            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(302, 22);
+            this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection in selection";
             this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
             // 
             // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
             // 
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem";
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Apply phrase detection in &project";
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(302, 22);
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Apply phrase detection in m&ultiple sections";
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Click += new System.EventHandler(this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
@@ -476,6 +476,7 @@ namespace Obi.ProjectView
             // 
             this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.verticalScrollToolStripContainer1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.verticalScrollToolStripContainer1.CanScrollDown = true;
             this.verticalScrollToolStripContainer1.CanScrollUp = true;
             this.verticalScrollToolStripContainer1.contentView = null;
