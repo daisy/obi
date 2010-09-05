@@ -1768,14 +1768,14 @@ namespace Obi.ProjectView
             {
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
-
+            /*
             if (Selection != null && !(Selection.Node is PhraseNode)
-                && GetSelectedPhraseSection != null && !mContentView.IsSectionPhrasesVisible ( GetSelectedPhraseSection ))
+                && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount > MaxVisibleBlocksCount )
                 {
                 MessageBox.Show ( Localizer.Message ( "ContentsHidden_CannotExecuteCommand" ) );
                 return;
                 }
-
+            */
             if (CanSplitPhrase)
                 {
                 bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
@@ -2167,9 +2167,8 @@ SectionNode SNode = GetSelectedPhraseSection;
                     if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
                         MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
 
-                    // hide newly added phrases if contents of section are hidden
-                    //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
-                    //mContentView.CreateBlocksInStrip (); //@singleSection: new
+                    
+                    
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                     }
                 }
@@ -2719,28 +2718,7 @@ SectionNode SNode = GetSelectedPhraseSection;
                 //mContentView.CreateBlocksInStrip ();
             }
 
-        /*@singleSection
-        // @phraseLimit
-        /// <summary>
-        /// makes contents of strips invisible if blocks visibility limit is exceeded. The operation is started from selected section
-        /// </summary>
-        /// <param name="removeFromSelected"></param>
-        public void MakeOldStripsBlocksInvisible ( bool removeFromSelected ) { mContentView.MakeOldStripsBlocksInvisible ( removeFromSelected ); }
-        */
-
-        // @phraseLimit
-        /// <summary>
-        /// if parameter section has its contents hidden, makes all its new phrases hidden
-        /// </summary>
-        /// <param name="section"></param>
-        public void HideNewPhrasesInInvisibleSection ( SectionNode section )
-            {
-            if (section != null && !mContentView.IsSectionPhrasesVisible ( section ))
-                {
-                MessageBox.Show ( Localizer.Message ( "ContentsHidden_HideNewPhrases" ) );
-                mContentView.RemoveBlocksInStrip ( section );
-                }
-            }
+        
 
         //@phraseLimit
         public void ChangeVisibilityProcessState ( bool active )
