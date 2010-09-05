@@ -678,6 +678,10 @@ namespace Obi
             CanAutoSave = false;//@singleSection
             if (e.SourceCommand is urakawa.command.CompositeCommand)
                 {
+                                if (!string.IsNullOrEmpty ( e.SourceCommand.getShortDescription () ))
+                    {
+                    Status ( string.Format( Localizer.Message ("StatusBar_CommandExecuting"), e.SourceCommand.getShortDescription () ));
+                    }
                 IsStatusBarEnabled = false;
                 }
             }
@@ -1482,7 +1486,7 @@ namespace Obi
         /// </summary>
         public void Status ( string message ) 
             { 
-            if ( IsStatusBarEnabled ) mStatusLabel.Text = message; 
+            if ( IsStatusBarEnabled ) mStatusLabel.Text = message;
             }
 
         /// <summary>
@@ -1563,7 +1567,7 @@ namespace Obi
                 m_IsStatusBarEnabled = true;
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler ( ProjectView_SelectionChanged );
-                mProjectView.BlocksVisibilityChanged += new EventHandler ( ProjectView_BlocksVisibilityChanged );
+                //mProjectView.BlocksVisibilityChanged += new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
                 mSession = new Session ();
                 mSession.ProjectOpened += new EventHandler ( Session_ProjectOpened );
                 mSession.ProjectCreated += new EventHandler ( Session_ProjectCreated );
@@ -1859,7 +1863,7 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar ()
             {
-            if (IsStatusBarEnabled &&  mProjectView.Selection != null) Status ( mProjectView.Selection.ToString () + mProjectView.TransportBar.RecordingPhraseToString );
+            if (IsStatusBarEnabled ) Status (mProjectView.Selection != null? mProjectView.Selection.ToString (): Localizer.Message("StatusBar_NothingSelected")   + mProjectView.TransportBar.RecordingPhraseToString );
             }
 
         // Update all of Obi.
@@ -1899,7 +1903,9 @@ namespace Obi
         void TransportBar_StateChanged ( object sender, EventArgs e )
             {
            CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
-            Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) );
+            string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive ?(mProjectView.Selection != null && mProjectView.Selection is AudioSelection ? mProjectView.Selection.ToString (): mProjectView.TransportBar.PlaybackPhrase.ToString()): 
+                (mProjectView.TransportBar.IsRecorderActive? mProjectView.TransportBar.RecordingPhraseToString: "" ) ;
+            Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );
             UpdatePhrasesMenu ();
             UpdateTransportMenu ();
             UpdateEditMenu ();
@@ -1947,7 +1953,7 @@ namespace Obi
                         Localizer.Message ( "save_settings_error_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
                 mProjectView.SelectionChanged -= new EventHandler ( ProjectView_SelectionChanged );
-                mProjectView.BlocksVisibilityChanged -= new EventHandler ( ProjectView_BlocksVisibilityChanged );
+                //mProjectView.BlocksVisibilityChanged -= new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
 
                 Application.Exit ();
 
