@@ -1863,7 +1863,9 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar ()
             {
-            if (IsStatusBarEnabled ) Status (mProjectView.Selection != null? mProjectView.Selection.ToString (): Localizer.Message("StatusBar_NothingSelected")   + mProjectView.TransportBar.RecordingPhraseToString );
+                        string strRecordingInfo = mProjectView.TransportBar.IsRecorderActive? string.Format ( Localizer.Message("StatusBar_RecordingInPhrase"), mProjectView.TransportBar.RecordingPhrase.ToString() ): "" ;
+            //if (IsStatusBarEnabled) Status ( mProjectView.Selection != null ? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) + mProjectView.TransportBar.RecordingPhraseToString );
+            if (IsStatusBarEnabled) Status (strRecordingInfo  + ( mProjectView.Selection != null? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) ) );
             }
 
         // Update all of Obi.
@@ -1904,7 +1906,7 @@ namespace Obi
             {
            CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
             string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive ?(mProjectView.Selection != null && mProjectView.Selection is AudioSelection ? mProjectView.Selection.ToString (): mProjectView.TransportBar.PlaybackPhrase.ToString()): 
-                (mProjectView.TransportBar.IsRecorderActive? mProjectView.TransportBar.RecordingPhraseToString: "" ) ;
+                (mProjectView.TransportBar.IsRecorderActive && mProjectView.TransportBar.RecordingPhrase != null? mProjectView.TransportBar.RecordingPhrase.ToString() : "" ) ;
             Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );
             UpdatePhrasesMenu ();
             UpdateTransportMenu ();
