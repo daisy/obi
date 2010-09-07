@@ -443,7 +443,7 @@ namespace Obi.ProjectView
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-            Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
+             Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
             AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
             block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
@@ -862,6 +862,7 @@ namespace Obi.ProjectView
             cursor.SetAccessibleNameForIndex(index / 2);
             mBlockLayout.Controls.Add(cursor);
             mBlockLayout.Controls.SetChildIndex(cursor, index);
+            cursor.UpdateColors ();
             return cursor;
         }
 
@@ -1101,12 +1102,11 @@ namespace Obi.ProjectView
         //return;
             //for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
             for (int i = afterIndex ; i < mBlockLayout.Controls.Count; i += 2)
-            {
-            Console.WriteLine ( i  + " " + afterIndex);
-            int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index : 
-                mBlockLayout.Controls.Count > 1?  ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : OffsetForFirstPhrase;
-            Console.WriteLine ( "strip cursor index " + stripCursorIndex + " " + i );
-                System.Diagnostics.Debug.Assert(mBlockLayout.Controls[i] is StripCursor);
+                {
+                int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index :
+        mBlockLayout.Controls.Count > 1 ? ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : OffsetForFirstPhrase;
+                //Console.WriteLine ( "strip cursor index " + stripCursorIndex + " " + i );
+                System.Diagnostics.Debug.Assert ( mBlockLayout.Controls[i] is StripCursor );
                 //((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
                 ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex ( stripCursorIndex);
             }
