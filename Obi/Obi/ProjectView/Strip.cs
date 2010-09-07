@@ -419,7 +419,7 @@ namespace Obi.ProjectView
             if (IsBlockForEmptyNodeExists ( node )) return FindBlock ( node );
 
             // if node index is just one less than offset of strip then allow insert else return null
-            if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 1) return null;
+            if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 0) return null;
 
             if (mBlockLayout.Controls.Count == 0)
                 {
@@ -434,7 +434,7 @@ namespace Obi.ProjectView
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-
+            Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
             AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
             block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
@@ -443,7 +443,10 @@ namespace Obi.ProjectView
 
             if ( updateSize )  Resize_Blocks  ();
 
-            UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
+            //UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
+            int blockIndex = mBlockLayout.Controls.IndexOf ( block );
+            UpdateStripCursorsAccessibleName (blockIndex - 1) ;
+            Console.WriteLine ( "block ref index " + mBlockLayout.Controls.IndexOf ( block ) + " " + (2 + 2 * node.Index) + " offset:" + OffsetForFirstPhrase);
             if (mBlockLayout.Controls.IndexOf ( block ) == 1)
                 {
                 m_OffsetForFirstPhrase = node.Index;
@@ -559,7 +562,8 @@ namespace Obi.ProjectView
                 if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
                 block.SizeChanged -= new EventHandler ( Block_SizeChanged );
                 if (updateSize) Resize_Blocks ();
-                UpdateStripCursorsAccessibleName ( index - 1 );
+                //UpdateStripCursorsAccessibleName ( index - 1 );
+                UpdateStripCursorsAccessibleName (index> 3? index - 3 : 0 );
 
                 // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
                 if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
@@ -666,7 +670,8 @@ namespace Obi.ProjectView
                             if (mBlockLayout.Controls.Count == 1) mBlockLayout.Controls.RemoveAt ( 0 );
                             block.SizeChanged -= new EventHandler ( Block_SizeChanged );
                             if (updateSize) Resize_Blocks ();
-                            UpdateStripCursorsAccessibleName ( index - 1 );
+                            //UpdateStripCursorsAccessibleName ( index - 1 );
+                            UpdateStripCursorsAccessibleName (index > 3? index-3: 0);
 
                             // dispose block for freeing window handle only if it is not held in clipboard @phraseLimit
                             if (mContentView.clipboard == null || (mContentView.clipboard != null && mContentView.clipboard.Node != block.Node))
@@ -1084,10 +1089,17 @@ namespace Obi.ProjectView
         // Update the accessible label of the strip cursors after the given index.
         private void UpdateStripCursorsAccessibleName(int afterIndex)
         {
-            for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
+        //return;
+            //for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
+            for (int i = afterIndex ; i < mBlockLayout.Controls.Count; i += 2)
             {
+            Console.WriteLine ( i  + " " + afterIndex);
+            int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index : 
+                mBlockLayout.Controls.Count > 1?  ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : OffsetForFirstPhrase;
+            Console.WriteLine ( "strip cursor index " + stripCursorIndex + " " + i );
                 System.Diagnostics.Debug.Assert(mBlockLayout.Controls[i] is StripCursor);
-                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
+                //((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
+                ((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex ( stripCursorIndex);
             }
         }
 
