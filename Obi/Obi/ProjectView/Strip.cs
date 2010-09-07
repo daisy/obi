@@ -233,7 +233,16 @@ namespace Obi.ProjectView
             {
             get
                 {
-                return m_OffsetForFirstPhrase;
+                int offsetIndex_FirstPhrase = m_OffsetForFirstPhrase;
+                if (mBlockLayout.Controls.Count > 1)
+                    {
+                    Control c = mBlockLayout.Controls[1];
+                    if (c is Block)
+                        {
+                        offsetIndex_FirstPhrase = ((Block)c).Node.Index;
+                        }
+                    }
+                return m_OffsetForFirstPhrase = offsetIndex_FirstPhrase;
                 }
             }
 
@@ -450,7 +459,7 @@ namespace Obi.ProjectView
             if (mBlockLayout.Controls.IndexOf ( block ) == 1)
                 {
                 m_OffsetForFirstPhrase = node.Index;
-                Console.WriteLine ( "Offset of strip is " + m_OffsetForFirstPhrase );
+                Console.WriteLine ( "Offset of strip is " + OffsetForFirstPhrase);
                 }
             return block;
             }
