@@ -3598,8 +3598,8 @@ else
         //@singleSection
         public bool RestrictDynamicLoadingForRecording ( SectionNode sectionShown )
             {
-            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording
-                && mProjectView.TransportBar.RecordingPhrase != null
+            if (mProjectView.TransportBar.IsRecorderActive
+                //&& mProjectView.TransportBar.RecordingPhrase != null
                 && sectionShown != null
                 && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == sectionShown)
                 {
@@ -4085,7 +4085,14 @@ else
                 }
             Strip currentlyActiveStrip = ActiveStrip;
 
-            if (currentlyActiveStrip == null) return;
+            if (currentlyActiveStrip == null)
+                {
+                if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && mProjectView.Selection.Control is TOCView)
+                    {
+                    CreateSelectedStripAndPhraseBlocks ( mProjectView.Selection );
+                    }
+                return;
+                }
 
             if (mProjectView.GetSelectedPhraseSection == currentlyActiveStrip.Node)
                 {
