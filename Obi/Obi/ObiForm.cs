@@ -1863,7 +1863,7 @@ namespace Obi
         /// </summary>
         private void ShowSelectionInStatusBar ()
             {
-                        string strRecordingInfo = mProjectView.TransportBar.IsRecorderActive? string.Format ( Localizer.Message("StatusBar_RecordingInPhrase"), mProjectView.TransportBar.RecordingPhrase.ToString() ): "" ;
+            string strRecordingInfo = mProjectView.TransportBar.IsRecorderActive && mProjectView.TransportBar.RecordingPhrase != null ? string.Format ( Localizer.Message ( "StatusBar_RecordingInPhrase" ), mProjectView.TransportBar.RecordingPhrase.ToString () ) : "";
             //if (IsStatusBarEnabled) Status ( mProjectView.Selection != null ? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) + mProjectView.TransportBar.RecordingPhraseToString );
             if (IsStatusBarEnabled) Status (strRecordingInfo  + ( mProjectView.Selection != null? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) ) );
             }
