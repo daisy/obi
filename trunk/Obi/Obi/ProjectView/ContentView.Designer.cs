@@ -115,7 +115,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 578);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 556);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -306,20 +306,20 @@ namespace Obi.ProjectView
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem});
             this.Context_PhraseDetectionMenuItem.Name = "Context_PhraseDetectionMenuItem";
             this.Context_PhraseDetectionMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_PhraseDetectionMenuItem.Text = "P&hrase Detection";
+            this.Context_PhraseDetectionMenuItem.Text = "Apply p&hrase Detection";
             // 
             // Context_ApplyPhraseDetectionMenuItem
             // 
             this.Context_ApplyPhraseDetectionMenuItem.Name = "Context_ApplyPhraseDetectionMenuItem";
-            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(302, 22);
-            this.Context_ApplyPhraseDetectionMenuItem.Text = "Apply p&hrase detection in selection";
+            this.Context_ApplyPhraseDetectionMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.Context_ApplyPhraseDetectionMenuItem.Text = "Selected i&tem";
             this.Context_ApplyPhraseDetectionMenuItem.Click += new System.EventHandler(this.Context_ApplyPhraseDetectionMenuItem_Click);
             // 
             // Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem
             // 
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Name = "Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem";
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(302, 22);
-            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Apply phrase detection in m&ultiple sections";
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Text = "Multip&le sections";
             this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem.Click += new System.EventHandler(this.Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem_Click);
             // 
             // Context_AudioSelectionMenuItem
@@ -476,13 +476,14 @@ namespace Obi.ProjectView
             // 
             this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.verticalScrollToolStripContainer1.AutoSize = true;
             this.verticalScrollToolStripContainer1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.verticalScrollToolStripContainer1.CanScrollDown = true;
             this.verticalScrollToolStripContainer1.CanScrollUp = true;
             this.verticalScrollToolStripContainer1.contentView = null;
-            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(518, 0);
+            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(515, 0);
             this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
-            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(30, 533);
+            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 533);
             this.verticalScrollToolStripContainer1.TabIndex = 6;
             this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 

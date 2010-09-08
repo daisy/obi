@@ -991,31 +991,31 @@
     <value>237, 6</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.AccessibleName" xml:space="preserve">
-    <value>Apply phrase detection in selection Ctrl+Shift+P</value>
+    <value>Selected item Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+P</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 22</value>
+    <value>218, 22</value>
   </data>
   <data name="mPhrases_ApplyPhraseDetectionMenuItem.Text" xml:space="preserve">
-    <value>Apply p&amp;hrase detection in selection</value>
+    <value>Selected i&amp;tem</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Apply phrase detection in project</value>
+    <value>Multiple sections</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 22</value>
+    <value>218, 22</value>
   </data>
   <data name="mApplyPhraseDetectionInProjectToolStripMenuItem.Text" xml:space="preserve">
-    <value>Apply phrase detection in m&amp;ultiple sections</value>
+    <value>Multip&amp;le sections</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
   <data name="mPhraseDetectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Phrase Detection</value>
+    <value>Apply phrase &amp;detection...</value>
   </data>
   <data name="mPhrases_AudioSelection_BeginAudioSelectionMenuItem.AccessibleName" xml:space="preserve">
     <value>Begin audio selection Ctrl+[</value>
@@ -1102,7 +1102,7 @@
     <value>240, 22</value>
   </data>
   <data name="mDeleteFollowingPhrasesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete following phrases</value>
+    <value>Delete &amp;following phrases</value>
   </data>
   <data name="mPhrasesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
@@ -1603,7 +1603,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.36956, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.1.0.24553, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
