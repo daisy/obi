@@ -1881,7 +1881,8 @@ namespace Obi.ProjectView
                                     }
                                 else if (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index)
                                     {
-                                    mProjectView.SelectedBlockNode = currentlyActiveStrip.LastBlock.Node;
+                                    newBlockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlyActiveStrip.LastBlock.Node, nextLine );
+                                    mProjectView.SelectedBlockNode = newBlockToBeSelected != null ? newBlockToBeSelected.Node : currentlyActiveStrip.LastBlock.Node;
                                     }
                                 if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
                                     && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
