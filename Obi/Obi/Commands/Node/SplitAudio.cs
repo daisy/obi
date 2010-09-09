@@ -147,6 +147,13 @@ namespace Obi.Commands.Node
                 }
             }
             CompositeCommand command = view.Presentation.CreateCompositeCommand(Localizer.Message("phrase_detection"));
+            // if phrase is selected but phrase detection node is section,select section
+            if ( node is SectionNode && view.GetSelectedPhraseSection != null 
+                && view.GetSelectedPhraseSection == node )
+                {
+                command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
+                }
+
             ObiNode parent = node is SectionNode ? node : node.ParentAs<ObiNode> ();
             int index = 0;
             for (int j = 0; j < phraseNodesList.Count; j++)
