@@ -3156,7 +3156,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Recording in {0}.. .
+        ///   Looks up a localized string similar to  Recording in {0}.
         /// </summary>
         internal static string StatusBar_RecordingInPhrase {
             get {
