@@ -33,7 +33,7 @@ namespace Obi.ProjectView
         private bool mScroll = false;
         private bool mEnableScrolling;  // enable scrolling to control to show it
         private Cursor mCursor;
-        
+
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
@@ -60,9 +60,9 @@ namespace Obi.ProjectView
             mCornerPanel.BackColor = System.Drawing.SystemColors.Control;
             mEnableScrolling = true;
 
-            
+
             m_IsBlocksVisibilityProcessActive = false;
-            
+
             this.contentViewLabel1.contentView = this;
             verticalScrollToolStripContainer1.contentView = this;
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
@@ -313,7 +313,7 @@ namespace Obi.ProjectView
             {
             m_CreatingGUIForNewPresentation = true;
             ClearStripsPanel ();
-            
+
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
             if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
@@ -802,7 +802,7 @@ namespace Obi.ProjectView
                     {
                     Commands.Command delete = new Commands.Node.Delete ( mProjectView, section.PhraseChild ( i ), false );
 
-                    if (i % progressInterval == 0 && progressPercent < 100 ) delete.ProgressPercentage = ++progressPercent;
+                    if (i % progressInterval == 0 && progressPercent < 100) delete.ProgressPercentage = ++progressPercent;
 
                     command.append ( delete );
                     }
@@ -1006,7 +1006,7 @@ namespace Obi.ProjectView
                         {
                         CreateBlocksInStrip ( strip );
                         }
-                    
+
                     }
                 else
                     {
@@ -1042,7 +1042,7 @@ namespace Obi.ProjectView
                 {
                 mStripsPanel.Controls[i].Dispose ();
                 }
-                
+
             mStripsPanel.Controls.Clear ();
             }
 
@@ -1824,7 +1824,7 @@ namespace Obi.ProjectView
                 if (Selection != null)
                     {
                     EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
-                        mProjectView.Selection.Node is SectionNode ? currentlyActiveStrip.FirstBlock.Node:
+                        mProjectView.Selection.Node is SectionNode ? currentlyActiveStrip.FirstBlock.Node :
                         mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
                     if (currentlySelectedEmptyNode != null)
                         {
@@ -1838,20 +1838,24 @@ namespace Obi.ProjectView
                                 }
                             else
                                 {
-                                ScrollDown_SmallIncrement ( false);
-
-                                if (blockToBeSelected != null)
-                                    {
-                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
-                                    }
-                                else
+                                EmptyNode firstNode = currentlyActiveStrip.FirstBlock != null ? currentlyActiveStrip.FirstBlock.Node : null;
+                                ScrollDown_SmallIncrement ( false );
+                                //blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                                // if new lot is created, select first block in lot
+                                if (firstNode != null && currentlyActiveStrip.FirstBlock != null && firstNode != currentlyActiveStrip.FirstBlock.Node)
                                     {
                                     mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
                                     }
+                                else if (blockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    }
+
                                 if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
-                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState !=  TransportBar.State.Playing)
+                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
                                     mProjectView.TransportBar.PlayOrResume ();
                                 }
+                            return true;
                             }
                         else
                             {
@@ -1863,11 +1867,17 @@ namespace Obi.ProjectView
                                 }
                             else
                                 {
-                                ScrollUp_SmallIncrement ( false);
-                                blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
-                                if (blockToBeSelected != null)
+                                ScrollUp_SmallIncrement ( false );
+                                Block newBlockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                                if (blockToBeSelected != null && newBlockToBeSelected != null
+                                    && blockToBeSelected == newBlockToBeSelected)
                                     {
-                                    mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                                    ScrollUp_SmallIncrement ( false );
+                                    newBlockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
+                                    }
+                                if (newBlockToBeSelected != null)
+                                    {
+                                    mProjectView.SelectedBlockNode = newBlockToBeSelected.Node;
                                     }
                                 else if (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index < currentlySelectedEmptyNode.Index)
                                     {
@@ -1931,7 +1941,7 @@ namespace Obi.ProjectView
                             Block currentlySelectedBlock = currentlyActiveStrip.FindBlock ( currentlySelectedEmptyNode );
                             if (currentlySelectedBlock != null)
                                 {
-                                int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel (currentlySelectedBlock).Y;
+                                int selectedBlockDepthInsideStripsPanel = LocationOfBlockInStripPanel ( currentlySelectedBlock ).Y;
                                 selectedItemDepthFromContentViewOrigin = mStripsPanel.Location.Y + selectedBlockDepthInsideStripsPanel;
                                 Console.WriteLine ( " depth of selected item in content view " + selectedItemDepthFromContentViewOrigin );
                                 }
@@ -2129,7 +2139,7 @@ namespace Obi.ProjectView
                     mProjectView.ObiForm.Cursor = Cursors.Default;
 
                     //update selection if flag is true
-                    if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0 )
+                    if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0)
                         {
                         int depthOfBlockInsTrip = Math.Abs ( mStripsPanel.Location.Y ) + selectedItemDepthFromContentViewOrigin - currentlyActiveStrip.Location.Y;
                         Block blockToBeSelected = currentlyActiveStrip.FindBlockAtLocationInStrip ( depthOfBlockInsTrip );
@@ -2287,7 +2297,7 @@ namespace Obi.ProjectView
             set
                 {
                 m_IsScrollActive = value;
-                if (!mProjectView.TransportBar.Enabled ) mProjectView.TransportBar.Enabled = m_IsScrollActive;
+                if (!mProjectView.TransportBar.Enabled) mProjectView.TransportBar.Enabled = m_IsScrollActive;
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
             }
@@ -2418,7 +2428,7 @@ namespace Obi.ProjectView
             if (!m_CreatingGUIForNewPresentation) mProjectView.ChangeVisibilityProcessState ( active );
             }
 
-        
+
         //@phraseLimit: required in @singleSection also
         /// <summary>
         /// Make all phrase blocks invisible in  strip of parameter  section node
@@ -2515,9 +2525,9 @@ namespace Obi.ProjectView
 
                 if (mStripsPanel.Controls.Count > 0)
                     {
-                    foreach ( Control c in mStripsPanel.Controls )
+                    foreach (Control c in mStripsPanel.Controls)
                         {
-                        if ( c is Strip )
+                        if (c is Strip)
                             {
                             Strip s = (Strip)c;
                             if (s.Node == node)
@@ -2685,7 +2695,7 @@ namespace Obi.ProjectView
             int index = mStripsPanel.Controls.IndexOf ( strip );
             mStripsPanel.Controls.Remove ( strip );
             ReflowFromIndex ( index );
-            
+
             if (clipboard == null ||
                 (clipboard != null && strip != null && clipboard.Node != strip.Node)) // @phraseLimit
                 {
@@ -2918,8 +2928,8 @@ namespace Obi.ProjectView
 
             mShortcutKeys[Keys.Control | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
-            mShortcutKeys[Keys.Control  | Keys.Shift | Keys.Up] = SelectPreviousStrip;
-            mShortcutKeys[Keys.Control  | Keys.Shift | Keys.Down] = SelectNextStrip;
+            mShortcutKeys[Keys.Control | Keys.Shift | Keys.Up] = SelectPreviousStrip;
+            mShortcutKeys[Keys.Control | Keys.Shift | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
 
@@ -3550,8 +3560,8 @@ namespace Obi.ProjectView
                             {
                             MessageBox.Show ( ex.ToString () );
                             }
-                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip);
-                        
+                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip );
+
                         this.Cursor = Cursors.Default;
                         IsScrollActive = false;
                         }
