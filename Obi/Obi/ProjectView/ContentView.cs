@@ -68,6 +68,7 @@ namespace Obi.ProjectView
             mStripsPanel.ControlRemoved += new ControlEventHandler ( mStripsPanel_ControlRemoved );
             this.MouseWheel += new MouseEventHandler ( ContentView_MouseWheel );//@singleSection
             mStripsPanel.LocationChanged += new EventHandler ( mStripsPanel_LocationChanged );//@singleSection
+            mStripsPanel.Resize += new EventHandler ( mStripsPanel_Resize );
 
             }
 
@@ -2350,7 +2351,25 @@ namespace Obi.ProjectView
                 }
             }
 
+
+        private int m_StripPanelPreviousWidth = 0;
+        private void mStripsPanel_Resize ( object sender, EventArgs e )
+        {
+        if (mStripsPanel == null || mProjectView == null) return;
+        if ( m_StripPanelPreviousWidth != mStripsPanel.Width && Math.Abs( m_StripPanelPreviousWidth - mStripsPanel.Width ) > 50 
+            && mProjectView.Selection != null
+            && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
+            {
+            EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : 
+                (EmptyNode) mProjectView.Selection.Node;
+            Block selectedBlock = FindBlock ( currentlySelectedEmptyNode );
+            if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
+            }
+        m_StripPanelPreviousWidth = mStripsPanel.Width;
+            }
+
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase )
+
             {
 
             if (recordingResumePhrase != null
