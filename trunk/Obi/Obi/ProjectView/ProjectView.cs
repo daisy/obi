@@ -372,7 +372,7 @@ namespace Obi.ProjectView
         public bool CanFocusOnContentView { get { return mPresentation != null && !mContentView.Focused; } }
         public bool CanFocusOnTOCView { get { return mPresentation != null && !mTOCView.Focused; } }
         public bool CanIncreaseLevel { get { return mTOCView.CanIncreaseLevel && !(Selection is TextSelection); } }
-        public bool CanInsertSection { get { return CanInsertStrip || mTOCView.CanInsertSection && !TransportBar.IsRecorderActive && Presentation != null && Presentation.FirstSection != null; } }
+        public bool CanInsertSection { get { return (CanInsertStrip || mTOCView.CanInsertSection) && !TransportBar.IsRecorderActive && Presentation != null && Presentation.FirstSection != null && !(Selection is TextSelection); } }
         public bool CanInsertStrip { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
         //public bool CanMergeStripWithNext { get { return mContentView.CanMergeStripWithNext && !TransportBar.IsRecorderActive; } }
         public bool CanNavigateNextPage { get { return mTransportBar.CanNavigateNextPage; } }
