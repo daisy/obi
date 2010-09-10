@@ -965,6 +965,12 @@ namespace Obi.ProjectView
                 mHScrollBar.Location = new Point ( mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
                 mVScrollBar.Height = mVScrollBar.Location.Y + this.Height - contentViewLabel1.Height - mHScrollBar.Height;
                 mCornerPanel.Location = new Point ( mCornerPanel.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
+                // ensure visibility of selected node
+                if (mProjectView != null &&  mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
+                    {
+                    Block currentlySelectedBlock = FindBlock ( mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : (EmptyNode) mProjectView.Selection.Node );
+                    if (currentlySelectedBlock != null) EnsureControlVisible ( currentlySelectedBlock );
+                    }
                 }
             }
 
