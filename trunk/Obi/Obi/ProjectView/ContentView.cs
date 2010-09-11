@@ -505,15 +505,10 @@ namespace Obi.ProjectView
                     //if (value != null && (value.Node is EmptyNode || value is StripIndexSelection)) CreateBlocksInStrip ();//@sindleSection: temporary disabled for experiments
                     ISelectableInContentView s = value == null ? null : FindSelectable ( value );
 
-                    if (s == null && IsBlockInvisibleButStripVisible ( value ) && this == null)//@singleSection: last check added to make it compulsory to go to else
-                    { /* do nothing */ }
-                    else
-                        {
+                    //@singleSection: removed if block
                         if (mSelectedItem != null) mSelectedItem.Highlighted = false;
                         mSelection = value;
                         mSelectedItem = s;
-
-                        }
 
                     if (s != null)
                         {
@@ -1168,6 +1163,12 @@ namespace Obi.ProjectView
                                 (EmptyNode)selectionValue.Node;
                     CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode );
                     }
+                else if (currentlyActiveStrip != null && selectionValue.Node is SectionNode
+                    && currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount > 0)
+                    {
+                    CreateLimitedBlocksInStrip ( currentlyActiveStrip, null );
+                    }
+
                 }
 
             }
@@ -1768,7 +1769,7 @@ namespace Obi.ProjectView
                 if (startNode != null)
                     {
 
-                    System.Media.SystemSounds.Asterisk.Play ();
+                    //System.Media.SystemSounds.Asterisk.Play ();
                     //stripControl.RemoveAllBlocks ( false );
                     if (startNode.Index > firstBlock.Node.Index)
                         {
