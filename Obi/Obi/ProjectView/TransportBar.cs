@@ -1040,6 +1040,7 @@ namespace Obi.ProjectView
                     mRecordingSession.RecordedAudio[i]);
             }
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
+            if( mResumeRecordingPhrase != null )  mView.SelectFromTransportBar ( mResumeRecordingPhrase, null );
             mRecordingSession = null;
             UpdateTimeDisplay();
 
@@ -2074,6 +2075,7 @@ namespace Obi.ProjectView
                     {
                     MessageBox.Show ( Localizer.Message ("TransportBar_ErrorInStopRecording") + "\n\n" +   ex.ToString ()  , Localizer.Message ("Caption_Error"));
                     }
+                if ( mRecordingPhrase != null )  mView.SelectFromTransportBar ( mRecordingPhrase, null );
 UpdateButtons();
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
