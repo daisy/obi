@@ -601,7 +601,7 @@ namespace Obi.ProjectView
             else
                 {
                 ListViewItem item = mMetadataListView.SelectedItems[0];
-                mView.Selection = new MetadataSelection ( mView.Presentation.RootNode, this,
+                if ( item != null)  mView.Selection = new MetadataSelection ( mView.Presentation.RootNode, this,
                     new MetadataItemSelection ( item, MetadataEntryDescription.GetDAISYEntry ( item.Text ) ) );
                 }
             }
