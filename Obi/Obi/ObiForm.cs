@@ -1679,7 +1679,10 @@ namespace Obi
             set
                 {
                 ToolStripItem[] ItemList = mMenuStrip.Items.Find ( "PipelineMenu", true );
-                foreach (ToolStripMenuItem m in ItemList) m.Enabled = value;
+                if (ItemList != null)
+                {
+                    foreach (ToolStripMenuItem m in ItemList) m.Enabled = value;
+                }
                 }
             }
 
@@ -2350,8 +2353,9 @@ namespace Obi
                         Directory.GetParent(mSession.Path).FullName);
                 ProgressDialog progress = new ProgressDialog ( ((ToolStripMenuItem)sender).Text,
                     delegate () { pipeline.RunScript (); } );
-                if (pipeline.ShowDialog () == DialogResult.OK) progress.Show ();
-                if (progress.Exception != null) throw progress.Exception;
+              
+                  if (pipeline.ShowDialog() == DialogResult.OK) progress.Show();
+                  if (progress.Exception != null) throw progress.Exception;
                 }
             catch (Exception x)
                 {
