@@ -1063,7 +1063,7 @@ namespace Obi.ProjectView
                     mNode.PhraseChildCount == 0 ? "" :
                         mNode.PhraseChildCount == 1 ? Localizer.Message("section_one_phrase_to_string") :
                             string.Format(Localizer.Message("section_phrases_to_string"), mNode.PhraseChildCount),
-                IsBlocksVisible ? "" : Localizer.Message ("ContentsHidden_StatusMessage") ); // @phraseLimit
+                ""); // @phraseLimit
             }
         }
 
