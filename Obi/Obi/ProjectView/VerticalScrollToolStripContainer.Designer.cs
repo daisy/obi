@@ -30,19 +30,19 @@ namespace Obi.ProjectView
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerticalScrollToolStripContainer));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripTop = new System.Windows.Forms.ToolStrip();
             this.m_BtnGoToBegining = new System.Windows.Forms.ToolStripButton();
             this.m_BtnLargeIncrementUp = new System.Windows.Forms.ToolStripButton();
             this.m_BtnSmallIncrementUp = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripBottom = new System.Windows.Forms.ToolStrip();
             this.m_BtnSmallIncrementDown = new System.Windows.Forms.ToolStripButton();
             this.m_BtnLargeIncrementDown = new System.Windows.Forms.ToolStripButton();
             this.m_BtnGoToEnd = new System.Windows.Forms.ToolStripButton();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.toolStripContainer1.RightToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripTop.SuspendLayout();
+            this.toolStripBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,46 +51,50 @@ namespace Obi.ProjectView
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(0, 505);
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(0, 508);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 10);
             this.toolStripContainer1.Name = "toolStripContainer1";
             // 
             // toolStripContainer1.RightToolStripPanel
             // 
             this.toolStripContainer1.RightToolStripPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.toolStripContainer1.RightToolStripPanel.Controls.Add(this.toolStrip2);
-            this.toolStripContainer1.RightToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.Size = new System.Drawing.Size(30, 530);
+            this.toolStripContainer1.RightToolStripPanel.Controls.Add(this.toolStripTop);
+            this.toolStripContainer1.RightToolStripPanel.Controls.Add(this.toolStripBottom);
+            this.toolStripContainer1.Size = new System.Drawing.Size(30, 533);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // toolStrip2
+            // toolStripTop
             // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(24, 40);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTop.AutoSize = false;
+            this.toolStripTop.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripTop.ImageScalingSize = new System.Drawing.Size(24, 40);
+            this.toolStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnGoToBegining,
             this.m_BtnLargeIncrementUp,
             this.m_BtnSmallIncrementUp});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 3);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(36, 176);
-            this.toolStrip2.TabIndex = 1;
+            this.toolStripTop.Location = new System.Drawing.Point(0, 3);
+            this.toolStripTop.Name = "toolStripTop";
+            this.toolStripTop.Size = new System.Drawing.Size(35, 195);
+            this.toolStripTop.TabIndex = 1;
             // 
             // m_BtnGoToBegining
             // 
+            this.m_BtnGoToBegining.AutoSize = false;
+            this.m_BtnGoToBegining.AutoToolTip = false;
             this.m_BtnGoToBegining.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnGoToBegining.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnGoToBegining.Image")));
             this.m_BtnGoToBegining.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.m_BtnGoToBegining.Margin = new System.Windows.Forms.Padding(4, 1, 0, 10);
             this.m_BtnGoToBegining.Name = "m_BtnGoToBegining";
-            this.m_BtnGoToBegining.Size = new System.Drawing.Size(30, 44);
+            this.m_BtnGoToBegining.Size = new System.Drawing.Size(29, 44);
             this.m_BtnGoToBegining.Text = "Go to beginning";
             this.m_BtnGoToBegining.ToolTipText = "Go to beginning";
             this.m_BtnGoToBegining.Click += new System.EventHandler(this.m_BtnGoToBegining_Click);
             // 
             // m_BtnLargeIncrementUp
             // 
+            this.m_BtnLargeIncrementUp.AutoSize = false;
             this.m_BtnLargeIncrementUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnLargeIncrementUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnLargeIncrementUp.Image")));
             this.m_BtnLargeIncrementUp.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -103,6 +107,7 @@ namespace Obi.ProjectView
             // 
             // m_BtnSmallIncrementUp
             // 
+            this.m_BtnSmallIncrementUp.AutoSize = false;
             this.m_BtnSmallIncrementUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnSmallIncrementUp.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementUp.Image")));
             this.m_BtnSmallIncrementUp.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -113,21 +118,23 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementUp.ToolTipText = "Go one line up";
             this.m_BtnSmallIncrementUp.Click += new System.EventHandler(this.m_BtnSmallIncrementUp_Click);
             // 
-            // toolStrip1
+            // toolStripBottom
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 40);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBottom.AutoSize = false;
+            this.toolStripBottom.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripBottom.ImageScalingSize = new System.Drawing.Size(24, 40);
+            this.toolStripBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnSmallIncrementDown,
             this.m_BtnLargeIncrementDown,
             this.m_BtnGoToEnd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 295);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(36, 176);
-            this.toolStrip1.TabIndex = 0;
+            this.toolStripBottom.Location = new System.Drawing.Point(0, 293);
+            this.toolStripBottom.Name = "toolStripBottom";
+            this.toolStripBottom.Size = new System.Drawing.Size(35, 195);
+            this.toolStripBottom.TabIndex = 0;
             // 
             // m_BtnSmallIncrementDown
             // 
+            this.m_BtnSmallIncrementDown.AutoSize = false;
             this.m_BtnSmallIncrementDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnSmallIncrementDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnSmallIncrementDown.Image")));
             this.m_BtnSmallIncrementDown.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -140,6 +147,7 @@ namespace Obi.ProjectView
             // 
             // m_BtnLargeIncrementDown
             // 
+            this.m_BtnLargeIncrementDown.AutoSize = false;
             this.m_BtnLargeIncrementDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnLargeIncrementDown.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnLargeIncrementDown.Image")));
             this.m_BtnLargeIncrementDown.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -152,6 +160,7 @@ namespace Obi.ProjectView
             // 
             // m_BtnGoToEnd
             // 
+            this.m_BtnGoToEnd.AutoSize = false;
             this.m_BtnGoToEnd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.m_BtnGoToEnd.Image = ((System.Drawing.Image)(resources.GetObject("m_BtnGoToEnd.Image")));
             this.m_BtnGoToEnd.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -167,7 +176,7 @@ namespace Obi.ProjectView
             this.trackBar1.AutoSize = false;
             this.trackBar1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.trackBar1.Enabled = false;
-            this.trackBar1.Location = new System.Drawing.Point(-2, 188);
+            this.trackBar1.Location = new System.Drawing.Point(-2, 245);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -181,15 +190,15 @@ namespace Obi.ProjectView
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "VerticalScrollToolStripContainer";
-            this.Size = new System.Drawing.Size(30, 533);
+            this.Size = new System.Drawing.Size(33, 539);
+            this.Resize += new System.EventHandler(this.VerticalScrollToolStripContainer_Resize);
             this.toolStripContainer1.RightToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.RightToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripTop.ResumeLayout(false);
+            this.toolStripTop.PerformLayout();
+            this.toolStripBottom.ResumeLayout(false);
+            this.toolStripBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
@@ -199,8 +208,8 @@ namespace Obi.ProjectView
 
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip toolStripBottom;
+        private System.Windows.Forms.ToolStrip toolStripTop;
         private System.Windows.Forms.ToolStripButton m_BtnSmallIncrementDown;
         private System.Windows.Forms.ToolStripButton m_BtnLargeIncrementDown;
         private System.Windows.Forms.ToolStripButton m_BtnGoToEnd;
