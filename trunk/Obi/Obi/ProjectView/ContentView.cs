@@ -2306,6 +2306,7 @@ namespace Obi.ProjectView
             set
                 {
                 m_IsScrollActive = value;
+                ChangeVisibilityProcessState ( m_IsScrollActive );
                 if (!mProjectView.TransportBar.Enabled) mProjectView.TransportBar.Enabled = m_IsScrollActive;
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
