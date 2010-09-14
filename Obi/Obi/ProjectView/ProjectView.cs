@@ -1121,6 +1121,8 @@ namespace Obi.ProjectView
                         {
                         if (mSelection.Control == mTOCView) TOCViewVisible = true;
                         else if (mSelection.Control == mMetadataView) MetadataViewVisible = true;
+
+                        if (mSelection.Control == mContentView && mSelection.Node is SectionNode) mTOCView.HighlightNodeWithoutSelection = (SectionNode)mSelection.Node;
                         mSelection.Control.Selection = value;
                         }
                     if (SelectionChanged != null) SelectionChanged ( this, new EventArgs () );

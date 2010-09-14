@@ -150,6 +150,31 @@ namespace Obi.ProjectView
             }
         }
 
+    private SectionNode m_HighlightedSectionNodeWithoutSelection = null;
+        /// <summary>
+        /// highlights the section selected in content view, without moving keyboard focus to toc view.
+        /// </summary>
+    public SectionNode HighlightNodeWithoutSelection
+        {
+        get { return m_HighlightedSectionNodeWithoutSelection; }
+        set
+            {
+            //first normalize previously highlighted node
+            if (m_HighlightedSectionNodeWithoutSelection != null)
+                {
+                FindTreeNode ( m_HighlightedSectionNodeWithoutSelection ).BackColor = System.Drawing.Color.Empty;
+                }
+
+            m_HighlightedSectionNodeWithoutSelection = value;
+            if (value != null)
+                {
+                TreeNode treeNodeToHighlight = FindTreeNode ( m_HighlightedSectionNodeWithoutSelection );
+                treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                }
+
+            }
+        }
+
         /// <summary>
         /// Set the zoom factor (normally, from the project view.)
         /// </summary>
