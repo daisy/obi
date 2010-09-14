@@ -460,6 +460,11 @@ namespace Obi.ProjectView
                 {
                 m_OffsetForFirstPhrase = node.Index;
                 Console.WriteLine ( "Offset of strip is " + OffsetForFirstPhrase);
+                WrapContents = false; // to make more than 3 phrases visible in merge with empty section.
+                }
+            if (mBlockLayout.Width > mContentView.Width - 50)// to make more than 3 phrases visible in merge with empty section.
+                {
+                WrapContents = true;
                 }
             return block;
             }
