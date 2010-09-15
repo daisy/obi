@@ -160,9 +160,13 @@ namespace Obi.ProjectView
         set
             {
             //first normalize previously highlighted node
+            if (m_HighlightedSectionNodeWithoutSelection != null 
+                && mProjectView.Presentation.RootNode != m_HighlightedSectionNodeWithoutSelection.Presentation.RootNode) 
+                m_HighlightedSectionNodeWithoutSelection = null;
             if (m_HighlightedSectionNodeWithoutSelection != null)
                 {
-                FindTreeNode ( m_HighlightedSectionNodeWithoutSelection ).BackColor = System.Drawing.Color.Empty;
+                TreeNode treeNodeForRemovingHighlight = FindTreeNode ( m_HighlightedSectionNodeWithoutSelection );
+                treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
                 }
 
             m_HighlightedSectionNodeWithoutSelection = value;
