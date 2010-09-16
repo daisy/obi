@@ -718,9 +718,14 @@ namespace Obi.ProjectView
                             MessageBox.Show ( Localizer.Message ("RecordingRestriction_CannotCreateStrip") ,Localizer.Message("Caption_Information") , MessageBoxButtons.OK  );
                             currentlyActiveStrip.Focus ();
                             }
+                        else if (GetSelectedPhraseSection != null && TransportBar.RecordingSection == GetSelectedPhraseSection)
+                            {
+                            mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection, true );
+                            }
                         else
                             {
-                            mContentView.CreateStripForSelectedSection ( GetSelectedPhraseSection, true ); 
+                            MessageBox.Show ( Localizer.Message ( "RecordingRestriction_CannotCreateStrip" ), Localizer.Message ( "Caption_Information" ), MessageBoxButtons.OK );
+                            return;
                             }
                         }
                     
