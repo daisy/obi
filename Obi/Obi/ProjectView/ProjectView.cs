@@ -1889,13 +1889,56 @@ namespace Obi.ProjectView
 
             int startIndex = startNode.Index;
             int endIndex = endNode.Index;
-            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section.PhraseChild ( startIndex ), Selection.Control ) ) );
+
+            EmptyNode nodeToSelect = null;
+            for (int i = startIndex; i <= endIndex; i++)
+                {
+                if (section.PhraseChild ( i ) is PhraseNode)
+                    {
+                    nodeToSelect = section.PhraseChild ( i );
+                    break;
+                    }
+                }
+            //MessageBox.Show ( nodeToSelect.ToString () );
+            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( nodeToSelect != null ? nodeToSelect : section.PhraseChild ( startIndex ), Selection.Control ) ) );
+            
             EmptyNode phraseRole = null;
             
             int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1*2 ; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
-            for (int i = endIndex-1; i >= startIndex; i--)
+            EmptyNode firstNode = null;
+            PhraseNode secondNode = null;
+            for (int i = endIndex; i >= startIndex; i--)
                 {
+                firstNode = section.PhraseChild ( i );
+                if (firstNode.Role_ == EmptyNode.Role.Heading)
+                    {
+                    phraseRole = firstNode;
+                    }
+                if (firstNode is PhraseNode)
+                    {
+                    if (secondNode != null)
+                        {
+                        Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)firstNode, secondNode );
+                        mergeCmd.UpdateSelection = false;
+                        if (i == startIndex || progressPercent > 98) progressPercent = 98;
+                        if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
+                        command.append ( mergeCmd );
+                        }
+                    secondNode = (PhraseNode)firstNode;
+                    }
+                else if (!(firstNode is PhraseNode))
+                    {
+                    if (firstNode.Index ==startIndex  && secondNode == null)
+                    {/* do nothing */ }
+                    else
+                        {
+                        command.append ( new Commands.Node.Delete ( this, firstNode, false ) );
+                        Console.WriteLine ( "deleting in merge " + firstNode );
+                        }
+                    }
+
+                /*
                 EmptyNode node = section.PhraseChild ( i );
                 EmptyNode next = section.PhraseChild ( i+1 );
                 if (node is PhraseNode
@@ -1927,8 +1970,9 @@ namespace Obi.ProjectView
                 //ICommand mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
                 
                 //command.append ( mergeCommand);
+                 */ 
                 }
-            if ( phraseRole != null )  command.insert ( new Commands.Node.AssignRole (this, startNode, phraseRole.Role_ ),0) ;
+            if ( phraseRole != null )  command.insert ( new Commands.Node.AssignRole (this,nodeToSelect != null? nodeToSelect: startNode, phraseRole.Role_ ),0) ;
 
             return command;
             }
