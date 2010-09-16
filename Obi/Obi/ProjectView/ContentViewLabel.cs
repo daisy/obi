@@ -16,6 +16,7 @@ namespace Obi.ProjectView
         private SolidBrush blackRect = new SolidBrush(SystemColors.ControlText);
         private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
         private SolidBrush brushRect2 = new SolidBrush(SystemColors.ControlLight);
+        private string m_SectionLabelString = "";
 
         private float m_ZoomFactor;
         private bool mFlagInvert = false;
@@ -69,7 +70,11 @@ namespace Obi.ProjectView
         public string Name_SectionDisplayed
         {
             get { return m_lblSectionName.Text; }
-            set { m_lblSectionName.Text = value; }
+            set 
+                {
+                m_SectionLabelString = value;
+                UpdateSectionLabel ();
+                }
         }
 
         private void ContentViewLabel_Paint(object sender, PaintEventArgs e)
@@ -114,41 +119,64 @@ namespace Obi.ProjectView
             //    InvertColor(false);
          }
 
-       public void UpdateColors()
-        {
 
-            if (mFlagInvert && mFlagSectionSelected)
+        private delegate void UpdateInvokation();
+
+        private void UpdateSectionLabel ()
             {
-                m_lblSectionName.ForeColor = SystemColors.Window;
-                m_lblStaticLabel.ForeColor = SystemColors.Window;
-                m_lblSectionName.BackColor = SystemColors.ControlText;
-                m_lblStaticLabel.BackColor = SystemColors.ControlText;
-                this.BackColor = SystemColors.ControlText;
+            if (InvokeRequired)
+                {
+                Invoke ( new UpdateInvokation ( UpdateSectionLabel ) );
+                }
+            else
+                {
+                m_lblSectionName.Text = m_SectionLabelString;
+                }
             }
-            if (mFlagInvert && !mFlagSectionSelected)
+
+        public void UpdateColors ()
             {
-                m_lblSectionName.ForeColor = SystemColors.Window;
-                m_lblStaticLabel.ForeColor = SystemColors.Window;
-                m_lblSectionName.BackColor = SystemColors.ControlText;
-                m_lblStaticLabel.BackColor = SystemColors.ControlText;
-                this.BackColor = SystemColors.ControlText;
+            if (InvokeRequired)
+                {
+                Invoke ( new UpdateInvokation ( UpdateSectionLabel ) );
+                }
+            else
+                {
+                if (mFlagInvert && mFlagSectionSelected)
+                    {
+                    m_lblSectionName.ForeColor = SystemColors.Window;
+                    m_lblStaticLabel.ForeColor = SystemColors.Window;
+                    m_lblSectionName.BackColor = SystemColors.ControlText;
+                    m_lblStaticLabel.BackColor = SystemColors.ControlText;
+                    this.BackColor = SystemColors.ControlText;
+                    }
+                if (mFlagInvert && !mFlagSectionSelected)
+                    {
+                    m_lblSectionName.ForeColor = SystemColors.Window;
+                    m_lblStaticLabel.ForeColor = SystemColors.Window;
+                    m_lblSectionName.BackColor = SystemColors.ControlText;
+                    m_lblStaticLabel.BackColor = SystemColors.ControlText;
+                    this.BackColor = SystemColors.ControlText;
+                    }
+                if (!mFlagInvert && mFlagSectionSelected)
+                    {
+                    m_lblSectionName.ForeColor = SystemColors.ControlText;
+                    m_lblStaticLabel.ForeColor = SystemColors.ControlText;
+                    m_lblSectionName.BackColor = SystemColors.ControlLight;
+                    m_lblStaticLabel.BackColor = SystemColors.ControlLight;
+                    this.BackColor = SystemColors.ControlLight;
+                    }
+                if (!mFlagInvert && !mFlagSectionSelected)
+                    {
+                    m_lblSectionName.ForeColor = SystemColors.Window;
+                    m_lblStaticLabel.ForeColor = SystemColors.Window;
+                    m_lblSectionName.BackColor = SystemColors.Control;
+                    m_lblStaticLabel.BackColor = SystemColors.Control;
+                    this.BackColor = SystemColors.Control;
+                    }
+                }
             }
-            if (!mFlagInvert && mFlagSectionSelected)
-            {
-                m_lblSectionName.ForeColor = SystemColors.ControlText;
-                m_lblStaticLabel.ForeColor = SystemColors.ControlText;
-                m_lblSectionName.BackColor = SystemColors.ControlLight;
-                m_lblStaticLabel.BackColor = SystemColors.ControlLight;
-                this.BackColor = SystemColors.ControlLight;
-            }
-            if (!mFlagInvert && !mFlagSectionSelected)
-            {
-                m_lblSectionName.ForeColor = SystemColors.Window;
-                m_lblStaticLabel.ForeColor = SystemColors.Window;
-                m_lblSectionName.BackColor = SystemColors.Control;
-                m_lblStaticLabel.BackColor = SystemColors.Control;
-                this.BackColor = SystemColors.Control;
-            }           
-        }         
+
+
     }
 }
