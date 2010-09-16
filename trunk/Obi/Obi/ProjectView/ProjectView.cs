@@ -1845,17 +1845,29 @@ namespace Obi.ProjectView
                     mTransportBar.Stop ();
                     }
 
-                bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
-                TransportBar.SelectionChangedPlaybackEnabled = false;
-
                 SectionNode section = ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
 
                 EmptyNode startNode = mergeWithFollowing ? (EmptyNode)Selection.Node :
                     section.PhraseChild ( 0 );
                 EmptyNode endNode = mergeWithFollowing ? section.PhraseChild ( section.PhraseChildCount - 1 ) :
                     (EmptyNode)Selection.Node;
-                    
+            // check if the merged phrase is not more than 10 mins
 
+                double durationSum = 0;
+                for (int i = startNode.Index; i <= endNode.Index; i++)
+                    {
+                    durationSum += section.PhraseChild (i).Duration;
+                    }
+                if (durationSum > 10 * 60 * 1000)
+                    {
+                    MessageBox.Show ( string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 10 ) );
+                    return;
+                    }
+
+                bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
+                TransportBar.SelectionChangedPlaybackEnabled = false;
+
+                
                 try
                     {
                     mPresentation.Do ( GetMergeRangeOfPhrasesInSectionCommand ( section, startNode, endNode));
