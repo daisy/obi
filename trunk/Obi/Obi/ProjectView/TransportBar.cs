@@ -481,8 +481,12 @@ namespace Obi.ProjectView
         /// <summary>
         ///  Empty node in which recording is taking place
                 /// </summary>
-        public EmptyNode RecordingPhrase { get { return mRecordingPhrase; } } 
+        public EmptyNode RecordingPhrase { get { return mRecordingPhrase; } }
 
+        /// <summary>
+        /// Section in which recording is going on
+        /// </summary>
+        public SectionNode RecordingSection { get { return mRecordingSection; } }
         public string RecordingPhraseToString { get { 
             return ( mState == State.Recording && mRecordingPhrase != null && mView.Selection != null && mView.Selection.Node == mRecordingPhrase )?
             Localizer.Message("Selected_RecordingPhrase"): "" ; } }
