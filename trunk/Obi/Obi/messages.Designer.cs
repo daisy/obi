@@ -1776,6 +1776,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The duration of merged phrase cannot be greater than {0} mins. Pleas select less number of phrases for merge.
+        /// </summary>
+        internal static string MergePhrases_SizeLimitMessage {
+            get {
+                return ResourceManager.GetString("MergePhrases_SizeLimitMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to custom.
         /// </summary>
         internal static string metadata_custom {
@@ -3156,7 +3165,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Recording in {0}.
+        ///   Looks up a localized string similar to  Recording {0}.
         /// </summary>
         internal static string StatusBar_RecordingInPhrase {
             get {
