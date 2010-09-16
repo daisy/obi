@@ -101,7 +101,7 @@ namespace Obi.ProjectView
         private void ReflowFromControl ( Control c ) { ReflowFromIndex ( mStripsPanel.Controls.IndexOf ( c ) ); }
 
         // Update size of the strips panel and the scrollbars.
-        private void UpdateSize ()
+         public void UpdateSize ()
             {
             int h = VisibleHeight;
             if (mStripsPanel.Controls.Count > 0)
