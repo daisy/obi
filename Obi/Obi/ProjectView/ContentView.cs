@@ -3540,7 +3540,7 @@ namespace Obi.ProjectView
                 if (RestrictDynamicLoadingForRecording ( strip.Node ))
                     {
                     if (mProjectView.Selection == null
-                        || (mProjectView.Selection != null && mProjectView.Selection.Node != mProjectView.TransportBar.RecordingPhrase))
+                        || (mProjectView.Selection != null && mProjectView.TransportBar.RecordingPhrase != null && mProjectView.Selection.Node != mProjectView.TransportBar.RecordingPhrase))
                         {
                         mProjectView.Selection = new NodeSelection ( mProjectView.TransportBar.RecordingPhrase, this );
                         }
@@ -3646,9 +3646,9 @@ else
         public bool RestrictDynamicLoadingForRecording ( SectionNode sectionShown )
             {
             if (mProjectView.TransportBar.IsRecorderActive
-                //&& mProjectView.TransportBar.RecordingPhrase != null
+                && mProjectView.TransportBar.RecordingSection != null
                 && sectionShown != null
-                && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == sectionShown)
+                && mProjectView.TransportBar.RecordingSection == sectionShown)
                 {
                 return true;
                 }
