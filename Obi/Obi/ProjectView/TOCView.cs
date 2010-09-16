@@ -165,15 +165,15 @@ namespace Obi.ProjectView
                 m_HighlightedSectionNodeWithoutSelection = null;
             if (m_HighlightedSectionNodeWithoutSelection != null)
                 {
-                TreeNode treeNodeForRemovingHighlight = FindTreeNode ( m_HighlightedSectionNodeWithoutSelection );
-                treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
+                TreeNode treeNodeForRemovingHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
+                if ( treeNodeForRemovingHighlight != null )  treeNodeForRemovingHighlight.BackColor = System.Drawing.Color.Empty;
                 }
 
             m_HighlightedSectionNodeWithoutSelection = value;
             if (value != null)
                 {
-                TreeNode treeNodeToHighlight = FindTreeNode ( m_HighlightedSectionNodeWithoutSelection );
-                treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
+                TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel ( m_HighlightedSectionNodeWithoutSelection );
+                if ( treeNodeToHighlight != null)  treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
                 }
 
             }

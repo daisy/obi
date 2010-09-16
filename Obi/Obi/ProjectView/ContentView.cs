@@ -3246,7 +3246,7 @@ namespace Obi.ProjectView
             SectionNode section = (SectionNode)n;
             if (RestrictDynamicLoadingForRecording ( ActiveStrip.Node )) return true;
             if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
-            if (mProjectView.Selection.Node is PhraseNode && section != null)
+            if (mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && section != null)
                 {
                 mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
                 foreach (Control c in mStripsPanel.Controls)
