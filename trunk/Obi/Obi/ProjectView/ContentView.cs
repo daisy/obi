@@ -3024,7 +3024,7 @@ namespace Obi.ProjectView
         private bool SelectStripCursorFor ( SelectStripCursorFunction f )
             {
             Strip strip = StripFor ( mSelectedItem );
-            if (strip != null)
+            if (strip != null && strip.FirstBlock != null)
                 {
                 int index = f ( strip, mSelectedItem );
                 if (index >= 0)
