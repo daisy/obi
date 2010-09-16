@@ -1173,11 +1173,20 @@ namespace Obi.ProjectView
 
             }
 
+        private delegate Strip CreateStripForAddedSectionNodeInvokation ( SectionNode node, bool removeExisting );
+
         public Strip CreateStripForAddedSectionNode ( SectionNode node, bool removeExisting )//@singleSection
             {
             if (ActiveStrip == null)
                 {
-                return CreateStripForSelectedSection ( node, removeExisting );
+                if (InvokeRequired)
+                    {
+                    return (Strip)Invoke ( new CreateStripForAddedSectionNodeInvokation ( CreateStripForAddedSectionNode ), node, removeExisting );
+                    }
+                else
+                    {
+                    return CreateStripForSelectedSection ( node, removeExisting );
+                    }
                 }
             else
                 {
@@ -2779,7 +2788,7 @@ namespace Obi.ProjectView
                 //@singleSection : if no strip is visible in content view, make the parent strip of empty node visible 
                 if (ActiveStrip == null)
                     {
-                    stripControl = CreateStripForSelectedSection ( node.ParentAs<SectionNode> (), true );
+                    stripControl = CreateStripForAddedSectionNode ( node.ParentAs<SectionNode> (), true );
                     }
                 else
                     {
