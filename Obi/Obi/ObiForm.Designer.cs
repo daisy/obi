@@ -1242,7 +1242,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            this.mProjectView.Load += new System.EventHandler(this.mProjectView_Load);
             // 
             // ObiForm
             // 
