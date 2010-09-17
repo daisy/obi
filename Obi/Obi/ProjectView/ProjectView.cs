@@ -1984,8 +1984,11 @@ namespace Obi.ProjectView
                 //command.append ( mergeCommand);
                  */ 
                 }
-            if ( phraseRole != null )  command.insert ( new Commands.Node.AssignRole (this,nodeToSelect != null? nodeToSelect: startNode, phraseRole.Role_ ),0) ;
-
+            if (phraseRole != null )
+                {
+                command.insert ( new Commands.Node.AssignRole ( this, nodeToSelect != null ? nodeToSelect : startNode, EmptyNode.Role.Heading ), 0 );
+                command.insert ( new Commands.Node.UnsetNodeAsHeadingPhrase ( this,(PhraseNode) phraseRole ), 0 );
+                                }
             return command;
             }
 

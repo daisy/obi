@@ -444,7 +444,7 @@ namespace Obi.ProjectView
             //@singleSection: following 2 lines replaced
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
-             Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
+             //Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
             mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
             AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
             block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
@@ -456,7 +456,7 @@ namespace Obi.ProjectView
             //UpdateStripCursorsAccessibleName ( 2 + 2 * node.Index );
             int blockIndex = mBlockLayout.Controls.IndexOf ( block );
             UpdateStripCursorsAccessibleName (blockIndex - 1) ;
-            Console.WriteLine ( "block ref index " + mBlockLayout.Controls.IndexOf ( block ) + " " + (2 + 2 * node.Index) + " offset:" + OffsetForFirstPhrase);
+            //Console.WriteLine ( "block ref index " + mBlockLayout.Controls.IndexOf ( block ) + " " + (2 + 2 * node.Index) + " offset:" + OffsetForFirstPhrase);
             if (mBlockLayout.Controls.IndexOf ( block ) == 1)
                 {
                 m_OffsetForFirstPhrase = node.Index;
