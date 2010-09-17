@@ -2119,24 +2119,28 @@ namespace Obi.ProjectView
                     {
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
+                    ObiNode phraseDetectionNode = Selection.Node ;
                     CompositeCommand command = null;
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ()
                             {
-                            command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, Selection.Node,
+                            command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, phraseDetectionNode,
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
                     progress.ShowDialog ();
                     
                     mPresentation.Do ( command );
 
-SectionNode SNode = GetSelectedPhraseSection;
-                    if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
-                        MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                    SectionNode SNode = phraseDetectionNode is EmptyNode? phraseDetectionNode.ParentAs<SectionNode>() : (SectionNode) phraseDetectionNode;
+        
+                    Strip currentlyActiveStrip = mContentView.ActiveStrip ;
+                    if (currentlyActiveStrip != null && currentlyActiveStrip.Node == SNode)//@singleSection
+                        {
+                        mContentView.CreateBlocksInStrip (); 
 
-                    // hide newly added phrases if contents of section are hidden
-                    //HideNewPhrasesInInvisibleSection ( SNode ); //@singleSection: original
-                    mContentView.CreateBlocksInStrip (); //@singleSection: new
+                        if (SNode != null && SNode.PhraseChildCount > MaxVisibleBlocksCount)
+                            MessageBox.Show ( string.Format ( Localizer.Message ( "ContentHidden_SectionHasOverlimitPhrases" ), SNode.Label, MaxVisibleBlocksCount ), Localizer.Message ( "Caption_Warning" ), MessageBoxButtons.OK, MessageBoxIcon.Warning );
+                        }
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangedStatus;
                     }
                 }
