@@ -739,13 +739,15 @@ namespace Obi.ProjectView
 
                     if (TransportBar.IsPlayerActive)
                         {
-                        // if block to be selected is invisible, select parent strip
-                        //@singleSection : following 3 lines commented 
-                        //if (mContentView.IsBlockInvisibleButStripVisible ( mTransportBar.CurrentPlaylist.CurrentPhrase ))
-                            //Selection = new NodeSelection ( mTransportBar.CurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> (), mContentView );
-                        //else
-                            //Selection = new NodeSelection ( mContentView.PlaybackPhrase, mContentView );//@singleSection: original
-                        Selection = new NodeSelection ( TransportBar.CurrentPlaylist.CurrentPhrase, mContentView );//@singleSection: new
+                        
+                        //Selection = new NodeSelection ( TransportBar.CurrentPlaylist.CurrentPhrase, mContentView );//@singleSection: new
+                        mContentView.SelectPhraseBlockOrStrip ( TransportBar.PlaybackPhrase );
+                        if (TransportBar.IsPlayerActive
+                        && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
+                            {
+                            this.SetPlaybackPhraseAndTime ( TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                            this.UpdateCursorPosition ( TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                            }
                         }// playback active check ends
                     else
                         Selection = new NodeSelection ( mSelection.Node, mContentView );
