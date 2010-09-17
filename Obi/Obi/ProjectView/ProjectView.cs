@@ -2687,6 +2687,11 @@ namespace Obi.ProjectView
                 if (mContentView.ContainsFocus && node is EmptyNode)
                     {
                     mContentView.SelectPhraseBlockOrStrip ((EmptyNode) node );
+                    if (TransportBar.IsPlayerActive 
+                        && ( mContentView.PlaybackBlock == null ||  mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
+                        {
+                        this.SetPlaybackPhraseAndTime ( TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset ) ;
+                        }
                     return;
                     }
                 // if block to be selected is invisible, select parent section

@@ -990,11 +990,12 @@ namespace Obi
             mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             mMergePhraseWithPrecedingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             mDeleteFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
-            mApplyPhraseDetectionInProjectToolStripMenuItem.Enabled = mProjectView.CanApplyPhraseDetectionInWholeProject;
+            mPhraseDetectionToolStripMenuItem.Enabled = mSession.HasProject;
+            mApplyPhraseDetectionInProjectToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanApplyPhraseDetectionInWholeProject;
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanSetPageNumber;
             mPhrases_EditRolesMenuItem.Enabled = mSession.HasProject;
             mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
-            mPhrases_ApplyPhraseDetectionMenuItem.Enabled = mProjectView.CanApplyPhraseDetection;
+            mPhrases_ApplyPhraseDetectionMenuItem.Enabled = mSession.HasProject &&  mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
             mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
             mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
