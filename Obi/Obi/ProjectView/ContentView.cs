@@ -2373,14 +2373,18 @@ namespace Obi.ProjectView
         private void mStripsPanel_Resize ( object sender, EventArgs e )
         {
         if (mStripsPanel == null || mProjectView == null) return;
-        if ( m_StripPanelPreviousWidth != mStripsPanel.Width && Math.Abs( m_StripPanelPreviousWidth - mStripsPanel.Width ) > 50 
+        if (m_StripPanelPreviousWidth != mStripsPanel.Width && Math.Abs ( m_StripPanelPreviousWidth - mStripsPanel.Width ) > 50
             && mProjectView.Selection != null
             && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
             {
-            EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : 
-                (EmptyNode) mProjectView.Selection.Node;
-            Block selectedBlock = FindBlock ( currentlySelectedEmptyNode );
-            if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
+            EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
+
+            if (currentlySelectedEmptyNode == null)
+                {
+                Block selectedBlock = FindBlock ( currentlySelectedEmptyNode );
+                if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
+                }
             }
         m_StripPanelPreviousWidth = mStripsPanel.Width;
             }
