@@ -161,7 +161,7 @@ namespace Obi.ProjectView
             get
                 {
                 EmptyNode node = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock.Node : mSelectedItem is Block ? ((Block)mSelectedItem).Node : null;
-                return node != null
+                return node != null && node.IsRooted
                     && node.Index < node.ParentAs<ObiNode> ().PhraseChildCount - 1;
                 }
             }
@@ -4165,6 +4165,7 @@ else
 
         private void ContentView_MouseWheel ( object sender, MouseEventArgs e )
             {
+            
             int interval;
             int increment = Convert.ToInt32 ( mHScrollBar.Location.Y * 0.4 );
             if (e.Delta < 0)
@@ -4178,7 +4179,9 @@ else
             { }
             else
                 ScrollMStripsPanel ( increment * interval, false );
-            Console.WriteLine ( "mouse wheel scrolling " + increment );
+            Console.WriteLine ( "mouse wheel scrolling " + increment + " " + interval);
+             
+            //Console.WriteLine ( "mouse wheel " + e.Delta );
             }
 
         private void timer1_Tick ( object sender, EventArgs e )
