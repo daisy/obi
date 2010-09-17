@@ -115,7 +115,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 556);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 578);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -394,6 +394,7 @@ namespace Obi.ProjectView
             // 
             // Context_DeleteFollowingPhrasesMenuItem
             // 
+            this.Context_DeleteFollowingPhrasesMenuItem.AccessibleName = "Delete following phrases";
             this.Context_DeleteFollowingPhrasesMenuItem.Name = "Context_DeleteFollowingPhrasesMenuItem";
             this.Context_DeleteFollowingPhrasesMenuItem.Size = new System.Drawing.Size(203, 22);
             this.Context_DeleteFollowingPhrasesMenuItem.Text = "Dele&te following phrases";
