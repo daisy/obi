@@ -127,6 +127,13 @@ namespace Obi.ProjectView
             if (Selection != null && Selection is MetadataSelection)
                 Selection = null;
 
+            // handle recording time section creation
+            if ( TransportBar.CurrentState == TransportBar.State.Monitoring ) return ;
+            if (Selection != null && Selection.Control is ContentView && TransportBar.CurrentState == TransportBar.State.Recording)
+                {
+                TransportBar.NextSection ();
+                }
+
             if (mContentView.CanAddStrip)
                 {
                 AddStrip ();
