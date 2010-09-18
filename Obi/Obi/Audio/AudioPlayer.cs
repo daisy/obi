@@ -218,7 +218,7 @@ namespace Obi.Audio
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
 
-            mAudioStream.Close();
+            if ( mAudioStream != null )  mAudioStream.Close();
         }
 
         /// <summary>
@@ -809,7 +809,7 @@ namespace Obi.Audio
             if (ResetVuMeter != null)
                 ResetVuMeter(this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs());
 
-            mAudioStream.Close();
+            if(mAudioStream != null ) mAudioStream.Close();
 
             // changes the state and trigger events
             Events.Audio.Player.StateChangedEventArgs e = new Events.Audio.Player.StateChangedEventArgs(mState);
@@ -983,7 +983,7 @@ namespace Obi.Audio
                 if (ResetVuMeter != null)
                     ResetVuMeter ( this, new Obi.Events.Audio.Player.UpdateVuMeterEventArgs () );
 
-                mAudioStream.Close ();
+                if(mAudioStream != null)  mAudioStream.Close ();
         ////
 			
         mPausePosition = 0;
