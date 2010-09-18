@@ -3043,18 +3043,29 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock ()
             {
-                        ISelectableInContentView item = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem  ;
+                                    ISelectableInContentView item = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem  ;
                         if (item == null) return false;
-                        CreateBlocksInPreviousThresholdsSlot ();//@singleSection
+               
             Strip strip = StripFor ( item);
             if (strip == null) return false;
             Block blockToSelect = strip.BlockBefore ( item );
-            if (blockToSelect != null && strip.LastBlock != null
-                && blockToSelect != strip.LastBlock)
+
+            if (blockToSelect != null && strip.LastBlock != null)//blockToSelect will be null if blockToSelect index is negative(blcock in previous lot)
                 {
-                mProjectView.Selection = new NodeSelection ( blockToSelect.Node, this );
+                if ( !(item is Strip ))
+                    {
+                                mProjectView.Selection = new NodeSelection ( blockToSelect.Node, this );
+                return true;
+                    }
+                }
+            else if (strip.FirstBlock != null && strip.FirstBlock.Node.Index > 0)   //if last block is block to be selected that means the block before first block should be selected.
+                {
+                                EmptyNode nodeToSelect = (EmptyNode)strip.FirstBlock.Node.PrecedingNode;
+                CreateBlocksInPreviousThresholdsSlot ();//@singleSection
+                mProjectView.Selection = new NodeSelection ( nodeToSelect, this );
                 return true;
                 }
+                
             return false;
             //return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
             }
