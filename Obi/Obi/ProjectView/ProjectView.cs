@@ -414,7 +414,7 @@ namespace Obi.ProjectView
             get
                 {
                 return Selection != null
-                && (Selection.Node is EmptyNode  || ( Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null)  || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0 && !(Selection is StripIndexSelection)) )
+                && ( (Selection.Node is EmptyNode &&((EmptyNode)Selection.Node).Index < GetSelectedPhraseSection.PhraseChildCount - 1 )  || ( Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null)  || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0 && !(Selection is StripIndexSelection)) )
                 && !TransportBar.IsRecorderActive;
                 }
             }
@@ -1254,10 +1254,20 @@ namespace Obi.ProjectView
                 TransportBar.SelectionChangedPlaybackEnabled = false;
 
                 SectionNode section = Selection.Node is SectionNode ? (SectionNode)Selection.Node : ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
-                EmptyNode startNode = Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)Selection).EmptyNodeForSelection :
-                    Selection.Node is SectionNode && section.PhraseChildCount > 0 ? section.PhraseChild ( 0 ) :
-                    Selection.Node is EmptyNode ? (EmptyNode)Selection.Node :
-                    null;
+                int startNodeIndex = Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)Selection).EmptyNodeForSelection.Index :
+                    Selection.Node is SectionNode && section.PhraseChildCount > 0 && !(Selection is StripIndexSelection)? 0:
+                    Selection.Node is EmptyNode ? Selection.Node.Index + 1:
+                    -1;
+
+                EmptyNode startNode = null;
+                if (startNodeIndex >= 0 && startNodeIndex < section.PhraseChildCount)
+                    {
+                    startNode = section.PhraseChild ( startNodeIndex );
+                    }
+                else
+                    {
+                    return;
+                    }
 
                 try
                     {
