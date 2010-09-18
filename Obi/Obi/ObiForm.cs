@@ -868,8 +868,8 @@ namespace Obi
             mShowMetadataViewToolStripMenuItem.CheckedChanged += new System.EventHandler ( mShowMetadataViewToolStripMenuItem_CheckedChanged );
             mShowTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mShowStatusBarToolStripMenuItem.Enabled = true;
-            mFocusOnTOCViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnTOCView || mProjectView.CanToggleFocusToContentsView;
-            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView && mProjectView.CanToggleFocusToContentsView;
+            mFocusOnTOCViewToolStripMenuItem.Enabled = (mProjectView.CanFocusOnTOCView || mProjectView.CanToggleFocusToContentsView) && mSession.HasProject;
+            mFocusOnStripsViewToolStripMenuItem.Enabled = mProjectView.CanFocusOnContentView && mProjectView.CanToggleFocusToContentsView && mSession.HasProject;
             mFocusOnTransportBarToolStripMenuItem.Enabled = mSession.HasProject;
             mSynchronizeViewsToolStripMenuItem.Enabled = mSession.HasProject;
            // mWrappingInContentViewToolStripMenuItem.Enabled = mSession.HasProject;
