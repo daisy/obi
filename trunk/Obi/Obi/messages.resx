@@ -243,7 +243,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="audio_file_filter" xml:space="preserve">
-    <value>WAVE file (*.wav)|*.wav|Any file|*.*</value>
+    <value>WAVE file (*.wav;*.mp3)|*.wav;*.mp3|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="Monitoring" xml:space="preserve">
