@@ -414,7 +414,7 @@ namespace Obi.ProjectView
             get
                 {
                 return Selection != null
-                && (Selection.Node is EmptyNode  || ( Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null)  || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0))
+                && (Selection.Node is EmptyNode  || ( Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null)  || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0 && !(Selection is StripIndexSelection)) )
                 && !TransportBar.IsRecorderActive;
                 }
             }
