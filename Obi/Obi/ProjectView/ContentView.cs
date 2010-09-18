@@ -3043,9 +3043,20 @@ namespace Obi.ProjectView
 
         private bool SelectPrecedingBlock ()
             {
-            CreateBlocksInPreviousThresholdsSlot ();//@singleSection
-
-            return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
+                        ISelectableInContentView item = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem  ;
+                        if (item == null) return false;
+                        CreateBlocksInPreviousThresholdsSlot ();//@singleSection
+            Strip strip = StripFor ( item);
+            if (strip == null) return false;
+            Block blockToSelect = strip.BlockBefore ( item );
+            if (blockToSelect != null && strip.LastBlock != null
+                && blockToSelect != strip.LastBlock)
+                {
+                mProjectView.Selection = new NodeSelection ( blockToSelect.Node, this );
+                return true;
+                }
+            return false;
+            //return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
             }
 
         private bool SelectPrecedingStripCursor ()
