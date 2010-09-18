@@ -2778,7 +2778,9 @@ namespace Obi.ProjectView
                 if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
                     {
-                    k.append ( new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                    Commands.Node.SetPageNumber cmd = new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number );
+                    cmd.UpdateSelection = false ;
+                    k.append (cmd );
                     number = number.NextPageNumber ();
 
                     }
