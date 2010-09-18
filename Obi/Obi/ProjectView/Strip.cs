@@ -638,7 +638,8 @@ namespace Obi.ProjectView
 
                     if (mBlockLayout.Controls[i] is Block)
                         {
-                        if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
+                        //if (((Block)mBlockLayout.Controls[i]).Node.Index <=  limitIndex
+                        if (((Block)mBlockLayout.Controls[i]).Node.Index <= node.Index
                             ||    (removeHiddenBlocks && !IsContentViewFilledWithBlocks ) )
                             {
                             Console.WriteLine ("Removal of block till " + i.ToString ()) ;
