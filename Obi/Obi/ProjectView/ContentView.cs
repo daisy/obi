@@ -683,11 +683,7 @@ namespace Obi.ProjectView
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                         Math.Min ( bottom - vh, v_max ) * -1 );
                     }
-                if (c is Block)
-                    {
-                    Block bl = (Block)c;
-                    Console.WriteLine ( "ensuring visibility of block " + bl.Node + " " + bl.Location );
-                    }
+
                 // Horizontal scrolling is the same
                 if (l < 0 || (r > vw && w > vw))
                     {
@@ -1796,7 +1792,7 @@ namespace Obi.ProjectView
                         }
                     UpdateSize ();
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X, stripControl.BlocksLayoutTopPosition * -1 );
-                    Console.WriteLine ( "Remove block layout executed " + node);
+                    Console.WriteLine ( "Remove block layout executed " );
                     }
                 }
             else
