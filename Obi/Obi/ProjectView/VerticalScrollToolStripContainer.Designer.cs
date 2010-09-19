@@ -68,6 +68,7 @@ namespace Obi.ProjectView
             // 
             this.toolStripTop.AutoSize = false;
             this.toolStripTop.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripTop.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripTop.ImageScalingSize = new System.Drawing.Size(24, 40);
             this.toolStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnGoToBegining,
@@ -122,6 +123,7 @@ namespace Obi.ProjectView
             // 
             this.toolStripBottom.AutoSize = false;
             this.toolStripBottom.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripBottom.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripBottom.ImageScalingSize = new System.Drawing.Size(24, 40);
             this.toolStripBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_BtnSmallIncrementDown,
