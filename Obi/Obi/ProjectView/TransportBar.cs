@@ -503,6 +503,7 @@ namespace Obi.ProjectView
                 mView = value;
                 UpdateButtons();
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
+                    mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
                     UpdateButtons();
                     //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
                     if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange_Safe ();
@@ -2380,6 +2381,12 @@ UpdateButtons();
             }*/
 
         public bool CanUsePlaybackSelection { get { return Enabled && IsPlayerActive && mView.ObiForm.Settings.PlayOnNavigate; }}
+
+        public void mView_BlocksVisibilityChanged ( object sender, EventArgs e )
+            {
+            UpdateButtons ();
+            }
+
 
     }
 }
