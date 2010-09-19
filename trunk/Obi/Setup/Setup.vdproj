@@ -15,8 +15,20 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0881A388C0AE4CA8AE4525FE9018FA26"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0DD587BFF14019D3D55831A3B7744199"
         "OwnerKey" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_107E7ECA5D174D3D95B956192E1C1BAD"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -27,13 +39,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1674E5E549714AED905806785D4BB4EA"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_1C42BFD5812648B88124CC6C79F662AD"
+        "MsmKey" = "8:_1674E5E549714AED905806785D4BB4EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,8 +69,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3B7ECD98981F47919D717BCC603FACEE"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
+        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -177,7 +195,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B343E653C75540D48FFEB7B81BFF6291"
+        "MsmKey" = "8:_B2C8F68CC12A45DC89B4C4205FC2929C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B60AE3840FDA4A02B5CCA8DBBC7C88C1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -201,12 +225,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CFD3ECE6E05A4932A46596C36FE58F64"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D3D647449FCB4230BBAD0969E0D8CE6F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -215,6 +233,24 @@
         {
         "MsmKey" = "8:_D42E26FEF4794D8DBBD9373E18FF05A3"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D8965FCF908942E38CA665FD81076215"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
+        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -231,8 +267,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F55035D1FEAD4E9BAFD48E881AB690E0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D8965FCF908942E38CA665FD81076215"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -293,6 +341,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B16E31045D07B98906A9C403555809E2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -465,6 +531,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0881A388C0AE4CA8AE4525FE9018FA26"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\ncx.xslt"
+            "TargetName" = "8:ncx.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0DD587BFF14019D3D55831A3B7744199"
             {
             "AssemblyRegister" = "3:1"
@@ -496,6 +582,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_107E7ECA5D174D3D95B956192E1C1BAD"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\Z.xslt"
+            "TargetName" = "8:Z.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_108B34500EE74A668BFA6AA5EF98EF7C"
             {
             "SourcePath" = "8:Licences\\lgpl.txt"
@@ -516,10 +622,21 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1674E5E549714AED905806785D4BB4EA"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1440FD06FF088824F43C8F74D7485FD3"
             {
-            "SourcePath" = "8:..\\..\\dist\\Pipeline packaging files\\CABINET.DLL"
-            "TargetName" = "8:CABINET.DLL"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AudioLib, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_1440FD06FF088824F43C8F74D7485FD3"
+                    {
+                    "Name" = "8:AudioLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AudioLib.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
@@ -533,15 +650,15 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C42BFD5812648B88124CC6C79F662AD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1674E5E549714AED905806785D4BB4EA"
             {
-            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\ncx.xslt"
-            "TargetName" = "8:ncx.xslt"
+            "SourcePath" = "8:..\\..\\dist\\Pipeline packaging files\\CABINET.DLL"
+            "TargetName" = "8:CABINET.DLL"
             "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -627,12 +744,23 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B7ECD98981F47919D717BCC603FACEE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_45A6E033ECAB7F232D5F4828C080F566"
             {
-            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\package.xslt"
-            "TargetName" = "8:package.xslt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Mp3Sharp, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_45A6E033ECAB7F232D5F4828C080F566"
+                    {
+                    "Name" = "8:Mp3Sharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Mp3Sharp.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -644,7 +772,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478DFB874BE84E468E4FAFF8EE180B53"
@@ -935,7 +1063,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.23740, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.29065, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9C74D72ECB6E9F92A7B04F31B94B30FD"
@@ -1044,10 +1172,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B343E653C75540D48FFEB7B81BFF6291"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2C8F68CC12A45DC89B4C4205FC2929C"
             {
-            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\smil.xslt"
-            "TargetName" = "8:smil.xslt"
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\filter.xslt"
+            "TargetName" = "8:filter.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B60AE3840FDA4A02B5CCA8DBBC7C88C1"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\package.xslt"
+            "TargetName" = "8:package.xslt"
             "Tag" = "8:"
             "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
             "Condition" = "8:"
@@ -1068,7 +1216,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C01B98B85AE14B45993454544BE4B15E"
@@ -1135,26 +1283,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFD3ECE6E05A4932A46596C36FE58F64"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\Debug\\Export\\Z.xslt"
-            "TargetName" = "8:Z.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D3D647449FCB4230BBAD0969E0D8CE6F"
             {
             "SourcePath" = "8:..\\..\\dist\\Audio clues\\SelectionBegin.wav"
@@ -1195,6 +1323,68 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D8965FCF908942E38CA665FD81076215"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=1.1.0.30751, Culture=hi, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_D8965FCF908942E38CA665FD81076215"
+                    {
+                    "Name" = "8:Obi.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\hi\\Obi.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C8760030D802432CB54734FC2FD0E73A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3C88CC6BD055F54A843AC3578E13415"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E3C88CC6BD055F54A843AC3578E13415"
+                    {
+                    "Name" = "8:NAudio.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NAudio.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E82BB5C16F0445979C3ADFD70D7AED24"
             {
             "SourcePath" = "8:Licences\\License.rtf"
@@ -1221,6 +1411,26 @@
             "TargetName" = "8:obird_right_48.png"
             "Tag" = "8:"
             "Folder" = "8:_32F80C511F4B40F1B79B5D7AFD966F83"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F55035D1FEAD4E9BAFD48E881AB690E0"
+            {
+            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\smil.xslt"
+            "TargetName" = "8:smil.xslt"
+            "Tag" = "8:"
+            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1318,6 +1528,17 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C8760030D802432CB54734FC2FD0E73A"
+                    {
+                    "Name" = "8:hi"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_19E4E19DCBB749D88D85F1EC6E054401"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_A0FF443BF076437FA90B350077F79878"
@@ -1360,19 +1581,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 1.1"
-        "ProductCode" = "8:{F697B33A-709B-44F0-9BD1-51AF1D680212}"
-        "PackageCode" = "8:{D1792F4E-42FE-491A-A1D0-49D97EE595C6}"
+        "ProductName" = "8:Obi 1.1.03"
+        "ProductCode" = "8:{B16E049F-B0D7-422C-87EF-093E0C22D6D8}"
+        "PackageCode" = "8:{8E95B421-DC44-4F81-A16D-CD430173A98E}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.03"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/forum/8"
-        "Title" = "8:Obi 1.1"
+        "Title" = "8:Obi 1.1.03 Internal"
         "Subject" = "8:"
         "ARPCONTACT" = "8:The Urakawa Project Application Team"
         "Keywords" = "8:"
@@ -1511,7 +1732,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 1.1"
+            "Name" = "8:Obi 1.1.03 Internal"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1985,7 +2206,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5D74C0D378D74D17BD753426073D0BF5"
             {
-            "SourcePath" = "8:..\\Obi\\obj\\Release\\Obi.exe"
+            "SourcePath" = "8:..\\Obi\\obj\\x86\\Debug\\Obi.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
