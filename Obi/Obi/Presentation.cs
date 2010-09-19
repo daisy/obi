@@ -355,9 +355,10 @@ namespace Obi
             SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
             SetSingleMetadataItem(Obi.Metadata.DC_IDENTIFIER, id);
             SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
+            SetSingleMetadataItem ( Obi.Metadata.DC_CREATOR, Localizer.Message("Metadata_CreatorNameForInitializing"));//it is important for DAISY 2.02
             SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
-            SetSingleMetadataItem(Obi.Metadata.GENERATOR, DataModelFactory.Generator);
-            SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
+            SetSingleMetadataItem ( Obi.Metadata.GENERATOR, DataModelFactory.Generator );
+            SetSingleMetadataItem ( Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION );
         }
 
         // Create a title section with a string as its title.

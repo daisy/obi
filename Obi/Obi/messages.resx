@@ -1491,4 +1491,7 @@ Error text: {1}</value>
   <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
     <value>The duration of merged phrase cannot be greater than {0} mins. Pleas select less number of phrases for merge</value>
   </data>
+  <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
+    <value>Creator name</value>
+  </data>
 </root>
