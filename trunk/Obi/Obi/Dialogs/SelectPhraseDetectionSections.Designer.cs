@@ -71,6 +71,7 @@ namespace Obi.Dialogs
             // m_lb_listOfSelectedSectionsForPhraseDetection
             // 
             this.m_lb_listOfSelectedSectionsForPhraseDetection.FormattingEnabled = true;
+            this.m_lb_listOfSelectedSectionsForPhraseDetection.HorizontalScrollbar = true;
             this.m_lb_listOfSelectedSectionsForPhraseDetection.Location = new System.Drawing.Point(5, 19);
             this.m_lb_listOfSelectedSectionsForPhraseDetection.Name = "m_lb_listOfSelectedSectionsForPhraseDetection";
             this.m_lb_listOfSelectedSectionsForPhraseDetection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
