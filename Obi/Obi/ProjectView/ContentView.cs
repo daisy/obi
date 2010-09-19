@@ -2098,7 +2098,7 @@ namespace Obi.ProjectView
 
                                     Block lastBlockInNewLayout = currentlyActiveStrip.LastBlock;
                                     Block expectedLastBlock = null;
-                                    if (lastBlockInNewLayout != null && lastBlockInNewLayout.Node.Index > prevThreshold
+                                    if (lastBlockInNewLayout != null && lastBlockInNewLayout.Node.IsRooted && lastBlockInNewLayout.Node.Index > prevThreshold
                                         &&
                                         (expectedLastBlock = currentlyActiveStrip.FindBlock ( currentlyActiveStrip.Node.PhraseChild ( prevThreshold ) )) != null
                                         && expectedLastBlock.Bottom < lastBlockInNewLayout.Bottom)
