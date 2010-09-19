@@ -1324,6 +1324,8 @@ namespace Obi.ProjectView
                                 {
                                 shouldRemoveBlocks = false;
                                 int maxCount = stripControl.Node.PhraseChildCount < defaultVisibleCount ? stripControl.Node.PhraseChildCount : defaultVisibleCount;
+                                bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                                 // pause playback if it is active.
                                 if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                     {
@@ -1342,6 +1344,7 @@ namespace Obi.ProjectView
                                         }
                                     stripControl.AddBlockForNode ( stripControl.Node.PhraseChild ( i ) );
                                     }
+                                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                                 }
 
 
@@ -1379,6 +1382,8 @@ namespace Obi.ProjectView
                             //ObiNode currentNode = selectedNode.FollowingNode; // lets start from selected node
                             ObiNode currentNode = selectedNode;
 
+                            bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                             // pause playback if it is active.
                             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                                 {
@@ -1421,7 +1426,7 @@ namespace Obi.ProjectView
                                     }//-4
                                 currentNode = currentNode.FollowingNode;
                                 }//-3
-
+                            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                             }//-2
 
                         UpdateSize ();
@@ -1608,6 +1613,8 @@ namespace Obi.ProjectView
 
                 bool wasPlaybackOn = false;
                 bool canMoveSelectionToPlaybackPhrase = mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase;
+                bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                 if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
                     {
                     mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
@@ -1672,6 +1679,7 @@ namespace Obi.ProjectView
                     }
                 UpdateSize ();
                 stripControl.UpdateColors ();
+                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                 mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = canMoveSelectionToPlaybackPhrase;
                 if (wasPlaybackOn)
                     {
