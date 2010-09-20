@@ -36,6 +36,7 @@ namespace Obi.ProjectView
             // 
             this.m_lblStaticLabel.AutoSize = true;
             this.m_lblStaticLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_lblStaticLabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.m_lblStaticLabel.Location = new System.Drawing.Point(7, 6);
             this.m_lblStaticLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblStaticLabel.Name = "m_lblStaticLabel";
@@ -47,6 +48,7 @@ namespace Obi.ProjectView
             // 
             this.m_lblSectionName.AutoSize = true;
             this.m_lblSectionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_lblSectionName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.m_lblSectionName.Location = new System.Drawing.Point(181, 6);
             this.m_lblSectionName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblSectionName.Name = "m_lblSectionName";
