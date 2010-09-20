@@ -13,7 +13,7 @@ namespace Obi.ProjectView
         private Graphics g;
         private ContentView mCont = null;
         private SolidBrush brushRect = new SolidBrush(SystemColors.ControlLight);
-        private SolidBrush blackRect = new SolidBrush(SystemColors.ControlText);
+        private SolidBrush blackRect = new SolidBrush(Color.Black);
         private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
         private SolidBrush brushRect2 = new SolidBrush(SystemColors.ControlLight);
         private string m_SectionLabelString = "";
@@ -92,7 +92,6 @@ namespace Obi.ProjectView
              {
                  if (mFlagInvert && mFlagSectionSelected)
                  {
-                     System.Media.SystemSounds.Asterisk.Play();
                      g.DrawRectangle(rectPen, contentRect);
                      g.FillRectangle(blackRect, contentRect);
                  }
@@ -144,22 +143,22 @@ namespace Obi.ProjectView
                 }
             else
                 {
-               /* if (mFlagInvert && mFlagSectionSelected)
+                if (mFlagInvert && mFlagSectionSelected)
                     {
                     m_lblSectionName.ForeColor = Color.White;
                     m_lblStaticLabel.ForeColor = Color.White;
-                    m_lblSectionName.BackColor = SystemColors.ControlText;
-                    m_lblStaticLabel.BackColor = SystemColors.ControlText;
-                    this.BackColor = SystemColors.ControlText;
+                    m_lblSectionName.BackColor = Color.Black;
+                    m_lblStaticLabel.BackColor = Color.Black;
+                    this.BackColor = Color.Black;
                     }
                 if (mFlagInvert && !mFlagSectionSelected)
                     {
                     m_lblSectionName.ForeColor = Color.Black;
                     m_lblStaticLabel.ForeColor = Color.Black;
-                    m_lblSectionName.BackColor = SystemColors.ControlText;
-                    m_lblStaticLabel.BackColor = SystemColors.ControlText;
-                    this.BackColor = SystemColors.ControlText;
-                    }*/
+                    m_lblSectionName.BackColor = Color.Black;
+                    m_lblStaticLabel.BackColor = Color.Black;
+                    this.BackColor = Color.Black;
+                    }
                 if (!mFlagInvert && mFlagSectionSelected)
                     {
                     m_lblSectionName.ForeColor = SystemColors.ControlText;
@@ -177,11 +176,14 @@ namespace Obi.ProjectView
                     this.BackColor = SystemColors.Control;
                     }
                 }
-                if (mFlagInvert)
+         /*       if (mFlagInvert)
                 {
                     m_lblSectionName.ForeColor = Color.White;
                     m_lblStaticLabel.ForeColor = Color.White;
-                }
+                    m_lblSectionName.BackColor = Color.Black;
+                    m_lblStaticLabel.BackColor = Color.Black;
+                    this.BackColor = Color.Black;
+                }*/
                 Invalidate();
         }
     }
