@@ -3149,6 +3149,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 {
                 SectionNode section = mProjectView.GetSelectedPhraseSection;
                 SelectPhraseBlockOrStrip ( section.PhraseChild ( section.PhraseChildCount - 1 ) );
+                verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
                 return true;
                 }
             return false;
@@ -3630,7 +3631,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             {
                             MessageBox.Show ( ex.ToString () );
                             }
-                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip );
+                        
 
                         this.Cursor = Cursors.Default;
                         IsScrollActive = false;
@@ -3638,11 +3639,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     }
 
                 if (node != null) mProjectView.Selection = new NodeSelection ( node, this );
-
+                verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip );
                 //if playback is active, update playback block
                 if (mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock == null)
                     {
-                    SetPlaybackPhraseAndTime ( mProjectView.TransportBar.PlaybackPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                    //SetPlaybackPhraseAndTime ( mProjectView.TransportBar.PlaybackPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                    mProjectView.SetPlaybackBlockIfRequired ();
                     }
 
                 /*
