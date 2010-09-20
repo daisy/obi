@@ -145,7 +145,7 @@ namespace Obi
             get { return mSettings.ZoomFactor; }
             set
                 {
-                if (value > 0.0)
+                if (value > 0.5f && value < 3.0f)
                     {
                     mSettings.ZoomFactor = value;
                     UpdateZoomFactor ();

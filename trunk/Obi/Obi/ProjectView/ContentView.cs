@@ -348,7 +348,7 @@ namespace Obi.ProjectView
             ResumeLayout_All ();
             UpdateSize ();
             Cursor = mCursor;
-
+            Console.WriteLine ( "horizontal bar size " + mHScrollBar.Maximum );
             //UpdateBlocksLabelInSelectedNodeStrip ();
             }
 
@@ -2333,7 +2333,7 @@ namespace Obi.ProjectView
         //@singleSection
         public void mStripsPanel_LocationChanged ( object sender, EventArgs e )
             {
-            if (mStripsPanel.Location.Y >= 0)
+            if (mStripsPanel.Location.Y >= (-43 * ZoomFactor ) )
                 {
                 Strip currentlyActiveStrip = ActiveStrip;
 
