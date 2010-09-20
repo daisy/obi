@@ -2136,7 +2136,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.daisy.org/projects/obi/.
+        ///   Looks up a localized string similar to http://www.daisy.org/obi/.
         /// </summary>
         internal static string obi_url {
             get {

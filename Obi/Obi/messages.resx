@@ -939,7 +939,7 @@ Error text: {1}</value>
     <comment>ToString() text selection</comment>
   </data>
   <data name="obi_url" xml:space="preserve">
-    <value>http://www.daisy.org/projects/obi/</value>
+    <value>http://www.daisy.org/obi/</value>
     <comment>Obi URL (may point to localized page.)</comment>
   </data>
   <data name="max_phrase_duration_invalid_input" xml:space="preserve">
