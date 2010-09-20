@@ -1771,10 +1771,8 @@ namespace Obi.ProjectView
                         }
                     else if (node.Index - firstBlock.Node.Index >= phraseBlocksLotInterval)
                         {
-
-                        int thresholdAboveLastNode = 0;
-
-                        thresholdAboveLastNode = Convert.ToInt32 ( node.Index / phraseBlocksLotInterval ) * phraseBlocksLotInterval;
+int thresholdAboveLastNode = Convert.ToInt32 ( node.Index / phraseBlocksLotInterval ) * phraseBlocksLotInterval;
+if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAboveLastNode = stripControl.Node.PhraseChildCount - 1;
                         Console.WriteLine ( "Threshold index " + thresholdAboveLastNode );
 
                         startNode = stripControl.Node.PhraseChild ( thresholdAboveLastNode );
