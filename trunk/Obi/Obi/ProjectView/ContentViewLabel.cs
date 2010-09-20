@@ -153,8 +153,8 @@ namespace Obi.ProjectView
                     }
                 if (mFlagInvert && !mFlagSectionSelected)
                     {
-                    m_lblSectionName.ForeColor = Color.Black;
-                    m_lblStaticLabel.ForeColor = Color.Black;
+                    m_lblSectionName.ForeColor = Color.White;
+                    m_lblStaticLabel.ForeColor = Color.White;
                     m_lblSectionName.BackColor = Color.Black;
                     m_lblStaticLabel.BackColor = Color.Black;
                     this.BackColor = Color.Black;
@@ -169,8 +169,8 @@ namespace Obi.ProjectView
                     }
                 if (!mFlagInvert && !mFlagSectionSelected)
                     {
-                    m_lblSectionName.ForeColor = SystemColors.Window;
-                    m_lblStaticLabel.ForeColor = SystemColors.Window;
+                    m_lblSectionName.ForeColor = SystemColors.ControlDark;
+                    m_lblStaticLabel.ForeColor = SystemColors.ControlDark;
                     m_lblSectionName.BackColor = SystemColors.Control;
                     m_lblStaticLabel.BackColor = SystemColors.Control;
                     this.BackColor = SystemColors.Control;
