@@ -1334,7 +1334,7 @@ Error text: {1}</value>
     <value>:Recording Phrase</value>
   </data>
   <data name="Obi_Wiki_Url" xml:space="preserve">
-    <value>http://daisy-trac.cvsdude.com/obi</value>
+    <value>http://daisy.trac.cvsdude.com/obi</value>
   </data>
   <data name="ErrorInSaving" xml:space="preserve">
     <value>An error is encountered while saving.</value>

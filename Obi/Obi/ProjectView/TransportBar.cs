@@ -587,7 +587,7 @@ namespace Obi.ProjectView
             if (mState == State.Playing || mState == State.Recording)
             {
                 mDisplayTimer.Start();
-                if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackPhraseAndTime ( PlaybackPhrase, mCurrentPlaylist.CurrentTimeInAsset );
+                if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackBlockIfRequired () ;
             }
             else if (mState == State.Stopped)
             {
