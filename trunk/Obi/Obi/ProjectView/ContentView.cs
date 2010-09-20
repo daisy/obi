@@ -314,6 +314,7 @@ namespace Obi.ProjectView
             {
             m_CreatingGUIForNewPresentation = true;
             ClearStripsPanel ();
+            mStripsPanel.Location = new Point(0,0 );
 
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
