@@ -742,12 +742,7 @@ namespace Obi.ProjectView
                         
                         //Selection = new NodeSelection ( TransportBar.CurrentPlaylist.CurrentPhrase, mContentView );//@singleSection: new
                         mContentView.SelectPhraseBlockOrStrip ( TransportBar.PlaybackPhrase );
-                        if (TransportBar.IsPlayerActive
-                        && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
-                            {
-                            this.SetPlaybackPhraseAndTime ( TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                            this.UpdateCursorPosition ( TransportBar.CurrentPlaylist.CurrentTimeInAsset );
-                            }
+                        SetPlaybackBlockIfRequired ();
                         }// playback active check ends
                     else
                         Selection = new NodeSelection ( mSelection.Node, mContentView );
@@ -772,6 +767,18 @@ namespace Obi.ProjectView
                 if (node != null) Selection = new NodeSelection ( node, mTOCView );
                 mTOCView.Focus ();
                 }
+            }
+
+        public bool SetPlaybackBlockIfRequired ()
+            {
+            if (TransportBar.IsPlayerActive
+                        && (mContentView.PlaybackBlock == null || mContentView.PlaybackBlock.Node != TransportBar.PlaybackPhrase))
+                {
+                this.SetPlaybackPhraseAndTime ( TransportBar.PlaybackPhrase, TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                this.UpdateCursorPosition ( TransportBar.CurrentPlaylist.CurrentTimeInAsset );
+                return true;
+                }
+            return false;
             }
 
         /// <summary>

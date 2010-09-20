@@ -2145,7 +2145,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://daisy-trac.cvsdude.com/obi.
+        ///   Looks up a localized string similar to http://daisy.trac.cvsdude.com/obi.
         /// </summary>
         internal static string Obi_Wiki_Url {
             get {
