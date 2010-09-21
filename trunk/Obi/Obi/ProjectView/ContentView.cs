@@ -1199,7 +1199,7 @@ namespace Obi.ProjectView
         public Strip CreateStripForSelectedSection ( SectionNode node, bool removeExisting )//@singleSection
             {
             //if (IsStripVisible ( node )) return null;
-            if (!node.IsRooted) return null;
+            if (node == null ||  !node.IsRooted) return null;
 
             //Check for recording, return if section to be created is not recording section
             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Recording && mProjectView.TransportBar.RecordingPhrase != null)
