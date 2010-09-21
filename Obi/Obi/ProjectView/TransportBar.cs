@@ -130,8 +130,8 @@ namespace Obi.ProjectView
 
         public bool CanFastForward { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
-        public bool CanNavigatePrevPage { get { return Enabled && ( IsPlayerActive || CanPlay ) ; } }
-        public bool CanNavigatePrevSection { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
+        public bool CanNavigatePrevPage { get { return Enabled && !m_IsProjectEmpty && ( IsPlayerActive || CanPlay ) ; } }
+        public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (IsPlayerActive || CanPlay) ; } }
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
@@ -145,7 +145,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                return (IsPlayerActive && mCurrentPlaylist.CanNavigatePrevPhrase) || CanPlay;
+                return (!m_IsProjectEmpty && IsPlayerActive && mCurrentPlaylist.CanNavigatePrevPhrase) || CanPlay;
             }
         }
 
