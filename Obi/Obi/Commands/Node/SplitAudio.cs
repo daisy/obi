@@ -182,8 +182,9 @@ namespace Obi.Commands.Node
                     }
                 if (node is PhraseNode &&  phrases.Count > 0 && view.Selection != null)
                     {
-                    command.append ( new UpdateSelection ( view, new NodeSelection ( phrases[0], view.Selection.Control ) ) );
-                    }
+                    command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
+                    //command.append ( new UpdateSelection ( view, new NodeSelection ( phrases[0], view.Selection.Control ) ) );
+                                        }
                 command.append ( new Commands.Node.Delete ( view, phrase, false ) );//@singleSection: moved delete command last for improve undo selection
                 }
             return command;
