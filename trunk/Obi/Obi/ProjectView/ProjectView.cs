@@ -414,7 +414,7 @@ namespace Obi.ProjectView
             get
                 {
                 return Selection != null
-                && ( (Selection.Node is EmptyNode &&((EmptyNode)Selection.Node).Index < GetSelectedPhraseSection.PhraseChildCount - 1 )  || ( Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null)  || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0 && !(Selection is StripIndexSelection)) )
+                && ((Selection.Node is EmptyNode && Selection.Node.IsRooted && ((EmptyNode)Selection.Node).Index < GetSelectedPhraseSection.PhraseChildCount - 1) || (Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null) || (Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount > 0 && !(Selection is StripIndexSelection)))
                 && !TransportBar.IsRecorderActive;
                 }
             }
@@ -1599,6 +1599,7 @@ namespace Obi.ProjectView
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
                             ObiForm.Settings.MaxPhraseDurationMinutes );
+                    TransportBar.Enabled = false;
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
@@ -1672,6 +1673,7 @@ namespace Obi.ProjectView
                         }
                     }
                 this.ObiForm.Cursor = Cursors.Default;
+                TransportBar.Enabled = true;
                 }
             }
 
