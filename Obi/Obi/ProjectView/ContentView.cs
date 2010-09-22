@@ -1102,6 +1102,8 @@ namespace Obi.ProjectView
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
             if (selectionValue == null) return;
+            // explicitly handle audio cursor selection, will add universal approach later.
+            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing &&  mSelection != null && selectionValue.Node is PhraseNode && selectionValue.Node == mSelection.Node && selectionValue is AudioSelection) return; 
 
             if (selectionValue.Node is SectionNode ||
                 selectionValue.Node is EmptyNode ||
