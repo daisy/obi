@@ -654,7 +654,8 @@ namespace Obi
             }
 
         private void ObiForm_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e ) 
-            { 
+            {
+            CanAutoSave = true;//@singleSection
             ProjectHasChanged ( 1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
             }
