@@ -1617,7 +1617,7 @@ namespace Obi
 
         private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
             {
-            if (!m_CanAutoSave && mSession != null && mSession.Presentation != null
+            if (!m_CanAutoSave 
                 && mSettings.AutoSaveTimeIntervalEnabled && mSession.CanSave)//@singleSection
                 {
                 //keep on checking after interval of 5 seconds if CanAutoSave is true
@@ -1630,7 +1630,7 @@ namespace Obi
                 }
 
             if (mSession != null && mSession.Presentation != null
-                && mSettings.AutoSaveTimeIntervalEnabled && mSession.CanSave)
+                && mSettings.AutoSaveTimeIntervalEnabled && m_CanAutoSave  && mSession.CanSave)
                 {
                 //if (mProjectView.TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording)
                     //{
