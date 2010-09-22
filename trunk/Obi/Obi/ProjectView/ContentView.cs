@@ -2387,7 +2387,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
                 mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
 
-            if (currentlySelectedEmptyNode == null)
+            if (currentlySelectedEmptyNode != null)
                 {
                 Block selectedBlock = FindBlock ( currentlySelectedEmptyNode );
                 if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
