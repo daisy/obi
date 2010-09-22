@@ -1494,4 +1494,7 @@ Error text: {1}</value>
   <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
     <value>Creator name</value>
   </data>
+  <data name="Scroll_LoadingScreen" xml:space="preserve">
+    <value>Loading screen...</value>
+  </data>
 </root>

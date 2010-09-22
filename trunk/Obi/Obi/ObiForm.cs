@@ -729,7 +729,14 @@ namespace Obi
 
         private void ProjectView_BlocksVisibilityChanged ( object sender, EventArgs e )
             {
-            ShowSelectionInStatusBar ();
+            if (mProjectView.IsContentViewScrollActive)
+                {
+                Status ( Localizer.Message ( "Scroll_LoadingScreen" ) );
+                }
+            else if (Localizer.Message ( "Scroll_LoadingScreen" ) == mStatusLabel.Text)
+                {
+                Ready ();
+                }
             }
 
         private void Session_ProjectCreated ( object sender, EventArgs e )
@@ -1569,7 +1576,7 @@ namespace Obi
                 m_IsStatusBarEnabled = true;
                 mProjectView.ObiForm = this;
                 mProjectView.SelectionChanged += new EventHandler ( ProjectView_SelectionChanged );
-                //mProjectView.BlocksVisibilityChanged += new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
+                mProjectView.BlocksVisibilityChanged += new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
                 mSession = new Session ();
                 mSession.ProjectOpened += new EventHandler ( Session_ProjectOpened );
                 mSession.ProjectCreated += new EventHandler ( Session_ProjectCreated );
@@ -1963,7 +1970,7 @@ namespace Obi
                         Localizer.Message ( "save_settings_error_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
                 mProjectView.SelectionChanged -= new EventHandler ( ProjectView_SelectionChanged );
-                //mProjectView.BlocksVisibilityChanged -= new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
+                mProjectView.BlocksVisibilityChanged -= new EventHandler ( ProjectView_BlocksVisibilityChanged );//@singleSection: commented
 
                 Application.Exit ();
 

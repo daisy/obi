@@ -2976,6 +2976,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading screen....
+        /// </summary>
+        internal static string Scroll_LoadingScreen {
+            get {
+                return ResourceManager.GetString("Scroll_LoadingScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Searching....
         /// </summary>
         internal static string searching {
