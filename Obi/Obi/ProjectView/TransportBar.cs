@@ -2075,13 +2075,13 @@ namespace Obi.ProjectView
                                 mRecordingSession.RecordedAudio[i] );
                             }
                         }
-
+                    if (mRecordingPhrase != null && mRecordingPhrase.IsRooted) mView.SelectFromTransportBar ( mRecordingPhrase, null );
                     }
                 catch (System.Exception ex)
                     {
                     MessageBox.Show ( Localizer.Message ("TransportBar_ErrorInStopRecording") + "\n\n" +   ex.ToString ()  , Localizer.Message ("Caption_Error"));
                     }
-                if ( mRecordingPhrase != null )  mView.SelectFromTransportBar ( mRecordingPhrase, null );
+                
 UpdateButtons();
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
