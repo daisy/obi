@@ -1599,7 +1599,7 @@ namespace Obi.ProjectView
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
                             ObiForm.Settings.MaxPhraseDurationMinutes );
-                    TransportBar.Enabled = false;
+                    
                     if (dialog.ShowDialog () == DialogResult.OK)
                         {
                         ObiForm.Settings.MaxPhraseDurationMinutes = dialog.MaxPhraseDurationMinutes;
@@ -1673,8 +1673,7 @@ namespace Obi.ProjectView
                         }
                     }
                 this.ObiForm.Cursor = Cursors.Default;
-                TransportBar.Enabled = true;
-                TransportBar.Update ();
+                
                 }
             }
 
