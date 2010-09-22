@@ -1674,6 +1674,7 @@ namespace Obi.ProjectView
                     }
                 this.ObiForm.Cursor = Cursors.Default;
                 TransportBar.Enabled = true;
+                TransportBar.Update ();
                 }
             }
 
