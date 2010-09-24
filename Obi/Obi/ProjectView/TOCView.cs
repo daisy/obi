@@ -564,5 +564,9 @@ namespace Obi.ProjectView
         {
             if (e.Action == TreeViewAction.Unknown) e.Cancel = true;
         }
+        private void Context_ShowContentsMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
