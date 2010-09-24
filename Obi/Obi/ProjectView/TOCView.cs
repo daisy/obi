@@ -255,6 +255,7 @@ namespace Obi.ProjectView
             Context_DeleteMenuItem.Enabled = mProjectView.CanRemoveSection;
             Context_PropertiesMenuItem.Enabled = mProjectView.CanShowSectionPropertiesDialog;
             Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            Context_ShowContentsMenuItem.Enabled = mProjectView.Selection != null && !(mProjectView.Selection is TextSelection);
         }
 
 
@@ -566,7 +567,7 @@ namespace Obi.ProjectView
         }
         private void Context_ShowContentsMenuItem_Click(object sender, EventArgs e)
         {
-
+        mProjectView.ShowSelectedSectionContents();
         }
     }
 }
