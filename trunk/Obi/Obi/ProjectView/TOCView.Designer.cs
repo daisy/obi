@@ -53,7 +53,8 @@ namespace Obi.ProjectView
             // 
             // mContextMenuStrip
             // 
-            this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mContextMenuStrip.Items.AddRange ( new System.Windows.Forms.ToolStripItem[] {
+                        this.Context_ShowContentsMenuItem,
             this.Context_AddSectionMenuItem,
             this.Context_AddSubsectionMenuItem,
             this.Context_InsertSectionMenuItem,
@@ -62,8 +63,7 @@ namespace Obi.ProjectView
             this.Context_DecreaseSectionLevelMenuItem,
             this.Context_IncreaseSectionLevelMenuItem,
             this.Context_SectionIsUsedMenuItem,
-            this.Context_ShowContentsMenuItem,
-            this.toolStripSeparator1,
+                        this.toolStripSeparator1,
             this.Context_CutMenuItem,
             this.Context_CopyMenuItem,
             this.Context_PasteMenuItem,
