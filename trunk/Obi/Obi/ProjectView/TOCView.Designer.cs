@@ -33,10 +33,12 @@ namespace Obi.ProjectView
             this.Context_AddSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_AddSubsectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergeSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_RenameSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DecreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_IncreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_SectionIsUsedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ShowContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_CutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_CopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +48,6 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Context_MergeSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@ namespace Obi.ProjectView
             this.Context_DecreaseSectionLevelMenuItem,
             this.Context_IncreaseSectionLevelMenuItem,
             this.Context_SectionIsUsedMenuItem,
+            this.Context_ShowContentsMenuItem,
             this.toolStripSeparator1,
             this.Context_CutMenuItem,
             this.Context_CopyMenuItem,
@@ -94,6 +96,13 @@ namespace Obi.ProjectView
             this.Context_InsertSectionMenuItem.Text = "&Insert section";
             this.Context_InsertSectionMenuItem.Click += new System.EventHandler(this.Context_InsertSectionMenuItem_Click);
             // 
+            // Context_MergeSectionMenuItem
+            // 
+            this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
+            this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.Context_MergeSectionMenuItem.Text = "Mer&ge section with next";
+            this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionMenuItem_Click);
+            // 
             // Context_RenameSectionMenuItem
             // 
             this.Context_RenameSectionMenuItem.Name = "Context_RenameSectionMenuItem";
@@ -124,6 +133,15 @@ namespace Obi.ProjectView
             this.Context_SectionIsUsedMenuItem.Size = new System.Drawing.Size(200, 22);
             this.Context_SectionIsUsedMenuItem.Text = "Sec&tion is used";
             this.Context_SectionIsUsedMenuItem.CheckedChanged += new System.EventHandler(this.Context_SectionIsUsedMenuItem_CheckedChanged);
+            // 
+            // Context_ShowContentsMenuItem
+            // 
+            this.Context_ShowContentsMenuItem.AccessibleDescription = "Show Contents of Section";
+            this.Context_ShowContentsMenuItem.AccessibleName = "Show Contents";
+            this.Context_ShowContentsMenuItem.Name = "Context_ShowContentsMenuItem";
+            this.Context_ShowContentsMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.Context_ShowContentsMenuItem.Text = " Sho&w Contents";
+            this.Context_ShowContentsMenuItem.Click += new System.EventHandler(this.Context_ShowContentsMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -184,13 +202,6 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem.Text = "Pr&operties";
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
-            // Context_MergeSectionMenuItem
-            // 
-            this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
-            this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.Context_MergeSectionMenuItem.Text = "Mer&ge section with next";
-            this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionMenuItem_Click);
-            // 
             // TOCView
             // 
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -219,6 +230,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_DecreaseSectionLevelMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_IncreaseSectionLevelMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_SectionIsUsedMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_ShowContentsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_CutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_RenameSectionMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
