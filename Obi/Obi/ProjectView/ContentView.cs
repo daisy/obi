@@ -3325,7 +3325,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             else if (mSelectedItem is Strip)
                 {
-                mProjectView.Selection = null;
+                //mProjectView.Selection = null; //@singleSection: esc key should not end up in deselecting everything
                 return true;
                 }
             return false;
