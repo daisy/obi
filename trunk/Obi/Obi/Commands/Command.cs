@@ -160,5 +160,15 @@ namespace Obi.Commands
             View.Selection = mSelectionAfter;
             TriggerProgressChanged ();
         }
+
+        public override void unExecute ()
+            {
+            if (mSelectionAfter == null
+                || (mSelectionAfter.Node != null && mSelectionAfter.Node.IsRooted))
+                {
+                base.unExecute ();
+                }
+            }
+
     }
 }
