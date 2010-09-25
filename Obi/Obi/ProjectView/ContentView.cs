@@ -1234,6 +1234,7 @@ namespace Obi.ProjectView
             //Console.WriteLine ("creating strip " + node.Label ) ;
             // now add strip for section in parameter
             contentViewLabel1.Name_SectionDisplayed = node.Label;
+            mStripsPanel.Location = new Point ( 0, 0 );
             verticalScrollToolStripContainer1.CanScrollUp = false;
             return AddStripForSection ( node );
             }
@@ -2341,12 +2342,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 if (currentlyActiveStrip != null)
                     {
                     if ((currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
-                        || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index == 0))
+                        || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
                         verticalScrollToolStripContainer1.CanScrollUp = false;
                         }
                     else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
-                        && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.Index > 0)
+                        && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
                         {
                         // set position of strip panel to hide label -- for precaution
                         mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
@@ -2365,7 +2366,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 if (currentlyActiveStrip != null)
                     {
                     if ((currentlyActiveStrip.LastBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
-                        || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
+                        || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.IsRooted && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
                         verticalScrollToolStripContainer1.CanScrollDown = false;
                         }
