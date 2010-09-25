@@ -2075,7 +2075,8 @@ namespace Obi.ProjectView
                                 mRecordingSession.RecordedAudio[i] );
                             }
                         }
-                    if (mRecordingPhrase != null && mRecordingPhrase.IsRooted) mView.SelectFromTransportBar ( mRecordingPhrase, null );
+                    EmptyNode lastRecordedPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
+                    if (lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
                     }
                 catch (System.Exception ex)
                     {
