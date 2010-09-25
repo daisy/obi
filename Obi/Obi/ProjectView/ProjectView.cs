@@ -132,6 +132,7 @@ namespace Obi.ProjectView
             if (Selection != null && Selection.Control is ContentView && TransportBar.CurrentState == TransportBar.State.Recording)
                 {
                 TransportBar.NextSection ();
+                return;
                 }
 
             if (mContentView.CanAddStrip)
