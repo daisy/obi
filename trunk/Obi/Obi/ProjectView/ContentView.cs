@@ -336,6 +336,8 @@ namespace Obi.ProjectView
                 new EventHandler<urakawa.events.command.CommandEventArgs> ( Presentation_BeforeCommandExecuted );
             mProjectView.Presentation.getUndoRedoManager ().commandDone +=
                 new EventHandler<urakawa.events.undo.DoneEventArgs> ( ContentView_commandDone );
+            mProjectView.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
+            mProjectView.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;
@@ -346,12 +348,27 @@ namespace Obi.ProjectView
 
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
-            ResumeLayout_All ();
-            UpdateSize ();
-            Cursor = mCursor;
-            Console.WriteLine ( "horizontal bar size " + mHScrollBar.Maximum );
-            //UpdateBlocksLabelInSelectedNodeStrip ();
+                ResizeForCommands();
             }
+
+        private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
+        {
+            ResizeForCommands();
+        }
+
+        private void ContentView_commandUndone (object sender, urakawa.events.undo.UnDoneEventArgs e)
+        {
+            ResizeForCommands();
+        }
+
+        private void ResizeForCommands()
+        {
+            ResumeLayout_All();
+            UpdateSize();
+            Cursor = mCursor;
+            Console.WriteLine("horizontal bar size " + mHScrollBar.Maximum);
+            //UpdateBlocksLabelInSelectedNodeStrip ();
+        }
 
         private void Presentation_BeforeCommandExecuted ( object sender, urakawa.events.command.CommandEventArgs e )
             {
