@@ -4233,7 +4233,11 @@ else
             if (IsScrollActive)
             { }
             else
-                ScrollMStripsPanel ( increment * interval, false );
+            {
+                if (interval > 10)
+                    interval = 10;
+                ScrollMStripsPanel(increment * interval, false);
+            }
             Console.WriteLine ( "mouse wheel scrolling " + increment + " " + interval);
              
             //Console.WriteLine ( "mouse wheel " + e.Delta );
