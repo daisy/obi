@@ -1285,7 +1285,7 @@ namespace Obi
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
             mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
             mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
-            PipelineMenuItemsEnabled = mSession.HasProject;
+            PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             }
 
         // Open the preferences dialog
@@ -1927,6 +1927,7 @@ namespace Obi
             UpdatePhrasesMenu ();
             UpdateTransportMenu ();
             UpdateEditMenu ();
+            UpdateToolsMenu();
             mProjectView.UpdateContextMenus ();
             }
 
