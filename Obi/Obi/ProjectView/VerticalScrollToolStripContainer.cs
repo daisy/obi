@@ -13,7 +13,8 @@ namespace Obi.ProjectView
         private ContentView m_ContentView = null;
         private bool m_CanScrollUp = true;
         private bool m_CanScrollDown = true;
-        private int m_OriginalPanelSize;        
+        private int m_OriginalPanelSize;
+        private int mOldMulFactor = 0;
                
         public VerticalScrollToolStripContainer()
         {
@@ -148,32 +149,31 @@ namespace Obi.ProjectView
         }
 
         public void verticalScrolling()
-        {
-            float mulFactor = (this.Height * 100) / m_OriginalPanelSize;
-            Console.WriteLine("panel ht  " + this.Height + " original ht " + m_OriginalPanelSize + "mulfact " + mulFactor);
+        {            
+            int interval = (this.Height * 100) / m_OriginalPanelSize;
+            int mulFactor = (interval / 10) * 10;
             int heightOfButton = 44;
             int heightOfToolstrip = 195;
-
-     //       if (mulFactor > 95 && mulFactor < 105)
-     //       { }
-     //       else
-       //     {
-                if ((m_OriginalPanelSize - this.Height) > 20)
+                        
+            if(mOldMulFactor == mulFactor || mulFactor < 50)
+            { }
+            else
+            {
+                if(this.Height < m_OriginalPanelSize)
                 {
                     m_BtnGoToBegining.Size = new Size(m_BtnGoToBegining.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
-                    Console.WriteLine("size of butt " + m_BtnGoToBegining.Height);
                     m_BtnGoToEnd.Size = new Size(m_BtnGoToEnd.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     m_BtnLargeIncrementDown.Size = new Size(m_BtnLargeIncrementDown.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     m_BtnLargeIncrementUp.Size = new Size(m_BtnLargeIncrementUp.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     m_BtnSmallIncrementDown.Size = new Size(m_BtnSmallIncrementDown.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     m_BtnSmallIncrementUp.Size = new Size(m_BtnSmallIncrementDown.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     toolStripTop.Size = new Size(toolStripBottom.Size.Width, Convert.ToInt32((heightOfToolstrip * mulFactor) / 100));
-                    toolStripBottom.Size = new Size(toolStripTop.Size.Width, Convert.ToInt32((heightOfToolstrip * mulFactor) / 100));
+                    toolStripBottom.Size = new Size(toolStripTop.Size.Width, Convert.ToInt32((heightOfToolstrip *mulFactor) / 100));
                     trackBar1.Location = new Point(trackBar1.Location.X, toolStripTop.Location.Y + toolStripTop.Height);
                     toolStripBottom.Location = new Point(toolStripBottom.Location.X, (Convert.ToInt32(trackBar1.Location.Y + trackBar1.Height)));
                     toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 250);
                 }
-                if ((this.Height > m_OriginalPanelSize - 20) && (this.Height < m_OriginalPanelSize + 20))
+        /*        if ((this.Height > m_OriginalPanelSize - 20) && (this.Height < m_OriginalPanelSize + 20))
                 {
                     m_BtnGoToBegining.Size = new Size(m_BtnGoToBegining.Width, heightOfButton);
                     m_BtnGoToEnd.Size = new Size(m_BtnGoToEnd.Width, heightOfButton);
@@ -186,8 +186,8 @@ namespace Obi.ProjectView
                     trackBar1.Location = new Point(trackBar1.Location.X, toolStripTop.Location.Y + toolStripTop.Height);
                     toolStripBottom.Location = new Point(toolStripBottom.Location.X, (Convert.ToInt32(trackBar1.Location.Y + trackBar1.Height)));
                     toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 250);
-                }
-                if ((this.Height - m_OriginalPanelSize) > 20)
+                }*/
+                if(this.Height > m_OriginalPanelSize)
                 {
                     m_BtnGoToBegining.Size = new Size(m_BtnGoToBegining.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
                     m_BtnGoToEnd.Size = new Size(m_BtnGoToEnd.Width, Convert.ToInt32((heightOfButton * mulFactor) / 100));
@@ -200,8 +200,9 @@ namespace Obi.ProjectView
                     trackBar1.Location = new Point(trackBar1.Location.X, toolStripTop.Location.Y + toolStripTop.Height);
                     toolStripBottom.Location = new Point(toolStripBottom.Location.X, (Convert.ToInt32(trackBar1.Location.Y + trackBar1.Height)));
                     toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 250);
-                }
-         //   }
+                }                
+            }
+            mOldMulFactor = mulFactor;
         }
 
         private void VerticalScrollToolStripContainer_Resize(object sender, EventArgs e)
