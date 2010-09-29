@@ -1370,6 +1370,14 @@ namespace Obi.ProjectView
             mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
             Resize_All ();
             Console.WriteLine ( "move to background  " + "size : " + m_BackgroundBlockLayout.Size + " location : " + m_BackgroundBlockLayout.Location);
+            // if previous block layout is not completely created, remove it
+            // this will avoid of overlapping phrases
+            if (m_BackgroundBlockLayout.Height == 0)
+            {
+                this.Controls.Remove(m_BackgroundBlockLayout);
+                m_BackgroundBlockLayout = null;
+                Console.WriteLine("in complete background layout removed");
+            }
             }
 
 
