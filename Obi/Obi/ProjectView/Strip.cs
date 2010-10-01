@@ -1375,6 +1375,7 @@ namespace Obi.ProjectView
             if (m_BackgroundBlockLayout.Height == 0)
             {
                 this.Controls.Remove(m_BackgroundBlockLayout);
+                m_BackgroundBlockLayout.Dispose ();
                 m_BackgroundBlockLayout = null;
                 Console.WriteLine("in complete background layout removed");
             }
