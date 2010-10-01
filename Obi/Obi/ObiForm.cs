@@ -992,7 +992,7 @@ namespace Obi
             mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
-            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase;
+            mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase && !mProjectView.TransportBar.IsRecorderActive;
             mMergeToolStripMenuItem.Enabled = mProjectView.Presentation != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
             mMergePhraseWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeBlockWithNext;
             mMergePhraseWithFollowingPhrasesToolStripMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
@@ -1283,7 +1283,7 @@ namespace Obi
         private void UpdateToolsMenu ()
             {
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
-            mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject;
+            mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
             PipelineMenuItemsEnabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             }
