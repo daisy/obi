@@ -1390,15 +1390,26 @@ namespace Obi.ProjectView
             if (m_BackgroundBlockLayout == null || m_BackgroundBlockLayout.Controls.Count < 2) return false;
 
             bool isExpectedPhraseExists = false;
+            bool isBlocksContineus = true;
+            int previousNodeIndex = -1;
             for (int i = m_BackgroundBlockLayout.Controls.Count - 1; i >= 0; --i)
                 {
-                if (m_BackgroundBlockLayout.Controls[i] is Block && ((Block)m_BackgroundBlockLayout.Controls[i]).Node == expectedLastPhrase)
+                if (m_BackgroundBlockLayout.Controls[i] is Block )
                     {
-                    isExpectedPhraseExists = true;
-                    break;
+                        EmptyNode iterationNode = ((Block)m_BackgroundBlockLayout.Controls[i]).Node;
+                        if (iterationNode == expectedLastPhrase)
+                        {
+                            isExpectedPhraseExists = true;
+                            //break;
+                        }
+                        if (previousNodeIndex != -1 &&  iterationNode.IsRooted && iterationNode.Index != previousNodeIndex - 1)
+                        {
+                            isBlocksContineus = false;
+                        }
+                        if (iterationNode.IsRooted) previousNodeIndex = iterationNode.Index;
                     }
                 }
-            if (!isExpectedPhraseExists) return false;
+            if (!isExpectedPhraseExists || !isBlocksContineus) return false;
 
             Point layoutLocation = new Point ( mBlockLayout.Location.X , mBlockLayout.Location.Y ) ;
             FlowLayoutPanel removePanel = mBlockLayout;
