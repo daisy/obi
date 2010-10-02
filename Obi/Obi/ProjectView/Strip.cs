@@ -1009,7 +1009,11 @@ namespace Obi.ProjectView
         // No effect when not wrapping.
         private void Resize_View()
         {
-            if (mWrap) Resize_Wrap();
+            if (mWrap)
+            {
+                Resize_Wrap();
+                mContentView.ResizeContentViewFromStripResize();
+            }
         }
 
         // Resize after wrapping has changed.
