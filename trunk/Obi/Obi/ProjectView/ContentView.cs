@@ -4178,13 +4178,48 @@ else
             {
             if (ActiveStrip != null)
                 {
-                CreateLimitedBlocksInStrip ( ActiveStrip, null );
+                //CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
             //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
             this.verticalScrollToolStripContainer1.Location = new Point ( this.Width - verticalScrollToolStripContainer1.Width, 0 );
             this.verticalScrollToolStripContainer1.Size = new Size ( verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y );
             mHScrollBar.Size = new Size ( verticalScrollToolStripContainer1.Location.X, mHScrollBar.Height );
             }
+
+        public void ResizeContentViewFromStripResize()
+        {
+            UpdateSize();
+            if (mSelectedItem != null
+                && (mSelectedItem is Block || mSelectedItem is StripCursor))
+            {
+                EnsureControlVisible((Control)mSelectedItem);
+            }
+
+            if (ActiveStrip != null)
+            {
+                /*
+                // strip panel can also expand or contract so first try to pull down panel till content view label is not visible
+                // create additional phrases after that
+
+                int spaceBelowStripsPanel = mHScrollBar.Location.Y - (mStripsPanel.Location.Y + mStripsPanel.Height);
+                Console.WriteLine("resizing " + spaceBelowStripsPanel + " location " + Math.Abs(mStripsPanel.Location.Y));
+                if (Math.Abs(mStripsPanel.Location.Y) - ActiveStrip.BlocksLayoutTopPosition > spaceBelowStripsPanel)
+                {
+                    mStripsPanel.Location = new Point(mStripsPanel.Location.X,
+                        (mStripsPanel.Height - mHScrollBar.Location.Y) * -1);
+                    Console.WriteLine("changed location " + mStripsPanel.Location + " " + mHScrollBar.Location);
+                    System.Media.SystemSounds.Asterisk.Play();
+                }
+                else if (Math.Abs(mStripsPanel.Location.Y) > ActiveStrip.BlocksLayoutTopPosition)
+                {
+                    mStripsPanel.Location = new Point(mStripsPanel.Location.X, ActiveStrip.BlocksLayoutTopPosition * -1);
+                }
+                */
+                CreateLimitedBlocksInStrip(ActiveStrip, null);
+            }
+            
+            
+        }
 
         //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
