@@ -1110,8 +1110,10 @@ namespace Obi.ProjectView
             //for (int i = afterIndex + 2; i < mBlockLayout.Controls.Count; i += 2)
             for (int i = afterIndex ; i < mBlockLayout.Controls.Count; i += 2)
                 {
-                int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index :
-        mBlockLayout.Controls.Count > 1 ? ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : OffsetForFirstPhrase;
+                    int stripCursorIndex = i < mBlockLayout.Controls.Count - 1 && ((Block)mBlockLayout.Controls[i + 1]).Node.IsRooted ? ((Block)mBlockLayout.Controls[i + 1]).Node.Index :
+        mBlockLayout.Controls.Count > 1 && ((Block)mBlockLayout.Controls[i - 1]).Node.IsRooted? ((Block)mBlockLayout.Controls[i - 1]).Node.Index + 1 : 
+        mBlockLayout.Controls.Count <=1?  OffsetForFirstPhrase : -1;
+                    if (stripCursorIndex == -1) continue;
                 //Console.WriteLine ( "strip cursor index " + stripCursorIndex + " " + i );
                 System.Diagnostics.Debug.Assert ( mBlockLayout.Controls[i] is StripCursor );
                 //((StripCursor)mBlockLayout.Controls[i]).SetAccessibleNameForIndex(i / 2);
