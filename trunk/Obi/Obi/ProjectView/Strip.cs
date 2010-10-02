@@ -1420,6 +1420,16 @@ namespace Obi.ProjectView
             m_OffsetForFirstPhrase = FirstBlock.Node.Index;
             mBlockLayout.Location = layoutLocation;
             mBlockLayout.BringToFront ();
+            // scan all blocks in cashed layout and remove blocks that are detached
+            for (int i = mBlockLayout.Controls.Count - 1; i > 0; i--)
+            {
+                if (i > mBlockLayout.Controls.Count - 1) i = mBlockLayout.Controls.Count - 1;
+                if (mBlockLayout.Controls[i] is Block && !((Block)mBlockLayout.Controls[i]).Node.IsRooted)
+                {
+                    RemoveBlock((Block)mBlockLayout.Controls[i], true);
+                }
+            }
+
             Resize_All ();
             if (removePanel != null )   removePanel.Dispose ();
             Console.WriteLine ( "Displaying previous layout  : size : location " + mBlockLayout.Size + " : " + mBlockLayout.Location);
