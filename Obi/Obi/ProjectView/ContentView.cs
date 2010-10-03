@@ -2207,7 +2207,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
 
         //@singleSection
-        public Point LocationOfBlockInStripPanel ( Block block )
+        public Point LocationOfBlockInStripPanel (Control block )
             {
             Point location = new Point ( block.Location.X, block.Location.Y );
 
@@ -4193,6 +4193,12 @@ else
                 && (mSelectedItem is Block || mSelectedItem is StripCursor))
             {
                 EnsureControlVisible((Control)mSelectedItem);
+
+                Control c = ((Control)mSelectedItem);
+                int selectedControlY = LocationOfBlockInStripPanel(c).Y;
+
+                if (mStripsPanel.Location.Y + selectedControlY < 0) mStripsPanel.Location = new Point(mStripsPanel.Location.X, selectedControlY * -1);
+                else if (mStripsPanel.Location.Y + selectedControlY >= (mHScrollBar.Location.Y - c.Height)) mStripsPanel.Location = new Point(mStripsPanel.Location.X, (selectedControlY+c.Height - mHScrollBar.Location.Y) * -1);
             }
 
             if (ActiveStrip != null)
