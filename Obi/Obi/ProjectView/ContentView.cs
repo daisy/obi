@@ -4195,14 +4195,34 @@ else
                 EnsureControlVisible((Control)mSelectedItem);
 
                 Control c = ((Control)mSelectedItem);
-                int selectedControlY = LocationOfBlockInStripPanel(c).Y;
+                //int selectedControlY = LocationOfBlockInStripPanel(c).Y;
 
-                if (mStripsPanel.Location.Y + selectedControlY < 0) mStripsPanel.Location = new Point(mStripsPanel.Location.X, selectedControlY * -1);
-                else if (mStripsPanel.Location.Y + selectedControlY >= (mHScrollBar.Location.Y - c.Height)) mStripsPanel.Location = new Point(mStripsPanel.Location.X, (selectedControlY+c.Height - mHScrollBar.Location.Y) * -1);
+                //if (mStripsPanel.Location.Y + selectedControlY < 0) mStripsPanel.Location = new Point(mStripsPanel.Location.X, selectedControlY * -1);
+                //else if (mStripsPanel.Location.Y + selectedControlY >= (mHScrollBar.Location.Y - c.Height)) mStripsPanel.Location = new Point(mStripsPanel.Location.X, (selectedControlY+c.Height - mHScrollBar.Location.Y) * -1);
             }
-
+            
             if (ActiveStrip != null)
             {
+                if ( mProjectView.Selection != null
+                &&    ( mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripCursor )))
+            {
+Block lastBlock = ActiveStrip.LastBlock ;
+                    if ( lastBlock != null )
+                    {
+                        int selectedControlY = LocationOfBlockInStripPanel(lastBlock).Y;
+                        if ( mStripsPanel.Location.Y + selectedControlY  < 0 )
+                        {
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X ,(mStripsPanel.Height - mHScrollBar.Location.Y )*-1 ) ;
+                        }
+                    }
+                    else
+                    {
+                        if (mSelectedItem is Strip)
+                        {
+                            EnsureControlVisible((Control) mSelectedItem ) ;
+                        }
+                    }
+            }
                 /*
                 // strip panel can also expand or contract so first try to pull down panel till content view label is not visible
                 // create additional phrases after that
