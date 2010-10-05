@@ -1257,10 +1257,16 @@ namespace Obi.ProjectView
             if (CanDeleteFollowingPhrasesInSection)
                 {
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
-                
+
+                if (Selection != null && Selection.Node is SectionNode && !(Selection is StripIndexSelection)
+                    && MessageBox.Show(Localizer.Message("DeleteFollowing_SectionSelection"), Localizer.Message("Caption_Warning"), MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+
                 bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 TransportBar.SelectionChangedPlaybackEnabled = false;
-
+                
                 SectionNode section = Selection.Node is SectionNode ? (SectionNode)Selection.Node : ((EmptyNode)Selection.Node).ParentAs<SectionNode> ();
                 int startNodeIndex = Selection is StripIndexSelection && ((StripIndexSelection)Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)Selection).EmptyNodeForSelection.Index :
                     Selection.Node is SectionNode && section.PhraseChildCount > 0 && !(Selection is StripIndexSelection)? 0:

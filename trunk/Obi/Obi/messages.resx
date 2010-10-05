@@ -1497,4 +1497,7 @@ Error text: {1}</value>
   <data name="Scroll_LoadingScreen" xml:space="preserve">
     <value>Loading screen...</value>
   </data>
+  <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
+    <value>This will delete all phrases of selected section. Will you like to proceed?</value>
+  </data>
 </root>
