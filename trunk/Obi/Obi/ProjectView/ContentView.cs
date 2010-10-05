@@ -1276,6 +1276,7 @@ namespace Obi.ProjectView
             contentViewLabel1.Name_SectionDisplayed = node.Label;
             mStripsPanel.Location = new Point ( 0, 0 );
             verticalScrollToolStripContainer1.CanScrollUp = false;
+            //Console.WriteLine("disabling upper toolstrip during initializing section");
             return AddStripForSection ( node );
             }
 
@@ -2211,7 +2212,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                         int depthOfBlockInsTrip = Math.Abs ( mStripsPanel.Location.Y ) + selectedItemDepthFromContentViewOrigin - currentlyActiveStrip.Location.Y;
                         Block blockToBeSelected = currentlyActiveStrip.FindBlockAtLocationInStrip ( depthOfBlockInsTrip );
-                        if (blockToBeSelected != null) mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                        if (blockToBeSelected != null && blockToBeSelected.Node != mProjectView.Selection.Node)
+                        {
+                            mProjectView.SelectedBlockNode = blockToBeSelected.Node;
+                        }
+                        else if (currentlyActiveStrip.FirstBlock != null )
+                        {
+                            mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                        }
                         if (blockToBeSelected != null) Console.WriteLine ( "selected block location " + (LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y) );
                         }
                     }
@@ -2385,6 +2393,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
                         verticalScrollToolStripContainer1.CanScrollUp = false;
+                        //Console.WriteLine("disabling upper toolstrip");
+                        //System.Media.SystemSounds.Asterisk.Play();
                         }
                     else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
                         && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
