@@ -318,7 +318,9 @@ namespace Obi.Export
                 strDurTime = strDurTime + "s";
                 CreateAppendXmlAttribute ( smilDocument, mainSeq, "dur", strDurTime );
 
-                AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
+                //AddSmilHeadElements ( smilDocument, m_SmilElapseTime.ToString (), sectionDuration.ToString () );
+                AddSmilHeadElements(smilDocument, AdjustTimeStringForDay( m_SmilElapseTime.getTimeAsTimeSpan()) , 
+                    AdjustTimeStringForDay( sectionDuration.getTimeAsTimeSpan()) );
                 m_SmilElapseTime = m_SmilElapseTime.addTime ( sectionDuration );
                 m_SmilFile_TitleMap.Add ( smilFileName, section.Label );
 
@@ -701,8 +703,33 @@ namespace Obi.Export
                 TimeSpan additiveSpan = new TimeSpan ( Convert.ToInt64 ( .5 * 10000000 ) );
                 time = time.Add ( additiveSpan );
                 }
-            return time.ToString ().Split ( '.' )[0];
+                if (time.Days >= 1)
+                {
+                    return AdjustTimeStringForDay(time).Split('.')[0];
+                }
+                else
+                {
+                    return time.ToString().Split('.')[0];
+                }
             }
 
+        private string AdjustTimeStringForDay(TimeSpan time)
+        {
+            if (time.Days >= 1)
+            {
+                string [] timeStringArray = time    .ToString().Split ( ':' ) ;
+                string strTIME = time.TotalHours.ToString().Split('.')[0];
+                for ( int i  = 1 ; i < timeStringArray.Length ; i++ )
+                {
+                    strTIME += ":" + timeStringArray[i];
+                }
+                return strTIME;
+            }
+            else
+            {
+                return time.ToString () ;
+            }
         }
+
+    }
     }
