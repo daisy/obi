@@ -4275,6 +4275,14 @@ Block lastBlock = ActiveStrip.LastBlock ;
         }
 
         //@singleSection
+        public void EnsureVisibilityOfSelectedItem ()
+    {
+        if (mSelectedItem != null && mSelectedItem is Control)
+        {
+            EnsureControlVisible((Control)mSelectedItem);
+        }
+    }
+        //@singleSection
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
             if (mProjectView.GetSelectedPhraseSection == null)

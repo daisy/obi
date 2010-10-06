@@ -68,6 +68,7 @@ namespace Obi.ProjectView
                     foreach (Control c in mBlockLayout.Controls) if (c is AudioBlock) ((AudioBlock)c).AudioScale = value;
                     Resize_Blocks();
                     mContentView.UpdateSize ();
+                    mContentView.EnsureVisibilityOfSelectedItem();
                 }
             }
         }
