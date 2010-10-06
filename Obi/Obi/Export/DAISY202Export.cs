@@ -723,7 +723,7 @@ namespace Obi.Export
                 {
                     strTIME += ":" + timeStringArray[i];
                 }
-                return strTIME;
+                return TruncateTimeToDecimalPlaces (strTIME,3);
             }
             else
             {
