@@ -2393,8 +2393,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
                         verticalScrollToolStripContainer1.CanScrollUp = false;
-                        //Console.WriteLine("disabling upper toolstrip");
-                        //System.Media.SystemSounds.Asterisk.Play();
+                        if (currentlyActiveStrip.FirstBlock != null) Console.WriteLine("disabling upper toolstrip " + currentlyActiveStrip.FirstBlock.Node);
+                        else Console.WriteLine("disabling upper toolstrip with first block null");
+                        System.Media.SystemSounds.Asterisk.Play();
                         }
                     else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
                         && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
@@ -3321,7 +3322,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool SelectFirstStrip ()
             {
             SectionNode section = mProjectView.Presentation.FirstSection; //@singleSection
-            if (RestrictDynamicLoadingForRecording ( ActiveStrip.Node )) return true;
+            Strip currentlyActiveStrip = ActiveStrip;
+            if (currentlyActiveStrip != null && RestrictDynamicLoadingForRecording(currentlyActiveStrip.Node)) return true;
             if (section != null) CreateStripForSelectedSection ( section, true ); //@singleSection
 
             return SelectStripFor ( delegate ( Strip strip )
@@ -3340,7 +3342,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             { }
 
             SectionNode section = (SectionNode)n;
-            if (RestrictDynamicLoadingForRecording ( ActiveStrip.Node )) return true;
+            Strip currentlyActiveStrip = ActiveStrip;
+            if (currentlyActiveStrip != null && RestrictDynamicLoadingForRecording(currentlyActiveStrip.Node)) return true;
             if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
             if (mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && section != null)
                 {
