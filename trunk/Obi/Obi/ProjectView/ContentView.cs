@@ -2396,10 +2396,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if ((currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
                         || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
-                        verticalScrollToolStripContainer1.CanScrollUp = false;
-                        if (currentlyActiveStrip.FirstBlock != null) Console.WriteLine("disabling upper toolstrip " + currentlyActiveStrip.FirstBlock.Node);
-                        else Console.WriteLine("disabling upper toolstrip with first block null");
-                        System.Media.SystemSounds.Asterisk.Play();
+                            verticalScrollToolStripContainer1.CanScrollUp = false;
                         }
                     else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
                         && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
