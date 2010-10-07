@@ -1205,11 +1205,15 @@ namespace Obi.ProjectView
                             currentlyActiveStrip.Node.PhraseChild ( currentlyActiveStrip.Node.PhraseChildCount - 1 )) :
                                 (EmptyNode)selectionValue.Node;
                     CreateLimitedBlocksInStrip ( currentlyActiveStrip, eNode );
+                    // enable upper toolstrip in case first block is not 0 index, this is because new strip is created with top toolstrip disabled
+                    if (currentlyActiveStrip.OffsetForFirstPhrase > 0) verticalScrollToolStripContainer1.CanScrollUp = true;
                     }
                 else if (currentlyActiveStrip != null && selectionValue.Node is SectionNode
                     && currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                     {
                     CreateLimitedBlocksInStrip ( currentlyActiveStrip, null );
+                    // enable upper toolstrip in case first block is not 0 index, this is because new strip is created with top toolstrip disabled
+                    if (currentlyActiveStrip.OffsetForFirstPhrase > 0) verticalScrollToolStripContainer1.CanScrollUp = true;
                     }
 
                 }
