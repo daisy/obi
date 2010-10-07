@@ -888,8 +888,8 @@ namespace Obi.ProjectView
                 {
                 PhraseNode transitionPhrase = mCurrentPlaylist.CurrentPhrase;
                 double transitionTime = mCurrentPlaylist.CurrentTimeInAsset;
-                if (mCurrentPlaylist is PreviewPlaylist) transitionTime = ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
-
+                if (mCurrentPlaylist is PreviewPlaylist && !(mView.Selection is AudioSelection) ) transitionTime = ((PreviewPlaylist)mCurrentPlaylist).RevertTime;
+                
                 Stop ();
                 
                 mLocalPlaylist = new Playlist ( mPlayer, transitionPhrase , mPlayQAPlaylist );
