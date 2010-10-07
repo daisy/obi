@@ -74,9 +74,10 @@ namespace Obi.ProjectView
             this.m_BtnGoToBegining,
             this.m_BtnLargeIncrementUp,
             this.m_BtnSmallIncrementUp});
+            this.toolStripTop.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStripTop.Location = new System.Drawing.Point(0, 3);
             this.toolStripTop.Name = "toolStripTop";
-            this.toolStripTop.Size = new System.Drawing.Size(35, 195);
+            this.toolStripTop.Size = new System.Drawing.Size(35, 164);
             this.toolStripTop.TabIndex = 1;
             // 
             // m_BtnGoToBegining
@@ -129,9 +130,10 @@ namespace Obi.ProjectView
             this.m_BtnSmallIncrementDown,
             this.m_BtnLargeIncrementDown,
             this.m_BtnGoToEnd});
-            this.toolStripBottom.Location = new System.Drawing.Point(0, 293);
+            this.toolStripBottom.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStripBottom.Location = new System.Drawing.Point(0, 340);
             this.toolStripBottom.Name = "toolStripBottom";
-            this.toolStripBottom.Size = new System.Drawing.Size(35, 195);
+            this.toolStripBottom.Size = new System.Drawing.Size(35, 157);
             this.toolStripBottom.TabIndex = 0;
             // 
             // m_BtnSmallIncrementDown

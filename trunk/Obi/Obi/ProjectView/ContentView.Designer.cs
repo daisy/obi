@@ -72,13 +72,13 @@ namespace Obi.ProjectView
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
+            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
-            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
+            this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.mContextMenuStrip.SuspendLayout();
             this.mStripsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -115,7 +115,7 @@ namespace Obi.ProjectView
             this.toolStripSeparator5,
             this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 578);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 556);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -424,6 +424,19 @@ namespace Obi.ProjectView
             this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
             this.mStripsPanel.TabIndex = 1;
             // 
+            // verticleScrollPane1
+            // 
+            this.verticleScrollPane1.CanScrollDown = true;
+            this.verticleScrollPane1.CanScrollUp = true;
+            this.verticleScrollPane1.contentView = null;
+            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
+            this.verticleScrollPane1.Name = "verticleScrollPane1";
+            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
+            this.verticleScrollPane1.TabIndex = 6;
+            this.verticleScrollPane1.TabStop = false;
+            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
+            this.verticleScrollPane1.Visible = false;
+            // 
             // mHScrollBar
             // 
             this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
@@ -460,20 +473,6 @@ namespace Obi.ProjectView
             // 
             this.timer1.Interval = 1000;
             // 
-            // verticalScrollToolStripContainer1
-            // 
-            this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.verticalScrollToolStripContainer1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.verticalScrollToolStripContainer1.CanScrollDown = true;
-            this.verticalScrollToolStripContainer1.CanScrollUp = true;
-            this.verticalScrollToolStripContainer1.contentView = null;
-            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
-            this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
-            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 533);
-            this.verticalScrollToolStripContainer1.TabIndex = 6;
-            this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
-            // 
             // contentViewLabel1
             // 
             this.contentViewLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
@@ -492,24 +491,22 @@ namespace Obi.ProjectView
             this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // verticleScrollPane1
+            // verticalScrollToolStripContainer1
             // 
-            this.verticleScrollPane1.CanScrollDown = true;
-            this.verticleScrollPane1.CanScrollUp = true;
-            this.verticleScrollPane1.contentView = null;
-            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
-            this.verticleScrollPane1.Name = "verticleScrollPane1";
-            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
-            this.verticleScrollPane1.TabIndex = 6;
-            this.verticleScrollPane1.TabStop = false;
-            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
-            this.verticleScrollPane1.Visible = false;
+            this.verticalScrollToolStripContainer1.CanScrollDown = true;
+            this.verticalScrollToolStripContainer1.CanScrollUp = true;
+            this.verticalScrollToolStripContainer1.contentView = null;
+            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
+            this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
+            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 539);
+            this.verticalScrollToolStripContainer1.TabIndex = 0;
+            this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
             // ContentView
             // 
             this.ContextMenuStrip = this.mContextMenuStrip;
-            this.Controls.Add(this.mCornerPanel);
             this.Controls.Add(this.verticalScrollToolStripContainer1);
+            this.Controls.Add(this.mCornerPanel);
             this.Controls.Add(this.contentViewLabel1);
             this.Controls.Add(this.mHScrollBar);
             this.Controls.Add(this.mVScrollBar);
