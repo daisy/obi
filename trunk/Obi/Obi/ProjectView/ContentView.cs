@@ -2439,15 +2439,18 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             && mProjectView.Selection != null
             && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
             {
+                Strip currentlyActiveStrip = ActiveStrip;
             EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
                 mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
 
-            if (currentlySelectedEmptyNode != null)
+            if (currentlySelectedEmptyNode != null && currentlyActiveStrip != null)
                 {
-                Block selectedBlock = FindBlock ( currentlySelectedEmptyNode );
+                Block selectedBlock = currentlyActiveStrip.FindBlock( currentlySelectedEmptyNode );
                 if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
                 }
+                if (currentlyActiveStrip != null &&  !currentlyActiveStrip.IsContentViewFilledWithBlocks) CreateLimitedBlocksInStrip(currentlyActiveStrip, currentlySelectedEmptyNode);
             }
+            
         m_StripPanelPreviousWidth = mStripsPanel.Width;
             }
 
