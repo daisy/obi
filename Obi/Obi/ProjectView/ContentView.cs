@@ -2750,6 +2750,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // Listen to changes in the presentation (new nodes being added or removed)
         private void Presentation_changed ( object sender, urakawa.events.DataModelChangedEventArgs e )
             {
+                if (e is urakawa.events.core.ChildRemovedEventArgs && mProjectView.ObiForm.Settings.PlayOnNavigate
+                && ((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild is EmptyNode)
+                {
+                    mProjectView.TransportBar.SkipPlayOnNavigateForSection = true;
+                }
             if (e is urakawa.events.core.ChildAddedEventArgs)
                 {
                 TreeNodeAdded ( (urakawa.events.core.ChildAddedEventArgs)e );
@@ -3708,6 +3713,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (strip != null)
                         {
                         this.Cursor = Cursors.WaitCursor;
+                        bool playOnNavigateStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                        mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                         IsScrollActive = true;
                         try
                             {
@@ -3721,6 +3728,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                         this.Cursor = Cursors.Default;
                         IsScrollActive = false;
+                        mProjectView.TransportBar.SelectionChangedPlaybackEnabled = playOnNavigateStatus;
                         }
                     }
 
