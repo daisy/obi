@@ -3177,7 +3177,21 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectFollowingBlock ()
             {
-            return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockAfter ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
+                ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
+                    mProjectView.Selection != null ? mProjectView.Selection.Node : null;
+                if (currentlySelectedNode != null &&  currentlySelectedNode is SectionNode && ((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
+                {
+                    return SelectFirstBlockInStrip();
+                }
+                else
+                {
+                    if (mProjectView.TransportBar.IsPlayerActive  && currentlySelectedNode != null && currentlySelectedNode is EmptyNode
+                        &&    (mPlaybackBlock == null || currentlySelectedNode != mPlaybackBlock.Node))
+                    {
+                        SelectPhraseBlockOrStrip((EmptyNode) currentlySelectedNode);
+                    }
+                    return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item); });
+                }
             }
 
         private bool SelectFollowingStripCursor ()
