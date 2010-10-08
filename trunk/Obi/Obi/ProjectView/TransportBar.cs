@@ -622,7 +622,7 @@ namespace Obi.ProjectView
         // At the moment, simply stop.
         private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-        // set project empty flag depending on zero sections in presentation
+            // set project empty flag depending on zero sections in presentation
         if (mView.Presentation != null)
             {
                 m_IsProjectEmpty = mView.Presentation.FirstSection == null ;
@@ -637,9 +637,10 @@ namespace Obi.ProjectView
                 {
                 Stop ();
                 }
+            
             }
         }
-
+        
         // Adapt to changes in used status.
         // At the moment, simply stop.
         private void Presentation_UsedStatusChanged(object sender, NodeEventArgs<ObiNode> e)
@@ -2187,9 +2188,15 @@ UpdateButtons();
                 }
             }
 
-
+        public bool SkipPlayOnNavigateForSection { set { m_SkipPlayOnNavigateForSection = value; } } 
+        private bool m_SkipPlayOnNavigateForSection = false;
         private void PlaybackOnSelectionChange ()
         {
+            if (m_SkipPlayOnNavigateForSection && (mView.Selection == null || mView.Selection.Node is SectionNode))
+            {
+                m_SkipPlayOnNavigateForSection = false;
+                return;
+            }
             if (mView.Selection != null && !(mView.Selection is StripIndexSelection))
             {
                 if (mState == State.Playing || mState == State.Paused)
