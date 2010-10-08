@@ -3186,7 +3186,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
                 ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
                     mProjectView.Selection != null ? mProjectView.Selection.Node : null;
-                if (currentlySelectedNode != null &&  currentlySelectedNode is SectionNode && ((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
+                if (mSelectedItem != null &&  mSelectedItem is Strip 
+                    && currentlySelectedNode != null &&  currentlySelectedNode is SectionNode && ((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
                 {
                     return SelectFirstBlockInStrip();
                 }
@@ -3211,7 +3212,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 PlaybackBlock = mPlaybackBlock;
                 mProjectView.TransportBar.Stop ();
                 }
-
+            // if playback not active, first strip index should be selected.
+                if (PlaybackBlock == null && mSelectedItem != null && mSelectedItem is Strip )
+                {
+                    ScrollStripsPanel_Top();
+                }
             bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexAfter ( PlaybackBlock != null ? PlaybackBlock : item ); } );
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
             return ReturnVal;
