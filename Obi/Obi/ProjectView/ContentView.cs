@@ -365,6 +365,13 @@ namespace Obi.ProjectView
         {
             ResumeLayout_All();
             UpdateSize();
+            Strip currentlyActiveStrip = ActiveStrip;
+            if (currentlyActiveStrip != null && !currentlyActiveStrip.IsContentViewFilledWithBlocks)
+            {
+                //System.Media.SystemSounds.Asterisk.Play();
+                CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
+                
+            }
             Cursor = mCursor;
             Console.WriteLine("horizontal bar size " + mHScrollBar.Maximum);
             //UpdateBlocksLabelInSelectedNodeStrip ();
@@ -2448,7 +2455,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 Block selectedBlock = currentlyActiveStrip.FindBlock( currentlySelectedEmptyNode );
                 if (selectedBlock != null) EnsureControlVisible ( selectedBlock );
                 }
-                if (currentlyActiveStrip != null &&  !currentlyActiveStrip.IsContentViewFilledWithBlocks) CreateLimitedBlocksInStrip(currentlyActiveStrip, currentlySelectedEmptyNode);
+                
             }
             
         m_StripPanelPreviousWidth = mStripsPanel.Width;
