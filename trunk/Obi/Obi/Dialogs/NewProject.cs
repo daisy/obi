@@ -102,7 +102,14 @@ namespace Obi.Dialogs
             mCanClose = false;
             try
             {
+
+                if (mTitleBox.Text == "")
+                {
+                    MessageBox.Show(Localizer.Message("NewProject_EmptyTitle"));
+                    return;
+                }
                 ObiForm.CheckProjectPath(mFileBox.Text, true);
+                
                 mCanClose = true;
             }
             catch (Exception x)
@@ -158,7 +165,9 @@ namespace Obi.Dialogs
         /// <summary>
         /// Generate a new XUK file name when a new title is chosen.
         /// </summary>
-        private void mTitleBox_TextChanged(object sender, EventArgs e) { GenerateFileName(); }
+        private void mTitleBox_TextChanged(object sender, EventArgs e)     { GenerateFileName(); 
+
+        }
 
         /// <summary>
         /// If we decided not to overwrite a file, then the form should not be closed.
