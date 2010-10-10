@@ -551,6 +551,7 @@ namespace Obi.ProjectView
                         {
                             EnsureControlVisible((Control)s);
                         }
+                        UpdateScrollTrackBarAccordingToSelectedNode();
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus ();
                         mFocusing = false;
@@ -2313,6 +2314,29 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             return percentageValue;
             }
 
+        //@singleSection
+        private void UpdateScrollTrackBarAccordingToSelectedNode()
+        {
+            if (mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
+            {
+                Strip currentlyActiveStrip = ActiveStrip;
+                if (currentlyActiveStrip != null && !currentlyActiveStrip.IsBlocksVisible)
+                {
+                    EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection ?
+                        (((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : (currentlyActiveStrip.LastBlock != null ? currentlyActiveStrip.LastBlock.Node : null)) :
+                        (EmptyNode)mProjectView.Selection.Node;
+
+                    if (currentlySelectedEmptyNode != null && currentlyActiveStrip.Node == currentlySelectedEmptyNode.ParentAs<SectionNode>())
+                    {
+                        int percentageValue = Convert.ToInt32(  currentlySelectedEmptyNode.Index / currentlyActiveStrip.Node.PhraseChildCount);
+                        if (verticalScrollToolStripContainer1.TrackBarValueInPercentage != percentageValue) verticalScrollToolStripContainer1.TrackBarValueInPercentage = percentageValue;
+                        
+                    }
+                }// check ends for currently active strip
+            }
+
+        }
+
         //@singleSection : Scroll to top
         public bool ScrollStripsPanel_Top ()
             {
@@ -3733,7 +3757,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     }
 
                 if (node != null) mProjectView.Selection = new NodeSelection ( node, this );
-                verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( strip );
+                
                 //if playback is active, update playback block
                 if (mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock == null)
                     {
@@ -3741,16 +3765,6 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     mProjectView.SetPlaybackBlockIfRequired ();
                     }
 
-                /*
-if (IsBlockInvisibleButStripVisible ( node ))
-    {
-    mProjectView.Selection = new NodeSelection ( node.ParentAs<SectionNode> (), this );
-    }
-else
-    {
-    mProjectView.Selection = new NodeSelection ( node, this );
-    }
- */
                 }
 
             }
