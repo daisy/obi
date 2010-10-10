@@ -735,7 +735,8 @@ namespace Obi
                 }
             else if (Localizer.Message ( "Scroll_LoadingScreen" ) == mStatusLabel.Text)
                 {
-                Status ("" );
+                //Status ("" );
+                    ShowSelectionInStatusBar();
                 }
             }
 
