@@ -704,8 +704,10 @@ namespace Obi.ProjectView
                     // Top of control is above the visible window, so scroll to the top
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( top, v_max );
+                        int cordY = Math.Min(top, v_max);
+                        if (stripLabelOffset > 0 && cordY < stripLabelOffset) cordY = stripLabelOffset;
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                        Math.Min ( top, v_max ) * -1 );
+                        cordY * -1 );
                     }
                 else if (b > vh)
                     {
@@ -716,8 +718,10 @@ namespace Obi.ProjectView
                     // above.)
                     //@singleSection : we need to remove VScroll bar so this code should directly work on mStripsPanel
                     //mVScrollBar.Value = Math.Min ( bottom - vh, v_max );
+                        int cordY = Math.Min(bottom - vh, v_max);
+                        if (stripLabelOffset > 0 && cordY < stripLabelOffset) cordY = stripLabelOffset;
                     mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
-                        Math.Min ( bottom - vh, v_max ) * -1 );
+                        cordY * -1 );
                     }
 
                 // Horizontal scrolling is the same
