@@ -2344,11 +2344,20 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         //@singleSection : Scroll to top
         public bool ScrollStripsPanel_Top ()
-            {
+        {
             Strip currentlyActiveStrip = ActiveStrip;
 
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                    if (mProjectView.TransportBar.IsRecorderActive && this.ContainsFocus)
+                    {
+                        if (mProjectView.TransportBar.RecordingPhrase != null && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>() == currentlyActiveStrip.Node)
+                        {
+                            SelectPhraseBlockOrStrip(mProjectView.TransportBar.RecordingPhrase);
+                        }
+                        return false;
+                    }
+
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
 
@@ -2371,10 +2380,19 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection : Scroll to bottom
         public bool ScrollStripsPanel_Bottom ()
             {
-            Strip currentlyActiveStrip = ActiveStrip;
-
+                Strip currentlyActiveStrip = ActiveStrip;
+            
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                    if (mProjectView.TransportBar.IsRecorderActive && this.ContainsFocus)
+                    {
+                        if (mProjectView.TransportBar.RecordingPhrase != null && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>() == currentlyActiveStrip.Node)
+                        {
+                            SelectPhraseBlockOrStrip(mProjectView.TransportBar.RecordingPhrase);
+                        }
+                        return false;
+                    }
+
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
