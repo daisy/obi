@@ -2013,6 +2013,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             if (currentlyActiveStrip != null)
                 {
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return ;
                 Block firstBlock = currentlyActiveStrip.FirstBlock;
                 Block lastBlock = currentlyActiveStrip.LastBlock;
                 if (firstBlock != null && lastBlock != null)
@@ -2349,15 +2350,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
-                    if (mProjectView.TransportBar.IsRecorderActive && this.ContainsFocus)
-                    {
-                        if (mProjectView.TransportBar.RecordingPhrase != null && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>() == currentlyActiveStrip.Node)
-                        {
-                            SelectPhraseBlockOrStrip(mProjectView.TransportBar.RecordingPhrase);
-                        }
-                        return false;
-                    }
-
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
+                
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
 
@@ -2384,15 +2378,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
-                    if (mProjectView.TransportBar.IsRecorderActive && this.ContainsFocus)
-                    {
-                        if (mProjectView.TransportBar.RecordingPhrase != null && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>() == currentlyActiveStrip.Node)
-                        {
-                            SelectPhraseBlockOrStrip(mProjectView.TransportBar.RecordingPhrase);
-                        }
-                        return false;
-                    }
-
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
+                    
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
@@ -2419,6 +2406,20 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 ((Control)mSelectedItem).Focus ();
                 }
             }
+
+        //@singleSection
+        private bool ScrollRestrictedWhileRecording(Strip currentlyActiveStrip)
+        {
+            if (mProjectView.TransportBar.IsRecorderActive && this.ContainsFocus)
+            {
+                if (mProjectView.TransportBar.RecordingPhrase != null && mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode>() == currentlyActiveStrip.Node)
+                {
+                    SelectPhraseBlockOrStrip(mProjectView.TransportBar.RecordingPhrase);
+                }
+                return true;
+            }
+            return false;
+        }
 
         //@singleSection
         private bool m_IsScrollActive = false;
