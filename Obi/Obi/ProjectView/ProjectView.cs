@@ -2712,7 +2712,7 @@ namespace Obi.ProjectView
             if (node != null)
                 {
                 //@singleSection: added this if block and code inside it, 
-                if (mContentView.ContainsFocus && node is EmptyNode)
+                    if ((mContentView.ContainsFocus || selectionControl  == null) && node is EmptyNode)
                     {
                     mContentView.SelectPhraseBlockOrStrip ((EmptyNode) node );
                     if (TransportBar.IsPlayerActive 
