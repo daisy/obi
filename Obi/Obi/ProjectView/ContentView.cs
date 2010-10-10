@@ -550,8 +550,9 @@ namespace Obi.ProjectView
                         else
                         {
                             EnsureControlVisible((Control)s);
+                            UpdateScrollTrackBarAccordingToSelectedNode();
                         }
-                        UpdateScrollTrackBarAccordingToSelectedNode();
+                        
                         mFocusing = true;
                         if (!((Control)s).Focused) ((Control)s).Focus ();
                         mFocusing = false;
@@ -2328,7 +2329,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                     if (currentlySelectedEmptyNode != null && currentlyActiveStrip.Node == currentlySelectedEmptyNode.ParentAs<SectionNode>())
                     {
-                        int percentageValue = Convert.ToInt32(  currentlySelectedEmptyNode.Index / currentlyActiveStrip.Node.PhraseChildCount);
+                        int percentageValue = Convert.ToInt32(  (currentlySelectedEmptyNode.Index * 100 )/ currentlyActiveStrip.Node.PhraseChildCount);
                         if (verticalScrollToolStripContainer1.TrackBarValueInPercentage != percentageValue) verticalScrollToolStripContainer1.TrackBarValueInPercentage = percentageValue;
                         
                     }
