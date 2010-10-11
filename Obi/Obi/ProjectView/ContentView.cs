@@ -1140,7 +1140,7 @@ namespace Obi.ProjectView
         //@singleSection
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
-            if (selectionValue == null) return;
+            if (selectionValue == null || !selectionValue.Node.IsRooted) return;
             // explicitly handle audio cursor selection, will add universal approach later.
             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing &&  mSelection != null && selectionValue.Node is PhraseNode && selectionValue.Node == mSelection.Node && selectionValue is AudioSelection) return;
 
@@ -3228,7 +3228,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     nodeIndexOfStripToSelect = strip.StripIndexBefore(item);
                 }
             //bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( PlaybackBlock != null ? PlaybackBlock : item ); } );
-                bool ReturnVal = SelectStripCursorFor(delegate(Strip strip1, ISelectableInContentView item1) { return nodeIndexOfStripToSelect; });
+                bool ReturnVal = nodeIndexOfStripToSelect != -1 ? SelectStripCursorFor(delegate(Strip strip1, ISelectableInContentView item1) { return nodeIndexOfStripToSelect; }):
+                    false;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
 
             return ReturnVal;
