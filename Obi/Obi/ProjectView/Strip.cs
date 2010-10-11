@@ -1415,6 +1415,16 @@ namespace Obi.ProjectView
                     }
                 }
             if (!isExpectedPhraseExists || !isBlocksContineus) return false;
+            // determine the first phrase, and return if no suitable phrase found
+            int newOffset = -1;
+            for (int i = 0; i < m_BackgroundBlockLayout.Controls.Count; i++)
+            {
+                if (m_BackgroundBlockLayout.Controls[i] is Block && ((Block)m_BackgroundBlockLayout.Controls[i]).Node.IsRooted)
+                {
+                    newOffset = ((Block)m_BackgroundBlockLayout.Controls[i]).Node.Index;
+                }
+            }
+            if (newOffset == -1) return false;
 
             Point layoutLocation = new Point ( mBlockLayout.Location.X , mBlockLayout.Location.Y ) ;
             FlowLayoutPanel removePanel = mBlockLayout;
@@ -1422,7 +1432,7 @@ namespace Obi.ProjectView
             this.Controls.Remove ( removePanel );
 
             mBlockLayout = m_BackgroundBlockLayout;
-            m_OffsetForFirstPhrase = FirstBlock.Node.Index;
+            m_OffsetForFirstPhrase = newOffset;
             mBlockLayout.Location = layoutLocation;
             mBlockLayout.BringToFront ();
             // scan all blocks in cashed layout and remove blocks that are detached
