@@ -1906,6 +1906,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Strip currentlyActiveStrip = ActiveStrip;
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
+
                 if (Selection != null)
                     {
                     EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
