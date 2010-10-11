@@ -223,7 +223,7 @@ namespace Obi.ProjectView
                 {
                 if (IsRecorderActive && mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount)
                     return true;
-                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode> ().PhraseChildCount < mView.MaxVisibleBlocksCount)
+                else if (IsPlayerActive && mCurrentPlaylist.CurrentPhrase != null && mCurrentPlaylist.CurrentPhrase.IsRooted  && mCurrentPlaylist.CurrentPhrase.ParentAs<SectionNode>().PhraseChildCount < mView.MaxVisibleBlocksCount)
                     return true;
                 else
                     return mView.IsPhraseCountWithinLimit;
