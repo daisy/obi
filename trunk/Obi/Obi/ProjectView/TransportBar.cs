@@ -1192,12 +1192,14 @@ namespace Obi.ProjectView
                     MessageBoxIcon.Question ) == DialogResult.No)
                 {
                 mResumeRecordingPhrase = null;
+                mRecordingPhrase = null;
                 }
 // if recording phrase is not rooted, make it to null
             // doing separately to reduce complexity of above if block
             if (mResumeRecordingPhrase != null && !mResumeRecordingPhrase.IsRooted)
                 {
                 mResumeRecordingPhrase = null;
+                mRecordingPhrase = null;
                 MessageBox.Show ( Localizer.Message ( "RecordingResumePhrasesDeleted" ), Localizer.Message ( "Caption_Information" ), MessageBoxButtons.OK, MessageBoxIcon.Information );
                                 }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
