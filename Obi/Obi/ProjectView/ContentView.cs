@@ -3158,6 +3158,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (strip != null && strip.FirstBlock != null)
                 {
                 int index = f ( strip, mSelectedItem );
+                
                 if (index >= 0)
                     {
                     //mProjectView.Selection = new StripIndexSelection ( strip.Node, this, index ); //@singleSection: original
@@ -3207,9 +3208,27 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 PlaybackBlock = mPlaybackBlock;
                 mProjectView.TransportBar.Stop ();
                 }
-            CreateBlocksInPreviousThresholdsSlot ();//@singleSection
 
-            bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( PlaybackBlock != null ? PlaybackBlock : item ); } );
+                ISelectableInContentView item = PlaybackBlock != null ? mPlaybackBlock : mSelectedItem;
+                if (item == null) return false;
+
+                Strip strip = StripFor(item);
+                if (strip == null) return false;
+
+                int nodeIndexOfStripToSelect = -1;
+                if (mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection && strip.OffsetForFirstPhrase > 0
+                    && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection.Index == strip.OffsetForFirstPhrase)
+                {
+                    nodeIndexOfStripToSelect = strip.OffsetForFirstPhrase - 1;
+                    CreateBlocksInPreviousThresholdsSlot();//@singleSection
+                    nodeIndexOfStripToSelect = nodeIndexOfStripToSelect - strip.OffsetForFirstPhrase;
+                }
+                else
+                {
+                    nodeIndexOfStripToSelect = strip.StripIndexBefore(item);
+                }
+            //bool ReturnVal = SelectStripCursorFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.StripIndexBefore ( PlaybackBlock != null ? PlaybackBlock : item ); } );
+                bool ReturnVal = SelectStripCursorFor(delegate(Strip strip1, ISelectableInContentView item1) { return nodeIndexOfStripToSelect; });
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
 
             return ReturnVal;
