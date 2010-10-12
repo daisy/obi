@@ -2290,7 +2290,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 {
                 phraseLotSize = currentlyActiveStrip.Node.PhraseChildCount;
                 }
-            Console.WriteLine ( "Calculated phrase lot size " + phraseLotSize );
+            //Console.WriteLine ( "Calculated phrase lot size " + phraseLotSize );
             return phraseLotSize;
             }
 
@@ -2390,7 +2390,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 mStripsPanel.Location = new Point ( mStripsPanel.Location.X,
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10)) * -1 );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
-                ReturnFocusFromVerticalScrollPanel ();
+                //ReturnFocusFromVerticalScrollPanel ();
                 IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 return true;
