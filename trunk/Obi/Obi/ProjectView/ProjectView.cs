@@ -2851,6 +2851,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void GoToPageOrPhrase ()
             {
+                if (mPresentation.FirstSection == null) return;
             Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase (GetSelectedPhraseSection != null? GetSelectedPhraseSection.PhraseChildCount: mPresentation.FirstSection.PhraseChildCount);
             if (GoToDialog.ShowDialog () == DialogResult.OK)
                 {
