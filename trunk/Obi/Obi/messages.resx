@@ -1500,4 +1500,7 @@ Error text: {1}</value>
   <data name="DeleteFollowing_SectionSelection" xml:space="preserve">
     <value>This will delete all phrases of selected section. Will you like to proceed?</value>
   </data>
+  <data name="NewProject_EmptyTitle" xml:space="preserve">
+    <value>Project cannot have empty title.</value>
+  </data>
 </root>
