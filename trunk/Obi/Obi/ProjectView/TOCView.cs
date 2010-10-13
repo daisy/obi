@@ -136,6 +136,13 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
+                    //clear dummy paint from toc view selected node
+                    if (mSelection != null && mProjectView.GetSelectedPhraseSection != null
+                        && mProjectView.GetSelectedPhraseSection != mSelection.Node )
+                    {
+                        PaintSelectedNode(false);
+                    }   
+
                     mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // Ignore the select event, since we were asked to change the selection;
@@ -577,6 +584,34 @@ namespace Obi.ProjectView
                 mProjectView.ShowSelectedSectionContents();
             }
         }
+
+        private void TOCView_Leave(object sender, EventArgs e)
+        {
+            PaintSelectedNode(true);
+        }
+
+        private void PaintSelectedNode(bool isSelected)
+        {
+            if (mSelection != null && !(mSelection is TextSelection))
+            {
+                TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)mSelection.Node);
+                if (treeNodeToSelect != null)
+                {
+                    if (isSelected)
+                    {
+                        treeNodeToSelect.BackColor = SystemColors.Highlight;
+                        treeNodeToSelect.ForeColor = SystemColors.HighlightText;
+                    }
+                    else
+                    {
+                        treeNodeToSelect.BackColor = Color.Empty;
+                        treeNodeToSelect.ForeColor = SystemColors.ControlText;
+                    }
+                }
+                
+            }
+        }
+
 
     }
 }
