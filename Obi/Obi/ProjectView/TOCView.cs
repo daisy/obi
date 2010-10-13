@@ -569,5 +569,14 @@ namespace Obi.ProjectView
         {
         mProjectView.ShowSelectedSectionContents();
         }
+
+        private void TOCView_DoubleClick(object sender, EventArgs e)
+        {
+            if (mProjectView.Selection != null)
+            {
+                mProjectView.ShowSelectedSectionContents();
+            }
+        }
+
     }
 }
