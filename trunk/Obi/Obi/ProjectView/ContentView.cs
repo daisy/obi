@@ -36,6 +36,7 @@ namespace Obi.ProjectView
 
         private bool m_CreatingGUIForNewPresentation;
         private bool m_IsBlocksVisibilityProcessActive;
+        private NodeSelection m_PreviousSelectionForScroll; //caches previous selection for restore while scroll
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
 
         private delegate Strip AddStripForObiNodeDelegate ( ObiNode node );
@@ -558,6 +559,7 @@ namespace Obi.ProjectView
                         mFocusing = false;
 
                         //RemoveBlocksBelowContentViewVisibleArea (value.Node is EmptyNode ? (EmptyNode) value.Node: null);//@singleSection: explicitly call remove after rearrangement of strip panel
+                        if (!(mSelectedItem is Strip)) m_PreviousSelectionForScroll = null;//if section is not selected, it means that user has intentionally selected something else so selection should not restore
                         }
                     }
                 }
@@ -2036,6 +2038,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 }
                             }
                         }
+
+                        NodeSelection previousSelection = null;
+                        if (!updateBlockSelection && mProjectView.Selection != null && mProjectView.Selection.Control is ContentView) previousSelection = mProjectView.Selection;
                     mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                     IsScrollActive = true;
 
@@ -2242,6 +2247,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         }
                         if (blockToBeSelected != null) Console.WriteLine ( "selected block location " + (LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y) );
                         }
+                        //if (previousSelection != null) ManageSelectionChangeWhileScroll(previousSelection, currentlyActiveStrip);
                     }
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage ( currentlyActiveStrip );
                 }// check ends for currently active strip
@@ -2356,7 +2362,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
-
+                NodeSelection previousSelection = mProjectView.Selection;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                                 currentlyActiveStrip.Node.PhraseChild ( 0 ),
                                 false );
@@ -2398,6 +2404,43 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             return false;
             }
+
+        //@singleSection
+        private void ManageSelectionChangeWhileScroll(NodeSelection previousSelection, Strip stripControl)
+        {
+            if ( previousSelection != null && mProjectView.Selection != null
+                && previousSelection != mProjectView.Selection 
+                && (previousSelection.Node is EmptyNode || previousSelection is StripIndexSelection )
+                && (mProjectView.Selection.Node is SectionNode && (mProjectView.Selection is StripIndexSelection)) 
+                && stripControl.FindBlock ((EmptyNode)previousSelection.Node) == null)
+            {
+                m_PreviousSelectionForScroll = previousSelection;
+            }
+            SelectPreviouslySelectedEmptyNodeIfBlockAvailable(stripControl) ;
+        }
+
+            //@singleSection
+            private bool SelectPreviouslySelectedEmptyNodeIfBlockAvailable(Strip currentlyActiveStrip)
+            {
+                if (m_PreviousSelectionForScroll != null && mProjectView.Selection != null
+                    && (m_PreviousSelectionForScroll.Node is EmptyNode || m_PreviousSelectionForScroll is StripIndexSelection)
+                    && (mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
+                {
+                    if (currentlyActiveStrip == null) FindStrip((SectionNode)mProjectView.Selection.Node);
+                    EmptyNode previouslySelectedEmptyNode = m_PreviousSelectionForScroll is StripIndexSelection ? ((StripIndexSelection)m_PreviousSelectionForScroll).EmptyNodeForSelection : (EmptyNode)m_PreviousSelectionForScroll.Node;
+                    if (previouslySelectedEmptyNode != null)
+                    {
+                        Block blockForPreviouslySelectedNode = currentlyActiveStrip.FindBlock(previouslySelectedEmptyNode);
+                        if (blockForPreviouslySelectedNode != null)
+                        {
+                            mProjectView.SelectedBlockNode = previouslySelectedEmptyNode;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
 
         private void ReturnFocusFromVerticalScrollPanel ()
             {
