@@ -1894,12 +1894,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public bool ScrollUp_SmallIncrementWithSelection ()
             {
+                
             return MoveToNextOrPreviousLineInStrip ( false );
             }
 
         //@singleSection
         public bool ScrollDown_SmallIncrementWithSelection ()
             {
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
             return MoveToNextOrPreviousLineInStrip ( true );
             }
 
@@ -3231,7 +3233,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectPrecedingBlock ()
             {
-                if (!mProjectView.TransportBar.IsPlayerActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
                                     ISelectableInContentView item = mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : mSelectedItem  ;
                         if (item == null) return false;
@@ -3262,7 +3264,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectPrecedingStripCursor ()
             {
-                if (!mProjectView.TransportBar.IsPlayerActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
             bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
@@ -3323,7 +3325,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectFollowingBlock ()
             {
-                if (!mProjectView.TransportBar.IsPlayerActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
                 ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
                     mProjectView.Selection != null ? mProjectView.Selection.Node : null;
@@ -3345,7 +3347,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private bool SelectFollowingStripCursor ()
             {
-                if (!mProjectView.TransportBar.IsPlayerActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
 
             bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
