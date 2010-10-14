@@ -4084,7 +4084,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
-            Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase;
+            Context_SplitPhraseMenuItem.Enabled = mProjectView.CanSplitPhrase && !mProjectView.TransportBar.IsRecorderActive;
             Context_MergePhraseWithNextMenuItem.Enabled = CanMergeBlockWithNext;
             Context_MergeMenuItem.Enabled = mProjectView.Presentation != null && IsBlockOrWaveformSelected && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
             Context_CropAudioMenuItem.Enabled = mProjectView.CanCropPhrase;
