@@ -136,13 +136,7 @@ namespace Obi.ProjectView
             {
                 if (mSelection != value)
                 {
-                    //clear dummy paint from toc view selected node
-                    if (mSelection != null && mProjectView.GetSelectedPhraseSection != null
-                        && mProjectView.GetSelectedPhraseSection != mSelection.Node )
-                    {
-                        PaintSelectedNode(false);
-                    }   
-
+                    if(mSelection != null && (value == null || value.Node != mSelection.Node)) PaintSelectedNode(false);
                     mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // Ignore the select event, since we were asked to change the selection;
