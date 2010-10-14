@@ -2439,7 +2439,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     && (m_PreviousSelectionForScroll.Node is EmptyNode || m_PreviousSelectionForScroll is StripIndexSelection))
                     //&& (mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
                 {
-                    if (currentlyActiveStrip == null ) currentlyActiveStrip =  FindStrip(m_PreviousSelectionForScroll.Node.ParentAs<SectionNode> () );
+                    if (currentlyActiveStrip == null ) currentlyActiveStrip =  FindStrip(m_PreviousSelectionForScroll is StripIndexSelection?(SectionNode)m_PreviousSelectionForScroll.Node :  m_PreviousSelectionForScroll.Node.ParentAs<SectionNode> () );
                                         if (currentlyActiveStrip != null)
                     {
                         EmptyNode previouslySelectedEmptyNode = m_PreviousSelectionForScroll is StripIndexSelection ? ((StripIndexSelection)m_PreviousSelectionForScroll).EmptyNodeForSelection : (EmptyNode)m_PreviousSelectionForScroll.Node;
