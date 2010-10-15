@@ -2159,6 +2159,7 @@ namespace Obi.ProjectView
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     ObiNode phraseDetectionNode = Selection.Node ;
                     CompositeCommand command = null;
+                    ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ()
                             {
@@ -2166,7 +2167,7 @@ namespace Obi.ProjectView
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
                     progress.ShowDialog ();
-                    
+                    ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     mPresentation.Do ( command );
 
                     SectionNode SNode = phraseDetectionNode is EmptyNode? phraseDetectionNode.ParentAs<SectionNode>() : (SectionNode) phraseDetectionNode;
@@ -2230,8 +2231,8 @@ namespace Obi.ProjectView
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     //CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "PhraseDetection_WholeProject" ) );
                     List<CompositeCommand> listOfCommands = new List<CompositeCommand> ();
-                    
 
+                    ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)
                             {
@@ -2247,6 +2248,7 @@ namespace Obi.ProjectView
                                 }
                             } );
                     progress.ShowDialog ();
+                    ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     //MessageBox.Show ( "Scanning of all files complete " );
                     
                     //Dialogs.ProgressDialog  progress2 = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
