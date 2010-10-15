@@ -1264,6 +1264,8 @@ namespace Obi.ProjectView
                 //if (mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == node) return null;
                 }
 
+               bool SelectionChangedPlaybackEnabledStatus =  mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+               mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
             // first remove existing strip
             if (removeExisting)
                 {
@@ -1282,6 +1284,7 @@ namespace Obi.ProjectView
                 if (requiredExistingStrip != null)
                     {
                     contentViewLabel1.Name_SectionDisplayed = requiredExistingStrip.Node.Label;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                     return requiredExistingStrip;
                     }
                 }
@@ -1291,7 +1294,9 @@ namespace Obi.ProjectView
             mStripsPanel.Location = new Point ( 0, 0 );
             verticalScrollToolStripContainer1.CanScrollUp = false;
             //Console.WriteLine("disabling upper toolstrip during initializing section");
-            return AddStripForSection ( node );
+            Strip newStrip = AddStripForSection ( node );
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+            return newStrip;
             }
 
         /// <summary>
