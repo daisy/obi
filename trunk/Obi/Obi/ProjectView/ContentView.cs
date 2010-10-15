@@ -3332,6 +3332,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
                     mProjectView.Selection != null ? mProjectView.Selection.Node : null;
+                
                 if (mSelectedItem != null &&  mSelectedItem is Strip 
                     && currentlySelectedNode != null &&  currentlySelectedNode is SectionNode && ((SectionNode)currentlySelectedNode).PhraseChildCount > 0)
                 {
@@ -3340,8 +3341,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 else
                 {
                     if (mProjectView.TransportBar.IsPlayerActive  && currentlySelectedNode != null && currentlySelectedNode is EmptyNode
-                        &&    (mPlaybackBlock == null || currentlySelectedNode != mPlaybackBlock.Node))
+                        &&    (mPlaybackBlock == null || currentlySelectedNode != mPlaybackBlock.Node || (mSelectedItem is Strip && mProjectView.GetSelectedPhraseSection.PhraseChildCount == 1)))
                     {
+                        
                         SelectPhraseBlockOrStrip((EmptyNode) currentlySelectedNode);
                     }
                     return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item); });
