@@ -367,13 +367,7 @@ namespace Obi.ProjectView
         {
             ResumeLayout_All();
             UpdateSize();
-            //Strip currentlyActiveStrip = ActiveStrip;
-            //if (currentlyActiveStrip != null && !currentlyActiveStrip.IsContentViewFilledWithBlocks)
-            //{
-                //System.Media.SystemSounds.Asterisk.Play();
-                //CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
-                
-            //}
+            UpdateScrollTrackBarAccordingToSelectedNode();
             Cursor = mCursor;
             Console.WriteLine("horizontal bar size " + mHScrollBar.Maximum);
             //UpdateBlocksLabelInSelectedNodeStrip ();
