@@ -1263,9 +1263,7 @@ namespace Obi.ProjectView
 
                 //if (mProjectView.TransportBar.RecordingPhrase.ParentAs<SectionNode> () == node) return null;
                 }
-
-               bool SelectionChangedPlaybackEnabledStatus =  mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
-               mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+   
             // first remove existing strip
             if (removeExisting)
                 {
@@ -1283,9 +1281,8 @@ namespace Obi.ProjectView
                     }
                 if (requiredExistingStrip != null)
                     {
-                    contentViewLabel1.Name_SectionDisplayed = requiredExistingStrip.Node.Label;
-                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
-                    return requiredExistingStrip;
+                        contentViewLabel1.Name_SectionDisplayed = requiredExistingStrip.Node.Label;
+                        return requiredExistingStrip;
                     }
                 }
             //Console.WriteLine ("creating strip " + node.Label ) ;
@@ -1294,6 +1291,8 @@ namespace Obi.ProjectView
             mStripsPanel.Location = new Point ( 0, 0 );
             verticalScrollToolStripContainer1.CanScrollUp = false;
             //Console.WriteLine("disabling upper toolstrip during initializing section");
+            bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+            mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
             Strip newStrip = AddStripForSection ( node );
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
             return newStrip;
@@ -3468,6 +3467,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 (mProjectView.Selection == null ||
                 (mProjectView.Selection != null && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))))
                 {
+                    bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+
                 mProjectView.Selection = new NodeSelection ( currentlySelectedSection, this );
                 if (mProjectView.TransportBar.IsPlayerActive) mProjectView.TransportBar.Stop ();
                 foreach (Control c in mStripsPanel.Controls)
@@ -3477,6 +3479,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         if (((Strip)c).Node == currentlySelectedSection) ((Strip)c).FocusStripLabel ();
                         }
                     }
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                 }
             if (nextSection != null) CreateStripForSelectedSection ( nextSection, true ); //@singleSection: ends
 
@@ -3526,6 +3529,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (mProjectView.TransportBar.IsPlayerActive && section != null) mProjectView.TransportBar.Stop ();
             if (mProjectView.Selection != null && mProjectView.Selection.Node is PhraseNode && section != null)
                 {
+                    bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                 mProjectView.Selection = new NodeSelection ( mProjectView.GetSelectedPhraseSection, this );
                 foreach (Control c in mStripsPanel.Controls)
                     {
@@ -3534,6 +3539,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         if (((Strip)c).Node == mProjectView.GetSelectedPhraseSection) ((Strip)c).FocusStripLabel ();
                         }
                     }
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                 }
             if (section != null) CreateStripForSelectedSection ( section, true ); //@singleSection: ends
 
