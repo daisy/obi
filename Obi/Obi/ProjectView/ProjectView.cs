@@ -2248,7 +2248,7 @@ namespace Obi.ProjectView
                                 }
                             } );
                     progress.ShowDialog ();
-                    ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
+                    ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     //MessageBox.Show ( "Scanning of all files complete " );
                     
                     //Dialogs.ProgressDialog  progress2 = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
