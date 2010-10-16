@@ -1812,6 +1812,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It is a user-defined data. Please enter both metadata name and its value..
+        /// </summary>
+        internal static string METADATA_CUSTOM_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_CUSTOM_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Party whose contribution to the publication is secondary to those named in dc:Creator.
         /// </summary>
         internal static string METADATA_DC_CONTRIBUTOR_HELP {
@@ -1930,7 +1939,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The nature of the content of the DTB.
+        ///   Looks up a localized string similar to Nature of the content of the DTB.
         /// </summary>
         internal static string METADATA_DC_TYPE_HELP {
             get {
@@ -1948,7 +1957,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date at which the book is produced. Syntax is YYYY[-MM[-DD]].
+        ///   Looks up a localized string similar to Date on which the book is produced. Syntax is YYYY[-MM[-DD]].
         /// </summary>
         internal static string METADATA_DTB_PRODUCED_DATE_HELP {
             get {
@@ -1966,8 +1975,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date at which book is revised.
-        /// Syntax is YYYY[-MM[-DD]].
+        ///   Looks up a localized string similar to Date on which book is revised. Syntax is YYYY[-MM[-DD]].
         /// </summary>
         internal static string METADATA_DTB_REVISION_DATE_HELP {
             get {
@@ -1976,7 +1984,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A brief description about the modifications.
+        ///   Looks up a localized string similar to Enter a brief description about the modifications.
         ///.
         /// </summary>
         internal static string METADATA_DTB_REVISION_DESC_HELP {
@@ -1986,7 +1994,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number indicating the revision of the book, if it has been revised.
+        ///   Looks up a localized string similar to Number indicating the revision of the book, if it has been revised.
         ///.
         /// </summary>
         internal static string METADATA_DTB_REVISION_HELP {
@@ -1996,8 +2004,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date of publishing mentioned on the physical book. revised.
-        /// Syntax is YYYY[-MM[-DD]].
+        ///   Looks up a localized string similar to Date of publishing mentioned on the physical book. Syntax is YYYY[-MM[-DD]].
         /// </summary>
         internal static string METADATA_DTB_SOURCE_DATE_HELP {
             get {

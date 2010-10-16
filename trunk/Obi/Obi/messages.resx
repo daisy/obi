@@ -1544,32 +1544,30 @@ Error text: {1}</value>
     <value>Title of DTB including any subtitles</value>
   </data>
   <data name="METADATA_DC_TYPE_HELP" xml:space="preserve">
-    <value>The nature of the content of the DTB</value>
+    <value>Nature of the content of the DTB</value>
   </data>
   <data name="METADATA_DTB_NARRATOR_HELP" xml:space="preserve">
     <value>Name of the person who narrated the book</value>
   </data>
   <data name="METADATA_DTB_PRODUCED_DATE_HELP" xml:space="preserve">
-    <value>Date at which the book is produced. Syntax is YYYY[-MM[-DD]]</value>
+    <value>Date on which the book is produced. Syntax is YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_PRODUCER_HELP" xml:space="preserve">
     <value>Name of organization or library that published the DTB</value>
   </data>
   <data name="METADATA_DTB_REVISION_DATE_HELP" xml:space="preserve">
-    <value>Date at which book is revised.
- Syntax is YYYY[-MM[-DD]]</value>
+    <value>Date on which book is revised. Syntax is YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_REVISION_DESC_HELP" xml:space="preserve">
-    <value>A brief description about the modifications.
+    <value>Enter a brief description about the modifications.
 </value>
   </data>
   <data name="METADATA_DTB_REVISION_HELP" xml:space="preserve">
-    <value>The number indicating the revision of the book, if it has been revised.
+    <value>Number indicating the revision of the book, if it has been revised.
 </value>
   </data>
   <data name="METADATA_DTB_SOURCE_DATE_HELP" xml:space="preserve">
-    <value>Date of publishing mentioned on the physical book. revised.
- Syntax is YYYY[-MM[-DD]]</value>
+    <value>Date of publishing mentioned on the physical book. Syntax is YYYY[-MM[-DD]]</value>
   </data>
   <data name="METADATA_DTB_SOURCE_EDITION_HELP" xml:space="preserve">
     <value>Edition of the physical book</value>
@@ -1588,5 +1586,8 @@ Error text: {1}</value>
   </data>
   <data name="METADATA_OBI_XUK_VERSION_HELP" xml:space="preserve">
     <value>Version of the xuk file</value>
+  </data>
+  <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
+    <value>It is a user-defined data. Please enter both metadata name and its value.</value>
   </data>
 </root>
