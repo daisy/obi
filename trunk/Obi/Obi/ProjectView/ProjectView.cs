@@ -2984,7 +2984,11 @@ namespace Obi.ProjectView
 
 
         //@singleSection
-        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) { mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase ); }
+        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) 
+        { 
+            mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase );
+            if (Selection != null &&  Selection.Node is SectionNode  && Selection.Control is TOCView) mTOCView.HighlightNodeWithoutSelection = (SectionNode)Selection.Node;
+        }
 
         //@singleSection
         public bool IsContentViewScrollActive { get { return mContentView.IsScrollActive; } }
