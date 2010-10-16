@@ -716,6 +716,7 @@ namespace Obi.ProjectView
                 if (mSelection != null && mSelection.Control is TOCView)
                     {
                     // show the selected section in content view
+                    /*
                     Strip currentlyActiveStrip = mContentView.ActiveStrip;
 
                     if (GetSelectedPhraseSection != null )//@singleSection
@@ -736,7 +737,9 @@ namespace Obi.ProjectView
                             return;
                             }
                         }
-                    
+                    */
+                    //following function called for replacement of above commented code
+                        if (!ShowSelectedSectionContents()) return;
 
                     if (TransportBar.IsPlayerActive)
                         {
@@ -2822,15 +2825,35 @@ namespace Obi.ProjectView
         /// </summary>
         public bool ShowSelectedSectionContents ()
             {
-            //
-            if (Selection != null && Selection.Node is SectionNode)//@singleSection
+                        if (Selection != null && Selection.Node is SectionNode)//@singleSection
                 {
-                return mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true )!= null ;
+                            //replacement code starts
+                    Strip currentlyActiveStrip = mContentView.ActiveStrip;
+                    Strip newStrip = null;
+                    if (GetSelectedPhraseSection != null)//@singleSection
+                    {
+                        if (currentlyActiveStrip != null
+                        && GetSelectedPhraseSection != currentlyActiveStrip.Node && mContentView.RestrictDynamicLoadingForRecording(currentlyActiveStrip.Node))
+                        {
+                            MessageBox.Show(Localizer.Message("RecordingRestriction_CannotCreateStrip"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
+                            currentlyActiveStrip.Focus();
+                        }
+                        else if (GetSelectedPhraseSection != null && (!TransportBar.IsRecorderActive || TransportBar.RecordingSection == GetSelectedPhraseSection))
+                        {
+                            newStrip =  mContentView.CreateStripForSelectedSection(GetSelectedPhraseSection, true);
+                        }
+                        else if (TransportBar.IsRecorderActive)
+                        {
+                            MessageBox.Show(Localizer.Message("RecordingRestriction_CannotCreateStrip"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
+                            return false;
+                        }
+                    }
+                    return newStrip != null;
+                            // commenting following one line as it is replaced by code above
+                //return mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true )!= null ;
                                                 }
             return false ;
-//@singleSection: commented following two lines as this is not required with single section
-            //if (CanShowSectionContents)
-                //mContentView.CreateBlocksInStrip ();
+
             }
 
         
