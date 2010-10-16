@@ -667,9 +667,11 @@ namespace Obi.ProjectView
                     }
                 //@singleSection: take care that strip label is not visible if first block is not first phrase of section
                 int stripLabelOffset = 0;
-                if (c is Strip || c is Block)
+                if (c is Strip || c is Block || c is StripCursor)
                     {
-                    Strip c_Strip = c is Strip ? (Strip)c : ((Block)c).Strip;
+                    Strip c_Strip = c is Strip ? (Strip)c : 
+                        c is Block? ((Block)c).Strip:
+                        ((StripCursor)c).Strip;
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
                     Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
