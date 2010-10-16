@@ -16,6 +16,7 @@ namespace Obi.ProjectView
         private MetadataSelection mSelection;  // current selection
         private float mBaseFontSize;           // base font size
         private bool m_IsImportingMetadata; // flag to indicate if importing of metadata is going on
+        Dictionary<string, string> mMetadataTooltipDictionary = new Dictionary<string,string>();
 
         public MetadataView ()
             {
@@ -24,6 +25,7 @@ namespace Obi.ProjectView
             mSelection = null;
             mBaseFontSize = Font.SizeInPoints;
             m_IsImportingMetadata = false;
+            metadataDictionary();
             }
 
 
@@ -78,6 +80,41 @@ namespace Obi.ProjectView
                 mView.Presentation.MetadataEntryNameChanged += new MetadataEventHandler ( Presentation_MetadataEntryNameChanged );
                 }
             }
+        private void metadataDictionary()
+        {
+            mMetadataTooltipDictionary.Add(Metadata.DC_CONTRIBUTOR, "METADATA_DC_CONTRIBUTOR_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_COVERAGE, "METADATA_DC_COVERAGE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_CREATOR, "METADATA_DC_CREATOR_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_DATE, "METADATA_DC_DATE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_DESCRIPTION, "METADATA_DC_DESCRIPTION_HELP");
+            //  mMetadataTooltipDictionary.Add(Metadata.DC_FORMAT, "")
+            mMetadataTooltipDictionary.Add(Metadata.DC_IDENTIFIER, "METADATA_DC_IDENTIFIER_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_LANGUAGE, "METADATA_DC_LANGUAGE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_PUBLISHER, "METADATA_DC_PUBLISHER_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_RELATION, "METADATA_DC_RELATION_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_RIGHTS, "METADATA_DC_RIGHTS_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_SOURCE, "METADATA_DC_SOURCE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_SUBJECT, "METADATA_DC_SUBJECT_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_TITLE, "METADATA_DC_TITLE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DC_TYPE, "METADATA_DC_TYPE_HELP");
+            // mMetadataTooltipDictionary.Add(Metadata.DTB_AUDIO_FORMAT, )
+            //  mMetadataTooltipDictionary.Add(Metadata.DTB_MULTIMEDIA_CONTENT, "")
+            //mMetadataTooltipDictionary.Add(Metadata.DTB_MULTIMEDIA_TYPE)
+            mMetadataTooltipDictionary.Add(Metadata.DTB_NARRATOR, "METADATA_DTB_NARRATOR_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_PRODUCED_DATE, "METADATA_DTB_PRODUCED_DATE_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_PRODUCER, "METADATA_DTB_PRODUCER_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_REVISION, "METADATA_DTB_REVISION_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_REVISION_DATE, "METADATA_DTB_REVISION_DATE_ HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_REVISION_DESCRIPTION, "METADATA_DTB_REVISION_DESC_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_SOURCE_DATE, "METADATA_DTB_SOURCE_DATE_ HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_SOURCE_EDITION, "METADATA_DTB_SOURCE_EDITION_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_SOURCE_PUBLISHER, "METADATA_DTB_SOURCE_PUBLISHER_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_SOURCE_RIGHTS, "METADATA_DTB_SOURCE_RIGHTS_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.DTB_SOURCE_TITLE, "METADATA_DTB_SOURCE_TITLE_HELP");
+            // mMetadataTooltipDictionary.Add(Metadata.DTB_TOTAL_TIME, "")
+            mMetadataTooltipDictionary.Add(Metadata.GENERATOR, "METADATA_GENERATOR_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.OBI_XUK_VERSION, "METADATA_OBI_XUK_VERSION_HELP");
+        }
 
         public float ZoomFactor
             {
@@ -692,7 +729,10 @@ namespace Obi.ProjectView
                 }
             }
 
-
+        private void mMetadataListView_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            Localizer.Message(mMetadataTooltipDictionary[e.Item.Text]);            
+        }
         }
 
     public class MetadataItemSelection
