@@ -2580,10 +2580,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         m_StripPanelPreviousWidth = mStripsPanel.Width;
             }
 
-        public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase )
-
-            {
-
+        public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
+        {
             if (recordingResumePhrase != null
                 || (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
                 {
@@ -2592,7 +2590,22 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 Strip stripControl = FindStrip ( section );
 
-                if (stripControl == null) return;
+                if (stripControl == null)
+                {
+                    if (MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label), 
+                        Localizer.Message("Caption_Infomation") ,MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK
+                        &&    (Selection == null || !(Selection.Control is ContentView) ))
+                    {
+                        stripControl= CreateStripForSelectedSection(section, true);
+                        EmptyNode lastNodeToCreate = recordingResumePhrase != null && recordingResumePhrase.IsRooted ? recordingResumePhrase : 
+                            section.PhraseChildCount > 0? section.PhraseChild(section.PhraseChildCount - 1): null;
+                        if(lastNodeToCreate != null)  CreateBlocksTillNodeInStrip(stripControl, lastNodeToCreate, false);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
                 if (recordingResumePhrase != null && stripControl.FindBlock ( recordingResumePhrase ) != null) return;
 
                 Block firstBlock = stripControl.FirstBlock;
