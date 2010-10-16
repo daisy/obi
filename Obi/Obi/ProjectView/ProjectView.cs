@@ -2820,13 +2820,14 @@ namespace Obi.ProjectView
         /// <summary>
         /// shows contents of selected strip
         /// </summary>
-        public void ShowSelectedSectionContents ()
+        public bool ShowSelectedSectionContents ()
             {
             //
             if (Selection != null && Selection.Node is SectionNode)//@singleSection
                 {
-                mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true );
-                }
+                return mContentView.CreateStripForSelectedSection ( (SectionNode)Selection.Node, true )!= null ;
+                                                }
+            return false ;
 //@singleSection: commented following two lines as this is not required with single section
             //if (CanShowSectionContents)
                 //mContentView.CreateBlocksInStrip ();
