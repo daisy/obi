@@ -1812,6 +1812,245 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Party whose contribution to the publication is secondary to those named in dc:Creator.
+        /// </summary>
+        internal static string METADATA_DC_CONTRIBUTOR_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_CONTRIBUTOR_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The extent or scope of the content of the resource.
+        /// </summary>
+        internal static string METADATA_DC_COVERAGE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_COVERAGE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Names of primary author or creator of the intellectual content of the publication.
+        /// </summary>
+        internal static string METADATA_DC_CREATOR_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_CREATOR_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of publication of the DTB. Syntax is YYYY[-MM[-DD]].
+        /// </summary>
+        internal static string METADATA_DC_DATE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_DATE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plain text describing the publication&apos;s content.
+        ///.
+        /// </summary>
+        internal static string METADATA_DC_DESCRIPTION_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_DESCRIPTION_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alphanumeric string to identify dtb uniquely.
+        /// </summary>
+        internal static string METADATA_DC_IDENTIFIER_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_IDENTIFIER_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language of the content of the publication.
+        /// </summary>
+        internal static string METADATA_DC_LANGUAGE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_LANGUAGE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agency responsible for making the DTB available.
+        /// </summary>
+        internal static string METADATA_DC_PUBLISHER_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_PUBLISHER_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference to a related resource.
+        /// </summary>
+        internal static string METADATA_DC_RELATION_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_RELATION_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information about rights held in and over the DTB.
+        /// </summary>
+        internal static string METADATA_DC_RIGHTS_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_RIGHTS_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference to a resource from which the DTB is derived.
+        /// </summary>
+        internal static string METADATA_DC_SOURCE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_SOURCE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topic of the content.
+        /// </summary>
+        internal static string METADATA_DC_SUBJECT_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_SUBJECT_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title of DTB including any subtitles.
+        /// </summary>
+        internal static string METADATA_DC_TITLE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_TITLE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The nature of the content of the DTB.
+        /// </summary>
+        internal static string METADATA_DC_TYPE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DC_TYPE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of the person who narrated the book.
+        /// </summary>
+        internal static string METADATA_DTB_NARRATOR_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_NARRATOR_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date at which the book is produced. Syntax is YYYY[-MM[-DD]].
+        /// </summary>
+        internal static string METADATA_DTB_PRODUCED_DATE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_PRODUCED_DATE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of organization or library that published the DTB.
+        /// </summary>
+        internal static string METADATA_DTB_PRODUCER_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_PRODUCER_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date at which book is revised.
+        /// Syntax is YYYY[-MM[-DD]].
+        /// </summary>
+        internal static string METADATA_DTB_REVISION_DATE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_REVISION_DATE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A brief description about the modifications.
+        ///.
+        /// </summary>
+        internal static string METADATA_DTB_REVISION_DESC_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_REVISION_DESC_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number indicating the revision of the book, if it has been revised.
+        ///.
+        /// </summary>
+        internal static string METADATA_DTB_REVISION_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_REVISION_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of publishing mentioned on the physical book. revised.
+        /// Syntax is YYYY[-MM[-DD]].
+        /// </summary>
+        internal static string METADATA_DTB_SOURCE_DATE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_SOURCE_DATE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edition of the physical book.
+        /// </summary>
+        internal static string METADATA_DTB_SOURCE_EDITION_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_SOURCE_EDITION_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publisher of the physical book.
+        /// </summary>
+        internal static string METADATA_DTB_SOURCE_PUBLISHER_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_SOURCE_PUBLISHER_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Name of the organization that holds the rights of the physical book.
+        /// </summary>
+        internal static string METADATA_DTB_SOURCE_RIGHTS_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_SOURCE_RIGHTS_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title of the physical book.
+        /// </summary>
+        internal static string METADATA_DTB_SOURCE_TITLE_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_DTB_SOURCE_TITLE_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software that generated the book.
+        /// </summary>
+        internal static string METADATA_GENERATOR_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_GENERATOR_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid date format! Recommended format is YYYY-MM-DD or YYYY..
         /// </summary>
         internal static string Metadata_InvalidDateFormat {
@@ -1835,6 +2074,15 @@ namespace Obi {
         internal static string metadata_name_error_text {
             get {
                 return ResourceManager.GetString("metadata_name_error_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version of the xuk file.
+        /// </summary>
+        internal static string METADATA_OBI_XUK_VERSION_HELP {
+            get {
+                return ResourceManager.GetString("METADATA_OBI_XUK_VERSION_HELP", resourceCulture);
             }
         }
         
