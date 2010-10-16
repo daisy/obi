@@ -137,6 +137,7 @@ namespace Obi.ProjectView
                 if (mSelection != value)
                 {
                     if(mSelection != null && (value == null || value.Node != mSelection.Node)) PaintSelectedNode(false);
+                    
                     mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // Ignore the select event, since we were asked to change the selection;
@@ -147,6 +148,8 @@ namespace Obi.ProjectView
                     if (n != null) mProjectView.MakeStripVisibleForSection(n.Tag as SectionNode);
                     AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
                     BeforeSelect += new TreeViewCancelEventHandler(TOCTree_BeforeSelect);
+
+                    if (m_HighlightedSectionNodeWithoutSelection != null && (value == null ||  m_HighlightedSectionNodeWithoutSelection != value.Node)) RepaintHighlightNodeWithoutSelection();
                 }
             }
         }
@@ -181,6 +184,15 @@ namespace Obi.ProjectView
                 m_HighlightedSectionNodeWithoutSelection = value;
                 }
 
+            }
+        }
+
+        private void RepaintHighlightNodeWithoutSelection ()
+        {
+            if (m_HighlightedSectionNodeWithoutSelection != null )
+            {
+                                TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
+                if (treeNodeToHighlight != null) treeNodeToHighlight.BackColor = System.Drawing.SystemColors.Control;
             }
         }
 
@@ -568,15 +580,21 @@ namespace Obi.ProjectView
         }
         private void Context_ShowContentsMenuItem_Click(object sender, EventArgs e)
         {
-        mProjectView.ShowSelectedSectionContents();
+            if (mProjectView.ShowSelectedSectionContents())
+            {
+                HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
+            }
         }
 
         private void TOCView_DoubleClick(object sender, EventArgs e)
         {
             if (mProjectView.Selection != null)
             {
-                mProjectView.ShowSelectedSectionContents();
-            }
+                if (mProjectView.ShowSelectedSectionContents())
+                {
+                    HighlightNodeWithoutSelection = mProjectView.GetSelectedPhraseSection;
+                }
+            }   
         }
 
         private void TOCView_Leave(object sender, EventArgs e)
