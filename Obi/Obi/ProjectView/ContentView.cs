@@ -2539,10 +2539,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 Strip currentlyActiveStrip = ActiveStrip;
                 if (currentlyActiveStrip != null)
                     {
-                    if ((currentlyActiveStrip.LastBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
-                        || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.IsRooted && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
+                        if ((currentlyActiveStrip.LastBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
+                            || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.IsRooted && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
-                        verticalScrollToolStripContainer1.CanScrollDown = false;
+                            verticalScrollToolStripContainer1.CanScrollDown = false;
+                        }
+                        else
+                        {
+                            verticalScrollToolStripContainer1.CanScrollDown = true;
                         }
                     }
                 }
