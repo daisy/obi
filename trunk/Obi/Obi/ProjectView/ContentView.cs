@@ -3402,7 +3402,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 {
                 SectionNode section = mProjectView.GetSelectedPhraseSection;
                 SelectPhraseBlockOrStrip ( section.PhraseChild ( section.PhraseChildCount - 1 ) );
-                verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
+                //verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
                 return true;
                 }
             return false;
