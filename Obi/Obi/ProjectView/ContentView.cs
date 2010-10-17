@@ -3833,7 +3833,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         }
                     }
                 //restrict dynamic loading for recording check
-                if (RestrictDynamicLoadingForRecording ( strip.Node ))
+                if (strip != null &&  RestrictDynamicLoadingForRecording ( strip.Node ))
                     {
                     if (mProjectView.Selection == null
                         || (mProjectView.Selection != null && mProjectView.TransportBar.RecordingPhrase != null && mProjectView.Selection.Node != mProjectView.TransportBar.RecordingPhrase))
