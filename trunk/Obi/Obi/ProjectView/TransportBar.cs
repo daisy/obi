@@ -1214,11 +1214,17 @@ namespace Obi.ProjectView
                     {
                     mView.SelectPhraseInContentView ( mResumeRecordingPhrase );
                     }
-
+                
                 command.append ( new Commands.UpdateSelection ( mView, new NodeSelection ( selectionNode, mView.Selection.Control ) ) );
                 }
+                else if (selectionNode == null && mView.GetSelectedPhraseSection == null)//also saving null selection
+                {
+                    command.append(new Commands.UpdateSelection(mView, null));
+                }
+
             ObiNode node = GetRecordingNode ( command, afterSection );
             InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
+            if (mView.Selection == null && node is SectionNode) mView.SelectFromTransportBar(node, null);// if nothing is selected, new section is created, select it in content view
             // Set events
             mRecordingSession = new RecordingSession ( mView.Presentation, mRecorder );
             mRecordingSession.StartingPhrase += new Obi.Events.Audio.Recorder.StartingPhraseHandler (
