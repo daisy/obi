@@ -1590,4 +1590,7 @@ Error text: {1}</value>
   <data name="METADATA_CUSTOM_HELP" xml:space="preserve">
     <value>It is a user-defined data. Please enter both metadata name and its value.</value>
   </data>
+  <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
+    <value>Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and consequently start recording.</value>
+  </data>
 </root>
