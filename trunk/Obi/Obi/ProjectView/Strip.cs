@@ -743,6 +743,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRenaming()
         {
+            mContentView.ScrollStripsPanel_Top();
             mLabel.Editable = true;
             mContentView.SelectionFromStrip = new TextSelection(mNode, mContentView, Label);
             SetAccessibleName();
