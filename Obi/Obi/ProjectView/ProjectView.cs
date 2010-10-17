@@ -558,24 +558,22 @@ namespace Obi.ProjectView
             {
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
+
+            try
+                {
             if (CanRemoveSection || CanRemoveStrip)
                 {
                 bool isSection = mSelection.Control is TOCView;
                 CompositeCommand command = Presentation.CreateCompositeCommand (
                     Localizer.Message ( isSection ? "cut_section" : "cut_section_shallow" ) );
-                try
-                {
+                
                     command.append(new Commands.Node.Copy(this, isSection));
                     if (CanRemoveStrip)
                         command.append(mContentView.DeleteStripCommand());
                     else
                         command.append(new Commands.Node.Delete(this, mSelection.Node));
                     mPresentation.Do(command);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+                
                 // quick fix for null selection problem while cutting single section ins single section project
                 if (mPresentation.FirstSection == null) Selection = null;
                 }
@@ -599,6 +597,11 @@ namespace Obi.ProjectView
                 command.append ( delete );
                 mPresentation.Do ( command );
                 }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             }
 
         /// <summary>
@@ -1039,9 +1042,14 @@ namespace Obi.ProjectView
                 if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
-
-                mPresentation.Do ( mSelection.PasteCommand ( this ) );
-
+                try
+                {
+                    mPresentation.Do(mSelection.PasteCommand(this));
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
                 mTransportBar.SelectionChangedPlaybackEnabled = PlaySelectionFlagStatus;
                 }
             }
