@@ -2728,7 +2728,7 @@ namespace Obi.ProjectView
                     return;
                     }
                 // if block to be selected is invisible, select parent section
-                if (mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)node )
+                if ((node is EmptyNode &&  mContentView.IsBlockInvisibleButStripVisible ( (EmptyNode)node ))
                     || (selectionControl != null && selectionControl is TOCView))
                     {
                     node = node.ParentAs<SectionNode> ();
