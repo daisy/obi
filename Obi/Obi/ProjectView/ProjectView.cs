@@ -1762,7 +1762,11 @@ namespace Obi.ProjectView
             return dialog.ShowDialog () == DialogResult.OK ? Audio.AudioFormatConverter.ConvertFiles ( dialog.FileNames, mPresentation ) : null;
             }
 
-        public void SelectNothing () { Selection = null; }
+        public void SelectNothing () 
+        {
+            if (Selection != null && Selection is TextSelection && Selection.Node is SectionNode && Selection.Control is ContentView) Selection = new NodeSelection(Selection.Node, mContentView);
+            Selection = null; 
+        }
 
         public void SetRoleForSelectedBlock ( EmptyNode.Role kind, string custom )
             {

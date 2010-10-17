@@ -2604,10 +2604,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         if (lastNodeToCreate != null)
                         {
                             CreateBlocksTillNodeInStrip(stripControl, lastNodeToCreate, false);
-                            Block recordingBlock  = stripControl.FindBlock (lastNodeToCreate ) ;
-                            if (recordingBlock != null) EnsureControlVisible(recordingBlock ) ;
-                            int trackBarPercent = (lastNodeToCreate.Index * 100) / stripControl.Node.PhraseChildCount;
-                            verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
+                            Block preRecordingBlock  = stripControl.FindBlock (lastNodeToCreate ) ;
+                            if (preRecordingBlock != null)
+                            {
+                                EnsureControlVisible(preRecordingBlock);
+                                int trackBarPercent = (lastNodeToCreate.Index * 100) / stripControl.Node.PhraseChildCount;
+                                verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
+                            }
+
                         }
                     }
                     else
