@@ -563,12 +563,19 @@ namespace Obi.ProjectView
                 bool isSection = mSelection.Control is TOCView;
                 CompositeCommand command = Presentation.CreateCompositeCommand (
                     Localizer.Message ( isSection ? "cut_section" : "cut_section_shallow" ) );
-                command.append ( new Commands.Node.Copy ( this, isSection ) );
-                if (CanRemoveStrip)
-                    command.append ( mContentView.DeleteStripCommand () );
-                else
-                    command.append ( new Commands.Node.Delete ( this, mSelection.Node ) );
-                mPresentation.Do ( command );
+                try
+                {
+                    command.append(new Commands.Node.Copy(this, isSection));
+                    if (CanRemoveStrip)
+                        command.append(mContentView.DeleteStripCommand());
+                    else
+                        command.append(new Commands.Node.Delete(this, mSelection.Node));
+                    mPresentation.Do(command);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
                 // quick fix for null selection problem while cutting single section ins single section project
                 if (mPresentation.FirstSection == null) Selection = null;
                 }
@@ -601,42 +608,49 @@ namespace Obi.ProjectView
             {
             if (Selection != null && Selection is TextSelection) return;
             if (CanDelete && mTransportBar.IsPlayerActive) mTransportBar.Stop ();
-            if (CanRemoveSection)
+            try
+            {
+                if (CanRemoveSection)
                 {
-                mPresentation.Do ( new Commands.Node.Delete ( this, mTOCView.Selection.Section,
-                    Localizer.Message ( "delete_section" ) ) );
+                    mPresentation.Do(new Commands.Node.Delete(this, mTOCView.Selection.Section,
+                        Localizer.Message("delete_section")));
                 }
-            else if (CanRemoveStrip)
+                else if (CanRemoveStrip)
                 {
-                // first create landing strip
-                if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
+                    // first create landing strip
+                    if (Selection != null && Selection.Node is SectionNode) //@singleSection: begin
                     {
-                    SectionNode section = (SectionNode)Selection.Node;
-                    SectionNode landingSectionNode = section.FollowingSection;
-                    if (landingSectionNode == null) landingSectionNode  = section.PrecedingSection;
+                        SectionNode section = (SectionNode)Selection.Node;
+                        SectionNode landingSectionNode = section.FollowingSection;
+                        if (landingSectionNode == null) landingSectionNode = section.PrecedingSection;
 
-                    if (landingSectionNode  != null)
+                        if (landingSectionNode != null)
                         {
-                        mContentView.CreateStripForSelectedSection ( landingSectionNode, false );
+                            mContentView.CreateStripForSelectedSection(landingSectionNode, false);
                         }
-                    
+
                     }//@singleSection: end
 
-                mPresentation.Do ( mContentView.DeleteStripCommand () );
+                    mPresentation.Do(mContentView.DeleteStripCommand());
                 }
-            else if (CanRemoveBlock)
+                else if (CanRemoveBlock)
                 {
-                mPresentation.Do ( new Commands.Node.Delete ( this, SelectedNodeAs<EmptyNode> (),
-                    Localizer.Message ( "delete_phrase" ) ) );
+                    mPresentation.Do(new Commands.Node.Delete(this, SelectedNodeAs<EmptyNode>(),
+                        Localizer.Message("delete_phrase")));
                 }
-            else if (CanRemoveAudio)
+                else if (CanRemoveAudio)
                 {
-                mPresentation.Do ( Commands.Audio.Delete.GetCommand ( this ) );
+                    mPresentation.Do(Commands.Audio.Delete.GetCommand(this));
                 }
-            else if (CanRemoveMetadata)
+                else if (CanRemoveMetadata)
                 {
-                mPresentation.Do ( new Commands.Metadata.DeleteEntry ( this ) );
+                    mPresentation.Do(new Commands.Metadata.DeleteEntry(this));
                 }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             }
 
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
