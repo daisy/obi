@@ -2020,6 +2020,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             if (currentlyActiveStrip != null)
                 {
+                    DeselectStripRenameTextSelection(currentlyActiveStrip);
                     if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return ;
                 Block firstBlock = currentlyActiveStrip.FirstBlock;
                 Block lastBlock = currentlyActiveStrip.LastBlock;
@@ -2361,6 +2362,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                    DeselectStripRenameTextSelection(currentlyActiveStrip);
                     if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
 
                     NodeSelection previousSelection = mProjectView.Selection;
@@ -2391,6 +2393,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
+                    DeselectStripRenameTextSelection(currentlyActiveStrip);
                     if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
 
                     NodeSelection previousSelection = mProjectView.Selection;
@@ -2411,6 +2414,17 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             return false;
             }
+
+        public bool  DeselectStripRenameTextSelection ( Strip currentlyActiveStrip)
+        {
+            if (mProjectView.Selection != null && mProjectView.Selection is TextSelection && mProjectView.Selection.Node == currentlyActiveStrip.Node)
+            {
+                mProjectView.Selection = new NodeSelection(mProjectView.Selection.Node, mProjectView.Selection.Control);
+                return true;
+            }
+            return false;
+        }
+
 
         //@singleSection
         private void ManageSelectionChangeWhileScroll(NodeSelection previousSelection, Strip stripControl)
