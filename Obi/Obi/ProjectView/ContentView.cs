@@ -2601,7 +2601,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         stripControl= CreateStripForSelectedSection(section, true);
                         EmptyNode lastNodeToCreate = recordingResumePhrase != null && recordingResumePhrase.IsRooted ? recordingResumePhrase : 
                             section.PhraseChildCount > 0? section.PhraseChild(section.PhraseChildCount - 1): null;
-                        if(lastNodeToCreate != null)  CreateBlocksTillNodeInStrip(stripControl, lastNodeToCreate, false);
+                        if (lastNodeToCreate != null)
+                        {
+                            CreateBlocksTillNodeInStrip(stripControl, lastNodeToCreate, false);
+                            int trackBarPercent = (lastNodeToCreate.Index * 100) / stripControl.Node.PhraseChildCount;
+                            verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
+                        }
                     }
                     else
                     {
