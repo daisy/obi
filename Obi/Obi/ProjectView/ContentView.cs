@@ -2307,7 +2307,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         private int EstimateScrollPercentage ( Strip currentlyActiveStrip )
             {
-            int startY = Math.Abs ( mStripsPanel.Location.Y );
+            int startY = Math.Abs ( mStripsPanel.Location.Y + currentlyActiveStrip.BlocksLayoutTopPosition);
             int endY = startY + mHScrollBar.Location.Y;
 
             List<int> boundaryPhraseIndexes = currentlyActiveStrip.GetBoundaryPhrasesIndexForVisiblePhrases ( startY, endY );
