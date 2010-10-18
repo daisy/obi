@@ -3013,7 +3013,11 @@ namespace Obi.ProjectView
         public void RecreateContentsWhileInitializingRecording ( EmptyNode recordingResumePhrase ) 
         { 
             mContentView.RecreateContentsWhileInitializingRecording ( recordingResumePhrase );
-            if (Selection != null &&  Selection.Node is SectionNode  && Selection.Control is TOCView) mTOCView.HighlightNodeWithoutSelection = (SectionNode)Selection.Node;
+            if (Selection != null && Selection.Node is SectionNode && Selection.Control is TOCView)
+            {
+                mTOCView.HighlightNodeWithoutSelection = (SectionNode)Selection.Node;
+                if (!mTOCView.ContainsFocus) mTOCView.Focus();
+            }
         }
 
         //@singleSection
