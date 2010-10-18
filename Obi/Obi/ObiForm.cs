@@ -824,7 +824,7 @@ namespace Obi
         // Update the edit menu
         private void UpdateEditMenu ()
             {
-            mUndoToolStripMenuItem.Enabled = mSession.CanUndo;
+            mUndoToolStripMenuItem.Enabled = mSession.CanUndo && !mProjectView.TransportBar.IsRecorderActive;
             mUndoToolStripMenuItem.Text = mSession.CanUndo ?
                 String.Format ( Localizer.Message ( "undo_label" ), Localizer.Message ( "undo" ), mSession.UndoLabel ) :
                 Localizer.Message ( "cannot_undo" );
