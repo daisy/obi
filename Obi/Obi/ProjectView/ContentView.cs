@@ -361,6 +361,12 @@ namespace Obi.ProjectView
         private void ContentView_commandUndone (object sender, urakawa.events.undo.UnDoneEventArgs e)
         {
             ResizeForCommands();
+            // workaround for making selection visible in some complex, large volume commands
+            if (e.UnDoneCommand is CompositeCommand && ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section"))
+            {
+                Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
+                if (c != null) EnsureControlVisible(c);
+            }
         }
 
         private void ResizeForCommands()
