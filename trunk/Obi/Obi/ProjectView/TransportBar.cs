@@ -1221,6 +1221,7 @@ namespace Obi.ProjectView
                 {
                     command.append(new Commands.UpdateSelection(mView, null));
                 }
+                if (mResumeRecordingPhrase == null) mRecordingPhrase = null;
 
             ObiNode node = GetRecordingNode ( command, afterSection );
             InitRecordingSectionAndPhraseIndex ( node, mView.ObiForm.Settings.AllowOverwrite, command );
