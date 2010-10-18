@@ -1593,9 +1593,12 @@ namespace Obi.ProjectView
                 {
                     // start recording
                     mRecordingSession.Stop();
+                    
+                    mVUMeterPanel.BeepEnable = false;
                     try
                     {
                         mRecordingSession.Record();
+                        mDisplayTimer.Start();
                     }
                     catch (System.Exception ex)
                     {
