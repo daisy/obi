@@ -429,8 +429,10 @@ namespace Obi.ProjectView
 
             if (IsBlockForEmptyNodeExists ( node )) return FindBlock ( node );
 
-            // if node index is just one less than offset of strip then allow insert else return null
-            if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 0) return null;
+            // if node index is just one less than offset of strip and node inserted is 0 node then allow insert else return null
+            if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 0 && node.Index > 0) return null;
+            // if node index is 0 but offset is not 1 then also return
+            if (node.Index == 0 && OffsetForFirstPhrase > 1) return null;
 
             if (mBlockLayout.Controls.Count == 0)
                 {
@@ -447,8 +449,12 @@ namespace Obi.ProjectView
             //mBlockLayout.Controls.SetChildIndex(block, 1 + 2 * node.Index);
             //AddCursorAtBlockLayoutIndex(2 + 2 * node.Index);
              //Console.WriteLine ( "block index to place " + node.Index + " " + OffsetForFirstPhrase );
-            mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
-            AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
+            //mBlockLayout.Controls.SetChildIndex ( block, 1 + 2 * (node.Index - OffsetForFirstPhrase) );
+            //AddCursorAtBlockLayoutIndex ( 2 + 2 * (node.Index - OffsetForFirstPhrase) );
+            // adding following 3 lines for replacement of above 2 lines
+            int blockIndexToSet =node.Index == 0 && OffsetForFirstPhrase == 1 ? 1:  1 + 2 * (node.Index - OffsetForFirstPhrase );
+            mBlockLayout.Controls.SetChildIndex(block, blockIndexToSet);
+            AddCursorAtBlockLayoutIndex(blockIndexToSet+1);
             block.SetZoomFactorAndHeight ( mContentView.ZoomFactor, mBlockHeight );
             block.Cursor = Cursor;
             block.SizeChanged += new EventHandler ( Block_SizeChanged );
