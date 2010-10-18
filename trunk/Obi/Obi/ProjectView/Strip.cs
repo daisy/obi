@@ -313,7 +313,7 @@ namespace Obi.ProjectView
                 if (c is Block)
                     {
                     Block b = (Block)c;
-                    if (b.Location.Y >= startY && boundaryIndex.Count == 0) boundaryIndex.Add ( b.Node.Index );
+                    if (b.Location.Y >= startY -10 && boundaryIndex.Count == 0) boundaryIndex.Add ( b.Node.Index );
 
                     if ( boundaryIndex.Count == 1 && 
                         ( b.Location.Y > endY || b == LastBlock ))
