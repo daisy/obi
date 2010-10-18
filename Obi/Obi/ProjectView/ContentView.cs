@@ -2631,7 +2631,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 int trackBarPercent = (lastNodeToCreate.Index * 100) / stripControl.Node.PhraseChildCount;
                                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
                             }
-
+                            if (mStripsPanel.Location.Y < 0) verticalScrollToolStripContainer1.CanScrollUp = true;
                         }
                     }
                     else
