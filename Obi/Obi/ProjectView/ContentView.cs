@@ -1900,7 +1900,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public bool ScrollUp_SmallIncrementWithSelection ()
             {
-                
+                if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
             return MoveToNextOrPreviousLineInStrip ( false );
             }
 
