@@ -1006,7 +1006,7 @@ namespace Obi
             mPhrases_ClearRoleMenuItem.Enabled = mProjectView.CanAssignPlainRole;
             mPhrases_ApplyPhraseDetectionMenuItem.Enabled = mSession.HasProject &&  mProjectView.CanApplyPhraseDetection;
             mCropAudiotoolStripMenuItem.Enabled = mProjectView.CanCropPhrase;
-            mGoToToolStripMenuItem.Enabled = mSession.Presentation != null;
+            mGoToToolStripMenuItem.Enabled = mSession.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
             mPhraseIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetBlockUsedStatus;
             mPhraseIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler ( mPhraseIsUsedToolStripMenuItem_CheckedChanged );
             mPhraseIsUsedToolStripMenuItem.Checked = mProjectView.IsBlockUsed;
