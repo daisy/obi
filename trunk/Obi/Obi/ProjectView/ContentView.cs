@@ -2655,6 +2655,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                         CreateBlocksTillNodeInStrip ( stripControl, lastVisiblePhraseIntended, false );
                         if (recordingResumePhrase != null) CreatePhraseBlocksForFillingContentView ( stripControl );
+                        int trackBarPercent = (lastVisiblePhraseIntended.Index * 100) / stripControl.Node.PhraseChildCount;
+                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = trackBarPercent;
+                        if (mStripsPanel.Location.Y < 0) verticalScrollToolStripContainer1.CanScrollUp = true;
                         return;
                         }
                     //System.Media.SystemSounds.Asterisk.Play ();
@@ -2679,6 +2682,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             }
 
                         }
+                        verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
+                        if (mStripsPanel.Location.Y < 0) verticalScrollToolStripContainer1.CanScrollUp = true;
                     }
                 }
             }
