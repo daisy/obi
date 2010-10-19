@@ -2027,7 +2027,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (currentlyActiveStrip != null)
                 {
                     DeselectStripRenameTextSelection(currentlyActiveStrip);
-                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return ;
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip))
+                    {
+                        if ( mProjectView.TransportBar.RecordingPhrase != null )
+                        {
+                            Block b = currentlyActiveStrip.FindBlock(mProjectView.TransportBar.RecordingPhrase);
+                            if (b != null) EnsureControlVisible(b);
+                        }
+                        return;
+                    }
                 Block firstBlock = currentlyActiveStrip.FirstBlock;
                 Block lastBlock = currentlyActiveStrip.LastBlock;
                 if (firstBlock != null && lastBlock != null)
@@ -2369,7 +2377,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                     DeselectStripRenameTextSelection(currentlyActiveStrip);
-                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip))
+                    {
+                        if (mProjectView.TransportBar.RecordingPhrase != null)
+                        {
+                            Block b = currentlyActiveStrip.FindBlock(mProjectView.TransportBar.RecordingPhrase);
+                            if (b != null) EnsureControlVisible(b);
+                        }
+                        return false;
+                    }
 
                     NodeSelection previousSelection = mProjectView.Selection;
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
@@ -2400,7 +2416,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (currentlyActiveStrip != null && currentlyActiveStrip.Node.PhraseChildCount > 0)
                 {
                     DeselectStripRenameTextSelection(currentlyActiveStrip);
-                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip)) return false;
+                    if (ScrollRestrictedWhileRecording(currentlyActiveStrip))
+                    {
+                        if (mProjectView.TransportBar.RecordingPhrase != null)
+                        {
+                            Block b = currentlyActiveStrip.FindBlock(mProjectView.TransportBar.RecordingPhrase);
+                            if (b != null) EnsureControlVisible(b);
+                        }
+                        return false;
+                    }
 
                     NodeSelection previousSelection = mProjectView.Selection;
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
