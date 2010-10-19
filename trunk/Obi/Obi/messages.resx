@@ -1593,4 +1593,10 @@ Error text: {1}</value>
   <data name="Recording_CreateSectionContentsInformation" xml:space="preserve">
     <value>Contents of the recording section: {0} are not displayed in content view. Press enter to show the section contents and consequently start recording.</value>
   </data>
+  <data name="METADATA_DAISY202_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi specific data for saving Daisy 2.02 export path</value>
+  </data>
+  <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
+    <value>Obi specific data for saving Daisy 3 export path</value>
+  </data>
 </root>

@@ -110,6 +110,8 @@ namespace Obi.ProjectView
             mMetadataTooltipDictionary.Add(Metadata.GENERATOR, "METADATA_GENERATOR_HELP");
             mMetadataTooltipDictionary.Add(Metadata.OBI_XUK_VERSION, "METADATA_OBI_XUK_VERSION_HELP");
             mMetadataTooltipDictionary.Add(Localizer.Message("metadata_custom"), "METADATA_CUSTOM_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.OBI_DAISY2ExportPath, "METADATA_DAISY202_EXPORT_PATH_HELP");
+            mMetadataTooltipDictionary.Add(Metadata.OBI_DAISY3ExportPath, "METADATA_DAISY3_EXPORT_PATH_HELP");
         }
 
         public float ZoomFactor
