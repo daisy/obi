@@ -2712,13 +2712,39 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             }
 
+        //@singleSection
+        public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count)
+        {
+            if (initialIndex + count == section.PhraseChildCount - 1)
+            {
+                                Strip currentlyActiveStrip = FindStrip(section);
+                if (currentlyActiveStrip != null)
+                {
+                    bool shouldRecreateBlocks = false;
+                    for (int i =  section.PhraseChildCount-1; i >= initialIndex && i >= 0 ; --i)
+                    {
+                        EmptyNode node = section.PhraseChild(i);
+                        Block b = currentlyActiveStrip.FindBlock(node);
+                        if (b != null && (LocationOfBlockInStripPanel(b).Y + b.Height) > mStripsPanel.Height)
+                        {
+                            currentlyActiveStrip.RemoveBlock(node , true);
+                            shouldRecreateBlocks = true;
+                            Console.WriteLine("Removing post recording phrase block " + node);
+                        }
+                    }
+                    if ( shouldRecreateBlocks)  CreateBlocksTillNodeInStrip(currentlyActiveStrip,(EmptyNode) section.PhraseChild(section.PhraseChildCount - 1), false);
+                }
+                
+            }
+        }
+
         // @phraseLimit
         /// <summary>
         /// Make phrase blocks visible for strip  passed as parameter
         /// </summary>
         /// <param name="stripControl"></param>
         /// <returns></returns>
-        private bool CreateBlocksInStrip ( Strip stripControl )
+        private bool CreateBlocksInStrip(Strip stripControl)
             {
             return CreateLimitedBlocksInStrip ( stripControl, null );
             }

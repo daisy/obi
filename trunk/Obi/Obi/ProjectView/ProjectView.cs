@@ -3020,6 +3020,9 @@ namespace Obi.ProjectView
             }
         }
 
+        //@singleSection : workaround to make recording phrases visible when audio media is updated
+        public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count) { mContentView.PostRecording_RecreateInvisibleRecordingPhrases(section, initialIndex, count) ; }
+
         //@singleSection
         public bool IsContentViewScrollActive { get { return mContentView.IsScrollActive; } }
 
