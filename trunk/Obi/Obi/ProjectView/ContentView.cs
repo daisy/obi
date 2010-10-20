@@ -2718,7 +2718,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                         }
                         verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
-                        if (mStripsPanel.Location.Y < 0) verticalScrollToolStripContainer1.CanScrollUp = true;
+                        if (mStripsPanel.Location.Y <= stripControl.BlocksLayoutTopPosition*-1 ) verticalScrollToolStripContainer1.CanScrollUp = true;
                     }
                 }
             }
