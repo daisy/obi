@@ -2547,6 +2547,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 m_IsScrollActive = value;
                 ChangeVisibilityProcessState ( m_IsScrollActive );
                 if (!mProjectView.TransportBar.Enabled) mProjectView.TransportBar.Enabled = m_IsScrollActive;
+                if (!m_IsScrollActive) PlayShowBlocksCompletedSound();
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
             }
@@ -2638,8 +2639,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 if (stripControl == null)
                 {
-                    if (MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label), 
-                        Localizer.Message("Caption_Infomation") ,MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK
+                    if (MessageBox.Show(string.Format (Localizer.Message( "Recording_CreateSectionContentsInformation"), section.Label),
+                        Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK
                         &&    (Selection == null || !(Selection.Control is ContentView) ))
                     {
                         stripControl= CreateStripForSelectedSection(section, true);
@@ -2881,11 +2882,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         /// </summary>
         private void PlayShowBlocksCompletedSound ()
             {
-            string FilePath = System.IO.Path.Combine ( System.AppDomain.CurrentDomain.BaseDirectory, "ShowBlocksCompleted.wav" );
-            if (System.IO.File.Exists ( FilePath ) && mProjectView.ObiForm.Settings.AudioClues)
+                string FilePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "ShowBlocksCompleted.wav");
+                if (System.IO.File.Exists(FilePath) && mProjectView.ObiForm.Settings.AudioClues)
                 {
-                System.Media.SoundPlayer showBlocksPlayer = new System.Media.SoundPlayer ( FilePath );
-                showBlocksPlayer.Play ();
+                    System.Media.SoundPlayer showBlocksPlayer = new System.Media.SoundPlayer(FilePath);
+                    showBlocksPlayer.Play();
                 }
             }
 
