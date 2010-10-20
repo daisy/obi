@@ -2254,6 +2254,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         Console.WriteLine ( "Strips panel location while moving up " + mStripsPanel.Location.Y );
                         }
                     //ReturnFocusFromVerticalScrollPanel ();
+                        if (Math.Abs(interval) >= 200) PlayShowBlocksCompletedSound();
                     IsScrollActive = false;
                     mProjectView.ObiForm.Cursor = Cursors.Default;
 
@@ -2407,6 +2408,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
                 //ReturnFocusFromVerticalScrollPanel ();
+                PlayShowBlocksCompletedSound();
                 IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 if (previousSelection != null) ManageSelectionChangeWhileScroll(previousSelection, currentlyActiveStrip);
@@ -2443,6 +2445,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     (mStripsPanel.Height - (mHScrollBar.Location.Y - 10)) * -1 );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 100;
                 //ReturnFocusFromVerticalScrollPanel ();
+                PlayShowBlocksCompletedSound();
                 IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 if (previousSelection != null) ManageSelectionChangeWhileScroll(previousSelection, currentlyActiveStrip);
@@ -2554,7 +2557,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 m_IsScrollActive = value;
                 ChangeVisibilityProcessState ( m_IsScrollActive );
                 if (!mProjectView.TransportBar.Enabled) mProjectView.TransportBar.Enabled = m_IsScrollActive;
-                if (!m_IsScrollActive) PlayShowBlocksCompletedSound();
+                //if (!m_IsScrollActive) PlayShowBlocksCompletedSound();
                 //mProjectView.ObiForm.ShowHideInvisibleDialog ( m_IsScrollActive );
                 }
             }
