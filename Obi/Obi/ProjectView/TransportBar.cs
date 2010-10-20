@@ -1046,6 +1046,8 @@ namespace Obi.ProjectView
                 mView.Presentation.UpdateAudioForPhrase(mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + i),
                     mRecordingSession.RecordedAudio[i]);
             }
+            //Workaround to force phrases to show if they become invisible on stopping recording
+            mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
             if( mResumeRecordingPhrase != null )  mView.SelectFromTransportBar ( mResumeRecordingPhrase, null );
             mRecordingSession = null;
@@ -2087,6 +2089,8 @@ namespace Obi.ProjectView
                             mView.Presentation.UpdateAudioForPhrase ( mRecordingSection.PhraseChild ( mRecordingInitPhraseIndex + i ),
                                 mRecordingSession.RecordedAudio[i] );
                             }
+                            //Workaround to force phrases to show if they become invisible on stopping recording
+                            mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                         }
                     EmptyNode lastRecordedPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
                     if (lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
