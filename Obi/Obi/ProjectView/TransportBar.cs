@@ -1140,7 +1140,7 @@ namespace Obi.ProjectView
         public void Record()
         {
                     if (mView.Presentation != null&& mState != State.Playing
-                        &&    !IsMetadataSelected)
+                        &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
             {
             try
                 {
@@ -2049,7 +2049,7 @@ namespace Obi.ProjectView
         public void StartRecordingDirectly()
         {
             if (mRecordingSession == null && mCurrentPlaylist.Audioplayer.State != Obi.Audio.AudioPlayerState.Playing
-                &&    !IsMetadataSelected )
+                &&    !IsMetadataSelected &&  ( mView.Selection == null || !(mView.Selection is TextSelection)))
                 {
                 try
                     {
