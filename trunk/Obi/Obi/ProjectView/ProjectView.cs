@@ -431,7 +431,7 @@ namespace Obi.ProjectView
         public bool CanRemoveSection { get { return mTOCView.CanRemoveSection; } }
         public bool CanRemoveStrip { get { return mContentView.CanRemoveStrip; } }
         public bool CanResume { get { return mTransportBar.CanResumePlayback; } }
-        public bool CanRenameSection { get { return Selection != null && (CanRenameStrip || mTOCView.CanRenameSection); } }
+        public bool CanRenameSection { get { return Selection != null && !TransportBar.IsRecorderActive && (CanRenameStrip || mTOCView.CanRenameSection); } }
         public bool CanRenameStrip { get { return Selection != null && (mContentView.CanRenameStrip); } }
         public bool CanRewind { get { return mTransportBar.CanRewind; } }
         public bool CanSetBlockUsedStatus { get { return mContentView.CanSetBlockUsedStatus; } }
