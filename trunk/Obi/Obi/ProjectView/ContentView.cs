@@ -356,6 +356,12 @@ namespace Obi.ProjectView
         private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
         {
             ResizeForCommands();
+            if (e.ReDoneCommand is CompositeCommand
+                && mProjectView.Selection != null && !(mProjectView.Selection is AudioSelection) )
+                            {
+                Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
+                if (c != null) EnsureControlVisible(c);
+            }
         }
 
         private void ContentView_commandUndone (object sender, urakawa.events.undo.UnDoneEventArgs e)
