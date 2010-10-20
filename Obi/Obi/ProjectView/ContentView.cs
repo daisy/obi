@@ -362,7 +362,8 @@ namespace Obi.ProjectView
         {
             ResizeForCommands();
             // workaround for making selection visible in some complex, large volume commands
-            if (e.UnDoneCommand is CompositeCommand && ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section"))
+            if (e.UnDoneCommand is CompositeCommand 
+                && (((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("phrase_detection")))
             {
                 Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
                 if (c != null) EnsureControlVisible(c);
