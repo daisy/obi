@@ -96,7 +96,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// True if the selected node can be renamed.
         /// </summary>
-        public bool CanRenameSection { get { return IsSectionSelected; } }
+        public bool CanRenameSection { get { return IsSectionSelected && !mProjectView.TransportBar.IsRecorderActive; } }
 
         /// <summary>
         /// True if the used state of the selected section can be changed
