@@ -25,7 +25,7 @@
 		</datatype>
 	</parameter>
 	
-	<parameter name="validatorTimeTolerance" value="20" required="false">
+	<parameter name="validatorTimeTolerance" value="40" required="false">
 		<nicename>Time Tolerance</nicename>
 		<description>Set the time tolerance threshold in milliseconds</description>		
 		<datatype>
