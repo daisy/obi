@@ -189,6 +189,9 @@ namespace Obi.ProjectView
 
         private void RepaintHighlightNodeWithoutSelection ()
         {
+            if (m_HighlightedSectionNodeWithoutSelection != null
+                && mProjectView.Presentation.RootNode != m_HighlightedSectionNodeWithoutSelection.Presentation.RootNode)
+                m_HighlightedSectionNodeWithoutSelection = null;
             if (m_HighlightedSectionNodeWithoutSelection != null )
             {
                                 TreeNode treeNodeToHighlight = FindTreeNodeWithoutLabel(m_HighlightedSectionNodeWithoutSelection);
@@ -604,6 +607,10 @@ namespace Obi.ProjectView
 
         private void PaintSelectedNode(bool isSelected)
         {
+            if (mSelection != null && mSelection.Node != null
+                && mProjectView.Presentation.RootNode != mSelection.Node.Presentation.RootNode)
+                mSelection = null;
+
             if (mSelection != null && !(mSelection is TextSelection))
             {
                 TreeNode treeNodeToSelect = FindTreeNodeWithoutLabel((SectionNode)mSelection.Node);
