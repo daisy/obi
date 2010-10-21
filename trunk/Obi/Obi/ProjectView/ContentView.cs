@@ -1989,6 +1989,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                     newBlockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlyActiveStrip.LastBlock.Node, nextLine );
                                     mProjectView.SelectedBlockNode = newBlockToBeSelected != null ? newBlockToBeSelected.Node : currentlyActiveStrip.LastBlock.Node;
                                     }
+                                // workaround for avoiding distortion after very rapid line ups
+                                    if (currentlyActiveStrip != null && Math.Abs(mStripsPanel.Location.Y) <= currentlyActiveStrip.BlocksLayoutTopPosition && !currentlyActiveStrip.IsContentViewFilledWithBlocks) CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
                                 if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
                                     && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
                                     mProjectView.TransportBar.PlayOrResume ();
