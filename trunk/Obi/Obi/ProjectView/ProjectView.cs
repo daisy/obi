@@ -1766,7 +1766,7 @@ namespace Obi.ProjectView
                 command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
                 ++phraseInsertIndex;
                 }
-
+                if (newSectionNode != null) command.append(new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
             }
 
