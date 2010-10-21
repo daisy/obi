@@ -461,7 +461,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9FC4FE02AC07454CA0BC6EB6BC7C62D4"
             {
             "Name" = "8:InstallerFileOperations.dll"
-            "Condition" = "8:"
+            "Condition" = "8:Not Installed"
             "Object" = "8:_C01B98B85AE14B45993454544BE4B15E"
             "FileType" = "3:1"
             "InstallAction" = "3:1"
@@ -489,7 +489,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_C0A91C7AED174FFA8B78F79DD1D608BD"
             {
             "Name" = "8:CheckDX.dll"
-            "Condition" = "8:"
+            "Condition" = "8:Not Installed"
             "Object" = "8:_AC765BB998E34797BC4B930FC4135042"
             "FileType" = "3:1"
             "InstallAction" = "3:2"
@@ -503,7 +503,7 @@
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F23F9640BF93408EA0E2FF0CEEA5D1B6"
             {
             "Name" = "8:CheckDX.dll"
-            "Condition" = "8:"
+            "Condition" = "8:Not Installed"
             "Object" = "8:_AC765BB998E34797BC4B930FC4135042"
             "FileType" = "3:1"
             "InstallAction" = "3:1"
@@ -1333,7 +1333,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=1.1.5.3032, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=1.1.5.17391, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_D8965FCF908942E38CA665FD81076215"
@@ -1609,7 +1609,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Obi 1.2 RC1"
         "ProductCode" = "8:{CE1E12C6-9E10-4E4D-9911-7FB3EF9D8338}"
-        "PackageCode" = "8:{1F4BCA30-44B9-4229-92D3-5E52709FA69D}"
+        "PackageCode" = "8:{93C39E9A-C42A-4C38-9324-6EEC46E06EDC}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
