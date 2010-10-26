@@ -39,12 +39,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1674E5E549714AED905806785D4BB4EA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -64,18 +58,6 @@
         "Entry"
         {
         "MsmKey" = "8:_29B0073336FEECBE1DA769C44A87F89B"
-        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
-        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -101,6 +83,12 @@
         {
         "MsmKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_62361864943298D8BB8AB9DF2093C336"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -207,6 +195,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF391CB299056147322721C0DBDFD05D"
+        "OwnerKey" = "8:_62361864943298D8BB8AB9DF2093C336"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BF391CB299056147322721C0DBDFD05D"
+        "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C01B98B85AE14B45993454544BE4B15E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -243,13 +243,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
-        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "MsmKey" = "8:_DA0E42A01AADC6F27C50277AB6448B93"
+        "OwnerKey" = "8:_62361864943298D8BB8AB9DF2093C336"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
+        "MsmKey" = "8:_DA0E42A01AADC6F27C50277AB6448B93"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -352,19 +352,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1440FD06FF088824F43C8F74D7485FD3"
+        "OwnerKey" = "8:_62361864943298D8BB8AB9DF2093C336"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E3C88CC6BD055F54A843AC3578E13415"
+        "OwnerKey" = "8:_DA0E42A01AADC6F27C50277AB6448B93"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_45A6E033ECAB7F232D5F4828C080F566"
+        "OwnerKey" = "8:_BF391CB299056147322721C0DBDFD05D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -628,37 +628,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1440FD06FF088824F43C8F74D7485FD3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AudioLib, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1440FD06FF088824F43C8F74D7485FD3"
-                    {
-                    "Name" = "8:AudioLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AudioLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1674E5E549714AED905806785D4BB4EA"
             {
             "SourcePath" = "8:..\\..\\dist\\Pipeline packaging files\\CABINET.DLL"
@@ -750,37 +719,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_45A6E033ECAB7F232D5F4828C080F566"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Mp3Sharp, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_45A6E033ECAB7F232D5F4828C080F566"
-                    {
-                    "Name" = "8:Mp3Sharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Mp3Sharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_478DFB874BE84E468E4FAFF8EE180B53"
             {
             "SourcePath" = "8:..\\..\\dist\\Audio clues\\FindBarCollapse.wav"
@@ -850,6 +788,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62361864943298D8BB8AB9DF2093C336"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AudioLib, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_62361864943298D8BB8AB9DF2093C336"
+                    {
+                    "Name" = "8:AudioLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AudioLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_668A1B1208714EDB92FCCFA2EA0E2C96"
@@ -1069,7 +1038,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.23902, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:urakawa, Version=1.1.0.23450, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_9C74D72ECB6E9F92A7B04F31B94B30FD"
@@ -1100,7 +1069,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.1.6.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CheckDX, Version=1.1.7.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_AC765BB998E34797BC4B930FC4135042"
@@ -1218,11 +1187,42 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF391CB299056147322721C0DBDFD05D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Mp3Sharp, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BF391CB299056147322721C0DBDFD05D"
+                    {
+                    "Name" = "8:Mp3Sharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Mp3Sharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C01B98B85AE14B45993454544BE4B15E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.1.6.0, Culture=neutral, PublicKeyToken=614871ee265e3660, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.1.7.0, Culture=neutral, PublicKeyToken=d5a1b7b30e646786, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C01B98B85AE14B45993454544BE4B15E"
@@ -1333,7 +1333,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=1.1.5.17391, Culture=hi, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Obi.resources, Version=1.1.6.24672, Culture=hi, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_D8965FCF908942E38CA665FD81076215"
@@ -1360,14 +1360,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3C88CC6BD055F54A843AC3578E13415"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DA0E42A01AADC6F27C50277AB6448B93"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E3C88CC6BD055F54A843AC3578E13415"
+                    "_DA0E42A01AADC6F27C50277AB6448B93"
                     {
                     "Name" = "8:NAudio.dll"
                     "Attributes" = "3:512"
@@ -1607,19 +1607,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 1.2 RC1"
-        "ProductCode" = "8:{CE1E12C6-9E10-4E4D-9911-7FB3EF9D8338}"
-        "PackageCode" = "8:{93C39E9A-C42A-4C38-9324-6EEC46E06EDC}"
+        "ProductName" = "8:Obi 1.2 RC2"
+        "ProductCode" = "8:{2A57F335-C8C4-4A5E-ABA8-1EE3AE82501C}"
+        "PackageCode" = "8:{385F3C99-3235-422E-BE8B-FE299C958A64}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.5"
+        "ProductVersion" = "8:1.1.6"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/forum/8"
-        "Title" = "8:Obi 1.2 RC1"
+        "Title" = "8:Obi 1.2 RC2"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -1730,7 +1730,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 1.1"
+            "Name" = "8:Obi 1.2 RC2"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -1758,7 +1758,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 1.2 RC1"
+            "Name" = "8:Obi 1.2 RC2"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
