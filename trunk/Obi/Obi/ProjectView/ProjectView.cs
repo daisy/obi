@@ -668,8 +668,12 @@ namespace Obi.ProjectView
         public void DeleteUnused ()
             {
             // handle selection to avoid exception if selected node is deleted
-            if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
-                Selection = null;
+                int sectionPosition = -1;
+                if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
+                {
+                    sectionPosition = GetSelectedPhraseSection.Position;
+                    Selection = null;
+                }
 
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "delete_unused" ) );
             // Collect silence node deletion commands separately in case the user wants to keep them.
@@ -706,6 +710,24 @@ namespace Obi.ProjectView
 
             //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
             if (command.getCount () > 0) mPresentation.Do ( command );
+            if (sectionPosition > -1 )//@singleSection
+            {
+                SectionNode section = null;
+                int totalSections = mPresentation.RootNode.SectionChildCount ;
+                if (sectionPosition < totalSections)
+                {
+                    section = mPresentation.RootNode.SectionChild(sectionPosition);
+                }
+                else if (totalSections > 0)
+                {
+                    section = mPresentation.RootNode.SectionChild(totalSections - 1);
+                }
+                if (section != null)
+                {
+                    mContentView.CreateStripForSelectedSection(section, true);
+                    Selection = new NodeSelection(section, mContentView);
+                }
+                }
             MessageBox.Show(" All the unused phrases are deleted. ", "Unused phrases deleted",MessageBoxButtons.OK);
             }
 
