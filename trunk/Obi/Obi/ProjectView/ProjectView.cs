@@ -18,7 +18,8 @@ namespace Obi.ProjectView
         private ObiForm mForm;               // parent form
         private bool mTOCViewVisible;        // keep track of the TOC view visibility (don't reopen it accidentally)
         private bool mMetadataViewVisible;   // keep track of the Metadata view visibility
-        private Timer mTabbingTimer;         // ???
+        private Timer mTabbingTimer;         // ??
+        private bool m_DisableSectionSelection;//@singleSection
         //private bool mShowOnlySelected; // is set to show only one section in contents view. @show single section
         public readonly int MaxVisibleBlocksCount; // @phraseLimit
         public readonly int MaxOverLimitForPhraseVisibility; // @phraseLimit
@@ -53,6 +54,7 @@ namespace Obi.ProjectView
             //mShowOnlySelected = false;
             MaxVisibleBlocksCount = 10000; // @phraseLimit
             MaxOverLimitForPhraseVisibility = 300; // @phraseLimit
+            m_DisableSectionSelection = false;
             }
 
 
@@ -1175,7 +1177,11 @@ namespace Obi.ProjectView
             get { return mSelection; }
             set
                 {
-                // Selection is disabled when the transport bar is active.
+                    if (m_DisableSectionSelection && value != null && value.Node is SectionNode)
+                    {
+                        m_DisableSectionSelection = false;
+                        return;
+                    }
                 if (mSelection != value)
                     {
                     // deselect if there was a selection in a different control
@@ -1199,6 +1205,10 @@ namespace Obi.ProjectView
                 }
             }
 
+        public void DisableSectionSelection()
+        {
+            m_DisableSectionSelection = true;
+        }
         /// <summary>
         /// Set a page number on the selected phrase.
         /// </summary>

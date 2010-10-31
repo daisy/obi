@@ -1867,11 +1867,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (startNode.Index > firstBlock.Node.Index)
                         {
                         // if next nodes are to be created, current nodes are backed up
-                        stripControl.MoveCurrentBlocklayoutToBackground ();
-
+                            mProjectView.DisableSectionSelection();
+                            stripControl.MoveCurrentBlocklayoutToBackground();
                         }
                     else
                         {
+                            mProjectView.DisableSectionSelection();
                         stripControl.CreateNewLayout ( false );
                         }
                     UpdateSize ();
@@ -2491,6 +2492,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             //@singleSection
             private bool SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(Strip currentlyActiveStrip, bool createRequiredNode)
             {
+                
                 if (m_PreviousSelectionForScroll != null && m_PreviousSelectionForScroll.Node.IsRooted && mProjectView.Selection != null
                     && (m_PreviousSelectionForScroll.Node is EmptyNode || m_PreviousSelectionForScroll is StripIndexSelection))
                     //&& (mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
@@ -2511,7 +2513,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 bool selectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
                                 DisableScrolling();
                                 //mProjectView.SelectedBlockNode = previouslySelectedEmptyNode;
-                                mProjectView.Selection = m_PreviousSelectionForScroll;
+                                //mProjectView.Selection = m_PreviousSelectionForScroll;
+                                mProjectView.Selection = new NodeSelection( m_PreviousSelectionForScroll.Node, m_PreviousSelectionForScroll.Control);
+                                
                                 mProjectView.TransportBar.SelectionChangedPlaybackEnabled = selectionChangedPlaybackEnabledStatus;
                                 return true;
                             }
