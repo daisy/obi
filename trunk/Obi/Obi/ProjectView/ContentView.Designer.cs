@@ -72,13 +72,13 @@ namespace Obi.ProjectView
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
-            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
+            this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
+            this.verticleScrollPane1 = new Obi.ProjectView.VerticleScrollPane();
             this.mContextMenuStrip.SuspendLayout();
             this.mStripsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -424,19 +424,6 @@ namespace Obi.ProjectView
             this.mStripsPanel.Size = new System.Drawing.Size(522, 557);
             this.mStripsPanel.TabIndex = 1;
             // 
-            // verticleScrollPane1
-            // 
-            this.verticleScrollPane1.CanScrollDown = true;
-            this.verticleScrollPane1.CanScrollUp = true;
-            this.verticleScrollPane1.contentView = null;
-            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
-            this.verticleScrollPane1.Name = "verticleScrollPane1";
-            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
-            this.verticleScrollPane1.TabIndex = 6;
-            this.verticleScrollPane1.TabStop = false;
-            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
-            this.verticleScrollPane1.Visible = false;
-            // 
             // mHScrollBar
             // 
             this.mHScrollBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
@@ -466,12 +453,23 @@ namespace Obi.ProjectView
             this.mCornerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.mCornerPanel.Location = new System.Drawing.Point(505, 532);
             this.mCornerPanel.Name = "mCornerPanel";
-            this.mCornerPanel.Size = new System.Drawing.Size(36, 18);
+            this.mCornerPanel.Size = new System.Drawing.Size(36, 20);
             this.mCornerPanel.TabIndex = 4;
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
+            // 
+            // verticalScrollToolStripContainer1
+            // 
+            this.verticalScrollToolStripContainer1.CanScrollDown = true;
+            this.verticalScrollToolStripContainer1.CanScrollUp = true;
+            this.verticalScrollToolStripContainer1.contentView = null;
+            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
+            this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
+            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 531);
+            this.verticalScrollToolStripContainer1.TabIndex = 0;
+            this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
             // contentViewLabel1
             // 
@@ -491,16 +489,18 @@ namespace Obi.ProjectView
             this.contentViewLabel1.TabIndex = 5;
             this.contentViewLabel1.zoomFactor = 1F;
             // 
-            // verticalScrollToolStripContainer1
+            // verticleScrollPane1
             // 
-            this.verticalScrollToolStripContainer1.CanScrollDown = true;
-            this.verticalScrollToolStripContainer1.CanScrollUp = true;
-            this.verticalScrollToolStripContainer1.contentView = null;
-            this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
-            this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
-            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 539);
-            this.verticalScrollToolStripContainer1.TabIndex = 0;
-            this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
+            this.verticleScrollPane1.CanScrollDown = true;
+            this.verticleScrollPane1.CanScrollUp = true;
+            this.verticleScrollPane1.contentView = null;
+            this.verticleScrollPane1.Location = new System.Drawing.Point(19, 3);
+            this.verticleScrollPane1.Name = "verticleScrollPane1";
+            this.verticleScrollPane1.Size = new System.Drawing.Size(31, 533);
+            this.verticleScrollPane1.TabIndex = 6;
+            this.verticleScrollPane1.TabStop = false;
+            this.verticleScrollPane1.TrackBarValueInPercentage = 100;
+            this.verticleScrollPane1.Visible = false;
             // 
             // ContentView
             // 
