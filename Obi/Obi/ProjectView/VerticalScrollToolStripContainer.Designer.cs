@@ -194,7 +194,7 @@ namespace Obi.ProjectView
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "VerticalScrollToolStripContainer";
-            this.Size = new System.Drawing.Size(33, 539);
+            this.Size = new System.Drawing.Size(33, 570);
             this.Resize += new System.EventHandler(this.VerticalScrollToolStripContainer_Resize);
             this.toolStripContainer1.RightToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.ResumeLayout(false);

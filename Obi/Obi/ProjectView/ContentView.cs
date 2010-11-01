@@ -4510,9 +4510,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 //CreateLimitedBlocksInStrip ( ActiveStrip, null );
                 }
             //this.contentViewLabel1.Size = new Size(this.Size.Width + this.mVScrollBar.Width, 22);
-            this.verticalScrollToolStripContainer1.Location = new Point ( this.Width - verticalScrollToolStripContainer1.Width, 0 );
-            this.verticalScrollToolStripContainer1.Size = new Size ( verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y );
-            mHScrollBar.Size = new Size ( verticalScrollToolStripContainer1.Location.X, mHScrollBar.Height );
+            this.verticalScrollToolStripContainer1.Location = new Point(this.Width - verticalScrollToolStripContainer1.Width, 0);
+            this.verticalScrollToolStripContainer1.Size = new Size(verticalScrollToolStripContainer1.Width, mHScrollBar.Location.Y);
+            mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
+            mCornerPanel.BringToFront();
+            this.contentViewLabel1.BringToFront();
+           
             }
 
         public void ResizeContentViewFromStripResize()
