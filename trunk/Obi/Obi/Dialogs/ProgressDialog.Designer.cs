@@ -30,38 +30,51 @@ namespace Obi.Dialogs
         {
             this.mProgressBar = new System.Windows.Forms.ProgressBar();
             this.m_BtnCancel = new System.Windows.Forms.Button();
+            this.m_lbWaitForCancellation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // mProgressBar
             // 
-            this.mProgressBar.Location = new System.Drawing.Point(12, 12);
+            this.mProgressBar.Location = new System.Drawing.Point(4, 34);
             this.mProgressBar.Name = "mProgressBar";
-            this.mProgressBar.Size = new System.Drawing.Size(368, 23);
+            this.mProgressBar.Size = new System.Drawing.Size(373, 23);
             this.mProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.mProgressBar.TabIndex = 1;
             this.mProgressBar.UseWaitCursor = true;
             // 
             // m_BtnCancel
             // 
-            this.m_BtnCancel.Location = new System.Drawing.Point(305, 41);
+            this.m_BtnCancel.Location = new System.Drawing.Point(302, 63);
             this.m_BtnCancel.Name = "m_BtnCancel";
             this.m_BtnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_BtnCancel.TabIndex = 2;
             this.m_BtnCancel.Text = "&Cancel";
             this.m_BtnCancel.UseVisualStyleBackColor = true;
+            this.m_BtnCancel.UseWaitCursor = true;
             this.m_BtnCancel.Click += new System.EventHandler(this.m_BtnCancel_Click);
             // 
+            // m_lbWaitForCancellation
+            // 
+            this.m_lbWaitForCancellation.AutoSize = true;
+            this.m_lbWaitForCancellation.Location = new System.Drawing.Point(1, 9);
+            this.m_lbWaitForCancellation.Name = "m_lbWaitForCancellation";
+            this.m_lbWaitForCancellation.Size = new System.Drawing.Size(277, 16);
+            this.m_lbWaitForCancellation.TabIndex = 3;
+            this.m_lbWaitForCancellation.Text = "Operation cancelled.. Completing current task";
+            this.m_lbWaitForCancellation.Visible = false;
+             // 
             // ProgressDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 67);
+            this.ClientSize = new System.Drawing.Size(384, 87);
             this.ControlBox = false;
+            this.Controls.Add(this.m_lbWaitForCancellation);
             this.Controls.Add(this.m_BtnCancel);
             this.Controls.Add(this.mProgressBar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(400, 105);
+            this.MaximumSize = new System.Drawing.Size(400, 125);
             this.MinimumSize = new System.Drawing.Size(400, 74);
             this.Name = "ProgressDialog";
             this.ShowIcon = false;
@@ -72,6 +85,7 @@ namespace Obi.Dialogs
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.ProgressDialog_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -79,5 +93,6 @@ namespace Obi.Dialogs
 
         private System.Windows.Forms.ProgressBar mProgressBar;
         private System.Windows.Forms.Button m_BtnCancel;
+        private System.Windows.Forms.Label m_lbWaitForCancellation;
     }
 }
