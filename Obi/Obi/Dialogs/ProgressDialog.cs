@@ -95,8 +95,7 @@ namespace Obi.Dialogs
         private void m_BtnCancel_Click(object sender, EventArgs e)
         {
             m_IsCancelled = true;
-        }
-               
-
+            m_lbWaitForCancellation.Visible = true;
+        }  
     }
 }
