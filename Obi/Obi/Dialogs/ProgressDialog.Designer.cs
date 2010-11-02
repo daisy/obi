@@ -35,7 +35,7 @@ namespace Obi.Dialogs
             // 
             // mProgressBar
             // 
-            this.mProgressBar.Location = new System.Drawing.Point(4, 34);
+            this.mProgressBar.Location = new System.Drawing.Point(4, 24);
             this.mProgressBar.Name = "mProgressBar";
             this.mProgressBar.Size = new System.Drawing.Size(373, 23);
             this.mProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
