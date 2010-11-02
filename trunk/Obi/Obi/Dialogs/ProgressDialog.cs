@@ -96,6 +96,7 @@ namespace Obi.Dialogs
         {
             m_IsCancelled = true;
             m_lbWaitForCancellation.Visible = true;
+            this.mProgressBar.Location = new System.Drawing.Point(4,34);
         }  
     }
 }
