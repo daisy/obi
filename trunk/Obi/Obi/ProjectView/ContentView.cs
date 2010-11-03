@@ -4515,8 +4515,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mCornerPanel.Location = new Point(this.verticalScrollToolStripContainer1.Location.X, mHScrollBar.Location.Y);
             mCornerPanel.BringToFront();
             this.contentViewLabel1.BringToFront();
-           
-            }
+           }
 
         public void ResizeContentViewFromStripResize()
         {
