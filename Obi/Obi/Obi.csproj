@@ -71,11 +71,11 @@
   <ItemGroup>
     <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
+      <HintPath>..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
     </Reference>
     <Reference Include="AudioLib, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\utilities\AudioFormatConverter\AudioLib\bin\Debug\AudioLib.dll</HintPath>
+      <HintPath>..\..\..\Obi\trunk\Obi\utilities\AudioFormatConverter\AudioLib\bin\Debug\AudioLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
@@ -95,7 +95,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="urakawa, Version=1.1.0.21386, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
+      <HintPath>..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\core\bin\Debug\urakawa.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -819,8 +819,8 @@
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\VerticleScrollPane.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>VerticleScrollPane.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
