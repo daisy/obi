@@ -195,10 +195,16 @@ namespace Obi.ProjectView
                         mMetadataListView.Items.Insert ( i, item );
                         item.Checked = true;
                         item.Tag = m;
-
+                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.getName());
+                        if (metDes != null)
+                        {
+                            if (metDes.ReadOnly)
+                                item.BackColor = SystemColors.InactiveCaption;
+                        }
                         }
 
                     ExistingItemsList.Add ( itemsListString );
+                    
                     }
 
                 // remove only if metadata is not custom
@@ -439,10 +445,8 @@ namespace Obi.ProjectView
                         ListViewItem item = new ListViewItem(nameContent);
                         mMetadataListView.Items.Add(item);
                         item.Checked = true;
-                        item.Tag = m;
-                        
-                        
-                    
+                        item.Tag = m;                     
+                                            
                         ExistingItemsList.Add(nameContent[0]);
                         MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.getName());
                         if (metDes != null)
