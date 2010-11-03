@@ -20,9 +20,11 @@ namespace Obi.ProjectView
         {
             InitializeComponent();
             TrackBarValueInPercentage = 0;
-            if(toolStripContainer1.Height != null)
+            if(this.Height > 0)
             m_OriginalPanelSize = this.Height;
-            // this.Height = toolStripContainer1.Height;   
+            else
+                m_OriginalPanelSize = 500;
+          //  this.Height = toolStripContainer1.Height;   
         }
         public ContentView contentView
         {
@@ -156,7 +158,10 @@ namespace Obi.ProjectView
             int mulFactor = (interval / 10) * 10;
             int heightOfButton = 44;
             int heightOfToolstrip = 195;
-            this.Height = toolStripContainer1.Height;        
+            if (this.Height > (m_OriginalPanelSize / 2))
+            { this.Height = toolStripContainer1.Height; }
+            else
+            { }                    
 
             if (mOldMulFactor == mulFactor)
             {  }
@@ -178,8 +183,8 @@ namespace Obi.ProjectView
                     toolStripBottom.Size = new Size(toolStripTop.Size.Width, Convert.ToInt32((heightOfToolstrip * (mulFactor - 12)) / 100));
                     trackBar1.Location = new Point(trackBar1.Location.X, toolStripTop.Location.Y + toolStripTop.Height + 50);
                     toolStripBottom.Location = new Point(toolStripBottom.Location.X, (Convert.ToInt32(trackBar1.Location.Y + trackBar1.Height) + 30));
-                    toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 170);
-                    this.Height = toolStripContainer1.Height;                    
+                    toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 300);
+                                   
                 }
                 else
                 {
@@ -195,9 +200,9 @@ namespace Obi.ProjectView
                     toolStripBottom.Size = new Size(toolStripTop.Size.Width, Convert.ToInt32((heightOfToolstrip / 2)));
                     trackBar1.Location = new Point(trackBar1.Location.X, toolStripTop.Location.Y + toolStripTop.Height + 50);
                     toolStripBottom.Location = new Point(toolStripBottom.Location.X, (Convert.ToInt32(trackBar1.Location.Y + trackBar1.Height) + 30));
-                    toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 170);
-                    this.Height = toolStripContainer1.Height;                    
-                  }                       
+                    toolStripContainer1.Size = new Size(toolStripContainer1.Size.Width, (toolStripTop.Height + toolStripBottom.Height + trackBar1.Height) + 300);
+                  //  this.Height = toolStripContainer1.Height;                    
+                  }                      
             }            
             mOldMulFactor = mulFactor;
         }
