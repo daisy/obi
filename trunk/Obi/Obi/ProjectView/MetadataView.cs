@@ -411,55 +411,70 @@ namespace Obi.ProjectView
         // Import metadata entries from the presentation
         private void ImportMetadata ()
             {
-            if (InvokeRequired)
+                if (InvokeRequired)
                 {
-                Invoke ( new ImportMetadataInvokation ( ImportMetadata ) );
+                    Invoke(new ImportMetadataInvokation(ImportMetadata));
                 }
-            else
+                else
                 {
-                mMetadataListView.ItemChecked -= new System.Windows.Forms.ItemCheckedEventHandler ( mMetadataListView_ItemChecked );
-                m_IsImportingMetadata = true;
-                mMetadataListView.Items.Clear ();
-                string[] nameContent = new string[2];
-                List<urakawa.metadata.Metadata> items = mView.Presentation.getListOfMetadata ();
-                items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
-                {
-                    int names = a.getName ().CompareTo ( b.getName () );
-                    return names == 0 ? a.getContent ().CompareTo ( b.getContent () ) : names;
-                } );
-
-                // a list of metadata names which already exists
-                // purpose is to compare addable items and prevent their addition to list if it is already there
-                List<string> ExistingItemsList = new List<string> ();
-
-                foreach (urakawa.metadata.Metadata m in items)
+                    mMetadataListView.ItemChecked -= new System.Windows.Forms.ItemCheckedEventHandler(mMetadataListView_ItemChecked);
+                    m_IsImportingMetadata = true;
+                    mMetadataListView.Items.Clear();
+                    string[] nameContent = new string[2];
+                    List<urakawa.metadata.Metadata> items = mView.Presentation.getListOfMetadata();
+                    items.Sort(delegate(urakawa.metadata.Metadata a, urakawa.metadata.Metadata b)
                     {
-                    nameContent[0] = m.getName ();
-                    nameContent[1] = m.getContent ();
-                    ListViewItem item = new ListViewItem ( nameContent );
-                    mMetadataListView.Items.Add ( item );
-                    item.Checked = true;
-                    item.Tag = m;
+                        int names = a.getName().CompareTo(b.getName());
+                        return names == 0 ? a.getContent().CompareTo(b.getContent()) : names;
+                    });
 
-                    ExistingItemsList.Add ( nameContent[0] );
-                    }
-                List<string> addables = mView.AddableMetadataNames;
-                addables.Sort ();
-                addables.Add ( Localizer.Message ( "metadata_custom" ) );
-                foreach (string name in addables)
+                    // a list of metadata names which already exists
+                    // purpose is to compare addable items and prevent their addition to list if it is already there
+                    List<string> ExistingItemsList = new List<string>();
+
+                    foreach (urakawa.metadata.Metadata m in items)
                     {
-                    if (!ExistingItemsList.Contains ( name ))
+                        nameContent[0] = m.getName();
+                        nameContent[1] = m.getContent();
+                        ListViewItem item = new ListViewItem(nameContent);
+                        mMetadataListView.Items.Add(item);
+                        item.Checked = true;
+                        item.Tag = m;
+                        
+                        
+                    
+                        ExistingItemsList.Add(nameContent[0]);
+                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.getName());
+                        if (metDes != null)
                         {
-                        nameContent[0] = name;
-                        nameContent[1] = "";
-                        ListViewItem item = new ListViewItem ( nameContent );
-                        mMetadataListView.Items.Add ( item );
-                        item.Checked = false;
-                        item.Tag = null;
+                            if (metDes.ReadOnly)
+                                item.BackColor = SystemColors.InactiveCaption;
                         }
                     }
-                m_IsImportingMetadata = false;
-                mMetadataListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler ( mMetadataListView_ItemChecked );
+                    List<string> addables = mView.AddableMetadataNames;
+                    addables.Sort();
+                    addables.Add(Localizer.Message("metadata_custom"));
+                    foreach (string name in addables)
+                    {
+                        if (!ExistingItemsList.Contains(name))
+                        {
+                            nameContent[0] = name;
+                            nameContent[1] = "";
+                            ListViewItem item = new ListViewItem(nameContent);
+                            mMetadataListView.Items.Add(item);
+                            item.Checked = false;
+                            item.Tag = null;
+                            MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(name);
+                            if (metDes != null)
+                            {
+                                if (metDes.ReadOnly)
+                                    item.BackColor = SystemColors.InactiveCaption;
+                            }                           
+
+                        }
+                    }
+                    m_IsImportingMetadata = false;
+                    mMetadataListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(mMetadataListView_ItemChecked);
                 }
             }
 
