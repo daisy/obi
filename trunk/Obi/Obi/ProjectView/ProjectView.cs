@@ -686,7 +686,7 @@ namespace Obi.ProjectView
                     if (node is ObiNode && !((ObiNode)node).Used)
                         {
                         Commands.Node.Delete delete = new Commands.Node.Delete ( this, (ObiNode)node, false );
-                        if (Selection == null) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
+                        if (Selection == null || Selection.Node == node) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
                         if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
                             {
                             silence.Add ( delete );
