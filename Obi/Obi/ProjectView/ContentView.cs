@@ -4253,7 +4253,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
             get
                 {
-                return IsBlockSelected && SelectedEmptyNode.AncestorAs<SectionNode> ().Used;
+                //return IsBlockSelected && SelectedEmptyNode.AncestorAs<SectionNode> ().Used;
+                    return IsBlockOrWaveformSelected && mProjectView.Selection.Node.AncestorAs<SectionNode>().Used;
                 }
             }
 
