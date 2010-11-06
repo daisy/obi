@@ -1929,10 +1929,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 if (Selection != null)
                     {
                     EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
-                        mProjectView.Selection.Node is SectionNode ? currentlyActiveStrip.FirstBlock.Node :
+                        mProjectView.Selection.Node is SectionNode ? (currentlyActiveStrip.Node.PhraseChildCount > 0? currentlyActiveStrip.Node.PhraseChild(0): null):
                         mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
                     if (currentlySelectedEmptyNode != null)
                         {
+                        // if the section is selected and first phrase block is not in created phrase lot, create it
+                            if (mProjectView.Selection.Node is SectionNode && currentlyActiveStrip.FindBlock(currentlySelectedEmptyNode) == null) SelectPhraseBlockOrStrip(currentlySelectedEmptyNode);
                         Block blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
                         if (nextLine)
                             {
