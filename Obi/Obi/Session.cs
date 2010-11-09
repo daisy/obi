@@ -264,12 +264,15 @@ namespace Obi
         /// </summary>
         public void Save ( string path )
             {
+                string precautionBackupFilePath = null;
             try
                 {
-                Uri prevRootUri = Presentation.getRootUri ();
+                //Uri prevRootUri = Presentation.getRootUri ();
+                
                 // Make sure that saving is finished before returning
                 System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent ( false );
                 urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction ( mProject, new Uri ( path ) );
+                precautionBackupFilePath = CreatePrecautionBackupBeforeSave();
                 save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
                     ( delegate ( object sender, urakawa.events.progress.FinishedEventArgs e ) { wh.Set (); } );
                 save.execute ();
@@ -279,8 +282,31 @@ namespace Obi
                 {
                 MessageBox.Show ( Localizer.Message ( "ErrorInSaving" ) + "\n\n" + ex.ToString (),
                         Localizer.Message ( "Caption_Error" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
+                // restore the original file in case of error.
+                if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath))
+                {
+                    string originalPath = Presentation.getRootUri().LocalPath;
+                    if (File.Exists(originalPath)) File.Delete(originalPath);
+                    File.Move(precautionBackupFilePath, originalPath);
                 }
+                precautionBackupFilePath = null;
+                }
+            // delete the precaution file if there was no error
+                if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath)) File.Delete(precautionBackupFilePath);
             }
+
+        private string CreatePrecautionBackupBeforeSave()
+        {
+            string precautionFilePath = Presentation.getRootUri().LocalPath;
+            if (precautionFilePath == null || !File.Exists(precautionFilePath)) return null;
+
+            for (int i = 0; File.Exists(precautionFilePath += i.ToString()); i++)
+            { }
+            File.Copy (Presentation.getRootUri().LocalPath, precautionFilePath);
+            Console.WriteLine("Precaution file is created at " + precautionFilePath);
+            
+            return precautionFilePath;
+        }
 
         /// <summary>
         /// save project to backup file for recovery purpose
