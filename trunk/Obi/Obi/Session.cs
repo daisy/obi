@@ -268,13 +268,12 @@ namespace Obi
             try
                 {
                 //Uri prevRootUri = Presentation.getRootUri ();
-                
-                // Make sure that saving is finished before returning
-                System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent ( false );
-                urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction ( mProject, new Uri ( path ) );
-                precautionBackupFilePath = CreatePrecautionBackupBeforeSave();
-                save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
-                    ( delegate ( object sender, urakawa.events.progress.FinishedEventArgs e ) { wh.Set (); } );
+                    precautionBackupFilePath = CreatePrecautionBackupBeforeSave( path);
+                    // Make sure that saving is finished before returning
+                    System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
+                    urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
+                    save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
+        (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
                 save.execute ();
                 wh.WaitOne ();
                 }
@@ -295,10 +294,10 @@ namespace Obi
                 if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath)) File.Delete(precautionBackupFilePath);
             }
 
-        private string CreatePrecautionBackupBeforeSave()
+        private string CreatePrecautionBackupBeforeSave( string path)
         {
             string precautionFilePath = Presentation.getRootUri().LocalPath;
-            if (precautionFilePath == null || !File.Exists(precautionFilePath)) return null;
+            if (precautionFilePath == null || !File.Exists(precautionFilePath) || System.IO.Path.GetFullPath(path) != precautionFilePath) return null;
 
             for (int i = 0; File.Exists(precautionFilePath += i.ToString()); i++)
             { }
