@@ -41,7 +41,7 @@ namespace Obi.Dialogs
         {
             mOperation = operation;
             Text = title;
-            this.Size = new Size(this.Width, 74);
+            this.Size = new Size(this.Width, 94);
             m_BtnCancel.Visible = false;
         }
 

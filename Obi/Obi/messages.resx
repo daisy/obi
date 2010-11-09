@@ -1361,7 +1361,7 @@ Error text: {1}</value>
     <value>Operation completed, the section has its contents hidden so newly added phrases will also be hidden. Please press F5 to unhide</value>
   </data>
   <data name="ExportError_EmptyProject" xml:space="preserve">
-    <value>Can not Export. Project is empty!</value>
+    <value>Cannot Export. Project is empty!</value>
   </data>
   <data name="EachLevel" xml:space="preserve">
     <value>Each level</value>
