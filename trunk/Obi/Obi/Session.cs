@@ -253,8 +253,8 @@ namespace Obi
         /// </summary>
         public void ForceSave ()
             {
-            Save ( mPath );
-            mChangesCount = 0;
+                if (Save(mPath)) mChangesCount = 0;
+            
             if (ProjectSaved != null) ProjectSaved ( this, null );
             }
 
@@ -262,7 +262,7 @@ namespace Obi
         /// Save the project under a given location (used by save for the regular location,
         /// or save as for a different location.)
         /// </summary>
-        public void Save ( string path )
+        public bool Save ( string path )
             {
                 string precautionBackupFilePath = null;
             try
@@ -289,9 +289,11 @@ namespace Obi
                     File.Move(precautionBackupFilePath, originalPath);
                 }
                 precautionBackupFilePath = null;
+                return false;
                 }
             // delete the precaution file if there was no error
                 if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath)) File.Delete(precautionBackupFilePath);
+                return true;
             }
 
         private string CreatePrecautionBackupBeforeSave( string path)
