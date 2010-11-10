@@ -1159,12 +1159,14 @@ namespace Obi.ProjectView
             // it is important to prevent creation of initial phrases when the section is selected after phrase selection
             //  this will avoid creation of useless intermediate phrases
             // but need to explore negative effects.
+            Strip currentlyActiveStrip = null;
             if (mSelection != null && selectionValue != null )
             {
                 EmptyNode previouslySelectedNode = mSelection.Node is EmptyNode?(EmptyNode) mSelection.Node:
                     mSelection is StripIndexSelection && ((StripIndexSelection)mSelection).EmptyNodeForSelection != null?((StripIndexSelection)mSelection).EmptyNodeForSelection: null ;
                 if (previouslySelectedNode != null &&  selectionValue.Node is SectionNode
-            && previouslySelectedNode.ParentAs<SectionNode>() == selectionValue.Node)
+            && previouslySelectedNode.ParentAs<SectionNode>() == selectionValue.Node
+                    && (currentlyActiveStrip = ActiveStrip) != null && currentlyActiveStrip.Node == selectionValue.Node)
                 {
                     return;
                 }
@@ -1174,7 +1176,7 @@ namespace Obi.ProjectView
                 selectionValue.Node is EmptyNode ||
                 selectionValue is StripIndexSelection)
                 {
-                Strip currentlyActiveStrip = ActiveStrip;
+                if(currentlyActiveStrip == null)  currentlyActiveStrip = ActiveStrip;
                 SectionNode sectionToBeSelected = selectionValue.Node is SectionNode ? (SectionNode)selectionValue.Node :
                                                 selectionValue.Node.ParentAs<SectionNode> ();
 
