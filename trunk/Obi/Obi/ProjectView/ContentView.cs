@@ -565,8 +565,9 @@ namespace Obi.ProjectView
                         if (!((Control)s).Focused) ((Control)s).Focus ();
                         mFocusing = false;
 
-                        //RemoveBlocksBelowContentViewVisibleArea (value.Node is EmptyNode ? (EmptyNode) value.Node: null);//@singleSection: explicitly call remove after rearrangement of strip panel
-                        if (!(mSelectedItem is Strip) ) m_PreviousSelectionForScroll = null;//if section is not selected, it means that user has intentionally selected something else so selection should not restore
+                        // we do not need following condition for avoiding strip selection as it is handled in projectView.Selection disable section selection flag
+                        //if (!(mSelectedItem is Strip) ) m_PreviousSelectionForScroll = null;//if section is not selected, it means that user has intentionally selected something else so selection should not restore
+                        m_PreviousSelectionForScroll = null;
                         }
                     }
                 }
