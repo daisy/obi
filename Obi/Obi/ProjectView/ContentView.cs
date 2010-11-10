@@ -2522,8 +2522,16 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 DisableScrolling();
                                 //mProjectView.SelectedBlockNode = previouslySelectedEmptyNode;
                                 //mProjectView.Selection = m_PreviousSelectionForScroll;
-                                mProjectView.Selection = new NodeSelection( m_PreviousSelectionForScroll.Node, m_PreviousSelectionForScroll.Control);
-                                
+
+                                if (m_PreviousSelectionForScroll is AudioSelection)
+                                {
+                                    mProjectView.Selection = null;
+                                    mProjectView.Selection = m_PreviousSelectionForScroll;
+                                }
+                                else
+                                {
+                                    mProjectView.Selection = new NodeSelection(m_PreviousSelectionForScroll.Node, m_PreviousSelectionForScroll.Control);
+                                }
                                 mProjectView.TransportBar.SelectionChangedPlaybackEnabled = selectionChangedPlaybackEnabledStatus;
                                 return true;
                             }
