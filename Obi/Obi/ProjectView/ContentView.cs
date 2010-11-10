@@ -1908,6 +1908,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public bool ScrollUp_SmallIncrementWithSelection ()
             {
+                if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode) return false;
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
             return MoveToNextOrPreviousLineInStrip ( false );
             }
@@ -1935,7 +1936,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (currentlySelectedEmptyNode != null)
                         {
                         // if the section is selected and first phrase block is not in created phrase lot, create it
-                            if (mProjectView.Selection.Node is SectionNode && currentlyActiveStrip.FindBlock(currentlySelectedEmptyNode) == null) SelectPhraseBlockOrStrip(currentlySelectedEmptyNode);
+                            //if (mProjectView.Selection.Node is SectionNode && currentlyActiveStrip.FindBlock(currentlySelectedEmptyNode) == null)
+                        if (mProjectView.Selection.Node is SectionNode )
+                            {
+                                SelectPhraseBlockOrStrip(currentlySelectedEmptyNode);
+                                return true;
+                            }
                         Block blockToBeSelected = currentlyActiveStrip.FirstBlockInNextLineOrPrevious ( currentlySelectedEmptyNode, nextLine );
                         if (nextLine)
                             {
