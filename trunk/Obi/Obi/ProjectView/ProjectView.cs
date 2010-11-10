@@ -1560,8 +1560,8 @@ namespace Obi.ProjectView
                 {
                 return mTransportBar.PlaybackPhrase != null ?
                     mTransportBar.PlaybackPhrase.TODO :
-                    mContentView.SelectedEmptyNode != null ?
-                    mContentView.SelectedEmptyNode.TODO : false;
+                    Selection != null && Selection.Node is EmptyNode?
+                   ((EmptyNode) Selection.Node).TODO : false;
                 }
             }
 
