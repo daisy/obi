@@ -1568,7 +1568,8 @@ namespace Obi.ProjectView
                     }
                 if (wasPlaybackOn)
                     {
-                    mProjectView.TransportBar.PlayOrResume ();
+                    //mProjectView.TransportBar.PlayOrResume ();
+                        ResumePlaybackAfterDynamicLoading();
                     //SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
                     m_EnableFindPlaybackBlockDuringCursorUpdate = true;
                     }
@@ -1579,6 +1580,22 @@ namespace Obi.ProjectView
 
             return true;
             }
+
+        //@singleSection
+        private void ResumePlaybackAfterDynamicLoading()
+        {
+            if ( mProjectView.TransportBar.CurrentState == TransportBar.State.Paused )
+            {
+                if (mProjectView.TransportBar.CurrentPlaylist == mProjectView.TransportBar.MasterPlaylist)
+                {
+                    mProjectView.TransportBar.PlayAll();
+                }
+                else
+                {
+                    mProjectView.TransportBar.PlayOrResume();
+                }
+            }
+        }
 
         //@singleSection
         private void RemoveBlocksBelowContentViewVisibleArea ( EmptyNode nodeSelected )
@@ -1639,7 +1656,8 @@ namespace Obi.ProjectView
 
                 if (wasPlaybackOn)
                     {
-                    mProjectView.TransportBar.PlayOrResume ();
+                    //mProjectView.TransportBar.PlayOrResume ();
+                        ResumePlaybackAfterDynamicLoading();
                     //SetPlaybackPhraseAndTime ( mProjectView.TransportBar.CurrentPlaylist.CurrentPhrase, mProjectView.TransportBar.CurrentPlaylist.CurrentTimeInAsset );
                     m_EnableFindPlaybackBlockDuringCursorUpdate = true;
                     }
@@ -1766,7 +1784,8 @@ namespace Obi.ProjectView
                     // if IScrollActive flag is true, it will not allow playback
                     bool isScrollActiveStatus = IsScrollActive;
                     if (IsScrollActive) IsScrollActive = false;
-                    mProjectView.TransportBar.PlayOrResume ();
+                    //mProjectView.TransportBar.PlayOrResume ();
+                    ResumePlaybackAfterDynamicLoading();
                     IsScrollActive = isScrollActiveStatus;
                     }
                 }
@@ -1805,7 +1824,8 @@ namespace Obi.ProjectView
                     // if IScrollActive flag is true, it will not allow playback
                     bool isScrollActiveStatus = IsScrollActive;
                     if (IsScrollActive) IsScrollActive = false;
-                    mProjectView.TransportBar.PlayOrResume ();
+                    //mProjectView.TransportBar.PlayOrResume ();
+                    ResumePlaybackAfterDynamicLoading();
                     IsScrollActive = isScrollActiveStatus;
                     }
                 }
@@ -1969,7 +1989,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                                 if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
                                     && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
-                                    mProjectView.TransportBar.PlayOrResume ();
+                                {
+                                    //mProjectView.TransportBar.PlayOrResume ();
+                                }
                                 }
                             return true;
                             }
@@ -2002,9 +2024,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                     }
                                 // workaround for avoiding distortion after very rapid line ups
                                     if (currentlyActiveStrip != null && Math.Abs(mStripsPanel.Location.Y) <= currentlyActiveStrip.BlocksLayoutTopPosition && !currentlyActiveStrip.IsContentViewFilledWithBlocks) CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
-                                if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
-                                    && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
-                                    mProjectView.TransportBar.PlayOrResume ();
+                                    if (mProjectView.ObiForm.Settings.PlayOnNavigate && mProjectView.Selection != null
+                                        && currentlySelectedEmptyNode != mProjectView.Selection.Node && mProjectView.TransportBar.CurrentState != TransportBar.State.Playing)
+                                    {
+                                        //mProjectView.TransportBar.PlayOrResume ();
+                                    }
 
                                 }
                             }
