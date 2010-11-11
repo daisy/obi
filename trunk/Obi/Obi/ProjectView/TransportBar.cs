@@ -502,8 +502,9 @@ namespace Obi.ProjectView
                 if (mView != null) throw new Exception("Cannot set the project view again!");
                 mView = value;
                 UpdateButtons();
+                mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
                 mView.SelectionChanged += new EventHandler(delegate(object sender, EventArgs e) { 
-                    mView.BlocksVisibilityChanged += new EventHandler(mView_BlocksVisibilityChanged);
+                    
                     UpdateButtons();
                     //if (Enabled && mSelectionChangedPlayEnable &&  mView.ObiForm.Settings.PlayOnNavigate)   PlaybackOnSelectionChange();
                     if (Enabled && mSelectionChangedPlayEnable ) PlaybackOnSelectionChange_Safe ();
