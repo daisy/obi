@@ -432,7 +432,7 @@ namespace Obi.ProjectView
             // if node index is just one less than offset of strip and node inserted is 0 node then allow insert else return null
             if (mBlockLayout.Controls.Count > 1 && OffsetForFirstPhrase - node.Index > 0 && node.Index > 0) return null;
             // if node index is 0 but offset is not 1 then also return
-            if (node.Index == 0 && OffsetForFirstPhrase > 1) return null;
+            if (node.Index == 0 && OffsetForFirstPhrase > 1 && mBlockLayout.Controls.Count > 0) return null;
 
             if (mBlockLayout.Controls.Count == 0)
                 {
