@@ -253,9 +253,11 @@ namespace Obi
         /// </summary>
         public void ForceSave ()
             {
-                if (Save(mPath)) mChangesCount = 0;
-            
-            if (ProjectSaved != null) ProjectSaved ( this, null );
+                if (Save(mPath))
+                {
+                    mChangesCount = 0;
+                    if (ProjectSaved != null) ProjectSaved(this, null);
+                }
             }
 
         /// <summary>
