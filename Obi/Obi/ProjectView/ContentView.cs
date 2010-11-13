@@ -3168,6 +3168,14 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     //Console.WriteLine ( "exiting before making block " );
                     return null;
                     }
+
+                // if the block to be created is at offset from the last phrase block then 
+                // should return but it is good to fill the content view if it is not filled with blocks
+                    if (node.Index > lastBlock.Node.Index + 1)
+                    {
+                        if (!stripControl.IsContentViewFilledWithBlocks )  CreatePhraseBlocksForFillingContentView(stripControl);
+                        return null;
+                    }
                 }
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
