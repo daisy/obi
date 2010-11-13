@@ -1164,7 +1164,7 @@ namespace Obi.ProjectView
             {
                 EmptyNode previouslySelectedNode = mSelection.Node is EmptyNode?(EmptyNode) mSelection.Node:
                     mSelection is StripIndexSelection && ((StripIndexSelection)mSelection).EmptyNodeForSelection != null?((StripIndexSelection)mSelection).EmptyNodeForSelection: null ;
-                if (previouslySelectedNode != null &&  selectionValue.Node is SectionNode
+                if (previouslySelectedNode != null &&  (selectionValue.Node is SectionNode && !(selectionValue is StripIndexSelection))
             && previouslySelectedNode.ParentAs<SectionNode>() == selectionValue.Node
                     && (currentlyActiveStrip = ActiveStrip) != null && currentlyActiveStrip.Node == selectionValue.Node)
                 {
