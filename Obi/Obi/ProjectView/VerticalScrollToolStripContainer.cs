@@ -153,7 +153,8 @@ namespace Obi.ProjectView
         }
 
         public void verticalScrolling()
-        {            
+        {
+            if (m_OriginalPanelSize <= 0) return;
             int interval = (this.Height * 100) / m_OriginalPanelSize;
             int mulFactor = (interval / 10) * 10;
             int heightOfButton = 44;
