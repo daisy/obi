@@ -1513,54 +1513,55 @@ namespace Obi.ProjectView
                         if (!shouldRemoveBlocks) stripControl.UpdateColors ();
                         }
 
-                    if (shouldRemoveBlocks)
+                        if (shouldRemoveBlocks)
                         {
-                        if (mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted
-                            && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
+                            if (mProjectView.Selection != null && mProjectView.Selection.Node.IsRooted
+                                && (mProjectView.Selection.Node is EmptyNode || mProjectView.Selection is StripIndexSelection))
                             {
-                            ObiNode currentPhraseNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
-                                mProjectView.Selection.Node;
+                                ObiNode currentPhraseNode = mProjectView.Selection is StripIndexSelection ? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                                    mProjectView.Selection.Node;
 
-                            int currentPhraseIndex = (currentPhraseNode != null && currentPhraseNode.IsRooted) ? currentPhraseNode.Index : -1;
-                            if (currentPhraseIndex == -1) return true;
+                                int currentPhraseIndex = (currentPhraseNode != null && currentPhraseNode.IsRooted) ? currentPhraseNode.Index : -1;
+                                if (currentPhraseIndex == -1) return true;
 
-                            if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
-                                && (mProjectView.Selection.Node.isSiblingOf ( mSelection.Node ) || mProjectView.Selection.Node == mSelection.Node))
+                                if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
+                                    && (mProjectView.Selection.Node.isSiblingOf(mSelection.Node) || mProjectView.Selection.Node == mSelection.Node))
                                 {
-                                int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1) :
-                                    mSelection.Node.Index;
-                                if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
+                                    int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1) :
+                                        mSelection.Node.Index;
+                                    if (currentPhraseIndex < contentViewSelectionIndex) currentPhraseIndex = contentViewSelectionIndex;
 
                                 }
-                            if (requiredEmptyNode != null && currentPhraseIndex < requiredEmptyNode.Index)
+                                if (requiredEmptyNode != null && currentPhraseIndex < requiredEmptyNode.Index)
                                 {
-                                currentPhraseIndex = requiredEmptyNode.Index;
+                                    currentPhraseIndex = requiredEmptyNode.Index;
                                 }
-
-                            if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
-
-                            if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount - 1;
-
-                            //System.Media.SystemSounds.Asterisk.Play ();
-                            EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ? stripControl.Node.PhraseChild ( currentPhraseIndex + 15 ) :
-                                stripControl.Node.PhraseChild ( stripControl.Node.PhraseChildCount - 1 );
-
-
-                            if (stripControl.IsContentViewFilledWithBlocks)
+                                // replace following return condition by bypass type if block
+                                //if (stripControl.Node.PhraseChildCount <= currentPhraseIndex + 15) return true;
+                                if (stripControl.Node.PhraseChildCount > currentPhraseIndex + 15)
                                 {
-                                // pause playback if it is active.
-                                if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                    if (currentPhraseIndex <= defaultVisibleCount) currentPhraseIndex = defaultVisibleCount - 1;
+
+                                    //System.Media.SystemSounds.Asterisk.Play ();
+                                    EmptyNode lastIntentedVisiblePhrase = stripControl.Node.PhraseChildCount > currentPhraseIndex + 15 ? stripControl.Node.PhraseChild(currentPhraseIndex + 15) :
+                                        stripControl.Node.PhraseChild(stripControl.Node.PhraseChildCount - 1);
+
+
+                                    if (stripControl.IsContentViewFilledWithBlocks)
                                     {
-                                    mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
-                                    wasPlaybackOn = true;
-                                    mProjectView.TransportBar.Pause ();
+                                        // pause playback if it is active.
+                                        if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                        {
+                                            mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                                            wasPlaybackOn = true;
+                                            mProjectView.TransportBar.Pause();
+                                        }
+                                        stripControl.RemoveAllFollowingBlocks(lastIntentedVisiblePhrase, true, false);
+                                        UpdateSize();
                                     }
-                                stripControl.RemoveAllFollowingBlocks ( lastIntentedVisiblePhrase, true, false );
-                                UpdateSize ();
                                 }
                             }
                         }
-
                     }
                 catch (System.Exception ex)
                     {
