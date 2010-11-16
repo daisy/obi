@@ -1588,6 +1588,7 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    if (mRecordingPhrase != null && mRecordingSession != null && mRecordingSession.AudioRecorder.TimeOfAsset < 100) return false;
                     // record into to next phrase.
                     // check if phrase count of section is less than max limit
                     if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
@@ -1640,6 +1641,7 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    if (mRecordingPhrase != null && mRecordingSession != null && mRecordingSession.AudioRecorder.TimeOfAsset < 100) return false;
                     // check if phrase limit for section is not over
                     if ( mRecordingSection != null && mRecordingSection.PhraseChildCount < mView.MaxVisibleBlocksCount ) // @phraseLimit
                     mRecordingSession.MarkPage();
@@ -1680,6 +1682,7 @@ namespace Obi.ProjectView
             {
                 if (mState == State.Recording)
                 {
+                    if (mRecordingPhrase != null && mRecordingSession != null && mRecordingSession.AudioRecorder.TimeOfAsset < 100) return false;
                     PauseRecording();
                     mResumeRecordingPhrase = null;
 
