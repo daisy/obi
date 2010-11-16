@@ -1489,7 +1489,7 @@ Error text: {1}</value>
     <value> Recording {0}</value>
   </data>
   <data name="MergePhrases_SizeLimitMessage" xml:space="preserve">
-    <value>The duration of merged phrase cannot be greater than {0} mins. Pleas select less number of phrases for merge</value>
+    <value>The duration of merged phrase cannot be greater than {0} mins. Please select lesser number of phrases to merge</value>
   </data>
   <data name="Metadata_CreatorNameForInitializing" xml:space="preserve">
     <value>Creator name</value>
@@ -1598,5 +1598,8 @@ Error text: {1}</value>
   </data>
   <data name="METADATA_DAISY3_EXPORT_PATH_HELP" xml:space="preserve">
     <value>Obi specific data for saving Daisy 3 export path</value>
+  </data>
+  <data name="MergePhrases_CountLimitMessage" xml:space="preserve">
+    <value>The count of phrase to merge cannot be greater than {0}. Please select lesser number of phrases to merge</value>
   </data>
 </root>
