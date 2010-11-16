@@ -102,7 +102,12 @@ namespace Obi.ProjectView
                     points[3] = new Point(Width - 1, Height - 1);
                     pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                     pe.Graphics.FillPolygon(Strip.ColorSettings.BlockLayoutSelectedBrush, points);
-                }
+                }                
+            }
+            else if (this.BackColor == SystemColors.Highlight && !Strip.Highlighted)
+            {
+                this.BackColor = Strip.BackColor;
+                Parent.BackColor = Strip.BackColor;
             }
             base.OnPaint(pe);
         }
