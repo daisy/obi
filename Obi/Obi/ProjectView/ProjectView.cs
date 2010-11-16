@@ -1907,6 +1907,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void MergeBlockWithNext ()
             {
+                double duration;
             if (CanMergeBlockWithNext)
                 {
                 if (TransportBar.IsPlayerActive) TransportBar.Pause ();
@@ -1920,7 +1921,13 @@ namespace Obi.ProjectView
                     if ( ( Selection == null || ( Selection != null && !(Selection.Node is PhraseNode) ))
                         && mContentView.PlaybackBlock != null)
                         {
-                        Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );
+                        Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );                       
+                        }
+                        duration = Selection.Node.Duration + Selection.Node.FollowingNode.Duration;
+                        if (duration > 50 * 60 * 1000)
+                        {
+                            MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 50));
+                            return;
                         }
                     mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
@@ -1955,13 +1962,19 @@ namespace Obi.ProjectView
             // check if the merged phrase is not more than 10 mins
 
                 double durationSum = 0;
+                if ((endNode.Index - startNode.Index) > 300)
+                {
+                    MessageBox.Show(string.Format(Localizer.Message("MergePhrases_CountLimitMessage"), 300 ));
+                    //MessageBox.Show("The number of phrases merged is more than 300");
+                    return;
+                }
                 for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
                     durationSum += section.PhraseChild (i).Duration;
                     }
-                if (durationSum > 10 * 60 * 1000)
+                if (durationSum > 50 * 60 * 1000)
                     {
-                    MessageBox.Show ( string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 10 ) );
+                    MessageBox.Show ( string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 50 ) );
                     return;
                     }
 
