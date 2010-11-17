@@ -1180,7 +1180,8 @@ namespace Obi.ProjectView
                     if (m_DisableSectionSelection && value != null && value.Node is SectionNode)
                     {
                         m_DisableSectionSelection = false;
-                        return;
+                        //bypass selecting only if selection is in same section, allow it select section if different section is selected
+                        if ( GetSelectedPhraseSection != null && GetSelectedPhraseSection == value.Node )  return;
                     }
                 if (mSelection != value)
                     {
