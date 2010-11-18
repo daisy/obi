@@ -54,10 +54,10 @@ namespace Obi.Audio
               // rename converted file to original file if names are different
                 if (Path.GetFileName(filePath) != Path.GetFileName(convertedFile))
                 {
-                                        string newConvertedFilePath = Path.Combine( Path.GetDirectoryName(convertedFile) , Path.GetFileName(filePath)) ;
+                                        string newConvertedFilePath = Path.Combine( Path.GetDirectoryName(convertedFile) , Path.GetFileNameWithoutExtension(filePath)+".wav") ;
                     for (int i = 0; i < 99999 || !File.Exists(newConvertedFilePath) ; i++)
                     {
-                        newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile),i.ToString() + Path.GetFileName(filePath));
+                        newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile),i.ToString() + Path.GetFileNameWithoutExtension(filePath)+".wav");
                         if (!File.Exists(newConvertedFilePath))
                         {
                             MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileName(convertedFile), Path.GetFileName(newConvertedFilePath)) );
