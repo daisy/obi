@@ -1685,7 +1685,7 @@ namespace Obi.ProjectView
                                         try
                                             {
                                             phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
-                                            if (phrases.Count > 1)
+                                            if (!dialog.SplitPhrases  && phrases.Count > 1)
                                                  MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), 50));                                                                                                                 
                                             }
                                         catch (System.Exception ex)
