@@ -1671,7 +1671,7 @@ namespace Obi.ProjectView
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
                          // convert from minutes to milliseconds
-                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (50.0 * 60000.0);
+                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60000.0);
                        // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Length );
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
@@ -1686,7 +1686,7 @@ namespace Obi.ProjectView
                                             {
                                             phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
                                             if (!dialog.SplitPhrases  && phrases.Count > 1)
-                                                 MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), 50));                                                                                                                 
+                                                MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));                                                                                                                 
                                             }
                                         catch (System.Exception ex)
                                             {
@@ -1928,9 +1928,9 @@ namespace Obi.ProjectView
                         Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );                       
                         }
                         duration = Selection.Node.Duration + Selection.Node.FollowingNode.Duration;
-                        if (duration > 50 * 60 * 1000)
+                        if (duration > Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60 * 1000)
                         {
-                            MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 50));
+                            MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));
                             return;
                         }
                     mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
@@ -1976,9 +1976,9 @@ namespace Obi.ProjectView
                     {
                     durationSum += section.PhraseChild (i).Duration;
                     }
-                if (durationSum > 50 * 60 * 1000)
+                    if (durationSum > Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60 * 1000)
                     {
-                    MessageBox.Show ( string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), 50 ) );
+                        MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));
                     return;
                     }
 
