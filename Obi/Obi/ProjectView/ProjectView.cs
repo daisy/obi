@@ -1671,7 +1671,8 @@ namespace Obi.ProjectView
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
                          // convert from minutes to milliseconds
-                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
+                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (20.0 * 60000.0);
+                       // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
                         List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Length );
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
                         Dialogs.ProgressDialog progress =
@@ -1684,6 +1685,9 @@ namespace Obi.ProjectView
                                         try
                                             {
                                             phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
+                                            Console.WriteLine("Phrase COunt " + phrases.Count);
+                                            if (phrases.Count > 1)
+                                                 MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), 50));                                                                                                                 
                                             }
                                         catch (System.Exception ex)
                                             {
