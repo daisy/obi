@@ -1531,6 +1531,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file is more than {0} minutes. It will be split..
+        /// </summary>
+        internal static string Import_Phrase_SizeLimit {
+            get {
+                return ResourceManager.GetString("Import_Phrase_SizeLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to import audio files.
         /// </summary>
         internal static string import_phrases {
