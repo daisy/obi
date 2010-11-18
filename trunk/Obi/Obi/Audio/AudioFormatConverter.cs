@@ -51,7 +51,22 @@ namespace Obi.Audio
                 {
                     convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, channels, samplingRate, bitDepth);
                 }
-              
+              // rename converted file to original file if names are different
+                if (Path.GetFileName(filePath) != Path.GetFileName(convertedFile))
+                {
+                                        string newConvertedFilePath = Path.Combine( Path.GetDirectoryName(convertedFile) , Path.GetFileName(filePath)) ;
+                    for (int i = 0; i < 99999 || !File.Exists(newConvertedFilePath) ; i++)
+                    {
+                        newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile),i.ToString() + Path.GetFileName(filePath));
+                        if (!File.Exists(newConvertedFilePath))
+                        {
+                            MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileName(convertedFile), Path.GetFileName(newConvertedFilePath)) );
+                            break;
+                        }
+                    }
+                    File.Move(convertedFile, newConvertedFilePath);
+                    convertedFile = newConvertedFilePath;
+                }
             }
             catch (System.Exception ex)
             {
