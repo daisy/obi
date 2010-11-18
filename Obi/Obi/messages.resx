@@ -1605,4 +1605,7 @@ Error text: {1}</value>
   <data name="Import_Phrase_SizeLimit" xml:space="preserve">
     <value>The file is more than {0} minutes. It will be split.</value>
   </data>
+  <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
+    <value>File named {0} is renamed to {1} as the file  with the name already exists in project directory</value>
+  </data>
 </root>
