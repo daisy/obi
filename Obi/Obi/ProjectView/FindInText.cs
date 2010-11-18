@@ -124,7 +124,7 @@ namespace Obi.ProjectView
                 {
                 m_SectionActiveInContentView = null;
                 if (mProjectView.GetSelectedPhraseSection != null) m_SectionActiveInContentView = mProjectView.GetSelectedPhraseSection;
-                if (m_SectionActiveInContentView == null) m_SectionActiveInContentView = m_ContentView.ActiveStrip.Node;
+                if (m_SectionActiveInContentView == null && m_ContentView.ActiveStrip != null) m_SectionActiveInContentView = m_ContentView.ActiveStrip.Node;
                 }
             else
                 {
