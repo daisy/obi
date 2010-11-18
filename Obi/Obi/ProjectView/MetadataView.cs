@@ -664,7 +664,9 @@ namespace Obi.ProjectView
             {
             if (mSelection != null)
                 {
+                    mMetadataListView.SelectedIndexChanged -= new EventHandler(mMetadataListView_SelectedIndexChanged);
                 mSelection.Item.Item.Selected = true;
+                mMetadataListView.SelectedIndexChanged += new EventHandler(mMetadataListView_SelectedIndexChanged);
                 mNameTextbox.Text = mSelection.Item.Item.Text;
                 mNameTextbox.AccessibleName = mNameLabel.Text.Replace ( "&", "" );
                 //bool editableName = (mSelection.Item.Item.Checked || CanRemoveMetadata) && mSelection.Item.Item.Text == Localizer.Message("metadata_custom") ;
