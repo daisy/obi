@@ -990,8 +990,8 @@ namespace Obi
         // Update the status of the blocks menu item with the current selection and tree.
         private void UpdatePhrasesMenu ()
             {
-            mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
-            mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock;
+            mAddBlankPhraseToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
+            mAddEmptyPagesToolStripMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
             mImportAudioFileToolStripMenuItem.Enabled = mProjectView.CanImportPhrases;
             mSplitPhraseToolStripMenuItem.Enabled = mProjectView.CanSplitPhrase && !mProjectView.TransportBar.IsRecorderActive;
             mMergeToolStripMenuItem.Enabled = mProjectView.Presentation != null && mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode && mProjectView.GetSelectedPhraseSection != null && mProjectView.GetSelectedPhraseSection.PhraseChildCount > 1 && !mProjectView.TransportBar.IsRecorderActive;
