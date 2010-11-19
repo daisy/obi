@@ -1464,13 +1464,7 @@ namespace Obi.ProjectView
 
                             bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
                             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-                            // pause playback if it is active.
-                            if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
-                                {
-                                mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
-                                wasPlaybackOn = true;
-                                mProjectView.TransportBar.Pause ();
-                                }
+                            
                             ObiNode nodeForRemoveReference = requiredEmptyNode != null && requiredEmptyNode.Index > selectedNode.Index ? requiredEmptyNode : selectedNode;
                             EmptyNode intendedFirstNodeAfterRemoval = null;
                             Block firstBlock = stripControl.FirstBlock;
@@ -1478,6 +1472,13 @@ namespace Obi.ProjectView
                             // this will prevent refreshing of layout on clicking phrase beyond 250 phrases lot size. But a better way is preffered than this.
                             if (firstBlock != null && nodeForRemoveReference.Index - firstBlock.Node.Index >= phraseLotSize + 100)
                                 {
+                                    // pause playback if it is active.
+                                    if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                    {
+                                        mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                                        wasPlaybackOn = true;
+                                        mProjectView.TransportBar.Pause();
+                                    }
                                 intendedFirstNodeAfterRemoval = RemoveAllblocksInStripIfRequired ( stripControl, nodeForRemoveReference, true );
                                 }
                             if (intendedFirstNodeAfterRemoval != null)
@@ -1501,6 +1502,13 @@ namespace Obi.ProjectView
                                 Block currentNodeBlock = stripControl.FindBlock ( (EmptyNode)currentNode );
                                 if (currentNodeBlock == null)
                                     {//4
+                                        // pause playback if it is active.
+                                        if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing)
+                                        {
+                                            mProjectView.TransportBar.CanMoveSelectionToPlaybackPhrase = false;
+                                            wasPlaybackOn = true;
+                                            mProjectView.TransportBar.Pause();
+                                        }
                                     shouldRemoveBlocks = false;
                                     stripControl.AddBlockForNode ( (EmptyNode)currentNode );
                                     }//-4
