@@ -74,36 +74,53 @@ namespace Obi.ProjectView
         /// </summary>
         public BackgroundWorker Render()
         {
-            if (mNeedsRendering)
+            if (mBlock != null &&  mBlock.Node != null && mBlock.Node.IsRooted)
             {
-                mNeedsRendering = false;
-                if (mBlock != null && Width > 0 && Height > 0)
+                if (mNeedsRendering)
                 {
-                    BackgroundWorker worker = new BackgroundWorker();
-                    worker.WorkerReportsProgress = false;
-                    worker.WorkerSupportsCancellation = false;
-                    worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                    mNeedsRendering = false;
+                    if (mBlock != null && Width > 0 && Height > 0)
                     {
-                        ColorSettings settings = mBlock.ColorSettings;
-                        mBitmap = CreateBitmap(mBlock.ColorSettings, false);
-                        if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
-                    });
-                    worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
-                    {
-                        Invalidate();
-                        mBlock.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
-                    });
-                    worker.RunWorkerAsync();
-                    return worker;
+                        BackgroundWorker worker = new BackgroundWorker();
+                        worker.WorkerReportsProgress = false;
+                        worker.WorkerSupportsCancellation = false;
+                        worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
+                        {
+                            ColorSettings settings = mBlock.ColorSettings;
+                            mBitmap = CreateBitmap(mBlock.ColorSettings, false);
+                            if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
+                        });
+                        worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
+                        {
+                            Invalidate();
+                            mBlock.ContentView.FinishedRendering(this, mBitmap != null && mBitmap_Highlighted != null);
+                        });
+                        worker.RunWorkerAsync();
+                        return worker;
+                    }
                 }
+                return null;
             }
-            return null;
+            else
+            {
+                if (mBitmap != null)
+                {
+                    mBitmap.Dispose();
+                    mBitmap = null;
+                }
+                return null;
+            }
         }
 
 
         // Clear bitmaps before redrawing.
         private void ClearBitmaps()
         {
+            if (mBitmap != null)
+            {
+                mBitmap.Dispose();
+                mBitmap = null;
+            }
             mBitmap = CreateBaseBitmap(ColorSettings, false);
             mBitmap_Highlighted = CreateBaseBitmap(ColorSettings, true);
             // Invalidate to immediately show the empty bitmaps
