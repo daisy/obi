@@ -16,7 +16,7 @@ namespace Obi.Commands.Node
         private PhraseNode mNode;          // the selected phrase
         private PhraseNode mNextNode;      // the following phrase to merge with
         private Time mSplitTime;           // the split time of the new merged node
-
+        private bool m_IsNextNodeRooted;
 
         public MergeAudio(ProjectView.ProjectView view, PhraseNode node, PhraseNode next)
             : base(view)
@@ -24,6 +24,7 @@ namespace Obi.Commands.Node
             mNode = node;
             mNextNode = next;
             mSplitTime = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+            m_IsNextNodeRooted = mNextNode.IsRooted;
         }
 
 
@@ -102,7 +103,7 @@ namespace Obi.Commands.Node
         /// </summary>
         public static void Merge(ProjectView.ProjectView view, PhraseNode node, PhraseNode next, bool updateSelection)
         {
-            next.Detach();
+            if(next.IsRooted)  next.Detach();
             node.MergeAudioWith(next.Audio);
             if (updateSelection) view.SelectedBlockNode = node;
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
@@ -128,6 +129,7 @@ namespace Obi.Commands.Node
         public override void unExecute()
         {
             SplitAudio.Split(View, mNode, mNextNode, mSplitTime, UpdateSelection);
+            if (!m_IsNextNodeRooted) mNextNode.detach();
             base.unExecute();
         }
     }
