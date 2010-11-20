@@ -1004,9 +1004,25 @@ namespace Obi.ProjectView
             get { return mProjectView == null ? 1.0f : mProjectView.ZoomFactor; }
             set
                 {
+                    Strip currentlyActiveStrip = ActiveStrip;
+                    int previousBlockLayoutTopPosition = currentlyActiveStrip != null ? currentlyActiveStrip.BlocksLayoutTopPosition : -1;//this cannot be negative for right value
                 ClearWaveformRenderQueue ();
                 foreach (Control c in mStripsPanel.Controls) if (c is Strip) ((Strip)c).ZoomFactor = value;
                 UpdateSize ();
+                // reposition strips panel so that zoom is from 0 position of content view and not from 0 position of stripspanel
+                if (contentViewLabel1 != null && contentViewLabel1.zoomFactor > 0 &&  mStripsPanel.Location.Y < 0)
+                {
+                    if (ActiveStrip != null && previousBlockLayoutTopPosition == Math.Abs(mStripsPanel.Location.Y))
+                    {
+                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, -(currentlyActiveStrip.BlocksLayoutTopPosition));
+                    }
+                    else
+                    {
+                        int cordY = mStripsPanel.Location.Y;
+                        cordY = Convert.ToInt16((cordY * value) / contentViewLabel1.zoomFactor);
+                        mStripsPanel.Location = new Point(mStripsPanel.Location.X, (cordY - 1));
+                    }
+                                    }
                 this.contentViewLabel1.contentView = this;
                 this.contentViewLabel1.zoomFactor = ZoomFactor;
                 mHScrollBar.Location = new Point ( mHScrollBar.Location.X, this.Height - contentViewLabel1.Height - mHScrollBar.Height );
