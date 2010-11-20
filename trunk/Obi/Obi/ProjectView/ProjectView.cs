@@ -1966,12 +1966,12 @@ namespace Obi.ProjectView
             // check if the merged phrase is not more than 10 mins
 
                 double durationSum = 0;
-                if ((endNode.Index - startNode.Index) > 300)
-                {
-                    MessageBox.Show(string.Format(Localizer.Message("MergePhrases_CountLimitMessage"), 300 ));
+                //if ((endNode.Index - startNode.Index) > 300)
+                //{
+                    //MessageBox.Show(string.Format(Localizer.Message("MergePhrases_CountLimitMessage"), 300 ));
                     //MessageBox.Show("The number of phrases merged is more than 300");
-                    return;
-                }
+                    //return;
+                //}
                 for (int i = startNode.Index; i <= endNode.Index; i++)
                     {
                     durationSum += section.PhraseChild (i).Duration;
@@ -2026,6 +2026,7 @@ namespace Obi.ProjectView
             int progressPercent = 0;
             EmptyNode firstNode = null;
             PhraseNode secondNode = null;
+            List<PhraseNode> listOfNodesToMerge = new List<PhraseNode>();
             for (int i = endIndex; i >= startIndex; i--)
                 {
                 firstNode = section.PhraseChild ( i );
@@ -2037,11 +2038,13 @@ namespace Obi.ProjectView
                     {
                     if (secondNode != null)
                         {
-                        Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)firstNode, secondNode );
-                        mergeCmd.UpdateSelection = false;
+                            command.append(new Commands.Node.Delete(this, secondNode, false));
+                            listOfNodesToMerge.Insert(0, secondNode);
+                        //Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)firstNode, secondNode );
+                        //mergeCmd.UpdateSelection = false;
                         if (i == startIndex || progressPercent > 98) progressPercent = 98;
-                        if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
-                        command.append ( mergeCmd );
+                        //if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
+                        //command.append ( mergeCmd );
                         }
                     secondNode = (PhraseNode)firstNode;
                     }
@@ -2055,7 +2058,7 @@ namespace Obi.ProjectView
                         Console.WriteLine ( "deleting in merge " + firstNode );
                         }
                     }
-
+    
                 /*
                 EmptyNode node = section.PhraseChild ( i );
                 EmptyNode next = section.PhraseChild ( i+1 );
@@ -2090,6 +2093,18 @@ namespace Obi.ProjectView
                 //command.append ( mergeCommand);
                  */ 
                 }
+                PhraseNode tempNode = mPresentation.CreatePhraseNode();
+                if (listOfNodesToMerge.Count > 0) tempNode.Audio = listOfNodesToMerge[0].Audio.copy();
+
+                if (listOfNodesToMerge.Count > 1)
+                {
+                    for (int i = 1; i < listOfNodesToMerge.Count; i++)
+                    {
+                        tempNode.MergeAudioWith(listOfNodesToMerge[i].Audio.copy());
+                    }
+                }
+                Commands.Command mergeCmd = new Commands.Node.MergeAudio(this, (PhraseNode)startNode, tempNode);
+                command.append(mergeCmd);
             if (phraseRole != null )
                 {
                 command.insert ( new Commands.Node.AssignRole ( this, nodeToSelect != null ? nodeToSelect : startNode, EmptyNode.Role.Heading ), 0 );
