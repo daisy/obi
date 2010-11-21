@@ -428,7 +428,7 @@ namespace Obi.ProjectView
             this.mHScrollBar.LargeChange = 64;
             this.mHScrollBar.Location = new System.Drawing.Point(0, 533);
             this.mHScrollBar.Name = "mHScrollBar";
-            this.mHScrollBar.Size = new System.Drawing.Size(514, 18);
+            this.mHScrollBar.Size = new System.Drawing.Size(509, 18);
             this.mHScrollBar.TabIndex = 2;
             this.mHScrollBar.ValueChanged += new System.EventHandler(this.mHScrollBar_ValueChanged);
             // 
@@ -464,7 +464,7 @@ namespace Obi.ProjectView
             this.verticalScrollToolStripContainer1.contentView = null;
             this.verticalScrollToolStripContainer1.Location = new System.Drawing.Point(512, 0);
             this.verticalScrollToolStripContainer1.Name = "verticalScrollToolStripContainer1";
-            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 531);
+            this.verticalScrollToolStripContainer1.Size = new System.Drawing.Size(33, 533);
             this.verticalScrollToolStripContainer1.TabIndex = 0;
             this.verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
             // 
