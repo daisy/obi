@@ -2331,7 +2331,15 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         }
                         else if (currentlyActiveStrip.FirstBlock != null )
                         {
-                            mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                            //if scroll down is used and last phrase lot was  not yet created then only select first block.
+                            if (interval > 0)
+                            {
+                                if ( mProjectView.Selection != null && mProjectView.Selection.EmptyNodeForSelection != null && firstBlock.Node.Index >= mProjectView.Selection.EmptyNodeForSelection.Index )  mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                            }
+                            else
+                            {
+                                mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                            }
                         }
                         if (blockToBeSelected != null) Console.WriteLine ( "selected block location " + (LocationOfBlockInStripPanel ( blockToBeSelected ).Y + mStripsPanel.Location.Y) );
                         }
