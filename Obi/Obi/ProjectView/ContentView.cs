@@ -379,7 +379,11 @@ namespace Obi.ProjectView
         {
             ResumeLayout_All();
             UpdateSize();
-            UpdateScrollTrackBarAccordingToSelectedNode();
+            if (!UpdateScrollTrackBarAccordingToSelectedNode()) ;
+            {
+                Strip currentlyActiveStrip = ActiveStrip;
+                if ( currentlyActiveStrip != null )  verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);
+            }
             Cursor = mCursor;
             Console.WriteLine("horizontal bar size " + mHScrollBar.Maximum);
             //UpdateBlocksLabelInSelectedNodeStrip ();
@@ -2425,7 +2429,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
 
         //@singleSection
-        private void UpdateScrollTrackBarAccordingToSelectedNode()
+        private bool UpdateScrollTrackBarAccordingToSelectedNode()
         {
             if (mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
             {
@@ -2440,11 +2444,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     {
                         int percentageValue = Convert.ToInt32(  (currentlySelectedEmptyNode.Index * 100 )/ currentlyActiveStrip.Node.PhraseChildCount);
                         if (verticalScrollToolStripContainer1.TrackBarValueInPercentage != percentageValue) verticalScrollToolStripContainer1.TrackBarValueInPercentage = percentageValue;
-                        
+                        return true;    
                     }
                 }// check ends for currently active strip
             }
-
+            return false;
         }
 
         //@singleSection : Scroll to top
