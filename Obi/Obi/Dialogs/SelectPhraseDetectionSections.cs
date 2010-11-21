@@ -31,24 +31,24 @@ namespace Obi.Dialogs
            
             if (m_OriginalSectionList.Count == 1)
             {
-                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
-                m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+                m_cb_StartRangeForNumberOfSections.Items.Add(m_OriginalSectionList.Count);
+                m_cb_EndRangeForNumberOfSections.Items.Add(m_OriginalSectionList.Count);
             }
             else if (m_OriginalSectionList.Count > 1)
             {
-                m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { 1 });
+                m_cb_StartRangeForNumberOfSections.Items.Add(1);
                 for (int i = 1; i <= m_SectionRangeCount; i++)
                 {
-                    m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
-                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { i * 100 });
+                    m_cb_StartRangeForNumberOfSections.Items.Add(i * 100);
+                    m_cb_EndRangeForNumberOfSections.Items.Add(i * 100 );
                 }
                 if (m_OriginalSectionList.Count > 2)
                 {
-                    m_cb_StartRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count - 1 });
-                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+                    m_cb_StartRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count - 1);
+                    m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
                 }
-                else
-                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });                
+                else                  
+                    m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
             }
         
             m_cb_SilencePhrase.Items.Add ( "Use default values" );
@@ -173,9 +173,9 @@ namespace Obi.Dialogs
             m_cb_EndRangeForNumberOfSections.Items.Clear();
 
             for (int i = m_cb_StartRangeForNumberOfSections.SelectedIndex; i < (m_OriginalSectionList.Count / 100); i++)
-                    m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { ((i + 1) * 100) });                   
+                    m_cb_EndRangeForNumberOfSections.Items.Add(((i + 1) * 100));            
                 
-            m_cb_EndRangeForNumberOfSections.Items.AddRange(new object[] { m_OriginalSectionList.Count });
+            m_cb_EndRangeForNumberOfSections.Items.Add( m_OriginalSectionList.Count );
             if (m_cb_EndRangeForNumberOfSections.Items.Count == 1)
                 m_cb_EndRangeForNumberOfSections.SelectedIndex = 0;                
         }
