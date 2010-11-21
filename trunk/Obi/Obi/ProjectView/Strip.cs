@@ -1381,7 +1381,7 @@ namespace Obi.ProjectView
                 m_BackgroundBlockLayout.Dispose ();
                 }
             m_BackgroundBlockLayout = mBlockLayout;
-            m_BackgroundBlockLayout.Location = new Point ( this.Location.X, m_BackgroundBlockLayout.Height * -1 );
+            m_BackgroundBlockLayout.Location = new Point ( this.Location.X, Convert.ToInt32( m_BackgroundBlockLayout.Height * -1.2 ));
             mBlockLayout = CreateBackUpLayout ();
             mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
             Resize_All ();
