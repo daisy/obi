@@ -3495,7 +3495,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
                 int nodeIndexOfStripToSelect = -1;
                 if (mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection && strip.OffsetForFirstPhrase > 0
-                    && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection!= null  && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection.Index == strip.OffsetForFirstPhrase)
+                    && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection!= null  && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection.Index == strip.OffsetForFirstPhrase && !mProjectView.TransportBar.IsRecorderActive)
                 {
                     nodeIndexOfStripToSelect = strip.OffsetForFirstPhrase - 1;
                     CreateBlocksInPreviousThresholdsSlot();//@singleSection
@@ -3539,6 +3539,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool SelectFollowingBlock ()
             {
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
+                if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null) return SelectFirstBlockInStrip();
 
                 ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
                     mProjectView.Selection != null ? mProjectView.Selection.Node : null;
@@ -3563,7 +3564,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool SelectFollowingStripCursor ()
             {
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
-
+            // if recorder is active and selection is at last strip cursor, return
+                if (mProjectView.TransportBar.IsRecorderActive && mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection && (((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection == null || FindBlock(mProjectView.Selection.EmptyNodeForSelection) == null)) return true;
             bool SelectionChangedPlaybackEnabledStatus = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
             Block PlaybackBlock = null;
