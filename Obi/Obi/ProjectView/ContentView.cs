@@ -3500,6 +3500,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     nodeIndexOfStripToSelect = strip.OffsetForFirstPhrase - 1;
                     CreateBlocksInPreviousThresholdsSlot();//@singleSection
                     nodeIndexOfStripToSelect = nodeIndexOfStripToSelect - strip.OffsetForFirstPhrase;
+                    mProjectView.Selection = new StripIndexSelection(strip.Node, this, nodeIndexOfStripToSelect + strip.OffsetForFirstPhrase);
                 }
                 else
                 {
