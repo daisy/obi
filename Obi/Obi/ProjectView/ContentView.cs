@@ -1914,12 +1914,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if (startNode.Index > firstBlock.Node.Index)
                         {
                         // if next nodes are to be created, current nodes are backed up
-                            mProjectView.DisableSectionSelection();
+                            if (!( mSelectedItem is Strip )) mProjectView.DisableSectionSelection();
                             stripControl.MoveCurrentBlocklayoutToBackground();
                         }
                     else
                         {
-                            mProjectView.DisableSectionSelection();
+                            if (!(mSelectedItem is Strip)) mProjectView.DisableSectionSelection();
                         stripControl.CreateNewLayout ( false );
                         }
                     UpdateSize ();
