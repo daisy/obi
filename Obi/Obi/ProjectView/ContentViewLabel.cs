@@ -10,20 +10,12 @@ namespace Obi.ProjectView
     {
     public partial class ContentViewLabel : UserControl
     {
-        private Graphics g;
-        private ContentView mCont = null;
-        private SolidBrush brushRect = new SolidBrush(SystemColors.ControlLight);
-        private SolidBrush blackRect = new SolidBrush(Color.Black);
-        private SolidBrush brushRect1 = new SolidBrush(SystemColors.ControlLightLight);
-        private SolidBrush brushRect2 = new SolidBrush(SystemColors.ControlLight);
+        private ContentView m_ContentView = null;    
         private string m_SectionLabelString = "";
-
         private float m_ZoomFactor;
-        private bool mFlagInvert = false;
-        private bool mFlagSectionSelected = false;
-        private bool mSectionFocus;
-        private Rectangle contentRect;
-        private float height;
+        private bool m_IsColorHighContrast = false;
+        private bool m_IsSectionSelected = false;
+        private bool m_SectionFocus;       
         private int m_contentViewLabelHeight;
                
         public ContentViewLabel()
@@ -35,24 +27,24 @@ namespace Obi.ProjectView
         }
         public ContentView contentView
         {
-            get { return mCont; }
-            set { mCont = value; }
+            get { return m_ContentView; }
+            set { m_ContentView = value; }
         } 
         
         public bool invertColor
         {
-            get { return mFlagInvert; }
+            get { return m_IsColorHighContrast; }
             set 
                 { 
-                mFlagInvert = value;
+                m_IsColorHighContrast = value;
                 UpdateColors ();
                 }
         }
 
         public bool sectionSelected
         {
-            get { return mFlagSectionSelected; }
-            set { mFlagSectionSelected = value;
+            get { return m_IsSectionSelected; }
+            set { m_IsSectionSelected = value;
             UpdateColors();
                 }            
         }
@@ -79,34 +71,34 @@ namespace Obi.ProjectView
 
         private void ContentViewLabel_Paint(object sender, PaintEventArgs e)
         {
-           
-        if (mCont == null) return;
+            SolidBrush solidBrushControlLight = new SolidBrush(SystemColors.ControlLight);
+            SolidBrush solidBrushBlack = new SolidBrush(Color.Black);
+            Rectangle contentRect;
+            if (m_ContentView == null) return;
 
-            g = this.CreateGraphics();
+            Graphics g = this.CreateGraphics();
             Pen rectPen = new Pen(Color.White, 2F);
             int m_contentRectHeight = Convert.ToInt32(19 * zoomFactor);
-            contentRect = new Rectangle(10, ((m_contentViewLabelHeight / 2) - (m_contentRectHeight / 2)), mCont.Size.Width, m_contentRectHeight);
-            g.FillRectangle(brushRect, contentRect);
+            contentRect = new Rectangle(10, ((m_contentViewLabelHeight / 2) - (m_contentRectHeight / 2)), m_ContentView.Size.Width, m_contentRectHeight);
+            g.FillRectangle(solidBrushControlLight, contentRect);
 
-             if (mCont != null)
+             if (m_ContentView != null)
              {
-                 if (mFlagInvert && mFlagSectionSelected)
+                 if (m_IsColorHighContrast && m_IsSectionSelected)
                  {
                      g.DrawRectangle(rectPen, contentRect);
-                     g.FillRectangle(blackRect, contentRect);
+                     g.FillRectangle(solidBrushBlack, contentRect);
                  }
-                  else if (mFlagInvert && !mFlagSectionSelected)
-                     g.FillRectangle(blackRect, contentRect);
-                 if (!mFlagInvert && mFlagSectionSelected)
-                     g.FillRectangle(brushRect, contentRect);
-                 else if (!mFlagInvert && mFlagSectionSelected)
-                     g.FillRectangle(brushRect2, contentRect);
+                 else if (m_IsColorHighContrast && !m_IsSectionSelected)
+                     g.FillRectangle(solidBrushBlack, contentRect);
+                 else if (!m_IsColorHighContrast && m_IsSectionSelected)
+                     g.FillRectangle(solidBrushControlLight, contentRect);                
              }
         }
         public void ZoomLabel()
         {
             int fontSize = Convert.ToInt32( 9.75 * zoomFactor); 
-            if (mCont != null)
+            if (m_ContentView != null)
             {
                 m_contentViewLabelHeight = Convert.ToInt32(25 * zoomFactor);
                 m_lblSectionName.Font = new Font ( Font.FontFamily, fontSize );
@@ -114,7 +106,7 @@ namespace Obi.ProjectView
                 m_lblStaticLabel.Location = new Point ( m_lblStaticLabel.Location.X, m_contentViewLabelHeight / 2 - m_lblStaticLabel.Height / 2 );
                 m_lblSectionName.Location = new Point ( m_lblStaticLabel.Location.X + m_lblStaticLabel.Width, m_contentViewLabelHeight / 2 - m_lblSectionName.Height / 2 );
                 this.Size = new Size(this.Size.Width, m_contentViewLabelHeight);
-                this.Location = new Point ( this.Location.X, mCont.Height - m_contentViewLabelHeight );
+                this.Location = new Point ( this.Location.X, m_ContentView.Height - m_contentViewLabelHeight );
                 Invalidate();
               }
             //    InvertColor(false);
@@ -143,7 +135,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                if (mFlagInvert && mFlagSectionSelected)
+                if (m_IsColorHighContrast && m_IsSectionSelected)
                     {
                     m_lblSectionName.ForeColor = Color.White;
                     m_lblStaticLabel.ForeColor = Color.White;
@@ -151,7 +143,7 @@ namespace Obi.ProjectView
                     m_lblStaticLabel.BackColor = Color.Black;
                     this.BackColor = Color.Black;
                     }
-                if (mFlagInvert && !mFlagSectionSelected)
+                if (m_IsColorHighContrast && !m_IsSectionSelected)
                     {
                     m_lblSectionName.ForeColor = Color.White;
                     m_lblStaticLabel.ForeColor = Color.White;
@@ -159,7 +151,7 @@ namespace Obi.ProjectView
                     m_lblStaticLabel.BackColor = Color.Black;
                     this.BackColor = Color.Black;
                     }
-                if (!mFlagInvert && mFlagSectionSelected)
+                if (!m_IsColorHighContrast && m_IsSectionSelected)
                     {
                     m_lblSectionName.ForeColor = SystemColors.ControlText;
                     m_lblStaticLabel.ForeColor = SystemColors.ControlText;
@@ -167,7 +159,7 @@ namespace Obi.ProjectView
                     m_lblStaticLabel.BackColor = SystemColors.ControlLight;
                     this.BackColor = SystemColors.ControlLight;
                     }
-                if (!mFlagInvert && !mFlagSectionSelected)
+                if (!m_IsColorHighContrast && !m_IsSectionSelected)
                     {
                     m_lblSectionName.ForeColor = SystemColors.ControlDark;
                     m_lblStaticLabel.ForeColor = SystemColors.ControlDark;
