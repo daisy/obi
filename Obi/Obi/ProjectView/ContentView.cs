@@ -1153,15 +1153,15 @@ namespace Obi.ProjectView
                     Strip s = (Strip)mStripsPanel.Controls[i];
                     // make phrases in strip visible if visible phrase count is within limit, 
                     //strip lie well inside panel and visibleStripsCount is less or equal to 500
-                    if (s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount - VisibleBlocksCount
-                        && prevPoint != s.Location
-                        && visibleStripsCount <= 500)
-                        {
+                    //if (s.Node.PhraseChildCount <= mProjectView.MaxVisibleBlocksCount - VisibleBlocksCount
+                        //&& prevPoint != s.Location
+                        //&& visibleStripsCount <= 500)
+                        //{
                         CreateBlocksInStrip ( s );// uncomment for prev block loading
-                        //s.LoadBlocksInLayoutIfRequired (); // //@singleSection : comment to restore old block loading
-                        visibleStripsCount++;
-                        }
-                    else return;
+                                                visibleStripsCount++;
+                                                break;
+                        //}
+                    //else return;
 
                     prevPoint = s.Location;
                     }
