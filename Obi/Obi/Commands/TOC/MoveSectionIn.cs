@@ -18,7 +18,7 @@ namespace Obi.Commands.TOC
         /// </summary>
         public static bool CanMoveNode(SectionNode section)
         {
-            return section != null && section.Index > 0;
+            return section != null && section.IsRooted && section.Index > 0;
         }
 
         /// <summary>
