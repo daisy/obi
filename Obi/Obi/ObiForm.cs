@@ -2250,7 +2250,8 @@ namespace Obi
         private void mView_AudioZoomInMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-            
+
+            mView_AudioZoomInMenuItem.Enabled = false;
                 ProjectView.Strip strip = mProjectView.StripForSelection;
                 if (strip == null)
                     {
@@ -2260,13 +2261,14 @@ namespace Obi
                     {
                     strip.AudioScale *= AUDIO_SCALE_INCREMENT;
                     }
-
+                    mView_AudioZoomInMenuItem.Enabled = mSession.HasProject;
             }
 
         private void mView_AudioZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
 
+            mView_AudioZoomOutMenuItem.Enabled = false;
                 ProjectView.Strip strip = mProjectView.StripForSelection;
                 if (strip == null)
                     {
@@ -2276,7 +2278,7 @@ namespace Obi
                     {
                     strip.AudioScale /= AUDIO_SCALE_INCREMENT;
                     }
-
+                    mView_AudioZoomOutMenuItem.Enabled = mSession.HasProject;
             }
 
 
