@@ -104,7 +104,7 @@ namespace Obi.ProjectView
                     pe.Graphics.FillPolygon(Strip.ColorSettings.BlockLayoutSelectedBrush, points);
                 }                
             }
-            else if (this.BackColor == SystemColors.Highlight && !Strip.Highlighted)
+            else if (this.BackColor == SystemColors.Highlight && Strip != null &&  !Strip.Highlighted)
             {
                 this.BackColor = Strip.BackColor;
                 Parent.BackColor = Strip.BackColor;
