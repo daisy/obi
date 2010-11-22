@@ -143,6 +143,7 @@ namespace Obi.Dialogs
                     // If trying to create a project in a non-empty directory,
                     // propose a new path to the user in this directory.
                     string p_path = GetFileName(dir, System.IO.Path.GetFileName(path));
+                    p_path = System.IO.Path.GetFullPath (p_path);
                     DialogResult result = MessageBox.Show(
                         String.Format(Localizer.Message("propose_directory_text"), p_path),
                         Localizer.Message("propose_directory_caption"),
