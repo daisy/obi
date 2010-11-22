@@ -3539,7 +3539,12 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private bool SelectFollowingBlock ()
             {
                 if (!mProjectView.TransportBar.IsPlayerActive && !mProjectView.TransportBar.IsRecorderActive && m_PreviousSelectionForScroll != null) SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(null, true);
-                if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null) return SelectFirstBlockInStrip();
+                if (mProjectView.TransportBar.IsRecorderActive && mSelectedItem == null && mProjectView.Selection != null)
+                {
+                    Strip currentlyActiveStrip = ActiveStrip;
+                    if (currentlyActiveStrip != null && currentlyActiveStrip.FirstBlock != null) mProjectView.SelectedBlockNode = currentlyActiveStrip.FirstBlock.Node;
+                    return true;
+                }
 
                 ObiNode currentlySelectedNode = mProjectView.TransportBar.IsPlayerActive ? mProjectView.TransportBar.PlaybackPhrase : 
                     mProjectView.Selection != null ? mProjectView.Selection.Node : null;
