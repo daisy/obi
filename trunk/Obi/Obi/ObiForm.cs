@@ -572,7 +572,7 @@ namespace Obi
                 string path = provider.getDataFileFullPath ();
                 string dir = Path.GetDirectoryName ( path );
                 if (!dirs.ContainsKey ( dir )) dirs.Add ( dir, new Dictionary<string, bool> () );
-                dirs[dir].Add ( path, true );
+                dirs[dir].Add (Path.GetFullPath( path), true );
                 }
             // Go through each directory and remove files not used by the data manager
             // TODO at the moment, this removes everything; if we have other files that we need
@@ -582,7 +582,7 @@ namespace Obi
                 System.Diagnostics.Debug.Print ( "--- Cleaning up in {0}", dir );
                 foreach (string path in Directory.GetFiles ( dir ))
                     {
-                    if (dirs[dir].ContainsKey ( path ))
+                    if (dirs[dir].ContainsKey (Path.GetFullPath( path )))
                         {
                         System.Diagnostics.Debug.Print ( "=== Keeping {0}", path );
                         }
@@ -1537,6 +1537,7 @@ namespace Obi
             {
             try
                 {
+                    path = Path.GetFullPath(path);
                 // let's see if we can actually write the file that the user chose (bug #1679175)
                 FileStream file = File.Create ( path );
                 file.Close ();
