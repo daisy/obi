@@ -1608,4 +1608,7 @@ Error text: {1}</value>
   <data name="Import_AudioFormat_RenameFile" xml:space="preserve">
     <value>File named {0} is renamed to {1} as the file  with the name already exists in project directory</value>
   </data>
+  <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
+    <value>Processing files before import</value>
+  </data>
 </root>

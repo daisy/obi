@@ -1567,6 +1567,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Processing files before import.
+        /// </summary>
+        internal static string ImportAudio_ConvertingFormat {
+            get {
+                return ResourceManager.GetString("ImportAudio_ConvertingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Importing file &quot;{0}&quot;.
         /// </summary>
         internal static string importing_file {
