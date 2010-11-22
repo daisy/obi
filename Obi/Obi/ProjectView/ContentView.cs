@@ -1363,20 +1363,7 @@ namespace Obi.ProjectView
             Strip s = StripForSelection;
             if (s == null && mProjectView.GetSelectedPhraseSection != null)
                 s = FindStrip ( mProjectView.GetSelectedPhraseSection );
-
-            //@singleSection : comment this code for restoring  old block loading
-            //if (s != null)
-            //{
-            //s.LoadBlocksInLayoutIfRequired ();
-            //return true;
-            //}
-            //else
-            //{
-            //return false;
-            //}
-            // commentting end for restoring
-
-            return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
+return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for restoring old block behaviour
             }
 
         bool m_EnableFindPlaybackBlockDuringCursorUpdate = false;
