@@ -379,7 +379,7 @@ namespace Obi.ProjectView
         {
             ResumeLayout_All();
             UpdateSize();
-            if (!UpdateScrollTrackBarAccordingToSelectedNode()) ;
+            if (!UpdateScrollTrackBarAccordingToSelectedNode()) 
             {
                 Strip currentlyActiveStrip = ActiveStrip;
                 if ( currentlyActiveStrip != null )  verticalScrollToolStripContainer1.TrackBarValueInPercentage = EstimateScrollPercentage(currentlyActiveStrip);

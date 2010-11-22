@@ -14,15 +14,18 @@ namespace Obi.Audio
             
             int numberOfFiles = fileName.Length;
             string convertedFile = null;
-            string[] listOfConvertedFiles = new string[numberOfFiles];
+            List <string> listOfConvertedFiles = new List <string> () ;
            
             
             for (int i = 0; i < numberOfFiles; i++)
             {
                 convertedFile = ConvertedFile(fileName[i], presentation);
-                listOfConvertedFiles[i] = convertedFile;
+                if (convertedFile!= null)  listOfConvertedFiles.Add (convertedFile);
             }
-            return listOfConvertedFiles;
+            string[] returnArray = new string[listOfConvertedFiles.Count];
+            for (int i = 0; i < listOfConvertedFiles.Count; i++) returnArray[i] = listOfConvertedFiles[i];
+
+            return  returnArray;
         }
         public static string ConvertedFile(string filePath, Presentation pres)
         {
@@ -71,6 +74,7 @@ namespace Obi.Audio
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                return null;
             }
             return convertedFile;
         }
