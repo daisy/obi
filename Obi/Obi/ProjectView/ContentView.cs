@@ -368,10 +368,17 @@ namespace Obi.ProjectView
             ResizeForCommands();
             // workaround for making selection visible in some complex, large volume commands
             if (e.UnDoneCommand is CompositeCommand 
-                && (((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("phrase_detection")))
+                && (((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("phrase_detection")
+                || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() ==  Localizer.Message("Delete_RangeOfPhrases")))
             {
                 Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
-                if (c != null) EnsureControlVisible(c);
+                if (c != null)
+                {
+                    EnsureControlVisible(c);
+                    Strip currentlyActiveStrip = ActiveStrip ;
+                    if (currentlyActiveStrip != null) CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
+                }
+                UpdateVerticalScrolPanelButtons();
             }
         }
 
@@ -2638,6 +2645,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public void mStripsPanel_LocationChanged ( object sender, EventArgs e )
             {
+                UpdateVerticalScrolPanelButtons();
+        }
+
+        private void UpdateVerticalScrolPanelButtons () 
+    {
             if (mStripsPanel.Location.Y >= (-43 * ZoomFactor ) )
                 {
                 Strip currentlyActiveStrip = ActiveStrip;
