@@ -1210,6 +1210,11 @@ namespace Obi.ProjectView
         {
             m_DisableSectionSelection = true;
         }
+        public void EnableSectionSelection()
+        {
+            m_DisableSectionSelection = false;
+        }
+
         /// <summary>
         /// Set a page number on the selected phrase.
         /// </summary>
