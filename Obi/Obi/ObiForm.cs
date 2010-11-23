@@ -658,6 +658,12 @@ namespace Obi
             CanAutoSave = true;//@singleSection
             ProjectHasChanged ( 1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
+            
+            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+            {
+                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+            }
             }
 
         private void ObiForm_commandUnDone ( object sender, urakawa.events.undo.UnDoneEventArgs e ) 
@@ -665,6 +671,12 @@ namespace Obi
             CanAutoSave = true;//@singleSection
             ProjectHasChanged ( -1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
+
+            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+            {
+                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+            }
             }
 
         private void ObiForm_commandReDone ( object sender, urakawa.events.undo.ReDoneEventArgs e ) 
@@ -672,6 +684,12 @@ namespace Obi
             CanAutoSave = true;//@singleSection
             ProjectHasChanged ( 1 );
             if ( !IsStatusBarEnabled)  IsStatusBarEnabled = true;//@singleSection
+
+            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+            {
+                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+            }
             }
 
         private void ObiForm_BeforeCommandExecuted (object sender , urakawa.events.command.CommandEventArgs e )//@singleSection

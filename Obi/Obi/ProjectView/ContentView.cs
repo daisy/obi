@@ -396,6 +396,26 @@ namespace Obi.ProjectView
             //UpdateBlocksLabelInSelectedNodeStrip ();
         }
 
+        //@singleSection
+        /// <summary>
+        /// returns true if limited phrases in a strip are created and content view is not completely filled
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLimitedPhraseBlocksCreatedAfterCommand()
+        {
+            Strip currentlyActiveStrip = ActiveStrip;
+            if (currentlyActiveStrip != null)
+            {
+                Block lastBlock = currentlyActiveStrip.LastBlock;
+                if (lastBlock != null && lastBlock.Node != currentlyActiveStrip.Node.PhraseChild(currentlyActiveStrip.Node.PhraseChildCount - 1)
+                                    && mStripsPanel.Location.Y + (mStripsPanel.Height + mStripsPanel.Margin.Bottom * 2) < mHScrollBar.Location.Y)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void Presentation_BeforeCommandExecuted ( object sender, urakawa.events.command.CommandEventArgs e )
             {
             mCursor = Cursor;

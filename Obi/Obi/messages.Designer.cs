@@ -3510,6 +3510,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} (Limited phrases shown for performance, pls. click on last phrases to show more).
+        /// </summary>
+        internal static string StatusBar_LimitedPhrasesShown {
+            get {
+                return ResourceManager.GetString("StatusBar_LimitedPhrasesShown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nothing selected.
         /// </summary>
         internal static string StatusBar_NothingSelected {
