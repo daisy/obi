@@ -2219,27 +2219,40 @@ namespace Obi
         private void mView_ZoomInMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
- 
+            mView_ZoomInMenuItem.Enabled = false;
                 ZoomFactor = ZoomFactor * ZOOM_FACTOR_INCREMENT;
-                
+                mView_ZoomInMenuItem.Enabled = mSession.HasProject;
             }
 
         // View > Zoom out (Ctrl+Alt+-)
         private void mView_ZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-            
-                ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
 
+            mView_ZoomOutMenuItem.Enabled = false;
+                ZoomFactor = ZoomFactor / ZOOM_FACTOR_INCREMENT;
+                if (mProjectView.TransportBar.IsRecorderActive &&  mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+                {
+                    string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                    Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+                }
+                mView_ZoomOutMenuItem.Enabled = mSession.HasProject;
                 }
 
         // View > Normal size (Ctrl+Alt+0)
         private void mView_NormalSizeMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-
+            mView_NormalSizeMenuItem.Enabled = false;
+            float previousZoomFactor = ZoomFactor;
                 ZoomFactor = 1.0f;
-                
+                mView_NormalSizeMenuItem.Enabled = mSession.HasProject;
+
+                if (previousZoomFactor > 1.0f && mProjectView.TransportBar.IsRecorderActive &&  mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+                {
+                    string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                    Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+                }
             }
 
         // View > Project properties (Alt+Enter)
@@ -2296,6 +2309,7 @@ namespace Obi
                     {
                     strip.AudioScale /= AUDIO_SCALE_INCREMENT;
                     }
+        
                     mView_AudioZoomOutMenuItem.Enabled = mSession.HasProject;
             }
 
