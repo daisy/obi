@@ -1922,7 +1922,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 {
                 Console.WriteLine ( "Remove aall skipped" );
                 }
-
+                mProjectView.EnableSectionSelection();
+                
             return startNode;
             }
 
