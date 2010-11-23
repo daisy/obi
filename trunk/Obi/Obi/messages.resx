@@ -1611,4 +1611,7 @@ Error text: {1}</value>
   <data name="ImportAudio_ConvertingFormat" xml:space="preserve">
     <value>Processing files before import</value>
   </data>
+  <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
+    <value>{0} (Limited phrases shown for performance, pls. click on last phrases to show more)</value>
+  </data>
 </root>

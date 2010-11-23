@@ -3113,6 +3113,13 @@ namespace Obi.ProjectView
                 ProgressChanged (this, new ProgressChangedEventArgs ( progressInPercent, purpose )) ;
             }
 
+        //@singleSection
+        /// <summary>
+        /// returns true if limited phrases in a strip are created and content view is not completely filled
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLimitedPhraseBlocksCreatedAfterCommand() { return mContentView.IsLimitedPhraseBlocksCreatedAfterCommand(); }
+
         /// <summary>
         /// Work around specificallly for disabling scrolling during some conditions of playback @AudioScrolling
         /// </summary>
