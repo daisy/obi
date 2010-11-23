@@ -1021,6 +1021,7 @@ namespace Obi.ProjectView
         {
             if (mWrap)
             {
+                //mContentView.PreStripResizeTasks();
                 Resize_Wrap();
                 mContentView.ResizeContentViewFromStripResize();
             }
