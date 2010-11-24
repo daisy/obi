@@ -1901,7 +1901,8 @@ namespace Obi
                 (mProjectView.Selection != null && mProjectView.Selection.Node !=  mProjectView.TransportBar.RecordingPhrase?mProjectView.TransportBar.RecordingPhrase.ToString() + "..": ""  ) ): 
                 "";
             //if (IsStatusBarEnabled) Status ( mProjectView.Selection != null ? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) + mProjectView.TransportBar.RecordingPhraseToString );
-            if (IsStatusBarEnabled) Status (strRecordingInfo  + ( mProjectView.Selection != null? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) ) );
+            string limitedBlocksShownMsg = IsStatusBarEnabled && mProjectView.Selection != null ? string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), " ") : "";
+            if (IsStatusBarEnabled) Status(strRecordingInfo + (mProjectView.Selection != null ? mProjectView.Selection.ToString() : Localizer.Message("StatusBar_NothingSelected") + limitedBlocksShownMsg));
             }
 
         // Update all of Obi.
