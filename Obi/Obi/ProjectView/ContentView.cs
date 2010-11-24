@@ -350,6 +350,22 @@ namespace Obi.ProjectView
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
                 ResizeForCommands();
+
+            // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
+                if (e.DoneCommand is CompositeCommand
+                        && ((CompositeCommand)e.DoneCommand ).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases"))
+                {
+                    if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
+                    {
+                        EmptyNode currentlySelectedEmptyNode = (EmptyNode)mProjectView.Selection.Node;
+                        if (currentlySelectedEmptyNode.IsRooted && currentlySelectedEmptyNode.Index == 0 && mStripsPanel.Location.Y >= -5)
+                        {
+                            verticalScrollToolStripContainer1.CanScrollUp = true;
+                            
+                        }
+                    }
+                    
+                }
             }
 
         private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
