@@ -404,14 +404,16 @@ namespace Obi.ProjectView
         /// <returns></returns>
         public bool IsLimitedPhraseBlocksCreatedAfterCommand()
         {
-            Strip currentlyActiveStrip = ActiveStrip;
-            if (currentlyActiveStrip != null)
+            if (mStripsPanel.Location.Y + (mStripsPanel.Height + mStripsPanel.Margin.Bottom * 2) < mHScrollBar.Location.Y)
             {
-                Block lastBlock = currentlyActiveStrip.LastBlock;
-                if (lastBlock != null && lastBlock.Node != currentlyActiveStrip.Node.PhraseChild(currentlyActiveStrip.Node.PhraseChildCount - 1)
-                                    && mStripsPanel.Location.Y + (mStripsPanel.Height + mStripsPanel.Margin.Bottom * 2) < mHScrollBar.Location.Y)
+                Strip currentlyActiveStrip = ActiveStrip;
+                if (currentlyActiveStrip != null)
                 {
-                    return true;
+                    Block lastBlock = currentlyActiveStrip.LastBlock;
+                    if (lastBlock != null && lastBlock.Node != currentlyActiveStrip.Node.PhraseChild(currentlyActiveStrip.Node.PhraseChildCount - 1))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
