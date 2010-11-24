@@ -1612,6 +1612,6 @@ Error text: {1}</value>
     <value>Processing files before import</value>
   </data>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
-    <value>{0} (Limited phrases shown for performance, pls. click on last phrases to show more)</value>
+    <value>{0} (Limited phrases shown for performance. Click on the last phrases to show more)</value>
   </data>
 </root>
