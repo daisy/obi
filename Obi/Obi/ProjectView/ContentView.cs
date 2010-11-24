@@ -1542,7 +1542,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                                 currentNode = intendedFirstNodeAfterRemoval;
                                 }
 
-                            for (int i = 0; i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks; i++)
+                            for (int i = 0; (i < extraBlocksCount || !stripControl.IsContentViewFilledWithBlocks ) && i < 350; i++)
                                 {//3
                                 if (currentNode == null ||
                                     !(currentNode is EmptyNode) ||
