@@ -1285,6 +1285,21 @@ namespace Obi.ProjectView
                 mTOCView.SelectAndRename ( SelectedNodeAs<SectionNode> () );
                 }
             }
+        //@singleSection
+        private bool PauseAndCreatePlayingSection()
+        {
+            if (mTransportBar.IsPlayerActive)
+            {
+                mTransportBar.Pause();
+                Strip currentlyActiveStrip = mContentView.ActiveStrip;
+                if (currentlyActiveStrip != null && TransportBar.PlaybackPhrase != null
+                    && currentlyActiveStrip.Node == TransportBar.PlaybackPhrase.ParentAs<SectionNode>())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         /// <summary>
         /// Split a strip at the selected position.
@@ -1293,8 +1308,8 @@ namespace Obi.ProjectView
             {
             if (CanSplitStrip)
                 {
-                if (mTransportBar.IsPlayerActive) mTransportBar.Pause ();
-
+                    if (mTransportBar.IsPlayerActive && !PauseAndCreatePlayingSection()) return;
+                    
                 bool PlayOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 SectionNode OriginalSectionNode = null;
@@ -1879,15 +1894,8 @@ namespace Obi.ProjectView
         public void SplitPhrase ()
             {
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
-            if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Pause ();
-            /*
-            if (Selection != null && !(Selection.Node is PhraseNode)
-                && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount > MaxVisibleBlocksCount )
-                {
-                MessageBox.Show ( Localizer.Message ( "ContentsHidden_CannotExecuteCommand" ) );
-                return;
-                }
-            */
+            if (TransportBar.CurrentState == TransportBar.State.Playing && !PauseAndCreatePlayingSection()) return;
+                   
             if (CanSplitPhrase)
                 {
                 bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
