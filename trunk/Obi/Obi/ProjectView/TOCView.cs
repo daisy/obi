@@ -211,7 +211,17 @@ namespace Obi.ProjectView
         /// <summary>
         /// Make the tree node for this section visible.
         /// </summary>
-        public void MakeTreeNodeVisibleForSection(SectionNode section) { FindTreeNode(section).EnsureVisible(); }
+        public void MakeTreeNodeVisibleForSection(SectionNode section) 
+        {
+            try
+            {
+                if (section != null && section.IsRooted) FindTreeNode(section).EnsureVisible();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show ( ex.ToString () );
+            }
+        }
 
         /// <summary>
         /// Resynchronize strips and TOC views depending on which node is visible.
