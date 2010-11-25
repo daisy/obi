@@ -2702,6 +2702,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         private void UpdateVerticalScrolPanelButtons () 
     {
+            // if strip label is visible partially or fully
             if (mStripsPanel.Location.Y >= (-43 * ZoomFactor ) )
                 {
                 Strip currentlyActiveStrip = ActiveStrip;
@@ -2711,14 +2712,21 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     if ((currentlyActiveStrip.FirstBlock == null && currentlyActiveStrip.Node.PhraseChildCount == 0)
                         || (currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index == 0))
                         {
-                            verticalScrollToolStripContainer1.CanScrollUp = false;
-                        }
-                    else if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition
-                        && currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
+                        if ( mStripsPanel.Location.Y < 0 && mStripsPanel.Location.Y > ( currentlyActiveStrip.BlocksLayoutTopPosition / 2 ) * -1  )
                         {
+                            mStripsPanel.Location = new Point ( mStripsPanel.Location.X , 0 ) ;
+                        }
+
+                            if (mStripsPanel.Location.Y > -10) verticalScrollToolStripContainer1.CanScrollUp = false;
+                            else verticalScrollToolStripContainer1.CanScrollUp = true;
+                        }
+                    else if ( currentlyActiveStrip.FirstBlock != null && currentlyActiveStrip.FirstBlock.Node.IsRooted && currentlyActiveStrip.FirstBlock.Node.Index > 0)
+                                                 {
+                            //if (Math.Abs ( mStripsPanel.Location.Y ) > currentlyActiveStrip.BlocksLayoutTopPosition)
                         // set position of strip panel to hide label -- for precaution
                         mStripsPanel.Location = new Point ( mStripsPanel.Location.X, currentlyActiveStrip.BlocksLayoutTopPosition * -1 );
                         Console.WriteLine ( "precautionary setting of strips label for threshold index " );
+                        verticalScrollToolStripContainer1.CanScrollUp = true;
                         }
                     }
                 }
