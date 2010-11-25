@@ -396,8 +396,9 @@ namespace Obi.ProjectView
                     Strip currentlyActiveStrip = ActiveStrip ;
                     if (currentlyActiveStrip != null) CreatePhraseBlocksForFillingContentView(currentlyActiveStrip);
                 }
-                UpdateVerticalScrolPanelButtons();
+                
             }
+            UpdateVerticalScrolPanelButtons();
         }
 
         private void ResizeForCommands()
