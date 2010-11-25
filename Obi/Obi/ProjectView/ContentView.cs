@@ -331,6 +331,7 @@ namespace Obi.ProjectView
                 {
                 AddStripForSection_Safe ( mProjectView.Presentation.RootNode ); //this will not be called in single section
                 }
+                m_DisablePhraseCreationWhileSelectionRestore = false;
             CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All ();
             mProjectView.Presentation.BeforeCommandExecuted +=
@@ -3266,6 +3267,17 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             // else add block
             Block b = stripControl.AddBlockForNode ( node );
+            if (b == null && !stripControl.IsStripsControlsWithinSafeCount)
+            {
+                if (lastBlock != null && lastBlock.Node.IsRooted && lastBlock.Node.Index >  node.Index 
+                    && stripControl.FirstBlock != null && stripControl.FirstBlock.Node.IsRooted && stripControl.FirstBlock.Node.Index < node.Index)
+                {
+                    NodeSelection prevSelection = mProjectView.Selection;
+                    stripControl.RemoveAllFollowingBlocks(stripControl.Node.PhraseChild(lastBlock.Node.Index - 1), false, false);
+                    if (prevSelection != null && prevSelection.Node == lastBlock.Node) ManageSelectionChangeWhileScroll(mProjectView.Selection, stripControl);
+                    b = stripControl.AddBlockForNode(node);
+                }
+            }
             return b;
 
             }
