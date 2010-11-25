@@ -730,7 +730,7 @@ namespace Obi.ProjectView
                     Selection = new NodeSelection(section, mContentView);
                 }
                 }
-            MessageBox.Show(" All the unused phrases are deleted. ", "Unused phrases deleted",MessageBoxButtons.OK);
+            MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject") , "Unused phrases deleted",MessageBoxButtons.OK);
             }
 
 
@@ -3049,7 +3049,7 @@ namespace Obi.ProjectView
                         }
                     else
                         {
-                        MessageBox.Show ( "Page does not exist" );
+                            MessageBox.Show(Localizer.Message("GoToPageorPhrase_PageDonotExist"));
                         }
                     }
                 else if (GoToDialog.PhraseIndex != null)

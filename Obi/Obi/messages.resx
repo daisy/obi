@@ -1614,4 +1614,10 @@ Error text: {1}</value>
   <data name="StatusBar_LimitedPhrasesShown" xml:space="preserve">
     <value>{0} (Limited phrases shown for performance. Click on the last phrases to show more)</value>
   </data>
+  <data name="UnusedPhrasesDeletedFromProject" xml:space="preserve">
+    <value>Unused phrases are deleted from the project.</value>
+  </data>
+  <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
+    <value>Page does not exist </value>
+  </data>
 </root>
