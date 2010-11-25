@@ -63,7 +63,9 @@ namespace Obi.Audio
                         newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile),i.ToString() + Path.GetFileNameWithoutExtension(filePath)+".wav");
                         if (!File.Exists(newConvertedFilePath))
                         {
-                            MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileNameWithoutExtension(filePath)+".wav", Path.GetFileName(newConvertedFilePath)) );
+                            MessageBox.Show(string.Format(Localizer.Message("Import_AudioFormat_RenameFile"), Path.GetFileNameWithoutExtension(filePath)+".wav", Path.GetFileName(newConvertedFilePath)),
+                                Localizer.Message ( "Caption_Information"),
+                                MessageBoxButtons.OK);
                             break;
                         }
                     }
