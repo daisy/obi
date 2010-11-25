@@ -1219,6 +1219,11 @@ namespace Obi.ProjectView
         private void CreateSelectedStripAndPhraseBlocks ( NodeSelection selectionValue )
             {
             if (selectionValue == null || !selectionValue.Node.IsRooted) return;
+
+            // if selection restore phrase lie in next phrase lot but phrase is alreaty created with lot before, no need to refresh screen in this case
+            // the calling code should check if the phrase is created or not
+            if (m_DisablePhraseCreationWhileSelectionRestore) return;
+
             // explicitly handle audio cursor selection, will add universal approach later.
             if (mProjectView.TransportBar.CurrentState == TransportBar.State.Playing &&  mSelection != null && selectionValue.Node is PhraseNode && selectionValue.Node == mSelection.Node && selectionValue is AudioSelection) return;
 
@@ -2356,6 +2361,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         if (Math.Abs(interval) >= 200) PlayShowBlocksCompletedSound();
                     IsScrollActive = false;
                     mProjectView.ObiForm.Cursor = Cursors.Default;
+                    UpdateVerticalScrolPanelButtons();
 
                     //update selection if flag is true
                     if (updateBlockSelection && selectedItemDepthFromContentViewOrigin >= 0)
@@ -2593,6 +2599,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(stripControl, false) ;
         }
 
+        //@singleSection: flag to prevent screen refresh in case
+        // when selection has to be restored on phrase in next phrase lot
+        private bool m_DisablePhraseCreationWhileSelectionRestore = false;
+
             //@singleSection
             private bool SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(Strip currentlyActiveStrip, bool createRequiredNode)
             {
@@ -2619,6 +2629,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 //mProjectView.SelectedBlockNode = previouslySelectedEmptyNode;
                                 //mProjectView.Selection = m_PreviousSelectionForScroll;
 
+                                if (!createRequiredNode) m_DisablePhraseCreationWhileSelectionRestore = true;
                                 if (m_PreviousSelectionForScroll is AudioSelection)
                                 {
                                     mProjectView.Selection = null;
@@ -2628,6 +2639,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 {
                                     mProjectView.Selection = new NodeSelection(m_PreviousSelectionForScroll.Node, m_PreviousSelectionForScroll.Control);
                                 }
+                                m_DisablePhraseCreationWhileSelectionRestore = false;
                                 mProjectView.TransportBar.SelectionChangedPlaybackEnabled = selectionChangedPlaybackEnabledStatus;
                                 return true;
                             }
