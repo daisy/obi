@@ -378,6 +378,15 @@ namespace Obi.ProjectView
                 }
             }
 
+        //@singleSection
+        public bool IsStripsControlsWithinSafeCount
+        {
+            get
+            {
+                return mBlockLayout.Controls.Count < 1001;
+            }
+        }
+
 
         private delegate Block BlockInvokation(EmptyNode node);
 
@@ -424,7 +433,7 @@ namespace Obi.ProjectView
             {
             // first check if blocks count has exceeded handle limit : ( nodes limit * 2 ) +1
             if ((mBlockLayout.Controls.Count + (m_BackgroundBlockLayout != null ? m_BackgroundBlockLayout.Controls.Count : 0)) > 2001
-                || mBlockLayout.Controls.Count > 1001 )
+                || !IsStripsControlsWithinSafeCount)
                 return null;
 
 
