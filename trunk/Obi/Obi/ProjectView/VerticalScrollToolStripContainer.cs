@@ -70,7 +70,7 @@ namespace Obi.ProjectView
                 m_BtnLargeIncrementDown.Enabled =
                  m_BtnSmallIncrementDown.Enabled = m_CanScrollDown;
 
-                if (!m_CanScrollDown) TrackBarValueInPercentage = 100;
+                if (!m_CanScrollDown  && CanScrollUp) TrackBarValueInPercentage = 100;
             }
         }
 
