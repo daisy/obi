@@ -3537,6 +3537,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
             else if (strip.FirstBlock != null && strip.FirstBlock.Node.Index > 0)   //if last block is block to be selected that means the block before first block should be selected.
                 {
+                    if (mProjectView.TransportBar.IsRecorderActive) return true;
                                 EmptyNode nodeToSelect = (EmptyNode)strip.FirstBlock.Node.PrecedingNode;
                 CreateBlocksInPreviousThresholdsSlot ();//@singleSection
                 mProjectView.Selection = new NodeSelection ( nodeToSelect, this );
