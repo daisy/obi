@@ -2782,7 +2782,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
             
         m_StripPanelPreviousWidth = mStripsPanel.Width;
-            if ( verticalScrollToolStripContainer1 != null && !verticalScrollToolStripContainer1.CanScrollDown && mStripsPanel.Location.Y + mStripsPanel.Height < mHScrollBar.Location.Y )
+            if ( verticalScrollToolStripContainer1 != null && !verticalScrollToolStripContainer1.CanScrollDown && mStripsPanel.Location.Y + mStripsPanel.Height > mHScrollBar.Location.Y )
                  UpdateVerticalScrolPanelButtons () ;
             }
 
