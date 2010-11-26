@@ -2875,7 +2875,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         //@singleSection
         public void PostRecording_RecreateInvisibleRecordingPhrases(SectionNode section, int initialIndex, int count)
         {
-            if (initialIndex + count == section.PhraseChildCount - 1)
+            if (initialIndex + count == section.PhraseChildCount )
             {
                                 Strip currentlyActiveStrip = FindStrip(section);
                 if (currentlyActiveStrip != null)
