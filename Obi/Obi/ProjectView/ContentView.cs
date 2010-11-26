@@ -4707,7 +4707,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (ActiveStrip != null)
             {
                 if ( mProjectView.Selection != null
-                &&    ( mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripCursor )))
+                &&    ( mProjectView.Selection.Node is SectionNode && !(mProjectView.Selection is StripIndexSelection)))
             {
 Block lastBlock = ActiveStrip.LastBlock ;
                     if ( lastBlock != null )
@@ -4720,7 +4720,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     }
                     else
                     {
-                        if (mSelectedItem is Strip)
+                        if (mSelectedItem is Strip)//if last block is null, strip should be considered
                         {
                             EnsureControlVisible((Control) mSelectedItem ) ;
                         }
