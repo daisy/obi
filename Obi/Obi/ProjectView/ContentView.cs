@@ -2747,6 +2747,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             || (currentlyActiveStrip.LastBlock != null && currentlyActiveStrip.LastBlock.Node.IsRooted && currentlyActiveStrip.LastBlock.Node.Index == currentlyActiveStrip.Node.PhraseChildCount - 1))
                         {
                             verticalScrollToolStripContainer1.CanScrollDown = false;
+                            if (mStripsPanel.Location.Y >= -(currentlyActiveStrip.BlocksLayoutTopPosition) && currentlyActiveStrip.OffsetForFirstPhrase == 0) verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
                         }
                         else
                         {
