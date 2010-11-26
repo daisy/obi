@@ -267,6 +267,7 @@ namespace Obi
         public bool Save ( string path )
             {
                 string precautionBackupFilePath = null;
+                bool isError = false;
             try
                 {
                 //Uri prevRootUri = Presentation.getRootUri ();
@@ -283,16 +284,30 @@ namespace Obi
                 {
                 MessageBox.Show ( Localizer.Message ( "ErrorInSaving" ) + "\n\n" + ex.ToString (),
                         Localizer.Message ( "Caption_Error" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
+                isError = true ;
+            }
+
+            if (isError )
+            {
                 // restore the original file in case of error.
-                if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath))
+                try
                 {
-                    string originalPath = Presentation.getRootUri().LocalPath;
-                    if (File.Exists(originalPath)) File.Delete(originalPath);
-                    File.Move(precautionBackupFilePath, originalPath);
+                    if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath))
+                    {
+                        string originalPath = Presentation.getRootUri().LocalPath;
+                        if (File.Exists(originalPath)) File.Delete(originalPath);
+                        File.Move(precautionBackupFilePath, originalPath);
+                    }
                 }
+                    catch ( System.Exception ex)
+                {
+                        MessageBox.Show ( ex.ToString ()) ;
+                    }
+                
                 precautionBackupFilePath = null;
                 return false;
-                }
+                }//error flag check
+
             // delete the precaution file if there was no error
                 if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath)) File.Delete(precautionBackupFilePath);
                 return true;
