@@ -156,6 +156,13 @@ namespace Obi.ProjectView
             if (Presentation != null && Presentation.FirstSection == null && Selection != null)
                 Selection = null;
 
+            // handle recording time section creation
+            if (TransportBar.CurrentState == TransportBar.State.Monitoring) return;
+            if (Selection != null && Selection.Control is ContentView && TransportBar.CurrentState == TransportBar.State.Recording)
+            {
+                TransportBar.NextSection();
+                return;
+            }
             if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
 
             // select parent section node if a child phrase node is selected
