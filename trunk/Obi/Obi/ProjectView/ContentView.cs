@@ -353,7 +353,7 @@ namespace Obi.ProjectView
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
                 ResizeForCommands();
-
+                UpdateVerticalScrolPanelButtons();
             // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
                 if (e.DoneCommand is CompositeCommand
                         && ((CompositeCommand)e.DoneCommand ).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases"))
