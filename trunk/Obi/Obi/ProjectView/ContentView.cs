@@ -353,7 +353,7 @@ namespace Obi.ProjectView
         private void ContentView_commandDone ( object sender, urakawa.events.undo.DoneEventArgs e )
             {
                 ResizeForCommands();
-                UpdateVerticalScrolPanelButtons();
+                
             // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
                 if (e.DoneCommand is CompositeCommand
                         && ((CompositeCommand)e.DoneCommand ).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases"))
@@ -2738,7 +2738,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 verticalScrollToolStripContainer1.CanScrollUp = true;
                 }
 
-            if (mStripsPanel.Location.Y + mStripsPanel.Height <= mHScrollBar.Location.Y)
+            if (mStripsPanel.Location.Y + mStripsPanel.Height < mHScrollBar.Location.Y)
                 {
                 Strip currentlyActiveStrip = ActiveStrip;
                 if (currentlyActiveStrip != null)
@@ -2764,7 +2764,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private int m_StripPanelPreviousWidth = 0;
         private void mStripsPanel_Resize ( object sender, EventArgs e )
         {
-        if (mStripsPanel == null || mProjectView == null) return;
+        if (mProjectView == null) return;
         if (m_StripPanelPreviousWidth != mStripsPanel.Width && Math.Abs ( m_StripPanelPreviousWidth - mStripsPanel.Width ) > 50
             && mProjectView.Selection != null
             && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
@@ -2782,6 +2782,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
             
         m_StripPanelPreviousWidth = mStripsPanel.Width;
+            if ( verticalScrollToolStripContainer1 != null && !verticalScrollToolStripContainer1.CanScrollDown && mStripsPanel.Location.Y + mStripsPanel.Height < mHScrollBar.Location.Y )
+                 UpdateVerticalScrolPanelButtons () ;
             }
 
         public void RecreateContentsWhileInitializingRecording(EmptyNode recordingResumePhrase)
