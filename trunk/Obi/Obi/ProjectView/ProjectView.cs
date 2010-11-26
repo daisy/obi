@@ -1805,9 +1805,12 @@ namespace Obi.ProjectView
         private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes,Dictionary<PhraseNode, string> phrase_SectionNameMap )
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
+            if (Selection != null) command.append(new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
             SectionNode newSectionNode = null;
             int phraseInsertIndex = 0;
 
+            m_DisableSectionSelection = false;
+            if (GetSelectedPhraseSection != null && (Selection.Node is EmptyNode || Selection is StripIndexSelection)) Selection = new NodeSelection(GetSelectedPhraseSection, mContentView);
             for (int i = 0; i < phraseNodes.Count; i++)
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))

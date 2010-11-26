@@ -609,7 +609,6 @@ namespace Obi.ProjectView
                         }
                         else
                         {
-                            Console.WriteLine ("ensuring visibility of control " + mSelection ) ;
                             EnsureControlVisible((Control)s);
                             UpdateScrollTrackBarAccordingToSelectedNode();
                         }
@@ -741,7 +740,6 @@ namespace Obi.ProjectView
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
                     Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
-                    Console.WriteLine("INside , ensuring visibility ");
                 // Compute the four corners of the control, including margins
                 int top = location.Y - c.Margin.Top;
                 if (top < stripLabelOffset) top = stripLabelOffset;//@singleSection
@@ -799,7 +797,6 @@ namespace Obi.ProjectView
                     {
                     mHScrollBar.Value = Math.Min ( right - vw, h_max );
                     }
-                    Console.WriteLine("Moved to " + mStripsPanel.Location);
                 }
             else
                 {
