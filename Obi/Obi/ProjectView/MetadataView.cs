@@ -261,7 +261,7 @@ namespace Obi.ProjectView
                         int names = a.getName ().CompareTo ( b.getName () );
                         return names == 0 ? a.getContent ().CompareTo ( b.getContent () ) : names;
                     } );
-                    string itemToRemove = "";
+                    //string itemToRemove = "";
                     List<string> ExistingItemsList = new List<string> ();
                     int i = 0;
 
