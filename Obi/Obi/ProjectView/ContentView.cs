@@ -426,7 +426,7 @@ namespace Obi.ProjectView
         {
             //if (mStripsPanel.Location.Y + (mStripsPanel.Height + mStripsPanel.Margin.Bottom * 2) < mHScrollBar.Location.Y)
             if (mStripsPanel.Location.Y + (mStripsPanel.Height + mStripsPanel.Margin.Bottom * 2) < mHScrollBar.Location.Y
-                ||  ( mStripsPanel.Height <= this.VisibleHeight && mStripsPanel.Width > VisibleWidth * 4 ))
+                || (mStripsPanel.Height <= this.VisibleHeight && mStripsPanel.Width > VisibleWidth * 3 && mStripsPanel.Width > 1000 ))
             {
                 Strip currentlyActiveStrip = ActiveStrip;
                 if (currentlyActiveStrip != null)
@@ -2751,7 +2751,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         {
                             int previousTrackBarValue = verticalScrollToolStripContainer1.TrackBarValueInPercentage;
                             verticalScrollToolStripContainer1.CanScrollDown = false;
-                            if (mStripsPanel.Location.Y >= -(currentlyActiveStrip.BlocksLayoutTopPosition) && previousTrackBarValue < 20  && currentlyActiveStrip.OffsetForFirstPhrase == 0) verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
+                            if (mStripsPanel.Location.Y >= -(currentlyActiveStrip.BlocksLayoutTopPosition) && previousTrackBarValue < 20  &&  verticalScrollToolStripContainer1.TrackBarValueInPercentage == 100 && currentlyActiveStrip.OffsetForFirstPhrase == 0) verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
                         }
                         else
                         {
