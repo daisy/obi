@@ -459,6 +459,8 @@ namespace Obi.ProjectView
             // 
             // verticalScrollToolStripContainer1
             // 
+            this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.verticalScrollToolStripContainer1.CanScrollDown = true;
             this.verticalScrollToolStripContainer1.CanScrollUp = true;
             this.verticalScrollToolStripContainer1.contentView = null;
