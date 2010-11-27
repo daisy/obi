@@ -658,12 +658,8 @@ namespace Obi
             CanAutoSave = true;//@singleSection
             ProjectHasChanged ( 1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
-            
-            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
-            {
-                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
-                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
-            }
+
+            ShowLimitedPhrasesShownStatusMessage();
             }
 
         private void ObiForm_commandUnDone ( object sender, urakawa.events.undo.UnDoneEventArgs e ) 
@@ -672,11 +668,7 @@ namespace Obi
             ProjectHasChanged ( -1 );
             if (!IsStatusBarEnabled )  IsStatusBarEnabled = true;//@singleSection
 
-            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
-            {
-                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
-                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
-            }
+            ShowLimitedPhrasesShownStatusMessage();
             }
 
         private void ObiForm_commandReDone ( object sender, urakawa.events.undo.ReDoneEventArgs e ) 
@@ -685,11 +677,7 @@ namespace Obi
             ProjectHasChanged ( 1 );
             if ( !IsStatusBarEnabled)  IsStatusBarEnabled = true;//@singleSection
 
-            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
-            {
-                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
-                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
-            }
+            ShowLimitedPhrasesShownStatusMessage();
             }
 
         private void ObiForm_BeforeCommandExecuted (object sender , urakawa.events.command.CommandEventArgs e )//@singleSection
@@ -704,6 +692,15 @@ namespace Obi
                 IsStatusBarEnabled = false;
                 }
             }
+
+        private void ShowLimitedPhrasesShownStatusMessage()
+        {
+            if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
+            {
+                string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
+                Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+            }
+        }
 
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load ( object sender, EventArgs e )
@@ -1723,6 +1720,7 @@ namespace Obi
             try
                 {
                 OpenProject ( path );
+                if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage();
                 }
             catch (Exception e)
                 {
@@ -1901,8 +1899,8 @@ namespace Obi
                 (mProjectView.Selection != null && mProjectView.Selection.Node !=  mProjectView.TransportBar.RecordingPhrase?mProjectView.TransportBar.RecordingPhrase.ToString() + "..": ""  ) ): 
                 "";
             //if (IsStatusBarEnabled) Status ( mProjectView.Selection != null ? mProjectView.Selection.ToString () : Localizer.Message ( "StatusBar_NothingSelected" ) + mProjectView.TransportBar.RecordingPhraseToString );
-            string limitedBlocksShownMsg = IsStatusBarEnabled && mProjectView.Selection != null ? string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), " ") : "";
-            if (IsStatusBarEnabled) Status(strRecordingInfo + (mProjectView.Selection != null ? mProjectView.Selection.ToString() : Localizer.Message("StatusBar_NothingSelected") + limitedBlocksShownMsg));
+            string limitedBlocksShownMsg = IsStatusBarEnabled && mProjectView.Selection != null  && mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand () ? string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), " ") : "";
+            if (IsStatusBarEnabled) Status(strRecordingInfo + (mProjectView.Selection != null ? mProjectView.Selection.ToString() : Localizer.Message("StatusBar_NothingSelected")) + limitedBlocksShownMsg);
             }
 
         // Update all of Obi.
