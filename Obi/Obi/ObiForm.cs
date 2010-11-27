@@ -2372,7 +2372,8 @@ namespace Obi
 
         private void mView_ResetAudioSizeMenuItem_Click ( object sender, EventArgs e )
             {
-            AudioScale = AudioScale;
+            //AudioScale = AudioScale;
+                AudioScale = 0.01f;
             }
 
         private void PipelineToolStripItems_Click ( object sender, EventArgs e )
