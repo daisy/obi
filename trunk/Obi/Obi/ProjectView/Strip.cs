@@ -253,7 +253,7 @@ namespace Obi.ProjectView
             {
             get
                 {
-                Console.WriteLine ( "blocks layout upper y : " + mBlockLayout.Location.Y );
+                //Console.WriteLine ( "blocks layout upper y : " + mBlockLayout.Location.Y );
                 return mBlockLayout.Location.Y ;
                 }
             }
@@ -343,7 +343,7 @@ namespace Obi.ProjectView
 
                 if (time > expectedMilliseconds)
                     {
-                    Console.WriteLine ( " phrase count for visible page is " + phraseCount );
+                    //Console.WriteLine ( " phrase count for visible page is " + phraseCount );
                     break;
                     }
                 }
@@ -373,7 +373,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                Console.WriteLine ( "IsBlockForEmptyNodeExists is false for : " + node.ToString () );
+                //Console.WriteLine ( "IsBlockForEmptyNodeExists is false for : " + node.ToString () );
                 return false ;
                 }
             }
@@ -478,7 +478,7 @@ namespace Obi.ProjectView
             if (mBlockLayout.Controls.IndexOf ( block ) == 1)
                 {
                 m_OffsetForFirstPhrase = node.Index;
-                Console.WriteLine ( "Offset of strip is " + OffsetForFirstPhrase);
+                //Console.WriteLine ( "Offset of strip is " + OffsetForFirstPhrase);
                 
                 }
             if (mBlockLayout.Width > mContentView.Width - 50 )// to make more than 3 phrases visible in merge with empty section.
@@ -944,7 +944,7 @@ namespace Obi.ProjectView
             return mBlockLayout.Location.Y + Math.Max ( mBlockHeight, mBlockLayout.Height ) +
                 mBlockLayout.Margin.Bottom + BorderHeight;
             float sizeMultiplier = 1;//@singleSection
-            System.Media.SystemSounds.Asterisk.Play ();
+            //System.Media.SystemSounds.Asterisk.Play ();
                 // determine how many blocks are visible w.r.t. total no. of phrases
             if (LastBlock != null ) //@singleSection
                 {
@@ -1287,12 +1287,12 @@ namespace Obi.ProjectView
                 m_BackgroundPhrasesloadTimer.Stop ();
                 UpdateColors ();
                 m_BackgroundBlockLayout.Location =new Point ( mBlockLayout.Location.X, m_BackgroundBlockLayout.Height * -1 ) ;
-                Console.WriteLine ( "background layout created " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+                //Console.WriteLine ( "background layout created " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
                 }
             else
                 {
                 m_BackgroundPhrasesloadTimer.Start ();
-                Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
+                //Console.WriteLine ( "console timer starting  " + m_BackgroundPhrasesLoadStartIndex + " - " + m_BackgroundPhrasesLoadEndIndex );
                 }
             }
 
@@ -1396,7 +1396,7 @@ namespace Obi.ProjectView
             mBlockLayout = CreateBackUpLayout ();
             mBlockLayout.Location = new System.Drawing.Point ( 3, 78 );
             Resize_All ();
-            Console.WriteLine ( "move to background  " + "size : " + m_BackgroundBlockLayout.Size + " location : " + m_BackgroundBlockLayout.Location);
+            //Console.WriteLine ( "move to background  " + "size : " + m_BackgroundBlockLayout.Size + " location : " + m_BackgroundBlockLayout.Location);
             // if previous block layout is not completely created, remove it
             // this will avoid of overlapping phrases
             if (m_BackgroundBlockLayout.Height == 0)
@@ -1467,7 +1467,7 @@ namespace Obi.ProjectView
 
             Resize_All ();
             if (removePanel != null )   removePanel.Dispose ();
-            Console.WriteLine ( "Displaying previous layout  : size : location " + mBlockLayout.Size + " : " + mBlockLayout.Location);
+            //Console.WriteLine ( "Displaying previous layout  : size : location " + mBlockLayout.Size + " : " + mBlockLayout.Location);
             return true;
             }
 
