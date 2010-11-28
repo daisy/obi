@@ -78,9 +78,9 @@ namespace Obi
             get { return mSettings.AudioScale; }
             set
                 {
-                if (value > 0.0)
+                    if (value > 0.002f && value < 0.1f)
                     {
-                    mSettings.AudioScale = value;
+                        mSettings.AudioScale = value;
                     mProjectView.AudioScale = value;
                     }
                 }
@@ -2290,7 +2290,8 @@ namespace Obi
                     }
                 else
                     {
-                    strip.AudioScale *= AUDIO_SCALE_INCREMENT;
+                        AudioScale *= AUDIO_SCALE_INCREMENT;
+                        strip.AudioScale = AudioScale;
                     }
                     mView_AudioZoomInMenuItem.Enabled = mSession.HasProject;
             }
