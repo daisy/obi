@@ -2288,10 +2288,9 @@ namespace Obi
                     {
                     AudioScale *= AUDIO_SCALE_INCREMENT;
                     }
-                else
+                else if ( strip.AudioScale < 0.1f)
                     {
-                        AudioScale *= AUDIO_SCALE_INCREMENT;
-                        strip.AudioScale = AudioScale;
+                        strip.AudioScale *= AUDIO_SCALE_INCREMENT;
                     }
                     mView_AudioZoomInMenuItem.Enabled = mSession.HasProject;
             }
@@ -2307,7 +2306,7 @@ namespace Obi
                     {
                     AudioScale /= AUDIO_SCALE_INCREMENT;
                     }
-                else
+                else if ( strip.AudioScale > 0.002f )
                     {
                     strip.AudioScale /= AUDIO_SCALE_INCREMENT;
                     }
