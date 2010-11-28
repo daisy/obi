@@ -1620,4 +1620,7 @@ Error text: {1}</value>
   <data name="GoToPageorPhrase_PageDonotExist" xml:space="preserve">
     <value>Page does not exist </value>
   </data>
+  <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
+    <value>System is working at high load. It is recommended to try this operation after some time. Press No to cancel the operation</value>
+  </data>
 </root>

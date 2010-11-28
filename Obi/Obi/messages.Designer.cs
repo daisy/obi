@@ -2652,6 +2652,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System is working at high load. It is recommended to try this operation after some time. Press No to cancel the operation.
+        /// </summary>
+        internal static string PerformanceCheck_RAMNearOverflowMsg {
+            get {
+                return ResourceManager.GetString("PerformanceCheck_RAMNearOverflowMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output directory is not empty! Do you want to empty it?.
         /// </summary>
         internal static string Permission_EmptyOutputDirectory {

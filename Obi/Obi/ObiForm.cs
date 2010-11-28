@@ -2280,7 +2280,8 @@ namespace Obi
         private void mView_AudioZoomInMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
-
+            if (!CheckAndAlertForMemoryUsage()) return;
+            
             mView_AudioZoomInMenuItem.Enabled = false;
                 ProjectView.Strip strip = mProjectView.StripForSelection;
                 if (strip == null)
@@ -2297,6 +2298,7 @@ namespace Obi
         private void mView_AudioZoomOutMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) mProjectView.TransportBar.Pause ();
+            if (!CheckAndAlertForMemoryUsage()) return;
 
             mView_AudioZoomOutMenuItem.Enabled = false;
                 ProjectView.Strip strip = mProjectView.StripForSelection;
@@ -2311,6 +2313,27 @@ namespace Obi
         
                     mView_AudioZoomOutMenuItem.Enabled = mSession.HasProject;
             }
+
+        //@singleSection
+        /// <summary>
+        /// Check if RAM is near over flow and warns the user
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckAndAlertForMemoryUsage()
+        {
+            System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
+            if (ramPerformanceCounter.NextValue() < 100)
+            {
+                if (MessageBox.Show(Localizer.Message ("PerformanceCheck_RAMNearOverflowMsg"), Localizer.Message("Caption_Warning"), 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    ramPerformanceCounter.Close();
+                    return false;
+                }
+            }
+            ramPerformanceCounter.Close();
+            return true;
+        }
 
 
         private string chooseDaisyType ( string toolStripText )
@@ -2372,6 +2395,8 @@ namespace Obi
 
         private void mView_ResetAudioSizeMenuItem_Click ( object sender, EventArgs e )
             {
+                if (!CheckAndAlertForMemoryUsage()) return;
+
             //AudioScale = AudioScale;
                 AudioScale = 0.01f;
             }
