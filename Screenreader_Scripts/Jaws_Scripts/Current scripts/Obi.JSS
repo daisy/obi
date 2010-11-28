@@ -1,6 +1,6 @@
-; JAWS scripts for Obi 1.0
-; Scripts version: 1.0.1 , released on march 26, 2009
-; written for JAWS 9.0 and 10.0
+; JAWS scripts for Obi 1.2
+; Scripts version: 1.2.1 , released on November 29, 2010
+; written for JAWS 9.0 and above
 ; Written by: Avneesh Singh
 ; Copywrite (c)    2009 The DAISY Consortium
 
@@ -43,6 +43,7 @@ let strObjectsList =  GetListOfObjects (GetFocus (), "=-:")
 var String strDiscription  
 let strDiscription = StringSegment (strObjectsList, "=-:", 1) 
 ;let strDiscription = StringReplaceChars (strDiscription, strControlName," ")
+let strDiscription = StringReplaceSubstrings (strDiscription, "toolStripContainer1", "" ) ;
 SayString ( strDiscription)
 EndFunction
 
