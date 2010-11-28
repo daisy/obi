@@ -2078,7 +2078,7 @@ namespace Obi.ProjectView
                     else
                         {
                         command.append ( new Commands.Node.Delete ( this, firstNode, false ) );
-                        Console.WriteLine ( "deleting in merge " + firstNode );
+                        //Console.WriteLine ( "deleting in merge " + firstNode );
                         }
                     }
     
