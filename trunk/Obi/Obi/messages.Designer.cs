@@ -3465,6 +3465,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The required phrase is not in current section. Will you like to show the section containing the phrase?.
+        /// </summary>
+        internal static string SelectPhraseOrSection_ShowSection {
+            get {
+                return ResourceManager.GetString("SelectPhraseOrSection_ShowSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set page number.
         /// </summary>
         internal static string set_page_number_ {

@@ -1623,4 +1623,7 @@ Error text: {1}</value>
   <data name="PerformanceCheck_RAMNearOverflowMsg" xml:space="preserve">
     <value>System is working at high load. It is recommended to try this operation after some time. Press No to cancel the operation</value>
   </data>
+  <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
+    <value>The required phrase is not in current section. Will you like to show the section containing the phrase?</value>
+  </data>
 </root>
