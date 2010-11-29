@@ -522,7 +522,10 @@ namespace Obi
                     System.Diagnostics.Debug.Assert(revisionDate != null);
                     int rev = Int32.Parse(revision.getContent()) + 1;
                     SetMetadataEntryContent(revision, rev.ToString());
-                    SetMetadataEntryContent(revisionDate, date);
+                    if (revisionDate ==  null ) 
+                        SetSingleMetadataItem(Metadata.DTB_REVISION_DATE , date);
+                    else 
+                        SetMetadataEntryContent(revisionDate, date);
                 }
                 else
                 {
