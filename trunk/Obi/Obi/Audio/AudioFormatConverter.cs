@@ -58,7 +58,7 @@ namespace Obi.Audio
                 if (Path.GetFileName(filePath) != Path.GetFileName(convertedFile))
                 {
                                         string newConvertedFilePath = Path.Combine( Path.GetDirectoryName(convertedFile) , Path.GetFileNameWithoutExtension(filePath)+".wav") ;
-                    for (int i = 0; i < 99999 && !File.Exists(newConvertedFilePath) ; i++)
+                    for (int i = 0; i < 99999 && File.Exists(newConvertedFilePath) ; i++)
                     {
                         newConvertedFilePath = Path.Combine(Path.GetDirectoryName(convertedFile),i.ToString() + Path.GetFileNameWithoutExtension(filePath)+".wav");
                         if (!File.Exists(newConvertedFilePath))
