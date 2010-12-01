@@ -6,6 +6,9 @@
 
 
 globals  String g_PrevControlClass
+globals  Int g_SilentOnPhrases
+Globals Int g_ExistingScreenEcho
+
 
 Void Function FocusChangedEvent (handle FocusWindow, handle PrevWindow)
 var String ContentViewBlocksClass 
@@ -23,7 +26,24 @@ let ContentViewBlocksClass = "WindowsForms10.Window.8.app.0.378734a"
 		If (strObjectName == "" ) Then
 			SayStripString () 
 		Else
+var int counter
+If ( g_SilentOnPhrases
+&& (GetWindowName (GetFocus ()) =="Waveform1"  || StringContains (strObjectName , "phrase (") == 1 )) Then
+let counter = 0 ;
+While (GetScreenEcho () != 0 && counter <6) 
+ScreenEcho ()
+let counter = counter+1
+EndWhile
+;Saystring ("found")
+Else
+let counter = 0
+While (GetScreenEcho () != g_ExistingScreenEcho  && counter <6) 
+ScreenEcho ()
+let counter = counter+1
+EndWhile
+
 			SayString ( strObjectName)
+EndIf
 		EndIf
 	Else
 		FocusChangedEvent ( FocusWindow, PrevWindow)
@@ -57,4 +77,24 @@ Else
 	TypeCurrentScriptKey ()
 EndIf 
 
+EndScript
+
+
+Script ToggleEchoOnPhrases ()
+If (g_SilentOnPhrases == 0 ) Then
+let g_SilentOnPhrases = 1
+let g_ExistingScreenEcho = GetScreenEcho ()
+
+SayString ("Echo on phrases, OFF")
+Else
+let g_SilentOnPhrases = 0
+var Int counter
+let counter = 0 
+While ( GetScreenEcho () != g_ExistingScreenEcho  && counter <6 )
+ScreenEcho ()
+let counter = counter+1
+EndWhile
+SayString ("Echo on phrases, ON")
+
+EndIf
 EndScript
