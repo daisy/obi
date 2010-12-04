@@ -48,7 +48,7 @@ namespace Obi.ProjectView
         public ContentView ()
             {
             InitializeComponent ();
-            InitializeShortcutKeys ();
+            //InitializeShortcutKeys ();
             mProjectView = null;
             mSelection = null;
             mFocusing = false;
@@ -3406,11 +3406,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
         #region shortcut keys
 
-        private void InitializeShortcutKeys ()
+        public void InitializeShortcutKeys ()
             {
             mShortcutKeys = new Dictionary<Keys, ProjectView.HandledShortcutKey> ();
+            KeyboardShortcuts_Settings keyboardShortcuts = mProjectView.ObiForm.KeyboardShortcuts;
 
-            mShortcutKeys[Keys.A] = delegate () { return mProjectView.TransportBar.MarkSelectionWholePhrase (); };
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectCompleteWaveform] = delegate() { return mProjectView.TransportBar.MarkSelectionWholePhrase(); };
+            //mShortcutKeys[Keys.A] = delegate () { return mProjectView.TransportBar.MarkSelectionWholePhrase (); };
             mShortcutKeys[Keys.C] = delegate () { return mProjectView.TransportBar.PreviewAudioSelection (); };
             mShortcutKeys[Keys.H] = delegate () { return mProjectView.TransportBar.NextSection (); };
             mShortcutKeys[Keys.Shift | Keys.H] = delegate () { return mProjectView.TransportBar.PrevSection (); };
