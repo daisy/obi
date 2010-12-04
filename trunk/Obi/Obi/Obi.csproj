@@ -303,6 +303,9 @@
     <Compile Include="Export\XslResolver.cs" />
     <Compile Include="Export\Z.cs" />
     <Compile Include="ImportStructure.cs" />
+    <Compile Include="KeyboardShortcuts_Settings.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Localizer.cs" />
     <Compile Include="messages.Designer.cs">
       <AutoGen>True</AutoGen>
