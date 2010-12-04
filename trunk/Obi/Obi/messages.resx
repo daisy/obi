@@ -375,7 +375,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="really_use_directory_text" xml:space="preserve">
-    <value>Directory "{0}"is not empty. If you want to empty this directory before using it, choose "Yes." If you want to use this directory as is, choose "No." If you do not want to use this directory, press "Cancel."</value>
+    <value>Directory "{0}"is not empty. If you want to empty this directory before using it, choose "Yes." If you want to use this directory as is, choose "No."</value>
     <comment>Error dialog</comment>
   </data>
   <data name="cannot_redo" xml:space="preserve">
