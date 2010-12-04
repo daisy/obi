@@ -21,6 +21,7 @@ namespace Obi
         private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
+        private KeyboardShortcuts_Settings m_KeyboardShortcuts;// keyboard shortcuts used by application
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
         private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
         private bool mShowWelcomWindow; // flag for controlling showing of welcome window
@@ -102,6 +103,11 @@ namespace Obi
         /// Application settings.
         /// </summary>
         public Settings Settings { get { return mSettings; } }
+
+        /// <summary>
+        /// Values of configurable keyboard shortcuts
+        /// </summary>
+        public KeyboardShortcuts_Settings KeyboardShortcuts { get { return m_KeyboardShortcuts; } }
 
         // True if the user has chosen the "open last project" option, and there is a last project to open.
         private bool ShouldOpenLastProject
@@ -1602,6 +1608,7 @@ namespace Obi
                 mSession.ProjectSaved += new EventHandler ( Session_ProjectSaved );
                 mSourceView = null;
                 InitializeSettings ();
+                InitializeKeyboardShortcuts();
                 InitializeEventHandlers ();
                 UpdateMenus ();
                 // these should be stored in settings
@@ -1984,6 +1991,7 @@ namespace Obi
                 try
                     {
                     mSettings.SaveSettings ();
+                    m_KeyboardShortcuts.SaveSettings();
                     }
                 catch (Exception x)
                     {
@@ -2056,6 +2064,11 @@ namespace Obi
             mSettings.ColorSettings.CreateBrushesAndPens ();
             }
 
+        private void InitializeKeyboardShortcuts()
+        {
+            m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
+            mProjectView.InitializeShortcutKeys();
+        }
 
         // Various utility functions
 

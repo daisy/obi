@@ -37,7 +37,7 @@ namespace Obi.ProjectView
         public ProjectView ()
             {
             InitializeComponent ();
-            InitializeShortcutKeys ();
+            //InitializeShortcutKeys ();
             mTOCView.ProjectView = this;
             mContentView.ProjectView = this;
             mMetadataView.ProjectView = this;
@@ -2423,8 +2423,10 @@ namespace Obi.ProjectView
         private Dictionary<Keys, HandledShortcutKey> mShortcutKeys;
 
         // Initialize the list of shortcut keys
-        private void InitializeShortcutKeys ()
+        public void InitializeShortcutKeys ()
             {
+                mContentView.InitializeShortcutKeys();
+
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey> ();
             mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
