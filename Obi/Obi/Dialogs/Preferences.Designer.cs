@@ -76,8 +76,8 @@ namespace Obi.Dialogs
             this.m_btnAssign = new System.Windows.Forms.Button();
             this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
-            this.m_lvShortcutKeys = new System.Windows.Forms.ListView();
-            this.m_cbShortcutKeysList = new System.Windows.Forms.ComboBox();
+            this.m_lvShortcutKeysList = new System.Windows.Forms.ListView();
+            this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -428,8 +428,8 @@ namespace Obi.Dialogs
             this.tabPage2.Controls.Add(this.m_btnAssign);
             this.tabPage2.Controls.Add(this.m_txtShortcutKeys);
             this.tabPage2.Controls.Add(this.m_lblShortcutKeys);
-            this.tabPage2.Controls.Add(this.m_lvShortcutKeys);
-            this.tabPage2.Controls.Add(this.m_cbShortcutKeysList);
+            this.tabPage2.Controls.Add(this.m_lvShortcutKeysList);
+            this.tabPage2.Controls.Add(this.m_cbShortcutKeys);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -456,21 +456,21 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_lblShortcutKeys, "m_lblShortcutKeys");
             this.m_lblShortcutKeys.Name = "m_lblShortcutKeys";
             // 
-            // m_lvShortcutKeys
+            // m_lvShortcutKeysList
             // 
-            resources.ApplyResources(this.m_lvShortcutKeys, "m_lvShortcutKeys");
-            this.m_lvShortcutKeys.Name = "m_lvShortcutKeys";
-            this.m_lvShortcutKeys.UseCompatibleStateImageBehavior = false;
+            resources.ApplyResources(this.m_lvShortcutKeysList, "m_lvShortcutKeysList");
+            this.m_lvShortcutKeysList.Name = "m_lvShortcutKeysList";
+            this.m_lvShortcutKeysList.UseCompatibleStateImageBehavior = false;
             // 
-            // m_cbShortcutKeysList
+            // m_cbShortcutKeys
             // 
-            this.m_cbShortcutKeysList.FormattingEnabled = true;
-            this.m_cbShortcutKeysList.Items.AddRange(new object[] {
-            resources.GetString("m_cbShortcutKeysList.Items"),
-            resources.GetString("m_cbShortcutKeysList.Items1"),
-            resources.GetString("m_cbShortcutKeysList.Items2")});
-            resources.ApplyResources(this.m_cbShortcutKeysList, "m_cbShortcutKeysList");
-            this.m_cbShortcutKeysList.Name = "m_cbShortcutKeysList";
+            resources.ApplyResources(this.m_cbShortcutKeys, "m_cbShortcutKeys");
+            this.m_cbShortcutKeys.FormattingEnabled = true;
+            this.m_cbShortcutKeys.Items.AddRange(new object[] {
+            resources.GetString("m_cbShortcutKeys.Items"),
+            resources.GetString("m_cbShortcutKeys.Items1"),
+            resources.GetString("m_cbShortcutKeys.Items2")});
+            this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
             // 
             // Preferences
             // 
@@ -547,8 +547,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown mNudgeDurationUpDown;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ComboBox m_cbShortcutKeysList;
-        private System.Windows.Forms.ListView m_lvShortcutKeys;
+        private System.Windows.Forms.ComboBox m_cbShortcutKeys;
+        private System.Windows.Forms.ListView m_lvShortcutKeysList;
         private System.Windows.Forms.Button m_btnRemove;
         private System.Windows.Forms.Button m_btnAssign;
         private System.Windows.Forms.TextBox m_txtShortcutKeys;

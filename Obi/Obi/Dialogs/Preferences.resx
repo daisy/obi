@@ -948,55 +948,58 @@
   <data name="&gt;&gt;m_lblShortcutKeys.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="m_lvShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_lvShortcutKeysList.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 69</value>
   </data>
-  <data name="m_lvShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_lvShortcutKeysList.Size" type="System.Drawing.Size, System.Drawing">
     <value>335, 129</value>
   </data>
-  <data name="m_lvShortcutKeys.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_lvShortcutKeysList.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
-  <data name="&gt;&gt;m_lvShortcutKeys.Name" xml:space="preserve">
-    <value>m_lvShortcutKeys</value>
+  <data name="&gt;&gt;m_lvShortcutKeysList.Name" xml:space="preserve">
+    <value>m_lvShortcutKeysList</value>
   </data>
-  <data name="&gt;&gt;m_lvShortcutKeys.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_lvShortcutKeysList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_lvShortcutKeys.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_lvShortcutKeysList.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;m_lvShortcutKeys.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_lvShortcutKeysList.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="m_cbShortcutKeysList.Items" xml:space="preserve">
+  <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
+    <value> Select shortcuts to view.</value>
+  </data>
+  <data name="m_cbShortcutKeys.Items" xml:space="preserve">
     <value>Global shortcut keys</value>
   </data>
-  <data name="m_cbShortcutKeysList.Items1" xml:space="preserve">
+  <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
     <value>Content view shortcut keys</value>
   </data>
-  <data name="m_cbShortcutKeysList.Items2" xml:space="preserve">
+  <data name="m_cbShortcutKeys.Items2" xml:space="preserve">
     <value>All shortcut  keys</value>
   </data>
-  <data name="m_cbShortcutKeysList.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="m_cbShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 27</value>
   </data>
-  <data name="m_cbShortcutKeysList.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_cbShortcutKeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>335, 24</value>
   </data>
-  <data name="m_cbShortcutKeysList.TabIndex" type="System.Int32, mscorlib">
+  <data name="m_cbShortcutKeys.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
   </data>
-  <data name="&gt;&gt;m_cbShortcutKeysList.Name" xml:space="preserve">
-    <value>m_cbShortcutKeysList</value>
+  <data name="&gt;&gt;m_cbShortcutKeys.Name" xml:space="preserve">
+    <value>m_cbShortcutKeys</value>
   </data>
-  <data name="&gt;&gt;m_cbShortcutKeysList.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_cbShortcutKeys.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_cbShortcutKeysList.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_cbShortcutKeys.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;m_cbShortcutKeysList.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_cbShortcutKeys.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
