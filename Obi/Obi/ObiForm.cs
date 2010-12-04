@@ -2109,7 +2109,8 @@ namespace Obi
                 DialogResult result = MessageBox.Show (
                     String.Format ( Localizer.Message ( "really_use_directory_text" ), path ),
                     Localizer.Message ( "really_use_directory_caption" ),
-                    MessageBoxButtons.YesNoCancel,
+                   // MessageBoxButtons.YesNoCancel,
+                   MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 );
                 if (result == DialogResult.Yes)
                     {
@@ -2130,7 +2131,8 @@ namespace Obi
                         return false;
                         }
                     }
-                return result != DialogResult.Cancel;
+              //  return result != DialogResult.Cancel;
+                    return true;
                 }
             else
                 {
