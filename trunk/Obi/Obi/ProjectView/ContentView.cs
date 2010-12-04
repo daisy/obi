@@ -3413,33 +3413,63 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
 
             mShortcutKeys[keyboardShortcuts.ContentView_SelectCompleteWaveform] = delegate() { return mProjectView.TransportBar.MarkSelectionWholePhrase(); };
             //mShortcutKeys[Keys.A] = delegate () { return mProjectView.TransportBar.MarkSelectionWholePhrase (); };
-            mShortcutKeys[Keys.C] = delegate () { return mProjectView.TransportBar.PreviewAudioSelection (); };
-            mShortcutKeys[Keys.H] = delegate () { return mProjectView.TransportBar.NextSection (); };
-            mShortcutKeys[Keys.Shift | Keys.H] = delegate () { return mProjectView.TransportBar.PrevSection (); };
-            mShortcutKeys[Keys.J] = delegate () { return mProjectView.TransportBar.PrevPhrase (); };
-            mShortcutKeys[Keys.K] = delegate () { return mProjectView.TransportBar.NextPhrase (); };
-            mShortcutKeys[Keys.N] = delegate () { return mProjectView.TransportBar.Nudge ( TransportBar.Forward ); };
-            mShortcutKeys[Keys.Shift | Keys.N] = delegate () { return mProjectView.TransportBar.Nudge ( TransportBar.Backward ); };
-            mShortcutKeys[Keys.OemOpenBrackets] = delegate () { return mProjectView.TransportBar.MarkSelectionBeginTime (); };
-            mShortcutKeys[Keys.OemCloseBrackets] = delegate () { return mProjectView.TransportBar.MarkSelectionEndTime (); };
-            mShortcutKeys[Keys.P] = delegate () { return mProjectView.TransportBar.NextPage (); };
-            mShortcutKeys[Keys.Shift | Keys.P] = delegate () { return mProjectView.TransportBar.PrevPage (); };
-            mShortcutKeys[Keys.V] = delegate () { return mProjectView.TransportBar.Preview ( TransportBar.From, TransportBar.UseAudioCursor ); };
-            mShortcutKeys[Keys.Shift | Keys.V] = delegate () { return mProjectView.TransportBar.Preview ( TransportBar.From, TransportBar.UseSelection ); };
-            mShortcutKeys[Keys.X] = delegate () { return mProjectView.TransportBar.Preview ( TransportBar.Upto, TransportBar.UseAudioCursor ); };
-            mShortcutKeys[Keys.Shift | Keys.X] = delegate () { return mProjectView.TransportBar.Preview ( TransportBar.Upto, TransportBar.UseSelection ); };
+            mShortcutKeys[keyboardShortcuts.ContentView_PlaySelectedWaveform] = delegate() { return mProjectView.TransportBar.PreviewAudioSelection(); };
+            //ShortcutKeys[Keys.C] = delegate() { return mProjectView.TransportBar.PreviewAudioSelection(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNextSection] = delegate() { return mProjectView.TransportBar.NextSection(); };
+            //mShortcutKeys[Keys.H] = delegate() { return mProjectView.TransportBar.NextSection(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviousSection] = delegate() { return mProjectView.TransportBar.PrevSection(); };
+            //mShortcutKeys[Keys.Shift | Keys.H] = delegate() { return mProjectView.TransportBar.PrevSection(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviousPhrase] = delegate() { return mProjectView.TransportBar.PrevPhrase(); };
+            //mShortcutKeys[Keys.J] = delegate() { return mProjectView.TransportBar.PrevPhrase(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNextPhrase] = delegate() { return mProjectView.TransportBar.NextPhrase(); };
+            //mShortcutKeys[Keys.K] = delegate() { return mProjectView.TransportBar.NextPhrase(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNudgeForward] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
+            //mShortcutKeys[Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Forward); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNudgeBackward] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
+            //mShortcutKeys[Keys.Shift | Keys.N] = delegate() { return mProjectView.TransportBar.Nudge(TransportBar.Backward); };
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionBeginTime] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
+            //mShortcutKeys[Keys.OemOpenBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionBeginTime(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionEndTime] = delegate() { return mProjectView.TransportBar.MarkSelectionEndTime(); };
+            //mShortcutKeys[Keys.OemCloseBrackets] = delegate() { return mProjectView.TransportBar.MarkSelectionEndTime(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarNextPage] = delegate() { return mProjectView.TransportBar.NextPage(); };
+           // mShortcutKeys[Keys.P] = delegate() { return mProjectView.TransportBar.NextPage(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviousPage] = delegate() { return mProjectView.TransportBar.PrevPage(); };
+            //mShortcutKeys[Keys.Shift | Keys.P] = delegate() { return mProjectView.TransportBar.PrevPage(); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewFromAudioCursor] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseAudioCursor); };
+            //mShortcutKeys[Keys.V] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseAudioCursor); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewFromSelection] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
+            //mShortcutKeys[Keys.Shift | Keys.V] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.From, TransportBar.UseSelection); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewUptoAudioCursor] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
+            //mShortcutKeys[Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseAudioCursor); };
+            mShortcutKeys[keyboardShortcuts.ContentView_TransportBarPreviewUptoSelection] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
+            //mShortcutKeys[Keys.Shift | Keys.X] = delegate() { return mProjectView.TransportBar.Preview(TransportBar.Upto, TransportBar.UseSelection); };
 
             // playback shortcuts.
 
-            mShortcutKeys[Keys.S] = FastPlayRateStepDown;
+            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayStepDown] = FastPlayRateStepDown;
+            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayStepUp] = FastPlayRateStepUp;
+            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayRateNormilize] = FastPlayRateNormalise;
+            mShortcutKeys[keyboardShortcuts.ContentView_FastPlayNormalizeWithElapseBack] = FastPlayNormaliseWithLapseBack;
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionFromCursor] = MarkSelectionFromCursor;
+            mShortcutKeys[keyboardShortcuts.ContentView_MarkSelectionToCursor] = MarkSelectionToCursor;
+            /*mShortcutKeys[Keys.S] = FastPlayRateStepDown;
             mShortcutKeys[Keys.F] = FastPlayRateStepUp;
             mShortcutKeys[Keys.D] = FastPlayRateNormalise;
             mShortcutKeys[Keys.E] = FastPlayNormaliseWithLapseBack;
             mShortcutKeys[Keys.Shift | Keys.OemOpenBrackets] = MarkSelectionFromCursor;
-            mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;
-
+            mShortcutKeys[Keys.Shift | Keys.OemCloseBrackets] = MarkSelectionToCursor;*/
 
             // Strips navigation
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectPrecedingPhrase] = SelectPrecedingBlock;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFollowingPhrase] = SelectFollowingBlock;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectLastPhraseInStrip] = SelectLastBlockInStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFirstPhraseInStrip] = SelectFirstBlockInStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectNextPagePhrase] = SelectNextPageNode;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectPrecedingPagePhrase] = SelectPrecedingPageNode;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectNextSpecialRolePhrase] = SelectNextSpecialRoleNode;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectPrecedingSpecialRolePhrase] = SelectPreviousSpecialRoleNode;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectNextEmptyPhrase] = SelectNextEmptyNode;
+            /*
             mShortcutKeys[Keys.Left] = SelectPrecedingBlock;
             mShortcutKeys[Keys.Right] = SelectFollowingBlock;
             mShortcutKeys[Keys.End] = SelectLastBlockInStrip;
@@ -3449,25 +3479,41 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             mShortcutKeys[Keys.F4] = SelectNextSpecialRoleNode;
             mShortcutKeys[Keys.Shift | Keys.F4] = SelectPreviousSpecialRoleNode;
             mShortcutKeys[Keys.Control | Keys.Alt | Keys.F4] = SelectNextEmptyNode;
+             */
 
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectPrecedingStrip] = SelectPreviousStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFollowingStrip] = SelectNextStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFirstStrip] = SelectFirstStrip;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectLastStrip] = SelectLastStrip;
+            /*
             mShortcutKeys[Keys.Control | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Up] = SelectPreviousStrip;
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Down] = SelectNextStrip;
             mShortcutKeys[Keys.Control | Keys.Home] = SelectFirstStrip;
             mShortcutKeys[Keys.Control | Keys.End] = SelectLastStrip;
-
-            mShortcutKeys[Keys.Escape] = SelectUp;
+             */
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectUp] = SelectUp;
+           //mShortcutKeys[Keys.Escape] = SelectUp;
 
             // Control + arrows moves the strip cursor
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectPrecedingStripCursor] = SelectPrecedingStripCursor;
+            mShortcutKeys[keyboardShortcuts.ContentView_SelectFollowingStripCursor] = SelectFollowingStripCursor;
+            /*
             mShortcutKeys[Keys.Control | Keys.Left] = SelectPrecedingStripCursor;
             mShortcutKeys[Keys.Control | Keys.Right] = SelectFollowingStripCursor;
-
+             */
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_LargeIncrementWithSelection] = ScrollDown_LargeIncrementWithSelection;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_LargeIncrementWithSelection] = ScrollUp_LargeIncrementWithSelection;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollDown_SmallIncrementWithSelection] = ScrollDown_SmallIncrementWithSelection;
+            mShortcutKeys[keyboardShortcuts.ContentView_ScrollUp_SmallIncrementWithSelection] = ScrollUp_SmallIncrementWithSelection;
+            /*
             mShortcutKeys[Keys.PageDown] = ScrollDown_LargeIncrementWithSelection;
             mShortcutKeys[Keys.PageUp] = ScrollUp_LargeIncrementWithSelection;
             mShortcutKeys[Keys.Down] = ScrollDown_SmallIncrementWithSelection;
             mShortcutKeys[Keys.Up] = ScrollUp_SmallIncrementWithSelection;
-            }
+             */
+        }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
 

@@ -18,8 +18,8 @@ namespace Obi
     [Serializable()]
     public class KeyboardShortcuts_Settings
     {
-        public Keys ContentView_SelectCompleteWaveform  =Keys.A;
-                    public Keys ContentView_PlaySelectedWaveform = Keys.C;
+            public Keys ContentView_SelectCompleteWaveform  =Keys.A;
+            public Keys ContentView_PlaySelectedWaveform = Keys.C;
             public Keys ContentView_TransportBarNextSection = Keys.H;
             public Keys ContentView_TransportBarPreviousSection = Keys.Shift | Keys.H;
             public Keys ContentView_TransportBarPreviousPhrase = Keys.J;
@@ -33,7 +33,7 @@ namespace Obi
             public Keys ContentView_TransportBarPreviewFromAudioCursor = Keys.V;
             public Keys ContentView_TransportBarPreviewFromSelection = Keys.Shift | Keys.V;
             public Keys ContentView_TransportBarPreviewUptoAudioCursor =  Keys.X;
-        public Keys ContentView_TransportBarPreviewUptoSelection = Keys.Shift | Keys.X;
+            public Keys ContentView_TransportBarPreviewUptoSelection = Keys.Shift | Keys.X;
 
             // playback shortcuts.
 
@@ -42,7 +42,7 @@ namespace Obi
             public Keys ContentView_FastPlayRateNormilize = Keys.D;
             public Keys ContentView_FastPlayNormalizeWithElapseBack =  Keys.E;
             public Keys ContentView_MarkSelectionFromCursor = Keys.Shift | Keys.OemOpenBrackets;
-        public Keys ContentView_MarkSelectionToCursor = Keys.Shift | Keys.OemCloseBrackets;
+            public Keys ContentView_MarkSelectionToCursor = Keys.Shift | Keys.OemCloseBrackets;
 
 
             // Strips navigation
