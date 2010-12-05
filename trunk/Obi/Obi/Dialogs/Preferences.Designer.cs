@@ -78,6 +78,8 @@ namespace Obi.Dialogs
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_lvShortcutKeysList = new System.Windows.Forms.ListView();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -463,7 +465,12 @@ namespace Obi.Dialogs
             // 
             // m_lvShortcutKeysList
             // 
+            this.m_lvShortcutKeysList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.m_lvShortcutKeysList.FullRowSelect = true;
             resources.ApplyResources(this.m_lvShortcutKeysList, "m_lvShortcutKeysList");
+            this.m_lvShortcutKeysList.MultiSelect = false;
             this.m_lvShortcutKeysList.Name = "m_lvShortcutKeysList";
             this.m_lvShortcutKeysList.UseCompatibleStateImageBehavior = false;
             this.m_lvShortcutKeysList.View = System.Windows.Forms.View.Details;
@@ -478,6 +485,14 @@ namespace Obi.Dialogs
             resources.GetString("m_cbShortcutKeys.Items1"),
             resources.GetString("m_cbShortcutKeys.Items2")});
             this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
+            // 
+            // columnHeader1
+            // 
+            resources.ApplyResources(this.columnHeader1, "columnHeader1");
+            // 
+            // columnHeader2
+            // 
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
             // Preferences
             // 
@@ -560,5 +575,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnAssign;
         private System.Windows.Forms.TextBox m_txtShortcutKeys;
         private System.Windows.Forms.Label m_lblShortcutKeys;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

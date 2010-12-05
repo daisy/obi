@@ -120,10 +120,12 @@ namespace Obi.Dialogs
         {
             m_cbShortcutKeys.SelectedIndex = 0;
             m_lvShortcutKeysList.Clear();
-            
+            string[] tempArray = new string[2];
             foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
             {
-                ListViewItem item = new ListViewItem(desc, m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].ToString());
+                tempArray[0] = desc;
+                tempArray[1] = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                ListViewItem item = new ListViewItem(tempArray);
                 m_lvShortcutKeysList.Items.Add(item);
             }
         }
@@ -318,8 +320,13 @@ namespace Obi.Dialogs
         {
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 && m_CapturedKey != Keys.None)
             {
-                string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
+                ListViewItem selectedItem = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]] ;
+                                string desc = selectedItem.Text;
                 m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = m_CapturedKey;
+                selectedItem.SubItems[1].Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                //MessageBox.Show(selectedItem.SubItems[1].Text);
+                m_txtShortcutKeys.Clear ();
+                m_CapturedKey = Keys.None;
             }
         }
 

@@ -948,6 +948,12 @@
   <data name="&gt;&gt;m_lblShortcutKeys.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Keyboard Shortcut</value>
+  </data>
   <data name="m_lvShortcutKeysList.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 69</value>
   </data>
@@ -2187,6 +2193,18 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Edit preferences</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
+    <value>columnHeader1</value>
+  </data>
+  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
+    <value>columnHeader2</value>
+  </data>
+  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Preferences</value>
