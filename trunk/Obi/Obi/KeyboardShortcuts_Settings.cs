@@ -98,11 +98,11 @@ namespace Obi
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {
-                IsolatedStorageFileStream stream =
+                                IsolatedStorageFileStream stream =
                     new IsolatedStorageFileStream(SETTINGS_FILE_NAME, FileMode.Open, FileAccess.Read, file);
-                SoapFormatter soap = new SoapFormatter();
+                                SoapFormatter soap = new SoapFormatter();
                 settings = (KeyboardShortcuts_Settings)soap.Deserialize(stream);
-                stream.Close();
+                                stream.Close();
             }
             catch (Exception) { }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
@@ -128,26 +128,15 @@ namespace Obi
             KeyboardShortcutsDescription.Add("Select complete waveform of phrase", ContentView_SelectCompleteWaveform);
             KeyboardShortcutsDescription.Add("Play selected waveform", ContentView_PlaySelectedWaveform);
         }
-
+        [Serializable()]
         public class KeyboardShortcut
         {
-            private Keys m_Value;
+            public Keys Value;
             public KeyboardShortcut(Keys keyData)
             {
-                m_Value = keyData;
+                Value = keyData;
             }
 
-            public Keys Value
-            {
-                get
-                {
-                    return m_Value;
-                }
-                set
-                {
-                    m_Value = value;
-                }
-            }
         }
     }
 }
