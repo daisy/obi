@@ -127,6 +127,46 @@ namespace Obi
         {
             KeyboardShortcutsDescription.Add("Select complete waveform of phrase", ContentView_SelectCompleteWaveform);
             KeyboardShortcutsDescription.Add("Play selected waveform", ContentView_PlaySelectedWaveform);
+            KeyboardShortcutsDescription.Add("Next section in playlist", ContentView_TransportBarNextSection);
+            KeyboardShortcutsDescription.Add("Previous section in playlist", ContentView_TransportBarPreviousSection);
+            KeyboardShortcutsDescription.Add("Previous phrase in playlist", ContentView_TransportBarPreviousPhrase);
+            KeyboardShortcutsDescription.Add("Next phrase in playlist", ContentView_TransportBarNextPhrase);
+            KeyboardShortcutsDescription.Add("Nudge forward", ContentView_TransportBarNudgeForward);
+            KeyboardShortcutsDescription.Add("Nudge backward", ContentView_TransportBarNudgeBackward);
+            KeyboardShortcutsDescription.Add("Mark selection begin time", ContentView_MarkSelectionBeginTime);
+            KeyboardShortcutsDescription.Add("Mark selection end time", ContentView_MarkSelectionEndTime);
+            KeyboardShortcutsDescription.Add("Next page in playlist", ContentView_TransportBarNextPage);
+            KeyboardShortcutsDescription.Add("Previous page in playlist", ContentView_TransportBarPreviousPage);
+            KeyboardShortcutsDescription.Add("Preview from audio cursor", ContentView_TransportBarPreviewFromAudioCursor);
+            KeyboardShortcutsDescription.Add("Preview from selection", ContentView_TransportBarPreviewFromSelection);
+            KeyboardShortcutsDescription.Add("Preview upto audio cursor", ContentView_TransportBarPreviewUptoAudioCursor);
+            KeyboardShortcutsDescription.Add("Preview upto selection", ContentView_TransportBarPreviewUptoSelection);
+            KeyboardShortcutsDescription.Add("Fast play step down", ContentView_FastPlayStepDown);
+            KeyboardShortcutsDescription.Add("Fast play step up", ContentView_FastPlayStepUp);
+            KeyboardShortcutsDescription.Add("Fast play rate normilize", ContentView_FastPlayRateNormilize);
+            KeyboardShortcutsDescription.Add("Fast play normalize with elapse back", ContentView_FastPlayNormalizeWithElapseBack);
+            KeyboardShortcutsDescription.Add("Mark selection from cursor", ContentView_MarkSelectionFromCursor);
+            KeyboardShortcutsDescription.Add("Mark selection to cursor", ContentView_MarkSelectionToCursor);
+            KeyboardShortcutsDescription.Add("Select preceding phrase", ContentView_SelectPrecedingPhrase);
+            KeyboardShortcutsDescription.Add("Select following phrase", ContentView_SelectFollowingPhrase);
+            KeyboardShortcutsDescription.Add("Select last phrase in strip", ContentView_SelectLastPhraseInStrip);
+            KeyboardShortcutsDescription.Add("Select first phrase in strip", ContentView_SelectFirstPhraseInStrip);
+            KeyboardShortcutsDescription.Add("Select next page phrase", ContentView_SelectNextPagePhrase);
+            KeyboardShortcutsDescription.Add("Select preceding page phrase", ContentView_SelectPrecedingPagePhrase);
+            KeyboardShortcutsDescription.Add("Select next special role phrase", ContentView_SelectNextSpecialRolePhrase);
+            KeyboardShortcutsDescription.Add("Select preceding special role phrase", ContentView_SelectPrecedingSpecialRolePhrase);
+            KeyboardShortcutsDescription.Add("Select next empty phrase", ContentView_SelectNextEmptyPhrase);
+            KeyboardShortcutsDescription.Add("Select preceding strip", ContentView_SelectPrecedingStrip);
+            KeyboardShortcutsDescription.Add("Select following strip", ContentView_SelectFollowingStrip);
+            KeyboardShortcutsDescription.Add("Select first strip", ContentView_SelectFirstStrip);
+            KeyboardShortcutsDescription.Add("Select last strip", ContentView_SelectLastStrip);
+            KeyboardShortcutsDescription.Add("Select up", ContentView_SelectUp);
+            KeyboardShortcutsDescription.Add("Move strip cursor backward", ContentView_SelectPrecedingStripCursor);
+            KeyboardShortcutsDescription.Add("Move strip cursor ahead and backward", ContentView_SelectFollowingStripCursor);
+            KeyboardShortcutsDescription.Add("One screen down", ContentView_ScrollDown_LargeIncrementWithSelection);
+            KeyboardShortcutsDescription.Add("One screen up", ContentView_ScrollUp_LargeIncrementWithSelection);
+            KeyboardShortcutsDescription.Add("One line up", ContentView_ScrollUp_SmallIncrementWithSelection);
+            KeyboardShortcutsDescription.Add("One line down", ContentView_ScrollDown_SmallIncrementWithSelection);
         }
         [Serializable()]
         public class KeyboardShortcut
