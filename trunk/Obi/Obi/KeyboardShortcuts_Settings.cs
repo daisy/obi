@@ -79,11 +79,12 @@ namespace Obi
         private static readonly string SETTINGS_FILE_NAME = "obi_KeyboardShortcuts_Settings.xml";
 
         [NonSerialized()]
-        public Dictionary<Keys, string> KeyboardShortcutsDescription = new Dictionary<Keys, string>();
+        public Dictionary<string, Keys> KeyboardShortcutsDescription = new Dictionary<string, Keys>();
 
         public KeyboardShortcuts_Settings()
         {
-            KeyboardShortcutsDescription.Add(this.ContentView_SelectCompleteWaveform, "Select complete waveform of phrase");
+            //KeyboardShortcutsDescription.Add(this.ContentView_SelectCompleteWaveform, "Select complete waveform of phrase");
+            //KeyboardShortcutsDescription.Add(ContentView_PlaySelectedWaveform, "Play selected waveform");
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Obi
         public static KeyboardShortcuts_Settings GetKeyboardShortcuts_Settings()
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
-
+            
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
             {
@@ -104,6 +105,8 @@ namespace Obi
                 stream.Close();
             }
             catch (Exception) { }
+            settings.KeyboardShortcutsDescription = new Dictionary<string, Keys>();
+            settings.PopulateKeyboardShortcutsDictionary();
             return settings;
         }
 
@@ -118,6 +121,12 @@ namespace Obi
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();
+        }
+
+        private void PopulateKeyboardShortcutsDictionary()
+        {
+            KeyboardShortcutsDescription.Add("Select complete waveform of phrase", ContentView_SelectCompleteWaveform);
+            KeyboardShortcutsDescription.Add("Play selected waveform", ContentView_PlaySelectedWaveform);
         }
     }
 }
