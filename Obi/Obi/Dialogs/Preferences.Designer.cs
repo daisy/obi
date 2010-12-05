@@ -439,17 +439,22 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_btnRemove, "m_btnRemove");
             this.m_btnRemove.Name = "m_btnRemove";
             this.m_btnRemove.UseVisualStyleBackColor = true;
+            this.m_btnRemove.Click += new System.EventHandler(this.m_btnRemove_Click);
             // 
             // m_btnAssign
             // 
             resources.ApplyResources(this.m_btnAssign, "m_btnAssign");
             this.m_btnAssign.Name = "m_btnAssign";
             this.m_btnAssign.UseVisualStyleBackColor = true;
+            this.m_btnAssign.Click += new System.EventHandler(this.m_btnAssign_Click);
             // 
             // m_txtShortcutKeys
             // 
             resources.ApplyResources(this.m_txtShortcutKeys, "m_txtShortcutKeys");
             this.m_txtShortcutKeys.Name = "m_txtShortcutKeys";
+            this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
+            this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
+            this.m_txtShortcutKeys.Enter += new System.EventHandler(this.m_txtShortcutKeys_Enter);
             // 
             // m_lblShortcutKeys
             // 
@@ -461,6 +466,8 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_lvShortcutKeysList, "m_lvShortcutKeysList");
             this.m_lvShortcutKeysList.Name = "m_lvShortcutKeysList";
             this.m_lvShortcutKeysList.UseCompatibleStateImageBehavior = false;
+            this.m_lvShortcutKeysList.View = System.Windows.Forms.View.Details;
+            this.m_lvShortcutKeysList.SelectedIndexChanged += new System.EventHandler(this.m_lvShortcutKeysList_SelectedIndexChanged);
             // 
             // m_cbShortcutKeys
             // 

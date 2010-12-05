@@ -19,6 +19,7 @@ namespace Obi.Dialogs
         private bool mCanChangeAudioSettings;            // if the settings come from the project they cannot change
         private Presentation mPresentation;              // current presentation (may be null)
         private ProjectView.TransportBar mTransportBar;  // application transport bar
+        private KeyboardShortcuts_Settings m_KeyboardShortcuts;
 
 
         /// <summary>
@@ -31,9 +32,11 @@ namespace Obi.Dialogs
             mSettings = settings;
             mPresentation = presentation;
             mTransportBar = transportbar;
+            m_KeyboardShortcuts = mForm.KeyboardShortcuts;
             InitializeProjectTab ();
             InitializeAudioTab ();
             InitializeProfileTab ();
+            InitializeKeyboardShortcutsTab();
             }
 
         // Initialize the project tab
@@ -112,6 +115,18 @@ namespace Obi.Dialogs
             mCultureBox.Items.AddRange ( CultureInfo.GetCultures ( CultureTypes.AllCultures ) );
             mCultureBox.SelectedItem = mSettings.UserProfile.Culture;
             }
+
+        private void InitializeKeyboardShortcutsTab()
+        {
+            m_cbShortcutKeys.SelectedIndex = 0;
+            m_lvShortcutKeysList.Clear();
+            
+            foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
+            {
+                ListViewItem item = new ListViewItem(desc, m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].ToString());
+                m_lvShortcutKeysList.Items.Add(item);
+            }
+        }
 
         /// <summary>
         /// Browse for a project directory.
@@ -262,5 +277,60 @@ namespace Obi.Dialogs
             {
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
             }
+
+        private void m_lvShortcutKeysList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0)
+            {
+                string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
+                m_txtShortcutKeys.Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].ToString();
+            }
+        }
+
+        private Keys m_CapturedKey ;
+        private void m_txtShortcutKeys_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (m_txtShortcutKeys.ContainsFocus && e.KeyData != Keys.Tab && e.KeyData != (Keys.Shift|Keys.Tab)  
+                && e.KeyData != Keys.Shift && e.KeyData != Keys.ShiftKey && e.KeyData != (Keys.ShiftKey|Keys.Shift)
+                && e.KeyData != Keys.Control && e.KeyData != (Keys.ControlKey|Keys.Control)
+                && e.KeyData != (Keys.Control|Keys.A))
+            {
+                
+                m_CapturedKey = e.KeyData;
+            }
+        }
+
+        private void m_txtShortcutKeys_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (m_CapturedKey != Keys.None)
+            {
+                m_txtShortcutKeys.Text = m_CapturedKey.ToString();
+                m_txtShortcutKeys.SelectAll();
+            }
+        }
+
+        private void m_txtShortcutKeys_Enter(object sender, EventArgs e)
+        {
+            m_txtShortcutKeys.SelectAll();
+        }
+
+        private void m_btnAssign_Click(object sender, EventArgs e)
+        {
+            if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 && m_CapturedKey != Keys.None)
+            {
+                string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
+                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc] = m_CapturedKey;
+            }
+        }
+
+        private void m_btnRemove_Click(object sender, EventArgs e)
+        {
+            if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 )
+            {
+                string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
+                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc] = Keys.None;
+                m_txtShortcutKeys.Text = Keys.None.ToString();
+            }
+        }
         }
     }
