@@ -20,66 +20,66 @@ namespace Obi
     public class KeyboardShortcuts_Settings
     {
 
-        public Keys ContentView_SelectCompleteWaveform = Keys.A;
-        public Keys ContentView_PlaySelectedWaveform = Keys.C;
-        public Keys ContentView_TransportBarNextSection = Keys.H;
-        public Keys ContentView_TransportBarPreviousSection = Keys.Shift | Keys.H;
-        public Keys ContentView_TransportBarPreviousPhrase = Keys.J;
-        public Keys ContentView_TransportBarNextPhrase = Keys.K;
-        public Keys ContentView_TransportBarNudgeForward = Keys.N;
-        public Keys ContentView_TransportBarNudgeBackward = Keys.Shift | Keys.N;
-        public Keys ContentView_MarkSelectionBeginTime = Keys.OemOpenBrackets;
-        public Keys ContentView_MarkSelectionEndTime = Keys.OemCloseBrackets;
-        public Keys ContentView_TransportBarNextPage = Keys.P;
-        public Keys ContentView_TransportBarPreviousPage = Keys.Shift | Keys.P;
-        public Keys ContentView_TransportBarPreviewFromAudioCursor = Keys.V;
-        public Keys ContentView_TransportBarPreviewFromSelection = Keys.Shift | Keys.V;
-        public Keys ContentView_TransportBarPreviewUptoAudioCursor = Keys.X;
-        public Keys ContentView_TransportBarPreviewUptoSelection = Keys.Shift | Keys.X;
+        public KeyboardShortcut ContentView_SelectCompleteWaveform = new KeyboardShortcut( Keys.A);
+        public KeyboardShortcut ContentView_PlaySelectedWaveform = new KeyboardShortcut(Keys.C);
+        public KeyboardShortcut ContentView_TransportBarNextSection = new KeyboardShortcut( Keys.H);
+        public KeyboardShortcut ContentView_TransportBarPreviousSection = new KeyboardShortcut( Keys.Shift | Keys.H);
+        public KeyboardShortcut ContentView_TransportBarPreviousPhrase = new KeyboardShortcut( Keys.J);
+        public KeyboardShortcut ContentView_TransportBarNextPhrase = new KeyboardShortcut( Keys.K );
+        public KeyboardShortcut ContentView_TransportBarNudgeForward = new KeyboardShortcut(Keys.N);
+        public KeyboardShortcut ContentView_TransportBarNudgeBackward = new KeyboardShortcut( Keys.Shift | Keys.N);
+        public KeyboardShortcut ContentView_MarkSelectionBeginTime = new KeyboardShortcut( Keys.OemOpenBrackets);
+        public KeyboardShortcut ContentView_MarkSelectionEndTime = new KeyboardShortcut( Keys.OemCloseBrackets);
+        public KeyboardShortcut ContentView_TransportBarNextPage = new KeyboardShortcut( Keys.P);
+        public KeyboardShortcut ContentView_TransportBarPreviousPage = new KeyboardShortcut( Keys.Shift | Keys.P);
+        public KeyboardShortcut ContentView_TransportBarPreviewFromAudioCursor = new KeyboardShortcut( Keys.V);
+        public KeyboardShortcut ContentView_TransportBarPreviewFromSelection = new KeyboardShortcut( Keys.Shift | Keys.V);
+        public KeyboardShortcut ContentView_TransportBarPreviewUptoAudioCursor = new KeyboardShortcut( Keys.X);
+        public KeyboardShortcut ContentView_TransportBarPreviewUptoSelection = new KeyboardShortcut( Keys.Shift | Keys.X);
 
         // playback shortcuts.
 
-        public Keys ContentView_FastPlayStepDown = Keys.S;
-        public Keys ContentView_FastPlayStepUp = Keys.F;
-        public Keys ContentView_FastPlayRateNormilize = Keys.D;
-        public Keys ContentView_FastPlayNormalizeWithElapseBack = Keys.E;
-        public Keys ContentView_MarkSelectionFromCursor = Keys.Shift | Keys.OemOpenBrackets;
-        public Keys ContentView_MarkSelectionToCursor = Keys.Shift | Keys.OemCloseBrackets;
+        public KeyboardShortcut ContentView_FastPlayStepDown = new KeyboardShortcut( Keys.S);
+        public KeyboardShortcut ContentView_FastPlayStepUp = new KeyboardShortcut( Keys.F);
+        public KeyboardShortcut ContentView_FastPlayRateNormilize = new KeyboardShortcut( Keys.D);
+        public KeyboardShortcut ContentView_FastPlayNormalizeWithElapseBack = new KeyboardShortcut( Keys.E);
+        public KeyboardShortcut ContentView_MarkSelectionFromCursor = new KeyboardShortcut( Keys.Shift | Keys.OemOpenBrackets);
+        public KeyboardShortcut ContentView_MarkSelectionToCursor = new KeyboardShortcut( Keys.Shift | Keys.OemCloseBrackets);
 
 
         // Strips navigation
-        public Keys ContentView_SelectPrecedingPhrase = Keys.Left;
-        public Keys ContentView_SelectFollowingPhrase = Keys.Right;
-        public Keys ContentView_SelectLastPhraseInStrip = Keys.End;
-        public Keys ContentView_SelectFirstPhraseInStrip = Keys.Home;
-        public Keys ContentView_SelectNextPagePhrase = Keys.Control | Keys.PageDown;
-        public Keys ContentView_SelectPrecedingPagePhrase = Keys.Control | Keys.PageUp;
-        public Keys ContentView_SelectNextSpecialRolePhrase = Keys.F4;
-        public Keys ContentView_SelectPrecedingSpecialRolePhrase = Keys.Shift | Keys.F4;
-        public Keys ContentView_SelectNextEmptyPhrase = Keys.Control | Keys.Alt | Keys.F4;
+        public KeyboardShortcut ContentView_SelectPrecedingPhrase = new KeyboardShortcut( Keys.Left);
+        public KeyboardShortcut ContentView_SelectFollowingPhrase = new KeyboardShortcut( Keys.Right);
+        public KeyboardShortcut ContentView_SelectLastPhraseInStrip = new KeyboardShortcut( Keys.End);
+        public KeyboardShortcut ContentView_SelectFirstPhraseInStrip = new KeyboardShortcut( Keys.Home);
+        public KeyboardShortcut ContentView_SelectNextPagePhrase = new KeyboardShortcut( Keys.Control | Keys.PageDown);
+        public KeyboardShortcut ContentView_SelectPrecedingPagePhrase = new KeyboardShortcut( Keys.Control | Keys.PageUp);
+        public KeyboardShortcut ContentView_SelectNextSpecialRolePhrase = new KeyboardShortcut( Keys.F4);
+        public KeyboardShortcut ContentView_SelectPrecedingSpecialRolePhrase = new KeyboardShortcut( Keys.Shift | Keys.F4);
+        public KeyboardShortcut ContentView_SelectNextEmptyPhrase = new KeyboardShortcut( Keys.Control | Keys.Alt | Keys.F4);
 
-        //public Keys ContentView_SelectPrecedingStrip = Keys.Control | Keys.Up;
-        //public Keys ContentView_SelectFollowingStrip =  Keys.Control | Keys.Down;
-        public Keys ContentView_SelectPrecedingStrip = Keys.Control | Keys.Shift | Keys.Up;
-        public Keys ContentView_SelectFollowingStrip = Keys.Control | Keys.Shift | Keys.Down;
-        public Keys ContentView_SelectFirstStrip = Keys.Control | Keys.Home;
-        public Keys ContentView_SelectLastStrip = Keys.Control | Keys.End;
+        //public KeyboardShortcut ContentView_SelectPrecedingStrip = Keys.Control | Keys.Up;
+        //public KeyboardShortcut ContentView_SelectFollowingStrip =  Keys.Control | Keys.Down;
+        public KeyboardShortcut ContentView_SelectPrecedingStrip = new KeyboardShortcut( Keys.Control | Keys.Shift | Keys.Up);
+        public KeyboardShortcut ContentView_SelectFollowingStrip = new KeyboardShortcut( Keys.Control | Keys.Shift | Keys.Down);
+        public KeyboardShortcut ContentView_SelectFirstStrip = new KeyboardShortcut( Keys.Control | Keys.Home);
+        public KeyboardShortcut ContentView_SelectLastStrip = new KeyboardShortcut( Keys.Control | Keys.End);
 
-        public Keys ContentView_SelectUp = Keys.Escape;
+        public KeyboardShortcut ContentView_SelectUp = new KeyboardShortcut( Keys.Escape);
 
         // Control + arrows moves the strip cursor
-        public Keys ContentView_SelectPrecedingStripCursor = Keys.Control | Keys.Left;
-        public Keys ContentView_SelectFollowingStripCursor = Keys.Control | Keys.Right;
+        public KeyboardShortcut ContentView_SelectPrecedingStripCursor = new KeyboardShortcut( Keys.Control | Keys.Left);
+        public KeyboardShortcut ContentView_SelectFollowingStripCursor = new KeyboardShortcut( Keys.Control | Keys.Right);
 
-        public Keys ContentView_ScrollDown_LargeIncrementWithSelection = Keys.PageDown;
-        public Keys ContentView_ScrollUp_LargeIncrementWithSelection = Keys.PageUp;
-        public Keys ContentView_ScrollDown_SmallIncrementWithSelection = Keys.Down;
-        public Keys ContentView_ScrollUp_SmallIncrementWithSelection = Keys.Up;
+        public KeyboardShortcut ContentView_ScrollDown_LargeIncrementWithSelection = new KeyboardShortcut( Keys.PageDown);
+        public KeyboardShortcut ContentView_ScrollUp_LargeIncrementWithSelection = new KeyboardShortcut( Keys.PageUp);
+        public KeyboardShortcut ContentView_ScrollDown_SmallIncrementWithSelection = new KeyboardShortcut( Keys.Down);
+        public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut( Keys.Up);
 
         private static readonly string SETTINGS_FILE_NAME = "obi_KeyboardShortcuts_Settings.xml";
 
         [NonSerialized()]
-        public Dictionary<string, Keys> KeyboardShortcutsDescription = new Dictionary<string, Keys>();
+        public Dictionary<string, KeyboardShortcut> KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
 
         public KeyboardShortcuts_Settings()
         {
@@ -105,7 +105,7 @@ namespace Obi
                 stream.Close();
             }
             catch (Exception) { }
-            settings.KeyboardShortcutsDescription = new Dictionary<string, Keys>();
+            settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
             return settings;
         }
@@ -127,6 +127,27 @@ namespace Obi
         {
             KeyboardShortcutsDescription.Add("Select complete waveform of phrase", ContentView_SelectCompleteWaveform);
             KeyboardShortcutsDescription.Add("Play selected waveform", ContentView_PlaySelectedWaveform);
+        }
+
+        public class KeyboardShortcut
+        {
+            private Keys m_Value;
+            public KeyboardShortcut(Keys keyData)
+            {
+                m_Value = keyData;
+            }
+
+            public Keys Value
+            {
+                get
+                {
+                    return m_Value;
+                }
+                set
+                {
+                    m_Value = value;
+                }
+            }
         }
     }
 }
