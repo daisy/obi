@@ -283,7 +283,7 @@ namespace Obi.Dialogs
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0)
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
-                m_txtShortcutKeys.Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].ToString();
+                m_txtShortcutKeys.Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
             }
         }
 
@@ -319,7 +319,7 @@ namespace Obi.Dialogs
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 && m_CapturedKey != Keys.None)
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
-                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc] = m_CapturedKey;
+                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = m_CapturedKey;
             }
         }
 
@@ -328,7 +328,7 @@ namespace Obi.Dialogs
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 )
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
-                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc] = Keys.None;
+                m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = Keys.None;
                 m_txtShortcutKeys.Text = Keys.None.ToString();
             }
         }
