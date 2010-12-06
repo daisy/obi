@@ -76,6 +76,15 @@ namespace Obi
         public KeyboardShortcut ContentView_ScrollDown_SmallIncrementWithSelection = new KeyboardShortcut( Keys.Down);
         public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut( Keys.Up);
 
+        //project view shortcuts
+        public KeyboardShortcut ProjectView_MoveToNextViewClockwise= new  KeyboardShortcut (Keys.Control | Keys.Tab);
+            public KeyboardShortcut ProjectView_MoveToPreviousViewAnticlockwise = new KeyboardShortcut (Keys.Control | Keys.Shift | Keys.Tab);
+            public KeyboardShortcut ProjectView_ToggleBetweenContentViewAndTOCView = new KeyboardShortcut ( Keys.F6) ;
+            public KeyboardShortcut ProjectView_PlayPauseUsingSelection = new KeyboardShortcut (Keys.Shift | Keys.Space);
+            public KeyboardShortcut ProjectView_PlayPauseUsingAudioCursor_Default = new KeyboardShortcut (Keys.Space);
+            public KeyboardShortcut ProjectView_ShowPropertiesOfSelectedNode = new KeyboardShortcut (Keys.Alt | Keys.Enter);
+        public KeyboardShortcut ProjectView_FocusOnTransportBarTimeDisplay = new KeyboardShortcut(Keys.F8);
+
         private static readonly string SETTINGS_FILE_NAME = "obi_KeyboardShortcuts_Settings.xml";
 
         [NonSerialized()]
