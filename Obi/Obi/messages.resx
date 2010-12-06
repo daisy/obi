@@ -1773,4 +1773,7 @@ Error text: {1}</value>
   <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
     <value>Previous section in playlist</value>
   </data>
+  <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
+    <value>Keyboard shortcut already exists. Please assign another key or key combination</value>
+  </data>
 </root>

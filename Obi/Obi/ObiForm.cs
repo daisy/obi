@@ -2064,7 +2064,7 @@ namespace Obi
             mSettings.ColorSettings.CreateBrushesAndPens ();
             }
 
-        private void InitializeKeyboardShortcuts()
+       internal void InitializeKeyboardShortcuts()
         {
             m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
             mProjectView.InitializeShortcutKeys();
