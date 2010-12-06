@@ -20,6 +20,7 @@ namespace Obi.Dialogs
         private Presentation mPresentation;              // current presentation (may be null)
         private ProjectView.TransportBar mTransportBar;  // application transport bar
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;
+        private bool m_IsKeyboardShortcutChanged = false;
 
 
         /// <summary>
@@ -37,6 +38,7 @@ namespace Obi.Dialogs
             InitializeAudioTab ();
             InitializeProfileTab ();
             InitializeKeyboardShortcutsTab();
+            m_IsKeyboardShortcutChanged = false;
             }
 
         // Initialize the project tab
@@ -158,6 +160,7 @@ namespace Obi.Dialogs
             && UpdateAudioSettings ()
             && UpdateUserProfile ())
                 {
+                    if (m_IsKeyboardShortcutChanged) mForm.InitializeKeyboardShortcuts();
                 DialogResult = DialogResult.OK;
                 Close ();
                 }
@@ -292,12 +295,11 @@ namespace Obi.Dialogs
         private Keys m_CapturedKey ;
         private void m_txtShortcutKeys_KeyDown(object sender, KeyEventArgs e)
         {
-            if (m_txtShortcutKeys.ContainsFocus && e.KeyData != Keys.Tab && e.KeyData != (Keys.Shift|Keys.Tab)  
-                && e.KeyData != Keys.Shift && e.KeyData != Keys.ShiftKey && e.KeyData != (Keys.ShiftKey|Keys.Shift)
-                && e.KeyData != Keys.Control && e.KeyData != (Keys.ControlKey|Keys.Control)
-                && e.KeyData != (Keys.Control|Keys.A))
+            if (m_txtShortcutKeys.ContainsFocus && e.KeyData != Keys.Tab && e.KeyData != (Keys.Shift | Keys.Tab)
+    && e.KeyData != Keys.Shift && e.KeyData != Keys.ShiftKey && e.KeyData != (Keys.ShiftKey | Keys.Shift)
+    && e.KeyData != Keys.Control && e.KeyData != (Keys.ControlKey | Keys.Control)
+    && e.KeyData != (Keys.Control | Keys.A))
             {
-                
                 m_CapturedKey = e.KeyData;
             }
         }
@@ -315,16 +317,22 @@ namespace Obi.Dialogs
         {
             m_txtShortcutKeys.SelectAll();
         }
-
+        
         private void m_btnAssign_Click(object sender, EventArgs e)
         {
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 && m_CapturedKey != Keys.None)
             {
+                if( m_KeyboardShortcuts.IsDuplicate(m_CapturedKey))
+                {
+                    MessageBox.Show(Localizer.Message("KeyboardShortcut_DuplicateMessage"), Localizer.Message ("Caption_Error"));
+                    m_txtShortcutKeys.Focus();
+                    return;
+                }
                 ListViewItem selectedItem = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]] ;
                                 string desc = selectedItem.Text;
                 m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = m_CapturedKey;
                 selectedItem.SubItems[1].Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
-                //MessageBox.Show(selectedItem.SubItems[1].Text);
+                m_IsKeyboardShortcutChanged = true;
                 m_txtShortcutKeys.Clear ();
                 m_CapturedKey = Keys.None;
             }
@@ -337,6 +345,7 @@ namespace Obi.Dialogs
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
                 m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = Keys.None;
                 m_txtShortcutKeys.Text = Keys.None.ToString();
+                m_IsKeyboardShortcutChanged = true;
             }
         }
 

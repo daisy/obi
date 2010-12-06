@@ -132,6 +132,19 @@ namespace Obi
             stream.Close();
         }
 
+        public bool IsDuplicate(Keys keyData)
+        {
+            if (keyData == Keys.None) return false;
+            foreach (KeyboardShortcut k in KeyboardShortcutsDescription.Values)
+            {
+                if (k.Value == keyData)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void PopulateKeyboardShortcutsDictionary()
         {
             KeyboardShortcutsDescription.Add(Localizer.Message("KeyS_SelectCompleteWaveform"), ContentView_SelectCompleteWaveform);
