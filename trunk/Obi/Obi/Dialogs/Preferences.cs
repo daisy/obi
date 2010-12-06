@@ -339,5 +339,10 @@ namespace Obi.Dialogs
                 m_txtShortcutKeys.Text = Keys.None.ToString();
             }
         }
+
+        private void m_cbShortcutKeys_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
         }
     }
