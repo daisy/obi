@@ -119,7 +119,7 @@ namespace Obi.Dialogs
         private void InitializeKeyboardShortcutsTab()
         {
             m_cbShortcutKeys.SelectedIndex = 0;
-            m_lvShortcutKeysList.Clear();
+        //    m_lvShortcutKeysList.Clear();
             string[] tempArray = new string[2];
             foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
             {
