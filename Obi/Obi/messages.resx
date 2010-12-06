@@ -1304,7 +1304,7 @@ Error text: {1}</value>
     <value>Delete operation cannot be performed on drive partition</value>
   </data>
   <data name="PageDialog_InvalidInput" xml:space="preserve">
-    <value>One or more fields have invalid entries. Press No to re enter values, press Yes to assign page number according to previous page</value>
+    <value>One or more fields have invalid entries. Re-enter values.</value>
   </data>
   <data name="Status_ProjectSaved" xml:space="preserve">
     <value>Project saved, please continue...</value>
@@ -1625,5 +1625,152 @@ Error text: {1}</value>
   </data>
   <data name="SelectPhraseOrSection_ShowSection" xml:space="preserve">
     <value>The required phrase is not in current section. Will you like to show the section containing the phrase?</value>
+  </data>
+  <data name="KeyS_FastPlayNormalizeWithElapseBack" xml:space="preserve">
+    <value>Fast play normalize with elapse back</value>
+  </data>
+  <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
+    <value>Fast play rate normilize</value>
+  </data>
+  <data name="KeyS_FastPlayStepDown" xml:space="preserve">
+    <value>Fast play step down</value>
+  </data>
+  <data name="KeyS_FastPlayStepUp" xml:space="preserve">
+    <value>Fast play step up</value>
+  </data>
+  <data name="KeyS_FocusOnTransportBarTimeDisplay" xml:space="preserve">
+    <value>Focus on time display</value>
+  </data>
+  <data name="KeyS_MarkSelectionBeginTime" xml:space="preserve">
+    <value>Mark selection begin time</value>
+  </data>
+  <data name="KeyS_MarkSelectionEndTime" xml:space="preserve">
+    <value>Mark selection end time</value>
+  </data>
+  <data name="KeyS_MarkSelectionFromCursor" xml:space="preserve">
+    <value>Mark selection from cursor</value>
+  </data>
+  <data name="KeyS_MarkSelectionToCursor" xml:space="preserve">
+    <value>Mark selection to cursor</value>
+  </data>
+  <data name="KeyS_MoveToNextViewClockwise" xml:space="preserve">
+    <value>Move to next view clockwise</value>
+  </data>
+  <data name="KeyS_MoveToPreviousViewAnticlockwise" xml:space="preserve">
+    <value>Move to previous view anticlockwise</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingAudioCursor_Default" xml:space="preserve">
+    <value>Play/Pause using audio cursor</value>
+  </data>
+  <data name="KeyS_PlayPauseUsingSelection" xml:space="preserve">
+    <value>Play/Pause using selection</value>
+  </data>
+  <data name="KeyS_PlaySelectedWaveform" xml:space="preserve">
+    <value>Play selected waveform</value>
+  </data>
+  <data name="KeyS_ScrollDown_LargeIncrementWithSelection" xml:space="preserve">
+    <value>One screen down</value>
+  </data>
+  <data name="KeyS_ScrollDown_SmallIncrementWithSelection" xml:space="preserve">
+    <value>One line down</value>
+  </data>
+  <data name="KeyS_ScrollUp_LargeIncrementWithSelection" xml:space="preserve">
+    <value>One screen up</value>
+  </data>
+  <data name="KeyS_ScrollUp_SmallIncrementWithSelection" xml:space="preserve">
+    <value>One line up</value>
+  </data>
+  <data name="KeyS_SelectCompleteWaveform" xml:space="preserve">
+    <value>Select complete waveform of phrase</value>
+  </data>
+  <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
+    <value>Select first phrase in strip</value>
+  </data>
+  <data name="KeyS_SelectFirstStrip" xml:space="preserve">
+    <value>Select first strip</value>
+  </data>
+  <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
+    <value>Select following phrase</value>
+  </data>
+  <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
+    <value>Select following strip</value>
+  </data>
+  <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
+    <value>Move strip cursor ahead and backward</value>
+  </data>
+  <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
+    <value>Select last phrase in strip</value>
+  </data>
+  <data name="KeyS_SelectLastStrip" xml:space="preserve">
+    <value>Select last strip</value>
+  </data>
+  <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
+    <value>Select next empty phrase</value>
+  </data>
+  <data name="KeyS_SelectNextPagePhrase" xml:space="preserve">
+    <value>Select next page phrase</value>
+  </data>
+  <data name="KeyS_SelectNextSpecialRolePhrase" xml:space="preserve">
+    <value>Select next special role phrase</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPagePhrase" xml:space="preserve">
+    <value>Select preceding page phrase</value>
+  </data>
+  <data name="KeyS_SelectPrecedingPhrase" xml:space="preserve">
+    <value>Select preceding phrase</value>
+  </data>
+  <data name="KeyS_SelectPrecedingSpecialRolePhrase" xml:space="preserve">
+    <value>Select preceding special role phrase</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
+    <value>Select preceding strip</value>
+  </data>
+  <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
+    <value>Move strip cursor backward</value>
+  </data>
+  <data name="KeyS_SelectUp" xml:space="preserve">
+    <value>Select up</value>
+  </data>
+  <data name="KeyS_ShowPropertiesOfSelectedNode" xml:space="preserve">
+    <value>Show properties of selected node</value>
+  </data>
+  <data name="KeyS_ToggleBetweenContentViewAndTOCView" xml:space="preserve">
+    <value>Toggle between content view and TOC view</value>
+  </data>
+  <data name="KeyS_TransportBarNextPage" xml:space="preserve">
+    <value>Next page in playlist</value>
+  </data>
+  <data name="KeyS_TransportBarNextPhrase" xml:space="preserve">
+    <value>Next phrase in playlist</value>
+  </data>
+  <data name="KeyS_TransportBarNextSection" xml:space="preserve">
+    <value>Next section in playlist</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeBackward" xml:space="preserve">
+    <value>Nudge backward</value>
+  </data>
+  <data name="KeyS_TransportBarNudgeForward" xml:space="preserve">
+    <value>Nudge forward</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromAudioCursor" xml:space="preserve">
+    <value>Preview from audio cursor</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewFromSelection" xml:space="preserve">
+    <value>Preview from selection</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoAudioCursor" xml:space="preserve">
+    <value>Preview upto audio cursor</value>
+  </data>
+  <data name="KeyS_TransportBarPreviewUptoSelection" xml:space="preserve">
+    <value>Preview upto selection</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPage" xml:space="preserve">
+    <value>Previous page in playlist</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousPhrase" xml:space="preserve">
+    <value>Previous phrase in playlist</value>
+  </data>
+  <data name="KeyS_TransportBarPreviousSection" xml:space="preserve">
+    <value>Previous section in playlist</value>
   </data>
 </root>

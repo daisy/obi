@@ -1659,6 +1659,447 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fast play normalize with elapse back.
+        /// </summary>
+        internal static string KeyS_FastPlayNormalizeWithElapseBack {
+            get {
+                return ResourceManager.GetString("KeyS_FastPlayNormalizeWithElapseBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast play rate normilize.
+        /// </summary>
+        internal static string KeyS_FastPlayRateNormilize {
+            get {
+                return ResourceManager.GetString("KeyS_FastPlayRateNormilize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast play step down.
+        /// </summary>
+        internal static string KeyS_FastPlayStepDown {
+            get {
+                return ResourceManager.GetString("KeyS_FastPlayStepDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fast play step up.
+        /// </summary>
+        internal static string KeyS_FastPlayStepUp {
+            get {
+                return ResourceManager.GetString("KeyS_FastPlayStepUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Focus on time display.
+        /// </summary>
+        internal static string KeyS_FocusOnTransportBarTimeDisplay {
+            get {
+                return ResourceManager.GetString("KeyS_FocusOnTransportBarTimeDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark selection begin time.
+        /// </summary>
+        internal static string KeyS_MarkSelectionBeginTime {
+            get {
+                return ResourceManager.GetString("KeyS_MarkSelectionBeginTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark selection end time.
+        /// </summary>
+        internal static string KeyS_MarkSelectionEndTime {
+            get {
+                return ResourceManager.GetString("KeyS_MarkSelectionEndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark selection from cursor.
+        /// </summary>
+        internal static string KeyS_MarkSelectionFromCursor {
+            get {
+                return ResourceManager.GetString("KeyS_MarkSelectionFromCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark selection to cursor.
+        /// </summary>
+        internal static string KeyS_MarkSelectionToCursor {
+            get {
+                return ResourceManager.GetString("KeyS_MarkSelectionToCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move to next view clockwise.
+        /// </summary>
+        internal static string KeyS_MoveToNextViewClockwise {
+            get {
+                return ResourceManager.GetString("KeyS_MoveToNextViewClockwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move to previous view anticlockwise.
+        /// </summary>
+        internal static string KeyS_MoveToPreviousViewAnticlockwise {
+            get {
+                return ResourceManager.GetString("KeyS_MoveToPreviousViewAnticlockwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play/Pause using audio cursor.
+        /// </summary>
+        internal static string KeyS_PlayPauseUsingAudioCursor_Default {
+            get {
+                return ResourceManager.GetString("KeyS_PlayPauseUsingAudioCursor_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play/Pause using selection.
+        /// </summary>
+        internal static string KeyS_PlayPauseUsingSelection {
+            get {
+                return ResourceManager.GetString("KeyS_PlayPauseUsingSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play selected waveform.
+        /// </summary>
+        internal static string KeyS_PlaySelectedWaveform {
+            get {
+                return ResourceManager.GetString("KeyS_PlaySelectedWaveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One screen down.
+        /// </summary>
+        internal static string KeyS_ScrollDown_LargeIncrementWithSelection {
+            get {
+                return ResourceManager.GetString("KeyS_ScrollDown_LargeIncrementWithSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One line down.
+        /// </summary>
+        internal static string KeyS_ScrollDown_SmallIncrementWithSelection {
+            get {
+                return ResourceManager.GetString("KeyS_ScrollDown_SmallIncrementWithSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One screen up.
+        /// </summary>
+        internal static string KeyS_ScrollUp_LargeIncrementWithSelection {
+            get {
+                return ResourceManager.GetString("KeyS_ScrollUp_LargeIncrementWithSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One line up.
+        /// </summary>
+        internal static string KeyS_ScrollUp_SmallIncrementWithSelection {
+            get {
+                return ResourceManager.GetString("KeyS_ScrollUp_SmallIncrementWithSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select complete waveform of phrase.
+        /// </summary>
+        internal static string KeyS_SelectCompleteWaveform {
+            get {
+                return ResourceManager.GetString("KeyS_SelectCompleteWaveform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select first phrase in strip.
+        /// </summary>
+        internal static string KeyS_SelectFirstPhraseInStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectFirstPhraseInStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select first strip.
+        /// </summary>
+        internal static string KeyS_SelectFirstStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectFirstStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select following phrase.
+        /// </summary>
+        internal static string KeyS_SelectFollowingPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectFollowingPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select following strip.
+        /// </summary>
+        internal static string KeyS_SelectFollowingStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectFollowingStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move strip cursor ahead and backward.
+        /// </summary>
+        internal static string KeyS_SelectFollowingStripCursor {
+            get {
+                return ResourceManager.GetString("KeyS_SelectFollowingStripCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select last phrase in strip.
+        /// </summary>
+        internal static string KeyS_SelectLastPhraseInStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectLastPhraseInStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select last strip.
+        /// </summary>
+        internal static string KeyS_SelectLastStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectLastStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select next empty phrase.
+        /// </summary>
+        internal static string KeyS_SelectNextEmptyPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectNextEmptyPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select next page phrase.
+        /// </summary>
+        internal static string KeyS_SelectNextPagePhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectNextPagePhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select next special role phrase.
+        /// </summary>
+        internal static string KeyS_SelectNextSpecialRolePhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectNextSpecialRolePhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select preceding page phrase.
+        /// </summary>
+        internal static string KeyS_SelectPrecedingPagePhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectPrecedingPagePhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select preceding phrase.
+        /// </summary>
+        internal static string KeyS_SelectPrecedingPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectPrecedingPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select preceding special role phrase.
+        /// </summary>
+        internal static string KeyS_SelectPrecedingSpecialRolePhrase {
+            get {
+                return ResourceManager.GetString("KeyS_SelectPrecedingSpecialRolePhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select preceding strip.
+        /// </summary>
+        internal static string KeyS_SelectPrecedingStrip {
+            get {
+                return ResourceManager.GetString("KeyS_SelectPrecedingStrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move strip cursor backward.
+        /// </summary>
+        internal static string KeyS_SelectPrecedingStripCursor {
+            get {
+                return ResourceManager.GetString("KeyS_SelectPrecedingStripCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select up.
+        /// </summary>
+        internal static string KeyS_SelectUp {
+            get {
+                return ResourceManager.GetString("KeyS_SelectUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show properties of selected node.
+        /// </summary>
+        internal static string KeyS_ShowPropertiesOfSelectedNode {
+            get {
+                return ResourceManager.GetString("KeyS_ShowPropertiesOfSelectedNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle between content view and TOC view.
+        /// </summary>
+        internal static string KeyS_ToggleBetweenContentViewAndTOCView {
+            get {
+                return ResourceManager.GetString("KeyS_ToggleBetweenContentViewAndTOCView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next page in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarNextPage {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarNextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next phrase in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarNextPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarNextPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next section in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarNextSection {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarNextSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nudge backward.
+        /// </summary>
+        internal static string KeyS_TransportBarNudgeBackward {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarNudgeBackward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nudge forward.
+        /// </summary>
+        internal static string KeyS_TransportBarNudgeForward {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarNudgeForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview from audio cursor.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviewFromAudioCursor {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviewFromAudioCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview from selection.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviewFromSelection {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviewFromSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview upto audio cursor.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviewUptoAudioCursor {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviewUptoAudioCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview upto selection.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviewUptoSelection {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviewUptoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous page in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviousPage {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviousPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous phrase in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviousPhrase {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviousPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous section in playlist.
+        /// </summary>
+        internal static string KeyS_TransportBarPreviousSection {
+            get {
+                return ResourceManager.GetString("KeyS_TransportBarPreviousSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} phrase.
         /// </summary>
         internal static string kind_phrase {
@@ -2571,7 +3012,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One or more fields have invalid entries. Press No to re enter values, press Yes to assign page number according to previous page.
+        ///   Looks up a localized string similar to One or more fields have invalid entries. Re-enter values..
         /// </summary>
         internal static string PageDialog_InvalidInput {
             get {
