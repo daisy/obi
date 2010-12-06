@@ -63,7 +63,7 @@ namespace Obi.Dialogs
             this.labelChannels = new System.Windows.Forms.Label();
             this.mSampleRateCombo = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.mUserProfileTab = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.mCultureBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,7 +71,8 @@ namespace Obi.Dialogs
             this.label4 = new System.Windows.Forms.Label();
             this.mFullNameTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.mKeyboardShortcutTab = new System.Windows.Forms.TabPage();
+            this.m_RestoreDefaults = new System.Windows.Forms.Button();
             this.m_btnRemove = new System.Windows.Forms.Button();
             this.m_btnAssign = new System.Windows.Forms.Button();
             this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
@@ -80,15 +81,14 @@ namespace Obi.Dialogs
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
-            this.m_RestoreDefaults = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mAudioTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.mUserProfileTab.SuspendLayout();
+            this.mKeyboardShortcutTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -154,8 +154,8 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mTab, "mTab");
             this.mTab.Controls.Add(this.mProjectTab);
             this.mTab.Controls.Add(this.mAudioTab);
-            this.mTab.Controls.Add(this.tabPage1);
-            this.mTab.Controls.Add(this.tabPage2);
+            this.mTab.Controls.Add(this.mUserProfileTab);
+            this.mTab.Controls.Add(this.mKeyboardShortcutTab);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
             // 
@@ -371,18 +371,18 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.labelSampleRate, "labelSampleRate");
             this.labelSampleRate.Name = "labelSampleRate";
             // 
-            // tabPage1
+            // mUserProfileTab
             // 
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.mCultureBox);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.mOrganizationTextbox);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.mFullNameTextbox);
-            this.tabPage1.Controls.Add(this.label1);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.mUserProfileTab.Controls.Add(this.label6);
+            this.mUserProfileTab.Controls.Add(this.mCultureBox);
+            this.mUserProfileTab.Controls.Add(this.label5);
+            this.mUserProfileTab.Controls.Add(this.mOrganizationTextbox);
+            this.mUserProfileTab.Controls.Add(this.label4);
+            this.mUserProfileTab.Controls.Add(this.mFullNameTextbox);
+            this.mUserProfileTab.Controls.Add(this.label1);
+            resources.ApplyResources(this.mUserProfileTab, "mUserProfileTab");
+            this.mUserProfileTab.Name = "mUserProfileTab";
+            this.mUserProfileTab.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -425,18 +425,24 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // tabPage2
+            // mKeyboardShortcutTab
             // 
-            this.tabPage2.Controls.Add(this.m_RestoreDefaults);
-            this.tabPage2.Controls.Add(this.m_btnRemove);
-            this.tabPage2.Controls.Add(this.m_btnAssign);
-            this.tabPage2.Controls.Add(this.m_txtShortcutKeys);
-            this.tabPage2.Controls.Add(this.m_lblShortcutKeys);
-            this.tabPage2.Controls.Add(this.m_lvShortcutKeysList);
-            this.tabPage2.Controls.Add(this.m_cbShortcutKeys);
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.mKeyboardShortcutTab.Controls.Add(this.m_RestoreDefaults);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_btnRemove);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_btnAssign);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_txtShortcutKeys);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_lblShortcutKeys);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_lvShortcutKeysList);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_cbShortcutKeys);
+            resources.ApplyResources(this.mKeyboardShortcutTab, "mKeyboardShortcutTab");
+            this.mKeyboardShortcutTab.Name = "mKeyboardShortcutTab";
+            this.mKeyboardShortcutTab.UseVisualStyleBackColor = true;
+            // 
+            // m_RestoreDefaults
+            // 
+            resources.ApplyResources(this.m_RestoreDefaults, "m_RestoreDefaults");
+            this.m_RestoreDefaults.Name = "m_RestoreDefaults";
+            this.m_RestoreDefaults.UseVisualStyleBackColor = true;
             // 
             // m_btnRemove
             // 
@@ -496,12 +502,6 @@ namespace Obi.Dialogs
             this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
             this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
             // 
-            // m_RestoreDefaults
-            // 
-            resources.ApplyResources(this.m_RestoreDefaults, "m_RestoreDefaults");
-            this.m_RestoreDefaults.Name = "m_RestoreDefaults";
-            this.m_RestoreDefaults.UseVisualStyleBackColor = true;
-            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -524,10 +524,10 @@ namespace Obi.Dialogs
             this.mAudioTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.mUserProfileTab.ResumeLayout(false);
+            this.mUserProfileTab.PerformLayout();
+            this.mKeyboardShortcutTab.ResumeLayout(false);
+            this.mKeyboardShortcutTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -553,7 +553,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.CheckBox mLastOpenCheckBox;
         private System.Windows.Forms.TextBox mChannelsTextbox;
         private System.Windows.Forms.TextBox mSampleRateTextbox;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage mUserProfileTab;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox mFullNameTextbox;
         private System.Windows.Forms.TextBox mOrganizationTextbox;
@@ -576,7 +576,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown mNudgeDurationUpDown;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage mKeyboardShortcutTab;
         private System.Windows.Forms.ComboBox m_cbShortcutKeys;
         private System.Windows.Forms.ListView m_lvShortcutKeysList;
         private System.Windows.Forms.Button m_btnRemove;
