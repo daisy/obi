@@ -2429,13 +2429,22 @@ namespace Obi.ProjectView
 
                 KeyboardShortcuts_Settings keyboardShortcuts = ObiForm.KeyboardShortcuts;
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey> ();
-            mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_MoveToNextViewClockwise.Value] = delegate() { return SelectViewsInCycle(true); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_FocusOnTransportBarTimeDisplay.Value] = delegate() { return mTransportBar.FocusOnTimeDisplay(); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_MoveToPreviousViewAnticlockwise.Value] = delegate() { return SelectViewsInCycle(false); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_PlayPauseUsingAudioCursor_Default.Value] = delegate() { return TogglePlayPause(UseAudioCursor); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_PlayPauseUsingSelection.Value] = delegate() { return TogglePlayPause(UseSelection); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_ShowPropertiesOfSelectedNode.Value] = delegate() { return ShowNodePropertiesDialog(); };
+            mShortcutKeys[keyboardShortcuts.ProjectView_ToggleBetweenContentViewAndTOCView.Value] = delegate() { return ToggleFocusBTWTOCViewAndContentsView(); };
+
+          /*  mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
             mShortcutKeys[Keys.F6] = delegate () { return ToggleFocusBTWTOCViewAndContentsView (); };
             mShortcutKeys[Keys.Shift | Keys.Space] = delegate () { return TogglePlayPause ( UseSelection ); };
             mShortcutKeys[Keys.Space] = delegate () { return TogglePlayPause ( UseAudioCursor ); };
             mShortcutKeys[Keys.Alt | Keys.Enter] = delegate () { return ShowNodePropertiesDialog (); };
-            mShortcutKeys[Keys.F8] = delegate () { return mTransportBar.FocusOnTimeDisplay (); };
+            mShortcutKeys[Keys.F8] = delegate () { return mTransportBar.FocusOnTimeDisplay (); };*/
+
             }
 
         // Process key press: if this is a key down event, lookup the shortcut tables;
