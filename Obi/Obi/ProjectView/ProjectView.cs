@@ -2427,6 +2427,7 @@ namespace Obi.ProjectView
             {
                 mContentView.InitializeShortcutKeys();
 
+                KeyboardShortcuts_Settings keyboardShortcuts = ObiForm.KeyboardShortcuts;
             mShortcutKeys = new Dictionary<Keys, HandledShortcutKey> ();
             mShortcutKeys[Keys.Control | Keys.Tab] = delegate () { return SelectViewsInCycle ( true ); };
             mShortcutKeys[Keys.Control | Keys.Shift | Keys.Tab] = delegate () { return SelectViewsInCycle ( false ); };
