@@ -253,7 +253,7 @@
     <value>Flat</value>
   </data>
   <data name="mCancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 343</value>
+    <value>332, 340</value>
   </data>
   <data name="mCancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -846,14 +846,41 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_RestoreDefaults.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="m_RestoreDefaults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 242</value>
+  </data>
+  <data name="m_RestoreDefaults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 31</value>
+  </data>
+  <data name="m_RestoreDefaults.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="m_RestoreDefaults.Text" xml:space="preserve">
+    <value>Restore &amp;Defaults</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreDefaults.Name" xml:space="preserve">
+    <value>m_RestoreDefaults</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreDefaults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreDefaults.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreDefaults.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_btnRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
   <data name="m_btnRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>337, 242</value>
+    <value>294, 242</value>
   </data>
   <data name="m_btnRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 31</value>
+    <value>121, 31</value>
   </data>
   <data name="m_btnRemove.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -871,7 +898,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_btnRemove.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="m_btnAssign.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -880,7 +907,7 @@
     <value>204, 242</value>
   </data>
   <data name="m_btnAssign.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 31</value>
+    <value>84, 31</value>
   </data>
   <data name="m_btnAssign.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
@@ -898,7 +925,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_btnAssign.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="m_txtShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 214</value>
@@ -919,7 +946,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_txtShortcutKeys.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="m_lblShortcutKeys.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -946,13 +973,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_lblShortcutKeys.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Operation</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Keyboard Shortcut</value>
+    <value>4</value>
   </data>
   <data name="m_lvShortcutKeysList.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 69</value>
@@ -973,19 +994,16 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_lvShortcutKeysList.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="m_cbShortcutKeys.AccessibleName" xml:space="preserve">
     <value> Select shortcuts to view.</value>
   </data>
   <data name="m_cbShortcutKeys.Items" xml:space="preserve">
-    <value>Global shortcut keys</value>
+    <value>Content/ Project view shortcut keys</value>
   </data>
   <data name="m_cbShortcutKeys.Items1" xml:space="preserve">
-    <value>Content view shortcut keys</value>
-  </data>
-  <data name="m_cbShortcutKeys.Items2" xml:space="preserve">
-    <value>All shortcut  keys</value>
+    <value>Menu item shortcut  keys</value>
   </data>
   <data name="m_cbShortcutKeys.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 27</value>
@@ -1006,7 +1024,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;m_cbShortcutKeys.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -1916,6 +1934,12 @@
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Keyboard Shortcut</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
