@@ -298,7 +298,8 @@ namespace Obi.Dialogs
             if (m_txtShortcutKeys.ContainsFocus && e.KeyData != Keys.Tab && e.KeyData != (Keys.Shift | Keys.Tab)
     && e.KeyData != Keys.Shift && e.KeyData != Keys.ShiftKey && e.KeyData != (Keys.ShiftKey | Keys.Shift)
     && e.KeyData != Keys.Control && e.KeyData != (Keys.ControlKey | Keys.Control)
-    && e.KeyData != (Keys.Control | Keys.A))
+    && e.KeyData != (Keys.Control | Keys.A) && e.KeyCode != Keys.ShiftKey && e.KeyCode != Keys.ControlKey
+                && e.KeyData != Keys.Return)
             {
                 m_CapturedKey = e.KeyData;
             }
