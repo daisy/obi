@@ -2089,11 +2089,11 @@ namespace Obi
             }
 
             string accessibleString = m.Text.Replace("&", "");
-            if (KeyboardShortcuts.MenuKeyboardShortcutsDictionary.ContainsKey(m.Name))
+            if (KeyboardShortcuts.KeyboardShortcutsDescription.ContainsKey(m.Name))
             {
-                if (KeyboardShortcuts.MenuKeyboardShortcutsDictionary[m.Name].Value != Keys.None)
+                if (KeyboardShortcuts.KeyboardShortcutsDescription[m.Name].Value != Keys.None)
                 {
-                    m.ShortcutKeys = KeyboardShortcuts.MenuKeyboardShortcutsDictionary[m.Name].Value;
+                    m.ShortcutKeys = KeyboardShortcuts.KeyboardShortcutsDescription[m.Name].Value;
                 }
             }
             else
