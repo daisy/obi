@@ -92,8 +92,8 @@ namespace Obi
         [NonSerialized()]
         public Dictionary<string, KeyboardShortcut> KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
 
-        [NonSerialized()]
-        public Dictionary<string, KeyboardShortcut> MenuKeyboardShortcutsDictionary;
+        //[NonSerialized()]
+        //public Dictionary<string, KeyboardShortcut> MenuKeyboardShortcutsDictionary;
         public KeyboardShortcuts_Settings()
         {
             //KeyboardShortcutsDescription.Add(this.ContentView_SelectCompleteWaveform, "Select complete waveform of phrase");
@@ -119,10 +119,11 @@ namespace Obi
             }
             catch (Exception) { }
             
-            settings.MenuKeyboardShortcutsDictionary = new Dictionary<string, KeyboardShortcut>();
-            settings.PopulateMenuShortcutsDictionary();
+            //settings.MenuKeyboardShortcutsDictionary = new Dictionary<string, KeyboardShortcut>();
+            
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
+            settings.PopulateMenuShortcutsDictionary();
             return settings;
         }
 
@@ -142,9 +143,11 @@ namespace Obi
 
         private void AddMenuShortcutsToArrayForSave()
         {
-            MenuKeyboardShortCutsList = new KeyboardShortcut[MenuKeyboardShortcutsDictionary.Count];
+            List<KeyboardShortcut> menuShortcuts = new List<KeyboardShortcut>();
+            foreach (KeyboardShortcut s in KeyboardShortcutsDescription.Values) menuShortcuts.Add(s);
+            MenuKeyboardShortCutsList = new KeyboardShortcut[menuShortcuts.Count];
             int counter = 0;
-            foreach (KeyboardShortcut k in MenuKeyboardShortcutsDictionary.Values)
+            foreach (KeyboardShortcut k in menuShortcuts)
             {
                 MenuKeyboardShortCutsList[counter] = k;
                 counter++;
@@ -167,10 +170,11 @@ namespace Obi
         
         public bool AddMenuShortcut(string name, Keys keyData)
         {
-            if (!MenuKeyboardShortcutsDictionary.ContainsKey(name))
+            if (!KeyboardShortcutsDescription.ContainsKey(name))
             {
                 KeyboardShortcut k = new KeyboardShortcut(keyData) ;
-                MenuKeyboardShortcutsDictionary.Add(name,k );
+                k.IsMenuShortcut = true;
+                KeyboardShortcutsDescription.Add(name, k);
                 return true;
             }
             return false;
@@ -183,7 +187,8 @@ namespace Obi
                 for (int i = 0; i < MenuKeyboardShortCutsList.Length; i++)
                 {
                     if (string.IsNullOrEmpty(MenuKeyboardShortCutsList[i].Description)) continue;
-                                        MenuKeyboardShortcutsDictionary.Add(MenuKeyboardShortCutsList[i].Description, MenuKeyboardShortCutsList[i]);
+                                        KeyboardShortcutsDescription.Add(MenuKeyboardShortCutsList[i].Description, MenuKeyboardShortCutsList[i]);
+                                        MenuKeyboardShortCutsList[i].IsMenuShortcut = true;
                 }
             }
         }
@@ -244,14 +249,18 @@ namespace Obi
         {
             public Keys Value;
             public string Description;
+            public bool IsMenuShortcut;
+
             public KeyboardShortcut(Keys keyData)
             {
                 Value = keyData;
+                IsMenuShortcut = false;
             }
             public KeyboardShortcut(Keys keyData, string description)
             {
                 Value = keyData;
                 Description = description;
+                IsMenuShortcut = false ;
             }
 
         }
