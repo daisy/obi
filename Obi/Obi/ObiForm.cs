@@ -2068,6 +2068,55 @@ namespace Obi
         {
             m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
             mProjectView.InitializeShortcutKeys();
+
+            foreach (ToolStripItem m in mMenuStrip.Items)
+            {
+                if (m is ToolStripMenuItem)
+                {
+                    AssignMenuShortcuts((ToolStripMenuItem) m);
+                }
+            }
+        }
+
+        private void AssignMenuShortcuts(ToolStripMenuItem m)
+        {
+            if (m.HasDropDownItems)
+            {
+                foreach (ToolStripItem n in m.DropDownItems)
+                {
+                    if (n is ToolStripMenuItem) AssignMenuShortcuts((ToolStripMenuItem) n);
+                }
+            }
+
+            string accessibleString = m.Text.Replace("&", "");
+            if (KeyboardShortcuts.MenuKeyboardShortcutsDictionary.ContainsKey(m.Name))
+            {
+                if (KeyboardShortcuts.MenuKeyboardShortcutsDictionary[m.Name].Value != Keys.None)
+                {
+                    m.ShortcutKeys = KeyboardShortcuts.MenuKeyboardShortcutsDictionary[m.Name].Value;
+                }
+            }
+            else
+            {
+               KeyboardShortcuts.AddMenuShortcut (m.Text , m.ShortcutKeys);
+            }
+                        if (m.ShortcutKeys != Keys.None)
+            {
+                string shortcutString = m.ShortcutKeys.ToString();
+                                string[] arrayStrings = shortcutString.Split(',') ;
+                
+                if ( arrayStrings != null && arrayStrings.Length > 0 )
+                {
+                    shortcutString = "";
+                for ( int i = arrayStrings.Length-1 ; i >= 0 ; --i)
+                {
+                    shortcutString = shortcutString + arrayStrings[i] + (i > 0 ? "+" : "");
+                }
+                }
+                
+                accessibleString = accessibleString + " " + shortcutString;
+            }
+            m.AccessibleName = accessibleString;
         }
 
         // Various utility functions

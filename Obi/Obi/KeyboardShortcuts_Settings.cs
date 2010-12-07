@@ -85,11 +85,15 @@ namespace Obi
             public KeyboardShortcut ProjectView_ShowPropertiesOfSelectedNode = new KeyboardShortcut (Keys.Alt | Keys.Enter);
         public KeyboardShortcut ProjectView_FocusOnTransportBarTimeDisplay = new KeyboardShortcut(Keys.F8);
 
+        public KeyboardShortcut[] MenuKeyboardShortCutsList;
+
         private static readonly string SETTINGS_FILE_NAME = "obi_KeyboardShortcuts_Settings.xml";
 
         [NonSerialized()]
         public Dictionary<string, KeyboardShortcut> KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
 
+        [NonSerialized()]
+        public Dictionary<string, KeyboardShortcut> MenuKeyboardShortcutsDictionary;
         public KeyboardShortcuts_Settings()
         {
             //KeyboardShortcutsDescription.Add(this.ContentView_SelectCompleteWaveform, "Select complete waveform of phrase");
@@ -114,6 +118,9 @@ namespace Obi
                                 stream.Close();
             }
             catch (Exception) { }
+            
+            settings.MenuKeyboardShortcutsDictionary = new Dictionary<string, KeyboardShortcut>();
+            settings.PopulateMenuShortcutsDictionary();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
             return settings;
@@ -124,12 +131,24 @@ namespace Obi
         /// </summary>
         public void SaveSettings()
         {
+            AddMenuShortcutsToArrayForSave();
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             IsolatedStorageFileStream stream =
                 new IsolatedStorageFileStream(SETTINGS_FILE_NAME, FileMode.Create, FileAccess.Write, file);
             SoapFormatter soap = new SoapFormatter();
             soap.Serialize(stream, this);
             stream.Close();
+        }
+
+        private void AddMenuShortcutsToArrayForSave()
+        {
+            MenuKeyboardShortCutsList = new KeyboardShortcut[MenuKeyboardShortcutsDictionary.Count];
+            int counter = 0;
+            foreach (KeyboardShortcut k in MenuKeyboardShortcutsDictionary.Values)
+            {
+                MenuKeyboardShortCutsList[counter] = k;
+                counter++;
+            }
         }
 
         public bool IsDuplicate(Keys keyData)
@@ -145,6 +164,29 @@ namespace Obi
             return false;
         }
 
+        
+        public bool AddMenuShortcut(string name, Keys keyData)
+        {
+            if (!MenuKeyboardShortcutsDictionary.ContainsKey(name))
+            {
+                KeyboardShortcut k = new KeyboardShortcut(keyData) ;
+                MenuKeyboardShortcutsDictionary.Add(name,k );
+                return true;
+            }
+            return false;
+        }
+
+        private void PopulateMenuShortcutsDictionary()
+        {
+            if (MenuKeyboardShortCutsList != null)
+            {
+                for (int i = 0; i < MenuKeyboardShortCutsList.Length; i++)
+                {
+                    if (string.IsNullOrEmpty(MenuKeyboardShortCutsList[i].Description)) continue;
+                                        MenuKeyboardShortcutsDictionary.Add(MenuKeyboardShortCutsList[i].Description, MenuKeyboardShortCutsList[i]);
+                }
+            }
+        }
         private void PopulateKeyboardShortcutsDictionary()
         {
             KeyboardShortcutsDescription.Add(Localizer.Message("KeyS_SelectCompleteWaveform"), ContentView_SelectCompleteWaveform);
@@ -201,9 +243,15 @@ namespace Obi
         public class KeyboardShortcut
         {
             public Keys Value;
+            public string Description;
             public KeyboardShortcut(Keys keyData)
             {
                 Value = keyData;
+            }
+            public KeyboardShortcut(Keys keyData, string description)
+            {
+                Value = keyData;
+                Description = description;
             }
 
         }
