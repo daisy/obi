@@ -44,7 +44,7 @@ namespace Obi
             this.mFile_ClearListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEditToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mUndoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mRedoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -186,7 +186,7 @@ namespace Obi
             // 
             this.mMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mFileToolStripMenuItem,
-            this.toolStripMenuItem1,
+            this.mEditToolStripMenuItem1,
             this.mViewToolStripMenuItem,
             this.mSectionsToolStripMenuItem,
             this.mPhrasesToolStripMenuItem,
@@ -290,9 +290,9 @@ namespace Obi
             this.mFile_ExitMenuItem.Name = "mFile_ExitMenuItem";
             this.mFile_ExitMenuItem.Click += new System.EventHandler(this.File_ExitMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // mEditToolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mEditToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mUndoToolStripMenuItem,
             this.mRedoToolStripMenuItem,
             this.toolStripSeparator1,
@@ -309,8 +309,8 @@ namespace Obi
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
             this.mFindPreviousToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.mEditToolStripMenuItem1.Name = "mEditToolStripMenuItem1";
+            resources.ApplyResources(this.mEditToolStripMenuItem1, "mEditToolStripMenuItem1");
             // 
             // mUndoToolStripMenuItem
             // 
@@ -1277,7 +1277,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mHelp_ContentsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutObiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_ReportBugMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mEditToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mUndoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mRedoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mViewToolStripMenuItem;
