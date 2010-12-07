@@ -78,8 +78,8 @@ namespace Obi.Dialogs
                 if ((num == 0 && mPageKindComboBox.SelectedIndex < 2))
                     //|| (num > 0 && mPageKindComboBox.SelectedIndex == 2)) // message should not appear for assigning special pages.
                     {
-                    if (MessageBox.Show ( Localizer.Message ( "PageDialog_InvalidInput" ), Localizer.Message ( "Caption_Error" ), MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 ) == DialogResult.No)
-                        return;
+                       if (MessageBox.Show(Localizer.Message("PageDialog_InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                          return;
                     }
                 
 
