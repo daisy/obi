@@ -160,7 +160,11 @@ namespace Obi.Dialogs
             && UpdateAudioSettings ()
             && UpdateUserProfile ())
                 {
-                    if (m_IsKeyboardShortcutChanged) mForm.InitializeKeyboardShortcuts();
+                    if (m_IsKeyboardShortcutChanged)
+                    {
+                        mForm.KeyboardShortcuts.SaveSettings();
+                        mForm.InitializeKeyboardShortcuts();
+                    }
                 DialogResult = DialogResult.OK;
                 Close ();
                 }
