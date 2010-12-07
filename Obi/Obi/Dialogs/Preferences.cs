@@ -126,9 +126,12 @@ namespace Obi.Dialogs
             foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
             {
                 tempArray[0] = desc;
-                tempArray[1] = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
-                ListViewItem item = new ListViewItem(tempArray);
-                m_lvShortcutKeysList.Items.Add(item);
+                if (!m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].IsMenuShortcut)
+                {
+                    tempArray[1] = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                    ListViewItem item = new ListViewItem(tempArray);
+                    m_lvShortcutKeysList.Items.Add(item);
+                }
             }
         }
 
@@ -358,7 +361,38 @@ namespace Obi.Dialogs
 
         private void m_cbShortcutKeys_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            string[] tempArray = new string[2];
 
+            if ( m_cbShortcutKeys.SelectedIndex == 0 )
+            {
+                m_lvShortcutKeysList.Items.Clear();
+            foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
+            {
+                tempArray[0] = desc;
+                if (!m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].IsMenuShortcut)
+                {
+                    tempArray[1] = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                    ListViewItem item = new ListViewItem(tempArray);
+                    m_lvShortcutKeysList.Items.Add(item);
+                }
+            }
         }
+        else if (m_cbShortcutKeys.SelectedIndex == 1)
+        {
+            m_lvShortcutKeysList.Items.Clear();
+            foreach (string desc in m_KeyboardShortcuts.KeyboardShortcutsDescription.Keys)
+            {
+                tempArray[0] = desc;
+                if (m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].IsMenuShortcut)
+                {
+                    tempArray[1] = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                    ListViewItem item = new ListViewItem(tempArray);
+                    m_lvShortcutKeysList.Items.Add(item);
+                }
+            }
+        }
+        }
+
+
         }
     }
