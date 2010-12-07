@@ -1304,7 +1304,7 @@ Error text: {1}</value>
     <value>Delete operation cannot be performed on drive partition</value>
   </data>
   <data name="PageDialog_InvalidInput" xml:space="preserve">
-    <value>One or more fields have invalid entries. Re-enter values.</value>
+    <value>One or more fields have invalid entries. Please re-enter values.</value>
   </data>
   <data name="Status_ProjectSaved" xml:space="preserve">
     <value>Project saved, please continue...</value>
