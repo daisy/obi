@@ -81,6 +81,8 @@ namespace Obi.Dialogs
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
+            this.m_grpKeyboardShortcutList = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -89,6 +91,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit();
             this.mUserProfileTab.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
+            this.m_grpKeyboardShortcutList.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -427,12 +430,13 @@ namespace Obi.Dialogs
             // 
             // mKeyboardShortcutTab
             // 
+            this.mKeyboardShortcutTab.Controls.Add(this.label12);
+            this.mKeyboardShortcutTab.Controls.Add(this.m_grpKeyboardShortcutList);
             this.mKeyboardShortcutTab.Controls.Add(this.m_RestoreDefaults);
             this.mKeyboardShortcutTab.Controls.Add(this.m_btnRemove);
             this.mKeyboardShortcutTab.Controls.Add(this.m_btnAssign);
             this.mKeyboardShortcutTab.Controls.Add(this.m_txtShortcutKeys);
             this.mKeyboardShortcutTab.Controls.Add(this.m_lblShortcutKeys);
-            this.mKeyboardShortcutTab.Controls.Add(this.m_lvShortcutKeysList);
             this.mKeyboardShortcutTab.Controls.Add(this.m_cbShortcutKeys);
             resources.ApplyResources(this.mKeyboardShortcutTab, "mKeyboardShortcutTab");
             this.mKeyboardShortcutTab.Name = "mKeyboardShortcutTab";
@@ -502,6 +506,18 @@ namespace Obi.Dialogs
             this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
             this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
             // 
+            // m_grpKeyboardShortcutList
+            // 
+            this.m_grpKeyboardShortcutList.Controls.Add(this.m_lvShortcutKeysList);
+            resources.ApplyResources(this.m_grpKeyboardShortcutList, "m_grpKeyboardShortcutList");
+            this.m_grpKeyboardShortcutList.Name = "m_grpKeyboardShortcutList";
+            this.m_grpKeyboardShortcutList.TabStop = false;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -528,6 +544,7 @@ namespace Obi.Dialogs
             this.mUserProfileTab.PerformLayout();
             this.mKeyboardShortcutTab.ResumeLayout(false);
             this.mKeyboardShortcutTab.PerformLayout();
+            this.m_grpKeyboardShortcutList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -586,5 +603,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button m_RestoreDefaults;
+        private System.Windows.Forms.GroupBox m_grpKeyboardShortcutList;
+        private System.Windows.Forms.Label label12;
     }
 }
