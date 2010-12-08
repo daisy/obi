@@ -2066,7 +2066,15 @@ namespace Obi
 
        internal void InitializeKeyboardShortcuts()
         {
-            m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
+            try
+            {
+                m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Error in loading configured keyboard shortcuts. Loading defaults.", Localizer.Message("Caption_Error"));
+                m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
+            }
             mProjectView.InitializeShortcutKeys();
 
             foreach (ToolStripItem m in mMenuStrip.Items)
@@ -2085,39 +2093,43 @@ namespace Obi
                 foreach (ToolStripItem n in m.DropDownItems)
                 {
                     if (n is ToolStripMenuItem) AssignMenuShortcuts((ToolStripMenuItem)n);
+                        
                 }
             }
             else
             {
-                string accessibleString = m.Text.Replace("&", "");
-                if (KeyboardShortcuts.KeyboardShortcutsDescription.ContainsKey(m.Text) && KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].IsMenuShortcut)
+                //if (m != mFocusOnStripsViewToolStripMenuItem && m != mFocusOnTOCViewToolStripMenuItem)
                 {
-                    if (KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value != Keys.None)
+                    string accessibleString = m.Text.Replace("&", "");
+                    if (KeyboardShortcuts.KeyboardShortcutsDescription.ContainsKey(m.Text) && KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].IsMenuShortcut)
                     {
-                        m.ShortcutKeys = KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value;
-                    }
-                }
-                else
-                {
-                    KeyboardShortcuts.AddMenuShortcut(m.Text, m.ShortcutKeys);
-                }
-                if (m.ShortcutKeys != Keys.None)
-                {
-                    string shortcutString = m.ShortcutKeys.ToString();
-                    string[] arrayStrings = shortcutString.Split(',');
-
-                    if (arrayStrings != null && arrayStrings.Length > 0)
-                    {
-                        shortcutString = "";
-                        for (int i = arrayStrings.Length - 1; i >= 0; --i)
+                        if (KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value != Keys.None)
                         {
-                            shortcutString = shortcutString + arrayStrings[i] + (i > 0 ? "+" : "");
+                            m.ShortcutKeys = KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value;
                         }
                     }
+                    else
+                    {
+                        KeyboardShortcuts.AddMenuShortcut(m.Text, m.ShortcutKeys);
+                    }
+                    if (m.ShortcutKeys != Keys.None)
+                    {
+                        string shortcutString = m.ShortcutKeys.ToString();
+                        string[] arrayStrings = shortcutString.Split(',');
 
-                    accessibleString = accessibleString + " " + shortcutString;
+                        if (arrayStrings != null && arrayStrings.Length > 0)
+                        {
+                            shortcutString = "";
+                            for (int i = arrayStrings.Length - 1; i >= 0; --i)
+                            {
+                                shortcutString = shortcutString + arrayStrings[i] + (i > 0 ? "+" : "");
+                            }
+                        }
+
+                        accessibleString = accessibleString + " " + shortcutString;
+                    }
+                    m.AccessibleName = accessibleString;
                 }
-                m.AccessibleName = accessibleString;
             }
         }
 
