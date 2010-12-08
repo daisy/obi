@@ -155,7 +155,10 @@ namespace Obi
         private void AddMenuShortcutsToArrayForSave()
         {
             List<KeyboardShortcut> menuShortcuts = new List<KeyboardShortcut>();
-            foreach (KeyboardShortcut s in KeyboardShortcutsDescription.Values) menuShortcuts.Add(s);
+            foreach (KeyboardShortcut s in KeyboardShortcutsDescription.Values)
+            {
+                if (s.IsMenuShortcut)  menuShortcuts.Add(s);
+            }
             MenuKeyboardShortCutsList = new KeyboardShortcut[menuShortcuts.Count];
             int counter = 0;
             foreach (KeyboardShortcut k in menuShortcuts)
