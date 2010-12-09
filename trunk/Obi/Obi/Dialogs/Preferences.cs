@@ -361,6 +361,11 @@ namespace Obi.Dialogs
 
         private void m_cbShortcutKeys_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            LoadListviewAccordingToComboboxSelection();
+        }
+
+        private void LoadListviewAccordingToComboboxSelection ()
+        {
             string[] tempArray = new string[2];
 
             if ( m_cbShortcutKeys.SelectedIndex == 0 )
@@ -391,6 +396,15 @@ namespace Obi.Dialogs
                 }
             }
         }
+        }
+
+        private void m_RestoreDefaults_Click(object sender, EventArgs e)
+        {   
+            mForm.LoadDefaultKeyboardShortcuts();
+            m_KeyboardShortcuts = mForm.KeyboardShortcuts;
+            
+            m_lvShortcutKeysList.Items.Clear();
+            LoadListviewAccordingToComboboxSelection();
         }
 
 

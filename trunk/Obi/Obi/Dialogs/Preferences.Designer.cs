@@ -480,6 +480,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_RestoreDefaults, "m_RestoreDefaults");
             this.m_RestoreDefaults.Name = "m_RestoreDefaults";
             this.m_RestoreDefaults.UseVisualStyleBackColor = true;
+            this.m_RestoreDefaults.Click += new System.EventHandler(this.m_RestoreDefaults_Click);
             // 
             // m_btnRemove
             // 
