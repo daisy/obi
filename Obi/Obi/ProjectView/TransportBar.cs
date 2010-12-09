@@ -1205,6 +1205,12 @@ namespace Obi.ProjectView
                 mRecordingPhrase = null;
                 MessageBox.Show ( Localizer.Message ( "RecordingResumePhrasesDeleted" ), Localizer.Message ( "Caption_Information" ), MessageBoxButtons.OK, MessageBoxIcon.Information );
                                 }
+
+            //if selection is in TOC view save it also
+                                if (mView.Selection != null && mView.Selection.Control is TOCView)
+                                {
+                                    command.append(new Commands.UpdateSelection(mView, new NodeSelection(mView.Selection.Node , mView.Selection.Control)));
+                                }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
             mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
             
