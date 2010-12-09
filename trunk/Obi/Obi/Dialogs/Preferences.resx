@@ -1366,7 +1366,7 @@
     <value>101, 16</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>34</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Select Key List :</value>
@@ -1402,7 +1402,7 @@
     <value>366, 130</value>
   </data>
   <data name="m_lvShortcutKeysList.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>37</value>
   </data>
   <data name="&gt;&gt;m_lvShortcutKeysList.Name" xml:space="preserve">
     <value>m_lvShortcutKeysList</value>
@@ -1423,7 +1423,7 @@
     <value>534, 151</value>
   </data>
   <data name="m_grpKeyboardShortcutList.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>36</value>
   </data>
   <data name="m_grpKeyboardShortcutList.Text" xml:space="preserve">
     <value>Keyboard Shortcut List</value>
@@ -1450,7 +1450,7 @@
     <value>123, 31</value>
   </data>
   <data name="m_RestoreDefaults.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>42</value>
   </data>
   <data name="m_RestoreDefaults.Text" xml:space="preserve">
     <value>Restore &amp;Defaults</value>
@@ -1477,7 +1477,7 @@
     <value>121, 31</value>
   </data>
   <data name="m_btnRemove.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>41</value>
   </data>
   <data name="m_btnRemove.Text" xml:space="preserve">
     <value>&amp;Remove Shortcut</value>
@@ -1504,7 +1504,7 @@
     <value>84, 31</value>
   </data>
   <data name="m_btnAssign.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>40</value>
   </data>
   <data name="m_btnAssign.Text" xml:space="preserve">
     <value>&amp;Assign</value>
@@ -1528,7 +1528,7 @@
     <value>372, 22</value>
   </data>
   <data name="m_txtShortcutKeys.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>39</value>
   </data>
   <data name="&gt;&gt;m_txtShortcutKeys.Name" xml:space="preserve">
     <value>m_txtShortcutKeys</value>
@@ -1552,7 +1552,7 @@
     <value>155, 32</value>
   </data>
   <data name="m_lblShortcutKeys.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>38</value>
   </data>
   <data name="m_lblShortcutKeys.Text" xml:space="preserve">
     <value>Shortcut  Keys:
@@ -1587,7 +1587,7 @@
     <value>372, 24</value>
   </data>
   <data name="m_cbShortcutKeys.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>35</value>
   </data>
   <data name="&gt;&gt;m_cbShortcutKeys.Name" xml:space="preserve">
     <value>m_cbShortcutKeys</value>
