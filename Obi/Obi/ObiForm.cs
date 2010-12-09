@@ -1991,7 +1991,7 @@ namespace Obi
                 try
                     {
                     mSettings.SaveSettings ();
-                    m_KeyboardShortcuts.SaveSettings();
+                    if (m_KeyboardShortcuts != null)  m_KeyboardShortcuts.SaveSettings();
                     }
                 catch (Exception x)
                     {
@@ -2072,7 +2072,7 @@ namespace Obi
             }
             catch (System.Exception)
             {
-                MessageBox.Show("Error in loading configured keyboard shortcuts. Loading defaults.", Localizer.Message("Caption_Error"));
+                MessageBox.Show(Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys"), Localizer.Message("Caption_Error"));
                 m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
             }
             mProjectView.InitializeShortcutKeys();
@@ -2085,6 +2085,22 @@ namespace Obi
                 }
             }
         }
+
+        internal void LoadDefaultKeyboardShortcuts()
+        {
+            m_KeyboardShortcuts = null;    
+        KeyboardShortcuts_Settings defaultKeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
+            mProjectView.InitializeShortcutKeys();
+
+            foreach (ToolStripItem m in mMenuStrip.Items)
+            {
+                if (m is ToolStripMenuItem)
+                {
+                    AssignMenuShortcuts((ToolStripMenuItem) m);
+                }
+            }
+        }
+
 
         private void AssignMenuShortcuts(ToolStripMenuItem m)
         {

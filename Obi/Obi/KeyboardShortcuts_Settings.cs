@@ -131,6 +131,7 @@ namespace Obi
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
 
+            if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
             settings.PopulateMenuShortcutsDictionary();
