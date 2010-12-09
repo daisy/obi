@@ -265,16 +265,16 @@ namespace Obi.ProjectView
         {
             Context_AddSectionMenuItem.Enabled = CanAddSection;
             Context_AddSubsectionMenuItem.Enabled = CanAddSubsection;
-            Context_InsertSectionMenuItem.Enabled = CanInsertSection;
+            Context_InsertSectionMenuItem.Enabled = CanInsertSection && !mProjectView.TransportBar.IsRecorderActive;
             Context_RenameSectionMenuItem.Enabled = CanRenameSection;
-            Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel;
-            Context_IncreaseSectionLevelMenuItem.Enabled = CanIncreaseLevel;
+            Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel && !mProjectView.TransportBar.IsRecorderActive;
+            Context_IncreaseSectionLevelMenuItem.Enabled = CanIncreaseLevel && !mProjectView.TransportBar.IsRecorderActive;
             Context_SectionIsUsedMenuItem.Enabled = CanSetSectionUsedStatus;
             Context_SectionIsUsedMenuItem.CheckedChanged -= new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
             Context_SectionIsUsedMenuItem.Checked = mProjectView.CanMarkSectionUnused;
             Context_SectionIsUsedMenuItem.CheckedChanged += new EventHandler(Context_SectionIsUsedMenuItem_CheckedChanged);
             Context_CutMenuItem.Enabled = CanRemoveSection;
-            Context_CopyMenuItem.Enabled = CanCopySection;
+            Context_CopyMenuItem.Enabled = CanCopySection && !mProjectView.TransportBar.IsRecorderActive;
             Context_PasteMenuItem.Enabled = CanPaste(mProjectView.Clipboard);
             Context_PasteBeforeMenuItem.Enabled = CanPasteBefore(mProjectView.Clipboard);
             Context_PasteInsideMenuItem.Enabled = CanPasteInside(mProjectView.Clipboard);
