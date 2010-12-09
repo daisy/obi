@@ -676,68 +676,71 @@ namespace Obi.ProjectView
         /// </summary>
         public void DeleteUnused ()
             {
-            // handle selection to avoid exception if selected node is deleted
-                int sectionPosition = -1;
-                if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
+                if (mPresentation.RootNode.getChildCount() > 0)
                 {
-                    sectionPosition = GetSelectedPhraseSection.Position;
-                    Selection = null;
-                }
-
-            CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "delete_unused" ) );
-            // Collect silence node deletion commands separately in case the user wants to keep them.
-            List<ICommand> silence = new List<ICommand> ();
-            mPresentation.RootNode.acceptDepthFirst (
-                delegate ( urakawa.core.TreeNode node )
+                    // handle selection to avoid exception if selected node is deleted
+                    int sectionPosition = -1;
+                    if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
                     {
-                    if (node is ObiNode && !((ObiNode)node).Used)
-                        {
-                        Commands.Node.Delete delete = new Commands.Node.Delete ( this, (ObiNode)node, false );
-                        if (Selection == null || Selection.Node == node) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
-                        if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
-                            {
-                            silence.Add ( delete );
-                            }
-                        else
-                            {
-                            command.insert ( delete, 0 );
-                            }
-                        return false;
-                        }
-                    return true;
-                    }, delegate ( urakawa.core.TreeNode node ) { }
-            );
-            if (silence.Count > 0)
-                {
-                if (MessageBox.Show ( Localizer.Message ( "delete_silence_phrases" ),
-                    Localizer.Message ( "delete_silence_phrases_caption" ), MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question ) == DialogResult.Yes)
-                    {
-                    foreach (ICommand c in silence) command.append ( c );
+                        sectionPosition = GetSelectedPhraseSection.Position;
+                        Selection = null;
                     }
-                 }
 
-            //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
-            if (command.getCount () > 0) mPresentation.Do ( command );
-            if (sectionPosition > -1 )//@singleSection
-            {
-                SectionNode section = null;
-                int totalSections = mPresentation.RootNode.SectionChildCount ;
-                if (sectionPosition < totalSections)
-                {
-                    section = mPresentation.RootNode.SectionChild(sectionPosition);
+                    CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
+                    // Collect silence node deletion commands separately in case the user wants to keep them.
+                    List<ICommand> silence = new List<ICommand>();
+                    mPresentation.RootNode.acceptDepthFirst(
+                        delegate(urakawa.core.TreeNode node)
+                        {
+                            if (node is ObiNode && !((ObiNode)node).Used)
+                            {
+                                Commands.Node.Delete delete = new Commands.Node.Delete(this, (ObiNode)node, false);
+                                if (Selection == null || Selection.Node == node) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
+                                if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
+                                {
+                                    silence.Add(delete);
+                                }
+                                else
+                                {
+                                    command.insert(delete, 0);
+                                }
+                                return false;
+                            }
+                            return true;
+                        }, delegate(urakawa.core.TreeNode node) { }
+                    );
+                    if (silence.Count > 0)
+                    {
+                        if (MessageBox.Show(Localizer.Message("delete_silence_phrases"),
+                            Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            foreach (ICommand c in silence) command.append(c);
+                        }
+                    }
+
+                    //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
+                    if (command.getCount() > 0) mPresentation.Do(command);
+                    if (sectionPosition > -1)//@singleSection
+                    {
+                        SectionNode section = null;
+                        int totalSections = mPresentation.RootNode.SectionChildCount;
+                        if (sectionPosition < totalSections)
+                        {
+                            section = mPresentation.RootNode.SectionChild(sectionPosition);
+                        }
+                        else if (totalSections > 0)
+                        {
+                            section = mPresentation.RootNode.SectionChild(totalSections - 1);
+                        }
+                        if (section != null)
+                        {
+                            mContentView.CreateStripForSelectedSection(section, true);
+                            Selection = new NodeSelection(section, mContentView);
+                        }
+                    }
+                    MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject"), "Unused phrases deleted", MessageBoxButtons.OK);
                 }
-                else if (totalSections > 0)
-                {
-                    section = mPresentation.RootNode.SectionChild(totalSections - 1);
-                }
-                if (section != null)
-                {
-                    mContentView.CreateStripForSelectedSection(section, true);
-                    Selection = new NodeSelection(section, mContentView);
-                }
-                }
-            MessageBox.Show(Localizer.Message("UnusedPhrasesDeletedFromProject") , "Unused phrases deleted",MessageBoxButtons.OK);
             }
 
 
