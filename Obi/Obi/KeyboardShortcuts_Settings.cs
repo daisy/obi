@@ -92,14 +92,9 @@ namespace Obi
         [NonSerialized()]
         public Dictionary<string, KeyboardShortcut> KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
 
-        //[NonSerialized()]
-        //public Dictionary<string, KeyboardShortcut> MenuKeyboardShortcutsDictionary;
-        public KeyboardShortcuts_Settings()
-        {
-            //KeyboardShortcutsDescription.Add(this.ContentView_SelectCompleteWaveform, "Select complete waveform of phrase");
-            //KeyboardShortcutsDescription.Add(ContentView_PlaySelectedWaveform, "Play selected waveform");
-        }
-
+        [NonSerialized()]
+        public Dictionary<string, KeyboardShortcut> MenuNameDictionary;
+            
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
         /// </summary>
@@ -118,12 +113,15 @@ namespace Obi
                                 stream.Close();
             }
             catch (Exception) { }
-            
-            //settings.MenuKeyboardShortcutsDictionary = new Dictionary<string, KeyboardShortcut>();
-            
+
+            settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
+            for (int i = 0; i < settings.MenuKeyboardShortCutsList.Length; i++)
+            {
+                settings.MenuNameDictionary.Add(settings.MenuKeyboardShortCutsList[i].Description, settings.MenuKeyboardShortCutsList[i]);
+            }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
-            settings.PopulateMenuShortcutsDictionary();
+            //settings.PopulateMenuShortcutsDictionary();
             return settings;
         }
 
@@ -131,10 +129,11 @@ namespace Obi
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
 
+            settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
-            settings.PopulateMenuShortcutsDictionary();
+            //settings.PopulateMenuShortcutsDictionary();
             return settings;
         }
 
@@ -156,8 +155,9 @@ namespace Obi
         private void AddMenuShortcutsToArrayForSave()
         {
             List<KeyboardShortcut> menuShortcuts = new List<KeyboardShortcut>();
-            foreach (KeyboardShortcut s in KeyboardShortcutsDescription.Values)
+            foreach (KeyboardShortcut s in MenuNameDictionary.Values)
             {
+                //if ( string.IsNullOrEmpty(s.Description)) MessageBox.Show(s.Value.ToString());
                 if (s.IsMenuShortcut)  menuShortcuts.Add(s);
             }
             MenuKeyboardShortCutsList = new KeyboardShortcut[menuShortcuts.Count];
@@ -183,17 +183,21 @@ namespace Obi
         }
 
         
-        public bool AddMenuShortcut(string name, Keys keyData)
+        public bool AddMenuShortcut(string name,string text,Keys keyData)
         {
-            if (!KeyboardShortcutsDescription.ContainsKey(name))
+            if (!MenuNameDictionary.ContainsKey(name))
             {
-                KeyboardShortcut k = new KeyboardShortcut(keyData) ;
+                KeyboardShortcut k = new KeyboardShortcut(keyData, name) ;
                 k.IsMenuShortcut = true;
-                KeyboardShortcutsDescription.Add(name, k);
+                MenuNameDictionary.Add(name, k);
+                
+                KeyboardShortcutsDescription.Add(text, k);
                 return true;
             }
+            KeyboardShortcutsDescription.Add(text, MenuNameDictionary[name]);
             return false;
         }
+
 
         private void PopulateMenuShortcutsDictionary()
         {
@@ -259,6 +263,8 @@ namespace Obi
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_ShowPropertiesOfSelectedNode.Description), ProjectView_ShowPropertiesOfSelectedNode);
             KeyboardShortcutsDescription.Add(Localizer.Message(ProjectView_FocusOnTransportBarTimeDisplay.Description), ProjectView_FocusOnTransportBarTimeDisplay);
         }
+    }
+
         [Serializable()]
         public class KeyboardShortcut
         {
@@ -278,6 +284,5 @@ namespace Obi
                 IsMenuShortcut = false ;
             }
 
-        }
     }
 }

@@ -2070,9 +2070,10 @@ namespace Obi
             {
                 m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetKeyboardShortcuts_Settings();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                MessageBox.Show(Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys"), Localizer.Message("Caption_Error"));
+                MessageBox.Show(Localizer.Message("KeyboardShortcuts_ErrorInLoadingConfiguredKeys") + "\n" + ex.ToString(), 
+                    Localizer.Message("Caption_Error"));
                 m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
             }
             mProjectView.InitializeShortcutKeys();
@@ -2089,9 +2090,9 @@ namespace Obi
         internal void LoadDefaultKeyboardShortcuts()
         {
             m_KeyboardShortcuts = null;    
-        KeyboardShortcuts_Settings defaultKeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
+        m_KeyboardShortcuts = KeyboardShortcuts_Settings.GetDefaultKeyboardShortcuts_Settings();
             mProjectView.InitializeShortcutKeys();
-
+            
             foreach (ToolStripItem m in mMenuStrip.Items)
             {
                 if (m is ToolStripMenuItem)
@@ -2104,6 +2105,7 @@ namespace Obi
 
         private void AssignMenuShortcuts(ToolStripMenuItem m)
         {
+            
             if (m.HasDropDownItems)
             {
                 foreach (ToolStripItem n in m.DropDownItems)
@@ -2117,16 +2119,24 @@ namespace Obi
                 //if (m != mFocusOnStripsViewToolStripMenuItem && m != mFocusOnTOCViewToolStripMenuItem)
                 {
                     string accessibleString = m.Text.Replace("&", "");
-                    if (KeyboardShortcuts.KeyboardShortcutsDescription.ContainsKey(m.Text) && KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].IsMenuShortcut)
-                    {
-                        if (KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value != Keys.None)
+                    if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) )
+                    {   
+                        if (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None)
                         {
-                            m.ShortcutKeys = KeyboardShortcuts.KeyboardShortcutsDescription[m.Text].Value;
+                            m.ShortcutKeys = KeyboardShortcuts.MenuNameDictionary[m.Name].Value;
+                            KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&",""), m.ShortcutKeys);
                         }
                     }
                     else
                     {
-                        KeyboardShortcuts.AddMenuShortcut(m.Text, m.ShortcutKeys);
+                        if (!string.IsNullOrEmpty(m.Name))
+                        {   
+                            KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&", ""), m.ShortcutKeys);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(m.Text);
+                        }
                     }
                     if (m.ShortcutKeys != Keys.None)
                     {
