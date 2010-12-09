@@ -1776,4 +1776,7 @@ Error text: {1}</value>
   <data name="KeyboardShortcut_DuplicateMessage" xml:space="preserve">
     <value>Keyboard shortcut already exists. Please assign another key or key combination</value>
   </data>
+  <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
+    <value>Error in loading configured keyboard shortcuts. Loading defaults.</value>
+  </data>
 </root>
