@@ -527,6 +527,12 @@
     <Compile Include="UserControls\GraphicalVuMeter.Designer.cs">
       <DependentUpon>GraphicalVuMeter.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\RecordingToolBarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\RecordingToolBarForm.Designer.cs">
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TextVUMeterPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -822,6 +828,10 @@
     <EmbeddedResource Include="ProjectView\VerticalScrollToolStripContainer.resx">
       <SubType>Designer</SubType>
       <DependentUpon>VerticalScrollToolStripContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecordingToolBarForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RecordingToolBarForm.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="help.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
