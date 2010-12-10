@@ -376,6 +376,7 @@ namespace Obi.Dialogs
                 m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = Keys.None;
                 selectedItem.SubItems[1].Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
                 m_txtShortcutKeys.Text = Keys.None.ToString();
+                m_CapturedKey = Keys.None;
                 m_IsKeyboardShortcutChanged = true;
             }
         }
