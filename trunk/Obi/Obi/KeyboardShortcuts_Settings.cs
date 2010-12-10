@@ -132,13 +132,17 @@ namespace Obi
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
 
-            if (MenuNameDefaultShortcutDictionary != null)
-                settings.MenuNameDictionary = MenuNameDefaultShortcutDictionary;
+            if (MenuNameDefaultShortcutDictionary != null && MenuNameDefaultShortcutDictionary.Count > 0 )
+            {
+                settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
+                foreach (string name in MenuNameDefaultShortcutDictionary.Keys) settings.MenuNameDictionary.Add(name, MenuNameDefaultShortcutDictionary[name].Copy ());
+                    
+            }
             else
             {
                 settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
             }
-            MessageBox.Show(MenuNameDefaultShortcutDictionary.Count.ToString());
+            
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
@@ -295,17 +299,18 @@ namespace Obi
             public string Description;
             public bool IsMenuShortcut;
 
-            public KeyboardShortcut(Keys keyData)
-            {
-                Value = keyData;
-                IsMenuShortcut = false;
-            }
-            public KeyboardShortcut(Keys keyData, string description)
+public KeyboardShortcut(Keys keyData, string description)
             {
                 Value = keyData;
                 Description = description;
                 IsMenuShortcut = false ;
             }
 
+            public KeyboardShortcut Copy()
+            {
+                KeyboardShortcut k = new KeyboardShortcut(this.Value, this.Description);
+                k.IsMenuShortcut = this.IsMenuShortcut;
+                return k;
+            }
     }
 }
