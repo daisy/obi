@@ -2119,7 +2119,7 @@ namespace Obi
                 //if (m != mFocusOnStripsViewToolStripMenuItem && m != mFocusOnTOCViewToolStripMenuItem)
                 {
                     string accessibleString = m.Text.Replace("&", "");
-                    if (isFirstTime && !string.IsNullOrEmpty(m.Name)) m_KeyboardShortcuts.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
+                    if (isFirstTime && !string.IsNullOrEmpty(m.Name)) KeyboardShortcuts_Settings.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
                     if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) )
                     {   
                         if (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None)
