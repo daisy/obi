@@ -166,7 +166,7 @@ namespace Obi.Dialogs
                     if (m_IsKeyboardShortcutChanged)
                     {
                         mForm.KeyboardShortcuts.SaveSettings();
-                        mForm.InitializeKeyboardShortcuts();
+                        mForm.InitializeKeyboardShortcuts(false);
                     }
                 DialogResult = DialogResult.OK;
                 Close ();
