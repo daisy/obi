@@ -402,6 +402,8 @@ namespace Obi.Dialogs
                     m_lvShortcutKeysList.Items.Add(item);
                 }
             }
+            m_txtShortcutKeys.Clear();
+            m_CapturedKey = Keys.None;
         }
         else if (m_cbShortcutKeys.SelectedIndex == 1)
         {
@@ -416,6 +418,8 @@ namespace Obi.Dialogs
                     m_lvShortcutKeysList.Items.Add(item);
                 }
             }
+            m_txtShortcutKeys.Clear();
+            m_CapturedKey = Keys.None;
         }
         }
 
