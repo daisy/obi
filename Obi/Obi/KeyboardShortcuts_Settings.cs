@@ -94,7 +94,10 @@ namespace Obi
 
         [NonSerialized()]
         public Dictionary<string, KeyboardShortcut> MenuNameDictionary;
-            
+
+        [NonSerialized()]
+        public static Dictionary<string, KeyboardShortcut> MenuNameDefaultShortcutDictionary = new Dictionary<string,KeyboardShortcut> ();
+
         /// <summary>
         /// Read the settings from the settings file; missing values are replaced with defaults.
         /// </summary>
@@ -121,7 +124,7 @@ namespace Obi
             }
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
-            //settings.PopulateMenuShortcutsDictionary();
+            
             return settings;
         }
 
@@ -129,11 +132,17 @@ namespace Obi
         {
             KeyboardShortcuts_Settings settings = new KeyboardShortcuts_Settings();
 
-            settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
+            if (MenuNameDefaultShortcutDictionary != null)
+                settings.MenuNameDictionary = MenuNameDefaultShortcutDictionary;
+            else
+            {
+                settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
+            }
+            
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
-            //settings.PopulateMenuShortcutsDictionary();
+            
             return settings;
         }
 
@@ -198,7 +207,20 @@ namespace Obi
             return false;
         }
 
+        public bool AddDefaultMenuShortcut(string name, Keys keyData)
+        {
+            if (!MenuNameDefaultShortcutDictionary.ContainsKey(name))
+            {
+                KeyboardShortcut k = new KeyboardShortcut(keyData, name);
+                k.IsMenuShortcut = true;
+                MenuNameDefaultShortcutDictionary.Add(name, k);
 
+                return true;
+            }
+            return false;
+        }
+
+        /*
         private void PopulateMenuShortcutsDictionary()
         {
             if (MenuKeyboardShortCutsList != null)
@@ -211,6 +233,7 @@ namespace Obi
                 }
             }
         }
+         */ 
         private void PopulateKeyboardShortcutsDictionary()
         {
             KeyboardShortcutsDescription.Add(Localizer.Message(ContentView_SelectCompleteWaveform.Description), ContentView_SelectCompleteWaveform);

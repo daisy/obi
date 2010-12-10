@@ -1608,7 +1608,7 @@ namespace Obi
                 mSession.ProjectSaved += new EventHandler ( Session_ProjectSaved );
                 mSourceView = null;
                 InitializeSettings ();
-                InitializeKeyboardShortcuts();
+                InitializeKeyboardShortcuts(true);
                 InitializeEventHandlers ();
                 UpdateMenus ();
                 // these should be stored in settings
@@ -2064,7 +2064,7 @@ namespace Obi
             mSettings.ColorSettings.CreateBrushesAndPens ();
             }
 
-       internal void InitializeKeyboardShortcuts()
+       internal void InitializeKeyboardShortcuts( bool isFirstTime)
         {
             try
             {
@@ -2082,7 +2082,7 @@ namespace Obi
             {
                 if (m is ToolStripMenuItem)
                 {
-                    AssignMenuShortcuts((ToolStripMenuItem) m);
+                    AssignMenuShortcuts((ToolStripMenuItem) m, isFirstTime);
                 }
             }
         }
@@ -2097,20 +2097,20 @@ namespace Obi
             {
                 if (m is ToolStripMenuItem)
                 {
-                    AssignMenuShortcuts((ToolStripMenuItem) m);
+                    AssignMenuShortcuts((ToolStripMenuItem) m, false);
                 }
             }
         }
 
 
-        private void AssignMenuShortcuts(ToolStripMenuItem m)
+        private void AssignMenuShortcuts(ToolStripMenuItem m, bool isFirstTime)
         {
             
             if (m.HasDropDownItems)
             {
                 foreach (ToolStripItem n in m.DropDownItems)
                 {
-                    if (n is ToolStripMenuItem) AssignMenuShortcuts((ToolStripMenuItem)n);
+                    if (n is ToolStripMenuItem) AssignMenuShortcuts((ToolStripMenuItem)n, isFirstTime);
                         
                 }
             }
@@ -2119,6 +2119,7 @@ namespace Obi
                 //if (m != mFocusOnStripsViewToolStripMenuItem && m != mFocusOnTOCViewToolStripMenuItem)
                 {
                     string accessibleString = m.Text.Replace("&", "");
+                    if (isFirstTime && !string.IsNullOrEmpty(m.Name)) m_KeyboardShortcuts.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
                     if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) )
                     {   
                         if (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None)
