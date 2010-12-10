@@ -336,6 +336,7 @@ namespace Obi.Dialogs
                     m_txtShortcutKeys.Focus();
                     return;
                 }
+                if ( !IsValidMenuShortcut ( m_CapturedKey)) return ;
                 ListViewItem selectedItem = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]] ;
                                 string desc = selectedItem.Text;
                 m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value = m_CapturedKey;
@@ -344,6 +345,26 @@ namespace Obi.Dialogs
                 m_txtShortcutKeys.Clear ();
                 m_CapturedKey = Keys.None;
             }
+        }
+
+        private bool IsValidMenuShortcut( Keys capturedKey)
+        {
+            if (m_cbShortcutKeys.SelectedIndex == 1)
+            {
+                try
+                {
+                    ToolStripMenuItem m = new ToolStripMenuItem();
+                    m.ShortcutKeys = capturedKey;
+                    m.Dispose();
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    m_txtShortcutKeys.Focus();
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void m_btnRemove_Click(object sender, EventArgs e)
