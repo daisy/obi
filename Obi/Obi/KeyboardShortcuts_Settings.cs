@@ -138,7 +138,7 @@ namespace Obi
             {
                 settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
             }
-            
+            MessageBox.Show(MenuNameDefaultShortcutDictionary.Count.ToString());
             if (settings.KeyboardShortcutsDescription != null) settings.KeyboardShortcutsDescription.Clear();
             settings.KeyboardShortcutsDescription = new Dictionary<string, KeyboardShortcut>();
             settings.PopulateKeyboardShortcutsDictionary();
@@ -207,7 +207,7 @@ namespace Obi
             return false;
         }
 
-        public bool AddDefaultMenuShortcut(string name, Keys keyData)
+        public static bool AddDefaultMenuShortcut(string name, Keys keyData)
         {
             if (!MenuNameDefaultShortcutDictionary.ContainsKey(name))
             {
