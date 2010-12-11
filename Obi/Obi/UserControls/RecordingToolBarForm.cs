@@ -13,10 +13,19 @@ namespace Obi.UserControls
     public partial class RecordingToolBarForm : Form
     {
         ProjectView.TransportBar m_TransportBar;
+        Image m_PauseImg;
+        Image m_PlayImg;
       
         public RecordingToolBarForm()
         {
             InitializeComponent();
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream pauseStr = null;
+            Stream playStr = null;
+            pauseStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-pause.png");
+            playStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-start.png");
+            m_PauseImg = Image.FromStream(pauseStr);
+            m_PlayImg = Image.FromStream(playStr);
         }
 
         public RecordingToolBarForm(ProjectView.TransportBar transportBar):this  ()
@@ -31,23 +40,15 @@ namespace Obi.UserControls
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
-        {
-          Assembly myAssembly = Assembly.GetExecutingAssembly();
-          Stream pauseStr = null;
-          Stream playStr = null;
-          pauseStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-pause.png");
-          playStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-start.png");
-          Bitmap pauseImg = new Bitmap(pauseStr);
-          Bitmap playImg = new Bitmap (playStr);  
-
+        {     
           if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
-                m_recordingToolBarPlayBtn.Image =  playImg;
+                m_recordingToolBarPlayBtn.Image =  m_PlayImg;
                 m_TransportBar.Pause();
             }
           else
             {
-                m_recordingToolBarPlayBtn.Image = pauseImg;          
+                m_recordingToolBarPlayBtn.Image = m_PauseImg;          
                 m_TransportBar.PlayOrResume();
             }
           //  m_StatusLabel.Text = "Playing";
