@@ -169,8 +169,7 @@ namespace Obi.UserControls
             // m_StatusLabel
             // 
             this.m_StatusLabel.Name = "m_StatusLabel";
-            this.m_StatusLabel.Size = new System.Drawing.Size(118, 17);
-            this.m_StatusLabel.Text = "toolStripStatusLabel1";
+            this.m_StatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // RecordingToolBarForm
             // 
