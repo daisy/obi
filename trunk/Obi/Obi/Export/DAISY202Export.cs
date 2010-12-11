@@ -30,7 +30,7 @@ namespace Obi.Export
         private int m_ExportedSectionCount;
         private Time m_SmilElapseTime;
         private Dictionary<string, string> m_SmilFile_TitleMap;
-
+        private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
 
         public DAISY202Export ( Presentation presentation, string exportDirectory )
             {
@@ -38,6 +38,7 @@ namespace Obi.Export
             m_ExportDirectory = exportDirectory;
             m_MetadataMap = CreateDAISY3To2MetadataMap ();
             m_SmilFile_TitleMap = new Dictionary<string, string> ();
+            m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             }
 
 
@@ -50,8 +51,13 @@ namespace Obi.Export
 
                         if (n is SectionNode && ((SectionNode)n).Used)
                             {
-
                             sectionsList.Add ( (SectionNode)n );
+                            m_NextSectionPageAdjustmentDictionary.Add((SectionNode)n , null );
+                            }
+                            else if ( n is EmptyNode && ((EmptyNode)n).Used 
+                            && ((EmptyNode)n).Index == 0 && ((EmptyNode)n).Role_ == EmptyNode.Role.Page )
+                        {   
+                                if ( sectionsList.Count > 2) m_NextSectionPageAdjustmentDictionary[sectionsList[sectionsList.Count-2]] = (EmptyNode)n ;
                             }
                         return true;
                         },
@@ -172,15 +178,30 @@ namespace Obi.Export
 
             smilBodyNode.AppendChild ( mainSeq );
             bool isFirstPhrase = true;
+            EmptyNode adjustedPageNode = m_NextSectionPageAdjustmentDictionary[section];
             bool isPreviousNodeEmptyPage = false;
 
-            for (int i = 0; i < section.PhraseChildCount; i++)
+            for (int i = 0; i < section.PhraseChildCount || adjustedPageNode != null; i++)
                 {
-                if ((section.PhraseChild ( i ) is PhraseNode && section.PhraseChild ( i ).Used)
-                    || (section.PhraseChild(i) is EmptyNode && section.PhraseChild(i).Role_ == EmptyNode.Role.Page ))
+                    EmptyNode phrase = null;
+                    if (i < section.PhraseChildCount )
                     {
-                    EmptyNode phrase = section.PhraseChild ( i );
+                        phrase = section.PhraseChild(i);
+                    }
+                    else
+                    {   
+                        phrase = adjustedPageNode;
+                        adjustedPageNode = null;
+                    }
+                    if (phrase.Role_ == EmptyNode.Role.Page && phrase.Index == 0 && i < section.PhraseChildCount) 
+                    {   
+                        continue;
+            }
 
+                if ((phrase is PhraseNode && phrase.Used)
+                    || ( phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page ))
+                    {
+                    
                     string pageID = null;
                     XmlNode pageNode = null;
                     if (!isFirstPhrase && phrase.Role_ == EmptyNode.Role.Page)
