@@ -172,13 +172,14 @@ namespace Obi.Export
 
             smilBodyNode.AppendChild ( mainSeq );
             bool isFirstPhrase = true;
+            bool isPreviousNodeEmptyPage = false;
 
             for (int i = 0; i < section.PhraseChildCount; i++)
                 {
-                if (section.PhraseChild ( i ) is PhraseNode
-                    && section.PhraseChild ( i ).Used)
+                if ((section.PhraseChild ( i ) is PhraseNode && section.PhraseChild ( i ).Used)
+                    || (section.PhraseChild(i) is EmptyNode && section.PhraseChild(i).Role_ == EmptyNode.Role.Page ))
                     {
-                    PhraseNode phrase = (PhraseNode)section.PhraseChild ( i );
+                    EmptyNode phrase = section.PhraseChild ( i );
 
                     string pageID = null;
                     XmlNode pageNode = null;
@@ -218,7 +219,8 @@ namespace Obi.Export
 
                     // if phrase node is first phrase of section or is page node then create par and text
                     if (isFirstPhrase
-                        || phrase.Role_ == EmptyNode.Role.Page)
+                        || phrase.Role_ == EmptyNode.Role.Page
+                        || isPreviousNodeEmptyPage)
                         {
                         // create par 
                         XmlNode parNode = smilDocument.CreateElement ( null, "par", smilBodyNode.NamespaceURI );
@@ -231,7 +233,7 @@ namespace Obi.Export
                         string txtID = "txt" + IncrementID;
                         CreateAppendXmlAttribute ( smilDocument, txtNode, "id", txtID );
 
-                        if (isFirstPhrase)
+                        if (isFirstPhrase || isPreviousNodeEmptyPage)
                             {
                             CreateAppendXmlAttribute ( smilDocument, txtNode, "src", nccFileName + "#" + headingID );
                             }
@@ -241,15 +243,17 @@ namespace Obi.Export
                             }
 
                         // create seq which will hol audio children 
-                        seqNode_AudioParent = smilDocument.CreateElement ( null, "seq", smilBodyNode.NamespaceURI );
-                        parNode.AppendChild ( seqNode_AudioParent );
-                        // hold seq for heading phrase in a variable.
-                        if (isFirstPhrase)
+                            if (phrase is PhraseNode)
                             {
-                            seqNode_HeadingAudioParent = seqNode_AudioParent;
+                                seqNode_AudioParent = smilDocument.CreateElement(null, "seq", smilBodyNode.NamespaceURI);
+                                parNode.AppendChild(seqNode_AudioParent);
+                                // hold seq for heading phrase in a variable.
+                                if (isFirstPhrase)
+                                {
+                                    seqNode_HeadingAudioParent = seqNode_AudioParent;
+                                }
+                                CreateAppendXmlAttribute(smilDocument, seqNode_AudioParent, "id", "sq" + IncrementID);
                             }
-                        CreateAppendXmlAttribute ( smilDocument, seqNode_AudioParent, "id", "sq" + IncrementID );
-
 
                         // add anchor and href to ncc elements
                         XmlNode anchorNode = nccDocument.CreateElement ( null, "a", bodyNode.NamespaceURI );
@@ -274,22 +278,22 @@ namespace Obi.Export
                         }
 
                     // create audio elements for external audio medias
-                    //(ManagedAudioMedia)getProperty<ChannelsProperty>().getMedia(Presentation.AudioChannel)
-                    //getProperty<ChannelsProperty>().getMedia(Presentation.PUBLISH_AUDIO_CHANNEL_NAME)
-                    Channel publishChannel = m_Presentation.GetSingleChannelByName ( Presentation.PUBLISH_AUDIO_CHANNEL_NAME );
-                    ExternalAudioMedia externalMedia = (ExternalAudioMedia)phrase.getProperty<ChannelsProperty> ().getMedia ( publishChannel );
+                        if (phrase is PhraseNode)
+                        {
+                            Channel publishChannel = m_Presentation.GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+                            ExternalAudioMedia externalMedia = (ExternalAudioMedia)phrase.getProperty<ChannelsProperty>().getMedia(publishChannel);
 
-                    XmlNode audioNode = smilDocument.CreateElement ( null, "audio", smilBodyNode.NamespaceURI );
-                    seqNode_AudioParent.AppendChild ( audioNode );
-                    string relativeSRC = Path.GetFileName ( externalMedia.getSrc () );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "src", relativeSRC );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-begin",
-                        GetNPTSmiltime ( externalMedia.getClipBegin ().getTime () ) );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "clip-end",
-                        GetNPTSmiltime ( externalMedia.getClipEnd ().getTime () ) );
-                    CreateAppendXmlAttribute ( smilDocument, audioNode, "id", "aud" + IncrementID );
-                    sectionDuration = sectionDuration.addTimeDelta ( externalMedia.getDuration () );
-
+                            XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
+                            seqNode_AudioParent.AppendChild(audioNode);
+                            string relativeSRC = Path.GetFileName(externalMedia.getSrc());
+                            CreateAppendXmlAttribute(smilDocument, audioNode, "src", relativeSRC);
+                            CreateAppendXmlAttribute(smilDocument, audioNode, "clip-begin",
+                                GetNPTSmiltime(externalMedia.getClipBegin().getTime()));
+                            CreateAppendXmlAttribute(smilDocument, audioNode, "clip-end",
+                                GetNPTSmiltime(externalMedia.getClipEnd().getTime()));
+                            CreateAppendXmlAttribute(smilDocument, audioNode, "id", "aud" + IncrementID);
+                            sectionDuration = sectionDuration.addTimeDelta(externalMedia.getDuration());
+                        
                     // copy audio element if phrase has  heading role and is not first phrase
                     if (phrase.Role_ == EmptyNode.Role.Heading && !isFirstPhrase)
                         {
@@ -298,7 +302,17 @@ namespace Obi.Export
                         seqNode_HeadingAudioParent.PrependChild ( audioNodeCopy );
                         sectionDuration = sectionDuration.addTimeDelta ( externalMedia.getDuration () );
                         }
+                }//Check for audio containing phrase ends
                     isFirstPhrase = false;
+
+                    if (phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page)
+                    {
+                        isPreviousNodeEmptyPage = true;
+                    }
+                    else
+                    {
+                        isPreviousNodeEmptyPage = false;
+                    }
                     }// if for phrasenode ends
                 } // for loop ends
 
