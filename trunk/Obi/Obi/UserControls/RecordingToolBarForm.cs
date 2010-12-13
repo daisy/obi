@@ -13,9 +13,9 @@ namespace Obi.UserControls
     public partial class RecordingToolBarForm : Form
     {
         ProjectView.TransportBar m_TransportBar;
-        Image m_PauseImg;
-        Image m_PlayImg;
-      
+        private Image m_PauseImg;
+        private Image m_PlayImg;
+        
         public RecordingToolBarForm()
         {
             InitializeComponent();
@@ -34,59 +34,80 @@ namespace Obi.UserControls
         }
 
         private void UpdateButtons()
-        {   
-            m_recordingToolBarPlayBtn.Enabled = !m_TransportBar.IsRecorderActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped );
-            m_recordingToolBarRecordingBtn.Enabled = !m_TransportBar.IsPlayerActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
+        {
+            if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing))
+                m_recordingToolBarRecordingBtn.Enabled = false;
+            
+            else if (!m_TransportBar.IsPlayerActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused))
+                m_recordingToolBarRecordingBtn.Enabled = true;
+                            
+            m_recordingToolBarPrePhraseBtn.Enabled = !m_TransportBar.IsRecorderActive;
+            m_recordingToolBarStopBtn.Enabled = !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);          
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
-        {     
+        {           
           if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
-                m_recordingToolBarPlayBtn.Image =  m_PlayImg;
+                m_recordingToolBarPlayBtn.Image =  m_PlayImg;               
                 m_TransportBar.Pause();
             }
-          else
+          else if(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording)
             {
-                m_recordingToolBarPlayBtn.Image = m_PauseImg;          
-                m_TransportBar.PlayOrResume();
-            }
-          //  m_StatusLabel.Text = "Playing";
-        //    UpdateButtons();        
+                m_recordingToolBarPlayBtn.Image = m_PauseImg;
+                m_TransportBar.Pause();
+                m_recordingToolBarPlayBtn.Image = m_PlayImg;
+                //m_StatusLabel.Text = " Recording Paused" +m_TransportBar.;                
+             }
+          else
+              {
+              m_recordingToolBarPlayBtn.Image = m_PauseImg;
+              m_TransportBar.PlayOrResume();
+              }
+            m_StatusLabel.Text = "Playing";
+            UpdateButtons(); 
+                   
          }
 
         private void m_recordingToolBarStopBtn_Click(object sender, EventArgs e)
         {
-            
             m_TransportBar.Stop();
-         //   m_StatusLabel.Text = "Stopped";
-         //   UpdateButtons();
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
+                m_recordingToolBarPlayBtn.Image = m_PlayImg;
+            m_StatusLabel.Text = "Stopped";
+            UpdateButtons();            
         }
 
         private void m_recordingToolBarRecordingBtn_Click(object sender, EventArgs e)
         {
             m_TransportBar.Record();
-         //   UpdateButtons();
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording)
+               m_recordingToolBarPlayBtn.Image = m_PauseImg;  
+            else
+              m_recordingToolBarPlayBtn.Image = m_PlayImg; 
+            UpdateButtons();
+           
         }
 
         private void m_recordingToolBarPrePhraseBtn_Click(object sender, EventArgs e)
         {
             m_TransportBar.PrevPhrase();
+            UpdateButtons();
         }
 
         private void m_recordingGoToNextPhraseBtn_Click(object sender, EventArgs e)
         {
-            m_TransportBar.NextPhrase();
+            m_TransportBar.NextPhrase();            
         }
 
         private void m_recordingToolBarNextPageBtn_Click(object sender, EventArgs e)
         {
-            m_TransportBar.NextPage();
+            m_TransportBar.NextPage();           
         }
 
         private void m_recordingToolBarNextSectionBtn_Click(object sender, EventArgs e)
         {
-            m_TransportBar.NextSection();
+            m_TransportBar.NextSection();           
         }
     }
 }
