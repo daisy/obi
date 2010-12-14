@@ -193,7 +193,7 @@ namespace Obi.Export
                         phrase = adjustedPageNode;
                         adjustedPageNode = null;
                     }
-                    if (phrase.Role_ == EmptyNode.Role.Page && phrase.Index == 0 && i < section.PhraseChildCount) 
+                    if (phrase.Role_ == EmptyNode.Role.Page && isFirstPhrase && i < section.PhraseChildCount) 
                     {   
                         continue;
             }
