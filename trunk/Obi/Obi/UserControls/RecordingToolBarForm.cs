@@ -45,7 +45,6 @@ namespace Obi.UserControls
 
         public void State_Changed(object sender, EventArgs e)
         {
-            System.Media.SystemSounds.Asterisk.Play();
             m_TimeCounter = 0;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) 
                 timer1.Start();
@@ -185,11 +184,12 @@ namespace Obi.UserControls
         {
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording && !m_IsPage)
             {
-                string recordingPhrase = null;               
-                if(m_TransportBar.RecordingPhrase != null)
+                string recordingPhrase = null;
+                if (m_TransportBar.RecordingPhrase != null)
+                {
                     recordingPhrase = m_TransportBar.RecordingPhrase.ToString();
-                if (recordingPhrase != null)
                     m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(m_TimeCounter * 500));
+                }
                 else
                     m_StatusLabel.Text = "";
                 m_TimeCounter++;
