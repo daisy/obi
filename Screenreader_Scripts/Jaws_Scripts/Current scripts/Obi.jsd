@@ -1,3 +1,5 @@
+:script HotKeyHelp
+
 :function SayStripString
 
 :script ToggleContentView

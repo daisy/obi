@@ -1,14 +1,26 @@
 ; JAWS scripts for Obi 1.2
-; Scripts version: 1.2.1 , released on November 29, 2010
+; Scripts version: 1.2.2 , released on December 18, 2010
 ; written for JAWS 9.0 and above
 ; Written by: Avneesh Singh
 ; Copywrite (c)    2009 The DAISY Consortium
 
-
 globals  String g_PrevControlClass
 globals  Int g_SilentOnPhrases
 Globals Int g_ExistingScreenEcho
+Globals Int g_IsFirstAppStart
 
+Void Function AutoStartEvent ()
+if ( g_IsFirstAppStart == 0 ) Then
+SayString (GetWindowName (GetAppMainWindow (GetFocus ())))
+SayString ("Please use " + GetScriptKeyName ("ToggleEchoOnPhrases") + " to toggle phrase announcement by JAWS speech") ;
+let g_IsFirstAppStart = 1
+EndIf
+EndFunction
+
+Script HotKeyHelp ()
+SayString ("Scripts follow all Obi keyboard shortcuts, the only additional shortcut is" + GetScriptKeyName ("ToggleEchoOnPhrases")
+ + " for toggling phrase announcement by JAWS speech") 
+EndScript
 
 Void Function FocusChangedEvent (handle FocusWindow, handle PrevWindow)
 var String ContentViewBlocksClass 
