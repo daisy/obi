@@ -1,4 +1,0 @@
-This is an skeleton program to develop principle of detecting phrases from prerecorded wav files.
-It presently handles first 190000 bytes of 8-bit nono 22.5 khz.
-The performance is satisfactory from our point of view, the program will be used as base for handling actual wav files.of 16bit stereo for atleast44.5 khz.
-Currently the list box displayed the location of phrases  in bytes which will be expanded to return time in  least count of .001 s.
