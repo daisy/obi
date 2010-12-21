@@ -74,6 +74,7 @@ namespace Obi
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_RecordingToolBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.mView_ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -420,6 +421,7 @@ namespace Obi
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
+            this.mView_RecordingToolBarMenuItem,
             this.toolStripSeparator15,
             this.mView_ZoomInMenuItem,
             this.mView_ZoomOutMenuItem,
@@ -518,6 +520,12 @@ namespace Obi
             resources.ApplyResources(this.mShowSourceToolStripMenuItem, "mShowSourceToolStripMenuItem");
             this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
+            // 
+            // mView_RecordingToolBarMenuItem
+            // 
+            this.mView_RecordingToolBarMenuItem.Name = "mView_RecordingToolBarMenuItem";
+            resources.ApplyResources(this.mView_RecordingToolBarMenuItem, "mView_RecordingToolBarMenuItem");
+            this.mView_RecordingToolBarMenuItem.Click += new System.EventHandler(this.mView_RecordingToolBarMenuItem_Click);
             // 
             // toolStripSeparator15
             // 
@@ -1418,6 +1426,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_ApplyPhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionInProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_RecordingToolBarMenuItem;
     }
 }
 
