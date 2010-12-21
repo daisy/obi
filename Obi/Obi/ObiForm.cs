@@ -19,6 +19,7 @@ namespace Obi
 
         private float mBaseFontSize;             // base font size
         private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
+        private Obi.UserControls.RecordingToolBarForm mRecordingToolBarForm;
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;// keyboard shortcuts used by application
@@ -1822,6 +1823,21 @@ namespace Obi
                 }
             }
 
+        private void ShowRecordingToolBar()
+        {
+            if (mRecordingToolBarForm == null)
+            {
+                mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView.TransportBar);
+                mRecordingToolBarForm.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
+                    {
+                        mRecordingToolBarForm = null;
+                        mView_RecordingToolBarMenuItem.Checked = false;
+                    });
+                mRecordingToolBarForm.Show();
+                mView_RecordingToolBarMenuItem.Checked = true;
+            }
+        }
+
         // Show a new peak meter form or give focus back to the previously opned one
         private void ShowPeakMeter ()
             {
@@ -2666,6 +2682,11 @@ namespace Obi
         private void mApplyPhraseDetectionInProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ApplyPhraseDetectionInWholeProject();
+        }
+
+        private void mView_RecordingToolBarMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRecordingToolBar();
         }
         }
     }
