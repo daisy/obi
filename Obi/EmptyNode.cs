@@ -345,10 +345,9 @@ namespace Obi
         }
 
         protected override void xukInAttributes(System.Xml.XmlReader source)
-        {   
-            //Presentation.UseXukFormat = false;
-            if (!Presentation.UseXukFormat)
-            {
+        {
+            if (source.AttributeCount > 1 ||  ( source.AttributeCount == 1 && source.GetAttribute("xmlns") == null))
+            {   
                 string role = source.GetAttribute(XUK_ATTR_NAME_ROLE);
                 if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
                                           role == Role.Heading.ToString() ? Role.Heading :
