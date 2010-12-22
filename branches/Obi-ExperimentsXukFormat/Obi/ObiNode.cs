@@ -5,6 +5,8 @@ using urakawa.command;
 using urakawa.core;
 using urakawa.exception;
 using urakawa.property.channel;
+using urakawa.property.xml;
+using urakawa.progress;
 
 namespace Obi
 {
@@ -184,9 +186,27 @@ namespace Obi
         }
 
         // XUK stuff
-        
         private static readonly string USED_ATTR_NAME = "used";  // name of the used attribute
 
+        protected override void xukInChild(System.Xml.XmlReader source, ProgressHandler handler)
+        {
+            base.xukInChild(source, handler);
+            XukInNodeProperties();
+        }
+
+
+        protected virtual void XukInNodeProperties()
+        {
+            XmlProperty xmlProp = this.getProperty<XmlProperty>();
+            if (xmlProp != null)
+            {
+                XmlAttribute attrUsed = xmlProp.getAttribute(USED_ATTR_NAME, xmlProp.getNamespaceUri());
+                string used =attrUsed != null?  attrUsed.getValue(): null;
+                if (used != null && used == "False") mUsed = false;
+            }
+        }
+
+        
         /// <summary>
         /// Read back the used attribute.
         /// </summary>
@@ -197,13 +217,55 @@ namespace Obi
             base.xukInAttributes(reader);
         }
 
+        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
+        {
+            if (Presentation.UseXukFormat) UpdateXmlProperties();
+            base.xukOutChildren(destination, baseUri, handler);
+        }
+
+
+        protected virtual void UpdateXmlProperties()
+        {
+            XmlProperty xmlProp = GetOrCreateXmlProperty();
+            UpdateAttributesInXmlProperty(xmlProp, USED_ATTR_NAME, this.Used.ToString () );
+        }
+
+        protected XmlProperty GetOrCreateXmlProperty()
+        {
+            XmlProperty xmlProp = this.getProperty<urakawa.property.xml.XmlProperty>();
+            if (xmlProp == null)
+            {
+                xmlProp = Presentation.getPropertyFactory().createXmlProperty();
+                this.addProperty(xmlProp);
+                xmlProp.setQName(this.getXukLocalName(), this.getXukNamespaceUri());
+            }
+            return xmlProp;
+        }
+
+        protected void UpdateAttributesInXmlProperty(XmlProperty xmlProp, string attributeLocalName, string attributeValue)
+        {
+            XmlAttribute attr = xmlProp.getAttribute(attributeLocalName, xmlProp.getNamespaceUri());
+            if (attr == null)
+            {
+                xmlProp.setAttribute(attributeLocalName, xmlProp.getNamespaceUri(), attributeValue);
+            }
+            else
+            {
+                attr.setValue(attributeValue);
+            }
+        }
+
         /// <summary>
         /// Write the used attribute if its value is false (true being the default.)
         /// </summary>
         protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
-            base.xukOutAttributes(destination, baseUri);
+            if (!Presentation.UseXukFormat)
+            {
+                if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
+            }
+                base.xukOutAttributes(destination, baseUri);
+            
         }
 
         /// <summary>
@@ -377,7 +439,10 @@ namespace Obi
         /// </summary>
         protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-             destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+            if (!Presentation.UseXukFormat)
+            {
+                destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+            }
             base.xukOutAttributes(destination, baseUri);
         }
 
