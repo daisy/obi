@@ -425,7 +425,7 @@ namespace Obi
                 if (value != null) mPrimaryExportDirectory = value;
             }
         }
-
+        /*
         private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace Obi
             }
             base.xukOutAttributes(destination, baseUri);
         }
-
+        */
 
     }
 }
