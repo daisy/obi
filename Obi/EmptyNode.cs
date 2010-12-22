@@ -4,7 +4,7 @@ using System;
 using urakawa.command;
 using urakawa.core;
 using urakawa.property.xml;
-using urakawa.progress;
+
 
 namespace Obi
 {
@@ -266,14 +266,10 @@ namespace Obi
             return XUK_ELEMENT_NAME; 
         }
 
-        protected override void xukInChild(System.Xml.XmlReader source, ProgressHandler handler)
+        
+        protected override void XukInNodeProperties ()
         {
-            base.xukInChild(source, handler);
-            AssignNodeProperties();
-        }
-
-        private void AssignNodeProperties ()
-        {
+            base.XukInNodeProperties();
             if (Role_ != Role.Plain) return;
             try
             {
@@ -409,24 +405,12 @@ namespace Obi
             base.xukInAttributes(source);
         }
 
-        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
+        
+        protected override void UpdateXmlProperties()
         {
-            if ( Presentation.UseXukFormat)  UpdateXmlProperties();
-            base.xukOutChildren(destination, baseUri, handler);
-        }
-
-        private void UpdateXmlProperties()
-        {
-            XmlProperty xmlProp = this.getProperty<urakawa.property.xml.XmlProperty>();
-            if (xmlProp == null)
-            {
-                xmlProp = Presentation.getPropertyFactory().createXmlProperty();
-                this.addProperty(xmlProp);
-                xmlProp.setQName(this.getXukLocalName(), this.getXukNamespaceUri());
-            }
-
+            XmlProperty xmlProp = GetOrCreateXmlProperty();
             UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_ROLE, this.Role_.ToString());
-            
+
             if (this.Role_ == Role.Custom)
             {
                 UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_CUSTOM, mCustomRole);
@@ -438,25 +422,12 @@ namespace Obi
                 UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
                 UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
             }
-                
-                  
+
             UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_TODO, TODO.ToString());
-            
+            base.UpdateXmlProperties();
         }
 
-        private void UpdateAttributesInXmlProperty(XmlProperty xmlProp, string attributeLocalName, string attributeValue)
-        {
-            XmlAttribute attr = xmlProp.getAttribute( attributeLocalName, xmlProp.getNamespaceUri());
-            if (attr == null)
-            {
-                xmlProp.setAttribute(attributeLocalName , xmlProp.getNamespaceUri(),  attributeValue);
-            }
-            else
-            {
-                attr.setValue(attributeValue);
-            }
-        }
-
+        
         protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
             //Presentation.UseXukFormat = true;
