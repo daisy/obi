@@ -212,8 +212,11 @@ namespace Obi
         /// </summary>
         protected override void xukInAttributes(System.Xml.XmlReader reader)
         {
-            string used = reader.GetAttribute(USED_ATTR_NAME);
-            if (used != null && used == "False") mUsed = false;
+            if (reader.AttributeCount > 1 || (reader.AttributeCount == 1 && reader.GetAttribute("xmlns") == null))
+            {
+                string used = reader.GetAttribute(USED_ATTR_NAME);
+                if (used != null && used == "False") mUsed = false;
+            }
             base.xukInAttributes(reader);
         }
 
@@ -430,7 +433,10 @@ namespace Obi
         /// </summary>
         protected override void xukInAttributes(System.Xml.XmlReader reader)
         {
-            mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            if (this.getProperty<XmlProperty>() == null)
+            {
+                mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            }
                         base.xukInAttributes(reader);
         }
 
