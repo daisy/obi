@@ -1834,6 +1834,7 @@ namespace Obi
                         mView_RecordingToolBarMenuItem.Checked = false;
                     });
                 mRecordingToolBarForm.Show();
+                this.WindowState = FormWindowState.Minimized;
                 mView_RecordingToolBarMenuItem.Checked = true;
             }
         }
