@@ -954,10 +954,11 @@ namespace Obi.ProjectView
             if (GetSelectedPhraseSection != null)
             {
                 List<SectionNode> listOfSections = mPresentation.RootNode.GetListOfAllSections(); //use this list in merge section dialog
-
+                int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
+                if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
             }
         }
-        
+
 
 
         /// <summary>
