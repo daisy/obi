@@ -949,8 +949,16 @@ namespace Obi.ProjectView
             return command;
             }
 
+        public void MergeMultipleSections()
+        {
+            if (GetSelectedPhraseSection != null)
+            {
+                List<SectionNode> listOfSections = mPresentation.RootNode.GetListOfAllSections(); //use this list in merge section dialog
 
+            }
+        }
         
+
 
         /// <summary>
         /// Show or hide the Metadata view.
