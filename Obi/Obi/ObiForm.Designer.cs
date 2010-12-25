@@ -96,6 +96,8 @@ namespace Obi
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeMultipleSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -659,8 +661,23 @@ namespace Obi
             // mMergeSectionWithNextToolStripMenuItem
             // 
             resources.ApplyResources(this.mMergeSectionWithNextToolStripMenuItem, "mMergeSectionWithNextToolStripMenuItem");
+            this.mMergeSectionWithNextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mergeSectionWithNextToolStripMenuItem,
+            this.mergeMultipleSectionsToolStripMenuItem});
             this.mMergeSectionWithNextToolStripMenuItem.Name = "mMergeSectionWithNextToolStripMenuItem";
             this.mMergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeSectionWithNextToolStripMenuItem_Click);
+            // 
+            // mergeSectionWithNextToolStripMenuItem
+            // 
+            this.mergeSectionWithNextToolStripMenuItem.Name = "mergeSectionWithNextToolStripMenuItem";
+            resources.ApplyResources(this.mergeSectionWithNextToolStripMenuItem, "mergeSectionWithNextToolStripMenuItem");
+            this.mergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.mergeSectionWithNextToolStripMenuItem_Click);
+            // 
+            // mergeMultipleSectionsToolStripMenuItem
+            // 
+            this.mergeMultipleSectionsToolStripMenuItem.Name = "mergeMultipleSectionsToolStripMenuItem";
+            resources.ApplyResources(this.mergeMultipleSectionsToolStripMenuItem, "mergeMultipleSectionsToolStripMenuItem");
+            this.mergeMultipleSectionsToolStripMenuItem.Click += new System.EventHandler(this.mergeMultipleSectionsToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1427,6 +1444,8 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionInProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_RecordingToolBarMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeSectionWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeMultipleSectionsToolStripMenuItem;
     }
 }
 
