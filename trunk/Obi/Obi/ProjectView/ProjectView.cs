@@ -954,8 +954,54 @@ namespace Obi.ProjectView
             if (GetSelectedPhraseSection != null)
             {
                 List<SectionNode> listOfSections = mPresentation.RootNode.GetListOfAllSections(); //use this list in merge section dialog
+                MessageBox.Show(listOfSections.Count.ToString()); 
                 int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
                 if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
+                //foreach (SectionNode s in listOfSections) MessageBox.Show(s.Label + " " + s.Level.ToString ());
+                Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex);
+                selectionDialog.Show();
+
+                List<SectionNode> selectedSections = new List<SectionNode>();
+                if (selectedSections.Count <= 1 ) return;
+                urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
+
+                SectionNode firstSection = selectedSections[0];
+                selectedSections.Remove (firstSection ) ;
+                //first arrange the children whose parents will be deleted
+                int lastSelectedSectionIndex = listOfSections.IndexOf(selectedSections[selectedSections.Count - 1]);
+
+                if (lastSelectedSectionIndex < listOfSections.Count - 1)
+                {
+                    for (int i = lastSelectedSectionIndex+1; i < listOfSections.Count; i++)
+                    {
+                        if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
+                        {
+                            mergeSectionCommand.append(new Commands.Node.Delete(this, listOfSections[i]));
+                            mergeSectionCommand.append( new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false ) );
+                        }
+                    }
+                }
+
+                List<EmptyNode> phraseList = new List<EmptyNode>();
+
+                for (int i = 0; i < selectedSections.Count; i++)
+                {
+                    for (int j = 0; j < selectedSections[i].PhraseChildCount; j++)
+                    {
+                        phraseList.Add(selectedSections[i].PhraseChild(j));
+                    }
+                }
+                    for (int i = selectedSections.Count-1; i >=0 ; i--)
+                    {
+                        if (!selectedSections.Contains( selectedSections[i].ParentAs<SectionNode> ()))  mergeSectionCommand.append(new Commands.Node.Delete(this, selectedSections[i]));
+                    }
+
+                    for ( int i = 0; i < phraseList.Count; i++ )
+                    {
+                        Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
+                        mergeSectionCommand.append(add);
+                    }
+
             }
         }
 
