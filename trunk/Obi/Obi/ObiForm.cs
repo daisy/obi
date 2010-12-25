@@ -999,7 +999,9 @@ namespace Obi
         private void mDecreaseSectionLevelToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.DecreaseSelectedSectionLevel (); }
         private void mIncreaseSectionLevelToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.IncreaseSelectedSectionLevel (); }
         private void mSplitSectionToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.SplitStrip (); }
-        private void mMergeSectionWithNextToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.MergeStrips (); }
+        private void mMergeSectionWithNextToolStripMenuItem_Click ( object sender, EventArgs e ) 
+        {// mProjectView.MergeStrips ();
+        }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged ( object sender, EventArgs e )
             {
             mProjectView.SetSelectedNodeUsedStatus ( mSectionIsUsedToolStripMenuItem.Checked );
@@ -2688,6 +2690,16 @@ namespace Obi
         private void mView_RecordingToolBarMenuItem_Click(object sender, EventArgs e)
         {
             ShowRecordingToolBar();
+        }
+
+        private void mergeMultipleSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeMultipleSections();
+        }
+
+        private void mergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeStrips();
         }
         }
     }

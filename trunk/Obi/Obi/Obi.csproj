@@ -233,6 +233,12 @@
     <Compile Include="Dialogs\ExportDirectory.Designer.cs">
       <DependentUpon>ExportDirectory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SelectMergeSectionRange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectMergeSectionRange.Designer.cs">
+      <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SelectPhraseDetectionSections.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -817,6 +823,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="good.wav" />
+    <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectPhraseDetectionSections.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectPhraseDetectionSections.cs</DependentUpon>
