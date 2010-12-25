@@ -11,7 +11,7 @@ namespace Obi.Dialogs
     public partial class SelectMergeSectionRange : Form
     {
         List<SectionNode> m_SectionList = null;
-        List<SectionNode> m_SelectedSectionList = null;
+        List<SectionNode> m_SelectedSectionList = new List<SectionNode>();
         private int m_selectedIndex;
 
         public SelectMergeSectionRange()
@@ -28,10 +28,11 @@ namespace Obi.Dialogs
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            for (int i = m_lb_listofSectionsToMerge.SelectedIndex; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
+            if (m_SectionList[m_selectedIndex].PhraseChildCount < 7000 && m_lb_listofSectionsToMerge.SelectedIndex != -1)
             {
-                if(m_SectionList[m_selectedIndex].PhraseChildCount < 7000)
-                   m_SelectedSectionList.Add((SectionNode)m_lb_listofSectionsToMerge.Items[i]);             
+                for (int i = m_lb_listofSectionsToMerge.SelectedIndex; i <= m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
+                    m_SelectedSectionList.Add((SectionNode)m_lb_listofSectionsToMerge.Items[i]);
+                   
             }
             DialogResult = DialogResult.OK;
             Close();
@@ -45,9 +46,10 @@ namespace Obi.Dialogs
 
         private void populateListboxForSectionsToMerge()
         {
+            SectionNode firstSection = m_SectionList[0];
             for (int i = 0; i <= (m_SectionList.Count - 1); i++)
             {
-                if (m_SectionList[i].Level >= m_SectionList[m_selectedIndex].Level)
+                if (m_SectionList[i].Level >= firstSection.Level)
                     m_lb_listofSectionsToMerge.Items.Add(m_SectionList[i]);
                 else
                     return;
