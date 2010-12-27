@@ -1865,16 +1865,29 @@ namespace Obi.ProjectView
 
         public bool FastPlayNormaliseWithLapseBack()
         {
+            double elapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
             if (IsPlayerActive)
             {
-                mCurrentPlaylist.FastPlayNormaliseWithLapseBack(1500);
+                mCurrentPlaylist.FastPlayNormaliseWithLapseBack(elapseBackInterval);
                 mFastPlayRateCombobox.SelectedIndex = 0;
                 UpdateTimeDisplay();
                 if (CurrentPlaylist != null) mView.UpdateCursorPosition(mCurrentPlaylist.CurrentTimeInAsset);
                 return true;
             }
-            else if (mView.Selection != null && mView.Selection.Node is PhraseNode)
+            else if (CurrentState == State.Stopped &&  mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
+                if (mView.Selection is AudioSelection)
+                {
+                    double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                    time = time - elapseBackInterval >= 0 ? time - elapseBackInterval : 0;
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                        new AudioRange(time));
+                }
+                else
+                {
+                    mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                        new AudioRange(((PhraseNode)mView.Selection.EmptyNodeForSelection).Duration - elapseBackInterval));
+                }
                 return true;
             }
             return false;
