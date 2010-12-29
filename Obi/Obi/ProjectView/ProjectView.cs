@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using urakawa.command;
+using urakawa.publish;
 
 namespace Obi.ProjectView
     {
@@ -1900,6 +1901,7 @@ namespace Obi.ProjectView
             }
 
         public bool CanImportPhrases { get { return mContentView.Selection != null && !TransportBar.IsRecorderActive; } }
+        public bool CanExportSelectedNodeAudio { get { return Selection != null && (Selection.Node is PhraseNode || (Selection.Node is SectionNode && !(Selection is StripIndexSelection))) && !TransportBar.IsRecorderActive; } }
 
         /// <summary>
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
@@ -3220,6 +3222,56 @@ namespace Obi.ProjectView
             {
             mContentView.DisableScrolling ();
             }
+
+        public void ExportAudioOfSelectedNode(ObiNode nodeSelected, string audioFileExportDirectory)
+        {
+            if (!audioFileExportDirectory.EndsWith("\\")) audioFileExportDirectory = audioFileExportDirectory + "\\";
+            try
+            {
+                
+                if (!System.IO.Directory.Exists(audioFileExportDirectory)) System.IO.Directory.CreateDirectory(audioFileExportDirectory);
+                TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode; };
+                TreeNodeTestDelegate nodeIsOtherSection = delegate(urakawa.core.TreeNode node) { return (nodeSelected is SectionNode &&  node is SectionNode && node != nodeSelected ) ; };
+
+                mPresentation.RemoveAllPublishChannels(); // remove any publish channel, in case they exist
+                PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsOtherSection);
+                urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+                visitor.setDestinationChannel(publishChannel);
+                visitor.setSourceChannel(mPresentation.AudioChannel);
+                visitor.setDestinationDirectory(new Uri(audioFileExportDirectory));
+
+                Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
+                            delegate()
+                            {
+                nodeSelected.acceptDepthFirst(visitor);
+            });
+                progress.ShowDialog();
+                if (progress.Exception != null) throw progress.Exception;
+                        
+                // TODO check that there is an audio file to write
+                visitor.writeAndCloseCurrentAudioFile();
+
+                mPresentation.getChannelsManager().removeChannel(publishChannel);
+
+                //rename the audio file to relevant name
+                string audioFilePath = System.IO.Path.Combine(audioFileExportDirectory, "aud001.wav");
+                if (System.IO.File.Exists(audioFilePath))
+                {
+                    string newName = nodeSelected is SectionNode ? ((SectionNode)nodeSelected).ToString() + ".wav":
+                        nodeSelected is PhraseNode ? ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Label + ((EmptyNode)nodeSelected).ParentAs<SectionNode>().Position + "-" + ((EmptyNode)nodeSelected).ToString() + ".wav":
+                        null;
+                    newName = Obi.Program.SafeName(newName);
+                        string newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, newName);
+                        if (System.IO.File.Exists(newAudioFilePath)) System.IO.File.Delete(newAudioFilePath);
+                        System.IO.File.Move(audioFilePath, newAudioFilePath);
+
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
 
         //@ShowSingleSection

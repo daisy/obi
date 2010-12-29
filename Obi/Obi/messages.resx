@@ -1779,4 +1779,7 @@ Error text: {1}</value>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
     <value>Error in loading configured keyboard shortcuts. Loading defaults.</value>
   </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>Exporting audio File...</value>
+  </data>
 </root>
