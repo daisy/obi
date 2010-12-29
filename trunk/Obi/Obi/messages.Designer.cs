@@ -169,6 +169,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting audio File....
+        /// </summary>
+        internal static string AudioFileExport_progress_dialog_title {
+            get {
+                return ResourceManager.GetString("AudioFileExport_progress_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg..
         /// </summary>
         internal static string AutoSave_Error {
