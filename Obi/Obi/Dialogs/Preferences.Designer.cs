@@ -48,14 +48,12 @@ namespace Obi.Dialogs
             this.label9 = new System.Windows.Forms.Label();
             this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mAudioTab = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.mNudgeDurationUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_cbOperation = new System.Windows.Forms.ComboBox();
+            this.mlbOperation = new System.Windows.Forms.Label();
             this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.mAudioCluesCheckBox = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.mPreviewDurationUpDown = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.mChannelsTextbox = new System.Windows.Forms.TextBox();
             this.mSampleRateTextbox = new System.Windows.Forms.TextBox();
@@ -87,8 +85,7 @@ namespace Obi.Dialogs
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mAudioTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).BeginInit();
             this.mUserProfileTab.SuspendLayout();
             this.mKeyboardShortcutTab.SuspendLayout();
             this.m_grpKeyboardShortcutList.SuspendLayout();
@@ -237,14 +234,12 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
-            this.mAudioTab.Controls.Add(this.label11);
-            this.mAudioTab.Controls.Add(this.label10);
-            this.mAudioTab.Controls.Add(this.mNudgeDurationUpDown);
+            this.mAudioTab.Controls.Add(this.m_OperationDurationUpDown);
+            this.mAudioTab.Controls.Add(this.m_cbOperation);
+            this.mAudioTab.Controls.Add(this.mlbOperation);
             this.mAudioTab.Controls.Add(this.mNoiseLevelComboBox);
             this.mAudioTab.Controls.Add(this.label8);
             this.mAudioTab.Controls.Add(this.mAudioCluesCheckBox);
-            this.mAudioTab.Controls.Add(this.label7);
-            this.mAudioTab.Controls.Add(this.mPreviewDurationUpDown);
             this.mAudioTab.Controls.Add(this.label3);
             this.mAudioTab.Controls.Add(this.mChannelsTextbox);
             this.mAudioTab.Controls.Add(this.mSampleRateTextbox);
@@ -260,35 +255,37 @@ namespace Obi.Dialogs
             this.mAudioTab.Name = "mAudioTab";
             this.mAudioTab.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // m_OperationDurationUpDown
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // mNudgeDurationUpDown
-            // 
-            resources.ApplyResources(this.mNudgeDurationUpDown, "mNudgeDurationUpDown");
-            this.mNudgeDurationUpDown.Increment = new decimal(new int[] {
+            this.m_OperationDurationUpDown.Increment = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            this.mNudgeDurationUpDown.Maximum = new decimal(new int[] {
-            1000,
+            resources.ApplyResources(this.m_OperationDurationUpDown, "m_OperationDurationUpDown");
+            this.m_OperationDurationUpDown.Maximum = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
-            this.mNudgeDurationUpDown.Name = "mNudgeDurationUpDown";
-            this.mNudgeDurationUpDown.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
+            this.m_OperationDurationUpDown.Name = "m_OperationDurationUpDown";
+            this.m_OperationDurationUpDown.ValueChanged += new System.EventHandler(this.m_OperationDurationUpDown_ValueChanged);
+            // 
+            // m_cbOperation
+            // 
+            this.m_cbOperation.FormattingEnabled = true;
+            this.m_cbOperation.Items.AddRange(new object[] {
+            resources.GetString("m_cbOperation.Items"),
+            resources.GetString("m_cbOperation.Items1"),
+            resources.GetString("m_cbOperation.Items2")});
+            resources.ApplyResources(this.m_cbOperation, "m_cbOperation");
+            this.m_cbOperation.Name = "m_cbOperation";
+            this.m_cbOperation.SelectedIndexChanged += new System.EventHandler(this.m_cbOperation_SelectedIndexChanged);
+            // 
+            // mlbOperation
+            // 
+            resources.ApplyResources(this.mlbOperation, "mlbOperation");
+            this.mlbOperation.Name = "mlbOperation";
             // 
             // mNoiseLevelComboBox
             // 
@@ -311,23 +308,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.mAudioCluesCheckBox, "mAudioCluesCheckBox");
             this.mAudioCluesCheckBox.Name = "mAudioCluesCheckBox";
             this.mAudioCluesCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // mPreviewDurationUpDown
-            // 
-            this.mPreviewDurationUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mPreviewDurationUpDown.DecimalPlaces = 1;
-            this.mPreviewDurationUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.mPreviewDurationUpDown, "mPreviewDurationUpDown");
-            this.mPreviewDurationUpDown.Name = "mPreviewDurationUpDown";
             // 
             // label3
             // 
@@ -539,8 +519,7 @@ namespace Obi.Dialogs
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mNudgeDurationUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mPreviewDurationUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).EndInit();
             this.mUserProfileTab.ResumeLayout(false);
             this.mUserProfileTab.PerformLayout();
             this.mKeyboardShortcutTab.ResumeLayout(false);
@@ -581,8 +560,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox mAudioCluesCheckBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown mPreviewDurationUpDown;
         private System.Windows.Forms.ComboBox mNoiseLevelComboBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -591,9 +568,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown MnumAutoSaveInterval;
         private System.Windows.Forms.CheckBox mChkAutoSaveOnRecordingEnd;
         private System.Windows.Forms.CheckBox m_ChkAutoSaveInterval;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown mNudgeDurationUpDown;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabPage mKeyboardShortcutTab;
         private System.Windows.Forms.ComboBox m_cbShortcutKeys;
         private System.Windows.Forms.ListView m_lvShortcutKeysList;
@@ -606,5 +580,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_RestoreDefaults;
         private System.Windows.Forms.GroupBox m_grpKeyboardShortcutList;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown m_OperationDurationUpDown;
+        private System.Windows.Forms.ComboBox m_cbOperation;
+        private System.Windows.Forms.Label mlbOperation;
     }
 }

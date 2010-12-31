@@ -21,8 +21,10 @@ namespace Obi.Dialogs
         private ProjectView.TransportBar mTransportBar;  // application transport bar
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;
         private bool m_IsKeyboardShortcutChanged = false;
-
-
+        private int m_Nudge = 200;
+        private int m_Preview = 1500;
+        private int m_Elapse = 2500;
+        
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -100,9 +102,13 @@ namespace Obi.Dialogs
             mChannelsCombo.Visible = mCanChangeAudioSettings;
             mChannelsTextbox.Text = Localizer.Message ( audioChannels == 1 ? "mono" : "stereo" );
             mChannelsTextbox.Visible = !mCanChangeAudioSettings;
-
-            mPreviewDurationUpDown.Value = (decimal)(mSettings.PreviewDuration / 1000.0);
-            mNudgeDurationUpDown.Value = (decimal)mSettings.NudgeTimeMs;
+            
+            if(m_cbOperation.SelectedIndex == 0)
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.NudgeTimeMs);
+            if(m_cbOperation.SelectedIndex == 1)
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.PreviewDuration);
+            if (m_cbOperation.SelectedIndex == 2)
+                m_OperationDurationUpDown.Value = (decimal)(mSettings.ElapseBackTimeInMilliseconds);
             mNoiseLevelComboBox.SelectedIndex =
                 mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.NoiseLevel == Audio.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
@@ -252,9 +258,10 @@ namespace Obi.Dialogs
             mSettings.AudioClues = mAudioCluesCheckBox.Checked;
             try
                 {
-                mSettings.PreviewDuration = (int)Math.Round ( 1000 * mPreviewDurationUpDown.Value );
-                mSettings.NudgeTimeMs = (int)mNudgeDurationUpDown.Value;
-                }
+                  mSettings.NudgeTimeMs = (int)m_Nudge;
+                  mSettings.PreviewDuration = (int)m_Preview;
+                  mSettings.ElapseBackTimeInMilliseconds = (int)m_Elapse;
+                 }
             catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
@@ -433,6 +440,33 @@ namespace Obi.Dialogs
             LoadListviewAccordingToComboboxSelection();
         }
 
+        private void m_cbOperation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(m_cbOperation.SelectedIndex == 0)
+            {       
+                m_OperationDurationUpDown.Value = (int)mSettings.NudgeTimeMs;
+                m_OperationDurationUpDown.Increment = 50;
+            }
+            if(m_cbOperation.SelectedIndex == 1)
+            {
+                m_OperationDurationUpDown.Value = mSettings.PreviewDuration;
+                m_OperationDurationUpDown.Increment = 100;
+            }
+            if(m_cbOperation.SelectedIndex == 2)
+            {
+                m_OperationDurationUpDown.Value = mSettings.ElapseBackTimeInMilliseconds;
+                m_OperationDurationUpDown.Increment = 150;
+            }
+        }
 
+        private void m_OperationDurationUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (m_cbOperation.SelectedIndex == 0)
+                m_Nudge = (int)(m_OperationDurationUpDown.Value);
+            if (m_cbOperation.SelectedIndex == 1)
+                m_Preview = (int)(m_OperationDurationUpDown.Value);
+            if (m_cbOperation.SelectedIndex == 2)
+                m_Elapse = (int) (m_OperationDurationUpDown.Value);
+        }
         }
     }
