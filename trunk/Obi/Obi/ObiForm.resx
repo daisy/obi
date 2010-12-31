@@ -1462,13 +1462,25 @@
     <value>Ctrl+Alt+F</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="mTools_PreferencesMenuItem.Text" xml:space="preserve">
     <value>&amp;Preferences</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
+    <value>249, 6</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.AccessibleName" xml:space="preserve">
+    <value>Export Selected Audio  Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Alt+E</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
+  </data>
+  <data name="mTools_ExportSelectedAudioMenuItem.Text" xml:space="preserve">
+    <value>Export Selected A&amp;udio</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.AccessibleName" xml:space="preserve">
     <value>Export as DAISY Ctrl+E</value>
@@ -1477,7 +1489,7 @@
     <value>Ctrl+E</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="mTools_ExportAsDAISYMenuItem.Text" xml:space="preserve">
     <value>&amp;Export as DAISY</value>
@@ -1489,13 +1501,13 @@
     <value>Ctrl+L</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="mTools_CleanUnreferencedAudioMenuItem.Text" xml:space="preserve">
     <value>C&amp;lean unreferenced audio</value>
   </data>
   <data name="toolStripSeparator18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 6</value>
+    <value>249, 6</value>
   </data>
   <data name="mToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
@@ -1624,7 +1636,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.42386, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.19797, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2793,6 +2805,12 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Name" xml:space="preserve">
+    <value>mTools_ExportSelectedAudioMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mTools_ExportSelectedAudioMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>

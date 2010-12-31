@@ -181,6 +181,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1172,6 +1173,7 @@ namespace Obi
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
+            this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
             this.toolStripSeparator18});
@@ -1267,6 +1269,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mTools_ExportSelectedAudioMenuItem
+            // 
+            resources.ApplyResources(this.mTools_ExportSelectedAudioMenuItem, "mTools_ExportSelectedAudioMenuItem");
+            this.mTools_ExportSelectedAudioMenuItem.Name = "mTools_ExportSelectedAudioMenuItem";
+            this.mTools_ExportSelectedAudioMenuItem.Click += new System.EventHandler(this.mtools_ExportSelectedAudioMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1446,6 +1454,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mView_RecordingToolBarMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeSectionWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeMultipleSectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_ExportSelectedAudioMenuItem;
     }
 }
 
