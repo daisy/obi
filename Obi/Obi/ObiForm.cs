@@ -1307,6 +1307,7 @@ namespace Obi
 
         private void UpdateToolsMenu ()
             {
+            mTools_ExportSelectedAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
             mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
@@ -2700,6 +2701,12 @@ namespace Obi
         private void mergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.MergeStrips();
+        }
+
+        private void mtools_ExportSelectedAudioMenuItem_Click(object sender, EventArgs e)
+        {
+            String directoryPath = Path.GetDirectoryName(mSession.Path);
+            mProjectView.ExportAudioOfSelectedNode(mProjectView.Selection.Node,Path.Combine(directoryPath,"Exported_Audio_Files"));
         }
         }
     }
