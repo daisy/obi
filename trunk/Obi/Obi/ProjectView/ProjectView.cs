@@ -961,9 +961,9 @@ namespace Obi.ProjectView
                 //foreach (SectionNode s in listOfSections) MessageBox.Show(s.Label + " " + s.Level.ToString ());
                 Obi.Dialogs.SelectMergeSectionRange selectionDialog = new Obi.Dialogs.SelectMergeSectionRange(listOfSections, selectedSectionIndex);
                 if (selectionDialog.ShowDialog () == DialogResult.OK
-                    && selectionDialog.m_SelectedSectionList != null && selectionDialog.m_SelectedSectionList.Count > 1)
+                    && selectionDialog.SelectedSections != null && selectionDialog.SelectedSections.Count > 1)
                 {
-                    List<SectionNode> selectedSections = selectionDialog.m_SelectedSectionList;
+                    List<SectionNode> selectedSections = selectionDialog.SelectedSections;
                     if (selectedSections.Count <= 1) return;
                     urakawa.command.CompositeCommand mergeSectionCommand = mPresentation.CreateCompositeCommand("MergeMultipleSections");
 
@@ -3264,7 +3264,7 @@ namespace Obi.ProjectView
                         string newAudioFilePath = System.IO.Path.Combine(audioFileExportDirectory, newName);
                         if (System.IO.File.Exists(newAudioFilePath)) System.IO.File.Delete(newAudioFilePath);
                         System.IO.File.Move(audioFilePath, newAudioFilePath);
-
+                        MessageBox.Show(Localizer.Message("ExportAudioOfSelectedNode_Completed") + newAudioFilePath, Localizer.Message("Caption_Information"), MessageBoxButtons.OK, MessageBoxIcon.Information);                   
                 }
             }
             catch (System.Exception ex)
