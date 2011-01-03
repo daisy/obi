@@ -36,8 +36,10 @@ namespace Obi.Dialogs
             this.m_tb_SelectedSection = new System.Windows.Forms.TextBox();
             this.m_btn_SelectAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_lb_listofSectionsToMerge
@@ -52,7 +54,8 @@ namespace Obi.Dialogs
             // 
             // m_btn_OK
             // 
-            this.m_btn_OK.Location = new System.Drawing.Point(77, 292);
+            this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.m_btn_OK.Location = new System.Drawing.Point(239, 207);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(92, 23);
             this.m_btn_OK.TabIndex = 1;
@@ -62,7 +65,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Cancel
             // 
-            this.m_btn_Cancel.Location = new System.Drawing.Point(175, 292);
+            this.m_btn_Cancel.Location = new System.Drawing.Point(346, 207);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(100, 23);
             this.m_btn_Cancel.TabIndex = 2;
@@ -74,9 +77,9 @@ namespace Obi.Dialogs
             // 
             this.m_statusStripForMergeSection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_StatusLabelForMergeSection});
-            this.m_statusStripForMergeSection.Location = new System.Drawing.Point(0, 327);
+            this.m_statusStripForMergeSection.Location = new System.Drawing.Point(0, 252);
             this.m_statusStripForMergeSection.Name = "m_statusStripForMergeSection";
-            this.m_statusStripForMergeSection.Size = new System.Drawing.Size(357, 22);
+            this.m_statusStripForMergeSection.Size = new System.Drawing.Size(473, 22);
             this.m_statusStripForMergeSection.TabIndex = 3;
             this.m_statusStripForMergeSection.Text = "MergeSectionStatusStrip";
             // 
@@ -87,7 +90,8 @@ namespace Obi.Dialogs
             // 
             // m_tb_SelectedSection
             // 
-            this.m_tb_SelectedSection.Location = new System.Drawing.Point(27, 248);
+            this.m_tb_SelectedSection.Location = new System.Drawing.Point(6, 30);
+            this.m_tb_SelectedSection.Multiline = true;
             this.m_tb_SelectedSection.Name = "m_tb_SelectedSection";
             this.m_tb_SelectedSection.ReadOnly = true;
             this.m_tb_SelectedSection.Size = new System.Drawing.Size(174, 20);
@@ -95,7 +99,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_SelectAll
             // 
-            this.m_btn_SelectAll.Location = new System.Drawing.Point(218, 246);
+            this.m_btn_SelectAll.Location = new System.Drawing.Point(12, 74);
             this.m_btn_SelectAll.Name = "m_btn_SelectAll";
             this.m_btn_SelectAll.Size = new System.Drawing.Size(91, 23);
             this.m_btn_SelectAll.TabIndex = 5;
@@ -108,20 +112,30 @@ namespace Obi.Dialogs
             this.groupBox1.Controls.Add(this.m_lb_listofSectionsToMerge);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 230);
+            this.groupBox1.Size = new System.Drawing.Size(208, 230);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "List of sections to merge";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.m_tb_SelectedSection);
+            this.groupBox2.Controls.Add(this.m_btn_SelectAll);
+            this.groupBox2.Location = new System.Drawing.Point(226, 31);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(208, 116);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
             // 
             // SelectMergeSectionRange
             // 
+            this.AcceptButton = this.m_btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 349);
+            this.ClientSize = new System.Drawing.Size(473, 274);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.m_btn_SelectAll);
             this.Controls.Add(this.m_statusStripForMergeSection);
-            this.Controls.Add(this.m_tb_SelectedSection);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Name = "SelectMergeSectionRange";
@@ -129,6 +143,8 @@ namespace Obi.Dialogs
             this.m_statusStripForMergeSection.ResumeLayout(false);
             this.m_statusStripForMergeSection.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +160,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.TextBox m_tb_SelectedSection;
         private System.Windows.Forms.Button m_btn_SelectAll;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
