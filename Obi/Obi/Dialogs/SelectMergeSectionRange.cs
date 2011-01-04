@@ -13,7 +13,7 @@ namespace Obi.Dialogs
         List<SectionNode> m_SectionList = null;
         List<SectionNode> m_SelectedSectionList = new List<SectionNode>();
         private int m_selectedIndex;
-        
+               
         public SelectMergeSectionRange()
         {
             InitializeComponent();
@@ -102,40 +102,58 @@ namespace Obi.Dialogs
         }
 
         private List<SectionNode> listBoxSelectionIsContinuous(List<SectionNode> sectionList) 
-        {           
+        {
+            int j = 0;
             List<SectionNode> newList = new List<SectionNode>();
             List<List<SectionNode>> listOfContinuousItems = new List<List<SectionNode>>();
             List<SectionNode> subListOfContinuousItems = new List<SectionNode>();
           
            for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count -1; i++)
            {
-             
                int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
-               if ((m_lb_listofSectionsToMerge.SelectedIndices[i] == m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1) && (i != m_lb_listofSectionsToMerge.SelectedIndices.Count - 2))
-                  subListOfContinuousItems.Add(m_SectionList[k]);
-              
-               else
+               if ((m_lb_listofSectionsToMerge.SelectedIndices[i] == m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1))
+               {                   
+                   if (j == 0)
+                   {
+                       subListOfContinuousItems.Add(m_SectionList[k]);
+                       subListOfContinuousItems.Add(m_SectionList[k + 1]);                       
+                       j++;
+                   }
+                   else
+                       subListOfContinuousItems.Add(m_SectionList[k + 1]);                  
+               }
+
+              else
                {
-                   subListOfContinuousItems.Add(m_SectionList[k]);
-                   if ((i == m_lb_listofSectionsToMerge.SelectedIndices.Count - 2))
-                   subListOfContinuousItems.Add(m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedIndices.Count -1]]);
+                   if (subListOfContinuousItems.Count > 0)
                    listOfContinuousItems.Add(subListOfContinuousItems);
                    subListOfContinuousItems = new List<SectionNode>();
-               }    
-           }
-           
-           for (int m = 0; m < listOfContinuousItems.Count - 1; m++)
-           {
-               if (listOfContinuousItems[m].Count == listOfContinuousItems[m + 1].Count)
-               {
-                   listOfContinuousItems.RemoveAt(m+1);
-                   if (m == listOfContinuousItems.Count - 2)
-                       listOfContinuousItems.RemoveAt(listOfContinuousItems.Count - 1);
+                   j = 0;
                }
-               else if (listOfContinuousItems[m].Count > listOfContinuousItems[m + 1].Count)
-                   listOfContinuousItems.Remove(listOfContinuousItems[m + 1]);   
+               if (subListOfContinuousItems.Count > 0)
+                  listOfContinuousItems.Add(subListOfContinuousItems);
            }
-           newList = listOfContinuousItems[listOfContinuousItems.Count - 1];
+
+           if (listOfContinuousItems.Count > 0)
+           {
+               newList = listOfContinuousItems[0];
+               foreach(List<SectionNode> list in listOfContinuousItems)
+               {
+                   if (list.Count > newList.Count)
+                       newList = list;
+               }
+               listOfContinuousItems.Clear();
+               listOfContinuousItems.Add(newList);
+           }
+
+           if (listOfContinuousItems.Count > 0)
+           {
+               newList = listOfContinuousItems[0];
+               m_StatusLabelForMergeSection.Text = (String.Format("Merging sections from {0} to {1} ", newList[0], newList[newList.Count - 1]));
+               MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));               
+           }
+           else
+               MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
            return newList;
         }
 
