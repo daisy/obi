@@ -2890,7 +2890,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     {
                         EmptyNode node = section.PhraseChild(i);
                         Block b = currentlyActiveStrip.FindBlock(node);
-                        if (b != null && (LocationOfBlockInStripPanel(b).Y + b.Height) > mStripsPanel.Height)
+                        if (b != null && 
+                            ((LocationOfBlockInStripPanel(b).Y + b.Height) > mStripsPanel.Height) || ((LocationOfBlockInStripPanel(b).Y + b.Height) > currentlyActiveStrip.Height))
                         {
                             currentlyActiveStrip.RemoveBlock(node , true);
                             shouldRecreateBlocks = true;
