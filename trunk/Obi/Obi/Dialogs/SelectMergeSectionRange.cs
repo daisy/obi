@@ -12,6 +12,7 @@ namespace Obi.Dialogs
     {
         List<SectionNode> m_SectionList = null;
         List<SectionNode> m_SelectedSectionList = new List<SectionNode>();
+        
         private int m_selectedIndex;
                
         public SelectMergeSectionRange()
@@ -36,32 +37,26 @@ namespace Obi.Dialogs
         {
             int totalPhraseCount = 0;
             List<SectionNode> listOfSelectedSections = new List<SectionNode>();
-            if (m_lb_listofSectionsToMerge.SelectedItems.Count == 0 || m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
+
+            for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
             {
-                MessageBox.Show("Please select at least two sections to merge");
-                return;
-            }
-            else
-            {
-                for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedItems.Count; i++)
+                int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
+                for (int j = 0; j < m_SectionList.Count; j++)
                 {
-                    int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
-                    for (int j = 0; j < m_SectionList.Count; j++)
-                    {
-                        if(k == j)
-                        {
-                            if (totalPhraseCount < 7000 && m_lb_listofSectionsToMerge.SelectedIndex != -1)
-                                {
-                                    listOfSelectedSections.Add((SectionNode)m_SectionList[j]);
-                                    totalPhraseCount = totalPhraseCount + m_SectionList[i].PhraseChildCount;
-                                }
-                             else
-                                    MessageBox.Show("Total phrase count is more than 7000");
-                        }
-                     }
-               }              
+                    if (k == j)
+                       listOfSelectedSections.Add((SectionNode)m_SectionList[j]);
+                }
+            }    
+                
                m_SelectedSectionList = listBoxSelectionIsContinuous(listOfSelectedSections);
-            }
+        
+               if (m_SelectedSectionList != null)
+               {
+                   DialogResult = DialogResult.OK;
+                   Close();
+               }
+               else
+                   return;                  
         }
 
         private void m_btn_Cancel_Click(object sender, EventArgs e)
@@ -101,9 +96,10 @@ namespace Obi.Dialogs
                     m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();           
         }
 
-        private List<SectionNode> listBoxSelectionIsContinuous(List<SectionNode> sectionList) 
+        private List<SectionNode> listBoxSelectionIsContinuous(List<SectionNode> sectionList)       
         {
             int j = 0;
+            int totalPhraseCount = 0;
             List<SectionNode> newList = new List<SectionNode>();
             List<List<SectionNode>> listOfContinuousItems = new List<List<SectionNode>>();
             List<SectionNode> subListOfContinuousItems = new List<SectionNode>();
@@ -143,17 +139,29 @@ namespace Obi.Dialogs
                        newList = list;
                }
                listOfContinuousItems.Clear();
-               listOfContinuousItems.Add(newList);
            }
 
-           if (listOfContinuousItems.Count > 0)
+           if (newList.Count > 0)
            {
-               newList = listOfContinuousItems[0];
-               m_StatusLabelForMergeSection.Text = (String.Format("Merging sections from {0} to {1} ", newList[0], newList[newList.Count - 1]));
-               MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));               
+               for (int k = 0; k < newList.Count; k++)
+               { totalPhraseCount += newList[k].PhraseChildCount; }
+
+               if (totalPhraseCount < 7000)
+               {
+                   m_StatusLabelForMergeSection.Text = (String.Format("Merging sections from {0} to {1} ", newList[0], newList[newList.Count - 1]));
+                   MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
+               }
+               else
+               {
+                   MessageBox.Show("Total phrase count is more than 7000");
+                   newList = null;
+               }
            }
            else
+           {
                MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
+               newList = null;
+           }
            return newList;
         }
 
