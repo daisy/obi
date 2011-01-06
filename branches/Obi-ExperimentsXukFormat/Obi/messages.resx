@@ -1363,6 +1363,9 @@ Error text: {1}</value>
   <data name="ExportError_EmptyProject" xml:space="preserve">
     <value>Cannot Export. Project is empty!</value>
   </data>
+  <data name="ExportAudioOfSelectedNode_Completed" xml:space="preserve">
+    <value>File is exported at : </value>
+  </data>
   <data name="EachLevel" xml:space="preserve">
     <value>Each level</value>
   </data>
@@ -1778,5 +1781,8 @@ Error text: {1}</value>
   </data>
   <data name="KeyboardShortcuts_ErrorInLoadingConfiguredKeys" xml:space="preserve">
     <value>Error in loading configured keyboard shortcuts. Loading defaults.</value>
+  </data>
+  <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
+    <value>Exporting audio File...</value>
   </data>
 </root>

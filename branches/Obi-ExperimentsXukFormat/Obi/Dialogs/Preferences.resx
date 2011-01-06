@@ -307,7 +307,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelInputDeviceName.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>16</value>
   </data>
   <data name="mInputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Input device name:</value>
@@ -340,7 +340,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mInputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>14</value>
   </data>
   <data name="labelOutputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -370,7 +370,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelOutputDeviceName.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>15</value>
   </data>
   <data name="mOutputDeviceCombo.AccessibleName" xml:space="preserve">
     <value>Output device name:</value>
@@ -403,7 +403,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mOutputDeviceCombo.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="mTab.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -639,82 +639,82 @@
   <data name="&gt;&gt;mProjectTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>335, 157</value>
   </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 183</value>
+  <data name="m_OperationDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 16</value>
+  <data name="m_OperationDurationUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="&gt;&gt;m_OperationDurationUpDown.Name" xml:space="preserve">
+    <value>m_OperationDurationUpDown</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>millisecond(ms)</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 183</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 16</value>
-  </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>&amp;Nudge duration</value>
-  </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="mNudgeDurationUpDown.AccessibleName" xml:space="preserve">
-    <value>Nudge duration (milliseconds)</value>
-  </data>
-  <data name="mNudgeDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 181</value>
-  </data>
-  <data name="mNudgeDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="mNudgeDurationUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;mNudgeDurationUpDown.Name" xml:space="preserve">
-    <value>mNudgeDurationUpDown</value>
-  </data>
-  <data name="&gt;&gt;mNudgeDurationUpDown.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_OperationDurationUpDown.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mNudgeDurationUpDown.Parent" xml:space="preserve">
+  <data name="&gt;&gt;m_OperationDurationUpDown.Parent" xml:space="preserve">
     <value>mAudioTab</value>
   </data>
-  <data name="&gt;&gt;mNudgeDurationUpDown.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;m_OperationDurationUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="m_cbOperation.Items" xml:space="preserve">
+    <value>Nudge duration</value>
+  </data>
+  <data name="m_cbOperation.Items1" xml:space="preserve">
+    <value>Preview duration</value>
+  </data>
+  <data name="m_cbOperation.Items2" xml:space="preserve">
+    <value>Elapse back duration</value>
+  </data>
+  <data name="m_cbOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 156</value>
+  </data>
+  <data name="m_cbOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 24</value>
+  </data>
+  <data name="m_cbOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;m_cbOperation.Name" xml:space="preserve">
+    <value>m_cbOperation</value>
+  </data>
+  <data name="&gt;&gt;m_cbOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_cbOperation.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;m_cbOperation.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mlbOperation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mlbOperation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>63, 159</value>
+  </data>
+  <data name="mlbOperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 16</value>
+  </data>
+  <data name="mlbOperation.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="mlbOperation.Text" xml:space="preserve">
+    <value>Operation:</value>
+  </data>
+  <data name="&gt;&gt;mlbOperation.Name" xml:space="preserve">
+    <value>mlbOperation</value>
+  </data>
+  <data name="&gt;&gt;mlbOperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mlbOperation.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;mlbOperation.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="mNoiseLevelComboBox.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
@@ -730,7 +730,7 @@
     <value>High</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 214</value>
+    <value>160, 206</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -757,7 +757,7 @@
     <value>True</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 222</value>
+    <value>68, 210</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -816,77 +816,20 @@
   <data name="&gt;&gt;mAudioCluesCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>329, 148</value>
-  </data>
-  <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 16</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>second(s)</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="mPreviewDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 145</value>
-  </data>
-  <data name="mPreviewDurationUpDown.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="mPreviewDurationUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="mPreviewDurationUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;mPreviewDurationUpDown.Name" xml:space="preserve">
-    <value>mPreviewDurationUpDown</value>
-  </data>
-  <data name="&gt;&gt;mPreviewDurationUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mPreviewDurationUpDown.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;mPreviewDurationUpDown.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 148</value>
-  </data>
-  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>461, 159</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 16</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>0</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>&amp;Preview duration:</value>
+    <value>milliseconds(ms)</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -898,7 +841,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="mChannelsTextbox.AccessibleName" xml:space="preserve">
     <value>Project channels:</value>
@@ -907,7 +850,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mChannelsTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 114</value>
+    <value>161, 116</value>
   </data>
   <data name="mChannelsTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -931,7 +874,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsTextbox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="mSampleRateTextbox.AccessibleName" xml:space="preserve">
     <value>Project sample rate:</value>
@@ -964,7 +907,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateTextbox.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="mChannelsCombo.AccessibleName" xml:space="preserve">
     <value>Default channels:</value>
@@ -997,13 +940,13 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mChannelsCombo.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>9</value>
   </data>
   <data name="labelChannels.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelChannels.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 116</value>
+    <value>44, 122</value>
   </data>
   <data name="labelChannels.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -1027,7 +970,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelChannels.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="mSampleRateCombo.AccessibleName" xml:space="preserve">
     <value>Default sample rate:</value>
@@ -1060,7 +1003,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;mSampleRateCombo.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="labelSampleRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1090,7 +1033,7 @@
     <value>mAudioTab</value>
   </data>
   <data name="&gt;&gt;labelSampleRate.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="mAudioTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>

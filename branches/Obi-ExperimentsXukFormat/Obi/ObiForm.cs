@@ -19,6 +19,7 @@ namespace Obi
 
         private float mBaseFontSize;             // base font size
         private Audio.PeakMeterForm mPeakMeter;  // maintain a single "peak meter" form
+        private Obi.UserControls.RecordingToolBarForm mRecordingToolBarForm;
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;// keyboard shortcuts used by application
@@ -998,7 +999,9 @@ namespace Obi
         private void mDecreaseSectionLevelToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.DecreaseSelectedSectionLevel (); }
         private void mIncreaseSectionLevelToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.IncreaseSelectedSectionLevel (); }
         private void mSplitSectionToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.SplitStrip (); }
-        private void mMergeSectionWithNextToolStripMenuItem_Click ( object sender, EventArgs e ) { mProjectView.MergeStrips (); }
+        private void mMergeSectionWithNextToolStripMenuItem_Click ( object sender, EventArgs e ) 
+        {// mProjectView.MergeStrips ();
+        }
         private void mSectionIsUsedToolStripMenuItem_CheckedChanged ( object sender, EventArgs e )
             {
             mProjectView.SetSelectedNodeUsedStatus ( mSectionIsUsedToolStripMenuItem.Checked );
@@ -1304,6 +1307,7 @@ namespace Obi
 
         private void UpdateToolsMenu ()
             {
+            mTools_ExportSelectedAudioMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             mTools_ExportAsDAISYMenuItem.Enabled = mSession.HasProject;
             mTools_CleanUnreferencedAudioMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive;
             mTools_PreferencesMenuItem.Enabled = !mProjectView.TransportBar.IsRecorderActive;
@@ -1821,6 +1825,22 @@ namespace Obi
                 Ready ();
                 }
             }
+
+        private void ShowRecordingToolBar()
+        {
+            if (mRecordingToolBarForm == null)
+            {
+                mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView.TransportBar);
+                mRecordingToolBarForm.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
+                    {
+                        mRecordingToolBarForm = null;
+                        mView_RecordingToolBarMenuItem.Checked = false;
+                    });
+                mRecordingToolBarForm.Show();
+                this.WindowState = FormWindowState.Minimized;
+                mView_RecordingToolBarMenuItem.Checked = true;
+            }
+        }
 
         // Show a new peak meter form or give focus back to the previously opned one
         private void ShowPeakMeter ()
@@ -2666,6 +2686,27 @@ namespace Obi
         private void mApplyPhraseDetectionInProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ApplyPhraseDetectionInWholeProject();
+        }
+
+        private void mView_RecordingToolBarMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowRecordingToolBar();
+        }
+
+        private void mergeMultipleSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeMultipleSections();
+        }
+
+        private void mergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeStrips();
+        }
+
+        private void mtools_ExportSelectedAudioMenuItem_Click(object sender, EventArgs e)
+        {
+            String directoryPath = Path.GetDirectoryName(mSession.Path);
+            mProjectView.ExportAudioOfSelectedNode(mProjectView.Selection.Node,Path.Combine(directoryPath,"Exported_Audio_Files"));
         }
         }
     }
