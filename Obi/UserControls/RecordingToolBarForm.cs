@@ -15,36 +15,31 @@ namespace Obi.UserControls
         ProjectView.TransportBar m_TransportBar;
         private Image m_PauseImg;
         private Image m_PlayImg;
-        private bool m_IsPlaying = false;
         private int m_TimeCounter;
-        private int m_Count;
-        private bool m_IsPage = false;
-        private bool m_IsPhrase = false;
-        private bool m_IsSection = false;
-        private bool m_IsTODO = false;
-              
+        private int m_Count = 0;
+        private string m_strStatus = "";      
+
         public RecordingToolBarForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream pauseStr = null;
             Stream playStr = null;
             pauseStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-pause.png");
             playStr = myAssembly.GetManifestResourceStream("Obi.UserControls.media-playback-start.png");
             m_PauseImg = Image.FromStream(pauseStr);
-            m_PlayImg = Image.FromStream(playStr);         
+            m_PlayImg = Image.FromStream(playStr);        
         }
             
         public RecordingToolBarForm(ProjectView.TransportBar transportBar):this  ()
         {
             m_TransportBar = transportBar;
                      m_TransportBar.StateChanged+= new Obi.Events.Audio.Player.StateChangedHandler (State_Changed);
-                     m_TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(State_Changed);
-
+                     m_TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(State_Changed);                 
         }
 
         public void State_Changed(object sender, EventArgs e)
-        {
+        {          
             m_TimeCounter = 0;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) 
                 timer1.Start();
@@ -83,16 +78,11 @@ namespace Obi.UserControls
         }
 
         private void m_recordingToolBarPlayBtn_Click(object sender, EventArgs e)
-        {
-            m_IsPhrase = false;
-            if (!(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording))
-                m_IsPlaying = true;
-            
-          if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
+        {        
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {            
                 m_TransportBar.Pause();
-                m_StatusLabel.Text = "Paused";
-                m_IsPlaying = false;               
+                m_StatusLabel.Text = "Paused";                  
             }
           else
             {             
@@ -104,7 +94,6 @@ namespace Obi.UserControls
 
         private void m_recordingToolBarStopBtn_Click(object sender, EventArgs e)
         {
-            m_IsPlaying = false;
             m_TimeCounter = 0;
             m_TransportBar.Stop();
             m_StatusLabel.Text = "Stopped";
@@ -114,11 +103,7 @@ namespace Obi.UserControls
 
         private void m_recordingToolBarRecordingBtn_Click(object sender, EventArgs e)
         {
-            m_IsPage = false;
-            m_IsPlaying = false;
-            m_IsTODO = false;
-            m_IsSection = false;
-            
+            m_strStatus = "";
              m_TransportBar.Record();
                    
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
@@ -140,29 +125,22 @@ namespace Obi.UserControls
 
         private void m_recordingGoToNextPhraseBtn_Click(object sender, EventArgs e)
         {
-            m_IsPhrase = true;
-            m_IsPage = false;
-            m_IsSection = false;
-            m_IsTODO = false;
-            m_Count = 0;              
-            m_TransportBar.NextPhrase();           
+            m_strStatus = "New phrase ";                    
+            m_TransportBar.NextPhrase();
+            m_Count = 0;
+            timer1.Start();
         }
 
         private void m_recordingToolBarNextPageBtn_Click(object sender, EventArgs e)
         {
-            m_IsPage = true;
-            m_IsTODO = false;
-            m_IsPhrase = false;
-            m_IsSection = false;
-            m_TransportBar.NextPage();                    
+            m_strStatus = "New page ";            
+            m_TransportBar.NextPage();
+            timer1.Start();       
         }
 
         private void m_recordingToolBarNextSectionBtn_Click(object sender, EventArgs e)
         {
-            m_IsSection = true;
-            m_IsPage = false;
-            m_IsPhrase = false;
-            m_IsTODO = false;
+            m_strStatus = "New section ";            
             m_Count = 0;
             m_TransportBar.NextSection();
         }
@@ -178,21 +156,34 @@ namespace Obi.UserControls
         private void timer1_Tick(object sender, EventArgs e)
         {
             UpdateStatus();
-       }
+        }
 
         private void UpdateStatus()
         {
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording && !m_IsPage)
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording)
             {
-                string recordingPhrase = null;
+                string recordingPhrase = "";
                 if (m_TransportBar.RecordingPhrase != null)
                 {
                     recordingPhrase = m_TransportBar.RecordingPhrase.ToString();
-                    m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(m_TimeCounter * 500));
+                    if (m_strStatus == "")
+                    {
+                        m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(m_TransportBar.Recorder.TimeOfAsset));                    
+                    }
+                   
+                    if (m_Count <= 3)
+                    {
+                        if (m_strStatus == "New phrase " || m_strStatus == "Marked TODO " || m_strStatus == "New section ")
+                        {
+                            m_StatusLabel.Text = m_strStatus + format(m_TransportBar.Recorder.TimeOfAsset);
+                            m_Count++;
+                        }                                        
+                   }
+                    else
+                        m_strStatus= "";                   
                 }
                 else
                     m_StatusLabel.Text = "";
-                m_TimeCounter++;
             }
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 m_StatusLabel.Text = "Monitoring";
@@ -204,36 +195,12 @@ namespace Obi.UserControls
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
                 {
                     m_StatusLabel.Text = String.Format("Playing {0} {1} ", m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(), format(++m_TransportBar.CurrentPlaylist.CurrentTimeInAsset));
-                }
-            if (m_IsPhrase && (m_Count <= 4) && (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording))
-            {
-                m_StatusLabel.Text = "New phrase " + format(m_TimeCounter * 500);
-                m_Count++;
-            }
-            if (m_IsPage && (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording))
-            {
-                m_StatusLabel.Text = "Recording page phrase " + format(m_TimeCounter * 500);
-                m_TimeCounter++;
-            }
-            if (m_IsSection && (m_Count <= 4) && !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) && (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording))
-            {
-                m_StatusLabel.Text = "New Section " + format(m_Count * 500);
-                m_Count++;
-                m_TimeCounter = m_Count;
-            }
-            if (m_IsTODO && m_Count <= 4 && (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording))
-            {
-                m_StatusLabel.Text = "Marked TODO " + format(m_TimeCounter * 500);
-                m_Count++;
-            }
+                }      
         }
 
         private void m_TODOBtn_Click(object sender, EventArgs e)
         {
-            m_IsTODO = true;
-            m_IsPage = false;
-            m_IsPhrase = false;
-            m_IsSection = false;
+            m_strStatus = "Marked TODO ";
             m_Count = 0;
             m_TransportBar.MarkTodo();           
         }        

@@ -74,6 +74,7 @@ namespace Obi
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mShowPeakMeterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_RecordingToolBarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.mView_ZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +96,8 @@ namespace Obi
             this.mIncreaseSectionLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mSplitSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeSectionWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeMultipleSectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.mSectionIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -178,6 +181,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mTools_ExportSelectedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -420,6 +424,7 @@ namespace Obi
             this.toolStripSeparator10,
             this.mShowPeakMeterMenuItem,
             this.mShowSourceToolStripMenuItem,
+            this.mView_RecordingToolBarMenuItem,
             this.toolStripSeparator15,
             this.mView_ZoomInMenuItem,
             this.mView_ZoomOutMenuItem,
@@ -518,6 +523,12 @@ namespace Obi
             resources.ApplyResources(this.mShowSourceToolStripMenuItem, "mShowSourceToolStripMenuItem");
             this.mShowSourceToolStripMenuItem.Name = "mShowSourceToolStripMenuItem";
             this.mShowSourceToolStripMenuItem.Click += new System.EventHandler(this.mShowSourceToolStripMenuItem_Click);
+            // 
+            // mView_RecordingToolBarMenuItem
+            // 
+            this.mView_RecordingToolBarMenuItem.Name = "mView_RecordingToolBarMenuItem";
+            resources.ApplyResources(this.mView_RecordingToolBarMenuItem, "mView_RecordingToolBarMenuItem");
+            this.mView_RecordingToolBarMenuItem.Click += new System.EventHandler(this.mView_RecordingToolBarMenuItem_Click);
             // 
             // toolStripSeparator15
             // 
@@ -651,8 +662,23 @@ namespace Obi
             // mMergeSectionWithNextToolStripMenuItem
             // 
             resources.ApplyResources(this.mMergeSectionWithNextToolStripMenuItem, "mMergeSectionWithNextToolStripMenuItem");
+            this.mMergeSectionWithNextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mergeSectionWithNextToolStripMenuItem,
+            this.mergeMultipleSectionsToolStripMenuItem});
             this.mMergeSectionWithNextToolStripMenuItem.Name = "mMergeSectionWithNextToolStripMenuItem";
             this.mMergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.mMergeSectionWithNextToolStripMenuItem_Click);
+            // 
+            // mergeSectionWithNextToolStripMenuItem
+            // 
+            this.mergeSectionWithNextToolStripMenuItem.Name = "mergeSectionWithNextToolStripMenuItem";
+            resources.ApplyResources(this.mergeSectionWithNextToolStripMenuItem, "mergeSectionWithNextToolStripMenuItem");
+            this.mergeSectionWithNextToolStripMenuItem.Click += new System.EventHandler(this.mergeSectionWithNextToolStripMenuItem_Click);
+            // 
+            // mergeMultipleSectionsToolStripMenuItem
+            // 
+            this.mergeMultipleSectionsToolStripMenuItem.Name = "mergeMultipleSectionsToolStripMenuItem";
+            resources.ApplyResources(this.mergeMultipleSectionsToolStripMenuItem, "mergeMultipleSectionsToolStripMenuItem");
+            this.mergeMultipleSectionsToolStripMenuItem.Click += new System.EventHandler(this.mergeMultipleSectionsToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1147,6 +1173,7 @@ namespace Obi
             this.mToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mTools_PreferencesMenuItem,
             this.toolStripSeparator16,
+            this.mTools_ExportSelectedAudioMenuItem,
             this.mTools_ExportAsDAISYMenuItem,
             this.mTools_CleanUnreferencedAudioMenuItem,
             this.toolStripSeparator18});
@@ -1242,6 +1269,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mTools_ExportSelectedAudioMenuItem
+            // 
+            resources.ApplyResources(this.mTools_ExportSelectedAudioMenuItem, "mTools_ExportSelectedAudioMenuItem");
+            this.mTools_ExportSelectedAudioMenuItem.Name = "mTools_ExportSelectedAudioMenuItem";
+            this.mTools_ExportSelectedAudioMenuItem.Click += new System.EventHandler(this.mtools_ExportSelectedAudioMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1418,6 +1451,10 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mPhrases_ApplyPhraseDetectionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mApplyPhraseDetectionInProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mSynchronizeViewsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_RecordingToolBarMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeSectionWithNextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeMultipleSectionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mTools_ExportSelectedAudioMenuItem;
     }
 }
 

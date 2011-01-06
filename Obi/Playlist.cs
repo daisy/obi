@@ -964,21 +964,23 @@ namespace Obi
 
         public void FastPlayNormaliseWithLapseBack(double LapseBackTime)
         {
+            bool wasPaused = State == AudioPlayerState.Paused;
+            //Console.WriteLine("paused time before " + mPlayer.CurrentTimePosition);
             if (mPlayer.CurrentTimePosition > LapseBackTime)
             {
                 mPlayer.Pause();
                 mPlayer.FastPlayFactor = 1;
                 mPlayer.CurrentTimePosition = mPlayer.CurrentTimePosition - LapseBackTime;
-                mPlaylistState = AudioPlayerState.Playing;
-                mPlayer.Resume();
-                if (StateChanged != null)
-                    StateChanged ( this, new Events.Audio.Player.StateChangedEventArgs ( AudioPlayerState.Paused ) );
             }
             else
             {
                 mPlayer.Pause();
                 mPlayer.CurrentTimePosition = 10;
                 mPlayer.FastPlayFactor = 1;
+            }
+            //Console.WriteLine("paused time " + mPlayer.CurrentTimePosition);
+            if (!wasPaused)
+            {
                 mPlaylistState = AudioPlayerState.Playing;
                 mPlayer.Resume();
                 if (StateChanged != null)

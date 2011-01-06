@@ -42,6 +42,7 @@ namespace Obi
         public bool PlayIfNoSelection;         // play all or nothing if no selection
         public bool PlayOnNavigate;            // start playback when navigating, or just change the selection
         public int PreviewDuration;            // playback preview duration in milliseconds
+        public int ElapseBackTimeInMilliseconds; // elapse back time  interval in milliseconds
         public ArrayList RecentProjects;       // paths to projects recently opened
         public int SampleRate;                 // sample rate in Hertz
         public bool SplitPhrasesOnImport;      // split phrases on import
@@ -84,6 +85,7 @@ namespace Obi
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
             settings.PreviewDuration = 1500;
+            settings.ElapseBackTimeInMilliseconds = 1500;
             settings.PipelineScriptsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                 Path.Combine ( "Pipeline-lite", "scripts" ) );
             settings.PlayIfNoSelection = true;

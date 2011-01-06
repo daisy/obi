@@ -318,7 +318,7 @@ namespace Obi
         /// <summary>
         /// Add a new channel with the given name to the presentation's channel manager.
         /// </summary>
-        private Channel AddChannel(string name)
+        internal Channel AddChannel(string name)
         {
             Channel channel = getChannelFactory().createChannel();
             channel.setName(name);
