@@ -54,12 +54,11 @@ namespace Obi.Dialogs
             // 
             // m_btn_OK
             // 
-            this.m_btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_btn_OK.Location = new System.Drawing.Point(239, 207);
             this.m_btn_OK.Name = "m_btn_OK";
             this.m_btn_OK.Size = new System.Drawing.Size(92, 23);
             this.m_btn_OK.TabIndex = 1;
-            this.m_btn_OK.Text = "OK";
+            this.m_btn_OK.Text = "&OK";
             this.m_btn_OK.UseVisualStyleBackColor = true;
             this.m_btn_OK.Click += new System.EventHandler(this.m_btn_OK_Click);
             // 
@@ -69,7 +68,7 @@ namespace Obi.Dialogs
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(100, 23);
             this.m_btn_Cancel.TabIndex = 2;
-            this.m_btn_Cancel.Text = "Cancel";
+            this.m_btn_Cancel.Text = "Cance&l";
             this.m_btn_Cancel.UseVisualStyleBackColor = true;
             this.m_btn_Cancel.Click += new System.EventHandler(this.m_btn_Cancel_Click);
             // 
