@@ -1,5 +1,5 @@
 ; JAWS scripts for Obi 1.2
-; Scripts version: 1.2.2 , released on December 18, 2010
+; Scripts version: 1.2.2.1 , released on January 7, 2011
 ; written for JAWS 9.0 and above
 ; Written by: Avneesh Singh
 ; Copywrite (c)    2009 The DAISY Consortium
@@ -11,9 +11,13 @@ Globals Int g_IsFirstAppStart
 
 Void Function AutoStartEvent ()
 if ( g_IsFirstAppStart == 0 ) Then
-SayString (GetWindowName (GetAppMainWindow (GetFocus ())))
-SayString ("Please use " + GetScriptKeyName ("ToggleEchoOnPhrases") + " to toggle phrase announcement by JAWS speech") ;
-let g_IsFirstAppStart = 1
+	SayString (GetWindowName (GetAppMainWindow (GetFocus ())))
+	SayString ("Please use " + GetScriptKeyName ("ToggleEchoOnPhrases") + " to toggle phrase announcement by JAWS speech") ;
+	let g_IsFirstAppStart = 1
+	let g_SilentOnPhrases = 0
+ElIf ( g_SilentOnPhrases == 1 ) Then
+	SayString (GetWindowName (GetAppMainWindow (GetFocus())))
+	SayString ("JAWS speech for phrases is OFF") 
 EndIf
 EndFunction
 
@@ -26,7 +30,9 @@ Void Function FocusChangedEvent (handle FocusWindow, handle PrevWindow)
 var String ContentViewBlocksClass 
 let ContentViewBlocksClass = "WindowsForms10.Window.8.app.0.378734a"
 	if	 ( ( StringContains (IntToString (GetJFWVersion ()), "9") == 1 
-	|| StringContains (IntToString (GetJFWVersion ()), "10") == 1  )
+	|| StringContains (IntToString (GetJFWVersion ()), "10") == 1  
+	|| StringContains (IntToString (GetJFWVersion ()), "11") == 1  
+	|| StringContains (IntToString (GetJFWVersion ()), "12") == 1  )
 	&&    GetWindowClass (GetFocus ()) == ContentViewBlocksClass  ) Then
 
 		var String strObjectName
@@ -38,24 +44,24 @@ let ContentViewBlocksClass = "WindowsForms10.Window.8.app.0.378734a"
 		If (strObjectName == "" ) Then
 			SayStripString () 
 		Else
-var int counter
-If ( g_SilentOnPhrases
-&& (GetWindowName (GetFocus ()) =="Waveform1"  || StringContains (strObjectName , "phrase (") == 1 )) Then
-let counter = 0 ;
-While (GetScreenEcho () != 0 && counter <6) 
-ScreenEcho ()
-let counter = counter+1
-EndWhile
-;Saystring ("found")
-Else
-let counter = 0
-While (GetScreenEcho () != g_ExistingScreenEcho  && counter <6) 
-ScreenEcho ()
-let counter = counter+1
-EndWhile
+			var int counter
+			If ( g_SilentOnPhrases == 1
+			&& (GetWindowName (GetFocus ()) =="Waveform1"  || StringContains (strObjectName , "phrase (") == 1 )) Then
+				let counter = 0 ;
+				While (GetScreenEcho () != 0 && counter <6) 
+				ScreenEcho ()
+				let counter = counter+1
+				EndWhile
+			;Saystring ("found")
+		Else
+			let counter = 0
+				While (GetScreenEcho () != g_ExistingScreenEcho  && counter <6) 
+				ScreenEcho ()
+				let counter = counter+1
+				EndWhile
 
 			SayString ( strObjectName)
-EndIf
+			EndIf
 		EndIf
 	Else
 		FocusChangedEvent ( FocusWindow, PrevWindow)
@@ -76,7 +82,18 @@ var String strDiscription
 let strDiscription = StringSegment (strObjectsList, "=-:", 1) 
 ;let strDiscription = StringReplaceChars (strDiscription, strControlName," ")
 let strDiscription = StringReplaceSubstrings (strDiscription, "toolStripContainer1", "" ) ;
-SayString ( strDiscription)
+If ( g_SilentOnPhrases == 1 
+&& (StringContains (IntToString (GetJFWVersion ()), "11") == 1  
+	|| StringContains (IntToString (GetJFWVersion ()), "12") == 1  )
+) Then
+var Int index 
+let index = StringContains (strDiscription, "phrase (") 
+	If (index == 0 || index  >1)
+	SayString ( strDiscription)
+	EndIf
+Else
+	SayString ( strDiscription)
+EndIf
 EndFunction
 
 
@@ -94,19 +111,19 @@ EndScript
 
 Script ToggleEchoOnPhrases ()
 If (g_SilentOnPhrases == 0 ) Then
-let g_SilentOnPhrases = 1
-let g_ExistingScreenEcho = GetScreenEcho ()
+	let g_SilentOnPhrases = 1
+	let g_ExistingScreenEcho = GetScreenEcho ()
 
-SayString ("Echo on phrases, OFF")
+	SayString ("Echo on phrases, OFF")
 Else
-let g_SilentOnPhrases = 0
-var Int counter
-let counter = 0 
-While ( GetScreenEcho () != g_ExistingScreenEcho  && counter <6 )
-ScreenEcho ()
-let counter = counter+1
-EndWhile
-SayString ("Echo on phrases, ON")
+	let g_SilentOnPhrases = 0
+	var Int counter
+	let counter = 0 
+	While ( GetScreenEcho () != g_ExistingScreenEcho  && counter <6 )
+	ScreenEcho ()
+	let counter = counter+1
+	EndWhile
+	SayString ("Echo on phrases, ON")
 
 EndIf
 EndScript
