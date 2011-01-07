@@ -56,6 +56,8 @@ namespace Obi.UserControls
             m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) ;
             m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.CanNavigateNextPage;
             m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.CanNavigatePrevPhrase;
+            m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
+            m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 this.Text = "Obi recorder bar : [" + m_TransportBar.RecordingSection.Label.ToString() + "]";
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
@@ -129,6 +131,7 @@ namespace Obi.UserControls
             m_TransportBar.NextPhrase();
             m_Count = 0;
             timer1.Start();
+            UpdateButtons();
         }
 
         private void m_recordingToolBarNextPageBtn_Click(object sender, EventArgs e)
@@ -143,6 +146,7 @@ namespace Obi.UserControls
             m_strStatus = "New section ";            
             m_Count = 0;
             m_TransportBar.NextSection();
+            UpdateButtons();
         }
 
         private string format(double durationMs)
