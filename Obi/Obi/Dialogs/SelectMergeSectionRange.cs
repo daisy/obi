@@ -80,20 +80,25 @@ namespace Obi.Dialogs
 
         private void m_lb_listofSectionsToMerge_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int totalPhraseCount = 0;
-            for (int i = m_lb_listofSectionsToMerge.SelectedIndex; i <= m_lb_listofSectionsToMerge.SelectedItems.Count - 1; i++)
+            m_StatusLabelForMergeSection.Text = "";
+            if (m_lb_listofSectionsToMerge.SelectedIndices.Count == 1)
+                m_StatusLabelForMergeSection.Text = "Selected " + m_lb_listofSectionsToMerge.SelectedItem.ToString();
+            else
+            {
+                for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count - 1; i++)
                 {
-                    if (totalPhraseCount <= 7000 && m_lb_listofSectionsToMerge.SelectedIndex != -1)
+                    m_StatusLabelForMergeSection.Text = "";
+                    if ((m_lb_listofSectionsToMerge.SelectedIndices[i] < m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1))
+                        m_StatusLabelForMergeSection.Text = "The selection is not continuous";
+                    else
                     {
-                        totalPhraseCount = totalPhraseCount + m_SectionList[i].PhraseChildCount;
-                        m_StatusLabelForMergeSection.Text = String.Format("Selected section {0} to {1} ", m_SectionList[m_lb_listofSectionsToMerge.SelectedIndex].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].Label);
+                        for (int k = 0; k <= m_lb_listofSectionsToMerge.SelectedItems.Count; k++)
+                           m_StatusLabelForMergeSection.Text = String.Format("Selected section {0} to {1} ", m_SectionList[m_lb_listofSectionsToMerge.SelectedIndex].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].Label);                       
                     }
-                    else if (totalPhraseCount > 7000)
-                        m_StatusLabelForMergeSection.Text = String.Format("Total number of phrases is {0}.It should be less than 7000", totalPhraseCount);
                 }
-
-                if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
-                    m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();           
+            }
+            if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
+                m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();                                       
         }
 
         private List<SectionNode> listBoxSelectionIsContinuous(List<SectionNode> sectionList)       
@@ -148,7 +153,7 @@ namespace Obi.Dialogs
 
                if (totalPhraseCount < 7000)
                {
-                   m_StatusLabelForMergeSection.Text = (String.Format("Merging sections from {0} to {1} ", newList[0], newList[newList.Count - 1]));
+                   m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", newList[0], newList[newList.Count - 1]);
                    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
                else
