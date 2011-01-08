@@ -2690,7 +2690,18 @@ namespace Obi
 
         private void mView_RecordingToolBarMenuItem_Click(object sender, EventArgs e)
         {
-            ShowRecordingToolBar();
+            if (mView_RecordingToolBarMenuItem.Checked)
+            {
+                if (mRecordingToolBarForm != null)
+                {
+                    mRecordingToolBarForm.Close();
+                }
+            }
+            else
+            {
+                ShowRecordingToolBar();
+                if (mPeakMeter == null) ShowPeakMeter();
+            }
         }
 
         private void mergeMultipleSectionsToolStripMenuItem_Click(object sender, EventArgs e)
