@@ -3408,6 +3408,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid key assigned. Please select another combination of keys.... {0} {1}.
+        /// </summary>
+        internal static string Preference_InvalidKeyExceptionMsg {
+            get {
+                return ResourceManager.GetString("Preference_InvalidKeyExceptionMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Pipeline scripts found in this location.
         /// </summary>
         internal static string Preferences_PipelineScriptNotFound {
