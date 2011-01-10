@@ -2142,13 +2142,14 @@ namespace Obi
                 {
                     string accessibleString = m.Text.Replace("&", "");
                     if (isFirstTime && !string.IsNullOrEmpty(m.Name) && m.Name != "PipelineMenu") KeyboardShortcuts_Settings.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
-                    if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) )
-                    {
-                        if (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None && m.Name != "PipelineMenu")
+                    if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) //)
+                    //{
+                        //if (
+                            && KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None && m.Name != "PipelineMenu")
                         {
                             m.ShortcutKeys = KeyboardShortcuts.MenuNameDictionary[m.Name].Value;
                             KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&",""), m.ShortcutKeys);
-                        }
+                        //}
                     }
                     else
                     {
