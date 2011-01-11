@@ -848,12 +848,14 @@ namespace Obi
             {
             mUndoToolStripMenuItem.Enabled = mSession.CanUndo && !mProjectView.TransportBar.IsRecorderActive;
             mUndoToolStripMenuItem.Text = mSession.CanUndo ?
-                String.Format ( Localizer.Message ( "undo_label" ), Localizer.Message ( "undo" ), mSession.UndoLabel ) :
-                Localizer.Message ( "cannot_undo" );
+                String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), mSession.UndoLabel) :
+                String.Format(Localizer.Message("undo_label"), Localizer.Message("undo"), ""); //avn: the "cannot" text create confusion in keyboardshortcut preferences
+                //Localizer.Message ( "cannot_undo" );
             mRedoToolStripMenuItem.Enabled = mSession.CanRedo;
             mRedoToolStripMenuItem.Text = mSession.CanRedo ?
-                String.Format ( Localizer.Message ( "redo_label" ), Localizer.Message ( "redo" ), mSession.RedoLabel ) :
-                Localizer.Message ( "cannot_redo" );
+                String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), mSession.RedoLabel) :
+                String.Format(Localizer.Message("redo_label"), Localizer.Message("redo"), "" ); //avn: the "cannot" text create confusion in keyboardshortcut preferences
+                //Localizer.Message ( "cannot_redo" );
             mCutToolStripMenuItem.Enabled = mProjectView.CanCut;
             mCopyToolStripMenuItem.Enabled = mProjectView.CanCopy;
             mPasteToolStripMenuItem.Enabled = mProjectView.CanPaste;
@@ -2125,8 +2127,8 @@ namespace Obi
 
         private void AssignMenuShortcuts(ToolStripMenuItem m, bool isFirstTime)
         {
-            
-            if (m.HasDropDownItems)
+
+            if (m.HasDropDownItems )
             {
                 foreach (ToolStripItem n in m.DropDownItems)
                 {
@@ -2139,18 +2141,16 @@ namespace Obi
                 //if (m != mFocusOnStripsViewToolStripMenuItem && m != mFocusOnTOCViewToolStripMenuItem)
                 {
                     string accessibleString = m.Text.Replace("&", "");
-                    if (isFirstTime && !string.IsNullOrEmpty(m.Name)) KeyboardShortcuts_Settings.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
-                    if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name) )
-                    {   
-                        if (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None)
-                        {
-                            m.ShortcutKeys = KeyboardShortcuts.MenuNameDictionary[m.Name].Value;
-                            KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&",""), m.ShortcutKeys);
-                        }
+                    if (isFirstTime && !string.IsNullOrEmpty(m.Name) && m.Name != "PipelineMenu") KeyboardShortcuts_Settings.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
+                    if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name)
+                            && KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None && m.Name != "PipelineMenu")
+                    {
+                        m.ShortcutKeys = KeyboardShortcuts.MenuNameDictionary[m.Name].Value;
+                        KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&", ""), m.ShortcutKeys);
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(m.Name))
+                        if (!string.IsNullOrEmpty(m.Name) && m.Name != "PipelineMenu")
                         {   
                             KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&", ""), m.ShortcutKeys);
                         }
@@ -2690,7 +2690,18 @@ namespace Obi
 
         private void mView_RecordingToolBarMenuItem_Click(object sender, EventArgs e)
         {
-            ShowRecordingToolBar();
+            if (mView_RecordingToolBarMenuItem.Checked)
+            {
+                if (mRecordingToolBarForm != null)
+                {
+                    mRecordingToolBarForm.Close();
+                }
+            }
+            else
+            {
+                ShowRecordingToolBar();
+                if (mPeakMeter == null) ShowPeakMeter();
+            }
         }
 
         private void mergeMultipleSectionsToolStripMenuItem_Click(object sender, EventArgs e)

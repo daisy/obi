@@ -405,6 +405,11 @@ namespace Obi.ProjectView
 
         private void ResizeForCommands()
         {
+            if (mProjectView.Selection != null && mProjectView.Selection.Node is SectionNode && mProjectView.Selection.Control is TOCView
+                && ActiveStrip == null)
+            {
+                CreateStripForSelectedSection(mProjectView.GetSelectedPhraseSection, true);
+            }
             ResumeLayout_All();
             UpdateSize();
             if (!UpdateScrollTrackBarAccordingToSelectedNode()) 

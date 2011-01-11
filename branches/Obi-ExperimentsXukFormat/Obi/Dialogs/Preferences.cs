@@ -366,7 +366,7 @@ namespace Obi.Dialogs
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(string.Format ( Localizer.Message ( "Preference_InvalidKeyExceptionMsg" ), "\n\n",ex.ToString()),"Invalid Key Pressed",MessageBoxButtons.OK,MessageBoxIcon.Error );
                     m_txtShortcutKeys.Focus();
                     return false;
                 }
