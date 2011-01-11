@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Obi.Events.Node
 {
-    class ObiNodeEventArgs: EventArgs
+    public class ObiNodeEventArgs: EventArgs
     {
         private ObiNode mNode;
 
