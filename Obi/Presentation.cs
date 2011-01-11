@@ -27,9 +27,11 @@ namespace Obi
             mCustomClasses = new Dictionary<string, List<EmptyNode>>();
         }
 
-
-        public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
-        public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
+        //sdk2
+        //public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
+        //public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
+        
+        //sdk2-todo check DAISY 2.02 export
         public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
 
 
@@ -50,7 +52,10 @@ namespace Obi
         /// </summary>
         public void AddMetadata(urakawa.metadata.Metadata entry)
         {
-            addMetadata(entry);
+            Metadatas.Insert(Metadatas.Count, entry);
+            //sdk2 addMetadata(entry);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryAdded != null) MetadataEntryAdded(this, new MetadataEventArgs(entry));
         }
 
@@ -59,37 +64,47 @@ namespace Obi
         /// </summary>
         public void DeleteMetadata(urakawa.metadata.Metadata entry)
         {
-            deleteMetadata(entry);
+            Metadatas.Remove(entry);
+            //sdk2 deleteMetadata(entry);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryDeleted != null) MetadataEntryDeleted(this, new MetadataEventArgs(entry));
         }
 
         public void SetMetadataEntryContent(urakawa.metadata.Metadata entry, string content)
         {
-            entry.setContent(content);
+            entry.NameContentAttribute.Value = content;
+            //sdk2 entry.setContent(content);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryContentChanged != null) MetadataEntryContentChanged(this, new MetadataEventArgs(entry));
         }
 
         public void SetMetadataEntryName(urakawa.metadata.Metadata entry, string name)
         {
-            entry.setName(name);
+            entry.NameContentAttribute.Name = name;
+            //sdk2 entry.setName(name);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryNameChanged != null) MetadataEntryNameChanged(this, new MetadataEventArgs(entry));
         }
 
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
-        public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
+        //sdk2 public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
 
         /// <summary>
         /// Root node of the presentation.
         /// </summary>
-        public RootNode RootNode { get { return (RootNode)getRootNode(); } }
+        //sdk2 public RootNode RootNode { get { return (RootNode)getRootNode(); } }
 
 
         /// <summary>
         /// Get the audio channel of the presentation
         /// </summary>
-        public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
+        /// //sdk2
+        //public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
         /// First section node in the project, or null if there are no sections.
@@ -115,7 +130,8 @@ namespace Obi
         /// <summary>
         /// Get the text channel of the presentation.
         /// </summary>
-        public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
+        //sdk2
+        //public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
 
         /// <summary>
         /// Get the title of the presentation from the metadata.
@@ -318,13 +334,14 @@ namespace Obi
         /// <summary>
         /// Add a new channel with the given name to the presentation's channel manager.
         /// </summary>
-        internal Channel AddChannel(string name)
-        {
-            Channel channel = getChannelFactory().createChannel();
-            channel.setName(name);
-            getChannelsManager().addChannel(channel);
-            return channel;
-        }
+        //sdk2
+        //internal Channel AddChannel(string name)
+        //{
+        //    Channel channel = getChannelFactory().createChannel();
+        //    channel.setName(name);
+        //    getChannelsManager().addChannel(channel);
+        //    return channel;
+        //}
 
         /// <summary>
         /// Convenience method to create a new metadata object with a name/value pair.
@@ -370,14 +387,15 @@ namespace Obi
         }
 
         // Access a channel which we know exist and is the only channel by this name.
-        internal Channel GetSingleChannelByName(string name)
-        {
-            List<Channel> channels = getChannelsManager().getListOfChannels(name);
-            if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
-            if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
-                name, channels.Count));
-            return channels[0];
-        }
+        //sdk2
+        //internal Channel GetSingleChannelByName(string name)
+        //{
+        //    List<Channel> channels = getChannelsManager().getListOfChannels(name);
+        //    if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
+        //    if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
+        //        name, channels.Count));
+        //    return channels[0];
+        //}
 
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile ( string path )
@@ -483,7 +501,11 @@ namespace Obi
 
             RemoveAllPublishChannels (); // remove any publish channel, in case they exist
             PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
-            Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+            
+            //sdk2 Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME)
+            Channel publishChannel = this.ChannelFactory.CreateAudioChannel();
+            publishChannel.Name = PUBLISH_AUDIO_CHANNEL_NAME;
+
             visitor.setDestinationChannel(publishChannel);
             visitor.setSourceChannel(AudioChannel);
             visitor.setDestinationDirectory(new Uri(exportPath));
@@ -493,14 +515,16 @@ namespace Obi
 
             if (format == Obi.Export.ExportFormat.DAISY3_0)
                 {
-                ConvertXukToZed ( exportPath, xukPath, XukString );
+                //sdk2-todo use UrakawaSDK.daisy export feature
+                //ConvertXukToZed ( exportPath, xukPath, XukString );
                 }
             else
                 {
                 Export.DAISY202Export export202 = new Obi.Export.DAISY202Export ( this, exportPath );
                 export202.CreateDAISY202Files ();
                 }
-            getChannelsManager().removeChannel(publishChannel);
+            //getChannelsManager().removeChannel(publishChannel);
+            this.ChannelsManager.RemoveManagedObject(publishChannel);
         }
  
         // Update metadata before exporting
@@ -585,17 +609,18 @@ namespace Obi
         }
 
         // Convert the XUK output of the project to Z.
-        private void ConvertXukToZed(string outputDir, string xukPath, string exported)
-        {
-            Export.Z z = new Export.Z();
-            z.ExportPath = outputDir;
-            z.ProjectPath = Path.GetDirectoryName(xukPath);
-            z.ElapsedTimes = ElapsedTimes;
-            System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(exported));
-            z.WriteFileset(xuk);
-            // Write out the filtered file that is transformed for debugging.
-            z.WriteFiltered(System.Xml.XmlReader.Create(new StringReader(exported)));
-        }
+        //sdk2
+        //private void ConvertXukToZed(string outputDir, string xukPath, string exported)
+        //{
+        //    Export.Z z = new Export.Z();
+        //    z.ExportPath = outputDir;
+        //    z.ProjectPath = Path.GetDirectoryName(xukPath);
+        //    z.ElapsedTimes = ElapsedTimes;
+        //    System.Xml.XmlReader xuk = System.Xml.XmlReader.Create(new StringReader(exported));
+        //    z.WriteFileset(xuk);
+        //    // Write out the filtered file that is transformed for debugging.
+        //    z.WriteFiltered(System.Xml.XmlReader.Create(new StringReader(exported)));
+        //}
 
 
         /// <summary>

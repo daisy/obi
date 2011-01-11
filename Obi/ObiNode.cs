@@ -301,157 +301,158 @@ namespace Obi
     /// The root node of a presentation is an ObiNode as well.
     /// The level of the root node is 0. A root node has only section children.
     /// </summary>
-    public class RootNode : ObiNode
-    {
-        public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
+    // sdk2
+    //public class RootNode : ObiNode
+    //{
+    //    public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
 
-        private string mPrimaryExportDirectory= "" ;
+    //    private string mPrimaryExportDirectory= "" ;
 
-        public RootNode(Presentation presentation) : base(presentation) { }
+    //    public RootNode(Presentation presentation) : base(presentation) { }
 
-        /// <summary>
-        /// Allow only section nodes to be inserted.
-        /// If the index is negative, count backward from the end (-1 is last.)
-        /// </summary>
-        public override void Insert(ObiNode node, int index)
-        {
-            if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
-            if (index < 0) index += getChildCount();
-            insert(node, index);
-        }
+    //    /// <summary>
+    //    /// Allow only section nodes to be inserted.
+    //    /// If the index is negative, count backward from the end (-1 is last.)
+    //    /// </summary>
+    //    public override void Insert(ObiNode node, int index)
+    //    {
+    //        if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
+    //        if (index < 0) index += getChildCount();
+    //        insert(node, index);
+    //    }
 
-        /// <summary>
-        /// The level of the root node is always 0; top-level sections have a level of 1.
-        /// </summary>
-        public override int Level { get { return 0; } }
+    //    /// <summary>
+    //    /// The level of the root node is always 0; top-level sections have a level of 1.
+    //    /// </summary>
+    //    public override int Level { get { return 0; } }
 
-        public override SectionNode SectionChild(int index)
-        {
-            if (index < 0) index = getChildCount() - index;
-            return (SectionNode)getChild(index);
-        }
+    //    public override SectionNode SectionChild(int index)
+    //    {
+    //        if (index < 0) index = getChildCount() - index;
+    //        return (SectionNode)getChild(index);
+    //    }
 
-        public override ObiNode PrecedingNode { get { return null; } }
-        public override ObiNode FollowingNode { get { return null; } }
+    //    public override ObiNode PrecedingNode { get { return null; } }
+    //    public override ObiNode FollowingNode { get { return null; } }
 
-        public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
-        public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
-        public override int SectionChildCount { get { return getChildCount(); } }
-        public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
-        public override int PhraseChildCount { get { return 0; } }
+    //    public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
+    //    public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
+    //    public override int SectionChildCount { get { return getChildCount(); } }
+    //    public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
+    //    public override int PhraseChildCount { get { return 0; } }
 
-        public override double Duration
-        {
-            get
-            {
-                double duration = 0.0;
-                acceptDepthFirst(delegate(urakawa.core.TreeNode n)
-                {
-                    if (n is SectionNode) duration += ((SectionNode)n).Duration;
-                    return true;
-                }, delegate(urakawa.core.TreeNode n) { });
-                return duration;
-            }
-        }
+    //    public override double Duration
+    //    {
+    //        get
+    //        {
+    //            double duration = 0.0;
+    //            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+    //            {
+    //                if (n is SectionNode) duration += ((SectionNode)n).Duration;
+    //                return true;
+    //            }, delegate(urakawa.core.TreeNode n) { });
+    //            return duration;
+    //        }
+    //    }
 
-        // Count all nodes that match the predicate.
-        private int Count(Predicate<urakawa.core.TreeNode> p)
-        {
-            int count = 0;
-            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
-            {
-                if (p(n)) ++count;
-                return true;
-            }, delegate(urakawa.core.TreeNode n) { });
-            return count;
-        }
+    //    // Count all nodes that match the predicate.
+    //    private int Count(Predicate<urakawa.core.TreeNode> p)
+    //    {
+    //        int count = 0;
+    //        acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+    //        {
+    //            if (p(n)) ++count;
+    //            return true;
+    //        }, delegate(urakawa.core.TreeNode n) { });
+    //        return count;
+    //    }
 
-        public int PageCount
-        {
-            get
-            {
-                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber != null; });
-            }
-        }
+    //    public int PageCount
+    //    {
+    //        get
+    //        {
+    //            return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber != null; });
+    //        }
+    //    }
 
-        public int PhraseCount
-        {
-            get
-            {
-                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode; });
-            }
-        }
+    //    public int PhraseCount
+    //    {
+    //        get
+    //        {
+    //            return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode; });
+    //        }
+    //    }
 
-        public int SectionCount
-        {
-            get
-            {
-                return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
-            }
-        }
+    //    public int SectionCount
+    //    {
+    //        get
+    //        {
+    //            return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
+    //        }
+    //    }
 
-        /// <summary>
-        /// returns list of all the sections descending from root. This may be time consuming for large project
-        /// </summary>
-        /// <returns></returns>
-        public List<SectionNode> GetListOfAllSections ()
-            {
-            List<SectionNode> m_SectionsList = new List<SectionNode> ();
-            this.acceptDepthFirst (
-                    delegate ( urakawa.core.TreeNode n )
-                        {
-                                                if (n is SectionNode )
-                            {
-                                                                                m_SectionsList.Add ( (SectionNode)n );
-                            }
-                        return true;
-                        },
-                    delegate ( urakawa.core.TreeNode n ) { } );
+    //    /// <summary>
+    //    /// returns list of all the sections descending from root. This may be time consuming for large project
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public List<SectionNode> GetListOfAllSections ()
+    //        {
+    //        List<SectionNode> m_SectionsList = new List<SectionNode> ();
+    //        this.acceptDepthFirst (
+    //                delegate ( urakawa.core.TreeNode n )
+    //                    {
+    //                                            if (n is SectionNode )
+    //                        {
+    //                                                                            m_SectionsList.Add ( (SectionNode)n );
+    //                        }
+    //                    return true;
+    //                    },
+    //                delegate ( urakawa.core.TreeNode n ) { } );
 
-            return m_SectionsList;
-            }
+    //        return m_SectionsList;
+    //        }
 
 
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+    //    public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
-        /// <summary>
-                ///  Path of directory containing exported DAISY book in raw PCM format
-        /// </summary>
-        public string PrimaryExportDirectory
-        {
-            get { return mPrimaryExportDirectory; }
-            set
-            {
-                if (value != null) mPrimaryExportDirectory = value;
-            }
-        }
-        /*
-        private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
+    //    /// <summary>
+    //            ///  Path of directory containing exported DAISY book in raw PCM format
+    //    /// </summary>
+    //    public string PrimaryExportDirectory
+    //    {
+    //        get { return mPrimaryExportDirectory; }
+    //        set
+    //        {
+    //            if (value != null) mPrimaryExportDirectory = value;
+    //        }
+    //    }
+    //    /*
+    //    private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
 
-        /// <summary>
-        /// Read back the used attribute.
-        /// </summary>
-        protected override void xukInAttributes(System.Xml.XmlReader reader)
-        {
-            if (this.getProperty<XmlProperty>() == null)
-            {
-                mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
-            }
-                        base.xukInAttributes(reader);
-        }
+    //    /// <summary>
+    //    /// Read back the used attribute.
+    //    /// </summary>
+    //    protected override void xukInAttributes(System.Xml.XmlReader reader)
+    //    {
+    //        if (this.getProperty<XmlProperty>() == null)
+    //        {
+    //            mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+    //        }
+    //                    base.xukInAttributes(reader);
+    //    }
 
-        /// <summary>
-        /// Write the used attribute if its value is false (true being the default.)
-        /// </summary>
-        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
-        {
-            if (!Presentation.UseXukFormat)
-            {
-                destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
-            }
-            base.xukOutAttributes(destination, baseUri);
-        }
-        */
+    //    /// <summary>
+    //    /// Write the used attribute if its value is false (true being the default.)
+    //    /// </summary>
+    //    protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+    //    {
+    //        if (!Presentation.UseXukFormat)
+    //        {
+    //            destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+    //        }
+    //        base.xukOutAttributes(destination, baseUri);
+    //    }
+    //    */
 
-    }
+    //}
 }

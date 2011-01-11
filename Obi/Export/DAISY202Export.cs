@@ -301,7 +301,7 @@ namespace Obi.Export
                     // create audio elements for external audio medias
                         if (phrase is PhraseNode)
                         {
-                            Channel publishChannel = m_Presentation.GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+                            Channel publishChannel = m_Presentation.ChannelsManager. //sdk2 GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
                             ExternalAudioMedia externalMedia = (ExternalAudioMedia)phrase.getProperty<ChannelsProperty>().getMedia(publishChannel);
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);

@@ -7,8 +7,7 @@ using Obi.Events.Node;
 
 namespace Obi.Events.Strip
 {
-  
-    class UpdateTimeEventArgs: PhraseNodeEventArgs
+    public class UpdateTimeEventArgs: PhraseNodeEventArgs
     {
         private double mTime;
 
