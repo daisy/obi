@@ -399,6 +399,13 @@ namespace Obi.ProjectView
                     new AudioRange(0.0, mCurrentPlaylist.CurrentTimeInAsset));
                 return true;
             }
+            else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+            {
+                double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(0.0, time));
+                return true;
+            }
             return false;
         }
 
@@ -414,6 +421,14 @@ namespace Obi.ProjectView
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset,
                         mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                return true;
+            }
+            else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
+            {   
+                double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
+                mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
+                    new AudioRange(time ,
+                        ((PhraseNode)mView.Selection.Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
                 return true;
             }
             return false;

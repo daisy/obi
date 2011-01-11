@@ -2191,6 +2191,7 @@ namespace Obi.ProjectView
                         tempNode.MergeAudioWith(listOfNodesToMerge[i].Audio.copy());
                     }
                 }
+                if (!(startNode is PhraseNode)) startNode = nodeToSelect;
                 Commands.Command mergeCmd = new Commands.Node.MergeAudio(this, (PhraseNode)startNode, tempNode);
                 command.append(mergeCmd);
             if (phraseRole != null )
