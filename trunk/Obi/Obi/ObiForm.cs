@@ -1319,7 +1319,7 @@ namespace Obi
         // Open the preferences dialog
         private void mTools_PreferencesMenuItem_Click ( object sender, EventArgs e )
             {
-            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
 
             Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar );
             prefs.ShowDialog ();
