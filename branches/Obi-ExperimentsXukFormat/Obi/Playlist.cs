@@ -395,11 +395,11 @@ namespace Obi
             mPlaybackStartTime = 0.0;
             if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from, mPlaybackEndTime);
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.MediaData, from, mPlaybackEndTime);
             }
             else
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.getMediaData(), from);
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.MediaData, from);
             }
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
