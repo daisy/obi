@@ -108,8 +108,9 @@ namespace Obi
                 mSectionMarks = new List<int>();
                 AudioMediaData asset =
                     (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-                mSessionMedia = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia();
-                mSessionMedia.setMediaData(asset);
+                mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
+                //mSessionMedia.setMediaData(asset);
+                mSessionMedia.MediaData = asset;
                 mRecorder.StartRecording(asset);
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset, 0.0));
@@ -154,7 +155,7 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                    if (mPhraseMarks[i] < mSessionMedia.getDuration ().getTimeDeltaAsMillisecondFloat ())
+                    if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.Milliseconds)
                         {
                         ManagedAudioMedia split = mSessionMedia.split ( new urakawa.media.timing.Time ( mPhraseMarks[i] ) );
                         mAudioList.Insert ( mSessionOffset, split );

@@ -164,7 +164,7 @@ namespace Obi.Audio
                     }//-3
                     if (lCurrentPosition >= mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
                     {//3
-                        lCurrentPosition = mAudioStream.Length -
+                        lCurrentPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
