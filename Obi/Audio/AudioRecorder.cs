@@ -153,9 +153,9 @@ namespace Obi.Audio
 			mState = AudioRecorderState.Monitoring;
 			if (StateChanged != null) StateChanged(this, e);
 
-			mChannels = asset.getPCMFormat ().getNumberOfChannels () ;
-			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
-			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
+			mChannels = asset.PCMFormat.Data.NumberOfChannels;
+			m_bitDepth = asset.PCMFormat.Data.BitDepth  ;
+			m_SampleRate = (int)  asset.PCMFormat.Data.SampleRate;
             m_FrameSize = (m_bitDepth / 8) * mChannels;
             
             mAsset = asset;
@@ -176,9 +176,9 @@ namespace Obi.Audio
 	    	mState = AudioRecorderState.Recording;
 		    if (StateChanged != null) StateChanged(this, e);
         
-            mChannels = asset.getPCMFormat().getNumberOfChannels();
-			m_SampleRate = (int)  asset.getPCMFormat ().getSampleRate ()  ;
-			m_bitDepth = asset.getPCMFormat ().getBitDepth ()  ;
+            mChannels = asset.PCMFormat.Data.NumberOfChannels;
+			m_SampleRate = (int)  asset.PCMFormat.Data.SampleRate;
+			m_bitDepth = asset.PCMFormat.Data.BitDepth;
             m_FrameSize = (m_bitDepth / 8) * mChannels;
 
             mAsset = asset;
@@ -615,7 +615,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     Writer = null;
                     Audiolength = 0;
                     ///-///
-                    mAsset.appendAudioDataFromRiffWave(m_sFileName);
+                    mAsset.AudioDataInserted(m_sFileName);
 
                     // the file has been copied so it should be deleted.
                     if (File.Exists(m_sFileName))
