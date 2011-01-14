@@ -135,7 +135,7 @@ namespace Obi.Audio
         {
             int PlayPosition = 0;
             long lCurrentPosition = 0;
-            if (mCurrentAudio != null && mCurrentAudio.getPCMLength() > 0)
+            if (mCurrentAudio != null && mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  > 0)
             {//1
                 if (mState == AudioPlayerState.Playing)
                 {//2
@@ -162,9 +162,9 @@ namespace Obi.Audio
                         int subtractor = (3 * m_RefreshLength) - PlayPosition;
                         lCurrentPosition = m_lPlayed - subtractor;
                     }//-3
-                    if (lCurrentPosition >= mCurrentAudio.getPCMLength())
+                    if (lCurrentPosition >= mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
                     {//3
-                        lCurrentPosition = mCurrentAudio.getPCMLength() -
+                        lCurrentPosition = mAudioStream.Length -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
@@ -564,7 +564,7 @@ namespace Obi.Audio
                 }
                 else if (mFwdRwdRate < 0)
                 {
-                    if (lStartPosition == 0) lStartPosition = mCurrentAudio.getPCMLength();
+                    if (lStartPosition == 0) lStartPosition = mAudioStream.Length();
                     Rewind(lStartPosition);
                 }
             }// end of state check
@@ -590,16 +590,16 @@ namespace Obi.Audio
                  BufferDescription  BufferDesc = new BufferDescription();
                 
                 // retrieve format from asset
-                mFrameSize = mCurrentAudio.getPCMFormat().getBlockAlign();
-                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
-                newFormat.AverageBytesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
-                                newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBitDepth());
-                newFormat.BlockAlign = Convert.ToInt16(mCurrentAudio.getPCMFormat().getBlockAlign());
-                newFormat.Channels = Convert.ToInt16(mCurrentAudio.getPCMFormat().getNumberOfChannels());
+                mFrameSize = mCurrentAudio.PCMFormat.Data.BlockAlign;
+                m_Channels = mCurrentAudio.PCMFormat.Data.NumberOfChannels ;
+                newFormat.AverageBytesPerSecond = (int)mCurrentAudio.PCMFormat.Data.SampleRate* mCurrentAudio.PCMFormat.Data.BlockAlign;
+                                newFormat.BitsPerSample = Convert.ToInt16(mCurrentAudio.PCMFormat.Data.BitDepth);
+                newFormat.BlockAlign = Convert.ToInt16(mCurrentAudio.PCMFormat.Data.BlockAlign);
+                newFormat.Channels = Convert.ToInt16(mCurrentAudio.PCMFormat.Data.NumberOfChannels);
 
                 newFormat.FormatTag = WaveFormatTag.Pcm;
 
-                newFormat.SamplesPerSecond = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                newFormat.SamplesPerSecond = (int)mCurrentAudio.PCMFormat.Data.SampleRate;
 
                 // loads  format to buffer description
                 BufferDesc.Format = newFormat;
@@ -609,8 +609,8 @@ namespace Obi.Audio
                 BufferDesc.ControlFrequency = true;
 
                 // calculate size of buffer so as to contain 1 second of audio
-                m_SizeBuffer = (int)mCurrentAudio.getPCMFormat().getSampleRate() * mCurrentAudio.getPCMFormat().getBlockAlign();
-                m_RefreshLength = (int)(mCurrentAudio.getPCMFormat().getSampleRate() / 2) * mCurrentAudio.getPCMFormat().getBlockAlign();
+                m_SizeBuffer = (int)mCurrentAudio.PCMFormat.Data.SampleRate * mCurrentAudio.PCMFormat.Data.BlockAlign;
+                m_RefreshLength = (int)(mCurrentAudio.PCMFormat.Data.SampleRate/ 2) * mCurrentAudio.PCMFormat.Data.BlockAlign;
 
                 // calculate the size of VuMeter Update array length
                 m_UpdateVMArrayLength = m_SizeBuffer / 20;
@@ -647,9 +647,9 @@ namespace Obi.Audio
             if (mState != AudioPlayerState.Playing)
             {
                 // Adjust the start and end position according to frame size
-                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
-                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.getPCMFormat().getBlockAlign());
-                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
+                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
+                mSampleRate = (int)mCurrentAudio.PCMFormat.Data.SampleRate;
                 
                 // lEndPosition = 0 means that file is played to end
                 if (lEndPosition != 0)
@@ -660,7 +660,7 @@ namespace Obi.Audio
                 {
                     // folowing one line is modified on 2 Aug 2006
                     //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-                    m_lLength = (mCurrentAudio.getPCMLength());
+                    m_lLength = (mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds));
                 }
 
                 mPrevBytePosition = lStartPosition;
@@ -669,7 +669,7 @@ namespace Obi.Audio
 
                 m_IsEndOfAsset = false;
                 
-                mAudioStream = mCurrentAudio.getAudioData();
+                mAudioStream = mCurrentAudio.OpenPcmInputStream;
                 mAudioStream.Position = lStartPosition;
                 
                 mSoundBuffer.Write(0, mAudioStream, m_SizeBuffer, 0);
@@ -861,9 +861,9 @@ namespace Obi.Audio
         {
             if (mCurrentAudio != null)
             {
-                m_Channels = mCurrentAudio.getPCMFormat().getNumberOfChannels();
-                mFrameSize = mCurrentAudio.getPCMFormat().getNumberOfChannels() * (mCurrentAudio.getPCMFormat().getBitDepth() / 8);
-                mSampleRate = (int)mCurrentAudio.getPCMFormat().getSampleRate();
+                m_Channels = mCurrentAudio.PCMFormat.Data.NumberOfChannels;
+                mFrameSize = mCurrentAudio.PCMFormat.Data.NumberOfChannels* (mCurrentAudio.PCMFormat.Data.BitDepth/ 8);
+                mSampleRate = (int)mCurrentAudio.PCMFormat.Data.SampleRate;
             } 
 
             Events.Audio.Player.StateChangedEventArgs  e = new Events.Audio.Player.StateChangedEventArgs(mState);
@@ -940,10 +940,10 @@ namespace Obi.Audio
             			if ( State.Equals(AudioPlayerState.Paused))
 			{
                 
-                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.getPCMFormat ().getBlockAlign ()  );
-                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.getPCMFormat().getBlockAlign());
+                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
+                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
 
-                if (lPosition >= 0 && lPosition < mCurrentAudio.getPCMLength () )
+                if (lPosition >= 0 && lPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
                 {
                     mStartPosition = lPosition;
                                         InitPlay( mCurrentAudio , lPosition, lEndPosition );
@@ -1003,7 +1003,7 @@ namespace Obi.Audio
         if (mState != AudioPlayerState.Stopped || mCurrentAudio != null)
             {
             if (position < 0) position = 0;
-            if (position > mCurrentAudio.getPCMLength ()) position = mCurrentAudio.getPCMLength () - 100;
+            if (position > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)) position = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  - 100;
             mEventsEnabled = false;
             if (State == AudioPlayerState.Playing)
                 {
@@ -1076,9 +1076,9 @@ namespace Obi.Audio
         { //1
             
             double StepInMs = Math.Abs( 4000 * mFwdRwdRate   ) ;
-            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.getPCMFormat().getSampleRate ()  , mCurrentAudio.getPCMFormat().getBlockAlign ());
+            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
             int PlayChunkLength = 1200;
-            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.getPCMFormat().getSampleRate(), mCurrentAudio.getPCMFormat().getBlockAlign());
+            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
             mPreviewTimer.Interval = PlayChunkLength + 50;
 
             long PlayStartPos = 0;
@@ -1098,8 +1098,8 @@ namespace Obi.Audio
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
 PlayAssetStream  (  PlayStartPos, PlayEndPos);
 
-if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
-    m_lChunkStartPosition = mCurrentAudio.getPCMLength();
+if (m_lChunkStartPosition > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
+    m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds);
                                     } //-3
                 else
                 { //3
@@ -1117,10 +1117,10 @@ if (m_lChunkStartPosition > mCurrentAudio.getPCMLength())
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
                 if (m_lChunkStartPosition >  0 )
                 { //3
-                    if (m_lChunkStartPosition < mCurrentAudio.getPCMLength())
+                    if (m_lChunkStartPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
                         m_lChunkStartPosition -= lStepInBytes;
                     else
-                        m_lChunkStartPosition = mCurrentAudio.getPCMLength() - lPlayChunkLength  ;
+                        m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  - lPlayChunkLength;
 
                     PlayStartPos = m_lChunkStartPosition ;
                     PlayEndPos = m_lChunkStartPosition +  lPlayChunkLength;
