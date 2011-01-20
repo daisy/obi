@@ -11,7 +11,7 @@ namespace Obi.ProjectView
     public partial class AudioBlock : Block
     {
         private bool mShiftKeyPressed;  // track the shift key
-
+        private bool m_IsRecording;
         public const int NORMAL_PRIORITY = 1;
         public const int STRIP_SELECTED_PRIORITY = 2;
         public const int BLOCK_SELECTED_PRIORITY = 3;
@@ -28,7 +28,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
-            mShiftKeyPressed = false;
+            mShiftKeyPressed = false;            
         }
 
 
@@ -64,7 +64,15 @@ namespace Obi.ProjectView
             }
         }
 
-
+        public bool IsRecording 
+        { 
+            get { return m_IsRecording; }
+            set
+            {
+            if (value == false)
+                mRecordingLabel.Text = "";
+            }
+        }
 
 
         /// <summary>
