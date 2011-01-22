@@ -301,7 +301,8 @@ namespace Obi
     {
         private ProjectView.MetadataItemSelection mItem;
 
-        public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item)
+        //public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item)
+        public MetadataSelection(ObiNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item) //sdk2
             : base(node, control)
         {
             mItem = item;

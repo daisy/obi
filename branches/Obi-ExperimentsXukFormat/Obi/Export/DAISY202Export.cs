@@ -42,7 +42,7 @@ namespace Obi.Export
             }
 
 
-        List<SectionNode> GetSectionsList ( RootNode rNode )
+        List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
             {
             List<SectionNode> sectionsList = new List<SectionNode> ();
             rNode.acceptDepthFirst (
@@ -68,7 +68,7 @@ namespace Obi.Export
 
         public void CreateDAISY202Files ()
             {
-            List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode );
+            List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode);
 
             CreateFileSet ( sectionsList );
 
@@ -301,7 +301,7 @@ namespace Obi.Export
                     // create audio elements for external audio medias
                         if (phrase is PhraseNode)
                         {
-                            Channel publishChannel = m_Presentation.ChannelsManager. //sdk2 GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
+                            Channel publishChannel = m_Presentation.ChannelsManager.GetSingleChannelByName(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
                             ExternalAudioMedia externalMedia = (ExternalAudioMedia)phrase.getProperty<ChannelsProperty>().getMedia(publishChannel);
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
