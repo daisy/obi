@@ -17,6 +17,7 @@ namespace Obi
     {
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
+        private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
 
         /// <summary>
         /// Create an uninitialized presentation.
@@ -25,6 +26,7 @@ namespace Obi
         {
             mInitialized = false;
             mCustomClasses = new Dictionary<string, List<EmptyNode>>();
+            m_ObiNodeFactory = new ObiNodeFactory(this);//sdk2
         }
 
         //sdk2
@@ -212,7 +214,7 @@ namespace Obi
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            PhraseNode node = (PhraseNode)getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             node.addProperty(getPropertyFactory().createChannelsProperty());
             return node;
         }
@@ -251,7 +253,7 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            SectionNode node = (SectionNode)getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
+            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             urakawa.property.channel.ChannelsProperty channelsProperty = getPropertyFactory().createChannelsProperty();
             node.addProperty(channelsProperty);
             // Create the text media object for the label with a default label
