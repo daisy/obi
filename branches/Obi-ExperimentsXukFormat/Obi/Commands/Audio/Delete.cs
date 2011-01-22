@@ -62,7 +62,7 @@ namespace Obi.Commands.Audio
         /// <summary>
         /// Get a delete command handling the delete all audio case gracefully.
         /// </summary>
-        public static urakawa.command.ICommand GetCommand(Obi.ProjectView.ProjectView view)
+        public static urakawa.command.Command GetCommand(Obi.ProjectView.ProjectView view)
         {
             Delete command = new Delete(view);
             if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.getTimeAsMillisecondFloat() == 0.0)

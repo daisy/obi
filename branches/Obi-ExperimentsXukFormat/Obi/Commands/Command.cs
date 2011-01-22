@@ -9,7 +9,7 @@ using urakawa.progress;
 
 namespace Obi.Commands
 {
-    public abstract class Command: ICommand
+    public abstract class Command: urakawa.command.Command
     {
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
@@ -101,7 +101,7 @@ namespace Obi.Commands
         /// <summary>
         /// Most commands do not use any media data.
         /// </summary>
-        public virtual List<MediaData> getListOfUsedMediaData() { return new List<MediaData>(); }
+        public virtual IEnumerable<MediaData> UsedMediaData () { return new List<MediaData>(); }
 
         /// <summary>
         /// The short description is the label of the command.
@@ -130,14 +130,14 @@ namespace Obi.Commands
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void xukIn(System.Xml.XmlReader source, ProgressHandler handler)
+        public void xukIn(System.Xml.XmlReader source, urakawa.progress.IProgressHandler handler)
         {
         }
 
         /// <summary>
         /// Commands are not saved so far.
         /// </summary>
-        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
+        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
         {
         }
 

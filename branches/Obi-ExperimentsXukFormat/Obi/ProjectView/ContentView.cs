@@ -194,7 +194,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Create a command to delete the selected strip.
         /// </summary>
-        public ICommand DeleteStripCommand () { return DeleteStripCommand ( SelectedSection ); }
+        public urakawa.command.Command DeleteStripCommand () { return DeleteStripCommand ( SelectedSection ); }
 
         public bool Focusing { get { return mFocusing; } }
 
@@ -262,7 +262,7 @@ namespace Obi.ProjectView
         /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
         /// a lower level, merging is not possible.
         /// </summary>
-        public ICommand MergeSelectedStripWithNextCommand ()
+        public urakawa.command.Command MergeSelectedStripWithNextCommand ()
             {
             CompositeCommand command = null;
             if (CanMergeStripWithNext)
@@ -896,7 +896,7 @@ namespace Obi.ProjectView
                 PhraseNode cropNode = null;
                 if (mProjectView.CanSplitPhrase)
                     {
-                    ICommand splitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mProjectView );
+                    urakawa.command.Command splitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mProjectView );
                     if (splitCommand != null) command.append ( splitCommand );
                     splitNode = Commands.Node.SplitAudio.GetSplitNode ( splitCommand );
                     //@singleSection  work around to avoid triggering strip creation due to unknown selection of split phrase
@@ -3077,7 +3077,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         private void ContentView_Click ( object sender, EventArgs e ) { mProjectView.Selection = null; }
 
         // Create a command (possibly composite) to delete a strip for the given section node.
-        private ICommand DeleteStripCommand ( SectionNode section )
+        private urakawa.command.Command DeleteStripCommand ( SectionNode section )
             {
             Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, section, Localizer.Message ( "delete_section_shallow" ) );
             if (section.SectionChildCount > 0)

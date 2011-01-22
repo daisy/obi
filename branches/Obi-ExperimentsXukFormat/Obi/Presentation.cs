@@ -8,7 +8,7 @@ using System.Xml;
 using urakawa.command;
 using urakawa.media.data.audio;
 using urakawa.property.channel;
-using urakawa.publish;
+//using urakawa.publish;
 using urakawa.media.data;
 
 namespace Obi
@@ -178,7 +178,7 @@ namespace Obi
         /// <summary>
         /// Execute a command, but warn first.
         /// </summary>
-        public void Do(ICommand command)
+        public void Do(urakawa.command.Command command)
         {
             if (command != null)
             {

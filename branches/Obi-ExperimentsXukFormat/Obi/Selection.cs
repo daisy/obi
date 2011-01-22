@@ -108,7 +108,7 @@ namespace Obi
         /// <summary>
         /// Create the paste command for pasting whatever is in the clipboard in the current selection.
         /// </summary>
-        public virtual ICommand PasteCommand(ProjectView.ProjectView view)
+        public virtual urakawa.command.Command PasteCommand(ProjectView.ProjectView view)
         {
             return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view);
         }
@@ -134,7 +134,7 @@ namespace Obi
 
         // Create a new phrase node with the audio from the clipboard
         // and merge the selected node with this one.
-        protected virtual ICommand PasteCommandAudio(ProjectView.ProjectView view)
+        protected virtual urakawa.command.Command PasteCommandAudio(ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
@@ -151,7 +151,7 @@ namespace Obi
         }
 
         // Paste a node in or after another node.
-        protected virtual ICommand PasteCommandNode(ProjectView.ProjectView view)
+        protected virtual urakawa.command.Command PasteCommandNode(ProjectView.ProjectView view)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
             CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
@@ -226,7 +226,7 @@ namespace Obi
         /// <summary>
         /// Create a paste command for this selection and the clipboard selection.
         /// </summary>
-        public override ICommand PasteCommand(Obi.ProjectView.ProjectView view)
+        public override urakawa.command.Command PasteCommand(Obi.ProjectView.ProjectView view)
         {
             return new Commands.Audio.Paste(view);
         }
@@ -266,7 +266,7 @@ namespace Obi
             }
         }
 
-        protected override ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
+        protected override urakawa.command.Command PasteCommandAudio(Obi.ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
