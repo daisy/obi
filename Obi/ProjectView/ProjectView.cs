@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using urakawa.command;
-using urakawa.publish;
+//using urakawa.publish;
 
 namespace Obi.ProjectView
     {
@@ -599,7 +599,7 @@ namespace Obi.ProjectView
                 {
                 CompositeCommand command = mPresentation.getCommandFactory ().createCompositeCommand ();
                 command.setShortDescription ( Localizer.Message ( "cut_audio" ) );
-                ICommand delete = Commands.Audio.Delete.GetCommand ( this );
+                urakawa.command.Command delete = Commands.Audio.Delete.GetCommand ( this );
                 PhraseNode deleted = delete is Commands.Audio.Delete ?
                     ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
                 command.append ( new Commands.Audio.Copy ( this, deleted,
@@ -689,7 +689,7 @@ namespace Obi.ProjectView
 
                     CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
                     // Collect silence node deletion commands separately in case the user wants to keep them.
-                    List<ICommand> silence = new List<ICommand>();
+                    List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
                     mPresentation.RootNode.acceptDepthFirst(
                         delegate(urakawa.core.TreeNode node)
                         {
@@ -716,7 +716,7 @@ namespace Obi.ProjectView
                             Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            foreach (ICommand c in silence) command.append(c);
+                            foreach (urakawa.command.Command c in silence) command.append(c);
                         }
                     }
 
@@ -903,7 +903,7 @@ namespace Obi.ProjectView
         /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
         /// a lower level, merging is not possible.
         /// </summary>
-        public ICommand MergeSelectedStripWithNextCommand ()
+        public urakawa.command.Command MergeSelectedStripWithNextCommand ()
             {
             CompositeCommand command = null;
             if (CanMergeStripWithNext)
@@ -1446,7 +1446,7 @@ namespace Obi.ProjectView
             }
 
         //@singleSection
-        public ICommand GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
+        public urakawa.command.Command GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Delete_RangeOfPhrases" ) );
             command.append ( new Commands.UpdateSelection ( this,Selection ) );
@@ -1544,7 +1544,7 @@ namespace Obi.ProjectView
 
         // Execute a command, but first add some extra stuff to maintain the unusedness of the new node
         // depending on the unusedness of its parent.
-        private void AddUnusedAndExecute ( ICommand command, ObiNode node, ObiNode parent )
+        private void AddUnusedAndExecute ( urakawa.command.Command command, ObiNode node, ObiNode parent )
             {
             if (parent.Used)
                 {
@@ -2088,7 +2088,7 @@ namespace Obi.ProjectView
         }
 
 
-        public ICommand GetMergeRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
+        public urakawa.command.Command GetMergeRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Merge_RangeOfPhrases" ) );
             command.append ( new Commands.UpdateSelection ( this, Selection ) );
@@ -2176,7 +2176,7 @@ namespace Obi.ProjectView
                                         command.append ( new Commands.Node.Delete ( this, node, false ) );
                     }
 
-                //ICommand mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
+                //urakawa.command.Command mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
                 
                 //command.append ( mergeCommand);
                  */ 
@@ -2249,7 +2249,7 @@ namespace Obi.ProjectView
             {
             if (CanSetPageNumber)
                 {
-                ICommand cmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), number );
+                urakawa.command.Command cmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), number );
                 if (renumber)
                     {
                     CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.getShortDescription () );
@@ -2841,7 +2841,7 @@ namespace Obi.ProjectView
                     Dialogs.SetPageNumber PageDialog = new Dialogs.SetPageNumber ( this.CurrentOrNextPageNumber, false, false );
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
                         {
-                        ICommand PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
+                        urakawa.command.Command PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
                         command.append ( PageCmd );
                         PageNumber number = PageDialog.Number;
                         if (PageDialog.Renumber)
@@ -2887,7 +2887,7 @@ namespace Obi.ProjectView
                 bool playbackOnSelectionStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 TransportBar.SelectionChangedPlaybackEnabled = false;
 
-                ICommand crop = Commands.Node.SplitAudio.GetCropCommand ( this );
+                urakawa.command.Command crop = Commands.Node.SplitAudio.GetCropCommand ( this );
                 mPresentation.Do ( crop );
 
                 TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionStatus;

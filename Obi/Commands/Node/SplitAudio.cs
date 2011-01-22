@@ -31,7 +31,7 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a command to crop the current selection.
         /// </summary>
-        public static ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
+        public static urakawa.command.Command GetCropCommand(Obi.ProjectView.ProjectView view)
         {
             PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
@@ -69,13 +69,13 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Get the first node after the split created by a split command.
         /// </summary>
-        public static PhraseNode GetSplitNode(ICommand command)
+        public static PhraseNode GetSplitNode(urakawa.command.Command command)
         {
             CompositeCommand c = command as CompositeCommand;
             SplitAudio split = command as SplitAudio;
             if (c != null)
             {
-                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                System.Collections.Generic.List<urakawa.command.Command> commands = c.getListOfCommands();
                 int i = commands.Count - 1;
                 for (; i >= 0 && !(commands[i] is SplitAudio); --i) { }
                 if (i >= 0) split = commands[i] as SplitAudio;
@@ -86,13 +86,13 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Get the node after the split node created by a crop command.
         /// </summary>
-        public static PhraseNode GetCropNode(ICommand command, PhraseNode splitNode)
+        public static PhraseNode GetCropNode(urakawa.command.Command command, PhraseNode splitNode)
         {
             CompositeCommand c = command as CompositeCommand;
             SplitAudio split = null;
             if (c != null)
             {
-                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                System.Collections.Generic.List<urakawa.command.Command> commands = c.getListOfCommands();
                 int i = 0;
                 for (; i < commands.Count && !((commands[i] is SplitAudio) && ((SplitAudio)commands[i]).NodeAfter != splitNode);
                     ++i) { }
