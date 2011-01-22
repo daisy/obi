@@ -188,7 +188,7 @@ namespace Obi
         // XUK stuff
         private static readonly string USED_ATTR_NAME = "used";  // name of the used attribute
 
-        protected override void xukInChild(System.Xml.XmlReader source, ProgressHandler handler)
+        protected override void xukInChild(System.Xml.XmlReader source, IProgressHandler handler)
         {
             base.xukInChild(source, handler);
             XukInNodeProperties();
@@ -220,7 +220,7 @@ namespace Obi
             base.xukInAttributes(reader);
         }
 
-        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
+        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
         {
             if (Presentation.UseXukFormat) UpdateXmlProperties();
             base.xukOutChildren(destination, baseUri, handler);
