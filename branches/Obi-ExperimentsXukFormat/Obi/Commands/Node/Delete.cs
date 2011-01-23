@@ -55,21 +55,24 @@ namespace Obi.Commands.Node
         }
 
 
-    public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
         {
-        if (mNode != null && mNode is PhraseNode)
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if ( ((PhraseNode)mNode).Audio != null )
-            mediaList.Add ( ((PhraseNode)mNode).Audio.getMediaData () );
-            return mediaList;
+                if (mNode != null && mNode is PhraseNode)
+                {
+                    List<MediaData> mediaList = new List<MediaData>();
+                    if (((PhraseNode)mNode).Audio != null)
+                        mediaList.Add(((PhraseNode)mNode).Audio.getMediaData());
+                    return mediaList;
+                }
+                else if (mNode != null && mNode is SectionNode)
+                {
+                    return GetMediaDataListForSection((SectionNode)mNode);
+                }
+                else
+                    return new List<MediaData>();
             }
-        else if (mNode != null && mNode is SectionNode)
-            {
-            return GetMediaDataListForSection ( (SectionNode)mNode );
-                        }
-        else
-            return new List<MediaData> ();
         }
 
     private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
@@ -91,19 +94,19 @@ namespace Obi.Commands.Node
         return mediaList;
         }
 
+        public override bool CanExecute { get { return true; } }
 
-
-        public override void execute()
+        public override void Execute()
         {
             mNode.Detach();
             if (UpdateSelection) View.Selection = mAfter;
             TriggerProgressChanged ();
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mParent.Insert(mNode, mIndex);
-            base.unExecute();
+            base.UnExecute();
         }
 
         // Determine what the selection will be after deletion
@@ -166,22 +169,25 @@ namespace Obi.Commands.Node
         }
 
 
-    public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
         {
-        ObiNode node = (ObiNode)mParent.getChild ( mIndex );
-        if (node != null && node is PhraseNode)
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if ( ((PhraseNode)node).Audio != null )
-            mediaList.Add ( ((PhraseNode)node).Audio.getMediaData () );
-            return mediaList;
+                ObiNode node = (ObiNode)mParent.getChild(mIndex);
+                if (node != null && node is PhraseNode)
+                {
+                    List<MediaData> mediaList = new List<MediaData>();
+                    if (((PhraseNode)node).Audio != null)
+                        mediaList.Add(((PhraseNode)node).Audio.getMediaData());
+                    return mediaList;
+                }
+                else if (node != null && node is SectionNode)
+                {
+                    return GetMediaDataListForSection((SectionNode)node);
+                }
+                else
+                    return new List<MediaData>();
             }
-        else if (node != null && node is SectionNode)
-            {
-            return GetMediaDataListForSection ( (SectionNode)node );
-                        }
-        else
-            return new List<MediaData> ();
         }
 
     private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
@@ -202,19 +208,21 @@ namespace Obi.Commands.Node
         return mediaList;
         }
 
+        public override bool CanExecute { get { return true; } }
 
 
-        public override void execute()
+
+        public override void Execute()
         {
             mDeleted = (ObiNode)mParent.getChild(mIndex);
             mParent.removeChild(mIndex);
             TriggerProgressChanged ();
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mParent.Insert(mDeleted, mIndex);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

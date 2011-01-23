@@ -41,34 +41,39 @@ namespace Obi.Commands.Node
             : this(view, node, node.ParentAs<ObiNode>(), node.Index) {}
 
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            if (mNode != null && mNode is PhraseNode && ((PhraseNode)mNode).Audio != null )
+
+                if (mNode != null && mNode is PhraseNode && ((PhraseNode)mNode).Audio != null)
                 {
-                List<MediaData> mediaList = new List<MediaData> ();
-                mediaList.Add ( ((PhraseNode)mNode).Audio.getMediaData () );
-                        return mediaList;
+                    List<MediaData> mediaList = new List<MediaData>();
+                    mediaList.Add(((PhraseNode)mNode).Audio.getMediaData());
+                    return mediaList;
                 }
-            else
+                else
                 {
-                        return new List<MediaData> ();
+                    return new List<MediaData>();
                 }
             }
+        }
 
 
-
-        public override void execute()
+        public override void Execute()
         {
             mParent.Insert(mNode, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
             TriggerProgressChanged ();
         }
 
-        public override void unExecute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void UnExecute()
         {
             mNode.Detach();
             if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 
@@ -83,9 +88,9 @@ namespace Obi.Commands.Node
             Label = Localizer.Message("add_blank_phrase");
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            base.execute();
+            base.Execute();
             View.Selection = new NodeSelection(mNode, mControl);
         }
     }

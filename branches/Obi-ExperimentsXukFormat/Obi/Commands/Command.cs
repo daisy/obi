@@ -46,9 +46,10 @@ namespace Obi.Commands
         /// <summary>
         /// In Obi, all commands can be executed. Ain't that nice?
         /// </summary>
-        public virtual bool canExecute() { return true; }
+        //public virtual bool canExecute() { return true; }
+        public override bool CanUnExecute  { get { return true; } }//sdk2 : temp
 
-        public abstract void execute();
+        public override void Execute() {}
         
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Obi.Commands
         /// <summary>
         /// Reset the selection to what it was before the command was executed.
         /// </summary>
-        public virtual void unExecute() 
+        public override void UnExecute() 
             {
             if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( "command",100 -  m_ProgressPercentage );//@singleSection
             if (UpdateSelection) mView.Selection = mSelectionBefore; 
@@ -101,7 +102,7 @@ namespace Obi.Commands
         /// <summary>
         /// Most commands do not use any media data.
         /// </summary>
-        public virtual IEnumerable<MediaData> UsedMediaData () { return new List<MediaData>(); }
+        public override IEnumerable<MediaData> UsedMediaData { get { return new List<MediaData>(); } }
 
         /// <summary>
         /// The short description is the label of the command.
@@ -155,18 +156,20 @@ namespace Obi.Commands
             mSelectionAfter = selection;
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Selection = mSelectionAfter;
             TriggerProgressChanged ();
         }
 
-        public override void unExecute ()
+        public override void UnExecute ()
             {
             if (mSelectionAfter == null
                 || (mSelectionAfter.Node != null && mSelectionAfter.Node.IsRooted))
                 {
-                base.unExecute ();
+                base.UnExecute ();
                 }
             }
 

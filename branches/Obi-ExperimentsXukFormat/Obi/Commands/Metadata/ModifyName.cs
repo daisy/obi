@@ -19,15 +19,17 @@ namespace Obi.Commands.Metadata
             Label = Localizer.Message("modify_metadata_name");
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Presentation.SetMetadataEntryName(mEntry, mNewName);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Presentation.SetMetadataEntryName(mEntry, mPreviousName);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

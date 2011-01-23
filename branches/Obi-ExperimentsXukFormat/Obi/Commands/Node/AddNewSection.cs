@@ -55,10 +55,12 @@ namespace Obi.Commands.Node
         /// </summary>
         public ObiNode NewSectionParent { get { return mParent; } }
 
+        public override bool CanExecute { get { return true; } }
+
         /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
-        public override void execute()
+        public override void Execute()
         {
             mParent.Insert(mNode, mIndex);
 
@@ -79,10 +81,10 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Remove the section node.
         /// </summary>
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.Detach();
-            base.unExecute();
+            base.UnExecute();
         }
     }
 

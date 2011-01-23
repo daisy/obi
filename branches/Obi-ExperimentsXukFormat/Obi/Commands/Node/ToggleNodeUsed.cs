@@ -17,15 +17,17 @@ namespace Obi.Commands.Node
             mOriginalStatus = node.Used;
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             mNode.Used = !mOriginalStatus;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.Used = mOriginalStatus;
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

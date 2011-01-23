@@ -5,7 +5,8 @@ namespace Obi
     /// <summary>
     /// The custom Data Model Factory for Obi.
     /// </summary>
-    public class DataModelFactory : urakawa.DataModelFactory
+    //public class DataModelFactory : urakawa.DataModelFactory
+    public class DataModelFactory 
     {
         public static readonly string NS = "http://www.daisy.org/urakawa/obi";  // Obi-specific namespace
         public static readonly string XUK_VERSION = "xuk/obi;1.0";             // versioning for Obi XUK files

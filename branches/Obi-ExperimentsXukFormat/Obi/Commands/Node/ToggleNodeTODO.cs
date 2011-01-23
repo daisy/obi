@@ -20,15 +20,18 @@ namespace Obi.Commands.Node
             Label = Localizer.Message("toggle_TODO");
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+        
+        
+        public override void Execute()
         {
             mNode.SetTODO ( !mOriginalStatus );
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.SetTODO(mOriginalStatus);
-            base.unExecute();
+            base.UnExecute();
         }
 
 
