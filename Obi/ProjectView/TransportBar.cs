@@ -415,12 +415,12 @@ namespace Obi.ProjectView
         public bool MarkSelectionToCursor()
         {
             if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
-                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset,
-                        mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                        mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds));
                 return true;
             }
             else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
@@ -428,7 +428,7 @@ namespace Obi.ProjectView
                 double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(time ,
-                        ((PhraseNode)mView.Selection.Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                        ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.Milliseconds));
                 return true;
             }
             return false;
@@ -443,13 +443,13 @@ namespace Obi.ProjectView
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds));
                 return true;
             }
             else if (mState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.getDuration().getTimeDeltaAsMillisecondFloat()));
+                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.Milliseconds));
                 return true;
             }
             return false;
@@ -468,7 +468,7 @@ namespace Obi.ProjectView
             mMasterPlaylist.Presentation = mView.Presentation;
             mCurrentPlaylist = mMasterPlaylist;
             mResumeRecordingPhrase = null;
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             m_IsProjectEmpty = mView.Presentation.FirstSection == null;
 
@@ -1282,7 +1282,7 @@ namespace Obi.ProjectView
         // Create a new recording command.
         private CompositeCommand CreateRecordingCommand()
         {
-            urakawa.command.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
+            urakawa.command.CompositeCommand command = mView.Presentation.CommandFactory.createCompositeCommand();
             command.ShortDescription = (Localizer.Message("recording_command"));//sdk2
             return command;
         }
@@ -1341,7 +1341,7 @@ namespace Obi.ProjectView
             urakawa.command.CompositeCommand command, EmptyNode emptyNode)
         {
             // Suspend presentation change handler so that we don't stop when new nodes are added.
-            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+            mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
             PhraseNode phrase = mView.Presentation.CreatePhraseNode(e.Audio);
             mRecordingPhrase = phrase;
@@ -1376,7 +1376,7 @@ namespace Obi.ProjectView
                 mView.Presentation.getUndoRedoManager().execute(add);
             }
                 mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
             if (mRecordingPhrase != null &&  mView.Selection != null && mView.Selection.Control.GetType() == typeof(ContentView) && !this.ContainsFocus)
                 mView.Selection = new NodeSelection(mRecordingPhrase, mView.Selection.Control);
         }
@@ -1384,13 +1384,13 @@ namespace Obi.ProjectView
 
         private void CopyPropertiesForTransfer ( EmptyNode node )
             {
-            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
             m_TempNodeForPropertiesTransfer = new EmptyNode ( mView.Presentation );
             m_TempNodeForPropertiesTransfer.CopyAttributes ( (EmptyNode)node );
             m_TempNodeForPropertiesTransfer.Used = ((EmptyNode)node).Used;
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             }
 
 
@@ -2046,8 +2046,8 @@ namespace Obi.ProjectView
                 from = 0.0;
             }
             double end = from + duration;
-            if (end > audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat())
-                end = audioData.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+            if (end > audioData.AudioDuration.AsTimeSpan.Milliseconds)
+                end = audioData.AudioDuration.AsTimeSpan.Milliseconds;
 
             if (from >= end) return;
             //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);

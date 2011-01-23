@@ -139,8 +139,8 @@ namespace Obi
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             //urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.Copy(
-                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
-                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+                new urakawa.media.timing.Time(Convert.ToInt64 (c.AudioRange.SelectionBeginTime*1000 )),
+                new urakawa.media.timing.Time(Convert.ToInt64( c.AudioRange.SelectionEndTime * 1000 )));//sdk2
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
             CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
@@ -271,8 +271,8 @@ namespace Obi
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
             urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
-                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
-                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+                new urakawa.media.timing.Time(Convert.ToInt64 (c.AudioRange.SelectionBeginTime * 1000) ),
+                new urakawa.media.timing.Time(Convert.ToInt64( c.AudioRange.SelectionEndTime*1000)));
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
             CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
