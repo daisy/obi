@@ -40,16 +40,18 @@ namespace Obi.Commands.TOC
 
         public override string getShortDescription() { return Localizer.Message("move_section_in"); }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             Move(mSection);
             View.SelectedSectionNode = mSection;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             MoveSectionOut.Move(mSection);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

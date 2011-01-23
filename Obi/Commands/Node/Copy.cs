@@ -20,8 +20,10 @@ namespace Obi.Commands.Node
         public Copy(ProjectView.ProjectView view, bool deep) : this(view, deep, "") { }
 
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
             {
+  get
+ {
             if (mNewClipboard != null && mNewClipboard.Node is PhraseNode)
                 {
                 List<MediaData> mediaList = new List<MediaData> ();
@@ -36,6 +38,7 @@ namespace Obi.Commands.Node
             else
                 return new List<MediaData> ();
             }
+}
 
 
         private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
@@ -56,17 +59,18 @@ namespace Obi.Commands.Node
             return mediaList;
             }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute()
+        public override void Execute()
         {
             View.Clipboard = mNewClipboard;
             View.Selection = SelectionBefore;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Clipboard = mOldClipboard;
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

@@ -20,12 +20,14 @@ namespace Obi.Commands
             mCustomType = customType;
         }
 
-        public override void execute()
+        public override void Execute()
         {
             mPresentation.AddCustomClass(mCustomType, null);
         }
 
-        public override void unExecute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void UnExecute()
         {
             mPresentation.RemoveCustomClass(mCustomType, null);
         }
@@ -45,11 +47,14 @@ namespace Obi.Commands
             mCustomType = customType;
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             mPresentation.RemoveCustomClass(mCustomType, null);
         }
-        public override void unExecute()
+
+        public override void UnExecute()
         {
             mPresentation.AddCustomClass(mCustomType, null);
         }

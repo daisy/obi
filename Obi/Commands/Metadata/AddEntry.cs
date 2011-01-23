@@ -23,15 +23,17 @@ namespace Obi.Commands.Metadata
 
         public urakawa.metadata.Metadata Entry { get { return mEntry; } }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Presentation.AddMetadata(mEntry);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Presentation.DeleteMetadata(mEntry);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

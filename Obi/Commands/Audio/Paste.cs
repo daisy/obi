@@ -50,26 +50,31 @@ namespace Obi.Commands.Audio
             Label = Localizer.Message("paste_audio");
         }
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if (mMediaAfter != null )
-                mediaList.Add ( mMediaAfter.getMediaData () );
+                List<MediaData> mediaList = new List<MediaData>();
+                if (mMediaAfter != null)
+                    mediaList.Add(mMediaAfter.getMediaData());
 
-            return mediaList;
+                return mediaList;
             }
+        }
+
+        public override bool CanExecute { get { return true; } }
 
 
-        public override void execute()
+        public override void Execute()
         {
             mNode.Audio = mMediaAfter;
             View.Selection = mSelectionAfter;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.Audio = mMediaBefore;
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

@@ -55,22 +55,26 @@ namespace Obi.Commands.Node
         public bool DeleteSelectedBlock { get { return mDeleteSelectedBlock; } }
 
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            if (mCopy != null && mCopy is PhraseNode)
+
+                if (mCopy != null && mCopy is PhraseNode)
                 {
-                List<MediaData> mediaList = new List<MediaData> ();
-                if ( ((PhraseNode)mCopy).Audio != null )
-                mediaList.Add ( ((PhraseNode)mCopy).Audio.getMediaData () );
-                return mediaList;
+                    List<MediaData> mediaList = new List<MediaData>();
+                    if (((PhraseNode)mCopy).Audio != null)
+                        mediaList.Add(((PhraseNode)mCopy).Audio.getMediaData());
+                    return mediaList;
                 }
-            else if ( mCopy != null && mCopy is SectionNode )
+                else if (mCopy != null && mCopy is SectionNode)
                 {
-                return GetMediaDataListForSection ( (SectionNode)mCopy );
-                                }
-            else
-                return new List<MediaData> () ;
+                    return GetMediaDataListForSection((SectionNode)mCopy);
+                }
+                else
+                    return new List<MediaData>();
             }
+        }
 
         private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
             {
@@ -90,19 +94,21 @@ namespace Obi.Commands.Node
                 return mediaList;
             }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute ()
+
+        public override void Execute ()
         {
             mParent.Insert(mCopy, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
             if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mCopy.Detach();
             if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 

@@ -22,26 +22,31 @@ namespace Obi.Commands.Audio
         public Copy(ProjectView.ProjectView view)
             : this(view, (PhraseNode)view.Selection.Node, ((AudioSelection)view.Selection).AudioRange) {}
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if (mNewClipboard != null && mNewClipboard.Node is PhraseNode && ((PhraseNode)mNewClipboard.Node).Audio != null )
-                mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData ());
+                List<MediaData> mediaList = new List<MediaData>();
+                if (mNewClipboard != null && mNewClipboard.Node is PhraseNode && ((PhraseNode)mNewClipboard.Node).Audio != null)
+                    mediaList.Add(((PhraseNode)mNewClipboard.Node).Audio.getMediaData());
 
-            return mediaList;
+                return mediaList;
             }
+        }
+
+        public override bool CanExecute { get { return true; } }
 
 
-        public override void execute()
+        public override void Execute()
         {
             View.Clipboard = mNewClipboard;
             View.Selection = SelectionBefore;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Clipboard = mOldClipboard;
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

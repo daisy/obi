@@ -18,16 +18,17 @@ namespace Obi.Commands.Metadata
             mNewContent = content;
             Label = Localizer.Message("modify_metadata_content");
         }
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute()
+        public override void Execute()
         {
             View.Presentation.SetMetadataEntryContent(mEntry, mNewContent);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Presentation.SetMetadataEntryContent(mEntry, mPreviousContent);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

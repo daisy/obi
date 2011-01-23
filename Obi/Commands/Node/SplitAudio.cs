@@ -230,27 +230,31 @@ namespace Obi.Commands.Node
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
         }
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
+                List<MediaData> mediaList = new List<MediaData>();
 
-            if (mNodeAfter != null && mNodeAfter is PhraseNode && mNodeAfter.Audio != null)
-                mediaList.Add ( mNodeAfter.Audio.getMediaData () );
+                if (mNodeAfter != null && mNodeAfter is PhraseNode && mNodeAfter.Audio != null)
+                    mediaList.Add(mNodeAfter.Audio.getMediaData());
 
-            return mediaList;
+                return mediaList;
             }
+        }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute()
+        public override void Execute()
         {
             Split(View, mNode, mNodeAfter, mSplitTime, UpdateSelection);
             TriggerProgressChanged ();
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             MergeAudio.Merge(View, mNode, mNodeAfter, UpdateSelection);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

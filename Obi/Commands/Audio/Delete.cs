@@ -34,16 +34,21 @@ namespace Obi.Commands.Audio
 
         public PhraseNode Deleted { get { return mDeleted; } }
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
-                mediaList.Add ( mDeleted.Audio.getMediaData () );
+                List<MediaData> mediaList = new List<MediaData>();
+                if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
+                    mediaList.Add(mDeleted.Audio.getMediaData());
 
-            return mediaList;
+                return mediaList;
             }
+        }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             ManagedAudioMedia after = mHasAudioAfterDeleted ? mNode.SplitAudio(mSplitTimeEnd) : null;
             mNode.SplitAudio(mSplitTimeBegin);
@@ -51,12 +56,12 @@ namespace Obi.Commands.Audio
             View.Selection = mSelectionAfter;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             ManagedAudioMedia after = mHasAudioAfterDeleted ? mNode.SplitAudio(mSplitTimeBegin) : null;
             mNode.MergeAudioWith(mDeleted.Audio.copy());
             if (after != null) mNode.MergeAudioWith(after);
-            base.unExecute();
+            base.UnExecute();
         }
 
         /// <summary>
