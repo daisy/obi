@@ -28,7 +28,8 @@ namespace Obi.Commands.Node
                 {
                 List<MediaData> mediaList = new List<MediaData> ();
                 if (((PhraseNode)mNewClipboard.Node).Audio != null )
-                mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData () );
+                //mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData () );
+                    mediaList.Add(((PhraseNode)mNewClipboard.Node).Audio.MediaData);//sdk2
                 return mediaList;
                 }
             else if (mNewClipboard != null && mNewClipboard.Node is SectionNode)
@@ -50,7 +51,8 @@ namespace Obi.Commands.Node
                         {
                         if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )
                             {
-                            mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                            //mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                                mediaList.Add(((PhraseNode)n).Audio.MediaData);//sdk2
                             }
                         return true;
                         },

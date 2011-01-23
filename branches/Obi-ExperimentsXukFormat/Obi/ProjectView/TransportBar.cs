@@ -1224,7 +1224,7 @@ namespace Obi.ProjectView
             //if selection is in TOC view save it also
                                 if (mView.Selection != null && mView.Selection.Control is TOCView)
                                 {
-                                    command.append(new Commands.UpdateSelection(mView, new NodeSelection(mView.Selection.Node , mView.Selection.Control)));
+                                    command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.UpdateSelection(mView, new NodeSelection(mView.Selection.Node , mView.Selection.Control)));
                                 }
             //@singleSection: if phrases till recording phrases are hidden, remove existing phrases to enable content view start from phrases near to recording phrase
             mView.RecreateContentsWhileInitializingRecording ( mResumeRecordingPhrase);
@@ -1239,11 +1239,11 @@ namespace Obi.ProjectView
                     mView.SelectPhraseInContentView ( mResumeRecordingPhrase );
                     }
                 
-                command.append ( new Commands.UpdateSelection ( mView, new NodeSelection ( selectionNode, mView.Selection.Control ) ) );
+                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.UpdateSelection ( mView, new NodeSelection ( selectionNode, mView.Selection.Control ) ) );
                 }
                 else if (selectionNode == null && mView.GetSelectedPhraseSection == null)//also saving null selection
                 {
-                    command.append(new Commands.UpdateSelection(mView, null));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, null));
                 }
                 if (mResumeRecordingPhrase == null) mRecordingPhrase = null;
 
@@ -1283,7 +1283,7 @@ namespace Obi.ProjectView
         private CompositeCommand CreateRecordingCommand()
         {
             urakawa.command.CompositeCommand command = mView.Presentation.getCommandFactory().createCompositeCommand();
-            command.setShortDescription(Localizer.Message("recording_command"));
+            command.ShortDescription = (Localizer.Message("recording_command"));//sdk2
             return command;
         }
 
@@ -1316,11 +1316,11 @@ namespace Obi.ProjectView
                 {
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
                 CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
-                                    if ( SplitCommand != null )  command.append( SplitCommand);
+                                    if ( SplitCommand != null )  command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
 
                                     if (mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor && SplitCommand != null)
                                         {
-                                        command.append ( new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
+                                        command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.DeleteWithOffset ( mView, node, 1 ) );
                                         m_IsAfterRecordingSplitTransferEnabled = true;
                                                                                 CopyPropertiesForTransfer ( (EmptyNode)node );
                                         }
@@ -1347,7 +1347,7 @@ namespace Obi.ProjectView
             mRecordingPhrase = phrase;
             Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
                 mRecordingInitPhraseIndex + e.PhraseIndex);
-            add.Label = command.getShortDescription();
+            add.Label = command.ShortDescription;
 
             // transfer properties if 2 point split is being performed
             if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null )
@@ -1363,11 +1363,11 @@ namespace Obi.ProjectView
                 {
                     phrase.CopyAttributes(emptyNode);
                     phrase.Used = emptyNode.Used;
-                    command.append(new Commands.Node.Delete(mView, emptyNode));
-                    command.append(add);
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
                 }
                 else
-                    command.append(add);
+                    command.ChildCommands.Insert(command.ChildCommands.Count, add);
 
                 mView.Presentation.getUndoRedoManager().execute(command);
             }
@@ -1454,7 +1454,7 @@ namespace Obi.ProjectView
             {
             
                 SectionNode section = mView.Presentation.CreateSectionNode();
-                ICommand add = null;
+                urakawa.command.Command add = null;
                 if (afterSection == null)
                 {
                     add = new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
@@ -1467,19 +1467,19 @@ namespace Obi.ProjectView
                         new Commands.Node.AddNode(mView, section, afterSection.ParentAs<ObiNode>(), afterSection.Index + 1);
                     addSection.UpdateSelection = false;
                     add = mView.Presentation.CreateCompositeCommand(addSection.getShortDescription());
-                    ((CompositeCommand)add).append(addSection);
+                    ((CompositeCommand)add).ChildCommands.Insert(command.ChildCommands.Count, addSection);
                     for (int i = afterSection.SectionChildCount - 1; i >= 0; --i)
                     {
                         SectionNode child = afterSection.SectionChild(i);
                         Commands.Node.Delete delete = new Commands.Node.Delete(mView, child);
                         delete.UpdateSelection = false;
-                        ((CompositeCommand)add).append(delete);
+                        ((CompositeCommand)add).ChildCommands.Insert(command.ChildCommands.Count, delete);
                         Commands.Node.AddNode readd = new Commands.Node.AddNode(mView, child, section, 0);
                         readd.UpdateSelection = false;
-                        ((CompositeCommand)add).append(readd);
+                        ((CompositeCommand)add).ChildCommands.Insert(((CompositeCommand)add).ChildCommands.Count,  readd);
                     }
                 }
-                command.append(add);
+                command.ChildCommands.Insert(command.ChildCommands.Count, add);
                 node = section;
             }
             return node;

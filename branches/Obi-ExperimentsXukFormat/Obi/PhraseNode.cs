@@ -98,7 +98,10 @@ namespace Obi
         /// <summary>
         /// We use our own element name for XUK output.
         /// </summary>
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+        public override string GetTypeNameFormatted()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
+        {
+            return XUK_ELEMENT_NAME;
+        }
 
         public override ObiNode Detach()
         {

@@ -188,7 +188,7 @@ namespace Obi
         // XUK stuff
         private static readonly string USED_ATTR_NAME = "used";  // name of the used attribute
 
-        protected override void xukInChild(System.Xml.XmlReader source, IProgressHandler handler)
+        protected override void XukInChild(System.Xml.XmlReader source, IProgressHandler handler)
         {
             base.xukInChild(source, handler);
             XukInNodeProperties();
@@ -210,7 +210,7 @@ namespace Obi
         /// <summary>
         /// Read back the used attribute.
         /// </summary>
-        protected override void xukInAttributes(System.Xml.XmlReader reader)
+        protected override void XukInAttributes(System.Xml.XmlReader reader)
         {
             if (reader.AttributeCount > 1 || (reader.AttributeCount == 1 && reader.GetAttribute("xmlns") == null))
             {
@@ -220,7 +220,7 @@ namespace Obi
             base.xukInAttributes(reader);
         }
 
-        protected override void xukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
+        protected override void XukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
         {
             if (Presentation.UseXukFormat) UpdateXmlProperties();
             base.xukOutChildren(destination, baseUri, handler);
@@ -229,11 +229,11 @@ namespace Obi
 
         protected virtual void UpdateXmlProperties()
         {
-            XmlProperty xmlProp = GetOrCreateXmlProperty();
+            XmlProperty xmlProp = ObiNodeGetOrCreateXmlProperty();
             UpdateAttributesInXmlProperty(xmlProp, USED_ATTR_NAME, this.Used.ToString () );
         }
 
-        protected XmlProperty GetOrCreateXmlProperty()
+        protected XmlProperty ObiNodeGetOrCreateXmlProperty()
         {
             XmlProperty xmlProp = this.getProperty<urakawa.property.xml.XmlProperty>();
             if (xmlProp == null)
@@ -261,7 +261,7 @@ namespace Obi
         /// <summary>
         /// Write the used attribute if its value is false (true being the default.)
         /// </summary>
-        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
             if (!Presentation.UseXukFormat)
             {
@@ -274,12 +274,13 @@ namespace Obi
         /// <summary>
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public override string XukNamespaceUri { get { return DataModelFactory.NS;
+        public new string XUK_NS = DataModelFactory.NS;//sdk2
 
         /// <summary>
         /// Copy the used flag as well as properties.
         /// </summary>
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        protected virtual TreeNode copyProtected(bool deep, bool inclProperties)
         {
             ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
             copy.mUsed = mUsed;

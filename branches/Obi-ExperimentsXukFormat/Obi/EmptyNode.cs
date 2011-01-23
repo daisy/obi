@@ -261,9 +261,9 @@ namespace Obi
 
 
 
-        public override string getXukLocalName() 
-        { 
-            return XUK_ELEMENT_NAME; 
+        public override string GetTypeNameFormatted()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
+        {
+            return XUK_ELEMENT_NAME;
         }
 
         
@@ -344,7 +344,7 @@ namespace Obi
             }
         }
 
-        protected override void xukInAttributes(System.Xml.XmlReader source)
+        protected override void XukInAttributes(System.Xml.XmlReader source)
         {
             if (source.AttributeCount > 1 ||  ( source.AttributeCount == 1 && source.GetAttribute("xmlns") == null))
             {   
@@ -407,7 +407,7 @@ namespace Obi
         
         protected override void UpdateXmlProperties()
         {
-            XmlProperty xmlProp = GetOrCreateXmlProperty();
+            XmlProperty xmlProp = ObiNodeGetOrCreateXmlProperty();
             UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_ROLE, this.Role_.ToString());
 
             if (this.Role_ == Role.Custom)
@@ -427,7 +427,7 @@ namespace Obi
         }
 
         
-        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
+        protected override void XukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
             //Presentation.UseXukFormat = true;
             if (!Presentation.UseXukFormat)
