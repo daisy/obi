@@ -104,6 +104,8 @@ namespace Obi.Commands
         /// </summary>
         public override IEnumerable<MediaData> UsedMediaData { get { return new List<MediaData>(); } }
 
+        public override string GetTypeNameFormatted() { return this.GetType().ToString(); }
+
         /// <summary>
         /// The short description is the label of the command.
         /// </summary>

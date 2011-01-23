@@ -247,7 +247,7 @@ namespace Obi.ProjectView
         public void SetNewPresentation()
         {
             Nodes.Clear();
-            CreateTreeNodeForSectionNode(mProjectView.Presentation.RootNode);
+            CreateTreeNodeForSectionNode((ObiNode) mProjectView.Presentation.RootNode);
             mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mProjectView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mProjectView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
@@ -342,7 +342,8 @@ namespace Obi.ProjectView
                     n.ExpandAll();
                     ChangeColorUsed(n, mProjectView.ColorSettings);
                 }
-                if (n != null || node is RootNode)
+                //if (n != null || node is RootNode)
+                if (n != null || node == mProjectView.Presentation.RootNode)//sdk2
                 {
                     for (int i = 0; i < node.SectionChildCount; ++i) CreateTreeNodeForSectionNode(node.SectionChild(i));
                 }

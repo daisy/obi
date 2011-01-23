@@ -307,7 +307,8 @@ namespace Obi
         /// <summary>
         /// Use the Obi namespace URI!
         /// </summary>
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        public new string XUK_NS  = DataModelFactory.NS; //sdk2
 
         public void RenameSectionNode(SectionNode section, string label)
         {

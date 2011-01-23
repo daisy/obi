@@ -111,7 +111,10 @@ namespace Obi
         /// <summary>
         /// Name of the element in the XUK file for this node.
         /// </summary>
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+        public override  string GetTypeNameFormatted ()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
+        {
+            return XUK_ELEMENT_NAME;
+        }
 
         /// <summary>
         /// Get or set the heading phrase for this section.

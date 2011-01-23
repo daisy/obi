@@ -31,34 +31,40 @@ namespace Obi
         // For consistency, override both methods without parameters and with
         // localname/nsuri parameters.
 
-        public override urakawa.media.data.MediaDataManager createMediaDataManager()
+        //public override urakawa.media.data.MediaDataManager createMediaDataManager()
+        public urakawa.media.data.MediaDataManager createMediaDataManager()//sdk2
         {
             return createMediaDataManager(typeof(Audio.DataManager).Name, NS);
         }
 
-        public override urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)
+        //public override urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)
+        public urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)//sdk2
         {
             return namespaceUri == NS && localName == typeof(Audio.DataManager).Name ?
                 new Audio.DataManager() : base.createMediaDataManager(localName, namespaceUri);
         }
 
-        public override urakawa.Presentation createPresentation()
+        //public override urakawa.Presentation createPresentation()
+        public urakawa.Presentation createPresentation()//sdk2
         {
             return createPresentation(typeof(Obi.Presentation).Name, NS);
         }
 
-        public override urakawa.Presentation createPresentation(string localName, string namespaceUri)
+        //public override urakawa.Presentation createPresentation(string localName, string namespaceUri)
+        public urakawa.Presentation createPresentation(string localName, string namespaceUri)//sdk2
         {
             return namespaceUri == NS && localName == typeof(Obi.Presentation).Name ?
                 new Obi.Presentation() : base.createPresentation(localName, namespaceUri);
         }
 
-        public override urakawa.core.TreeNodeFactory createTreeNodeFactory()
+        //
+        public urakawa.core.TreeNodeFactory createTreeNodeFactory()//sdk2
         {
             return createTreeNodeFactory(typeof(ObiNodeFactory).Name, NS);
         }
 
-        public override urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
+        //public override urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
+        public urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
         {
             return namespaceUri == NS && localName == typeof(ObiNodeFactory).Name ?
                 new ObiNodeFactory() : base.createTreeNodeFactory(localName, namespaceUri);

@@ -45,7 +45,8 @@ namespace Obi
             return base.createNode(localName, namespaceUri);
         }
 
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        public string getXukNamespaceUri() { return DataModelFactory.NS; }//sdk2
 
         // Override getPresentation() to return an Obi-specific presentation
         private Presentation Presentation { get { return m_Presentation; } }
