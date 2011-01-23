@@ -248,7 +248,7 @@ namespace Obi.ProjectView
         {
             Nodes.Clear();
             CreateTreeNodeForSectionNode((ObiNode) mProjectView.Presentation.RootNode);
-            mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
+            mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_changed);
             mProjectView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode>(Presentation_RenamedSectionNode);
             mProjectView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
         }
@@ -371,10 +371,10 @@ namespace Obi.ProjectView
                         ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == section)
                     {
                         f();
-                        mProjectView.Presentation.changed -= h;
+                        mProjectView.Presentation.Changed -= h;
                     }
                 };
-                mProjectView.Presentation.changed += h;
+                mProjectView.Presentation.Changed += h;
             }
         }
 

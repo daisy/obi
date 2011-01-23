@@ -14,7 +14,8 @@ namespace Obi.Commands.Metadata
             : base(view)
         {
             mEntry = entry;
-            mPreviousContent = mEntry.getContent();
+            //mPreviousContent = mEntry.getContent();
+            mPreviousContent = mEntry.NameContentAttribute.Value;//sdk2
             mNewContent = content;
             Label = Localizer.Message("modify_metadata_content");
         }

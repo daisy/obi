@@ -159,7 +159,7 @@ namespace Obi
         /// <summary>
         /// Presentation to which this node belongs.
         /// </summary>
-        public Presentation Presentation { get { return (Presentation)getPresentation(); } }
+        public new Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
         public abstract SectionNode SectionChild(int index);
         public abstract int SectionChildCount { get; }

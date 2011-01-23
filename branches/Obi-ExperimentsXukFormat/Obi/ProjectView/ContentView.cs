@@ -338,10 +338,10 @@ namespace Obi.ProjectView
             ResumeLayout_All ();
             mProjectView.Presentation.BeforeCommandExecuted +=
                 new EventHandler<urakawa.events.command.CommandEventArgs> ( Presentation_BeforeCommandExecuted );
-            mProjectView.Presentation.getUndoRedoManager ().commandDone +=
+            mProjectView.Presentation.UndoRedoManager.commandDone +=
                 new EventHandler<urakawa.events.undo.DoneEventArgs> ( ContentView_commandDone );
-            mProjectView.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
-            mProjectView.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
+            mProjectView.Presentation.UndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
+            mProjectView.Presentation.UndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;

@@ -45,8 +45,8 @@ namespace Obi.Commands.Node
         private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
             {
             List<MediaData> mediaList = new List<MediaData> ();
-
-            sNode.acceptDepthFirst (
+            
+            sNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )

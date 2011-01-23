@@ -219,7 +219,7 @@ namespace Obi
         /// <summary>
         /// Return the next section sibling node, or null if this is the last child.
         /// </summary>
-        public SectionNode NextSibling
+        public new SectionNode NextSibling
         {
             get
             {
