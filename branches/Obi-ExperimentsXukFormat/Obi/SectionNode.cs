@@ -31,8 +31,8 @@ namespace Obi
         /// </summary>
         public override void AppendChild(ObiNode node)
         {
-            int index = node is EmptyNode ? FirstSectionIndex : getChildCount();
-            insert(node, index);
+            int index = node is EmptyNode ? FirstSectionIndex : Children.Count;
+            Insert(node, index);
         }
 
         /// <summary>
@@ -47,11 +47,11 @@ namespace Obi
         {
             for (int i = 0; i < PhraseChildCount; ++i)
             {
-                destinationNode.Insert((EmptyNode)PhraseChild(i).copy(true), i);
+                destinationNode.Insert((EmptyNode)PhraseChild(i).Copy(true), i);
             }
             for (int i = 0; i < SectionChildCount; ++i)
             {
-                destinationNode.Insert((SectionNode)SectionChild(i).copy(true, true), i);
+                destinationNode.Insert((SectionNode)SectionChild(i).Copy(true, true), i);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Obi
             // Even when doing a shallow copy, we still should copy children (!)
             if (!deep)
             {
-                for (int i = 0; i < PhraseChildCount; ++i) copy.AppendChild((EmptyNode)PhraseChild(i).copy(true, true));
+                for (int i = 0; i < PhraseChildCount; ++i) copy.AppendChild((EmptyNode)PhraseChild(i).Copy(true, true));
             }
             return copy;
         }
@@ -131,8 +131,8 @@ namespace Obi
         {
             get
             {
-                TreeNode parent = getParent();
-                int index = parent.indexOf(this);
+                TreeNode parent = Parent;
+                int index = parent.Children.IndexOf(this);
                 return index - (parent is SectionNode ? ParentAs<SectionNode>().FirstSectionIndex : 0);
             }
         }
@@ -145,8 +145,8 @@ namespace Obi
         public override void Insert(ObiNode node, int index)
         {
             index = node is EmptyNode ? index < 0 ? FirstSectionIndex + index : index :
-                                        index < 0 ? getChildCount() + index : index + FirstSectionIndex;
-            insert(node, index);
+                                        index < 0 ? Children.Count + index : index + FirstSectionIndex;
+            Insert(node, index);
             if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Heading) DidSetHeading((PhraseNode)node);
         }
 
@@ -155,8 +155,8 @@ namespace Obi
         /// </summary>
         public string Label
         {
-            get { return LabelTextMedia.getText(); }
-            set { LabelTextMedia.setText(value); }
+            get { return LabelTextMedia.Text; }//sdk2
+            set { LabelTextMedia.Text= value; }
         }
 
         /// <summary>
@@ -223,9 +223,9 @@ namespace Obi
         {
             get
             {
-                TreeNode parent = getParent();
-                int index = parent.indexOf(this);
-                return index == parent.getChildCount() - 1 ? null : (SectionNode)parent.getChild(index + 1);
+                TreeNode parent = Parent;
+                int index = parent.Children.IndexOf(this);
+                return index == parent.Children.Count - 1 ? null : (SectionNode)parent.Children.Get(index + 1);
             }
         }
 
@@ -236,7 +236,7 @@ namespace Obi
         public override EmptyNode PhraseChild(int index)
         {
             if (index < 0) index = PhraseChildCount + index;
-            return (EmptyNode)getChild(index);
+            return (EmptyNode)Children.Get(index);
         }
 
         /// <summary>
@@ -263,9 +263,9 @@ namespace Obi
         {
             get
             {
-                TreeNode parent = getParent();
-                int index = parent.indexOf(this);
-                return index > 0 && parent.getChild(index - 1) is SectionNode ? (SectionNode)parent.getChild(index - 1) : null;
+                TreeNode parent = Parent;
+                int index = parent.Children.IndexOf (this);
+                return index > 0 && parent.Children.Get(index - 1) is SectionNode ? (SectionNode)parent.Children.Get(index - 1) : null;
             }
         }
 
@@ -288,14 +288,14 @@ namespace Obi
         /// </summary>
         public override SectionNode SectionChild(int index)
         {
-            if (index < 0) index = getChildCount() + index;
-            return (SectionNode)getChild(index + FirstSectionIndex);
+            if (index < 0) index = Children.Count + index;//sdk2
+            return (SectionNode)Children.Get(index + FirstSectionIndex);
         }
 
         /// <summary>
         /// Number of section children.
         /// </summary>
-        public override int SectionChildCount { get { return getChildCount() - FirstSectionIndex; } }
+        public override int SectionChildCount { get { return Children.Count - FirstSectionIndex; } }
 
         /// <summary>
         /// String output to help with debugging.
@@ -327,15 +327,16 @@ namespace Obi
         {
             get
             {
-                for (int i = 0; i < getChildCount(); ++i) if (getChild(i) is SectionNode) return i;
-                return getChildCount();
+                for (int i = 0; i < Children.Count; ++i) if (Children.Get(i) is SectionNode) return i;
+                return Children.Count;
             }
         }
 
         // The text media object for the label.
         private TextMedia LabelTextMedia
         {
-            get { return (TextMedia)getProperty<ChannelsProperty>().getMedia(Presentation.TextChannel); }
+            //get { return (TextMedia)getProperty<ChannelsProperty>().getMedia(Presentation.TextChannel); }
+            get { return (TextMedia)this.GetOrCreateProperty <ChannelsProperty>().GetMedia(Presentation.ChannelsManager.GetOrCreateTextChannel () ); }//sdk2
         }
 
         // Span of the section in number of nodes. If there are no subsections, the span is 1;

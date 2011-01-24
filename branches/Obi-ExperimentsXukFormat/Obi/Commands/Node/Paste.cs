@@ -20,7 +20,7 @@ namespace Obi.Commands.Node
         public Paste(ProjectView.ProjectView view)
             : base(view)
         {
-            mCopy = (ObiNode)view.Clipboard.Node.copy(view.Clipboard.Deep, true);
+            mCopy = (ObiNode)view.Clipboard.Node.Copy(view.Clipboard.Deep, true);
             mParent = view.Selection.ParentForNewNode(mCopy);
             mIndex = view.Selection.IndexForNewNode(mCopy);
             // If we paste a phrase node "into" an emtpy node, the empty node must be deleted
@@ -80,7 +80,7 @@ namespace Obi.Commands.Node
             {
             List<MediaData> mediaList = new List<MediaData> ();
 
-            sNode.acceptDepthFirst(
+            sNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
                     if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )

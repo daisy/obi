@@ -63,7 +63,7 @@ namespace Obi.Commands.Node
                 {
                     List<MediaData> mediaList = new List<MediaData>();
                     if (((PhraseNode)mNode).Audio != null)
-                        mediaList.Add(((PhraseNode)mNode).Audio.getMediaData());
+                        mediaList.Add(((PhraseNode)mNode).Audio.MediaData);
                     return mediaList;
                 }
                 else if (mNode != null && mNode is SectionNode)
@@ -79,13 +79,13 @@ namespace Obi.Commands.Node
         {
         List<MediaData> mediaList = new List<MediaData> ();
 
-        sNode.acceptDepthFirst (
+        sNode.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
                     if (n != null && n is PhraseNode)
                         {
                         if ( ((PhraseNode)n).Audio != null )
-                        mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                        mediaList.Add ( ((PhraseNode)n).Audio.MediaData);
                         }
                     return true;
                     },
@@ -129,7 +129,7 @@ namespace Obi.Commands.Node
                     node = index < parent.SectionChildCount - 1 ?
                         (ObiNode)parent.SectionChild(index + 1) :
                         index > 0 ? (ObiNode)parent.SectionChild(index - 1) :
-                        parent is RootNode ? null : parent;
+                        parent == View.Presentation.RootNode ? null : parent;
                 }
             }
             else
@@ -165,7 +165,7 @@ namespace Obi.Commands.Node
             mNode = node;
             mParent = node.ParentAs<ObiNode>();
             mDeleted = null;
-            mIndex = mParent.indexOf(mNode) + offset;
+            mIndex = mParent.Children.IndexOf(mNode) + offset;
         }
 
 
@@ -173,12 +173,12 @@ namespace Obi.Commands.Node
         {
             get
             {
-                ObiNode node = (ObiNode)mParent.getChild(mIndex);
+                ObiNode node = (ObiNode)mParent.Children.Get(mIndex);
                 if (node != null && node is PhraseNode)
                 {
                     List<MediaData> mediaList = new List<MediaData>();
                     if (((PhraseNode)node).Audio != null)
-                        mediaList.Add(((PhraseNode)node).Audio.getMediaData());
+                        mediaList.Add(((PhraseNode)node).Audio.MediaData);
                     return mediaList;
                 }
                 else if (node != null && node is SectionNode)
@@ -194,12 +194,12 @@ namespace Obi.Commands.Node
         {
         List<MediaData> mediaList = new List<MediaData> ();
 
-        sNode.acceptDepthFirst (
+        sNode.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
                     if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null)
                         {
-                        mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                        mediaList.Add ( ((PhraseNode)n).Audio.MediaData );
                         }
                     return true;
                     },
@@ -214,8 +214,8 @@ namespace Obi.Commands.Node
 
         public override void Execute()
         {
-            mDeleted = (ObiNode)mParent.getChild(mIndex);
-            mParent.removeChild(mIndex);
+            mDeleted = (ObiNode)mParent.Children.Get(mIndex);
+            mParent.RemoveChild(mIndex);
             TriggerProgressChanged ();
         }
 

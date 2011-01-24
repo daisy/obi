@@ -43,7 +43,7 @@ namespace Obi
             mPresentation = presentation;
             mRecorder = recorder;
             mRecorder.AssetsDirectory =
-                ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
+                presentation.DataProviderManager.DataFileDirectoryFullPath;
             if (!Directory.Exists(mRecorder.AssetsDirectory)) Directory.CreateDirectory(mRecorder.AssetsDirectory);
             mSessionOffset = 0;
             mPhraseMarks = null;
@@ -107,7 +107,7 @@ namespace Obi
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create(typeof(AudioMediaData));
                 mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
                 //mSessionMedia.setMediaData(asset);
                 mSessionMedia.MediaData = asset;
@@ -134,7 +134,7 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Stopped)
             {
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create(typeof(AudioMediaData));
                 mRecorder.StartListening(asset);
             }
         }
@@ -157,7 +157,7 @@ namespace Obi
                     {
                     if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.Milliseconds)
                         {
-                        ManagedAudioMedia split = mSessionMedia.split ( new urakawa.media.timing.Time ( mPhraseMarks[i] ) );
+                        ManagedAudioMedia split = mSessionMedia.Split ( new urakawa.media.timing.Time (Convert.ToInt64  (mPhraseMarks[i]*1000) ) );
                         mAudioList.Insert ( mSessionOffset, split );
                         }
                     else

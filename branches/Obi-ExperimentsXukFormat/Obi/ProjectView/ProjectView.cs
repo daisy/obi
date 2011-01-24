@@ -603,7 +603,7 @@ namespace Obi.ProjectView
                 PhraseNode deleted = delete is Commands.Audio.Delete ?
                     ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
                 command.append ( new Commands.Audio.Copy ( this, deleted,
-                    new AudioRange ( 0.0, deleted.Audio.getDuration ().getTimeDeltaAsMillisecondFloat () ) ) );
+                    new AudioRange ( 0.0, deleted.Audio.Duration.AsTimeSpan.Milliseconds ) ) );
                 command.append ( delete );
                 mPresentation.Do ( command );
                 }

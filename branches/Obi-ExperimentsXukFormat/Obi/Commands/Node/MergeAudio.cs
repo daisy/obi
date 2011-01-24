@@ -23,7 +23,7 @@ namespace Obi.Commands.Node
         {
             mNode = node;
             mNextNode = next;
-            mSplitTime = new urakawa.media.timing.Time(mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+            mSplitTime = new urakawa.media.timing.Time(mNode.Audio.Duration.AsTimeSpan.Milliseconds);
             m_IsNextNodeRooted = mNextNode.IsRooted;
         }
 
@@ -31,7 +31,7 @@ namespace Obi.Commands.Node
         public static CompositeCommand GetMergeCommand(ProjectView.ProjectView view)
         {
             EmptyNode node = view.SelectedNodeAs<EmptyNode>();
-            return GetMergeCommand(view, node, node.getNextSibling() as EmptyNode);
+            return GetMergeCommand(view, node, node.NextSibling as EmptyNode);
         }
 
         public static CompositeCommand GetMergeCommand(ProjectView.ProjectView view, EmptyNode node, EmptyNode next)
@@ -45,17 +45,17 @@ namespace Obi.Commands.Node
                     AppendCopyNodeAttributes(command, view, next, node);
                     if (next is PhraseNode)
                     {
-                        command.append(new Commands.Node.MergeAudio(view, (PhraseNode)node, (PhraseNode)next));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.MergeAudio(view, (PhraseNode)node, (PhraseNode)next));
                     }
                     else
                     {
-                        command.append(new Commands.Node.Delete(view, next));
+                        command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.Delete(view, next));
                     }
                 }
                 else
                 {
                     AppendCopyNodeAttributes(command, view, node, next);
-                    command.append(new Commands.Node.Delete(view, node));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, node));
                 }
                 return command;
             }
@@ -68,15 +68,15 @@ namespace Obi.Commands.Node
         public static void AppendCopyNodeAttributes(CompositeCommand command, ProjectView.ProjectView view,
             EmptyNode from, EmptyNode to)
         {
-                                if (from.TODO && !to.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, to));
+                                if (from.TODO && !to.TODO) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO(view, to));
                                 if ((!from.Used && to.Used) && (to.Role_ != EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Heading )) 
-                command.append(new Commands.Node.ToggleNodeUsed(view, to));
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(view, to));
 
             // role of next phrase is copied to selected phrase only when next phrase is page, heading or silence.
             // The priority is highest for page, followed by heading followed by silence. If next phrase is of higher priority only then its role is copied.
             if (from.Role_ == EmptyNode.Role.Page && to.Role_ != EmptyNode.Role.Page)
             {
-                command.append(new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
+                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.SetPageNumber(view, to, from.PageNumber.Clone()));
                             }
             else if ( ( to.Role_ != EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page )
                 &&  (from.Role_ != EmptyNode.Role.Plain &&
@@ -84,11 +84,11 @@ namespace Obi.Commands.Node
             {
                         if (from.Role_ == EmptyNode.Role.Heading && to.Role_ != EmptyNode.Role.Page)
                 {
-                                command.append ( new Commands.Node.AssignRole ( view, from, EmptyNode.Role.Plain, null) );
-                command.append ( new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Heading, null) );
+                                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole ( view, from, EmptyNode.Role.Plain, null) );
+                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole ( view, to, EmptyNode.Role.Heading, null) );
                 }
             else
-                command.append(new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
+                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.AssignRole(view, to, from.Role_, from.CustomRole));
             }
         }
 
@@ -133,7 +133,7 @@ namespace Obi.Commands.Node
         public override void UnExecute()
         {
             SplitAudio.Split(View, mNode, mNextNode, mSplitTime, UpdateSelection);
-            if (!m_IsNextNodeRooted) mNextNode.detach();
+            if (!m_IsNextNodeRooted) mNextNode.Detach();
             base.UnExecute();
         }
     }

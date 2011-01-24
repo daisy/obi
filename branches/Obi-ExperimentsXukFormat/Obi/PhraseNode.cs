@@ -90,7 +90,7 @@ namespace Obi
         /// <returns>The half of the split audio after the split point.</returns>
         public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
         {
-            ManagedAudioMedia newAudio = Audio.split(splitPoint);
+            ManagedAudioMedia newAudio = Audio.Split(splitPoint);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             return newAudio;
         }
@@ -109,8 +109,8 @@ namespace Obi
             return base.Detach();
         }
 
-        public override string BaseString() { return base.BaseString(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }
-        public override string BaseStringShort() { return base.BaseStringShort(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }
-        public override double Duration { get { return Audio.getDuration().getTimeDeltaAsMillisecondFloat(); } }
+        public override string BaseString() { return base.BaseString(Audio.Duration.AsTimeSpan.Milliseconds); }
+        public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsTimeSpan.Milliseconds); }
+        public override double Duration { get { return Audio.Duration.AsTimeSpan.Milliseconds; } }
     }
 }

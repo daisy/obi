@@ -71,7 +71,7 @@ namespace Obi
             get
             { 
                 return getParent().indexOf(this) < getParent().getChildCount() - 1 ?
-                    ((ObiNode)getNextSibling()).FirstLeaf : 
+                    ((ObiNode)NextSibling).FirstLeaf : 
                     ((ObiNode)getParent()).FollowingNode;
             }
         }

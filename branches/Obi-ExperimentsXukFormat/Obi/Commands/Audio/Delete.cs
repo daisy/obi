@@ -22,7 +22,7 @@ namespace Obi.Commands.Audio
         {
             mNode = (PhraseNode)view.Selection.Node;
             mHasAudioAfterDeleted =
-                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsTimeSpan.Milliseconds;
             mSplitTimeBegin = new Time(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime);
             mSplitTimeEnd = new Time(((AudioSelection)view.Selection).AudioRange.SelectionEndTime);
             mSelectionAfter = mHasAudioAfterDeleted ?
