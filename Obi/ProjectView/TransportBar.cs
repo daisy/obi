@@ -1347,7 +1347,7 @@ namespace Obi.ProjectView
             mRecordingPhrase = phrase;
             Commands.Node.AddNode add = new Commands.Node.AddNode(mView, phrase, mRecordingSection,
                 mRecordingInitPhraseIndex + e.PhraseIndex);
-            add.Label = command.ShortDescription;
+            add.SetDescriptions(command.ShortDescription);
 
             // transfer properties if 2 point split is being performed
             if (m_IsAfterRecordingSplitTransferEnabled && m_TempNodeForPropertiesTransfer != null )

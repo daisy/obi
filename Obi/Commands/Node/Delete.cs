@@ -22,7 +22,7 @@ namespace Obi.Commands.Node
         public Delete(ProjectView.ProjectView view, ObiNode node, string label)
             : this(view, node, node.ParentAs<ObiNode>(), node.Index, true)
         {
-            Label = label;
+            SetDescriptions(label);
         }
 
         public Delete(ProjectView.ProjectView view, ObiNode node, ObiNode parent, int index, bool update): base(view)

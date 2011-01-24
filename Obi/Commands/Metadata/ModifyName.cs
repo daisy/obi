@@ -16,7 +16,7 @@ namespace Obi.Commands.Metadata
             mEntry = entry;
             mPreviousName = mEntry.getName();
             mNewName = name;
-            Label = Localizer.Message("modify_metadata_name");
+            SetDescriptions(Localizer.Message("modify_metadata_name"));
         }
 
         public override bool CanExecute { get { return true; } }

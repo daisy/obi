@@ -12,7 +12,7 @@ namespace Obi.Commands.Metadata
             : base(view)
         {
             mEntry = view.Presentation.getMetadataFactory().createMetadata();
-            Label = Localizer.Message("add_metadata_entry");
+            SetDescriptions(Localizer.Message("add_metadata_entry"));
         }
 
         public AddEntry(ProjectView.ProjectView view, string name)

@@ -17,7 +17,7 @@ namespace Obi.Commands.Metadata
             //mPreviousContent = mEntry.getContent();
             mPreviousContent = mEntry.NameContentAttribute.Value;//sdk2
             mNewContent = content;
-            Label = Localizer.Message("modify_metadata_content");
+            SetDescriptions(Localizer.Message("modify_metadata_content"));
         }
         public override bool CanExecute { get { return true; } }
 

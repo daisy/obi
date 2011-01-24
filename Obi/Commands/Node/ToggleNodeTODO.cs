@@ -17,7 +17,7 @@ namespace Obi.Commands.Node
         {
             mNode = node;
             mOriginalStatus = node.TODO;
-            Label = Localizer.Message("toggle_TODO");
+            SetDescriptions(Localizer.Message("toggle_TODO"));
         }
 
         public override bool CanExecute { get { return true; } }

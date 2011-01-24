@@ -22,7 +22,7 @@ namespace Obi.Commands.Node
             mNode = node;
             mNodeAfter = view.Presentation.CreatePhraseNode();
             mSplitTime = new Time(time);
-            Label = Localizer.Message("split_phrase");
+            SetDescriptions(Localizer.Message("split_phrase"));
         }
 
         public PhraseNode Node { get { return mNode; } }

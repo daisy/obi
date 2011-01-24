@@ -25,7 +25,7 @@ namespace Obi.Commands.Node
             mOldRole = mNode.Role_;
             mOldCustomRole = mNode.CustomRole;
             mOldPageNumber = mNode.PageNumber;
-            Label = Localizer.Message("assign_role");
+            SetDescriptions(Localizer.Message("assign_role"));
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Obi.Commands.Node
             : base(view, node, EmptyNode.Role.Page)
         {
             mPageNumber = pageNumber;
-            Label = Localizer.Message("set_page_number_");
+            SetDescriptions(Localizer.Message("set_page_number_"));
         }
 
         public override void Execute()

@@ -36,7 +36,7 @@ namespace Obi.Commands.Node
                 mDeleteSelectedBlock = false;
             }
             mSelection = new NodeSelection(mCopy.LastDescendant, view.Selection.Control);
-            Label = Localizer.Message(mCopy is EmptyNode ? "paste_phrase" : "paste_section");
+            SetDescriptions(Localizer.Message(mCopy is EmptyNode ? "paste_phrase" : "paste_section"));
         }
 
         /// <summary>

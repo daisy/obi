@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using urakawa;
+using urakawa.media.data.audio;
 
 namespace Obi
     {
@@ -83,7 +85,14 @@ namespace Obi
         /// <summary>
         /// Get the current (Obi) presentation.
         /// </summary>
-        public Presentation Presentation { get { return mProject == null ? null : mProject.getListOfPresentations().Count == 0 ? null : (Presentation)mProject.getPresentation ( 0 ); } }
+        public ObiPresentation Presentation {
+            get
+        {
+            return mProject == null ? null :
+                mProject.Presentations.Count == 0 ? null :
+                (ObiPresentation)mProject.Presentations.Get(0);
+        }
+        }
 
         /// <summary>
         /// Get the description of the top redo command.
@@ -170,21 +179,67 @@ namespace Obi
         /// </summary>
         public void NewPresentation ( string path, string title, bool createTitleSection, string id, Settings settings )
             {
-            mProject = new urakawa.Project ();
-            mProject.setDataModelFactory ( mDataModelFactory );
-            mProject.setPresentation ( mDataModelFactory.createPresentation (), 0 );
+            mProject = new Project();
+#if (DEBUG)
+            mProject.SetPrettyFormat(true);
+#else
+            mProject.SetPrettyFormat(false);
+#endif
+            string parentDirectory = System.IO.Path.GetDirectoryName(path);
+            Uri obiProjectDirectory = new Uri(parentDirectory);
+            
+            //Presentation presentation = mProject.AddNewPresentation(obiProjectDirectory, System.IO.Path.GetFileName(path));
+            //ObiPresentation newPres = mProject.PresentationFactory.Create(mProject, obiProjectDirectory, System.IO.Path.GetFileName(path));
+
+            ObiPresentation newPres = mProject.PresentationFactory.Create<ObiPresentation>();
+            newPres.Project = mProject;
+            newPres.RootUri = obiProjectDirectory;
+
+            if (!String.IsNullOrEmpty(parentDirectory))
+                newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(parentDirectory);
+
+            if (newPres.IsPrettyFormat())
+            {
+                newPres.WarmUpAllFactories();
+            }
+
+
+            mProject.Presentations.Insert(mProject.Presentations.Count, newPres);
+
+
+            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            newPres.MediaDataManager.DefaultPCMFormat = pcmFormat;
+            newPres.MediaDataManager.EnforceSinglePCMFormat = true;
+
+            newPres.ChannelsManager.GetOrCreateTextChannel();
+            //m_textChannel = presentation.ChannelFactory.CreateTextChannel();
+            //m_textChannel.Name = "The Text Channel";
+
+            newPres.ChannelsManager.GetOrCreateAudioChannel();
+            //m_audioChannel = presentation.ChannelFactory.CreateAudioChannel();
+            //m_audioChannel.Name = "The Audio Channel";
+
+            newPres.RootNode = new RootNode();
+
+            //sdk2
+            //mProject.setDataModelFactory ( mDataModelFactory );
+            //mProject.setPresentation ( mDataModelFactory.createPresentation (), 0 );
+            
             mPath = path;
             GetLock ( mPath );
             mChangesCount = 0;
-            Presentation.Initialize ( this, title, createTitleSection, id, settings );
-            Presentation.setRootUri ( new Uri ( path ) );
+            newPres.Initialize(this, title, createTitleSection, id, settings);
+            
+            //sdk2
+            //Presentation.setRootUri ( new Uri ( path ) );
 
+            //sdk2
             // create data directory if it is not created
-            string dataDirectory = ((urakawa.media.data.FileDataProviderManager)Presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
-            if ( !Directory.Exists (dataDirectory ) )
-                {
-                Directory.CreateDirectory ( dataDirectory );
-                }
+            //string dataDirectory = ((urakawa.media.data.FileDataProviderManager)Presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            //if ( !Directory.Exists (dataDirectory ) )
+            //    {
+            //    Directory.CreateDirectory ( dataDirectory );
+            //    }
 
             if (ProjectCreated != null) ProjectCreated ( this, null );
 

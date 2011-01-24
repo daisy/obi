@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-
+using urakawa;
 using urakawa.command;
 using urakawa.media.data.audio;
 using urakawa.property.channel;
@@ -13,8 +13,14 @@ using urakawa.media.data;
 
 namespace Obi
 {
-    public class Presentation: urakawa.Presentation
+    public class ObiPresentation : Presentation
     {
+        public const string XUK_NS = DataModelFactory.NS;
+        public override string GetTypeNameFormatted()
+        {
+            return GetType().Name;
+        }
+
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
         private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
@@ -22,7 +28,7 @@ namespace Obi
         /// <summary>
         /// Create an uninitialized presentation.
         /// </summary>
-        public Presentation() : base() 
+        public ObiPresentation() : base() 
         {
             mInitialized = false;
             mCustomClasses = new Dictionary<string, List<EmptyNode>>();
@@ -270,7 +276,8 @@ namespace Obi
         {
             mInitialized = true;
             Uri uri = new Uri(session.Path);
-            if (getRootUri() != uri) setRootUri(uri);
+            //sdk2
+            //if (getRootUri() != uri) setRootUri(uri);
         }
 
         /// <summary>
@@ -279,22 +286,23 @@ namespace Obi
         public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings)
         {
             Initialize(session);
-            setRootNode(new RootNode(this));
+            //setRootNode(new RootNode(this));
             CreateMetadata(title, id, settings.UserProfile);
-            AddChannel(AUDIO_CHANNEL_NAME);
-            AddChannel(TEXT_CHANNEL_NAME);
+            //sdk2
+            //AddChannel(AUDIO_CHANNEL_NAME);
+            //AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
             //sdk2 :commented and replaced
             //DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
             //DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
             //DataManager.setDefaultSampleRate((uint)settings.SampleRate);
             //DataManager.setEnforceSinglePCMFormat(false);
-            urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
-            MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
+            //urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            //MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
             //DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
             //DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
             //DataManager.setDefaultSampleRate((uint)settings.SampleRate);
-            MediaDataManager.EnforceSinglePCMFormat= false;
+            //MediaDataManager.EnforceSinglePCMFormat= false;
         }
 
         /// <summary>
@@ -315,7 +323,6 @@ namespace Obi
         /// Use the Obi namespace URI!
         /// </summary>
         //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
-        public new string XUK_NS  = DataModelFactory.NS; //sdk2
 
         public void RenameSectionNode(SectionNode section, string label)
         {
@@ -656,7 +663,7 @@ namespace Obi
                 return n != null ? ((EmptyNode)n).PageNumber.NextPageNumber() : new PageNumber(1);
             }
         }
-        public static bool UseXukFormat = true;
+        public static readonly bool UseXukFormat = true;
 
         /// <summary>
         /// Find the page number following the one for this node. If the node doesn't have a number,
