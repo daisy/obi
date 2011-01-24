@@ -146,7 +146,7 @@ namespace Obi
         /// <summary>
         /// Get the title of the presentation from the metadata.
         /// </summary>
-        public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); } }
+        public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).NameContentAttribute.Value; } }
 
         /// <summary>
         /// Get a list of the custom classes that have been defined by the user for this presentation
@@ -180,8 +180,8 @@ namespace Obi
         /// </summary>
         public CompositeCommand CreateCompositeCommand(string label)
         {
-            CompositeCommand command = getCommandFactory().createCompositeCommand();
-            command.setShortDescription(label);
+            CompositeCommand command = CommandFactory.CreateCompositeCommand();
+            command.ShortDescription = label;
             return command;
         }
 
@@ -196,7 +196,7 @@ namespace Obi
                 {
                     BeforeCommandExecuted(this, new urakawa.events.command.CommandEventArgs(command));
                 }
-                getUndoRedoManager().execute(command);
+                UndoRedoManager.Execute(command);
             }
         }
 
@@ -245,7 +245,7 @@ namespace Obi
             //}
 
             PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(cachePhraseNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
-            node.addProperty(getPropertyFactory().createChannelsProperty());
+            node.AddProperty(PropertyFactory.CreateChannelsProperty());
             return node;
         }
 
@@ -288,12 +288,12 @@ namespace Obi
             cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
         }
             SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(cacheSectionNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
-            urakawa.property.channel.ChannelsProperty channelsProperty = getPropertyFactory().createChannelsProperty();
-            node.addProperty(channelsProperty);
+            urakawa.property.channel.ChannelsProperty channelsProperty = PropertyFactory.CreateChannelsProperty();
+            node.AddProperty(channelsProperty);
             // Create the text media object for the label with a default label
             TextMedia labelMedia = MediaFactory.CreateTextMedia();
-            labelMedia.setText(Localizer.Message("default_section_label"));
-            channelsProperty.setMedia(ChannelsManager.GetOrCreateTextChannel(), labelMedia);
+            labelMedia.Text= Localizer.Message("default_section_label");
+            channelsProperty.SetMedia(ChannelsManager.GetOrCreateTextChannel(), labelMedia);
             return node;
         }
 
@@ -396,9 +396,9 @@ namespace Obi
         {
             if (value != null)
             {
-                urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
-                meta.setName(name);
-                meta.setContent(value);
+                urakawa.metadata.Metadata meta = MetadataFactory.CreateMetadata();
+                meta.NameContentAttribute.Name = name;
+                meta.NameContentAttribute.Value = value;
                 AddMetadata(meta);
                 return meta;
             }

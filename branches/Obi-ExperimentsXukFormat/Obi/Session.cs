@@ -48,7 +48,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanRedo { get { return mProject != null && Presentation.getUndoRedoManager ().canRedo (); } }
+        public bool CanRedo { get { return mProject != null && Presentation.UndoRedoManager.CanRedo; } }
 
         /// <summary>
         /// True if the project has unsaved changes.
@@ -58,7 +58,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanUndo { get { return mProject != null && Presentation.getUndoRedoManager ().canUndo (); } }
+        public bool CanUndo { get { return mProject != null && Presentation.UndoRedoManager.CanUndo; } }
 
         /// <summary>
         /// True if there is a project currently open.
@@ -98,12 +98,12 @@ namespace Obi
         /// <summary>
         /// Get the description of the top redo command.
         /// </summary>
-        public string RedoLabel { get { return Presentation.getUndoRedoManager ().getRedoShortDescription (); } }
+        public string RedoLabel { get { return Presentation.UndoRedoManager.RedoShortDescription; } }
 
         /// <summary>
         /// Get the description of the top undo command.
         /// </summary>
-        public string UndoLabel { get { return Presentation.getUndoRedoManager ().getUndoShortDescription (); } }
+        public string UndoLabel { get { return Presentation.UndoRedoManager.UndoShortDescription; } }
 
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace Obi
             GetLock ( mPath );
             Presentation.Initialize ( this );
             // Hack to ignore the empty commands saved by the default undo/redo manager
-            Presentation.getUndoRedoManager ().flushCommands ();
+            Presentation.UndoRedoManager.FlushCommands();
 
             SetupBackupFilesForNewSession ( path );
 
@@ -362,7 +362,7 @@ namespace Obi
                 {
                     if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath))
                     {
-                        string originalPath = Presentation.getRootUri().LocalPath;
+                        string originalPath = Presentation.RootUri.LocalPath;
                         if (File.Exists(originalPath)) File.Delete(originalPath);
                         File.Move(precautionBackupFilePath, originalPath);
                     }
@@ -383,12 +383,12 @@ namespace Obi
 
         private string CreatePrecautionBackupBeforeSave( string path)
         {
-            string precautionFilePath = Presentation.getRootUri().LocalPath;
+            string precautionFilePath = Presentation.RootUri.LocalPath;
             if (precautionFilePath == null || !File.Exists(precautionFilePath) || System.IO.Path.GetFullPath(path) != precautionFilePath) return null;
 
             for (int i = 0; File.Exists(precautionFilePath += i.ToString()); i++)
             { }
-            File.Copy (Presentation.getRootUri().LocalPath, precautionFilePath);
+            File.Copy (Presentation.RootUri.LocalPath, precautionFilePath);
             Console.WriteLine("Precaution file is created at " + precautionFilePath);
             
             return precautionFilePath;

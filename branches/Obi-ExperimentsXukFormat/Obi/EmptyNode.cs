@@ -204,11 +204,12 @@ namespace Obi
                 CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
                 if (k == null)
                 {
-                    k = getPresentation().getCommandFactory().createCompositeCommand();
-                    k.setShortDescription(string.Format(Localizer.Message("renumber_pages"),
-                        Localizer.Message(string.Format("{0}_pages", from.Kind.ToString()))));
+                    k = Presentation.CommandFactory.CreateCompositeCommand();
+                    k.ShortDescription = string.Format(Localizer.Message("renumber_pages"),
+                        Localizer.Message(string.Format("{0}_pages", from.Kind.ToString())));
                 }
-                k.append(new Commands.Node.SetPageNumber(view, this, from));
+                k.ChildCommands.Insert(
+                            k.ChildCommands.Count - 1, new Commands.Node.SetPageNumber(view, this, from));
                 return k;
             }
             else
@@ -269,21 +270,21 @@ namespace Obi
             try
             {
                 
-                XmlProperty xmlProp = this.getProperty<XmlProperty>();
+                XmlProperty xmlProp = this.GetProperty<XmlProperty>();
                 if (xmlProp != null)
                 {
                     
-                    urakawa.property.xml.XmlAttribute attrRole = xmlProp.getAttribute(XUK_ATTR_NAME_ROLE, xmlProp.getNamespaceUri());
+                    urakawa.property.xml.XmlAttribute attrRole = xmlProp.GetAttribute(XUK_ATTR_NAME_ROLE, xmlProp.NamespaceUri);
 
                     if (attrRole != null)
                     {
-                        string role = attrRole.getValue();
+                        string role = attrRole.Value;
                         if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
                                                   role == Role.Heading.ToString() ? Role.Heading :
                                                   role == Role.Page.ToString() ? Role.Page :
                                                   role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
                         if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
-                        if (mRole == Role.Custom) mCustomRole = xmlProp.getAttribute(XUK_ATTR_NAME_CUSTOM, xmlProp.getNamespaceUri()).getValue();
+                        if (mRole == Role.Custom) mCustomRole = xmlProp.GetAttribute(XUK_ATTR_NAME_CUSTOM, xmlProp.NamespaceUri).Value;
                         //System.Windows.Forms.MessageBox.Show(mRole.ToString());
                         if (mRole == Role.Heading)
                         {
@@ -291,10 +292,10 @@ namespace Obi
                         }
                         else if (mRole == Role.Page)
                         {
-                            string pageKind = xmlProp.getAttribute(XUK_ATTR_NAME_PAGE_KIND, xmlProp.getNamespaceUri()).getValue();
+                            string pageKind = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE_KIND, xmlProp.NamespaceUri).Value;
                             if (pageKind != null)
                             {
-                                string page = xmlProp.getAttribute(XUK_ATTR_NAME_PAGE, xmlProp.getNamespaceUri()).getValue();
+                                string page = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE, xmlProp.NamespaceUri).Value;
                                 int number = SafeParsePageNumber(page);
                                 if (pageKind == "Front")
                                 {
@@ -328,7 +329,7 @@ namespace Obi
                         // add it to the presentation
                         ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
 
-                        string todo = xmlProp.getAttribute(XUK_ATTR_NAME_TODO, xmlProp.getNamespaceUri()).getValue();
+                        string todo = xmlProp.GetAttribute(XUK_ATTR_NAME_TODO, xmlProp.NamespaceUri).Value;
                         if (todo != null) mTODO = todo == "True";
                     }
                 }
@@ -396,7 +397,7 @@ namespace Obi
                 string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
                 if (todo != null) mTODO = todo == "True";
             }
-            base.xukInAttributes(source);
+            base.XukInAttributes(source);
         }
 
         
@@ -438,7 +439,7 @@ namespace Obi
                 }
                 if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
             }
-            base.xukOutAttributes(wr, baseUri);
+            base.XukOutAttributes(wr, baseUri);
         }
 
         /// <summary>
