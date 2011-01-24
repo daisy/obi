@@ -1282,7 +1282,7 @@ namespace Obi.ProjectView
         // Create a new recording command.
         private CompositeCommand CreateRecordingCommand()
         {
-            urakawa.command.CompositeCommand command = mView.Presentation.CommandFactory.createCompositeCommand();
+            urakawa.command.CompositeCommand command = mView.Presentation.CommandFactory.CreateCompositeCommand();
             command.ShortDescription = (Localizer.Message("recording_command"));//sdk2
             return command;
         }
@@ -1369,11 +1369,11 @@ namespace Obi.ProjectView
                 else
                     command.ChildCommands.Insert(command.ChildCommands.Count, add);
 
-                mView.Presentation.getUndoRedoManager().execute(command);
+                mView.Presentation.UndoRedoManager.Execute(command);
             }
             else
             {
-                mView.Presentation.getUndoRedoManager().execute(add);
+                mView.Presentation.UndoRedoManager.Execute(add);
             }
                 mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
                 mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
@@ -2039,7 +2039,7 @@ namespace Obi.ProjectView
         // Preview from a given time for a given duration inside a phrase.
         private void PlayPreview(PhraseNode phrase, double from, double duration, bool forward)
         {
-            urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.getMediaData();
+            urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.MediaData;
             if (from < 0.0)
             {
                 duration += from;
@@ -2208,9 +2208,9 @@ UpdateButtons();
             {
                 node = (EmptyNode)mRecordingPhrase;
 
-                mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
-                mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
+                mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 NextPhrase();
             }
             else if (IsPlayerActive)
@@ -2218,17 +2218,17 @@ UpdateButtons();
                 node = (EmptyNode)mCurrentPlaylist.CurrentPhrase;
                 if (node != null)
                 {
-                    mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
-                    mView.Presentation.getUndoRedoManager().execute(new Commands.Node.ToggleNodeTODO(mView, node));
-                    mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                    mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                    mView.Presentation.UndoRedoManager.Execute(new Commands.Node.ToggleNodeTODO(mView, node));
+                    mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 }
             }
         else if (mView.Selection != null && mView.Selection.Node is EmptyNode)
             {
             node  = (EmptyNode)mView.Selection.Node;
-            mView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-            mView.Presentation.getUndoRedoManager ().execute ( new Commands.Node.ToggleNodeTODO ( mView, node ) );
-            mView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mView.Presentation.UndoRedoManager.Execute ( new Commands.Node.ToggleNodeTODO ( mView, node ) );
+            mView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             }
         }
 
