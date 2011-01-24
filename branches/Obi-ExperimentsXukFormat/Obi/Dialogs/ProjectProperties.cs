@@ -24,10 +24,10 @@ namespace Obi.Dialogs
         private void ProjectStatistics_Load(object sender, EventArgs e)
         {
             m_txtTitle.Text = mView.Presentation.Title;
-            m_txtDuration.Text = Program.FormatDuration_Long(mView.Presentation.RootNode.Duration);
-            m_txtSectionsCount.Text = mView.Presentation.RootNode.SectionCount.ToString();
-            m_txtPhraseCount.Text = mView.Presentation.RootNode.PhraseCount.ToString();
-            m_txtPageCount.Text = mView.Presentation.RootNode.PageCount.ToString();
+            m_txtDuration.Text = Program.FormatDuration_Long(((ObiRootNode)mView.Presentation.RootNode).Duration);
+            m_txtSectionsCount.Text = ((ObiRootNode)mView.Presentation.RootNode).SectionCount.ToString();
+            m_txtPhraseCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PhraseCount.ToString();
+            m_txtPageCount.Text = ((ObiRootNode)mView.Presentation.RootNode).PageCount.ToString();
         }
     }
 }
