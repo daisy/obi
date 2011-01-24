@@ -18,7 +18,7 @@ namespace Obi.Commands.Metadata
         public AddEntry(ProjectView.ProjectView view, string name)
             : this(view)
         {
-            mEntry.setName(name);
+            mEntry.NameContentAttribute.Name = name;
         }
 
         public urakawa.metadata.Metadata Entry { get { return mEntry; } }
