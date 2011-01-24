@@ -25,11 +25,11 @@ namespace Obi
         {
             if (namespaceUri == DataModelFactory.NS)
             {
-                if (localName == RootNode.XUK_ELEMENT_NAME)
-                {
-                    return new RootNode(Presentation);
-                }
-                else if (localName == EmptyNode.XUK_ELEMENT_NAME)
+                //if (localName == RootNode.XUK_ELEMENT_NAME)//sdk2
+                //{
+                    //return new RootNode(Presentation);
+                //}
+                if (localName == EmptyNode.XUK_ELEMENT_NAME)
                 {
                     return new EmptyNode(Presentation);
                 }
@@ -42,7 +42,8 @@ namespace Obi
                     return new SectionNode(Presentation);
                 }
             }
-            return base.createNode(localName, namespaceUri);
+            //base.CreateNode(localName, namespaceUri);
+            return m_Presentation.TreeNodeFactory.Create(localName, namespaceUri);//sdk2
         }
 
         //public override string getXukNamespaceUri() { return DataModelFactory.NS; }

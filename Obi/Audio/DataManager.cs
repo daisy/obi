@@ -58,7 +58,7 @@ namespace Obi.Audio
     //    /// <returns>The new audio.</returns>
     //    public static ManagedAudioMedia SplitAndManage(ManagedAudioMedia audio, double time)
     //    {
-    //        ManagedAudioMedia result = audio.split(new urakawa.media.timing.Time(time));
+    //        ManagedAudioMedia result = audio.Split(new urakawa.media.timing.Time(time));
     //        audio.getMediaData().getMediaDataManager().addMediaData(result.getMediaData());
     //        return result;
     //    }

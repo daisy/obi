@@ -35,16 +35,16 @@ namespace Obi.Commands.Audio
             urakawa.media.data.audio.ManagedAudioMedia after;
             if (selection.AudioRange.HasCursor)
             {
-                after = mMediaAfter.split(new urakawa.media.timing.Time(selection.AudioRange.CursorTime));
+                after = mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.CursorTime));
             }
             else
             {
-                after = mMediaAfter.split(new urakawa.media.timing.Time(selection.AudioRange.SelectionEndTime));
-                mMediaAfter.split(new urakawa.media.timing.Time(selection.AudioRange.SelectionBeginTime));
+                after = mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.SelectionEndTime));
+                mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.SelectionBeginTime));
             }
-            double begin = mMediaAfter.getDuration().getTimeDeltaAsMillisecondFloat();
+            double begin = mMediaAfter.Duration.AsTimeSpan.Milliseconds;
             mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
-                new AudioRange(begin, begin + copy.getDuration().getTimeDeltaAsMillisecondFloat()));
+                new AudioRange(begin, begin + copy.Duration.AsTimeSpan.Milliseconds));
             mMediaAfter.mergeWith(copy);
             mMediaAfter.mergeWith(after);
             Label = Localizer.Message("paste_audio");

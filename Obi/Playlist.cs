@@ -231,7 +231,7 @@ namespace Obi
             set
             {
                 if (value >= 0 &&
-                    value < mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat())
+                    value < mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds)
                 {
                     mPlayer.CurrentTimePosition = value;
                 }
@@ -254,7 +254,7 @@ namespace Obi
 
         public void Play(double from)
         {
-        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds)
             from = 0;
 
             mPlaybackStartTime = from;
@@ -263,11 +263,11 @@ namespace Obi
 
         public void Play(double from, double to)
         {
-        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
+        if (from < 0 || from >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds)
             from = 0;
 
-        if (to < 0 || to >= mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ())
-            to = mPhrases[mCurrentPhraseIndex].Audio.getDuration ().getTimeDeltaAsMillisecondFloat ();
+        if (to < 0 || to >= mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds)
+            to = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds;
 
             mPlaybackEndTime = to;
             Play(from);
@@ -282,7 +282,7 @@ namespace Obi
             {
                 Reset(MasterPlaylist);
                 if (value != null) AddPhraseNodes(value.RootNode);
-                value.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                value.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 value.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             }
         }
@@ -299,14 +299,14 @@ namespace Obi
         {
             if (mIsQAPlaylist)
             {
-                node.acceptDepthFirst(
+                node.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n is PhraseNode && n.getChildCount() == 0 && (!mIsMaster || ((PhraseNode)n).Used))
+                        if (n is PhraseNode && n.Children.Count == 0 && (!mIsMaster || ((PhraseNode)n).Used))
                         {
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
-                            mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.Milliseconds;
                         }
                         return true;
                     },
@@ -314,14 +314,14 @@ namespace Obi
             }
             else
             {
-                node.acceptDepthFirst(
+                node.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n is PhraseNode && n.getChildCount() == 0)
+                        if (n is PhraseNode && n.Children.Count == 0)
                         {
                             mPhrases.Add((PhraseNode)n);
                             mStartTimes.Add(mTotalTime);
-                            mTotalTime += ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                            mTotalTime += ((PhraseNode)n).Audio.Duration.AsTimeSpan.Milliseconds;
                         }
                         return true;
                     },
@@ -339,7 +339,7 @@ namespace Obi
                 {
                     mPhrases.Add((PhraseNode)node);
                     mStartTimes.Add(mTotalTime);
-                    mTotalTime += ((PhraseNode)node).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                    mTotalTime += ((PhraseNode)node).Audio.Duration.AsTimeSpan.Milliseconds;
                 }
             }
             else if (node is SectionNode)
@@ -360,16 +360,16 @@ namespace Obi
             while (prev != null && !(prev is PhraseNode && mPhrases.Contains((PhraseNode)prev))) prev = prev.PrecedingNode;
             int index = prev == null ? 0 : (mPhrases.IndexOf((PhraseNode)prev) + 1);
             // Add all of the used phrase nodes that we could find
-            node.acceptDepthFirst(
+            node.AcceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && ((PhraseNode)n).Used)
                     {
-                        double time = ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        double time = ((PhraseNode)n).Audio.Duration.AsTimeSpan.Milliseconds;
                         mPhrases.Insert(index, (PhraseNode)n);
                         mStartTimes.Add(0.0);
                         mStartTimes[index] = index == 0 ? 0.0 :
-                            (mStartTimes[index - 1] + mPhrases[index - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+                            (mStartTimes[index - 1] + mPhrases[index - 1].Audio.Duration.AsTimeSpan.Milliseconds);
                         mTotalTime += time;
                         ++index;
                     }
@@ -378,7 +378,7 @@ namespace Obi
             );
             for (int i = index; i < mStartTimes.Count - 1; ++i)
             {
-                mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                mStartTimes[i + 1] = mStartTimes[i] + mPhrases[i].Audio.Duration.AsTimeSpan.Milliseconds;
             }
         }
 
@@ -395,11 +395,11 @@ namespace Obi
             mPlaybackStartTime = 0.0;
             if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.MediaData, from, mPlaybackEndTime);
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData, from, mPlaybackEndTime);
             }
             else
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.MediaData, from);
+                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData, from);
             }
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.State != evargs.OldState) StateChanged(this, evargs);
@@ -446,7 +446,7 @@ namespace Obi
         private void RemoveNode(urakawa.core.TreeNode node)
         {
             int updateTimeFrom = mPhrases.Count;
-            node.acceptDepthFirst(
+            node.AcceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && mPhrases.Contains((PhraseNode)n))
@@ -455,7 +455,7 @@ namespace Obi
                         if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
                         mPhrases.RemoveAt(index);
                         if (index < mStartTimes.Count - 1) mStartTimes.RemoveAt(index + 1);
-                        mTotalTime -= ((PhraseNode)n).Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                        mTotalTime -= ((PhraseNode)n).Audio.Duration.AsTimeSpan.Milliseconds ;
                     }
                     return true;
                 },
@@ -463,7 +463,7 @@ namespace Obi
             );
             for (int i = updateTimeFrom; i < mPhrases.Count; ++i)
             {
-                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsTimeSpan.Milliseconds;
             }
         }
 
@@ -580,7 +580,7 @@ namespace Obi
             get
             {
                 return mCurrentPhraseIndex >= 0 && mCurrentPhraseIndex < mPhrases.Count ?
-                    mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() : 0.0;
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds : 0.0;
             }
         }
 
@@ -600,12 +600,12 @@ namespace Obi
         {
             get
             {
-                return mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() -
+                return mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds -
                     (mPlayer.CurrentTimePosition);
             }
             set
             {
-                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Audio.getDuration().getTimeDeltaAsMillisecondFloat() - value;
+                CurrentTimeInAsset = mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.Milliseconds - value;
             }
         }
 
@@ -951,9 +951,9 @@ namespace Obi
         {
             for (int i = index + 1; i < mStartTimes.Count; ++i)
             {
-                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+                mStartTimes[i] = mStartTimes[i - 1] + mPhrases[i - 1].Audio.Duration.AsTimeSpan.Milliseconds;
             }
-            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Audio.getDuration().getTimeDeltaAsMillisecondFloat();
+            mTotalTime = mStartTimes[mStartTimes.Count - 1] + mPhrases[mStartTimes.Count - 1].Audio.Duration.AsTimeSpan.Milliseconds;
             System.Diagnostics.Debug.Print("!!! Playlist: {0} phrase(s), length = {1}ms.", mPhrases.Count, mTotalTime);
         }
 
@@ -1038,7 +1038,7 @@ namespace Obi
 
         public void TriggerEndOfPreviewPlaylist ( double time   )
             {
-            if (time > 0 && time < Audioplayer.CurrentAudio.getAudioDuration ().getTimeDeltaAsMillisecondFloat () )
+            if (time > 0 && time < Audioplayer.CurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)
                 {
                 mRevertTime = time;
                 CallEndOfPreviewPlaylist ();

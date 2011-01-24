@@ -156,17 +156,17 @@ namespace Obi.Audio
 		{
 			boolPlayer = true ;
 			ob_AudioPlayer = sender as AudioPlayer;
-			m_FrameSize = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getBlockAlign ()  ;
-			mChannels = ob_AudioPlayer.CurrentAudio.getPCMFormat ().getNumberOfChannels ()   ;
-            m_SamplingRate =(int) ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate ();
+			m_FrameSize = ob_AudioPlayer.CurrentAudio.PCMFormat.Data.BlockAlign ;
+			mChannels = ob_AudioPlayer.CurrentAudio.PCMFormat.Data.NumberOfChannels;
+            m_SamplingRate =(int) ob_AudioPlayer.CurrentAudio.PCMFormat.Data.SampleRate;
 			m_UpdateVMArrayLength = ob_AudioPlayer.arUpdateVM.Length  ;
 			m_arUpdatedVM  = new byte[m_UpdateVMArrayLength ] ;
 
 			Array.Copy ( ob_AudioPlayer.arUpdateVM  , m_arUpdatedVM , m_UpdateVMArrayLength) ;
 
-            if (m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate() *m_FrameSize  )))
+            if (m_BufferReadInterval != ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.PCMFormat.Data.SampleRate *m_FrameSize  )))
             {
-                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.getPCMFormat().getSampleRate() * m_FrameSize ));
+                m_BufferReadInterval = ((m_arUpdatedVM.Length * 1000) / (ob_AudioPlayer.CurrentAudio.PCMFormat.Data.SampleRate* m_FrameSize ));
                 SetSampleCount(m_SampleTimeLength);
             }
 
