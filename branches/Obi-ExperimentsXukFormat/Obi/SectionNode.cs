@@ -12,9 +12,10 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        private EmptyNode mHeading = null;  // section heading
+        // name of the element in the XUK file
+        public override string XUK_ELEMENT_NAME { get { return "section"; } }
 
-        public static readonly string XUK_ELEMENT_NAME = "section";  // element name in XUK output
+        private EmptyNode mHeading = null;  // section heading
 
 
         /// <summary>
@@ -107,14 +108,6 @@ namespace Obi
                 for (int i = 0; i < PhraseChildCount && first == null; ++i) first = PhraseChild(i).FirstUsedPhrase;
                 return first;
             }
-        }
-
-        /// <summary>
-        /// Name of the element in the XUK file for this node.
-        /// </summary>
-        public override  string GetTypeNameFormatted ()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
-        {
-            return XUK_ELEMENT_NAME;
         }
 
         /// <summary>

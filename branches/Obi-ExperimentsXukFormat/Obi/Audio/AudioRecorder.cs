@@ -615,7 +615,8 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     Writer = null;
                     Audiolength = 0;
                     ///-///
-                    mAsset.AudioDataInserted(m_sFileName);
+                     
+                    mAsset.AppendPcmData_RiffHeader(m_sFileName);
 
                     // the file has been copied so it should be deleted.
                     if (File.Exists(m_sFileName))

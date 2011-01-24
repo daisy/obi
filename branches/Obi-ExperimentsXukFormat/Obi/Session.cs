@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using urakawa;
 using urakawa.media.data.audio;
+using urakawa.xuk;
 
 namespace Obi
     {
@@ -74,7 +75,7 @@ namespace Obi
         /// </summary>
         public string PrimaryExportPath
             {
-            get { return Presentation.RootNode.PrimaryExportDirectory; }
+                get { return ((ObiRootNode)Presentation.RootNode).PrimaryExportDirectory; }
             //set
                 //{
                 //Presentation.RootNode.PrimaryExportDirectory = value;
@@ -219,7 +220,7 @@ namespace Obi
             //m_audioChannel = presentation.ChannelFactory.CreateAudioChannel();
             //m_audioChannel.Name = "The Audio Channel";
 
-            newPres.RootNode = new RootNode();
+            newPres.RootNode = new ObiRootNode();
 
             //sdk2
             //mProject.setDataModelFactory ( mDataModelFactory );
@@ -254,9 +255,21 @@ namespace Obi
         public void Open ( string path )
             {
             mProject = new urakawa.Project ();
-            mProject.setDataModelFactory ( mDataModelFactory );
+            //sdk2
+            //mProject.setDataModelFactory ( mDataModelFactory );
             mProject.dataIsMissing += new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
-            mProject.openXUK ( new Uri ( path ) );
+
+
+            //sdk2
+            //mProject.openXUK ( new Uri ( path ) );
+
+            OpenXukAction action = new OpenXukAction(mProject, new Uri(path))
+            {
+                ShortDescription = "DUMMY",
+                LongDescription = "DUMMY"
+            };
+            action.Execute();
+
             mPath = path;
             GetLock ( mPath );
             Presentation.Initialize ( this );
@@ -329,10 +342,10 @@ namespace Obi
                     precautionBackupFilePath = CreatePrecautionBackupBeforeSave( path);
                     // Make sure that saving is finished before returning
                     System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
-                    urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
-                    save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
+                    urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path));
+                    save.Finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
         (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
-                save.execute ();
+                save.Execute ();
                 wh.WaitOne ();
                 }
             catch (System.Exception ex)
@@ -395,11 +408,29 @@ namespace Obi
                         File.Create ( m_BackupProjectFilePath_temp ).Close ();
                         }
 
-                    Uri prevUri = Presentation.getRootUri ();
-                    Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
-                    Save ( m_BackupProjectFilePath_temp );
-                    Presentation.setRootUri ( prevUri );
+                    //sdk2
+                    //Uri prevUri = Presentation.getRootUri ();
+                    //Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
 
+
+                    Uri oldUri = Presentation.RootUri;
+                    string oldDataDir = Presentation.DataProviderManager.DataFileDirectory;
+
+                    string dirPath = System.IO.Path.GetDirectoryName(m_BackupProjectFilePath_temp);
+                    string prefix = System.IO.Path.GetFileNameWithoutExtension(m_BackupProjectFilePath_temp);
+
+                    Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+                    Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
+
+
+                    Save ( m_BackupProjectFilePath_temp );
+
+                    //sdk2
+                    //Presentation.setRootUri ( prevUri );
+
+                    Presentation.RootUri = oldUri;
+                    Presentation.DataProviderManager.DataFileDirectory = oldDataDir;
+                    
                     if (!Directory.Exists ( m_BackupDirPath ))
                         {
                         Directory.CreateDirectory ( m_BackupDirPath );

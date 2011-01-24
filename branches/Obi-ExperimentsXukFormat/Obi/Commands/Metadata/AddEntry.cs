@@ -11,7 +11,7 @@ namespace Obi.Commands.Metadata
         public AddEntry(ProjectView.ProjectView view)
             : base(view)
         {
-            mEntry = view.Presentation.getMetadataFactory().createMetadata();
+            mEntry = view.Presentation.MetadataFactory.CreateMetadata();
             SetDescriptions(Localizer.Message("add_metadata_entry"));
         }
 

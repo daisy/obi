@@ -6,6 +6,8 @@ using System.Text;
 using System.Xml;
 using urakawa;
 using urakawa.command;
+using urakawa.data;
+using urakawa.media;
 using urakawa.media.data.audio;
 using urakawa.property.channel;
 //using urakawa.publish;
@@ -119,7 +121,7 @@ namespace Obi
         /// </summary>
         public SectionNode FirstSection
         {
-            get { return RootNode.SectionChildCount > 0 ? RootNode.SectionChild(0) : null; }
+            get { return ((ObiRootNode)RootNode).SectionChildCount > 0 ? ((ObiRootNode)RootNode).SectionChild(0) : null; }
         }
 
         /// <summary>
@@ -129,7 +131,7 @@ namespace Obi
         {
             get
             {
-                SectionNode last = RootNode.SectionChildCount > 0 ? RootNode.SectionChild(-1) : null;
+                SectionNode last = ((ObiRootNode)RootNode).SectionChildCount > 0 ? ((ObiRootNode)RootNode).SectionChild(-1) : null;
                 while (last != null && last.SectionChildCount > 0) last = last.SectionChild(-1);
                 return last;
             }
@@ -215,12 +217,34 @@ namespace Obi
             }
         }
 
+        private string cachePhraseNode_XUK_ELEMENT_NAME = null;
+        private string cacheSectionNode_XUK_ELEMENT_NAME = null;
+        //private string cacheRootNode_XUK_ELEMENT_NAME = null;
+        //private string cacheEmptyNode_XUK_ELEMENT_NAME = null;
+
         /// <summary>
         /// Create a phrase node belonging to this presentation.
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            if (string.IsNullOrEmpty(cachePhraseNode_XUK_ELEMENT_NAME))
+            {
+                cachePhraseNode_XUK_ELEMENT_NAME = new PhraseNode().XUK_ELEMENT_NAME;
+            }
+            //else if (string.IsNullOrEmpty(cacheRootNode_XUK_ELEMENT_NAME))
+            //{
+            //    cacheRootNode_XUK_ELEMENT_NAME = new RootNode().XUK_ELEMENT_NAME;
+            //}
+            //else if (string.IsNullOrEmpty(cacheEmptyNode_XUK_ELEMENT_NAME))
+            //{
+            //    cacheEmptyNode_XUK_ELEMENT_NAME = new EmptyNode().XUK_ELEMENT_NAME;
+            //}
+            //else if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
+            //{
+            //    cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
+            //}
+
+            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(cachePhraseNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             node.addProperty(getPropertyFactory().createChannelsProperty());
             return node;
         }
@@ -259,13 +283,17 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
+        {
+            cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
+        }
+            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(cacheSectionNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             urakawa.property.channel.ChannelsProperty channelsProperty = getPropertyFactory().createChannelsProperty();
             node.addProperty(channelsProperty);
             // Create the text media object for the label with a default label
-            urakawa.media.ITextMedia labelMedia = getMediaFactory().createTextMedia();
+            TextMedia labelMedia = MediaFactory.CreateTextMedia();
             labelMedia.setText(Localizer.Message("default_section_label"));
-            channelsProperty.setMedia(TextChannel, labelMedia);
+            channelsProperty.setMedia(ChannelsManager.GetOrCreateTextChannel(), labelMedia);
             return node;
         }
 
@@ -315,7 +343,7 @@ namespace Obi
         /// </summary>
         public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
-            List<urakawa.metadata.Metadata> list = getListOfMetadata(name);
+            List<urakawa.metadata.Metadata> list = GetMetadata(name);
             return list.Count > 0 ? list[0] : null;
         }
 
@@ -335,7 +363,7 @@ namespace Obi
         /// </summary>
         public void SetSingleMetadataItem(string name, string content)
         {
-            foreach (urakawa.metadata.Metadata entry in getListOfMetadata(name)) DeleteMetadata(entry);
+            foreach (urakawa.metadata.Metadata entry in GetMetadata(name)) DeleteMetadata(entry);
             AddMetadata(name, content);
         }
 
@@ -417,34 +445,35 @@ namespace Obi
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile ( string path )
             {
-            string dataProviderDirectory = ((urakawa.media.data.FileDataProviderManager)this.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            string dataProviderDirectory = DataProviderManager.DataFileDirectoryFullPath;
 
-            if (!getMediaDataManager ().getEnforceSinglePCMFormat ())
+            //EnforceSinglePCMFormat is always true
+            //if (!MediaDataManager.EnforceSinglePCMFormat)
+            //    {
+            //    Stream input = File.OpenRead ( path );
+            //    PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader ( input );
+            //    input.Close ();
+            //    DataManager.setDefaultBitDepth ( info.getBitDepth () );
+            //    DataManager.setDefaultNumberOfChannels ( info.getNumberOfChannels () );
+            //    DataManager.setDefaultSampleRate ( info.getSampleRate () );
+            //    DataManager.setEnforceSinglePCMFormat ( true );
+            //    }
+
+            AudioMediaData data = MediaDataFactory.CreateAudioMediaData ();
+
+            if (Path.GetFullPath(path).StartsWith(Path.GetFullPath(dataProviderDirectory)))
                 {
-                Stream input = File.OpenRead ( path );
-                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader ( input );
-                input.Close ();
-                DataManager.setDefaultBitDepth ( info.getBitDepth () );
-                DataManager.setDefaultNumberOfChannels ( info.getNumberOfChannels () );
-                DataManager.setDefaultSampleRate ( info.getSampleRate () );
-                DataManager.setEnforceSinglePCMFormat ( true );
-                }
-
-            AudioMediaData data = getMediaDataFactory ().createAudioMediaData ();
-
-            if (path.StartsWith ( dataProviderDirectory ))
-                {
-                FileDataProvider dataProv = (FileDataProvider)this.getDataProviderFactory ().createDataProvider ( FileDataProviderFactory.AUDIO_WAV_MIME_TYPE );
+                FileDataProvider dataProv = (FileDataProvider)DataProviderFactory.Create(urakawa.data.DataProviderFactory.AUDIO_WAV_MIME_TYPE);
                 dataProv.InitByMovingExistingFile ( path );
                 data.AppendPcmData ( dataProv );
                 }
             else
                 {
-                data.appendAudioDataFromRiffWave ( path );
+                data.AppendPcmData_RiffHeader( path );
                 }
 
-            ManagedAudioMedia media = (ManagedAudioMedia)MediaFactory.Create<AudioMediaData>();
-            media.setMediaData ( data );
+            ManagedAudioMedia media = MediaFactory.CreateManagedAudioMedia();
+            media.AudioMediaData = data;
             return media;
             }
 
@@ -469,7 +498,8 @@ namespace Obi
             List<ManagedAudioMedia> audioMediaList = new List<ManagedAudioMedia>(phrases);
             for (double time = lastPhraseBegin; time > 0.0; time -= durationMs)
             {
-                audioMediaList.Insert(0, media.Split(new urakawa.media.timing.Time(time)));
+                long timeInLocalUnits = (long)(time*(urakawa.media.timing.Time.TIME_UNIT/1000));
+                audioMediaList.Insert(0, media.Split(new urakawa.media.timing.Time(timeInLocalUnits)));
             }
             audioMediaList.Insert(0, media);
             return audioMediaList;
