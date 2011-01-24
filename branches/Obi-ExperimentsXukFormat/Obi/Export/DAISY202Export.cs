@@ -18,7 +18,7 @@ namespace Obi.Export
     public class DAISY202Export
         {
 
-        private Presentation m_Presentation;
+        private ObiPresentation m_Presentation;
         private string m_ExportDirectory;
         private Dictionary<string, string> m_MetadataMap;
         private Dictionary<string, string> m_SmilMetadata;
@@ -32,7 +32,7 @@ namespace Obi.Export
         private Dictionary<string, string> m_SmilFile_TitleMap;
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
 
-        public DAISY202Export ( Presentation presentation, string exportDirectory )
+        public DAISY202Export ( ObiPresentation presentation, string exportDirectory )
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;

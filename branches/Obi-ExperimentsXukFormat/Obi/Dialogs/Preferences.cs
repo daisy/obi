@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         private ObiForm mForm;                           // parent form
         private Settings mSettings;                      // the settings to modify
         private bool mCanChangeAudioSettings;            // if the settings come from the project they cannot change
-        private Presentation mPresentation;              // current presentation (may be null)
+        private ObiPresentation mPresentation;              // current presentation (may be null)
         private ProjectView.TransportBar mTransportBar;  // application transport bar
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;
         private bool m_IsKeyboardShortcutChanged = false;
@@ -28,7 +28,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences ( ObiForm form, Settings settings, Presentation presentation, ProjectView.TransportBar transportbar )
+        public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar )
             {
             InitializeComponent ();
             mForm = form;
