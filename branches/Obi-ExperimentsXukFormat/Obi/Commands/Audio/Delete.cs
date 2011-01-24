@@ -29,7 +29,7 @@ namespace Obi.Commands.Audio
                 new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.getTimeAsMillisecondFloat())) :
                 new NodeSelection(mNode, view.Selection.Control);
             mDeleted = view.Presentation.CreatePhraseNode(mNode.Audio.copy(mSplitTimeBegin, mSplitTimeEnd));
-            Label = Localizer.Message("delete_audio");
+            SetDescriptions(Localizer.Message("delete_audio"));
         }
 
         public PhraseNode Deleted { get { return mDeleted; } }

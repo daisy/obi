@@ -95,7 +95,7 @@ namespace Obi
         /// <summary>
         /// Create a new empty node of a given kind in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Role role, string customRole): base(presentation)
+        public EmptyNode(Role role, string customRole)
         {
             mRole = role;
             mCustomRole = customRole;
@@ -105,17 +105,17 @@ namespace Obi
         /// <summary>
         /// Create a plain empty node in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation): this(presentation, Role.Plain, null) {}
+        public EmptyNode(): this(Role.Plain, null) {}
 
         /// <summary>
         /// Create an empty node of a pre-defined kind a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Role role): this(presentation, role, null) {}
+        public EmptyNode(Role role) : this(role, null) { }
 
         /// <summary>
         /// Create an empty node with a custom class in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, string customRole): this(presentation, Role.Custom, customRole) {}
+        public EmptyNode(string customRole) : this(Role.Custom, customRole) { }
 
 
         /// <summary>

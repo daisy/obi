@@ -12,7 +12,7 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        private EmptyNode mHeading;  // section heading
+        private EmptyNode mHeading = null;  // section heading
 
         public static readonly string XUK_ELEMENT_NAME = "section";  // element name in XUK output
 
@@ -20,10 +20,11 @@ namespace Obi
         /// <summary>
         /// Create a new section node with the default label.
         /// </summary>
-        public SectionNode(Presentation presentation): base(presentation)
-        {
-            mHeading = null;
-        }
+        /// //sdk2
+        //public SectionNode(Presentation presentation): base(presentation)
+        //{
+        //    mHeading = null;
+        //}
 
 
         /// <summary>

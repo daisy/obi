@@ -21,9 +21,10 @@ namespace Obi
         /// <summary>
         /// Create a new node for a presentation.
         /// </summary>
-        protected ObiNode(Presentation presentation) : base()
+        protected ObiNode()
         {
-            setPresentation(presentation);
+            //sdk2s
+            //setPresentation(presentation);
             mUsed = true;
         }
 
@@ -33,7 +34,7 @@ namespace Obi
         /// </summary>
         public T AncestorAs<T>() where T : ObiNode
         {
-            ObiNode parent = getParent() as ObiNode;
+            ObiNode parent = Parent as ObiNode;
             return parent == null || parent is T ? parent as T : parent.AncestorAs<T>();
         }
 
@@ -42,7 +43,7 @@ namespace Obi
         /// </summary>
         public virtual ObiNode PrecedingNode
         {
-            get { return getParent().indexOf(this) > 0 ? ((ObiNode)getPreviousSibling()).LastLeaf : ParentAs<ObiNode>(); }
+            get { return Parent.Children.IndexOf(this) > 0 ? ((ObiNode)PreviousSibling).LastLeaf : ParentAs<ObiNode>(); }
         }
 
         /// <summary>
@@ -58,8 +59,8 @@ namespace Obi
         {
             get
             {
-                int children = getChildCount();
-                return children == 0 ? this : ((ObiNode)getChild(children - 1)).LastLeaf;
+                int childrenCount = Children.Count;
+                return childrenCount == 0 ? this : ((ObiNode)Children.Get(childrenCount - 1)).LastLeaf;
             }
         }
 
@@ -70,9 +71,9 @@ namespace Obi
         {
             get
             { 
-                return getParent().indexOf(this) < getParent().getChildCount() - 1 ?
+                return Parent.Children.IndexOf(this) < Parent.getChildCount() - 1 ?
                     ((ObiNode)NextSibling).FirstLeaf : 
-                    ((ObiNode)getParent()).FollowingNode;
+                    ((ObiNode)Parent).FollowingNode;
             }
         }
 
@@ -85,8 +86,8 @@ namespace Obi
             ObiNode parent = ParentAs<ObiNode>();
             if (parent != null)
             {
-                int index_self = parent.indexOf(this);
-                return getChildCount() > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
+                int index_self = parent.Children.IndexOf(this);
+                return Children.Count > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
                     index_self < getParent().getChildCount() - 1 ? (ObiNode)getParent().getChild(index_self + 1) :
                     parent.FollowingNodeAfter(index_self);
             }
@@ -159,7 +160,8 @@ namespace Obi
         /// <summary>
         /// Presentation to which this node belongs.
         /// </summary>
-        public new Presentation Presentation { get { return (Presentation)getPresentation(); } }
+        /// sdk2
+        //public new Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
         public abstract SectionNode SectionChild(int index);
         public abstract int SectionChildCount { get; }
@@ -222,7 +224,7 @@ namespace Obi
 
         protected override void XukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
         {
-            if (Presentation.UseXukFormat) UpdateXmlProperties();
+            if (ObiPresentation.UseXukFormat) UpdateXmlProperties();
             base.xukOutChildren(destination, baseUri, handler);
         }
 
@@ -263,7 +265,7 @@ namespace Obi
         /// </summary>
         protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            if (!Presentation.UseXukFormat)
+            if (!ObiPresentation.UseXukFormat)
             {
                 if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
             }
@@ -275,7 +277,7 @@ namespace Obi
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
         //public override string XukNamespaceUri { get { return DataModelFactory.NS;
-        public new string XUK_NS = DataModelFactory.NS;//sdk2
+        public const string XUK_NS = DataModelFactory.NS;//sdk2
 
         /// <summary>
         /// Copy the used flag as well as properties.
@@ -303,157 +305,158 @@ namespace Obi
     /// The level of the root node is 0. A root node has only section children.
     /// </summary>
     // sdk2
-    //public class RootNode : ObiNode
-    //{
-    //    public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
+    public class RootNode : ObiNode
+    {
+        public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
 
-    //    private string mPrimaryExportDirectory= "" ;
+        private string mPrimaryExportDirectory = "";
 
-    //    public RootNode(Presentation presentation) : base(presentation) { }
+        //sdk2
+        //public RootNode(Presentation presentation) : base(presentation) { }
 
-    //    /// <summary>
-    //    /// Allow only section nodes to be inserted.
-    //    /// If the index is negative, count backward from the end (-1 is last.)
-    //    /// </summary>
-    //    public override void Insert(ObiNode node, int index)
-    //    {
-    //        if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
-    //        if (index < 0) index += getChildCount();
-    //        insert(node, index);
-    //    }
+        /// <summary>
+        /// Allow only section nodes to be inserted.
+        /// If the index is negative, count backward from the end (-1 is last.)
+        /// </summary>
+        public override void Insert(ObiNode node, int index)
+        {
+            if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
+            if (index < 0) index += getChildCount();
+            insert(node, index);
+        }
 
-    //    /// <summary>
-    //    /// The level of the root node is always 0; top-level sections have a level of 1.
-    //    /// </summary>
-    //    public override int Level { get { return 0; } }
+        /// <summary>
+        /// The level of the root node is always 0; top-level sections have a level of 1.
+        /// </summary>
+        public override int Level { get { return 0; } }
 
-    //    public override SectionNode SectionChild(int index)
-    //    {
-    //        if (index < 0) index = getChildCount() - index;
-    //        return (SectionNode)getChild(index);
-    //    }
+        public override SectionNode SectionChild(int index)
+        {
+            if (index < 0) index = getChildCount() - index;
+            return (SectionNode)getChild(index);
+        }
 
-    //    public override ObiNode PrecedingNode { get { return null; } }
-    //    public override ObiNode FollowingNode { get { return null; } }
+        public override ObiNode PrecedingNode { get { return null; } }
+        public override ObiNode FollowingNode { get { return null; } }
 
-    //    public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
-    //    public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
-    //    public override int SectionChildCount { get { return getChildCount(); } }
-    //    public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
-    //    public override int PhraseChildCount { get { return 0; } }
+        public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
+        public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
+        public override int SectionChildCount { get { return getChildCount(); } }
+        public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
+        public override int PhraseChildCount { get { return 0; } }
 
-    //    public override double Duration
-    //    {
-    //        get
-    //        {
-    //            double duration = 0.0;
-    //            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
-    //            {
-    //                if (n is SectionNode) duration += ((SectionNode)n).Duration;
-    //                return true;
-    //            }, delegate(urakawa.core.TreeNode n) { });
-    //            return duration;
-    //        }
-    //    }
+        public override double Duration
+        {
+            get
+            {
+                double duration = 0.0;
+                acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+                {
+                    if (n is SectionNode) duration += ((SectionNode)n).Duration;
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { });
+                return duration;
+            }
+        }
 
-    //    // Count all nodes that match the predicate.
-    //    private int Count(Predicate<urakawa.core.TreeNode> p)
-    //    {
-    //        int count = 0;
-    //        acceptDepthFirst(delegate(urakawa.core.TreeNode n)
-    //        {
-    //            if (p(n)) ++count;
-    //            return true;
-    //        }, delegate(urakawa.core.TreeNode n) { });
-    //        return count;
-    //    }
+        // Count all nodes that match the predicate.
+        private int Count(Predicate<urakawa.core.TreeNode> p)
+        {
+            int count = 0;
+            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+            {
+                if (p(n)) ++count;
+                return true;
+            }, delegate(urakawa.core.TreeNode n) { });
+            return count;
+        }
 
-    //    public int PageCount
-    //    {
-    //        get
-    //        {
-    //            return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber != null; });
-    //        }
-    //    }
+        public int PageCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode && ((EmptyNode)n).PageNumber != null; });
+            }
+        }
 
-    //    public int PhraseCount
-    //    {
-    //        get
-    //        {
-    //            return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode; });
-    //        }
-    //    }
+        public int PhraseCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is EmptyNode; });
+            }
+        }
 
-    //    public int SectionCount
-    //    {
-    //        get
-    //        {
-    //            return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
-    //        }
-    //    }
+        public int SectionCount
+        {
+            get
+            {
+                return Count(delegate(urakawa.core.TreeNode n) { return n is SectionNode; });
+            }
+        }
 
-    //    /// <summary>
-    //    /// returns list of all the sections descending from root. This may be time consuming for large project
-    //    /// </summary>
-    //    /// <returns></returns>
-    //    public List<SectionNode> GetListOfAllSections ()
-    //        {
-    //        List<SectionNode> m_SectionsList = new List<SectionNode> ();
-    //        this.acceptDepthFirst (
-    //                delegate ( urakawa.core.TreeNode n )
-    //                    {
-    //                                            if (n is SectionNode )
-    //                        {
-    //                                                                            m_SectionsList.Add ( (SectionNode)n );
-    //                        }
-    //                    return true;
-    //                    },
-    //                delegate ( urakawa.core.TreeNode n ) { } );
+        /// <summary>
+        /// returns list of all the sections descending from root. This may be time consuming for large project
+        /// </summary>
+        /// <returns></returns>
+        public List<SectionNode> GetListOfAllSections()
+        {
+            List<SectionNode> m_SectionsList = new List<SectionNode>();
+            this.acceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is SectionNode)
+                        {
+                            m_SectionsList.Add((SectionNode)n);
+                        }
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
 
-    //        return m_SectionsList;
-    //        }
+            return m_SectionsList;
+        }
 
 
-    //    public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
-    //    /// <summary>
-    //            ///  Path of directory containing exported DAISY book in raw PCM format
-    //    /// </summary>
-    //    public string PrimaryExportDirectory
-    //    {
-    //        get { return mPrimaryExportDirectory; }
-    //        set
-    //        {
-    //            if (value != null) mPrimaryExportDirectory = value;
-    //        }
-    //    }
-    //    /*
-    //    private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
+        /// <summary>
+        ///  Path of directory containing exported DAISY book in raw PCM format
+        /// </summary>
+        public string PrimaryExportDirectory
+        {
+            get { return mPrimaryExportDirectory; }
+            set
+            {
+                if (value != null) mPrimaryExportDirectory = value;
+            }
+        }
+        /*
+        private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
 
-    //    /// <summary>
-    //    /// Read back the used attribute.
-    //    /// </summary>
-    //    protected override void xukInAttributes(System.Xml.XmlReader reader)
-    //    {
-    //        if (this.getProperty<XmlProperty>() == null)
-    //        {
-    //            mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
-    //        }
-    //                    base.xukInAttributes(reader);
-    //    }
+        /// <summary>
+        /// Read back the used attribute.
+        /// </summary>
+        protected override void xukInAttributes(System.Xml.XmlReader reader)
+        {
+            if (this.getProperty<XmlProperty>() == null)
+            {
+                mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            }
+                        base.xukInAttributes(reader);
+        }
 
-    //    /// <summary>
-    //    /// Write the used attribute if its value is false (true being the default.)
-    //    /// </summary>
-    //    protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
-    //    {
-    //        if (!Presentation.UseXukFormat)
-    //        {
-    //            destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
-    //        }
-    //        base.xukOutAttributes(destination, baseUri);
-    //    }
-    //    */
+        /// <summary>
+        /// Write the used attribute if its value is false (true being the default.)
+        /// </summary>
+        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        {
+            if (!Presentation.UseXukFormat)
+            {
+                destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+            }
+            base.xukOutAttributes(destination, baseUri);
+        }
+        */
 
-    //}
+    }
 }

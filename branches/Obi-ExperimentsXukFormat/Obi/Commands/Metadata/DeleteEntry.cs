@@ -14,7 +14,7 @@ namespace Obi.Commands.Metadata
         {
             mEntry = ((MetadataSelection)view.Selection).Item.Entry;
             mSelectionAfter = null;
-            Label = Localizer.Message("delete_metadata_entry");
+            SetDescriptions(Localizer.Message("delete_metadata_entry"));
         }
 
         public override bool CanExecute { get { return true; } }

@@ -3,6 +3,7 @@ using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
 using urakawa.media.data.audio;
+using urakawa.media.data.audio.codec;
 using urakawa.property.channel;
 
 namespace Obi
@@ -19,9 +20,9 @@ namespace Obi
         /// <summary>
         /// Create a phrase node.
         /// </summary>
-        public PhraseNode(Presentation presentation): base(presentation) {}
-        public PhraseNode(Presentation presentation, EmptyNode.Role kind) : base(presentation, kind) {} 
-        public PhraseNode(Presentation presentation, string custom) : base(presentation, Role.Custom) {}
+        //public PhraseNode(Presentation presentation): base(presentation) {}
+        public PhraseNode(EmptyNode.Role kind) : base(kind) {} 
+        public PhraseNode(string custom) : base(Role.Custom) {}
 
 
         /// <summary>
@@ -29,10 +30,10 @@ namespace Obi
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return (ManagedAudioMedia)getProperty<ChannelsProperty>().getMedia(Presentation.AudioChannel); }
+            get { return (ManagedAudioMedia)GetProperty<ChannelsProperty>().GetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel()); }
             set
             {
-                getProperty<ChannelsProperty>().setMedia(Presentation.AudioChannel, value);
+                GetProperty<ChannelsProperty>().SetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel(), value);
                 if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             }
         }
@@ -58,7 +59,9 @@ namespace Obi
         /// </summary>
         public void MergeAudioWith(ManagedAudioMedia audio)
         {
-            Audio.mergeWith(audio);
+            //sdk2
+            //Audio.MergeWith(audio);
+            Audio.AudioMediaData.MergeWith(audio.AudioMediaData);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
         }
 

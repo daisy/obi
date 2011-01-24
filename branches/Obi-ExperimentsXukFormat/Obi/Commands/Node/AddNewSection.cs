@@ -20,7 +20,7 @@ namespace Obi.Commands.Node
             mNode.Used = mParent.Used;
             mControl = control;
             view.SelectAndRenameSelection(new NodeSelection(mNode, mControl));
-            Label = Localizer.Message("add_section");
+            SetDescriptions(Localizer.Message("add_section"));
         }
 
         public AddSectionNode ( ProjectView.ProjectView view, IControlWithRenamableSelection control, string sectionName)
@@ -92,7 +92,7 @@ namespace Obi.Commands.Node
     {
         public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control)
         {
-            Label = Localizer.Message("add_subsection");
+            SetDescriptions(Localizer.Message("add_subsection"));
         }
 
         protected override void SetParentAndIndex(Obi.ProjectView.ProjectView view)
@@ -107,7 +107,7 @@ namespace Obi.Commands.Node
         public InsertSectionNode(ProjectView.ProjectView view)
             : base(view, (IControlWithRenamableSelection)view.Selection.Control)
         {
-            Label = Localizer.Message("insert_section");
+            SetDescriptions(Localizer.Message("insert_section"));
         }
 
         // Set parent and index for the new node

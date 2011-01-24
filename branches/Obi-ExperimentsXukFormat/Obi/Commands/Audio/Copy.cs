@@ -16,7 +16,7 @@ namespace Obi.Commands.Audio
         {
             mOldClipboard = view.Clipboard;
             mNewClipboard = new AudioClipboard(node, range);
-            Label = Localizer.Message("copy_audio");
+            SetDescriptions(Localizer.Message("copy_audio"));
         }
 
         public Copy(ProjectView.ProjectView view)

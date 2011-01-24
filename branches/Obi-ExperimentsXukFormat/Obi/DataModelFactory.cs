@@ -8,7 +8,7 @@ namespace Obi
     //public class DataModelFactory : urakawa.DataModelFactory
     public class DataModelFactory 
     {
-        public static readonly string NS = "http://www.daisy.org/urakawa/obi";  // Obi-specific namespace
+        public const string NS = "http://www.daisy.org/urakawa/obi";  // Obi-specific namespace
         public static readonly string XUK_VERSION = "xuk/obi;1.0";             // versioning for Obi XUK files
 
         /// <summary>
@@ -31,31 +31,35 @@ namespace Obi
         // For consistency, override both methods without parameters and with
         // localname/nsuri parameters.
 
+        //sdk2
         //public override urakawa.media.data.MediaDataManager createMediaDataManager()
-        public urakawa.media.data.MediaDataManager createMediaDataManager()//sdk2
-        {
-            return createMediaDataManager(typeof(Audio.DataManager).Name, NS);
-        }
+        //public urakawa.media.data.MediaDataManager createMediaDataManager()
+        //{
+        //    return createMediaDataManager(typeof(Audio.DataManager).Name, NS);
+        //}
 
+        //sdk2
         //public override urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)
-        public urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)//sdk2
-        {
-            return namespaceUri == NS && localName == typeof(Audio.DataManager).Name ?
-                new Audio.DataManager() : base.createMediaDataManager(localName, namespaceUri);
-        }
+        //public urakawa.media.data.MediaDataManager createMediaDataManager(string localName, string namespaceUri)//sdk2
+        //{
+        //    return namespaceUri == NS && localName == typeof(Audio.DataManager).Name ?
+        //        new Audio.DataManager() : base.createMediaDataManager(localName, namespaceUri);
+        //}
 
+        //sdk2
         //public override urakawa.Presentation createPresentation()
-        public urakawa.Presentation createPresentation()//sdk2
-        {
-            return createPresentation(typeof(Obi.Presentation).Name, NS);
-        }
+        //public urakawa.Presentation createPresentation()
+        //{
+        //    return createPresentation(typeof(Obi.Presentation).Name, NS);
+        //}
 
+        //sdk2
         //public override urakawa.Presentation createPresentation(string localName, string namespaceUri)
-        public urakawa.Presentation createPresentation(string localName, string namespaceUri)//sdk2
-        {
-            return namespaceUri == NS && localName == typeof(Obi.Presentation).Name ?
-                new Obi.Presentation() : base.createPresentation(localName, namespaceUri);
-        }
+        //public urakawa.Presentation createPresentation(string localName, string namespaceUri)/
+        //{
+        //    return namespaceUri == NS && localName == typeof(Obi.Presentation).Name ?
+        //        new Obi.Presentation() : base.createPresentation(localName, namespaceUri);
+        //}
 
         //
         public urakawa.core.TreeNodeFactory createTreeNodeFactory()//sdk2

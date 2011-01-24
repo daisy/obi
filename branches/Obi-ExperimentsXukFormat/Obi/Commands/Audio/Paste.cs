@@ -47,7 +47,7 @@ namespace Obi.Commands.Audio
                 new AudioRange(begin, begin + copy.Duration.AsTimeSpan.Milliseconds));
             mMediaAfter.mergeWith(copy);
             mMediaAfter.mergeWith(after);
-            Label = Localizer.Message("paste_audio");
+            SetDescriptions(Localizer.Message("paste_audio"));
         }
 
         public override IEnumerable<MediaData> UsedMediaData

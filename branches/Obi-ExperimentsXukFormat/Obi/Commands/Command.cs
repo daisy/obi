@@ -11,6 +11,8 @@ namespace Obi.Commands
 {
     public abstract class Command: urakawa.command.Command
     {
+        public const string XUK_NS = DataModelFactory.NS;
+
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
         private string mLabel;                   // command label (can be overridden)
@@ -49,13 +51,19 @@ namespace Obi.Commands
         //public virtual bool canExecute() { return true; }
         public override bool CanUnExecute  { get { return true; } }//sdk2 : temp
 
-        public override void Execute() {}
+        //sdk2 public override void Execute() {}
         
+        public void SetDescriptions(string str)
+        {
+            ShortDescription = str;
+            LongDescription = str;
+        }
 
-        /// <summary>
-        /// Set the label for the command (if not using default.)
-        /// </summary>
-        public string Label { set { mLabel = value; } }
+        //sdk2
+        ///// <summary>
+        ///// Set the label for the command (if not using default.)
+        ///// </summary>
+        //public string Label { set { mLabel = value; } }
 
         /// <summary>
         /// Get the view that the command is executed into.
@@ -106,46 +114,47 @@ namespace Obi.Commands
 
         public override string GetTypeNameFormatted() { return this.GetType().ToString(); }
 
-        /// <summary>
-        /// The short description is the label of the command.
-        /// </summary>
-        public virtual string getShortDescription() { return mLabel; }
+        //sdk2
+        ///// <summary>
+        ///// The short description is the label of the command.
+        ///// </summary>
+        //public virtual string ShortDescription { get { return mLabel; } }
 
-        /// <summary>
-        /// We don't normally use long description, so just return the short one.
-        /// </summary>
-        public virtual string getLongDescription() { return getShortDescription(); }
+        ///// <summary>
+        ///// We don't normally use long description, so just return the short one.
+        ///// </summary>
+        //public virtual string getLongDescription() { return getShortDescription(); }
 
-        /// <summary>
-        /// Get the presentation from the view's project
-        /// </summary>
-        public urakawa.Presentation getPresentation() { return mView.Presentation; }
+        ///// <summary>
+        ///// Get the presentation from the view's project
+        ///// </summary>
+        //public urakawa.Presentation getPresentation() { return mView.Presentation; }
 
-        /// <summary>
-        /// The presentation cannot be set.
-        /// </summary>
-        public void setPresentation(urakawa.Presentation newPres)
-        {
-            // I am not sure what this message is supposed to mean?!
-            throw new Exception("The presentation cannot be set on a command; set the pre instead.");
-        }
+        ///// <summary>
+        ///// The presentation cannot be set.
+        ///// </summary>
+        //public void setPresentation(urakawa.Presentation newPres)
+        //{
+        //    // I am not sure what this message is supposed to mean?!
+        //    throw new Exception("The presentation cannot be set on a command; set the pre instead.");
+        //}
 
-        /// <summary>
-        /// Commands are not saved so far.
-        /// </summary>
-        public void xukIn(System.Xml.XmlReader source, urakawa.progress.IProgressHandler handler)
-        {
-        }
+        ///// <summary>
+        ///// Commands are not saved so far.
+        ///// </summary>
+        //public void xukIn(System.Xml.XmlReader source, urakawa.progress.IProgressHandler handler)
+        //{
+        //}
 
-        /// <summary>
-        /// Commands are not saved so far.
-        /// </summary>
-        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
-        {
-        }
+        ///// <summary>
+        ///// Commands are not saved so far.
+        ///// </summary>
+        //public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
+        //{
+        //}
 
-        public string getXukLocalName() { return GetType().Name; }
-        public string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public string getXukLocalName() { return GetType().Name; }
+        //public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
     public class UpdateSelection : Command

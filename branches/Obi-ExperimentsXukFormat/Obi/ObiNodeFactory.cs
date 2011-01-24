@@ -8,9 +8,9 @@ namespace Obi
     /// </summary>
     public class ObiNodeFactory 
     {
-        private Presentation m_Presentation;
+        private ObiPresentation m_Presentation;
 
-        public ObiNodeFactory(Presentation presentation)
+        public ObiNodeFactory(ObiPresentation presentation)
         {
             m_Presentation = presentation;
         }
@@ -31,25 +31,22 @@ namespace Obi
                 //}
                 if (localName == EmptyNode.XUK_ELEMENT_NAME)
                 {
-                    return new EmptyNode(Presentation);
+                    return new EmptyNode(m_Presentation);
                 }
                 else if (localName == PhraseNode.XUK_ELEMENT_NAME)
                 {
-                    return new PhraseNode(Presentation);
+                    return new PhraseNode(m_Presentation);
                 }
                 else if (localName == SectionNode.XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode(Presentation);
+                    return new SectionNode(m_Presentation);
                 }
             }
             //base.CreateNode(localName, namespaceUri);
             return m_Presentation.TreeNodeFactory.Create(localName, namespaceUri);//sdk2
         }
 
+        //sdk2
         //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
-        public string getXukNamespaceUri() { return DataModelFactory.NS; }//sdk2
-
-        // Override getPresentation() to return an Obi-specific presentation
-        private Presentation Presentation { get { return m_Presentation; } }
     }
 }

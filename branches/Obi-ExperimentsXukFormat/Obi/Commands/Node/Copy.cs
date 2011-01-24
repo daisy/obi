@@ -14,7 +14,7 @@ namespace Obi.Commands.Node
         {
             mOldClipboard = view.Clipboard;
             mNewClipboard = new Clipboard(view.Selection.Node, deep);
-            Label = label;
+            SetDescriptions(label);
         }
 
         public Copy(ProjectView.ProjectView view, bool deep) : this(view, deep, "") { }

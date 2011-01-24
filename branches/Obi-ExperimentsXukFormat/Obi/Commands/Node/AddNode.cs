@@ -85,7 +85,7 @@ namespace Obi.Commands.Node
             : base(view, node, parent, index)
         {
             mControl = view.Selection.Control;
-            Label = Localizer.Message("add_blank_phrase");
+            SetDescriptions(Localizer.Message("add_blank_phrase"));
         }
 
         public override void Execute()
