@@ -327,8 +327,9 @@ namespace Obi
     // sdk2
     public class ObiRootNode : ObiNode
     {
+        public static string XukString = "root";
         // name of the element in the XUK file
-        public override string XUK_ELEMENT_NAME { get { return "root"; } }
+        public override string XUK_ELEMENT_NAME { get { return ObiRootNode.XukString; } }
 
         private string mPrimaryExportDirectory = "";
 

@@ -220,7 +220,8 @@ namespace Obi
             //m_audioChannel = presentation.ChannelFactory.CreateAudioChannel();
             //m_audioChannel.Name = "The Audio Channel";
 
-            newPres.RootNode = new ObiRootNode();
+            ObiRootNode rootNode = newPres.TreeNodeFactory.Create<ObiRootNode>();
+            newPres.RootNode = rootNode;
 
             //sdk2
             //mProject.setDataModelFactory ( mDataModelFactory );
@@ -267,6 +268,8 @@ namespace Obi
             action.ShortDescription = "DUMMY";
             action.LongDescription = "DUMMY";
             action.Execute();
+
+            //Presentation = mProject.Presentations.Get(0);
 
             mPath = path;
             GetLock ( mPath );

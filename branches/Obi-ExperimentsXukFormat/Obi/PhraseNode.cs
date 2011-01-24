@@ -10,8 +10,9 @@ namespace Obi
 {
     public class PhraseNode: EmptyNode
     {
+        public new static string XukString = "phrase";
         // name of the element in the XUK file
-        public override string XUK_ELEMENT_NAME { get { return "phrase"; } }
+        public override string XUK_ELEMENT_NAME { get { return PhraseNode.XukString; } }
 
         /// <summary>
         /// This event is sent when the audio

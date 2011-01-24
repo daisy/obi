@@ -12,9 +12,10 @@ namespace Obi.Commands
     public abstract class Command: urakawa.command.Command
     {
         public const string XUK_NS = DataModelFactory.NS;
+        public static string XukString = typeof(Command).Name;
         public override string GetTypeNameFormatted()
         {
-            return this.GetType().Name;
+            return XukString;
         }
 
 
