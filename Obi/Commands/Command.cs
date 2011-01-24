@@ -12,6 +12,11 @@ namespace Obi.Commands
     public abstract class Command: urakawa.command.Command
     {
         public const string XUK_NS = DataModelFactory.NS;
+        public override string GetTypeNameFormatted()
+        {
+            return this.GetType().Name;
+        }
+
 
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
@@ -111,8 +116,6 @@ namespace Obi.Commands
         /// Most commands do not use any media data.
         /// </summary>
         public override IEnumerable<MediaData> UsedMediaData { get { return new List<MediaData>(); } }
-
-        public override string GetTypeNameFormatted() { return this.GetType().ToString(); }
 
         //sdk2
         ///// <summary>

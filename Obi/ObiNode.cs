@@ -16,6 +16,13 @@ namespace Obi
     /// </summary>
     public abstract class ObiNode : TreeNode
     {
+        public const string XUK_NS = DataModelFactory.NS;//sdk2
+        public abstract string XUK_ELEMENT_NAME { get; }
+        public override string GetTypeNameFormatted()
+        {
+            return XUK_ELEMENT_NAME;
+        }
+
         private bool mUsed;  // mark node as being in use or not
 
         /// <summary>
@@ -128,7 +135,7 @@ namespace Obi
         /// </summary>
         public bool IsRooted
         {
-            get { return this is RootNode || (getParent() is ObiNode && ((ObiNode)getParent()).IsRooted); }
+            get { return this is ObiRootNode || (getParent() is ObiNode && ((ObiNode)getParent()).IsRooted); }
         }
 
         /// <summary>
@@ -182,7 +189,7 @@ namespace Obi
                 if (mUsed != value)
                 {
                     mUsed = value;
-                    Presentation.SignalUsedStatusChanged(this);
+                    ((ObiPresentation)Presentation).SignalUsedStatusChanged(this);
                 }
             }
         }
@@ -277,8 +284,7 @@ namespace Obi
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
         //public override string XukNamespaceUri { get { return DataModelFactory.NS;
-        public const string XUK_NS = DataModelFactory.NS;//sdk2
-
+        
         /// <summary>
         /// Copy the used flag as well as properties.
         /// </summary>
@@ -305,9 +311,10 @@ namespace Obi
     /// The level of the root node is 0. A root node has only section children.
     /// </summary>
     // sdk2
-    public class RootNode : ObiNode
+    public class ObiRootNode : ObiNode
     {
-        public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
+        // name of the element in the XUK file
+        public override string XUK_ELEMENT_NAME { get { return "root"; } }
 
         private string mPrimaryExportDirectory = "";
 
@@ -417,7 +424,8 @@ namespace Obi
         }
 
 
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+        //sdk2
+        //public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
         /// <summary>
         ///  Path of directory containing exported DAISY book in raw PCM format

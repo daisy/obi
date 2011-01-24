@@ -15,12 +15,14 @@ namespace Obi
     /// </summary>
     public class EmptyNode: ObiNode
     {
+        // name of the element in the XUK file
+        public override string XUK_ELEMENT_NAME { get { return "empty"; } }
+
         private Role mRole;              // this node's kind
         private string mCustomRole;      // custom role name
         private PageNumber mPageNumber;  // page number
         private bool mTODO;              // marked as TODO
 
-        public static readonly string XUK_ELEMENT_NAME = "empty";             // name of the element in the XUK file
         private static readonly string XUK_ATTR_NAME_ROLE = "kind";           // name of the role attribute
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";       // name of the custom attribute
         private static readonly string XUK_ATTR_NAME_PAGE = "page";           // name of the page attribute
@@ -260,13 +262,6 @@ namespace Obi
         public override EmptyNode LastUsedPhrase { get { throw new Exception("Empty nodes have no children."); } }
 
 
-
-        public override string GetTypeNameFormatted()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
-        {
-            return XUK_ELEMENT_NAME;
-        }
-
-        
         protected override void XukInNodeProperties ()
         {
             base.XukInNodeProperties();
@@ -331,7 +326,7 @@ namespace Obi
                             throw new Exception("Missing `custom' attribute.");
                         }
                         // add it to the presentation
-                        Presentation.AddCustomClass(mCustomRole, this);
+                        ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
 
                         string todo = xmlProp.getAttribute(XUK_ATTR_NAME_TODO, xmlProp.getNamespaceUri()).getValue();
                         if (todo != null) mTODO = todo == "True";
@@ -396,7 +391,7 @@ namespace Obi
                     throw new Exception("Missing `custom' attribute.");
                 }
                 // add it to the presentation
-                Presentation.AddCustomClass(mCustomRole, this);
+                ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
 
                 string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
                 if (todo != null) mTODO = todo == "True";
@@ -430,7 +425,7 @@ namespace Obi
         protected override void XukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
         {
             //Presentation.UseXukFormat = true;
-            if (!Presentation.UseXukFormat)
+            if (!ObiPresentation.UseXukFormat)
             {
             
                 if (mRole != Role.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_ROLE, mRole.ToString());
@@ -467,7 +462,7 @@ namespace Obi
     /// <summary>
     /// Informs that a node's kind has changed and pass along its old kind.
     /// </summary>
-    class ChangedRoleEventArgs : NodeEventArgs<EmptyNode>
+    public class ChangedRoleEventArgs : NodeEventArgs<EmptyNode>
     {
         private EmptyNode.Role mRole;  // previous role
         private string mCustomRole;    // previous custom role name

@@ -276,12 +276,13 @@ namespace Obi
         /// <summary>
         /// Set a new presentation for this playlist; i.e., regenerate the master playlist for the presentation.
         /// </summary>
-        public Presentation Presentation
+        public ObiPresentation Presentation
         {
             set
             {
                 Reset(MasterPlaylist);
-                if (value != null) AddPhraseNodes(value.RootNode);
+                if (value == null) return;
+                AddPhraseNodes(value.RootNode);
                 value.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
                 value.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             }

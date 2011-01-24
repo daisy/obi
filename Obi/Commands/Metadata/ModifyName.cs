@@ -14,7 +14,7 @@ namespace Obi.Commands.Metadata
             : base(view)
         {
             mEntry = entry;
-            mPreviousName = mEntry.getName();
+            mPreviousName = mEntry.NameContentAttribute.Name;
             mNewName = name;
             SetDescriptions(Localizer.Message("modify_metadata_name"));
         }

@@ -35,7 +35,7 @@ namespace Obi.Commands.Node
         {
             if (view.Selection == null)
             {
-                mParent = view.Presentation.RootNode;
+                mParent = (ObiNode)view.Presentation.RootNode;
                 mIndex = mParent.SectionChildCount;
             }
             else

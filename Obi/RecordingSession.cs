@@ -17,7 +17,7 @@ namespace Obi
     /// </summary>
     public class RecordingSession
     {
-        private Presentation mPresentation;                     // presentation to record in
+        private ObiPresentation mPresentation;                     // presentation to record in
         private AudioRecorder mRecorder;                        // recorder for the session
 
         private ManagedAudioMedia mSessionMedia;                // session asset (?)
@@ -38,7 +38,7 @@ namespace Obi
         /// </summary>
         /// <param name="project">The project in which we are recording.</param>
         /// <param name="recorder">The audio recorder from the project.</param>
-        public RecordingSession(Presentation presentation, AudioRecorder recorder)
+        public RecordingSession(ObiPresentation presentation, AudioRecorder recorder)
         {
             mPresentation = presentation;
             mRecorder = recorder;

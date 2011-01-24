@@ -1185,7 +1185,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Set the presentation that the project view displays.
         /// </summary>
-        public Presentation Presentation
+        public ObiPresentation Presentation
             {
             get { return mPresentation; }
             set

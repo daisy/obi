@@ -62,16 +62,16 @@ namespace Obi
         //}
 
         //
-        public urakawa.core.TreeNodeFactory createTreeNodeFactory()//sdk2
-        {
-            return createTreeNodeFactory(typeof(ObiNodeFactory).Name, NS);
-        }
+        //public urakawa.core.TreeNodeFactory createTreeNodeFactory()//sdk2
+        //{
+        //    return createTreeNodeFactory(typeof(ObiNodeFactory).Name, NS);
+        //}
 
         //public override urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
-        public urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
-        {
-            return namespaceUri == NS && localName == typeof(ObiNodeFactory).Name ?
-                new ObiNodeFactory() : base.createTreeNodeFactory(localName, namespaceUri);
-        }
+        //public urakawa.core.TreeNodeFactory createTreeNodeFactory(string localName, string namespaceUri)
+        //{
+        //    return namespaceUri == NS && localName == typeof(ObiNodeFactory).Name ?
+        //        new ObiNodeFactory() : base.createTreeNodeFactory(localName, namespaceUri);
+        //}
     }
 }

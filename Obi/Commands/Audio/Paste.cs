@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 using urakawa.media.data;
+using urakawa.media.data.audio;
+using urakawa.media.data.audio.codec;
+using urakawa.media.timing;
 
 namespace Obi.Commands.Audio
 {
@@ -19,34 +22,39 @@ namespace Obi.Commands.Audio
             mNode = view.SelectedNodeAs<PhraseNode>();
             AudioSelection selection = (AudioSelection)view.Selection;
             mMediaBefore = mNode.Audio;
-            mMediaAfter = mMediaBefore.copy();
+            mMediaAfter = mMediaBefore.Copy();
             urakawa.media.data.audio.ManagedAudioMedia copy;
             if (view.Clipboard is AudioClipboard)
             {
                 AudioClipboard clipboard = (AudioClipboard)view.Clipboard;
-                copy = ((PhraseNode)clipboard.Node).Audio.copy(
-                    new urakawa.media.timing.Time(clipboard.AudioRange.SelectionBeginTime),
-                    new urakawa.media.timing.Time(clipboard.AudioRange.SelectionEndTime));
+                
+                copy = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+                WavAudioMediaData mediaData = ((WavAudioMediaData)((PhraseNode)clipboard.Node).Audio.AudioMediaData).Copy(
+                    new Time((long)(clipboard.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000))),
+                    new Time((long)(clipboard.AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000)))
+                    );
+                copy.AudioMediaData = mediaData;
+
             }
             else
             {
-                copy = ((PhraseNode)view.Clipboard.Node).Audio.copy();
+                copy = ((PhraseNode)view.Clipboard.Node).Audio.Copy();
             }
             urakawa.media.data.audio.ManagedAudioMedia after;
             if (selection.AudioRange.HasCursor)
             {
-                after = mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.CursorTime));
+                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.CursorTime * (Time.TIME_UNIT/1000.0))));
             }
             else
             {
-                after = mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.SelectionEndTime));
-                mMediaAfter.Split(new urakawa.media.timing.Time(selection.AudioRange.SelectionBeginTime));
+                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionEndTime * (Time.TIME_UNIT/1000.0))));
+                mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000.0))));
             }
             double begin = mMediaAfter.Duration.AsTimeSpan.Milliseconds;
             mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
                 new AudioRange(begin, begin + copy.Duration.AsTimeSpan.Milliseconds));
-            mMediaAfter.mergeWith(copy);
-            mMediaAfter.mergeWith(after);
+            mMediaAfter.AudioMediaData.MergeWith(copy.AudioMediaData);
+            mMediaAfter.AudioMediaData.MergeWith(after.AudioMediaData);
             SetDescriptions(Localizer.Message("paste_audio"));
         }
 
@@ -56,7 +64,7 @@ namespace Obi.Commands.Audio
             {
                 List<MediaData> mediaList = new List<MediaData>();
                 if (mMediaAfter != null)
-                    mediaList.Add(mMediaAfter.getMediaData());
+                    mediaList.Add(mMediaAfter.MediaData);
 
                 return mediaList;
             }

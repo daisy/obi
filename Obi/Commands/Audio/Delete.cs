@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using urakawa.media.data.audio.codec;
 using urakawa.media.timing;
 using urakawa.media.data.audio;
 using urakawa.media.data;
@@ -23,12 +23,17 @@ namespace Obi.Commands.Audio
             mNode = (PhraseNode)view.Selection.Node;
             mHasAudioAfterDeleted =
                 ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsTimeSpan.Milliseconds;
-            mSplitTimeBegin = new Time(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime);
-            mSplitTimeEnd = new Time(((AudioSelection)view.Selection).AudioRange.SelectionEndTime);
+            mSplitTimeBegin = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime * (Time.TIME_UNIT/1000)));
+            mSplitTimeEnd = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000)));
             mSelectionAfter = mHasAudioAfterDeleted ?
-                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.getTimeAsMillisecondFloat())) :
+                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.AsTimeSpan.Milliseconds)) :
                 new NodeSelection(mNode, view.Selection.Control);
-            mDeleted = view.Presentation.CreatePhraseNode(mNode.Audio.copy(mSplitTimeBegin, mSplitTimeEnd));
+
+            ManagedAudioMedia manMedia = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+            WavAudioMediaData mediaData = ((WavAudioMediaData) mNode.Audio.AudioMediaData).Copy(mSplitTimeBegin, mSplitTimeEnd);
+            manMedia.AudioMediaData = mediaData;
+
+            mDeleted = view.Presentation.CreatePhraseNode(manMedia);
             SetDescriptions(Localizer.Message("delete_audio"));
         }
 
@@ -40,7 +45,7 @@ namespace Obi.Commands.Audio
             {
                 List<MediaData> mediaList = new List<MediaData>();
                 if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
-                    mediaList.Add(mDeleted.Audio.getMediaData());
+                    mediaList.Add(mDeleted.Audio.MediaData);
 
                 return mediaList;
             }
@@ -59,7 +64,7 @@ namespace Obi.Commands.Audio
         public override void UnExecute()
         {
             ManagedAudioMedia after = mHasAudioAfterDeleted ? mNode.SplitAudio(mSplitTimeBegin) : null;
-            mNode.MergeAudioWith(mDeleted.Audio.copy());
+            mNode.MergeAudioWith(mDeleted.Audio.Copy());
             if (after != null) mNode.MergeAudioWith(after);
             base.UnExecute();
         }
@@ -70,18 +75,21 @@ namespace Obi.Commands.Audio
         public static urakawa.command.Command GetCommand(Obi.ProjectView.ProjectView view)
         {
             Delete command = new Delete(view);
-            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.getTimeAsMillisecondFloat() == 0.0)
+            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.AsTimeSpan.Milliseconds == 0.0)
             {
                 // Delete the whole audio
                 urakawa.command.CompositeCommand composite =
-                    view.Presentation.CreateCompositeCommand(command.getShortDescription());
-                EmptyNode empty = new EmptyNode(view.Presentation);
-                composite.append(new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
-                    command.mNode.Index));
+                    view.Presentation.CreateCompositeCommand(command.ShortDescription);
+                EmptyNode empty = new EmptyNode();
+                composite.ChildCommands.Insert(
+                    composite.ChildCommands.Count-1,
+                    new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
+                    command.mNode.Index)
+                    );
                 Commands.Node.MergeAudio.AppendCopyNodeAttributes(composite, view, command.mNode, empty);
                 Commands.Node.Delete delete = new Commands.Node.Delete(view, command.mNode);
                 delete.UpdateSelection = false;
-                composite.append(delete);
+                composite.ChildCommands.Insert(composite.ChildCommands.Count-1, delete);
                 return composite;
             }
             else

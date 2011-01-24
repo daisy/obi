@@ -28,7 +28,7 @@ namespace Obi.Commands.Audio
             {
                 List<MediaData> mediaList = new List<MediaData>();
                 if (mNewClipboard != null && mNewClipboard.Node is PhraseNode && ((PhraseNode)mNewClipboard.Node).Audio != null)
-                    mediaList.Add(((PhraseNode)mNewClipboard.Node).Audio.getMediaData());
+                    mediaList.Add(((PhraseNode)mNewClipboard.Node).Audio.MediaData);
 
                 return mediaList;
             }

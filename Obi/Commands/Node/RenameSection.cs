@@ -20,9 +20,12 @@ namespace Obi.Commands.Node
             mNode = section;
             mOldLabel = mNode.Label;
             mNewLabel = label;
+
+            SetDescriptions(Localizer.Message("rename_section"));
         }
 
-        public override string getShortDescription() { return Localizer.Message("rename_section"); }
+        //sdk2
+        //public override string getShortDescription() { return ; }
 
         public override bool CanExecute { get { return true; } }
 

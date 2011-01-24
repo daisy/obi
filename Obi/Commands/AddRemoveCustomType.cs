@@ -10,10 +10,10 @@ namespace Obi.Commands
     /// </summary>
     class AddCustomType : Command
     {
-        private Presentation mPresentation;
+        private ObiPresentation mPresentation;
         private string mCustomType;
 
-        public AddCustomType(ProjectView.ProjectView view, Presentation presentation, string customType)
+        public AddCustomType(ProjectView.ProjectView view, ObiPresentation presentation, string customType)
             : base(view)
         {
             mPresentation = presentation;
@@ -38,10 +38,10 @@ namespace Obi.Commands
     /// </summary>
     class RemoveCustomType : Command
     {
-        Presentation mPresentation;
+        ObiPresentation mPresentation;
         string mCustomType;
 
-        public RemoveCustomType(ProjectView.ProjectView view, Presentation presentation, string customType) : base(view)
+        public RemoveCustomType(ProjectView.ProjectView view, ObiPresentation presentation, string customType) : base(view)
         {
             mPresentation = presentation;
             mCustomType = customType;

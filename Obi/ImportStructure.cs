@@ -8,9 +8,9 @@ namespace Obi
     /// <summary>
     /// Import an external file (XHTML) and use it to fill in the sections in a newly-created project.
     /// </summary>
-    class ImportStructure
+    public class ImportStructure
     {
-        private Obi.Presentation mPresentation;            // target presentation
+        private ObiPresentation mPresentation;            // target presentation
         private SectionNode mCurrentSection;               // section currently populated
         private Stack<Obi.SectionNode> mOpenSectionNodes;  // these are section nodes that could accept children
 
@@ -48,7 +48,7 @@ namespace Obi
         /// <summary>
         /// Populate the presentation from an XHTML file.
         /// </summary>
-        public void ImportFromXHTML(string xhtml_path, Obi.Presentation presentation)
+        public void ImportFromXHTML(string xhtml_path, ObiPresentation presentation)
         {
             mOpenSectionNodes = new System.Collections.Generic.Stack<Obi.SectionNode>();
             mPresentation = presentation;
@@ -130,7 +130,7 @@ namespace Obi
             }
             if (number != null)
             {
-                EmptyNode node = new EmptyNode(mPresentation);
+                EmptyNode node = new EmptyNode();
                 node.PageNumber = number;
                 mCurrentSection.AppendChild(node);
             }

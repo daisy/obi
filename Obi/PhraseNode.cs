@@ -10,12 +10,13 @@ namespace Obi
 {
     public class PhraseNode: EmptyNode
     {
+        // name of the element in the XUK file
+        public override string XUK_ELEMENT_NAME { get { return "phrase"; } }
+
         /// <summary>
         /// This event is sent when the audio
         /// </summary>
         public event NodeEventHandler<PhraseNode> NodeAudioChanged;
-
-        public static new readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
 
         /// <summary>
         /// Create a phrase node.
@@ -23,7 +24,7 @@ namespace Obi
         //public PhraseNode(Presentation presentation): base(presentation) {}
         public PhraseNode(EmptyNode.Role kind) : base(kind) {} 
         public PhraseNode(string custom) : base(Role.Custom) {}
-
+        public PhraseNode() : base() { }
 
         /// <summary>
         /// The audio media data associated with this node.
@@ -96,14 +97,6 @@ namespace Obi
             ManagedAudioMedia newAudio = Audio.Split(splitPoint);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             return newAudio;
-        }
-
-        /// <summary>
-        /// We use our own element name for XUK output.
-        /// </summary>
-        public override string GetTypeNameFormatted()  //sdk2 : used uinstead of GetXukLocalName as this function is called by xukLocalName in IXukable
-        {
-            return XUK_ELEMENT_NAME;
         }
 
         public override ObiNode Detach()
