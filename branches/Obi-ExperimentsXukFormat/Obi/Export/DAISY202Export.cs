@@ -45,7 +45,7 @@ namespace Obi.Export
         List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
             {
             List<SectionNode> sectionsList = new List<SectionNode> ();
-            rNode.acceptDepthFirst (
+            rNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
 
@@ -134,7 +134,7 @@ namespace Obi.Export
                 XmlNode smilTitleMetadataNode = smilDocument.CreateElement ( null, "meta", masterSmilHeadNode.NamespaceURI );
                 masterSmilHeadNode.AppendChild ( smilTitleMetadataNode );
                 CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "name", "dc:title" );
-                CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.getContent () );
+                CreateAppendXmlAttribute ( smilDocument, smilTitleMetadataNode, "content", titleMetadata.NameContentAttribute.Value);
                 }
             //AddSmilHeadElements ( smilDocument, null, m_SmilElapseTime.ToString ().Split ( '.' )[0] );
             AddSmilHeadElements ( smilDocument, null,GetStringTotalTimeRoundedOff( m_SmilElapseTime.copy().getTime ())  );

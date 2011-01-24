@@ -256,61 +256,61 @@ namespace Obi.ProjectView
             if (section != null) EnsureControlVisible ( FindStrip ( section ) );
             }
 
-        /*//@singleSection: moved to project view to enable merge in toc
-        /// <summary>
-        /// Get a command to merge the selected strip with the next one. If the next strip is a child or a sibling, then
-        /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
-        /// a lower level, merging is not possible.
-        /// </summary>
-        public urakawa.command.Command MergeSelectedStripWithNextCommand ()
-            {
-            CompositeCommand command = null;
-            if (CanMergeStripWithNext)
+            /*//@singleSection: moved to project view to enable merge in toc
+            /// <summary>
+            /// Get a command to merge the selected strip with the next one. If the next strip is a child or a sibling, then
+            /// its contents are appended to the selected strip and it is removed from the project; but if the next strip has
+            /// a lower level, merging is not possible.
+            /// </summary>
+            public urakawa.command.Command MergeSelectedStripWithNextCommand ()
                 {
-                command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( Localizer.Message ( "merge_sections" ) );
-                SectionNode section = SelectedSection;
-                command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( section, this ) ) );
-                SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
-                //if (!section.Used) mProjectView.AppendMakeUnused ( command, next );
-                // Delete nodes in reverse order so that they are added back in the right order on redo
-                // and remove the heading role if there is any in the next section
-                //for (int i = next.PhraseChildCount - 1; i >= 0; --i)
-                    //{
-                    // Remove the role before removing the node because it needs to be attached to
-                    // inform its parent that it is not a heading anymore.
-                    //if (next.PhraseChild ( i ).Role_ == EmptyNode.Role.Heading)
-                        //{
-                        //Commands.Node.AssignRole role =
-                            //new Commands.Node.AssignRole ( mProjectView, next.PhraseChild ( i ), EmptyNode.Role.Plain );
-                        //role.UpdateSelection = false;
-                        //command.append ( role );
-                        //}
-                    //Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, next.PhraseChild ( i ) );
-                    //delete.UpdateSelection = false;
-                    //command.append ( delete );
-                    //}
-                for (int i = 0; i < next.PhraseChildCount; ++i)
+                CompositeCommand command = null;
+                if (CanMergeStripWithNext)
                     {
-                    EmptyNode newPhraseNode = (EmptyNode) next.PhraseChild ( i ).copy ( false, true );
-                    if (newPhraseNode.Role_ == EmptyNode.Role.Heading)
+                    command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
+                    command.setShortDescription ( Localizer.Message ( "merge_sections" ) );
+                    SectionNode section = SelectedSection;
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.UpdateSelection ( mProjectView, new NodeSelection ( section, this ) ) );
+                    SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
+                    //if (!section.Used) mProjectView.AppendMakeUnused ( command, next );
+                    // Delete nodes in reverse order so that they are added back in the right order on redo
+                    // and remove the heading role if there is any in the next section
+                    //for (int i = next.PhraseChildCount - 1; i >= 0; --i)
+                        //{
+                        // Remove the role before removing the node because it needs to be attached to
+                        // inform its parent that it is not a heading anymore.
+                        //if (next.PhraseChild ( i ).Role_ == EmptyNode.Role.Heading)
+                            //{
+                            //Commands.Node.AssignRole role =
+                                //new Commands.Node.AssignRole ( mProjectView, next.PhraseChild ( i ), EmptyNode.Role.Plain );
+                            //role.UpdateSelection = false;
+                            //command.ChildCommands.Insert ( role );
+                            //}
+                        //Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, next.PhraseChild ( i ) );
+                        //delete.UpdateSelection = false;
+                        //command.ChildCommands.Insert ( delete );
+                        //}
+                    for (int i = 0; i < next.PhraseChildCount; ++i)
                         {
-                        newPhraseNode.Role_ = EmptyNode.Role.Plain;
+                        EmptyNode newPhraseNode = (EmptyNode) next.PhraseChild ( i ).copy ( false, true );
+                        if (newPhraseNode.Role_ == EmptyNode.Role.Heading)
+                            {
+                            newPhraseNode.Role_ = EmptyNode.Role.Plain;
+                            }
+                        if (!section.Used && newPhraseNode.Used)
+                            {
+                            newPhraseNode.Used = section.Used;
+                            }
+                        command.ChildCommands.Insert (command.ChildCommands.Count, new
+                            Commands.Node.AddNode ( mProjectView, newPhraseNode, section, section.PhraseChildCount + i, false ) );
                         }
-                    if (!section.Used && newPhraseNode.Used)
-                        {
-                        newPhraseNode.Used = section.Used;
-                        }
-                    command.append ( new
-                        Commands.Node.AddNode ( mProjectView, newPhraseNode, section, section.PhraseChildCount + i, false ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  DeleteStripCommand ( next ) );
                     }
-                command.append ( DeleteStripCommand ( next ) );
+                return command;
                 }
-            return command;
-            }
-                 */
+                     */
 
-        /// <summary>
+            /// <summary>
         /// Set a new presentation for this view.
         /// </summary>
         public void NewPresentation ()
@@ -331,17 +331,17 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                AddStripForSection_Safe ( mProjectView.Presentation.RootNode ); //this will not be called in single section
+                AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
                 }
                 m_DisablePhraseCreationWhileSelectionRestore = false;
             CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All ();
             mProjectView.Presentation.BeforeCommandExecuted +=
                 new EventHandler<urakawa.events.command.CommandEventArgs> ( Presentation_BeforeCommandExecuted );
-            mProjectView.Presentation.UndoRedoManager.commandDone +=
+            mProjectView.Presentation.UndoRedoManager.CommandDone+=
                 new EventHandler<urakawa.events.undo.DoneEventArgs> ( ContentView_commandDone );
-            mProjectView.Presentation.UndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
-            mProjectView.Presentation.UndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
+            mProjectView.Presentation.UndoRedoManager.CommandReDone+= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ContentView_commandReDone);
+            mProjectView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ContentView_commandUndone);
             EventsAreEnabled = true;
             UpdateSize ();
             mVScrollBar.Value = 0;
@@ -355,8 +355,8 @@ namespace Obi.ProjectView
                 ResizeForCommands();
                 
             // explicit toolstrip enabling for merge preceding, it is not so important, can be allowed to work like other commands but will be helpful to user in this operation
-                if (e.DoneCommand is CompositeCommand
-                        && ((CompositeCommand)e.DoneCommand ).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases"))
+                if (e.Command is CompositeCommand
+                        && ((CompositeCommand)e.Command).ShortDescription == Localizer.Message("Merge_RangeOfPhrases"))
                 {
                     if (mProjectView.Selection != null && mProjectView.Selection.Node is EmptyNode)
                     {
@@ -374,7 +374,7 @@ namespace Obi.ProjectView
         private void ContentView_commandReDone(object sender, urakawa.events.undo.ReDoneEventArgs e)
         {
             ResizeForCommands();
-            if (e.ReDoneCommand is CompositeCommand
+            if (e.Command is CompositeCommand
                 && mProjectView.Selection != null && !(mProjectView.Selection is AudioSelection) )
                             {
                 Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
@@ -386,10 +386,9 @@ namespace Obi.ProjectView
         {
             ResizeForCommands();
             // workaround for making selection visible in some complex, large volume commands
-            if (e.UnDoneCommand is CompositeCommand 
-                && (((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("split_section") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("phrase_detection")
-                || ((CompositeCommand)e.UnDoneCommand).getShortDescription() == Localizer.Message("Merge_RangeOfPhrases") || ((CompositeCommand)e.UnDoneCommand).getShortDescription() ==  Localizer.Message("Delete_RangeOfPhrases")
-                || ((CompositeCommand)e.UnDoneCommand).getShortDescription() ==  Localizer.Message("import_phrases")))
+            if (e.Command is CompositeCommand  && (((CompositeCommand)e.Command ).ShortDescription == Localizer.Message("split_section") || ((CompositeCommand)e.Command).ShortDescription == Localizer.Message("phrase_detection")
+                || ((CompositeCommand)e.Command ).ShortDescription == Localizer.Message("Merge_RangeOfPhrases") || ((CompositeCommand)e.Command ).ShortDescription ==  Localizer.Message("Delete_RangeOfPhrases")
+                || ((CompositeCommand)e.Command ).ShortDescription ==  Localizer.Message("import_phrases")))
             {
                 Control c = mSelectedItem != null && (mSelectedItem is Block || mSelectedItem is StripCursor) ? (Control)mSelectedItem : null;
                 if (c != null)
@@ -462,13 +461,13 @@ namespace Obi.ProjectView
                 {
                 if (value)
                     {
-                    mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_changed );
+                    mProjectView.Presentation.Changed  += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_changed );
                     mProjectView.Presentation.RenamedSectionNode += new NodeEventHandler<SectionNode> ( Presentation_RenamedSectionNode );
                     mProjectView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
                     }
                 else
                     {
-                    mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_changed );
+                    mProjectView.Presentation.Changed  -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_changed );
                     mProjectView.Presentation.RenamedSectionNode -= new NodeEventHandler<SectionNode> ( Presentation_RenamedSectionNode );
                     mProjectView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
                     }
@@ -870,9 +869,9 @@ namespace Obi.ProjectView
                 {
                 EmptyNode node = Selection.EmptyNodeForSelection;
                 SectionNode section = node.ParentAs<SectionNode> ();
-                command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( Localizer.Message ( "split_section" ) );
-                command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( node, this ) ) );
+                command = mProjectView.Presentation.CommandFactory.CreateCompositeCommand ();
+                command.ShortDescription = Localizer.Message ( "split_section" ) ;
+                command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.UpdateSelection ( mProjectView, new NodeSelection ( node, this ) ) );
                 // Add a sibling with a new label
                 SectionNode sibling = mProjectView.Presentation.CreateSectionNode ();
                 sibling.Label = section.Label + "*";
@@ -880,16 +879,16 @@ namespace Obi.ProjectView
                     section.Index + 1 );
                 add.UpdateSelection = false;
                 add.ProgressPercentage = 0;
-                command.append ( add );
+                command.ChildCommands.Insert (command.ChildCommands.Count,  add );
 
                 // Change parents of children to insert the section at the right position in strip order
                 for (int i = section.SectionChildCount - 1; i >= 0; --i)
                     {
-                    command.append ( new Commands.Node.Delete ( mProjectView, section.SectionChild ( i ), false ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.Node.Delete ( mProjectView, section.SectionChild ( i ), false ) );
                     }
                 for (int i = 0; i < section.SectionChildCount; ++i)
                     {
-                    command.append ( new Commands.Node.AddNode ( mProjectView, section.SectionChild ( i ), sibling, i, false ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.AddNode ( mProjectView, section.SectionChild ( i ), sibling, i, false ) );
                     }
                 // Split the node if necessary
                 PhraseNode splitNode = null;
@@ -897,10 +896,10 @@ namespace Obi.ProjectView
                 if (mProjectView.CanSplitPhrase)
                     {
                     urakawa.command.Command splitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mProjectView );
-                    if (splitCommand != null) command.append ( splitCommand );
+                    if (splitCommand != null) command.ChildCommands.Insert (command.ChildCommands.Count,  splitCommand );
                     splitNode = Commands.Node.SplitAudio.GetSplitNode ( splitCommand );
                     //@singleSection  work around to avoid triggering strip creation due to unknown selection of split phrase
-                    if (splitNode != null) command.append ( new Commands.UpdateSelection ( mProjectView, new NodeSelection ( splitNode, this ) ) );
+                    if (splitNode != null) command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.UpdateSelection ( mProjectView, new NodeSelection ( splitNode, this ) ) );
                     if (splitNode != null) cropNode = Commands.Node.SplitAudio.GetCropNode ( splitCommand, splitNode );
                     }
                 // Move children from the context phrase to the new sibling
@@ -913,16 +912,16 @@ namespace Obi.ProjectView
 
                     if (i % progressInterval == 0 && progressPercent < 100) delete.ProgressPercentage = ++progressPercent;
 
-                    command.append ( delete );
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  delete );
                     }
                 progressInterval = 45;
-                if (cropNode != null) command.append ( new Commands.Node.Delete ( mProjectView, cropNode, section, node.Index + 2, false ) );
+                if (cropNode != null) command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.Delete ( mProjectView, cropNode, section, node.Index + 2, false ) );
                 if (splitNode != null)
                     {
-                    command.append ( new Commands.Node.Delete ( mProjectView, splitNode, section, node.Index + 1, false ) );
-                    command.append ( new Commands.Node.AddNode ( mProjectView, splitNode, sibling, 0, false ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.Delete ( mProjectView, splitNode, section, node.Index + 1, false ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.AddNode ( mProjectView, splitNode, sibling, 0, false ) );
                     }
-                if (cropNode != null) command.append ( new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
+                if (cropNode != null) command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.Node.AddNode ( mProjectView, cropNode, sibling, 1, false ) );
                 int siblingOffset = node.Index - (cropNode != null ? 1 : 0);
 
                 progressInterval = (section.PhraseChildCount - sectionOffset) > 45 ? (section.PhraseChildCount - sectionOffset) * 2 / 45 : 2;//multiplied by 2 to report progress with increment of 2
@@ -931,12 +930,12 @@ namespace Obi.ProjectView
                     Commands.Command addCmd = new
                         Commands.Node.AddNode ( mProjectView, section.PhraseChild ( i ), sibling, i - siblingOffset, false );
                     if (i % progressInterval == 0 && progressPercent < 98) addCmd.ProgressPercentage = progressPercent += 2;
-                    command.append ( addCmd );
+                    command.ChildCommands.Insert (command.ChildCommands.Count, addCmd );
                     }
                 progressPercent = 100;
                 Commands.Command updateSelectionCmd = new Commands.UpdateSelection ( mProjectView, new NodeSelection ( sibling, this ) );
                 updateSelectionCmd.ProgressPercentage = progressPercent;
-                command.append ( updateSelectionCmd );
+                command.ChildCommands.Insert (command.ChildCommands.Count,  updateSelectionCmd );
                 }
             return command;
             }
@@ -1016,7 +1015,7 @@ namespace Obi.ProjectView
                 else // is unwrap
                     {
                     RemoveStripsForSection_Safe ( selectedSection );
-                    AddStripForSection_Safe ( mProjectView.Presentation.RootNode );
+                    AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode );
                     }
                 UpdateSize ();
                 }
@@ -3082,13 +3081,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Commands.Node.Delete delete = new Commands.Node.Delete ( mProjectView, section, Localizer.Message ( "delete_section_shallow" ) );
             if (section.SectionChildCount > 0)
                 {
-                CompositeCommand command = mProjectView.Presentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( delete.getShortDescription () );
+                CompositeCommand command = mProjectView.Presentation.CommandFactory.CreateCompositeCommand ();
+                command.ShortDescription = delete.getShortDescription () ;
                 for (int i = 0; i < section.SectionChildCount; ++i)
                     {
-                    command.append ( new Commands.TOC.MoveSectionOut ( mProjectView, section.SectionChild ( i ) ) );
+                    command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( mProjectView, section.SectionChild ( i ) ) );
                     }
-                command.append ( delete );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, delete);
                 return command;
                 }
             else
@@ -3371,10 +3370,10 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == node)
                         {
                         f ();
-                        mProjectView.Presentation.changed -= h;
+                        mProjectView.Presentation.Changed -= h;
                         }
                 };
-                mProjectView.Presentation.changed += h;
+                mProjectView.Presentation.Changed += h;
                 }
             }
 
