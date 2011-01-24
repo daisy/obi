@@ -208,8 +208,7 @@ namespace Obi
                     k.ShortDescription = string.Format(Localizer.Message("renumber_pages"),
                         Localizer.Message(string.Format("{0}_pages", from.Kind.ToString())));
                 }
-                k.ChildCommands.Insert(
-                            k.ChildCommands.Count - 1, new Commands.Node.SetPageNumber(view, this, from));
+                k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(view, this, from));
                 return k;
             }
             else

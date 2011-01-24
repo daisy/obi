@@ -19,7 +19,7 @@
     <SignAssembly>false</SignAssembly>
     <ApplicationIcon>obi.ico</ApplicationIcon>
     <StartupObject>Obi.Program</StartupObject>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -38,6 +38,7 @@
     <ApplicationVersion>0.7.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -493,6 +494,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="app.config" />
     <None Include="Obi Help.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -887,14 +889,6 @@
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\AudioLib\AudioLib.csproj">
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\mp3-sharp\Mp3Sharp.csproj">
-      <Project>{834CAB58-648D-47CC-AC6F-D01C08C809A4}</Project>
-      <Name>Mp3Sharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\NAudio\NAudio.csproj">
-      <Project>{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}</Project>
-      <Name>NAudio</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\core\UrakawaSDK.core.csproj">
       <Project>{7CCD52F9-C801-4C2B-AA9D-B7E217F307A0}</Project>

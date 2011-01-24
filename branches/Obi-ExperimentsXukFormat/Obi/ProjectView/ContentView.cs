@@ -1601,7 +1601,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                                 if (currentPhraseIndex == -1) return true;
 
                                 if (mSelection != null && (mSelection.Node is EmptyNode || mSelection is StripIndexSelection)
-                                    && (mProjectView.Selection.Node.isSiblingOf(mSelection.Node) || mProjectView.Selection.Node == mSelection.Node))
+                                    && (mProjectView.Selection.Node.IsSiblingOf(mSelection.Node) || mProjectView.Selection.Node == mSelection.Node))
                                 {
                                     int contentViewSelectionIndex = mSelection is StripIndexSelection ? (((StripIndexSelection)mSelection).EmptyNodeForSelection != null ? ((StripIndexSelection)mSelection).EmptyNodeForSelection.Index : ((StripIndexSelection)mSelection).Index - 1) :
                                         mSelection.Node.Index;
@@ -3082,7 +3082,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             if (section.SectionChildCount > 0)
                 {
                 CompositeCommand command = mProjectView.Presentation.CommandFactory.CreateCompositeCommand ();
-                command.ShortDescription = delete.getShortDescription () ;
+                command.ShortDescription = delete.ShortDescription;
                 for (int i = 0; i < section.SectionChildCount; ++i)
                     {
                     command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( mProjectView, section.SectionChild ( i ) ) );
@@ -3871,7 +3871,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             {
 
             ObiNode n = null;
-            for (n = mProjectView.Presentation.RootNode.LastLeaf;
+            for (n = ((ObiRootNode)mProjectView.Presentation.RootNode).LastLeaf;
                 !(n is SectionNode);
                 n = n.PrecedingNode)
             { }
@@ -4063,7 +4063,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             }
                         }
                     }
-                for (ObiNode n = mProjectView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+                for (ObiNode n = ((ObiRootNode)mProjectView.Presentation.RootNode).FirstLeaf; n != null; n = n.FollowingNode)
                     {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {
@@ -4094,7 +4094,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                             }
                         }
                     }
-                for (ObiNode n = mProjectView.Presentation.RootNode.LastLeaf; n != null; n = n.PrecedingNode)
+                for (ObiNode n = ((ObiRootNode)mProjectView.Presentation.RootNode).LastLeaf; n != null; n = n.PrecedingNode)
                     {
                     if (n is EmptyNode && ((EmptyNode)n).TODO)
                         {
@@ -4124,7 +4124,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                                 }
                             }
                         }
-                    for (ObiNode n = mProjectView.Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+                    for (ObiNode n = ((ObiRootNode)mProjectView.Presentation.RootNode).FirstLeaf; n != null; n = n.FollowingNode)
                         {
                         if (n is EmptyNode && !(n is PhraseNode))
                             {

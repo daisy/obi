@@ -73,9 +73,9 @@ namespace Obi.Dialogs
             int audioChannels;
             if (mPresentation != null)
                 {
-                sampleRate = (int)mPresentation.DataManager.getDefaultPCMFormat ().getSampleRate ();
-                audioChannels = mPresentation.DataManager.getDefaultPCMFormat ().getNumberOfChannels ();
-                mCanChangeAudioSettings = mPresentation.getMediaDataManager ().getListOfMediaData ().Count == 0;
+                sampleRate = (int)mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
+                audioChannels = mPresentation.MediaDataManager.DefaultPCMFormat.Data.NumberOfChannels;
+                mCanChangeAudioSettings = mPresentation.MediaDataManager.ManagedObjects.Count == 0;
                 }
             else
                 {

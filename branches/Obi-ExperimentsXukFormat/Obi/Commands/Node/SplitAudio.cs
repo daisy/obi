@@ -48,21 +48,18 @@ namespace Obi.Commands.Node
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, end, false);
                         after = split.Node;
-                        command.ChildCommands.Insert(
-                            command.ChildCommands.Count-1,
+                        command.ChildCommands.Insert(command.ChildCommands.Count,
                             new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
-                        command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.DeleteWithOffset(view, phrase, 1));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.DeleteWithOffset(view, phrase, 1));
                     }
                     if (begin > 0.0)
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, begin,
                             view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
                         after = split.NodeAfter;
-                        command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));//@singleSection:moved from last of function
-                        command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.Delete(view, phrase, false));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));//@singleSection:moved from last of function
+
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, phrase, false));
                     }
                     //command.append(new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));
                     return command;
@@ -156,8 +153,7 @@ namespace Obi.Commands.Node
             if ( node is SectionNode && view.GetSelectedPhraseSection != null 
                 && view.GetSelectedPhraseSection == node )
                 {
-                    command.ChildCommands.Insert(
-                                command.ChildCommands.Count - 1, new UpdateSelection(view, new NodeSelection(node, view.Selection.Control)));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new UpdateSelection(view, new NodeSelection(node, view.Selection.Control)));
                 }
 
             ObiNode parent = node is SectionNode ? node : node.ParentAs<ObiNode> ();
@@ -183,18 +179,15 @@ namespace Obi.Commands.Node
                     if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
 
                     // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
-                    command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.AddNode(view, phrases[i], parent, index, false));
+                    command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.Node.AddNode(view, phrases[i], parent, index, false));
                     index++;
                     }
                 if (node is PhraseNode &&  phrases.Count > 0 && view.Selection != null)
                     {
                     //command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
-                        command.ChildCommands.Insert(
-                                command.ChildCommands.Count - 1, new UpdateSelection(view, new NodeSelection(phrases[0], view.Selection.Control)));//uncommenting this because unexecute for update selection can handle null unexecute now
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new UpdateSelection(view, new NodeSelection(phrases[0], view.Selection.Control)));//uncommenting this because unexecute for update selection can handle null unexecute now
                                         }
-                command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.Delete(view, phrase, false));//@singleSection: moved delete command last for improve undo selection
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, phrase, false));//@singleSection: moved delete command last for improve undo selection
                 }
             return command;
         }
@@ -204,33 +197,26 @@ namespace Obi.Commands.Node
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);
-            if (split.Node.TODO) command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
-            if (!split.Node.Used) command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
+            if (split.Node.TODO) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
+            if (!split.Node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
             if (split.Node.Role_ == EmptyNode.Role.Silence)
             {
                 Commands.Node.AssignRole silence =
                     new Commands.Node.AssignRole(view, split.NodeAfter, EmptyNode.Role.Silence);
                 silence.UpdateSelection = false;
-                command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, silence);
+                command.ChildCommands.Insert(command.ChildCommands.Count, silence);
             }
-            command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, split);
+            command.ChildCommands.Insert(command.ChildCommands.Count, split);
             if (transferRole && phrase.Role_ != EmptyNode.Role.Plain)
             {
-                command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.AssignRole(view, phrase, EmptyNode.Role.Plain));
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, phrase, EmptyNode.Role.Plain));
                 if (phrase.Role_ == EmptyNode.Role.Page)
                 {
-                    command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
                 }
                 else
                 {
-                    command.ChildCommands.Insert(
-                            command.ChildCommands.Count - 1, new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole));
                 }
             }
             return split;

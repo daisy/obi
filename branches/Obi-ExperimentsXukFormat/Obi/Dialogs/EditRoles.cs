@@ -34,7 +34,7 @@ namespace Obi.Dialogs
             {
             mCustomRolesList.Items.Add ( role );
             Commands.AddCustomType cmd = new Obi.Commands.AddCustomType ( mProjectView, mPresentation, role );
-            mPresentation.getUndoRedoManager ().execute ( cmd );
+            mPresentation.UndoRedoManager.Execute ( cmd );
             mNumberOfCommandsSinceOpened++;
             }
             mNewCustomRole.Text = "";
@@ -56,16 +56,16 @@ namespace Obi.Dialogs
         {
             List<EmptyNode> nodes = mPresentation.NodesForCustomClass(customClass);
             if (nodes.Count == 0) return false;
-            CompositeCommand command = mPresentation.getCommandFactory().createCompositeCommand();
-            command.setShortDescription(Localizer.Message("remove_custom_class"));
+            CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand();
+            command.ShortDescription = Localizer.Message("remove_custom_class");
             foreach (EmptyNode node in nodes)
                 {
                 if ( node != null )
-                command.append ( new Commands.Node.AssignRole ( mProjectView, node, EmptyNode.Role.Plain ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole ( mProjectView, node, EmptyNode.Role.Plain ) );
                 else
-                command.append ( new Obi.Commands.RemoveCustomType ( mProjectView, mPresentation, customClass ) ) ;
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Obi.Commands.RemoveCustomType(mProjectView, mPresentation, customClass));
                 }
-            mPresentation.getUndoRedoManager().execute(command);
+            mPresentation.UndoRedoManager.Execute(command);
             ++mNumberOfCommandsSinceOpened;
             return true;
         }
@@ -111,7 +111,7 @@ namespace Obi.Dialogs
         private void mCancel_Click(object sender, EventArgs e)
         {
             //undo anything we've done since this dialog has been open
-            for (int i = 0; i < mNumberOfCommandsSinceOpened; i++) mPresentation.getUndoRedoManager().undo();
+            for (int i = 0; i < mNumberOfCommandsSinceOpened; i++) mPresentation.UndoRedoManager.Undo();
             //end the dialog
             this.DialogResult = DialogResult.Cancel;
             this.Close();

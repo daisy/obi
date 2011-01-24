@@ -37,7 +37,7 @@ namespace Obi.ProjectView
             {
             return
                 d == null ||
-                (!d.ReadOnly && (d.Repeatable || mView.Presentation.getListOfMetadata ( d.Name ).Count == 0));
+                (!d.ReadOnly && (d.Repeatable || mView.Presentation.GetMetadata( d.Name ).Count == 0));
             }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Obi.ProjectView
 
             return
                 d == null ||
-                (!d.ReadOnly && (d.Occurrence != MetadataOccurrence.Required || mView.Presentation.getListOfMetadata ( d.Name ).Count > 1));
+                (!d.ReadOnly && (d.Occurrence != MetadataOccurrence.Required || mView.Presentation.GetMetadata( d.Name ).Count > 1));
             }
 
         /// <summary>
@@ -167,11 +167,11 @@ namespace Obi.ProjectView
                 m_IsImportingMetadata = true;
 
                 string[] nameContent = new string[2];
-                List<urakawa.metadata.Metadata> items = mView.Presentation.getListOfMetadata ();
+                List<urakawa.metadata.Metadata> items = mView.Presentation.Metadatas.ContentsAs_ListCopy;
                 items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
                 {
-                    int names = a.getName ().CompareTo ( b.getName () );
-                    return names == 0 ? a.getContent ().CompareTo ( b.getContent () ) : names;
+                    int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
+                    return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
                 } );
                 string itemToRemove = "";
                 List<string> ExistingItemsList = new List<string> ();
@@ -183,19 +183,19 @@ namespace Obi.ProjectView
                 for (i = 0; i < items.Count; i++)
                     {
                     string metaDataListString = mMetadataListView.Items[i].SubItems[0].Text;
-                    string itemsListString = items[i].getName ();
+                    string itemsListString = items[i].NameContentAttribute.Name;
 
                     if (string.CompareOrdinal ( metaDataListString, itemsListString ) != 0)
                         {
                         itemToRemove = itemsListString;
                         urakawa.metadata.Metadata m = items[i];
-                        nameContent[0] = m.getName ();
-                        nameContent[1] = m.getContent ();
+                        nameContent[0] = m.NameContentAttribute.Name;
+                        nameContent[1] = m.NameContentAttribute.Value;
                         ListViewItem item = new ListViewItem ( nameContent );
                         mMetadataListView.Items.Insert ( i, item );
                         item.Checked = true;
                         item.Tag = m;
-                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.getName());
+                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.NameContentAttribute.Name);
                         if (metDes != null)
                         {
                             if (metDes.ReadOnly)
@@ -255,11 +255,11 @@ namespace Obi.ProjectView
                     m_IsImportingMetadata = true;
 
                     string[] nameContent = new string[2];
-                    List<urakawa.metadata.Metadata> items = mView.Presentation.getListOfMetadata ();
+                    List<urakawa.metadata.Metadata> items = mView.Presentation.Metadatas.ContentsAs_ListCopy;
                     items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
                     {
-                        int names = a.getName ().CompareTo ( b.getName () );
-                        return names == 0 ? a.getContent ().CompareTo ( b.getContent () ) : names;
+                        int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
+                        return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
                     } );
                     //string itemToRemove = "";
                     List<string> ExistingItemsList = new List<string> ();
@@ -271,7 +271,7 @@ namespace Obi.ProjectView
                     for (i = 0; i < mMetadataListView.Items.Count; i++)
                         {
                         if (mMetadataListView.Items[i].Tag != null
-                            && e.Entry.getName () == ((urakawa.metadata.Metadata)mMetadataListView.Items[i].Tag).getName ())
+                            && e.Entry.NameContentAttribute.Name == ((urakawa.metadata.Metadata)mMetadataListView.Items[i].Tag).NameContentAttribute.Name)
                             {
                             mMetadataListView.Items.RemoveAt ( i );
                             }
@@ -282,15 +282,15 @@ namespace Obi.ProjectView
                     List<string> addables = mView.AddableMetadataNames;
                     addables.Sort ();
 
-                    if (addables.Contains ( e.Entry.getName () ))
+                    if (addables.Contains(e.Entry.NameContentAttribute.Name))
                         {
                         bool inserted = false;
                         for (i = 0; i < mMetadataListView.Items.Count; i++)
                             {
                             if (mMetadataListView.Items[i].Tag == null
-                                && string.CompareOrdinal ( e.Entry.getName (), mMetadataListView.Items[i].SubItems[0].Text ) < 0)
+                                && string.CompareOrdinal(e.Entry.NameContentAttribute.Name, mMetadataListView.Items[i].SubItems[0].Text) < 0)
                                 {
-                                nameContent[0] = e.Entry.getName ();
+                                    nameContent[0] = e.Entry.NameContentAttribute.Name;
                                 nameContent[1] = "";
                                 ListViewItem item = new ListViewItem ( nameContent );
                                 mMetadataListView.Items.Insert ( i, item );
@@ -301,7 +301,7 @@ namespace Obi.ProjectView
                             }
                         if (!inserted)
                             {
-                            nameContent[0] = e.Entry.getName ();
+                                nameContent[0] = e.Entry.NameContentAttribute.Name;
                             nameContent[1] = "";
                             ListViewItem item = new ListViewItem ( nameContent );
                             mMetadataListView.Items.Insert ( mMetadataListView.Items.Count - 1, item );
@@ -339,15 +339,15 @@ namespace Obi.ProjectView
                 {
                 if (e.Entry != null)
                     {
-                    string entryName = e.Entry.getName ();
+                        string entryName = e.Entry.NameContentAttribute.Name;
                     for (int i = 0; i < mMetadataListView.Items.Count; i++)
                         {
                         if (mMetadataListView.Items[i].Tag != null)
                             {
                             urakawa.metadata.Metadata metadataObj = (urakawa.metadata.Metadata)mMetadataListView.Items[i].Tag;
-                            if (metadataObj.getName () == entryName)
+                            if (metadataObj.NameContentAttribute.Name == entryName)
                                 {
-                                mMetadataListView.Items[i].SubItems[1].Text = metadataObj.getContent ();
+                                    mMetadataListView.Items[i].SubItems[1].Text = metadataObj.NameContentAttribute.Value;
 
                                 // check if custom entry at last of metadataListView is selected.
                                 // move selection to one item before so as to prevent user from adding more custom entries by pressing enter multiple times there.
@@ -427,11 +427,11 @@ namespace Obi.ProjectView
                     m_IsImportingMetadata = true;
                     mMetadataListView.Items.Clear();
                     string[] nameContent = new string[2];
-                    List<urakawa.metadata.Metadata> items = mView.Presentation.getListOfMetadata();
+                    List<urakawa.metadata.Metadata> items = mView.Presentation.Metadatas.ContentsAs_ListCopy;
                     items.Sort(delegate(urakawa.metadata.Metadata a, urakawa.metadata.Metadata b)
                     {
-                        int names = a.getName().CompareTo(b.getName());
-                        return names == 0 ? a.getContent().CompareTo(b.getContent()) : names;
+                        int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
+                        return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
                     });
 
                     // a list of metadata names which already exists
@@ -440,15 +440,15 @@ namespace Obi.ProjectView
 
                     foreach (urakawa.metadata.Metadata m in items)
                     {
-                        nameContent[0] = m.getName();
-                        nameContent[1] = m.getContent();
+                        nameContent[0] = m.NameContentAttribute.Name;
+                        nameContent[1] = m.NameContentAttribute.Value;
                         ListViewItem item = new ListViewItem(nameContent);
                         mMetadataListView.Items.Add(item);
                         item.Checked = true;
                         item.Tag = m;                     
                                             
                         ExistingItemsList.Add(nameContent[0]);
-                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.getName());
+                        MetadataEntryDescription metDes = MetadataEntryDescription.GetDAISYEntry(m.NameContentAttribute.Name);
                         if (metDes != null)
                         {
                             if (metDes.ReadOnly)
@@ -526,25 +526,25 @@ namespace Obi.ProjectView
                         }
                     CompositeCommand command =
                         mView.Presentation.CreateCompositeCommand ( Localizer.Message ( "modify_metadata_entry" ) );
-                    if (entry.getName () != mNameTextbox.Text)
+                    if (entry.NameContentAttribute.Name != mNameTextbox.Text)
                         {
                         if (CanModify ( mSelection.Item.Description, mNameTextbox.Text ))
                             {
-                            command.append ( new Commands.Metadata.ModifyName ( mView, entry, mNameTextbox.Text ) );
+                            command.ChildCommands.Insert( command.ChildCommands.Count, new Commands.Metadata.ModifyName ( mView, entry, mNameTextbox.Text ) );
                             }
                         else
                             {
                             MessageBox.Show ( String.Format ( Localizer.Message ( "metadata_name_error_text" ), mNameTextbox.Text ),
                                 Localizer.Message ( "metadata_name_error_caption" ),
                                 MessageBoxButtons.OK, MessageBoxIcon.Error );
-                            mNameTextbox.Text = entry.getName ();
+                            mNameTextbox.Text = entry.NameContentAttribute.Name;
                             }
                         }
-                    if (entry.getContent () != contentBoxText)
+                    if (entry.NameContentAttribute.Value != contentBoxText)
                         {
-                        command.append ( new Commands.Metadata.ModifyContent ( mView, entry, contentBoxText ) );
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Metadata.ModifyContent(mView, entry, contentBoxText));
                         }
-                    if (command.getCount () > 0) mView.Presentation.getUndoRedoManager ().execute ( command );
+                    if (command.ChildCommands.Count > 0) mView.Presentation.UndoRedoManager.Execute ( command );
                     }
                 else
                     {
@@ -655,7 +655,7 @@ namespace Obi.ProjectView
             else
                 {
                 ListViewItem item = mMetadataListView.SelectedItems[0];
-                if ( item != null)  mView.Selection = new MetadataSelection ( mView.Presentation.RootNode, this,
+                if ( item != null)  mView.Selection = new MetadataSelection ( (ObiNode)mView.Presentation.RootNode, this,
                     new MetadataItemSelection ( item, MetadataEntryDescription.GetDAISYEntry ( item.Text ) ) );
                 }
             }
