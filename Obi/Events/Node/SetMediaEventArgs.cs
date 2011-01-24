@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-using urakawa.core;
-using urakawa.media;
 
 namespace Obi.Events.Node
 {
@@ -11,7 +6,7 @@ namespace Obi.Events.Node
     {
         private string mChannel;  // the channel on which to set
         //private IMedia mMedia;    // the media object
-        private Media mMedia;    // the media object //sdk2
+        private urakawa.media.Media mMedia;    // the media object //sdk2
         private bool mCancel;     // can be cancelled
 
         public string Channel
@@ -23,7 +18,7 @@ namespace Obi.Events.Node
         }
 
         //public IMedia Media
-        public Media Media//sdk2
+        public urakawa.media.Media Media//sdk2
         {
             get
             {
@@ -38,7 +33,7 @@ namespace Obi.Events.Node
         }
 
         //public SetMediaEventArgs(object origin, PhraseNode node, string channel, IMedia media): 
-        public SetMediaEventArgs(object origin, PhraseNode node, string channel, Media media)//sdk2
+        public SetMediaEventArgs(object origin, PhraseNode node, string channel, urakawa.media.Media media)//sdk2
             : 
             base(origin, node)
         {

@@ -51,8 +51,8 @@ namespace Obi
         public override void Insert(ObiNode node, int index)
         {
             if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
-            if (index < 0) index += getChildCount();
-            insert(node, index);
+            if (index < 0) index += Children.Count;
+            Children.Insert(index, node);
         }
 
         /// <summary>

@@ -161,7 +161,7 @@ namespace Obi
         protected virtual urakawa.command.Command PasteCommandNode(ProjectView.ProjectView view)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
-            CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
+            CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.ShortDescription);
             p.ChildCommands.Insert(p.ChildCommands.Count, paste);
             if (paste.DeleteSelectedBlock)
             {
