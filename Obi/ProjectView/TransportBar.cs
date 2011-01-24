@@ -1386,7 +1386,7 @@ namespace Obi.ProjectView
             {
             mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-            m_TempNodeForPropertiesTransfer = new EmptyNode ( mView.Presentation );
+            m_TempNodeForPropertiesTransfer = new EmptyNode (  );
             m_TempNodeForPropertiesTransfer.CopyAttributes ( (EmptyNode)node );
             m_TempNodeForPropertiesTransfer.Used = ((EmptyNode)node).Used;
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
@@ -1457,8 +1457,8 @@ namespace Obi.ProjectView
                 urakawa.command.Command add = null;
                 if (afterSection == null)
                 {
-                    add = new Commands.Node.AddNode(mView, section, mView.Presentation.RootNode,
-                        mView.Presentation.RootNode.SectionChildCount);
+                    add = new Commands.Node.AddNode(mView, section, (ObiNode)mView.Presentation.RootNode,
+                        ((ObiRootNode)mView.Presentation.RootNode).SectionChildCount);
                     ((Commands.Node.AddNode)add).UpdateSelection = false;
                 }
                 else
@@ -1466,7 +1466,7 @@ namespace Obi.ProjectView
                     Commands.Node.AddNode addSection =
                         new Commands.Node.AddNode(mView, section, afterSection.ParentAs<ObiNode>(), afterSection.Index + 1);
                     addSection.UpdateSelection = false;
-                    add = mView.Presentation.CreateCompositeCommand(addSection.getShortDescription());
+                    add = mView.Presentation.CreateCompositeCommand(addSection.ShortDescription);
                     ((CompositeCommand)add).ChildCommands.Insert(command.ChildCommands.Count, addSection);
                     for (int i = afterSection.SectionChildCount - 1; i >= 0; --i)
                     {
@@ -2039,7 +2039,7 @@ namespace Obi.ProjectView
         // Preview from a given time for a given duration inside a phrase.
         private void PlayPreview(PhraseNode phrase, double from, double duration, bool forward)
         {
-            urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.MediaData;
+            urakawa.media.data.audio.AudioMediaData audioData = phrase.Audio.AudioMediaData;
             if (from < 0.0)
             {
                 duration += from;

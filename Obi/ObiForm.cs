@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using urakawa.core;
+using urakawa.data;
 
 
 namespace Obi
@@ -466,17 +467,31 @@ namespace Obi
                                     ShallowCopyFilesInDirectory ( d.FullName, dest );
                                     }
                                 }
-                            Uri prevUri = mSession.Presentation.getRootUri ();
-                            mSession.Presentation.setRootUri ( new Uri ( path_new ) );
-                            mSession.Save ( path_new );
-                            mSession.Presentation.setRootUri ( prevUri );
+                            //Uri prevUri = mSession.Presentation.RootUri;
+                            //mSession.Presentation.setRootUri ( new Uri ( path_new ) );
+
+                            Uri oldUri = mSession.Presentation.RootUri;
+                            string oldDataDir = mSession.Presentation.DataProviderManager.DataFileDirectory;
+
+                            string dirPath = System.IO.Path.GetDirectoryName(path_new);
+                            string prefix = System.IO.Path.GetFileNameWithoutExtension(path_new);
+
+                            mSession.Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+                            mSession.Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
+
+                                mSession.Save ( path_new );
+
+                            //mSession.Presentation.setRootUri ( prevUri );
+
+                                mSession.Presentation.RootUri = oldUri;
+                                mSession.Presentation.DataProviderManager.DataFileDirectory = oldDataDir;
 
                             // delete the original copied project file ( .obi file ) from new directory in case the new project has different project file name
-                            if (Path.GetFileName ( prevUri.LocalPath ) != Path.GetFileName ( path_new )
+                                if (Path.GetFileName(oldUri.LocalPath) != Path.GetFileName(path_new)
                                 && File.Exists ( path_new ))
                                 {
                                 string copiedProjectFilePath = Path.Combine ( dir_new.FullName,
-                                    Path.GetFileName ( prevUri.LocalPath ) );
+                                    Path.GetFileName(oldUri.LocalPath));
 
                                 if (File.Exists ( copiedProjectFilePath ))
                                     File.Delete ( copiedProjectFilePath );
@@ -552,8 +567,70 @@ namespace Obi
                     Dialogs.ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "cleaning_up" ),
                         delegate ()
                             {
-                            mSession.Presentation.cleanup ();
-                            DeleteExtraFiles ();
+                                //mSession.Presentation.cleanup();
+                                
+                                var dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
+
+                                var deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
+                                if (!Directory.Exists(deletedDataFolderPath))
+                                {
+                                    Directory.CreateDirectory(deletedDataFolderPath);
+                                }
+
+                                Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
+                                cleaner.Cleanup();
+
+                                var listOfDataProviderFiles = new List<string>();
+                foreach (var dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_YieldEnumerable)
+                {
+                    var fileDataProvider = dataProvider as FileDataProvider;
+                    if (fileDataProvider == null) continue;
+
+                    listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
+                }
+
+
+                bool folderIsShowing = false;
+                if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
+                {
+                    folderIsShowing = true;
+
+                    //m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+                }
+
+                foreach (string filePath in Directory.GetFiles(dataFolderPath))
+                {
+                    var fileName = Path.GetFileName(filePath);
+                    if (!listOfDataProviderFiles.Contains(fileName))
+                    {
+                        var filePathDest = Path.Combine(deletedDataFolderPath, fileName);
+                        Debug.Assert(!File.Exists(filePathDest));
+                        if (!File.Exists(filePathDest))
+                        {
+                            File.Move(filePath, filePathDest);
+                        }
+                    }
+                }
+
+                if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
+                {
+                    //if (!folderIsShowing) m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+
+                    if (true) //delete definitively
+                    {
+                        foreach (string filePath in Directory.GetFiles(dataFolderPath))
+                    {
+                        File.Delete(filePath);
+                    }
+                    }
+                    
+                                if (Directory.Exists(deletedDataFolderPath))
+                                {
+                                    Directory.Delete(deletedDataFolderPath);
+                                }
+                }
+
+                                //DeleteExtraFiles ();
                             } );
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
@@ -567,40 +644,41 @@ namespace Obi
                 }
             }
 
+        //sdk2
         // Delete extra files in the data directory (or directories)
-        private void DeleteExtraFiles ()
-            {
-            Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>> ();
-            // Get the list of files used by the asset manager
-            foreach (urakawa.media.data.FileDataProvider provider in
-                    ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager ()).
-                getListOfManagedFileDataProviders ())
-                {
-                string path = provider.getDataFileFullPath ();
-                string dir = Path.GetDirectoryName ( path );
-                if (!dirs.ContainsKey ( dir )) dirs.Add ( dir, new Dictionary<string, bool> () );
-                dirs[dir].Add (Path.GetFullPath( path), true );
-                }
-            // Go through each directory and remove files not used by the data manager
-            // TODO at the moment, this removes everything; if we have other files that we need
-            // (e.g. images of waveforms?) we need to be careful not to throw them away.
-            foreach (string dir in dirs.Keys)
-                {
-                System.Diagnostics.Debug.Print ( "--- Cleaning up in {0}", dir );
-                foreach (string path in Directory.GetFiles ( dir ))
-                    {
-                    if (dirs[dir].ContainsKey (Path.GetFullPath( path )))
-                        {
-                        System.Diagnostics.Debug.Print ( "=== Keeping {0}", path );
-                        }
-                    else
-                        {
-                        System.Diagnostics.Debug.Print ( "--- Deleting {0}", path );
-                        File.Delete ( path );
-                        }
-                    }
-                }
-            }
+        //private void DeleteExtraFiles ()
+          //  {
+            //Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>> ();
+            //// Get the list of files used by the asset manager
+            //foreach (urakawa.media.data.FileDataProvider provider in
+            //        ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager ()).
+            //    getListOfManagedFileDataProviders ())
+            //    {
+            //    string path = provider.getDataFileFullPath ();
+            //    string dir = Path.GetDirectoryName ( path );
+            //    if (!dirs.ContainsKey ( dir )) dirs.Add ( dir, new Dictionary<string, bool> () );
+            //    dirs[dir].Add (Path.GetFullPath( path), true );
+            //    }
+            //// Go through each directory and remove files not used by the data manager
+            //// TODO at the moment, this removes everything; if we have other files that we need
+            //// (e.g. images of waveforms?) we need to be careful not to throw them away.
+            //foreach (string dir in dirs.Keys)
+            //    {
+            //    System.Diagnostics.Debug.Print ( "--- Cleaning up in {0}", dir );
+            //    foreach (string path in Directory.GetFiles ( dir ))
+            //        {
+            //        if (dirs[dir].ContainsKey (Path.GetFullPath( path )))
+            //            {
+            //            System.Diagnostics.Debug.Print ( "=== Keeping {0}", path );
+            //            }
+            //        else
+            //            {
+            //            System.Diagnostics.Debug.Print ( "--- Deleting {0}", path );
+            //            File.Delete ( path );
+            //            }
+            //        }
+            //    }
+            //}
 
         #endregion
 
@@ -692,9 +770,9 @@ namespace Obi
             CanAutoSave = false;//@singleSection
             if (e.SourceCommand is urakawa.command.CompositeCommand)
                 {
-                                if (!string.IsNullOrEmpty ( e.SourceCommand.getShortDescription () ))
+                                if (!string.IsNullOrEmpty ( e.SourceCommand.ShortDescription ))
                     {
-                    Status ( string.Format( Localizer.Message ("StatusBar_CommandExecuting"), e.SourceCommand.getShortDescription () ));
+                    Status ( string.Format( Localizer.Message ("StatusBar_CommandExecuting"), e.SourceCommand.ShortDescription ));
                     }
                 IsStatusBarEnabled = false;
                 }
@@ -770,12 +848,12 @@ namespace Obi
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
             {
-            if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
+                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized)
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
-                mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+                mProjectView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
                 mProjectView.Presentation.BeforeCommandExecuted -= new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted );//@singleSection
-                Status ( String.Format ( Localizer.Message ( "closed_project" ), e.ClosedPresentation.Title ) );
+                Status(String.Format(Localizer.Message("closed_project"), ((ObiPresentation)e.ClosedPresentation).Title));
                 }
             mAutoSaveTimer.Stop ();
             mProjectView.Selection = null;
@@ -1334,7 +1412,7 @@ namespace Obi
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
 
             // returns if project is empty
-            if (mProjectView.Presentation.RootNode.SectionCount == 0)
+            if (((ObiRootNode)mProjectView.Presentation.RootNode).SectionCount == 0)
                 {
                 MessageBox.Show ( Localizer.Message ( "ExportError_EmptyProject" ), Localizer.Message ( "Caption_Error" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                 mProjectView.Selection = null; // done for precaution 
@@ -1446,7 +1524,7 @@ namespace Obi
             Dictionary<int, PhraseNode> pages = new Dictionary<int, PhraseNode> ();
             PhraseNode renumberFrom = null;
             PageNumber renumberNumber = null;
-            mSession.Presentation.RootNode.acceptDepthFirst (
+            mSession.Presentation.RootNode.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
                     PhraseNode phrase = n as PhraseNode;
@@ -1476,7 +1554,7 @@ namespace Obi
                     Localizer.Message ( "renumber_before_export_caption" ),
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Stop ) == DialogResult.Cancel) return false;
                 //mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
-                mSession.Presentation.getUndoRedoManager ().execute ( mProjectView.GetRenumberPageKindCommand ( renumberFrom, renumberNumber ) );
+                mSession.Presentation.UndoRedoManager.Execute ( mProjectView.GetRenumberPageKindCommand ( renumberFrom, renumberNumber ) );
                 }
             return true;
             }
@@ -1490,7 +1568,7 @@ namespace Obi
             bool keepWarning = true;
             try
                 {
-                mSession.Presentation.RootNode.acceptDepthFirst (
+                mSession.Presentation.RootNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         SectionNode s = n as SectionNode;
@@ -1586,11 +1664,11 @@ namespace Obi
             {
             mProjectView.Presentation = mSession.Presentation;
             UpdateObi ();
-            mSession.Presentation.getUndoRedoManager ().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs> ( ObiForm_commandDone );
-            mSession.Presentation.getUndoRedoManager ().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs> ( ObiForm_commandReDone );
-            mSession.Presentation.getUndoRedoManager ().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs> ( ObiForm_commandUnDone );
+            mSession.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs> ( ObiForm_commandDone );
+            mSession.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs> ( ObiForm_commandReDone );
+            mSession.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs> ( ObiForm_commandUnDone );
             UpdateCustomClassMenu ();
-            mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+            mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted);//@singleSection
             if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
             m_CanAutoSave = true; //@singleSection
@@ -1793,7 +1871,7 @@ namespace Obi
                     {
                     CanAutoSave= false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
-                    mSession.Presentation.getUndoRedoManager ().redo ();
+                    mSession.Presentation.UndoRedoManager.Redo ();
                     }
                 }
             catch (System.Exception ex)
@@ -1905,7 +1983,7 @@ namespace Obi
                   //  if (mProjectView.Selection is TextSelection) mProjectView.SelectedSectionNode = (SectionNode) mProjectView.Selection.Node;
                     CanAutoSave = false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
-                    mSession.Presentation.getUndoRedoManager ().undo ();
+                    mSession.Presentation.UndoRedoManager.Undo ();
                     }
                 }
             catch (System.Exception ex)

@@ -611,22 +611,21 @@ namespace Obi
             }
         }
 
-        //sdk2 : todo make it work when it compiles
         /// <summary>
         /// Remove all publish channels. It is useful for removing uncleared published channels that could not be removed due to export faliure.
         /// </summary>
-        //public void RemoveAllPublishChannels ()
-            //{
-            //List<Channel> channels = ChannelsManager.GetChannelsByName( PUBLISH_AUDIO_CHANNEL_NAME );
-            //if (channels != null && channels.Count > 0)
-                //{
-                //for (int i = channels.Count - 1; i >= 0; i--)
-                    //{
-                    //getChannelsManager ().removeChannel ( channels[i] );
-                    //}
-                //}
+        public void RemoveAllPublishChannels()
+        {
+            List<Channel> channels = ChannelsManager.GetChannelsByName(PUBLISH_AUDIO_CHANNEL_NAME);
+            if (channels != null && channels.Count > 0)
+            {
+                for (int i = channels.Count - 1; i >= 0; i--)
+                {
+                    ChannelsManager.RemoveManagedObject(channels[i]);
+                }
+            }
 
-            //}
+        }
 
         /// <summary>
         /// XUK as a string.

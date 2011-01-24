@@ -81,15 +81,14 @@ namespace Obi.Commands.Audio
                 urakawa.command.CompositeCommand composite =
                     view.Presentation.CreateCompositeCommand(command.ShortDescription);
                 EmptyNode empty = new EmptyNode();
-                composite.ChildCommands.Insert(
-                    composite.ChildCommands.Count-1,
+                composite.ChildCommands.Insert(composite.ChildCommands.Count,
                     new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
                     command.mNode.Index)
                     );
                 Commands.Node.MergeAudio.AppendCopyNodeAttributes(composite, view, command.mNode, empty);
                 Commands.Node.Delete delete = new Commands.Node.Delete(view, command.mNode);
                 delete.UpdateSelection = false;
-                composite.ChildCommands.Insert(composite.ChildCommands.Count-1, delete);
+                composite.ChildCommands.Insert(composite.ChildCommands.Count, delete);
                 return composite;
             }
             else

@@ -5,14 +5,18 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using AudioLib;
 using urakawa.command;
+using urakawa.daisy.export.visitor;
+using urakawa.property.channel;
+
 //using urakawa.publish;
 
 namespace Obi.ProjectView
     {
     public partial class ProjectView : UserControl
         {
-        private Presentation mPresentation;  // presentation
+        private ObiPresentation mPresentation;  // presentation
         private NodeSelection mSelection;    // currently selected node
         private Clipboard mClipboard;        // the clipboard
         private bool mSynchronizeViews;      // synchronize views flag
@@ -66,7 +70,7 @@ namespace Obi.ProjectView
             {
             if (CanAddEmptyBlock)
                 {
-                EmptyNode node = new EmptyNode ( mPresentation );
+                EmptyNode node = new EmptyNode (  );
                 ObiNode parent = mContentView.Selection.ParentForNewNode ( node );
                 AddUnusedAndExecute ( new Commands.Node.AddEmptyNode ( this, node, parent, mContentView.Selection.IndexForNewNode ( node ) ),
                     node, parent );
@@ -175,19 +179,19 @@ namespace Obi.ProjectView
 
             if (mContentView.Selection != null)
                 {
-                CompositeCommand command = mPresentation.CreateCompositeCommand ( add.getShortDescription () );
+                CompositeCommand command = mPresentation.CreateCompositeCommand ( add.ShortDescription );
                 SectionNode selected = mContentView.Selection.Node is SectionNode ?
                     (SectionNode)mContentView.Selection.Node : mContentView.Selection.Node.ParentAs<SectionNode> ();
-                command.append ( add );
+                command.ChildCommands.Insert(command.ChildCommands.Count, add );
                 for (int i = selected.SectionChildCount - 1; i >= 0; --i)
                     {
                     SectionNode child = selected.SectionChild ( i );
                     Commands.Node.Delete delete = new Commands.Node.Delete ( this, child );
                     delete.UpdateSelection = false;
-                    command.append ( delete );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                     Commands.Node.AddNode readd = new Commands.Node.AddNode ( this, child, add.NewSection, 0 );
                     readd.UpdateSelection = false;
-                    command.append ( readd );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, readd );
                     }
                 if (!add.NewSectionParent.Used) AppendMakeUnused ( command, add.NewSection );
                 mPresentation.Do ( command );
@@ -260,7 +264,7 @@ namespace Obi.ProjectView
                 }
 
             string exportPath = m != null ?
-                        m.getContent () : null;
+                        m.NameContentAttribute.Value : null;
 
             // create absolute path if export path is relative
             if (!string.IsNullOrEmpty ( exportPath )
@@ -291,14 +295,14 @@ namespace Obi.ProjectView
         /// </summary>
         public void AppendMakeUnused ( CompositeCommand command, ObiNode node )
             {
-            node.acceptDepthFirst (
+            node.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
                     if (n is ObiNode && ((ObiNode)n).Used)
                         {
                         Commands.Node.ToggleNodeUsed unused = new Commands.Node.ToggleNodeUsed ( this, (ObiNode)n );
                         unused.UpdateSelection = false;
-                        command.append ( unused );
+                        command.ChildCommands.Insert(command.ChildCommands.Count, unused );
                         }
                     return true;
                     }, delegate ( urakawa.core.TreeNode n ) { }
@@ -311,7 +315,7 @@ namespace Obi.ProjectView
         public bool CanAddSection { get { return mPresentation != null && (mTOCView.CanAddSection || mContentView.CanAddStrip) && !(Selection is TextSelection) ; } }
         public bool CanAddSubsection { get { return mTOCView.CanAddSubsection; } }
 
-        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.getChildCount() > 0 && !TransportBar.IsRecorderActive; } }
+        public bool CanApplyPhraseDetectionInWholeProject { get { return mPresentation != null && mPresentation.RootNode.Children.Count > 0 && !TransportBar.IsRecorderActive; } }
         public bool CanApplyPhraseDetection
             {
             get
@@ -577,11 +581,11 @@ namespace Obi.ProjectView
                 CompositeCommand command = Presentation.CreateCompositeCommand (
                     Localizer.Message ( isSection ? "cut_section" : "cut_section_shallow" ) );
                 
-                    command.append(new Commands.Node.Copy(this, isSection));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy(this, isSection));
                     if (CanRemoveStrip)
-                        command.append(mContentView.DeleteStripCommand());
+                        command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand());
                     else
-                        command.append(new Commands.Node.Delete(this, mSelection.Node));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, mSelection.Node));
                     mPresentation.Do(command);
                 
                 // quick fix for null selection problem while cutting single section ins single section project
@@ -589,22 +593,22 @@ namespace Obi.ProjectView
                 }
             else if (CanRemoveBlock)
                 {
-                CompositeCommand command = mPresentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( Localizer.Message ( "cut_phrase" ) );
-                command.append ( new Commands.Node.Copy ( this, true ) );
-                command.append ( new Commands.Node.Delete ( this, mSelection.Node ) );
+                CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
+                command.ShortDescription = Localizer.Message ( "cut_phrase" );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Copy ( this, true ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, mSelection.Node ) );
                 mPresentation.Do ( command );
                 }
             else if (CanRemoveAudio)
                 {
-                CompositeCommand command = mPresentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( Localizer.Message ( "cut_audio" ) );
+                CompositeCommand command = mPresentation.CommandFactory.CreateCompositeCommand ();
+                command.ShortDescription = Localizer.Message ( "cut_audio" ) ;
                 urakawa.command.Command delete = Commands.Audio.Delete.GetCommand ( this );
                 PhraseNode deleted = delete is Commands.Audio.Delete ?
                     ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
-                command.append ( new Commands.Audio.Copy ( this, deleted,
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy ( this, deleted,
                     new AudioRange ( 0.0, deleted.Audio.Duration.AsTimeSpan.Milliseconds ) ) );
-                command.append ( delete );
+                command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                 mPresentation.Do ( command );
                 }
             }
@@ -668,7 +672,7 @@ namespace Obi.ProjectView
 
         public bool CanDeleteMetadataEntry ( urakawa.metadata.Metadata m )
             {
-            return mPresentation.getListOfMetadata ().Contains ( m );
+            return mPresentation.Metadatas.ContentsAs_ListCopy.Contains ( m );
             }
 
         /// <summary>
@@ -677,7 +681,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void DeleteUnused ()
             {
-                if (mPresentation.RootNode.getChildCount() > 0)
+                if (mPresentation.RootNode.Children.Count > 0)
                 {
                     // handle selection to avoid exception if selected node is deleted
                     int sectionPosition = -1;
@@ -690,7 +694,7 @@ namespace Obi.ProjectView
                     CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
                     // Collect silence node deletion commands separately in case the user wants to keep them.
                     List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
-                    mPresentation.RootNode.acceptDepthFirst(
+                    mPresentation.RootNode.AcceptDepthFirst(
                         delegate(urakawa.core.TreeNode node)
                         {
                             if (node is ObiNode && !((ObiNode)node).Used)
@@ -703,7 +707,7 @@ namespace Obi.ProjectView
                                 }
                                 else
                                 {
-                                    command.insert(delete, 0);
+                                    command.ChildCommands.Insert(0, delete);
                                 }
                                 return false;
                             }
@@ -716,23 +720,23 @@ namespace Obi.ProjectView
                             Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            foreach (urakawa.command.Command c in silence) command.append(c);
+                            foreach (urakawa.command.Command c in silence) command.ChildCommands.Insert(command.ChildCommands.Count, c);
                         }
                     }
 
                     //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
-                    if (command.getCount() > 0) mPresentation.Do(command);
+                    if (command.ChildCommands.Count > 0) mPresentation.Do(command);
                     if (sectionPosition > -1)//@singleSection
                     {
                         SectionNode section = null;
-                        int totalSections = mPresentation.RootNode.SectionChildCount;
+                        int totalSections = ((ObiRootNode)mPresentation.RootNode).SectionChildCount;
                         if (sectionPosition < totalSections)
                         {
-                            section = mPresentation.RootNode.SectionChild(sectionPosition);
+                            section = ((ObiRootNode)mPresentation.RootNode).SectionChild(sectionPosition);
                         }
                         else if (totalSections > 0)
                         {
-                            section = mPresentation.RootNode.SectionChild(totalSections - 1);
+                            section = ((ObiRootNode)mPresentation.RootNode).SectionChild(totalSections - 1);
                         }
                         if (section != null)
                         {
@@ -908,43 +912,43 @@ namespace Obi.ProjectView
             CompositeCommand command = null;
             if (CanMergeStripWithNext)
                 {
-                command = Presentation.getCommandFactory ().createCompositeCommand ();
-                command.setShortDescription ( Localizer.Message ( "merge_sections" ) );
+                command = Presentation.CommandFactory .CreateCompositeCommand ();
+                command.ShortDescription = Localizer.Message ( "merge_sections" );
                 SectionNode section = (SectionNode)Selection.Node;
-                command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( section, Selection.Control ) ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this, new NodeSelection ( section, Selection.Control ) ) );
                 SectionNode next = section.SectionChildCount == 0 ? section.NextSibling : section.SectionChild ( 0 );
 
                 int progressInterval = next.PhraseChildCount> 90? (next.PhraseChildCount * 2 / 90) : 1 ; // interval multiplied by 2 as we want to report with increment of 2
                 for (int i = 0; i < next.PhraseChildCount; ++i)
                     {
-                    EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).copy ( false, true );
+                    EmptyNode newPhraseNode = (EmptyNode)next.PhraseChild ( i ).Copy ( false, true );
                     if (newPhraseNode.Role_ == EmptyNode.Role.Heading) newPhraseNode.Role_ = EmptyNode.Role.Plain;
                     if (!section.Used && newPhraseNode.Used) newPhraseNode.Used = section.Used;
                     
                     Commands.Command add = new Commands.Node.AddNode ( this, newPhraseNode, section, section.PhraseChildCount + i, false );
                     if (i % progressInterval == 0) add.ProgressPercentage = (i * 90 / next.PhraseChildCount); 
-                    command.append (add );
+                    command.ChildCommands.Insert(command.ChildCommands.Count,add );
                     }
                 Console.WriteLine ( "add in merge complete" );
-                //command.append ( mContentView.DeleteStripCommand ( next ) );
+                //command.ChildCommands.Insert(command.ChildCommands.Count, mContentView.DeleteStripCommand ( next ) );
                 // add shallow delete command
                 Commands.Node.Delete delete = new Commands.Node.Delete ( this, next, Localizer.Message ( "delete_section_shallow" ) );
                 if (next.SectionChildCount > 0)
                     {
-                    CompositeCommand deleteCommand = this.Presentation.getCommandFactory ().createCompositeCommand ();
-                    command.setShortDescription ( delete.getShortDescription () );
+                    CompositeCommand deleteCommand = this.Presentation.CommandFactory.CreateCompositeCommand ();
+                    command.ShortDescription =  delete.ShortDescription;
                     for (int i = 0; i < next.SectionChildCount; ++i)
                         {
-                        deleteCommand.append ( new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
+                        deleteCommand.ChildCommands.Insert(command.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
                         }
                     delete.ProgressPercentage = 100;
-                    deleteCommand.append ( delete );
-                    command.append ( deleteCommand );//
+                    deleteCommand.ChildCommands.Insert(command.ChildCommands.Count, delete );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, deleteCommand );//
                     }
                 else
                     {
                     delete.ProgressPercentage = 100;
-                    command.append ( delete );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                     }
                 }
             return command;
@@ -954,7 +958,7 @@ namespace Obi.ProjectView
         {
             if (GetSelectedPhraseSection != null)
             {
-                List<SectionNode> listOfSections = mPresentation.RootNode.GetListOfAllSections(); //use this list in merge section dialog
+                List<SectionNode> listOfSections = ((Obi.ObiRootNode)mPresentation.RootNode).GetListOfAllSections(); //use this list in merge section dialog
                 //MessageBox.Show(listOfSections.Count.ToString()); 
                 int selectedSectionIndex = listOfSections.IndexOf(GetSelectedPhraseSection);
                 if (selectedSectionIndex > 0) listOfSections.RemoveRange(0, selectedSectionIndex);
@@ -978,8 +982,8 @@ namespace Obi.ProjectView
                         {
                             if (selectedSections.Contains(listOfSections[i].ParentAs<SectionNode>()))
                             {
-                                mergeSectionCommand.append(new Commands.Node.Delete(this, listOfSections[i]));
-                                mergeSectionCommand.append(new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, listOfSections[i]));
+                                mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.AddNode(this, listOfSections[i], firstSection, firstSection.SectionChildCount, false));
                             }
                         }
                     }
@@ -991,21 +995,22 @@ namespace Obi.ProjectView
                         for (int j = selectedSections[i].PhraseChildCount-1 ; j >= 0 ; j--)
                         {
                             phraseList.Insert (0,selectedSections[i].PhraseChild(j));
-                            mergeSectionCommand.append(new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
+                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i].PhraseChild(j)));
                         }
                     }
                     for (int i = selectedSections.Count - 1; i >= 0; i--)
                     {
-                        if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>())) mergeSectionCommand.append(new Commands.Node.Delete(this, selectedSections[i]));
+                        if (!selectedSections.Contains(selectedSections[i].ParentAs<SectionNode>()))
+                            mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, new Commands.Node.Delete(this, selectedSections[i]));
                     }
 
                     for (int i = 0; i < phraseList.Count; i++)
                     {
                         Commands.Command add = new Commands.Node.AddNode(this, phraseList[i], firstSection, firstSection.PhraseChildCount + i, false);
-                        mergeSectionCommand.append(add);
+                        mergeSectionCommand.ChildCommands.Insert(mergeSectionCommand.ChildCommands.Count, add);
                     }
 
-                    if (mergeSectionCommand.getCount() > 0) mPresentation.Do(mergeSectionCommand);
+                    if (mergeSectionCommand.ChildCommands.Count > 0) mPresentation.Do(mergeSectionCommand);
                 }
 
             }
@@ -1310,17 +1315,17 @@ namespace Obi.ProjectView
                 CompositeCommand command = Presentation.CreateCompositeCommand ( String.Format (
                     Localizer.Message ( mSelection.Node is SectionNode ? "mark_section_used" : "mark_phrase_used" ),
                     Localizer.Message ( mSelection.Node.Used ? "unused" : "used" ) ) );
-                mSelection.Node.acceptDepthFirst (
+                mSelection.Node.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         if (n is ObiNode && ((ObiNode)n).Used != used)
                             {
                             if (n is PhraseNode && ((PhraseNode)n).Role_ == EmptyNode.Role.Heading)
                                 {
-                                command.append ( new Commands.Node.AssignRole ( this, (PhraseNode)n, EmptyNode.Role.Plain ) );
-                                //command.append(new Commands.Node.UnsetNodeAsHeadingPhrase(this, (PhraseNode)n));
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole ( this, (PhraseNode)n, EmptyNode.Role.Plain ) );
+                                //command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.UnsetNodeAsHeadingPhrase(this, (PhraseNode)n));
                                 }
-                            command.append ( new Commands.Node.ToggleNodeUsed ( this, (ObiNode)n ) );
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, (ObiNode)n ) );
                             }
                         return true;
                         }, delegate ( urakawa.core.TreeNode n ) { }
@@ -1449,7 +1454,7 @@ namespace Obi.ProjectView
         public urakawa.command.Command GetDeleteRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Delete_RangeOfPhrases" ) );
-            command.append ( new Commands.UpdateSelection ( this,Selection ) );
+            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this,Selection ) );
 
             int startIndex = startNode.Index;
             int endIndex = endNode.Index < section.PhraseChildCount ? endNode.Index : section.PhraseChildCount - 1;
@@ -1468,7 +1473,7 @@ namespace Obi.ProjectView
                 updateSelectionNode = section;
                 }
             if ( updateSelectionNode != null ) 
-            command.append ( new Commands.UpdateSelection (this, new NodeSelection (updateSelectionNode, Selection.Control )) );
+            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection (this, new NodeSelection (updateSelectionNode, Selection.Control )) );
 
             int progressInterval = (endIndex - startIndex) > 100 ? (endIndex - startIndex) * 2 / 100 : 1*2; // multiplied by 2 to increment progress by 2
             int progressPercent = 0;
@@ -1477,7 +1482,7 @@ namespace Obi.ProjectView
                 Commands.Node.Delete deleteCommand = new Obi.Commands.Node.Delete ( this, section.PhraseChild ( i ), false );
                 if (i == startIndex || progressPercent > 98) progressPercent = 98;
                 if ((i - startIndex) % progressInterval == 0) deleteCommand.ProgressPercentage = progressPercent += 2;
-                command.append ( deleteCommand );
+                command.ChildCommands.Insert(command.ChildCommands.Count, deleteCommand );
                 }
              
             
@@ -1559,8 +1564,8 @@ namespace Obi.ProjectView
                     }
                 else
                     {
-                    c = mPresentation.CreateCompositeCommand ( command.getShortDescription () );
-                    c.append ( command );
+                    c = mPresentation.CreateCompositeCommand ( command.ShortDescription);
+                    c.ChildCommands.Insert(c.ChildCommands.Count, command );
                     }
                 AppendMakeUnused ( c, node );
                 mPresentation.Do ( c );
@@ -1698,7 +1703,10 @@ namespace Obi.ProjectView
 
         #region Find in Text
 
-        public bool CanFindFirstTime { get { return mPresentation != null && mPresentation.RootNode.SectionChildCount > 0; } }
+        public bool CanFindFirstTime { get
+        {
+            return mPresentation != null && ((ObiRootNode)mPresentation.RootNode).SectionChildCount > 0;
+        } }
         public void FindInText ()
             {
             //show the form if it's not already shown
@@ -1858,7 +1866,7 @@ namespace Obi.ProjectView
             // Add all nodes in order
             for (int i = 0; i < phraseNodes.Count; ++i)
                 {
-                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], parent, index + i ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode ( this, phraseNodes[i], parent, index + i ) );
                 }
             if (mContentView.Selection.Node.GetType () == typeof ( EmptyNode ))
                 {
@@ -1868,7 +1876,7 @@ namespace Obi.ProjectView
                     phraseNodes[0] );
                 Commands.Node.Delete delete = new Commands.Node.Delete ( this, mContentView.Selection.Node );
                 delete.UpdateSelection = false;
-                command.append ( delete );
+                command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                 }
             return command;
             }
@@ -1876,7 +1884,7 @@ namespace Obi.ProjectView
         private CompositeCommand GetImportSectionsFromAudioCommands ( List<PhraseNode> phraseNodes,Dictionary<PhraseNode, string> phrase_SectionNameMap )
             {
             CompositeCommand command = Presentation.CreateCompositeCommand ( Localizer.Message ( "import_phrases" ) );
-            if (Selection != null) command.append(new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
+            if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
             SectionNode newSectionNode = null;
             int phraseInsertIndex = 0;
 
@@ -1888,15 +1896,15 @@ namespace Obi.ProjectView
                     {
                     Commands.Command addSectionCmd = new Commands.Node.AddSectionNode ( this, mTOCView, phrase_SectionNameMap[phraseNodes[i]] );
                     addSectionCmd.UpdateSelection = true;
-                    command.append ( addSectionCmd );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd );
                     newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
                     phraseInsertIndex = 0;
                     }
 
-                command.append ( new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
                 ++phraseInsertIndex;
                 }
-                if (newSectionNode != null) command.append(new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
+                if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
             }
 
@@ -1912,7 +1920,8 @@ namespace Obi.ProjectView
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message ( "audio_file_filter" );
-            return dialog.ShowDialog () == DialogResult.OK ? Audio.AudioFormatConverter.ConvertFiles ( dialog.FileNames, mPresentation ) : null;
+            return dialog.ShowDialog () == DialogResult.OK ?
+                Audio.AudioFormatConverter.ConvertFiles ( dialog.FileNames, mPresentation ) : null;
             }
 
         public void SelectNothing () 
@@ -1931,11 +1940,11 @@ namespace Obi.ProjectView
             PhraseNode node = SelectedNodeAs<PhraseNode> ();
             if (node != null)
                 {
-                CompositeCommand command = Presentation.getCommandFactory ().createCompositeCommand ();
+                CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand ();
                 Commands.Node.AssignRole silence = new Commands.Node.AssignRole ( this, node, EmptyNode.Role.Silence );
-                command.append ( silence );
-                command.setShortDescription ( silence.getShortDescription () );
-                if (node.Used) command.append ( new Commands.Node.ToggleNodeUsed ( this, node ) );
+                command.ChildCommands.Insert(command.ChildCommands.Count, silence );
+                command.ShortDescription = silence.ShortDescription;
+                if (node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, node ) );
                 Presentation.Do ( command );
                 }
             }
@@ -1951,11 +1960,11 @@ namespace Obi.ProjectView
                     }
                 else
                     {
-                    CompositeCommand command = Presentation.getCommandFactory ().createCompositeCommand ();
+                    CompositeCommand command = Presentation.CommandFactory.CreateCompositeCommand ();
                     Commands.Node.AssignRole ClearRoleCmd = new Commands.Node.AssignRole ( this, node, EmptyNode.Role.Plain );
-                    command.append ( ClearRoleCmd );
-                    command.setShortDescription ( ClearRoleCmd.getShortDescription () );
-                    if (!node.Used) command.append ( new Commands.Node.ToggleNodeUsed ( this, node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, ClearRoleCmd );
+                    command.ShortDescription = ClearRoleCmd.ShortDescription ;
+                    if (!node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, node ) );
                     Presentation.Do ( command );
                     }
 
@@ -2021,7 +2030,7 @@ namespace Obi.ProjectView
                             MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));
                             return;
                         }
-                    mPresentation.getUndoRedoManager ().execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
+                    mPresentation.UndoRedoManager.Execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
                     TransportBar.SelectionChangedPlaybackEnabled = playbackOnSelectionChangeStatus;
                     }
                 catch (System.Exception ex)
@@ -2091,7 +2100,7 @@ namespace Obi.ProjectView
         public urakawa.command.Command GetMergeRangeOfPhrasesInSectionCommand ( SectionNode section, EmptyNode startNode, EmptyNode endNode )
             {
             CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "Merge_RangeOfPhrases" ) );
-            command.append ( new Commands.UpdateSelection ( this, Selection ) );
+            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this, Selection ) );
 
             int startIndex = startNode.Index;
             int endIndex = endNode.Index;
@@ -2106,7 +2115,7 @@ namespace Obi.ProjectView
                     }
                 }
             //MessageBox.Show ( nodeToSelect.ToString () );
-            command.append ( new Commands.UpdateSelection ( this, new NodeSelection ( nodeToSelect != null ? nodeToSelect : section.PhraseChild ( startIndex ), Selection.Control ) ) );
+            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this, new NodeSelection ( nodeToSelect != null ? nodeToSelect : section.PhraseChild ( startIndex ), Selection.Control ) ) );
             
             EmptyNode phraseRole = null;
             
@@ -2126,13 +2135,13 @@ namespace Obi.ProjectView
                     {
                     if (secondNode != null)
                         {
-                            command.append(new Commands.Node.Delete(this, secondNode, false));
+                            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
                             listOfNodesToMerge.Insert(0, secondNode);
                         //Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)firstNode, secondNode );
                         //mergeCmd.UpdateSelection = false;
                         if (i == startIndex || progressPercent > 98) progressPercent = 98;
                         //if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
-                        //command.append ( mergeCmd );
+                        //command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd );
                         }
                     secondNode = (PhraseNode)firstNode;
                     }
@@ -2142,7 +2151,7 @@ namespace Obi.ProjectView
                     {/* do nothing */ }
                     else
                         {
-                        command.append ( new Commands.Node.Delete ( this, firstNode, false ) );
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, firstNode, false ) );
                         //Console.WriteLine ( "deleting in merge " + firstNode );
                         }
                     }
@@ -2164,40 +2173,41 @@ namespace Obi.ProjectView
                         mergeCmd.UpdateSelection = false;
                         if (i == startIndex || progressPercent > 98) progressPercent = 98;
                         if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
-                        command.append ( mergeCmd);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
                         }
                     else
                         {
-                        command.append ( new Commands.Node.Delete ( this, next,false ) );
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, next,false ) );
                         }
                     }
                 else
                     {
-                                        command.append ( new Commands.Node.Delete ( this, node, false ) );
+                                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, node, false ) );
                     }
 
                 //urakawa.command.Command mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
                 
-                //command.append ( mergeCommand);
+                //command.ChildCommands.Insert(command.ChildCommands.Count, mergeCommand);
                  */ 
                 }
                 PhraseNode tempNode = mPresentation.CreatePhraseNode();
-                if (listOfNodesToMerge.Count > 0) tempNode.Audio = listOfNodesToMerge[0].Audio.copy();
+                if (listOfNodesToMerge.Count > 0)
+                    tempNode.Audio = listOfNodesToMerge[0].Audio.Copy();
 
                 if (listOfNodesToMerge.Count > 1)
                 {
                     for (int i = 1; i < listOfNodesToMerge.Count; i++)
                     {
-                        tempNode.MergeAudioWith(listOfNodesToMerge[i].Audio.copy());
+                        tempNode.MergeAudioWith(listOfNodesToMerge[i].Audio.Copy());
                     }
                 }
                 if (!(startNode is PhraseNode)) startNode = nodeToSelect;
                 Commands.Command mergeCmd = new Commands.Node.MergeAudio(this, (PhraseNode)startNode, tempNode);
-                command.append(mergeCmd);
+                command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
             if (phraseRole != null )
                 {
-                command.insert ( new Commands.Node.AssignRole ( this, nodeToSelect != null ? nodeToSelect : startNode, EmptyNode.Role.Heading ), 0 );
-                command.insert ( new Commands.Node.UnsetNodeAsHeadingPhrase ( this,(PhraseNode) phraseRole ), 0 );
+                command.ChildCommands.Insert (0, new Commands.Node.AssignRole ( this, nodeToSelect != null ? nodeToSelect : startNode, EmptyNode.Role.Heading ));
+                command.ChildCommands.Insert(0, new Commands.Node.UnsetNodeAsHeadingPhrase(this, (PhraseNode)phraseRole));
                                 }
             return command;
             }
@@ -2252,17 +2262,17 @@ namespace Obi.ProjectView
                 urakawa.command.Command cmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), number );
                 if (renumber)
                     {
-                    CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.getShortDescription () );
+                    CompositeCommand k = Presentation.CreateCompositeCommand ( cmd.ShortDescription );
                     for (ObiNode n = SelectedNodeAs<EmptyNode> ().FollowingNode; n != null; n = n.FollowingNode)
                         {
                         if (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Page &&
                             ((EmptyNode)n).PageNumber.Kind == number.Kind)
                             {
                             number = number.NextPageNumber ();
-                            k.append ( new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                            k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
                             }
                         }
-                    k.append ( cmd );
+                    k.ChildCommands.Insert(k.ChildCommands.Count, cmd );
                     cmd = k;
                     }
                 mPresentation.Do ( cmd );
@@ -2285,14 +2295,14 @@ namespace Obi.ProjectView
                 // For every page, add a new empty block and give it a number.
                 for (int i = 0; i < count; ++i)
                     {
-                    EmptyNode node = new EmptyNode ( Presentation );
+                    EmptyNode node = new EmptyNode ( );
                     if (parent == null)
                         {
                         parent = mSelection.ParentForNewNode ( node );
                         index = mSelection.IndexForNewNode ( node );
                         }
-                    cmd.append ( new Commands.Node.AddEmptyNode ( this, node, parent, index + i ) );
-                    cmd.append ( new Commands.Node.SetPageNumber ( this, node, number ) );
+                    cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.AddEmptyNode ( this, node, parent, index + i ) );
+                    cmd.ChildCommands.Insert(cmd.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, node, number ) );
                     number = number.NextPageNumber ();
                     }
                 // Add commands to renumber the following pages; be careful that the previous blocks have not
@@ -2307,7 +2317,7 @@ namespace Obi.ProjectView
                             {
                             Commands.Node.SetPageNumber c = new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number );
                             c.UpdateSelection = false;
-                            cmd.append ( c );
+                            cmd.ChildCommands.Insert(cmd.ChildCommands.Count, c );
                             number = number.NextPageNumber ();
                             }
                         }
@@ -2375,7 +2385,7 @@ namespace Obi.ProjectView
 
                 List<SectionNode> listOfAllSections = new List<SectionNode> ();
                 List<PhraseNode> listOfAllSilencePhrases = new List<PhraseNode> ();
-                mPresentation.RootNode.acceptDepthFirst (
+                mPresentation.RootNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         if (n is SectionNode) listOfAllSections.Add ( (SectionNode)n );
@@ -2804,22 +2814,22 @@ namespace Obi.ProjectView
                     mPresentation.CreateCompositeCommand ( Localizer.Message ( "update_section" ) );
                 if (dialog.Label != dialog.Node.Label && dialog.Label != null && dialog.Label != "")
                     {
-                    command.append ( new Commands.Node.RenameSection ( this, dialog.Node, dialog.Label ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection ( this, dialog.Node, dialog.Label ) );
                     }
                 for (int i = dialog.Node.Level; i < dialog.Level; ++i)
                     {
-                    command.append ( new Commands.TOC.MoveSectionIn ( this, dialog.Node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.TOC.MoveSectionIn ( this, dialog.Node ) );
                     }
                 for (int i = dialog.Level; i < dialog.Node.Level; ++i)
                     {
-                    command.append ( new Commands.TOC.MoveSectionOut ( this, dialog.Node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, dialog.Node ) );
                     }
                 if (dialog.Used != dialog.Node.Used)
                     {
-                    command.append ( new Commands.Node.ToggleNodeUsed ( this, dialog.Node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, dialog.Node ) );
                     }
-                if (command.getCount () == 1) command.setShortDescription ( command.getListOfCommands ()[0].getShortDescription () );
-                if (command.getCount () > 0) mPresentation.Do ( command );
+                if (command.ChildCommands.Count == 1) command.ShortDescription = command.ChildCommands.Get(0).ShortDescription ;
+                if (command.ChildCommands.Count > 0) mPresentation.Do(command);
                 }
             return true;
             }
@@ -2842,7 +2852,7 @@ namespace Obi.ProjectView
                     if (PageDialog.ShowDialog () == DialogResult.OK && CanSetPageNumber)
                         {
                         urakawa.command.Command PageCmd = new Commands.Node.SetPageNumber ( this, SelectedNodeAs<EmptyNode> (), PageDialog.Number );
-                        command.append ( PageCmd );
+                        command.ChildCommands.Insert(command.ChildCommands.Count, PageCmd );
                         PageNumber number = PageDialog.Number;
                         if (PageDialog.Renumber)
                             {
@@ -2852,7 +2862,7 @@ namespace Obi.ProjectView
                                     ((EmptyNode)n).PageNumber.Kind == number.Kind)
                                     {
                                     number = number.NextPageNumber ();
-                                    command.append ( new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number ) );
                                     }
                                 }
                             }
@@ -2863,18 +2873,18 @@ namespace Obi.ProjectView
                     (dialog.Role == EmptyNode.Role.Custom && dialog.Node.Role_ == EmptyNode.Role.Custom &&
                     dialog.CustomClass != dialog.Node.CustomRole))
                     {
-                    command.append ( new Commands.Node.AssignRole ( this, dialog.Node, dialog.Role, dialog.CustomClass ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole ( this, dialog.Node, dialog.Role, dialog.CustomClass ) );
                     }
                 if (dialog.Used != dialog.Node.Used)
                     {
-                    command.append ( new Commands.Node.ToggleNodeUsed ( this, dialog.Node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, dialog.Node ) );
                     }
                 if (dialog.TODO != dialog.Node.TODO)
                     {
-                    command.append ( new Commands.Node.ToggleNodeTODO ( this, dialog.Node ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO ( this, dialog.Node ) );
                     }
-                if (command.getCount () == 1) command.setShortDescription ( command.getListOfCommands ()[0].getShortDescription () );
-                if (command.getCount () > 0) mPresentation.Do ( command );
+                if (command.ChildCommands.Count == 1) command.ShortDescription = command.ChildCommands.Get(0).ShortDescription ;
+                if (command.ChildCommands.Count > 0) mPresentation.Do(command);
                 }
             return true;
             }
@@ -3002,7 +3012,7 @@ namespace Obi.ProjectView
                     {
                     Commands.Node.SetPageNumber cmd = new Commands.Node.SetPageNumber ( this, (EmptyNode)n, number );
                     cmd.UpdateSelection = false ;
-                    k.append (cmd );
+                    k.ChildCommands.Insert(k.ChildCommands.Count,cmd );
                     number = number.NextPageNumber ();
 
                     }
@@ -3082,7 +3092,7 @@ namespace Obi.ProjectView
                     //flag to indicate if iterations has passed through selected node.   is true if iteration is moved ahead of selected node
                     bool isAfterSelection =( Selection == null || ( Selection != null && Presentation.FirstSection == Selection.Node)) ? true : false; 
 
-                    for (ObiNode n = Presentation.RootNode.FirstLeaf; n != null; n = n.FollowingNode)
+                    for (ObiNode n = ((ObiRootNode)Presentation.RootNode).FirstLeaf; n != null; n = n.FollowingNode)
                         {
                         if (n is EmptyNode)
                             {
@@ -3235,24 +3245,38 @@ namespace Obi.ProjectView
                 TreeNodeTestDelegate nodeIsOtherSection = delegate(urakawa.core.TreeNode node) { return (nodeSelected is SectionNode &&  node is SectionNode && node != nodeSelected ) ; };
 
                 mPresentation.RemoveAllPublishChannels(); // remove any publish channel, in case they exist
-                PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsOtherSection);
-                urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
-                visitor.setDestinationChannel(publishChannel);
-                visitor.setSourceChannel(mPresentation.AudioChannel);
-                visitor.setDestinationDirectory(new Uri(audioFileExportDirectory));
+
+                PublishFlattenedManagedAudioVisitor visitor = new PublishFlattenedManagedAudioVisitor(nodeIsSection, nodeIsOtherSection);
+                
+                
+                //urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME);
+
+                Channel publishChannel = mPresentation.ChannelFactory.CreateAudioChannel();
+                publishChannel.Name= ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME;
+                
+                visitor.DestinationChannel= publishChannel;
+                visitor.SourceChannel = mPresentation.ChannelsManager.GetOrCreateAudioChannel();
+                visitor.DestinationDirectory = new Uri(audioFileExportDirectory);
+
+                visitor.EncodePublishedAudioFilesToMp3 = false;
+                uint sampleRate = mPresentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
+                if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz44100;
+                else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz22050;
+                else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = SampleRate.Hz11025;
+                visitor.DisableAcmCodecs = true;
 
                 Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
                             delegate()
                             {
-                nodeSelected.acceptDepthFirst(visitor);
+                nodeSelected.AcceptDepthFirst(visitor);
             });
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
                         
-                // TODO check that there is an audio file to write
-                visitor.writeAndCloseCurrentAudioFile();
+                //sdk2 TODO check that there is an audio file to write
+                //visitor.WriteAndCloseCurrentAudioFile();
 
-                mPresentation.getChannelsManager().removeChannel(publishChannel);
+                mPresentation.ChannelsManager.RemoveManagedObject(publishChannel);
 
                 //rename the audio file to relevant name
                 string audioFilePath = System.IO.Path.Combine(audioFileExportDirectory, "aud001.wav");
