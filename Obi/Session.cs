@@ -263,11 +263,9 @@ namespace Obi
             //sdk2
             //mProject.openXUK ( new Uri ( path ) );
 
-            OpenXukAction action = new OpenXukAction(mProject, new Uri(path))
-            {
-                ShortDescription = "DUMMY",
-                LongDescription = "DUMMY"
-            };
+            OpenXukAction action = new OpenXukAction(mProject, new Uri(path));
+            action.ShortDescription = "DUMMY";
+            action.LongDescription = "DUMMY";
             action.Execute();
 
             mPath = path;

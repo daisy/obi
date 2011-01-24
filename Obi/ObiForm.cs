@@ -569,9 +569,9 @@ namespace Obi
                             {
                                 //mSession.Presentation.cleanup();
                                 
-                                var dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
+                                string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
 
-                                var deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
+                                string deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
                                 if (!Directory.Exists(deletedDataFolderPath))
                                 {
                                     Directory.CreateDirectory(deletedDataFolderPath);
@@ -580,10 +580,10 @@ namespace Obi
                                 Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
                                 cleaner.Cleanup();
 
-                                var listOfDataProviderFiles = new List<string>();
-                foreach (var dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_YieldEnumerable)
+                                List<string> listOfDataProviderFiles = new List<string>();
+                foreach (DataProvider dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_YieldEnumerable)
                 {
-                    var fileDataProvider = dataProvider as FileDataProvider;
+                    FileDataProvider fileDataProvider = dataProvider as FileDataProvider;
                     if (fileDataProvider == null) continue;
 
                     listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
@@ -600,10 +600,10 @@ namespace Obi
 
                 foreach (string filePath in Directory.GetFiles(dataFolderPath))
                 {
-                    var fileName = Path.GetFileName(filePath);
+                    string fileName = Path.GetFileName(filePath);
                     if (!listOfDataProviderFiles.Contains(fileName))
                     {
-                        var filePathDest = Path.Combine(deletedDataFolderPath, fileName);
+                        string filePathDest = Path.Combine(deletedDataFolderPath, fileName);
                         Debug.Assert(!File.Exists(filePathDest));
                         if (!File.Exists(filePathDest))
                         {
