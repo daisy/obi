@@ -130,7 +130,7 @@ namespace Obi
             }
             if (number != null)
             {
-                EmptyNode node = new EmptyNode();
+                EmptyNode node = mPresentation.TreeNodeFactory.Create<EmptyNode>();
                 node.PageNumber = number;
                 mCurrentSection.AppendChild(node);
             }

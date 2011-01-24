@@ -135,7 +135,7 @@ namespace Obi.Audio
         {
             int PlayPosition = 0;
             long lCurrentPosition = 0;
-            if (mCurrentAudio != null && mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  > 0)
+            if (mCurrentAudio != null && mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits)  > 0)
             {//1
                 if (mState == AudioPlayerState.Playing)
                 {//2
@@ -162,9 +162,9 @@ namespace Obi.Audio
                         int subtractor = (3 * m_RefreshLength) - PlayPosition;
                         lCurrentPosition = m_lPlayed - subtractor;
                     }//-3
-                    if (lCurrentPosition >= mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
+                    if (lCurrentPosition >= mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
                     {//3
-                        lCurrentPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  -
+                        lCurrentPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits)  -
                             Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
@@ -666,7 +666,7 @@ namespace Obi.Audio
                 {
                     // folowing one line is modified on 2 Aug 2006
                     //m_lLength = (m_Asset .SizeInBytes  - lStartPosition ) ;
-                    m_lLength = (mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds));
+                    m_lLength = (mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits));
                 }
 
                 mPrevBytePosition = lStartPosition;
@@ -949,7 +949,7 @@ namespace Obi.Audio
                 long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
                 long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
 
-                if (lPosition >= 0 && lPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
+                if (lPosition >= 0 && lPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
                 {
                     mStartPosition = lPosition;
                                         InitPlay( mCurrentAudio , lPosition, lEndPosition );
@@ -1009,7 +1009,8 @@ namespace Obi.Audio
         if (mState != AudioPlayerState.Stopped || mCurrentAudio != null)
             {
             if (position < 0) position = 0;
-            if (position > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)) position = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  - 100;
+            if (position > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
+                position = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits)  - 100;
             mEventsEnabled = false;
             if (State == AudioPlayerState.Playing)
                 {
@@ -1107,8 +1108,8 @@ namespace Obi.Audio
 PlayEndPos  = m_lChunkStartPosition + lPlayChunkLength  ;
 PlayAssetStream  (  PlayStartPos, PlayEndPos);
 
-if (m_lChunkStartPosition > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
-    m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds);
+if (m_lChunkStartPosition > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
+    m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits);
                                     } //-3
                 else
                 { //3
@@ -1126,10 +1127,10 @@ if (m_lChunkStartPosition > mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCur
                 //if (m_lChunkStartPosition > (lStepInBytes ) && lPlayChunkLength <= m_Asset.getPCMLength () )
                 if (m_lChunkStartPosition >  0 )
                 { //3
-                    if (m_lChunkStartPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds))
+                    if (m_lChunkStartPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
                         m_lChunkStartPosition -= lStepInBytes;
                     else
-                        m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsTimeSpan.Milliseconds)  - lPlayChunkLength;
+                        m_lChunkStartPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits)  - lPlayChunkLength;
 
                     PlayStartPos = m_lChunkStartPosition ;
                     PlayEndPos = m_lChunkStartPosition +  lPlayChunkLength;

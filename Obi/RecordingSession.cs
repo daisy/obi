@@ -7,6 +7,7 @@ using Obi.Audio;
 using Obi.Events.Audio.Recorder;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
+using urakawa.media.data.audio.codec;
 
 
 namespace Obi
@@ -107,7 +108,7 @@ namespace Obi
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.MediaDataFactory.Create(typeof(AudioMediaData));
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
                 mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
                 //mSessionMedia.setMediaData(asset);
                 mSessionMedia.MediaData = asset;
@@ -134,7 +135,7 @@ namespace Obi
             if (mRecorder.State == AudioRecorderState.Stopped)
             {
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.MediaDataFactory.Create(typeof(AudioMediaData));
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
                 mRecorder.StartListening(asset);
             }
         }

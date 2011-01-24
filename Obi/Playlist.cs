@@ -2,9 +2,11 @@ using Obi.Audio;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using urakawa;
 using urakawa.core;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
+using urakawa.property;
 
 namespace Obi
 {
@@ -416,13 +418,13 @@ namespace Obi
         // React to addition and removal of tree nodes in the presentation.
         private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (e is urakawa.events.core.ChildAddedEventArgs)
+            if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
             {
-                InsertNode(((urakawa.events.core.ChildAddedEventArgs)e).AddedChild);
+                InsertNode(((ObjectAddedEventArgs<urakawa.core.TreeNode>)e).m_AddedObject);
             }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
             {
-                RemoveNode(((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild);
+                RemoveNode(((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject);
             }
         }
 

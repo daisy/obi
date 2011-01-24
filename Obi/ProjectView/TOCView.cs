@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using urakawa;
 
 namespace Obi.ProjectView
 {
@@ -367,8 +368,8 @@ namespace Obi.ProjectView
                     delegate(object sender, urakawa.events.DataModelChangedEventArgs e) { };
                 h = delegate(object sender, urakawa.events.DataModelChangedEventArgs e)
                 {
-                    if (e is urakawa.events.core.ChildAddedEventArgs &&
-                        ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == section)
+                    if (e is ObjectAddedEventArgs<urakawa.core.TreeNode> &&
+                        ((ObjectAddedEventArgs<urakawa.core.TreeNode>)e).m_AddedObject == section)
                     {
                         f();
                         mProjectView.Presentation.Changed -= h;
@@ -435,21 +436,21 @@ namespace Obi.ProjectView
         }
 
         // Add new section nodes to the tree
-        private void TreeNodeAdded(urakawa.events.core.ChildAddedEventArgs e)
+        private void TreeNodeAdded(ObjectAddedEventArgs<urakawa.core.TreeNode> e)
         {
-            if (e.AddedChild is SectionNode)
+            if (e.m_AddedObject is SectionNode)
             {
                 // ignore the selection of the new tree node
                 AfterSelect -= new TreeViewEventHandler(TOCTree_AfterSelect);
-                CreateTreeNodeForSectionNode((SectionNode)e.AddedChild);
+                CreateTreeNodeForSectionNode((SectionNode)e.m_AddedObject);
                 AfterSelect += new TreeViewEventHandler(TOCTree_AfterSelect);
             }
         }
 
         // Remove deleted section nodes from the tree
-        void TreeNodeRemoved(urakawa.events.core.ChildRemovedEventArgs e)
+        void TreeNodeRemoved(ObjectRemovedEventArgs<urakawa.core.TreeNode> e)
         {
-            if (e.RemovedChild is SectionNode) Nodes.Remove(FindTreeNode((SectionNode)e.RemovedChild));
+            if (e.m_RemovedObject is SectionNode) Nodes.Remove(FindTreeNode((SectionNode)e.m_RemovedObject));
         }
 
 
@@ -513,13 +514,13 @@ namespace Obi.ProjectView
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
-            if (e is urakawa.events.core.ChildAddedEventArgs)
+            if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
             {
-                TreeNodeAdded((urakawa.events.core.ChildAddedEventArgs)e);
+                TreeNodeAdded((ObjectAddedEventArgs<urakawa.core.TreeNode>)e);
             }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
             {
-                TreeNodeRemoved((urakawa.events.core.ChildRemovedEventArgs)e);
+                TreeNodeRemoved((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e);
             }
         }
 

@@ -80,7 +80,7 @@ namespace Obi.Commands.Audio
                 // Delete the whole audio
                 urakawa.command.CompositeCommand composite =
                     view.Presentation.CreateCompositeCommand(command.ShortDescription);
-                EmptyNode empty = new EmptyNode();
+                EmptyNode empty = view.Presentation.TreeNodeFactory.Create<EmptyNode>();
                 composite.ChildCommands.Insert(composite.ChildCommands.Count,
                     new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
                     command.mNode.Index)

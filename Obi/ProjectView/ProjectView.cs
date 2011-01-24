@@ -70,7 +70,7 @@ namespace Obi.ProjectView
             {
             if (CanAddEmptyBlock)
                 {
-                EmptyNode node = new EmptyNode (  );
+                    EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
                 ObiNode parent = mContentView.Selection.ParentForNewNode ( node );
                 AddUnusedAndExecute ( new Commands.Node.AddEmptyNode ( this, node, parent, mContentView.Selection.IndexForNewNode ( node ) ),
                     node, parent );
@@ -2295,7 +2295,7 @@ namespace Obi.ProjectView
                 // For every page, add a new empty block and give it a number.
                 for (int i = 0; i < count; ++i)
                     {
-                    EmptyNode node = new EmptyNode ( );
+                        EmptyNode node = Presentation.TreeNodeFactory.Create<EmptyNode>();
                     if (parent == null)
                         {
                         parent = mSelection.ParentForNewNode ( node );
