@@ -41,6 +41,7 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>default</LangVersion>
     <NoWarn>1607</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -873,6 +874,10 @@
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\core\UrakawaSDK.core.csproj">
       <Project>{7CCD52F9-C801-4C2B-AA9D-B7E217F307A0}</Project>
       <Name>UrakawaSDK.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\daisy\UrakawaSDK.daisy.csproj">
+      <Project>{69E083B4-AC97-4416-B7D4-61DEBA8A910D}</Project>
+      <Name>UrakawaSDK.daisy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
