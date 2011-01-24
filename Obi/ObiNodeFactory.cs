@@ -34,34 +34,34 @@ namespace Obi
                 {
                     cachePhraseNode_XUK_ELEMENT_NAME = new PhraseNode().XUK_ELEMENT_NAME;
                 }
-                else if (string.IsNullOrEmpty(cacheRootNode_XUK_ELEMENT_NAME))
+                if (string.IsNullOrEmpty(cacheRootNode_XUK_ELEMENT_NAME))
                 {
                     cacheRootNode_XUK_ELEMENT_NAME = new ObiRootNode().XUK_ELEMENT_NAME;
                 }
-                else if (string.IsNullOrEmpty(cacheEmptyNode_XUK_ELEMENT_NAME))
+                if (string.IsNullOrEmpty(cacheEmptyNode_XUK_ELEMENT_NAME))
                 {
                     cacheEmptyNode_XUK_ELEMENT_NAME = new EmptyNode().XUK_ELEMENT_NAME;
                 }
-                else if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
+                if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
                 {
                     cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
                 }
 
                 if (localName == cacheRootNode_XUK_ELEMENT_NAME)
                     {
-                        return new ObiRootNode();
+                        return m_Presentation.TreeNodeFactory.Create<ObiRootNode>();
                     }
                 else if (localName == cachePhraseNode_XUK_ELEMENT_NAME)
-                {
-                    return new PhraseNode();
+                    {
+                        return m_Presentation.TreeNodeFactory.Create<PhraseNode>();
                 }
                 else if (localName == cacheSectionNode_XUK_ELEMENT_NAME)
                 {
-                    return new SectionNode();
+                    return m_Presentation.TreeNodeFactory.Create<SectionNode>();
                 }
                 else if (localName == cacheEmptyNode_XUK_ELEMENT_NAME)
                 {
-                    return new EmptyNode();
+                    return m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 }
             }
             //base.CreateNode(localName, namespaceUri);

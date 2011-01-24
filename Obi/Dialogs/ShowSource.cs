@@ -46,7 +46,7 @@ namespace Obi.Dialogs
         // Update the source view.
         private void UpdateView()
         {
-            sourceBox.Text = mView.Presentation.XukString;
+            sourceBox.Text = mView.Presentation.GenerateXukString;
             sourceBox.Select(0, 0);
             sourceBox.ScrollToCaret();
         }

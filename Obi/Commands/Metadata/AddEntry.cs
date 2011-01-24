@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using urakawa.metadata;
 
 namespace Obi.Commands.Metadata
 {
@@ -12,6 +13,7 @@ namespace Obi.Commands.Metadata
             : base(view)
         {
             mEntry = view.Presentation.MetadataFactory.CreateMetadata();
+            mEntry.NameContentAttribute = new MetadataAttribute();
             SetDescriptions(Localizer.Message("add_metadata_entry"));
         }
 

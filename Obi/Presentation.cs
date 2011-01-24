@@ -9,6 +9,7 @@ using urakawa.command;
 using urakawa.data;
 using urakawa.media;
 using urakawa.media.data.audio;
+using urakawa.metadata;
 using urakawa.property.channel;
 //using urakawa.publish;
 using urakawa.media.data;
@@ -18,9 +19,10 @@ namespace Obi
     public class ObiPresentation : Presentation
     {
         public const string XUK_NS = DataModelFactory.NS;
+        public static string XukString = typeof(ObiPresentation).Name;
         public override string GetTypeNameFormatted()
         {
-            return GetType().Name;
+            return XukString;
         }
 
         private bool mInitialized;                                   // initialization flag
@@ -397,6 +399,7 @@ namespace Obi
             if (value != null)
             {
                 urakawa.metadata.Metadata meta = MetadataFactory.CreateMetadata();
+                meta.NameContentAttribute = new MetadataAttribute();
                 meta.NameContentAttribute.Name = name;
                 meta.NameContentAttribute.Value = value;
                 AddMetadata(meta);
@@ -630,7 +633,7 @@ namespace Obi
         /// <summary>
         /// XUK as a string.
         /// </summary>
-        public string XukString
+        public string GenerateXukString
         {
             get
             {
