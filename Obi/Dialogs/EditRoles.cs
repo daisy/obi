@@ -14,11 +14,11 @@ namespace Obi.Dialogs
 {
     public partial class EditRoles : Form
     {
-        private Presentation mPresentation;
+        private ObiPresentation mPresentation;
         private ProjectView.ProjectView mProjectView;
         int mNumberOfCommandsSinceOpened;
 
-        public EditRoles(Presentation presentation, ProjectView.ProjectView projectView)
+        public EditRoles(ObiPresentation presentation, ProjectView.ProjectView projectView)
         {
             if (presentation == null) throw new Exception("Invalid presentation for custom types dialog");
             if (projectView == null) throw new Exception("Invalid project view for custom types dialog");
