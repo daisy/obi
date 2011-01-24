@@ -30,7 +30,7 @@ namespace Obi.Audio
             BinaryReader brRef = new BinaryReader(RefAsset.AudioMediaData.OpenPcmInputStream ());
 
             // creates counter of size equal to clip size
-            long lSize = RefAsset.AudioMediaData.PCMFormat.Data.ConvertTimeToBytes(RefAsset.AudioMediaData.AudioDuration.AsTimeSpan.Milliseconds );
+            long lSize = RefAsset.AudioMediaData.PCMFormat.Data.ConvertTimeToBytes(RefAsset.AudioMediaData.AudioDuration.AsLocalUnits);
 
             // Block size of audio chunck which is least count of detection
             int Block;

@@ -156,8 +156,8 @@ namespace Obi
 
         // Our own overrides
 
-        public virtual void AppendChild(ObiNode node) { Children.Insert(Children.Count-1, node); }
-        public virtual ObiNode Detach() { return (ObiNode)Detach(); }
+        public virtual void AppendChild(ObiNode node) { base.AppendChild(node); }
+        public new virtual ObiNode Detach() { return (ObiNode) base.Detach(); }
         public abstract void Insert(ObiNode node, int index);
         public void InsertAfter(ObiNode node, ObiNode anchor)
         {
@@ -333,6 +333,11 @@ namespace Obi
 
         private string mPrimaryExportDirectory = "";
 
+        public ObiRootNode() : base()
+        {
+            ;            
+        }
+
         //sdk2
         //public RootNode(Presentation presentation) : base(presentation) { }
 
@@ -344,7 +349,7 @@ namespace Obi
         {
             if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
             if (index < 0) index += Children.Count;
-            Children.Insert(index, node);
+            ((TreeNode)this).Insert(node, index);
         }
 
         /// <summary>

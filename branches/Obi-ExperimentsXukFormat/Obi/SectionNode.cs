@@ -28,6 +28,10 @@ namespace Obi
         //    mHeading = null;
         //}
 
+        public SectionNode() : base()
+        {
+            ;            
+        }
 
         /// <summary>
         /// Append a child node (of any kind) at the right position.
@@ -141,7 +145,7 @@ namespace Obi
         {
             index = node is EmptyNode ? index < 0 ? FirstSectionIndex + index : index :
                                         index < 0 ? Children.Count + index : index + FirstSectionIndex;
-            Insert(node, index);
+            ((TreeNode)this).Insert(node, index);
             if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Heading) DidSetHeading((PhraseNode)node);
         }
 

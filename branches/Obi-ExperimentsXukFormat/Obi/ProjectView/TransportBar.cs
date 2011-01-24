@@ -1386,7 +1386,7 @@ namespace Obi.ProjectView
             {
             mView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
             mView.Presentation.UsedStatusChanged -= new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );
-            m_TempNodeForPropertiesTransfer = new EmptyNode (  );
+            m_TempNodeForPropertiesTransfer = mView.Presentation.TreeNodeFactory.Create<EmptyNode>();
             m_TempNodeForPropertiesTransfer.CopyAttributes ( (EmptyNode)node );
             m_TempNodeForPropertiesTransfer.Used = ((EmptyNode)node).Used;
             mView.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode> ( Presentation_UsedStatusChanged );

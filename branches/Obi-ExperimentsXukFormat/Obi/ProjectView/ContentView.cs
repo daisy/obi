@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
+using urakawa;
 using urakawa.command;
 
 namespace Obi.ProjectView
@@ -3140,18 +3140,18 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         // Listen to changes in the presentation (new nodes being added or removed)
         private void Presentation_changed ( object sender, urakawa.events.DataModelChangedEventArgs e )
             {
-                if (e is urakawa.events.core.ChildRemovedEventArgs && mProjectView.ObiForm.Settings.PlayOnNavigate
-                && ((urakawa.events.core.ChildRemovedEventArgs)e).RemovedChild is EmptyNode)
+                if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode> && mProjectView.ObiForm.Settings.PlayOnNavigate
+                && ((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject is EmptyNode)
                 {
                     mProjectView.TransportBar.SkipPlayOnNavigateForSection = true;
                 }
-            if (e is urakawa.events.core.ChildAddedEventArgs)
+            if (e is ObjectAddedEventArgs<urakawa.core.TreeNode>)
                 {
-                TreeNodeAdded ( (urakawa.events.core.ChildAddedEventArgs)e );
+                TreeNodeAdded ( (ObjectAddedEventArgs<urakawa.core.TreeNode>)e );
                 }
-            else if (e is urakawa.events.core.ChildRemovedEventArgs)
+            else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
                 {
-                TreeNodeRemoved ( (urakawa.events.core.ChildRemovedEventArgs)e );
+                TreeNodeRemoved ( (ObjectRemovedEventArgs<urakawa.core.TreeNode>)e );
                 }
             }
 
@@ -3218,33 +3218,33 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             }
 
         // Remove the strip or block for the removed tree node
-        private void TreeNodeRemoved ( urakawa.events.core.ChildRemovedEventArgs e )
+        private void TreeNodeRemoved ( ObjectRemovedEventArgs<urakawa.core.TreeNode> e )
             {
-            if (e.RemovedChild is SectionNode)
+            if (e.m_RemovedObject is SectionNode)
                 {
 
 
-                RemoveStripsForSection_Safe ( (SectionNode)e.RemovedChild );
+                    RemoveStripsForSection_Safe((SectionNode)e.m_RemovedObject);
 
                 }
-            else if (e.RemovedChild is EmptyNode)
+                else if (e.m_RemovedObject is EmptyNode)
                 {
                 // TODO in the future, the parent of a removed empty node
                 // will not always be a section node!
-                Strip strip = FindStrip ( (SectionNode)e.SourceTreeNode );
-                if (strip != null) strip.RemoveBlock ( (EmptyNode)e.RemovedChild );
+                Strip strip = FindStrip ( (SectionNode)e.SourceObject );
+                if (strip != null) strip.RemoveBlock((EmptyNode)e.m_RemovedObject);
                 }
             }
 
         // Add a new strip for a newly added section node or a new block for a newly added empty node.
-        private void TreeNodeAdded ( urakawa.events.core.ChildAddedEventArgs e )
+        private void TreeNodeAdded ( ObjectAddedEventArgs<urakawa.core.TreeNode> e )
             {
 
             //@singleSection : AddStripForSection_Safe replaced by CreateStripForAddedSectionNode
             // this will remove existing strips before creating new strip in content view
-            Control c = e.AddedChild is SectionNode ? (Control)CreateStripForAddedSectionNode ( (SectionNode)e.AddedChild, true ) :
+            Control c = e.m_AddedObject is SectionNode ? (Control)CreateStripForAddedSectionNode ( (SectionNode)e.m_AddedObject, true ) :
                 // TODO: in the future, the source node will not always be a section node!
-                e.AddedChild is EmptyNode ? AddBlockForNodeConsideringPhraseLimit ( (Strip)FindStrip ( (SectionNode)e.SourceTreeNode ), ((EmptyNode)e.AddedChild) ) : // @phraseLimit
+                e.m_AddedObject is EmptyNode ? AddBlockForNodeConsideringPhraseLimit ( (Strip)FindStrip ( (SectionNode)e.SourceObject ), ((EmptyNode)e.m_AddedObject) ) : // @phraseLimit
                 null;
             UpdateNewControl ( c );
             }
@@ -3366,8 +3366,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     delegate ( object sender, urakawa.events.DataModelChangedEventArgs e ) { };
                 h = delegate ( object sender, urakawa.events.DataModelChangedEventArgs e )
                 {
-                    if (e is urakawa.events.core.ChildAddedEventArgs &&
-                        ((urakawa.events.core.ChildAddedEventArgs)e).AddedChild == node)
+                    if (e is ObjectAddedEventArgs<urakawa.core.TreeNode> &&
+                        ((ObjectAddedEventArgs<urakawa.core.TreeNode>)e).m_AddedObject == node)
                         {
                         f ();
                         mProjectView.Presentation.Changed -= h;

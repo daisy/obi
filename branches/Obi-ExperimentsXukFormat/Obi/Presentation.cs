@@ -219,34 +219,12 @@ namespace Obi
             }
         }
 
-        private string cachePhraseNode_XUK_ELEMENT_NAME = null;
-        private string cacheSectionNode_XUK_ELEMENT_NAME = null;
-        //private string cacheRootNode_XUK_ELEMENT_NAME = null;
-        //private string cacheEmptyNode_XUK_ELEMENT_NAME = null;
-
         /// <summary>
         /// Create a phrase node belonging to this presentation.
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            if (string.IsNullOrEmpty(cachePhraseNode_XUK_ELEMENT_NAME))
-            {
-                cachePhraseNode_XUK_ELEMENT_NAME = new PhraseNode().XUK_ELEMENT_NAME;
-            }
-            //else if (string.IsNullOrEmpty(cacheRootNode_XUK_ELEMENT_NAME))
-            //{
-            //    cacheRootNode_XUK_ELEMENT_NAME = new RootNode().XUK_ELEMENT_NAME;
-            //}
-            //else if (string.IsNullOrEmpty(cacheEmptyNode_XUK_ELEMENT_NAME))
-            //{
-            //    cacheEmptyNode_XUK_ELEMENT_NAME = new EmptyNode().XUK_ELEMENT_NAME;
-            //}
-            //else if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
-            //{
-            //    cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
-            //}
-
-            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(cachePhraseNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(PhraseNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             node.AddProperty(PropertyFactory.CreateChannelsProperty());
             return node;
         }
@@ -285,11 +263,7 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            if (string.IsNullOrEmpty(cacheSectionNode_XUK_ELEMENT_NAME))
-        {
-            cacheSectionNode_XUK_ELEMENT_NAME = new SectionNode().XUK_ELEMENT_NAME;
-        }
-            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(cacheSectionNode_XUK_ELEMENT_NAME, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(SectionNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
             urakawa.property.channel.ChannelsProperty channelsProperty = PropertyFactory.CreateChannelsProperty();
             node.AddProperty(channelsProperty);
             // Create the text media object for the label with a default label
