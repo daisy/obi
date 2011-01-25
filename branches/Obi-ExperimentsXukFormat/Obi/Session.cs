@@ -418,7 +418,7 @@ namespace Obi
                     string oldDataDir = Presentation.DataProviderManager.DataFileDirectory;
 
                     string dirPath = System.IO.Path.GetDirectoryName(m_BackupProjectFilePath_temp);
-                    string prefix = System.IO.Path.GetFileNameWithoutExtension(m_BackupProjectFilePath_temp);
+                    string prefix = System.IO.Path.GetFileName(m_BackupProjectFilePath_temp);
 
                     Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
                     Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);

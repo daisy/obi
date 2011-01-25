@@ -474,7 +474,7 @@ namespace Obi
                             string oldDataDir = mSession.Presentation.DataProviderManager.DataFileDirectory;
 
                             string dirPath = System.IO.Path.GetDirectoryName(path_new);
-                            string prefix = System.IO.Path.GetFileNameWithoutExtension(path_new);
+                            string prefix = System.IO.Path.GetFileName(path_new);
 
                             mSession.Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
                             mSession.Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
