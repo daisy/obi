@@ -143,8 +143,8 @@ namespace Obi
             urakawa.media.data.audio.ManagedAudioMedia media = view.Presentation.MediaFactory.CreateManagedAudioMedia();
 
             WavAudioMediaData wavData = ((WavAudioMediaData)((PhraseNode)view.Clipboard.Node).Audio.AudioMediaData).Copy(
-                new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000.0))),
-                new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000.0))));//sdk2
+                new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+                new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * Time.TIME_UNIT)));//sdk2
             media.AudioMediaData = wavData;
 
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
@@ -280,8 +280,8 @@ namespace Obi
             urakawa.media.data.audio.ManagedAudioMedia media = view.Presentation.MediaFactory.CreateManagedAudioMedia();
 
             WavAudioMediaData wavData = ((WavAudioMediaData)((PhraseNode)view.Clipboard.Node).Audio.AudioMediaData).Copy(
-            new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000.0))),
-            new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000.0))));//sdk2
+            new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+            new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * Time.TIME_UNIT)));//sdk2
 
             media.AudioMediaData = wavData;
 

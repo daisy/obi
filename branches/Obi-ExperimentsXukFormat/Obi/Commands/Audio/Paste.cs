@@ -30,8 +30,8 @@ namespace Obi.Commands.Audio
                 
                 copy = view.Presentation.MediaFactory.CreateManagedAudioMedia();
                 WavAudioMediaData mediaData = ((WavAudioMediaData)((PhraseNode)clipboard.Node).Audio.AudioMediaData).Copy(
-                    new Time((long)(clipboard.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000))),
-                    new Time((long)(clipboard.AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000)))
+                    new Time((long)(clipboard.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+                    new Time((long)(clipboard.AudioRange.SelectionEndTime * Time.TIME_UNIT))
                     );
                 copy.AudioMediaData = mediaData;
 
@@ -43,12 +43,12 @@ namespace Obi.Commands.Audio
             urakawa.media.data.audio.ManagedAudioMedia after;
             if (selection.AudioRange.HasCursor)
             {
-                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.CursorTime * (Time.TIME_UNIT/1000.0))));
+                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.CursorTime * Time.TIME_UNIT)));
             }
             else
             {
-                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionEndTime * (Time.TIME_UNIT/1000.0))));
-                mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000.0))));
+                after = mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionEndTime * Time.TIME_UNIT)));
+                mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionBeginTime * Time.TIME_UNIT)));
             }
             double begin = mMediaAfter.Duration.AsTimeSpan.TotalMilliseconds;
             mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,

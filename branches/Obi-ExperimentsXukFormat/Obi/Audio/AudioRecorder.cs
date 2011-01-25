@@ -426,7 +426,7 @@ namespace Obi.Audio
 			applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
                         long mPosition = (long)CapturePos;
             CurrentPositionInByte = SampleCount + mPosition;
-            	mCurrentTime = CalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
+            	mCurrentTime = ObiCalculationFunctions.ConvertByteToTime(CurrentPositionInByte, m_SampleRate, m_FrameSize);
 
             
 			LockSize = ReadPos - NextCaptureOffset;
@@ -455,7 +455,7 @@ namespace Obi.Audio
 
             // make update vumeter array length equal to CaptureData length
                 if (CaptureData.Length != arUpdateVM.Length
-                    && CaptureData.Length < CalculationFunctions.ConvertTimeToByte(125 , m_SampleRate, m_FrameSize))
+                    && CaptureData.Length < ObiCalculationFunctions.ConvertTimeToByte(125 , m_SampleRate, m_FrameSize))
                 {
 
                     m_UpdateVMArrayLength = CaptureData.Length;
@@ -499,7 +499,7 @@ namespace Obi.Audio
             
             long mLength = (long)SampleCount;
 
-            mTime = Audio.CalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
+            mTime = Audio.ObiCalculationFunctions.ConvertByteToTime(mLength, m_SampleRate, m_FrameSize );
             m_MutexCaptureData.ReleaseMutex();
 }
 
@@ -550,7 +550,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     applicationBuffer.GetCurrentPosition(out CapturePos, out ReadPos);
                     long mPosition = (long)CapturePos;
                     mPosition = mPosition - NextCaptureOffset;
-                    double TimeDifference = CalculationFunctions.ConvertByteToTime(mPosition, m_SampleRate, m_FrameSize);
+                    double TimeDifference = ObiCalculationFunctions.ConvertByteToTime(mPosition, m_SampleRate, m_FrameSize);
                     return mTime + TimeDifference;
                 }
             }
@@ -580,7 +580,7 @@ void CaptureTimer_Tick(object sender, EventArgs e)
 
                 // following lines added to initialise and set array length forupdating VuMeter
                 m_UpdateVMArrayLength = m_iCaptureBufferSize / 20;
-                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
+                m_UpdateVMArrayLength = Convert.ToInt32(ObiCalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), m_FrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
 
                 m_PrevSampleCount = 0;
@@ -602,13 +602,13 @@ void CaptureTimer_Tick(object sender, EventArgs e)
                     for (int i = 0; i < 4; i++)
                     {
                         Writer.BaseStream.Position = i + 4;
-                        Writer.Write(Convert.ToByte(CalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
+                        Writer.Write(Convert.ToByte(ObiCalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
                     }
                     Audiolength = Audiolength - 36;
                     for (int i = 0; i < 4; i++)
                     {
                         Writer.BaseStream.Position = i + 40;
-                        Writer.Write(Convert.ToByte(CalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
+                        Writer.Write(Convert.ToByte(ObiCalculationFunctions.ConvertFromDecimal(Audiolength)[i]));
                     }
                     Writer.Close();	// Close the file now.
                     //Set the writer to null.

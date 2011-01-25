@@ -96,7 +96,7 @@
     <Compile Include="Audio\AudioFormatConverter.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\CalculationFunctions.cs" />
+    <Compile Include="Audio\ObiCalculationFunctions.cs" />
     <Compile Include="Audio\DataManager.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>

@@ -165,7 +165,7 @@ namespace Obi.Audio
                     if (lCurrentPosition >= mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
                     {//3
                         lCurrentPosition = mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits)  -
-                            Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
+                            Convert.ToInt32(ObiCalculationFunctions.ConvertTimeToByte(100, mSampleRate, mFrameSize));
                     }//-3
                     if (mPrevBytePosition > lCurrentPosition && mFwdRwdRate >= 0) return mPrevBytePosition;
                     mPrevBytePosition = lCurrentPosition;
@@ -175,7 +175,7 @@ namespace Obi.Audio
                     lCurrentPosition = mPausePosition;
                 }//-2
                 if (mFwdRwdRate != 0) lCurrentPosition = m_lChunkStartPosition;
-                lCurrentPosition = CalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
+                lCurrentPosition = ObiCalculationFunctions.AdaptToFrame(lCurrentPosition, mFrameSize);
             }//-1
             return lCurrentPosition;
         }
@@ -298,7 +298,7 @@ namespace Obi.Audio
             get
             {
                 return mCurrentAudio == null ? 0 :
-                    CalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), mSampleRate, mFrameSize);
+                    ObiCalculationFunctions.ConvertByteToTime(GetCurrentBytePosition(), mSampleRate, mFrameSize);
             }
             set
             {
@@ -440,8 +440,8 @@ namespace Obi.Audio
             {
                                 if (asset != null    &&     asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
                 {
-                    long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
-                    lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.PCMFormat.Data.BlockAlign);
+                    long lPosition = ObiCalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
+                    lPosition = ObiCalculationFunctions.AdaptToFrame(lPosition, asset.PCMFormat.Data.BlockAlign);
                     if (lPosition >= 0 && lPosition <=
                         asset.PCMFormat.Data.ConvertTimeToBytes(asset.AudioDuration.AsLocalUnits)
                         )
@@ -468,11 +468,11 @@ namespace Obi.Audio
             if (asset != null && asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
             {
                 long startPosition =
-                    CalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
-                startPosition = CalculationFunctions.AdaptToFrame(startPosition, asset.PCMFormat.Data.BlockAlign);
+                    ObiCalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
+                startPosition = ObiCalculationFunctions.AdaptToFrame(startPosition, asset.PCMFormat.Data.BlockAlign);
                 long endPosition =
-                    CalculationFunctions.ConvertTimeToByte(to, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
-                endPosition = CalculationFunctions.AdaptToFrame(endPosition, asset.PCMFormat.Data.BlockAlign);
+                    ObiCalculationFunctions.ConvertTimeToByte(to, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
+                endPosition = ObiCalculationFunctions.AdaptToFrame(endPosition, asset.PCMFormat.Data.BlockAlign);
                 if (startPosition >= 0 && startPosition < endPosition && endPosition <=
                     asset.PCMFormat.Data.ConvertTimeToBytes(asset.AudioDuration.AsLocalUnits)
                     )
@@ -495,7 +495,7 @@ namespace Obi.Audio
         private long BytePositionFromTime(double time, PCMFormatInfo info)
         {
             ushort align = info.Data.BlockAlign;
-            return CalculationFunctions.AdaptToFrame(CalculationFunctions.ConvertTimeToByte(time, (int)info.Data.SampleRate, align), align);
+            return ObiCalculationFunctions.AdaptToFrame(ObiCalculationFunctions.ConvertTimeToByte(time, (int)info.Data.SampleRate, align), align);
         }
 
         /// <summary>
@@ -511,10 +511,10 @@ namespace Obi.Audio
             {
                 if (   asset != null  &&    asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
                 {
-                    long lStartPosition = CalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
-                    lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.PCMFormat.Data.BlockAlign);
-                    long lEndPosition = CalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
-                    lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, asset.PCMFormat.Data.BlockAlign);
+                    long lStartPosition = ObiCalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
+                    lStartPosition = ObiCalculationFunctions.AdaptToFrame(lStartPosition, asset.PCMFormat.Data.BlockAlign);
+                    long lEndPosition = ObiCalculationFunctions.ConvertTimeToByte(timeTo, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
+                    lEndPosition = ObiCalculationFunctions.AdaptToFrame(lEndPosition, asset.PCMFormat.Data.BlockAlign);
                     // check for valid arguments
                     if (lStartPosition < 0) lStartPosition = 0;
 
@@ -531,7 +531,7 @@ namespace Obi.Audio
                         InitPlay(asset, lStartPosition, lEndPosition);
 
                         if (RestoreTime >= 0 && RestoreTime < asset.AudioDuration.AsTimeSpan.TotalMilliseconds)
-                            m_PreviewStartPosition = CalculationFunctions.ConvertTimeToByte(RestoreTime, (int)mSampleRate, mFrameSize);
+                            m_PreviewStartPosition = ObiCalculationFunctions.ConvertTimeToByte(RestoreTime, (int)mSampleRate, mFrameSize);
                         else
                             m_PreviewStartPosition = 0;
 
@@ -620,7 +620,7 @@ namespace Obi.Audio
 
                 // calculate the size of VuMeter Update array length
                 m_UpdateVMArrayLength = m_SizeBuffer / 20;
-                m_UpdateVMArrayLength = Convert.ToInt32(CalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
+                m_UpdateVMArrayLength = Convert.ToInt32(ObiCalculationFunctions.AdaptToFrame(Convert.ToInt32(m_UpdateVMArrayLength), mFrameSize));
                 arUpdateVM = new byte[m_UpdateVMArrayLength];
                 // reset the VuMeter (if set)
                 if (ResetVuMeter != null)
@@ -653,8 +653,8 @@ namespace Obi.Audio
             if (mState != AudioPlayerState.Playing)
             {
                 // Adjust the start and end position according to frame size
-                lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
-                lEndPosition = CalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
+                lStartPosition = ObiCalculationFunctions.AdaptToFrame(lStartPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
+                lEndPosition = ObiCalculationFunctions.AdaptToFrame(lEndPosition, mCurrentAudio.PCMFormat.Data.BlockAlign);
                 mSampleRate = (int)mCurrentAudio.PCMFormat.Data.SampleRate;
                 
                 // lEndPosition = 0 means that file is played to end
@@ -720,7 +720,7 @@ namespace Obi.Audio
             int ReadPosition;
 
             // variable to prevent least count errors in clip end time
-            long SafeMargin = CalculationFunctions.ConvertTimeToByte(1, mSampleRate, mFrameSize);
+            long SafeMargin = ObiCalculationFunctions.ConvertTimeToByte(1, mSampleRate, mFrameSize);
 
 
             while (m_lPlayed < (m_lLength - SafeMargin))
@@ -783,7 +783,7 @@ namespace Obi.Audio
 
             int CurrentPlayPosition;
             CurrentPlayPosition = mSoundBuffer.PlayPosition;
-            int StopMargin = Convert.ToInt32(CalculationFunctions.ConvertTimeToByte(70, mSampleRate, mFrameSize));
+            int StopMargin = Convert.ToInt32(ObiCalculationFunctions.ConvertTimeToByte(70, mSampleRate, mFrameSize));
             StopMargin = (int)(StopMargin * m_fFastPlayFactor);
 
             if (mBufferStopPosition < StopMargin)
@@ -946,8 +946,8 @@ namespace Obi.Audio
             			if ( State.Equals(AudioPlayerState.Paused))
 			{
                 
-                long lPosition = CalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
-                long lEndPosition = CalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
+                long lPosition = ObiCalculationFunctions.AdaptToFrame( mPausePosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
+                long lEndPosition = ObiCalculationFunctions.AdaptToFrame( m_lResumeToPosition , mCurrentAudio.PCMFormat.Data.BlockAlign);
 
                 if (lPosition >= 0 && lPosition < mCurrentAudio.PCMFormat.Data.ConvertTimeToBytes(mCurrentAudio.AudioDuration.AsLocalUnits))
                 {
@@ -1032,7 +1032,7 @@ namespace Obi.Audio
         // Set the current time position in milliseconds
 		private void SetCurrentTimePosition(double timeMs) 
 		{
-            SetCurrentBytePosition(CalculationFunctions.ConvertTimeToByte(timeMs, mSampleRate, mFrameSize));
+            SetCurrentBytePosition(ObiCalculationFunctions.ConvertTimeToByte(timeMs, mSampleRate, mFrameSize));
 		}
 
 
@@ -1083,9 +1083,9 @@ namespace Obi.Audio
         { //1
             
             double StepInMs = Math.Abs( 4000 * mFwdRwdRate   ) ;
-            long lStepInBytes = CalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
+            long lStepInBytes = ObiCalculationFunctions.ConvertTimeToByte(StepInMs, (int)  mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
             int PlayChunkLength = 1200;
-            long lPlayChunkLength = CalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
+            long lPlayChunkLength = ObiCalculationFunctions.ConvertTimeToByte( PlayChunkLength , (int)mCurrentAudio.PCMFormat.Data.SampleRate, mCurrentAudio.PCMFormat.Data.BlockAlign);
             mPreviewTimer.Interval = PlayChunkLength + 50;
 
             long PlayStartPos = 0;

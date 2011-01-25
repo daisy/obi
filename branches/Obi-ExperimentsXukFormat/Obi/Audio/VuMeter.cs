@@ -187,7 +187,7 @@ namespace Obi.Audio
 			mChannels = Recorder.Channels ;
             m_SamplingRate = Recorder.SampleRate;
             m_UpdateVMArrayLength =  Recorder.m_UpdateVMArrayLength / 2 ;
-                        m_UpdateVMArrayLength = (int) CalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
+                        m_UpdateVMArrayLength = (int) ObiCalculationFunctions.AdaptToFrame(m_UpdateVMArrayLength, m_FrameSize);
 
                         m_RecorderArray = new byte[2 * m_UpdateVMArrayLength];
                         Array.Copy(Recorder.arUpdateVM, m_RecorderArray ,m_RecorderArray.Length );
