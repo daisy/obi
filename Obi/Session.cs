@@ -196,8 +196,8 @@ namespace Obi
             newPres.Project = mProject;
             newPres.RootUri = obiProjectDirectory;
 
-            if (!String.IsNullOrEmpty(parentDirectory))
-                newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(parentDirectory);
+            //if (!String.IsNullOrEmpty(parentDirectory))
+            newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
 
             if (newPres.IsPrettyFormat())
             {

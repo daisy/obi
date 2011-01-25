@@ -618,7 +618,7 @@ namespace Obi
 
                     if (true) //delete definitively
                     {
-                        foreach (string filePath in Directory.GetFiles(dataFolderPath))
+                        foreach (string filePath in Directory.GetFiles(deletedDataFolderPath))
                     {
                         File.Delete(filePath);
                     }
