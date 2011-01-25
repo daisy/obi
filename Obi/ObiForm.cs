@@ -476,7 +476,9 @@ namespace Obi
                             string dirPath = System.IO.Path.GetDirectoryName(path_new);
                             string prefix = System.IO.Path.GetFileName(path_new);
 
-                            mSession.Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+                                //TODO: it would be good for Obi to separate Data folder based on project file name,
+                                //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+                            //mSession.Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
                             mSession.Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
 
                                 mSession.Save ( path_new );
