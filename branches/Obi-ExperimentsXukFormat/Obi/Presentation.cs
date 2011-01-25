@@ -18,8 +18,8 @@ namespace Obi
 {
     public class ObiPresentation : Presentation
     {
-        public const string XUK_NS = DataModelFactory.NS;
-        public static string XukString = typeof(ObiPresentation).Name;
+        public static readonly string XUK_NS = DataModelFactory.NS;
+        public static readonly string XukString = typeof(ObiPresentation).Name;
         public override string GetTypeNameFormatted()
         {
             return XukString;

@@ -15,9 +15,11 @@ namespace Obi
     /// </summary>
     public class EmptyNode: ObiNode
     {
-        public static string XukString = "empty";
-        // name of the element in the XUK file
-        public override string XUK_ELEMENT_NAME { get { return EmptyNode.XukString; } }
+        public new static string XukString = "empty";
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
 
         private Role mRole;              // this node's kind
         private string mCustomRole;      // custom role name

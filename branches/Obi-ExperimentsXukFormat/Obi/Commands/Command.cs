@@ -11,8 +11,8 @@ namespace Obi.Commands
 {
     public abstract class Command: urakawa.command.Command
     {
-        public const string XUK_NS = DataModelFactory.NS;
-        public static string XukString = typeof(Command).Name;
+        public static readonly string XUK_NS = DataModelFactory.NS;
+        public static readonly string XukString = typeof(Command).Name;
         public override string GetTypeNameFormatted()
         {
             return XukString;
