@@ -16,7 +16,7 @@ namespace Obi
     /// </summary>
     public abstract class ObiNode : TreeNode
     {
-        public static readonly string XUK_NS = DataModelFactory.NS;//sdk2
+        public new static readonly string XUK_NS = DataModelFactory.NS;//sdk2
         public static readonly string XukString = typeof(ObiNode).Name;
         public override string GetTypeNameFormatted()
         {
