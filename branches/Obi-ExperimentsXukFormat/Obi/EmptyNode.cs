@@ -21,6 +21,7 @@ namespace Obi
             return XukString;
         }
 
+        public override string XmlPropertyString { get { return "p";} } 
         private Role mRole;              // this node's kind
         private string mCustomRole;      // custom role name
         private PageNumber mPageNumber;  // page number
