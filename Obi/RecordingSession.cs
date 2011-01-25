@@ -8,6 +8,7 @@ using Obi.Events.Audio.Recorder;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
 using urakawa.media.data.audio.codec;
+using urakawa.media.timing;
 
 
 namespace Obi
@@ -158,7 +159,7 @@ namespace Obi
                     {
                     if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.TotalMilliseconds)
                         {
-                        ManagedAudioMedia split = mSessionMedia.Split ( new urakawa.media.timing.Time (Convert.ToInt64  (mPhraseMarks[i]*1000) ) );
+                            ManagedAudioMedia split = mSessionMedia.Split(new Time(Convert.ToInt64(mPhraseMarks[i] * Time.TIME_UNIT)));
                         mAudioList.Insert ( mSessionOffset, split );
                         }
                     else

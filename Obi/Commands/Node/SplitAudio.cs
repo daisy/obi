@@ -21,7 +21,7 @@ namespace Obi.Commands.Node
         {
             mNode = node;
             mNodeAfter = view.Presentation.CreatePhraseNode();
-            mSplitTime = new Time((long)(time * (Time.TIME_UNIT / 1000.0)));
+            mSplitTime = new Time((long)(time * Time.TIME_UNIT));
             SetDescriptions(Localizer.Message("split_phrase"));
         }
 

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 using urakawa.media.data;
 using  urakawa.media.data.audio ;
+using urakawa.media.timing;
 
 
 namespace Obi.Audio
@@ -89,8 +90,8 @@ namespace Obi.Audio
 
         public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
         {
-            long lGapLength = CalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
-            long lBefore = CalculationFunctions.ConvertTimeToByte(before, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
+            long lGapLength = ObiCalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
+            long lBefore = ObiCalculationFunctions.ConvertTimeToByte(before, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
             return ApplyPhraseDetection(audio, threshold, lGapLength, lBefore);
         }
 
@@ -98,8 +99,8 @@ namespace Obi.Audio
         private static  List<ManagedAudioMedia> ApplyPhraseDetection(ManagedAudioMedia ManagedAsset, long threshold, long GapLength, long before)
         {
             m_AudioAsset = ManagedAsset.AudioMediaData;
-            GapLength = CalculationFunctions.AdaptToFrame(GapLength, m_AudioAsset.PCMFormat.Data.BlockAlign);
-            before = CalculationFunctions.AdaptToFrame(before , m_AudioAsset.PCMFormat.Data.BlockAlign);
+            GapLength = ObiCalculationFunctions.AdaptToFrame(GapLength, m_AudioAsset.PCMFormat.Data.BlockAlign);
+            before = ObiCalculationFunctions.AdaptToFrame(before , m_AudioAsset.PCMFormat.Data.BlockAlign);
 
             int Block = 0;
 
@@ -126,9 +127,9 @@ namespace Obi.Audio
 
 
             double BlockTime = 25; // milliseconds
-            double BeforePhraseInMS = CalculationFunctions.ConvertByteToTime(before , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign);
+            double BeforePhraseInMS = ObiCalculationFunctions.ConvertByteToTime(before , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign);
 
-            lCountSilGap = Convert.ToInt64(CalculationFunctions.ConvertByteToTime(GapLength , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign) / BlockTime);
+            lCountSilGap = Convert.ToInt64(ObiCalculationFunctions.ConvertByteToTime(GapLength , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign) / BlockTime);
 
             long Iterations = Convert.ToInt64(m_AudioAsset.AudioDuration.AsTimeSpan.TotalMilliseconds/ BlockTime);
             long SampleCount = Convert.ToInt64(m_AudioAsset.PCMFormat.Data.SampleRate/ (1000 / BlockTime));
@@ -185,7 +186,7 @@ namespace Obi.Audio
 
                         // changing following time calculations to reduce concatination of rounding off errors 
                         //alPhrases.Add(((j - Counter) * BlockTime) - BeforePhraseInMS);
-                        double phraseMarkTime = CalculationFunctions.ConvertByteToTime (Convert.ToInt64(errorCompensatingCoefficient  * (j - Counter)) * SampleCount * m_AudioAsset.PCMFormat.Data.BlockAlign,
+                        double phraseMarkTime = ObiCalculationFunctions.ConvertByteToTime (Convert.ToInt64(errorCompensatingCoefficient  * (j - Counter)) * SampleCount * m_AudioAsset.PCMFormat.Data.BlockAlign,
                             (int) m_AudioAsset.PCMFormat.Data.SampleRate,
                             (int) m_AudioAsset.PCMFormat.Data.BlockAlign);
                         alPhrases.Add ( phraseMarkTime - BeforePhraseInMS );
@@ -212,7 +213,7 @@ namespace Obi.Audio
             {
                 for (int i = alPhrases.Count-1   ; i >= 0 ; i-- )
                 {
-                    ManagedAudioMedia splitAsset = ManagedAsset.Split(new urakawa.media.timing.Time(Convert.ToInt64(alPhrases[i]) * 1000));
+                    ManagedAudioMedia splitAsset = ManagedAsset.Split(new Time(Convert.ToInt64(alPhrases[i]) * Time.TIME_UNIT));
                                         //ManagedAsset.MediaData.getMediaDataManager().addMediaData(splitAsset.MediaData);
                     ReturnList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());

@@ -9,6 +9,7 @@ using urakawa.command;
 using urakawa.data;
 using urakawa.media;
 using urakawa.media.data.audio;
+using urakawa.media.timing;
 using urakawa.metadata;
 using urakawa.property.channel;
 //using urakawa.publish;
@@ -475,8 +476,7 @@ namespace Obi
             List<ManagedAudioMedia> audioMediaList = new List<ManagedAudioMedia>(phrases);
             for (double time = lastPhraseBegin; time > 0.0; time -= durationMs)
             {
-                long timeInLocalUnits = (long)(time*(urakawa.media.timing.Time.TIME_UNIT/1000));
-                audioMediaList.Insert(0, media.Split(new urakawa.media.timing.Time(timeInLocalUnits)));
+                audioMediaList.Insert(0, media.Split(new Time((long)(time * Time.TIME_UNIT))));
             }
             audioMediaList.Insert(0, media);
             return audioMediaList;

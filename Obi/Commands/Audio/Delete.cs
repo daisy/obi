@@ -23,8 +23,8 @@ namespace Obi.Commands.Audio
             mNode = (PhraseNode)view.Selection.Node;
             mHasAudioAfterDeleted =
                 ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsTimeSpan.TotalMilliseconds;
-            mSplitTimeBegin = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime * (Time.TIME_UNIT/1000)));
-            mSplitTimeEnd = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionEndTime * (Time.TIME_UNIT / 1000)));
+            mSplitTimeBegin = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime * Time.TIME_UNIT));
+            mSplitTimeEnd = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionEndTime * Time.TIME_UNIT));
             mSelectionAfter = mHasAudioAfterDeleted ?
                 new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.AsTimeSpan.TotalMilliseconds)) :
                 new NodeSelection(mNode, view.Selection.Control);
