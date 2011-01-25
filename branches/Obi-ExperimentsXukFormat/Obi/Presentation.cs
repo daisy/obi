@@ -554,7 +554,7 @@ namespace Obi
                             if (format == Obi.Export.ExportFormat.DAISY3_0)
                             {
                                 //sdk2-todo use UrakawaSDK.daisy export feature
-                                ConvertXukToZed(exportPath, xukPath, XukString);
+                                ConvertXukToZed(exportPath, xukPath, GenerateXukString );//sdk2
                             }
                             else
                             {
@@ -681,7 +681,6 @@ namespace Obi
         }
 
         // Convert the XUK output of the project to Z.
-        //sdk2
         private void ConvertXukToZed(string outputDir, string xukPath, string exported)
         {
             Export.Z z = new Export.Z();
