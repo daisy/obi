@@ -147,7 +147,7 @@ namespace Obi
         public override void Insert(ObiNode node, int index)
         {
             index = node is EmptyNode ? index < 0 ? FirstSectionIndex + index : index :
-                                        index < 0 ? Children.Count + index : index + FirstSectionIndex;
+                index < 0 ? Children.Count + index : index + (this.SectionChildCount==0?0: FirstSectionIndex );
             ((TreeNode)this).Insert(node, index);
             if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Heading) DidSetHeading((PhraseNode)node);
         }
