@@ -711,7 +711,7 @@ namespace Obi
                 return n != null ? ((EmptyNode)n).PageNumber.NextPageNumber() : new PageNumber(1);
             }
         }
-        public static readonly bool UseXukFormat = true;
+        public static readonly bool UseXukFormat = false;
 
         /// <summary>
         /// Find the page number following the one for this node. If the node doesn't have a number,
