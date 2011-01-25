@@ -12,9 +12,11 @@ namespace Obi
     /// </summary>
     public class SectionNode : ObiNode
     {
-        public static string XukString = "section";
-        // name of the element in the XUK file
-        public override string XUK_ELEMENT_NAME { get { return SectionNode.XukString; } }
+        public new static string XukString = "section";
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
 
         private EmptyNode mHeading = null;  // section heading
 

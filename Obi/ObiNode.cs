@@ -16,11 +16,11 @@ namespace Obi
     /// </summary>
     public abstract class ObiNode : TreeNode
     {
-        public const string XUK_NS = DataModelFactory.NS;//sdk2
-        public abstract string XUK_ELEMENT_NAME { get; }
+        public static readonly string XUK_NS = DataModelFactory.NS;//sdk2
+        public static readonly string XukString = typeof(ObiNode).Name;
         public override string GetTypeNameFormatted()
         {
-            return XUK_ELEMENT_NAME;
+            return XukString;
         }
 
         private bool mUsed;  // mark node as being in use or not
@@ -327,9 +327,11 @@ namespace Obi
     // sdk2
     public class ObiRootNode : ObiNode
     {
-        public static string XukString = "root";
-        // name of the element in the XUK file
-        public override string XUK_ELEMENT_NAME { get { return ObiRootNode.XukString; } }
+        public new static string XukString = "root";
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
 
         private string mPrimaryExportDirectory = "";
 
