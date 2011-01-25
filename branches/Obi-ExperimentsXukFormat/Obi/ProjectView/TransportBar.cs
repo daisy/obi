@@ -415,12 +415,12 @@ namespace Obi.ProjectView
         public bool MarkSelectionToCursor()
         {
             if ((mPlayer.State == Obi.Audio.AudioPlayerState.Playing || mPlayer.State == Obi.Audio.AudioPlayerState.Paused) &&
-                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds)
+                mCurrentPlaylist.CurrentTimeInAsset < mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds)
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(mCurrentPlaylist.CurrentTimeInAsset,
-                        mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds));
+                        mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds));
                 return true;
             }
             else if (CurrentState == State.Stopped && mView.Selection != null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor)
@@ -428,7 +428,7 @@ namespace Obi.ProjectView
                 double time = ((AudioSelection)mView.Selection).AudioRange.CursorTime;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                     new AudioRange(time ,
-                        ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.Milliseconds));
+                        ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.TotalMilliseconds));
                 return true;
             }
             return false;
@@ -443,13 +443,13 @@ namespace Obi.ProjectView
             {
                 mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.Milliseconds));
+                    new AudioRange(0.0, mCurrentPlaylist.CurrentPhrase.Audio.Duration.AsTimeSpan.TotalMilliseconds));
                 return true;
             }
             else if (mState == State.Stopped && mView.Selection != null && mView.Selection.Node is PhraseNode)
             {
                 mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
-                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.Milliseconds));
+                    new AudioRange(0.0, ((PhraseNode)mView.Selection.Node).Audio.Duration.AsTimeSpan.TotalMilliseconds));
                 return true;
             }
             return false;
@@ -2046,8 +2046,8 @@ namespace Obi.ProjectView
                 from = 0.0;
             }
             double end = from + duration;
-            if (end > audioData.AudioDuration.AsTimeSpan.Milliseconds)
-                end = audioData.AudioDuration.AsTimeSpan.Milliseconds;
+            if (end > audioData.AudioDuration.AsTimeSpan.TotalMilliseconds)
+                end = audioData.AudioDuration.AsTimeSpan.TotalMilliseconds;
 
             if (from >= end) return;
             //mPlayer.PlayPreview(audioData, from, end, forward ? from : end);
