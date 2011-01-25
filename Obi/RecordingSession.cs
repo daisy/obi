@@ -156,7 +156,7 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                    if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.Milliseconds)
+                    if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.TotalMilliseconds)
                         {
                         ManagedAudioMedia split = mSessionMedia.Split ( new urakawa.media.timing.Time (Convert.ToInt64  (mPhraseMarks[i]*1000) ) );
                         mAudioList.Insert ( mSessionOffset, split );

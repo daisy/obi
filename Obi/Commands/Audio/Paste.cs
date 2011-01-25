@@ -50,9 +50,9 @@ namespace Obi.Commands.Audio
                 after = mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionEndTime * (Time.TIME_UNIT/1000.0))));
                 mMediaAfter.Split(new Time((long)(selection.AudioRange.SelectionBeginTime * (Time.TIME_UNIT / 1000.0))));
             }
-            double begin = mMediaAfter.Duration.AsTimeSpan.Milliseconds;
+            double begin = mMediaAfter.Duration.AsTimeSpan.TotalMilliseconds;
             mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
-                new AudioRange(begin, begin + copy.Duration.AsTimeSpan.Milliseconds));
+                new AudioRange(begin, begin + copy.Duration.AsTimeSpan.TotalMilliseconds));
             mMediaAfter.AudioMediaData.MergeWith(copy.AudioMediaData);
             mMediaAfter.AudioMediaData.MergeWith(after.AudioMediaData);
             SetDescriptions(Localizer.Message("paste_audio"));

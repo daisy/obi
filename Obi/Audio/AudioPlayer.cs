@@ -417,7 +417,7 @@ namespace Obi.Audio
             {
                 mStartPosition = 0;
 
-                if (asset != null       &&   asset.AudioDuration.AsTimeSpan.Milliseconds != 0)
+                if (asset != null       &&   asset.AudioDuration.AsTimeSpan.TotalMilliseconds != 0)
                     InitPlay(asset ,  0, 0);
                 else
                     SimulateEmptyAssetPlaying();
@@ -438,7 +438,7 @@ namespace Obi.Audio
                         // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                                if (asset != null    &&     asset.AudioDuration.AsTimeSpan.Milliseconds > 0)
+                                if (asset != null    &&     asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
                 {
                     long lPosition = CalculationFunctions.ConvertTimeToByte(timeFrom, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
                     lPosition = CalculationFunctions.AdaptToFrame(lPosition, asset.PCMFormat.Data.BlockAlign);
@@ -465,7 +465,7 @@ namespace Obi.Audio
         public void Play(AudioMediaData asset, double from, double to)
         {
             System.Diagnostics.Debug.Assert(mState == AudioPlayerState.Stopped || mState == AudioPlayerState.Paused, "Already playing?!");
-            if (asset != null && asset.AudioDuration.AsTimeSpan.Milliseconds > 0)
+            if (asset != null && asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
             {
                 long startPosition =
                     CalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
@@ -509,7 +509,7 @@ namespace Obi.Audio
             // it is public function so API state will be used
             if (State == AudioPlayerState.Stopped || State == AudioPlayerState.Paused)
             {
-                if (   asset != null  &&    asset.AudioDuration.AsTimeSpan.Milliseconds > 0)
+                if (   asset != null  &&    asset.AudioDuration.AsTimeSpan.TotalMilliseconds > 0)
                 {
                     long lStartPosition = CalculationFunctions.ConvertTimeToByte(from, (int)asset.PCMFormat.Data.SampleRate, asset.PCMFormat.Data.BlockAlign);
                     lStartPosition = CalculationFunctions.AdaptToFrame(lStartPosition, asset.PCMFormat.Data.BlockAlign);
@@ -530,7 +530,7 @@ namespace Obi.Audio
                             
                         InitPlay(asset, lStartPosition, lEndPosition);
 
-                        if (RestoreTime >= 0 && RestoreTime < asset.AudioDuration.AsTimeSpan.Milliseconds)
+                        if (RestoreTime >= 0 && RestoreTime < asset.AudioDuration.AsTimeSpan.TotalMilliseconds)
                             m_PreviewStartPosition = CalculationFunctions.ConvertTimeToByte(RestoreTime, (int)mSampleRate, mFrameSize);
                         else
                             m_PreviewStartPosition = 0;

@@ -23,7 +23,7 @@ namespace Obi.Commands.Node
         {
             mNode = node;
             mNextNode = next;
-            mSplitTime = new urakawa.media.timing.Time(mNode.Audio.Duration.AsTimeSpan.Milliseconds);
+            mSplitTime = new urakawa.media.timing.Time(mNode.Audio.Duration.AsTimeSpan);
             m_IsNextNodeRooted = mNextNode.IsRooted;
         }
 

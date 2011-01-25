@@ -607,7 +607,7 @@ namespace Obi.ProjectView
                 PhraseNode deleted = delete is Commands.Audio.Delete ?
                     ((Commands.Audio.Delete)delete).Deleted : (PhraseNode)Selection.Node;
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Audio.Copy ( this, deleted,
-                    new AudioRange ( 0.0, deleted.Audio.Duration.AsTimeSpan.Milliseconds ) ) );
+                    new AudioRange ( 0.0, deleted.Audio.Duration.AsTimeSpan.TotalMilliseconds ) ) );
                 command.ChildCommands.Insert(command.ChildCommands.Count, delete );
                 mPresentation.Do ( command );
                 }
