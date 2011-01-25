@@ -18,6 +18,7 @@ namespace Obi
             return XukString;
         }
 
+        public override string XmlPropertyString { get { return "level"; } } 
         private EmptyNode mHeading = null;  // section heading
 
 

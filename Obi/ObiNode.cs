@@ -22,6 +22,7 @@ namespace Obi
         {
             return XukString;
         }
+        public abstract string XmlPropertyString { get; } 
 
         private bool mUsed;  // mark node as being in use or not
 
@@ -263,7 +264,7 @@ namespace Obi
             {
                 xmlProp = Presentation.PropertyFactory.CreateXmlProperty();
                 this.AddProperty(xmlProp);
-                xmlProp.SetQName(XukLocalName, XukNamespaceUri);
+                xmlProp.SetQName(XmlPropertyString, XukNamespaceUri);
             }
             return xmlProp;
         }
@@ -333,7 +334,10 @@ namespace Obi
             return XukString;
         }
 
+        public override string XmlPropertyString { get { return "dtbook";} }
+
         private string mPrimaryExportDirectory = "";
+            
 
         public ObiRootNode() : base()
         {
