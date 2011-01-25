@@ -196,8 +196,9 @@ namespace Obi
             newPres.Project = mProject;
             newPres.RootUri = obiProjectDirectory;
 
-            //if (!String.IsNullOrEmpty(parentDirectory))
-            newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
+            //TODO: it would be good for Obi to separate Data folder based on project file name,
+            //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+            //newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
 
             if (newPres.IsPrettyFormat())
             {
@@ -420,7 +421,10 @@ namespace Obi
                     string dirPath = System.IO.Path.GetDirectoryName(m_BackupProjectFilePath_temp);
                     string prefix = System.IO.Path.GetFileName(m_BackupProjectFilePath_temp);
 
-                    Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+
+                    //TODO: it would be good for Obi to separate Data folder based on project file name,
+                    //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+                    //Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
                     Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
 
 
