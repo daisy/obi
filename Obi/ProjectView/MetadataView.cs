@@ -171,7 +171,9 @@ namespace Obi.ProjectView
                 items.Sort ( delegate ( urakawa.metadata.Metadata a, urakawa.metadata.Metadata b )
                 {
                     int names = a.NameContentAttribute.Name.CompareTo(b.NameContentAttribute.Name);
-                    return names == 0 ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value) : names;
+                    return names == 0 && a.NameContentAttribute.Value != null && b.NameContentAttribute.Value != null
+                        ? a.NameContentAttribute.Value.CompareTo(b.NameContentAttribute.Value)
+                        : names;
                 } );
                 string itemToRemove = "";
                 List<string> ExistingItemsList = new List<string> ();
