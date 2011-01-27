@@ -1467,13 +1467,13 @@ namespace Obi.ProjectView
                         new Commands.Node.AddNode(mView, section, afterSection.ParentAs<ObiNode>(), afterSection.Index + 1);
                     addSection.UpdateSelection = false;
                     add = mView.Presentation.CreateCompositeCommand(addSection.ShortDescription);
-                    ((CompositeCommand)add).ChildCommands.Insert(command.ChildCommands.Count, addSection);
+                    ((CompositeCommand)add).ChildCommands.Insert(((CompositeCommand)add).ChildCommands.Count, addSection);
                     for (int i = afterSection.SectionChildCount - 1; i >= 0; --i)
                     {
                         SectionNode child = afterSection.SectionChild(i);
                         Commands.Node.Delete delete = new Commands.Node.Delete(mView, child);
                         delete.UpdateSelection = false;
-                        ((CompositeCommand)add).ChildCommands.Insert(command.ChildCommands.Count, delete);
+                        ((CompositeCommand)add).ChildCommands.Insert(((CompositeCommand)add).ChildCommands.Count, delete);
                         Commands.Node.AddNode readd = new Commands.Node.AddNode(mView, child, section, 0);
                         readd.UpdateSelection = false;
                         ((CompositeCommand)add).ChildCommands.Insert(((CompositeCommand)add).ChildCommands.Count,  readd);
