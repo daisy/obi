@@ -939,10 +939,10 @@ namespace Obi.ProjectView
                     command.ShortDescription =  delete.ShortDescription;
                     for (int i = 0; i < next.SectionChildCount; ++i)
                         {
-                        deleteCommand.ChildCommands.Insert(command.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
+                        deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
                         }
                     delete.ProgressPercentage = 100;
-                    deleteCommand.ChildCommands.Insert(command.ChildCommands.Count, delete );
+                    deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, delete );
                     command.ChildCommands.Insert(command.ChildCommands.Count, deleteCommand );//
                     }
                 else
