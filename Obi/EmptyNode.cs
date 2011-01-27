@@ -138,9 +138,9 @@ namespace Obi
         /// <summary>
         /// Copy the node.
         /// </summary>
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        protected override TreeNode CopyProtected(bool deep, bool inclProperties)
         {
-            EmptyNode copy = (EmptyNode)base.copyProtected(deep, inclProperties);
+            EmptyNode copy = (EmptyNode)base.CopyProtected(deep, inclProperties);
             copy.CopyAttributes(this);
             return copy;
         }

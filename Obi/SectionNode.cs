@@ -66,9 +66,9 @@ namespace Obi
         }
 
         // Copy the section and its contents (shallow)
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        protected override TreeNode CopyProtected(bool deep, bool inclProperties)
         {
-            SectionNode copy = (SectionNode)base.copyProtected(deep, inclProperties);
+            SectionNode copy = (SectionNode)base.CopyProtected(deep, inclProperties);
             // Even when doing a shallow copy, we still should copy children (!)
             if (!deep)
             {

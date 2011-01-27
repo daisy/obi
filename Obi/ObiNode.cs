@@ -303,7 +303,7 @@ namespace Obi
         /// <summary>
         /// Copy the used flag as well as properties.
         /// </summary>
-        protected virtual TreeNode copyProtected(bool deep, bool inclProperties)
+        protected override TreeNode CopyProtected(bool deep, bool inclProperties)
         {
             ObiNode copy = (ObiNode)base.CopyProtected(deep, inclProperties);
             copy.mUsed = mUsed;
