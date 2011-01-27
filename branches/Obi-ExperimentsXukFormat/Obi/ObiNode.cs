@@ -163,7 +163,7 @@ namespace Obi
         public void InsertAfter(ObiNode node, ObiNode anchor)
         {
             int index = Children.IndexOf(anchor);
-            Children.Insert(index + 1, node);
+            base.Insert(node, index + 1);
         }
         public void InsertAfterSelf(ObiNode node)
         {
@@ -172,7 +172,7 @@ namespace Obi
         public void InsertBefore(ObiNode node, ObiNode anchor)
         {
             int index = Children.IndexOf(anchor);
-            Children.Insert(index, node);
+            base.Insert(node, index);
         }
         public void RemoveChild(ObiNode child)
         {
