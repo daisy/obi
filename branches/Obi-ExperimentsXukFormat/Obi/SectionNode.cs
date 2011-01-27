@@ -42,7 +42,7 @@ namespace Obi
         public override void AppendChild(ObiNode node)
         {
             int index = node is EmptyNode ? FirstSectionIndex : Children.Count;
-            Insert(node, index);
+            ((TreeNode)this).Insert(node, index);
         }
 
         /// <summary>
