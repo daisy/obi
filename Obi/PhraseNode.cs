@@ -55,7 +55,7 @@ namespace Obi
         {
             if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
             if (index < 0) index += Children.Count;
-            Children.Insert(index, node);
+            ((TreeNode)this).Insert(node, index);
         }
 
         /// <summary>
