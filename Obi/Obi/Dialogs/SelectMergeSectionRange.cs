@@ -17,7 +17,7 @@ namespace Obi.Dialogs
         List<int> m_RemainingIndexes = new List<int>();
         private int m_SelectedIndex;
         private bool m_IsDeselected = false;
-               
+       
         public SelectMergeSectionRange()
         {
             InitializeComponent();
@@ -51,14 +51,20 @@ namespace Obi.Dialogs
                 }
             } 
             m_SelectedSectionList = listBoxSelectionIsContinuous();
-        
-               if (m_SelectedSectionList != null)
-               {
-                   DialogResult = DialogResult.OK;
-                   Close();
-               }
-               else
-                   return;                  
+
+            if (m_SelectedSectionList != null)
+            {
+                if (m_SelectedSectionList.Count < 1)
+                {
+                    MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
+                    return;
+                }
+                MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", m_SelectedSectionList[0].Label, m_SelectedSectionList[m_SelectedSectionList.Count - 1].Label));
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+                return;               
         }
 
         private void m_btn_Cancel_Click(object sender, EventArgs e)
@@ -113,11 +119,10 @@ namespace Obi.Dialogs
                          }
                          else if (totalPhraseCount > 7000)
                              m_StatusLabelForMergeSection.Text = String.Format("Total number of phrases is {0}.It should be less than 7000", totalPhraseCount);
-                     }*/
-
-                if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
-                    m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
+                     }*/                                  
             }
+            if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
+                m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
             m_IsDeselected = false;
         }
 
@@ -130,32 +135,43 @@ namespace Obi.Dialogs
             List<int> indexOfSublist = new List<int>();
             List<int> listOfIndexOfLargestNumberOfSection = new List<int>();
             m_RemainingIndexes.Clear();
-          
-            
-           for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count -1; i++)
-           {
-               int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
-               if ((m_lb_listofSectionsToMerge.SelectedIndices[i] == m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1))
-               {                   
-                   if (j == 0)
-                   {
-                       indexOfSublist.Add(k);
-                       indexOfSublist.Add(k + 1);
-                       j++;
-                   }
-                   else
-                       indexOfSublist.Add(k + 1);
-               }
-              else
-               {
-                   if (indexOfSublist.Count > 0)
-                       m_ListOfContinuousItems.Add(indexOfSublist);
-                   indexOfSublist = new List<int>();
-                   j = 0;
-               }
-               if (indexOfSublist.Count > 0)
-                   m_ListOfContinuousItems.Add(indexOfSublist);
-           }
+
+            if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 1)
+            {
+                for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count - 1; i++)
+                {
+                    int k = m_lb_listofSectionsToMerge.SelectedIndices[i];
+                    if ((m_lb_listofSectionsToMerge.SelectedIndices[i] == m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1))
+                    {
+                        if (j == 0)
+                        {
+                            indexOfSublist.Add(k);
+                            indexOfSublist.Add(k + 1);
+                            j++;
+                        }
+                        else
+                            indexOfSublist.Add(k + 1);
+                    }
+                    else
+                    {
+                        if (indexOfSublist.Count > 0)
+                            m_ListOfContinuousItems.Add(indexOfSublist);
+                        indexOfSublist = new List<int>();
+                        j = 0;
+                    }
+                    if (indexOfSublist.Count > 0)
+                        m_ListOfContinuousItems.Add(indexOfSublist);
+                }
+            }
+
+            else
+            {
+                if (m_lb_listofSectionsToMerge.SelectedIndices.Count >= 1)
+                {
+                    indexOfSublist.Add(m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedIndices.Count - 1]);
+                    m_ListOfContinuousItems.Add(indexOfSublist);
+                }
+            }
 
            if (m_ListOfContinuousItems.Count > 0)
            {
@@ -166,7 +182,11 @@ namespace Obi.Dialogs
                       listOfIndexOfLargestNumberOfSection = list;
                }
 
-               m_ListOfContinuousItems.Clear();
+               if (listOfIndexOfLargestNumberOfSection.Count == 1)
+               { }
+               else
+                   m_ListOfContinuousItems.Clear();
+
 
                for (int i = 0; i <= listOfIndexOfLargestNumberOfSection.Count -1; i++)
                {   listOfLargestNumberOfSections.Add(m_SectionList[listOfIndexOfLargestNumberOfSection[i]]);  }
@@ -181,10 +201,10 @@ namespace Obi.Dialogs
                            break;
                        }  
                    }
-                   
-                if (!IsSameIndex)
+
+                if (!IsSameIndex && (m_lb_listofSectionsToMerge.SelectedItems.Count > 1))
                     m_RemainingIndexes.Add(m_lb_listofSectionsToMerge.SelectedIndices[m]);
-                if (m_lb_listofSectionsToMerge.SelectedIndices[m] > listOfIndexOfLargestNumberOfSection[listOfIndexOfLargestNumberOfSection.Count - 1])
+                if (m_lb_listofSectionsToMerge.SelectedIndices[m] > listOfIndexOfLargestNumberOfSection[listOfIndexOfLargestNumberOfSection.Count - 1] && (m_lb_listofSectionsToMerge.SelectedItems.Count > 1))
                    m_RemainingIndexes.Add(m_lb_listofSectionsToMerge.SelectedIndices[m]);                 
                }    
            }
@@ -196,27 +216,40 @@ namespace Obi.Dialogs
 
                if (totalPhraseCount < 7000)
                {
-                   m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0], listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1]);
+                   m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
                //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
                else
                {
                    MessageBox.Show("Total phrase count is more than 7000");
+                   m_StatusLabelForMergeSection.Text = String.Format("Total phrase count is more than 7000. Select lesser number of sections.");
                    listOfLargestNumberOfSections = null;
                }
-           }
-           else
-           {
-             //  MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
-               listOfLargestNumberOfSections = null;
-           }
+           }          
+
+           if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
+               m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
            return listOfLargestNumberOfSections;
         }
 
         private void m_btn_SelectAll_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < m_lb_listofSectionsToMerge.Items.Count; i++ )
-                m_lb_listofSectionsToMerge.SetSelected(i, true);
+             int totalPhraseCount = 0;
+            
+            m_ListOfContinuousItems.Clear();
+            for (int i = 0; i < m_lb_listofSectionsToMerge.Items.Count; i++)
+            {
+                totalPhraseCount += m_SectionList[i].PhraseChildCount;
+                if (totalPhraseCount < 7000)
+                {
+                    m_IsDeselected = true;
+                    m_lb_listofSectionsToMerge.SetSelected(i, true);
+                    
+                }
+            }
+            if (totalPhraseCount > 7000)
+            MessageBox.Show(String.Format("Total phrase count for all the sections is more than 7000. Only sections till section {0} will be merged.", m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count -1].Label));
+        
         }
     }
 }
