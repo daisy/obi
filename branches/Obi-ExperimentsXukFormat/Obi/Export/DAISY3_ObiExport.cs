@@ -66,6 +66,7 @@ namespace Obi.Export
             //m_ProgressPercentage = 20;
             reportProgress(-1, UrakawaSDK_daisy_Lang.CreateSmilAndNcxFiles);
 
+            System.Windows.Forms.MessageBox.Show(m_ListOfLevels.Count.ToString());
             foreach (urakawa.core.TreeNode urakawaNode in m_ListOfLevels)
             //for ( int nodeCounter = 0 ; nodeCounter < m_ListOfLevels.Count ; nodeCounter++ )
             {
@@ -90,7 +91,7 @@ namespace Obi.Export
 
                 bool isBranchingActive = false;
                 urakawa.core.TreeNode branchStartTreeNode = null;
-
+                System.Windows.Forms.MessageBox.Show(urakawaNode.GetTextFlattened(false));
                 urakawaNode.AcceptDepthFirst(
             delegate(urakawa.core.TreeNode n)
             {
@@ -100,10 +101,10 @@ namespace Obi.Export
                 QualifiedName currentQName = n.GetXmlElementQName();
 
                 //if (IsHeadingNode(n))
-                if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Heading )
-                {
-                    currentHeadingTreeNode = n;
-                }
+                //if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Heading )
+                //{
+                    //currentHeadingTreeNode = n;
+                //}
 
                 //if (currentQName != null &&
                         //currentQName.LocalName != urakawaNode.GetXmlElementQName().LocalName
@@ -155,7 +156,8 @@ namespace Obi.Export
 
 
                 Time urakawaNodeDur = urakawaNode.GetDurationOfManagedAudioMediaFlattened();
-                if (currentHeadingTreeNode == null && urakawaNodeDur != null && urakawaNodeDur.AsTimeSpan == TimeSpan.Zero)
+                //if (currentHeadingTreeNode == null && urakawaNodeDur != null && urakawaNodeDur.AsTimeSpan == TimeSpan.Zero)
+                if (urakawaNodeDur != null && urakawaNodeDur.AsTimeSpan == TimeSpan.Zero)
                 {
                     return true;
                     // carry on processing following lines. and in case this is not true, skip all the following lines
@@ -175,7 +177,7 @@ namespace Obi.Export
                     //m_ProgressPercentage += Convert.ToInt32((m_SmilFileNameCounter / m_ListOfLevels.Count) * 100 * 0.7);
                     //reportProgress(m_ProgressPercentage, String.Format(UrakawaSDK_daisy_Lang.CreatingSmilFiles, m_SmilFileNameCounter, m_ListOfLevels.Count));
                 }
-
+                
 
                 // create smil nodes
 
@@ -333,8 +335,10 @@ namespace Obi.Export
                 // check and assign first par ID
                 if (firstPar_id == null)
                 {
-                    if (currentHeadingTreeNode != null
-                        && (n.IsDescendantOf(currentHeadingTreeNode) || n == currentHeadingTreeNode))
+                    //if (currentHeadingTreeNode != null
+                        //&& (n.IsDescendantOf(currentHeadingTreeNode) || n == currentHeadingTreeNode))
+                    if ( (((SectionNode)urakawaNode).Heading == null && n == ((SectionNode)urakawaNode).PhraseChild(0))
+                        || ( n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading ))
                     {
                         firstPar_id = par_id;
                     }
@@ -424,76 +428,76 @@ namespace Obi.Export
                     XmlNode contentNode = ncxDocument.CreateElement(null, "content", pageListNode.NamespaceURI);
                     pageTargetNode.AppendChild(contentNode);
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, contentNode, "src", smilFileName + "#" + par_id);
-
+                    System.Windows.Forms.MessageBox.Show("Page ");
                     // add reference to par in dtbook document
                     
                 }
                     //obi: commented for now
-                    /*
-                else if (special_UrakawaNode != null
-                    && m_NavListElementNamesList.Contains(special_UrakawaNode.GetXmlElementQName().LocalName) && !specialParentNodesAddedToNavList.Contains(special_UrakawaNode))
+                /*
+            else if (special_UrakawaNode != null
+                && m_NavListElementNamesList.Contains(special_UrakawaNode.GetXmlElementQName().LocalName) && !specialParentNodesAddedToNavList.Contains(special_UrakawaNode))
+            {
+                string navListNodeName = special_UrakawaNode.GetXmlElementQName().LocalName;
+                specialParentNodesAddedToNavList.Add(special_UrakawaNode);
+                XmlNode navListNode = null;
+
+                //= getFirstChildElementsWithName ( ncxDocument, true, "navList", null );
+                foreach (XmlNode xn in XmlDocumentHelper.GetChildrenElementsWithName(ncxRootNode, true, "navList", ncxRootNode.NamespaceURI, true))
                 {
-                    string navListNodeName = special_UrakawaNode.GetXmlElementQName().LocalName;
-                    specialParentNodesAddedToNavList.Add(special_UrakawaNode);
-                    XmlNode navListNode = null;
-
-                    //= getFirstChildElementsWithName ( ncxDocument, true, "navList", null );
-                    foreach (XmlNode xn in XmlDocumentHelper.GetChildrenElementsWithName(ncxRootNode, true, "navList", ncxRootNode.NamespaceURI, true))
+                    if (xn.Attributes.GetNamedItem("class").Value == navListNodeName)
                     {
-                        if (xn.Attributes.GetNamedItem("class").Value == navListNodeName)
-                        {
-                            navListNode = xn;
-                        }
+                        navListNode = xn;
                     }
-
-                    if (navListNode == null)
-                    {
-                        navListNode = ncxDocument.CreateElement(null, "navList", ncxRootNode.NamespaceURI);
-                        ncxRootNode.AppendChild(navListNode);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navListNode, "class", navListNodeName);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navListNode, "id", GetNextID(ID_NcxPrefix));
-
-                        XmlNode mainNavLabel = ncxDocument.CreateElement(null, "navLabel", navListNode.NamespaceURI);
-                        navListNode.AppendChild(mainNavLabel);
-                        XmlNode mainTextNode = ncxDocument.CreateElement(null, "text", navListNode.NamespaceURI);
-                        mainNavLabel.AppendChild(mainTextNode);
-                        mainTextNode.AppendChild(ncxDocument.CreateTextNode(navListNodeName));
-                    }
-
-                    XmlNode navTargetNode = ncxDocument.CreateElement(null, "navTarget", navListNode.NamespaceURI);
-                    navListNode.AppendChild(navTargetNode);
-
-                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "id", GetNextID(ID_NcxPrefix));
-                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "class", navListNodeName);
-                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "playOrder", "");
-
-                    playOrderList_Sorted.Add(navTargetNode);
-
-
-                    XmlNode navLabelNode = ncxDocument.CreateElement(null, "navLabel", navListNode.NamespaceURI);
-                    navTargetNode.AppendChild(navLabelNode);
-
-                    XmlNode txtNode = ncxDocument.CreateElement(null, "text", navTargetNode.NamespaceURI);
-                    navLabelNode.AppendChild(txtNode);
-                    txtNode.AppendChild(
-                        ncxDocument.CreateTextNode(n.GetTextFlattened(true)));
-
-                    // create audio node only if external audio media is not null
-                    if (externalAudio != null)
-                    {
-                        XmlNode audioNodeNcx = ncxDocument.CreateElement(null, "audio", navTargetNode.NamespaceURI);
-                        navLabelNode.AppendChild(audioNodeNcx);
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
-                        XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", Path.GetFileName(externalAudio.Src));
-                    }
-
-                    XmlNode contentNode = ncxDocument.CreateElement(null, "content", navTargetNode.NamespaceURI);
-                    navTargetNode.AppendChild(contentNode);
-                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, contentNode, "src", smilFileName + "#" + par_id);
-
                 }
-                */
+
+                if (navListNode == null)
+                {
+                    navListNode = ncxDocument.CreateElement(null, "navList", ncxRootNode.NamespaceURI);
+                    ncxRootNode.AppendChild(navListNode);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navListNode, "class", navListNodeName);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navListNode, "id", GetNextID(ID_NcxPrefix));
+
+                    XmlNode mainNavLabel = ncxDocument.CreateElement(null, "navLabel", navListNode.NamespaceURI);
+                    navListNode.AppendChild(mainNavLabel);
+                    XmlNode mainTextNode = ncxDocument.CreateElement(null, "text", navListNode.NamespaceURI);
+                    mainNavLabel.AppendChild(mainTextNode);
+                    mainTextNode.AppendChild(ncxDocument.CreateTextNode(navListNodeName));
+                }
+
+                XmlNode navTargetNode = ncxDocument.CreateElement(null, "navTarget", navListNode.NamespaceURI);
+                navListNode.AppendChild(navTargetNode);
+
+                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "id", GetNextID(ID_NcxPrefix));
+                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "class", navListNodeName);
+                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, navTargetNode, "playOrder", "");
+
+                playOrderList_Sorted.Add(navTargetNode);
+
+
+                XmlNode navLabelNode = ncxDocument.CreateElement(null, "navLabel", navListNode.NamespaceURI);
+                navTargetNode.AppendChild(navLabelNode);
+
+                XmlNode txtNode = ncxDocument.CreateElement(null, "text", navTargetNode.NamespaceURI);
+                navLabelNode.AppendChild(txtNode);
+                txtNode.AppendChild(
+                    ncxDocument.CreateTextNode(n.GetTextFlattened(true)));
+
+                // create audio node only if external audio media is not null
+                if (externalAudio != null)
+                {
+                    XmlNode audioNodeNcx = ncxDocument.CreateElement(null, "audio", navTargetNode.NamespaceURI);
+                    navLabelNode.AppendChild(audioNodeNcx);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
+                    XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNodeNcx, "src", Path.GetFileName(externalAudio.Src));
+                }
+
+                XmlNode contentNode = ncxDocument.CreateElement(null, "content", navTargetNode.NamespaceURI);
+                navTargetNode.AppendChild(contentNode);
+                XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, contentNode, "src", smilFileName + "#" + par_id);
+            
+            }
+            */
                 if (!IsNcxNativeNodeAdded)
                 {
                     if (!isDocTitleAdded)
@@ -625,6 +629,7 @@ namespace Obi.Export
                             XmlNode contentNode = ncxDocument.CreateElement(null, "content", navMapNode.NamespaceURI);
                             navPointNode.AppendChild(contentNode);
                             XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, contentNode, "src", smilFileName + "#" + firstPar_id);
+                            System.Windows.Forms.MessageBox.Show("Navpoint");
                         }
                         int navPointDepth = GetDepthOfNavPointNode(ncxDocument, navPointNode);
                         if (maxDepth < navPointDepth) maxDepth = navPointDepth;
@@ -702,6 +707,7 @@ namespace Obi.Export
             // assign play orders 
             Dictionary<string, string> playOrder_ReferenceMap = new Dictionary<string, string>();
             int playOrderCounter = 1;
+            System.Windows.Forms.MessageBox.Show(playOrderList_Sorted.Count.ToString() );
             foreach (XmlNode xn in playOrderList_Sorted)
             {
                 XmlNode referedContentNode = XmlDocumentHelper.GetFirstChildElementWithName(xn, false, "content", xn.NamespaceURI);
