@@ -98,13 +98,15 @@ namespace Obi.Dialogs
                 {
                     for (int l = 0; l < m_RemainingIndexes.Count; l++ )
                     {
-                        for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count - 1; i++)
+                       /* for (int i = 0; i < m_lb_listofSectionsToMerge.SelectedIndices.Count - 1; i++)
                         {
                             if ((m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedIndices.Count - 1] != m_lb_listofSectionsToMerge.SelectedIndices[i + 1] - 1))
                             {
                                 m_StatusLabelForMergeSection.Text = "The selection is not continuous";
                             }
-                        }  
+                            else
+                                m_StatusLabelForMergeSection.Text = "";
+                        } */ 
                         m_IsDeselected = true;
                         m_lb_listofSectionsToMerge.SetSelected(m_RemainingIndexes[l], false);                   
                         }
@@ -216,7 +218,9 @@ namespace Obi.Dialogs
 
                if (totalPhraseCount < 7000)
                {
-                   m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
+                 //  if (m_SelectedSectionList.Count == 1)
+                  //  m_StatusLabelForMergeSection.Text = "Select at least two sections to merge";
+                     m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
                //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
                else
