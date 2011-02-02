@@ -299,6 +299,7 @@
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
     <Compile Include="Export\DAISY202Export.cs" />
+    <Compile Include="Export\DAISY3_ObiExport.cs" />
     <Compile Include="Export\XslResolver.cs" />
     <Compile Include="Export\Z.cs" />
     <Compile Include="ImportStructure.cs" />
