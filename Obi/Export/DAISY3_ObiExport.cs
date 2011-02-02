@@ -21,7 +21,7 @@ namespace Obi.Export
         public DAISY3_ObiExport (ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
-            m_Filename_Content = null;
+            //m_Filename_Content = null;
         }
 
         protected override void CreateDTBookDocument()

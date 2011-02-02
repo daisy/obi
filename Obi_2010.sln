@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obi", "Obi\Obi_2010.csproj", "{1553F3D3-A820-400E-9B98-BCCA970E1D58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obi_2010", "Obi\Obi_2010.csproj", "{1553F3D3-A820-400E-9B98-BCCA970E1D58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrakawaSDK.core", "..\..\..\urakawa-sdk\trunk\csharp\core\UrakawaSDK.core.csproj", "{7CCD52F9-C801-4C2B-AA9D-B7E217F307A0}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "..\..\..\urakawa-sdk\trunk\csharp\audio\NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp3Sharp", "..\..\..\urakawa-sdk\trunk\csharp\audio\mp3-sharp\Mp3Sharp.csproj", "{834CAB58-648D-47CC-AC6F-D01C08C809A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPMeter_2010", "..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter_2010.csproj", "{58C576A9-CEBA-4274-A643-5867D377FEA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.ICSharpCode", "..\..\..\tobi\trunk\tobiapp\ExternalLibs\ICSharpCode\Lib.ICSharpCode.csproj", "{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +82,22 @@ Global
 		{834CAB58-648D-47CC-AC6F-D01C08C809A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{834CAB58-648D-47CC-AC6F-D01C08C809A4}.test|Any CPU.ActiveCfg = test|Any CPU
 		{834CAB58-648D-47CC-AC6F-D01C08C809A4}.test|Any CPU.Build.0 = test|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.test|Any CPU.ActiveCfg = Release|Any CPU
+		{58C576A9-CEBA-4274-A643-5867D377FEA3}.test|Any CPU.Build.0 = Release|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.test|Any CPU.ActiveCfg = Release|Any CPU
+		{CB23BC6E-0493-482A-89B9-DD2E2FA4E97D}.test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
