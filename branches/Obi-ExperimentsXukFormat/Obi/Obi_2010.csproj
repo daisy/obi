@@ -78,10 +78,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AudioEngine.PPMeter, Version=1.0.3644.25175, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\bin\Debug\AudioEngine.PPMeter.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\..\..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\DirectX for Managed Code\1.0.2902.0\Microsoft.DirectX.dll</HintPath>
     </Reference>
@@ -104,8 +100,8 @@
     <Compile Include="Audio\AudioFormatConverter.cs" />
     <Compile Include="Audio\AudioPlayer.cs" />
     <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\CalculationFunctions.cs" />
     <Compile Include="Audio\DataManager.cs" />
+    <Compile Include="Audio\ObiCalculationFunctions.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -887,6 +883,10 @@
     <EmbeddedResource Include="UserControls\media-playback-pause.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\urakawa-sdk\branches\1.1_before_major_refactor_2.0\csharp\audio\PPMeter\PPMeter_2010.csproj">
+      <Project>{58C576A9-CEBA-4274-A643-5867D377FEA3}</Project>
+      <Name>PPMeter_2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\audio\AudioLib\AudioLib.csproj">
       <Project>{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}</Project>
       <Name>AudioLib</Name>
