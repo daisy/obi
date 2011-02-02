@@ -54,7 +54,7 @@ namespace Obi.Dialogs
 
             if (m_SelectedSectionList != null)
             {
-                if (m_SelectedSectionList.Count < 1)
+                if (m_SelectedSectionList.Count <= 1)
                 {
                     MessageBox.Show("There are not enough section to merge. Select at least two continuous sections");
                     return;
@@ -123,6 +123,8 @@ namespace Obi.Dialogs
                              m_StatusLabelForMergeSection.Text = String.Format("Total number of phrases is {0}.It should be less than 7000", totalPhraseCount);
                      }*/                                  
             }
+            if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
+                m_StatusLabelForMergeSection.Text = String.Format("Selected {0}. Select at least one more section to merge", m_lb_listofSectionsToMerge.SelectedItem);
             if (m_lb_listofSectionsToMerge.SelectedIndices.Count > 0)
                 m_tb_SelectedSection.Text = m_SectionList[m_lb_listofSectionsToMerge.SelectedIndices[m_lb_listofSectionsToMerge.SelectedItems.Count - 1]].ToString();
             m_IsDeselected = false;
@@ -218,9 +220,11 @@ namespace Obi.Dialogs
 
                if (totalPhraseCount < 7000)
                {
-                 //  if (m_SelectedSectionList.Count == 1)
-                  //  m_StatusLabelForMergeSection.Text = "Select at least two sections to merge";
+                   if (m_lb_listofSectionsToMerge.SelectedItems.Count == 1)
+                    m_StatusLabelForMergeSection.Text = String.Format("Selected {0}. Select at least one more section to merge", m_lb_listofSectionsToMerge.SelectedItem);
+                   else 
                      m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", listOfLargestNumberOfSections[0].Label, listOfLargestNumberOfSections[listOfLargestNumberOfSections.Count - 1].Label);
+
                //    MessageBox.Show(String.Format("Merged sections will be from {0} to {1} ", newList[0], newList[newList.Count - 1]));
                }
                else
