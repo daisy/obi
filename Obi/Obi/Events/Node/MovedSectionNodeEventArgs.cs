@@ -6,7 +6,7 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
-    class MovedSectionNodeEventArgs : SectionNodeEventArgs
+    public class MovedSectionNodeEventArgs : SectionNodeEventArgs
     {
         private TreeNode mParent;
 

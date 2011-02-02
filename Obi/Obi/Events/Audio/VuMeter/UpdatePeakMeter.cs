@@ -6,7 +6,7 @@ namespace Obi.Events.Audio.VuMeter
 {
     public delegate void UpdatePeakMeterHandler(object sender, UpdatePeakMeter e);
 
-    class UpdatePeakMeter
+    public class UpdatePeakMeter
     {
         private double[] mValues ;
         public UpdatePeakMeter(double[] Values)

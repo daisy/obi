@@ -352,7 +352,7 @@ namespace Obi
     /// <summary>
     /// Informs that a node's kind has changed and pass along its old kind.
     /// </summary>
-    class ChangedRoleEventArgs : NodeEventArgs<EmptyNode>
+    public class ChangedRoleEventArgs : NodeEventArgs<EmptyNode>
     {
         private EmptyNode.Role mRole;  // previous role
         private string mCustomRole;    // previous custom role name
