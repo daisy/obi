@@ -21,8 +21,14 @@ namespace Obi.Export
         public DAISY3_ObiExport (ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
-            //m_Filename_Content = null;
+            m_Filename_Content = null;
         }
+
+        protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
+        {   
+            return node is SectionNode;
+        }
+
 
         protected override void CreateDTBookDocument()
         {
@@ -352,6 +358,8 @@ namespace Obi.Export
 
 
                 XmlNode SmilTextNode = null;
+                //not required in audio ncx book
+                /*
                 if ((section.Heading == null && n == section.PhraseChild(0))
                     || (n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading))
                 {
@@ -361,6 +369,8 @@ namespace Obi.Export
                     //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Content + "#" + dtbookID);
                     parNode.AppendChild(SmilTextNode);
                 }
+                 */ 
+                 
                 if (externalAudio != null)
                 {
                     XmlNode audioNode = smilDocument.CreateElement(null, "audio", mainSeq.NamespaceURI);
@@ -579,7 +589,7 @@ namespace Obi.Export
 
 
                         //add the navpoint id to smil text in par of corresponding smil file
-                        XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Ncx+ "#" + strNavPointID);
+                        if ( SmilTextNode != null)  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, SmilTextNode, "src", m_Filename_Ncx+ "#" + strNavPointID);
                         //urakawa.core.TreeNode parentNode = GetParentLevelNode(urakawaNode);
                         urakawa.core.TreeNode parentNode = urakawaNode.Parent;
 
@@ -632,7 +642,7 @@ namespace Obi.Export
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
                         XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, audioNode, "src", Path.GetFileName(externalAudio.Src));
-
+                        
                         //following was old code
                         //navPointNode = CreateNavPointWithoutContentNode(ncxDocument, urakawaNode, currentHeadingTreeNode, n, treeNode_NavNodeMap);
                         playOrderList_Sorted.Add(navPointNode);
