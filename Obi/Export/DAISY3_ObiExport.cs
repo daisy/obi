@@ -206,7 +206,7 @@ namespace Obi.Export
                     string strSeqID = "";
                     // specific handling of IDs for notes for allowing predetermined refered IDs
                     
-                    if (special_UrakawaNode.GetXmlElementQName().LocalName == "note" || special_UrakawaNode.GetXmlElementQName().LocalName == "annotation")
+                    if (special_UrakawaNode.GetXmlElementQName()!= null &&  (special_UrakawaNode.GetXmlElementQName().LocalName == "note" || special_UrakawaNode.GetXmlElementQName().LocalName == "annotation"))
                     {
                         strSeqID = ID_SmilPrefix + m_TreeNode_XmlNodeMap[n].Attributes.GetNamedItem("id").Value;
                     }
@@ -215,7 +215,8 @@ namespace Obi.Export
                         strSeqID = GetNextID(ID_SmilPrefix);
                     }
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "id", strSeqID);
-                    XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", special_UrakawaNode.GetXmlElementQName().LocalName);
+                    //XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", special_UrakawaNode.GetXmlElementQName().LocalName);
+                    if (n is EmptyNode &&  ((EmptyNode)n).Role_ == EmptyNode.Role.Page )  XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, Seq_SpecialNode, "class", "pagenum");
 
                     //comment following as obi do not have escapable node yet
                     //if (IsEscapableNode(special_UrakawaNode))
@@ -408,10 +409,10 @@ namespace Obi.Export
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, pageTargetNode, "id", GetNextID(ID_NcxPrefix));
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, pageTargetNode, "class", "pagenum");
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, pageTargetNode, "playOrder", "");
-                    string strTypeVal = ((EmptyNode)n).PageNumber.Kind.ToString ();
+                    string strTypeVal = ((EmptyNode)n).PageNumber.Kind.ToString ().ToLower();
                     XmlDocumentHelper.CreateAppendXmlAttribute(ncxDocument, pageTargetNode, "type", strTypeVal);
                     //string strPageValue = n.GetXmlProperty().GetAttribute("pageText").Value ;
-                    string strPageValue = ((EmptyNode)n).PageNumber.Unquoted;
+                    string strPageValue = ((EmptyNode)n).PageNumber.Number.ToString();
                     ++totalPageCount;
 
                     playOrderList_Sorted.Add(pageTargetNode);
@@ -433,7 +434,7 @@ namespace Obi.Export
                     XmlNode txtNode = ncxDocument.CreateElement(null, "text", pageListNode.NamespaceURI);
                     navLabelNode.AppendChild(txtNode);
                     txtNode.AppendChild(
-                        ncxDocument.CreateTextNode(strPageValue));
+                        ncxDocument.CreateTextNode(((EmptyNode)n).PageNumber.Unquoted));
 
                     if (externalAudio != null)
                     {
