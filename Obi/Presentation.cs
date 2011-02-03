@@ -523,11 +523,11 @@ namespace Obi
             UpdatePublicationMetadata();
             if (format == Obi.Export.ExportFormat.DAISY3_0)
             {
-                Obi.Export.DAISY3_ObiExport d = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, false, AudioLib.SampleRate.Hz44100, false);
-                //d.IsAudioNCX = true;
+                Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, false, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                
                 try
                 {
-                    d.DoWork();
+                    daisy3Export.DoWork();
 
                 }
                 catch (System.Exception ex)
