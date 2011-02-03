@@ -18,7 +18,9 @@ namespace Obi.Export
 {
     public class DAISY3_ObiExport : Daisy3_Export
     {
-        public DAISY3_ObiExport (ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM)
+        private int m_AudioFileSectionLevel;
+
+        public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
             m_Filename_Content = null;
@@ -29,6 +31,11 @@ namespace Obi.Export
             return node is SectionNode;
         }
 
+        public override void ConfigureAudioFileDelegates()
+        {
+            triggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode   &&   ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+            skipDelegate = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+        }
 
         protected override void CreateDTBookDocument()
         {
