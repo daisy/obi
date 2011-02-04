@@ -2137,11 +2137,9 @@ namespace Obi.ProjectView
                         {
                             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
                             listOfNodesToMerge.Insert(0, secondNode);
-                        //Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)firstNode, secondNode );
-                        //mergeCmd.UpdateSelection = false;
+                            
                         if (i == startIndex || progressPercent > 98) progressPercent = 98;
-                        //if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
-                        //command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd );
+                        
                         }
                     secondNode = (PhraseNode)firstNode;
                     }
@@ -2202,8 +2200,11 @@ namespace Obi.ProjectView
                     }
                 }
                 if (!(startNode is PhraseNode)) startNode = nodeToSelect;
-                Commands.Command mergeCmd = new Commands.Node.MergeAudio(this, (PhraseNode)startNode, tempNode);
-                command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
+                if (tempNode != null && tempNode.Audio != null)
+                {
+                    Commands.Command mergeCmd = new Commands.Node.MergeAudio(this, (PhraseNode)startNode, tempNode);
+                    command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
+                }
             if (phraseRole != null )
                 {
                 command.ChildCommands.Insert (0, new Commands.Node.AssignRole ( this, nodeToSelect != null ? nodeToSelect : startNode, EmptyNode.Role.Heading ));
