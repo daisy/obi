@@ -27,7 +27,7 @@ namespace Obi.Export
             m_AudioFileSectionLevel = audioFileSectionLevel;
         }
 
-        public int BitRate_Mp3
+        public override int BitRate_Mp3
         {
             get { return m_BitRate_Mp3; }
             set { m_BitRate_Mp3 = value; }
