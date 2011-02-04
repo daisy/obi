@@ -1469,7 +1469,7 @@ namespace Obi
                             delegate ()
                                 {
                                 mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, audioFileSectionLevel );
+                       exportPath, mSession.Path, chooseDialog.chooseOption, true, audioFileSectionLevel );
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;

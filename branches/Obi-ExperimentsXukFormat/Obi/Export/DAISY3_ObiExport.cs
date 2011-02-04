@@ -24,6 +24,7 @@ namespace Obi.Export
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
             m_Filename_Content = null;
+            m_AudioFileSectionLevel = audioFileSectionLevel;
         }
 
         protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
