@@ -32,7 +32,7 @@ namespace Obi
         private bool m_IsAutoSaveActive;
         private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
-
+        private bool m_ExportEncodeToMP3;
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
@@ -45,7 +45,7 @@ namespace Obi
             mShowWelcomWindow = true;
             InitializeObi ();
             if (ShouldOpenLastProject) OpenProject_Safe ( mSettings.LastOpenProject );
-            m_IsSaveActive = false;
+            m_IsSaveActive = false;            
             }
 
         /// <summary>
@@ -57,6 +57,7 @@ namespace Obi
             InitializeObi ();
             OpenProject_Safe ( path );
             m_IsSaveActive = false;
+         
             }
 
         #endregion
@@ -1449,9 +1450,10 @@ namespace Obi
                 //new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
                 //Program.SafeName(string.Format(Localizer.Message("default_export_dirname"),
                 //"" ) ) ), mSession.Path ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                   
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
-                             mSession.Path ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                             mSession.Path, m_ExportEncodeToMP3 ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1460,9 +1462,9 @@ namespace Obi
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
                         int audioFileSectionLevel = dialog.LevelSelection;
-                        bool encodeToMP3 = dialog.EncodeToMP3;
+                        m_ExportEncodeToMP3 = dialog.EncodeToMP3;
                         int bitrate = dialog.BitRate;
-                        
+                        mSettings.Export_EncodeToMP3 = m_ExportEncodeToMP3;
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1471,7 +1473,7 @@ namespace Obi
                             delegate ()
                                 {
                                 mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, encodeToMP3, bitrate, audioFileSectionLevel );
+                       exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, bitrate, audioFileSectionLevel);
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
