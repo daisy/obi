@@ -53,6 +53,7 @@ namespace Obi
         public bool AutoSave_RecordingEnd ; // flag to audo save whenever recording ends
         public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
+        public bool Export_EncodeToMP3;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -100,6 +101,7 @@ namespace Obi
             settings.AutoSave_RecordingEnd = false;
             settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
+            settings.Export_EncodeToMP3 = false;
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
