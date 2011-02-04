@@ -54,6 +54,7 @@ namespace Obi
         public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
         public bool Export_EncodeToMP3;
+        public int Export_BitRateMP3;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -102,6 +103,7 @@ namespace Obi
             settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
             settings.Export_EncodeToMP3 = false;
+            settings.Export_BitRateMP3 = 64;
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
