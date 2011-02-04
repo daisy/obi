@@ -289,7 +289,7 @@
     <value>218, 16</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="m_lblSelectLevelForAudioFiles.Text" xml:space="preserve">
     <value>Create &amp;one audio file per section till:</value>
@@ -316,7 +316,7 @@
     <value>121, 24</value>
   </data>
   <data name="m_ComboSelectLevelForAudioFiles.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;m_ComboSelectLevelForAudioFiles.Name" xml:space="preserve">
     <value>m_ComboSelectLevelForAudioFiles</value>
@@ -340,7 +340,7 @@
     <value>118, 20</value>
   </data>
   <data name="m_checkBoxMP3Encoder.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>5</value>
   </data>
   <data name="m_checkBoxMP3Encoder.Text" xml:space="preserve">
     <value>Encode to MP3</value>
@@ -357,6 +357,9 @@
   <data name="&gt;&gt;m_checkBoxMP3Encoder.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="m_Bitrate.AccessibleDescription" xml:space="preserve">
+    <value>Bitrate</value>
+  </data>
   <data name="m_Bitrate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -367,10 +370,10 @@
     <value>49, 16</value>
   </data>
   <data name="m_Bitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>6</value>
   </data>
   <data name="m_Bitrate.Text" xml:space="preserve">
-    <value>Bitrate:</value>
+    <value>Bit&amp;rate:</value>
   </data>
   <data name="&gt;&gt;m_Bitrate.Name" xml:space="preserve">
     <value>m_Bitrate</value>
@@ -394,7 +397,7 @@
     <value>121, 24</value>
   </data>
   <data name="m_ComboBoxBitrate.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;m_ComboBoxBitrate.Name" xml:space="preserve">
     <value>m_ComboBoxBitrate</value>

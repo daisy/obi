@@ -15,13 +15,13 @@ namespace Obi.Dialogs
         private bool mCanClose;   // can prevent from closing on problem
         private int m_BitRate;
         private bool m_IsMP3Check;
-        public ExportDirectory(string path, string xukPath)
+        public ExportDirectory(string path, string xukPath, bool encodeToMP3)
         {
             InitializeComponent();
             mPathTextBox.Text = path;
             mXukPath = xukPath;
             mCanClose = true;
-           
+            
             Console.WriteLine("In exPORT " + m_checkBoxMP3Encoder.Checked + " " + m_IsMP3Check);
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message("EachLevel"));
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level1") );
@@ -36,6 +36,7 @@ namespace Obi.Dialogs
             m_ComboBoxBitrate.Items.Add("48");
             m_ComboBoxBitrate.Items.Add("64");
             m_ComboBoxBitrate.Items.Add("128");
+            m_checkBoxMP3Encoder.Checked = encodeToMP3;
         }
 
         /// <summary>
