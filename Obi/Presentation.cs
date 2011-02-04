@@ -518,66 +518,22 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format ,int audioFileSectionLevel )
+        public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format, bool encodeToMP3, int audioFileSectionLevel)
         {
             UpdatePublicationMetadata();
             if (format == Obi.Export.ExportFormat.DAISY3_0)
             {
-                Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, false, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
-                
-                try
-                {
+                Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, encodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
                     daisy3Export.DoWork();
-
                 }
-                catch (System.Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.ToString());
-                }
-            }
             else
             {
-                TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= audioFileSectionLevel; };
-                TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
-
-                RemoveAllPublishChannels(); // remove any publish channel, in case they exist
-
-                PublishFlattenedManagedAudioVisitor visitor = new PublishFlattenedManagedAudioVisitor(nodeIsSection, nodeIsUnused);
-
-
-                //urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME);
-
-                Channel publishChannel = ChannelFactory.CreateAudioChannel();
-                publishChannel.Name = ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME;
-
-                visitor.DestinationChannel = publishChannel;
-                visitor.SourceChannel = ChannelsManager.GetOrCreateAudioChannel();
-                visitor.DestinationDirectory = new Uri(exportPath);
-
-                visitor.EncodePublishedAudioFilesToMp3 = false;
-                uint sampleRate = MediaDataManager.DefaultPCMFormat.Data.SampleRate;
-                if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz44100;
-                else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz22050;
-                else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz11025;
-                visitor.DisableAcmCodecs = true;
-
-
-                RootNode.AcceptDepthFirst(visitor);
-
-                //sdk2 TODO check that there is an audio file to write
-                //visitor.WriteAndCloseCurrentAudioFile();
-
-                //if (format == Obi.Export.ExportFormat.DAISY3_0)
-                //{
-                //sdk2-todo use UrakawaSDK.daisy export feature
-                //ConvertXukToZed(exportPath, xukPath, GenerateXukString );//sdk2
-                //}
-                //else
-                //{
-                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export(this, exportPath);
+                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export(this, exportPath, encodeToMP3,audioFileSectionLevel);
                 export202.CreateDAISY202Files();
-                //}
+                
+                /*
                 ChannelsManager.RemoveManagedObject(publishChannel);
+                 */ 
             }
             
         }

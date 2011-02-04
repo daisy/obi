@@ -10,6 +10,7 @@ using urakawa.media;
 using urakawa.media.timing;
 using urakawa.property.channel;
 using urakawa.metadata;
+using urakawa.daisy.export.visitor;
 
 namespace Obi.Export
     {
@@ -31,14 +32,18 @@ namespace Obi.Export
         private Time m_SmilElapseTime;
         private Dictionary<string, string> m_SmilFile_TitleMap;
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
+        private int m_AudioFileSectionLevel;        
+        private bool m_EncodeToMP3;
 
-        public DAISY202Export ( ObiPresentation presentation, string exportDirectory )
+        public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMP3, int audioFileSectionLevel)
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
             m_MetadataMap = CreateDAISY3To2MetadataMap ();
             m_SmilFile_TitleMap = new Dictionary<string, string> ();
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
+            m_AudioFileSectionLevel = audioFileSectionLevel;
+            m_EncodeToMP3 = encodeToMP3;
             }
 
 
@@ -66,12 +71,44 @@ namespace Obi.Export
             return sectionsList;
             }
 
+        private Channel CreateAudioFiles()
+        {
+            TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+            TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+
+            m_Presentation.RemoveAllPublishChannels(); // remove any publish channel, in case they exist
+
+            PublishFlattenedManagedAudioVisitor visitor = new PublishFlattenedManagedAudioVisitor(nodeIsSection, nodeIsUnused);
+
+            //urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME);
+
+            Channel publishChannel = m_Presentation.ChannelFactory.CreateAudioChannel();
+            publishChannel.Name = ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME;
+
+            visitor.DestinationChannel = publishChannel;
+            visitor.SourceChannel = m_Presentation.ChannelsManager.GetOrCreateAudioChannel();
+            visitor.DestinationDirectory = new Uri(m_ExportDirectory );
+
+            visitor.EncodePublishedAudioFilesToMp3 = false;
+            uint sampleRate = m_Presentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
+            if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz44100;
+            else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz22050;
+            else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz11025;
+            visitor.DisableAcmCodecs = true;
+            visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
+
+            m_Presentation.RootNode.AcceptDepthFirst(visitor);
+            return publishChannel;
+        }
+
         public void CreateDAISY202Files ()
             {
+                Channel publishChannel = CreateAudioFiles();
             List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode);
 
             CreateFileSet ( sectionsList );
 
+            m_Presentation.ChannelsManager.RemoveManagedObject(publishChannel);
             }
 
 
