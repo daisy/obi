@@ -34,6 +34,7 @@ namespace Obi.Export
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
         private int m_AudioFileSectionLevel;        
         private bool m_EncodeToMP3;
+        private int m_BitRate_Mp3;
 
         public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMP3, int audioFileSectionLevel)
             {
@@ -47,7 +48,7 @@ namespace Obi.Export
             }
 
 
-        List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
+        private List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
             {
             List<SectionNode> sectionsList = new List<SectionNode> ();
             rNode.AcceptDepthFirst (
@@ -71,6 +72,12 @@ namespace Obi.Export
             return sectionsList;
             }
 
+        public int BitRate_Mp3
+        {
+            get { return  m_BitRate_Mp3 ; }
+                set{ m_BitRate_Mp3 = value ; }
+        }
+
         private Channel CreateAudioFiles()
         {
             TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
@@ -89,7 +96,8 @@ namespace Obi.Export
             visitor.SourceChannel = m_Presentation.ChannelsManager.GetOrCreateAudioChannel();
             visitor.DestinationDirectory = new Uri(m_ExportDirectory );
 
-            visitor.EncodePublishedAudioFilesToMp3 = false;
+            visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
+            if(m_EncodeToMP3 && m_BitRate_Mp3 >= 32)  visitor.BitRate_Mp3 = (ushort)m_BitRate_Mp3;
             uint sampleRate = m_Presentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
             if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz44100;
             else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz22050;
