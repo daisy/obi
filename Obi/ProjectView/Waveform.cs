@@ -176,6 +176,11 @@ namespace Obi.ProjectView
         // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
         {
+            if (!Media.HasActualPcmData || Media.AudioDuration.AsLocalUnits <= 0)
+            {
+                return;
+            }
+
             AudioLib.AudioLibPCMFormat format = Media.PCMFormat.Data;
             if (format.BitDepth == 16)
             {
