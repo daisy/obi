@@ -1460,7 +1460,9 @@ namespace Obi
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
                         int audioFileSectionLevel = dialog.LevelSelection;
-
+                        bool encodeToMP3 = dialog.EncodeToMP3;
+                        int bitrate = dialog.BitRate;
+                        
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1469,7 +1471,7 @@ namespace Obi
                             delegate ()
                                 {
                                 mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, true, audioFileSectionLevel );
+                       exportPath, mSession.Path, chooseDialog.chooseOption, encodeToMP3, bitrate, audioFileSectionLevel );
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
