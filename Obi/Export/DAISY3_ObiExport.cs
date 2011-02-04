@@ -120,6 +120,8 @@ namespace Obi.Export
             {
 
                 if (RequestCancellation) return false;
+                urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
+                if (externalAudio == null) return true;
 
                 QualifiedName currentQName = n.GetXmlElementQName();
 
@@ -156,7 +158,7 @@ namespace Obi.Export
                     shouldAddNewSeq = true;
                 }
 
-                urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
+                
                 
 
                 QualifiedName qName1 = currentHeadingTreeNode != null ? currentHeadingTreeNode.GetXmlElementQName() : null;
@@ -431,7 +433,7 @@ namespace Obi.Export
 
                     playOrderList_Sorted.Add(pageTargetNode);
 
-                    if (strTypeVal == "normal")
+                    if (strTypeVal == "normal" || strTypeVal == "front")
                     {
                         int tmp;
                         bool success = int.TryParse(strPageValue, out tmp);
