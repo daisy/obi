@@ -33,6 +33,7 @@ namespace Obi
         private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
         private bool m_ExportEncodeToMP3;
+        private int m_BitRate;
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
@@ -1453,7 +1454,7 @@ namespace Obi
                    
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
-                             mSession.Path, m_ExportEncodeToMP3 ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                             mSession.Path, m_ExportEncodeToMP3, m_BitRate ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1463,8 +1464,10 @@ namespace Obi
                         string exportPath = dialog.DirectoryPath;
                         int audioFileSectionLevel = dialog.LevelSelection;
                         m_ExportEncodeToMP3 = dialog.EncodeToMP3;
-                        int bitrate = dialog.BitRate;
+                        m_BitRate = dialog.BitRate;
                         mSettings.Export_EncodeToMP3 = m_ExportEncodeToMP3;
+                        mSettings.Export_BitRateMP3 = m_BitRate;
+                        Console.WriteLine("setting " + mSettings.Export_BitRateMP3);
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1473,7 +1476,7 @@ namespace Obi
                             delegate ()
                                 {
                                 mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, bitrate, audioFileSectionLevel);
+                       exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, m_BitRate, audioFileSectionLevel);
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
