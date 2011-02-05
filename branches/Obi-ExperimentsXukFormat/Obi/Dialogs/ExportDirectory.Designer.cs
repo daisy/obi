@@ -101,7 +101,13 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.m_ComboBoxBitrate, "m_ComboBoxBitrate");
             this.m_ComboBoxBitrate.FormattingEnabled = true;
+            this.m_ComboBoxBitrate.Items.AddRange(new object[] {
+            resources.GetString("m_ComboBoxBitrate.Items"),
+            resources.GetString("m_ComboBoxBitrate.Items1"),
+            resources.GetString("m_ComboBoxBitrate.Items2"),
+            resources.GetString("m_ComboBoxBitrate.Items3")});
             this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
+            this.m_ComboBoxBitrate.SelectionChangeCommitted += new System.EventHandler(this.m_ComboBoxBitrate_SelectionChangeCommitted);
             // 
             // ExportDirectory
             // 
