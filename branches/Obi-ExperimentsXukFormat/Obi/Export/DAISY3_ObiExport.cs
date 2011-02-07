@@ -120,12 +120,7 @@ namespace Obi.Export
             {
 
                 if (RequestCancellation) return false;
-                urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
-                if (externalAudio == null
-                    || (n is EmptyNode 
-                    && (((EmptyNode)n).Role_ == EmptyNode.Role.Silence || !((EmptyNode)n).Used))) 
-                    return true;
-
+                
                 QualifiedName currentQName = n.GetXmlElementQName();
 
                 //if (IsHeadingNode(n))
@@ -137,14 +132,19 @@ namespace Obi.Export
                 //if (currentQName != null &&
                         //currentQName.LocalName != urakawaNode.GetXmlElementQName().LocalName
                         //&& doesTreeNodeTriggerNewSmil(n))
-                if ( n is SectionNode )
-                {
-                    if (m_ListOfLevels.IndexOf(n) > m_ListOfLevels.IndexOf(urakawaNode))
+                if ( n is SectionNode 
+                    && m_ListOfLevels.IndexOf(n) > m_ListOfLevels.IndexOf(urakawaNode))
                     {
 
                         return false;
                     }
-                }
+                    urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
+                    if (externalAudio == null
+                        || (n is EmptyNode
+                        && (((EmptyNode)n).Role_ == EmptyNode.Role.Silence || !((EmptyNode)n).Used)))
+                    {
+                        return true;
+                    }
 
                 //if ((IsHeadingNode(n) || IsEscapableNode(n) || IsSkippableNode(n))
                 if (n is EmptyNode &&  (((EmptyNode)n).Role_ == EmptyNode.Role.Heading || ((EmptyNode)n).Role_ == EmptyNode.Role.Page)
