@@ -2597,11 +2597,12 @@ namespace Obi
                 if (toolStripText == "Z3986DTBValidator")
                     {
                     if (exportDaisy3Path != null)
-                        newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
+                        newDirPath = Path.Combine ( exportDaisy3Path, "package.opf" );
                     else
                         newDirPath = "";
                     }
                 }
+                
             return newDirPath;
             }
 
