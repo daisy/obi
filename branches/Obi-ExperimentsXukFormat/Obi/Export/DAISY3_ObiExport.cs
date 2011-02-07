@@ -121,7 +121,10 @@ namespace Obi.Export
 
                 if (RequestCancellation) return false;
                 urakawa.media.ExternalAudioMedia externalAudio = GetExternalAudioMedia(n);
-                if (externalAudio == null|| ( n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Silence ) ) return true;
+                if (externalAudio == null
+                    || (n is EmptyNode 
+                    && (((EmptyNode)n).Role_ == EmptyNode.Role.Silence || !((EmptyNode)n).Used))) 
+                    return true;
 
                 QualifiedName currentQName = n.GetXmlElementQName();
 
