@@ -107,7 +107,7 @@ namespace Obi.Dialogs
             resources.GetString("m_ComboBoxBitrate.Items2"),
             resources.GetString("m_ComboBoxBitrate.Items3")});
             this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
-            this.m_ComboBoxBitrate.SelectionChangeCommitted += new System.EventHandler(this.m_ComboBoxBitrate_SelectionChangeCommitted);
+            this.m_ComboBoxBitrate.SelectedIndexChanged += new System.EventHandler(this.m_ComboBoxBitrate_SelectedIndexChanged);
             // 
             // ExportDirectory
             // 
