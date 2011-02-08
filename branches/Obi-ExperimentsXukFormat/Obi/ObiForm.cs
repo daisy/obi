@@ -1466,8 +1466,9 @@ namespace Obi
                         m_ExportEncodeToMP3 = dialog.EncodeToMP3;
                         m_BitRate = dialog.BitRate;
                         mSettings.Export_EncodeToMP3 = m_ExportEncodeToMP3;
+                        
                         mSettings.Export_BitRateMP3 = m_BitRate;
-                        Console.WriteLine("setting " + mSettings.Export_BitRateMP3);
+                        m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3;
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -2171,6 +2172,8 @@ namespace Obi
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
             // Colors
             mSettings.ColorSettings.CreateBrushesAndPens ();
+           m_BitRate = mSettings.Export_BitRateMP3;
+           m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3 ;
             }
 
        internal void InitializeKeyboardShortcuts( bool isFirstTime)

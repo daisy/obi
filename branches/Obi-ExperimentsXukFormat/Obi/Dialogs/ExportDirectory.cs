@@ -30,7 +30,6 @@ namespace Obi.Dialogs
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level5" ) );
             m_ComboSelectLevelForAudioFiles.Items.Add ( Localizer.Message ("Level6" ) );
             m_ComboSelectLevelForAudioFiles.SelectedIndex = 0 ;
-
             if(bitRate != 0)
                 m_ComboBoxBitrate.SelectedIndex = bitRate == 32 ? 0 : bitRate == 48 ? 1 : bitRate == 64 ? 2 : 3;
             m_checkBoxMP3Encoder.Checked = encodeToMP3;
@@ -108,9 +107,10 @@ namespace Obi.Dialogs
             m_ComboBoxBitrate.Enabled = m_checkBoxMP3Encoder.Checked;            
         }
 
-        private void m_ComboBoxBitrate_SelectionChangeCommitted(object sender, EventArgs e)
+        
+        private void m_ComboBoxBitrate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_BitRate = int.Parse(m_ComboBoxBitrate.Items[m_ComboBoxBitrate.SelectedIndex].ToString());
+            m_BitRate = int.Parse(m_ComboBoxBitrate.Items[m_ComboBoxBitrate.SelectedIndex].ToString());                   
         }              
     }
 }
