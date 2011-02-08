@@ -15,7 +15,6 @@ using urakawa.property.channel;
 //using urakawa.publish;
 using urakawa.media.data;
 using urakawa.daisy.export.visitor;
-using System.Windows.Forms;
 
 namespace Obi
 {
@@ -521,29 +520,22 @@ namespace Obi
         /// </summary>
         public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format, bool encodeToMP3, int mp3BitRate, int audioFileSectionLevel)
         {
-            try
+            UpdatePublicationMetadata();
+            if (format == Obi.Export.ExportFormat.DAISY3_0)
             {
-                UpdatePublicationMetadata();
-                if (format == Obi.Export.ExportFormat.DAISY3_0)
-                {
-                    Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, encodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
-                    daisy3Export.BitRate_Mp3 = mp3BitRate;
+                Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, encodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                daisy3Export.BitRate_Mp3 = mp3BitRate;
                     daisy3Export.DoWork();
                 }
-                else
-                {
-                    Export.DAISY202Export export202 = new Obi.Export.DAISY202Export(this, exportPath, encodeToMP3, audioFileSectionLevel);
-                    export202.BitRate_Mp3 = mp3BitRate;
-                    export202.CreateDAISY202Files();
-
-                    /*
-                    ChannelsManager.RemoveManagedObject(publishChannel);
-                     */
-                }
-            }
-            catch(Exception e)
+            else
             {
-                MessageBox.Show(e.ToString());
+                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export(this, exportPath, encodeToMP3,audioFileSectionLevel);
+                export202.BitRate_Mp3 = mp3BitRate;
+                export202.CreateDAISY202Files();
+                
+                /*
+                ChannelsManager.RemoveManagedObject(publishChannel);
+                 */ 
             }
             
         }
