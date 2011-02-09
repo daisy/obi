@@ -31,9 +31,19 @@ namespace Obi.Export
         protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
         {
             return node is SectionNode
-                && ((SectionNode)node).Used 
-                &&  ((SectionNode)node).Duration > 0;
+                && IsSectionEmpty((SectionNode)node);
                     }
+
+        private bool IsSectionEmpty(SectionNode section)
+        {
+            double duration = 0;
+            for (int i = 0; i < section.PhraseChildCount; i++)
+            {
+                EmptyNode eNode = section.PhraseChild(i);
+                if (eNode is PhraseNode && eNode.Used) duration += eNode.Duration;
+            }
+            return duration > 0;
+        }
 
         public override void ConfigureAudioFileDelegates()
         {
@@ -55,14 +65,13 @@ namespace Obi.Export
             rNode.AcceptDepthFirst(
                                 delegate(TreeNode n)
                                 {
-                                    if (n is SectionNode) m_ListOfLevels.Add(n);
+                                    if (doesTreeNodeTriggerNewSmil(n) ) m_ListOfLevels.Add(n);
                                     return true;
                                 },
                                 delegate(urakawa.core.TreeNode n) { });
         }
 
 
-        
         protected override void CreateNcxAndSmilDocuments()
         {
             XmlDocument ncxDocument = CreateStub_NcxDocument();
