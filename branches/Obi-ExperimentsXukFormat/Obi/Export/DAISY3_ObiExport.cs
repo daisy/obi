@@ -29,9 +29,11 @@ namespace Obi.Export
 
         
         protected override bool doesTreeNodeTriggerNewSmil(TreeNode node)
-        {   
-            return node is SectionNode;
-        }
+        {
+            return node is SectionNode
+                && ((SectionNode)node).Used 
+                &&  ((SectionNode)node).Duration > 0;
+                    }
 
         public override void ConfigureAudioFileDelegates()
         {
@@ -128,7 +130,7 @@ namespace Obi.Export
                         //currentQName.LocalName != urakawaNode.GetXmlElementQName().LocalName
                         //&& doesTreeNodeTriggerNewSmil(n))
                 if ( n is SectionNode 
-                    && m_ListOfLevels.IndexOf(n) > m_ListOfLevels.IndexOf(urakawaNode))
+                    && (!m_ListOfLevels.Contains(n)  || m_ListOfLevels.IndexOf(n) > m_ListOfLevels.IndexOf(urakawaNode)) )
                     {
 
                         return false;
