@@ -329,6 +329,7 @@ namespace Obi
     public class ObiRootNode : ObiNode
     {
         public new static string XukString = "root";
+        private ObiNode m_Bookmarked;
         public override string GetTypeNameFormatted()
         {
             return XukString;
@@ -337,7 +338,11 @@ namespace Obi
         public override string XmlPropertyString { get { return "dtbook";} }
 
         private string mPrimaryExportDirectory = "";
-            
+
+        public ObiNode BookmarkNode
+        {
+            get { return m_Bookmarked; }
+        }
 
         public ObiRootNode() : base()
         {
