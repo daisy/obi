@@ -373,7 +373,7 @@ namespace Obi.Export
                 {
                     //if (currentHeadingTreeNode != null
                         //&& (n.IsDescendantOf(currentHeadingTreeNode) || n == currentHeadingTreeNode))
-                    if ( (section.Heading == null && n == section.PhraseChild(0))
+                    if ( (section.Heading == null && n.Parent == section && !IsNcxNativeNodeAdded)
                         || ( n is EmptyNode && ((EmptyNode)n).Role_ == EmptyNode.Role.Heading ))
                     {
                         firstPar_id = par_id;
@@ -630,10 +630,11 @@ namespace Obi.Export
                         else // surch up for node
                         {
                             int counter = 0;
+                            parentNode = urakawaNode;
                             while (parentNode != null && counter <= 6)
                             {
                                 //parentNode = GetParentLevelNode(parentNode);
-                                parentNode = urakawaNode.Parent;
+                                parentNode = parentNode.Parent;
                                 if (parentNode != null && treeNode_NavNodeMap.ContainsKey(parentNode))
                                 {
                                     treeNode_NavNodeMap[parentNode].AppendChild(navPointNode);
@@ -761,8 +762,9 @@ namespace Obi.Export
             foreach (XmlNode xn in playOrderList_Sorted)
             {
                 XmlNode referedContentNode = XmlDocumentHelper.GetFirstChildElementWithName(xn, false, "content", xn.NamespaceURI);
-                string contentNode_Src = referedContentNode.Attributes.GetNamedItem("src").Value;
 
+                string contentNode_Src = referedContentNode.Attributes.GetNamedItem("src").Value;
+                
                 if (playOrder_ReferenceMap.ContainsKey(contentNode_Src))
                 {
                     xn.Attributes.GetNamedItem("playOrder").Value = playOrder_ReferenceMap[contentNode_Src];
