@@ -335,13 +335,14 @@ namespace Obi
             return XukString;
         }
 
-        public override string XmlPropertyString { get { return "dtbook";} }
+        public override string XmlPropertyString { get { return "dtbook"; } }
 
         private string mPrimaryExportDirectory = "";
 
         public ObiNode BookmarkNode
         {
             get { return m_Bookmarked; }
+            set { m_Bookmarked = value; }
         }
 
         public ObiRootNode() : base()
