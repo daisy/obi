@@ -2810,5 +2810,16 @@ namespace Obi
             String directoryPath = Path.GetDirectoryName(mSession.Path);
             mProjectView.ExportAudioOfSelectedNode(mProjectView.Selection.Node,Path.Combine(directoryPath,"Exported_Audio_Files"));
         }
+
+        private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode =  mProjectView.Selection.Node;          
+        }
+
+        private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
+            mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+        }
         }
     }
