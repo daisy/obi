@@ -927,10 +927,10 @@
   <data name="gotoBookmarkNodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Goto bookmark node</value>
   </data>
-  <data name="m_GotoBookmarkNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="m_BookmarkNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
-  <data name="m_GotoBookmarkNodeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="m_BookmarkNodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Bookmark node</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
@@ -1660,7 +1660,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.41663, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.29190, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2416,10 +2416,10 @@
   <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_GotoBookmarkNodeToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_GotoBookmarkNodeToolStripMenuItem</value>
+  <data name="&gt;&gt;m_BookmarkNodeToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_BookmarkNodeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;m_GotoBookmarkNodeToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_BookmarkNodeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_AssignBookmarkToolStripMenuItem.Name" xml:space="preserve">

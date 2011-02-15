@@ -1130,6 +1130,7 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
+         
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -2813,13 +2814,30 @@ namespace Obi
 
         private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode =  mProjectView.Selection.Node;          
+           if(mProjectView.Selection is StripIndexSelection)
+               ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = mProjectView.Selection.EmptyNodeForSelection;
+            else
+           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode =  mProjectView.Selection.Node;
+           
         }
 
         private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
-            mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+            {
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is PhraseNode)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
+                {
+                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
+                }
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+            }            
         }
         }
     }
