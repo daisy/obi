@@ -3,6 +3,7 @@ using Microsoft.DirectX.DirectSound;
 
 namespace Obi.Audio
 {
+    /*
     /// <summary>
     /// Small wrapper around DirectX devices to make it a little more friendly.
     /// </summary>
@@ -54,4 +55,5 @@ namespace Obi.Audio
             mCapture = capture;
         }
     }
+    */
 }

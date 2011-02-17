@@ -15,9 +15,9 @@ namespace Obi.ProjectView
         private ProjectView mView;                   // the parent project view
         private bool m_IsProjectEmpty; // is true if project has no sections
 
-        private Audio.AudioPlayer mPlayer;           // the audio player
-        private Audio.AudioRecorder mRecorder;       // the audio recorder
-        private Audio.VuMeter mVuMeter;              // VU meter
+        private AudioLib.AudioPlayer mPlayer;           // the audio player
+        private AudioLib.AudioRecorder mRecorder;       // the audio recorder
+        private AudioLib.VuMeter mVuMeter;              // VU meter
         //private bool m_AutoSaveOnNextRecordingEnd ; //flag to auto save whenever recording stops or pauses next time//@singleSection:commented
 
         private RecordingSession mRecordingSession;  // current recording session
@@ -126,7 +126,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Get the audio player used by the transport bar.
         /// </summary>
-        public Audio.AudioPlayer AudioPlayer { get { return mPlayer; } }
+        public AudioLib.AudioPlayer AudioPlayer { get { return mPlayer; } }
 
         public bool CanFastForward { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }

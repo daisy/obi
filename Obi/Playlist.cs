@@ -1,3 +1,4 @@
+using AudioLib;
 using Obi.Audio;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using urakawa;
 using urakawa.core;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
+using urakawa.media.timing;
 using urakawa.property;
 
 namespace Obi
@@ -24,7 +26,7 @@ namespace Obi
         private double mTotalTime;                // total time of this playlist
         private double mElapsedTime;              // elapsed time *before* the beginning of the current asset
         private bool mIsMaster;                   // flag for playing whole book or just a selection
-        private AudioPlayerState mPlaylistState;  // playlist state is not always the same as the player state
+        private AudioPlayer.State mPlaylistState;  // playlist state is not always the same as the player state
         private PlayBackState mPlayBackState;     // normal/forward/rewind
         private int mPlaybackRate;                // current playback rate (multiplier)
 
@@ -42,7 +44,7 @@ namespace Obi
         // The playlist sends its own version of the state changed event in order to ignore spurrious
         // stop/start events sent by the audio player when moving between assets.
         // The VUmeter event should be caught as is; the end of asset should be ignored.
-        public event Events.Audio.Player.StateChangedHandler StateChanged;
+        public event AudioPlayer.StateChangedHandler StateChanged;
 
         // The end of the playlist was reached.
         public delegate void EndOfPlaylistHandler(object sender, EventArgs e);
@@ -184,7 +186,7 @@ namespace Obi
             get { return mPhrases.Count > 0 ? mPhrases[mCurrentPhraseIndex] : null; }
             set
             {
-                bool playing = mPlaylistState == AudioPlayerState.Playing;
+                bool playing = mPlaylistState == AudioPlayer.State.Playing;
                 if (playing) Stop();
                 int index = mPhrases.IndexOf(value);
                 if (index >= 0)
@@ -229,7 +231,7 @@ namespace Obi
         /// </summary>
         public double CurrentTimeInAsset
         {
-            get { return mPlayer.CurrentTimePosition; }
+            get { return (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) / Time.TIME_UNIT; }
             set
             {
                 if (value >= 0 &&
@@ -649,7 +651,7 @@ namespace Obi
         /// </summary>
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
-        protected virtual void Playlist_MoveToNextPhrase(object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e)
+        protected virtual void Playlist_MoveToNextPhrase(object sender, AudioPlayer.AudioPlaybackFinishEventArgs e)
         {
             if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
             {
@@ -1008,16 +1010,16 @@ namespace Obi
         public PreviewPlaylist(AudioPlayer player, NodeSelection selection, double revertTime)
             : base(player, selection, false)
         {
-        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase );
-        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
+            base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(base.Playlist_MoveToNextPhrase);
+            base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
         }
 
         public PreviewPlaylist(AudioPlayer player, ObiNode node, double revertTime)
             : base(player, node, false)
         {
-        base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( base.Playlist_MoveToNextPhrase);
-        base.Audioplayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
+            base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(base.Playlist_MoveToNextPhrase);
+            base.Audioplayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             mRevertTime = revertTime;
         }
 
@@ -1031,9 +1033,9 @@ namespace Obi
                     base.Pause () ;
                     }
                 }
-            
 
-        protected override void Playlist_MoveToNextPhrase ( object sender, Events.Audio.Player.EndOfAudioAssetEventArgs e )
+
+        protected override void Playlist_MoveToNextPhrase(object sender, AudioPlayer.AudioPlaybackFinishEventArgs e)
             {
             CallEndOfPreviewPlaylist ();
             }
