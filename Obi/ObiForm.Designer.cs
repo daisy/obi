@@ -112,7 +112,7 @@ namespace Obi
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_BookmarkNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_AssignBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoBookmarkNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_GotoBookmarkNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -782,7 +782,7 @@ namespace Obi
             // 
             this.m_BookmarkNodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_AssignBookmarkToolStripMenuItem,
-            this.gotoBookmarkNodeToolStripMenuItem});
+            this.m_GotoBookmarkNodeToolStripMenuItem});
             this.m_BookmarkNodeToolStripMenuItem.Name = "m_BookmarkNodeToolStripMenuItem";
             resources.ApplyResources(this.m_BookmarkNodeToolStripMenuItem, "m_BookmarkNodeToolStripMenuItem");
             // 
@@ -792,11 +792,11 @@ namespace Obi
             resources.ApplyResources(this.m_AssignBookmarkToolStripMenuItem, "m_AssignBookmarkToolStripMenuItem");
             this.m_AssignBookmarkToolStripMenuItem.Click += new System.EventHandler(this.m_AssignBookmarkToolStripMenuItem_Click);
             // 
-            // gotoBookmarkNodeToolStripMenuItem
+            // m_GotoBookmarkNodeToolStripMenuItem
             // 
-            this.gotoBookmarkNodeToolStripMenuItem.Name = "gotoBookmarkNodeToolStripMenuItem";
-            resources.ApplyResources(this.gotoBookmarkNodeToolStripMenuItem, "gotoBookmarkNodeToolStripMenuItem");
-            this.gotoBookmarkNodeToolStripMenuItem.Click += new System.EventHandler(this.gotoBookmarkNodeToolStripMenuItem_Click);
+            this.m_GotoBookmarkNodeToolStripMenuItem.Name = "m_GotoBookmarkNodeToolStripMenuItem";
+            resources.ApplyResources(this.m_GotoBookmarkNodeToolStripMenuItem, "m_GotoBookmarkNodeToolStripMenuItem");
+            this.m_GotoBookmarkNodeToolStripMenuItem.Click += new System.EventHandler(this.gotoBookmarkNodeToolStripMenuItem_Click);
             // 
             // mPhrases_PhraseIsTODOMenuItem
             // 
@@ -1481,7 +1481,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportSelectedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_BookmarkNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AssignBookmarkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoBookmarkNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_GotoBookmarkNodeToolStripMenuItem;
     }
 }
 

@@ -1130,7 +1130,9 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
-         
+            m_BookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
+            m_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
+            m_GotoBookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && mProjectView.TransportBar.IsRecorderActive;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
