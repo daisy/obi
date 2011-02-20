@@ -34,7 +34,7 @@ namespace Obi
         public uint MaxPhraseDurationMinutes;  // maximum phrase duration in minutes for autosplitting during import
         public uint MaxAllowedPhraseDurationInMinutes ; //Max size of phrase allowed in content view
         public Size NewProjectDialogSize;      // size of the new project dialog
-        public Audio.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
+        public AudioLib.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
         public double NudgeTimeMs;             // nudge time in milliseconds
         public Size ObiFormSize;               // size of the form (for future sessions)
         public bool OpenLastProject;           // open the last open project at startup
@@ -82,7 +82,7 @@ namespace Obi
             settings.MaxPhraseDurationMinutes = 10;
             settings.MaxAllowedPhraseDurationInMinutes = 50;
             settings.NewProjectDialogSize = new Size(0, 0);
-            settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Medium;
+            settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
