@@ -12,7 +12,7 @@ namespace Obi.UserControls
     public partial class TextVUMeterPanel : UserControl
     {
         // member variables
-        private Audio.VuMeter m_VuMeter;    // Instance of VuMeter 
+        private AudioLib.VuMeter m_VuMeter;    // Instance of VuMeter 
                 private String m_StrLeftOverloadIndicator;
         private String m_StrRightOverloadIndicator;
         private string m_strLeftLowLevelIndicator;
@@ -39,7 +39,7 @@ namespace Obi.UserControls
             m_BeepEnabled = false;
         }
 
-        public Audio.VuMeter VuMeter
+        public AudioLib.VuMeter VuMeter
         {
             get
             {
@@ -208,7 +208,7 @@ namespace Obi.UserControls
                 m_StrRightOverloadIndicator = Localizer.Message ( "TextVuMeter_OverloadIndicator" );
 
             //UpdateControls ();
-            Audio.VuMeter ob_VuMeter = sender as Audio.VuMeter;
+            AudioLib.VuMeter ob_VuMeter = sender as AudioLib.VuMeter;
 
 
             // beep enabled false means this is first peak overload after text timer tick, so play beep

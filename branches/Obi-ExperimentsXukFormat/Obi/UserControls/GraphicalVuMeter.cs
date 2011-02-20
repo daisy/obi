@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using AudioLib;
 using Obi.Audio;
 
 namespace Obi.UserControls
@@ -18,7 +18,7 @@ namespace Obi.UserControls
             
         }
 
-        private Audio.VuMeter mVuMeter;
+        private AudioLib.VuMeter mVuMeter;
         private bool m_ResizeParentForm = false;
 
         // flag to indicate overload for overload light to display
@@ -27,7 +27,7 @@ namespace Obi.UserControls
         // variable to count number of timer ticks to skip for an operation
         int BackPaintCount = 0;
 
-        public Audio.VuMeter VuMeter
+        public AudioLib.VuMeter VuMeter
         {
             get
             {
@@ -39,9 +39,9 @@ namespace Obi.UserControls
 
                 if (mVuMeter != null)
                 {
-                    mVuMeter.PeakOverload += new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
-                    mVuMeter.UpdateForms += new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
-                    mVuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(CatchResetEvent);
+                    mVuMeter.PeakOverload += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                    mVuMeter.UpdateForms += new AudioLib.VuMeter.UpdateFormsHandler(CatchUpdateForms);
+                    mVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
                     setScaleFactor();
                     //tmRefresh.Enabled = false;
                 }
@@ -64,9 +64,9 @@ namespace Obi.UserControls
 
         public void UnHookEvents ()
         {
-            mVuMeter.PeakOverload -= new Events.Audio.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
-            mVuMeter.UpdateForms -= new Events.Audio.VuMeter.UpdateFormsHandler(CatchUpdateForms);
-            mVuMeter.ResetEvent -= new Events.Audio.VuMeter.ResetHandler(CatchResetEvent);
+            mVuMeter.PeakOverload -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+            mVuMeter.UpdateForms -= new AudioLib.VuMeter.UpdateFormsHandler(CatchUpdateForms);
+            mVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
         }
 
         // member variables
@@ -118,7 +118,7 @@ namespace Obi.UserControls
 
 
         // function to catch the update event from VuMeter class to update graph cordinates
-        public void CatchUpdateForms(object sender, Events.Audio.VuMeter.UpdateFormsEventArgs Update)
+        public void CatchUpdateForms(object sender, AudioLib.VuMeter.UpdateFormsEventArgs Update)
         {
             VuMeter ob_VuMeterArg = sender as VuMeter;
             mVuMeter = ob_VuMeterArg;
@@ -269,7 +269,7 @@ namespace Obi.UserControls
         }
 
         // catch the peak overload event triggered by VuMeter
-        public void CatchPeakOverloadEvent(object sender, Events.Audio.VuMeter.PeakOverloadEventArgs ob_PeakOverload)
+        public void CatchPeakOverloadEvent(object sender, AudioLib.VuMeter.PeakOverloadEventArgs ob_PeakOverload)
         {
             VuMeter ob_VuMeter = sender as VuMeter;
             if (ob_PeakOverload.Channel == 1)
@@ -282,7 +282,7 @@ namespace Obi.UserControls
             m_OverloadLightEnabled= true;
         }
 
-        internal void CatchResetEvent(object sender, Events.Audio.VuMeter.ResetEventArgs ob_VuMeterEvent)
+        internal void CatchResetEvent(object sender, AudioLib.VuMeter.ResetEventArgs ob_VuMeterEvent)
         {
 
             System.Drawing.Graphics objGraphics;

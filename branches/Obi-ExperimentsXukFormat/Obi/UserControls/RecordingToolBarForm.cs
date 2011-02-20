@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using AudioLib;
+using urakawa.media.timing;
 
 namespace Obi.UserControls
 {
@@ -34,11 +36,22 @@ namespace Obi.UserControls
         public RecordingToolBarForm(ProjectView.TransportBar transportBar):this  ()
         {
             m_TransportBar = transportBar;
-                     m_TransportBar.StateChanged+= new Obi.Events.Audio.Player.StateChangedHandler (State_Changed);
-                     m_TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler(State_Changed);                 
+            m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
+            m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);                 
         }
 
-        public void State_Changed(object sender, EventArgs e)
+        public void State_Changed_Player(object sender, AudioPlayer.StateChangedEventArgs e)
+        {
+            m_TimeCounter = 0;
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+                timer1.Start();
+            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
+                timer1.Stop();
+            UpdateStatus();
+            UpdateButtons();
+        }
+
+        public void State_Changed_Recorder(object sender, AudioRecorder.StateChangedEventArgs e)
         {          
             m_TimeCounter = 0;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) 
@@ -170,16 +183,22 @@ namespace Obi.UserControls
                 if (m_TransportBar.RecordingPhrase != null)
                 {
                     recordingPhrase = m_TransportBar.RecordingPhrase.ToString();
+
+                    //m_TransportBar.Recorder.TimeOfAsset
+                    double timeOfAssetMilliseconds =
+                   (double)m_TransportBar.Recorder.RecordingPCMFormat.ConvertBytesToTime(m_TransportBar.Recorder.CurrentDurationBytePosition) /
+                   Time.TIME_UNIT;
+
                     if (m_strStatus == "")
                     {
-                        m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(m_TransportBar.Recorder.TimeOfAsset));                    
+                        m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(timeOfAssetMilliseconds));                    
                     }
                    
                     if (m_Count <= 3)
                     {
                         if (m_strStatus == "New phrase " || m_strStatus == "Marked TODO " || m_strStatus == "New section ")
                         {
-                            m_StatusLabel.Text = m_strStatus + format(m_TransportBar.Recorder.TimeOfAsset);
+                            m_StatusLabel.Text = m_strStatus + format(timeOfAssetMilliseconds);
                             m_Count++;
                         }                                        
                    }
