@@ -232,7 +232,11 @@ namespace Obi
         /// </summary>
         public double CurrentTimeInAsset
         {
-            get { return (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) / Time.TIME_UNIT; }
+            get
+            {
+                if (mPlayer.CurrentAudioPCMFormat == null || mPlayer.CurrentBytePosition == 0) return 0;
+                return (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) / Time.TIME_UNIT;
+            }
             set
             {
                 double phraseDurationMilliseconds =
@@ -415,12 +419,13 @@ namespace Obi
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
             if (mPlaylistState == AudioPlayer.State.Stopped)
             {
-
                 mPlayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayer.State.Playing;
             double from = mPlaybackStartTime;
             mPlaybackStartTime = 0.0;
+            
+            mPlayer.EnsurePlaybackStreamIsDead();
 
             Stream stream = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.OpenPcmInputStream();
             m_StreamProviderDelegate = delegate
@@ -1136,7 +1141,6 @@ namespace Obi
         {
             base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             PauseFromStopped(mRevertTime);
-                                        
         }
     }
 }
