@@ -595,51 +595,87 @@ namespace Obi.ProjectView
         }
 
         // Move the audio cursor to the phrase currently playing.
+
+        private delegate void Playlist_MovedToPhrase_Delegate(object sender, Events.Node.PhraseNodeEventArgs e);
         private void Playlist_MovedToPhrase(object sender, Events.Node.PhraseNodeEventArgs e)
         {
-            mView.SetPlaybackPhraseAndTime(e.Node, mCurrentPlaylist.CurrentTimeInAsset);
-            UpdateTimeDisplay();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Playlist_MovedToPhrase_Delegate(Playlist_MovedToPhrase), sender, e);
+            }
+            else
+            {
+                mView.SetPlaybackPhraseAndTime(e.Node, mCurrentPlaylist.CurrentTimeInAsset);
+                UpdateTimeDisplay();
+            }
         }
-
+        
         // Update the transport bar according to the player state.
+
+        private delegate void Playlist_PlayerStateChanged_Delegate(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e);
         private void Playlist_PlayerStateChanged(object sender, AudioLib.AudioPlayer.StateChangedEventArgs e)
         {
-            mState = mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused ? State.Paused :
-                mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing ? State.Playing : State.Stopped;
-            if (mState == State.Playing || mState == State.Recording)
+            if (this.InvokeRequired)
             {
-                mDisplayTimer.Start();
-                if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackBlockIfRequired () ;
+                this.Invoke(new Playlist_PlayerStateChanged_Delegate(Playlist_PlayerStateChanged), sender, e);
             }
-            else if (mState == State.Stopped)
+            else
             {
-                mDisplayTimer.Stop();
-                 if ( !(mCurrentPlaylist is PreviewPlaylist ) )    mView.SetPlaybackPhraseAndTime ( null, 0);//added on 31 july ,2010 
+                mState = mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused ? State.Paused :
+                   mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing ? State.Playing : State.Stopped;
+                if (mState == State.Playing || mState == State.Recording)
+                {
+                    mDisplayTimer.Start();
+                    if (mState == State.Playing || mState == State.Paused) mView.SetPlaybackBlockIfRequired();
+                }
+                else if (mState == State.Stopped)
+                {
+                    mDisplayTimer.Stop();
+                    if (!(mCurrentPlaylist is PreviewPlaylist)) mView.SetPlaybackPhraseAndTime(null, 0);//added on 31 july ,2010 
+                }
+                UpdateTimeDisplay();
+                UpdateButtons();
+
+                if (StateChanged != null) StateChanged(this, e);
+
+                if (m_IsPreviewing) PostPreviewRestore();
             }
-            if (StateChanged != null) StateChanged(this, e);
-            UpdateTimeDisplay();
-            UpdateButtons();
-
-            if(m_IsPreviewing)  PostPreviewRestore();
-
-          
         }
 
         // Simply pass the playback rate change event.
+
+        private delegate void Playlist_PlaybackRateChanged_Delegate(object sender, EventArgs e);
         private void Playlist_PlaybackRateChanged(object sender, EventArgs e)
         {
-            if (PlaybackRateChanged != null) PlaybackRateChanged(sender, e);
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Playlist_PlaybackRateChanged_Delegate(Playlist_PlaybackRateChanged), sender, e);
+            }
+            else
+            {
+                if (PlaybackRateChanged != null) PlaybackRateChanged(sender, e);
+            }
         }
 
+
         // Update the transport bar once the player has stopped.
-        private void Playlist_PlayerStopped(object sender, EventArgs e) 
+
+        private delegate void Playlist_PlayerStopped_Delegate(object sender, EventArgs e);
+        private void Playlist_PlayerStopped(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired)
             {
-            if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
-                mView.UpdateCursorPosition ( mAfterPreviewRestoreTime );
-            else
-            mView.SetPlaybackPhraseAndTime(null, 0.0); 
+                this.Invoke(new Playlist_PlayerStopped_Delegate(Playlist_PlayerStopped), sender, e);
             }
-        
+            else
+            {
+                if (mCurrentPlaylist != null && mCurrentPlaylist is PreviewPlaylist)
+                    mView.UpdateCursorPosition(mAfterPreviewRestoreTime);
+                else
+                    mView.SetPlaybackPhraseAndTime(null, 0.0); 
+            }
+        }
+
         // Adapt to changes in the presentation.
         // At the moment, simply stop.
         private void Presentation_Changed(object sender, urakawa.events.DataModelChangedEventArgs e)
@@ -689,26 +725,37 @@ namespace Obi.ProjectView
         }
 
         // Update visibility and enabledness of buttons depending on the state of the recorder
+        
+        private delegate void UpdateButtons_Delegate();
         private void UpdateButtons()
         {
-            mPrevSectionButton.Enabled = CanNavigatePrevSection;
-            mPreviousPageButton.Enabled = CanNavigatePrevPage;
-            mPrevPhraseButton.Enabled = CanNavigatePrevPhrase;
-            mRewindButton.Enabled = CanRewind;
-            mPauseButton.Visible = CanPause;
-            mPlayButton.Visible = !mPauseButton.Visible;
-            mPlayButton.Enabled = CanPlay || CanResumePlayback;
-            mFastPlayRateCombobox.Enabled = !IsRecorderActive;
-            mRecordButton.Enabled =  CanRecord || CanResumeRecording;
-            mRecordButton.AccessibleName = Localizer.Message(
-                mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ? "start_recording" : "start_monitoring"
-            );
-            mStopButton.Enabled = CanStop;
-            mFastForwardButton.Enabled = CanFastForward;
-            mNextPhrase.Enabled = CanNavigateNextPhrase;
-            mNextPageButton.Enabled = CanNavigateNextPage;
-            mNextSectionButton.Enabled = CanNavigateNextSection;
-            mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new UpdateButtons_Delegate(UpdateButtons));
+            }
+            else
+            {
+                mPrevSectionButton.Enabled = CanNavigatePrevSection;
+                mPreviousPageButton.Enabled = CanNavigatePrevPage;
+                mPrevPhraseButton.Enabled = CanNavigatePrevPhrase;
+                mRewindButton.Enabled = CanRewind;
+                mPauseButton.Visible = CanPause;
+                mPlayButton.Visible = !mPauseButton.Visible;
+                mPlayButton.Enabled = CanPlay || CanResumePlayback;
+                mFastPlayRateCombobox.Enabled = !IsRecorderActive;
+                mRecordButton.Enabled = CanRecord || CanResumeRecording;
+                mRecordButton.AccessibleName = Localizer.Message(
+                    mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
+                        ? "start_recording"
+                        : "start_monitoring"
+                    );
+                mStopButton.Enabled = CanStop;
+                mFastForwardButton.Enabled = CanFastForward;
+                mNextPhrase.Enabled = CanNavigateNextPhrase;
+                mNextPageButton.Enabled = CanNavigateNextPage;
+                mNextSectionButton.Enabled = CanNavigateNextSection;
+                mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
+            }
         }
 
         private static string FormatDuration_hh_mm_ss(double durationMs)
@@ -722,39 +769,48 @@ namespace Obi.ProjectView
         /// <summary>
         /// Update the time display to show current time. Depends on the what kind of timing is selected.
         /// </summary>
-        private void UpdateTimeDisplay()
-        {
-            if (mState == State.Monitoring)
-            {
-                mTimeDisplayBox.Text = "--:--:--";
-                mDisplayBox.SelectedIndex = ELAPSED_INDEX;
-            }
-            else if (mState == State.Recording)
-            {
-                //mRecordingSession.AudioRecorder.TimeOfAsset
-                double timeOfAssetMilliseconds =
-                   (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
-                   Time.TIME_UNIT;
 
-                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
-                mDisplayBox.SelectedIndex = ELAPSED_INDEX;
-            }
-            else if (mState == State.Stopped)
-            {
-                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
-            }
-            else
-            {
-                mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
-                    mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
-                        mCurrentPlaylist.CurrentTimeInAsset :
-                    mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
-                        mCurrentPlaylist.CurrentTime :
-                    mDisplayBox.SelectedIndex == REMAIN_INDEX ?
-                        mCurrentPlaylist.RemainingTimeInAsset :
-                        mCurrentPlaylist.RemainingTime);
-            }
-        }
+        private delegate void UpdateTimeDisplay_Delegate();
+        private void UpdateTimeDisplay()
+         {
+             if (this.InvokeRequired)
+             {
+                 this.Invoke(new UpdateTimeDisplay_Delegate(UpdateTimeDisplay));
+             }
+             else
+             {
+                 if (mState == State.Monitoring)
+                 {
+                     mTimeDisplayBox.Text = "--:--:--";
+                     mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                 }
+                 else if (mState == State.Recording)
+                 {
+                     //mRecordingSession.AudioRecorder.TimeOfAsset
+                     double timeOfAssetMilliseconds =
+                        (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
+                        Time.TIME_UNIT;
+
+                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
+                     mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                 }
+                 else if (mState == State.Stopped)
+                 {
+                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(0.0);
+                 }
+                 else
+                 {
+                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
+                         mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
+                             mCurrentPlaylist.CurrentTimeInAsset :
+                         mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
+                             mCurrentPlaylist.CurrentTime :
+                         mDisplayBox.SelectedIndex == REMAIN_INDEX ?
+                             mCurrentPlaylist.RemainingTimeInAsset :
+                             mCurrentPlaylist.RemainingTime);
+                 }
+             }
+         }
 
 
         // Play/Resume playback
