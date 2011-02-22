@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using AudioLib;
 using Obi.Audio;
 using Obi.Events.Audio.Recorder;
+using urakawa.data;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
 using urakawa.media.data.audio.codec;
@@ -34,6 +35,27 @@ namespace Obi
         public event FinishingPhraseHandler FinishingPhrase;    // finishing a phrase
         public event FinishingPageHandler FinishingPage;        // finishing a page
 
+        private void OnAudioRecordingFinished(object sender, AudioRecorder.AudioRecordingFinishEventArgs e)
+        {
+            bool deleteAfterInsert = true;
+                if (deleteAfterInsert)
+                {
+                    FileDataProvider dataProv = (FileDataProvider)mSessionMedia.Presentation.DataProviderFactory.Create(DataProviderFactory.AUDIO_WAV_MIME_TYPE);
+                    dataProv.InitByMovingExistingFile(e.RecordedFilePath);
+                    mSessionMedia.AudioMediaData.AppendPcmData(dataProv);
+                }
+                else
+                {
+                    // TODO: progress ! (time consuming file copy)
+                    mSessionMedia.AudioMediaData.AppendPcmData_RiffHeader(e.RecordedFilePath);
+                }
+
+                if (deleteAfterInsert && File.Exists(e.RecordedFilePath)) //check exist just in case file adopted by DataProviderManager
+                {
+                    File.Delete(e.RecordedFilePath);
+                }
+        }
+
 
         /// <summary>
         /// Create a recording session for a project starting from a given node.
@@ -44,6 +66,7 @@ namespace Obi
         {
             mPresentation = presentation;
             mRecorder = recorder;
+            mRecorder.AudioRecordingFinished += OnAudioRecordingFinished;
             mRecorder.RecordingDirectory =
                 presentation.DataProviderManager.DataFileDirectoryFullPath;
             if (!Directory.Exists(mRecorder.RecordingDirectory)) Directory.CreateDirectory(mRecorder.RecordingDirectory);
@@ -158,9 +181,11 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
+            bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
+
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
+                || wasRecording)
             {
-                bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
                 if (wasRecording   &&   mPhraseMarks.Count > 0 ) FinishedPhrase();
                 mRecorder.StopRecording();
                 if (wasRecording)
