@@ -774,9 +774,10 @@ namespace Obi
                 mCurrentPhraseIndex = 0;
                 mElapsedTime = 0.0;
                 mPlayer.Stop();
-                if (StateChanged != null) StateChanged(this, evargs);
-
+                
                 mPlayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
+
+                if (StateChanged != null) StateChanged(this, evargs);
             }
         }
 
