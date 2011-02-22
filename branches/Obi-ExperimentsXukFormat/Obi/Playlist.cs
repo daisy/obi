@@ -726,6 +726,7 @@ namespace Obi
         // In the normal case we just stop.
         protected virtual void ReachedEndOfPlaylist()
         {
+            //Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             Stop();
             if (EndOfPlaylist != null) EndOfPlaylist(this, new EventArgs());
         }
@@ -773,10 +774,11 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = 0;
                 mCurrentPhraseIndex = 0;
                 mElapsedTime = 0.0;
-                mPlayer.Stop();
-                
+
                 mPlayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
 
+                mPlayer.Stop();
+                
                 if (StateChanged != null) StateChanged(this, evargs);
             }
         }
