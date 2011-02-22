@@ -1,3 +1,4 @@
+using System.IO;
 using AudioLib;
 using Obi.Audio;
 using System;
@@ -234,10 +235,29 @@ namespace Obi
             get { return (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) / Time.TIME_UNIT; }
             set
             {
+                double phraseDurationMilliseconds =
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+
                 if (value >= 0 &&
-                    value < mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds)
+                    value < phraseDurationMilliseconds)
                 {
-                    mPlayer.CurrentTimePosition = value;
+                    AudioLibPCMFormat format = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.PCMFormat.Data;
+
+                    double millisecondsBegin = value;
+                    long bytesBegin = format.ConvertTimeToBytes((long)(millisecondsBegin * Time.TIME_UNIT));
+
+                    double millisecondsEnd = mPlaybackEndTime > 0.0 && millisecondsBegin < mPlaybackEndTime ? mPlaybackEndTime : phraseDurationMilliseconds;
+                    long bytesEnd = format.ConvertTimeToBytes((long)(millisecondsEnd * Time.TIME_UNIT));
+
+                    if (mPlayer.CurrentState == AudioPlayer.State.Playing)
+                    {
+                        mPlayer.Stop();
+                        mPlayer.PlayBytes(m_StreamProviderDelegate, m_StreamProviderDelegate().Length, format, bytesBegin, bytesEnd);
+                    }
+                    else if (mPlayer.CurrentState == AudioPlayer.State.Paused)
+                    {
+                        mPlayer.Pause(bytesBegin);
+                    }
                 }
             }
         }
@@ -387,25 +407,49 @@ namespace Obi
             }
         }
 
+        private AudioPlayer.StreamProviderDelegate m_StreamProviderDelegate = null;
+
         // Play the current phrase
         private void PlayCurrentPhrase()
         {
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
             if (mPlaylistState == AudioPlayer.State.Stopped)
             {
-                mPlayer.EndOfAudioAsset += new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+
+                mPlayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             }
             mPlaylistState = AudioPlayer.State.Playing;
             double from = mPlaybackStartTime;
             mPlaybackStartTime = 0.0;
+
+            Stream stream = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.OpenPcmInputStream();
+            m_StreamProviderDelegate = delegate
+                {
+                    return stream;
+                };
+
+            AudioLibPCMFormat format = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.PCMFormat.Data;
+
+            double phraseDurationMilliseconds =
+                    mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
+
+            long dataLength = stream.Length; // format.ConvertTimeToBytes((long)(phraseDurationMilliseconds * Time.TIME_UNIT));
+
+            double millisecondsBegin = from;
+            long bytesBegin = format.ConvertTimeToBytes((long)(millisecondsBegin * Time.TIME_UNIT));
+
+            double millisecondsEnd = mPlaybackEndTime > 0.0 ? mPlaybackEndTime : phraseDurationMilliseconds;
+            long bytesEnd = format.ConvertTimeToBytes((long)(millisecondsEnd * Time.TIME_UNIT));
+
             if (mCurrentPhraseIndex == mPhrases.Count - 1 && mPlaybackEndTime > 0.0)
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData, from, mPlaybackEndTime);
+                mPlayer.PlayBytes(m_StreamProviderDelegate, dataLength, format, bytesBegin, bytesEnd);
             }
             else
             {
-                mPlayer.Play(mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData, from);
+                mPlayer.PlayBytes(m_StreamProviderDelegate, dataLength, format, bytesBegin, bytesEnd);
             }
+
             // send the state change event if the state actually changed
             if (StateChanged != null && mPlayer.CurrentState != evargs.OldState) StateChanged(this, evargs);
         }
@@ -700,7 +744,11 @@ namespace Obi
 
         public void PauseFromStopped(double time)
         {
-            mPlayer.PauseFromStopped(time);
+            AudioLibPCMFormat format = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.PCMFormat.Data;
+            long bytes = format.ConvertTimeToBytes((long)(time * Time.TIME_UNIT));
+
+            mPlayer.Pause(bytes);
+
             mPlaylistState = AudioPlayer.State.Paused;
             if (StateChanged != null)
             {
@@ -722,7 +770,8 @@ namespace Obi
                 mElapsedTime = 0.0;
                 mPlayer.Stop();
                 if (StateChanged != null) StateChanged(this, evargs);
-                mPlayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler(Playlist_MoveToNextPhrase);
+
+                mPlayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             }
         }
 
@@ -987,12 +1036,12 @@ namespace Obi
             {
                 mPlayer.Pause();
                 mPlayer.FastPlayFactor = 1;
-                mPlayer.CurrentTimePosition = currentTimePosition - LapseBackTime;
+                CurrentTimeInAsset = currentTimePosition - LapseBackTime;
             }
             else
             {
                 mPlayer.Pause();
-                mPlayer.CurrentTimePosition = 10;
+                CurrentTimeInAsset = 10;
                 mPlayer.FastPlayFactor = 1;
             }
             //Console.WriteLine("paused time " + mPlayer.CurrentTimePosition);
@@ -1055,7 +1104,10 @@ namespace Obi
 
         public void TriggerEndOfPreviewPlaylist ( double time   )
             {
-            if (time > 0 && time < Audioplayer.CurrentAudio.AudioDuration.AsTimeSpan.TotalMilliseconds)
+            if (time > 0 && time <
+                mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.AudioDuration.AsTimeSpan.TotalMilliseconds
+                //Audioplayer.CurrentAudio.AudioDuration.AsTimeSpan.TotalMilliseconds
+                )
                 {
                 mRevertTime = time;
                 CallEndOfPreviewPlaylist ();
@@ -1082,7 +1134,7 @@ namespace Obi
 
         protected override void ReachedEndOfPlaylist()
         {
-            base.Audioplayer.EndOfAudioAsset -= new Events.Audio.Player.EndOfAudioAssetHandler ( Playlist_MoveToNextPhrase );
+            base.Audioplayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
             PauseFromStopped(mRevertTime);
                                         
         }

@@ -39,9 +39,9 @@ namespace Obi.UserControls
 
                 if (mVuMeter != null)
                 {
-                    mVuMeter.PeakOverload += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
-                    mVuMeter.UpdateForms += new AudioLib.VuMeter.UpdateFormsHandler(CatchUpdateForms);
-                    mVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
+                    mVuMeter.PeakMeterOverloaded += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                    mVuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+                    //mVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
                     setScaleFactor();
                     //tmRefresh.Enabled = false;
                 }
@@ -64,9 +64,9 @@ namespace Obi.UserControls
 
         public void UnHookEvents ()
         {
-            mVuMeter.PeakOverload -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
-            mVuMeter.UpdateForms -= new AudioLib.VuMeter.UpdateFormsHandler(CatchUpdateForms);
-            mVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
+            mVuMeter.PeakMeterOverloaded -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+            mVuMeter.PeakMeterUpdated -= new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+            //mVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
         }
 
         // member variables
@@ -118,16 +118,43 @@ namespace Obi.UserControls
 
 
         // function to catch the update event from VuMeter class to update graph cordinates
-        public void CatchUpdateForms(object sender, AudioLib.VuMeter.UpdateFormsEventArgs Update)
+        public void CatchPeakMeterUpdateEvent(object sender, AudioLib.VuMeter.PeakMeterUpdateEventArgs e)
         {
             VuMeter ob_VuMeterArg = sender as VuMeter;
             mVuMeter = ob_VuMeterArg;
 
+            double channelValueLeft = 0;
+            double channelValueRight = 0;
+
+            if (e.PeakDb != null && e.PeakDb.Length > 0)
+            {
+                channelValueLeft = e.PeakDb[0];
+
+                if (e.PeakDb.Length > 1)
+                {
+                    channelValueRight = e.PeakDb[1];
+                }
+                else
+                {
+                    channelValueRight = channelValueLeft;
+                }
+
+                if (channelValueLeft == Double.PositiveInfinity
+                    && e.PeakDb.Length > 1
+                    && channelValueRight == Double.PositiveInfinity)
+                {
+                    CatchResetEvent();
+                    return;
+                }
+            }
+
             // Update erase left and erase right cordinates
-            int ThresholdFactor = 12500 / (mVuMeter.UpperThreshold - mVuMeter.LowerThreshold);
-            int DisplayAmpLeft = (mVuMeter.ChannelValueLeft * ThresholdFactor) / 100;
-            int DisplayAmpRight = (mVuMeter.ChannelValueRight * ThresholdFactor) / 100;
-            int Offset = 65 - ((mVuMeter.LowerThreshold * ThresholdFactor) / 100);
+            int ThresholdFactor = 12500 / (210 - 15);
+            int DisplayAmpLeft = (int)((channelValueLeft * ThresholdFactor) / 100.0);
+            int DisplayAmpRight = (int)((channelValueRight * ThresholdFactor) / 100.0);
+            int Offset = 65 - ((15 * ThresholdFactor) / 100);
+
+
             DisplayAmpLeft = DisplayAmpLeft + Offset;
             DisplayAmpRight = DisplayAmpRight + Offset;
 
@@ -282,9 +309,8 @@ namespace Obi.UserControls
             m_OverloadLightEnabled= true;
         }
 
-        internal void CatchResetEvent(object sender, AudioLib.VuMeter.ResetEventArgs ob_VuMeterEvent)
+        internal void CatchResetEvent() //object sender, AudioLib.VuMeter.ResetEventArgs ob_VuMeterEvent)
         {
-
             System.Drawing.Graphics objGraphics;
             objGraphics = this.CreateGraphics();
 

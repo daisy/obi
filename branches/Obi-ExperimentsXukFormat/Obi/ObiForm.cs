@@ -736,9 +736,9 @@ namespace Obi
         // Initialize event handlers from the project view
         private void InitializeEventHandlers ()
             {
-            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler ( TransportBar_StateChanged );
+            mProjectView.TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler ( TransportBar_StateChanged );
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler ( TransportBar_PlaybackRateChanged );
-            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( TransportBar_StateChanged );
+            mProjectView.TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler ( TransportBar_StateChanged );
             mProjectView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler ( Progress_Changed );
             }
 
@@ -2141,7 +2141,7 @@ namespace Obi
                 }
             try
                 {
-                mProjectView.TransportBar.AudioPlayer.SetDevice ( this, mSettings.LastOutputDevice );
+                mProjectView.TransportBar.AudioPlayer.SetOutputDevice( this, mSettings.LastOutputDevice );
                 }
             catch (Exception)
                 {
@@ -2151,7 +2151,7 @@ namespace Obi
                 }
             try
                 {
-                mProjectView.TransportBar.Recorder.SetDevice ( this, mSettings.LastInputDevice );
+                mProjectView.TransportBar.Recorder.SetInputDevice( mSettings.LastInputDevice );
                 }
             catch (Exception)
                 {
