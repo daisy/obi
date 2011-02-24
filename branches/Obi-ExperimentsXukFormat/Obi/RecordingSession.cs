@@ -37,6 +37,7 @@ namespace Obi
 
         private void OnAudioRecordingFinished(object sender, AudioRecorder.AudioRecordingFinishEventArgs e)
         {
+            mRecorder.AudioRecordingFinished -= OnAudioRecordingFinished;
             bool deleteAfterInsert = true;
                 if (deleteAfterInsert)
                 {
@@ -66,7 +67,7 @@ namespace Obi
         {
             mPresentation = presentation;
             mRecorder = recorder;
-            mRecorder.AudioRecordingFinished += OnAudioRecordingFinished;
+            
             mRecorder.RecordingDirectory =
                 presentation.DataProviderManager.DataFileDirectoryFullPath;
             if (!Directory.Exists(mRecorder.RecordingDirectory)) Directory.CreateDirectory(mRecorder.RecordingDirectory);
@@ -148,6 +149,7 @@ namespace Obi
                 mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
                 //mSessionMedia.setMediaData(asset);
                 mSessionMedia.MediaData = asset;
+                mRecorder.AudioRecordingFinished += OnAudioRecordingFinished;
                 mRecorder.StartRecording(asset.PCMFormat.Data);
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset, 0.0));
