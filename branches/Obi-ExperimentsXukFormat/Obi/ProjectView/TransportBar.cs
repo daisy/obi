@@ -548,6 +548,7 @@ namespace Obi.ProjectView
         private void InitAudio()
         {
             mPlayer = new AudioLib.AudioPlayer(true);
+            mPlayer.AllowBackToBackPlayback = true;
             mRecorder = new AudioLib.AudioRecorder();
             mRecorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
             mVuMeter = new AudioLib.VuMeter(mPlayer, mRecorder);
