@@ -248,7 +248,7 @@ namespace Obi.Audio
             { //1
                 maxDbs[c] = 20 * Math.Log10(maxDbs[c] / halfFull);
             } // -1
-
+            Console.WriteLine(maxDbs[0]);
             m_PeakDbValue = maxDbs;
             if ( UpdatePeakMeter != null )
                             UpdatePeakMeter(this, new Obi.Events.Audio.VuMeter.UpdatePeakMeter(maxDbs));
