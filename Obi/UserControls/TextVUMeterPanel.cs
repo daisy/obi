@@ -58,8 +58,8 @@ namespace Obi.UserControls
                     //m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
 
 //TODO: implement these !!
-//m_VuMeter.LevelTooLowEvent += new Obi.Events.Audio.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
-//m_VuMeter.LevelGoodEvent += new Obi.Events.Audio.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
+m_VuMeter.LevelTooLowEvent += new AudioLib.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
+m_VuMeter.LevelGoodEvent += new AudioLib.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
 
                     m_MaxLeftDB = -100.00;
                     m_MaxRightDB = -100.00;
@@ -116,11 +116,12 @@ namespace Obi.UserControls
 
         private void tmUpdateText_Tick(object sender, EventArgs e)
         {
+            
                         if (m_VuMeter != null)
             {
                             if (
 //TODO: implement this !!!
-//!m_VuMeter.IsLevelTooLow||
+!m_VuMeter.IsLevelTooLow||
                                 mShowMaxMinValues)
                         UpdateRunningValues();
                     else 
@@ -140,11 +141,13 @@ namespace Obi.UserControls
         {
             double LeftDb = 0;
             double RightDb = 0;
+            
             if (VuMeter.LastPeakDb != null)
             {//1
+                
                 if (VuMeter.LastPeakDb.Length > 0 && VuMeter.LastPeakDb[0] != Double.PositiveInfinity)
                     LeftDb = VuMeter.LastPeakDb[0];
-
+                
                 if (VuMeter.LastPeakDb.Length > 1 && VuMeter.LastPeakDb[1] != Double.PositiveInfinity)
                     RightDb = VuMeter.LastPeakDb[1];
 
@@ -266,7 +269,7 @@ namespace Obi.UserControls
             }
         }
 
-        private void CatchLevelTooLowEvent(object sender, Obi.Events.Audio.VuMeter.LevelTooLowEventArgs e)
+        private void CatchLevelTooLowEvent(object sender, AudioLib.VuMeter.LevelTooLowEventArgs e)
         {
         if (m_AfterGoodCount >= 0)
             {
