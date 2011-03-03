@@ -796,12 +796,12 @@ namespace Obi
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.Rewind;
 
                 AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs ( mPlayer.CurrentState );
-
+                /*commented for AudioLib migration
                 if (mPlayer.CurrentState == AudioPlayer.State.Paused)
                     mPlayer.Resume();
                 else if (mPlayer.CurrentState == AudioPlayer.State.Stopped)
                     Play();
-
+                */
                 if (mPlayer.CurrentState == AudioPlayer.State.Playing)
                     mPlaylistState = AudioPlayer.State.Playing;
 
@@ -827,12 +827,12 @@ namespace Obi
                 mPlayer.PlaybackFwdRwdRate = mPlaybackRate;
                 //mPlayer.PlaybackMode = Audio.PlaybackMode.FastForward;
                 AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs ( mPlayer.CurrentState );
-
+                /* commented for AudioLib migration
                 if (mPlayer.CurrentState == AudioPlayer.State.Paused)
                     mPlayer.Resume();
                 else if (mPlayer.CurrentState == AudioPlayer.State.Stopped)
                     Play();
-
+                */
                 if (mPlayer.CurrentState == AudioPlayer.State.Playing)
                     mPlaylistState = AudioPlayer.State.Playing;
 
