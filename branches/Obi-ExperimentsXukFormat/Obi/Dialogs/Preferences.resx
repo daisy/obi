@@ -244,7 +244,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mOKButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mCancelButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom</value>
@@ -277,7 +277,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mCancelButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="labelInputDeviceName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -412,7 +412,7 @@
     <value>True</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 89</value>
+    <value>172, 116</value>
   </data>
   <data name="m_ChkAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 20</value>
@@ -439,7 +439,7 @@
     <value>True</value>
   </data>
   <data name="mChkAutoSaveOnRecordingEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 123</value>
+    <value>8, 116</value>
   </data>
   <data name="mChkAutoSaveOnRecordingEnd.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 20</value>
@@ -449,6 +449,9 @@
   </data>
   <data name="mChkAutoSaveOnRecordingEnd.Text" xml:space="preserve">
     <value>Auto save whenever recording ends</value>
+  </data>
+  <data name="mChkAutoSaveOnRecordingEnd.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;mChkAutoSaveOnRecordingEnd.Name" xml:space="preserve">
     <value>mChkAutoSaveOnRecordingEnd</value>
@@ -466,7 +469,7 @@
     <value>Interval in minutes</value>
   </data>
   <data name="MnumAutoSaveInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 87</value>
+    <value>372, 116</value>
   </data>
   <data name="MnumAutoSaveInterval.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 22</value>
@@ -493,7 +496,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="mPipelineTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 153</value>
+    <value>172, 62</value>
   </data>
   <data name="mPipelineTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -523,7 +526,7 @@
     <value>Flat</value>
   </data>
   <data name="mPipelineBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>508, 148</value>
+    <value>512, 57</value>
   </data>
   <data name="mPipelineBrowseButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -553,7 +556,7 @@
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 155</value>
+    <value>8, 64</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 16</value>
@@ -583,7 +586,7 @@
     <value>Flat</value>
   </data>
   <data name="mLastOpenCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 53</value>
+    <value>8, 89</value>
   </data>
   <data name="mLastOpenCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -596,6 +599,9 @@
   </data>
   <data name="mLastOpenCheckBox.Text" xml:space="preserve">
     <value>Open &amp;last project when starting Obi</value>
+  </data>
+  <data name="mLastOpenCheckBox.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;mLastOpenCheckBox.Name" xml:space="preserve">
     <value>mLastOpenCheckBox</value>
@@ -730,7 +736,7 @@
     <value>High</value>
   </data>
   <data name="mNoiseLevelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 206</value>
+    <value>160, 198</value>
   </data>
   <data name="mNoiseLevelComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -757,7 +763,7 @@
     <value>True</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 210</value>
+    <value>68, 199</value>
   </data>
   <data name="label8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -803,6 +809,9 @@
   </data>
   <data name="mAudioCluesCheckBox.Text" xml:space="preserve">
     <value>&amp;Audio clues</value>
+  </data>
+  <data name="mAudioCluesCheckBox.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;mAudioCluesCheckBox.Name" xml:space="preserve">
     <value>mAudioCluesCheckBox</value>
@@ -1593,6 +1602,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mTab.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="m_CheckBoxListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 240</value>
+  </data>
+  <data name="m_CheckBoxListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 81</value>
+  </data>
+  <data name="m_CheckBoxListView.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Name" xml:space="preserve">
+    <value>m_CheckBoxListView</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;m_CheckBoxListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

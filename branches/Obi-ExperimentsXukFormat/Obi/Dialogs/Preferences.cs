@@ -24,6 +24,10 @@ namespace Obi.Dialogs
         private int m_Nudge = 200;
         private int m_Preview = 1500;
         private int m_Elapse = 2500;
+        private bool m_AutoSave;
+        private bool m_SaveBookmarkNode;
+        private bool m_OpenLastProject;
+        private bool m_IsComplete = false;
         
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -46,15 +50,16 @@ namespace Obi.Dialogs
         // Initialize the project tab
         private void InitializeProjectTab ()
             {
+                UpdateTabControl();
             mDirectoryTextbox.Text = mSettings.DefaultPath;
-            mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
+         //   mLastOpenCheckBox.Checked = mSettings.OpenLastProject;
             m_ChkAutoSaveInterval.CheckStateChanged -= new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
             m_ChkAutoSaveInterval.Checked = mSettings.AutoSaveTimeIntervalEnabled;
             m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler ( this.m_ChkAutoSaveInterval_CheckStateChanged );
             int intervalMinutes = Convert.ToInt32 ( mSettings.AutoSaveTimeInterval / 60000 );
             MnumAutoSaveInterval.Value = intervalMinutes;
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
-            mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
+          //  mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
             mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
             }
 
@@ -112,7 +117,12 @@ namespace Obi.Dialogs
             mNoiseLevelComboBox.SelectedIndex =
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
-            mAudioCluesCheckBox.Checked = mSettings.AudioClues;
+        //    mAudioCluesCheckBox.Checked = mSettings.AudioClues;
+            if (this.mTab.SelectedTab == mAudioTab)
+            {
+                m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
+                m_CheckBoxListView.Items[1].Checked = mSettings.CropAudio;
+            }
             }
 
         // Initialize user profile preferences
@@ -210,10 +220,10 @@ namespace Obi.Dialogs
                 MessageBox.Show(Localizer.Message("InvalidPaths") + " : " + mPipelineTextbox.Text, Localizer.Message("Caption_Error"));
                 returnVal = false;
                 }
-
-            mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
-            mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
-            mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
+                
+          //  mSettings.OpenLastProject = mLastOpenCheckBox.Checked;
+          //  mSettings.AutoSave_RecordingEnd = mChkAutoSaveOnRecordingEnd.Checked;
+          //  mSettings.AutoSaveTimeIntervalEnabled = m_ChkAutoSaveInterval.Checked;
             try
                 {
                 mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
@@ -255,7 +265,8 @@ namespace Obi.Dialogs
 
             mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
-            mSettings.AudioClues = mAudioCluesCheckBox.Checked;
+         //   mSettings.AudioClues = mAudioCluesCheckBox.Checked;
+            
             try
                 {
                   mSettings.NudgeTimeMs = (int)m_Nudge;
@@ -467,6 +478,71 @@ namespace Obi.Dialogs
                 m_Preview = (int)(m_OperationDurationUpDown.Value);
             if (m_cbOperation.SelectedIndex == 2)
                 m_Elapse = (int) (m_OperationDurationUpDown.Value);
+        }
+
+        private void m_CheckBoxListView_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (!m_IsComplete)
+                return;
+            else
+                UpdateBoolSettings();
+        }
+        public void UpdateBoolSettings()
+        {
+
+            if (mTab.SelectedTab == mProjectTab)
+            {
+                mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
+                mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
+                mSettings.SaveBookmarkNode = m_CheckBoxListView.Items[2].Checked;
+            }
+            if (mTab.SelectedTab == mAudioTab)
+            {
+                mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
+                mSettings.CropAudio = m_CheckBoxListView.Items[1].Checked;
+            }
+        }
+
+        public void UpdateTabControl()
+        {
+            m_IsComplete = false;
+            if (this.mTab.SelectedTab == this.mAudioTab)
+            {
+                m_CheckBoxListView.Visible = true;
+                m_CheckBoxListView.Items.Clear();
+                m_CheckBoxListView.Size = new Size(267, 60);
+                m_CheckBoxListView.Location = new Point(185, 270);
+                m_CheckBoxListView.Items.Add("Audio clues");
+                m_CheckBoxListView.Items.Add("Crop silence phrase");
+
+                m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
+                m_CheckBoxListView.Items[1].Checked = mSettings.CropAudio;
+            }
+            if (this.mTab.SelectedTab == this.mProjectTab)
+            {
+                m_CheckBoxListView.Visible = true;
+                m_CheckBoxListView.Items.Clear();
+                m_CheckBoxListView.Size = new Size(267, 80);
+                m_CheckBoxListView.Location = new Point(192, 200);
+                m_CheckBoxListView.Items.Add("Open last project");
+                m_CheckBoxListView.Items.Add("Auto save when recording ends");
+                m_CheckBoxListView.Items.Add("Save bookmark node");
+
+                m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
+                m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
+                m_CheckBoxListView.Items[2].Checked = mSettings.SaveBookmarkNode;
+
+            }
+            m_IsComplete = true;
+        }
+
+        private void mTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateTabControl();
+            if (mTab.SelectedTab == mKeyboardShortcutTab)
+                m_CheckBoxListView.Visible = false;
+            if (mTab.SelectedTab == mUserProfileTab)
+                m_CheckBoxListView.Visible = false;
         }
         }
     }
