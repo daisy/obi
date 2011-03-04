@@ -55,7 +55,7 @@ namespace Obi.UserControls
                     m_VuMeter.PeakMeterOverloaded += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
                     m_VuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
 
-                    //m_VuMeter.ResetEvent += new Events.Audio.VuMeter.ResetHandler(VuMeter_ResetEvent);
+                    m_VuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(VuMeter_ResetEvent);
 
 //TODO: implement these !!
 m_VuMeter.LevelTooLowEvent += new AudioLib.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
@@ -350,6 +350,7 @@ m_VuMeter.LevelGoodEvent += new AudioLib.VuMeter.LevelGoodHandler ( PlayLevelGoo
 
         private delegate  void   SetTextBoxCallBack  () ;
 
+        private void VuMeter_ResetEvent(object sender, EventArgs e) { VuMeter_ResetEvent(); }
         private void VuMeter_ResetEvent() // object sender  , EventArgs e )
         {
             m_MaxLeftDB = -100.00 ;
