@@ -63,7 +63,7 @@ namespace Obi.UserControls
                     mSourceVuMeter.PeakMeterUpdated -= new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
 
 						//mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        //mSourceVuMeter.ResetEvent -= new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                        mSourceVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
 						//mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
 					}
 					mSourceVuMeter = value;
@@ -73,7 +73,7 @@ namespace Obi.UserControls
                         mSourceVuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
 
                         //mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        //mSourceVuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                        mSourceVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
                         //mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
 
                         mUpdateGUITimer.Start ();
@@ -90,7 +90,7 @@ namespace Obi.UserControls
 		}
 
         private delegate void CatchResetEvent_Delegate();
-        //void SourceVuMeter_ResetEvent(object sender, Obi.Events.Audio.VuMeter.ResetEventArgs e)
+        private void SourceVuMeter_ResetEvent(object sender, AudioLib.VuMeter.ResetEventArgs e) { CatchResetEvent(); }
         void CatchResetEvent()
         {
             if (this.InvokeRequired)
@@ -102,14 +102,15 @@ namespace Obi.UserControls
             else
             {
             for (int i = 0; i < mPeakValues.Length; i++) mPeakValues[i] = double.NegativeInfinity;
-
-                for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
-                {
-                    mPPMeter.SetValue(i, Double.NegativeInfinity);
-                }
+            
+            for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
+            {
+                mPPMeter.SetValue(i, Double.NegativeInfinity);
+            }
                 mPPMeter.ForceFullFallback();
                 mPeakOverloadObject = null;
             }
+            
         }
 
         public void CatchPeakMeterUpdateEvent(object sender, AudioLib.VuMeter.PeakMeterUpdateEventArgs e)
@@ -121,6 +122,7 @@ namespace Obi.UserControls
 
             if (e.PeakDb != null && e.PeakDb.Length > 0)
             {
+                
                 channelValueLeft = e.PeakDb[0];
 
                 if (e.PeakDb.Length > 1)
