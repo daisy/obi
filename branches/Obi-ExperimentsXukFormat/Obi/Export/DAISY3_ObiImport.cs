@@ -159,7 +159,16 @@ namespace Obi.Export
             else if (kind == PageKind.Front || kind == PageKind.Normal)
             {
                 int pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
-                if (pageNumber > 0) number = new PageNumber(pageNumber, kind);
+                if (pageNumber > 0)
+                {
+                    number = new PageNumber(pageNumber, kind);
+                }
+                else
+                {
+                    pageNumberString = pageTargetNode.Attributes.GetNamedItem("value") != null ? pageTargetNode.Attributes.GetNamedItem("value").Value : "";
+                    pageNumber = EmptyNode.SafeParsePageNumber(pageNumberString);
+                    if (pageNumber > 0) number = new PageNumber(pageNumber, kind);
+                }
             }
             if (number != null)
             {
