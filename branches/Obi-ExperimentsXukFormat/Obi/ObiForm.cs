@@ -271,9 +271,19 @@ namespace Obi
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     mSettings.NewProjectDialogSize = dialog.Size;
-                    CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
+                    //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
-                        delegate () { (new ImportStructure ()).ImportFromXHTML ( path, mSession.Presentation ); } );
+                        delegate () {
+                            if (Path.GetExtension(path).ToLower() == ".opf")
+                            {
+                                ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
+                            }
+                            else
+                            {
+                                CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
+                                (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                            }
+                        } );
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
@@ -288,6 +298,25 @@ namespace Obi
                 return false;
                 }
             }
+
+        private void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath)
+        {
+            try
+            {
+                mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath);
+                //mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings);
+                //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+                //import.DoWork();
+                //mSession.Save(mSession.Path);
+                MessageBox.Show(outputPath);
+                //mSession.NotifyProjectCreated();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
 
         // Open a new project after showing a file open dialog.
         private void Open ()
@@ -1672,20 +1701,28 @@ namespace Obi
                 }
             }
 
+        private delegate void GotNewPresentationDelegate();
         // A new presentation was loaded or created.
-        private void GotNewPresentation ()
+        private void GotNewPresentation()
+        {
+            if (InvokeRequired)
             {
-            mProjectView.Presentation = mSession.Presentation;
-            UpdateObi ();
-            mSession.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs> ( ObiForm_commandDone );
-            mSession.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs> ( ObiForm_commandReDone );
-            mSession.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs> ( ObiForm_commandUnDone );
-            UpdateCustomClassMenu ();
-            mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-            mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted);//@singleSection
-            if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
-            m_CanAutoSave = true; //@singleSection
+                Invoke(new GotNewPresentationDelegate(GotNewPresentation));
             }
+            else
+            {
+                mProjectView.Presentation = mSession.Presentation;
+                UpdateObi();
+                mSession.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
+                mSession.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
+                mSession.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
+                UpdateCustomClassMenu();
+                mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);//@singleSection
+                if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
+                m_CanAutoSave = true; //@singleSection
+            }
+        }
 
 
         // Catch problems with initialization and report them.
@@ -2043,14 +2080,22 @@ namespace Obi
             mProjectView.UpdateContextMenus ();
             }
 
+        private delegate void UpdateTitleAndStatusBarDelegate(); 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
-        private void UpdateTitleAndStatusBar ()
+        private void UpdateTitleAndStatusBar()
+        {
+            if (InvokeRequired)
             {
-            Text = mSession.HasProject ?
-                String.Format ( Localizer.Message ( "title_bar" ), mSession.Presentation.Title,
-                    (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message ( "obi" ) ) :
-                Localizer.Message ( "obi" );
+                Invoke(new UpdateTitleAndStatusBarDelegate(UpdateTitleAndStatusBar));
             }
+            else
+            {
+                Text = mSession.HasProject ?
+                    String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                        (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi")) :
+                    Localizer.Message("obi");
+            }
+        }
 
 
 

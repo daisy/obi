@@ -178,8 +178,15 @@ namespace Obi
         /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
         /// </summary>
-        public void NewPresentation ( string path, string title, bool createTitleSection, string id, Settings settings )
-            {
+        public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings)
+        {
+            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings);
+            if (ProjectCreated != null) ProjectCreated(this, null);
+        }
+
+
+        private void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings )
+        {
             mProject = new Project();
 #if (DEBUG)
             mProject.SetPrettyFormat(true);
@@ -244,11 +251,11 @@ namespace Obi
             //    Directory.CreateDirectory ( dataDirectory );
             //    }
 
-            if (ProjectCreated != null) ProjectCreated ( this, null );
+            //if (ProjectCreated != null) ProjectCreated ( this, null );
 
             SetupBackupFilesForNewSession ( path );
-
-            ForceSave ();
+            Save(mPath);
+            //ForceSave ();
             }
 
         /// <summary>
@@ -498,6 +505,24 @@ namespace Obi
                 }
 
             }
+
+        /// <summary>
+        /// Imports a DAISY 3 book in Obi
+        /// </summary>
+        /// <param name="outputPath"></param>
+        /// <param name="title"></param>
+        /// <param name="createTitleSection"></param>
+        /// <param name="id"></param>
+        /// <param name="settings"></param>
+        /// <param name="importDTBPath"></param>
+        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath)
+        {
+            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings);
+            Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(this, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+            import.DoWork();
+            Save(Path);
+            if (ProjectCreated != null) ProjectCreated(this, null);
+        }
 
         }
 
