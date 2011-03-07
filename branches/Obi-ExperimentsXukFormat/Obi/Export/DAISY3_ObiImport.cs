@@ -26,7 +26,7 @@ namespace Obi.Export
         {
             m_Session = session;
             XukPath = Path.Combine(m_outDirectory, "project.obi");
-            
+            this.AudioNCXImport = true;
         }
         //protected override void CreateProjectFileAndDirectory()
         //{
