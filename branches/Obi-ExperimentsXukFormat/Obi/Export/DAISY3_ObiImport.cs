@@ -112,10 +112,18 @@ namespace Obi.Export
             return treeNode;
         }
 
-        protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode)
+        protected override TreeNode CreateTreeNodeForAudioNode(TreeNode navPointTreeNode, bool isHeadingNode, XmlNode smilNode)
         {
             PhraseNode audioWrapperNode = m_Presentation.CreatePhraseNode ();
+            if ( smilNode == null || !m_SmilXmlNodeToTreeNodeMap.ContainsKey (smilNode))
+            {
             ((SectionNode)navPointTreeNode).AppendChild(audioWrapperNode);
+            }
+            else
+            {
+                ((SectionNode)navPointTreeNode).InsertAfter(audioWrapperNode, m_SmilXmlNodeToTreeNodeMap[smilNode]);
+                m_SmilXmlNodeToTreeNodeMap[smilNode]=audioWrapperNode;
+            }
             return audioWrapperNode;
             /*
             if (isHeadingNode)
