@@ -52,6 +52,7 @@ namespace Obi.UserControls
 
                 if (m_VuMeter  != null)
                 {
+                    m_VuMeter.EnableAudioLevelAlerts = true;
                     m_VuMeter.PeakMeterOverloaded += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
                     m_VuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
 
