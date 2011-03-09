@@ -122,7 +122,7 @@ namespace Obi.UserControls
 
             if (e.PeakDb != null && e.PeakDb.Length > 0)
             {
-                
+                /*
                 channelValueLeft = e.PeakDb[0];
 
                 if (e.PeakDb.Length > 1)
@@ -133,14 +133,13 @@ namespace Obi.UserControls
                 {
                     channelValueRight = channelValueLeft;
                 }
-
-                if (channelValueLeft == Double.PositiveInfinity
-                    && e.PeakDb.Length > 1
-                    && channelValueRight == Double.PositiveInfinity)
-                {
-                    CatchResetEvent();
-                    return;
-                }
+                */
+                //if ((channelValueLeft == Double.PositiveInfinity && e.PeakDb.Length > 0 )
+                //|| (channelValueLeft == Double.PositiveInfinity && e.PeakDb.Length > 1 && channelValueRight == Double.PositiveInfinity))
+                //{
+                //CatchResetEvent();
+                //return;
+                //}
             }
 
             if (e.PeakDb == null) mSourcePeaksIsNull = true;
@@ -153,7 +152,8 @@ namespace Obi.UserControls
                     mPeakArrayLength = e.PeakDb.Length;
                     for (int i = 0; i < e.PeakDb.Length; i++)
                     {
-                        mPeakValues[i] = e.PeakDb[i];
+                        // AudioLib VuMeter is set to positive infinity by default so it is important to take care of it.
+                        mPeakValues[i] = e.PeakDb[i] == double.PositiveInfinity? double.NegativeInfinity: e.PeakDb[i];
                     }
                 }
             }
