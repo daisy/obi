@@ -66,13 +66,21 @@ namespace Obi.Dialogs
         // Initialize audio tab
         private void InitializeAudioTab ()
             {
-            AudioRecorder recorder = mTransportBar.Recorder;
-            mInputDeviceCombo.DataSource = recorder.InputDevices;
-            mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice );
+            AudioRecorder recorder = mTransportBar.Recorder;                       
+           // mInputDeviceCombo.DataSource = recorder.InputDevices; 
+           // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
+            foreach (InputDevice input in recorder.InputDevices)
+                mInputDeviceCombo.Items.Add(input.Name);
+            mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
+           
 
             AudioPlayer player = mTransportBar.AudioPlayer;
-            mOutputDeviceCombo.DataSource = player.OutputDevices;
-            mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf ( player.OutputDevice );
+           // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
+           // mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf ( player.OutputDevice ); avn
+
+           foreach (OutputDevice output in player.OutputDevices)
+                mOutputDeviceCombo.Items.Add(output.Name); 
+            mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
 
             int sampleRate;
             int audioChannels;
@@ -240,13 +248,34 @@ namespace Obi.Dialogs
 
         // Update audio settings
         private bool UpdateAudioSettings ()
-            {
+        {
+            AudioRecorder recorder = mTransportBar.Recorder;
+            AudioPlayer player = mTransportBar.AudioPlayer;
+                 
             try
                 {
-                mTransportBar.AudioPlayer.SetOutputDevice( mForm, ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name );
-                mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;
-                mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name;
-                mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
+                //  mTransportBar.AudioPlayer.SetOutputDevice( mForm, ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name );  avn
+                //  mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;  
+           
+                foreach (InputDevice inputDev in recorder.InputDevices)
+                {
+                    if (mInputDeviceCombo.SelectedItem.ToString() == inputDev.Name)
+                    {
+                        mTransportBar.Recorder.SetInputDevice(inputDev.Name);
+                        mSettings.LastInputDevice = inputDev.Name;
+                    }
+                }
+                foreach (OutputDevice outputDev in player.OutputDevices)
+                {
+                    if (mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
+                    {
+                        mTransportBar.AudioPlayer.SetOutputDevice(mForm, (outputDev.Name));
+                        mSettings.LastOutputDevice = outputDev.Name;
+                    }                 
+                }
+              //  mSettings.LastInputDevice = ((InputDevice)mInputDeviceCombo.SelectedItem).Name; 
+              //  mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
+               
                 }
             catch (System.Exception ex)
                 {
@@ -265,8 +294,7 @@ namespace Obi.Dialogs
 
             mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
-         //   mSettings.AudioClues = mAudioCluesCheckBox.Checked;
-            
+                     
             try
                 {
                   mSettings.NudgeTimeMs = (int)m_Nudge;
