@@ -124,6 +124,7 @@ namespace Obi.Export
                 ((SectionNode)navPointTreeNode).InsertAfter(audioWrapperNode, m_SmilXmlNodeToTreeNodeMap[smilNode]);
                 m_SmilXmlNodeToTreeNodeMap[smilNode]=audioWrapperNode;
             }
+            
             return audioWrapperNode;
             /*
             if (isHeadingNode)
@@ -203,6 +204,26 @@ namespace Obi.Export
 */
         }
 
+        protected override TreeNode CheckAndAssignForHeadingAudio(TreeNode navPointTreeNode, TreeNode phraseTreeNode, XmlNode audioXmlNode)
+        {
+            XmlNode navLabelXmlNode = m_NavPointNode_NavLabelMap[navPointTreeNode];
+            XmlNode headingAudio = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "audio", navLabelXmlNode.NamespaceURI);
+            //XmlNode textNode = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "text", navLabelXmlNode.NamespaceURI);
+
+            double headingClipBegin = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
+            double headingClipEnd = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
+
+            double audioClipBegin = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
+            double audioClipEnd = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
+
+            if ( ((SectionNode)navPointTreeNode).PhraseChild(0) != phraseTreeNode 
+                &&    headingClipBegin == audioClipBegin
+                && headingClipEnd == audioClipEnd)
+            {
+                ((EmptyNode)phraseTreeNode).Role_ = EmptyNode.Role.Heading; 
+            }
+            return phraseTreeNode;
+        }
 
     }
 }
