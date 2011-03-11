@@ -217,8 +217,9 @@ namespace Obi.Export
             double audioClipEnd = Math.Abs((new urakawa.media.timing.Time(audioXmlNode.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
 
             if ( ((SectionNode)navPointTreeNode).PhraseChild(0) != phraseTreeNode 
-                &&    headingClipBegin == audioClipBegin
-                && headingClipEnd == audioClipEnd)
+                &&   headingAudio.Attributes.GetNamedItem("src").Value == audioXmlNode.Attributes.GetNamedItem("src").Value
+                &&    Math.Abs (headingClipBegin - audioClipBegin) <= 1
+                && Math.Abs (headingClipEnd - audioClipEnd) <=1 )
             {
                 ((EmptyNode)phraseTreeNode).Role_ = EmptyNode.Role.Heading; 
             }
