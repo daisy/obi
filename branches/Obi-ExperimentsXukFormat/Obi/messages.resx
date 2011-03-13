@@ -584,8 +584,8 @@ Error text: {1}</value>
     <value>Could not create project from import: {0}</value>
     <comment>Error message stub</comment>
   </data>
-  <data name="xhtml_filter" xml:space="preserve">
-    <value>XHTML file (*.htm;*.html;*.xhtml)|*.htm;*.html;*.xhtml|Any file|*.*</value>
+  <data name="filter" xml:space="preserve">
+    <value>All files (*.*)|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
@@ -1309,12 +1309,12 @@ Error text: {1}</value>
   <data name="Status_ProjectSaved" xml:space="preserve">
     <value>Project saved, please continue...</value>
   </data>
-    <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
+  <data name="TransportBar_PlayerExceptionMsg" xml:space="preserve">
     <value>Playback could not be started. Press OK to continue.... {0} {1}</value>
   </data>
   <data name="Preference_InvalidKeyExceptionMsg" xml:space="preserve">
     <value>Invalid key assigned. Please select another combination of keys.... {0} {1}</value>
-  </data> 
+  </data>
   <data name="Player_TryAgain" xml:space="preserve">
     <value>Please try again... {0} {1}</value>
   </data>

@@ -226,5 +226,45 @@ namespace Obi.Export
             return phraseTreeNode;
         }
 
+        public static string getTitleFromOpfFile(string opfFilePath)
+        {
+            string opfTitle = "";
+            XmlDocument opfFileDoc = new XmlDocument();
+            opfFileDoc.Load(opfFilePath);
+            XmlNodeList listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("dc-metadata");
+            foreach (XmlNode xnode in listOfChildrenOfDCMetadata)
+            {
+                foreach (XmlNode node in xnode.ChildNodes)
+                {
+                    if (node.Name == "dc:Title")
+                        opfTitle = node.InnerText;
+                }
+            }
+            return opfTitle;
+        }
+
+        public static string getTitleFromDtBookFile(string dtBookFilePath)
+        {
+            string dtbBookTitle = "";
+            XmlDocument dtbookFileDoc = new XmlDocument();
+            dtbookFileDoc.Load(dtBookFilePath);
+            XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
+            foreach (XmlNode node in listOfChildren)
+            {
+                XmlAttributeCollection metaAttr = node.Attributes;
+
+                if (metaAttr == null || metaAttr.Count <= 0)
+                {
+                    return "";
+                }
+
+                XmlNode attrName = metaAttr.GetNamedItem("name");
+                XmlNode attrContent = metaAttr.GetNamedItem("content");
+
+                if (attrName != null && !String.IsNullOrEmpty(attrName.Value) && attrContent != null && !String.IsNullOrEmpty(attrContent.Value))
+                    dtbBookTitle = attrContent.Value;                
+            }
+            return dtbBookTitle;
+        }
     }
 }

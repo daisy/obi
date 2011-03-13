@@ -231,7 +231,7 @@ namespace Obi
                 {
                 OpenFileDialog dialog = new OpenFileDialog ();
                 dialog.Title = Localizer.Message ( "choose_import_file" );
-                dialog.Filter = Localizer.Message ( "xhtml_filter" );
+                dialog.Filter = Localizer.Message ( "filter" );
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     if (!NewProjectFromImport ( dialog.FileName ))
