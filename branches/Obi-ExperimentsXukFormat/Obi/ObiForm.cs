@@ -274,7 +274,8 @@ namespace Obi
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
                         delegate () {
-                            if (Path.GetExtension(path).ToLower() == ".opf")
+                            string strExtension = Path.GetExtension(path).ToLower();
+                            if (strExtension == ".opf" || strExtension == ".xml")
                             {
                                 ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
                             }
