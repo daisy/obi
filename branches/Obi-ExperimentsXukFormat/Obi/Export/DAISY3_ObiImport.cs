@@ -462,10 +462,15 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         */
                         if (parentTreeNode is SectionNode 
                             &&  (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
-                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
+                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD" ))
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
                         }
+                        if (treeNode != null && treeNode is SectionNode && xmlNode.LocalName == "doctitle")
+                        {
+                            ((SectionNode)treeNode).Label = xmlNode.InnerText;
+                        }
+
 
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
@@ -584,7 +589,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         {
                         TreeNode createdNode = null;
                         //Console.WriteLine(node.LocalName);
-            if (node.LocalName.StartsWith ("level") )
+                        if (node.LocalName.StartsWith("level") || node.LocalName == "doctitle")
             {
                 //Console.WriteLine("creating section ");
                 SectionNode treeNode = m_Presentation.CreateSectionNode();
