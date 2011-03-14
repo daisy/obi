@@ -328,25 +328,28 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
                         if (parentTreeNode == null)
                         {
-                            treeNode = presentation.TreeNodeFactory.Create();
-                            presentation.RootNode = treeNode;
+                            //treeNode = presentation.TreeNodeFactory.Create();
+                            //presentation.RootNode = treeNode;
                             parentTreeNode = presentation.RootNode;
                         }
-                        else
+                         if ( parentTreeNode != null )
                         {
                             treeNode = CreateAndAddTreeNodeForContentDocument(parentTreeNode, xmlNode);
                             //parentTreeNode.AppendChild(treeNode);
                         }
-
-                        XmlProperty xmlProp = presentation.PropertyFactory.CreateXmlProperty();
-                        treeNode.AddProperty(xmlProp);
-                        xmlProp.LocalName = xmlNode.LocalName;
+                        XmlProperty xmlProp = null ;
+                        if (treeNode != null)
+                        {
+                            xmlProp = presentation.PropertyFactory.CreateXmlProperty();
+                            treeNode.AddProperty(xmlProp);
+                            xmlProp.LocalName = xmlNode.LocalName;
+                        }
                         if (xmlNode.ParentNode != null && xmlNode.ParentNode.NodeType == XmlNodeType.Document)
                         {
                             presentation.PropertyFactory.DefaultXmlNamespaceUri = xmlNode.NamespaceURI;
                         }
 
-                        if (xmlNode.NamespaceURI != presentation.PropertyFactory.DefaultXmlNamespaceUri)
+                        if (xmlNode.NamespaceURI != presentation.PropertyFactory.DefaultXmlNamespaceUri && xmlProp != null)
                         {
                             xmlProp.NamespaceUri = xmlNode.NamespaceURI;
                         }
@@ -457,8 +460,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                             }
                         }
                         */
-                        if (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
-                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD")
+                        if (parentTreeNode is SectionNode 
+                            &&  (xmlNode.LocalName == "h1" || xmlNode.LocalName == "h2" || xmlNode.LocalName == "h3"
+                            || xmlNode.LocalName == "h4" || xmlNode.LocalName == "h5" || xmlNode.LocalName == "h6" || xmlNode.LocalName == "HD"))
                         {
                             ((SectionNode)parentTreeNode).Label = xmlNode.InnerText;
                         }
@@ -466,7 +470,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         if (RequestCancellation) return;
                         foreach (XmlNode childXmlNode in xmlNode.ChildNodes)
                         {
-                            parseContentDocument(childXmlNode, treeNode, filePath);
+                            parseContentDocument(childXmlNode, treeNode!= null && treeNode is SectionNode? treeNode: parentTreeNode, filePath);
                         }
                         break;
                     }
@@ -579,8 +583,10 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         private TreeNode CreateAndAddTreeNodeForContentDocument(TreeNode parentNode, XmlNode node)
         {
                         TreeNode createdNode = null;
-            if (node.LocalName == "level")
+                        //Console.WriteLine(node.LocalName);
+            if (node.LocalName.StartsWith ("level") )
             {
+                //Console.WriteLine("creating section ");
                 SectionNode treeNode = m_Presentation.CreateSectionNode();
                 createdNode = treeNode;
                 if (parentNode is ObiRootNode)
@@ -592,9 +598,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                     ((SectionNode)parentNode).AppendChild(treeNode);
                 }
             }
-            else if (node.LocalName == "pagenum")
+            else if (node.LocalName == "pagenum" && parentNode is SectionNode)
             {
-                PhraseNode treeNode = m_Presentation.CreatePhraseNode();
+                EmptyNode treeNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 createdNode = treeNode;
                 ((SectionNode)parentNode).AppendChild(treeNode);
 
@@ -616,6 +622,11 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 if (pageNumber > 0)
                 {
                     number = new PageNumber(pageNumber, kind);
+                }
+                if (number != null)
+                {   
+                     ((EmptyNode) treeNode).PageNumber = number;
+
                 }
             }
             }
