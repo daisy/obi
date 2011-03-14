@@ -83,13 +83,21 @@ namespace Obi.Export
 
                 //= parentNode.Presentation.TreeNodeFactory.Create();
             //parentNode.AppendChild(treeNode);
-            if (parentNode is ObiRootNode ) 
+            if (navPoint.LocalName == "docTitle")
             {
-                ((ObiNode)parentNode).AppendChild (treeNode) ;
+                
+                ((ObiNode)m_Presentation.RootNode).Insert(treeNode,0);
             }
-            else 
+            else
             {
-                ((SectionNode)parentNode).AppendChild (treeNode ) ;
+                if (parentNode is ObiRootNode)
+                {
+                    ((ObiNode)parentNode).AppendChild(treeNode);
+                }
+                else
+                {
+                    ((SectionNode)parentNode).AppendChild(treeNode);
+                }
             }
             //XmlProperty xmlProp = parentNode.Presentation.PropertyFactory.CreateXmlProperty();
             //treeNode.AddProperty(xmlProp);
