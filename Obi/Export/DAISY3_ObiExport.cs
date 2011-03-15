@@ -369,6 +369,7 @@ namespace Obi.Export
 
                 par_id = GetNextID(ID_SmilPrefix);
                 // check and assign first par ID
+                /* commented, it is assigned only if external audio media is not null as this is audio NCX book
                 if (firstPar_id == null)
                 {
                     //if (currentHeadingTreeNode != null
@@ -379,7 +380,7 @@ namespace Obi.Export
                         firstPar_id = par_id;
                     }
                 }
-
+                */
                 XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, parNode, "id", par_id);
 
 
@@ -399,6 +400,9 @@ namespace Obi.Export
                  
                 if (externalAudio != null)
                 {
+                    // assign the ID of first created par in smil document as firstPar_id so that its entry can go in content node in ncx.
+                    if (firstPar_id == null) firstPar_id = par_id;
+
                     XmlNode audioNode = smilDocument.CreateElement(null, "audio", mainSeq.NamespaceURI);
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipBegin", FormatTimeString(externalAudio.ClipBegin));
                     XmlDocumentHelper.CreateAppendXmlAttribute(smilDocument, audioNode, "clipEnd", FormatTimeString(externalAudio.ClipEnd));
