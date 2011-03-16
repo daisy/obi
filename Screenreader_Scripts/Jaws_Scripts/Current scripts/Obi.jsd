@@ -1,8 +1,0 @@
-:script HotKeyHelp
-
-:function SayStripString
-
-:script ToggleContentView
-
-:script ToggleEchoOnPhrases
-
