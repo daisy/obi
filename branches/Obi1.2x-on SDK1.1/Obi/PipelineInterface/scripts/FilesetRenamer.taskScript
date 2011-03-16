@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taskScript version="2.0" name="FilesetRenamer">
+	<nicename>Fileset renamer</nicename>
+	<description>Perform renaming of select files in a fileset using customizable name patterns</description>
+<!--   	<documentation uri="../../../doc/scripts/FilesetRenamer.html"/>-->
+     <comment>
+	     Commandline template (dont forget to modify paths):
+	     		org.daisy.pipeline.ui.CommandLineUI
+				D:\data\workspace\dmfc\scripts\manipulation\simple\FilesetRenamer.taskScript
+	                --filesetRenamerInputFile=E:\dmfctest\hauy.202.rev4\ncc.html 
+	                --filesetRenamerOutputPath=E:\dmfctest\hauy.202.rev4\out\
+   	                --filesetRenamerPattern=uid+seq+label
+     </comment>
+	
+	<parameter name="filesetRenamerInputFile" value="" required="true">
+		<nicename>Input file</nicename>
+		<description>Select the input manifest file (NCC, OPF, etc)</description>
+		<datatype>
+			<file mime="application/xml" type="input"/>
+		</datatype>
+	</parameter>
+	
+	<parameter name="filesetRenamerOutputPath" value="Renamed" required="true">
+		<nicename>Output directory</nicename>
+		<description>Select the output directory</description>
+		<datatype>
+			<directory type="output"/>
+		</datatype>
+	</parameter>
+
+	<parameter name="filesetRenamerBaseName" value="" required="false">
+		<nicename>Base Name</nicename>
+		<description>The base name used for renaming</description>
+		<datatype>
+			<string/>
+		</datatype>
+	</parameter>
+
+	<parameter name="filesetRenamerExclude" value="OpfFile, DtbookFile, Z3986DtbookFile, Xhtml10File, CssFile, ImageFile" required="false">
+		<nicename>File types to exclude</nicename>
+		<description>comma separated list of file types to exclude from renaming.</description>
+		<datatype>
+			<string/>
+		</datatype>
+	</parameter>
+
+	<parameter name="filesetRenamerFilesystemSafe" value="true" required="false">
+		<nicename>Use filesystem safe names</nicename>
+		<description>Use only the characters A-Z,a-z,0-9, hyphen and underscore in output filenames</description>
+		<datatype>
+			<boolean/>
+		</datatype>
+	</parameter>
+
+	<parameter name="filesetRenamerMaxFilenameLength" value="60" required="false">
+		<nicename>Max filename length</nicename>
+		<description>Max. number of characters in output filename, excluding extension. Default is 60.</description>
+		<datatype>
+			<integer/>
+		</datatype>
+	</parameter>
+		
+	<task name="int_daisy_filesetRenamer" interactive="false">
+		<parameter>
+			<name>input</name>
+			<value>${filesetRenamerInputFile}</value>
+		</parameter>
+					
+		<parameter>
+			<name>output</name>
+			<value>${filesetRenamerOutputPath}</value>
+		</parameter>		
+						
+    	<parameter>
+			<name>renamingPattern</name>
+			<value>fixed(${filesetRenamerBaseName})+seq</value>
+		</parameter>	
+
+		<parameter>
+			<name>exclude</name>
+			<value>${filesetRenamerExclude}</value>
+		</parameter>
+
+		<parameter>
+			<name>filesystemSafe</name>
+			<value>${filesetRenamerFilesystemSafe}</value>
+		</parameter>
+		
+		<parameter>
+			<name>maxFilenameLength</name>
+			<value>${filesetRenamerMaxFilenameLength}</value>
+		</parameter>						
+						
+	</task>
+
+
+</taskScript>
