@@ -585,7 +585,7 @@ Error text: {1}</value>
     <comment>Error message stub</comment>
   </data>
   <data name="filter" xml:space="preserve">
-    <value>All files (*.*)|*.*</value>
+    <value>XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*</value>
     <comment>File dialog</comment>
   </data>
   <data name="blank_phrase" xml:space="preserve">
@@ -1186,7 +1186,7 @@ Error text: {1}</value>
     <value>Could not delete invalid project</value>
   </data>
   <data name="import_progress_dialog_title" xml:space="preserve">
-    <value>Importing from XHTML...</value>
+    <value>Importing...</value>
     <comment>Progress dialog title</comment>
   </data>
   <data name="import_audio_progress_dialog_title" xml:space="preserve">

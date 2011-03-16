@@ -1351,7 +1351,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All files (*.*)|*.*.
+        ///   Looks up a localized string similar to XHTML, Opf, XML file (*.htm;*.html;*.xhtml;*.opf;*.xml)|*.htm;*.html;*.xhtml;*.opf;*.xml|Any file|*.*.
         /// </summary>
         internal static string filter {
             get {
@@ -1594,7 +1594,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importing from XHTML....
+        ///   Looks up a localized string similar to Importing....
         /// </summary>
         internal static string import_progress_dialog_title {
             get {

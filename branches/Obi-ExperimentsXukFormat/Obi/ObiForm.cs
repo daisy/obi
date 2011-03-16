@@ -239,6 +239,7 @@ namespace Obi
                         try
                             {
                             if (mSession.Path != null) RemoveRecentProject ( mSession.Path );
+                           
                             mSession.CleanupAfterFailure ();
                             }
                         catch (Exception e)
@@ -259,7 +260,16 @@ namespace Obi
             Dialogs.NewProject dialog = null;
             try
                 {
-                string title = ImportStructure.GrabTitle ( new Uri ( path ) );
+                string title = "";
+                
+                string strExtension = System.IO.Path.GetExtension(path).ToLower();
+                if (strExtension == ".opf")
+                    title = Obi.Export.DAISY3_ObiImport.getTitleFromOpfFile(path);
+                if(strExtension == ".xhtml" || strExtension == ".html")
+                    title = ImportStructure.GrabTitle ( new Uri ( path ));
+                else if (strExtension == ".xml")
+                    title = Obi.Export.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+
                 dialog = new Dialogs.NewProject (
                     mSettings.DefaultPath,
                     Localizer.Message ( "default_project_filename" ),
@@ -274,7 +284,7 @@ namespace Obi
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
                         delegate () {
-                            string strExtension = Path.GetExtension(path).ToLower();
+                          //  string strExtension = Path.GetExtension(path).ToLower();
                             if (strExtension == ".opf" || strExtension == ".xml")
                             {
                                 ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
