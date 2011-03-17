@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using urakawa.core;
+using urakawa.data;
 
 
 namespace Obi
@@ -31,7 +32,8 @@ namespace Obi
         private bool m_IsAutoSaveActive;
         private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
-
+        private bool m_ExportEncodeToMP3;
+        private int m_BitRate;
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
@@ -44,7 +46,7 @@ namespace Obi
             mShowWelcomWindow = true;
             InitializeObi ();
             if (ShouldOpenLastProject) OpenProject_Safe ( mSettings.LastOpenProject );
-            m_IsSaveActive = false;
+            m_IsSaveActive = false;            
             }
 
         /// <summary>
@@ -56,6 +58,7 @@ namespace Obi
             InitializeObi ();
             OpenProject_Safe ( path );
             m_IsSaveActive = false;
+         
             }
 
         #endregion
@@ -228,7 +231,7 @@ namespace Obi
                 {
                 OpenFileDialog dialog = new OpenFileDialog ();
                 dialog.Title = Localizer.Message ( "choose_import_file" );
-                dialog.Filter = Localizer.Message ( "xhtml_filter" );
+                dialog.Filter = Localizer.Message ( "filter" );
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     if (!NewProjectFromImport ( dialog.FileName ))
@@ -236,6 +239,7 @@ namespace Obi
                         try
                             {
                             if (mSession.Path != null) RemoveRecentProject ( mSession.Path );
+                           
                             mSession.CleanupAfterFailure ();
                             }
                         catch (Exception e)
@@ -256,7 +260,16 @@ namespace Obi
             Dialogs.NewProject dialog = null;
             try
                 {
-                string title = ImportStructure.GrabTitle ( new Uri ( path ) );
+                string title = "";
+                
+                string strExtension = System.IO.Path.GetExtension(path).ToLower();
+                if (strExtension == ".opf")
+                    title = Obi.Export.DAISY3_ObiImport.getTitleFromOpfFile(path);
+                if(strExtension == ".xhtml" || strExtension == ".html")
+                    title = ImportStructure.GrabTitle ( new Uri ( path ));
+                else if (strExtension == ".xml")
+                    title = Obi.Export.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+
                 dialog = new Dialogs.NewProject (
                     mSettings.DefaultPath,
                     Localizer.Message ( "default_project_filename" ),
@@ -268,9 +281,20 @@ namespace Obi
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     mSettings.NewProjectDialogSize = dialog.Size;
-                    CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
+                    //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
-                        delegate () { (new ImportStructure ()).ImportFromXHTML ( path, mSession.Presentation ); } );
+                        delegate () {
+                          //  string strExtension = Path.GetExtension(path).ToLower();
+                            if (strExtension == ".opf" || strExtension == ".xml")
+                            {
+                                ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
+                            }
+                            else
+                            {
+                                CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
+                                (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                            }
+                        } );
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
@@ -285,6 +309,25 @@ namespace Obi
                 return false;
                 }
             }
+
+        private void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath)
+        {
+            try
+            {
+                mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath);
+                //mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings);
+                //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+                //import.DoWork();
+                //mSession.Save(mSession.Path);
+                MessageBox.Show(outputPath);
+                //mSession.NotifyProjectCreated();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
 
         // Open a new project after showing a file open dialog.
         private void Open ()
@@ -466,17 +509,33 @@ namespace Obi
                                     ShallowCopyFilesInDirectory ( d.FullName, dest );
                                     }
                                 }
-                            Uri prevUri = mSession.Presentation.getRootUri ();
-                            mSession.Presentation.setRootUri ( new Uri ( path_new ) );
-                            mSession.Save ( path_new );
-                            mSession.Presentation.setRootUri ( prevUri );
+                            //Uri prevUri = mSession.Presentation.RootUri;
+                            //mSession.Presentation.setRootUri ( new Uri ( path_new ) );
+
+                            Uri oldUri = mSession.Presentation.RootUri;
+                            string oldDataDir = mSession.Presentation.DataProviderManager.DataFileDirectory;
+
+                            string dirPath = System.IO.Path.GetDirectoryName(path_new);
+                            string prefix = System.IO.Path.GetFileName(path_new);
+
+                                //TODO: it would be good for Obi to separate Data folder based on project file name,
+                                //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+                            //mSession.Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+                            mSession.Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
+
+                                mSession.Save ( path_new );
+
+                            //mSession.Presentation.setRootUri ( prevUri );
+
+                                mSession.Presentation.RootUri = oldUri;
+                                mSession.Presentation.DataProviderManager.DataFileDirectory = oldDataDir;
 
                             // delete the original copied project file ( .obi file ) from new directory in case the new project has different project file name
-                            if (Path.GetFileName ( prevUri.LocalPath ) != Path.GetFileName ( path_new )
+                                if (Path.GetFileName(oldUri.LocalPath) != Path.GetFileName(path_new)
                                 && File.Exists ( path_new ))
                                 {
                                 string copiedProjectFilePath = Path.Combine ( dir_new.FullName,
-                                    Path.GetFileName ( prevUri.LocalPath ) );
+                                    Path.GetFileName(oldUri.LocalPath));
 
                                 if (File.Exists ( copiedProjectFilePath ))
                                     File.Delete ( copiedProjectFilePath );
@@ -552,8 +611,70 @@ namespace Obi
                     Dialogs.ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "cleaning_up" ),
                         delegate ()
                             {
-                            mSession.Presentation.cleanup ();
-                            DeleteExtraFiles ();
+                                //mSession.Presentation.cleanup();
+                                
+                                string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
+
+                                string deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
+                                if (!Directory.Exists(deletedDataFolderPath))
+                                {
+                                    Directory.CreateDirectory(deletedDataFolderPath);
+                                }
+
+                                Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
+                                cleaner.Cleanup();
+
+                                List<string> listOfDataProviderFiles = new List<string>();
+                foreach (DataProvider dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_YieldEnumerable)
+                {
+                    FileDataProvider fileDataProvider = dataProvider as FileDataProvider;
+                    if (fileDataProvider == null) continue;
+
+                    listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
+                }
+
+
+                bool folderIsShowing = false;
+                if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
+                {
+                    folderIsShowing = true;
+
+                    //m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+                }
+
+                foreach (string filePath in Directory.GetFiles(dataFolderPath))
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    if (!listOfDataProviderFiles.Contains(fileName))
+                    {
+                        string filePathDest = Path.Combine(deletedDataFolderPath, fileName);
+                        Debug.Assert(!File.Exists(filePathDest));
+                        if (!File.Exists(filePathDest))
+                        {
+                            File.Move(filePath, filePathDest);
+                        }
+                    }
+                }
+
+                if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
+                {
+                    //if (!folderIsShowing) m_ShellView.ExecuteShellProcess(deletedDataFolderPath);
+
+                    if (true) //delete definitively
+                    {
+                        foreach (string filePath in Directory.GetFiles(deletedDataFolderPath))
+                    {
+                        File.Delete(filePath);
+                    }
+                    }
+                    
+                                if (Directory.Exists(deletedDataFolderPath))
+                                {
+                                    Directory.Delete(deletedDataFolderPath);
+                                }
+                }
+
+                                //DeleteExtraFiles ();
                             } );
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
@@ -567,40 +688,41 @@ namespace Obi
                 }
             }
 
+        //sdk2
         // Delete extra files in the data directory (or directories)
-        private void DeleteExtraFiles ()
-            {
-            Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>> ();
-            // Get the list of files used by the asset manager
-            foreach (urakawa.media.data.FileDataProvider provider in
-                    ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager ()).
-                getListOfManagedFileDataProviders ())
-                {
-                string path = provider.getDataFileFullPath ();
-                string dir = Path.GetDirectoryName ( path );
-                if (!dirs.ContainsKey ( dir )) dirs.Add ( dir, new Dictionary<string, bool> () );
-                dirs[dir].Add (Path.GetFullPath( path), true );
-                }
-            // Go through each directory and remove files not used by the data manager
-            // TODO at the moment, this removes everything; if we have other files that we need
-            // (e.g. images of waveforms?) we need to be careful not to throw them away.
-            foreach (string dir in dirs.Keys)
-                {
-                System.Diagnostics.Debug.Print ( "--- Cleaning up in {0}", dir );
-                foreach (string path in Directory.GetFiles ( dir ))
-                    {
-                    if (dirs[dir].ContainsKey (Path.GetFullPath( path )))
-                        {
-                        System.Diagnostics.Debug.Print ( "=== Keeping {0}", path );
-                        }
-                    else
-                        {
-                        System.Diagnostics.Debug.Print ( "--- Deleting {0}", path );
-                        File.Delete ( path );
-                        }
-                    }
-                }
-            }
+        //private void DeleteExtraFiles ()
+          //  {
+            //Dictionary<string, Dictionary<string, bool>> dirs = new Dictionary<string, Dictionary<string, bool>> ();
+            //// Get the list of files used by the asset manager
+            //foreach (urakawa.media.data.FileDataProvider provider in
+            //        ((urakawa.media.data.FileDataProviderManager)mSession.Presentation.getDataProviderManager ()).
+            //    getListOfManagedFileDataProviders ())
+            //    {
+            //    string path = provider.getDataFileFullPath ();
+            //    string dir = Path.GetDirectoryName ( path );
+            //    if (!dirs.ContainsKey ( dir )) dirs.Add ( dir, new Dictionary<string, bool> () );
+            //    dirs[dir].Add (Path.GetFullPath( path), true );
+            //    }
+            //// Go through each directory and remove files not used by the data manager
+            //// TODO at the moment, this removes everything; if we have other files that we need
+            //// (e.g. images of waveforms?) we need to be careful not to throw them away.
+            //foreach (string dir in dirs.Keys)
+            //    {
+            //    System.Diagnostics.Debug.Print ( "--- Cleaning up in {0}", dir );
+            //    foreach (string path in Directory.GetFiles ( dir ))
+            //        {
+            //        if (dirs[dir].ContainsKey (Path.GetFullPath( path )))
+            //            {
+            //            System.Diagnostics.Debug.Print ( "=== Keeping {0}", path );
+            //            }
+            //        else
+            //            {
+            //            System.Diagnostics.Debug.Print ( "--- Deleting {0}", path );
+            //            File.Delete ( path );
+            //            }
+            //        }
+            //    }
+            //}
 
         #endregion
 
@@ -654,9 +776,9 @@ namespace Obi
         // Initialize event handlers from the project view
         private void InitializeEventHandlers ()
             {
-            mProjectView.TransportBar.StateChanged += new Obi.Events.Audio.Player.StateChangedHandler ( TransportBar_StateChanged );
+            mProjectView.TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler ( TransportBar_StateChanged );
             mProjectView.TransportBar.PlaybackRateChanged += new EventHandler ( TransportBar_PlaybackRateChanged );
-            mProjectView.TransportBar.Recorder.StateChanged += new Obi.Events.Audio.Recorder.StateChangedHandler ( TransportBar_StateChanged );
+            mProjectView.TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler ( TransportBar_StateChanged );
             mProjectView.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler ( Progress_Changed );
             }
 
@@ -692,9 +814,9 @@ namespace Obi
             CanAutoSave = false;//@singleSection
             if (e.SourceCommand is urakawa.command.CompositeCommand)
                 {
-                                if (!string.IsNullOrEmpty ( e.SourceCommand.getShortDescription () ))
+                                if (!string.IsNullOrEmpty ( e.SourceCommand.ShortDescription ))
                     {
-                    Status ( string.Format( Localizer.Message ("StatusBar_CommandExecuting"), e.SourceCommand.getShortDescription () ));
+                    Status ( string.Format( Localizer.Message ("StatusBar_CommandExecuting"), e.SourceCommand.ShortDescription ));
                     }
                 IsStatusBarEnabled = false;
                 }
@@ -770,12 +892,12 @@ namespace Obi
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
             {
-            if (e.ClosedPresentation != null && e.ClosedPresentation.Initialized)
+                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized)
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
-                mProjectView.Presentation.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
+                mProjectView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
                 mProjectView.Presentation.BeforeCommandExecuted -= new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted );//@singleSection
-                Status ( String.Format ( Localizer.Message ( "closed_project" ), e.ClosedPresentation.Title ) );
+                Status(String.Format(Localizer.Message("closed_project"), ((ObiPresentation)e.ClosedPresentation).Title));
                 }
             mAutoSaveTimer.Stop ();
             mProjectView.Selection = null;
@@ -1048,6 +1170,9 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
+            m_BookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
+            m_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
+            m_GotoBookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && mProjectView.TransportBar.IsRecorderActive;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -1319,7 +1444,7 @@ namespace Obi
         // Open the preferences dialog
         private void mTools_PreferencesMenuItem_Click ( object sender, EventArgs e )
             {
-            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
 
             Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar );
             prefs.ShowDialog ();
@@ -1334,7 +1459,7 @@ namespace Obi
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
 
             // returns if project is empty
-            if (mProjectView.Presentation.RootNode.SectionCount == 0)
+            if (((ObiRootNode)mProjectView.Presentation.RootNode).SectionCount == 0)
                 {
                 MessageBox.Show ( Localizer.Message ( "ExportError_EmptyProject" ), Localizer.Message ( "Caption_Error" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                 mProjectView.Selection = null; // done for precaution 
@@ -1369,9 +1494,10 @@ namespace Obi
                 //new ExportDirectory(Path.Combine(Directory.GetParent(mSession.Path).FullName,
                 //Program.SafeName(string.Format(Localizer.Message("default_export_dirname"),
                 //"" ) ) ), mSession.Path ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                   
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
-                             mSession.Path ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                             mSession.Path, m_ExportEncodeToMP3, m_BitRate ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1380,7 +1506,12 @@ namespace Obi
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
                         int audioFileSectionLevel = dialog.LevelSelection;
-
+                        m_ExportEncodeToMP3 = dialog.EncodeToMP3;
+                        m_BitRate = dialog.BitRate;
+                        mSettings.Export_EncodeToMP3 = m_ExportEncodeToMP3;
+                        
+                        mSettings.Export_BitRateMP3 = m_BitRate;
+                        m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3;
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1389,7 +1520,7 @@ namespace Obi
                             delegate ()
                                 {
                                 mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, audioFileSectionLevel );
+                       exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, m_BitRate, audioFileSectionLevel);
                                 } );
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
@@ -1446,7 +1577,7 @@ namespace Obi
             Dictionary<int, PhraseNode> pages = new Dictionary<int, PhraseNode> ();
             PhraseNode renumberFrom = null;
             PageNumber renumberNumber = null;
-            mSession.Presentation.RootNode.acceptDepthFirst (
+            mSession.Presentation.RootNode.AcceptDepthFirst (
                 delegate ( urakawa.core.TreeNode n )
                     {
                     PhraseNode phrase = n as PhraseNode;
@@ -1476,7 +1607,7 @@ namespace Obi
                     Localizer.Message ( "renumber_before_export_caption" ),
                     MessageBoxButtons.OKCancel, MessageBoxIcon.Stop ) == DialogResult.Cancel) return false;
                 //mSession.Presentation.getUndoRedoManager().execute(renumberFrom.RenumberCommand(mProjectView, renumberNumber));
-                mSession.Presentation.getUndoRedoManager ().execute ( mProjectView.GetRenumberPageKindCommand ( renumberFrom, renumberNumber ) );
+                mSession.Presentation.UndoRedoManager.Execute ( mProjectView.GetRenumberPageKindCommand ( renumberFrom, renumberNumber ) );
                 }
             return true;
             }
@@ -1490,7 +1621,7 @@ namespace Obi
             bool keepWarning = true;
             try
                 {
-                mSession.Presentation.RootNode.acceptDepthFirst (
+                mSession.Presentation.RootNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         SectionNode s = n as SectionNode;
@@ -1581,20 +1712,28 @@ namespace Obi
                 }
             }
 
+        private delegate void GotNewPresentationDelegate();
         // A new presentation was loaded or created.
-        private void GotNewPresentation ()
+        private void GotNewPresentation()
+        {
+            if (InvokeRequired)
             {
-            mProjectView.Presentation = mSession.Presentation;
-            UpdateObi ();
-            mSession.Presentation.getUndoRedoManager ().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs> ( ObiForm_commandDone );
-            mSession.Presentation.getUndoRedoManager ().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs> ( ObiForm_commandReDone );
-            mSession.Presentation.getUndoRedoManager ().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs> ( ObiForm_commandUnDone );
-            UpdateCustomClassMenu ();
-            mProjectView.Presentation.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
-            mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs> ( ObiForm_BeforeCommandExecuted);//@singleSection
-            if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start ();
-            m_CanAutoSave = true; //@singleSection
+                Invoke(new GotNewPresentationDelegate(GotNewPresentation));
             }
+            else
+            {
+                mProjectView.Presentation = mSession.Presentation;
+                UpdateObi();
+                mSession.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
+                mSession.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ObiForm_commandReDone);
+                mSession.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ObiForm_commandUnDone);
+                UpdateCustomClassMenu();
+                mProjectView.Presentation.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Presentation_Changed);
+                mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);//@singleSection
+                if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
+                m_CanAutoSave = true; //@singleSection
+            }
+        }
 
 
         // Catch problems with initialization and report them.
@@ -1793,7 +1932,7 @@ namespace Obi
                     {
                     CanAutoSave= false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
-                    mSession.Presentation.getUndoRedoManager ().redo ();
+                    mSession.Presentation.UndoRedoManager.Redo ();
                     }
                 }
             catch (System.Exception ex)
@@ -1905,7 +2044,7 @@ namespace Obi
                   //  if (mProjectView.Selection is TextSelection) mProjectView.SelectedSectionNode = (SectionNode) mProjectView.Selection.Node;
                     CanAutoSave = false;//@singleSection
                     IsStatusBarEnabled = false;//@singleSection
-                    mSession.Presentation.getUndoRedoManager ().undo ();
+                    mSession.Presentation.UndoRedoManager.Undo ();
                     }
                 }
             catch (System.Exception ex)
@@ -1952,14 +2091,22 @@ namespace Obi
             mProjectView.UpdateContextMenus ();
             }
 
+        private delegate void UpdateTitleAndStatusBarDelegate(); 
         // Update the title and status bars to show the name of the project, and if it has unsaved changes
-        private void UpdateTitleAndStatusBar ()
+        private void UpdateTitleAndStatusBar()
+        {
+            if (InvokeRequired)
             {
-            Text = mSession.HasProject ?
-                String.Format ( Localizer.Message ( "title_bar" ), mSession.Presentation.Title,
-                    (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message ( "obi" ) ) :
-                Localizer.Message ( "obi" );
+                Invoke(new UpdateTitleAndStatusBarDelegate(UpdateTitleAndStatusBar));
             }
+            else
+            {
+                Text = mSession.HasProject ?
+                    String.Format(Localizer.Message("title_bar"), mSession.Presentation.Title,
+                        (mSession.CanSave ? "*" : ""), mSession.Path, Localizer.Message("obi")) :
+                    Localizer.Message("obi");
+            }
+        }
 
 
 
@@ -2050,7 +2197,7 @@ namespace Obi
                 }
             try
                 {
-                mProjectView.TransportBar.AudioPlayer.SetDevice ( this, mSettings.LastOutputDevice );
+                mProjectView.TransportBar.AudioPlayer.SetOutputDevice( this, mSettings.LastOutputDevice );
                 }
             catch (Exception)
                 {
@@ -2060,7 +2207,7 @@ namespace Obi
                 }
             try
                 {
-                mProjectView.TransportBar.Recorder.SetDevice ( this, mSettings.LastInputDevice );
+                mProjectView.TransportBar.Recorder.SetInputDevice( mSettings.LastInputDevice );
                 }
             catch (Exception)
                 {
@@ -2084,6 +2231,8 @@ namespace Obi
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
             // Colors
             mSettings.ColorSettings.CreateBrushesAndPens ();
+           m_BitRate = mSettings.Export_BitRateMP3;
+           m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3 ;
             }
 
        internal void InitializeKeyboardShortcuts( bool isFirstTime)
@@ -2510,11 +2659,12 @@ namespace Obi
                 if (toolStripText == "Z3986DTBValidator")
                     {
                     if (exportDaisy3Path != null)
-                        newDirPath = Path.Combine ( exportDaisy3Path, "obi_dtb.opf" );
+                        newDirPath = Path.Combine ( exportDaisy3Path, "package.opf" );
                     else
                         newDirPath = "";
                     }
                 }
+                
             return newDirPath;
             }
 
@@ -2718,6 +2868,34 @@ namespace Obi
         {
             String directoryPath = Path.GetDirectoryName(mSession.Path);
             mProjectView.ExportAudioOfSelectedNode(mProjectView.Selection.Node,Path.Combine(directoryPath,"Exported_Audio_Files"));
+        }
+
+        private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           if(mProjectView.Selection is StripIndexSelection)
+               ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = mProjectView.Selection.EmptyNodeForSelection;
+            else
+           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode =  mProjectView.Selection.Node;
+           
+        }
+
+        private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
+            {
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is PhraseNode)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
+                {
+                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
+                }
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+            }            
         }
         }
     }

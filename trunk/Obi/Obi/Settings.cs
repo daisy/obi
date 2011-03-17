@@ -34,7 +34,7 @@ namespace Obi
         public uint MaxPhraseDurationMinutes;  // maximum phrase duration in minutes for autosplitting during import
         public uint MaxAllowedPhraseDurationInMinutes ; //Max size of phrase allowed in content view
         public Size NewProjectDialogSize;      // size of the new project dialog
-        public Audio.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
+        public AudioLib.VuMeter.NoiseLevelSelection NoiseLevel;  // noise level for low amplitude detection
         public double NudgeTimeMs;             // nudge time in milliseconds
         public Size ObiFormSize;               // size of the form (for future sessions)
         public bool OpenLastProject;           // open the last open project at startup
@@ -53,7 +53,10 @@ namespace Obi
         public bool AutoSave_RecordingEnd ; // flag to audo save whenever recording ends
         public bool AutoSaveTimeIntervalEnabled;// enables / disables auto save after time interval contained in AutoSaveTimeInterval
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
-
+        public bool Export_EncodeToMP3;
+        public int Export_BitRateMP3;
+        public bool CropAudio;
+        public bool SaveBookmarkNode;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
@@ -80,7 +83,7 @@ namespace Obi
             settings.MaxPhraseDurationMinutes = 10;
             settings.MaxAllowedPhraseDurationInMinutes = 50;
             settings.NewProjectDialogSize = new Size(0, 0);
-            settings.NoiseLevel = Audio.VuMeter.NoiseLevelSelection.Medium;
+            settings.NoiseLevel = AudioLib.VuMeter.NoiseLevelSelection.Medium;
             settings.NudgeTimeMs = 200.0;
             settings.ObiFormSize = new Size(0, 0);
             settings.OpenLastProject = false;
@@ -100,6 +103,10 @@ namespace Obi
             settings.AutoSave_RecordingEnd = false;
             settings.AutoSaveTimeIntervalEnabled= true;
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
+            settings.Export_EncodeToMP3 = false;
+            settings.Export_BitRateMP3 = 64;
+            settings.CropAudio = false;
+            settings.SaveBookmarkNode = false;
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try

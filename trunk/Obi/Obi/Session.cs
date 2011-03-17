@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using urakawa;
+using urakawa.media.data.audio;
+using urakawa.xuk;
 
 namespace Obi
     {
@@ -45,7 +48,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanRedo { get { return mProject != null && Presentation.getUndoRedoManager ().canRedo (); } }
+        public bool CanRedo { get { return mProject != null && Presentation.UndoRedoManager.CanRedo; } }
 
         /// <summary>
         /// True if the project has unsaved changes.
@@ -55,7 +58,7 @@ namespace Obi
         /// <summary>
         /// True if the redo stack is non-empty.
         /// </summary>
-        public bool CanUndo { get { return mProject != null && Presentation.getUndoRedoManager ().canUndo (); } }
+        public bool CanUndo { get { return mProject != null && Presentation.UndoRedoManager.CanUndo; } }
 
         /// <summary>
         /// True if there is a project currently open.
@@ -72,7 +75,7 @@ namespace Obi
         /// </summary>
         public string PrimaryExportPath
             {
-            get { return Presentation.RootNode.PrimaryExportDirectory; }
+                get { return ((ObiRootNode)Presentation.RootNode).PrimaryExportDirectory; }
             //set
                 //{
                 //Presentation.RootNode.PrimaryExportDirectory = value;
@@ -83,17 +86,24 @@ namespace Obi
         /// <summary>
         /// Get the current (Obi) presentation.
         /// </summary>
-        public Presentation Presentation { get { return mProject == null ? null : mProject.getListOfPresentations().Count == 0 ? null : (Presentation)mProject.getPresentation ( 0 ); } }
+        public ObiPresentation Presentation {
+            get
+        {
+            return mProject == null ? null :
+                mProject.Presentations.Count == 0 ? null :
+                (ObiPresentation)mProject.Presentations.Get(0);
+        }
+        }
 
         /// <summary>
         /// Get the description of the top redo command.
         /// </summary>
-        public string RedoLabel { get { return Presentation.getUndoRedoManager ().getRedoShortDescription (); } }
+        public string RedoLabel { get { return Presentation.UndoRedoManager.RedoShortDescription; } }
 
         /// <summary>
         /// Get the description of the top undo command.
         /// </summary>
-        public string UndoLabel { get { return Presentation.getUndoRedoManager ().getUndoShortDescription (); } }
+        public string UndoLabel { get { return Presentation.UndoRedoManager.UndoShortDescription; } }
 
 
         /// <summary>
@@ -168,29 +178,84 @@ namespace Obi
         /// <summary>
         /// Create a new presentation in the session, with a path to save its XUK file.
         /// </summary>
-        public void NewPresentation ( string path, string title, bool createTitleSection, string id, Settings settings )
+        public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings)
+        {
+            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings);
+            if (ProjectCreated != null) ProjectCreated(this, null);
+        }
+
+
+        private void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings )
+        {
+            mProject = new Project();
+#if (DEBUG)
+            mProject.SetPrettyFormat(true);
+#else
+            mProject.SetPrettyFormat(false);
+#endif
+            string parentDirectory = System.IO.Path.GetDirectoryName(path);
+            Uri obiProjectDirectory = new Uri(parentDirectory);
+            
+            //Presentation presentation = mProject.AddNewPresentation(obiProjectDirectory, System.IO.Path.GetFileName(path));
+            //ObiPresentation newPres = mProject.PresentationFactory.Create(mProject, obiProjectDirectory, System.IO.Path.GetFileName(path));
+
+            ObiPresentation newPres = mProject.PresentationFactory.Create<ObiPresentation>();
+            newPres.Project = mProject;
+            newPres.RootUri = obiProjectDirectory;
+
+            //TODO: it would be good for Obi to separate Data folder based on project file name,
+            //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+            //newPres.DataProviderManager.SetDataFileDirectoryWithPrefix(System.IO.Path.GetFileName(path));
+
+            if (newPres.IsPrettyFormat())
             {
-            mProject = new urakawa.Project ();
-            mProject.setDataModelFactory ( mDataModelFactory );
-            mProject.setPresentation ( mDataModelFactory.createPresentation (), 0 );
+                newPres.WarmUpAllFactories();
+            }
+
+
+            mProject.Presentations.Insert(mProject.Presentations.Count, newPres);
+
+
+            PCMFormatInfo pcmFormat = new PCMFormatInfo((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            newPres.MediaDataManager.DefaultPCMFormat = pcmFormat;
+            newPres.MediaDataManager.EnforceSinglePCMFormat = true;
+
+            newPres.ChannelsManager.GetOrCreateTextChannel();
+            //m_textChannel = presentation.ChannelFactory.CreateTextChannel();
+            //m_textChannel.Name = "The Text Channel";
+
+            newPres.ChannelsManager.GetOrCreateAudioChannel();
+            //m_audioChannel = presentation.ChannelFactory.CreateAudioChannel();
+            //m_audioChannel.Name = "The Audio Channel";
+
+            ObiRootNode rootNode = newPres.TreeNodeFactory.Create<ObiRootNode>();
+            newPres.RootNode = rootNode;
+
+            //sdk2
+            //mProject.setDataModelFactory ( mDataModelFactory );
+            //mProject.setPresentation ( mDataModelFactory.createPresentation (), 0 );
+            
             mPath = path;
             GetLock ( mPath );
             mChangesCount = 0;
-            Presentation.Initialize ( this, title, createTitleSection, id, settings );
-            Presentation.setRootUri ( new Uri ( path ) );
+            newPres.Initialize(this, title, createTitleSection, id, settings);
+            
+            //sdk2
+            //Presentation.setRootUri ( new Uri ( path ) );
 
+            //sdk2
             // create data directory if it is not created
-            string dataDirectory = ((urakawa.media.data.FileDataProviderManager)Presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
-            if ( !Directory.Exists (dataDirectory ) )
-                {
-                Directory.CreateDirectory ( dataDirectory );
-                }
+            //string dataDirectory = ((urakawa.media.data.FileDataProviderManager)Presentation.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            //if ( !Directory.Exists (dataDirectory ) )
+            //    {
+            //    Directory.CreateDirectory ( dataDirectory );
+            //    }
 
-            if (ProjectCreated != null) ProjectCreated ( this, null );
+            //if (ProjectCreated != null) ProjectCreated ( this, null );
 
             SetupBackupFilesForNewSession ( path );
-
-            ForceSave ();
+            Save(mPath);
+            //ForceSave ();
             }
 
         /// <summary>
@@ -199,14 +264,26 @@ namespace Obi
         public void Open ( string path )
             {
             mProject = new urakawa.Project ();
-            mProject.setDataModelFactory ( mDataModelFactory );
+            //sdk2
+            //mProject.setDataModelFactory ( mDataModelFactory );
             mProject.dataIsMissing += new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
-            mProject.openXUK ( new Uri ( path ) );
+
+
+            //sdk2
+            //mProject.openXUK ( new Uri ( path ) );
+
+            OpenXukAction action = new OpenXukAction(mProject, new Uri(path));
+            action.ShortDescription = "DUMMY";
+            action.LongDescription = "DUMMY";
+            action.Execute();
+
+            //Presentation = mProject.Presentations.Get(0);
+
             mPath = path;
             GetLock ( mPath );
             Presentation.Initialize ( this );
             // Hack to ignore the empty commands saved by the default undo/redo manager
-            Presentation.getUndoRedoManager ().flushCommands ();
+            Presentation.UndoRedoManager.FlushCommands();
 
             SetupBackupFilesForNewSession ( path );
 
@@ -274,10 +351,10 @@ namespace Obi
                     precautionBackupFilePath = CreatePrecautionBackupBeforeSave( path);
                     // Make sure that saving is finished before returning
                     System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
-                    urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, new Uri(path));
-                    save.finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
+                    urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path));
+                    save.Finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
         (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
-                save.execute ();
+                save.Execute ();
                 wh.WaitOne ();
                 }
             catch (System.Exception ex)
@@ -294,7 +371,7 @@ namespace Obi
                 {
                     if (precautionBackupFilePath != null && File.Exists(precautionBackupFilePath))
                     {
-                        string originalPath = Presentation.getRootUri().LocalPath;
+                        string originalPath = Presentation.RootUri.LocalPath;
                         if (File.Exists(originalPath)) File.Delete(originalPath);
                         File.Move(precautionBackupFilePath, originalPath);
                     }
@@ -315,12 +392,12 @@ namespace Obi
 
         private string CreatePrecautionBackupBeforeSave( string path)
         {
-            string precautionFilePath = Presentation.getRootUri().LocalPath;
+            string precautionFilePath = Presentation.RootUri.LocalPath;
             if (precautionFilePath == null || !File.Exists(precautionFilePath) || System.IO.Path.GetFullPath(path) != precautionFilePath) return null;
 
             for (int i = 0; File.Exists(precautionFilePath += i.ToString()); i++)
             { }
-            File.Copy (Presentation.getRootUri().LocalPath, precautionFilePath);
+            File.Copy (Presentation.RootUri.LocalPath, precautionFilePath);
             Console.WriteLine("Precaution file is created at " + precautionFilePath);
             
             return precautionFilePath;
@@ -340,11 +417,32 @@ namespace Obi
                         File.Create ( m_BackupProjectFilePath_temp ).Close ();
                         }
 
-                    Uri prevUri = Presentation.getRootUri ();
-                    Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
-                    Save ( m_BackupProjectFilePath_temp );
-                    Presentation.setRootUri ( prevUri );
+                    //sdk2
+                    //Uri prevUri = Presentation.getRootUri ();
+                    //Presentation.setRootUri ( new Uri ( m_BackupProjectFilePath_temp ) );
 
+
+                    Uri oldUri = Presentation.RootUri;
+                    string oldDataDir = Presentation.DataProviderManager.DataFileDirectory;
+
+                    string dirPath = System.IO.Path.GetDirectoryName(m_BackupProjectFilePath_temp);
+                    string prefix = System.IO.Path.GetFileName(m_BackupProjectFilePath_temp);
+
+
+                    //TODO: it would be good for Obi to separate Data folder based on project file name,
+                    //TODO: otherwise collision of Data folder may happen if several project files are in same directory.
+                    //Presentation.DataProviderManager.SetDataFileDirectoryWithPrefix(prefix);
+                    Presentation.RootUri = new Uri(dirPath + System.IO.Path.DirectorySeparatorChar, UriKind.Absolute);
+
+
+                    Save ( m_BackupProjectFilePath_temp );
+
+                    //sdk2
+                    //Presentation.setRootUri ( prevUri );
+
+                    Presentation.RootUri = oldUri;
+                    Presentation.DataProviderManager.DataFileDirectory = oldDataDir;
+                    
                     if (!Directory.Exists ( m_BackupDirPath ))
                         {
                         Directory.CreateDirectory ( m_BackupDirPath );
@@ -407,6 +505,24 @@ namespace Obi
                 }
 
             }
+
+        /// <summary>
+        /// Imports a DAISY 3 book in Obi
+        /// </summary>
+        /// <param name="outputPath"></param>
+        /// <param name="title"></param>
+        /// <param name="createTitleSection"></param>
+        /// <param name="id"></param>
+        /// <param name="settings"></param>
+        /// <param name="importDTBPath"></param>
+        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath)
+        {
+            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings);
+            Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(this, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+            import.DoWork();
+            Save(Path);
+            if (ProjectCreated != null) ProjectCreated(this, null);
+        }
 
         }
 

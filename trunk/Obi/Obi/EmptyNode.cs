@@ -1,7 +1,10 @@
 using System;
 
+
 using urakawa.command;
 using urakawa.core;
+using urakawa.property.xml;
+
 
 namespace Obi
 {
@@ -12,12 +15,18 @@ namespace Obi
     /// </summary>
     public class EmptyNode: ObiNode
     {
+        public new static string XukString = "empty";
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
+
+        public override string XmlPropertyString { get { return "p";} } 
         private Role mRole;              // this node's kind
         private string mCustomRole;      // custom role name
         private PageNumber mPageNumber;  // page number
         private bool mTODO;              // marked as TODO
 
-        public static readonly string XUK_ELEMENT_NAME = "empty";             // name of the element in the XUK file
         private static readonly string XUK_ATTR_NAME_ROLE = "kind";           // name of the role attribute
         private static readonly string XUK_ATTR_NAME_CUSTOM = "custom";       // name of the custom attribute
         private static readonly string XUK_ATTR_NAME_PAGE = "page";           // name of the page attribute
@@ -92,7 +101,7 @@ namespace Obi
         /// <summary>
         /// Create a new empty node of a given kind in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Role role, string customRole): base(presentation)
+        public EmptyNode(Role role, string customRole)
         {
             mRole = role;
             mCustomRole = customRole;
@@ -102,17 +111,17 @@ namespace Obi
         /// <summary>
         /// Create a plain empty node in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation): this(presentation, Role.Plain, null) {}
+        public EmptyNode(): this(Role.Plain, null) {}
 
         /// <summary>
         /// Create an empty node of a pre-defined kind a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, Role role): this(presentation, role, null) {}
+        public EmptyNode(Role role) : this(role, null) { }
 
         /// <summary>
         /// Create an empty node with a custom class in a presentation.
         /// </summary>
-        public EmptyNode(Presentation presentation, string customRole): this(presentation, Role.Custom, customRole) {}
+        public EmptyNode(string customRole) : this(Role.Custom, customRole) { }
 
 
         /// <summary>
@@ -129,9 +138,9 @@ namespace Obi
         /// <summary>
         /// Copy the node.
         /// </summary>
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        protected override TreeNode CopyProtected(bool deep, bool inclProperties)
         {
-            EmptyNode copy = (EmptyNode)base.copyProtected(deep, inclProperties);
+            EmptyNode copy = (EmptyNode)base.CopyProtected(deep, inclProperties);
             copy.CopyAttributes(this);
             return copy;
         }
@@ -199,11 +208,11 @@ namespace Obi
                 CompositeCommand k = base.RenumberCommand(view, from.NextPageNumber());
                 if (k == null)
                 {
-                    k = getPresentation().getCommandFactory().createCompositeCommand();
-                    k.setShortDescription(string.Format(Localizer.Message("renumber_pages"),
-                        Localizer.Message(string.Format("{0}_pages", from.Kind.ToString()))));
+                    k = Presentation.CommandFactory.CreateCompositeCommand();
+                    k.ShortDescription = string.Format(Localizer.Message("renumber_pages"),
+                        Localizer.Message(string.Format("{0}_pages", from.Kind.ToString())));
                 }
-                k.append(new Commands.Node.SetPageNumber(view, this, from));
+                k.ChildCommands.Insert(k.ChildCommands.Count, new Commands.Node.SetPageNumber(view, this, from));
                 return k;
             }
             else
@@ -257,78 +266,183 @@ namespace Obi
         public override EmptyNode LastUsedPhrase { get { throw new Exception("Empty nodes have no children."); } }
 
 
-
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
-
-        protected override void xukInAttributes(System.Xml.XmlReader source)
+        protected override void XukInNodeProperties ()
         {
-            string role = source.GetAttribute(XUK_ATTR_NAME_ROLE);
-            if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
-                                      role == Role.Heading.ToString() ? Role.Heading :
-                                      role == Role.Page.ToString() ? Role.Page :
-                                      role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
-            if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
-            mCustomRole = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
-            if (mRole == Role.Heading)
+            base.XukInNodeProperties();
+            if (Role_ != Role.Plain) return;
+            try
             {
-                if (!AncestorAs<SectionNode>().DidSetHeading(this)) mRole = Role.Plain;
-            }
-            else if (mRole == Role.Page)
-            {
-                string pageKind = source.GetAttribute(XUK_ATTR_NAME_PAGE_KIND);
-                if (pageKind != null)
+                
+                XmlProperty xmlProp = this.GetProperty<XmlProperty>();
+                if (xmlProp != null)
                 {
-                    string page = source.GetAttribute(XUK_ATTR_NAME_PAGE);
-                    int number = SafeParsePageNumber(page);
-                    if (pageKind == "Front")
+                    
+                    urakawa.property.xml.XmlAttribute attrRole = xmlProp.GetAttribute(XUK_ATTR_NAME_ROLE, xmlProp.NamespaceUri);
+
+                    if (attrRole != null)
                     {
-                        if (number == 0) throw new Exception(string.Format("Invalid front page number \"{0}\".", page));
-                        mPageNumber = new PageNumber(number, PageKind.Front);
-                    }
-                    else if (pageKind == "Normal")
-                    {
-                        if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
-                        mPageNumber = new PageNumber(number);
-                    }
-                    else if (pageKind == "Special")
-                    {
-                        if (page == null || page == "") throw new Exception("Invalid empty special page number.");
-                        mPageNumber = new PageNumber(page);
-                    }
-                    else
-                    {
-                        throw new Exception(string.Format("Invalid page kind \"{0}\".", pageKind));
+                        string role = attrRole.Value;
+                        if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
+                                                  role == Role.Heading.ToString() ? Role.Heading :
+                                                  role == Role.Page.ToString() ? Role.Page :
+                                                  role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
+                        if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
+                        if (mRole == Role.Custom) mCustomRole = xmlProp.GetAttribute(XUK_ATTR_NAME_CUSTOM, xmlProp.NamespaceUri).Value;
+                        //System.Windows.Forms.MessageBox.Show(mRole.ToString());
+                        if (mRole == Role.Heading)
+                        {
+                            if (!AncestorAs<SectionNode>().DidSetHeading(this)) mRole = Role.Plain;
+                        }
+                        else if (mRole == Role.Page)
+                        {
+                            string pageKind = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE_KIND, xmlProp.NamespaceUri).Value;
+                            if (pageKind != null)
+                            {
+                                string page = xmlProp.GetAttribute(XUK_ATTR_NAME_PAGE, xmlProp.NamespaceUri).Value;
+                                int number = SafeParsePageNumber(page);
+                                if (pageKind == "Front")
+                                {
+                                    if (number == 0) throw new Exception(string.Format("Invalid front page number \"{0}\".", page));
+                                    mPageNumber = new PageNumber(number, PageKind.Front);
+                                }
+                                else if (pageKind == "Normal")
+                                {
+                                    if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
+                                    mPageNumber = new PageNumber(number);
+                                }
+                                else if (pageKind == "Special")
+                                {
+                                    if (page == null || page == "") throw new Exception("Invalid empty special page number.");
+                                    mPageNumber = new PageNumber(page);
+                                }
+                                else
+                                {
+                                    throw new Exception(string.Format("Invalid page kind \"{0}\".", pageKind));
+                                }
+                            }
+                        }
+                        if (mRole != Role.Custom && mCustomRole != null)
+                        {
+                            throw new Exception("Extraneous `custom' attribute.");
+                        }
+                        else if (mRole == Role.Custom && mCustomRole == null)
+                        {
+                            throw new Exception("Missing `custom' attribute.");
+                        }
+                        // add it to the presentation
+                        ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
+
+                        string todo = xmlProp.GetAttribute(XUK_ATTR_NAME_TODO, xmlProp.NamespaceUri).Value;
+                        if (todo != null) mTODO = todo == "True";
                     }
                 }
             }
-            if (mRole != Role.Custom && mCustomRole != null)
+            catch (System.Exception ex)
             {
-                throw new Exception("Extraneous `custom' attribute.");
+                System.Windows.Forms.MessageBox.Show(this.ToString() + " " + ex.ToString());
             }
-            else if (mRole == Role.Custom && mCustomRole == null)
-            {
-                throw new Exception("Missing `custom' attribute.");
-            }
-            // add it to the presentation
-            Presentation.AddCustomClass(mCustomRole, this);
-
-            string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
-            if (todo != null) mTODO = todo == "True";
-            base.xukInAttributes(source);
         }
 
-        protected override void xukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
+        protected override void XukInAttributes(System.Xml.XmlReader source)
         {
-            if (mRole != Role.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_ROLE, mRole.ToString());
-            if (mRole == Role.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomRole);
-            if (mRole == Role.Page)
-            {
-                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
-                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
-                wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
+            if (source.AttributeCount > 1 ||  ( source.AttributeCount == 1 && source.GetAttribute("xmlns") == null))
+            {   
+                string role = source.GetAttribute(XUK_ATTR_NAME_ROLE);
+                if (role != null) mRole = role == Role.Custom.ToString() ? Role.Custom :
+                                          role == Role.Heading.ToString() ? Role.Heading :
+                                          role == Role.Page.ToString() ? Role.Page :
+                                          role == Role.Silence.ToString() ? Role.Silence : Role.Plain;
+                if (role != null && role != mRole.ToString()) throw new Exception("Unknown kind: " + role);
+                mCustomRole = source.GetAttribute(XUK_ATTR_NAME_CUSTOM);
+                if (mRole == Role.Heading)
+                {
+                    if (!AncestorAs<SectionNode>().DidSetHeading(this)) mRole = Role.Plain;
+                }
+                else if (mRole == Role.Page)
+                {
+                    string pageKind = source.GetAttribute(XUK_ATTR_NAME_PAGE_KIND);
+                    if (pageKind != null)
+                    {
+                        string page = source.GetAttribute(XUK_ATTR_NAME_PAGE);
+                        int number = SafeParsePageNumber(page);
+                        if (pageKind == "Front")
+                        {
+                            if (number == 0) throw new Exception(string.Format("Invalid front page number \"{0}\".", page));
+                            mPageNumber = new PageNumber(number, PageKind.Front);
+                        }
+                        else if (pageKind == "Normal")
+                        {
+                            if (number == 0) throw new Exception(string.Format("Invalid page number \"{0}\".", page));
+                            mPageNumber = new PageNumber(number);
+                        }
+                        else if (pageKind == "Special")
+                        {
+                            if (page == null || page == "") throw new Exception("Invalid empty special page number.");
+                            mPageNumber = new PageNumber(page);
+                        }
+                        else
+                        {
+                            throw new Exception(string.Format("Invalid page kind \"{0}\".", pageKind));
+                        }
+                    }
+                }
+                if (mRole != Role.Custom && mCustomRole != null)
+                {
+                    throw new Exception("Extraneous `custom' attribute.");
+                }
+                else if (mRole == Role.Custom && mCustomRole == null)
+                {
+                    throw new Exception("Missing `custom' attribute.");
+                }
+                // add it to the presentation
+                ((ObiPresentation)Presentation).AddCustomClass(mCustomRole, this);
+
+                string todo = source.GetAttribute(XUK_ATTR_NAME_TODO);
+                if (todo != null) mTODO = todo == "True";
             }
-            if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
-            base.xukOutAttributes(wr, baseUri);
+            base.XukInAttributes(source);
+        }
+
+        
+        protected override void UpdateXmlProperties()
+        {
+            XmlProperty xmlProp = ObiNodeGetOrCreateXmlProperty();
+            UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_ROLE, this.Role_.ToString());
+
+            if (this.Role_ == Role.Custom)
+            {
+                UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_CUSTOM, mCustomRole);
+            }
+
+            if (this.Role_ == Role.Page)
+            {
+                UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
+                UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
+                UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
+            }
+
+            UpdateAttributesInXmlProperty(xmlProp, XUK_ATTR_NAME_TODO, TODO.ToString());
+            base.UpdateXmlProperties();
+        }
+
+        
+        protected override void XukOutAttributes(System.Xml.XmlWriter wr, Uri baseUri)
+        {
+            //Presentation.UseXukFormat = true;
+            if (!ObiPresentation.UseXukFormat)
+            {
+            
+                if (mRole != Role.Plain) wr.WriteAttributeString(XUK_ATTR_NAME_ROLE, mRole.ToString());
+                if (mRole == Role.Custom) wr.WriteAttributeString(XUK_ATTR_NAME_CUSTOM, mCustomRole);
+                if (mRole == Role.Page)
+                {
+                    wr.WriteAttributeString(XUK_ATTR_NAME_PAGE, mPageNumber.ArabicNumberOrLabel);
+                    wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_KIND, mPageNumber.Kind.ToString());
+                    wr.WriteAttributeString(XUK_ATTR_NAME_PAGE_TEXT, mPageNumber.Unquoted);
+                }
+                if (mTODO) wr.WriteAttributeString(XUK_ATTR_NAME_TODO, "True");
+            }
+            base.XukOutAttributes(wr, baseUri);
         }
 
         /// <summary>

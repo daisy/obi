@@ -5,6 +5,8 @@ using urakawa.command;
 using urakawa.core;
 using urakawa.exception;
 using urakawa.property.channel;
+using urakawa.property.xml;
+using urakawa.progress;
 
 namespace Obi
 {
@@ -14,14 +16,23 @@ namespace Obi
     /// </summary>
     public abstract class ObiNode : TreeNode
     {
+        public new static readonly string XUK_NS = DataModelFactory.NS;//sdk2
+        public static readonly string XukString = typeof(ObiNode).Name;
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
+        public abstract string XmlPropertyString { get; } 
+
         private bool mUsed;  // mark node as being in use or not
 
         /// <summary>
         /// Create a new node for a presentation.
         /// </summary>
-        protected ObiNode(Presentation presentation) : base()
+        protected ObiNode()
         {
-            setPresentation(presentation);
+            //sdk2s
+            //setPresentation(presentation);
             mUsed = true;
         }
 
@@ -31,7 +42,7 @@ namespace Obi
         /// </summary>
         public T AncestorAs<T>() where T : ObiNode
         {
-            ObiNode parent = getParent() as ObiNode;
+            ObiNode parent = Parent as ObiNode;
             return parent == null || parent is T ? parent as T : parent.AncestorAs<T>();
         }
 
@@ -40,7 +51,7 @@ namespace Obi
         /// </summary>
         public virtual ObiNode PrecedingNode
         {
-            get { return getParent().indexOf(this) > 0 ? ((ObiNode)getPreviousSibling()).LastLeaf : ParentAs<ObiNode>(); }
+            get { return Parent.Children.IndexOf(this) > 0 ? ((ObiNode)PreviousSibling).LastLeaf : ParentAs<ObiNode>(); }
         }
 
         /// <summary>
@@ -56,8 +67,8 @@ namespace Obi
         {
             get
             {
-                int children = getChildCount();
-                return children == 0 ? this : ((ObiNode)getChild(children - 1)).LastLeaf;
+                int childrenCount = Children.Count;
+                return childrenCount == 0 ? this : ((ObiNode)Children.Get(childrenCount - 1)).LastLeaf;
             }
         }
 
@@ -68,9 +79,9 @@ namespace Obi
         {
             get
             { 
-                return getParent().indexOf(this) < getParent().getChildCount() - 1 ?
-                    ((ObiNode)getNextSibling()).FirstLeaf : 
-                    ((ObiNode)getParent()).FollowingNode;
+                return Parent.Children.IndexOf(this) < Parent.Children.Count - 1 ?
+                    ((ObiNode)NextSibling).FirstLeaf : 
+                    ((ObiNode)Parent).FollowingNode;
             }
         }
 
@@ -83,9 +94,9 @@ namespace Obi
             ObiNode parent = ParentAs<ObiNode>();
             if (parent != null)
             {
-                int index_self = parent.indexOf(this);
-                return getChildCount() > index_after + 1 ? (ObiNode)getChild(index_after + 1) :
-                    index_self < getParent().getChildCount() - 1 ? (ObiNode)getParent().getChild(index_self + 1) :
+                int index_self = parent.Children.IndexOf(this);
+                return Children.Count > index_after + 1 ? (ObiNode)Children.Get(index_after + 1) :
+                    index_self < Parent.Children.Count - 1 ? (ObiNode)Parent.Children.Get(index_self + 1) :
                     parent.FollowingNodeAfter(index_self);
             }
             else
@@ -110,22 +121,22 @@ namespace Obi
         {
             get
             {
-                int childrent = getChildCount();
-                return childrent == 0 ? this : ((ObiNode)getChild(0)).FirstLeaf;
+                int childrent = Children.Count;
+                return childrent == 0 ? this : ((ObiNode)Children.Get(0)).FirstLeaf;
             }
         }
 
         /// <summary>
         /// Index of this node in its parent's list of children.
         /// </summary>
-        public virtual int Index { get { return getParent().indexOf(this); } }
+        public virtual int Index { get { return Parent.Children.IndexOf(this); } }
 
         /// <summary>
         /// Check whether the node is rooted in the tree or not.
         /// </summary>
         public bool IsRooted
         {
-            get { return this is RootNode || (getParent() is ObiNode && ((ObiNode)getParent()).IsRooted); }
+            get { return this is ObiRootNode || (Parent is ObiNode && ((ObiNode)Parent).IsRooted); }
         }
 
         /// <summary>
@@ -136,28 +147,43 @@ namespace Obi
         /// <summary>
         /// Level of the node in the tree. It is assumed that the root is an ObiNode with a level of 0.
         /// </summary>
-        public virtual int Level { get { return 1 + ((ObiNode)getParent()).Level; } }
+        public virtual int Level { get { return 1 + ((ObiNode)Parent).Level; } }
 
         /// <summary>
         /// Get the parent node as an ObiNode or any subclass thereof. I am not sure what "thereof" means, though.
         /// </summary>
-        public T ParentAs<T>() where T : ObiNode { return getParent() as T; }
+        public T ParentAs<T>() where T : ObiNode { return Parent as T; }
 
 
         // Our own overrides
 
-        public virtual void AppendChild(ObiNode node) { appendChild(node); }
-        public virtual ObiNode Detach() { return (ObiNode)detach(); }
+        public virtual void AppendChild(ObiNode node) { base.AppendChild(node); }
+        public new virtual ObiNode Detach() { return (ObiNode) base.Detach(); }
         public abstract void Insert(ObiNode node, int index);
-        public void InsertAfter(ObiNode node, ObiNode anchor) { insertAfter(node, anchor); }
-        public void InsertAfterSelf(ObiNode node) { getParent().insertAfter(node, this); }
-        public void InsertBefore(ObiNode node, ObiNode anchor) { insertBefore(node, anchor); }
-        public void RemoveChild(ObiNode child) { removeChild(child); }
+        public void InsertAfter(ObiNode node, ObiNode anchor)
+        {
+            int index = Children.IndexOf(anchor);
+            base.Insert(node, index + 1);
+        }
+        public void InsertAfterSelf(ObiNode node)
+        {
+            Parent.InsertAfter(node, this);
+        }
+        public void InsertBefore(ObiNode node, ObiNode anchor)
+        {
+            int index = Children.IndexOf(anchor);
+            base.Insert(node, index);
+        }
+        public void RemoveChild(ObiNode child)
+        {
+            Children.Remove(child);
+        }
 
         /// <summary>
         /// Presentation to which this node belongs.
         /// </summary>
-        public Presentation Presentation { get { return (Presentation)getPresentation(); } }
+        /// sdk2
+        //public new Presentation Presentation { get { return (Presentation)getPresentation(); } }
 
         public abstract SectionNode SectionChild(int index);
         public abstract int SectionChildCount { get; }
@@ -178,45 +204,108 @@ namespace Obi
                 if (mUsed != value)
                 {
                     mUsed = value;
-                    Presentation.SignalUsedStatusChanged(this);
+                    ((ObiPresentation)Presentation).SignalUsedStatusChanged(this);
                 }
             }
         }
 
         // XUK stuff
-        
         private static readonly string USED_ATTR_NAME = "used";  // name of the used attribute
 
+        protected override void XukInChild(System.Xml.XmlReader source, IProgressHandler handler)
+        {
+            base.XukInChild(source, handler);
+            XukInNodeProperties();
+        }
+
+
+        protected virtual void XukInNodeProperties()
+        {
+            XmlProperty xmlProp = this.GetProperty<XmlProperty>();
+            if (xmlProp != null)
+            {
+                XmlAttribute attrUsed = xmlProp.GetAttribute(USED_ATTR_NAME, xmlProp.NamespaceUri);
+                string used =attrUsed != null?  attrUsed.Value: null;
+                if (used != null && used == "False") mUsed = false;
+            }
+        }
+
+        
         /// <summary>
         /// Read back the used attribute.
         /// </summary>
-        protected override void xukInAttributes(System.Xml.XmlReader reader)
+        protected override void XukInAttributes(System.Xml.XmlReader reader)
         {
-            string used = reader.GetAttribute(USED_ATTR_NAME);
-            if (used != null && used == "False") mUsed = false;
-            base.xukInAttributes(reader);
+            if (reader.AttributeCount > 1 || (reader.AttributeCount == 1 && reader.GetAttribute("xmlns") == null))
+            {
+                string used = reader.GetAttribute(USED_ATTR_NAME);
+                if (used != null && used == "False") mUsed = false;
+            }
+            base.XukInAttributes(reader);
+        }
+
+        protected override void XukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
+        {
+            if (ObiPresentation.UseXukFormat) UpdateXmlProperties();
+            base.XukOutChildren(destination, baseUri, handler);
+        }
+
+
+        protected virtual void UpdateXmlProperties()
+        {
+            XmlProperty xmlProp = ObiNodeGetOrCreateXmlProperty();
+            UpdateAttributesInXmlProperty(xmlProp, USED_ATTR_NAME, this.Used.ToString () );
+        }
+
+        protected XmlProperty ObiNodeGetOrCreateXmlProperty()
+        {
+            XmlProperty xmlProp = this.GetProperty<urakawa.property.xml.XmlProperty>();
+            if (xmlProp == null)
+            {
+                xmlProp = Presentation.PropertyFactory.CreateXmlProperty();
+                this.AddProperty(xmlProp);
+                xmlProp.SetQName(XmlPropertyString, XukNamespaceUri);
+            }
+            return xmlProp;
+        }
+
+        protected void UpdateAttributesInXmlProperty(XmlProperty xmlProp, string attributeLocalName, string attributeValue)
+        {
+            XmlAttribute attr = xmlProp.GetAttribute(attributeLocalName, xmlProp.NamespaceUri);
+            if (attr == null)
+            {
+                xmlProp.SetAttribute(attributeLocalName, xmlProp.NamespaceUri, attributeValue);
+            }
+            else
+            {
+                attr.Value = attributeValue;
+            }
         }
 
         /// <summary>
         /// Write the used attribute if its value is false (true being the default.)
         /// </summary>
-        protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
+        protected override void XukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-            if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
-            base.xukOutAttributes(destination, baseUri);
+            if (!ObiPresentation.UseXukFormat)
+            {
+                if (!mUsed) destination.WriteAttributeString(USED_ATTR_NAME, "False");
+            }
+                base.XukOutAttributes(destination, baseUri);
+            
         }
 
         /// <summary>
         /// Return the correct namespace URI for all Obi nodes.
         /// </summary>
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
-
+        //public override string XukNamespaceUri { get { return DataModelFactory.NS;
+        
         /// <summary>
         /// Copy the used flag as well as properties.
         /// </summary>
-        protected override TreeNode copyProtected(bool deep, bool inclProperties)
+        protected override TreeNode CopyProtected(bool deep, bool inclProperties)
         {
-            ObiNode copy = (ObiNode)base.copyProtected(deep, inclProperties);
+            ObiNode copy = (ObiNode)base.CopyProtected(deep, inclProperties);
             copy.mUsed = mUsed;
             return copy;
         }
@@ -236,13 +325,33 @@ namespace Obi
     /// The root node of a presentation is an ObiNode as well.
     /// The level of the root node is 0. A root node has only section children.
     /// </summary>
-    public class RootNode : ObiNode
+    // sdk2
+    public class ObiRootNode : ObiNode
     {
-        public static readonly string XUK_ELEMENT_NAME = "root";  // name of the element in the XUK file
+        public new static string XukString = "root";
+        private ObiNode m_Bookmarked;
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
 
-        private string mPrimaryExportDirectory= "" ;
+        public override string XmlPropertyString { get { return "dtbook"; } }
 
-        public RootNode(Presentation presentation) : base(presentation) { }
+        private string mPrimaryExportDirectory = "";
+
+        public ObiNode BookmarkNode
+        {
+            get { return m_Bookmarked; }
+            set { m_Bookmarked = value; }
+        }
+
+        public ObiRootNode() : base()
+        {
+            ;            
+        }
+
+        //sdk2
+        //public RootNode(Presentation presentation) : base(presentation) { }
 
         /// <summary>
         /// Allow only section nodes to be inserted.
@@ -251,8 +360,8 @@ namespace Obi
         public override void Insert(ObiNode node, int index)
         {
             if (!(node is SectionNode)) throw new Exception("Only section nodes can be added as children of a phrase node.");
-            if (index < 0) index += getChildCount();
-            insert(node, index);
+            if (index < 0) index += Children.Count;
+            ((TreeNode)this).Insert(node, index);
         }
 
         /// <summary>
@@ -262,8 +371,8 @@ namespace Obi
 
         public override SectionNode SectionChild(int index)
         {
-            if (index < 0) index = getChildCount() - index;
-            return (SectionNode)getChild(index);
+            if (index < 0) index = Children.Count - index;
+            return (SectionNode)Children.Get(index);
         }
 
         public override ObiNode PrecedingNode { get { return null; } }
@@ -271,7 +380,7 @@ namespace Obi
 
         public override PhraseNode FirstUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
         public override EmptyNode LastUsedPhrase { get { throw new Exception("A root node has no phrase children."); } }
-        public override int SectionChildCount { get { return getChildCount(); } }
+        public override int SectionChildCount { get { return Children.Count; } }
         public override EmptyNode PhraseChild(int index) { throw new Exception("A root node has no phrase children."); }
         public override int PhraseChildCount { get { return 0; } }
 
@@ -280,7 +389,7 @@ namespace Obi
             get
             {
                 double duration = 0.0;
-                acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+                AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
                 {
                     if (n is SectionNode) duration += ((SectionNode)n).Duration;
                     return true;
@@ -293,7 +402,7 @@ namespace Obi
         private int Count(Predicate<urakawa.core.TreeNode> p)
         {
             int count = 0;
-            acceptDepthFirst(delegate(urakawa.core.TreeNode n)
+            AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
             {
                 if (p(n)) ++count;
                 return true;
@@ -329,28 +438,29 @@ namespace Obi
         /// returns list of all the sections descending from root. This may be time consuming for large project
         /// </summary>
         /// <returns></returns>
-        public List<SectionNode> GetListOfAllSections ()
-            {
-            List<SectionNode> m_SectionsList = new List<SectionNode> ();
-            this.acceptDepthFirst (
-                    delegate ( urakawa.core.TreeNode n )
+        public List<SectionNode> GetListOfAllSections()
+        {
+            List<SectionNode> m_SectionsList = new List<SectionNode>();
+            AcceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is SectionNode)
                         {
-                                                if (n is SectionNode )
-                            {
-                                                                                m_SectionsList.Add ( (SectionNode)n );
-                            }
+                            m_SectionsList.Add((SectionNode)n);
+                        }
                         return true;
-                        },
-                    delegate ( urakawa.core.TreeNode n ) { } );
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
 
             return m_SectionsList;
-            }
+        }
 
 
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
+        //sdk2
+        //public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
         /// <summary>
-                ///  Path of directory containing exported DAISY book in raw PCM format
+        ///  Path of directory containing exported DAISY book in raw PCM format
         /// </summary>
         public string PrimaryExportDirectory
         {
@@ -360,7 +470,7 @@ namespace Obi
                 if (value != null) mPrimaryExportDirectory = value;
             }
         }
-
+        /*
         private static readonly string PrimaryExportDirectory_ATTRName = "PrimaryExportDirectory";
 
         /// <summary>
@@ -368,7 +478,10 @@ namespace Obi
         /// </summary>
         protected override void xukInAttributes(System.Xml.XmlReader reader)
         {
-            mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            if (this.getProperty<XmlProperty>() == null)
+            {
+                mPrimaryExportDirectory = reader.GetAttribute(PrimaryExportDirectory_ATTRName);
+            }
                         base.xukInAttributes(reader);
         }
 
@@ -377,10 +490,13 @@ namespace Obi
         /// </summary>
         protected override void xukOutAttributes(System.Xml.XmlWriter destination, Uri baseUri)
         {
-             destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+            if (!Presentation.UseXukFormat)
+            {
+                destination.WriteAttributeString(PrimaryExportDirectory_ATTRName, mPrimaryExportDirectory);
+            }
             base.xukOutAttributes(destination, baseUri);
         }
-
+        */
 
     }
 }

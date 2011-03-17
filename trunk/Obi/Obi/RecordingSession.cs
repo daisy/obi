@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-
+using AudioLib;
 using Obi.Audio;
 using Obi.Events.Audio.Recorder;
+using urakawa.data;
 using urakawa.media.data;
 using urakawa.media.data.audio ;
+using urakawa.media.data.audio.codec;
+using urakawa.media.timing;
 
 
 namespace Obi
@@ -17,7 +20,7 @@ namespace Obi
     /// </summary>
     public class RecordingSession
     {
-        private Presentation mPresentation;                     // presentation to record in
+        private ObiPresentation mPresentation;                     // presentation to record in
         private AudioRecorder mRecorder;                        // recorder for the session
 
         private ManagedAudioMedia mSessionMedia;                // session asset (?)
@@ -32,19 +35,42 @@ namespace Obi
         public event FinishingPhraseHandler FinishingPhrase;    // finishing a phrase
         public event FinishingPageHandler FinishingPage;        // finishing a page
 
+        private void OnAudioRecordingFinished(object sender, AudioRecorder.AudioRecordingFinishEventArgs e)
+        {
+            mRecorder.AudioRecordingFinished -= OnAudioRecordingFinished;
+            bool deleteAfterInsert = true;
+                if (deleteAfterInsert)
+                {
+                    FileDataProvider dataProv = (FileDataProvider)mSessionMedia.Presentation.DataProviderFactory.Create(DataProviderFactory.AUDIO_WAV_MIME_TYPE);
+                    dataProv.InitByMovingExistingFile(e.RecordedFilePath);
+                    mSessionMedia.AudioMediaData.AppendPcmData(dataProv);
+                }
+                else
+                {
+                    // TODO: progress ! (time consuming file copy)
+                    mSessionMedia.AudioMediaData.AppendPcmData_RiffHeader(e.RecordedFilePath);
+                }
+
+                if (deleteAfterInsert && File.Exists(e.RecordedFilePath)) //check exist just in case file adopted by DataProviderManager
+                {
+                    File.Delete(e.RecordedFilePath);
+                }
+        }
+
 
         /// <summary>
         /// Create a recording session for a project starting from a given node.
         /// </summary>
         /// <param name="project">The project in which we are recording.</param>
         /// <param name="recorder">The audio recorder from the project.</param>
-        public RecordingSession(Presentation presentation, AudioRecorder recorder)
+        public RecordingSession(ObiPresentation presentation, AudioRecorder recorder)
         {
             mPresentation = presentation;
             mRecorder = recorder;
-            mRecorder.AssetsDirectory =
-                ((urakawa.media.data.FileDataProviderManager)presentation.getDataProviderManager()).getDataFileDirectoryFullPath();
-            if (!Directory.Exists(mRecorder.AssetsDirectory)) Directory.CreateDirectory(mRecorder.AssetsDirectory);
+            
+            mRecorder.RecordingDirectory =
+                presentation.DataProviderManager.DataFileDirectoryFullPath;
+            if (!Directory.Exists(mRecorder.RecordingDirectory)) Directory.CreateDirectory(mRecorder.RecordingDirectory);
             mSessionOffset = 0;
             mPhraseMarks = null;
             mSectionMarks = null;
@@ -58,7 +84,7 @@ namespace Obi
         /// <summary>
         /// The audio recorder used by the recording session.
         /// </summary>
-        public Audio.AudioRecorder AudioRecorder { get { return mRecorder; } }
+        public AudioRecorder AudioRecorder { get { return mRecorder; } }
 
         /// <summary>
         /// Finish the currently recording phrase and continue recording into a new phrase.
@@ -66,10 +92,15 @@ namespace Obi
         /// </summary>
         public void MarkPage()
         {
-            if (mRecorder.State == AudioRecorderState.Recording)
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
             {
+                //recorder.TimeOfAsset
+                double timeOfAssetMilliseconds =
+                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition)/
+                    Time.TIME_UNIT;
+
             // check for illegal time input
-            if (mPhraseMarks != null && mPhraseMarks.Count > 0 && mPhraseMarks[mPhraseMarks.Count - 1] >= mRecorder.TimeOfAsset)
+                if (mPhraseMarks != null && mPhraseMarks.Count > 0 && mPhraseMarks[mPhraseMarks.Count - 1] >= timeOfAssetMilliseconds)
                 return;
 
                 PhraseEventArgs e = FinishedPhrase();
@@ -84,10 +115,17 @@ namespace Obi
         /// </summary>
         public void NextPhrase()
         {
-            if (mRecorder.State == AudioRecorderState.Recording)
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording)
             {
+                //mRecorder.TimeOfAsset
+                double timeOfAssetMilliseconds =
+                    (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                    Time.TIME_UNIT;
+
                 // check for illegal time input
-            if (mPhraseMarks != null && mPhraseMarks.Count > 0    &&    mPhraseMarks[mPhraseMarks.Count - 1] >= mRecorder.TimeOfAsset)
+            if (mPhraseMarks != null && mPhraseMarks.Count > 0    &&    mPhraseMarks[mPhraseMarks.Count - 1] >=
+                timeOfAssetMilliseconds
+                )
                 return;
 
                 FinishedPhrase();
@@ -101,16 +139,18 @@ namespace Obi
         /// </summary>
         public void Record()
         {
-            if (mRecorder.State == AudioRecorderState.Stopped)
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Stopped)
             {
                 mSessionOffset = mAudioList.Count;
                 mPhraseMarks = new List<double>();
                 mSectionMarks = new List<int>();
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-                mSessionMedia = (ManagedAudioMedia)mPresentation.getMediaFactory().createAudioMedia();
-                mSessionMedia.setMediaData(asset);
-                mRecorder.StartRecording(asset);
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
+                mSessionMedia = (ManagedAudioMedia)mPresentation.MediaFactory.CreateManagedAudioMedia();
+                //mSessionMedia.setMediaData(asset);
+                mSessionMedia.MediaData = asset;
+                mRecorder.AudioRecordingFinished += OnAudioRecordingFinished;
+                mRecorder.StartRecording(asset.PCMFormat.Data);
                 if (StartingPhrase != null)
                     StartingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset, 0.0));
                 mRecordingUpdateTimer.Enabled = true;
@@ -130,11 +170,11 @@ namespace Obi
         /// </summary>
         public void StartMonitoring()
         {
-            if (mRecorder.State == AudioRecorderState.Stopped)
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Stopped)
             {
                 AudioMediaData asset =
-                    (AudioMediaData)mPresentation.getMediaDataFactory().createMediaData(typeof(AudioMediaData));
-                mRecorder.StartListening(asset);
+                    (AudioMediaData)mPresentation.MediaDataFactory.Create<WavAudioMediaData>();
+                mRecorder.StartMonitoring(asset.PCMFormat.Data);
             }
         }
 
@@ -143,9 +183,11 @@ namespace Obi
         /// </summary>
         public void Stop()
         {
-            if (mRecorder.State == AudioRecorderState.Monitoring || mRecorder.State == AudioRecorderState.Recording)
+            bool wasRecording = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording;
+
+            if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
+                || wasRecording)
             {
-                bool wasRecording = mRecorder.State == AudioRecorderState.Recording;
                 if (wasRecording   &&   mPhraseMarks.Count > 0 ) FinishedPhrase();
                 mRecorder.StopRecording();
                 if (wasRecording)
@@ -154,9 +196,9 @@ namespace Obi
                     // (to keep the split times correct) until the second one
                     for (int i = mPhraseMarks.Count - 2; i >= 0; --i)
                     {
-                    if (mPhraseMarks[i] < mSessionMedia.getDuration ().getTimeDeltaAsMillisecondFloat ())
+                    if (mPhraseMarks[i] < mSessionMedia.Duration.AsTimeSpan.TotalMilliseconds)
                         {
-                        ManagedAudioMedia split = mSessionMedia.split ( new urakawa.media.timing.Time ( mPhraseMarks[i] ) );
+                            ManagedAudioMedia split = mSessionMedia.Split(new Time(Convert.ToInt64(mPhraseMarks[i] * Time.TIME_UNIT)));
                         mAudioList.Insert ( mSessionOffset, split );
                         }
                     else
@@ -173,7 +215,12 @@ namespace Obi
         // Finish recording of the current phrase.
         private PhraseEventArgs FinishedPhrase()
         {
-            mPhraseMarks.Add(mRecorder.TimeOfAsset);
+            //mRecorder.TimeOfAsset
+            double timeOfAssetMilliseconds =
+                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                Time.TIME_UNIT;
+
+            mPhraseMarks.Add(timeOfAssetMilliseconds);
             int last = mPhraseMarks.Count - 1;
             double length = mPhraseMarks[last] - (last == 0 ? 0.0 : mPhraseMarks[last - 1]);
             length = length - (length % 100);
@@ -185,7 +232,12 @@ namespace Obi
         // Send recording update
         private void mRecordingUpdateTimer_tick(object sender, EventArgs e)
         {
-            double time = mRecorder.TimeOfAsset - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
+            //mRecorder.TimeOfAsset
+            double timeOfAssetMilliseconds =
+                (double)mRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                Time.TIME_UNIT;
+
+            double time = timeOfAssetMilliseconds - (mPhraseMarks.Count > 0 ? mPhraseMarks[mPhraseMarks.Count - 1] : 0.0);
             time = time - (time % 100);
             if (ContinuingPhrase != null)
                 ContinuingPhrase(this, new PhraseEventArgs(mSessionMedia, mSessionOffset + mPhraseMarks.Count, time));
