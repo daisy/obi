@@ -25,7 +25,7 @@ namespace Obi.Commands.Node
             mOldRole = mNode.Role_;
             mOldCustomRole = mNode.CustomRole;
             mOldPageNumber = mNode.PageNumber;
-            Label = Localizer.Message("assign_role");
+            SetDescriptions(Localizer.Message("assign_role"));
         }
 
         /// <summary>
@@ -40,7 +40,9 @@ namespace Obi.Commands.Node
         public AssignRole(ProjectView.ProjectView view, EmptyNode node, EmptyNode.Role role)
             : this(view, node, role, null) { }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             mNode.SetRole(mRole, mCustomRole);
             if (mOldRole == EmptyNode.Role.Custom) View.Presentation.RemoveCustomClass(mOldCustomRole, mNode);
@@ -48,12 +50,12 @@ namespace Obi.Commands.Node
             if (UpdateSelection) View.SelectedBlockNode = mNode;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             if (mOldRole == EmptyNode.Role.Page) mNode.PageNumber = mOldPageNumber;
             if (mRole == EmptyNode.Role.Custom) View.Presentation.RemoveCustomClass(mCustomRole, mNode);
             mNode.SetRole(mOldRole, mOldCustomRole);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 
@@ -65,13 +67,13 @@ namespace Obi.Commands.Node
             : base(view, node, EmptyNode.Role.Page)
         {
             mPageNumber = pageNumber;
-            Label = Localizer.Message("set_page_number_");
+            SetDescriptions(Localizer.Message("set_page_number_"));
         }
 
-        public override void execute()
+        public override void Execute()
         {
             mNode.PageNumber = mPageNumber;
-            base.execute();
+            base.Execute();
         }
     }
 }

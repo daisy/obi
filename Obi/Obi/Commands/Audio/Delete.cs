@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using urakawa.media.data.audio.codec;
 using urakawa.media.timing;
 using urakawa.media.data.audio;
 using urakawa.media.data;
@@ -22,28 +22,38 @@ namespace Obi.Commands.Audio
         {
             mNode = (PhraseNode)view.Selection.Node;
             mHasAudioAfterDeleted =
-                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.getDuration().getTimeDeltaAsMillisecondFloat();
-            mSplitTimeBegin = new Time(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime);
-            mSplitTimeEnd = new Time(((AudioSelection)view.Selection).AudioRange.SelectionEndTime);
+                ((AudioSelection)view.Selection).AudioRange.SelectionEndTime < mNode.Audio.Duration.AsTimeSpan.TotalMilliseconds;
+            mSplitTimeBegin = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionBeginTime * Time.TIME_UNIT));
+            mSplitTimeEnd = new Time((long)(((AudioSelection)view.Selection).AudioRange.SelectionEndTime * Time.TIME_UNIT));
             mSelectionAfter = mHasAudioAfterDeleted ?
-                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.getTimeAsMillisecondFloat())) :
+                new AudioSelection(mNode, view.Selection.Control, new AudioRange(mSplitTimeBegin.AsTimeSpan.TotalMilliseconds)) :
                 new NodeSelection(mNode, view.Selection.Control);
-            mDeleted = view.Presentation.CreatePhraseNode(mNode.Audio.copy(mSplitTimeBegin, mSplitTimeEnd));
-            Label = Localizer.Message("delete_audio");
+
+            ManagedAudioMedia manMedia = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+            WavAudioMediaData mediaData = ((WavAudioMediaData) mNode.Audio.AudioMediaData).Copy(mSplitTimeBegin, mSplitTimeEnd);
+            manMedia.AudioMediaData = mediaData;
+
+            mDeleted = view.Presentation.CreatePhraseNode(manMedia);
+            SetDescriptions(Localizer.Message("delete_audio"));
         }
 
         public PhraseNode Deleted { get { return mDeleted; } }
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
-            if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
-                mediaList.Add ( mDeleted.Audio.getMediaData () );
+                List<MediaData> mediaList = new List<MediaData>();
+                if (mDeleted != null && mDeleted is PhraseNode && mDeleted.Audio != null)
+                    mediaList.Add(mDeleted.Audio.MediaData);
 
-            return mediaList;
+                return mediaList;
             }
+        }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             ManagedAudioMedia after = mHasAudioAfterDeleted ? mNode.SplitAudio(mSplitTimeEnd) : null;
             mNode.SplitAudio(mSplitTimeBegin);
@@ -51,32 +61,34 @@ namespace Obi.Commands.Audio
             View.Selection = mSelectionAfter;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             ManagedAudioMedia after = mHasAudioAfterDeleted ? mNode.SplitAudio(mSplitTimeBegin) : null;
-            mNode.MergeAudioWith(mDeleted.Audio.copy());
+            mNode.MergeAudioWith(mDeleted.Audio.Copy());
             if (after != null) mNode.MergeAudioWith(after);
-            base.unExecute();
+            base.UnExecute();
         }
 
         /// <summary>
         /// Get a delete command handling the delete all audio case gracefully.
         /// </summary>
-        public static urakawa.command.ICommand GetCommand(Obi.ProjectView.ProjectView view)
+        public static urakawa.command.Command GetCommand(Obi.ProjectView.ProjectView view)
         {
             Delete command = new Delete(view);
-            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.getTimeAsMillisecondFloat() == 0.0)
+            if (!command.mHasAudioAfterDeleted && command.mSplitTimeBegin.AsTimeSpan.TotalMilliseconds == 0.0)
             {
                 // Delete the whole audio
                 urakawa.command.CompositeCommand composite =
-                    view.Presentation.CreateCompositeCommand(command.getShortDescription());
-                EmptyNode empty = new EmptyNode(view.Presentation);
-                composite.append(new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
-                    command.mNode.Index));
+                    view.Presentation.CreateCompositeCommand(command.ShortDescription);
+                EmptyNode empty = view.Presentation.TreeNodeFactory.Create<EmptyNode>();
+                composite.ChildCommands.Insert(composite.ChildCommands.Count,
+                    new Commands.Node.AddEmptyNode(view, empty, command.mNode.ParentAs<ObiNode>(),
+                    command.mNode.Index)
+                    );
                 Commands.Node.MergeAudio.AppendCopyNodeAttributes(composite, view, command.mNode, empty);
                 Commands.Node.Delete delete = new Commands.Node.Delete(view, command.mNode);
                 delete.UpdateSelection = false;
-                composite.append(delete);
+                composite.ChildCommands.Insert(composite.ChildCommands.Count, delete);
                 return composite;
             }
             else

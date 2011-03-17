@@ -9,8 +9,16 @@ using urakawa.progress;
 
 namespace Obi.Commands
 {
-    public abstract class Command: ICommand
+    public abstract class Command: urakawa.command.Command
     {
+        public static readonly string XUK_NS = DataModelFactory.NS;
+        public static readonly string XukString = typeof(Command).Name;
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
+
+
         private ProjectView.ProjectView mView;   // the view that the command is executed in
         private NodeSelection mSelectionBefore;  // the selection before the command happened
         private string mLabel;                   // command label (can be overridden)
@@ -46,15 +54,22 @@ namespace Obi.Commands
         /// <summary>
         /// In Obi, all commands can be executed. Ain't that nice?
         /// </summary>
-        public virtual bool canExecute() { return true; }
+        //public virtual bool canExecute() { return true; }
+        public override bool CanUnExecute  { get { return true; } }//sdk2 : temp
 
-        public abstract void execute();
+        //sdk2 public override void Execute() {}
         
+        public void SetDescriptions(string str)
+        {
+            ShortDescription = str;
+            LongDescription = str;
+        }
 
-        /// <summary>
-        /// Set the label for the command (if not using default.)
-        /// </summary>
-        public string Label { set { mLabel = value; } }
+        //sdk2
+        ///// <summary>
+        ///// Set the label for the command (if not using default.)
+        ///// </summary>
+        //public string Label { set { mLabel = value; } }
 
         /// <summary>
         /// Get the view that the command is executed into.
@@ -82,7 +97,7 @@ namespace Obi.Commands
         /// <summary>
         /// Reset the selection to what it was before the command was executed.
         /// </summary>
-        public virtual void unExecute() 
+        public override void UnExecute() 
             {
             if (m_ProgressPercentage >= 0) mView.TriggerProgressChangedEvent ( "command",100 -  m_ProgressPercentage );//@singleSection
             if (UpdateSelection) mView.Selection = mSelectionBefore; 
@@ -101,48 +116,49 @@ namespace Obi.Commands
         /// <summary>
         /// Most commands do not use any media data.
         /// </summary>
-        public virtual List<MediaData> getListOfUsedMediaData() { return new List<MediaData>(); }
+        public override IEnumerable<MediaData> UsedMediaData { get { return new List<MediaData>(); } }
 
-        /// <summary>
-        /// The short description is the label of the command.
-        /// </summary>
-        public virtual string getShortDescription() { return mLabel; }
+        //sdk2
+        ///// <summary>
+        ///// The short description is the label of the command.
+        ///// </summary>
+        //public virtual string ShortDescription { get { return mLabel; } }
 
-        /// <summary>
-        /// We don't normally use long description, so just return the short one.
-        /// </summary>
-        public virtual string getLongDescription() { return getShortDescription(); }
+        ///// <summary>
+        ///// We don't normally use long description, so just return the short one.
+        ///// </summary>
+        //public virtual string getLongDescription() { return getShortDescription(); }
 
-        /// <summary>
-        /// Get the presentation from the view's project
-        /// </summary>
-        public urakawa.Presentation getPresentation() { return mView.Presentation; }
+        ///// <summary>
+        ///// Get the presentation from the view's project
+        ///// </summary>
+        //public urakawa.Presentation getPresentation() { return mView.Presentation; }
 
-        /// <summary>
-        /// The presentation cannot be set.
-        /// </summary>
-        public void setPresentation(urakawa.Presentation newPres)
-        {
-            // I am not sure what this message is supposed to mean?!
-            throw new Exception("The presentation cannot be set on a command; set the pre instead.");
-        }
+        ///// <summary>
+        ///// The presentation cannot be set.
+        ///// </summary>
+        //public void setPresentation(urakawa.Presentation newPres)
+        //{
+        //    // I am not sure what this message is supposed to mean?!
+        //    throw new Exception("The presentation cannot be set on a command; set the pre instead.");
+        //}
 
-        /// <summary>
-        /// Commands are not saved so far.
-        /// </summary>
-        public void xukIn(System.Xml.XmlReader source, ProgressHandler handler)
-        {
-        }
+        ///// <summary>
+        ///// Commands are not saved so far.
+        ///// </summary>
+        //public void xukIn(System.Xml.XmlReader source, urakawa.progress.IProgressHandler handler)
+        //{
+        //}
 
-        /// <summary>
-        /// Commands are not saved so far.
-        /// </summary>
-        public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, ProgressHandler handler)
-        {
-        }
+        ///// <summary>
+        ///// Commands are not saved so far.
+        ///// </summary>
+        //public void xukOut(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
+        //{
+        //}
 
-        public string getXukLocalName() { return GetType().Name; }
-        public string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public string getXukLocalName() { return GetType().Name; }
+        //public string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 
     public class UpdateSelection : Command
@@ -155,18 +171,20 @@ namespace Obi.Commands
             mSelectionAfter = selection;
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Selection = mSelectionAfter;
             TriggerProgressChanged ();
         }
 
-        public override void unExecute ()
+        public override void UnExecute ()
             {
             if (mSelectionAfter == null
                 || (mSelectionAfter.Node != null && mSelectionAfter.Node.IsRooted))
                 {
-                base.unExecute ();
+                base.UnExecute ();
                 }
             }
 

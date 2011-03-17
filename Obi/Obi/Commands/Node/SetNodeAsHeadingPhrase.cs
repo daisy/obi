@@ -15,12 +15,15 @@ namespace Obi.Commands.Node
         {
             mNode = node;
         }
-        public override void execute()
+
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             mNode.AncestorAs<SectionNode>().DidSetHeading(mNode);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.AncestorAs<SectionNode>().UnsetHeading(mNode);
         } 
@@ -38,12 +41,14 @@ namespace Obi.Commands.Node
         {
             mNode = node;
         }
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             mNode.AncestorAs<SectionNode>().UnsetHeading(mNode);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.AncestorAs<SectionNode>().DidSetHeading(mNode);
         }

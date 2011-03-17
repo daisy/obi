@@ -6,13 +6,13 @@ namespace Obi.Audio
 	/// <summary>
 	/// Summary description for CalculationFunctions.
 	/// </summary>
-	public class CalculationFunctions
+	public class ObiCalculationFunctions
 	{
-
 		public static long AdaptToFrame  (long lVal, int FrameSize)
 		{
 			long  lTemp = lVal / FrameSize ;
 			return lTemp * FrameSize ;
+		    int neverReached = 0;
 		}
 
 		public static long ConvertToDecimal (int [] Ar)

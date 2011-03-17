@@ -21,8 +21,8 @@ namespace Obi.Commands.Node
         {
             mNode = node;
             mNodeAfter = view.Presentation.CreatePhraseNode();
-            mSplitTime = new Time(time);
-            Label = Localizer.Message("split_phrase");
+            mSplitTime = new Time((long)(time * Time.TIME_UNIT));
+            SetDescriptions(Localizer.Message("split_phrase"));
         }
 
         public PhraseNode Node { get { return mNode; } }
@@ -31,7 +31,7 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Create a command to crop the current selection.
         /// </summary>
-        public static ICommand GetCropCommand(Obi.ProjectView.ProjectView view)
+        public static urakawa.command.Command GetCropCommand(Obi.ProjectView.ProjectView view)
         {
             PhraseNode phrase = view.SelectedNodeAs<PhraseNode>();
             if (phrase != null)
@@ -48,16 +48,18 @@ namespace Obi.Commands.Node
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, end, false);
                         after = split.Node;
-                        command.append ( new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
-                        command.append(new Commands.Node.DeleteWithOffset(view, phrase, 1));
+                        command.ChildCommands.Insert(command.ChildCommands.Count,
+                            new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.DeleteWithOffset(view, phrase, 1));
                     }
                     if (begin > 0.0)
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, begin,
                             view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
                         after = split.NodeAfter;
-                        command.append ( new Commands.UpdateSelection ( view, new NodeSelection ( after, view.Selection.Control ) ) );//@singleSection:moved from last of function
-                        command.append(new Commands.Node.Delete(view, phrase, false));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));//@singleSection:moved from last of function
+
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, phrase, false));
                     }
                     //command.append(new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));
                     return command;
@@ -69,13 +71,13 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Get the first node after the split created by a split command.
         /// </summary>
-        public static PhraseNode GetSplitNode(ICommand command)
+        public static PhraseNode GetSplitNode(urakawa.command.Command command)
         {
             CompositeCommand c = command as CompositeCommand;
             SplitAudio split = command as SplitAudio;
             if (c != null)
             {
-                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                System.Collections.Generic.List<urakawa.command.Command> commands = c.ChildCommands.ContentsAs_ListCopy;
                 int i = commands.Count - 1;
                 for (; i >= 0 && !(commands[i] is SplitAudio); --i) { }
                 if (i >= 0) split = commands[i] as SplitAudio;
@@ -86,13 +88,13 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Get the node after the split node created by a crop command.
         /// </summary>
-        public static PhraseNode GetCropNode(ICommand command, PhraseNode splitNode)
+        public static PhraseNode GetCropNode(urakawa.command.Command command, PhraseNode splitNode)
         {
             CompositeCommand c = command as CompositeCommand;
             SplitAudio split = null;
             if (c != null)
             {
-                System.Collections.Generic.List<ICommand> commands = c.getListOfCommands();
+                System.Collections.Generic.List<urakawa.command.Command> commands = c.ChildCommands.ContentsAs_ListCopy;
                 int i = 0;
                 for (; i < commands.Count && !((commands[i] is SplitAudio) && ((SplitAudio)commands[i]).NodeAfter != splitNode);
                     ++i) { }
@@ -120,7 +122,7 @@ namespace Obi.Commands.Node
                     if (end > 0.0) AppendSplitCommandWithProperties(view, command, phrase, end, false);
                     if (begin > 0.0) AppendSplitCommandWithProperties(view, command, phrase, begin,
        view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor && phrase.Role_ != EmptyNode.Role.Silence );
-                    if (command.getCount() > 0) return command;
+                    if (command.ChildCommands.Count > 0) return command;
                 }
             }
             return null;
@@ -151,7 +153,7 @@ namespace Obi.Commands.Node
             if ( node is SectionNode && view.GetSelectedPhraseSection != null 
                 && view.GetSelectedPhraseSection == node )
                 {
-                command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new UpdateSelection(view, new NodeSelection(node, view.Selection.Control)));
                 }
 
             ObiNode parent = node is SectionNode ? node : node.ParentAs<ObiNode> ();
@@ -164,7 +166,7 @@ namespace Obi.Commands.Node
 
 
                 System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList (
-                    Obi.Audio.PhraseDetection.Apply ( phrase.Audio.copy (), threshold, gap, before ) );
+                    Obi.Audio.PhraseDetection.Apply ( phrase.Audio.Copy (), threshold, gap, before ) );
                 for (int i = 0; i < phrases.Count; ++i)
                     {
                     // Copy page/heading role for the first phrase only
@@ -177,15 +179,15 @@ namespace Obi.Commands.Node
                     if (phrases[i].Role_ == EmptyNode.Role.Heading && i > 0) phrases[i].Role_ = EmptyNode.Role.Plain;
 
                     // in following add node constructor, update selection is made false, to improve performance (19 may, 2010)
-                    command.append ( new Commands.Node.AddNode ( view, phrases[i], parent, index , false ) );
+                    command.ChildCommands.Insert(command.ChildCommands.Count , new Commands.Node.AddNode(view, phrases[i], parent, index, false));
                     index++;
                     }
                 if (node is PhraseNode &&  phrases.Count > 0 && view.Selection != null)
                     {
                     //command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
-                    command.append ( new UpdateSelection ( view, new NodeSelection ( phrases[0], view.Selection.Control ) ) );//uncommenting this because unexecute for update selection can handle null unexecute now
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new UpdateSelection(view, new NodeSelection(phrases[0], view.Selection.Control)));//uncommenting this because unexecute for update selection can handle null unexecute now
                                         }
-                command.append ( new Commands.Node.Delete ( view, phrase, false ) );//@singleSection: moved delete command last for improve undo selection
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, phrase, false));//@singleSection: moved delete command last for improve undo selection
                 }
             return command;
         }
@@ -195,26 +197,26 @@ namespace Obi.Commands.Node
             PhraseNode phrase, double time, bool transferRole)
         {
             SplitAudio split = new SplitAudio(view, phrase, time);
-            if (split.Node.TODO) command.append(new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
-            if (!split.Node.Used) command.append(new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
+            if (split.Node.TODO) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeTODO(view, split.NodeAfter));
+            if (!split.Node.Used) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(view, split.NodeAfter));
             if (split.Node.Role_ == EmptyNode.Role.Silence)
             {
                 Commands.Node.AssignRole silence =
                     new Commands.Node.AssignRole(view, split.NodeAfter, EmptyNode.Role.Silence);
                 silence.UpdateSelection = false;
-                command.append(silence);
+                command.ChildCommands.Insert(command.ChildCommands.Count, silence);
             }
-            command.append(split);
+            command.ChildCommands.Insert(command.ChildCommands.Count, split);
             if (transferRole && phrase.Role_ != EmptyNode.Role.Plain)
             {
-                command.append(new Commands.Node.AssignRole(view, phrase, EmptyNode.Role.Plain));
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, phrase, EmptyNode.Role.Plain));
                 if (phrase.Role_ == EmptyNode.Role.Page)
                 {
-                    command.append(new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.SetPageNumber(view, split.NodeAfter, phrase.PageNumber.Clone()));
                 }
                 else
                 {
-                    command.append(new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole));
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole(view, split.NodeAfter, phrase.Role_, phrase.CustomRole));
                 }
             }
             return split;
@@ -230,27 +232,31 @@ namespace Obi.Commands.Node
             view.UpdateBlocksLabelInStrip(node.AncestorAs<SectionNode>());
         }
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            List<MediaData> mediaList = new List<MediaData> ();
+                List<MediaData> mediaList = new List<MediaData>();
 
-            if (mNodeAfter != null && mNodeAfter is PhraseNode && mNodeAfter.Audio != null)
-                mediaList.Add ( mNodeAfter.Audio.getMediaData () );
+                if (mNodeAfter != null && mNodeAfter is PhraseNode && mNodeAfter.Audio != null)
+                    mediaList.Add(mNodeAfter.Audio.MediaData);
 
-            return mediaList;
+                return mediaList;
             }
+        }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute()
+        public override void Execute()
         {
             Split(View, mNode, mNodeAfter, mSplitTime, UpdateSelection);
             TriggerProgressChanged ();
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             MergeAudio.Merge(View, mNode, mNodeAfter, UpdateSelection);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

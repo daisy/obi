@@ -20,7 +20,7 @@ namespace Obi.Commands.Node
             mNode.Used = mParent.Used;
             mControl = control;
             view.SelectAndRenameSelection(new NodeSelection(mNode, mControl));
-            Label = Localizer.Message("add_section");
+            SetDescriptions(Localizer.Message("add_section"));
         }
 
         public AddSectionNode ( ProjectView.ProjectView view, IControlWithRenamableSelection control, string sectionName)
@@ -35,7 +35,7 @@ namespace Obi.Commands.Node
         {
             if (view.Selection == null)
             {
-                mParent = view.Presentation.RootNode;
+                mParent = (ObiNode)view.Presentation.RootNode;
                 mIndex = mParent.SectionChildCount;
             }
             else
@@ -55,10 +55,12 @@ namespace Obi.Commands.Node
         /// </summary>
         public ObiNode NewSectionParent { get { return mParent; } }
 
+        public override bool CanExecute { get { return true; } }
+
         /// <summary>
         /// Add or readd the new section node then restore this as the selection.
         /// </summary>
-        public override void execute()
+        public override void Execute()
         {
             mParent.Insert(mNode, mIndex);
 
@@ -79,10 +81,10 @@ namespace Obi.Commands.Node
         /// <summary>
         /// Remove the section node.
         /// </summary>
-        public override void unExecute()
+        public override void UnExecute()
         {
             mNode.Detach();
-            base.unExecute();
+            base.UnExecute();
         }
     }
 
@@ -90,7 +92,7 @@ namespace Obi.Commands.Node
     {
         public AddSubSection(ProjectView.ProjectView view) : base(view, (ProjectView.TOCView)view.Selection.Control)
         {
-            Label = Localizer.Message("add_subsection");
+            SetDescriptions(Localizer.Message("add_subsection"));
         }
 
         protected override void SetParentAndIndex(Obi.ProjectView.ProjectView view)
@@ -105,7 +107,7 @@ namespace Obi.Commands.Node
         public InsertSectionNode(ProjectView.ProjectView view)
             : base(view, (IControlWithRenamableSelection)view.Selection.Control)
         {
-            Label = Localizer.Message("insert_section");
+            SetDescriptions(Localizer.Message("insert_section"));
         }
 
         // Set parent and index for the new node

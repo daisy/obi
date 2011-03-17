@@ -14,19 +14,22 @@ namespace Obi.Commands.Node
         {
             mOldClipboard = view.Clipboard;
             mNewClipboard = new Clipboard(view.Selection.Node, deep);
-            Label = label;
+            SetDescriptions(label);
         }
 
         public Copy(ProjectView.ProjectView view, bool deep) : this(view, deep, "") { }
 
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
             {
+  get
+ {
             if (mNewClipboard != null && mNewClipboard.Node is PhraseNode)
                 {
                 List<MediaData> mediaList = new List<MediaData> ();
                 if (((PhraseNode)mNewClipboard.Node).Audio != null )
-                mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData () );
+                //mediaList.Add ( ((PhraseNode)mNewClipboard.Node).Audio.getMediaData () );
+                    mediaList.Add(((PhraseNode)mNewClipboard.Node).Audio.MediaData);//sdk2
                 return mediaList;
                 }
             else if (mNewClipboard != null && mNewClipboard.Node is SectionNode)
@@ -36,18 +39,20 @@ namespace Obi.Commands.Node
             else
                 return new List<MediaData> ();
             }
+}
 
 
         private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
             {
             List<MediaData> mediaList = new List<MediaData> ();
-
-            sNode.acceptDepthFirst (
+            
+            sNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
                         if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )
                             {
-                            mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                            //mediaList.Add ( ((PhraseNode)n).Audio.getMediaData () );
+                                mediaList.Add(((PhraseNode)n).Audio.MediaData);//sdk2
                             }
                         return true;
                         },
@@ -56,17 +61,18 @@ namespace Obi.Commands.Node
             return mediaList;
             }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute()
+        public override void Execute()
         {
             View.Clipboard = mNewClipboard;
             View.Selection = SelectionBefore;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Clipboard = mOldClipboard;
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

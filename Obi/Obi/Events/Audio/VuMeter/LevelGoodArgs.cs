@@ -5,8 +5,7 @@ using System.Text;
 namespace Obi.Events.Audio.VuMeter
     {
     public delegate void LevelGoodHandler ( object sender, LevelGoodArgs e );
-
-        public class LevelGoodArgs : EventArgs
+    public class LevelGoodArgs : EventArgs
         {
         private double m_AmplitudeLevel;
 

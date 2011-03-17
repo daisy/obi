@@ -6,6 +6,7 @@ using urakawa.core;
 
 namespace Obi.Events.Node
 {
+  
     public class ShallowSwappedSectionNodesEventArgs : SectionNodeEventArgs
     {
         private SectionNode mSwappedNode;

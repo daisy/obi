@@ -14,19 +14,21 @@ namespace Obi.Commands.Metadata
         {
             mEntry = ((MetadataSelection)view.Selection).Item.Entry;
             mSelectionAfter = null;
-            Label = Localizer.Message("delete_metadata_entry");
+            SetDescriptions(Localizer.Message("delete_metadata_entry"));
         }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Presentation.DeleteMetadata(mEntry);
             View.Selection = mSelectionAfter;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Presentation.AddMetadata(mEntry);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }
