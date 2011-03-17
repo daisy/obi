@@ -11,7 +11,7 @@ namespace Obi.ProjectView
     public partial class AudioBlock : Block
     {
         private bool mShiftKeyPressed;  // track the shift key
-        private bool m_IsRecording;
+
         public const int NORMAL_PRIORITY = 1;
         public const int STRIP_SELECTED_PRIORITY = 2;
         public const int BLOCK_SELECTED_PRIORITY = 3;
@@ -28,7 +28,7 @@ namespace Obi.ProjectView
             InitializeComponent();
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
-            mShiftKeyPressed = false;            
+            mShiftKeyPressed = false;
         }
 
 
@@ -46,7 +46,7 @@ namespace Obi.ProjectView
         {
             if (node != null)
             {
-                if (node.Audio.getDuration().getTimeDeltaAsMillisecondFloat() > 0.0)
+                if (node.Audio.Duration.AsTimeSpan.TotalMilliseconds > 0.0)
                 {
                     mWaveform.Visible = true;
                     mWaveform.BackColor = BackColor;
@@ -64,15 +64,7 @@ namespace Obi.ProjectView
             }
         }
 
-        public bool IsRecording 
-        { 
-            get { return m_IsRecording; }
-            set
-            {
-            if (value == false)
-                mRecordingLabel.Text = "";
-            }
-        }
+
 
 
         /// <summary>
@@ -160,7 +152,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                long time = ((PhraseNode)Node).Audio.getDuration().getTimeDeltaAsMilliseconds();
+                long time = (long)((PhraseNode)Node).Audio.Duration.AsTimeSpan.TotalMilliseconds;
                 // originally, 1 second should has width of 10 pixels
                 //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
                 int w = time == 0.0 ? LabelFullWidth : (int)Math.Round ( time * AudioScale * 1.2f);//@singleSection: updated
@@ -193,7 +185,7 @@ namespace Obi.ProjectView
         {
             if (CanSelectInWaveform)
             {
-                mWaveform.Selection = new AudioRange(0.0, ((PhraseNode)mNode).Audio.getDuration().getTimeDeltaAsMillisecondFloat());
+                mWaveform.Selection = new AudioRange(0.0, ((PhraseNode)mNode).Audio.Duration.AsTimeSpan.TotalMilliseconds);
                 Strip.SetSelectedAudioInBlockFromBlock(this, mWaveform.Selection);
             }
         }

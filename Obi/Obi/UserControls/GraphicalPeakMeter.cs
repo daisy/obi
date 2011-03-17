@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using AudioLib;
 using Obi.Audio;
 
 namespace Obi.UserControls
@@ -17,7 +18,7 @@ namespace Obi.UserControls
         private double[] mPeakValues;
         private int mPeakArrayLength;
         private bool mSourcePeaksIsNull  ;
-        private Obi.Events.Audio.VuMeter.PeakOverloadEventArgs mPeakOverloadObject  ;
+        private AudioLib.VuMeter.PeakOverloadEventArgs mPeakOverloadObject;
         //private int m_DieOutCounter;
 
 		public GraphicalPeakMeter()
@@ -56,61 +57,103 @@ namespace Obi.UserControls
 					if (mSourceVuMeter != null)
 					{
                     if ( mUpdateGUITimer.Enabled )  mUpdateGUITimer.Stop ();
-						mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        mSourceVuMeter.ResetEvent -= new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-						mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+
+
+                    mSourceVuMeter.PeakMeterOverloaded -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                    mSourceVuMeter.PeakMeterUpdated -= new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+
+						//mSourceVuMeter.UpdatePeakMeter -= new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                        mSourceVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+						//mSourceVuMeter.PeakOverload -= new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
 					}
 					mSourceVuMeter = value;
 					if (mSourceVuMeter != null)
 					{
-						mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
-                        mSourceVuMeter.ResetEvent += new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-						mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+                        mSourceVuMeter.PeakMeterOverloaded += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                        mSourceVuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+
+                        //mSourceVuMeter.UpdatePeakMeter += new Obi.Events.Audio.VuMeter.UpdatePeakMeterHandler(SourceVuMeter_UpdatePeakMeter);
+                        mSourceVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                        //mSourceVuMeter.PeakOverload += new Obi.Events.Audio.VuMeter.PeakOverloadHandler(SourceVuMeter_PeakOverload);
+
                         mUpdateGUITimer.Start ();
                         					}
 				}
 			}
 		}
 
-		void SourceVuMeter_PeakOverload(object sender, Obi.Events.Audio.VuMeter.PeakOverloadEventArgs e)
+        public void CatchPeakOverloadEvent(object sender, AudioLib.VuMeter.PeakOverloadEventArgs e)
+		//void SourceVuMeter_PeakOverload(object sender, Obi.Events.Audio.VuMeter.PeakOverloadEventArgs e)
 		{
         mPeakOverloadObject = e;
 			//mPPMeter.SetPeakOverloadCount(e.Channel - 1, mPPMeter.GetPeakOverloadCount(e.Channel - 1) + 1);
 		}
 
-        void SourceVuMeter_ResetEvent(object sender, Obi.Events.Audio.VuMeter.ResetEventArgs e)
+        private delegate void CatchResetEvent_Delegate();
+        private void SourceVuMeter_ResetEvent(object sender, AudioLib.VuMeter.ResetEventArgs e) { CatchResetEvent(); }
+        void CatchResetEvent()
         {
             if (this.InvokeRequired)
             {
-                Obi.Events.Audio.VuMeter.ResetHandler d = new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
-                this.Invoke(d, sender, e);
+                //Obi.Events.Audio.VuMeter.ResetHandler d = new Obi.Events.Audio.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                //this.Invoke(d, sender, e);
+                this.Invoke(new CatchResetEvent_Delegate(CatchResetEvent));
             }
             else
             {
             for (int i = 0; i < mPeakValues.Length; i++) mPeakValues[i] = double.NegativeInfinity;
-
-                for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
-                {
-                    mPPMeter.SetValue(i, Double.NegativeInfinity);
-                }
+            
+            for (int i = 0; i < mPPMeter.NumberOfChannels; i++)
+            {
+                mPPMeter.SetValue(i, Double.NegativeInfinity);
+            }
                 mPPMeter.ForceFullFallback();
                 mPeakOverloadObject = null;
             }
+            
         }
 
-        void SourceVuMeter_UpdatePeakMeter ( object sender, Obi.Events.Audio.VuMeter.UpdatePeakMeter e )
+        public void CatchPeakMeterUpdateEvent(object sender, AudioLib.VuMeter.PeakMeterUpdateEventArgs e)
+        //void SourceVuMeter_UpdatePeakMeter ( object sender, Obi.Events.Audio.VuMeter.UpdatePeakMeter e )
             {
-            if (e.PeakValues == null) mSourcePeaksIsNull = true;
+            
+            double channelValueLeft = 0;
+            double channelValueRight = 0;
+
+            if (e.PeakDb != null && e.PeakDb.Length > 0)
+            {
+                /*
+                channelValueLeft = e.PeakDb[0];
+
+                if (e.PeakDb.Length > 1)
+                {
+                    channelValueRight = e.PeakDb[1];
+                }
+                else
+                {
+                    channelValueRight = channelValueLeft;
+                }
+                */
+                //if ((channelValueLeft == Double.PositiveInfinity && e.PeakDb.Length > 0 )
+                //|| (channelValueLeft == Double.PositiveInfinity && e.PeakDb.Length > 1 && channelValueRight == Double.PositiveInfinity))
+                //{
+                //CatchResetEvent();
+                //return;
+                //}
+            }
+
+            if (e.PeakDb == null) mSourcePeaksIsNull = true;
             else mSourcePeaksIsNull = false;
 
-            if (mSourceVuMeter != null && e.PeakValues != null && e.PeakValues.Length > 0)
+            if (mSourceVuMeter != null && e.PeakDb != null && e.PeakDb.Length > 0)
                 {
 
 
-                mPeakArrayLength = e.PeakValues.Length;
-                for (int i = 0; i < e.PeakValues.Length; i++)
+                    mPeakArrayLength = e.PeakDb.Length;
+                    for (int i = 0; i < e.PeakDb.Length; i++)
                     {
-                    mPeakValues[i] = e.PeakValues[i];
+                        // AudioLib VuMeter is set to positive infinity by default so it is important to take care of it.
+                        mPeakValues[i] = e.PeakDb[i] == double.PositiveInfinity? double.NegativeInfinity: e.PeakDb[i];
                     }
                 }
             }

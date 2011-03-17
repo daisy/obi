@@ -31,7 +31,7 @@ namespace Obi.ProjectView
             node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
-            node.Presentation.UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+            ((ObiPresentation)node.Presentation).UsedStatusChanged += new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
             UpdateColors();
             UpdateLabel();
             mBaseHeight = Height;

@@ -128,7 +128,7 @@ namespace Obi.ProjectView
                 }
             else
                 {
-                m_SectionsList = mProjectView.Presentation.RootNode.GetListOfAllSections () ;//@singleSection: done at last to allow find control open without delay
+                m_SectionsList = ((ObiRootNode)mProjectView.Presentation.RootNode).GetListOfAllSections () ;//@singleSection: done at last to allow find control open without delay
                 }
             m_FindStartNode = null; //@singleSection
         }
