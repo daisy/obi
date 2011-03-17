@@ -3,36 +3,41 @@ using urakawa.core;
 using urakawa.media;
 using urakawa.media.data;
 using urakawa.media.data.audio;
+using urakawa.media.data.audio.codec;
 using urakawa.property.channel;
 
 namespace Obi
 {
     public class PhraseNode: EmptyNode
     {
+        public new static string XukString = "phrase";
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
+
         /// <summary>
         /// This event is sent when the audio
         /// </summary>
         public event NodeEventHandler<PhraseNode> NodeAudioChanged;
 
-        public static new readonly string XUK_ELEMENT_NAME = "phrase";  // name of the element in the XUK file
-
         /// <summary>
         /// Create a phrase node.
         /// </summary>
-        public PhraseNode(Presentation presentation): base(presentation) {}
-        public PhraseNode(Presentation presentation, EmptyNode.Role kind) : base(presentation, kind) {} 
-        public PhraseNode(Presentation presentation, string custom) : base(presentation, Role.Custom) {}
-
+        //public PhraseNode(Presentation presentation): base(presentation) {}
+        public PhraseNode(EmptyNode.Role kind) : base(kind) {} 
+        public PhraseNode(string custom) : base(Role.Custom) {}
+        public PhraseNode() : base() { }
 
         /// <summary>
         /// The audio media data associated with this node.
         /// </summary>
         public ManagedAudioMedia Audio
         {
-            get { return (ManagedAudioMedia)getProperty<ChannelsProperty>().getMedia(Presentation.AudioChannel); }
+            get { return (ManagedAudioMedia)GetProperty<ChannelsProperty>().GetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel()); }
             set
             {
-                getProperty<ChannelsProperty>().setMedia(Presentation.AudioChannel, value);
+                GetProperty<ChannelsProperty>().SetMedia(Presentation.ChannelsManager.GetOrCreateAudioChannel(), value);
                 if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             }
         }
@@ -49,8 +54,8 @@ namespace Obi
         public override void Insert(ObiNode node, int index)
         {
             if (!(node is PhraseNode)) throw new Exception("Only phrase nodes can be added as children of a phrase node.");
-            if (index < 0) index += getChildCount();
-            insert(node, index);
+            if (index < 0) index += Children.Count;
+            ((TreeNode)this).Insert(node, index);
         }
 
         /// <summary>
@@ -58,7 +63,9 @@ namespace Obi
         /// </summary>
         public void MergeAudioWith(ManagedAudioMedia audio)
         {
-            Audio.mergeWith(audio);
+            //sdk2
+            //Audio.MergeWith(audio);
+            Audio.AudioMediaData.MergeWith(audio.AudioMediaData);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
         }
 
@@ -90,15 +97,10 @@ namespace Obi
         /// <returns>The half of the split audio after the split point.</returns>
         public ManagedAudioMedia SplitAudio(urakawa.media.timing.Time splitPoint)
         {
-            ManagedAudioMedia newAudio = Audio.split(splitPoint);
+            ManagedAudioMedia newAudio = Audio.Split(splitPoint);
             if (NodeAudioChanged != null) NodeAudioChanged(this, new NodeEventArgs<PhraseNode>(this));
             return newAudio;
         }
-
-        /// <summary>
-        /// We use our own element name for XUK output.
-        /// </summary>
-        public override string getXukLocalName() { return XUK_ELEMENT_NAME; }
 
         public override ObiNode Detach()
         {
@@ -106,8 +108,8 @@ namespace Obi
             return base.Detach();
         }
 
-        public override string BaseString() { return base.BaseString(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }
-        public override string BaseStringShort() { return base.BaseStringShort(Audio.getDuration().getTimeDeltaAsMillisecondFloat()); }
-        public override double Duration { get { return Audio.getDuration().getTimeDeltaAsMillisecondFloat(); } }
+        public override string BaseString() { return base.BaseString(Audio.Duration.AsTimeSpan.TotalMilliseconds); }
+        public override string BaseStringShort() { return base.BaseStringShort(Audio.Duration.AsTimeSpan.TotalMilliseconds); }
+        public override double Duration { get { return Audio.Duration.AsTimeSpan.TotalMilliseconds; } }
     }
 }

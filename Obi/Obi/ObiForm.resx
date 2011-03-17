@@ -769,10 +769,10 @@
     <value>S&amp;plit section</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge section</value>
+    <value>Merge section with next Ctrl+Shift+M</value>
   </data>
   <data name="mergeSectionWithNextToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge section with next Ctrl+Shift+M</value>
+    <value>Merge Section With Next</value>
   </data>
   <data name="mergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+Shift+M</value>
@@ -783,14 +783,14 @@
   <data name="mergeSectionWithNextToolStripMenuItem.Text" xml:space="preserve">
     <value>Merge section with ne&amp;xt</value>
   </data>
-  <data name="mergeMultipleSectionsToolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>Merge multiple sections</value>
-  </data>
   <data name="mergeMultipleSectionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 22</value>
   </data>
   <data name="mergeMultipleSectionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Merge multiple se&amp;ctions</value>
+  </data>
+  <data name="mMergeSectionWithNextToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+M</value>
   </data>
   <data name="mMergeSectionWithNextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -914,6 +914,24 @@
   </data>
   <data name="mCropAudiotoolStripMenuItem.Text" xml:space="preserve">
     <value>C&amp;rop audio</value>
+  </data>
+  <data name="m_AssignBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="m_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Assign bookmark node</value>
+  </data>
+  <data name="m_GotoBookmarkNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="m_GotoBookmarkNodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Goto bookmark node</value>
+  </data>
+  <data name="m_BookmarkNodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="m_BookmarkNodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bookmark node</value>
   </data>
   <data name="mPhrases_PhraseIsTODOMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F9</value>
@@ -1642,7 +1660,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.26124, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.2.0.34883, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1914,9 +1932,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//43uAHwAAgA/WAIAPIjGAByIggANjb4ABbmeAA1VUgA84IoAP
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
@@ -2399,6 +2414,24 @@
     <value>mCropAudiotoolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mCropAudiotoolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_BookmarkNodeToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_BookmarkNodeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_BookmarkNodeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_AssignBookmarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_AssignBookmarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_AssignBookmarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_GotoBookmarkNodeToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_GotoBookmarkNodeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_GotoBookmarkNodeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mPhrases_PhraseIsTODOMenuItem.Name" xml:space="preserve">

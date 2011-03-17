@@ -4,32 +4,48 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-
+using urakawa;
 using urakawa.command;
+using urakawa.data;
+using urakawa.media;
 using urakawa.media.data.audio;
+using urakawa.media.timing;
+using urakawa.metadata;
 using urakawa.property.channel;
-using urakawa.publish;
+//using urakawa.publish;
 using urakawa.media.data;
+using urakawa.daisy.export.visitor;
 
 namespace Obi
 {
-    public class Presentation: urakawa.Presentation
+    public class ObiPresentation : Presentation
     {
+        public static readonly string XUK_NS = DataModelFactory.NS;
+        public static readonly string XukString = typeof(ObiPresentation).Name;
+        public override string GetTypeNameFormatted()
+        {
+            return XukString;
+        }
+
         private bool mInitialized;                                   // initialization flag
         private Dictionary<string, List<EmptyNode>> mCustomClasses;  // custom classes and which nodes have them
+        private ObiNodeFactory m_ObiNodeFactory; //sdk2 :local ObiNode factory used
 
         /// <summary>
         /// Create an uninitialized presentation.
         /// </summary>
-        public Presentation() : base() 
+        public ObiPresentation() : base() 
         {
             mInitialized = false;
             mCustomClasses = new Dictionary<string, List<EmptyNode>>();
+            m_ObiNodeFactory = new ObiNodeFactory(this);//sdk2
         }
 
-
-        public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
-        public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
+        //sdk2
+        //public static readonly string AUDIO_CHANNEL_NAME = "obi.audio";  // canonical name of the audio channel
+        //public static readonly string TEXT_CHANNEL_NAME = "obi.text";    // canonical name of the text channel
+        
+        //sdk2-todo check DAISY 2.02 export
         public static readonly string PUBLISH_AUDIO_CHANNEL_NAME = "obi.publish.audio"; //canonical name of the published audio channel
 
 
@@ -50,7 +66,10 @@ namespace Obi
         /// </summary>
         public void AddMetadata(urakawa.metadata.Metadata entry)
         {
-            addMetadata(entry);
+            Metadatas.Insert(Metadatas.Count, entry);
+            //sdk2 addMetadata(entry);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryAdded != null) MetadataEntryAdded(this, new MetadataEventArgs(entry));
         }
 
@@ -59,44 +78,54 @@ namespace Obi
         /// </summary>
         public void DeleteMetadata(urakawa.metadata.Metadata entry)
         {
-            deleteMetadata(entry);
+            Metadatas.Remove(entry);
+            //sdk2 deleteMetadata(entry);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryDeleted != null) MetadataEntryDeleted(this, new MetadataEventArgs(entry));
         }
 
         public void SetMetadataEntryContent(urakawa.metadata.Metadata entry, string content)
         {
-            entry.setContent(content);
+            entry.NameContentAttribute.Value = content;
+            //sdk2 entry.setContent(content);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryContentChanged != null) MetadataEntryContentChanged(this, new MetadataEventArgs(entry));
         }
 
         public void SetMetadataEntryName(urakawa.metadata.Metadata entry, string name)
         {
-            entry.setName(name);
+            entry.NameContentAttribute.Name = name;
+            //sdk2 entry.setName(name);
+
+            //sdk2-todo use SDK 2.0 events
             if (MetadataEntryNameChanged != null) MetadataEntryNameChanged(this, new MetadataEventArgs(entry));
         }
 
         /// <summary>
         /// The media data manager for the project.
         /// </summary>
-        public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
+        //sdk2 public Audio.DataManager DataManager { get { return (Audio.DataManager)getMediaDataManager(); } }
 
         /// <summary>
         /// Root node of the presentation.
         /// </summary>
-        public RootNode RootNode { get { return (RootNode)getRootNode(); } }
+        //sdk2 public RootNode RootNode { get { return (RootNode)getRootNode(); } }
 
 
         /// <summary>
         /// Get the audio channel of the presentation
         /// </summary>
-        public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
+        /// //sdk2
+        //public Channel AudioChannel { get { return GetSingleChannelByName(AUDIO_CHANNEL_NAME); } }
 
         /// <summary>
         /// First section node in the project, or null if there are no sections.
         /// </summary>
         public SectionNode FirstSection
         {
-            get { return RootNode.SectionChildCount > 0 ? RootNode.SectionChild(0) : null; }
+            get { return ((ObiRootNode)RootNode).SectionChildCount > 0 ? ((ObiRootNode)RootNode).SectionChild(0) : null; }
         }
 
         /// <summary>
@@ -106,7 +135,7 @@ namespace Obi
         {
             get
             {
-                SectionNode last = RootNode.SectionChildCount > 0 ? RootNode.SectionChild(-1) : null;
+                SectionNode last = ((ObiRootNode)RootNode).SectionChildCount > 0 ? ((ObiRootNode)RootNode).SectionChild(-1) : null;
                 while (last != null && last.SectionChildCount > 0) last = last.SectionChild(-1);
                 return last;
             }
@@ -115,12 +144,13 @@ namespace Obi
         /// <summary>
         /// Get the text channel of the presentation.
         /// </summary>
-        public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
+        //sdk2
+        //public Channel TextChannel { get { return GetSingleChannelByName(TEXT_CHANNEL_NAME); } }
 
         /// <summary>
         /// Get the title of the presentation from the metadata.
         /// </summary>
-        public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).getContent(); } }
+        public string Title { get { return GetFirstMetadataItem(Metadata.DC_TITLE).NameContentAttribute.Value; } }
 
         /// <summary>
         /// Get a list of the custom classes that have been defined by the user for this presentation
@@ -154,15 +184,15 @@ namespace Obi
         /// </summary>
         public CompositeCommand CreateCompositeCommand(string label)
         {
-            CompositeCommand command = getCommandFactory().createCompositeCommand();
-            command.setShortDescription(label);
+            CompositeCommand command = CommandFactory.CreateCompositeCommand();
+            command.ShortDescription = label;
             return command;
         }
 
         /// <summary>
         /// Execute a command, but warn first.
         /// </summary>
-        public void Do(ICommand command)
+        public void Do(urakawa.command.Command command)
         {
             if (command != null)
             {
@@ -170,7 +200,7 @@ namespace Obi
                 {
                     BeforeCommandExecuted(this, new urakawa.events.command.CommandEventArgs(command));
                 }
-                getUndoRedoManager().execute(command);
+                UndoRedoManager.Execute(command);
             }
         }
 
@@ -196,8 +226,8 @@ namespace Obi
         /// </summary>
         public PhraseNode CreatePhraseNode()
         {
-            PhraseNode node = (PhraseNode)getTreeNodeFactory().createNode(PhraseNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
-            node.addProperty(getPropertyFactory().createChannelsProperty());
+            PhraseNode node = (PhraseNode)m_ObiNodeFactory.createNode(PhraseNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            node.AddProperty(PropertyFactory.CreateChannelsProperty());
             return node;
         }
 
@@ -235,13 +265,13 @@ namespace Obi
         /// </summary>
         public SectionNode CreateSectionNode()
         {
-            SectionNode node = (SectionNode)getTreeNodeFactory().createNode(SectionNode.XUK_ELEMENT_NAME, DataModelFactory.NS);
-            urakawa.property.channel.ChannelsProperty channelsProperty = getPropertyFactory().createChannelsProperty();
-            node.addProperty(channelsProperty);
+            SectionNode node = (SectionNode)m_ObiNodeFactory.createNode(SectionNode.XukString, DataModelFactory.NS); //sdk2 :local ObiNode factory used
+            urakawa.property.channel.ChannelsProperty channelsProperty = PropertyFactory.CreateChannelsProperty();
+            node.AddProperty(channelsProperty);
             // Create the text media object for the label with a default label
-            urakawa.media.ITextMedia labelMedia = getMediaFactory().createTextMedia();
-            labelMedia.setText(Localizer.Message("default_section_label"));
-            channelsProperty.setMedia(TextChannel, labelMedia);
+            TextMedia labelMedia = MediaFactory.CreateTextMedia();
+            labelMedia.Text= Localizer.Message("default_section_label");
+            channelsProperty.SetMedia(ChannelsManager.GetOrCreateTextChannel(), labelMedia);
             return node;
         }
 
@@ -252,7 +282,8 @@ namespace Obi
         {
             mInitialized = true;
             Uri uri = new Uri(session.Path);
-            if (getRootUri() != uri) setRootUri(uri);
+            //sdk2
+            //if (getRootUri() != uri) setRootUri(uri);
         }
 
         /// <summary>
@@ -261,15 +292,23 @@ namespace Obi
         public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings)
         {
             Initialize(session);
-            setRootNode(new RootNode(this));
+            //setRootNode(new RootNode(this));
             CreateMetadata(title, id, settings.UserProfile);
-            AddChannel(AUDIO_CHANNEL_NAME);
-            AddChannel(TEXT_CHANNEL_NAME);
+            //sdk2
+            //AddChannel(AUDIO_CHANNEL_NAME);
+            //AddChannel(TEXT_CHANNEL_NAME);
             if (createTitleSection) CreateTitleSection(title);
-            DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
-            DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
-            DataManager.setDefaultSampleRate((uint)settings.SampleRate);
-            DataManager.setEnforceSinglePCMFormat(false);
+            //sdk2 :commented and replaced
+            //DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
+            //DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
+            //DataManager.setDefaultSampleRate((uint)settings.SampleRate);
+            //DataManager.setEnforceSinglePCMFormat(false);
+            //urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)settings.AudioChannels, (uint)settings.SampleRate, (ushort)settings.BitDepth);
+            //MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
+            //DataManager.setDefaultBitDepth((ushort)settings.BitDepth);
+            //DataManager.setDefaultNumberOfChannels((ushort)settings.AudioChannels);
+            //DataManager.setDefaultSampleRate((uint)settings.SampleRate);
+            //MediaDataManager.EnforceSinglePCMFormat= false;
         }
 
         /// <summary>
@@ -282,14 +321,14 @@ namespace Obi
         /// </summary>
         public urakawa.metadata.Metadata GetFirstMetadataItem(string name)
         {
-            List<urakawa.metadata.Metadata> list = getListOfMetadata(name);
+            List<urakawa.metadata.Metadata> list = GetMetadata(name);
             return list.Count > 0 ? list[0] : null;
         }
 
         /// <summary>
         /// Use the Obi namespace URI!
         /// </summary>
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
+        //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
 
         public void RenameSectionNode(SectionNode section, string label)
         {
@@ -302,7 +341,7 @@ namespace Obi
         /// </summary>
         public void SetSingleMetadataItem(string name, string content)
         {
-            foreach (urakawa.metadata.Metadata entry in getListOfMetadata(name)) DeleteMetadata(entry);
+            foreach (urakawa.metadata.Metadata entry in GetMetadata(name)) DeleteMetadata(entry);
             AddMetadata(name, content);
         }
 
@@ -318,13 +357,14 @@ namespace Obi
         /// <summary>
         /// Add a new channel with the given name to the presentation's channel manager.
         /// </summary>
-        internal Channel AddChannel(string name)
-        {
-            Channel channel = getChannelFactory().createChannel();
-            channel.setName(name);
-            getChannelsManager().addChannel(channel);
-            return channel;
-        }
+        //sdk2
+        //internal Channel AddChannel(string name)
+        //{
+        //    Channel channel = getChannelFactory().createChannel();
+        //    channel.setName(name);
+        //    getChannelsManager().addChannel(channel);
+        //    return channel;
+        //}
 
         /// <summary>
         /// Convenience method to create a new metadata object with a name/value pair.
@@ -334,9 +374,10 @@ namespace Obi
         {
             if (value != null)
             {
-                urakawa.metadata.Metadata meta = getMetadataFactory().createMetadata();
-                meta.setName(name);
-                meta.setContent(value);
+                urakawa.metadata.Metadata meta = MetadataFactory.CreateMetadata();
+                meta.NameContentAttribute = new MetadataAttribute();
+                meta.NameContentAttribute.Name = name;
+                meta.NameContentAttribute.Value = value;
                 AddMetadata(meta);
                 return meta;
             }
@@ -370,46 +411,48 @@ namespace Obi
         }
 
         // Access a channel which we know exist and is the only channel by this name.
-        internal Channel GetSingleChannelByName(string name)
-        {
-            List<Channel> channels = getChannelsManager().getListOfChannels(name);
-            if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
-            if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
-                name, channels.Count));
-            return channels[0];
-        }
+        //sdk2
+        //internal Channel GetSingleChannelByName(string name)
+        //{
+        //    List<Channel> channels = getChannelsManager().getListOfChannels(name);
+        //    if (channels.Count == 0) throw new Exception(String.Format("No channel named \"{0}\"", name));
+        //    if (channels.Count > 1) throw new Exception(String.Format("Expected 1 channel for {0}, got {1}.",
+        //        name, channels.Count));
+        //    return channels[0];
+        //}
 
         // Create a media object from a sound file.
         private ManagedAudioMedia ImportAudioFromFile ( string path )
             {
-            string dataProviderDirectory = ((urakawa.media.data.FileDataProviderManager)this.getDataProviderManager ()).getDataFileDirectoryFullPath ();
+            string dataProviderDirectory = DataProviderManager.DataFileDirectoryFullPath;
 
-            if (!getMediaDataManager ().getEnforceSinglePCMFormat ())
+            //EnforceSinglePCMFormat is always true
+            //if (!MediaDataManager.EnforceSinglePCMFormat)
+            //    {
+            //    Stream input = File.OpenRead ( path );
+            //    PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader ( input );
+            //    input.Close ();
+            //    DataManager.setDefaultBitDepth ( info.getBitDepth () );
+            //    DataManager.setDefaultNumberOfChannels ( info.getNumberOfChannels () );
+            //    DataManager.setDefaultSampleRate ( info.getSampleRate () );
+            //    DataManager.setEnforceSinglePCMFormat ( true );
+            //    }
+
+            AudioMediaData data = MediaDataFactory.CreateAudioMediaData ();
+
+            if (Path.GetFullPath(path).StartsWith(Path.GetFullPath(dataProviderDirectory)))
                 {
-                Stream input = File.OpenRead ( path );
-                PCMDataInfo info = PCMDataInfo.parseRiffWaveHeader ( input );
-                input.Close ();
-                DataManager.setDefaultBitDepth ( info.getBitDepth () );
-                DataManager.setDefaultNumberOfChannels ( info.getNumberOfChannels () );
-                DataManager.setDefaultSampleRate ( info.getSampleRate () );
-                DataManager.setEnforceSinglePCMFormat ( true );
-                }
-
-            AudioMediaData data = getMediaDataFactory ().createAudioMediaData ();
-
-            if (path.StartsWith ( dataProviderDirectory ))
-                {
-                FileDataProvider dataProv = (FileDataProvider)this.getDataProviderFactory ().createDataProvider ( FileDataProviderFactory.AUDIO_WAV_MIME_TYPE );
+                FileDataProvider dataProv = (FileDataProvider)DataProviderFactory.Create(urakawa.data.DataProviderFactory.AUDIO_WAV_MIME_TYPE);
                 dataProv.InitByMovingExistingFile ( path );
                 data.AppendPcmData ( dataProv );
                 }
             else
                 {
-                data.appendAudioDataFromRiffWave ( path );
+                data.AppendPcmData_RiffHeader( path );
                 }
 
-            ManagedAudioMedia media = (ManagedAudioMedia)getMediaFactory ().createAudioMedia ();
-            media.setMediaData ( data );
+            ManagedAudioMedia media = MediaFactory.CreateManagedAudioMedia();
+            media.AudioMediaData = data;
             return media;
             }
 
@@ -418,7 +461,7 @@ namespace Obi
         private List<ManagedAudioMedia> ImportAudioFromFile(string path, double durationMs)
         {
             ManagedAudioMedia media = ImportAudioFromFile(path);
-            double totalDuration = media.getDuration().getTimeDeltaAsMillisecondFloat();
+            double totalDuration = media.Duration.AsTimeSpan.TotalMilliseconds;
             // if duration is 0 or less, just one phrase
             int phrases = durationMs <= 0.0 ? 1 : (int)Math.Floor(totalDuration / durationMs);
             double lastPhraseBegin = phrases * durationMs;
@@ -434,7 +477,7 @@ namespace Obi
             List<ManagedAudioMedia> audioMediaList = new List<ManagedAudioMedia>(phrases);
             for (double time = lastPhraseBegin; time > 0.0; time -= durationMs)
             {
-                audioMediaList.Insert(0, media.split(new urakawa.media.timing.Time(time)));
+                audioMediaList.Insert(0, media.Split(new Time((long)(time * Time.TIME_UNIT))));
             }
             audioMediaList.Insert(0, media);
             return audioMediaList;
@@ -475,41 +518,42 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format ,int audioFileSectionLevel )
+        public void ExportToZ(string exportPath, string xukPath, Export.ExportFormat format, bool encodeToMP3, int mp3BitRate, int audioFileSectionLevel)
         {
             UpdatePublicationMetadata();
-            TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode   &&   ((SectionNode)node).Level <= audioFileSectionLevel ; };
-            TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
-
-            RemoveAllPublishChannels (); // remove any publish channel, in case they exist
-            PublishManagedAudioVisitor visitor = new PublishManagedAudioVisitor(nodeIsSection, nodeIsUnused);
-            Channel publishChannel = AddChannel(Presentation.PUBLISH_AUDIO_CHANNEL_NAME);
-            visitor.setDestinationChannel(publishChannel);
-            visitor.setSourceChannel(AudioChannel);
-            visitor.setDestinationDirectory(new Uri(exportPath));
-            RootNode.acceptDepthFirst(visitor);
-            // TODO check that there is an audio file to write
-            visitor.writeAndCloseCurrentAudioFile();
-
             if (format == Obi.Export.ExportFormat.DAISY3_0)
-                {
-                ConvertXukToZed ( exportPath, xukPath, XukString );
+            {
+                Obi.Export.DAISY3_ObiExport daisy3Export = new Obi.Export.DAISY3_ObiExport(this, exportPath, null, encodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                daisy3Export.BitRate_Mp3 = mp3BitRate;
+                    daisy3Export.DoWork();
                 }
             else
-                {
-                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export ( this, exportPath );
-                export202.CreateDAISY202Files ();
-                }
-            getChannelsManager().removeChannel(publishChannel);
+            {
+                Export.DAISY202Export export202 = new Obi.Export.DAISY202Export(this, exportPath, encodeToMP3,audioFileSectionLevel);
+                export202.BitRate_Mp3 = mp3BitRate;
+                export202.CreateDAISY202Files();
+                
+                /*
+                ChannelsManager.RemoveManagedObject(publishChannel);
+                 */ 
+            }
+            
         }
  
         // Update metadata before exporting
         private void UpdatePublicationMetadata()
         {
             string date = DateTime.Today.ToString("yyyy-MM-dd");
+            urakawa.metadata.Metadata dc_Date = GetFirstMetadataItem(Metadata.DC_DATE);
             urakawa.metadata.Metadata producedDate = GetFirstMetadataItem(Metadata.DTB_PRODUCED_DATE);
             urakawa.metadata.Metadata revision = GetFirstMetadataItem(Metadata.DTB_REVISION);
             urakawa.metadata.Metadata revisionDate = GetFirstMetadataItem(Metadata.DTB_REVISION_DATE);
+
+            if (dc_Date == null)
+            {
+                
+                SetSingleMetadataItem(Metadata.DC_DATE, date);
+            }
             if (producedDate == null)
             {
                 System.Diagnostics.Debug.Assert(revisionDate == null && revision == null);
@@ -520,7 +564,8 @@ namespace Obi
                 if (revision != null)
                 {
                     System.Diagnostics.Debug.Assert(revisionDate != null);
-                    int rev = Int32.Parse(revision.getContent()) + 1;
+                    //int rev = Int32.Parse(revision.getContent()) + 1;
+                    int rev = Int32.Parse(revision.NameContentAttribute.Value) + 1;//sdk2
                     SetMetadataEntryContent(revision, rev.ToString());
                     if (revisionDate ==  null ) 
                         SetSingleMetadataItem(Metadata.DTB_REVISION_DATE , date);
@@ -539,23 +584,23 @@ namespace Obi
         /// <summary>
         /// Remove all publish channels. It is useful for removing uncleared published channels that could not be removed due to export faliure.
         /// </summary>
-        public void RemoveAllPublishChannels ()
-            {
-            List<Channel> channels = getChannelsManager ().getListOfChannels ( PUBLISH_AUDIO_CHANNEL_NAME );
+        public void RemoveAllPublishChannels()
+        {
+            List<Channel> channels = ChannelsManager.GetChannelsByName(PUBLISH_AUDIO_CHANNEL_NAME);
             if (channels != null && channels.Count > 0)
-                {
+            {
                 for (int i = channels.Count - 1; i >= 0; i--)
-                    {
-                    getChannelsManager ().removeChannel ( channels[i] );
-                    }
+                {
+                    ChannelsManager.RemoveManagedObject(channels[i]);
                 }
-
             }
+
+        }
 
         /// <summary>
         /// XUK as a string.
         /// </summary>
-        public string XukString
+        public string GenerateXukString
         {
             get
             {
@@ -575,7 +620,8 @@ namespace Obi
                 //          action.execute();
                 //TODO: decide whether the whole Project XML needs to be in the result string, or just the Presentation
                 
-                getProject().xukOut(writer, getRootUri(), null);
+                //Project.xukOut(writer, getRootUri(), null);
+                Project.XukOut(writer, RootUri, null);
 
                 writer.WriteEndDocument();
                 writer.Close();
@@ -615,6 +661,7 @@ namespace Obi
                 return n != null ? ((EmptyNode)n).PageNumber.NextPageNumber() : new PageNumber(1);
             }
         }
+        public static readonly bool UseXukFormat = false;
 
         /// <summary>
         /// Find the page number following the one for this node. If the node doesn't have a number,
@@ -636,10 +683,14 @@ namespace Obi
         {
             try
             {
-                DataManager.setDefaultNumberOfChannels((ushort)channels);
-                DataManager.setDefaultBitDepth((ushort)bitDepth);
-                DataManager.setDefaultSampleRate((uint)sampleRate);
-                DataManager.setEnforceSinglePCMFormat(true);
+                //sdk2
+                urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)channels, (uint)sampleRate, (ushort)channels);
+                MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
+                MediaDataManager.EnforceSinglePCMFormat = true;
+                //DataManager.setDefaultNumberOfChannels((ushort)channels);
+                //DataManager.setDefaultBitDepth((ushort)bitDepth);
+                //DataManager.setDefaultSampleRate((uint)sampleRate);
+                //DataManager.setEnforceSinglePCMFormat(true);
                 return true;
             }
             catch
@@ -657,7 +708,7 @@ namespace Obi
             {
                 List<double> times = new List<double>();
                 double time = 0.0;
-                RootNode.acceptDepthFirst(
+                RootNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
                         if (n is ObiNode && !((ObiNode)n).Used) return false;

@@ -1,5 +1,7 @@
 using System;
 using urakawa.command;
+using urakawa.media.data.audio.codec;
+using urakawa.media.timing;
 
 namespace Obi
 {
@@ -108,7 +110,7 @@ namespace Obi
         /// <summary>
         /// Create the paste command for pasting whatever is in the clipboard in the current selection.
         /// </summary>
-        public virtual ICommand PasteCommand(ProjectView.ProjectView view)
+        public virtual urakawa.command.Command PasteCommand(ProjectView.ProjectView view)
         {
             return view.Clipboard is AudioClipboard ? PasteCommandAudio(view) : PasteCommandNode(view);
         }
@@ -134,33 +136,38 @@ namespace Obi
 
         // Create a new phrase node with the audio from the clipboard
         // and merge the selected node with this one.
-        protected virtual ICommand PasteCommandAudio(ProjectView.ProjectView view)
+        protected virtual urakawa.command.Command PasteCommandAudio(ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
-            urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
-                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
-                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+            //urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
+            urakawa.media.data.audio.ManagedAudioMedia media = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+
+            WavAudioMediaData wavData = ((WavAudioMediaData)((PhraseNode)view.Clipboard.Node).Audio.AudioMediaData).Copy(
+                new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+                new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * Time.TIME_UNIT)));//sdk2
+            media.AudioMediaData = wavData;
+
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
             CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
-            p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
+            p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (Node is EmptyNode)
             {
-                p.append(Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
+                p.ChildCommands.Insert(p.ChildCommands.Count , Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
             }
             return p;
         }
 
         // Paste a node in or after another node.
-        protected virtual ICommand PasteCommandNode(ProjectView.ProjectView view)
+        protected virtual urakawa.command.Command PasteCommandNode(ProjectView.ProjectView view)
         {
             Commands.Node.Paste paste = new Commands.Node.Paste(view);
-            CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.getShortDescription());
-            p.append(paste);
+            CompositeCommand p = view.Presentation.CreateCompositeCommand(paste.ShortDescription);
+            p.ChildCommands.Insert(p.ChildCommands.Count, paste);
             if (paste.DeleteSelectedBlock)
             {
                 Commands.Node.Delete delete = new Commands.Node.Delete(view, view.Selection.Node);
                 delete.UpdateSelection = false;
-                p.append(delete);
+                p.ChildCommands.Insert (p.ChildCommands.Count, delete);
             }
             // If the node to paste is a heading phrase, revert to a plain phrase.
             // We consider that being a heading is more of a section things (copying sections conserve the heading.)
@@ -169,7 +176,7 @@ namespace Obi
                 Commands.Node.AssignRole behead =
                     new Commands.Node.AssignRole(view, (EmptyNode)paste.Copy, EmptyNode.Role.Plain);
                 behead.UpdateSelection = false;
-                p.append(behead);
+                p.ChildCommands.Insert(p.ChildCommands.Count, behead);
             }
             if (paste.Copy.Used && !paste.CopyParent.Used) view.AppendMakeUnused(p, paste.Copy);
             return p;
@@ -226,7 +233,7 @@ namespace Obi
         /// <summary>
         /// Create a paste command for this selection and the clipboard selection.
         /// </summary>
-        public override ICommand PasteCommand(Obi.ProjectView.ProjectView view)
+        public override urakawa.command.Command PasteCommand(Obi.ProjectView.ProjectView view)
         {
             return new Commands.Audio.Paste(view);
         }
@@ -266,15 +273,21 @@ namespace Obi
             }
         }
 
-        protected override ICommand PasteCommandAudio(Obi.ProjectView.ProjectView view)
+        protected override urakawa.command.Command PasteCommandAudio(Obi.ProjectView.ProjectView view)
         {
             AudioClipboard c = (AudioClipboard)view.Clipboard;
-            urakawa.media.data.audio.ManagedAudioMedia media = ((PhraseNode)view.Clipboard.Node).Audio.copy(
-                new urakawa.media.timing.Time(c.AudioRange.SelectionBeginTime),
-                new urakawa.media.timing.Time(c.AudioRange.SelectionEndTime));
+
+            urakawa.media.data.audio.ManagedAudioMedia media = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+
+            WavAudioMediaData wavData = ((WavAudioMediaData)((PhraseNode)view.Clipboard.Node).Audio.AudioMediaData).Copy(
+            new Time(Convert.ToInt64(c.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+            new Time(Convert.ToInt64(c.AudioRange.SelectionEndTime * Time.TIME_UNIT)));//sdk2
+
+            media.AudioMediaData = wavData;
+
             PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
             CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
-            p.append(new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
+            p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (!Node.Used) view.AppendMakeUnused(p, phrase);
             return p;
         }
@@ -301,7 +314,8 @@ namespace Obi
     {
         private ProjectView.MetadataItemSelection mItem;
 
-        public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item)
+        //public MetadataSelection(RootNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item)
+        public MetadataSelection(ObiNode node, ProjectView.MetadataView control, ProjectView.MetadataItemSelection item) //sdk2
             : base(node, control)
         {
             mItem = item;

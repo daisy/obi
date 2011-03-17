@@ -6,41 +6,47 @@ namespace Obi
     /// <summary>
     /// Node factory that can create plain core nodes, or Obi nodes.
     /// </summary>
-    public class ObiNodeFactory : TreeNodeFactory
+    public class ObiNodeFactory 
     {
+        private ObiPresentation m_Presentation;
+
+        public ObiNodeFactory(ObiPresentation presentation)
+        {
+            m_Presentation = presentation;
+        }
+
         /// <summary>
         /// Create a new node given a QName.
         /// </summary>
         /// <param name="localName">the local part of the qname.</param>
         /// <param name="namespaceUri">the namespace URI of the qname.</param>
         /// <returns>A new node or null if the qname corresponds to no known node.</returns>
-        public override TreeNode createNode(string localName, string namespaceUri)
+        public TreeNode createNode(string localName, string namespaceUri)
         {
             if (namespaceUri == DataModelFactory.NS)
             {
-                if (localName == RootNode.XUK_ELEMENT_NAME)
-                {
-                    return new RootNode(Presentation);
+                if (localName == ObiRootNode.XukString)
+                    {
+                        return m_Presentation.TreeNodeFactory.Create<ObiRootNode>();
+                    }
+                    else if (localName == PhraseNode.XukString)
+                    {
+                        return m_Presentation.TreeNodeFactory.Create<PhraseNode>();
                 }
-                else if (localName == EmptyNode.XUK_ELEMENT_NAME)
+                else if (localName == SectionNode.XukString)
                 {
-                    return new EmptyNode(Presentation);
+                    return m_Presentation.TreeNodeFactory.Create<SectionNode>();
                 }
-                else if (localName == PhraseNode.XUK_ELEMENT_NAME)
+                else if (localName == EmptyNode.XukString)
                 {
-                    return new PhraseNode(Presentation);
-                }
-                else if (localName == SectionNode.XUK_ELEMENT_NAME)
-                {
-                    return new SectionNode(Presentation);
+                    return m_Presentation.TreeNodeFactory.Create<EmptyNode>();
                 }
             }
-            return base.createNode(localName, namespaceUri);
+            //base.CreateNode(localName, namespaceUri);
+            return m_Presentation.TreeNodeFactory.Create(localName, namespaceUri);//sdk2
         }
 
-        public override string getXukNamespaceUri() { return DataModelFactory.NS; }
-
-        // Override getPresentation() to return an Obi-specific presentation
-        private Presentation Presentation { get { return (Presentation)getPresentation(); } }
+        //sdk2
+        //public override string getXukNamespaceUri() { return DataModelFactory.NS; }
     }
 }
