@@ -81,6 +81,7 @@ namespace Obi.Dialogs
             this.m_txtShortcutKeys = new System.Windows.Forms.TextBox();
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
+            this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -158,6 +159,7 @@ namespace Obi.Dialogs
             this.mTab.Controls.Add(this.mKeyboardShortcutTab);
             this.mTab.Name = "mTab";
             this.mTab.SelectedIndex = 0;
+            this.mTab.SelectedIndexChanged += new System.EventHandler(this.mTab_SelectedIndexChanged);
             // 
             // mProjectTab
             // 
@@ -499,12 +501,22 @@ namespace Obi.Dialogs
             this.m_cbShortcutKeys.Name = "m_cbShortcutKeys";
             this.m_cbShortcutKeys.SelectionChangeCommitted += new System.EventHandler(this.m_cbShortcutKeys_SelectionChangeCommitted);
             // 
+            // m_CheckBoxListView
+            // 
+            this.m_CheckBoxListView.CheckBoxes = true;
+            resources.ApplyResources(this.m_CheckBoxListView, "m_CheckBoxListView");
+            this.m_CheckBoxListView.Name = "m_CheckBoxListView";
+            this.m_CheckBoxListView.UseCompatibleStateImageBehavior = false;
+            this.m_CheckBoxListView.View = System.Windows.Forms.View.List;
+            this.m_CheckBoxListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.m_CheckBoxListView_ItemChecked);
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_CheckBoxListView);
             this.Controls.Add(this.mTab);
             this.Controls.Add(this.mCancelButton);
             this.Controls.Add(this.mOKButton);
@@ -583,5 +595,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.NumericUpDown m_OperationDurationUpDown;
         private System.Windows.Forms.ComboBox m_cbOperation;
         private System.Windows.Forms.Label mlbOperation;
+        private System.Windows.Forms.ListView m_CheckBoxListView;
     }
 }
