@@ -41,7 +41,7 @@ namespace Obi.ProjectView
         private ManagedAudioMedia Audio { get { return ((PhraseNode)mBlock.Node).Audio; } }
 
         // Actual audio media data of the parent block.
-        private AudioMediaData Media { get { return Audio.getMediaData(); } }
+        private AudioMediaData Media { get { return Audio.AudioMediaData; } }
 
         /// <summary>
         /// Set the parent audio block.
@@ -54,12 +54,12 @@ namespace Obi.ProjectView
                 {
                     if (mBlock != null)
                     {
-                        Audio.changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                        Audio.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
                     }
                     mBlock = value;
                     if (mBlock != null)
                     {
-                        Audio.changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
+                        Audio.Changed += new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
                         RequestRendering();
                     }
                 }
@@ -176,16 +176,22 @@ namespace Obi.ProjectView
         // version depending on the highlighted flag. Do nothing for bit depths different from 16.
         private void DrawWaveform(Graphics g, ColorSettings settings, bool highlighted)
         {
-            PCMFormatInfo format = Media.getPCMFormat();
-            if (format.getBitDepth() == 16)
+            if (!Media.HasActualPcmData || Media.AudioDuration.AsLocalUnits <= 0)
             {
-                ushort channels = format.getNumberOfChannels();
-                ushort frameSize = format.getBlockAlign();
-                int samplesPerPixel = (int)Math.Ceiling(Media.getPCMLength() / (float)frameSize / Width * channels);
+                return;
+            }
+
+            AudioLib.AudioLibPCMFormat format = Media.PCMFormat.Data;
+            if (format.BitDepth == 16)
+            {
+                ushort channels = format.NumberOfChannels;
+                ushort frameSize = format.BlockAlign;
+                long pcmLength = Media.PCMFormat.Data.ConvertTimeToBytes(Media.AudioDuration.AsLocalUnits);
+                int samplesPerPixel = (int)Math.Ceiling(pcmLength / (float)frameSize / Width * channels);
                 int bytesPerPixel = samplesPerPixel * frameSize / channels;
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];
-                System.IO.Stream au = Media.getAudioData();
+                System.IO.Stream au = Media.OpenPcmInputStream();
                 for (int x = 0; x < Width; ++x)
                 {
                     int read = au.Read(bytes, 0, bytesPerPixel);
@@ -398,7 +404,7 @@ namespace Obi.ProjectView
             get
             {
                 return mSelection.HasCursor &&
-                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= Media.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                    mSelection.CursorTime >= 0.0 && mSelection.CursorTime <= Media.AudioDuration.AsTimeSpan.TotalMilliseconds;
             }
         }
 
@@ -406,7 +412,7 @@ namespace Obi.ProjectView
         {
             get
             {
-                double d = Media.getAudioDuration().getTimeDeltaAsMillisecondFloat();
+                double d = Media.AudioDuration.AsTimeSpan.TotalMilliseconds;
                 return !mSelection.HasCursor &&
                     mSelection.SelectionBeginTime >= 0.0 && mSelection.SelectionBeginTime <= d &&
                     mSelection.SelectionEndTime >= 0.0 && mSelection.SelectionEndTime <= d &&
@@ -417,13 +423,13 @@ namespace Obi.ProjectView
         // Convert a pixel position into a time (in ms.)
         private double TimeFromX(int x)
         {
-            return x * Media.getAudioDuration().getTimeDeltaAsMillisecondFloat() / Width;
+            return x * Media.AudioDuration.AsTimeSpan.TotalMilliseconds / Width;
         }
 
         // Convert a time (in ms) to a pixel position.
         private int XFromTime(double time)
         {
-            return (int)Math.Round(time / Media.getAudioDuration().getTimeDeltaAsMillisecondFloat() * Width);
+            return (int)Math.Round(time / Media.AudioDuration.AsTimeSpan.TotalMilliseconds * Width);
         }
     }
 }
