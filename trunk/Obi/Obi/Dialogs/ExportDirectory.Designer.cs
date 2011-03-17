@@ -36,6 +36,9 @@ namespace Obi.Dialogs
             this.mCancelButton = new System.Windows.Forms.Button();
             this.m_lblSelectLevelForAudioFiles = new System.Windows.Forms.Label();
             this.m_ComboSelectLevelForAudioFiles = new System.Windows.Forms.ComboBox();
+            this.m_checkBoxMP3Encoder = new System.Windows.Forms.CheckBox();
+            this.m_Bitrate = new System.Windows.Forms.Label();
+            this.m_ComboBoxBitrate = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // m_lblDirectoryPath
@@ -82,12 +85,39 @@ namespace Obi.Dialogs
             this.m_ComboSelectLevelForAudioFiles.FormattingEnabled = true;
             this.m_ComboSelectLevelForAudioFiles.Name = "m_ComboSelectLevelForAudioFiles";
             // 
+            // m_checkBoxMP3Encoder
+            // 
+            resources.ApplyResources(this.m_checkBoxMP3Encoder, "m_checkBoxMP3Encoder");
+            this.m_checkBoxMP3Encoder.Name = "m_checkBoxMP3Encoder";
+            this.m_checkBoxMP3Encoder.UseVisualStyleBackColor = true;
+            this.m_checkBoxMP3Encoder.CheckedChanged += new System.EventHandler(this.m_checkBoxMP3Encoder_CheckedChanged);
+            // 
+            // m_Bitrate
+            // 
+            resources.ApplyResources(this.m_Bitrate, "m_Bitrate");
+            this.m_Bitrate.Name = "m_Bitrate";
+            // 
+            // m_ComboBoxBitrate
+            // 
+            resources.ApplyResources(this.m_ComboBoxBitrate, "m_ComboBoxBitrate");
+            this.m_ComboBoxBitrate.FormattingEnabled = true;
+            this.m_ComboBoxBitrate.Items.AddRange(new object[] {
+            resources.GetString("m_ComboBoxBitrate.Items"),
+            resources.GetString("m_ComboBoxBitrate.Items1"),
+            resources.GetString("m_ComboBoxBitrate.Items2"),
+            resources.GetString("m_ComboBoxBitrate.Items3")});
+            this.m_ComboBoxBitrate.Name = "m_ComboBoxBitrate";
+            this.m_ComboBoxBitrate.SelectedIndexChanged += new System.EventHandler(this.m_ComboBoxBitrate_SelectedIndexChanged);
+            // 
             // ExportDirectory
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_ComboBoxBitrate);
+            this.Controls.Add(this.m_Bitrate);
+            this.Controls.Add(this.m_checkBoxMP3Encoder);
             this.Controls.Add(this.m_ComboSelectLevelForAudioFiles);
             this.Controls.Add(this.m_lblSelectLevelForAudioFiles);
             this.Controls.Add(this.mCancelButton);
@@ -115,5 +145,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button mCancelButton;
         private System.Windows.Forms.Label m_lblSelectLevelForAudioFiles;
         private System.Windows.Forms.ComboBox m_ComboSelectLevelForAudioFiles;
+        private System.Windows.Forms.CheckBox m_checkBoxMP3Encoder;
+        private System.Windows.Forms.Label m_Bitrate;
+        private System.Windows.Forms.ComboBox m_ComboBoxBitrate;
     }
 }

@@ -23,9 +23,9 @@ namespace Obi.Dialogs
             mView = view;
             Text = String.Format("{0} - {1}", Text, mView.Presentation.Title);
             UpdateView();
-            mView.Presentation.getUndoRedoManager().commandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
-            mView.Presentation.getUndoRedoManager().commandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
-            mView.Presentation.getUndoRedoManager().commandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
+            mView.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
+            mView.Presentation.UndoRedoManager.CommandReDone += new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
+            mView.Presentation.UndoRedoManager.CommandUnDone += new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
         }
 
         private void ShowSource_commandDone(object sender, urakawa.events.undo.DoneEventArgs e) { UpdateView(); }
@@ -37,16 +37,16 @@ namespace Obi.Dialogs
         {
             if (mView.Presentation != null)
             {
-                mView.Presentation.getUndoRedoManager().commandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
-                mView.Presentation.getUndoRedoManager().commandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
-                mView.Presentation.getUndoRedoManager().commandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
+                mView.Presentation.UndoRedoManager.CommandDone -= new EventHandler<urakawa.events.undo.DoneEventArgs>(ShowSource_commandDone);
+                mView.Presentation.UndoRedoManager.CommandReDone -= new EventHandler<urakawa.events.undo.ReDoneEventArgs>(ShowSource_commandReDone);
+                mView.Presentation.UndoRedoManager.CommandUnDone -= new EventHandler<urakawa.events.undo.UnDoneEventArgs>(ShowSource_commandUnDone);
             }
         }
 
         // Update the source view.
         private void UpdateView()
         {
-            sourceBox.Text = mView.Presentation.XukString;
+            sourceBox.Text = mView.Presentation.GenerateXukString;
             sourceBox.Select(0, 0);
             sourceBox.ScrollToCaret();
         }
