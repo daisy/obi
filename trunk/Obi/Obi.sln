@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.ICSharpCode", "..\..\..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTDs", "..\..\..\urakawa-sdk\trunk\csharp\dtds\DTDs.csproj", "{3393A6E2-BB27-4D53-ACAA-629723D51F5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipelineInterface", "PipelineInterface\PipelineInterface.csproj", "{668D7BE3-D306-43B5-BA63-A4749B8D77D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,14 @@ Global
 		{3393A6E2-BB27-4D53-ACAA-629723D51F5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3393A6E2-BB27-4D53-ACAA-629723D51F5E}.test|Any CPU.ActiveCfg = Release|Any CPU
 		{3393A6E2-BB27-4D53-ACAA-629723D51F5E}.test|Any CPU.Build.0 = Release|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.test|Any CPU.ActiveCfg = Release|Any CPU
+		{668D7BE3-D306-43B5-BA63-A4749B8D77D5}.test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
