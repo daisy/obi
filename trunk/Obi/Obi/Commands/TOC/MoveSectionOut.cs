@@ -11,6 +11,7 @@ namespace Obi.Commands.TOC
         public MoveSectionOut(ProjectView.ProjectView view, SectionNode section)
             : base(view)
         {
+            SetDescriptions(Localizer.Message("move_section_out"));
             mSection = section;
         }
 
@@ -40,19 +41,22 @@ namespace Obi.Commands.TOC
             sibling.ParentAs<ObiNode>().InsertAfter(section, sibling);
         }
 
-        public override string getShortDescription() { return Localizer.Message("move_section_out"); }
+        //sdk2
+        //public override string getShortDescription() { return SetDescriptions(Localizer.Message("move_section_out"));; }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             Move(mSection);
             View.SelectedSectionNode = mSection;
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             MoveSectionIn.Move(mSection);
             for (int i = 0; i < mSection.SectionChildCount; ++i) MoveSectionIn.Move(mSection.SectionChild(i));
-            base.unExecute();
+            base.UnExecute();
         }
     }
 }

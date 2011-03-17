@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 using urakawa.media.data;
 using  urakawa.media.data.audio ;
+using urakawa.media.timing;
 
 
 namespace Obi.Audio
@@ -26,17 +27,17 @@ namespace Obi.Audio
         // Detecs the maximum size of noise level in a silent sample file
         public static long GetSilenceAmplitude (ManagedAudioMedia RefAsset)
         {
-            m_AudioAsset = RefAsset.getMediaData();
-            BinaryReader brRef = new BinaryReader(RefAsset.getMediaData ().getAudioData ()  );
+            m_AudioAsset = RefAsset.AudioMediaData;
+            BinaryReader brRef = new BinaryReader(RefAsset.AudioMediaData.OpenPcmInputStream ());
 
             // creates counter of size equal to clip size
-            long lSize = RefAsset.getMediaData ().getPCMLength();
+            long lSize = RefAsset.AudioMediaData.PCMFormat.Data.ConvertTimeToBytes(RefAsset.AudioMediaData.AudioDuration.AsLocalUnits);
 
             // Block size of audio chunck which is least count of detection
             int Block;
 
             // determine the Block  size
-            if (RefAsset.getMediaData ().getPCMFormat ().getSampleRate ()  > 22500)
+            if (RefAsset.AudioMediaData.PCMFormat.Data.SampleRate> 22500)
             {
                 Block = 192;
             }
@@ -56,8 +57,8 @@ namespace Obi.Audio
             // Experiment starts here
             double BlockTime = 25;
 
-            long Iterations = Convert.ToInt64(RefAsset.getMediaData ().getAudioDuration ().getTimeDeltaAsMillisecondFloat () / BlockTime);
-            long SampleCount = Convert.ToInt64((int)RefAsset.getMediaData ().getPCMFormat ().getSampleRate ()  / (1000 / BlockTime));
+            long Iterations = Convert.ToInt64(RefAsset.AudioMediaData.AudioDuration.AsTimeSpan.TotalMilliseconds/ BlockTime);
+            long SampleCount = Convert.ToInt64((int)RefAsset.AudioMediaData.PCMFormat.Data.SampleRate/ (1000 / BlockTime));
 
             long lCurrentSum = 0;
             long lSumPrev = 0;
@@ -89,22 +90,22 @@ namespace Obi.Audio
 
         public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
         {
-            long lGapLength = CalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
-            long lBefore = CalculationFunctions.ConvertTimeToByte(before, (int)audio.getMediaData().getPCMFormat().getSampleRate(), audio.getMediaData().getPCMFormat().getBlockAlign());
+            long lGapLength = ObiCalculationFunctions.ConvertTimeToByte(GapLength, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
+            long lBefore = ObiCalculationFunctions.ConvertTimeToByte(before, (int)audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BlockAlign);
             return ApplyPhraseDetection(audio, threshold, lGapLength, lBefore);
         }
 
 
         private static  List<ManagedAudioMedia> ApplyPhraseDetection(ManagedAudioMedia ManagedAsset, long threshold, long GapLength, long before)
         {
-            m_AudioAsset = ManagedAsset.getMediaData ()  ;
-            GapLength = CalculationFunctions.AdaptToFrame(GapLength, m_AudioAsset.getPCMFormat().getBlockAlign());
-            before = CalculationFunctions.AdaptToFrame(before , m_AudioAsset.getPCMFormat().getBlockAlign());
+            m_AudioAsset = ManagedAsset.AudioMediaData;
+            GapLength = ObiCalculationFunctions.AdaptToFrame(GapLength, m_AudioAsset.PCMFormat.Data.BlockAlign);
+            before = ObiCalculationFunctions.AdaptToFrame(before , m_AudioAsset.PCMFormat.Data.BlockAlign);
 
             int Block = 0;
 
             // determine the Block  size
-            if ( m_AudioAsset.getPCMFormat ().getSampleRate ()  > 22500)
+            if ( m_AudioAsset.PCMFormat.Data.SampleRate> 22500)
             {
                 Block = 192;
             }
@@ -126,19 +127,19 @@ namespace Obi.Audio
 
 
             double BlockTime = 25; // milliseconds
-            double BeforePhraseInMS = CalculationFunctions.ConvertByteToTime(before , (int) m_AudioAsset.getPCMFormat ().getSampleRate () , m_AudioAsset.getPCMFormat ().getBlockAlign ()  );
+            double BeforePhraseInMS = ObiCalculationFunctions.ConvertByteToTime(before , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign);
 
-            lCountSilGap = Convert.ToInt64(CalculationFunctions.ConvertByteToTime(GapLength , (int) m_AudioAsset.getPCMFormat ().getSampleRate ()  , m_AudioAsset.getPCMFormat ().getBlockAlign ()  ) / BlockTime);
+            lCountSilGap = Convert.ToInt64(ObiCalculationFunctions.ConvertByteToTime(GapLength , (int) m_AudioAsset.PCMFormat.Data.SampleRate, m_AudioAsset.PCMFormat.Data.BlockAlign) / BlockTime);
 
-            long Iterations = Convert.ToInt64(m_AudioAsset.getAudioDuration ().getTimeDeltaAsMillisecondFloat ()  / BlockTime);
-            long SampleCount = Convert.ToInt64(m_AudioAsset.getPCMFormat ().getSampleRate ()  / (1000 / BlockTime));
+            long Iterations = Convert.ToInt64(m_AudioAsset.AudioDuration.AsTimeSpan.TotalMilliseconds/ BlockTime);
+            long SampleCount = Convert.ToInt64(m_AudioAsset.PCMFormat.Data.SampleRate/ (1000 / BlockTime));
             double errorCompensatingCoefficient  = GetErrorCompensatingConstant ( SampleCount );
             long SpeechBlockCount = 0;
 
             long lCurrentSum = 0;
             long lSumPrev = 0;
 
-            BinaryReader br = new BinaryReader( m_AudioAsset.getAudioData ()  );
+            BinaryReader br = new BinaryReader( m_AudioAsset.OpenPcmInputStream());
 
             bool PhraseNominated = false;
             long SpeechChunkSize = 5;
@@ -185,9 +186,9 @@ namespace Obi.Audio
 
                         // changing following time calculations to reduce concatination of rounding off errors 
                         //alPhrases.Add(((j - Counter) * BlockTime) - BeforePhraseInMS);
-                        double phraseMarkTime = CalculationFunctions.ConvertByteToTime (Convert.ToInt64(errorCompensatingCoefficient  * (j - Counter)) * SampleCount * m_AudioAsset.getPCMFormat ().getBlockAlign (),
-                            (int) m_AudioAsset.getPCMFormat ().getSampleRate (),
-                            (int) m_AudioAsset.getPCMFormat ().getBlockAlign () );
+                        double phraseMarkTime = ObiCalculationFunctions.ConvertByteToTime (Convert.ToInt64(errorCompensatingCoefficient  * (j - Counter)) * SampleCount * m_AudioAsset.PCMFormat.Data.BlockAlign,
+                            (int) m_AudioAsset.PCMFormat.Data.SampleRate,
+                            (int) m_AudioAsset.PCMFormat.Data.BlockAlign);
                         alPhrases.Add ( phraseMarkTime - BeforePhraseInMS );
 
                         SpeechBlockCount = 0;
@@ -212,8 +213,8 @@ namespace Obi.Audio
             {
                 for (int i = alPhrases.Count-1   ; i >= 0 ; i-- )
                 {
-                    ManagedAudioMedia splitAsset  = ManagedAsset.split(new urakawa.media.timing.Time( Convert.ToDouble ( alPhrases[i] )) ) ;
-                                        //ManagedAsset.getMediaData().getMediaDataManager().addMediaData(splitAsset.getMediaData());
+                    ManagedAudioMedia splitAsset = ManagedAsset.Split(new Time(Convert.ToInt64(alPhrases[i]) * Time.TIME_UNIT));
+                                        //ManagedAsset.MediaData.getMediaDataManager().addMediaData(splitAsset.MediaData);
                     ReturnList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
@@ -246,7 +247,7 @@ namespace Obi.Audio
             long AverageValue = 0;
 
             // number of samples from which peak is selected
-                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.getPCMFormat ().getSampleRate () / m_FrequencyDivisor) ;
+                        long PeakCount  = Convert.ToInt64 (  m_AudioAsset.PCMFormat.Data.SampleRate/ m_FrequencyDivisor) ;
 
             // number of blocks iterated
             long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount ) ;
@@ -286,7 +287,7 @@ int SampleValue2 = 0 ;
                             
                 
                                 SampleValue1 =  br.ReadByte(); 
-                                    if ( m_AudioAsset.getPCMFormat ().getBitDepth () == 16 )                    
+                                    if ( m_AudioAsset.PCMFormat.Data.BitDepth == 16 )                    
             {
                     SampleValue1 = SampleValue1 + (br.ReadByte() * 256);
 
@@ -294,10 +295,10 @@ int SampleValue2 = 0 ;
                         SampleValue1 = SampleValue1 - 65536;
 
         }
-        if ( m_AudioAsset.getPCMFormat ().getNumberOfChannels ()== 2)
+        if ( m_AudioAsset.PCMFormat.Data.NumberOfChannels == 2)
         {
             SampleValue2 = br.ReadByte();
-            if ( m_AudioAsset.getPCMFormat ().getBitDepth () == 16)
+            if ( m_AudioAsset.PCMFormat.Data.BitDepth== 16)
             {
                 SampleValue2 = SampleValue2 + (br.ReadByte() * 256);
 
@@ -321,7 +322,7 @@ int SampleValue2 = 0 ;
         private static double GetErrorCompensatingConstant ( long SampleCount )
             {
             // number of samples from which peak is selected
-            long PeakCount = Convert.ToInt64 ( m_AudioAsset.getPCMFormat ().getSampleRate () / m_FrequencyDivisor );
+            long PeakCount = Convert.ToInt64 ( m_AudioAsset.PCMFormat.Data.SampleRate/ m_FrequencyDivisor );
 
             // number of blocks iterated
             long AverageCount = Convert.ToInt64 ( SampleCount / PeakCount );

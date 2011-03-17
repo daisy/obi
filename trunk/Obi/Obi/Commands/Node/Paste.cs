@@ -20,7 +20,7 @@ namespace Obi.Commands.Node
         public Paste(ProjectView.ProjectView view)
             : base(view)
         {
-            mCopy = (ObiNode)view.Clipboard.Node.copy(view.Clipboard.Deep, true);
+            mCopy = (ObiNode)view.Clipboard.Node.Copy(view.Clipboard.Deep, true);
             mParent = view.Selection.ParentForNewNode(mCopy);
             mIndex = view.Selection.IndexForNewNode(mCopy);
             // If we paste a phrase node "into" an emtpy node, the empty node must be deleted
@@ -36,7 +36,7 @@ namespace Obi.Commands.Node
                 mDeleteSelectedBlock = false;
             }
             mSelection = new NodeSelection(mCopy.LastDescendant, view.Selection.Control);
-            Label = Localizer.Message(mCopy is EmptyNode ? "paste_phrase" : "paste_section");
+            SetDescriptions(Localizer.Message(mCopy is EmptyNode ? "paste_phrase" : "paste_section"));
         }
 
         /// <summary>
@@ -55,33 +55,37 @@ namespace Obi.Commands.Node
         public bool DeleteSelectedBlock { get { return mDeleteSelectedBlock; } }
 
 
-        public override List<MediaData> getListOfUsedMediaData ()
+        public override IEnumerable<MediaData> UsedMediaData
+        {
+            get
             {
-            if (mCopy != null && mCopy is PhraseNode)
+
+                if (mCopy != null && mCopy is PhraseNode)
                 {
-                List<MediaData> mediaList = new List<MediaData> ();
-                if ( ((PhraseNode)mCopy).Audio != null )
-                mediaList.Add ( ((PhraseNode)mCopy).Audio.getMediaData () );
-                return mediaList;
+                    List<MediaData> mediaList = new List<MediaData>();
+                    if (((PhraseNode)mCopy).Audio != null)
+                        mediaList.Add(((PhraseNode)mCopy).Audio.MediaData);
+                    return mediaList;
                 }
-            else if ( mCopy != null && mCopy is SectionNode )
+                else if (mCopy != null && mCopy is SectionNode)
                 {
-                return GetMediaDataListForSection ( (SectionNode)mCopy );
-                                }
-            else
-                return new List<MediaData> () ;
+                    return GetMediaDataListForSection((SectionNode)mCopy);
+                }
+                else
+                    return new List<MediaData>();
             }
+        }
 
         private List<MediaData> GetMediaDataListForSection ( SectionNode sNode )
             {
             List<MediaData> mediaList = new List<MediaData> ();
 
-            sNode.acceptDepthFirst(
+            sNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
                     if (n != null && n is PhraseNode && ((PhraseNode)n).Audio != null )
                         {
-                            mediaList.Add ( ((PhraseNode)n ).Audio.getMediaData () ) ;
+                            mediaList.Add ( ((PhraseNode)n ).Audio.MediaData) ;
                         }
                         return true;
                     },
@@ -90,19 +94,21 @@ namespace Obi.Commands.Node
                 return mediaList;
             }
 
+        public override bool CanExecute { get { return true; } }
 
-        public override void execute ()
+
+        public override void Execute ()
         {
             mParent.Insert(mCopy, mIndex);
             if (UpdateSelection) View.Selection = mSelection;
             if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             mCopy.Detach();
             if (mParent != null && mParent is SectionNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
-            base.unExecute();
+            base.UnExecute();
         }
     }
 

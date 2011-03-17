@@ -20,20 +20,25 @@ namespace Obi.Commands.Node
             mNode = section;
             mOldLabel = mNode.Label;
             mNewLabel = label;
+
+            SetDescriptions(Localizer.Message("rename_section"));
         }
 
-        public override string getShortDescription() { return Localizer.Message("rename_section"); }
+        //sdk2
+        //public override string getShortDescription() { return ; }
 
-        public override void execute()
+        public override bool CanExecute { get { return true; } }
+
+        public override void Execute()
         {
             View.Presentation.RenameSectionNode(mNode, mNewLabel);
             if (SelectionBefore != null) View.Selection = new NodeSelection(mNode, SelectionBefore.Control);
         }
 
-        public override void unExecute()
+        public override void UnExecute()
         {
             View.Presentation.RenameSectionNode(mNode, mOldLabel);
-            base.unExecute();
+            base.UnExecute();
             if (SelectionBefore != null  )View.Selection = new NodeSelection(mNode, SelectionBefore.Control);
         }
     }
