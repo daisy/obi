@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using urakawa.core;
 using urakawa.data;
+using PipelineInterface;
 
 
 namespace Obi
@@ -1767,7 +1768,7 @@ namespace Obi
 
                 if (Directory.Exists ( mSettings.PipelineScriptsPath ))
                     {
-                    mPipelineInfo = new Obi.PipelineInterface.PipelineInfo ( mSettings.PipelineScriptsPath );
+                    mPipelineInfo = new PipelineInterface.PipelineInfo ( mSettings.PipelineScriptsPath );
                     PopulatePipelineScriptsInToolsMenu ();
                     }
                 else

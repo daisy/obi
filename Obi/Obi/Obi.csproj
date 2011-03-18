@@ -321,56 +321,6 @@
     <Compile Include="ObiNodeFactory.cs" />
     <Compile Include="PageNumber.cs" />
     <Compile Include="PhraseNode.cs" />
-    <Compile Include="PipelineInterface\DataTypes\BoolDataType.cs" />
-    <Compile Include="PipelineInterface\DataTypes\EnumDataType.cs" />
-    <Compile Include="PipelineInterface\DataTypes\PathDataType.cs" />
-    <Compile Include="PipelineInterface\DataTypes\IntDataType.cs" />
-    <Compile Include="PipelineInterface\DataTypes\StringDataType.cs" />
-    <Compile Include="PipelineInterface\ParameterControls\BaseUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\BaseUserControl.Designer.cs">
-      <DependentUpon>BaseUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\BoolControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\BoolControl.Designer.cs">
-      <DependentUpon>BoolControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\EnumControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\EnumControl.Designer.cs">
-      <DependentUpon>EnumControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\IntControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\IntControl.Designer.cs">
-      <DependentUpon>IntControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\PathBrowserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\PathBrowserControl.Designer.cs">
-      <DependentUpon>PathBrowserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\StringControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\ParameterControls\StringControl.Designer.cs">
-      <DependentUpon>StringControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\PipelineInfo.cs" />
-    <Compile Include="PipelineInterface\PipelineInterfaceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PipelineInterface\PipelineInterfaceForm.Designer.cs">
-      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PipelineInterface\ScriptParameter.cs" />
-    <Compile Include="PipelineInterface\ScriptParser.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Presentation.cs" />
     <Compile Include="PriorityQueue.cs" />
@@ -492,8 +442,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Obi_TemporaryKey.pfx" />
-    <None Include="PipelineInterface\scripts\DTBAudioEncoder.taskScript" />
-    <None Include="PipelineInterface\scripts\Z3986DTBValidator.taskScript" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -666,34 +614,6 @@
     <EmbeddedResource Include="ObiForm.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ObiForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\BaseUserControl.resx">
-      <DependentUpon>BaseUserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\BoolControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>BoolControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\EnumControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>EnumControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\IntControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>IntControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\PathBrowserControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PathBrowserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\ParameterControls\StringControl.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StringControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PipelineInterface\PipelineInterfaceForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PipelineInterfaceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectView\Block.resx">
       <SubType>Designer</SubType>
@@ -880,6 +800,10 @@
     <ProjectReference Include="..\..\..\..\urakawa-sdk\trunk\csharp\daisy\UrakawaSDK.daisy.csproj">
       <Project>{69E083B4-AC97-4416-B7D4-61DEBA8A910D}</Project>
       <Name>UrakawaSDK.daisy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PipelineInterface\PipelineInterface.csproj">
+      <Project>{DDEB9FA1-8435-456F-91E8-3C23125BE427}</Project>
+      <Name>PipelineInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
