@@ -2431,8 +2431,11 @@ namespace Obi.ProjectView
                             {
                             for (int i = 0; i < sectionsList.Count; i++)
                                 {
-                                if (progress1.CancelOperation) break;
-
+                                    if (progress1.CancelOperation)
+                                    {
+                                        Audio.PhraseDetection.CancelOperation = true;
+                                        break;
+                                    }
                                 if (sectionsList[i].PhraseChildCount > 0)
                                     {
                                     listOfCommands.Add( Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, sectionsList[i],
