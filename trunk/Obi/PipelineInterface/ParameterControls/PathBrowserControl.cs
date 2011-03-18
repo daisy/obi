@@ -137,7 +137,7 @@ namespace PipelineInterface.ParameterControls
                                 if (mPathData.IsFileOrDirectory ==
                                     PipelineInterface.DataTypes.PathDataType.FileOrDirectory.Directory)
                                 {
-                                    // todo: ObiForm.CheckProjectDirectory(mTextBox.Text, true);
+                                     CheckProjectDirectory(mTextBox.Text, true);
                                 }
                                 else if (mPathData.IsFileOrDirectory ==
                                     PipelineInterface.DataTypes.PathDataType.FileOrDirectory.File)
@@ -162,8 +162,80 @@ namespace PipelineInterface.ParameterControls
                         }
                     } // null value check ends
             	}
-        
- 
+
+        public static bool CheckProjectDirectory(string path, bool checkEmpty)
+        {
+            return Directory.Exists(path) ? CheckEmpty(path, checkEmpty) : DidCreateDirectory(path, true);
+        }
+
+        public static bool CheckEmpty(string path, bool checkEmpty)
+        {
+            if (checkEmpty &&
+        (Directory.GetFiles(path).Length > 0 || Directory.GetDirectories(path).Length > 0))
+            {
+                DialogResult result = MessageBox.Show(
+                    String.Format(Localizer.Message("really_use_directory_text"), path),
+                    Localizer.Message("really_use_directory_caption"),
+                    // MessageBoxButtons.YesNoCancel,
+                   MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        if (Path.GetFullPath(path) != Path.GetPathRoot(path))
+                        {
+                            foreach (string f in Directory.GetFiles(path)) File.Delete(f);
+                            foreach (string d in Directory.GetDirectories(path)) Directory.Delete(d, true);
+                        }
+                        else MessageBox.Show(Localizer.Message("CannotDeleteAtRoot"), Localizer.Message("Caption_Error"));
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("cannot_empty_directory"), path, e.Message),
+                            Localizer.Message("cannot_empty_directory_caption"),
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                //  return result != DialogResult.Cancel;
+                return true;
+            }
+            else
+            {
+                return true;  // the directory was empty or we didn't need to check
+            }
+        }
+
+        private static bool DidCreateDirectory(string path, bool alwaysCreate)
+        {
+            if (alwaysCreate || MessageBox.Show(
+                String.Format(Localizer.Message("create_directory_text"), path),
+                Localizer.Message("create_directory_caption"),
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                    return true;  // did create the directory
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        String.Format(Localizer.Message("cannot_create_directory_text"), path, e.Message),
+                        Localizer.Message("cannot_create_directory_caption"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return false;  // couldn't create the directory
+                }
+            }
+            else
+            {
+                return false;  // didn't want to create the directory
+            }
+        }
+
         private bool  CheckForOutputDirectory()
         {
                                         if ( Directory.Exists(mTextBox.Text) &&
