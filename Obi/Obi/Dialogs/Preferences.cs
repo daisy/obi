@@ -252,14 +252,14 @@ namespace Obi.Dialogs
             AudioRecorder recorder = mTransportBar.Recorder;
             AudioPlayer player = mTransportBar.AudioPlayer;
                  
-            try
+          //  try
                 {
                 //  mTransportBar.AudioPlayer.SetOutputDevice( mForm, ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name );  avn
                 //  mTransportBar.Recorder.InputDevice = (InputDevice)mInputDeviceCombo.SelectedItem;  
            
                 foreach (InputDevice inputDev in recorder.InputDevices)
                 {
-                    if (mInputDeviceCombo.SelectedItem.ToString() == inputDev.Name)
+                    if (mInputDeviceCombo.SelectedItem != null && mInputDeviceCombo.SelectedItem.ToString() == inputDev.Name)
                     {
                         mTransportBar.Recorder.SetInputDevice(inputDev.Name);
                         mSettings.LastInputDevice = inputDev.Name;
@@ -267,7 +267,7 @@ namespace Obi.Dialogs
                 }
                 foreach (OutputDevice outputDev in player.OutputDevices)
                 {
-                    if (mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
+                    if (mInputDeviceCombo.SelectedItem != null && mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
                     {
                         mTransportBar.AudioPlayer.SetOutputDevice(mForm, (outputDev.Name));
                         mSettings.LastOutputDevice = outputDev.Name;
@@ -277,11 +277,11 @@ namespace Obi.Dialogs
               //  mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
                
                 }
-            catch (System.Exception ex)
+         /*   catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
                 return false;
-                }
+                }*/
             if (mCanChangeAudioSettings)
                 {
                 mSettings.AudioChannels = mChannelsCombo.SelectedItem.ToString () == Localizer.Message ( "mono" ) ? 1 : 2;
