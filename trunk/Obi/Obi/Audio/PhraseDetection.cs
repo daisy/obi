@@ -7,23 +7,63 @@ using System.Windows.Forms;
 using urakawa.media.data;
 using  urakawa.media.data.audio ;
 using urakawa.media.timing;
-
+using AudioLib;
 
 namespace Obi.Audio
 {
     public class PhraseDetection
     {
-        public static readonly double DEFAULT_GAP = 300.0;              // default gap for phrase detection
+        public static readonly double DEFAULT_GAP = AudioLib.PhraseDetection.DEFAULT_GAP;              // default gap for phrase detection
+        public static readonly double DEFAULT_LEADING_SILENCE = AudioLib.PhraseDetection.DEFAULT_LEADING_SILENCE;  // default leading silence
+        public static readonly double DEFAULT_THRESHOLD = AudioLib.PhraseDetection.DEFAULT_THRESHOLD;
+
+
+        // NewDetection
+        // Detects the maximum size of noise level in a silent sample file
+        public static long GetSilenceAmplitude(ManagedAudioMedia RefAsset)
+        {
+            
+            AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat (RefAsset.AudioMediaData.PCMFormat.Data.NumberOfChannels, RefAsset.AudioMediaData.PCMFormat.Data.SampleRate, RefAsset.AudioMediaData.PCMFormat.Data.BitDepth ) ;
+            return AudioLib.PhraseDetection.GetSilenceAmplitude(RefAsset.AudioMediaData.OpenPcmInputStream(), audioPCMFormat);
+        }
+
+        public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
+        {
+            
+            AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
+            List<double> timingList  = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(), audioPCMFormat , threshold, GapLength, before);
+            List<ManagedAudioMedia> ReturnList = new List<ManagedAudioMedia>();
+            Console.WriteLine("returned list count " + timingList.Count);
+            if (timingList == null)
+            {
+                ReturnList.Add(audio);
+            }
+            else
+            {
+                for (int i = timingList.Count - 1; i >= 0; i--)
+                {
+                    Console.WriteLine("splitting " + timingList[i] + " asset time " + audio.Duration.AsLocalUnits);
+                    ManagedAudioMedia splitAsset = audio.Split(new Time(Convert.ToInt64(timingList[i] * AudioLibPCMFormat.TIME_UNIT) ));
+                    //ManagedAsset.MediaData.getMediaDataManager().addMediaData(splitAsset.MediaData);
+                    ReturnList.Insert(0, splitAsset);
+                    //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
+                }
+
+            }
+
+            return ReturnList;
+        }
+
+
+        /*
+         
+         public static readonly double DEFAULT_GAP = 300.0;              // default gap for phrase detection
         public static readonly double DEFAULT_LEADING_SILENCE = 50.0;  // default leading silence
         public static readonly double DEFAULT_THRESHOLD = 280.0;
 
         private static  AudioMediaData m_AudioAsset;
         private static  readonly int m_FrequencyDivisor = 2000; // frequency inin hz to observe.
         
-        
-
-        // NewDetection
-
         // Detecs the maximum size of noise level in a silent sample file
         public static long GetSilenceAmplitude (ManagedAudioMedia RefAsset)
         {
@@ -86,7 +126,7 @@ namespace Obi.Audio
             return SilVal;
 
         }
-
+        
 
         public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
         {
@@ -118,7 +158,7 @@ namespace Obi.Audio
             // count chunck of silence which trigger phrase detection
             long lCountSilGap = ( 2 * GapLength ) / Block; // multiplied by two because j counter is incremented by 2
             long lSum = 0;
-            ArrayList alPhrases = new ArrayList();
+            list    <long>  alPhrases = new list    <long>   ();
             long lCheck = 0;
 
             // flags to indicate phrases and silence
@@ -337,7 +377,7 @@ int SampleValue2 = 0 ;
                 }
             return errorCoeff;
             }
-
+*/
 
     }
 }
