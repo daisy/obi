@@ -18,8 +18,18 @@ namespace Obi.Audio
         public static readonly double DEFAULT_THRESHOLD = AudioLib.PhraseDetection.DEFAULT_THRESHOLD;
 
 
+        public static bool CancelOperation
+        {
+            get { return AudioLib.PhraseDetection.CancelOperation; }
+            set { AudioLib.PhraseDetection.CancelOperation = value; }
+        }
+
         // NewDetection
-        // Detects the maximum size of noise level in a silent sample file
+        /// <summary>
+        /// Detects the maximum size of noise level in a silent sample file
+        /// </summary>
+        /// <param name="RefAsset"></param>
+        /// <returns></returns>
         public static long GetSilenceAmplitude(ManagedAudioMedia RefAsset)
         {
             
@@ -27,31 +37,44 @@ namespace Obi.Audio
             return AudioLib.PhraseDetection.GetSilenceAmplitude(RefAsset.AudioMediaData.OpenPcmInputStream(), audioPCMFormat);
         }
 
+        /// <summary>
+        /// < Detects phrases, accepts timing parameters in milliseconds
+        /// </summary>
+        /// <param name="audio"></param>
+        /// <param name="threshold"></param>
+        /// <param name="GapLength"></param>
+        /// <param name="before"></param>
+        /// <returns></returns>
         public static List<ManagedAudioMedia> Apply(ManagedAudioMedia audio, long threshold, double GapLength, double before)
         {
             
             AudioLibPCMFormat audioPCMFormat = new AudioLibPCMFormat(audio.AudioMediaData.PCMFormat.Data.NumberOfChannels, audio.AudioMediaData.PCMFormat.Data.SampleRate, audio.AudioMediaData.PCMFormat.Data.BitDepth);
-            List<double> timingList  = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(), audioPCMFormat , threshold, GapLength, before);
-            List<ManagedAudioMedia> ReturnList = new List<ManagedAudioMedia>();
-            Console.WriteLine("returned list count " + timingList.Count);
+            List<long> timingList = AudioLib.PhraseDetection.Apply(audio.AudioMediaData.OpenPcmInputStream(), 
+                audioPCMFormat, 
+                threshold, 
+                (long) GapLength * AudioLibPCMFormat.TIME_UNIT, 
+                (long) before * AudioLibPCMFormat.TIME_UNIT);
+
+            List<ManagedAudioMedia> detectedAudioMediaList = new List<ManagedAudioMedia>();
+            //Console.WriteLine("returned list count " + timingList.Count);
             if (timingList == null)
             {
-                ReturnList.Add(audio);
+                detectedAudioMediaList.Add(audio);
             }
             else
             {
                 for (int i = timingList.Count - 1; i >= 0; i--)
                 {
-                    Console.WriteLine("splitting " + timingList[i] + " asset time " + audio.Duration.AsLocalUnits);
-                    ManagedAudioMedia splitAsset = audio.Split(new Time(Convert.ToInt64(timingList[i] * AudioLibPCMFormat.TIME_UNIT) ));
+                    //Console.WriteLine("splitting " + timingList[i] + " asset time " + audio.Duration.AsLocalUnits);
+                    ManagedAudioMedia splitAsset = audio.Split(new Time(Convert.ToInt64(timingList[i] ) ));
                     //ManagedAsset.MediaData.getMediaDataManager().addMediaData(splitAsset.MediaData);
-                    ReturnList.Insert(0, splitAsset);
+                    detectedAudioMediaList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
 
             }
 
-            return ReturnList;
+            return detectedAudioMediaList;
         }
 
 
