@@ -2625,7 +2625,7 @@ namespace Obi
                         {
                             if (exportDaisy3Path != null)
                             {
-                                newDirPath = Path.Combine(exportDaisy3Path, "obi_dtb.opf");
+                                newDirPath = Path.Combine(exportDaisy3Path, "package.opf");
                             }
                             else
                             {
