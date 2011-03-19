@@ -170,4 +170,10 @@
   <data name="Pipeline_OutOfRange" xml:space="preserve">
     <value>Value do not lie in expected range</value>
   </data>
+  <data name="really_use_directory_caption" xml:space="preserve">
+    <value>Empty directory before using it?</value>
+  </data>
+  <data name="really_use_directory_text" xml:space="preserve">
+    <value>Directory "{0}"is not empty. If you want to empty this directory before using it, choose "Yes." If you want to use this directory as is, choose "No."</value>
+  </data>
 </root>
