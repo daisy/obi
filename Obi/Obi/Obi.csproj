@@ -92,12 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Audio\AudioFormatConverter.cs" />
-    <Compile Include="Audio\AudioPlayer.cs" />
-    <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\ObiCalculationFunctions.cs" />
-    <Compile Include="Audio\DataManager.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,9 +100,6 @@
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Audio\PhraseDetection.cs" />
-    <Compile Include="Audio\VuMeter.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ColorSettings.cs" />
     <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Audio\Copy.cs" />
@@ -492,10 +484,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Audio\PeakMeterForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PeakMeterForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\About.hi.resx">
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
@@ -723,6 +711,10 @@
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Audio\PeakMeterForm.resx">
+      <DependentUpon>PeakMeterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\chooseDaisy3orDaisy202.resx">
       <DependentUpon>chooseDaisy3orDaisy202.cs</DependentUpon>
       <SubType>Designer</SubType>
