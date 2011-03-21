@@ -210,14 +210,14 @@ namespace Obi.ProjectView
         /// <param name="format"></param>
         /// <param name="exportPath"></param>
         /// <param name="projectDirectory"></param>
-        public void SetExportPathMetadata ( Obi.Export.ExportFormat format, string exportPath, string projectDirectory )
+        public void SetExportPathMetadata ( Obi.ImportExport.ExportFormat format, string exportPath, string projectDirectory )
             {
             string exportMetadataName = null;
-            if (format == Obi.Export.ExportFormat.DAISY3_0)
+            if (format == Obi.ImportExport.ExportFormat.DAISY3_0)
                 {
                 exportMetadataName = Metadata.OBI_DAISY3ExportPath;
                 }
-            else if (format == Obi.Export.ExportFormat.DAISY2_02)
+            else if (format == Obi.ImportExport.ExportFormat.DAISY2_02)
                 {
                 exportMetadataName = Metadata.OBI_DAISY2ExportPath;
                 }
@@ -248,17 +248,17 @@ namespace Obi.ProjectView
         /// <param name="format"></param>
         /// <param name="projectDirectory"></param>
         /// <returns></returns>
-        public string GetDAISYExportPath ( Obi.Export.ExportFormat format, string projectDirectory )
+        public string GetDAISYExportPath ( Obi.ImportExport.ExportFormat format, string projectDirectory )
             {
             if (mPresentation == null)
                 return null;
 
             urakawa.metadata.Metadata m = null;
-            if (format == Obi.Export.ExportFormat.DAISY3_0)
+            if (format == Obi.ImportExport.ExportFormat.DAISY3_0)
                 {
                 m = mPresentation.GetFirstMetadataItem ( Metadata.OBI_DAISY3ExportPath );
                 }
-            else if (format == Obi.Export.ExportFormat.DAISY2_02)
+            else if (format == Obi.ImportExport.ExportFormat.DAISY2_02)
                 {
                 m = mPresentation.GetFirstMetadataItem ( Metadata.OBI_DAISY2ExportPath );
                 }

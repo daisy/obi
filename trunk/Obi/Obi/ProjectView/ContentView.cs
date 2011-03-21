@@ -322,37 +322,36 @@ namespace Obi.ProjectView
 
             ClearWaveformRenderQueue ();
             SuspendLayout_All ();
+            ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
             if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
-                {
-                    
-                    SectionNode sectionToDisplay = mProjectView.Presentation.FirstSection;
-                ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode ;
+            {
+                SectionNode sectionToDisplay = mProjectView.Presentation.FirstSection;
                 if (bookMarkedNode != null) Console.WriteLine("Bookmark node is " + bookMarkedNode.ToString());
-                    if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null)
-                    {
-                        sectionToDisplay = bookMarkedNode is SectionNode? 
-                            (SectionNode) bookMarkedNode: 
-                            bookMarkedNode.ParentAs<SectionNode> () ;
-                    }
-                AddStripForSection_Safe ( mProjectView.Presentation.FirstSection );
+                if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null)
+                {
+                    sectionToDisplay = bookMarkedNode is SectionNode ?
+                        (SectionNode)bookMarkedNode :
+                        bookMarkedNode.ParentAs<SectionNode>();
+                }
+                AddStripForSection_Safe(mProjectView.Presentation.FirstSection);
                 mProjectView.SynchronizeViews = false;
                 contentViewLabel1.Name_SectionDisplayed = mProjectView.Presentation.FirstSection.Label; //@singleSection
+                IsScrollActive = false; //@singleSection
 
+            }
+            else
+                {
+                AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
+                }
+                m_DisablePhraseCreationWhileSelectionRestore = false;
                 if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null && bookMarkedNode is EmptyNode)
                 {
                     SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
                 }
                 else
                 {
-                    IsScrollActive = false; //@singleSection
+                    CreateBlocksForInitialStrips(); //@phraseLimit
                 }
-                }
-            else
-                {
-                AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
-                }
-                m_DisablePhraseCreationWhileSelectionRestore = false;
-            CreateBlocksForInitialStrips (); //@phraseLimit
             ResumeLayout_All ();
             mProjectView.Presentation.BeforeCommandExecuted +=
                 new EventHandler<urakawa.events.command.CommandEventArgs> ( Presentation_BeforeCommandExecuted );
