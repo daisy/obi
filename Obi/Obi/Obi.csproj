@@ -290,11 +290,11 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
-    <Compile Include="Export\DAISY202Export.cs" />
-    <Compile Include="Export\DAISY3_ObiExport.cs" />
-    <Compile Include="Export\DAISY3_ObiImport.cs" />
-    <Compile Include="Export\XslResolver.cs" />
-    <Compile Include="Export\Z.cs" />
+    <Compile Include="ImportExport\DAISY202Export.cs" />
+    <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
+    <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
+    <Compile Include="ImportExport\XslResolver.cs" />
+    <Compile Include="ImportExport\Z.cs" />
     <Compile Include="ImportStructure.cs" />
     <Compile Include="KeyboardShortcuts_Settings.cs">
       <SubType>Code</SubType>
@@ -703,19 +703,19 @@
     <Content Include="about_hi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\filter.xslt">
+    <Content Include="ImportExport\filter.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\ncx.xslt">
+    <Content Include="ImportExport\ncx.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\package.xslt">
+    <Content Include="ImportExport\package.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\smil.xslt">
+    <Content Include="ImportExport\smil.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\Z.xslt">
+    <Content Include="ImportExport\Z.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FindBarCollapse.wav">

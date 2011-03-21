@@ -265,11 +265,11 @@ namespace Obi
                 
                 string strExtension = System.IO.Path.GetExtension(path).ToLower();
                 if (strExtension == ".opf")
-                    title = Obi.Export.DAISY3_ObiImport.getTitleFromOpfFile(path);
+                    title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path);
                 if(strExtension == ".xhtml" || strExtension == ".html")
                     title = ImportStructure.GrabTitle ( new Uri ( path ));
                 else if (strExtension == ".xml")
-                    title = Obi.Export.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+                    title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
 
                 dialog = new Dialogs.NewProject (
                     mSettings.DefaultPath,
@@ -1471,12 +1471,12 @@ namespace Obi
             Dialogs.chooseDaisy3orDaisy202 chooseDialog = new chooseDaisy3orDaisy202 ();
             if (chooseDialog.ShowDialog () == DialogResult.OK)
                 {
-                if (chooseDialog.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
                     {
                     exportDirectory = Path.Combine ( Directory.GetParent ( mSession.Path ).FullName,
                             Program.SafeName ( string.Format ( Localizer.Message ( "default_export_dirname" ), "" ) ) );
                     }
-                else if (chooseDialog.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
+                else if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02)
                     {
                     exportDirectory = Path.Combine ( Directory.GetParent ( mSession.Path ).FullName,
                         Program.SafeName ( string.Format ( Localizer.Message ( "Default_DAISY2_02export_dirname" ), "" ) ) );
@@ -1904,10 +1904,10 @@ namespace Obi
         private void UpdateExportMetadataFromPrimaryExportPath ()
             {
             if ( mSession != null && mProjectView != null
-                &&    mProjectView.GetDAISYExportPath ( Export.ExportFormat.DAISY3_0, Path.GetDirectoryName (mSession.Path )) == null 
+                &&    mProjectView.GetDAISYExportPath ( ImportExport.ExportFormat.DAISY3_0, Path.GetDirectoryName (mSession.Path )) == null 
                 &&     Path.IsPathRooted( mSession.PrimaryExportPath )) 
                 {
-                mProjectView.SetExportPathMetadata (Obi.Export.ExportFormat.DAISY3_0,
+                mProjectView.SetExportPathMetadata (Obi.ImportExport.ExportFormat.DAISY3_0,
                     mSession.PrimaryExportPath,
                     Path.GetDirectoryName( mSession.Path ) ) ;
                 }
@@ -2614,15 +2614,15 @@ namespace Obi
 
         private string chooseDaisyType ( string toolStripText )
             {
-            string exportDaisy202Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY2_02 , Path.GetDirectoryName(mSession.Path));
-            string exportDaisy3Path = mProjectView.GetDAISYExportPath ( Obi.Export.ExportFormat.DAISY3_0, Path.GetDirectoryName ( mSession.Path ) );
+            string exportDaisy202Path = mProjectView.GetDAISYExportPath ( Obi.ImportExport.ExportFormat.DAISY2_02 , Path.GetDirectoryName(mSession.Path));
+            string exportDaisy3Path = mProjectView.GetDAISYExportPath ( Obi.ImportExport.ExportFormat.DAISY3_0, Path.GetDirectoryName ( mSession.Path ) );
             string newDirPath = null;
             Dialogs.chooseDaisy3orDaisy202 rdfrm = new Dialogs.chooseDaisy3orDaisy202 ();
             if (toolStripText == "DTBAudioEncoder" || toolStripText == "FilesetRenamer")
                 {
                     if (rdfrm.ShowDialog() == DialogResult.OK)
                     {
-                        if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY3_0)
+                        if (rdfrm.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
                         {
                             if (exportDaisy3Path != null)
                             {
@@ -2634,7 +2634,7 @@ namespace Obi
                             }
                         }
 
-                        if (rdfrm.chooseOption == Obi.Export.ExportFormat.DAISY2_02)
+                        if (rdfrm.chooseOption == Obi.ImportExport.ExportFormat.DAISY2_02)
                         {
                             if (exportDaisy202Path != null)
                             {
