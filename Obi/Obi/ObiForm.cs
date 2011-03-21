@@ -267,7 +267,7 @@ namespace Obi
                 if (strExtension == ".opf")
                     title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path);
                 if(strExtension == ".xhtml" || strExtension == ".html")
-                    title = ImportStructure.GrabTitle ( new Uri ( path ));
+                    title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));
                 else if (strExtension == ".xml")
                     title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
 
@@ -293,7 +293,7 @@ namespace Obi
                             else
                             {
                                 CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                                (new ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                                (new ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
                             }
                         } );
                     progress.ShowDialog ();
