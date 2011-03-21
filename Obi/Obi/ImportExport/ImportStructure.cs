@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace Obi
+namespace Obi.ImportExport
 {
     /// <summary>
     /// Import an external file (XHTML) and use it to fill in the sections in a newly-created project.
