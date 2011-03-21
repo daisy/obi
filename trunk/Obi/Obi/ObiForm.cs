@@ -269,7 +269,7 @@ namespace Obi
                 if(strExtension == ".xhtml" || strExtension == ".html")
                     title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));
                 else if (strExtension == ".xml")
-                    title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
+                    title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
 
                 dialog = new Dialogs.NewProject (
                     mSettings.DefaultPath,
@@ -293,7 +293,7 @@ namespace Obi
                             else
                             {
                                 CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                                (new ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                                (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
                             }
                         } );
                     progress.ShowDialog ();

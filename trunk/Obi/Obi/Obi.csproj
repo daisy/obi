@@ -293,9 +293,11 @@
     <Compile Include="ImportExport\DAISY202Export.cs" />
     <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
     <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
+    <Compile Include="ImportExport\ImportStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ImportExport\XslResolver.cs" />
     <Compile Include="ImportExport\Z.cs" />
-    <Compile Include="ImportStructure.cs" />
     <Compile Include="KeyboardShortcuts_Settings.cs">
       <SubType>Code</SubType>
     </Compile>
