@@ -324,10 +324,28 @@ namespace Obi.ProjectView
             SuspendLayout_All ();
             if (mWrapStripContents && mProjectView.Presentation.FirstSection != null)
                 {
+                    
+                    SectionNode sectionToDisplay = mProjectView.Presentation.FirstSection;
+                ObiNode bookMarkedNode = ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode ;
+                if (bookMarkedNode != null) Console.WriteLine("Bookmark node is " + bookMarkedNode.ToString());
+                    if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null)
+                    {
+                        sectionToDisplay = bookMarkedNode is SectionNode? 
+                            (SectionNode) bookMarkedNode: 
+                            bookMarkedNode.ParentAs<SectionNode> () ;
+                    }
                 AddStripForSection_Safe ( mProjectView.Presentation.FirstSection );
                 mProjectView.SynchronizeViews = false;
                 contentViewLabel1.Name_SectionDisplayed = mProjectView.Presentation.FirstSection.Label; //@singleSection
-                IsScrollActive = false; //@singleSection
+
+                if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null && bookMarkedNode is EmptyNode)
+                {
+                    SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
+                }
+                else
+                {
+                    IsScrollActive = false; //@singleSection
+                }
                 }
             else
                 {

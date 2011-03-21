@@ -241,7 +241,9 @@ namespace Obi
                 string used = reader.GetAttribute(USED_ATTR_NAME);
                 if (used != null && used == "False") mUsed = false;
             }
+            
             base.XukInAttributes(reader);
+            
         }
 
         protected override void XukOutChildren(System.Xml.XmlWriter destination, Uri baseUri, IProgressHandler handler)
@@ -342,7 +344,28 @@ namespace Obi
         public ObiNode BookmarkNode
         {
             get { return m_Bookmarked; }
-            set { m_Bookmarked = value; }
+            set 
+            {
+                if (m_Bookmarked != value )
+                {
+                    if (m_Bookmarked != null) m_Bookmarked.IsMarked = false;
+                    m_Bookmarked = value;
+                    if (m_Bookmarked != null) m_Bookmarked.IsMarked = true;
+                }
+            }
+        }
+        public void LocateBookMarkNode()
+        {
+            AcceptDepthFirst(delegate(urakawa.core.TreeNode n)
+                {   
+                    if (n.IsMarked)
+                    {
+                        m_Bookmarked = (ObiNode)n;
+                        return false;
+                    }
+                    if (m_Bookmarked != null) return false;
+                    return true;
+                }, delegate(urakawa.core.TreeNode n) { });
         }
 
         public ObiRootNode() : base()
