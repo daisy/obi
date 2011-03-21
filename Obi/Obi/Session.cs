@@ -284,7 +284,7 @@ namespace Obi
             Presentation.Initialize ( this );
             // Hack to ignore the empty commands saved by the default undo/redo manager
             Presentation.UndoRedoManager.FlushCommands();
-
+            ((ObiRootNode)mProject.Presentations.Get(0).RootNode).LocateBookMarkNode();
             SetupBackupFilesForNewSession ( path );
 
             if (ProjectOpened != null) ProjectOpened ( this, null );

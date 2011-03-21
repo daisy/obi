@@ -1895,6 +1895,7 @@ namespace Obi
             AddRecentProject ( path );
             // stores primary export path in metadata if it is stored in Obi 1.0 way
             UpdateExportMetadataFromPrimaryExportPath ();
+            
             this.Cursor = Cursors.Default;
             }
 
@@ -2873,11 +2874,18 @@ namespace Obi
 
         private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ObiNode newBookMarkedNode = null;
            if(mProjectView.Selection is StripIndexSelection)
-               ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = mProjectView.Selection.EmptyNodeForSelection;
+               newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;
             else
-           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode =  mProjectView.Selection.Node;
-           
+           newBookMarkedNode =  mProjectView.Selection.Node;
+
+       if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
+       {
+           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
+           mSession.PresentationHasChanged(1);
+           UpdateTitleAndStatusBar();
+       }
         }
 
         private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
