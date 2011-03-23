@@ -38,7 +38,7 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-
+        
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
         /// </summary>
@@ -583,6 +583,7 @@ namespace Obi
         private bool DidCloseProject ()
             {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+            CheckForBookmarkNode();
             if (!mSession.CanClose)
                 {
                 DialogResult result = MessageBox.Show ( Localizer.Message ( "closed_project_text" ),
@@ -590,11 +591,22 @@ namespace Obi
                     MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question );
                 if (result == DialogResult.Cancel) return false;
-                if (result == DialogResult.Yes) mSession.Save ();
+                if (result == DialogResult.Yes) mSession.Save ();          
+               
                 }
             mSession.Close ();
             return true;
+           }
+
+        private void CheckForBookmarkNode()
+        {
+            if (mProjectView.Selection != null && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
+            {
+                DialogResult resultBookmark = MessageBox.Show("The currently selection node is not same as saved bookmarked node. Do you want to save the last selected node as bookmark node", "Check Bookmark", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultBookmark == DialogResult.Yes)
+                    CheckForSelectedNodeInBookmark();                               
             }
+        }
 
         // Clean unwanted audio from the project.
         // Before continuing, the user is given the choice to save or cancel.
@@ -1173,7 +1185,7 @@ namespace Obi
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
             m_BookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
             m_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
-            m_GotoBookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && mProjectView.TransportBar.IsRecorderActive;
+            m_GotoBookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && !mProjectView.TransportBar.IsRecorderActive;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -1869,7 +1881,8 @@ namespace Obi
 
         // Open the project at the given path; warn the user on error.
         private void OpenProject_Safe ( string path )
-            {
+        {
+            CheckForBookmarkNode();
             try
                 {
                 OpenProject ( path );
@@ -2154,9 +2167,8 @@ namespace Obi
         /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing ( object sender, FormClosingEventArgs e )
             {
-
+                CheckForBookmarkNode();
             if (mProjectView != null) mProjectView.TransportBar.Stop ();
-
             if (DidCloseProject ())
                 {
                 try
@@ -2874,18 +2886,23 @@ namespace Obi
 
         private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ObiNode newBookMarkedNode = null;
-           if(mProjectView.Selection is StripIndexSelection)
-               newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;
-            else
-           newBookMarkedNode =  mProjectView.Selection.Node;
+            CheckForSelectedNodeInBookmark();
+        }
 
-       if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
-       {
-           ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
-           mSession.PresentationHasChanged(1);
-           UpdateTitleAndStatusBar();
-       }
+        private void CheckForSelectedNodeInBookmark()
+        {
+            ObiNode newBookMarkedNode = null;
+            if (mProjectView.Selection is StripIndexSelection)
+                newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;
+            else
+                newBookMarkedNode = mProjectView.Selection.Node;
+
+            if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
+            {
+                ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
+                mSession.PresentationHasChanged(1);
+                UpdateTitleAndStatusBar();
+            }
         }
 
         private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
