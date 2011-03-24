@@ -245,7 +245,12 @@ RenameProjectFilesAfterOperation();
             {
                 foreach (XmlNode oldChild in oldNode.ChildNodes)
                 {//1
-                    if (oldChild.LocalName == "ExternalAudioMedia") continue;
+                    if (oldChild.Name== "mChannelMapping"
+                        && oldChild.Attributes.GetNamedItem("channel") != null
+                        && oldChild.Attributes.GetNamedItem("channel").Value == "CHID0002")
+                    {
+                        continue;
+                    }
                     if (oldChild is XmlElement )
                     {//2
                         XmlNode newChild = null;
