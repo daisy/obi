@@ -36,6 +36,9 @@ namespace Obi
 
             m_OldToNewNodeAttributeNameMap = new Dictionary<string, string>();
             m_OldToNewNodeAttributeNameMap.Add("audioMediaDataUid", "MediaDataUid");
+            m_OldToNewNodeAttributeNameMap.Add("clipBegin", "ClipBegin");
+            m_OldToNewNodeAttributeNameMap.Add("clipEnd", "ClipEnd");
+            m_OldToNewNodeAttributeNameMap.Add("src", "Src");
         }
 
         private string GetNewElementName ( string oldName)
@@ -52,7 +55,7 @@ namespace Obi
 
         private string GetNewAttributeName(string oldName)
         {
-            if (m_OldToNewNodeAttributeNameMap== null || !m_OldToNewNodeElementNameMap.ContainsKey(oldName))
+            if (m_OldToNewNodeAttributeNameMap== null || !m_OldToNewNodeAttributeNameMap.ContainsKey(oldName))
             {
                 return oldName;
             }
@@ -215,6 +218,7 @@ RenameProjectFilesAfterOperation();
             {
                 foreach (XmlNode oldChild in oldNode.ChildNodes)
                 {//1
+                    if (oldChild.LocalName == "ExternalAudioMedia") continue;
                     if (oldChild is XmlElement )
                     {//2
                         XmlNode newChild = null;
@@ -229,12 +233,14 @@ RenameProjectFilesAfterOperation();
                             //if (attr.Name == "xmlns" && attr.Value == "http://www.daisy.org/urakawa/xuk/1.0") continue;
                             if (attr.Name == "xmlns" ) continue;
                             //{//4
-                                if (oldChild.LocalName == "mChannelMapping" && attr.Name == "channel")
-                                {//5
-                                    XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild, "Channel", attr.Value == "CHID0000" ? "CH00001" : "CH00000");
-                                }//-5
-                                else
-                                    XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild,GetNewAttributeName (attr.Name), attr.Value);
+                            if (oldChild.LocalName == "mChannelMapping" && attr.Name == "channel")
+                            {//5
+                                XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild, "Channel", attr.Value == "CHID0000" ? "CH00001" : "CH00000");
+                            }//-5
+                            else
+                            {
+                                XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild, GetNewAttributeName(attr.Name), attr.Value);
+                            }
                             //}//-4
                         }//-3
                         
