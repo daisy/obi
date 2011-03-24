@@ -1885,6 +1885,13 @@ namespace Obi
             CheckForBookmarkNode();
             try
                 {
+                    if (ProjectUpgrader.IsObi1XProject(path))
+                    {
+                        MessageBox.Show("The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue");
+                        ProjectUpgrader upgrader = new ProjectUpgrader(path, null);
+                        upgrader.UpgradeProject();
+                        MessageBox.Show("project upgraded");
+                    }
                 OpenProject ( path );
                 if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage();
                 }
