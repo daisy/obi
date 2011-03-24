@@ -166,7 +166,7 @@ RenameProjectFilesAfterOperation();
                     // create new metadata node in dest document
                     XmlNode newMetadata = destXmlDoc.CreateElement("Metadata", newMetadatas.NamespaceURI);
                     newMetadatas.AppendChild(newMetadata);
-                    XmlNode newMetadataAttribute = destXmlDoc.CreateElement("MetadataAttribute");
+                    XmlNode newMetadataAttribute = destXmlDoc.CreateElement("MetadataAttribute", newMetadata.NamespaceURI);
                     newMetadata.AppendChild(newMetadataAttribute);
 
                     XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Name", metadataItem.Attributes.GetNamedItem("name").Value);
