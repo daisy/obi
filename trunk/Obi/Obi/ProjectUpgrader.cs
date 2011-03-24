@@ -65,6 +65,33 @@ namespace Obi
             }
         }
 
+        public static bool IsObi1XProject(string projectPath)
+        {
+            XmlTextReader source = new XmlTextReader(projectPath);
+            source.XmlResolver = null;
+            source.WhitespaceHandling = WhitespaceHandling.Significant;
+            String identificationString = null;
+            try
+            {
+                //identificationString = source.ReadToFollowing("Xuk")? source.ReadAttributeValue (): "";
+                if (source.ReadToFollowing("Xuk"))
+                {
+
+                    identificationString = source.GetAttribute(0);
+                }
+            }
+
+            finally
+            {
+                source.Close();
+            }
+            if (identificationString == "http://www.daisy.org/urakawa/xuk/1.0 xuk.xsd")
+            {
+                return true;
+            }
+            return false;
+            //"<Xuk xsi:noNamespaceSchemaLocation="http://www.daisy.org/urakawa/xuk/1.0 xuk.xsd" "
+        }
 
         public void UpgradeProject()
         {
