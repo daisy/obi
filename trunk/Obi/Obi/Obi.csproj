@@ -319,6 +319,7 @@
     <Compile Include="Presentation.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectUpgrader.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -432,6 +433,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="EmptyProject.obi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Obi Help.chm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

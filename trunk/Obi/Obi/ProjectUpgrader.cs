@@ -1,0 +1,282 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
+
+using urakawa.daisy;
+
+namespace Obi
+{
+    public class ProjectUpgrader
+    {
+        private string m_Source;
+        private string m_Destination;
+        private Dictionary<string, string> m_OldToNewNodeElementNameMap;
+        private Dictionary<string, string> m_OldToNewNodeAttributeNameMap;
+
+        public ProjectUpgrader(string source, string dest)
+        {
+            m_Source = source;
+            m_Destination = Path.Combine( Path.GetDirectoryName (m_Source), "Obi2_"+ Path.GetFileName(m_Source)) ;
+            PopulateNamesMapDictionary();
+        }
+
+        private void PopulateNamesMapDictionary ()
+        {
+            m_OldToNewNodeElementNameMap = new Dictionary<string, string>();
+            m_OldToNewNodeElementNameMap.Add("mProperties", "Properties");
+            m_OldToNewNodeElementNameMap.Add("mChannelMappings", "ChannelMappings");
+            m_OldToNewNodeElementNameMap.Add("mChannelMapping", "ChannelMapping");
+            m_OldToNewNodeElementNameMap.Add("audioMediaDataUid", "MediaDataUid");
+            m_OldToNewNodeElementNameMap.Add("mChildren", "Children");
+            m_OldToNewNodeElementNameMap.Add("mText", "Text");
+            //m_OldToNewNodeNameMap.Add("channel", "Channel");
+
+            m_OldToNewNodeAttributeNameMap = new Dictionary<string, string>();
+            m_OldToNewNodeAttributeNameMap.Add("audioMediaDataUid", "MediaDataUid");
+        }
+
+        private string GetNewElementName ( string oldName)
+        {
+            if ( m_OldToNewNodeElementNameMap == null || !m_OldToNewNodeElementNameMap.ContainsKey(oldName)) 
+            {
+                return oldName;
+            }
+            else
+            {
+            return m_OldToNewNodeElementNameMap[oldName] ;
+            }
+        }
+
+        private string GetNewAttributeName(string oldName)
+        {
+            if (m_OldToNewNodeAttributeNameMap== null || !m_OldToNewNodeElementNameMap.ContainsKey(oldName))
+            {
+                return oldName;
+            }
+            else
+            {
+                return m_OldToNewNodeAttributeNameMap[oldName];
+            }
+        }
+
+
+        public void UpgradeProject()
+        {
+            string referencePath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "EmptyProject.obi");
+            XmlDocument sourceXmlDoc = new XmlDocument();
+            sourceXmlDoc.Load(m_Source);
+
+            XmlDocument destXmlDoc = new XmlDocument();
+            destXmlDoc.Load(referencePath);
+
+//start with adding data providers
+            XmlNode oldDataProviders = sourceXmlDoc.GetElementsByTagName("mDataProviders")[0];
+            XmlNode newDataProviders = destXmlDoc.GetElementsByTagName("DataProviders")[0];
+            foreach (XmlNode dataProviderItem in XmlDocumentHelper.GetChildrenElementsWithName(oldDataProviders, true, "mDataProviderItem", oldDataProviders.NamespaceURI, false))
+            {
+                XmlNode newFileDataProvider = destXmlDoc.CreateElement("FileDataProvider", newDataProviders.NamespaceURI);
+                newDataProviders.AppendChild(newFileDataProvider);
+                XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "Uid", dataProviderItem.Attributes.GetNamedItem("uid").Value);
+                XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "MimeType", "audio/x-wav");
+                XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "DataFileRelativePath", dataProviderItem.FirstChild.Attributes.GetNamedItem("dataFileRelativePath").Value);
+            }
+
+            // add AudioMediaDatas Next
+            XmlNode oldAudioMediaDatas = sourceXmlDoc.GetElementsByTagName("mMediaData")[0];
+            XmlNode newAudioMediaDatas = destXmlDoc.GetElementsByTagName("MediaDatas")[0];
+
+            foreach (XmlNode oldMediaDataItem in XmlDocumentHelper.GetChildrenElementsWithName(oldAudioMediaDatas, true, "mMediaDataItem", oldAudioMediaDatas.NamespaceURI, false))
+            {
+                XmlNode newAudioMediaItem = destXmlDoc.CreateElement("WavAudioMediaData", newAudioMediaDatas.NamespaceURI);
+                newAudioMediaDatas.AppendChild(newAudioMediaItem);
+                XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newAudioMediaItem, "Uid", oldMediaDataItem.Attributes.GetNamedItem("uid").Value);
+                //XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newItem, "MimeType", "audio/x-wav");
+                //XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newItem, "DataFileRelativePath", item.Attributes.GetNamedItem("dataFileRelativePath").Value);
+
+                XmlNode wavClips = destXmlDoc.CreateElement("WavClips", newAudioMediaItem.NamespaceURI);
+                newAudioMediaItem.AppendChild(wavClips);
+
+                foreach (XmlNode wavItem in XmlDocumentHelper.GetChildrenElementsWithName(oldMediaDataItem, true, "WavClip", oldAudioMediaDatas.NamespaceURI, false))
+                {
+                    XmlNode newWavClip = destXmlDoc.CreateElement("WavClip", newAudioMediaItem.NamespaceURI);
+                    wavClips.AppendChild(newWavClip);
+                    // add attributes of wavClip
+                    foreach (XmlAttribute attr in wavItem.Attributes)
+                    {
+                        string attrName = attr.Name;
+                        string firstString = attrName.Substring (0,1) ;
+                        attrName = firstString.ToUpper() + attrName.Substring(1, attrName.Length - 1);
+                        attrName.ToUpperInvariant();
+                        Console.WriteLine("name " + attr.Value);
+                        XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newWavClip, attrName, attr.Value);
+                    }
+                }
+
+                
+            }
+
+            //change the root uri to null
+            XmlNode newPresentations = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "Presentations", null);
+            XmlNode newObiPresentation = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "ObiPresentation", null);
+            newObiPresentation.Attributes.GetNamedItem("RootUri").Value = "" ;
+
+            UpdateRegisteredTypes(destXmlDoc);
+            ImportMetadatas(sourceXmlDoc, destXmlDoc);
+
+            //import the section and phrase tree from the rootnode
+            XmlNode oldRootNode  = XmlDocumentHelper.GetFirstChildElementWithName(sourceXmlDoc.DocumentElement, true, "mRootNode", null);
+            XmlNode oldRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(oldRootNode, true, "mChildren", oldRootNode.NamespaceURI);
+
+            XmlNode newRootNode = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "RootNode", null);
+            XmlNode newRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "Children", newRootNode.NamespaceURI);
+            XmlNode namespaceNode= XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "root", null);
+
+            ParseAndCreateObiTree(oldRootChildrenContainer, newRootChildrenContainer, namespaceNode, newRootNode);
+WriteXmlDocumentToFile (destXmlDoc, m_Destination ) ;
+sourceXmlDoc = null;
+destXmlDoc = null;
+RenameProjectFilesAfterOperation();
+        }
+
+        private void ImportMetadatas(XmlDocument sourceXmlDoc, XmlDocument destXmlDoc)
+        {
+            XmlNode OldMetadataParent = XmlDocumentHelper.GetFirstChildElementWithName(sourceXmlDoc.DocumentElement, true, "mMetadata", null);
+            XmlNode newMetadatas = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "Metadatas", null);
+
+            //foreach (XmlNode childToRemove in newMetadatas.ChildNodes) newMetadatas.RemoveChild(childToRemove);
+            Dictionary<string, XmlNode> existingMetadataAttributeNode = new Dictionary<string, XmlNode>();
+            foreach (XmlNode newMetadataAttributeItem in XmlDocumentHelper.GetChildrenElementsWithName(newMetadatas, true, "MetadataAttribute", null, false)) 
+                existingMetadataAttributeNode.Add(newMetadataAttributeItem.Attributes.GetNamedItem("Name").Value, newMetadataAttributeItem);
+
+            foreach (XmlNode metadataItem in XmlDocumentHelper.GetChildrenElementsWithName(OldMetadataParent, true, "Metadata", OldMetadataParent.NamespaceURI, false))
+            {
+                if (existingMetadataAttributeNode.ContainsKey(metadataItem.Attributes.GetNamedItem("name").Value))
+                {
+                    existingMetadataAttributeNode[metadataItem.Attributes.GetNamedItem("name").Value].Attributes.GetNamedItem("Value").Value = metadataItem.Attributes.GetNamedItem("content").Value;
+                    //System.Windows.Forms.MessageBox.Show(metadataItem.Attributes.GetNamedItem("name").Value);
+                }
+                else
+                {
+                    // create new metadata node in dest document
+                    XmlNode newMetadata = destXmlDoc.CreateElement("Metadata", newMetadatas.NamespaceURI);
+                    newMetadatas.AppendChild(newMetadata);
+                    XmlNode newMetadataAttribute = destXmlDoc.CreateElement("MetadataAttribute");
+                    newMetadata.AppendChild(newMetadataAttribute);
+
+                    XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Name", metadataItem.Attributes.GetNamedItem("name").Value);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Value", metadataItem.Attributes.GetNamedItem("content").Value);
+                }
+            }
+
+        }
+
+        private void UpdateRegisteredTypes(XmlDocument destXmlDoc)
+        {
+            XmlNode treeNodeFactory = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "TreeNodeFactory", null);
+            XmlNode refRootNode = null;
+            foreach (XmlNode typeNode in XmlDocumentHelper.GetChildrenElementsWithName(treeNodeFactory, true,"Type",null,false ) )
+            {
+                if (typeNode.Attributes.GetNamedItem("XukLocalName").Value == "root")
+                {
+                    refRootNode = typeNode;
+                    break;
+                }
+            }
+
+            //create section type
+            XmlNode sectionNode = refRootNode.CloneNode(true);
+            sectionNode.Attributes.GetNamedItem("XukLocalName").Value = "section";
+            sectionNode.Attributes.GetNamedItem("FullName").Value = "Obi.SectionNode";
+            refRootNode.ParentNode.AppendChild(sectionNode);
+
+            //create empty type
+            XmlNode emptyNode = refRootNode.CloneNode(true);
+            emptyNode.Attributes.GetNamedItem("XukLocalName").Value = "empty";
+            emptyNode.Attributes.GetNamedItem("FullName").Value = "Obi.EmptyNode";
+            refRootNode.ParentNode.AppendChild(emptyNode);
+
+            //Create type for phrase
+            XmlNode phraseNode = refRootNode.CloneNode(true);
+            phraseNode.Attributes.GetNamedItem("XukLocalName").Value = "phrase";
+            
+            XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, phraseNode, "BaseXukLocalName", "empty");
+            XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, phraseNode, "BaseXukNamespaceUri", "http://www.daisy.org/urakawa/obi");
+            phraseNode.Attributes.GetNamedItem("FullName").Value = "Obi.PhraseNode";
+            refRootNode.ParentNode.AppendChild(phraseNode);
+
+        }
+
+        private void ParseAndCreateObiTree(XmlNode oldNode, XmlNode newNode, XmlNode nameSpaceNode, XmlNode urakawaNodeNamespace)
+        {
+            if (oldNode.ChildNodes.Count > 0)
+            {
+                foreach (XmlNode oldChild in oldNode.ChildNodes)
+                {//1
+                    if (oldChild is XmlElement )
+                    {//2
+                        XmlNode newChild = null;
+                        
+                            newChild = newNode.OwnerDocument.CreateElement(GetNewElementName(oldChild.Name), 
+                                oldChild.LocalName=="section" || oldChild.LocalName== "phrase" || oldChild.LocalName== "empty"?  nameSpaceNode.NamespaceURI: urakawaNodeNamespace.NamespaceURI);
+                            newNode.AppendChild(newChild);
+                        
+
+                        foreach (XmlAttribute attr in oldChild.Attributes)
+                        {//3
+                            //if (attr.Name == "xmlns" && attr.Value == "http://www.daisy.org/urakawa/xuk/1.0") continue;
+                            if (attr.Name == "xmlns" ) continue;
+                            //{//4
+                                if (oldChild.LocalName == "mChannelMapping" && attr.Name == "channel")
+                                {//5
+                                    XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild, "Channel", attr.Value == "CHID0000" ? "CH00001" : "CH00000");
+                                }//-5
+                                else
+                                    XmlDocumentHelper.CreateAppendXmlAttribute(newNode.OwnerDocument, newChild,GetNewAttributeName (attr.Name), attr.Value);
+                            //}//-4
+                        }//-3
+                        
+                        ParseAndCreateObiTree(oldChild, newChild, nameSpaceNode, urakawaNodeNamespace);
+                    }//-2
+                    else if (oldChild is XmlText)
+                    {//2
+                        XmlText newChild = newNode.OwnerDocument.CreateTextNode(oldChild.InnerText);
+                        newNode.AppendChild(newChild);
+                    }//-2
+                }//-1
+            }
+            else
+            {
+                return;
+            }
+
+        }
+
+        private void RenameProjectFilesAfterOperation()
+        {
+            string oldProjectPath = Path.Combine(Path.GetDirectoryName(m_Source), "Old_" + Path.GetFileName(m_Source));
+            File.Move(m_Source, oldProjectPath);
+            // rename new file to project file name
+            File.Move(m_Destination, m_Source);
+        }
+
+        public static void WriteXmlDocumentToFile(XmlDocument xmlDoc, string path)
+        {
+            XmlTextWriter writer = null;
+            try
+            {
+                writer = new XmlTextWriter(path, null);
+                writer.Formatting = Formatting.Indented;
+                xmlDoc.Save(writer);
+            }
+            finally
+            {
+                writer.Close();
+                writer = null;
+            }
+        }
+
+    }
+}
