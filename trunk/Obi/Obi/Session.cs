@@ -353,11 +353,15 @@ namespace Obi
                     precautionBackupFilePath = CreatePrecautionBackupBeforeSave( path);
                     // Make sure that saving is finished before returning
                     System.Threading.EventWaitHandle wh = new System.Threading.AutoResetEvent(false);
+                    System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+                    stopWatch.Start();
                     urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path));
                     save.Finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
         (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
                 save.Execute ();
                 wh.WaitOne ();
+                stopWatch.Stop();
+                Console.WriteLine("Time consumed in saving (in milliseconds) " + stopWatch.ElapsedMilliseconds);
                 }
             catch (System.Exception ex)
                 {
