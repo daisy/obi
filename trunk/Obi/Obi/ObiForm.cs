@@ -1735,6 +1735,8 @@ namespace Obi
             }
             else
             {
+                System.Diagnostics.Stopwatch stopWatch = new Stopwatch();
+                Stopwatch.StartNew();
                 mProjectView.Presentation = mSession.Presentation;
                 UpdateObi();
                 mSession.Presentation.UndoRedoManager.CommandDone += new EventHandler<urakawa.events.undo.DoneEventArgs>(ObiForm_commandDone);
@@ -1745,6 +1747,8 @@ namespace Obi
                 mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);//@singleSection
                 if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                 m_CanAutoSave = true; //@singleSection
+                stopWatch.Stop();
+                Console.WriteLine("Time taken to create section and phrase blocks (in milliseconds) " + stopWatch.ElapsedMilliseconds);
             }
         }
 
