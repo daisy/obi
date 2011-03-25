@@ -87,8 +87,21 @@ namespace Obi.ProjectView
                         worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                         {
                             ColorSettings settings = mBlock.ColorSettings;
+                            System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
+                            if (ramPerformanceCounter.NextValue() < 100)
+                            {
+                                Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
+                                
+                                System.GC.GetTotalMemory(true);
+                                System.GC.WaitForFullGCComplete(500);
+                                float availableRAM = ramPerformanceCounter.NextValue();
+                                Console.WriteLine("RAM after collection " + availableRAM.ToString());
+                            }
+                            ramPerformanceCounter.Close();
+
                             mBitmap = CreateBitmap(mBlock.ColorSettings, false);
                             if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
+                            
                         });
                         worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                         {
@@ -107,6 +120,11 @@ namespace Obi.ProjectView
                 {
                     mBitmap.Dispose();
                     mBitmap = null;
+                }
+                if (mBitmap_Highlighted  != null)
+                {
+                    mBitmap_Highlighted.Dispose();
+                    mBitmap_Highlighted = null;
                 }
                 return null;
             }
