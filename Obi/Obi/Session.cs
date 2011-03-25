@@ -271,12 +271,14 @@ namespace Obi
 
             //sdk2
             //mProject.openXUK ( new Uri ( path ) );
-
+            System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             OpenXukAction action = new OpenXukAction(mProject, new Uri(path));
             action.ShortDescription = "DUMMY";
             action.LongDescription = "DUMMY";
             action.Execute();
-
+            stopWatch.Stop();
+            Console.WriteLine("Time taken for xuk-in in milliseconds " + stopWatch.ElapsedMilliseconds);
             //Presentation = mProject.Presentations.Get(0);
 
             mPath = path;
