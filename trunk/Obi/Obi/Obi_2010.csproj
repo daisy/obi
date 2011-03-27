@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1553F3D3-A820-400E-9B98-BCCA970E1D58}</ProjectGuid>
+    <ProjectGuid>{8144F6D8-B315-43FE-BD90-A374932B4C02}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Obi</RootNamespace>
@@ -97,12 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioDevice.cs" />
     <Compile Include="Audio\AudioFormatConverter.cs" />
-    <Compile Include="Audio\AudioPlayer.cs" />
-    <Compile Include="Audio\AudioRecorder.cs" />
-    <Compile Include="Audio\DataManager.cs" />
-    <Compile Include="Audio\ObiCalculationFunctions.cs" />
     <Compile Include="Audio\PeakMeterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,9 +105,6 @@
       <DependentUpon>PeakMeterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Audio\PhraseDetection.cs" />
-    <Compile Include="Audio\VuMeter.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ColorSettings.cs" />
     <Compile Include="Commands\AddRemoveCustomType.cs" />
     <Compile Include="Commands\Audio\Copy.cs" />
@@ -295,11 +287,12 @@
     <Compile Include="Events\Strip\ImportAssetEventArgs.cs" />
     <Compile Include="Events\Audio\Recorder\PhraseEventArgs.cs" />
     <Compile Include="Events\Strip\UpdateTimeEventArgs.cs" />
-    <Compile Include="Export\DAISY202Export.cs" />
-    <Compile Include="Export\DAISY3_ObiExport.cs" />
-    <Compile Include="Export\XslResolver.cs" />
-    <Compile Include="Export\Z.cs" />
-    <Compile Include="ImportStructure.cs" />
+    <Compile Include="ImportExport\DAISY202Export.cs" />
+    <Compile Include="ImportExport\DAISY3_ObiExport.cs" />
+    <Compile Include="ImportExport\DAISY3_ObiImport.cs" />
+    <Compile Include="ImportExport\ImportStructure.cs" />
+    <Compile Include="ImportExport\XslResolver.cs" />
+    <Compile Include="ImportExport\Z.cs" />
     <Compile Include="KeyboardShortcuts_Settings.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -379,6 +372,7 @@
     <Compile Include="Presentation.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectUpgrader.cs" />
     <Compile Include="ProjectView\Block.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -798,21 +792,6 @@
     <Content Include="about_hi.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Export\filter.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Export\ncx.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Export\package.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Export\smil.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Export\Z.xslt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="FindBarCollapse.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -867,6 +846,11 @@
     <Content Include="images\obird_right_48.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ImportExport\filter.xslt" />
+    <Content Include="ImportExport\ncx.xslt" />
+    <Content Include="ImportExport\package.xslt" />
+    <Content Include="ImportExport\smil.xslt" />
+    <Content Include="ImportExport\Z.xslt" />
     <Content Include="low.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -900,6 +884,9 @@
       <Project>{69E083B4-AC97-4416-B7D4-61DEBA8A910D}</Project>
       <Name>UrakawaSDK.daisy</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Export\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
