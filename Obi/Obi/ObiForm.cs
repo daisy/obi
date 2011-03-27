@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using urakawa.core;
 using urakawa.data;
-using PipelineInterface;
+using Obi.PipelineInterface;
 
 
 namespace Obi
