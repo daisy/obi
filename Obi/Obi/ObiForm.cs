@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using urakawa.core;
 using urakawa.data;
-using Obi.PipelineInterface;
+using PipelineInterface;
 
 
 namespace Obi
@@ -38,7 +38,7 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-        
+       
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
         /// </summary>
@@ -582,8 +582,10 @@ namespace Obi
         // If a project is open and unsaved, ask about what to do.
         private bool DidCloseProject ()
             {
+                
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-            CheckForBookmarkNode();
+       //     CheckForBookmarkNode();
+            
             if (!mSession.CanClose)
                 {
                 DialogResult result = MessageBox.Show ( Localizer.Message ( "closed_project_text" ),
@@ -591,8 +593,7 @@ namespace Obi
                     MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question );
                 if (result == DialogResult.Cancel) return false;
-                if (result == DialogResult.Yes) mSession.Save ();          
-               
+                if (result == DialogResult.Yes) mSession.Save ();                         
                 }
             mSession.Close ();
             return true;
@@ -2178,7 +2179,8 @@ namespace Obi
         /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing ( object sender, FormClosingEventArgs e )
             {
-                CheckForBookmarkNode();
+            CheckForBookmarkNode();
+      
             if (mProjectView != null) mProjectView.TransportBar.Stop ();
             if (DidCloseProject ())
                 {
@@ -2911,8 +2913,15 @@ namespace Obi
             if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
             {
                 ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
-                mSession.PresentationHasChanged(1);
-                UpdateTitleAndStatusBar();
+                if (mSession.CanSave == false)
+                {            
+                    mSession.PresentationHasChanged(1);
+                    mSession.Save();
+                }
+                else
+                    mSession.PresentationHasChanged(1);
+                UpdateMenus();
+                UpdateTitleAndStatusBar();             
             }
         }
 
