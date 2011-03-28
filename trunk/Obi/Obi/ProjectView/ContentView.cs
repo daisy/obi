@@ -3538,15 +3538,55 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
         }
 
         private bool CanUseKeys { get { return (mSelection == null || !(mSelection is TextSelection)) && !m_IsBlocksVisibilityProcessActive; } }
-
+        
         protected override bool ProcessCmdKey ( ref Message msg, Keys key )
             {
+                if (ShouldSkipKeyDueToMemoryOverload(key)) return true;
             if (CanUseKeys &&
                 ((msg.Msg == ProjectView.WM_KEYDOWN) || (msg.Msg == ProjectView.WM_SYSKEYDOWN)) &&
                 mShortcutKeys.ContainsKey ( key ) && mShortcutKeys[key] ()) return true;
             if (ProcessTabKeyInContentsView ( key )) return true;
             return base.ProcessCmdKey ( ref msg, key );
             }
+
+            int m_KeysMillisecond = 0;
+            Keys m_PrevKey;
+            int m_KeyRepeatCount = 0;
+        private bool ShouldSkipKeyDueToMemoryOverload(Keys key)
+        {
+            if (m_PrevKey.ToString() == key.ToString())
+            {
+                m_KeyRepeatCount++;
+
+                if (m_KeyRepeatCount > 50)
+                {
+                    System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
+
+                    Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
+                    if (ramPerformanceCounter.NextValue() < 100
+                        && Math.Abs(DateTime.Now.Second - m_KeysMillisecond) < 2)
+                    {
+                        m_KeysMillisecond = DateTime.Now.Second;
+                        m_PrevKey = key;
+                        Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
+                        System.GC.GetTotalMemory(true);
+                        System.GC.WaitForFullGCComplete(500);
+                        System.Media.SystemSounds.Beep.Play();
+                        return true;
+                    }
+                    ramPerformanceCounter.Close();
+                    m_KeyRepeatCount = 0;
+                }
+
+            }
+            else if (m_KeyRepeatCount > 75)
+            {
+                m_KeyRepeatCount = 0;
+            }
+            m_KeysMillisecond = DateTime.Now.Second;
+            m_PrevKey = key;
+            return false;
+        }
 
         // Get the strip for the currently selected component (i.e. the strip itself, or the parent strip
         // for a block.)
