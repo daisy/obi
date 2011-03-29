@@ -72,9 +72,9 @@ namespace Obi.UserControls
             m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
             m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
-                this.Text = "Obi recorder bar : [" + m_TransportBar.RecordingSection.Label.ToString() + "]";
+                this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
-                this.Text = "Obi recorder bar : [" + m_TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label.ToString() + "]";
+                this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label.ToString());               
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
                 m_recordingToolBarPlayBtn.Image = m_PauseImg;
@@ -97,7 +97,7 @@ namespace Obi.UserControls
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {            
                 m_TransportBar.Pause();
-                m_StatusLabel.Text = "Paused";                  
+                m_StatusLabel.Text = Localizer.Message("Paused");                  
             }
           else
             {             
@@ -111,7 +111,7 @@ namespace Obi.UserControls
         {
             m_TimeCounter = 0;
             m_TransportBar.Stop();
-            m_StatusLabel.Text = "Stopped";
+            m_StatusLabel.Text = Localizer.Message("Stopped");
             timer1.Stop();
             UpdateButtons();
         }
@@ -122,7 +122,7 @@ namespace Obi.UserControls
              m_TransportBar.Record();
                    
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
-                m_StatusLabel.Text = "Monitoring";          
+                m_StatusLabel.Text = Localizer.Message("monitoring_short");          
                        
             if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring))
             {
@@ -140,7 +140,7 @@ namespace Obi.UserControls
 
         private void m_recordingGoToNextPhraseBtn_Click(object sender, EventArgs e)
         {
-            m_strStatus = "New phrase ";                    
+            m_strStatus = Localizer.Message("RecToolbar_NewPhrase");                    
             m_TransportBar.NextPhrase();
             m_Count = 0;
             timer1.Start();
@@ -149,14 +149,14 @@ namespace Obi.UserControls
 
         private void m_recordingToolBarNextPageBtn_Click(object sender, EventArgs e)
         {
-            m_strStatus = "New page ";            
+            m_strStatus = Localizer.Message("RecToolbar_NewPage");  
             m_TransportBar.NextPage();
             timer1.Start();       
         }
 
         private void m_recordingToolBarNextSectionBtn_Click(object sender, EventArgs e)
         {
-            m_strStatus = "New section ";            
+            m_strStatus = Localizer.Message("RecToolbar_NewSection");  
             m_Count = 0;
             m_TransportBar.NextSection();
             UpdateButtons();
@@ -191,12 +191,12 @@ namespace Obi.UserControls
 
                     if (m_strStatus == "")
                     {
-                        m_StatusLabel.Text = String.Format("Recording {0} {1}", recordingPhrase, format(timeOfAssetMilliseconds));                    
+                        m_StatusLabel.Text = String.Format(Localizer.Message("RecToolbar_Recording"), recordingPhrase, format(timeOfAssetMilliseconds));                    
                     }
                    
                     if (m_Count <= 3)
                     {
-                        if (m_strStatus == "New phrase " || m_strStatus == "Marked TODO " || m_strStatus == "New section ")
+                        if (m_strStatus == Localizer.Message("RecToolbar_NewPhrase") || m_strStatus == Localizer.Message("RecToolbar_MarkedTODO") || m_strStatus == Localizer.Message("RecToolbar_NewSection"))
                         {
                             m_StatusLabel.Text = m_strStatus + format(timeOfAssetMilliseconds);
                             m_Count++;
@@ -209,10 +209,10 @@ namespace Obi.UserControls
                     m_StatusLabel.Text = "";
             }
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
-                m_StatusLabel.Text = "Monitoring";
+                m_StatusLabel.Text = Localizer.Message("monitoring_short");
             if (m_TransportBar.CurrentPlaylist.CurrentTimeInAsset == 0 && !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) && !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&!(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)) 
                 {
-                    m_StatusLabel.Text = "Stopped";
+                    m_StatusLabel.Text = Localizer.Message("Stopped");
                     timer1.Stop();
                 }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
@@ -225,7 +225,7 @@ namespace Obi.UserControls
 
         private void m_TODOBtn_Click(object sender, EventArgs e)
         {
-            m_strStatus = "Marked TODO ";
+            m_strStatus = Localizer.Message("RecToolbar_MarkedTODO");
             m_Count = 0;
             m_TransportBar.MarkTodo();           
         }        
