@@ -11,6 +11,7 @@ namespace Obi.Dialogs
     public delegate void TimeTakingOperation();
     public delegate void TimeTakingOperation_Cancelable ( ProgressDialog progress);//@singleSection
 
+    public delegate void OperationCancelledHandler(object sender, EventArgs e);
     /// <summary>
     /// Base progress dialog to open when a long operation is in progress.
     /// </summary>
@@ -20,6 +21,8 @@ namespace Obi.Dialogs
         private TimeTakingOperation mOperation;
         private TimeTakingOperation_Cancelable mOperation_Cancelable; //@singleSection
         private bool m_IsCancelled;//@singleSection
+
+        public event OperationCancelledHandler OperationCancelled;
 
         /// <summary>
         /// Create the progress dialog.
@@ -95,6 +98,7 @@ namespace Obi.Dialogs
         private void m_BtnCancel_Click(object sender, EventArgs e)
         {
             m_IsCancelled = true;
+            if ( OperationCancelled != null ) OperationCancelled ( this, new EventArgs ()) ;
             m_lbWaitForCancellation.Visible = true;
             this.mProgressBar.Location = new System.Drawing.Point(4,34);
         }  

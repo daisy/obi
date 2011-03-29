@@ -2355,11 +2355,12 @@ namespace Obi.ProjectView
                     CompositeCommand command = null;
                     ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
-                        delegate ()
+                        delegate(Dialogs.ProgressDialog progress1)
                             {
                             command = Commands.Node.SplitAudio.GetPhraseDetectionCommand ( this, phraseDetectionNode,
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
                     progress.ShowDialog ();
                     ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     mPresentation.Do ( command );
@@ -2445,6 +2446,7 @@ namespace Obi.ProjectView
                                     }
                                 }
                             } );
+                    progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate ( object sender   , EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
                     progress.ShowDialog ();
                     ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     //MessageBox.Show ( "Scanning of all files complete " );
