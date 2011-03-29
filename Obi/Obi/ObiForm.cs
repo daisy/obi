@@ -2904,6 +2904,7 @@ namespace Obi
 
         private void CheckForSelectedNodeInBookmark()
         {
+            if (mProjectView.Presentation == null) return;
             ObiNode newBookMarkedNode = null;
             if (mProjectView.Selection is StripIndexSelection)
                 newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;

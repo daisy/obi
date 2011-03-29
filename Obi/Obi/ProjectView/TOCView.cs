@@ -619,7 +619,7 @@ namespace Obi.ProjectView
 
         private void PaintSelectedNode(bool isSelected)
         {
-            if (mSelection != null && mSelection.Node != null
+            if (mProjectView.Presentation != null   &&    mSelection != null && mSelection.Node != null
                 && mProjectView.Presentation.RootNode != mSelection.Node.Presentation.RootNode)
                 mSelection = null;
 
