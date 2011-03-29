@@ -217,7 +217,9 @@ namespace Obi.UserControls
                 }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
                 {
-                    m_StatusLabel.Text = String.Format("Playing {0} {1} ", m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(), format(++m_TransportBar.CurrentPlaylist.CurrentTimeInAsset));
+                    m_StatusLabel.Text = String.Format(Localizer.Message( "RecordingToolBar_StatusPlaying"), 
+                        m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(), 
+                        format(m_TransportBar.CurrentPlaylist.CurrentTimeInAsset));
                 }      
         }
 
