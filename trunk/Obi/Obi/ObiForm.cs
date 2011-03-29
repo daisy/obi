@@ -601,7 +601,8 @@ namespace Obi
 
         private void CheckForBookmarkNode()
         {
-            if (mProjectView.Selection != null && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
+            if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
+                && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
             {
                 DialogResult resultBookmark = MessageBox.Show("The currently selection node is not same as saved bookmarked node. Do you want to save the last selected node as bookmark node", "Check Bookmark", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultBookmark == DialogResult.Yes)

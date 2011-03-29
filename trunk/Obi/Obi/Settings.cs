@@ -57,6 +57,7 @@ namespace Obi
         public int Export_BitRateMP3;
         public bool CropAudio;
         public bool SaveBookmarkNode;
+        public bool RetainInitialSilenceInPhraseDetection;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
 
@@ -107,6 +108,7 @@ namespace Obi
             settings.Export_BitRateMP3 = 64;
             settings.CropAudio = false;
             settings.SaveBookmarkNode = false;
+            settings.RetainInitialSilenceInPhraseDetection = true;
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
