@@ -1791,4 +1791,25 @@ Error text: {1}</value>
   <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
     <value>Playing {0} {1} </value>
   </data>
+  <data name="import_output_path" xml:space="preserve">
+    <value>The imported project lies at {0}</value>
+  </data>
+  <data name="RecToolbar_MarkedTODO" xml:space="preserve">
+    <value>Marked TODO</value>
+  </data>
+  <data name="RecToolbar_NewPage" xml:space="preserve">
+    <value>New page</value>
+  </data>
+  <data name="RecToolbar_NewPhrase" xml:space="preserve">
+    <value>New phrase </value>
+  </data>
+  <data name="RecToolbar_NewSection" xml:space="preserve">
+    <value>New section</value>
+  </data>
+  <data name="RecToolbar_Recording" xml:space="preserve">
+    <value>Recording {0} {1}</value>
+  </data>
+  <data name="RecToolbar_Title" xml:space="preserve">
+    <value>Obi recorder bar : [{0}]</value>
+  </data>
 </root>
