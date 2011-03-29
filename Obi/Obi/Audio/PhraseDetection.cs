@@ -24,6 +24,16 @@ namespace Obi.Audio
             set { AudioLib.PhraseDetection.CancelOperation = value; }
         }
 
+        private static bool m_RetainSilenceInBeginningOfPhrase = true;
+        /// <summary>
+        /// Retains silence in beginning of phrase as the first phrase created after phrase detection
+        /// </summary>
+        public static     bool RetainSilenceInBeginningOfPhrase
+        {
+            get { return m_RetainSilenceInBeginningOfPhrase; }
+            set { m_RetainSilenceInBeginningOfPhrase = value; }
+        }
+
         // NewDetection
         /// <summary>
         /// Detects the maximum size of noise level in a silent sample file
@@ -71,7 +81,7 @@ namespace Obi.Audio
                     detectedAudioMediaList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
-
+                 if ( RetainSilenceInBeginningOfPhrase ) detectedAudioMediaList.Insert(0,audio);
             }
 
             return detectedAudioMediaList;

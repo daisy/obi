@@ -2348,6 +2348,7 @@ namespace Obi.ProjectView
                 Dialogs.SentenceDetection dialog = new Obi.Dialogs.SentenceDetection ( node as PhraseNode );
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
+                        Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
                     bool playbackOnSelectionChangedStatus = TransportBar.SelectionChangedPlaybackEnabled;
                     TransportBar.SelectionChangedPlaybackEnabled = false;
                     ObiNode phraseDetectionNode = Selection.Node ;
@@ -2429,6 +2430,7 @@ namespace Obi.ProjectView
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)
                             {
+                                Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
                             for (int i = 0; i < sectionsList.Count; i++)
                                 {
                                     if (progress1.CancelOperation)
