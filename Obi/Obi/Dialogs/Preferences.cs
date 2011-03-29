@@ -129,7 +129,7 @@ namespace Obi.Dialogs
             if (this.mTab.SelectedTab == mAudioTab)
             {
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
-                m_CheckBoxListView.Items[1].Checked = mSettings.CropAudio;
+                m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
             }
             }
 
@@ -206,10 +206,22 @@ namespace Obi.Dialogs
             {
             
             bool returnVal = true;
+            string [] getFiles = null;
+            string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
             if (System.IO.Directory.Exists ( mDirectoryTextbox.Text )
                 && System.IO.Directory.Exists ( mPipelineTextbox.Text ))
                 {
-                    string[] getFiles = System.IO.Directory.GetFiles(mPipelineTextbox.Text, "*.taskScript", System.IO.SearchOption.AllDirectories); 
+                foreach (string drive in logicalDrives)
+                        {
+                            if (mPipelineTextbox.Text == drive || mPipelineTextbox.Text == Environment.GetEnvironmentVariable("windir").ToString() || mPipelineTextbox.Text == Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) )
+                            {
+                                MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
+                                return false;
+                            }
+                            else
+                                getFiles = System.IO.Directory.GetFiles(mPipelineTextbox.Text, "*.taskScript", System.IO.SearchOption.AllDirectories);
+                        }
+                   
                 if (ObiForm.CheckProjectDirectory_Safe ( mDirectoryTextbox.Text, false ))
                     mSettings.DefaultPath = mDirectoryTextbox.Text;
                 if (getFiles.Length > 0)
@@ -218,8 +230,9 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(Localizer.Message("Preferences_PipelineScriptNotFound"));
                     returnVal = false;
-                }
-                }
+                }                
+             }
+
             else
                 {
                 if(!System.IO.Directory.Exists(mDirectoryTextbox.Text))
@@ -527,7 +540,7 @@ namespace Obi.Dialogs
             if (mTab.SelectedTab == mAudioTab)
             {
                 mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
-                mSettings.CropAudio = m_CheckBoxListView.Items[1].Checked;
+                mSettings.RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
             }
         }
 
@@ -541,20 +554,20 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Size = new Size(267, 60);
                 m_CheckBoxListView.Location = new Point(185, 270);
                 m_CheckBoxListView.Items.Add("Audio clues");
-                m_CheckBoxListView.Items.Add("Crop silence phrase");
+                m_CheckBoxListView.Items.Add("Retain Initial Silence");
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
-                m_CheckBoxListView.Items[1].Checked = mSettings.CropAudio;
+                m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
                 m_CheckBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(267, 80);
+                m_CheckBoxListView.Size = new Size(283, 80);
                 m_CheckBoxListView.Location = new Point(192, 200);
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
-                m_CheckBoxListView.Items.Add("Save bookmark node");
+                m_CheckBoxListView.Items.Add("Open bookmark node when project reopens");
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
