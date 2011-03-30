@@ -333,9 +333,9 @@ namespace Obi.ProjectView
                         (SectionNode)bookMarkedNode :
                         bookMarkedNode.ParentAs<SectionNode>();
                 }
-                AddStripForSection_Safe(mProjectView.Presentation.FirstSection);
+                AddStripForSection_Safe(sectionToDisplay);
                 mProjectView.SynchronizeViews = false;
-                contentViewLabel1.Name_SectionDisplayed = mProjectView.Presentation.FirstSection.Label; //@singleSection
+                contentViewLabel1.Name_SectionDisplayed = sectionToDisplay.Label; //@singleSection
                 IsScrollActive = false; //@singleSection
 
             }
