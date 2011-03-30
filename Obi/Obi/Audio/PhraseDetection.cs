@@ -81,7 +81,7 @@ namespace Obi.Audio
                     detectedAudioMediaList.Insert(0, splitAsset);
                     //MessageBox.Show(Convert.ToDouble(alPhrases[i]).ToString());
                 }
-                 if ( RetainSilenceInBeginningOfPhrase ) detectedAudioMediaList.Insert(0,audio);
+                if (RetainSilenceInBeginningOfPhrase && audio.Duration.AsTimeSpan.TotalMilliseconds > 200 ) detectedAudioMediaList.Insert(0, audio);
             }
 
             return detectedAudioMediaList;
