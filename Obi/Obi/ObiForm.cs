@@ -638,7 +638,7 @@ namespace Obi
                                 cleaner.Cleanup();
 
                                 List<string> listOfDataProviderFiles = new List<string>();
-                foreach (DataProvider dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_YieldEnumerable)
+                                foreach (DataProvider dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_Enumerable)
                 {
                     FileDataProvider fileDataProvider = dataProvider as FileDataProvider;
                     if (fileDataProvider == null) continue;
