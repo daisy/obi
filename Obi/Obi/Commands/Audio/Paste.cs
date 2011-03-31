@@ -21,7 +21,7 @@ namespace Obi.Commands.Audio
         {
             mNode = view.SelectedNodeAs<PhraseNode>();
             AudioSelection selection = (AudioSelection)view.Selection;
-            mMediaBefore = mNode.Audio;
+            mMediaBefore = mNode.Audio.Copy();
             mMediaAfter = mMediaBefore.Copy();
             urakawa.media.data.audio.ManagedAudioMedia copy;
             if (view.Clipboard is AudioClipboard)
@@ -65,6 +65,8 @@ namespace Obi.Commands.Audio
                 List<MediaData> mediaList = new List<MediaData>();
                 if (mMediaAfter != null)
                     mediaList.Add(mMediaAfter.MediaData);
+                if (mMediaBefore != null)
+                    mediaList.Add(mMediaBefore.MediaData);
 
                 return mediaList;
             }
