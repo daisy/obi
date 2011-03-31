@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTDs", "..\..\..\urakawa-sd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioLib", "..\..\..\urakawa-sdk\trunk\csharp\audio\AudioLib\AudioLib.csproj", "{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipelineInterface", "PipelineInterface\PipelineInterface.csproj", "{DDEB9FA1-8435-456F-91E8-3C23125BE427}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,18 @@ Global
 		{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}.test|Any CPU.ActiveCfg = Release|Any CPU
 		{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}.test|Any CPU.Build.0 = Release|Any CPU
 		{6EE8E00A-DB7C-41A7-BC66-527CB4C08D83}.test|x86.ActiveCfg = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Minimal Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Minimal Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Minimal Debug|x86.ActiveCfg = Debug|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.Release|x86.ActiveCfg = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.test|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.test|Any CPU.Build.0 = Release|Any CPU
+		{DDEB9FA1-8435-456F-91E8-3C23125BE427}.test|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

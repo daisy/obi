@@ -2142,8 +2142,20 @@ namespace Obi
         /// Show the state of the transport bar in the status bar.
         /// </summary>
         void TransportBar_StateChanged ( object sender, EventArgs e )
+        {
+            TransportBar_StateChanged();
+        }
+
+        private delegate void TransportBar_StateChanged_Delegate();
+        void TransportBar_StateChanged()
+        {
+
+            if (this.InvokeRequired)
             {
-           CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
+                this.Invoke(new TransportBar_StateChanged_Delegate(TransportBar_StateChanged));
+                return;
+            }
+        CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
            string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive ? (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange!= null  && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor ? mProjectView.Selection.ToString() : mProjectView.TransportBar.PlaybackPhrase.ToString()) + "--" + mProjectView.TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label : 
                 (mProjectView.TransportBar.IsRecorderActive && mProjectView.TransportBar.RecordingPhrase != null? mProjectView.TransportBar.RecordingPhrase.ToString() : "" ) ;
             Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );

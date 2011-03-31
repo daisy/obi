@@ -48,6 +48,17 @@ namespace Obi.UserControls
             }
             set
             {
+                if (m_VuMeter != null)
+                {
+                    m_VuMeter.PeakMeterOverloaded -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                    m_VuMeter.PeakMeterUpdated -= new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+
+                    m_VuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(VuMeter_ResetEvent);
+
+                    m_VuMeter.LevelTooLowEvent -= new AudioLib.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
+                    m_VuMeter.LevelGoodEvent -= new AudioLib.VuMeter.LevelGoodHandler(PlayLevelGoodSound);
+
+                }
                 m_VuMeter = value;
 
                 if (m_VuMeter  != null)
@@ -58,7 +69,6 @@ namespace Obi.UserControls
 
                     m_VuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(VuMeter_ResetEvent);
 
-//TODO: implement these !!
 m_VuMeter.LevelTooLowEvent += new AudioLib.VuMeter.LevelTooLowHandler(CatchLevelTooLowEvent);
 m_VuMeter.LevelGoodEvent += new AudioLib.VuMeter.LevelGoodHandler ( PlayLevelGoodSound );
 
@@ -72,30 +82,30 @@ m_VuMeter.LevelGoodEvent += new AudioLib.VuMeter.LevelGoodHandler ( PlayLevelGoo
 
         public void CatchPeakMeterUpdateEvent(object sender, AudioLib.VuMeter.PeakMeterUpdateEventArgs e)
         {
-            double channelValueLeft = 0;
-            double channelValueRight = 0;
+            //double channelValueLeft = 0;
+            //double channelValueRight = 0;
 
-            if (e.PeakDb != null && e.PeakDb.Length > 0)
-            {
-                channelValueLeft = e.PeakDb[0];
+            //if (e.PeakDb != null && e.PeakDb.Length > 0)
+            //{
+            //    channelValueLeft = e.PeakDb[0];
 
-                if (e.PeakDb.Length > 1)
-                {
-                    channelValueRight = e.PeakDb[1];
-                }
-                else
-                {
-                    channelValueRight = channelValueLeft;
-                }
+            //    if (e.PeakDb.Length > 1)
+            //    {
+            //        channelValueRight = e.PeakDb[1];
+            //    }
+            //    else
+            //    {
+            //        channelValueRight = channelValueLeft;
+            //    }
 
-                if (channelValueLeft == Double.PositiveInfinity
-                    && e.PeakDb.Length > 1
-                    && channelValueRight == Double.PositiveInfinity)
-                {
-                    VuMeter_ResetEvent();
-                    return;
-                }
-            }
+            //    if (channelValueLeft == Double.PositiveInfinity
+            //        && e.PeakDb.Length > 1
+            //        && channelValueRight == Double.PositiveInfinity)
+            //    {
+            //        VuMeter_ResetEvent();
+            //        return;
+            //    }
+            //}
         }
 
         public bool BeepEnable

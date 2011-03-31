@@ -139,6 +139,13 @@ namespace Obi.ProjectView
                 mBitmap.Dispose();
                 mBitmap = null;
             }
+            if (ColorSettings == null)
+            {
+                mBitmap = null;
+                mBitmap_Highlighted = null;
+                Invalidate();
+                return;
+            }
             mBitmap = CreateBaseBitmap(ColorSettings, false);
             mBitmap_Highlighted = CreateBaseBitmap(ColorSettings, true);
             // Invalidate to immediately show the empty bitmaps

@@ -35,13 +35,20 @@ namespace Obi.UserControls
             }
             set
             {
+                if (mVuMeter != null)
+                {
+                    mVuMeter.PeakMeterOverloaded -= new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
+                    mVuMeter.PeakMeterUpdated -= new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
+                    mVuMeter.ResetEvent -= new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
+                   
+                }
                 mVuMeter = value;
 
                 if (mVuMeter != null)
                 {
                     mVuMeter.PeakMeterOverloaded += new AudioLib.VuMeter.PeakOverloadHandler(CatchPeakOverloadEvent);
                     mVuMeter.PeakMeterUpdated += new AudioLib.VuMeter.PeakMeterUpdateHandler(CatchPeakMeterUpdateEvent);
-                    //mVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(CatchResetEvent);
+                    mVuMeter.ResetEvent += new AudioLib.VuMeter.ResetHandler(SourceVuMeter_ResetEvent);
                     setScaleFactor();
                     //tmRefresh.Enabled = false;
                 }
@@ -139,13 +146,13 @@ namespace Obi.UserControls
                     channelValueRight = channelValueLeft;
                 }
 
-                if (channelValueLeft == Double.PositiveInfinity
-                    && e.PeakDb.Length > 1
-                    && channelValueRight == Double.PositiveInfinity)
-                {
-                    CatchResetEvent();
-                    return;
-                }
+                //if (channelValueLeft == Double.PositiveInfinity
+                //    && e.PeakDb.Length > 1
+                //    && channelValueRight == Double.PositiveInfinity)
+                //{
+                //    CatchResetEvent();
+                //    return;
+                //}
             }
 
             // Update erase left and erase right cordinates
@@ -309,6 +316,7 @@ namespace Obi.UserControls
             m_OverloadLightEnabled= true;
         }
 
+        private void SourceVuMeter_ResetEvent(object sender, AudioLib.VuMeter.ResetEventArgs e) { CatchResetEvent(); }
         internal void CatchResetEvent() //object sender, AudioLib.VuMeter.ResetEventArgs ob_VuMeterEvent)
         {
             System.Drawing.Graphics objGraphics;

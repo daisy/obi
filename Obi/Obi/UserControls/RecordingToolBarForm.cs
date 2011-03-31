@@ -37,7 +37,7 @@ namespace Obi.UserControls
         {
             m_TransportBar = transportBar;
             m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
-            m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);                 
+            m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
         }
 
         public void State_Changed_Player(object sender, AudioPlayer.StateChangedEventArgs e)
@@ -51,9 +51,20 @@ namespace Obi.UserControls
             UpdateButtons();
         }
 
+        private delegate void State_Changed_Recorder_Delegate();
         public void State_Changed_Recorder(object sender, AudioRecorder.StateChangedEventArgs e)
-        {          
-            m_TimeCounter = 0;
+        {
+            State_Changed_Recorder();
+        }
+        public void State_Changed_Recorder()
+        {
+
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new State_Changed_Recorder_Delegate(State_Changed_Recorder));
+                return;
+            }
+        m_TimeCounter = 0;
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) 
                 timer1.Start();
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
