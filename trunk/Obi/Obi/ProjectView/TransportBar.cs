@@ -547,8 +547,8 @@ namespace Obi.ProjectView
         // Initialize audio (player, recorder, VU meter.)
         private void InitAudio()
         {
-            mPlayer = new AudioLib.AudioPlayer(true);
-            mPlayer.AllowBackToBackPlayback = true;
+            mPlayer = new AudioLib.AudioPlayer(false);
+            //mPlayer.AllowBackToBackPlayback = true;
             mRecorder = new AudioLib.AudioRecorder();
             mRecorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(Recorder_StateChanged);
             mVuMeter = new AudioLib.VuMeter(mPlayer, mRecorder);
@@ -707,9 +707,20 @@ namespace Obi.ProjectView
             if (mState != State.Stopped) Stop();
         }
 
+        private delegate void Recorder_StateChanged_Delegate();
         // Update state from the recorder.
         private void Recorder_StateChanged(object sender, AudioLib.AudioRecorder.StateChangedEventArgs e)
         {
+            Recorder_StateChanged();
+        }
+        private void Recorder_StateChanged()
+        {
+
+    if (this.InvokeRequired)
+            {
+                this.Invoke(new Recorder_StateChanged_Delegate(Recorder_StateChanged));
+                return;
+            }
             mState = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ? State.Monitoring :
                 mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording ? State.Recording : State.Stopped;
             UpdateButtons();

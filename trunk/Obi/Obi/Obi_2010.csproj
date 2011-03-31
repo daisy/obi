@@ -884,6 +884,10 @@
       <Project>{69E083B4-AC97-4416-B7D4-61DEBA8A910D}</Project>
       <Name>UrakawaSDK.daisy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PipelineInterface\PipelineInterface.csproj">
+      <Project>{DDEB9FA1-8435-456F-91E8-3C23125BE427}</Project>
+      <Name>PipelineInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Export\" />

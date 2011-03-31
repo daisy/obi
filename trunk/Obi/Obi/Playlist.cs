@@ -64,6 +64,8 @@ namespace Obi
         /// </summary>
         public Playlist(AudioPlayer player  , bool IsQAPlaylist )
         {
+            resetEndOfAudioTimer();
+
             mPlayer = player;
             mIsQAPlaylist = IsQAPlaylist;
             Reset(MasterPlaylist );
@@ -78,6 +80,8 @@ namespace Obi
         /// </summary>
         public Playlist(AudioPlayer player, NodeSelection selection , bool IsQAPlaylist )
         {
+            resetEndOfAudioTimer();
+
             mIsQAPlaylist = IsQAPlaylist;
             mPlayer = player;
             Reset(LocalPlaylist);
@@ -107,6 +111,8 @@ namespace Obi
         /// <param name="node"></param>
         public Playlist(AudioPlayer player, ObiNode node, bool IsQaPlaylist)
         {
+            resetEndOfAudioTimer();
+
             mPlayer = player;
             mIsQAPlaylist = IsQaPlaylist;
             Reset(LocalPlaylist);
@@ -256,6 +262,7 @@ namespace Obi
                     if (mPlayer.CurrentState == AudioPlayer.State.Playing)
                     {
                         mPlayer.Stop();
+                        resetAudioStreamDelegate();
                         mPlayer.PlayBytes(m_StreamProviderDelegate, m_StreamProviderDelegate().Length, format, bytesBegin, bytesEnd);
                     }
                     else if (mPlayer.CurrentState == AudioPlayer.State.Paused)
@@ -413,6 +420,15 @@ namespace Obi
 
         private AudioPlayer.StreamProviderDelegate m_StreamProviderDelegate = null;
 
+        private void resetAudioStreamDelegate()
+        {
+            Stream stream = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.OpenPcmInputStream();
+            m_StreamProviderDelegate = delegate
+            {
+                return stream;
+            };
+        }
+
         // Play the current phrase
         private void PlayCurrentPhrase()
         {
@@ -425,20 +441,16 @@ namespace Obi
             double from = mPlaybackStartTime;
             mPlaybackStartTime = 0.0;
             
-            mPlayer.EnsurePlaybackStreamIsDead();
+            //mPlayer.EnsurePlaybackStreamIsDead();
+            mPlayer.Stop();
+            resetAudioStreamDelegate();
 
-            Stream stream = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.OpenPcmInputStream();
-            m_StreamProviderDelegate = delegate
-                {
-                    return stream;
-                };
+            long dataLength = m_StreamProviderDelegate().Length; // format.ConvertTimeToBytes((long)(phraseDurationMilliseconds * Time.TIME_UNIT));
 
             AudioLibPCMFormat format = mPhrases[mCurrentPhraseIndex].Audio.AudioMediaData.PCMFormat.Data;
 
             double phraseDurationMilliseconds =
                     mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds;
-
-            long dataLength = stream.Length; // format.ConvertTimeToBytes((long)(phraseDurationMilliseconds * Time.TIME_UNIT));
 
             double millisecondsBegin = from;
             long bytesBegin = format.ConvertTimeToBytes((long)(millisecondsBegin * Time.TIME_UNIT));
@@ -705,6 +717,48 @@ namespace Obi
         /// <param name="sender">Sender of the event (i.e. the audio player.)</param>
         /// <param name="e">The arguments sent by the player.</param>
         protected virtual void Playlist_MoveToNextPhrase(object sender, AudioPlayer.AudioPlaybackFinishEventArgs e)
+        {
+            //if (true) xxx
+            //{
+            //    Playlist_MoveToNextPhrase();
+            //    return;
+            //}
+            m_FinishedPlayingCurrentStream = true;
+                    //m_MonitoringTimer.Enabled = true;
+            m_MonitoringTimer.Start();
+        }
+
+        //private System.Windows.Forms.Timer m_MonitoringTimer = new System.Windows.Forms.Timer();
+        private System.Timers.Timer  m_MonitoringTimer = new System.Timers.Timer();
+        private bool m_FinishedPlayingCurrentStream = false;
+
+        private void resetEndOfAudioTimer()
+        {
+            //m_MonitoringTimer.Tick += new EventHandler(m_MonitoringTimer_Tick);
+            //m_MonitoringTimer.Interval = 250;
+            //m_MonitoringTimer.Enabled = false;
+
+            m_MonitoringTimer.Elapsed += new System.Timers.ElapsedEventHandler(m_MonitoringTimer_Tick);
+            m_MonitoringTimer.Interval = 50;
+            m_MonitoringTimer.AutoReset = true;
+        }
+
+        private void m_MonitoringTimer_Tick(object sender, EventArgs e)
+        {
+            //Console.WriteLine("monitoring ");
+            if ( m_FinishedPlayingCurrentStream)
+            {
+                if (m_MonitoringTimer != null)
+                {
+                    m_MonitoringTimer.Stop();
+                    //m_MonitoringTimer.Enabled = false;
+                }
+                m_FinishedPlayingCurrentStream = false;
+                Playlist_MoveToNextPhrase();
+            }
+
+        }
+        private void Playlist_MoveToNextPhrase()
         {
             if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
             {
