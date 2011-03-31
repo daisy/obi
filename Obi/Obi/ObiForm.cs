@@ -285,7 +285,6 @@ namespace Obi
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
                         delegate () {
-                          //  string strExtension = Path.GetExtension(path).ToLower();
                             if (strExtension == ".opf" || strExtension == ".xml")
                             {
                                 ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
@@ -320,7 +319,7 @@ namespace Obi
                 //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
                 //import.DoWork();
                 //mSession.Save(mSession.Path);
-                MessageBox.Show(outputPath);
+                MessageBox.Show(String.Format(Localizer.Message("import_output_path" ), outputPath));
                 //mSession.NotifyProjectCreated();
             }
             catch (System.Exception ex)
@@ -328,7 +327,6 @@ namespace Obi
                 MessageBox.Show(ex.ToString());
             }
         }
-
 
         // Open a new project after showing a file open dialog.
         private void Open ()
@@ -2168,6 +2166,9 @@ namespace Obi
 
         void TransportBar_PlaybackRateChanged ( object sender, EventArgs e )
             {
+                if (mProjectView.Selection.Node.PhraseChildCount < 1)
+                { }
+                else
             Status ( String.Format ( Localizer.Message ( "playback_rate" ), mProjectView.TransportBar.CurrentPlaylist.PlaybackRate ) );
             }
 
