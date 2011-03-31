@@ -1792,7 +1792,7 @@ Error text: {1}</value>
     <value>Playing {0} {1} </value>
   </data>
   <data name="import_output_path" xml:space="preserve">
-    <value>The imported project lies at {0}</value>
+    <value>The daisy book is successfully imported at {0}</value>
   </data>
   <data name="RecToolbar_MarkedTODO" xml:space="preserve">
     <value>Marked TODO</value>
