@@ -723,41 +723,63 @@ namespace Obi
             //    Playlist_MoveToNextPhrase();
             //    return;
             //}
-            m_FinishedPlayingCurrentStream = true;
+            //m_FinishedPlayingCurrentStream = true;
                     //m_MonitoringTimer.Enabled = true;
-            m_MonitoringTimer.Start();
-        }
+            //m_MonitoringTimer.Start();
 
-        //private System.Windows.Forms.Timer m_MonitoringTimer = new System.Windows.Forms.Timer();
-        private System.Timers.Timer  m_MonitoringTimer = new System.Timers.Timer();
-        private bool m_FinishedPlayingCurrentStream = false;
+            if (mPlayer.OutputDeviceControl.InvokeRequired)
+            {
+                mPlayer.OutputDeviceControl.Invoke(new Playlist_MoveToNextPhrase_Delegate(Playlist_MoveToNextPhrase));
+            }
+            else
+            {
+                Playlist_MoveToNextPhrase();
+            }
+        }
+        
+        protected delegate  void  Playlist_MoveToNextPhrase_Delegate();
+
+        //private System.Windows.Forms.Timer m_MonitoringTimer = null;
+        //private System.Timers.Timer  m_MonitoringTimer = new System.Timers.Timer();
+        //private bool m_FinishedPlayingCurrentStream = false;
 
         private void resetEndOfAudioTimer()
         {
-            //m_MonitoringTimer.Tick += new EventHandler(m_MonitoringTimer_Tick);
-            //m_MonitoringTimer.Interval = 250;
-            //m_MonitoringTimer.Enabled = false;
+        //    if (m_MonitoringTimer!=null)
+        //    {
+        //        m_MonitoringTimer.Stop();
+        //        m_MonitoringTimer.Tick -= new EventHandler(m_MonitoringTimer_Tick);
+        //    }
+        //    m_MonitoringTimer = new System.Windows.Forms.Timer();
+        //    m_MonitoringTimer.Tick += new EventHandler(m_MonitoringTimer_Tick);
+        //    m_MonitoringTimer.Interval = 50;
+        //    m_MonitoringTimer.Enabled = false;
 
-            m_MonitoringTimer.Elapsed += new System.Timers.ElapsedEventHandler(m_MonitoringTimer_Tick);
-            m_MonitoringTimer.Interval = 50;
-            m_MonitoringTimer.AutoReset = true;
+
+            //if (m_MonitoringTimer != null)
+            //{
+            //    m_MonitoringTimer.Stop();
+            //    m_MonitoringTimer.Elapsed -= new EventHandler(m_MonitoringTimer_Tick);
+            //}
+            //m_MonitoringTimer.Elapsed += new System.Timers.ElapsedEventHandler(m_MonitoringTimer_Tick);
+            //m_MonitoringTimer.Interval = 50;
+            //m_MonitoringTimer.AutoReset = true;
         }
 
-        private void m_MonitoringTimer_Tick(object sender, EventArgs e)
-        {
-            //Console.WriteLine("monitoring ");
-            if ( m_FinishedPlayingCurrentStream)
-            {
-                if (m_MonitoringTimer != null)
-                {
-                    m_MonitoringTimer.Stop();
-                    //m_MonitoringTimer.Enabled = false;
-                }
-                m_FinishedPlayingCurrentStream = false;
-                Playlist_MoveToNextPhrase();
-            }
-
-        }
+        //private void m_MonitoringTimer_Tick(object sender, EventArgs e)
+        //{
+        //    //Console.WriteLine("monitoring ");
+        //    if ( m_FinishedPlayingCurrentStream)
+        //    {
+        //        if (m_MonitoringTimer != null)
+        //        {
+        //            m_MonitoringTimer.Stop();
+        //            //m_MonitoringTimer.Enabled = false;
+        //        }
+        //        m_FinishedPlayingCurrentStream = false;
+        //        Playlist_MoveToNextPhrase();
+        //    }
+        //}
         private void Playlist_MoveToNextPhrase()
         {
             if (mPlayer.PlaybackFwdRwdRate < 0 && mCurrentPhraseIndex > 0)
