@@ -2295,6 +2295,7 @@ namespace Obi
                 if (m is ToolStripMenuItem)
                 {
                     AssignMenuShortcuts((ToolStripMenuItem) m, isFirstTime);
+                    
                 }
             }
         }
@@ -2333,7 +2334,8 @@ namespace Obi
                     string accessibleString = m.Text.Replace("&", "");
                     if (isFirstTime && !string.IsNullOrEmpty(m.Name) && m.Name != "PipelineMenu") KeyboardShortcuts_Settings.AddDefaultMenuShortcut(m.Name, m.ShortcutKeys);
                     if (KeyboardShortcuts.MenuNameDictionary.ContainsKey(m.Name)
-                            && KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None && m.Name != "PipelineMenu")
+                            && (KeyboardShortcuts.MenuNameDictionary[m.Name].Value != Keys.None || (KeyboardShortcuts_Settings.MenuNameDefaultShortcutDictionary != null && KeyboardShortcuts_Settings.MenuNameDefaultShortcutDictionary.ContainsKey(m.Name)  && KeyboardShortcuts_Settings.MenuNameDefaultShortcutDictionary[m.Name].Value != Keys.None))//skip if both dictionary has none shortcut
+                            && m.Name != "PipelineMenu")
                     {
                         m.ShortcutKeys = KeyboardShortcuts.MenuNameDictionary[m.Name].Value;
                         KeyboardShortcuts.AddMenuShortcut(m.Name, m.Text.Replace("&", ""), m.ShortcutKeys);
