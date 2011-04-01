@@ -327,7 +327,7 @@ namespace Obi.ProjectView
             {
                 SectionNode sectionToDisplay = mProjectView.Presentation.FirstSection;
                 if (bookMarkedNode != null) Console.WriteLine("Bookmark node is " + bookMarkedNode.ToString());
-                if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null)
+                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null)
                 {
                     sectionToDisplay = bookMarkedNode is SectionNode ?
                         (SectionNode)bookMarkedNode :
@@ -344,7 +344,7 @@ namespace Obi.ProjectView
                 AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
                 }
                 m_DisablePhraseCreationWhileSelectionRestore = false;
-                if (mProjectView.ObiForm.Settings.SaveBookmarkNode && bookMarkedNode != null && bookMarkedNode is EmptyNode)
+                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null && bookMarkedNode is EmptyNode)
                 {
                     SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
                 }
