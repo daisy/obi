@@ -38,7 +38,8 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-       
+        private bool m_ShouldBookmark = true;
+
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
         /// </summary>
@@ -580,18 +581,22 @@ namespace Obi
         // If a project is open and unsaved, ask about what to do.
         private bool DidCloseProject ()
             {
-                
+                CheckForBookmarkNode(); 
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-       //     CheckForBookmarkNode();
-            
             if (!mSession.CanClose)
-                {
-                DialogResult result = MessageBox.Show ( Localizer.Message ( "closed_project_text" ),
-                    Localizer.Message ( "closed_project_caption" ),
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question );
-                if (result == DialogResult.Cancel) return false;
-                if (result == DialogResult.Yes) mSession.Save ();                         
+               {
+                    if (m_ShouldBookmark)
+                        mSession.ForceSave();
+                    else
+                    {
+                        DialogResult result = MessageBox.Show(Localizer.Message("closed_project_text"),
+                            Localizer.Message("closed_project_caption"),
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question);
+                        if (result == DialogResult.Cancel) return false;
+                        if (result == DialogResult.Yes) mSession.Save();
+                    }
+                      
                 }
             mSession.Close ();
             return true;
@@ -602,9 +607,14 @@ namespace Obi
             if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
                 && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
             {
-                DialogResult resultBookmark = MessageBox.Show("The currently selection node is not same as saved bookmarked node. Do you want to save the last selected node as bookmark node", "Check Bookmark", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultBookmark == DialogResult.Yes)
-                    CheckForSelectedNodeInBookmark();                               
+                {
+                    CheckForSelectedNodeInBookmark();
+                    m_ShouldBookmark = true;
+                }
+                if (resultBookmark == DialogResult.No)
+                    m_ShouldBookmark = false;
             }
         }
 
@@ -2184,7 +2194,7 @@ namespace Obi
 
         void TransportBar_PlaybackRateChanged ( object sender, EventArgs e )
             {
-                if (mProjectView.Selection.Node.PhraseChildCount < 1)
+                if (mProjectView.Selection != null && mProjectView.Selection.Node.PhraseChildCount < 1)
                 { }
                 else
             Status ( String.Format ( Localizer.Message ( "playback_rate" ), mProjectView.TransportBar.CurrentPlaylist.PlaybackRate ) );
@@ -2210,10 +2220,8 @@ namespace Obi
         /// </summary>
         /// <remarks>Warn when closing while playing?</remarks>
         private void ObiForm_FormClosing ( object sender, FormClosingEventArgs e )
-            {
-            CheckForBookmarkNode();
-      
-            if (mProjectView != null) mProjectView.TransportBar.Stop ();
+            {      
+            if (mProjectView != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
             if (DidCloseProject ())
                 {
                 try

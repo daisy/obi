@@ -205,6 +205,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing a project.
+        /// </summary>
+        internal static string bookmark_closed_project_caption {
+            get {
+                return ResourceManager.GetString("bookmark_closed_project_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create directory.
         /// </summary>
         internal static string cannot_create_directory_caption {
@@ -3893,6 +3902,15 @@ namespace Obi {
         internal static string saved_project {
             get {
                 return ResourceManager.GetString("saved_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark node? The project will also be saved..
+        /// </summary>
+        internal static string SaveSelectedNodeAsBookmark {
+            get {
+                return ResourceManager.GetString("SaveSelectedNodeAsBookmark", resourceCulture);
             }
         }
         

@@ -1812,4 +1812,10 @@ Error text: {1}</value>
   <data name="RecToolbar_Title" xml:space="preserve">
     <value>Obi recorder bar : [{0}]</value>
   </data>
+  <data name="bookmark_closed_project_caption" xml:space="preserve">
+    <value>Closing a project</value>
+  </data>
+  <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
+    <value>The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark node? The project will also be saved.</value>
+  </data>
 </root>

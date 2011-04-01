@@ -55,8 +55,7 @@ namespace Obi
         public int AutoSaveTimeInterval; // time interval after which project will be auto saved 
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
-        public bool CropAudio;
-        public bool SaveBookmarkNode;
+        public bool OpenBookmarkNodeOnReopeningProject;
         public bool RetainInitialSilenceInPhraseDetection;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -106,8 +105,7 @@ namespace Obi
             settings.AutoSaveTimeInterval = 300000; // saving time interval in ms ( 5min)
             settings.Export_EncodeToMP3 = false;
             settings.Export_BitRateMP3 = 64;
-            settings.CropAudio = false;
-            settings.SaveBookmarkNode = false;
+            settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
