@@ -59,10 +59,10 @@ namespace Obi
             InitializeObi ();
             OpenProject_Safe ( path );
             m_IsSaveActive = false;
-         
+            
             }
 
-        #endregion
+#endregion
 
 
         #region Properties
@@ -848,8 +848,26 @@ namespace Obi
         private void ObiForm_Load ( object sender, EventArgs e )
             {
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
+            UpdateKeyboardFocusForSelection();
             }
 
+
+        // workaround to move keyboard focus to selection 
+        //as it do not synchronize with selection when selection is assigned while loading of obi form.
+        private void UpdateKeyboardFocusForSelection()
+        {
+            if (mProjectView != null && mProjectView.Selection != null)
+            {
+                System.ComponentModel.BackgroundWorker moveFocusToSelectionBkWorker = new System.ComponentModel.BackgroundWorker();
+                moveFocusToSelectionBkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate
+                {
+                    mProjectView.Selection = new NodeSelection(mProjectView.Selection.Node, mProjectView.Selection.Control);
+                });
+                moveFocusToSelectionBkWorker.RunWorkerAsync();
+            }
+        }
+
+        
         // Show the welcome dialog
         private void ShowWelcomeDialog ()
             {
@@ -867,7 +885,7 @@ namespace Obi
             Open ();
             break;
             case WelcomeDialog.Option.OpenLastProject:
-            OpenProject_Safe ( mSettings.LastOpenProject );
+            OpenProject_Safe(mSettings.LastOpenProject);
             break;
             case WelcomeDialog.Option.ViewHelp:
             ShowHelpFile ();
