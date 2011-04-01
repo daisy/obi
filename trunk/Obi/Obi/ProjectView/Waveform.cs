@@ -160,11 +160,14 @@ namespace Obi.ProjectView
                 bitmap = new Bitmap(Width, Height);
                 Graphics g = Graphics.FromImage(bitmap);
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
-                g.DrawLine(highlighted ? settings.WaveformHighlightedPen : settings.WaveformBaseLinePen,
+                Pen linePen = (Pen) (highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() : (Pen)settings.WaveformBaseLinePen.Clone() ) ;
+                g.DrawLine(linePen,
                     new Point(0, Height / 2), new Point(Width - 1, Height / 2));
+                linePen.Dispose();
                 g.Dispose();
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            { Console.WriteLine("Waveform exception : " + ex); }
             return bitmap;
         }
 
@@ -179,7 +182,10 @@ namespace Obi.ProjectView
                 if (Audio != null) DrawWaveform(g, settings, highlighted);
                 g.Dispose();
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Waveform exception : " + ex);}
+                
             return bitmap;
         }
 
@@ -217,18 +223,32 @@ namespace Obi.ProjectView
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];
                 System.IO.Stream au = Media.OpenPcmInputStream();
-                for (int x = 0; x < Width; ++x)
+                try
                 {
-                    int read = au.Read(bytes, 0, bytesPerPixel);
-                    Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                    DrawChannel(g, highlighted ? settings.WaveformHighlightedPen :
-                        channels == 1 ? settings.WaveformMonoPen : settings.WaveformChannel1Pen,
-                        samples, x, read, frameSize, 0, channels);
-                    if (channels == 2) DrawChannel(g,
-                        highlighted ? settings.WaveformHighlightedPen : settings.WaveformChannel2Pen,
-                        samples, x, read, frameSize, 1, channels);
+                    for (int x = 0; x < Width; ++x)
+                    {
+                        int read = au.Read(bytes, 0, bytesPerPixel);
+                        Buffer.BlockCopy(bytes, 0, samples, 0, read);
+                        Pen channel1Pen = highlighted ?(Pen) settings.WaveformHighlightedPen.Clone () :
+                            channels == 1 ? (Pen) settings.WaveformMonoPen.Clone() : (Pen) settings.WaveformChannel1Pen.Clone ();
+                        DrawChannel(g, channel1Pen,
+                            samples, x, read, frameSize, 0, channels);
+                        channel1Pen.Dispose();
+                        if (channels == 2)
+                        {
+                            Pen channel2Pen = highlighted ? (Pen) settings.WaveformHighlightedPen.Clone() : (Pen) settings.WaveformChannel2Pen.Clone ();
+                            DrawChannel(g,
+                            channel2Pen ,
+                            samples, x, read, frameSize, 1, channels);
+                            channel2Pen.Dispose();
+                        }
+                        
+                    }
                 }
-                au.Close();
+                finally
+                {
+                    au.Close();
+                }
             }
         }
         

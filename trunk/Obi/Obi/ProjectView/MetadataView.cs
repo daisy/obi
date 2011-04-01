@@ -752,7 +752,7 @@ namespace Obi.ProjectView
 
         private void mMetadataListView_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
         {
-             e.Item.ToolTipText = Localizer.Message(mMetadataTooltipDictionary[e.Item.Text]);            
+             if ( mMetadataTooltipDictionary.ContainsKey (e.Item.Text))    e.Item.ToolTipText = Localizer.Message(mMetadataTooltipDictionary[e.Item.Text]);            
         }
         }
 
