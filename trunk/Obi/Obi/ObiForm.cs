@@ -1917,16 +1917,31 @@ namespace Obi
             CheckForBookmarkNode();
             try
                 {
-                    if (ProjectUpgrader.IsObi1XProject(path))
-                    {
-                        MessageBox.Show("The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue");
-                        ProjectUpgrader upgrader = new ProjectUpgrader(path, null);
-                        upgrader.UpgradeProject();
-                        MessageBox.Show("project upgraded");
-                    }
-                OpenProject ( path );
-                if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage();
-                }
+                    
+                                if (ProjectUpgrader.IsObi1XProject(path))
+                                {
+                                    if (MessageBox.Show("The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue",
+                                        Localizer.Message("Caption_Information"),
+                                        MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                                    {
+                                        ProgressDialog progress = new ProgressDialog("Upgrading project",
+                            delegate()
+                            {
+                                        ProjectUpgrader upgrader = new ProjectUpgrader(path, null);
+                                        upgrader.UpgradeProject();
+                                    });
+                                        progress.ShowDialog();
+                                        if (progress.Exception != null) throw progress.Exception;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                                
+                                OpenProject(path);
+                                if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage();
+                            }
             catch (Exception e)
                 {
                 // if opening failed, no project is open and we don't try to open it again next time.
