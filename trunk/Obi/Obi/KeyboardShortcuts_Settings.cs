@@ -115,7 +115,11 @@ namespace Obi
                 settings = (KeyboardShortcuts_Settings)soap.Deserialize(stream);
                                 stream.Close();
             }
-            catch (Exception) { }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("Keyboard shortcut setting  file : " + ex.ToString());
+                if (ex is System.IO.FileNotFoundException) return GetDefaultKeyboardShortcuts_Settings();
+            }
 
             settings.MenuNameDictionary = new Dictionary<string, KeyboardShortcut>();
             for (int i = 0; i < settings.MenuKeyboardShortCutsList.Length; i++)
