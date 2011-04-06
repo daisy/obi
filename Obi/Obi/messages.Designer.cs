@@ -4347,6 +4347,24 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue.
+        /// </summary>
+        internal static string upgrade_obi_to_new_version {
+            get {
+                return ResourceManager.GetString("upgrade_obi_to_new_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrading project.
+        /// </summary>
+        internal static string upgrading_obi {
+            get {
+                return ResourceManager.GetString("upgrading_obi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading elements are in the wrong order..
         /// </summary>
         internal static string wrong_heading_order {

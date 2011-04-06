@@ -1920,11 +1920,11 @@ namespace Obi
                     
                                 if (ProjectUpgrader.IsObi1XProject(path))
                                 {
-                                    if (MessageBox.Show("The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue",
+                                    if (MessageBox.Show(Localizer.Message("upgrade_obi_to_new_version"),
                                         Localizer.Message("Caption_Information"),
                                         MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                                     {
-                                        ProgressDialog progress = new ProgressDialog("Upgrading project",
+                                        ProgressDialog progress = new ProgressDialog(Localizer.Message("upgrading_obi"),
                             delegate()
                             {
                                         ProjectUpgrader upgrader = new ProjectUpgrader(path, null);
