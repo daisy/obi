@@ -2239,7 +2239,7 @@ namespace Obi.ProjectView
                             //Workaround to force phrases to show if they become invisible on stopping recording
                             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                         }
-                    EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
+                    EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
                     if (lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
                     }
                 catch (System.Exception ex)
