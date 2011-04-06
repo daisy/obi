@@ -66,11 +66,20 @@ namespace Obi.Dialogs
         // Initialize audio tab
         private void InitializeAudioTab ()
             {
-            AudioRecorder recorder = mTransportBar.Recorder;                       
+            AudioRecorder recorder = mTransportBar.Recorder;    
+            int defaultInputIndex =0;
+            int defaultOutputIndex = 0;
            // mInputDeviceCombo.DataSource = recorder.InputDevices; 
            // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
             foreach (InputDevice input in recorder.InputDevices)
+            {
                 mInputDeviceCombo.Items.Add(input.Name);
+                if (recorder.InputDevice == input)
+                   defaultInputIndex = recorder.InputDevices.IndexOf(recorder.InputDevice);
+            }
+            if(mSettings.LastInputDevice == "")
+                mInputDeviceCombo.SelectedIndex =defaultInputIndex; 
+            else
             mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
            
 
@@ -78,8 +87,15 @@ namespace Obi.Dialogs
            // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
            // mOutputDeviceCombo.SelectedIndex = player.OutputDevices.IndexOf ( player.OutputDevice ); avn
 
-           foreach (OutputDevice output in player.OutputDevices)
-                mOutputDeviceCombo.Items.Add(output.Name); 
+            foreach (OutputDevice output in player.OutputDevices)
+            {
+                mOutputDeviceCombo.Items.Add(output.Name);
+                if(player.OutputDevice == output)
+                    defaultOutputIndex = player.OutputDevices.IndexOf ( player.OutputDevice );
+            }
+            if (mSettings.LastOutputDevice == "")
+                mOutputDeviceCombo.SelectedIndex = defaultOutputIndex;
+            else
             mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
 
             int sampleRate;
@@ -280,7 +296,7 @@ namespace Obi.Dialogs
                 }
                 foreach (OutputDevice outputDev in player.OutputDevices)
                 {
-                    if (mInputDeviceCombo.SelectedItem != null && mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
+                    if (mOutputDeviceCombo.SelectedItem != null && mOutputDeviceCombo.SelectedItem.ToString() == outputDev.Name)
                     {
                         mTransportBar.AudioPlayer.SetOutputDevice(mForm, (outputDev.Name));
                         mSettings.LastOutputDevice = outputDev.Name;
