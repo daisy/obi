@@ -38,6 +38,7 @@ namespace Obi.UserControls
             m_TransportBar = transportBar;
             m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
+            m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);           
         }
 
         public void State_Changed_Player(object sender, AudioPlayer.StateChangedEventArgs e)
@@ -49,6 +50,11 @@ namespace Obi.UserControls
                 timer1.Stop();
             UpdateStatus();
             UpdateButtons();
+        }
+
+        public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
+        {
+            this.Enabled = m_TransportBar.Enabled;
         }
 
         private delegate void State_Changed_Recorder_Delegate();
