@@ -1072,6 +1072,7 @@ namespace Obi
            // mShowSectionContentsToolStripMenuItem.Enabled = mProjectView.CanShowSectionContents;
            // mShowSingleSectionToolStripItem.Enabled = mSession.HasProject && mProjectView.Selection != null;
             mShowPeakMeterMenuItem.Enabled = mSession.HasProject;
+            mView_RecordingToolBarMenuItem.Enabled = mSession.HasProject;
             mShowSourceToolStripMenuItem.Enabled = mSession.HasProject;
             mView_PhrasePropertiesMenuItem.Visible =
                 mView_PhrasePropertiesMenuItem.Enabled = mProjectView.CanShowPhrasePropertiesDialog;
