@@ -33,6 +33,7 @@ namespace PipelineInterface
         {
             if (!File.Exists(scriptPath)) throw new Exception(string.Format(Localizer.Message("no_script"), scriptPath));
             mParser = new ScriptParser(scriptPath);
+            
             if (File.Exists(inputPath))
             {
                 mInputPath = inputPath;
