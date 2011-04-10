@@ -2966,8 +2966,10 @@ namespace Obi
             ObiNode newBookMarkedNode = null;
             if (mProjectView.Selection is StripIndexSelection)
                 newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;
-            else
+            else if ( mProjectView.Selection.Node is SectionNode || mProjectView.Selection.Node is EmptyNode ) 
                 newBookMarkedNode = mProjectView.Selection.Node;
+
+            if (newBookMarkedNode == null) return;
 
             if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
             {
