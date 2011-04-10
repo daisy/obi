@@ -2047,6 +2047,10 @@ namespace Obi
                         mRecordingToolBarForm = null;
                         mView_RecordingToolBarMenuItem.Checked = false;
                     });
+                
+                // if selection is in TocView, move it to content view.
+                if (mProjectView.Selection != null && mProjectView.Selection.Control is ProjectView.TOCView) mProjectView.FocusOnContentView();
+
                 mRecordingToolBarForm.Show();
                 this.WindowState = FormWindowState.Minimized;
                 mView_RecordingToolBarMenuItem.Checked = true;
