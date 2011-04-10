@@ -346,7 +346,10 @@ namespace Obi.ProjectView
                 m_DisablePhraseCreationWhileSelectionRestore = false;
                 if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null && bookMarkedNode is EmptyNode)
                 {
+                    bool statusForSelectionChangedPlaybackEnabled = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                     SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = statusForSelectionChangedPlaybackEnabled;
                 }
                 else
                 {
