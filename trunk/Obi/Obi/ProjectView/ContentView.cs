@@ -331,7 +331,7 @@ namespace Obi.ProjectView
                 {
                     sectionToDisplay = bookMarkedNode is SectionNode ?
                         (SectionNode)bookMarkedNode :
-                        bookMarkedNode.ParentAs<SectionNode>();
+                        bookMarkedNode is EmptyNode ? bookMarkedNode.ParentAs<SectionNode>() : sectionToDisplay;
                 }
                 AddStripForSection_Safe(sectionToDisplay);
                 mProjectView.SynchronizeViews = false;
