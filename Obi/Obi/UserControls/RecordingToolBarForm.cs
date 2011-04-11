@@ -21,6 +21,7 @@ namespace Obi.UserControls
         private int m_Count = 0;
         private string m_strStatus = "";      
 
+
         public RecordingToolBarForm()
         {
             InitializeComponent();            
@@ -127,6 +128,7 @@ namespace Obi.UserControls
         private void m_recordingToolBarStopBtn_Click(object sender, EventArgs e)
         {
             m_TimeCounter = 0;
+            if(m_TransportBar.CanStop)
             m_TransportBar.Stop();
             if (m_TransportBar.CurrentPlaylist.CurrentTimeInAsset == 0 &&
                 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) &&
@@ -142,6 +144,7 @@ namespace Obi.UserControls
         private void m_recordingToolBarRecordingBtn_Click(object sender, EventArgs e)
         {
             m_strStatus = "";
+            if(m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording)
              m_TransportBar.Record();
                    
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
