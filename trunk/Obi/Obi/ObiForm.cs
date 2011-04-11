@@ -607,14 +607,19 @@ namespace Obi
             if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
                 && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
             {
-                DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultBookmark == DialogResult.Yes)
+                if (!mSession.CanClose)
                 {
-                    CheckForSelectedNodeInBookmark();
-                    m_ShouldBookmark = true;
+                    DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (resultBookmark == DialogResult.Yes)
+                    {
+                        CheckForSelectedNodeInBookmark();
+                        m_ShouldBookmark = true;
+                    }
+                    if (resultBookmark == DialogResult.No)
+                        m_ShouldBookmark = false;
                 }
-                if (resultBookmark == DialogResult.No)
-                    m_ShouldBookmark = false;
+                else
+                    CheckForSelectedNodeInBookmark(); 
             }
         }
 
@@ -858,7 +863,8 @@ namespace Obi
         private void ObiForm_Load ( object sender, EventArgs e )
             {
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
-            UpdateKeyboardFocusForSelection();
+        
+            UpdateKeyboardFocusForSelection();            
             }
 
 
@@ -1959,7 +1965,7 @@ namespace Obi
             {
             m_IsStatusBarEnabled = true;
             this.Cursor = Cursors.WaitCursor;
-            mSession.Open ( path );
+            mSession.Open(path);
             AddRecentProject ( path );
             // stores primary export path in metadata if it is stored in Obi 1.0 way
             UpdateExportMetadataFromPrimaryExportPath ();
@@ -2978,13 +2984,14 @@ namespace Obi
             if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
             {
                 ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
-                if (mSession.CanSave == false)
+            /*    if (mSession.CanSave == false)
                 {            
                     mSession.PresentationHasChanged(1);
-                    mSession.Save();
+                    mSession.ForceSave();
                 }
                 else
-                    mSession.PresentationHasChanged(1);
+                    mSession.PresentationHasChanged(1);*/
+                mSession.PresentationHasChanged(1);
                 UpdateMenus();
                 UpdateTitleAndStatusBar();             
             }
