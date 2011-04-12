@@ -246,9 +246,12 @@ namespace Obi.ImportExport
             {
                 foreach (XmlNode node in xnode.ChildNodes)
                 {
+
                     if (node.Name == "dc:Title")
+                    {
                         opfTitle = node.InnerText;
-                    break;
+                        break;
+                    }
                 }
             }
             return opfTitle;
@@ -273,7 +276,14 @@ namespace Obi.ImportExport
                 XmlNode attrContent = metaAttr.GetNamedItem("content");
 
                 if (attrName != null && !String.IsNullOrEmpty(attrName.Value) && attrContent != null && !String.IsNullOrEmpty(attrContent.Value))
-                    dtbBookTitle = attrContent.Value;                
+                {
+                    Console.WriteLine(attrName.Value + " " + attrContent.Value);
+                    if (attrName.Value == "dc:Title")
+                    {
+                        dtbBookTitle = attrContent.Value;
+                        break;
+                    }
+                }
             }
             return dtbBookTitle;
         }
