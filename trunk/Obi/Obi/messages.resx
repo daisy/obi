@@ -1818,4 +1818,10 @@ Error text: {1}</value>
   <data name="SaveSelectedNodeAsBookmark" xml:space="preserve">
     <value>The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark node? The project will also be saved.</value>
   </data>
+  <data name="upgrade_obi_to_new_version" xml:space="preserve">
+    <value>The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue</value>
+  </data>
+  <data name="upgrading_obi" xml:space="preserve">
+    <value>Upgrading project</value>
+  </data>
 </root>
