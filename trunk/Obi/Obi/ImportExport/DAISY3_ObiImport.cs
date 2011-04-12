@@ -248,6 +248,7 @@ namespace Obi.ImportExport
                 {
                     if (node.Name == "dc:Title")
                         opfTitle = node.InnerText;
+                    break;
                 }
             }
             return opfTitle;

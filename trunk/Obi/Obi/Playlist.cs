@@ -830,11 +830,13 @@ namespace Obi
             long bytes = format.ConvertTimeToBytes((long)(time * Time.TIME_UNIT));
 
             mPlayer.Pause(bytes);
-
+            Console.WriteLine("Player state in playlist class " + mPlayer.CurrentState);
             mPlaylistState = AudioPlayer.State.Paused;
+            Console.WriteLine("playlist " + mPlaylistState);
             if (StateChanged != null)
             {
                 StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Stopped));
+                Console.WriteLine("playlist 1" + mPlaylistState);
             }
         }
 
