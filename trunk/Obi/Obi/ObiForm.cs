@@ -266,7 +266,11 @@ namespace Obi
                 
                 string strExtension = System.IO.Path.GetExtension(path).ToLower();
                 if (strExtension == ".opf")
-                    title = Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path);
+                {
+                    
+                    string dtbUid = null;
+                    Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
+                }
                 if(strExtension == ".xhtml" || strExtension == ".html")
                     title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));
                 else if (strExtension == ".xml")
@@ -877,7 +881,10 @@ namespace Obi
                 System.ComponentModel.BackgroundWorker moveFocusToSelectionBkWorker = new System.ComponentModel.BackgroundWorker();
                 moveFocusToSelectionBkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate
                 {
+                    bool statusOfSelectionChangedPlaybackEnabled =  mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
                     mProjectView.Selection = new NodeSelection(mProjectView.Selection.Node, mProjectView.Selection.Control);
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = statusOfSelectionChangedPlaybackEnabled;
                 });
                 moveFocusToSelectionBkWorker.RunWorkerAsync();
             }
