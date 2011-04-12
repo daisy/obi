@@ -269,7 +269,7 @@ namespace Obi
                 {
                     
                     string dtbUid = null;
-                    Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
+                    title =  Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path);
                 }
                 if(strExtension == ".xhtml" || strExtension == ".html")
                     title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));

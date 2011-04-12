@@ -56,6 +56,7 @@ namespace Obi
         public bool Export_EncodeToMP3;
         public int Export_BitRateMP3;
         public bool OpenBookmarkNodeOnReopeningProject;
+        public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
