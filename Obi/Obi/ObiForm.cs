@@ -218,6 +218,7 @@ namespace Obi
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     CreateNewProject ( dialog.Path, dialog.Title, dialog.CreateTitleSection, dialog.ID );
+                    AddRecentProject(mSession.Path);
                     }
                 mSettings.CreateTitleSection = dialog.CreateTitleSection;
                 mSettings.NewProjectDialogSize = dialog.Size;
@@ -303,6 +304,7 @@ namespace Obi
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
+                    AddRecentProject(mSession.Path);
                     }
                 return true;
                 }
