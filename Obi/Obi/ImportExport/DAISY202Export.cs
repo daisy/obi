@@ -244,7 +244,7 @@ namespace Obi.ImportExport
             }
 
                 if ((phrase is PhraseNode && phrase.Used)
-                    || ( phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page ))
+                    || ( phrase is EmptyNode && phrase.Role_ == EmptyNode.Role.Page  &&  phrase.Used))
                     {
                     
                     string pageID = null;
