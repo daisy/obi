@@ -946,7 +946,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your project has silence phrases. Do you want to delete them as well as the other unused phrases and sections?.
+        ///   Looks up a localized string similar to Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections? Press No to delete only unused phrases and sections and to keep silence phrases..
         /// </summary>
         internal static string delete_silence_phrases {
             get {
@@ -1369,7 +1369,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type the text to search for it in the project..
+        ///   Looks up a localized string similar to Type the text to search for it in the selected section..
         /// </summary>
         internal static string find_in_text_init {
             get {
@@ -4347,7 +4347,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue.
+        ///   Looks up a localized string similar to The project was created on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue.
         /// </summary>
         internal static string upgrade_obi_to_new_version {
             get {

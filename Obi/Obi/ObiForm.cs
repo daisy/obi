@@ -925,7 +925,7 @@ namespace Obi
             {
             UpdateMenus ();
             ShowSelectionInStatusBar ();
-            }
+           }
 
         private void ProjectView_BlocksVisibilityChanged ( object sender, EventArgs e )
             {
@@ -948,7 +948,7 @@ namespace Obi
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
             {
-                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized && mProjectView.Presentation != null)
+                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized)
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
                 mProjectView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
@@ -2987,7 +2987,6 @@ namespace Obi
                 newBookMarkedNode = mProjectView.Selection.EmptyNodeForSelection;
             else if ( mProjectView.Selection.Node is SectionNode || mProjectView.Selection.Node is EmptyNode ) 
                 newBookMarkedNode = mProjectView.Selection.Node;
-
             if (newBookMarkedNode == null) return;
 
             if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
@@ -3019,6 +3018,10 @@ namespace Obi
                     mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
                 }
                 if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is EmptyNode)
                 {
                     mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
                 }

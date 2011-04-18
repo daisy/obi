@@ -465,7 +465,7 @@ Error text: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="find_in_text_init" xml:space="preserve">
-    <value>Type the text to search for it in the project.</value>
+    <value>Type the text to search for it in the selected section.</value>
     <comment>Status message</comment>
   </data>
   <data name="find_next_in_text" xml:space="preserve">
@@ -1295,7 +1295,7 @@ Error text: {1}</value>
     <comment>Progress dialog title</comment>
   </data>
   <data name="delete_silence_phrases" xml:space="preserve">
-    <value>Your project has silence phrases. Do you want to delete them as well as the other unused phrases and sections?</value>
+    <value>Your project has silence phrases. Press Yes to delete them as well as the other unused phrases and sections? Press No to delete only unused phrases and sections and to keep silence phrases.</value>
   </data>
   <data name="delete_silence_phrases_caption" xml:space="preserve">
     <value>Delete silence phrases?</value>
@@ -1819,7 +1819,7 @@ Error text: {1}</value>
     <value>The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark node? The project will also be saved.</value>
   </data>
   <data name="upgrade_obi_to_new_version" xml:space="preserve">
-    <value>The project was creatted on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue</value>
+    <value>The project was created on previous version of Obi. It will be upgraded to the latest version. Please press OK to continue</value>
   </data>
   <data name="upgrading_obi" xml:space="preserve">
     <value>Upgrading project</value>
