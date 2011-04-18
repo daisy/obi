@@ -138,7 +138,15 @@ namespace Obi.ProjectView
                 if (mSelection != value)
                 {
                     if(mSelection != null && (value == null || value.Node != mSelection.Node)) PaintSelectedNode(false);
-                    
+
+                    //if new selection is null and old selection is text selection, finish rename
+                    if (value == null 
+                        && mSelection != null && mSelection is TextSelection)
+                    {
+                        TreeNode n1 = FindTreeNode((SectionNode)mSelection.Node);
+                        n1.EndEdit(false);
+                    }
+
                     mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // Ignore the select event, since we were asked to change the selection;
