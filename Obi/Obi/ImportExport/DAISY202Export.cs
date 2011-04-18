@@ -55,8 +55,9 @@ namespace Obi.ImportExport
                     delegate ( urakawa.core.TreeNode n )
                         {
 
-                        if (n is SectionNode && ((SectionNode)n).Used)
+                        if (n is SectionNode )
                             {
+                                if (!((SectionNode)n).Used) return false;
                             sectionsList.Add ( (SectionNode)n );
                             m_NextSectionPageAdjustmentDictionary.Add((SectionNode)n , null );
                             }
