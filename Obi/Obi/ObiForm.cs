@@ -948,7 +948,8 @@ namespace Obi
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
             {
-                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized)
+                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized
+                    && mProjectView.Presentation != null  )
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
                 mProjectView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
@@ -3009,22 +3010,19 @@ namespace Obi
         {
             if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
             {
-                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is PhraseNode)
-                {
-                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
-                }
-                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
-                {
-                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
-                }
-                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
-                {
-                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
-                }
                 if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is EmptyNode)
                 {
                     mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
                 }
+                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
+                {
+                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
+                }
+                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                
             }            
         }
         }
