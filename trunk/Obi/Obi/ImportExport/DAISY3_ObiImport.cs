@@ -239,8 +239,8 @@ namespace Obi.ImportExport
         public static string getTitleFromOpfFile(string opfFilePath)
         {
             string opfTitle = "";
-            XmlDocument opfFileDoc = new XmlDocument();
-            opfFileDoc.Load(opfFilePath);
+            XmlDocument opfFileDoc = urakawa.xuk.OpenXukAction.ParseXmlDocument(opfFilePath, false);
+            
             XmlNodeList listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("dc-metadata");
             foreach (XmlNode xnode in listOfChildrenOfDCMetadata)
             {
@@ -260,8 +260,8 @@ namespace Obi.ImportExport
         public static string getTitleFromDtBookFile(string dtBookFilePath)
         {
             string dtbBookTitle = "";
-            XmlDocument dtbookFileDoc = new XmlDocument();
-            dtbookFileDoc.Load(dtBookFilePath);
+            XmlDocument dtbookFileDoc = urakawa.xuk.OpenXukAction.ParseXmlDocument(dtBookFilePath, false);
+            
             XmlNodeList listOfChildren = dtbookFileDoc.GetElementsByTagName("meta");
             foreach (XmlNode node in listOfChildren)
             {
