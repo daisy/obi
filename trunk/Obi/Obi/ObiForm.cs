@@ -948,7 +948,7 @@ namespace Obi
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
             {
-                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized)
+                if (e.ClosedPresentation != null && ((ObiPresentation)e.ClosedPresentation).Initialized && mProjectView.Presentation != null)
                 {
                 foreach (string customClass in mProjectView.Presentation.CustomClasses) RemoveCustomClassFromMenu ( customClass );
                 mProjectView.Presentation.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs> ( Presentation_Changed );
