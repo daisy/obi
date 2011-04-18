@@ -2217,7 +2217,7 @@ namespace Obi
                 return;
             }
         CanAutoSave = !mProjectView.TransportBar.IsRecorderActive;
-           string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive ? (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange!= null  && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor ? mProjectView.Selection.ToString() : mProjectView.TransportBar.PlaybackPhrase.ToString()) + "--" + mProjectView.TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label : 
+           string additionalTransportbarOperationInfo = mProjectView.TransportBar.IsPlayerActive && mProjectView.TransportBar.PlaybackPhrase != null? (mProjectView.Selection != null && mProjectView.Selection is AudioSelection && ((AudioSelection)mProjectView.Selection).AudioRange!= null  && !((AudioSelection)mProjectView.Selection).AudioRange.HasCursor ? mProjectView.Selection.ToString() : mProjectView.TransportBar.PlaybackPhrase.ToString()) + "--" + mProjectView.TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label : 
                 (mProjectView.TransportBar.IsRecorderActive && mProjectView.TransportBar.RecordingPhrase != null? mProjectView.TransportBar.RecordingPhrase.ToString() : "" ) ;
             Status ( Localizer.Message ( mProjectView.TransportBar.CurrentState.ToString () ) + " " + additionalTransportbarOperationInfo  );
             UpdatePhrasesMenu ();
