@@ -321,6 +321,7 @@ namespace Obi
         {
             try
             {
+                importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
                 mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath);
                 //mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings);
                 //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
