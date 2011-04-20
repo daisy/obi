@@ -138,7 +138,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Name = "SelectMergeSectionRange";
-            this.Text = "SelectMergeSectionRange";
+            this.Text = "Select section to merge";
             this.m_statusStripForMergeSection.ResumeLayout(false);
             this.m_statusStripForMergeSection.PerformLayout();
             this.groupBox1.ResumeLayout(false);
