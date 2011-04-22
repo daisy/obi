@@ -551,7 +551,7 @@ namespace Obi.ProjectView
                 else
                     {
                     if (!IsDateMetadataSelected || string.IsNullOrEmpty ( mContentTextbox.Text )) MessageBox.Show ( Localizer.Message ( "MetadataView_CannotCommitEmptyContent" ), Localizer.Message ( "Caption_Error" ) );
-
+                    mContentTextbox.Focus();
                     if (mSelection != null && mSelection.Item.Entry == null
                         && mMetadataListView.SelectedItems.Count > 0 && mMetadataListView.SelectedItems[0] != null && mMetadataListView.SelectedItems[0].Checked)
                         mMetadataListView.SelectedItems[0].Checked = false;
