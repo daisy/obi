@@ -82,6 +82,7 @@ namespace Obi
             this.mView_AudioZoomInMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_AudioZoomOutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_ResetAudioSizeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mView_RefreshContentViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.mView_PhrasePropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mView_SectionPropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -184,7 +185,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.mView_RefreshContentViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -576,6 +576,12 @@ namespace Obi
             resources.ApplyResources(this.mView_ResetAudioSizeMenuItem, "mView_ResetAudioSizeMenuItem");
             this.mView_ResetAudioSizeMenuItem.Name = "mView_ResetAudioSizeMenuItem";
             this.mView_ResetAudioSizeMenuItem.Click += new System.EventHandler(this.mView_ResetAudioSizeMenuItem_Click);
+            // 
+            // mView_RefreshContentViewMenuItem
+            // 
+            resources.ApplyResources(this.mView_RefreshContentViewMenuItem, "mView_RefreshContentViewMenuItem");
+            this.mView_RefreshContentViewMenuItem.Name = "mView_RefreshContentViewMenuItem";
+            this.mView_RefreshContentViewMenuItem.Click += new System.EventHandler(this.mView_RefreshContentViewMenuItem_Click);
             // 
             // toolStripSeparator17
             // 
@@ -1287,12 +1293,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // mView_RefreshContentViewMenuItem
-            // 
-            this.mView_RefreshContentViewMenuItem.Name = "mView_RefreshContentViewMenuItem";
-            resources.ApplyResources(this.mView_RefreshContentViewMenuItem, "mView_RefreshContentViewMenuItem");
-            this.mView_RefreshContentViewMenuItem.Click += new System.EventHandler(this.mView_RefreshContentViewMenuItem_Click);
             // 
             // mProjectView
             // 
