@@ -3026,5 +3026,10 @@ namespace Obi
                 
             }            
         }
+
+        private void mView_RefreshContentViewMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         }
     }
