@@ -184,6 +184,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.mView_RefreshContentViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -435,6 +436,7 @@ namespace Obi
             this.mView_AudioZoomInMenuItem,
             this.mView_AudioZoomOutMenuItem,
             this.mView_ResetAudioSizeMenuItem,
+            this.mView_RefreshContentViewMenuItem,
             this.toolStripSeparator17,
             this.mView_PhrasePropertiesMenuItem,
             this.mView_SectionPropertiesMenuItem,
@@ -1286,6 +1288,12 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // mView_RefreshContentViewMenuItem
+            // 
+            this.mView_RefreshContentViewMenuItem.Name = "mView_RefreshContentViewMenuItem";
+            resources.ApplyResources(this.mView_RefreshContentViewMenuItem, "mView_RefreshContentViewMenuItem");
+            this.mView_RefreshContentViewMenuItem.Click += new System.EventHandler(this.mView_RefreshContentViewMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1482,6 +1490,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_BookmarkNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_AssignBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_GotoBookmarkNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mView_RefreshContentViewMenuItem;
     }
 }
 
