@@ -2067,8 +2067,10 @@ namespace Obi
                 
                 // if selection is in TocView, move it to content view.
                 if (mProjectView.Selection != null && mProjectView.Selection.Control is ProjectView.TOCView) mProjectView.FocusOnContentView();
-
+                
+                if (mPeakMeter == null) ShowPeakMeter();
                 mRecordingToolBarForm.Show();
+                mRecordingToolBarForm.Location = new System.Drawing.Point(this.Location.X, (this.Location.Y+this.Size.Height) - mRecordingToolBarForm.Size.Height);
                 this.WindowState = FormWindowState.Minimized;
                 mView_RecordingToolBarMenuItem.Checked = true;
             }
@@ -2956,7 +2958,7 @@ namespace Obi
             else
             {
                 ShowRecordingToolBar();
-                if (mPeakMeter == null) ShowPeakMeter();
+                
             }
         }
 
