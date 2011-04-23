@@ -3664,7 +3664,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 return true;
                 }
                 
-            return false;
+            return blockToSelect == null;
             //return SelectBlockFor ( delegate ( Strip strip, ISelectableInContentView item ) { return strip.BlockBefore ( mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item ); } );
             }
 
@@ -3756,7 +3756,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         
                         SelectPhraseBlockOrStrip((EmptyNode) currentlySelectedNode);
                     }
-                    return SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item); });
+                    bool returnVal = SelectBlockFor(delegate(Strip strip, ISelectableInContentView item) { return strip.BlockAfter(mProjectView.TransportBar.IsPlayerActive && mPlaybackBlock != null ? mPlaybackBlock : item); });
+                    if (!returnVal && mSelectedItem != null && mSelectedItem is Block || mSelectedItem is StripCursor) returnVal = true;
+                    return returnVal;
                 }
             }
 
