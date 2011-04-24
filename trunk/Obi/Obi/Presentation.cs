@@ -289,11 +289,11 @@ namespace Obi
         /// <summary>
         /// Initialize the metadata of the presentation, and create a title section if necessary.
         /// </summary>
-        public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings)
+        public void Initialize(Session session, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport )
         {
             Initialize(session);
             //setRootNode(new RootNode(this));
-            CreateMetadata(title, id, settings.UserProfile);
+            CreateMetadata(title, id, settings.UserProfile, isStubProjectForImport);
             //sdk2
             //AddChannel(AUDIO_CHANNEL_NAME);
             //AddChannel(TEXT_CHANNEL_NAME);
@@ -390,16 +390,39 @@ namespace Obi
         /// <summary>
         /// Create the XUK metadata for the project from the project settings and the user profile.
         /// </summary>
-        private void CreateMetadata(string title, string id, UserProfile userProfile)
+        private void CreateMetadata(string title, string id, UserProfile userProfile, bool isStubProjectForImport)
         {
             SetSingleMetadataItem(Obi.Metadata.DC_TITLE, title);
-            SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
             SetSingleMetadataItem(Obi.Metadata.DC_IDENTIFIER, id);
-            SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
-            SetSingleMetadataItem ( Obi.Metadata.DC_CREATOR, Localizer.Message("Metadata_CreatorNameForInitializing"));//it is important for DAISY 2.02
-            SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
-            SetSingleMetadataItem ( Obi.Metadata.GENERATOR, DataModelFactory.Generator );
-            SetSingleMetadataItem ( Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION );
+            if (!isStubProjectForImport) CheckAndCreateDefaultMetadataItems(userProfile);
+        }
+
+        public void CheckAndCreateDefaultMetadataItems(UserProfile userProfile)
+        {
+            if (GetFirstMetadataItem(Metadata.DC_PUBLISHER) == null) SetSingleMetadataItem(Obi.Metadata.DC_PUBLISHER, userProfile.Organization);
+            if (GetFirstMetadataItem(Metadata.DC_LANGUAGE) == null) SetSingleMetadataItem(Obi.Metadata.DC_LANGUAGE, userProfile.Culture.ToString());
+            if (GetFirstMetadataItem(Metadata.DC_CREATOR) == null) SetSingleMetadataItem(Obi.Metadata.DC_CREATOR, Localizer.Message("Metadata_CreatorNameForInitializing"));//it is important for DAISY 2.02
+            if (GetFirstMetadataItem(Metadata.DTB_NARRATOR) == null) SetSingleMetadataItem(Obi.Metadata.DTB_NARRATOR, userProfile.Name);
+
+            urakawa.metadata.Metadata mdGenerator = GetFirstMetadataItem(Metadata.GENERATOR) ;
+            if (mdGenerator == null)
+            {
+                SetSingleMetadataItem(Obi.Metadata.GENERATOR, DataModelFactory.Generator);
+            }
+            else
+            {
+                mdGenerator.NameContentAttribute.Value = DataModelFactory.Generator;
+            }
+
+            urakawa.metadata.Metadata mdXukVersion = GetFirstMetadataItem(Metadata.OBI_XUK_VERSION) ;
+            if (mdXukVersion == null)
+            {
+                SetSingleMetadataItem(Obi.Metadata.OBI_XUK_VERSION, DataModelFactory.XUK_VERSION);
+            }
+            else
+            {
+                mdXukVersion.NameContentAttribute.Value = DataModelFactory.XUK_VERSION;
+            }
         }
 
         // Create a title section with a string as its title.

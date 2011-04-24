@@ -31,6 +31,7 @@ namespace Obi.ImportExport
             if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
             PopulateMetadatasToRemoveList();
         }
+
         //protected override void CreateProjectFileAndDirectory()
         //{
             //if (!Directory.Exists(m_outDirectory))
@@ -663,14 +664,12 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
         private void PopulateMetadatasToRemoveList()
         {
-            m_MetadataItemsToExclude.Add (Metadata.DC_FORMAT);
-            m_MetadataItemsToExclude.Add (Metadata.DTB_AUDIO_FORMAT);
-            m_MetadataItemsToExclude.Add (Metadata.DTB_MULTIMEDIA_CONTENT);
+            m_MetadataItemsToExclude.Add(Metadata.DC_FORMAT);
+            m_MetadataItemsToExclude.Add(Metadata.DTB_AUDIO_FORMAT);
+            m_MetadataItemsToExclude.Add(Metadata.DTB_MULTIMEDIA_CONTENT);
             m_MetadataItemsToExclude.Add(Metadata.DTB_MULTIMEDIA_TYPE);
-            
             m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY2ExportPath);
             m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY3ExportPath);
-            
         }
 
 

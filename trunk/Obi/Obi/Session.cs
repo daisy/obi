@@ -180,12 +180,12 @@ namespace Obi
         /// </summary>
         public void NewPresentation(string path, string title, bool createTitleSection, string id, Settings settings)
         {
-            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings);
+            CreateNewPresentationInBackend(path, title, createTitleSection, id, settings, false);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
 
-        private void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings )
+        private void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport )
         {
             mProject = new Project();
 #if (DEBUG)
@@ -238,7 +238,7 @@ namespace Obi
             mPath = path;
             GetLock ( mPath );
             mChangesCount = 0;
-            newPres.Initialize(this, title, createTitleSection, id, settings);
+            newPres.Initialize(this, title, createTitleSection, id, settings, isStubProjectForImport);
             
             //sdk2
             //Presentation.setRootUri ( new Uri ( path ) );
@@ -523,9 +523,11 @@ namespace Obi
         /// <param name="importDTBPath"></param>
         public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath)
         {
-            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings);
+            importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
+            CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true);
             ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(this, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
             import.DoWork();
+            Presentation.CheckAndCreateDefaultMetadataItems(settings.UserProfile);
             Save(Path);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
