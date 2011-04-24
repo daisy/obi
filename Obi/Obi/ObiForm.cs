@@ -264,13 +264,13 @@ namespace Obi
             try
                 {
                 string title = "";
-                
+                string dtbUid = null;
+
                 string strExtension = System.IO.Path.GetExtension(path).ToLower();
                 if (strExtension == ".opf")
                 {
                     
-                    string dtbUid = null;
-                    title =  Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path);
+                    Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
                 }
                 if(strExtension == ".xhtml" || strExtension == ".html")
                     title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));
@@ -285,6 +285,7 @@ namespace Obi
                     mSettings.NewProjectDialogSize );
                 dialog.DisableAutoTitleCheckbox ();
                 dialog.Text = Localizer.Message ( "create_new_project_from_import" );
+                if (!string.IsNullOrEmpty(dtbUid ))   dialog.ID = dtbUid;
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     mSettings.NewProjectDialogSize = dialog.Size;
