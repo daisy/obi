@@ -19,9 +19,10 @@ namespace Obi.ImportExport
 {
     public class DAISY3_ObiImport : urakawa.daisy.import.Daisy3_Import
     {
-        ObiPresentation m_Presentation;
-        Session m_Session;
-        
+        private ObiPresentation m_Presentation;
+        private Session m_Session;
+        private urakawa.metadata.Metadata m_TitleMetadata;
+        private urakawa.metadata.Metadata m_IdentifierMetadata;
 
         public DAISY3_ObiImport(Session session, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate)
@@ -29,6 +30,7 @@ namespace Obi.ImportExport
             m_Session = session;
             XukPath = Path.Combine(m_outDirectory, "project.obi");
             if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
+            
             PopulateMetadatasToRemoveList();
         }
 
@@ -69,14 +71,8 @@ namespace Obi.ImportExport
             //m_audioChannel.Name = "The Audio Channel";
             m_audioChannel = m_Presentation.ChannelsManager.GetOrCreateAudioChannel();
 
-            //m_ImageChannel = m_Presentation.ChannelFactory.CreateImageChannel();
-            //m_ImageChannel.Name = "The Image Channel";
-
-            /*string dataPath = presentation.DataProviderManager.DataFileDirectoryFullPath;
-           if (Directory.Exists(dataPath))
-           {
-               Directory.Delete(dataPath, true);
-           }*/
+            m_TitleMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_TITLE);
+            m_IdentifierMetadata = m_Presentation.GetFirstMetadataItem(Metadata.DC_IDENTIFIER);
         }
 
         protected override TreeNode CreateTreeNodeForNavPoint(TreeNode parentNode, XmlNode navPoint)
@@ -685,6 +681,27 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             m_MetadataItemsToExclude.Add(Metadata.GENERATOR);
         }
 
+        protected override void RemoveMetadataItemsToBeExcluded()
+        {
+            base.RemoveMetadataItemsToBeExcluded();
+
+            // now make sure that there is single identifier and no duplicate title with the same value
+            foreach (urakawa.metadata.Metadata m in m_Presentation.Metadatas.ContentsAs_ListCopy)
+            {
+                if (m_IdentifierMetadata != null && m_IdentifierMetadata.NameContentAttribute.Name == m.NameContentAttribute.Name
+                    && m_IdentifierMetadata.NameContentAttribute.Value != m.NameContentAttribute.Value)
+                {
+                    m_Presentation.Metadatas.Remove(m);
+                }
+
+                if (m_TitleMetadata != null && m_TitleMetadata != m
+                    && m_TitleMetadata.NameContentAttribute.Name == m.NameContentAttribute.Name && m_TitleMetadata.NameContentAttribute.Value == m.NameContentAttribute.Value)
+                {
+                    m_Presentation.Metadatas.Remove(m);
+                }
+
+            }
+        }
 
     }
 }
