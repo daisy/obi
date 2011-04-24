@@ -29,6 +29,7 @@ namespace Obi.ImportExport
             m_Session = session;
             XukPath = Path.Combine(m_outDirectory, "project.obi");
             if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
+            PopulateMetadatasToRemoveList();
         }
         //protected override void CreateProjectFileAndDirectory()
         //{
@@ -657,22 +658,19 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             return createdNode;
         }
 
-        private void RemoveUnwantedMetadatas()
-        {
-            List<urakawa.metadata.Metadata> metadatasToRemove = new List<urakawa.metadata.Metadata>();
-            metadatasToRemove.Add ( m_Presentation.GetFirstMetadataItem(Metadata.DC_FORMAT));
-            metadatasToRemove.Add ( m_Presentation.GetFirstMetadataItem(Metadata.DTB_AUDIO_FORMAT));
-            metadatasToRemove.Add (m_Presentation.GetFirstMetadataItem(Metadata.DTB_MULTIMEDIA_CONTENT));
-            metadatasToRemove.Add (m_Presentation.GetFirstMetadataItem(Metadata.DTB_MULTIMEDIA_TYPE));
+        private List<string> m_MetadataItemsToExclude = new List<string>();
+        protected override List<string> MetadataItemsToExclude { get { return m_MetadataItemsToExclude; } }
 
-            foreach (urakawa.metadata.Metadata m in metadatasToRemove)
-            {
-                if (m != null)
-                {
-                    Console.WriteLine("deleting metadata :" + m.NameContentAttribute.Name);
-                    m_Presentation.DeleteMetadata(m);
-                }
-            }
+        private void PopulateMetadatasToRemoveList()
+        {
+            m_MetadataItemsToExclude.Add (Metadata.DC_FORMAT);
+            m_MetadataItemsToExclude.Add (Metadata.DTB_AUDIO_FORMAT);
+            m_MetadataItemsToExclude.Add (Metadata.DTB_MULTIMEDIA_CONTENT);
+            m_MetadataItemsToExclude.Add(Metadata.DTB_MULTIMEDIA_TYPE);
+            
+            m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY2ExportPath);
+            m_MetadataItemsToExclude.Add(Metadata.OBI_DAISY3ExportPath);
+            
         }
 
 
