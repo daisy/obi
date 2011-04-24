@@ -19,12 +19,14 @@ namespace Obi.ImportExport
     public class DAISY3_ObiExport : Daisy3_Export
     {
         private int m_AudioFileSectionLevel;
+        
 
         public DAISY3_ObiExport(ObiPresentation presentation, string exportDirectory, List<string> navListElementNamesList, bool encodeToMp3, SampleRate sampleRate, bool skipACM, int audioFileSectionLevel)
         :base (presentation, exportDirectory, navListElementNamesList, encodeToMp3, sampleRate, skipACM)
         {
             m_Filename_Content = null;
             m_AudioFileSectionLevel = audioFileSectionLevel;
+            GeneratorName = "Obi";
         }
 
         
