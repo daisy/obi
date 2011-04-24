@@ -64,7 +64,11 @@ namespace Obi.Dialogs
         /// <summary>
         /// Generated or user-chosen ID for the project.
         /// </summary>
-        public string ID { get { return mIDBox.Text; } }
+        public string ID 
+        { 
+            get { return mIDBox.Text; }
+            set { mIDBox.Text = value; }
+        }
 
         /// <summary>
         /// The chosen path for the XUK project file; derived from the title or chosen

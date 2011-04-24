@@ -238,25 +238,37 @@ namespace Obi.ImportExport
             return phraseTreeNode;
         }
 
-        public static string getTitleFromOpfFile(string opfFilePath)
+        public static void getTitleFromOpfFile(string opfFilePath, ref string dc_Title, ref string dc_Identifier)
         {
             string opfTitle = "";
+            string identifier = "";
             XmlDocument opfFileDoc = urakawa.xuk.OpenXukAction.ParseXmlDocument(opfFilePath, false);
-            
+
+            XmlNode packageNode = XmlDocumentHelper.GetFirstChildElementWithName(opfFileDoc.DocumentElement, true, "package", null);
+            string uidAttribute = packageNode.Attributes.GetNamedItem("unique-identifier").Value;
             XmlNodeList listOfChildrenOfDCMetadata = opfFileDoc.GetElementsByTagName("dc-metadata");
             foreach (XmlNode xnode in listOfChildrenOfDCMetadata)
             {
                 foreach (XmlNode node in xnode.ChildNodes)
                 {
 
-                    if (node.Name == "dc:Title")
+                    if (node.Name == "dc:Title" && string.IsNullOrEmpty(opfTitle))
                     {
                         opfTitle = node.InnerText;
-                        break;
+                        
                     }
+                    if (node.Name == "dc:Identifier" &&  string.IsNullOrEmpty(identifier) 
+                        && node.Attributes.GetNamedItem("id") != null && node.Attributes.GetNamedItem("id").Value == uidAttribute)
+                    {
+                        identifier = node.InnerText;
+                    }
+
+                    if (!string.IsNullOrEmpty(opfTitle) && !string.IsNullOrEmpty(identifier)) break;
+                    
                 }
             }
-            return opfTitle;
+            if (!string.IsNullOrEmpty(opfTitle))    dc_Title= opfTitle;
+            if (!string.IsNullOrEmpty(identifier))  dc_Identifier = identifier;
         }
 
         public static string getTitleFromDtBookFile(string dtBookFilePath)
