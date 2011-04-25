@@ -1579,9 +1579,13 @@ namespace Obi
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
                             delegate ()
                                 {
+                                    
                                 mSession.Presentation.ExportToZ (
                        exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, m_BitRate, audioFileSectionLevel);
                                 } );
+                                
+                          
+      
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
                         
@@ -3033,6 +3037,11 @@ namespace Obi
         private void mView_RefreshContentViewMenuItem_Click(object sender, EventArgs e)
         {
             UpdateZoomFactor();
+        }
+
+        private void mHelp_newFeaturestoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
         }
     }
