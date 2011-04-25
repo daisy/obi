@@ -3041,7 +3041,9 @@ namespace Obi
 
         private void mHelp_newFeaturestoolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Uri url = new Uri(Localizer.Message("Obi_NewFeaturesWebpage"));
+            System.Diagnostics.Process.Start(url.ToString());
         }
+
         }
     }

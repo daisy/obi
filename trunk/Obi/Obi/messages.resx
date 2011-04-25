@@ -1824,4 +1824,7 @@ Error text: {1}</value>
   <data name="upgrading_obi" xml:space="preserve">
     <value>Upgrading project</value>
   </data>
+  <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
+    <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
+  </data>
 </root>
