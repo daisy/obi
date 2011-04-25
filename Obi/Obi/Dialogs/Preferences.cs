@@ -45,6 +45,7 @@ namespace Obi.Dialogs
             InitializeProfileTab ();
             InitializeKeyboardShortcutsTab();
             m_IsKeyboardShortcutChanged = false;
+            this.m_CheckBoxListView.BringToFront();
             }
 
         // Initialize the project tab
@@ -566,21 +567,26 @@ namespace Obi.Dialogs
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
                 m_CheckBoxListView.Visible = true;
+                m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(267, 60);
-                m_CheckBoxListView.Location = new Point(185, 270);
+                m_CheckBoxListView.Size = new Size(267, 55);
+                m_CheckBoxListView.Location = new Point(185, 269);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
-
+                m_grpBoxChkBoxListView.Size = new Size(390, 70);
+                m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
                 m_CheckBoxListView.Visible = true;
+                m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(283, 80);
-                m_CheckBoxListView.Location = new Point(192, 200);
+                m_CheckBoxListView.Location = new Point(195, 220);
+                m_grpBoxChkBoxListView.Size = new Size(380, 106);
+                m_grpBoxChkBoxListView.Location = new Point(115, 200);
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
                 m_CheckBoxListView.Items.Add("Open bookmark node when project reopens");
@@ -597,9 +603,15 @@ namespace Obi.Dialogs
         {
             UpdateTabControl();
             if (mTab.SelectedTab == mKeyboardShortcutTab)
+            {
                 m_CheckBoxListView.Visible = false;
+                m_grpBoxChkBoxListView.Visible = false;
+            }
             if (mTab.SelectedTab == mUserProfileTab)
+            {
                 m_CheckBoxListView.Visible = false;
+                m_grpBoxChkBoxListView.Visible = false;
+            }
         }
         }
     }

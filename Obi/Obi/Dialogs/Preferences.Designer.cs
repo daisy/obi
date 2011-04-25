@@ -82,6 +82,7 @@ namespace Obi.Dialogs
             this.m_lblShortcutKeys = new System.Windows.Forms.Label();
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
+            this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -510,12 +511,19 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView.View = System.Windows.Forms.View.List;
             this.m_CheckBoxListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.m_CheckBoxListView_ItemChecked);
             // 
+            // m_grpBoxChkBoxListView
+            // 
+            resources.ApplyResources(this.m_grpBoxChkBoxListView, "m_grpBoxChkBoxListView");
+            this.m_grpBoxChkBoxListView.Name = "m_grpBoxChkBoxListView";
+            this.m_grpBoxChkBoxListView.TabStop = false;
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
+            this.Controls.Add(this.m_grpBoxChkBoxListView);
             this.Controls.Add(this.m_CheckBoxListView);
             this.Controls.Add(this.mTab);
             this.Controls.Add(this.mCancelButton);
@@ -596,5 +604,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox m_cbOperation;
         private System.Windows.Forms.Label mlbOperation;
         private System.Windows.Forms.ListView m_CheckBoxListView;
+        private System.Windows.Forms.GroupBox m_grpBoxChkBoxListView;
     }
 }
