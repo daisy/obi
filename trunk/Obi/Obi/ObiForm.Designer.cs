@@ -186,6 +186,7 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
+            this.mHelp_newFeaturestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1249,6 +1250,7 @@ namespace Obi
             // mHelpToolStripMenuItem
             // 
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mHelp_newFeaturestoolStripMenuItem,
             this.mHelp_ContentsMenuItem,
             this.mHelp_ReportBugMenuItem,
             this.aboutObiToolStripMenuItem});
@@ -1307,6 +1309,12 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
+            // 
+            // mHelp_newFeaturestoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mHelp_newFeaturestoolStripMenuItem, "mHelp_newFeaturestoolStripMenuItem");
+            this.mHelp_newFeaturestoolStripMenuItem.Name = "mHelp_newFeaturestoolStripMenuItem";
+            this.mHelp_newFeaturestoolStripMenuItem.Click += new System.EventHandler(this.mHelp_newFeaturestoolStripMenuItem_Click);
             // 
             // ObiForm
             // 
@@ -1491,6 +1499,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem m_AssignBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_GotoBookmarkNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_RefreshContentViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mHelp_newFeaturestoolStripMenuItem;
     }
 }
 
