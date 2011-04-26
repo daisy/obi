@@ -439,6 +439,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading waveform..., some Audio file streams may be open. It is recommended to try after some time. Will you like to continue anyway?.
+        /// </summary>
+        internal static string Cleanup_WaveformLoadingWarning {
+            get {
+                return ResourceManager.GetString("Cleanup_WaveformLoadingWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear the list of recent projects?.
         /// </summary>
         internal static string clear_recent_caption {
