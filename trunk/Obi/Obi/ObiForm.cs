@@ -288,6 +288,13 @@ namespace Obi
                 if (!string.IsNullOrEmpty(dtbUid ))   dialog.ID = dtbUid;
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
+                        if (File.Exists(dialog.Path)
+                            && MessageBox.Show(Localizer.Message ("ImportProject_OverwriteProjectMsg"), Localizer.Message("Caption_Warning"),
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                        {
+                            return false;
+                        }
+
                     mSettings.NewProjectDialogSize = dialog.Size;
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),

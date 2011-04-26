@@ -1648,6 +1648,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The project file already exists at the specified location. Do you want to overwrite the existing project?.
+        /// </summary>
+        internal static string ImportProject_OverwriteProjectMsg {
+            get {
+                return ResourceManager.GetString("ImportProject_OverwriteProjectMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Index not in range.
         /// </summary>
         internal static string IndexNotInRange {
