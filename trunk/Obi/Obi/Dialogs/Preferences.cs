@@ -28,7 +28,8 @@ namespace Obi.Dialogs
         private bool m_SaveBookmarkNode;
         private bool m_OpenLastProject;
         private bool m_IsComplete = false;
-        
+        private string m_lblShortcutKeys_text ; //workaround for screen reader response, will be removed in future
+
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
@@ -174,6 +175,8 @@ namespace Obi.Dialogs
                     m_lvShortcutKeysList.Items.Add(item);
                 }
             }
+            if (!string.IsNullOrEmpty(m_lblShortcutKeys.Text)) m_lblShortcutKeys_text = m_lblShortcutKeys.Text;
+            if (mTab.SelectedTab != mKeyboardShortcutTab) m_lblShortcutKeys.Text = "";
         }
 
         /// <summary>
@@ -604,8 +607,14 @@ namespace Obi.Dialogs
             UpdateTabControl();
             if (mTab.SelectedTab == mKeyboardShortcutTab)
             {
+                
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
+                m_lblShortcutKeys.Text = m_lblShortcutKeys_text;
+            }
+            else
+            {
+                m_lblShortcutKeys.Text = "";
             }
             if (mTab.SelectedTab == mUserProfileTab)
             {
