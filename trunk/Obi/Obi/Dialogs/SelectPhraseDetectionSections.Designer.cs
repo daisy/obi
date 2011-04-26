@@ -209,7 +209,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_grpListOfSections);
             this.Controls.Add(this.m_btn_OK);
             this.Name = "SelectPhraseDetectionSections";
-            this.Text = "SelectPhraseDetectionSections";
+            this.Text = "Select phrase detection sections";
             this.m_grpListOfSections.ResumeLayout(false);
             this.m_grpSelectRange.ResumeLayout(false);
             this.m_grpSelectRange.PerformLayout();
