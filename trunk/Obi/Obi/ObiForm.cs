@@ -636,6 +636,14 @@ namespace Obi
         private void CleanProject ()
             {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
+
+            if (mProjectView.IsWaveformRendering
+                && MessageBox.Show(Localizer.Message ("Cleanup_WaveformLoadingWarning"), 
+                    Localizer.Message("Caption_Warning") , 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.No)
+            {
+                return;
+            }
             DialogResult result = MessageBox.Show ( Localizer.Message ( "clean_save_text" ),
                 Localizer.Message ( "clean_save_caption" ),
                 MessageBoxButtons.OKCancel,

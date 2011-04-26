@@ -1827,4 +1827,7 @@ Error text: {1}</value>
   <data name="Obi_NewFeaturesWebpage" xml:space="preserve">
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
+  <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
+    <value>Loading waveform..., some Audio file streams may be open. It is recommended to try after some time. Will you like to continue anyway?</value>
+  </data>
 </root>

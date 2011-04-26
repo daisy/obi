@@ -578,6 +578,8 @@ namespace Obi.ProjectView
             if (mProjectView != null && mProjectView.ObiForm != null) mProjectView.ObiForm.BackgroundOperation_Done ();
             }
 
+        public bool IsWaveformRendering { get { return mWaveformRenderQ.Count > 0; } }
+
         public void FinishedRendering ( Waveform w, bool renderedOK )
             {
             mWaveformRenderWorker = null;

@@ -3306,6 +3306,7 @@ namespace Obi.ProjectView
             }
         }
 
+        public bool IsWaveformRendering { get { return mContentView.IsWaveformRendering; } }
 
         //@ShowSingleSection
         /*
