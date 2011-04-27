@@ -936,7 +936,11 @@ namespace Obi
             }
 
         // Remember the form size in the settings.
-        private void ObiForm_ResizeEnd ( object sender, EventArgs e ) { if ( !m_ShowingPeakMeter )    mSettings.ObiFormSize = Size; }
+        private void ObiForm_ResizeEnd ( object sender, EventArgs e ) 
+        { 
+            if (mPeakMeter != null && !m_ShowingPeakMeter )    mSettings.ObiFormSize = Size;
+            m_ShowingPeakMeter = false;
+        }
 
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
@@ -1059,7 +1063,7 @@ namespace Obi
             mPasteInsideToolStripMenuItem.Enabled = mProjectView.CanPasteInside;
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
             mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
-            mEdit_DeleteUnusedDataMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive; ;
+            mEdit_DeleteUnusedDataMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive; 
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanFindFirstTime && !mProjectView.TransportBar.IsRecorderActive;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
@@ -2124,7 +2128,7 @@ namespace Obi
                         this.Location = newLoc;
                         m_ShowingPeakMeter = true;
                         this.Size = newSize;
-                        m_ShowingPeakMeter = false;
+                        //m_ShowingPeakMeter = false; this is made false in resize event
                         }
                     this.Width -= mPeakMeter.Width;
                     mPeakMeter.Top = this.Top;
