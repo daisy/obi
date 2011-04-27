@@ -273,7 +273,7 @@ namespace Obi.ProjectView
         public void UpdateContextMenu()
         {
             Context_AddSectionMenuItem.Enabled = CanAddSection;
-            Context_AddSubsectionMenuItem.Enabled = CanAddSubsection;
+            Context_AddSubsectionMenuItem.Enabled = CanAddSubsection && !mProjectView.TransportBar.IsRecorderActive;
             Context_InsertSectionMenuItem.Enabled = CanInsertSection && !mProjectView.TransportBar.IsRecorderActive;
             Context_RenameSectionMenuItem.Enabled = CanRenameSection;
             Context_DecreaseSectionLevelMenuItem.Enabled = CanDecreaseLevel && !mProjectView.TransportBar.IsRecorderActive;
