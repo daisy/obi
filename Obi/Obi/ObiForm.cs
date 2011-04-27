@@ -3065,7 +3065,8 @@ namespace Obi
 
         private void mHelp_newFeaturestoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Uri url = new Uri(Localizer.Message("Obi_NewFeaturesWebpage"));
+            //Uri url = new Uri(Localizer.Message("Obi_NewFeaturesWebpage"));
+            Uri url = new Uri(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Obi 2.0 Alpha-New features help.htm"));
             System.Diagnostics.Process.Start(url.ToString());
         }
 
