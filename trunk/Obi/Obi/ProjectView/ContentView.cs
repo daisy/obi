@@ -4538,6 +4538,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_Merge_MergeWithFollowingPhrasesMenuItem.Enabled = mProjectView.CanMergePhraseWithFollowingPhrasesInSection;
             Context_Merge_MergeWithPrecedingPhrasesMenuItem.Enabled = mProjectView.CanMergeWithPhrasesBeforeInSection;
             Context_DeleteFollowingPhrasesMenuItem.Enabled = mProjectView.CanDeleteFollowingPhrasesInSection;
+            Context_ExportAudioToolStripMenuItem.Enabled = mProjectView.CanExportSelectedNodeAudio;
             }
 
         private bool CanSetSelectedPhraseUsedStatus

@@ -71,12 +71,12 @@ namespace Obi.ProjectView
             this.Context_DeleteFollowingPhrasesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.Context_PropertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_ExportAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripsPanel = new System.Windows.Forms.Panel();
             this.mHScrollBar = new System.Windows.Forms.HScrollBar();
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Context_ExportAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
@@ -112,8 +112,8 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem,
             this.Context_DeleteFollowingPhrasesMenuItem,
             this.toolStripSeparator5,
-            this.Context_PropertiesMenuItem,
-            this.Context_ExportAudioToolStripMenuItem});
+            this.Context_ExportAudioToolStripMenuItem,
+            this.Context_PropertiesMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
             this.mContextMenuStrip.Size = new System.Drawing.Size(204, 600);
             // 
@@ -412,6 +412,14 @@ namespace Obi.ProjectView
             this.Context_PropertiesMenuItem.Text = "Pr&operties";
             this.Context_PropertiesMenuItem.Click += new System.EventHandler(this.Context_PropertiesMenuItem_Click);
             // 
+            // Context_ExportAudioToolStripMenuItem
+            // 
+            this.Context_ExportAudioToolStripMenuItem.AccessibleName = "Export Audio  Ctrl+Alt+E";
+            this.Context_ExportAudioToolStripMenuItem.Name = "Context_ExportAudioToolStripMenuItem";
+            this.Context_ExportAudioToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.Context_ExportAudioToolStripMenuItem.Text = "Export A&udio";
+            this.Context_ExportAudioToolStripMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
+            // 
             // mStripsPanel
             // 
             this.mStripsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -458,14 +466,6 @@ namespace Obi.ProjectView
             // timer1
             // 
             this.timer1.Interval = 1000;
-            // 
-            // Context_ExportAudioToolStripMenuItem
-            // 
-            this.Context_ExportAudioToolStripMenuItem.AccessibleName = "Export Audio  Ctrl+Alt+E";
-            this.Context_ExportAudioToolStripMenuItem.Name = "Context_ExportAudioToolStripMenuItem";
-            this.Context_ExportAudioToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.Context_ExportAudioToolStripMenuItem.Text = "Export A&udio";
-            this.Context_ExportAudioToolStripMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
             // 
             // verticalScrollToolStripContainer1
             // 
