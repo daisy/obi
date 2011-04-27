@@ -179,6 +179,7 @@ namespace Obi
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mHelp_newFeaturestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ReportBugMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,7 +187,6 @@ namespace Obi
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mProjectView = new Obi.ProjectView.ProjectView();
-            this.mHelp_newFeaturestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -1257,6 +1257,12 @@ namespace Obi
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             resources.ApplyResources(this.mHelpToolStripMenuItem, "mHelpToolStripMenuItem");
             // 
+            // mHelp_newFeaturestoolStripMenuItem
+            // 
+            resources.ApplyResources(this.mHelp_newFeaturestoolStripMenuItem, "mHelp_newFeaturestoolStripMenuItem");
+            this.mHelp_newFeaturestoolStripMenuItem.Name = "mHelp_newFeaturestoolStripMenuItem";
+            this.mHelp_newFeaturestoolStripMenuItem.Click += new System.EventHandler(this.mHelp_newFeaturestoolStripMenuItem_Click);
+            // 
             // mHelp_ContentsMenuItem
             // 
             resources.ApplyResources(this.mHelp_ContentsMenuItem, "mHelp_ContentsMenuItem");
@@ -1309,12 +1315,6 @@ namespace Obi
             this.mProjectView.Selection = null;
             this.mProjectView.TOCViewVisible = true;
             this.mProjectView.TransportBarVisible = false;
-            // 
-            // mHelp_newFeaturestoolStripMenuItem
-            // 
-            resources.ApplyResources(this.mHelp_newFeaturestoolStripMenuItem, "mHelp_newFeaturestoolStripMenuItem");
-            this.mHelp_newFeaturestoolStripMenuItem.Name = "mHelp_newFeaturestoolStripMenuItem";
-            this.mHelp_newFeaturestoolStripMenuItem.Click += new System.EventHandler(this.mHelp_newFeaturestoolStripMenuItem_Click);
             // 
             // ObiForm
             // 
