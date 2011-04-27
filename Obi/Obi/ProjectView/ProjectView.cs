@@ -3244,6 +3244,11 @@ namespace Obi.ProjectView
 
         public void ExportAudioOfSelectedNode(ObiNode nodeSelected, string audioFileExportDirectory)
         {
+            if (nodeSelected.Duration == 0)
+            {
+                MessageBox.Show("The selected item contain no audio");
+                return;
+            }
             if (!audioFileExportDirectory.EndsWith("\\")) audioFileExportDirectory = audioFileExportDirectory + "\\";
             try
             {
