@@ -56,6 +56,8 @@ namespace Obi.UserControls
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
         {
             this.Enabled = m_TransportBar.Enabled;
+            if (!this.Enabled)
+                this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
         }
 
         private delegate void State_Changed_Recorder_Delegate();
