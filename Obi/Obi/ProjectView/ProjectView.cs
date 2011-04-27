@@ -3242,8 +3242,11 @@ namespace Obi.ProjectView
             mContentView.DisableScrolling ();
             }
 
-        public void ExportAudioOfSelectedNode(ObiNode nodeSelected, string audioFileExportDirectory)
+        public void ExportAudioOfSelectedNode()
         {
+            if (!CanExportSelectedNodeAudio) return;
+            string audioFileExportDirectory = ObiForm.ExportAudioDirectory;
+            ObiNode nodeSelected = this.Selection.Node;
             if (nodeSelected.Duration == 0)
             {
                 MessageBox.Show(Localizer.Message("no_audio"));

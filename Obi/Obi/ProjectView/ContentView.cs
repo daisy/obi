@@ -4979,7 +4979,7 @@ Block lastBlock = ActiveStrip.LastBlock ;
 
         private void exportAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            mProjectView.ExportAudioOfSelectedNode();
         }
 
         //@ShowSingleSection

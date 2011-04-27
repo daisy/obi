@@ -2992,10 +2992,12 @@ namespace Obi
             mProjectView.MergeStrips();
         }
 
+        public string ExportAudioDirectory { get { return Path.Combine(Path.GetDirectoryName(mSession.Path), "Exported_Audio_Files"); } }
+
         private void mtools_ExportSelectedAudioMenuItem_Click(object sender, EventArgs e)
         {
-            String directoryPath = Path.GetDirectoryName(mSession.Path);
-            mProjectView.ExportAudioOfSelectedNode(mProjectView.Selection.Node,Path.Combine(directoryPath,"Exported_Audio_Files"));
+            //String directoryPath = Path.GetDirectoryName(mSession.Path);
+            mProjectView.ExportAudioOfSelectedNode();
         }
 
         private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
