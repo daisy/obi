@@ -1833,4 +1833,7 @@ Error text: {1}</value>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
     <value>The project file already exists at the specified location. Do you want to overwrite the existing project?</value>
   </data>
+  <data name="no_audio" xml:space="preserve">
+    <value>The selected item contains no audio</value>
+  </data>
 </root>

@@ -3246,7 +3246,7 @@ namespace Obi.ProjectView
         {
             if (nodeSelected.Duration == 0)
             {
-                MessageBox.Show("The selected item contain no audio");
+                MessageBox.Show(Localizer.Message("no_audio"));
                 return;
             }
             if (!audioFileExportDirectory.EndsWith("\\")) audioFileExportDirectory = audioFileExportDirectory + "\\";

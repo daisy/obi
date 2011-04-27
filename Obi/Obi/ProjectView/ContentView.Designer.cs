@@ -76,6 +76,7 @@ namespace Obi.ProjectView
             this.mVScrollBar = new System.Windows.Forms.VScrollBar();
             this.mCornerPanel = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Context_ExportAudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalScrollToolStripContainer1 = new Obi.ProjectView.VerticalScrollToolStripContainer();
             this.contentViewLabel1 = new Obi.ProjectView.ContentViewLabel();
             this.mContextMenuStrip.SuspendLayout();
@@ -111,9 +112,10 @@ namespace Obi.ProjectView
             this.Context_DeleteMenuItem,
             this.Context_DeleteFollowingPhrasesMenuItem,
             this.toolStripSeparator5,
-            this.Context_PropertiesMenuItem});
+            this.Context_PropertiesMenuItem,
+            this.Context_ExportAudioToolStripMenuItem});
             this.mContextMenuStrip.Name = "mContextMenuStrip";
-            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 556);
+            this.mContextMenuStrip.Size = new System.Drawing.Size(204, 600);
             // 
             // Context_AddSectionMenuItem
             // 
@@ -457,10 +459,18 @@ namespace Obi.ProjectView
             // 
             this.timer1.Interval = 1000;
             // 
+            // Context_ExportAudioToolStripMenuItem
+            // 
+            this.Context_ExportAudioToolStripMenuItem.AccessibleName = "Export Audio  Ctrl+Alt+E";
+            this.Context_ExportAudioToolStripMenuItem.Name = "Context_ExportAudioToolStripMenuItem";
+            this.Context_ExportAudioToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.Context_ExportAudioToolStripMenuItem.Text = "Export A&udio";
+            this.Context_ExportAudioToolStripMenuItem.Click += new System.EventHandler(this.exportAudioToolStripMenuItem_Click);
+            // 
             // verticalScrollToolStripContainer1
             // 
             this.verticalScrollToolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.verticalScrollToolStripContainer1.CanScrollDown = true;
             this.verticalScrollToolStripContainer1.CanScrollUp = true;
             this.verticalScrollToolStripContainer1.contentView = null;
@@ -559,5 +569,6 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripMenuItem Context_PhraseDetection_ApplyPhraseDetectionInProjectMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_DeleteFollowingPhrasesMenuItem;
         private VerticalScrollToolStripContainer verticalScrollToolStripContainer1;
+        private System.Windows.Forms.ToolStripMenuItem Context_ExportAudioToolStripMenuItem;
     }
 }

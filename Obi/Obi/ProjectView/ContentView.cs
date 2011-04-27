@@ -22,7 +22,6 @@ namespace Obi.ProjectView
         private Dictionary<Keys, ProjectView.HandledShortcutKey> mShortcutKeys;  // list of all shortcuts
         private bool mWrapStripContents;                             // wrapping of strip contents
         private bool mIsEnteringView;                                // flag set when entering the  view
-
         private Dictionary<SectionNode, Strip> mStrips;              // strips for sections (reuse old strips instead of redrawing)
         private PriorityQueue<Waveform, int> mWaveformRenderQ;       // queue of waveforms to render
         private BackgroundWorker mWaveformRenderWorker;              // current waveform rendering worker
@@ -4977,6 +4976,11 @@ Block lastBlock = ActiveStrip.LastBlock ;
                 CreatePhrasesAccordingToVScrollBarValue ( mVScrollBar.Value );
                 }
             }
+
+        private void exportAudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
 
         //@ShowSingleSection
         /*
