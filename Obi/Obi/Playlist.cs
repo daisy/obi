@@ -433,6 +433,11 @@ namespace Obi
         private void PlayCurrentPhrase()
         {
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
+            if (mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds == 0)
+            {
+                return ;
+            }
+                
             if (mPlaylistState == AudioPlayer.State.Stopped)
             {
                 mPlayer.AudioPlaybackFinished += new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
