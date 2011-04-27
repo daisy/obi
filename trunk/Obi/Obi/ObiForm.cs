@@ -936,7 +936,7 @@ namespace Obi
             }
 
         // Remember the form size in the settings.
-        private void ObiForm_ResizeEnd ( object sender, EventArgs e ) { mSettings.ObiFormSize = Size; }
+        private void ObiForm_ResizeEnd ( object sender, EventArgs e ) { if ( !m_ShowingPeakMeter )    mSettings.ObiFormSize = Size; }
 
         private void ProjectView_SelectionChanged ( object sender, EventArgs e )
             {
@@ -2096,6 +2096,7 @@ namespace Obi
             }
         }
 
+        private bool m_ShowingPeakMeter = false;
         // Show a new peak meter form or give focus back to the previously opned one
         private void ShowPeakMeter ()
             {
@@ -2121,7 +2122,9 @@ namespace Obi
                         newSize.Height -= 2 * SystemInformation.VerticalResizeBorderThickness;
                         this.WindowState = FormWindowState.Normal;
                         this.Location = newLoc;
+                        m_ShowingPeakMeter = true;
                         this.Size = newSize;
+                        m_ShowingPeakMeter = false;
                         }
                     this.Width -= mPeakMeter.Width;
                     mPeakMeter.Top = this.Top;
