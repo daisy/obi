@@ -1059,7 +1059,7 @@ namespace Obi
             mPasteInsideToolStripMenuItem.Enabled = mProjectView.CanPasteInside;
             mDeleteToolStripMenuItem.Enabled = mProjectView.CanDelete;
             mSelectNothingToolStripMenuItem.Enabled = mProjectView.CanDeselect;
-            mEdit_DeleteUnusedDataMenuItem.Enabled = mSession.HasProject;
+            mEdit_DeleteUnusedDataMenuItem.Enabled = mSession.HasProject && !mProjectView.TransportBar.IsRecorderActive; ;
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanFindFirstTime && !mProjectView.TransportBar.IsRecorderActive;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
