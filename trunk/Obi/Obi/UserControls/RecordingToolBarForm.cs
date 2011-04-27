@@ -91,9 +91,9 @@ namespace Obi.UserControls
             m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.CanNavigatePrevPhrase;
             m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
             m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+            if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) && m_TransportBar.RecordingSection != null)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
-            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
+            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing && m_TransportBar.PlaybackPhrase != null)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label.ToString());               
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
