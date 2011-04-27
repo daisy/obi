@@ -2835,6 +2835,11 @@ namespace Obi.ProjectView
                 if (dialog.Used != dialog.Node.Used)
                     {
                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, dialog.Node ) );
+                    for (int i = 0 ;i < dialog.Node.PhraseChildCount;i++ )
+                    {
+                        EmptyNode eNode = dialog.Node.PhraseChild(i);
+                        if (dialog.Used != eNode.Used )   command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed(this, eNode));
+                    }
                     }
                 if (command.ChildCommands.Count == 1) command.ShortDescription = command.ChildCommands.Get(0).ShortDescription ;
                 if (command.ChildCommands.Count > 0) mPresentation.Do(command);
