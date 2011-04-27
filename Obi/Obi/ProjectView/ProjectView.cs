@@ -3050,7 +3050,8 @@ namespace Obi.ProjectView
                         && GetSelectedPhraseSection != currentlyActiveStrip.Node && mContentView.RestrictDynamicLoadingForRecording(currentlyActiveStrip.Node))
                         {
                             MessageBox.Show(Localizer.Message("RecordingRestriction_CannotCreateStrip"), Localizer.Message("Caption_Information"), MessageBoxButtons.OK);
-                            currentlyActiveStrip.Focus();
+                            if (TransportBar.RecordingPhrase != null && currentlyActiveStrip.FindBlock(TransportBar.RecordingPhrase) != null) mContentView.SelectPhraseBlockOrStrip(TransportBar.RecordingPhrase);
+                            //currentlyActiveStrip.Focus();
                         }
                         else if (GetSelectedPhraseSection != null && (!TransportBar.IsRecorderActive || TransportBar.RecordingSection == GetSelectedPhraseSection))
                         {
