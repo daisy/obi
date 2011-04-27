@@ -1810,7 +1810,7 @@ Error text: {1}</value>
     <value>Recording {0} {1}</value>
   </data>
   <data name="RecToolbar_Title" xml:space="preserve">
-    <value>Obi recorder bar : [{0}]</value>
+    <value>Obi recorder bar : {0}</value>
   </data>
   <data name="bookmark_closed_project_caption" xml:space="preserve">
     <value>Closing a project</value>
