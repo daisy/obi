@@ -217,7 +217,11 @@ namespace Obi.ImportExport
             XmlNode navLabelXmlNode = m_NavPointNode_NavLabelMap[navPointTreeNode];
             XmlNode headingAudio = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "audio", navLabelXmlNode.NamespaceURI);
             //XmlNode textNode = XmlDocumentHelper.GetFirstChildElementWithName(navLabelXmlNode, true, "text", navLabelXmlNode.NamespaceURI);
-
+            if (headingAudio == null)
+            {
+                Console.WriteLine("NCX Heading node is null for " + navLabelXmlNode.InnerText);
+                return null;
+            }
             double headingClipBegin = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipBegin").Value)).AsTimeSpan.TotalMilliseconds);
             double headingClipEnd = Math.Abs((new urakawa.media.timing.Time(headingAudio.Attributes.GetNamedItem("clipEnd").Value)).AsTimeSpan.TotalMilliseconds);
 
