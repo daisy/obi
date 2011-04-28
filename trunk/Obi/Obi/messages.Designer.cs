@@ -631,7 +631,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a new project from XHTML import.
+        ///   Looks up a localized string similar to Create a new project from import.
         /// </summary>
         internal static string create_new_project_from_import {
             get {
