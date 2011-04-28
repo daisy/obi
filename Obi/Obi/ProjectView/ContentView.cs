@@ -2543,7 +2543,8 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                     NodeSelection previousSelection = mProjectView.Selection;
                 mProjectView.ObiForm.Cursor = Cursors.WaitCursor;
                 IsScrollActive = true;
-                
+
+                Block firstBlock = currentlyActiveStrip.FirstBlock;
                 CreateBlocksTillNodeInStrip ( currentlyActiveStrip,
                                 currentlyActiveStrip.Node.PhraseChild ( 0 ),
                                 false );
@@ -2553,7 +2554,7 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 CreatePhraseBlocksForFillingContentView ( currentlyActiveStrip );
                 verticalScrollToolStripContainer1.TrackBarValueInPercentage = 0;
                 //ReturnFocusFromVerticalScrollPanel ();
-                PlayShowBlocksCompletedSound();
+                if(firstBlock != null && currentlyActiveStrip.FirstBlock != null &&  firstBlock != currentlyActiveStrip.FirstBlock)  PlayShowBlocksCompletedSound();
                 IsScrollActive = false;
                 mProjectView.ObiForm.Cursor = Cursors.Default;
                 if (previousSelection != null) ManageSelectionChangeWhileScroll(previousSelection, currentlyActiveStrip);
