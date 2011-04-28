@@ -528,6 +528,7 @@ namespace Obi
             ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(this, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
             import.DoWork();
             Presentation.CheckAndCreateDefaultMetadataItems(settings.UserProfile);
+            import.CorrectExternalAudioMedia();
             Save(Path);
             if (ProjectCreated != null) ProjectCreated(this, null);
         }

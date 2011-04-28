@@ -707,5 +707,35 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             }
         }
 
+        private void ReplaceExternalAudioMediaPhraseWithEmptyNode (TreeNode node)
+        {
+            if (node is PhraseNode)
+            {
+                PhraseNode phrase = (PhraseNode)node;
+                SectionNode section = phrase.ParentAs<SectionNode>();
+                Console.WriteLine("replacing phrase node with empty node due to  clip problem " + section.Label + " phrase index:" + phrase.Index.ToString());
+                int phraseIndex = phrase.Index;
+                EmptyNode emptyNode = m_Presentation.TreeNodeFactory.Create<EmptyNode>();
+                emptyNode.CopyAttributes(phrase);
+                phrase.Detach();
+                
+                section.Insert(emptyNode, phraseIndex);
+                
+            }
+             
+        }
+
+        public void CorrectExternalAudioMedia()
+        {   
+            for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
+            {   
+                if ( TreenodesWithoutManagedAudioMediaData[i] is PhraseNode )
+                {
+                    PhraseNode phrase = (PhraseNode)TreenodesWithoutManagedAudioMediaData[i];
+                    ReplaceExternalAudioMediaPhraseWithEmptyNode(phrase);
+                }
+            }
+        }
+
     }
 }
