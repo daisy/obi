@@ -1828,7 +1828,7 @@ Error text: {1}</value>
     <value>http://daisy.trac.cvsdude.com/obi/wiki/documentation/Obi2.0_FeaturesExplanation</value>
   </data>
   <data name="Cleanup_WaveformLoadingWarning" xml:space="preserve">
-    <value>Loading waveform..., some Audio file streams may be open. It is recommended to try after some time. Will you like to continue anyway?</value>
+    <value>Loading waveform..., some Audio file streams may be open. It is strongly recommended to try after some time. Please press No button to wait.</value>
   </data>
   <data name="ImportProject_OverwriteProjectMsg" xml:space="preserve">
     <value>The project file already exists at the specified location. Do you want to overwrite the existing project?</value>
