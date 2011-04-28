@@ -577,7 +577,7 @@ Error text: {1}</value>
     <comment>Command</comment>
   </data>
   <data name="create_new_project_from_import" xml:space="preserve">
-    <value>Create a new project from XHTML import</value>
+    <value>Create a new project from import</value>
     <comment>File dialog caption</comment>
   </data>
   <data name="import_failed" xml:space="preserve">
