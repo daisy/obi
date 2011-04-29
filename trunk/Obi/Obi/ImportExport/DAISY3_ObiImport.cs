@@ -780,7 +780,8 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         }
 
         public void CorrectExternalAudioMedia()
-        {   
+        {
+            if (TreenodesWithoutManagedAudioMediaData == null || TreenodesWithoutManagedAudioMediaData.Count == 0) return;
             for (int i = 0; i < TreenodesWithoutManagedAudioMediaData.Count; i++)
             {   
                 if ( TreenodesWithoutManagedAudioMediaData[i] is PhraseNode )
