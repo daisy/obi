@@ -12,7 +12,8 @@ using urakawa.property.xml;
 using urakawa.daisy;
 using urakawa.daisy.import;
 using urakawa.media.data.audio;
-using AudioLib ;
+using urakawa.media.timing ;
+using AudioLib  ;
 
 
 namespace Obi.ImportExport
@@ -706,6 +707,59 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
 
             }
         }
+
+
+        protected override bool addAudioWavWithEndOfFileTolerance(urakawa.media.data.audio.codec.WavAudioMediaData mediaData, urakawa.data.FileDataProvider dataProv, Time clipB, Time clipE)
+        {
+            bool isClipEndError = true;
+
+            uint dataLength = 0 ;
+            Stream wavStream = null;
+            AudioLibPCMFormat PCMFormat = null ;
+            try
+            {
+                wavStream = dataProv.OpenInputStream();
+                 PCMFormat = AudioLibPCMFormat.RiffHeaderParse(wavStream, out dataLength);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                isClipEndError = true ;
+            }
+            finally
+            {
+                if(wavStream != null )  wavStream.Close () ;
+            }
+
+            Time fileDuration = new Time(PCMFormat.ConvertBytesToTime((long) dataLength));
+            if (clipB.IsLessThan (clipE))
+            {//1
+                double diff =  clipE.AsTimeSpan.TotalMilliseconds - fileDuration.AsTimeSpan.TotalMilliseconds;
+                if (diff < 300 && clipB.IsLessThan(fileDuration))
+                {//2
+                    try
+                    {//3
+                        mediaData.AppendPcmData(dataProv, clipB, fileDuration);
+                        isClipEndError = false;
+                        Console.WriteLine("Obi: clip end adjust according to file length : Clip end" + clipE.AsTimeSpan.ToString() + " File length:" + fileDuration.AsTimeSpan.ToString());
+                    }//-3
+                    catch (Exception ex)
+                    {//3
+                        isClipEndError = true;
+                    }//-3
+                    // to do: add obi specific code here
+                    //if ( diff > 50 ) 
+                }//-2
+                
+            }//-1
+            else
+            {//1
+                Console.WriteLine("clip begin is larger than clip end");
+            }//-1
+            return isClipEndError;
+        }
+
+
 
         private void ReplaceExternalAudioMediaPhraseWithEmptyNode (TreeNode node)
         {
