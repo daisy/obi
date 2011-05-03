@@ -709,7 +709,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
         }
 
 
-        protected override bool addAudioWavWithEndOfFileTolerance(urakawa.media.data.audio.codec.WavAudioMediaData mediaData, urakawa.data.FileDataProvider dataProv, Time clipB, Time clipE)
+        protected override bool addAudioWavWithEndOfFileTolerance(urakawa.media.data.audio.codec.WavAudioMediaData mediaData, urakawa.data.FileDataProvider dataProv, Time clipB, Time clipE, TreeNode treeNode)
         {
             bool isClipEndError = true;
 
@@ -735,7 +735,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
             if (clipB.IsLessThan (clipE))
             {//1
                 double diff =  clipE.AsTimeSpan.TotalMilliseconds - fileDuration.AsTimeSpan.TotalMilliseconds;
-                if (diff < 300 && clipB.IsLessThan(fileDuration))
+                if (clipB.IsLessThan(fileDuration))
                 {//2
                     try
                     {//3
@@ -748,7 +748,13 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         isClipEndError = true;
                     }//-3
                     // to do: add obi specific code here
-                    //if ( diff > 50 ) 
+                    if (diff > 100 && treeNode != null )
+                    {
+                        EmptyNode eNode = (EmptyNode)treeNode;
+                        eNode.TODO = true;
+                        eNode.Role_ = EmptyNode.Role.Custom ;
+                        eNode.CustomRole = "Truncated audio";
+                    }
                 }//-2
                 
             }//-1
@@ -774,7 +780,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 phrase.Detach();
                 
                 section.Insert(emptyNode, phraseIndex);
-                
+                emptyNode.TODO = true;
             }
              
         }
