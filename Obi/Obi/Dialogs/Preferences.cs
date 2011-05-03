@@ -68,22 +68,22 @@ namespace Obi.Dialogs
         // Initialize audio tab
         private void InitializeAudioTab ()
             {
-            AudioRecorder recorder = mTransportBar.Recorder;    
-            int defaultInputIndex =0;
-            int defaultOutputIndex = 0;
+            AudioRecorder recorder = mTransportBar.Recorder;
+            string defaultInputName = "";
+            string defaultOutputName = "";
            // mInputDeviceCombo.DataSource = recorder.InputDevices; 
            // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
             foreach (InputDevice input in recorder.InputDevices)
             {
                 mInputDeviceCombo.Items.Add(input.Name);
-                if (recorder.InputDevice == input)
-                   defaultInputIndex = recorder.InputDevices.IndexOf(recorder.InputDevice);
+                if (recorder.InputDevice.Name == input.Name)
+                    defaultInputName = input.Name;            
             }
-            if(mSettings.LastInputDevice == "")
-                mInputDeviceCombo.SelectedIndex =defaultInputIndex; 
+            if (mSettings.LastInputDevice == "")
+                mInputDeviceCombo.SelectedItem = defaultInputName;
             else
-            mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
-           
+                mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
+            
 
             AudioPlayer player = mTransportBar.AudioPlayer;
            // mOutputDeviceCombo.DataSource = player.OutputDevices; avn
@@ -92,11 +92,11 @@ namespace Obi.Dialogs
             foreach (OutputDevice output in player.OutputDevices)
             {
                 mOutputDeviceCombo.Items.Add(output.Name);
-                if(player.OutputDevice == output)
-                    defaultOutputIndex = player.OutputDevices.IndexOf ( player.OutputDevice );
+                if(player.OutputDevice.Name == output.Name)
+                    defaultOutputName = output.Name;
             }
             if (mSettings.LastOutputDevice == "")
-                mOutputDeviceCombo.SelectedIndex = defaultOutputIndex;
+                mOutputDeviceCombo.SelectedItem = defaultOutputName;
             else
             mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
 
