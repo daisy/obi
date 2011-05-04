@@ -964,7 +964,7 @@ namespace Obi
         private void Session_ProjectCreated ( object sender, EventArgs e )
             {
             GotNewPresentation ();
-            Status ( String.Format ( Localizer.Message ( "created_new_project" ), mSession.Presentation.Title ) );
+            
             }
 
         private void Session_ProjectClosed ( object sender, ProjectClosedEventArgs e )
@@ -1817,6 +1817,7 @@ namespace Obi
                 mProjectView.Presentation.BeforeCommandExecuted += new EventHandler<urakawa.events.command.CommandEventArgs>(ObiForm_BeforeCommandExecuted);//@singleSection
                 if (mSettings.AutoSaveTimeIntervalEnabled) mAutoSaveTimer.Start();
                 m_CanAutoSave = true; //@singleSection
+                Status(String.Format(Localizer.Message("created_new_project"), mSession.Presentation.Title));
                 stopWatch.Stop();
                 Console.WriteLine("Time taken to create section and phrase blocks (in milliseconds) " + stopWatch.ElapsedMilliseconds);
             }
