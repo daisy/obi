@@ -156,6 +156,12 @@
     <Compile Include="Dialogs\GoToPageOrPhrase.designer.cs">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReportDialog.Designer.cs">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -728,6 +734,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="good.wav" />
+    <EmbeddedResource Include="Dialogs\ReportDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReportDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SelectMergeSectionRange.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SelectMergeSectionRange.cs</DependentUpon>
