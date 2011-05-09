@@ -24,6 +24,8 @@ namespace Obi.ImportExport
         private Session m_Session;
         private urakawa.metadata.Metadata m_TitleMetadata;
         private urakawa.metadata.Metadata m_IdentifierMetadata;
+        private List<EmptyNode> m_PhrasesWithTruncatedAudio ;
+        private List<string> m_ErrorsList;
 
         public DAISY3_ObiImport(Session session, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate)
@@ -33,6 +35,8 @@ namespace Obi.ImportExport
             if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
             
             PopulateMetadatasToRemoveList();
+            m_PhrasesWithTruncatedAudio = new List<EmptyNode>();
+            m_ErrorsList = new List<string>();
         }
 
         //protected override void CreateProjectFileAndDirectory()
@@ -754,6 +758,8 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         eNode.TODO = true;
                         eNode.Role_ = EmptyNode.Role.Custom ;
                         eNode.CustomRole = "Truncated audio";
+                        m_ErrorsList.Add("Truncated audio in " + eNode.ToString() + " in section: " + eNode.ParentAs<SectionNode>().Label );
+                        m_ErrorsList.Add("        expected cllip end:" + clipE.Format_H_MN_S_MS() + "    Imported clip end:" + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
                 
@@ -781,6 +787,8 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 
                 section.Insert(emptyNode, phraseIndex);
                 emptyNode.TODO = true;
+
+                m_ErrorsList.Add("No audio in " + emptyNode.ToString() + " in section: " + section.Label);
             }
              
         }
