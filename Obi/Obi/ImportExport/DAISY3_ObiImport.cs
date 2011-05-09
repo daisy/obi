@@ -39,6 +39,8 @@ namespace Obi.ImportExport
             m_ErrorsList = new List<string>();
         }
 
+        public List<string> ErrorsList { get { return m_ErrorsList; } } 
+
         //protected override void CreateProjectFileAndDirectory()
         //{
             //if (!Directory.Exists(m_outDirectory))
