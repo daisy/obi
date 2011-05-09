@@ -330,12 +330,15 @@ namespace Obi
             try
             {
                 importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
-                mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath);
+                ImportExport.DAISY3_ObiImport import = null;
+                mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath, import);
                 //mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings);
                 //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
                 //import.DoWork();
                 //mSession.Save(mSession.Path);
-                MessageBox.Show(String.Format(Localizer.Message("import_output_path" ), outputPath));
+                //MessageBox.Show(String.Format(Localizer.Message("import_output_path" ), outputPath));
+                Dialogs.ReportDialog reportDialog = new ReportDialog("Report for import" , String.Format(Localizer.Message("import_output_path" ), outputPath), import != null? import.ErrorsList: null ) ;
+                reportDialog.ShowDialog() ;
                 //mSession.NotifyProjectCreated();
             }
             catch (System.Exception ex)

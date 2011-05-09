@@ -16,13 +16,13 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
         }
-        public ReportDialog(List<string> problemStrings, string labelInfo, string reportDialogName)
+        public ReportDialog(string reportDialogTitle, string labelInfo, List<string> problemStrings)
             : this()
         {
             m_ProblemStringList = problemStrings;
             m_lblReportDialog.Text = labelInfo;
-            this.Text = reportDialogName;
-            if (problemStrings.Count != null)
+            this.Text = reportDialogTitle;
+            if (problemStrings != null &&  problemStrings.Count != 0)
                 m_btnDetails.Enabled = true;               
         }
 
