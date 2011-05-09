@@ -39,7 +39,9 @@ namespace Obi.UserControls
             m_TransportBar = transportBar;
             m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
-            m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);           
+            m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+                UpdateButtons();
         }
 
         public void State_Changed_Player(object sender, AudioPlayer.StateChangedEventArgs e)
@@ -67,17 +69,16 @@ namespace Obi.UserControls
         }
         public void State_Changed_Recorder()
         {
-
             if (this.InvokeRequired)
             {
                 this.Invoke(new State_Changed_Recorder_Delegate(State_Changed_Recorder));
                 return;
             }
         m_TimeCounter = 0;
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) 
-                timer1.Start();
-            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
-                timer1.Stop();
+        if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+           timer1.Start();
+        else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
+            timer1.Stop();
             UpdateStatus();
             UpdateButtons();           
         }
@@ -237,21 +238,23 @@ namespace Obi.UserControls
             }
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 m_StatusLabel.Text = Localizer.Message("monitoring_short");
-            
-                            if (m_TransportBar.CurrentPlaylist.CurrentTimeInAsset == 0 && 
-                !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) && 
-                !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&
-                !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)) 
-                {
-                    m_StatusLabel.Text = Localizer.Message("Stopped");
-                    timer1.Stop();
-                }
+
+            if (m_TransportBar.CurrentPlaylist.CurrentTimeInAsset == 0 &&
+!(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) &&
+!(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&
+!(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring))
+            {
+                m_StatusLabel.Text = Localizer.Message("Stopped");
+                timer1.Stop();
+            }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
-                {
-                m_StatusLabel.Text = String.Format(Localizer.Message( "RecordingToolBar_StatusPlaying"), 
-                    m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(), 
+            {
+                m_StatusLabel.Text = String.Format(Localizer.Message("RecordingToolBar_StatusPlaying"),
+                    m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(),
                     format(m_TransportBar.CurrentPlaylist.CurrentTimeInAsset));
-                }      
+            }
+            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
+                m_StatusLabel.Text = Localizer.Message("Paused");
         }
 
         private void m_TODOBtn_Click(object sender, EventArgs e)
