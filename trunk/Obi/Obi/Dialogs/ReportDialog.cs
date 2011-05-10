@@ -20,10 +20,11 @@ namespace Obi.Dialogs
             : this()
         {
             m_ProblemStringList = problemStrings;
-            m_lblReportDialog.Text = labelInfo;
+           // m_lblReportDialog.Text = labelInfo;
+            m_txtBoxPath.Text = labelInfo;
             this.Text = reportDialogTitle;
             if (problemStrings != null &&  problemStrings.Count != 0)
-                m_btnDetails.Enabled = true;               
+                m_btnDetails.Visible = true;
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace Obi.Dialogs
 
         private void m_btnDetails_Click(object sender, EventArgs e)
         {
-            this.Height = 240;
+            this.Height = 294;
             if (m_ProblemStringList != null)
             {
                 for (int i = 0; i < m_ProblemStringList.Count; i++)
@@ -41,4 +42,4 @@ namespace Obi.Dialogs
             }
         }
     }
-}
+} 
