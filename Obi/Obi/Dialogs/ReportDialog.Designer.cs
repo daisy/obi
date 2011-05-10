@@ -32,19 +32,20 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnDetails = new System.Windows.Forms.Button();
             this.m_lblReportDialog = new System.Windows.Forms.Label();
+            this.m_txtBoxPath = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // m_lbDetailsOfImportedFiles
             // 
             this.m_lbDetailsOfImportedFiles.FormattingEnabled = true;
-            this.m_lbDetailsOfImportedFiles.Location = new System.Drawing.Point(80, 98);
+            this.m_lbDetailsOfImportedFiles.Location = new System.Drawing.Point(55, 124);
             this.m_lbDetailsOfImportedFiles.Name = "m_lbDetailsOfImportedFiles";
-            this.m_lbDetailsOfImportedFiles.Size = new System.Drawing.Size(120, 108);
+            this.m_lbDetailsOfImportedFiles.Size = new System.Drawing.Size(179, 108);
             this.m_lbDetailsOfImportedFiles.TabIndex = 0;
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(57, 59);
+            this.m_btnOk.Location = new System.Drawing.Point(55, 70);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 1;
@@ -54,7 +55,7 @@ namespace Obi.Dialogs
             // 
             // m_btnDetails
             // 
-            this.m_btnDetails.Location = new System.Drawing.Point(161, 59);
+            this.m_btnDetails.Location = new System.Drawing.Point(159, 70);
             this.m_btnDetails.Name = "m_btnDetails";
             this.m_btnDetails.Size = new System.Drawing.Size(75, 23);
             this.m_btnDetails.TabIndex = 2;
@@ -66,21 +67,31 @@ namespace Obi.Dialogs
             // m_lblReportDialog
             // 
             this.m_lblReportDialog.AutoSize = true;
-            this.m_lblReportDialog.Location = new System.Drawing.Point(97, 23);
+            this.m_lblReportDialog.Location = new System.Drawing.Point(63, 25);
             this.m_lblReportDialog.Name = "m_lblReportDialog";
             this.m_lblReportDialog.Size = new System.Drawing.Size(35, 13);
             this.m_lblReportDialog.TabIndex = 3;
             this.m_lblReportDialog.Text = "label1";
+            this.m_lblReportDialog.Visible = false;
+            // 
+            // m_txtBoxPath
+            // 
+            this.m_txtBoxPath.Location = new System.Drawing.Point(55, 25);
+            this.m_txtBoxPath.Name = "m_txtBoxPath";
+            this.m_txtBoxPath.Size = new System.Drawing.Size(179, 20);
+            this.m_txtBoxPath.TabIndex = 4;
             // 
             // ReportDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 218);
+            this.ClientSize = new System.Drawing.Size(283, 118);
+            this.Controls.Add(this.m_txtBoxPath);
             this.Controls.Add(this.m_lblReportDialog);
             this.Controls.Add(this.m_btnDetails);
             this.Controls.Add(this.m_btnOk);
             this.Controls.Add(this.m_lbDetailsOfImportedFiles);
+            this.Location = new System.Drawing.Point(600, 200);
             this.Name = "ReportDialog";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -93,5 +104,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnDetails;
         private System.Windows.Forms.Label m_lblReportDialog;
+        private System.Windows.Forms.TextBox m_txtBoxPath;
     }
 }
