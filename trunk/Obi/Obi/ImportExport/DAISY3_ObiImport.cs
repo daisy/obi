@@ -760,7 +760,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         eNode.TODO = true;
                         eNode.Role_ = EmptyNode.Role.Custom ;
                         eNode.CustomRole = "Truncated audio";
-                        m_ErrorsList.Add("Truncated audio in " + eNode.ToString() + " in section: " + eNode.ParentAs<SectionNode>().Label );
+                        m_ErrorsList.Add("Truncated audio in phrase" + eNode.Index.ToString() + " in section: " + eNode.ParentAs<SectionNode>().Label );
                         m_ErrorsList.Add("        expected cllip end:" + clipE.Format_H_MN_S_MS() + "    Imported clip end:" + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
@@ -790,7 +790,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 section.Insert(emptyNode, phraseIndex);
                 emptyNode.TODO = true;
 
-                m_ErrorsList.Add("No audio in " + emptyNode.ToString() + " in section: " + section.Label);
+                m_ErrorsList.Add("No audio in phrase " + phraseIndex.ToString() + " in section: " + section.Label);
             }
              
         }
