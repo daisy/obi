@@ -521,12 +521,17 @@ namespace Obi
         /// <param name="id"></param>
         /// <param name="settings"></param>
         /// <param name="importDTBPath"></param>
-        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath, ImportExport.DAISY3_ObiImport import)
+        public void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, Settings settings, string importDTBPath,ref ImportExport.DAISY3_ObiImport import)
         {
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
             CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, settings, true);
             import = new Obi.ImportExport.DAISY3_ObiImport(this, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
             import.DoWork();
+            if (import.RequestCancellation)
+            {
+                mProject = null;
+                return;
+            }
             Presentation.CheckAndCreateDefaultMetadataItems(settings.UserProfile);
             import.CorrectExternalAudioMedia();
             Save(Path);
