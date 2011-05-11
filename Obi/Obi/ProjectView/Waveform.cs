@@ -100,6 +100,11 @@ namespace Obi.ProjectView
                             ramPerformanceCounter.Close();
 
                             mBitmap = CreateBitmap(mBlock.ColorSettings, false);
+                            if (mBitmap == null)
+                            {
+                                System.Threading.Thread.Sleep(1000);
+                                mBitmap = CreateBitmap(mBlock.ColorSettings, false);
+                            }
                             if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
                             
                         });
@@ -158,6 +163,7 @@ namespace Obi.ProjectView
             try
             {
                 bitmap = new Bitmap(Width, Height);
+                if (bitmap == null) return null;
                 Graphics g = Graphics.FromImage(bitmap);
                 g.Clear(highlighted ? settings.WaveformHighlightedBackColor : settings.WaveformBackColor);
                 Pen linePen = (Pen) (highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() : (Pen)settings.WaveformBaseLinePen.Clone() ) ;
@@ -176,6 +182,7 @@ namespace Obi.ProjectView
         private Bitmap CreateBitmap(ColorSettings settings, bool highlighted)
         {
             Bitmap bitmap = CreateBaseBitmap(settings, highlighted);
+            if (bitmap == null) return null;
             try
             {
                 Graphics g = Graphics.FromImage(bitmap);
