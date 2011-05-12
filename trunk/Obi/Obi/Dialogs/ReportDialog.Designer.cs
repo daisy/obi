@@ -55,13 +55,13 @@ namespace Obi.Dialogs
             // 
             // m_btnDetails
             // 
+            this.m_btnDetails.Enabled = false;
             this.m_btnDetails.Location = new System.Drawing.Point(159, 70);
             this.m_btnDetails.Name = "m_btnDetails";
             this.m_btnDetails.Size = new System.Drawing.Size(75, 23);
             this.m_btnDetails.TabIndex = 2;
-            this.m_btnDetails.Text = "Detail";
+            this.m_btnDetails.Text = "Show details";
             this.m_btnDetails.UseVisualStyleBackColor = true;
-            this.m_btnDetails.Visible = false;
             this.m_btnDetails.Click += new System.EventHandler(this.m_btnDetails_Click);
             // 
             // m_lblReportDialog
@@ -78,6 +78,7 @@ namespace Obi.Dialogs
             // 
             this.m_txtBoxPath.Location = new System.Drawing.Point(55, 25);
             this.m_txtBoxPath.Name = "m_txtBoxPath";
+            this.m_txtBoxPath.ReadOnly = true;
             this.m_txtBoxPath.Size = new System.Drawing.Size(179, 20);
             this.m_txtBoxPath.TabIndex = 4;
             // 
