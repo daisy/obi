@@ -37,30 +37,33 @@ namespace Obi.Dialogs
             // 
             // m_lbDetailsOfImportedFiles
             // 
+            this.m_lbDetailsOfImportedFiles.AccessibleName = "Details description";
             this.m_lbDetailsOfImportedFiles.FormattingEnabled = true;
-            this.m_lbDetailsOfImportedFiles.Location = new System.Drawing.Point(55, 124);
+            this.m_lbDetailsOfImportedFiles.Location = new System.Drawing.Point(25, 124);
             this.m_lbDetailsOfImportedFiles.Name = "m_lbDetailsOfImportedFiles";
-            this.m_lbDetailsOfImportedFiles.Size = new System.Drawing.Size(179, 108);
-            this.m_lbDetailsOfImportedFiles.TabIndex = 0;
+            this.m_lbDetailsOfImportedFiles.Size = new System.Drawing.Size(400, 121);
+            this.m_lbDetailsOfImportedFiles.TabIndex = 3;
             // 
             // m_btnOk
             // 
-            this.m_btnOk.Location = new System.Drawing.Point(55, 70);
+            this.m_btnOk.AccessibleName = "OK";
+            this.m_btnOk.Location = new System.Drawing.Point(98, 70);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 1;
-            this.m_btnOk.Text = "OK";
+            this.m_btnOk.Text = "&OK";
             this.m_btnOk.UseVisualStyleBackColor = true;
             this.m_btnOk.Click += new System.EventHandler(this.m_btnOk_Click);
             // 
             // m_btnDetails
             // 
+            this.m_btnDetails.AccessibleName = "Show details";
             this.m_btnDetails.Enabled = false;
-            this.m_btnDetails.Location = new System.Drawing.Point(159, 70);
+            this.m_btnDetails.Location = new System.Drawing.Point(263, 70);
             this.m_btnDetails.Name = "m_btnDetails";
             this.m_btnDetails.Size = new System.Drawing.Size(75, 23);
             this.m_btnDetails.TabIndex = 2;
-            this.m_btnDetails.Text = "Show details";
+            this.m_btnDetails.Text = "Show &details";
             this.m_btnDetails.UseVisualStyleBackColor = true;
             this.m_btnDetails.Click += new System.EventHandler(this.m_btnDetails_Click);
             // 
@@ -76,17 +79,18 @@ namespace Obi.Dialogs
             // 
             // m_txtBoxPath
             // 
-            this.m_txtBoxPath.Location = new System.Drawing.Point(55, 25);
+            this.m_txtBoxPath.AccessibleName = "Path";
+            this.m_txtBoxPath.Location = new System.Drawing.Point(25, 25);
             this.m_txtBoxPath.Name = "m_txtBoxPath";
             this.m_txtBoxPath.ReadOnly = true;
-            this.m_txtBoxPath.Size = new System.Drawing.Size(179, 20);
-            this.m_txtBoxPath.TabIndex = 4;
+            this.m_txtBoxPath.Size = new System.Drawing.Size(400, 20);
+            this.m_txtBoxPath.TabIndex = 0;
             // 
             // ReportDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 118);
+            this.ClientSize = new System.Drawing.Size(437, 118);
             this.Controls.Add(this.m_txtBoxPath);
             this.Controls.Add(this.m_lblReportDialog);
             this.Controls.Add(this.m_btnDetails);
