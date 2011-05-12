@@ -24,7 +24,7 @@ namespace Obi.Dialogs
             m_txtBoxPath.Text = labelInfo;
             this.Text = reportDialogTitle;
             if (problemStrings != null &&  problemStrings.Count != 0)
-                m_btnDetails.Visible = true;
+                m_btnDetails.Enabled = true;
         }
 
         private void m_btnOk_Click(object sender, EventArgs e)
@@ -34,12 +34,23 @@ namespace Obi.Dialogs
 
         private void m_btnDetails_Click(object sender, EventArgs e)
         {
-            this.Height = 294;
-            if (m_ProblemStringList != null)
+            if (m_btnDetails.Text == "Show details")
             {
+                this.Height = 294;
+                m_btnDetails.Text = "Hide details";
+                m_lbDetailsOfImportedFiles.Visible = true;
+            }
+            else
+            {
+                this.Height = 154;
+                m_btnDetails.Text = "Show details";
+                m_lbDetailsOfImportedFiles.Visible = false;
+            }
+            if (m_ProblemStringList != null && m_lbDetailsOfImportedFiles.Items.Count < 1)
+            {                
                 for (int i = 0; i < m_ProblemStringList.Count; i++)
                     m_lbDetailsOfImportedFiles.Items.Add(m_ProblemStringList[i]);
-            }
+            }            
         }
     }
 } 
