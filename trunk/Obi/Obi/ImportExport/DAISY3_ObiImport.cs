@@ -761,7 +761,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         eNode.Role_ = EmptyNode.Role.Custom ;
                         eNode.CustomRole = "Truncated audio";
                         m_ErrorsList.Add("Truncated audio in phrase" + eNode.Index.ToString() + " in section: " + eNode.ParentAs<SectionNode>().Label );
-                        m_ErrorsList.Add("        expected cllip end:" + clipE.Format_H_MN_S_MS() + "    Imported clip end:" + fileDuration.Format_H_MN_S_MS());
+                        m_ErrorsList.Add(" expected clip end:" + clipE.Format_H_MN_S_MS() + "   Imported clip end:" + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
                 
