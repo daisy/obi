@@ -759,9 +759,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         EmptyNode eNode = (EmptyNode)treeNode;
                         eNode.TODO = true;
                         eNode.Role_ = EmptyNode.Role.Custom ;
-                        eNode.CustomRole = Localizer.Message("ReportDialog_truncated_audio");
-                        m_ErrorsList.Add(Localizer.Message("ReportDialog_truncated_audio_in_phrase") + eNode.Index.ToString() + Localizer.Message("ReportDialog_in_section") + eNode.ParentAs<SectionNode>().Label);
-                        m_ErrorsList.Add(Localizer.Message("ReportDialog_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("ReportDialog_imported_clip_end") + fileDuration.Format_H_MN_S_MS());
+                        eNode.CustomRole = Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio");
+                        m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase") + eNode.Index.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + eNode.ParentAs<SectionNode>().Label);
+                        m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("DAISY3_ObiImport_ErrorsList_imported_clip_end") + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
                 
@@ -790,7 +790,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 section.Insert(emptyNode, phraseIndex);
                 emptyNode.TODO = true;
 
-                m_ErrorsList.Add(Localizer.Message("Error_no_audio_in_phrase") + phraseIndex.ToString() + Localizer.Message("ReportDialog_in_section") + section.Label);
+                m_ErrorsList.Add(Localizer.Message("DAISY3_ObiImport_ErrorsList_error_no_audio") + phraseIndex.ToString() + Localizer.Message("DAISY3_ObiImport_ErrorsList_in_section") + section.Label);
             }
              
         }
