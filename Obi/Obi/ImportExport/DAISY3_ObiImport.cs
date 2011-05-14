@@ -759,9 +759,9 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         EmptyNode eNode = (EmptyNode)treeNode;
                         eNode.TODO = true;
                         eNode.Role_ = EmptyNode.Role.Custom ;
-                        eNode.CustomRole = "Truncated audio";
-                        m_ErrorsList.Add("Truncated audio in phrase" + eNode.Index.ToString() + " in section: " + eNode.ParentAs<SectionNode>().Label );
-                        m_ErrorsList.Add(" expected clip end:" + clipE.Format_H_MN_S_MS() + "   Imported clip end:" + fileDuration.Format_H_MN_S_MS());
+                        eNode.CustomRole = Localizer.Message("ReportDialog_truncated_audio");
+                        m_ErrorsList.Add(Localizer.Message("ReportDialog_truncated_audio_in_phrase") + eNode.Index.ToString() + Localizer.Message("ReportDialog_in_section") + eNode.ParentAs<SectionNode>().Label);
+                        m_ErrorsList.Add(Localizer.Message("ReportDialog_expected_clip_end") + clipE.Format_H_MN_S_MS() + Localizer.Message("ReportDialog_imported_clip_end") + fileDuration.Format_H_MN_S_MS());
                     }
                 }//-2
                 
@@ -790,7 +790,7 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                 section.Insert(emptyNode, phraseIndex);
                 emptyNode.TODO = true;
 
-                m_ErrorsList.Add("No audio in phrase " + phraseIndex.ToString() + " in section: " + section.Label);
+                m_ErrorsList.Add(Localizer.Message("Error_no_audio_in_phrase") + phraseIndex.ToString() + Localizer.Message("ReportDialog_in_section") + section.Label);
             }
              
         }

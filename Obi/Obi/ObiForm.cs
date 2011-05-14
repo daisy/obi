@@ -343,8 +343,8 @@ namespace Obi
                 //import.DoWork();
                 //mSession.Save(mSession.Path);
                 //MessageBox.Show(String.Format(Localizer.Message("import_output_path" ), outputPath));
-                Dialogs.ReportDialog reportDialog = new ReportDialog("Report for import" , 
-                    import.RequestCancellation?"Import Cancelled" :  String.Format(Localizer.Message("import_output_path" ), outputPath), 
+                Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("ReportDialog_report_for_import"), 
+                    import.RequestCancellation? Localizer.Message("import_cancelled") :  String.Format(Localizer.Message("import_output_path" ), outputPath), 
                     import != null? import.ErrorsList: null ) ;
                 reportDialog.ShowDialog() ;
                 //mSession.NotifyProjectCreated();
