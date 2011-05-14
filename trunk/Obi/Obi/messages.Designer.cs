@@ -694,6 +694,60 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No audio in phrase.
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_error_no_audio {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_error_no_audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  expected clip end:.
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_expected_clip_end {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_expected_clip_end", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   Imported clip end:.
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_imported_clip_end {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_imported_clip_end", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to in section: .
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_in_section {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_in_section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Truncated Audio.
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_truncated_audio {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_truncated_audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Truncated audio in phrase.
+        /// </summary>
+        internal static string DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase {
+            get {
+                return ResourceManager.GetString("DAISY3_ObiImport_ErrorsList_truncated_audio_in_phrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A party whose contribution to the publication is secondary to those named in dc:Creator..
         /// </summary>
         internal static string dc_contributor_description {
@@ -1284,15 +1338,6 @@ namespace Obi {
         internal static string error_metadata_name_message {
             get {
                 return ResourceManager.GetString("error_metadata_name_message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No audio in phrase.
-        /// </summary>
-        internal static string Error_no_audio_in_phrase {
-            get {
-                return ResourceManager.GetString("Error_no_audio_in_phrase", resourceCulture);
             }
         }
         
@@ -3804,56 +3849,11 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  expected clip end:.
-        /// </summary>
-        internal static string ReportDialog_expected_clip_end {
-            get {
-                return ResourceManager.GetString("ReportDialog_expected_clip_end", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to   Imported clip end:.
-        /// </summary>
-        internal static string ReportDialog_imported_clip_end {
-            get {
-                return ResourceManager.GetString("ReportDialog_imported_clip_end", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to in section: .
-        /// </summary>
-        internal static string ReportDialog_in_section {
-            get {
-                return ResourceManager.GetString("ReportDialog_in_section", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Report for import.
         /// </summary>
-        internal static string ReportDialog_report_for_import {
+        internal static string Report_for_import {
             get {
-                return ResourceManager.GetString("ReportDialog_report_for_import", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Truncated Audio.
-        /// </summary>
-        internal static string ReportDialog_truncated_audio {
-            get {
-                return ResourceManager.GetString("ReportDialog_truncated_audio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Truncated audio in phrase.
-        /// </summary>
-        internal static string ReportDialog_truncated_audio_in_phrase {
-            get {
-                return ResourceManager.GetString("ReportDialog_truncated_audio_in_phrase", resourceCulture);
+                return ResourceManager.GetString("Report_for_import", resourceCulture);
             }
         }
         
