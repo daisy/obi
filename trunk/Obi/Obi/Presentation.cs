@@ -552,9 +552,9 @@ namespace Obi
                 }
             else
             {
-                ImportExport.DAISY202Export export202 = new Obi.ImportExport.DAISY202Export(this, exportPath, encodeToMP3,audioFileSectionLevel);
+                ImportExport.DAISY202Export export202 = new Obi.ImportExport.DAISY202Export(this, exportPath, encodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                 export202.BitRate_Mp3 = mp3BitRate;
-                export202.CreateDAISY202Files();
+                export202.DoWork();
                 
                 /*
                 ChannelsManager.RemoveManagedObject(publishChannel);
