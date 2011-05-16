@@ -1632,8 +1632,8 @@ namespace Obi
                        
                                 } );
 
-
                         progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { DAISYExport.RequestCancellation = true; });
+                        DAISYExport.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
 
