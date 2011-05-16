@@ -694,7 +694,13 @@ namespace Obi
 
                     listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
                 }
+                                MessageBox.Show("files count " + listOfDataProviderFiles.Count.ToString());
 
+                                //foreach (urakawa.media.data.MediaData m in mProjectView.Presentation.MediaDataManager.ManagedObjects.ContentsAs_Enumerable)
+                                //{
+                                    //if ( listOfDataProviderFiles.Contains ( m.UsedDataProviders.l
+
+                                //}
 
                 bool folderIsShowing = false;
                 if (Directory.GetFiles(deletedDataFolderPath).Length != 0)
@@ -714,6 +720,7 @@ namespace Obi
                         if (!File.Exists(filePathDest))
                         {
                             File.Move(filePath, filePathDest);
+                            Console.WriteLine(filePath);
                         }
                     }
                 }
@@ -1606,12 +1613,24 @@ namespace Obi
                             {
                             exportPath += Path.DirectorySeparatorChar;
                             }
+
+                            urakawa.daisy.export.Daisy3_Export DAISYExport = null;
+                            if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
+                            {
+                                DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(mSession.Presentation, exportPath, null, m_ExportEncodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                            }
+                            else
+                            {
+                                DAISYExport = new Obi.ImportExport.DAISY202Export(mSession.Presentation, exportPath, m_ExportEncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
+                            }
+                            DAISYExport.BitRate_Mp3 = m_BitRate;
+
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
                             delegate ()
                                 {
                                     
-                                mSession.Presentation.ExportToZ (
-                       exportPath, mSession.Path, chooseDialog.chooseOption, m_ExportEncodeToMP3, m_BitRate, audioFileSectionLevel);
+                                    mSession.Presentation.ExportToZ(exportPath, mSession.Path, DAISYExport);
+                       
                                 } );
                                 
                           

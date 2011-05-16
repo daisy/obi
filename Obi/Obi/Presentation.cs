@@ -14,6 +14,7 @@ using urakawa.metadata;
 using urakawa.property.channel;
 //using urakawa.publish;
 using urakawa.media.data;
+using urakawa.daisy.export;
 using urakawa.daisy.export.visitor;
 
 namespace Obi
@@ -541,9 +542,11 @@ namespace Obi
         /// <summary>
         /// Export the project as DAISY to an export directory.
         /// </summary>
-        public void ExportToZ(string exportPath, string xukPath, ImportExport.ExportFormat format, bool encodeToMP3, int mp3BitRate, int audioFileSectionLevel)
+        public void ExportToZ(string exportPath, string xukPath, Daisy3_Export DAISYExport )
         {
             UpdatePublicationMetadata();
+            DAISYExport.DoWork () ;
+            /*
             if (format == Obi.ImportExport.ExportFormat.DAISY3_0)
             {
                 Obi.ImportExport.DAISY3_ObiExport daisy3Export = new Obi.ImportExport.DAISY3_ObiExport(this, exportPath, null, encodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
@@ -556,11 +559,11 @@ namespace Obi
                 export202.BitRate_Mp3 = mp3BitRate;
                 export202.DoWork();
                 
-                /*
+                
                 ChannelsManager.RemoveManagedObject(publishChannel);
-                 */ 
+                 
             }
-            
+            */
         }
  
         // Update metadata before exporting
