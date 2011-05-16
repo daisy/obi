@@ -33,8 +33,7 @@ namespace Obi
         private bool m_IsAutoSaveActive;
         private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
-        private bool m_ExportEncodeToMP3;
-        private int m_BitRate;
+        
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
@@ -1594,7 +1593,7 @@ namespace Obi
                    
                 Dialogs.ExportDirectory dialog =
                     new ExportDirectory ( exportDirectory,
-                             mSession.Path, m_ExportEncodeToMP3, m_BitRate ); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
+                             mSession.Path, mSettings.Export_EncodeToMP3, mSettings.Export_BitRateMP3); // null string temprorarily used instead of -mProjectView.Presentation.Title- to avoid unicode character problem in path for pipeline
                 if (dialog.ShowDialog () == DialogResult.OK)
                     {
                     try
@@ -1603,12 +1602,10 @@ namespace Obi
                         // higher than our selection.
                         string exportPath = dialog.DirectoryPath;
                         int audioFileSectionLevel = dialog.LevelSelection;
-                        m_ExportEncodeToMP3 = dialog.EncodeToMP3;
-                        m_BitRate = dialog.BitRate;
-                        mSettings.Export_EncodeToMP3 = m_ExportEncodeToMP3;
                         
-                        mSettings.Export_BitRateMP3 = m_BitRate;
-                        m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3;
+                        mSettings.Export_EncodeToMP3 = dialog.EncodeToMP3;
+                        mSettings.Export_BitRateMP3 = dialog.BitRate;
+                        
                         if (!exportPath.EndsWith ( Path.DirectorySeparatorChar.ToString () ))
                             {
                             exportPath += Path.DirectorySeparatorChar;
@@ -1617,27 +1614,30 @@ namespace Obi
                             urakawa.daisy.export.Daisy3_Export DAISYExport = null;
                             if (chooseDialog.chooseOption == Obi.ImportExport.ExportFormat.DAISY3_0)
                             {
-                                DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(mSession.Presentation, exportPath, null, m_ExportEncodeToMP3, AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
+                                DAISYExport = new Obi.ImportExport.DAISY3_ObiExport(
+                                    mSession.Presentation, exportPath, null,dialog.EncodeToMP3 , AudioLib.SampleRate.Hz44100, false, audioFileSectionLevel);
                             }
                             else
                             {
-                                DAISYExport = new Obi.ImportExport.DAISY202Export(mSession.Presentation, exportPath, m_ExportEncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
+                                DAISYExport = new Obi.ImportExport.DAISY202Export(
+                                    mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                             }
-                            DAISYExport.BitRate_Mp3 = m_BitRate;
+                            DAISYExport.BitRate_Mp3 = dialog.BitRate;
 
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
-                            delegate ()
+                            delegate (ProgressDialog progress1 )
                                 {
                                     
                                     mSession.Presentation.ExportToZ(exportPath, mSession.Path, DAISYExport);
                        
                                 } );
-                                
-                          
-      
+
+
+                        progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { DAISYExport.RequestCancellation = true; });
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
-                        
+
+                        if (DAISYExport.RequestCancellation) return;
                         if ( exportPath != null )  
                             mProjectView.SetExportPathMetadata ( chooseDialog.chooseOption,
                                 exportPath,
@@ -2395,8 +2395,7 @@ namespace Obi
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
             // Colors
             mSettings.ColorSettings.CreateBrushesAndPens ();
-           m_BitRate = mSettings.Export_BitRateMP3;
-           m_ExportEncodeToMP3 = mSettings.Export_EncodeToMP3 ;
+           
             }
 
        internal void InitializeKeyboardShortcuts( bool isFirstTime)
