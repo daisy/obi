@@ -16,10 +16,10 @@ namespace Obi.ImportExport
     {
     public enum ExportFormat { DAISY3_0, DAISY2_02 } ;
 
-    public class DAISY202Export
+    public class DAISY202Export:urakawa.daisy.export.Daisy3_Export
         {
 
-        private ObiPresentation m_Presentation;
+        //private ObiPresentation m_Presentation;
         private string m_ExportDirectory;
         private Dictionary<string, string> m_MetadataMap;
         private Dictionary<string, string> m_SmilMetadata;
@@ -33,10 +33,12 @@ namespace Obi.ImportExport
         private Dictionary<string, string> m_SmilFile_TitleMap;
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
         private int m_AudioFileSectionLevel;        
-        private bool m_EncodeToMP3;
-        private int m_BitRate_Mp3;
+        //private bool m_EncodeToMP3;
+        //private int m_BitRate_Mp3;
 
-        public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMP3, int audioFileSectionLevel)
+        public DAISY202Export(ObiPresentation presentation, string exportDirectory, bool encodeToMp3, AudioLib.SampleRate sampleRate, int audioFileSectionLevel)
+            :
+            base(presentation, exportDirectory, null, encodeToMp3, sampleRate, true)
             {
             m_Presentation = presentation;
             m_ExportDirectory = exportDirectory;
@@ -44,8 +46,14 @@ namespace Obi.ImportExport
             m_SmilFile_TitleMap = new Dictionary<string, string> ();
             m_NextSectionPageAdjustmentDictionary = new Dictionary<SectionNode, EmptyNode>();
             m_AudioFileSectionLevel = audioFileSectionLevel;
-            m_EncodeToMP3 = encodeToMP3;
+            //m_EncodeToMP3 = encodeToMP3;
             }
+
+        public override void ConfigureAudioFileDelegates()
+        {
+            triggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+            skipDelegate = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+        }
 
 
         private List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
@@ -72,52 +80,54 @@ namespace Obi.ImportExport
 
             return sectionsList;
             }
-
-        public int BitRate_Mp3
-        {
-            get { return  m_BitRate_Mp3 ; }
-                set{ m_BitRate_Mp3 = value ; }
-        }
-
-        private Channel CreateAudioFiles()
-        {
-            TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
-            TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
-
-            m_Presentation.RemoveAllPublishChannels(); // remove any publish channel, in case they exist
-
-            PublishFlattenedManagedAudioVisitor visitor = new PublishFlattenedManagedAudioVisitor(nodeIsSection, nodeIsUnused);
-
-            //urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME);
-
-            Channel publishChannel = m_Presentation.ChannelFactory.CreateAudioChannel();
-            publishChannel.Name = ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME;
-
-            visitor.DestinationChannel = publishChannel;
-            visitor.SourceChannel = m_Presentation.ChannelsManager.GetOrCreateAudioChannel();
-            visitor.DestinationDirectory = new Uri(m_ExportDirectory );
-
-            visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
-            if(m_EncodeToMP3 && m_BitRate_Mp3 >= 32)  visitor.BitRate_Mp3 = (ushort)m_BitRate_Mp3;
-            uint sampleRate = m_Presentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
-            if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz44100;
-            else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz22050;
-            else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz11025;
-            visitor.DisableAcmCodecs = true;
-            visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
-
-            m_Presentation.RootNode.AcceptDepthFirst(visitor);
-            return publishChannel;
-        }
-
-        public void CreateDAISY202Files ()
+            /*
+            public int BitRate_Mp3
             {
-                Channel publishChannel = CreateAudioFiles();
+                get { return  m_BitRate_Mp3 ; }
+                    set{ m_BitRate_Mp3 = value ; }
+            }
+        
+            private Channel CreateAudioFiles()
+            {
+                TreeNodeTestDelegate nodeIsSection = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+                TreeNodeTestDelegate nodeIsUnused = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+
+                m_Presentation.RemoveAllPublishChannels(); // remove any publish channel, in case they exist
+
+                PublishFlattenedManagedAudioVisitor visitor = new PublishFlattenedManagedAudioVisitor(nodeIsSection, nodeIsUnused);
+
+                //urakawa.property.channel.Channel publishChannel = mPresentation.AddChannel(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME);
+
+                Channel publishChannel = m_Presentation.ChannelFactory.CreateAudioChannel();
+                publishChannel.Name = ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME;
+
+                visitor.DestinationChannel = publishChannel;
+                visitor.SourceChannel = m_Presentation.ChannelsManager.GetOrCreateAudioChannel();
+                visitor.DestinationDirectory = new Uri(m_ExportDirectory );
+
+                visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
+                if(m_EncodeToMP3 && m_BitRate_Mp3 >= 32)  visitor.BitRate_Mp3 = (ushort)m_BitRate_Mp3;
+                uint sampleRate = m_Presentation.MediaDataManager.DefaultPCMFormat.Data.SampleRate;
+                if (sampleRate == 44100) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz44100;
+                else if (sampleRate == 22050) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz22050;
+                else if (sampleRate == 11025) visitor.EncodePublishedAudioFilesSampleRate = AudioLib.SampleRate.Hz11025;
+                visitor.DisableAcmCodecs = true;
+                visitor.EncodePublishedAudioFilesToMp3 = m_EncodeToMP3;
+
+                m_Presentation.RootNode.AcceptDepthFirst(visitor);
+                return publishChannel;
+            }
+            */
+
+        public override void DoWork()
+            {
+                Channel publishChannel = PublishAudioFiles ();
             List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode);
 
             CreateFileSet ( sectionsList );
 
-            m_Presentation.ChannelsManager.RemoveManagedObject(publishChannel);
+            //m_Presentation.ChannelsManager.RemoveManagedObject(publishChannel);
+            RemovePublishChannel(publishChannel);
             }
 
 
@@ -173,7 +183,7 @@ namespace Obi.ImportExport
                 }
 
             // add dc:title, this is mandatory for master.smil
-            urakawa.metadata.Metadata titleMetadata = m_Presentation.GetFirstMetadataItem ( "dc:Title" );
+            urakawa.metadata.Metadata titleMetadata = ((ObiPresentation) m_Presentation).GetFirstMetadataItem ( "dc:Title" );
             if (titleMetadata != null)
                 {
                 XmlNode masterSmilHeadNode = smilDocument.GetElementsByTagName ( "head" )[0];
@@ -347,7 +357,7 @@ namespace Obi.ImportExport
                     // create audio elements for external audio medias
                         if (phrase is PhraseNode)
                         {
-                            Channel publishChannel = m_Presentation.ChannelsManager.GetChannelsByName(ObiPresentation.PUBLISH_AUDIO_CHANNEL_NAME)[0];
+                            Channel publishChannel = m_Presentation.ChannelsManager.GetChannelsByName(urakawa.daisy.export.Daisy3_Export.PUBLISH_AUDIO_CHANNEL_NAME)[0];
                             ExternalAudioMedia externalMedia = (ExternalAudioMedia)phrase.GetProperty<ChannelsProperty>().GetMedia(publishChannel);
 
                             XmlNode audioNode = smilDocument.CreateElement(null, "audio", smilBodyNode.NamespaceURI);
@@ -576,7 +586,8 @@ namespace Obi.ImportExport
             CreateAppendXmlAttribute ( nccDocument, firstMetaNode, "http-equiv", "Content-type" );
             //<meta content="text/html; charset=utf-8" http-equiv="Content-type"/>
 
-            urakawa.metadata.Metadata titleMetadata = m_Presentation.GetFirstMetadataItem ( "dc:Title" );
+            ObiPresentation presentation = (ObiPresentation)m_Presentation;
+            urakawa.metadata.Metadata titleMetadata = presentation.GetFirstMetadataItem ( "dc:Title" );
             if (titleMetadata != null)
                 {
                 XmlNode titleMetadataNode = nccDocument.CreateElement ( null, "title", headNode.NamespaceURI );
@@ -586,8 +597,8 @@ namespace Obi.ImportExport
                 }
 
             // add dc:date from produced date in case dc:date do not exists
-            urakawa.metadata.Metadata producedDateMetadata = m_Presentation.GetFirstMetadataItem (Metadata.DTB_PRODUCED_DATE  );
-            if ( m_Presentation.GetFirstMetadataItem ( Metadata.DC_DATE ) == null
+                urakawa.metadata.Metadata producedDateMetadata = presentation.GetFirstMetadataItem(Metadata.DTB_PRODUCED_DATE);
+                if (presentation.GetFirstMetadataItem(Metadata.DC_DATE) == null
                 &&    producedDateMetadata != null)
                 {
                 XmlNode dateMetadataNode = nccDocument.CreateElement ( null, "meta", headNode.NamespaceURI );
@@ -691,14 +702,15 @@ namespace Obi.ImportExport
                 if ( metadataMap.ContainsKey(m.getName () ))
                     {
                     */
-            urakawa.metadata.Metadata identifier = m_Presentation.GetFirstMetadataItem ( "dc:Identifier" );
+            ObiPresentation presentation = (ObiPresentation)m_Presentation;
+            urakawa.metadata.Metadata identifier = presentation.GetFirstMetadataItem("dc:Identifier");
             if (identifier != null)
                 {
                     metadataItems.Add(m_MetadataMap[identifier.NameContentAttribute.Name],
                identifier.NameContentAttribute.Value);
                 }
 
-            urakawa.metadata.Metadata format = m_Presentation.GetFirstMetadataItem ( "dc:Format" );
+                urakawa.metadata.Metadata format = presentation.GetFirstMetadataItem("dc:Format");
             if (format != null)
                 {
                     metadataItems.Add(m_MetadataMap[format.NameContentAttribute.Name],
@@ -706,7 +718,7 @@ namespace Obi.ImportExport
                 }
 
 
-            urakawa.metadata.Metadata generator = m_Presentation.GetFirstMetadataItem ( "generator" );
+                urakawa.metadata.Metadata generator = presentation.GetFirstMetadataItem("generator");
             if (generator != null)
                 {
                     metadataItems.Add(m_MetadataMap[generator.NameContentAttribute.Name],
