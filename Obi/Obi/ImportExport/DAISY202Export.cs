@@ -122,8 +122,11 @@ namespace Obi.ImportExport
         public override void DoWork()
             {
                 Channel publishChannel = PublishAudioFiles ();
+
+                if (RequestCancellation_RemovePublishChannel(publishChannel)) return;
             List<SectionNode> sectionsList = GetSectionsList ( m_Presentation.RootNode);
 
+            if (RequestCancellation_RemovePublishChannel(publishChannel)) return;
             CreateFileSet ( sectionsList );
 
             //m_Presentation.ChannelsManager.RemoveManagedObject(publishChannel);
