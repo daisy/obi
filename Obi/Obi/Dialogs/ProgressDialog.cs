@@ -101,6 +101,31 @@ namespace Obi.Dialogs
             if ( OperationCancelled != null ) OperationCancelled ( this, new EventArgs ()) ;
             m_lbWaitForCancellation.Visible = true;
             this.mProgressBar.Location = new System.Drawing.Point(4,34);
-        }  
+        }
+
+        private int m_ProgressbarValue = 0; //member variable for allowing access to progress bar value without using invoke required
+        public void UpdateProgressBar(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage < 0) return;
+            if (e.ProgressPercentage < m_ProgressbarValue + 5 && e.ProgressPercentage >= 5) return;
+            int progressVal = e.ProgressPercentage;
+
+            if (InvokeRequired)
+            {
+                Invoke(new System.ComponentModel.ProgressChangedEventHandler(UpdateProgressBar), sender, e);
+            }
+            else
+            {
+                if (mProgressBar.Style == ProgressBarStyle.Marquee)
+                {
+                    mProgressBar.Style = ProgressBarStyle.Continuous;
+                    mProgressBar.Step = 5;
+                }
+                if (progressVal > 100) progressVal = 100;
+                mProgressBar.Value = progressVal;
+                m_ProgressbarValue = mProgressBar.Value;
+            }
+        }
+
     }
 }
