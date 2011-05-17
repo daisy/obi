@@ -4014,7 +4014,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark node? The project will also be saved..
+        ///   Looks up a localized string similar to The currently selected node is not same as saved bookmarked node. Do you want to save this node as bookmark? The project will also be saved..
         /// </summary>
         internal static string SaveSelectedNodeAsBookmark {
             get {
