@@ -555,7 +555,7 @@ namespace Obi.Dialogs
             {
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                 mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
-                mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
+                mSettings.OpenBookmarkOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -592,11 +592,11 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Location = new Point(115, 200);
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
-                m_CheckBoxListView.Items.Add("Open bookmark node when project reopens");
+                m_CheckBoxListView.Items.Add("Open bookmark when project reopens");
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
-                m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
+                m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkOnReopeningProject;
 
             }
             m_IsComplete = true;
