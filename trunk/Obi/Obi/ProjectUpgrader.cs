@@ -13,14 +13,23 @@ namespace Obi
     {
         private string m_Source;
         private string m_Destination;
+        private bool m_RequestCancellation = false;
         private Dictionary<string, string> m_OldToNewNodeElementNameMap;
         private Dictionary<string, string> m_OldToNewNodeAttributeNameMap;
+        public event System.ComponentModel.ProgressChangedEventHandler ProgressChanged;
 
         public ProjectUpgrader(string source, string dest)
         {
             m_Source = source;
             m_Destination = Path.Combine( Path.GetDirectoryName (m_Source), "Obi2_"+ Path.GetFileName(m_Source)) ;
             PopulateNamesMapDictionary();
+            m_RequestCancellation = false;
+        }
+
+        public bool RequestCancellation
+        {
+            get { return m_RequestCancellation; }
+            set { m_RequestCancellation = value; }
         }
 
         private void PopulateNamesMapDictionary ()
@@ -102,6 +111,15 @@ namespace Obi
             XmlDocument destXmlDoc = new XmlDocument();
             destXmlDoc.Load(referencePath);
 
+            int progressPercentage = 1;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
+
 //start with adding data providers
             XmlNode oldDataProviders = sourceXmlDoc.GetElementsByTagName("mDataProviders")[0];
             XmlNode newDataProviders = destXmlDoc.GetElementsByTagName("DataProviders")[0];
@@ -112,6 +130,15 @@ namespace Obi
                 XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "Uid", dataProviderItem.Attributes.GetNamedItem("uid").Value);
                 XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "MimeType", "audio/x-wav");
                 XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newFileDataProvider, "DataFileRelativePath", dataProviderItem.FirstChild.Attributes.GetNamedItem("dataFileRelativePath").Value);
+            }
+            progressPercentage = 10;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
             }
 
             // add AudioMediaDatas Next
@@ -131,6 +158,12 @@ namespace Obi
 
                 foreach (XmlNode wavItem in XmlDocumentHelper.GetChildrenElementsWithName(oldMediaDataItem, true, "WavClip", oldAudioMediaDatas.NamespaceURI, false))
                 {
+                    if (RequestCancellation)
+                    {
+                        sourceXmlDoc = null;
+                        destXmlDoc = null;
+                        return;
+                    }
                     XmlNode newWavClip = destXmlDoc.CreateElement("WavClip", newAudioMediaItem.NamespaceURI);
                     wavClips.AppendChild(newWavClip);
                     // add attributes of wavClip
@@ -147,6 +180,14 @@ namespace Obi
 
                 
             }
+            progressPercentage =30 ;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
 
             //change the root uri to null
             XmlNode newPresentations = XmlDocumentHelper.GetFirstChildElementWithName(destXmlDoc.DocumentElement, true, "Presentations", null);
@@ -154,8 +195,24 @@ namespace Obi
             newObiPresentation.Attributes.GetNamedItem("RootUri").Value = "" ;
 
             UpdateRegisteredTypes(destXmlDoc);
+            progressPercentage = 40 ;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
             ImportMetadatas(sourceXmlDoc, destXmlDoc);
 
+            progressPercentage = 50 ;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
             //import the section and phrase tree from the rootnode
             XmlNode oldRootNode  = XmlDocumentHelper.GetFirstChildElementWithName(sourceXmlDoc.DocumentElement, true, "mRootNode", null);
             XmlNode oldRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(oldRootNode, true, "mChildren", oldRootNode.NamespaceURI);
@@ -164,11 +221,30 @@ namespace Obi
             XmlNode newRootChildrenContainer = XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "Children", newRootNode.NamespaceURI);
             XmlNode namespaceNode= XmlDocumentHelper.GetFirstChildElementWithName(newRootNode, true, "root", null);
 
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
+
             ParseAndCreateObiTree(oldRootChildrenContainer, newRootChildrenContainer, namespaceNode, newRootNode);
+
+            if (RequestCancellation)
+            {
+                sourceXmlDoc = null;
+                destXmlDoc = null;
+                return;
+            }
+            progressPercentage = 90 ;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
 WriteXmlDocumentToFile (destXmlDoc, m_Destination ) ;
 sourceXmlDoc = null;
 destXmlDoc = null;
 RenameProjectFilesAfterOperation();
+
+            progressPercentage = 100 ;
+            if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
         }
 
         private void ImportMetadatas(XmlDocument sourceXmlDoc, XmlDocument destXmlDoc)
@@ -245,6 +321,7 @@ RenameProjectFilesAfterOperation();
             {
                 foreach (XmlNode oldChild in oldNode.ChildNodes)
                 {//1
+                    if (RequestCancellation) return;
                     if (oldChild.Name== "mChannelMapping"
                         && oldChild.Attributes.GetNamedItem("channel") != null
                         && oldChild.Attributes.GetNamedItem("channel").Value == "CHID0002")

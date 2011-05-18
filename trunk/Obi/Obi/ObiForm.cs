@@ -1997,14 +1997,19 @@ namespace Obi
                                         Localizer.Message("Caption_Information"),
                                         MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                                     {
-                                        ProgressDialog progress = new ProgressDialog(Localizer.Message("upgrading_obi"),
-                            delegate()
-                            {
                                         ProjectUpgrader upgrader = new ProjectUpgrader(path, null);
+                                        ProgressDialog progress = new ProgressDialog(Localizer.Message("upgrading_obi"),
+                            delegate(ProgressDialog progress1 )
+                            {
+                                        
                                         upgrader.UpgradeProject();
                                     });
+                                        progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e) { upgrader.RequestCancellation = true; });
+                                        upgrader.ProgressChanged +=new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                                         progress.ShowDialog();
                                         if (progress.Exception != null) throw progress.Exception;
+
+                                        if (upgrader.RequestCancellation) return;
                                     }
                                     else
                                     {
