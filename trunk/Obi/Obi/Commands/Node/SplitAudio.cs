@@ -158,6 +158,7 @@ namespace Obi.Commands.Node
 
             ObiNode parent = node is SectionNode ? node : node.ParentAs<ObiNode> ();
             int index = 0;
+            if (phraseNodesList.Count > 0) view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), 0);
             for (int j = 0; j < phraseNodesList.Count; j++)
                 {
                 PhraseNode phrase = phraseNodesList[j];
@@ -187,7 +188,10 @@ namespace Obi.Commands.Node
                     //command.append ( new UpdateSelection ( view, new NodeSelection ( node, view.Selection.Control ) ) );
                         command.ChildCommands.Insert(command.ChildCommands.Count, new UpdateSelection(view, new NodeSelection(phrases[0], view.Selection.Control)));//uncommenting this because unexecute for update selection can handle null unexecute now
                                         }
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, phrase, false));//@singleSection: moved delete command last for improve undo selection
+                Commands.Node.Delete deleteCmd = new Commands.Node.Delete(view, phrase, false) ;
+                command.ChildCommands.Insert(command.ChildCommands.Count, deleteCmd);//@singleSection: moved delete command last for improve undo selection
+                view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), (100 * j) / phraseNodesList.Count);
+                
                 }
             return command;
         }
