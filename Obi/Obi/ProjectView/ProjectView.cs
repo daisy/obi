@@ -2361,7 +2361,10 @@ namespace Obi.ProjectView
                                 dialog.Threshold, dialog.Gap, dialog.LeadingSilence );
                             } );
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+                    this.ProgressChanged += new ProgressChangedEventHandler(progress.UpdateProgressBar);
+                        
                     progress.ShowDialog ();
+                    if (progress.Exception != null) throw (progress.Exception);
                     ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     mPresentation.Do ( command );
 
@@ -2379,6 +2382,7 @@ namespace Obi.ProjectView
                     }
                 }
             }
+    
 
         public void ApplyPhraseDetectionInWholeProject ()
             {
@@ -2427,12 +2431,13 @@ namespace Obi.ProjectView
                     //CompositeCommand command = mPresentation.CreateCompositeCommand ( Localizer.Message ( "PhraseDetection_WholeProject" ) );
                     List<CompositeCommand> listOfCommands = new List<CompositeCommand> ();
 
+                    int i = 0; //iterator for for loop
                     ObiForm.CanAutoSave = false;//explicitly do this as getting of command takes a lot of time
                     Dialogs.ProgressDialog progress = new Dialogs.ProgressDialog ( Localizer.Message ( "phrase_detection_progress" ),
                         delegate ( Dialogs.ProgressDialog progress1)
                             {
                                 Audio.PhraseDetection.RetainSilenceInBeginningOfPhrase = ObiForm.Settings.RetainInitialSilenceInPhraseDetection;
-                            for (int i = 0; i < sectionsList.Count; i++)
+                            for (i = 0; i < sectionsList.Count; i++)
                                 {
                                     if (progress1.CancelOperation)
                                     {
@@ -2447,6 +2452,23 @@ namespace Obi.ProjectView
                                 }
                             } );
                     progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate ( object sender   , EventArgs e) { Audio.PhraseDetection.CancelOperation = true; });
+                    int progressValue = 0 ;
+                    int baseProgressValue = 0;
+                    int previous_I = 0;
+                    this.ProgressChanged+= new ProgressChangedEventHandler(delegate(object sender, ProgressChangedEventArgs e)
+                    {
+                        if (i != previous_I)
+                        {
+                            baseProgressValue += progressValue;
+                            previous_I = i;
+                        }
+                        //progressValue = (e.ProgressPercentage * i )/ sectionsList.Count ;
+                        progressValue =sectionsList.Count > 0? (100 * i) / sectionsList.Count: e.ProgressPercentage ;
+                        //if (progressValue >= 100) progressValue = 95;
+                        progress.UpdateProgressBar ( this, new ProgressChangedEventArgs ( progressValue, "") );
+                    });
+                    
+
                     progress.ShowDialog ();
                     ObiForm.CanAutoSave = true;//explicitly do this as getting of command takes a lot of time
                     //MessageBox.Show ( "Scanning of all files complete " );
@@ -2456,7 +2478,7 @@ namespace Obi.ProjectView
                             //{
                     try
                         {
-                        for (int i = 0; i < listOfCommands.Count; ++i)
+                        for (i = 0; i < listOfCommands.Count; ++i)
                             {
                             //if (progress1.CancelOperation) break;
                             mPresentation.Do ( listOfCommands[i] );
@@ -3220,6 +3242,7 @@ namespace Obi.ProjectView
         public const string ProgressBar_Navigation = "navigation" ;
         public const string ProgressBar_Waveform = "waveform";
 
+        private delegate void TriggerProgressChangedEventDelegate(string purpose, int progressInPercent);
         //@singleSection
         /// <summary>
         /// < Triggers progress changed event which updates progressbar on obi form.
@@ -3229,8 +3252,15 @@ namespace Obi.ProjectView
         /// <param name="progressInPercent"></param>
         public void TriggerProgressChangedEvent ( string purpose, int progressInPercent)
             {
-            if ( ProgressChanged != null ) 
-                ProgressChanged (this, new ProgressChangedEventArgs ( progressInPercent, purpose )) ;
+                if (InvokeRequired)
+                {
+                    Invoke(new TriggerProgressChangedEventDelegate(TriggerProgressChangedEvent), purpose, progressInPercent);
+                }
+                else
+                {
+                    if (ProgressChanged != null)
+                        ProgressChanged(this, new ProgressChangedEventArgs(progressInPercent, purpose));
+                }
             }
 
         //@singleSection
