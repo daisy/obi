@@ -145,8 +145,16 @@ namespace Obi
             XmlNode oldAudioMediaDatas = sourceXmlDoc.GetElementsByTagName("mMediaData")[0];
             XmlNode newAudioMediaDatas = destXmlDoc.GetElementsByTagName("MediaDatas")[0];
 
+            float audioMediaLoopPercentage = 0 ;
+
             foreach (XmlNode oldMediaDataItem in XmlDocumentHelper.GetChildrenElementsWithName(oldAudioMediaDatas, true, "mMediaDataItem", oldAudioMediaDatas.NamespaceURI, false))
             {
+                audioMediaLoopPercentage += 0.05f;
+                if (audioMediaLoopPercentage >= progressPercentage + 1 && progressPercentage <= 50)
+                {
+                    progressPercentage = (int)audioMediaLoopPercentage;
+                    if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
+                }
                 XmlNode newAudioMediaItem = destXmlDoc.CreateElement("WavAudioMediaData", newAudioMediaDatas.NamespaceURI);
                 newAudioMediaDatas.AppendChild(newAudioMediaItem);
                 XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newAudioMediaItem, "Uid", oldMediaDataItem.Attributes.GetNamedItem("uid").Value);
@@ -180,7 +188,7 @@ namespace Obi
 
                 
             }
-            progressPercentage =30 ;
+            progressPercentage =55 ;
             if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
             if (RequestCancellation)
             {
@@ -195,7 +203,7 @@ namespace Obi
             newObiPresentation.Attributes.GetNamedItem("RootUri").Value = "" ;
 
             UpdateRegisteredTypes(destXmlDoc);
-            progressPercentage = 40 ;
+            progressPercentage = 60 ;
             if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
             if (RequestCancellation)
             {
@@ -205,7 +213,7 @@ namespace Obi
             }
             ImportMetadatas(sourceXmlDoc, destXmlDoc);
 
-            progressPercentage = 50 ;
+            progressPercentage = 70 ;
             if (ProgressChanged != null) ProgressChanged(this, new System.ComponentModel.ProgressChangedEventArgs(progressPercentage, ""));
             if (RequestCancellation)
             {
