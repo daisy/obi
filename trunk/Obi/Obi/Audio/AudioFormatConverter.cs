@@ -41,7 +41,7 @@ namespace Obi.Audio
             string convertedFile = null;
             try
             {
-                if (filePath.EndsWith(".wav"))
+                if (Path.GetExtension(filePath).ToLower() == ".wav")
                 {
                     Stream wavStream = null;
                     wavStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -58,7 +58,7 @@ namespace Obi.Audio
                         convertedFile = audioConverter.ConvertSampleRate(filePath, directoryPath, pcmFormat);
                     }
                 }
-                else if (filePath.EndsWith(".mp3"))
+                else if (Path.GetExtension(filePath).ToLower() == ".mp3")
                 {
                     AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
                     convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat);
