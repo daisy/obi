@@ -675,13 +675,14 @@ namespace Obi
             {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
 
-            if (mProjectView.IsWaveformRendering
-                && MessageBox.Show(Localizer.Message ("Cleanup_WaveformLoadingWarning"), 
-                    Localizer.Message("Caption_Warning") , 
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.No)
-            {
-                return;
-            }
+            //if (mProjectView.IsWaveformRendering
+                //&& MessageBox.Show(Localizer.Message ("Cleanup_WaveformLoadingWarning"), 
+                    //Localizer.Message("Caption_Warning") , 
+                    //MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.No)
+            //{
+                //return;
+            //}
+            mProjectView.WaveformRendering_PauseOrResume(true);
             DialogResult result = MessageBox.Show ( Localizer.Message ( "clean_save_text" ),
                 Localizer.Message ( "clean_save_caption" ),
                 MessageBoxButtons.OKCancel,
@@ -714,7 +715,7 @@ namespace Obi
 
                     listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
                 }
-                                MessageBox.Show("files count " + listOfDataProviderFiles.Count.ToString());
+                                
 
                                 //foreach (urakawa.media.data.MediaData m in mProjectView.Presentation.MediaDataManager.ManagedObjects.ContentsAs_Enumerable)
                                 //{
@@ -774,6 +775,7 @@ namespace Obi
                     MessageBox.Show ( String.Format ( Localizer.Message ( "clean_failed_text" ), e.Message ),
                         Localizer.Message ( "clean_failed_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
+                    mProjectView.WaveformRendering_PauseOrResume(false);
                 }
             }
 
