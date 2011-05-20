@@ -297,25 +297,19 @@ namespace Obi
                     mSettings.NewProjectDialogSize = dialog.Size;
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
                     ImportExport.DAISY3_ObiImport import = null; 
-                    ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "import_progress_dialog_title" ),
-                        delegate (ProgressDialog progress1 ) {
+                    
                             if (strExtension == ".opf" || strExtension == ".xml")
                             {
-                                ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path,ref import);
+                                ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
                             }
                             else
                             {
-                                CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
-                                (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                                //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
+                                //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                                ImportStructureFromXHtml (dialog.Path, dialog.Title, dialog.ID);
                             }
-                        } );
-                    progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e)
-                    {
-                        if (import != null) import.RequestCancellation = true;
-                    });
-                    progress.ShowDialog ();
-                    if (progress.Exception != null) throw progress.Exception;
-                    if (import != null && import.RequestCancellation) return false;
+                    
+
                     mSession.ForceSave ();
                     AddRecentProject(mSession.Path);
                     }
@@ -330,28 +324,55 @@ namespace Obi
                 }
             }
 
-        private void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath,ref ImportExport.DAISY3_ObiImport import)
+        private void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath)
         {
-            try
+
+            importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
+
+            importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
+            mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings, true);
+            ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(mSession, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+            ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
+                    delegate(ProgressDialog progress1)
+                    {
+                        import.DoWork();
+                        if (import.RequestCancellation)
+                        {
+                            //mSession.pro = null;
+                            return;
+                        }
+                        mSession.Presentation.CheckAndCreateDefaultMetadataItems(mSettings.UserProfile);
+                        import.CorrectExternalAudioMedia();
+                        mSession.Save(mSession.Path);
+                    });
+            progress.OperationCancelled += new OperationCancelledHandler(delegate(object sender, EventArgs e)
             {
-                importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
-                
-                mSession.ImportProjectFromDTB(outputPath, title, createTitleSection, id, mSettings, importDTBPath,ref import);
-                //mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings);
-                //Export.DAISY3_ObiImport import = new Obi.Export.DAISY3_ObiImport(mSession, importDTBPath, Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
-                //import.DoWork();
-                //mSession.Save(mSession.Path);
-                //MessageBox.Show(String.Format(Localizer.Message("import_output_path" ), outputPath));
-                Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"), 
-                    import.RequestCancellation? Localizer.Message("import_cancelled") :  String.Format(Localizer.Message("import_output_path" ), outputPath), 
-                    import != null? import.ErrorsList: null ) ;
-                reportDialog.ShowDialog() ;
-                //mSession.NotifyProjectCreated();
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+                if (import != null) import.RequestCancellation = true;
+            });
+            import.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+            progress.ShowDialog();
+            if (progress.Exception != null) throw progress.Exception;
+            if (import.RequestCancellation) return;
+            if (!import.RequestCancellation) mSession.NotifyProjectCreated();
+
+            Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
+                import.RequestCancellation ? Localizer.Message("import_cancelled") : String.Format(Localizer.Message("import_output_path"), outputPath),
+                import != null ? import.ErrorsList : null);
+            reportDialog.ShowDialog();
+            
+        }
+
+        private void ImportStructureFromXHtml(string path, string title, string id)
+        {
+            ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
+                    delegate(ProgressDialog progress1)
+                    {
+            CreateNewProject(path, title, false, id);
+            (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+        });
+            progress.ShowDialog();
+            if (progress.Exception != null) throw progress.Exception;
+            
         }
 
         // Open a new project after showing a file open dialog.
