@@ -61,6 +61,9 @@ namespace Obi
             this.mFindInTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFindPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEdit_BookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEdit_AssignBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEdit_GotoBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowTOCViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mShowMetadataViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,9 +114,6 @@ namespace Obi
             this.mMergePhraseWithFollowingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mMergePhraseWithPrecedingPhrasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mCropAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_BookmarkNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_AssignBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_GotoBookmarkNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhrases_PhraseIsTODOMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mPhraseIsUsedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -317,7 +317,8 @@ namespace Obi
             this.toolStripSeparator4,
             this.mFindInTextToolStripMenuItem,
             this.mFindNextToolStripMenuItem,
-            this.mFindPreviousToolStripMenuItem});
+            this.mFindPreviousToolStripMenuItem,
+            this.mEdit_BookmarkToolStripMenuItem});
             this.mEditToolStripMenuItem1.Name = "mEditToolStripMenuItem1";
             resources.ApplyResources(this.mEditToolStripMenuItem1, "mEditToolStripMenuItem1");
             // 
@@ -413,6 +414,26 @@ namespace Obi
             resources.ApplyResources(this.mFindPreviousToolStripMenuItem, "mFindPreviousToolStripMenuItem");
             this.mFindPreviousToolStripMenuItem.Name = "mFindPreviousToolStripMenuItem";
             this.mFindPreviousToolStripMenuItem.Click += new System.EventHandler(this.mFindPreviousToolStripMenuItem_Click);
+            // 
+            // mEdit_BookmarkToolStripMenuItem
+            // 
+            this.mEdit_BookmarkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mEdit_AssignBookmarkToolStripMenuItem,
+            this.mEdit_GotoBookmarkToolStripMenuItem});
+            this.mEdit_BookmarkToolStripMenuItem.Name = "mEdit_BookmarkToolStripMenuItem";
+            resources.ApplyResources(this.mEdit_BookmarkToolStripMenuItem, "mEdit_BookmarkToolStripMenuItem");
+            // 
+            // mEdit_AssignBookmarkToolStripMenuItem
+            // 
+            this.mEdit_AssignBookmarkToolStripMenuItem.Name = "mEdit_AssignBookmarkToolStripMenuItem";
+            resources.ApplyResources(this.mEdit_AssignBookmarkToolStripMenuItem, "mEdit_AssignBookmarkToolStripMenuItem");
+            this.mEdit_AssignBookmarkToolStripMenuItem.Click += new System.EventHandler(this.mEdit_AssignBookmarkToolStripMenuItem_Click);
+            // 
+            // mEdit_GotoBookmarkToolStripMenuItem
+            // 
+            this.mEdit_GotoBookmarkToolStripMenuItem.Name = "mEdit_GotoBookmarkToolStripMenuItem";
+            resources.ApplyResources(this.mEdit_GotoBookmarkToolStripMenuItem, "mEdit_GotoBookmarkToolStripMenuItem");
+            this.mEdit_GotoBookmarkToolStripMenuItem.Click += new System.EventHandler(this.mEdit_GotoBookmarkToolStripMenuItem_Click);
             // 
             // mViewToolStripMenuItem
             // 
@@ -715,7 +736,6 @@ namespace Obi
             this.mSplitPhraseToolStripMenuItem,
             this.mMergeToolStripMenuItem,
             this.mCropAudiotoolStripMenuItem,
-            this.m_BookmarkNodeToolStripMenuItem,
             this.mPhrases_PhraseIsTODOMenuItem,
             this.mPhraseIsUsedToolStripMenuItem,
             this.toolStripSeparator6,
@@ -786,26 +806,6 @@ namespace Obi
             resources.ApplyResources(this.mCropAudiotoolStripMenuItem, "mCropAudiotoolStripMenuItem");
             this.mCropAudiotoolStripMenuItem.Name = "mCropAudiotoolStripMenuItem";
             this.mCropAudiotoolStripMenuItem.Click += new System.EventHandler(this.mCropAudiotoolStripMenuItem_Click);
-            // 
-            // m_BookmarkNodeToolStripMenuItem
-            // 
-            this.m_BookmarkNodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_AssignBookmarkToolStripMenuItem,
-            this.m_GotoBookmarkNodeToolStripMenuItem});
-            this.m_BookmarkNodeToolStripMenuItem.Name = "m_BookmarkNodeToolStripMenuItem";
-            resources.ApplyResources(this.m_BookmarkNodeToolStripMenuItem, "m_BookmarkNodeToolStripMenuItem");
-            // 
-            // m_AssignBookmarkToolStripMenuItem
-            // 
-            this.m_AssignBookmarkToolStripMenuItem.Name = "m_AssignBookmarkToolStripMenuItem";
-            resources.ApplyResources(this.m_AssignBookmarkToolStripMenuItem, "m_AssignBookmarkToolStripMenuItem");
-            this.m_AssignBookmarkToolStripMenuItem.Click += new System.EventHandler(this.m_AssignBookmarkToolStripMenuItem_Click);
-            // 
-            // m_GotoBookmarkNodeToolStripMenuItem
-            // 
-            this.m_GotoBookmarkNodeToolStripMenuItem.Name = "m_GotoBookmarkNodeToolStripMenuItem";
-            resources.ApplyResources(this.m_GotoBookmarkNodeToolStripMenuItem, "m_GotoBookmarkNodeToolStripMenuItem");
-            this.m_GotoBookmarkNodeToolStripMenuItem.Click += new System.EventHandler(this.gotoBookmarkNodeToolStripMenuItem_Click);
             // 
             // mPhrases_PhraseIsTODOMenuItem
             // 
@@ -1495,11 +1495,11 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mergeSectionWithNextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeMultipleSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportSelectedAudioMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_BookmarkNodeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_AssignBookmarkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_GotoBookmarkNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_RefreshContentViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mHelp_newFeaturestoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEdit_BookmarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEdit_AssignBookmarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
     }
 }
 
