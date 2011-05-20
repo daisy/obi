@@ -40,6 +40,7 @@ namespace Obi.ProjectView
 
         private delegate Strip AddStripForObiNodeDelegate ( ObiNode node );
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
+        private bool m_IsWaveformRenderingPaused;
 
         /// <summary>
         /// A new strips view.
@@ -566,6 +567,7 @@ namespace Obi.ProjectView
         // Render the first waveform from the queue if no other rendering is in progress.
         private void RenderFirstWaveform ()
             {
+                
             while (mWaveformRenderWorker == null && mWaveformRenderQ.Count > 0)
                 {
                 Waveform w = mWaveformRenderQ.Dequeue ();
@@ -582,6 +584,7 @@ namespace Obi.ProjectView
             {
             mWaveformRenderQ.Clear ();
             if (mProjectView != null && mProjectView.ObiForm != null) mProjectView.ObiForm.BackgroundOperation_Done ();
+            m_IsWaveformRenderingPaused = false;
             }
 
         public bool IsWaveformRendering { get { return mWaveformRenderQ.Count > 0; } }
@@ -589,8 +592,21 @@ namespace Obi.ProjectView
         public void FinishedRendering ( Waveform w, bool renderedOK )
             {
             mWaveformRenderWorker = null;
-            RenderFirstWaveform ();
+            if ( !m_IsWaveformRenderingPaused) RenderFirstWaveform ();
             }
+
+        public void WaveformRendering_PauseOrResume(bool pause)
+        {
+            if (pause)
+            {
+                m_IsWaveformRenderingPaused = true;
+            }
+            else
+            {
+                m_IsWaveformRenderingPaused = false;
+                RenderFirstWaveform();
+            }
+    }
 
         /// <summary>
         /// Get all the searchable items (i.e. strips, blocks) in the control.
