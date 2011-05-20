@@ -336,18 +336,25 @@ namespace Obi.ProjectView
                 mProjectView.SynchronizeViews = false;
                 contentViewLabel1.Name_SectionDisplayed = sectionToDisplay.Label; //@singleSection
                 IsScrollActive = false; //@singleSection
-
+                
             }
             else
                 {
                 AddStripForSection_Safe ((ObiNode)  mProjectView.Presentation.RootNode ); //this will not be called in single section//sdk2 :root node casted
                 }
                 m_DisablePhraseCreationWhileSelectionRestore = false;
-                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null && bookMarkedNode is EmptyNode)
+                if (mProjectView.ObiForm.Settings.OpenBookmarkNodeOnReopeningProject && bookMarkedNode != null )
                 {
                     bool statusForSelectionChangedPlaybackEnabled = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
                     mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-                    SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
+                    if (bookMarkedNode is SectionNode)
+                    {
+                        mProjectView.Selection = new NodeSelection(bookMarkedNode, this);
+                    }
+                    else if (bookMarkedNode is EmptyNode)
+                    {
+                        SelectPhraseBlockOrStrip((EmptyNode)bookMarkedNode);
+                    }
                     mProjectView.TransportBar.SelectionChangedPlaybackEnabled = statusForSelectionChangedPlaybackEnabled;
                 }
                 else
