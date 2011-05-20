@@ -184,8 +184,10 @@ namespace Obi
             if (ProjectCreated != null) ProjectCreated(this, null);
         }
 
+        public void NotifyProjectCreated() { if (ProjectCreated != null) ProjectCreated(this, null); }
 
-        private void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport )
+
+        internal void CreateNewPresentationInBackend ( string path, string title, bool createTitleSection, string id, Settings settings, bool isStubProjectForImport )
         {
             mProject = new Project();
 #if (DEBUG)
