@@ -1084,7 +1084,10 @@ namespace Obi
             mFindInTextToolStripMenuItem.Enabled = mSession.HasProject && mProjectView.CanFindFirstTime && !mProjectView.TransportBar.IsRecorderActive;
             mFindNextToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
             mFindPreviousToolStripMenuItem.Enabled = mProjectView.CanFindNextPreviousText;
-            }
+            mEdit_BookmarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
+            mEdit_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
+            mEdit_GotoBookmarkToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && !mProjectView.TransportBar.IsRecorderActive;
+        }
 
         private void mUndoToolStripMenuItem_Click ( object sender, EventArgs e ) { Undo (); }
         private void mRedoToolStripMenuItem_Click ( object sender, EventArgs e ) { Redo (); }
@@ -1266,9 +1269,6 @@ namespace Obi
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
             m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
-            m_BookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && !mProjectView.TransportBar.IsRecorderActive;
-            m_AssignBookmarkToolStripMenuItem.Enabled = mProjectView.Selection != null;
-            m_GotoBookmarkNodeToolStripMenuItem.Enabled = mProjectView.Presentation != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null && ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode.IsRooted && !mProjectView.TransportBar.IsRecorderActive;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
@@ -3042,11 +3042,6 @@ namespace Obi
             mProjectView.ExportAudioOfSelectedNode();
         }
 
-        private void m_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CheckForSelectedNodeInBookmark();
-        }
-
         private void CheckForSelectedNodeInBookmark()
         {
             if (mProjectView.Presentation == null) return;
@@ -3072,27 +3067,7 @@ namespace Obi
                 UpdateTitleAndStatusBar();             
             }
         }
-
-        private void gotoBookmarkNodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
-            {
-                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is EmptyNode)
-                {
-                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
-                }
-                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
-                {
-                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;                    
-                }
-                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
-                {
-                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
-                }
-                
-            }            
-        }
-
+               
         private void mView_RefreshContentViewMenuItem_Click(object sender, EventArgs e)
         {
             UpdateZoomFactor();
@@ -3103,7 +3078,30 @@ namespace Obi
             //Uri url = new Uri(Localizer.Message("Obi_NewFeaturesWebpage"));
             Uri url = new Uri(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Obi 2.0 Alpha-New features help.htm"));
             System.Diagnostics.Process.Start(url.ToString());
+        }       
+
+        private void mEdit_GotoBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode != null)
+            {
+                if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is EmptyNode)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is SectionNode)
+                {
+                    mProjectView.SelectedStripNode = (SectionNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+                else if (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode is StripIndexSelection)
+                {
+                    mProjectView.SelectedBlockNode = (EmptyNode)((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode;
+                }
+            }
         }
 
+        private void mEdit_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckForSelectedNodeInBookmark();
         }
+    }
     }
