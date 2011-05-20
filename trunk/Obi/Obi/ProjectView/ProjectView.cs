@@ -1890,7 +1890,7 @@ namespace Obi.ProjectView
 
             m_DisableSectionSelection = false;
             if (GetSelectedPhraseSection != null && (Selection.Node is EmptyNode || Selection is StripIndexSelection)) Selection = new NodeSelection(GetSelectedPhraseSection, mContentView);
-            for (int i = 0; i < phraseNodes.Count; i++)
+            for (int i = phraseNodes.Count-1; i >= 0; i--)
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
                     {
