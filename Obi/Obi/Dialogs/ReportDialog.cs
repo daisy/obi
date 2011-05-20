@@ -20,7 +20,7 @@ namespace Obi.Dialogs
             : this()
         {
             m_ProblemStringList = problemStrings;
-           // m_lblReportDialog.Text = labelInfo;
+          //  m_lblReportDialog.Text = labelInfo;
             m_txtBoxPath.Text = labelInfo;
             this.Text = reportDialogTitle;
             if (problemStrings != null && problemStrings.Count != 0)
@@ -38,18 +38,20 @@ namespace Obi.Dialogs
             {
                 this.Height = 304;
                 m_btnDetails.Text = "Hide details";
-                m_lbDetailsOfImportedFiles.Visible = true;
+                m_lbDetailsOfErrors.Visible = true;
+                m_grpBox_lb_ErrorsList.Visible = true;
             }
             else
             {
                 this.Height = 154;
                 m_btnDetails.Text = "Show details";
-                m_lbDetailsOfImportedFiles.Visible = false;
+                m_lbDetailsOfErrors.Visible = false;
+                m_grpBox_lb_ErrorsList.Visible = false;
             }
-            if (m_ProblemStringList != null && m_lbDetailsOfImportedFiles.Items.Count < 1)
+            if (m_ProblemStringList != null && m_lbDetailsOfErrors.Items.Count < 1)
             {                
                 for (int i = 0; i < m_ProblemStringList.Count; i++)
-                    m_lbDetailsOfImportedFiles.Items.Add(m_ProblemStringList[i]);
+                    m_lbDetailsOfErrors.Items.Add(m_ProblemStringList[i]);
             }            
         }
     }
