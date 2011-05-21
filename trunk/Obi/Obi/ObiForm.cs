@@ -38,6 +38,7 @@ namespace Obi
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
         private bool m_ShouldBookmark = true;
+        private bool m_IsBookmarkChanged = false;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -629,7 +630,7 @@ namespace Obi
             {
                 CheckForBookmarkNode(); 
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
-            if (!mSession.CanClose)
+          /*  if (!mSession.CanClose)
                {
                     if (m_ShouldBookmark)
                         mSession.ForceSave();
@@ -643,29 +644,52 @@ namespace Obi
                         if (result == DialogResult.Yes) mSession.Save();
                     }
                       
-                }
+                }*/
+            Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(m_IsBookmarkChanged, !mSession.CanClose);
+        //    if(resultBookmark.IsOkBtnPressed)
             mSession.Close ();
             return true;
            }
 
         private void CheckForBookmarkNode()
         {
-            if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
-                && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
+            if (mProjectView.Presentation != null && mProjectView.Selection != null && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node)
+                m_IsBookmarkChanged = false;
+            else
+                m_IsBookmarkChanged = true;
+
+         //   if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
+           //     && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
+            if (mProjectView.Presentation != null    &&    mProjectView.Selection != null && m_IsBookmarkChanged)
             {
                 if (!mSession.CanClose)
                 {
-                    DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    /*DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultBookmark == DialogResult.Yes)
                     {
                         CheckForSelectedNodeInBookmark();
                         m_ShouldBookmark = true;
                     }
                     if (resultBookmark == DialogResult.No)
-                        m_ShouldBookmark = false;
+                        m_ShouldBookmark = false;*/
+
+                    Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(m_IsBookmarkChanged, !mSession.CanClose);
+                    resultBookmark.ShowDialog();
+                    if (resultBookmark.IsSaveBothChecked)
+                    {
+                        CheckForSelectedNodeInBookmark();
+                        mSession.ForceSave();
+                    }
+                    else if (resultBookmark.IsSaveProjectChecked)
+                    {
+                        mSession.Save();
+                    }
+                    else if (resultBookmark.IsDiscardBothChecked)
+                    { }
                 }
                 else
-                    CheckForSelectedNodeInBookmark(); 
+                    CheckForSelectedNodeInBookmark();
+                
             }
         }
 
@@ -3085,6 +3109,7 @@ namespace Obi
                 }
                 else
                     mSession.PresentationHasChanged(1);*/
+
                 mSession.PresentationHasChanged(1);
                 UpdateMenus();
                 UpdateTitleAndStatusBar();             
