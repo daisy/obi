@@ -49,7 +49,7 @@ namespace Obi.Dialogs
             // m_btnOk
             // 
             this.m_btnOk.AccessibleName = "OK";
-            this.m_btnOk.Location = new System.Drawing.Point(98, 70);
+            this.m_btnOk.Location = new System.Drawing.Point(98, 71);
             this.m_btnOk.Name = "m_btnOk";
             this.m_btnOk.Size = new System.Drawing.Size(75, 23);
             this.m_btnOk.TabIndex = 1;
@@ -61,7 +61,7 @@ namespace Obi.Dialogs
             // 
             this.m_btnDetails.AccessibleName = "Show details";
             this.m_btnDetails.Enabled = false;
-            this.m_btnDetails.Location = new System.Drawing.Point(263, 70);
+            this.m_btnDetails.Location = new System.Drawing.Point(264, 71);
             this.m_btnDetails.Name = "m_btnDetails";
             this.m_btnDetails.Size = new System.Drawing.Size(75, 23);
             this.m_btnDetails.TabIndex = 2;
@@ -82,11 +82,12 @@ namespace Obi.Dialogs
             // m_txtBoxPath
             // 
             this.m_txtBoxPath.AccessibleName = "Path";
+            this.m_txtBoxPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.m_txtBoxPath.Location = new System.Drawing.Point(25, 25);
             this.m_txtBoxPath.Multiline = true;
             this.m_txtBoxPath.Name = "m_txtBoxPath";
             this.m_txtBoxPath.ReadOnly = true;
-            this.m_txtBoxPath.Size = new System.Drawing.Size(400, 20);
+            this.m_txtBoxPath.Size = new System.Drawing.Size(400, 30);
             this.m_txtBoxPath.TabIndex = 0;
             // 
             // m_grpBox_lb_ErrorsList
@@ -103,7 +104,7 @@ namespace Obi.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 119);
+            this.ClientSize = new System.Drawing.Size(437, 114);
             this.Controls.Add(this.m_grpBox_lb_ErrorsList);
             this.Controls.Add(this.m_txtBoxPath);
             this.Controls.Add(this.m_lblReportDialog);

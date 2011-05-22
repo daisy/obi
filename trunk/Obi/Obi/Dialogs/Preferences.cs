@@ -592,7 +592,7 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Location = new Point(115, 200);
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
-                m_CheckBoxListView.Items.Add("Open bookmark when project reopens");
+                m_CheckBoxListView.Items.Add("Select bookmark when project reopens");
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
