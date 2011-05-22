@@ -1860,4 +1860,7 @@ Error text: {1}</value>
   <data name="Report_for_import" xml:space="preserve">
     <value>Report for import</value>
   </data>
+  <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
+    <value>Processing audio files for import</value>
+  </data>
 </root>

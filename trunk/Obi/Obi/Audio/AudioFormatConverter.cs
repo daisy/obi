@@ -13,9 +13,16 @@ namespace Obi.Audio
     //sdk2
     public class AudioFormatConverter
     {
+        private static bool m_IsRequestCancellation;
+        public static bool IsRequestCancellation
+        {
+            get { return m_IsRequestCancellation; }
+            set { m_IsRequestCancellation = value; }
+        }
+
         public static string[] ConvertFiles(string[] fileName, Presentation presentation)
         {
-
+            m_IsRequestCancellation = false;
             int numberOfFiles = fileName.Length;
             string convertedFile = null;
             List<string> listOfConvertedFiles = new List<string>();
@@ -23,6 +30,7 @@ namespace Obi.Audio
 
             for (int i = 0; i < numberOfFiles; i++)
             {
+                if (IsRequestCancellation) return null;
                 convertedFile = ConvertedFile(fileName[i], presentation);
                 if (convertedFile != null) listOfConvertedFiles.Add(convertedFile);
             }
