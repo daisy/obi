@@ -1930,6 +1930,7 @@ namespace Obi.ProjectView
                     });
                 progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
                 progress.ShowDialog();
+                if (progress.Exception != null) throw progress.Exception;
                 return audioFilesList;
             }
             else
