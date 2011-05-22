@@ -297,19 +297,20 @@ namespace Obi
 
                     mSettings.NewProjectDialogSize = dialog.Size;
                     //CreateNewProject ( dialog.Path, dialog.Title, false, dialog.ID );
-                    ImportExport.DAISY3_ObiImport import = null; 
-                    
+                    ImportExport.DAISY3_ObiImport import = null;
+                    bool isProjectCreated = false;
+
                             if (strExtension == ".opf" || strExtension == ".xml")
                             {
-                                ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
+                                isProjectCreated =  ImportProjectFromDTB(dialog.Path, dialog.Title, false, dialog.ID, path);
                             }
                             else
                             {
                                 //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                                 //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
-                                ImportStructureFromXHtml (dialog.Path, dialog.Title, dialog.ID);
+                                isProjectCreated = ImportStructureFromXHtml (dialog.Path, dialog.Title, dialog.ID);
                             }
-                    
+                            if (!isProjectCreated) return false;
 
                     mSession.ForceSave ();
                     AddRecentProject(mSession.Path);
@@ -325,7 +326,7 @@ namespace Obi
                 }
             }
 
-        private void ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath)
+        private bool ImportProjectFromDTB(string outputPath, string title, bool createTitleSection, string id, string importDTBPath)
         {
 
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
@@ -353,17 +354,17 @@ namespace Obi
             import.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
             progress.ShowDialog();
             if (progress.Exception != null) throw progress.Exception;
-            if (import.RequestCancellation) return;
+            if (import.RequestCancellation) return false;
             if (!import.RequestCancellation) mSession.NotifyProjectCreated();
 
             Dialogs.ReportDialog reportDialog = new ReportDialog(Localizer.Message("Report_for_import"),
                 import.RequestCancellation ? Localizer.Message("import_cancelled") : String.Format(Localizer.Message("import_output_path"), outputPath),
                 import != null ? import.ErrorsList : null);
             reportDialog.ShowDialog();
-            
+            return !import.RequestCancellation;
         }
 
-        private void ImportStructureFromXHtml(string path, string title, string id)
+        private bool ImportStructureFromXHtml(string path, string title, string id)
         {
             ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                     delegate(ProgressDialog progress1)
@@ -373,7 +374,7 @@ namespace Obi
         });
             progress.ShowDialog();
             if (progress.Exception != null) throw progress.Exception;
-            
+            return true;
         }
 
         // Open a new project after showing a file open dialog.
