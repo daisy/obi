@@ -37,6 +37,7 @@ namespace Obi.Dialogs
             this.m_btn_SelectAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.m_statusStripForMergeSection.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,6 +65,7 @@ namespace Obi.Dialogs
             // 
             // m_btn_Cancel
             // 
+            this.m_btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_btn_Cancel.Location = new System.Drawing.Point(346, 207);
             this.m_btn_Cancel.Name = "m_btn_Cancel";
             this.m_btn_Cancel.Size = new System.Drawing.Size(100, 23);
@@ -89,16 +91,16 @@ namespace Obi.Dialogs
             // 
             // m_tb_SelectedSection
             // 
-            this.m_tb_SelectedSection.Location = new System.Drawing.Point(6, 30);
+            this.m_tb_SelectedSection.Location = new System.Drawing.Point(64, 30);
             this.m_tb_SelectedSection.Multiline = true;
             this.m_tb_SelectedSection.Name = "m_tb_SelectedSection";
             this.m_tb_SelectedSection.ReadOnly = true;
-            this.m_tb_SelectedSection.Size = new System.Drawing.Size(174, 20);
+            this.m_tb_SelectedSection.Size = new System.Drawing.Size(138, 20);
             this.m_tb_SelectedSection.TabIndex = 4;
             // 
             // m_btn_SelectAll
             // 
-            this.m_btn_SelectAll.Location = new System.Drawing.Point(12, 74);
+            this.m_btn_SelectAll.Location = new System.Drawing.Point(111, 76);
             this.m_btn_SelectAll.Name = "m_btn_SelectAll";
             this.m_btn_SelectAll.Size = new System.Drawing.Size(91, 23);
             this.m_btn_SelectAll.TabIndex = 5;
@@ -118,6 +120,7 @@ namespace Obi.Dialogs
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.m_tb_SelectedSection);
             this.groupBox2.Controls.Add(this.m_btn_SelectAll);
             this.groupBox2.Location = new System.Drawing.Point(226, 31);
@@ -126,11 +129,21 @@ namespace Obi.Dialogs
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(2, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Description:";
+            // 
             // SelectMergeSectionRange
             // 
             this.AcceptButton = this.m_btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(473, 274);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -160,5 +173,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btn_SelectAll;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
