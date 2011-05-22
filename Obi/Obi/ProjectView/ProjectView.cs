@@ -1920,8 +1920,22 @@ namespace Obi.ProjectView
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
             dialog.Filter = Localizer.Message ( "audio_file_filter" );
-            return dialog.ShowDialog () == DialogResult.OK ?
-                Audio.AudioFormatConverter.ConvertFiles ( dialog.FileNames, mPresentation ) : null;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string[] audioFilesList = null;
+                Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message ("AudioFileImport_ProcessingFiles"),
+                    delegate(Dialogs.ProgressDialog progress1)
+                    {
+                        audioFilesList = Audio.AudioFormatConverter.ConvertFiles(dialog.FileNames, mPresentation);
+                    });
+                progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
+                progress.ShowDialog();
+                return audioFilesList;
+            }
+            else
+            {
+               return null;
+    }
             }
 
         public void SelectNothing () 
