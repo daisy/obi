@@ -3333,7 +3333,7 @@ namespace Obi.ProjectView
                 visitor.DisableAcmCodecs = true;
 
                 Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("AudioFileExport_progress_dialog_title"),
-                            delegate()
+                            delegate(Dialogs.ProgressDialog progress1)
                             {
                 nodeSelected.AcceptDepthFirst(visitor);
             });
