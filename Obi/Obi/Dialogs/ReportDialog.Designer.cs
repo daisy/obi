@@ -32,8 +32,8 @@ namespace Obi.Dialogs
             this.m_btnOk = new System.Windows.Forms.Button();
             this.m_btnDetails = new System.Windows.Forms.Button();
             this.m_lblReportDialog = new System.Windows.Forms.Label();
-            this.m_txtBoxPath = new System.Windows.Forms.TextBox();
             this.m_grpBox_lb_ErrorsList = new System.Windows.Forms.GroupBox();
+            this.m_txtBoxPath = new System.Windows.Forms.TextBox();
             this.m_grpBox_lb_ErrorsList.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,17 +79,6 @@ namespace Obi.Dialogs
             this.m_lblReportDialog.Text = "label1";
             this.m_lblReportDialog.Visible = false;
             // 
-            // m_txtBoxPath
-            // 
-            this.m_txtBoxPath.AccessibleName = "Path";
-            this.m_txtBoxPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.m_txtBoxPath.Location = new System.Drawing.Point(25, 25);
-            this.m_txtBoxPath.Multiline = true;
-            this.m_txtBoxPath.Name = "m_txtBoxPath";
-            this.m_txtBoxPath.ReadOnly = true;
-            this.m_txtBoxPath.Size = new System.Drawing.Size(400, 30);
-            this.m_txtBoxPath.TabIndex = 0;
-            // 
             // m_grpBox_lb_ErrorsList
             // 
             this.m_grpBox_lb_ErrorsList.Controls.Add(this.m_lbDetailsOfErrors);
@@ -98,15 +87,23 @@ namespace Obi.Dialogs
             this.m_grpBox_lb_ErrorsList.Size = new System.Drawing.Size(412, 142);
             this.m_grpBox_lb_ErrorsList.TabIndex = 3;
             this.m_grpBox_lb_ErrorsList.TabStop = false;
-            this.m_grpBox_lb_ErrorsList.Text = "Errors List";
+            this.m_grpBox_lb_ErrorsList.Text = "Error l&ist";
+            // 
+            // m_txtBoxPath
+            // 
+            this.m_txtBoxPath.Location = new System.Drawing.Point(19, 25);
+            this.m_txtBoxPath.Multiline = true;
+            this.m_txtBoxPath.Name = "m_txtBoxPath";
+            this.m_txtBoxPath.Size = new System.Drawing.Size(400, 35);
+            this.m_txtBoxPath.TabIndex = 0;
             // 
             // ReportDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 114);
-            this.Controls.Add(this.m_grpBox_lb_ErrorsList);
             this.Controls.Add(this.m_txtBoxPath);
+            this.Controls.Add(this.m_grpBox_lb_ErrorsList);
             this.Controls.Add(this.m_lblReportDialog);
             this.Controls.Add(this.m_btnDetails);
             this.Controls.Add(this.m_btnOk);
@@ -124,7 +121,7 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Button m_btnOk;
         private System.Windows.Forms.Button m_btnDetails;
         private System.Windows.Forms.Label m_lblReportDialog;
-        private System.Windows.Forms.TextBox m_txtBoxPath;
         private System.Windows.Forms.GroupBox m_grpBox_lb_ErrorsList;
+        private System.Windows.Forms.TextBox m_txtBoxPath;
     }
 }

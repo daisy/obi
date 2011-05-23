@@ -13,7 +13,7 @@ namespace Obi.Dialogs
         private bool m_IsSaveBothChecked = false;
         private bool m_IsSaveProjectChecked = false;
         private bool m_IsDiscardBothChecked = false;
-        private bool m_IsOkbtnPressed = false;
+       // private bool m_IsCancelBtnPressed = false;
 
         public MultipleOptionDialog()
         {
@@ -24,7 +24,7 @@ namespace Obi.Dialogs
         {
             m_rdb_DiscardBoth.Enabled = IsprojectUnsaved || IsBookmarkDifferent;
             m_rdb_SaveBookmarkAndProject.Enabled = IsBookmarkDifferent && IsprojectUnsaved;
-            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved && IsBookmarkDifferent;
+            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved && IsBookmarkDifferent;            
         }
 
         public bool IsSaveBothChecked
@@ -42,19 +42,20 @@ namespace Obi.Dialogs
             get { return m_IsDiscardBothChecked; }
         }
 
-        public bool IsOkBtnPressed
+      /*  public bool IsCancelBtnPressed
         {
-            get { return m_IsOkbtnPressed; }
-        }
+            get { return m_IsCancelBtnPressed; }
+        }*/
 
         private void m_btn_OK_Click(object sender, EventArgs e)
         {
-            m_IsOkbtnPressed = true;
+          //  m_IsCancelBtnPressed = true;
             this.Close();                
         }
 
         private void m_btn_Cancel_Click(object sender, EventArgs e)
         {
+          //  m_IsCancelBtnPressed = true;
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
