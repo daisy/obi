@@ -3337,6 +3337,8 @@ namespace Obi.ProjectView
                             {
                 nodeSelected.AcceptDepthFirst(visitor);
             });
+                progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { visitor.RequestCancellation = true;});
+                visitor.ProgressChangedEvent += new ProgressChangedEventHandler(progress.UpdateProgressBar);
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
                         
