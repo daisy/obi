@@ -37,7 +37,7 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-        private bool m_ShouldBookmark = true;
+        private bool m_ShouldBookmark = false;
         private bool m_IsBookmarkChanged = false;
 
         /// <summary>
@@ -646,21 +646,20 @@ namespace Obi
                     }
                       
                 }*/
-            Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(m_IsBookmarkChanged, !mSession.CanClose);
-        //    if(resultBookmark.IsOkBtnPressed)
+
+            if (m_ShouldBookmark) return false;            
             mSession.Close ();
             return true;
            }
 
         private void CheckForBookmarkNode()
         {
+            m_ShouldBookmark = false;
             if (mProjectView.Presentation != null && mProjectView.Selection != null && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node)
                 m_IsBookmarkChanged = false;
             else
                 m_IsBookmarkChanged = true;
 
-         //   if (mProjectView.Presentation != null    &&    mProjectView.Selection != null 
-           //     && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) != mProjectView.Selection.Node)
             if (mProjectView.Presentation != null    &&    mProjectView.Selection != null && m_IsBookmarkChanged)
             {
                 if (!mSession.CanClose)
@@ -676,21 +675,23 @@ namespace Obi
 
                     Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(m_IsBookmarkChanged, !mSession.CanClose);
                     resultBookmark.ShowDialog();
+                    if (resultBookmark.DialogResult == DialogResult.Cancel)
+                    {
+                        m_ShouldBookmark = true;
+                        return;
+                    }
                     if (resultBookmark.IsSaveBothChecked)
                     {
                         CheckForSelectedNodeInBookmark();
                         mSession.ForceSave();
                     }
                     else if (resultBookmark.IsSaveProjectChecked)
-                    {
                         mSession.Save();
-                    }
                     else if (resultBookmark.IsDiscardBothChecked)
-                    { }
+                    { }                    
                 }
                 else
-                    CheckForSelectedNodeInBookmark();
-                
+                    CheckForSelectedNodeInBookmark();                
             }
         }
 
