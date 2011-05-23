@@ -165,7 +165,6 @@ namespace Obi.Commands.Node
                 
                 if ( j == 0 )  index = phrase.Index + 1;
 
-
                 System.Collections.Generic.List<PhraseNode> phrases = view.Presentation.CreatePhraseNodesFromAudioAssetList (
                     Obi.Audio.PhraseDetection.Apply ( phrase.Audio.Copy (), threshold, gap, before ) );
                 for (int i = 0; i < phrases.Count; ++i)
@@ -190,6 +189,9 @@ namespace Obi.Commands.Node
                                         }
                 Commands.Node.Delete deleteCmd = new Commands.Node.Delete(view, phrase, false) ;
                 command.ChildCommands.Insert(command.ChildCommands.Count, deleteCmd);//@singleSection: moved delete command last for improve undo selection
+
+                if (Obi.Audio.PhraseDetection.CancelOperation) break;
+                 
                 view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), (100 * j) / phraseNodesList.Count);
                 
                 }
