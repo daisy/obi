@@ -146,7 +146,7 @@ namespace Obi.ProjectView
                         TreeNode n1 = FindTreeNode((SectionNode)mSelection.Node);
                         n1.EndEdit(false);
                     }
-
+                    if (value != null && !this.ContainsFocus) this.Focus();
                     mSelection = value;
                     TreeNode n = value == null ? null : FindTreeNode((SectionNode)mSelection.Node);
                     // Ignore the select event, since we were asked to change the selection;
