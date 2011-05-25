@@ -793,8 +793,7 @@ namespace Obi
 
                                 //DeleteExtraFiles ();
                             } );
-
-                    cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
+                     if(cleaner != null )  cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
