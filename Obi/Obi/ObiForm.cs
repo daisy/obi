@@ -717,6 +717,7 @@ namespace Obi
                 {
                 try
                     {
+                        Cleaner cleaner = null;
                     Dialogs.ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "cleaning_up" ),
                         delegate ()
                             {
@@ -730,7 +731,7 @@ namespace Obi
                                     Directory.CreateDirectory(deletedDataFolderPath);
                                 }
 
-                                Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
+                                cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
                                 cleaner.Cleanup();
 
                                 List<string> listOfDataProviderFiles = new List<string>();
@@ -792,6 +793,8 @@ namespace Obi
 
                                 //DeleteExtraFiles ();
                             } );
+
+                    cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
