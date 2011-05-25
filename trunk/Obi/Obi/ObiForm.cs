@@ -717,21 +717,21 @@ namespace Obi
                 {
                 try
                     {
-                        Cleaner cleaner = null;
+                        
+
+                        string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
+
+                        string deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
+                        if (!Directory.Exists(deletedDataFolderPath))
+                        {
+                            Directory.CreateDirectory(deletedDataFolderPath);
+                        }
+
+                        Cleaner cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
                     Dialogs.ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "cleaning_up" ),
                         delegate ()
                             {
                                 //mSession.Presentation.cleanup();
-                                
-                                string dataFolderPath = mSession.Presentation.DataProviderManager.DataFileDirectoryFullPath;
-
-                                string deletedDataFolderPath = Path.Combine(dataFolderPath, "__DELETED" + Path.DirectorySeparatorChar);
-                                if (!Directory.Exists(deletedDataFolderPath))
-                                {
-                                    Directory.CreateDirectory(deletedDataFolderPath);
-                                }
-
-                                cleaner = new Cleaner(mSession.Presentation, deletedDataFolderPath);
                                 cleaner.Cleanup();
 
                                 List<string> listOfDataProviderFiles = new List<string>();
