@@ -1675,7 +1675,8 @@ namespace Obi
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
 
-                            Status("Exporting project to " + chooseDialog.chooseOption.ToString()); //todo: localize
+                        Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , chooseDialog.chooseOption.ToString()));
+                                                
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
                             delegate (ProgressDialog progress1 )
                                 {

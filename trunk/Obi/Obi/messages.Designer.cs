@@ -3120,6 +3120,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exporting project to... .
+        /// </summary>
+        internal static string ObiFormStatusMsg_ExportingProject {
+            get {
+                return ResourceManager.GetString("ObiFormStatusMsg_ExportingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error opening project file.
         /// </summary>
         internal static string open_project_error_caption {
