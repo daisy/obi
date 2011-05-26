@@ -1675,6 +1675,7 @@ namespace Obi
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
 
+                            Status("Exporting project to " + chooseDialog.chooseOption.ToString()); //todo: localize
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
                             delegate (ProgressDialog progress1 )
                                 {
@@ -1701,6 +1702,7 @@ namespace Obi
                         {
                         MessageBox.Show ( String.Format ( Localizer.Message ( "didnt_save_as_daisy_text" ), dialog.DirectoryPath, e.Message ),
                             Localizer.Message ( "didnt_save_as_daisy_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        Status(Localizer.Message("didnt_save_as_daisy_caption"));
                         }
                     }
                 }
@@ -2086,6 +2088,7 @@ namespace Obi
         private void OpenProject ( string path )
             {
             m_IsStatusBarEnabled = true;
+            Status("Opening project " + path);//todo localize
             this.Cursor = Cursors.WaitCursor;
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("OpenProject_progress_dialog_title"),
                                    delegate(Dialogs.ProgressDialog progress1)
@@ -2093,8 +2096,11 @@ namespace Obi
                                        mSession.Open(path);  
                                    });
             progress.ShowDialog();
-            if (progress.Exception != null) throw progress.Exception;
-            
+            if (progress.Exception != null)
+            {
+                Status("Error in opening"); //todo localize
+                throw progress.Exception;
+            }
             AddRecentProject ( path );
             // stores primary export path in metadata if it is stored in Obi 1.0 way
             UpdateExportMetadataFromPrimaryExportPath ();
