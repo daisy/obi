@@ -37,8 +37,7 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-        private bool m_ShouldBookmark = false;
-        private bool m_IsBookmarkChanged = false;
+        private bool m_IsCancelBtnPressed = false;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -647,20 +646,24 @@ namespace Obi
                       
                 }*/
 
-            if (m_ShouldBookmark) return false;            
+            if (m_IsCancelBtnPressed) return false;            
             mSession.Close ();
             return true;
            }
 
         private void CheckForBookmarkNode()
         {
-            m_ShouldBookmark = false;
-            if (mProjectView.Presentation != null && mProjectView.Selection != null && (((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node)
-                m_IsBookmarkChanged = false;
-            else
-                m_IsBookmarkChanged = true;
-
-            if (mProjectView.Presentation != null    &&    mProjectView.Selection != null && m_IsBookmarkChanged)
+            m_IsCancelBtnPressed = false;
+            bool IsBookmarkChanged = false;
+            if (mProjectView.Presentation != null && mProjectView.Selection != null)
+            {
+            if((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node)
+                IsBookmarkChanged = false;
+            else 
+                IsBookmarkChanged = true;
+            }
+           
+            if (mProjectView.Presentation != null && mProjectView.Selection != null && IsBookmarkChanged)
             {
                 if (!mSession.CanClose)
                 {
@@ -672,12 +675,11 @@ namespace Obi
                     }
                     if (resultBookmark == DialogResult.No)
                         m_ShouldBookmark = false;*/
-
-                    Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(m_IsBookmarkChanged, !mSession.CanClose);
+                    Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(IsBookmarkChanged, !mSession.CanClose);
                     resultBookmark.ShowDialog();
                     if (resultBookmark.DialogResult == DialogResult.Cancel)
                     {
-                        m_ShouldBookmark = true;
+                        m_IsCancelBtnPressed = true;
                         return;
                     }
                     if (resultBookmark.IsSaveBothChecked)
@@ -688,11 +690,11 @@ namespace Obi
                     else if (resultBookmark.IsSaveProjectChecked)
                         mSession.Save();
                     else if (resultBookmark.IsDiscardBothChecked)
-                    { }                    
+                    { }
                 }
                 else
-                    CheckForSelectedNodeInBookmark();                
-            }
+                    CheckForSelectedNodeInBookmark();
+            }            
         }
 
         // Clean unwanted audio from the project.
@@ -3120,17 +3122,19 @@ namespace Obi
             if (newBookMarkedNode != ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode)
             {
                 ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
-            /*    if (mSession.CanSave == false)
+             
+                if (mSession.CanSave == false)
                 {            
                     mSession.PresentationHasChanged(1);
                     mSession.ForceSave();
                 }
                 else
-                    mSession.PresentationHasChanged(1);*/
-
-                mSession.PresentationHasChanged(1);
+                    mSession.PresentationHasChanged(1);
+               
+             //   mSession.PresentationHasChanged(1);
                 UpdateMenus();
-                UpdateTitleAndStatusBar();             
+                UpdateTitleAndStatusBar();      
+       
             }
         }
                
