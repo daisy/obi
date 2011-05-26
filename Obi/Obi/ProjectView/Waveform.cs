@@ -18,6 +18,8 @@ namespace Obi.ProjectView
         private AudioRange mCursor;          // playback cursor (can be different from cursor)
         private bool mNeedsRendering;        // needs to render the waveform (when size, color or data changes.)
         private AudioRange mSelection;       // selection in the waveform
+        private bool m_CancelRendering;
+        private bool m_IsRenderingWaveform;
 
         private System.Threading.Mutex mPaintMutex ; // for forcing mutual exclusion in on paint event
 
@@ -69,6 +71,14 @@ namespace Obi.ProjectView
         // Request a new rendering when audio has changed.
         private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { RequestRendering(); }
 
+        public bool CancelRendering
+        {
+            get { return m_CancelRendering; }
+            set { m_CancelRendering = value; }
+        }
+
+        public bool IsRenderingWaveform { get { return m_IsRenderingWaveform; } }
+
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
         /// </summary>
@@ -86,6 +96,7 @@ namespace Obi.ProjectView
                         worker.WorkerSupportsCancellation = false;
                         worker.DoWork += new DoWorkEventHandler(delegate(object sender, DoWorkEventArgs e)
                         {
+                            m_IsRenderingWaveform = true;
                             ColorSettings settings = mBlock.ColorSettings;
                             System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                             if (ramPerformanceCounter.NextValue() < 100)
@@ -98,7 +109,7 @@ namespace Obi.ProjectView
                                 Console.WriteLine("RAM after collection " + availableRAM.ToString());
                             }
                             ramPerformanceCounter.Close();
-
+                            m_CancelRendering = false;
                             mBitmap = CreateBitmap(mBlock.ColorSettings, false);
                             if (mBitmap == null)
                             {
@@ -106,7 +117,7 @@ namespace Obi.ProjectView
                                 mBitmap = CreateBitmap(mBlock.ColorSettings, false);
                             }
                             if (mBitmap != null) mBitmap_Highlighted = CreateBitmap(mBlock.ColorSettings, true);
-                            
+                            m_IsRenderingWaveform = false;
                         });
                         worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(delegate(object sender, RunWorkerCompletedEventArgs e)
                         {
@@ -186,7 +197,7 @@ namespace Obi.ProjectView
             try
             {
                 Graphics g = Graphics.FromImage(bitmap);
-                if (Audio != null) DrawWaveform(g, settings, highlighted);
+                if(!m_CancelRendering && Audio != null) DrawWaveform(g, settings, highlighted);
                 g.Dispose();
             }
             catch (Exception ex)
@@ -234,6 +245,7 @@ namespace Obi.ProjectView
                 {
                     for (int x = 0; x < Width; ++x)
                     {
+                        if (m_CancelRendering) break;
                         int read = au.Read(bytes, 0, bytesPerPixel);
                         Buffer.BlockCopy(bytes, 0, samples, 0, read);
                         Pen channel1Pen = highlighted ?(Pen) settings.WaveformHighlightedPen.Clone () :
