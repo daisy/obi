@@ -2087,7 +2087,14 @@ namespace Obi
             {
             m_IsStatusBarEnabled = true;
             this.Cursor = Cursors.WaitCursor;
-            mSession.Open(path);
+            Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("OpenProject_progress_dialog_title"),
+                                   delegate(Dialogs.ProgressDialog progress1)
+                                   {
+                                       mSession.Open(path);  
+                                   });
+            progress.ShowDialog();
+            if (progress.Exception != null) throw progress.Exception;
+            
             AddRecentProject ( path );
             // stores primary export path in metadata if it is stored in Obi 1.0 way
             UpdateExportMetadataFromPrimaryExportPath ();

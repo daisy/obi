@@ -1788,6 +1788,9 @@ Error text: {1}</value>
   <data name="AudioFileExport_progress_dialog_title" xml:space="preserve">
     <value>Exporting audio File...</value>
   </data>
+  <data name="OpenProject_progress_dialog_title" xml:space="preserve">
+    <value>Opening project...Please wait</value>
+  </data>
   <data name="RecordingToolBar_StatusPlaying" xml:space="preserve">
     <value>Playing {0} {1} </value>
   </data>
