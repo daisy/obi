@@ -37,10 +37,11 @@ namespace Obi.ProjectView
         private bool m_IsBlocksVisibilityProcessActive;
         private NodeSelection m_PreviousSelectionForScroll; //caches previous selection for restore while scroll
         //private Mutex m_BlocksVisibilityOperationMutex; //@phraseLimit
-
+        
         private delegate Strip AddStripForObiNodeDelegate ( ObiNode node );
         private delegate void RemoveControlForSectionNodeDelegate ( SectionNode node );
         private bool m_IsWaveformRenderingPaused;
+        private Waveform m_RenderingWaveform = null;
 
         /// <summary>
         /// A new strips view.
@@ -570,8 +571,8 @@ namespace Obi.ProjectView
                 
             while (mWaveformRenderWorker == null && mWaveformRenderQ.Count > 0)
                 {
-                Waveform w = mWaveformRenderQ.Dequeue ();
-                mWaveformRenderWorker = w.Render ();
+                m_RenderingWaveform = mWaveformRenderQ.Dequeue ();
+                mWaveformRenderWorker = m_RenderingWaveform.Render ();
                 if (mWaveformRenderWorker != null)
                     {
                     mProjectView.ObiForm.BackgroundOperation_Step ();
@@ -593,6 +594,7 @@ namespace Obi.ProjectView
             {
             mWaveformRenderWorker = null;
             if ( !m_IsWaveformRenderingPaused) RenderFirstWaveform ();
+            if (!m_IsWaveformRenderingPaused) m_RenderingWaveform = null;
             }
 
         public void WaveformRendering_PauseOrResume(bool pause)
@@ -600,11 +602,17 @@ namespace Obi.ProjectView
             if (pause)
             {
                 m_IsWaveformRenderingPaused = true;
+                if (m_RenderingWaveform != null && m_RenderingWaveform.IsRenderingWaveform) m_RenderingWaveform.CancelRendering = true;
             }
             else
             {
                 m_IsWaveformRenderingPaused = false;
-                RenderFirstWaveform();
+                if(m_RenderingWaveform != null )  mWaveformRenderWorker = m_RenderingWaveform.Render();
+                if (mWaveformRenderWorker != null)
+                {
+                    mProjectView.ObiForm.BackgroundOperation_Step();
+                }
+                //RenderFirstWaveform();
             }
     }
 
