@@ -36,6 +36,7 @@ namespace Obi.Dialogs
         {
             if (m_btnDetails.Text == "Show details")
             {
+                this.MaximumSize = new Size(453, 304);
                 this.Height = 304;
                 m_btnDetails.Text = "Hide details";
                 m_lbDetailsOfErrors.Visible = true;
@@ -43,7 +44,8 @@ namespace Obi.Dialogs
             }
             else
             {
-                this.Height = 154;
+                this.MaximumSize = new Size(453, 150);
+                this.Height = 150;
                 m_btnDetails.Text = "Show details";
                 m_lbDetailsOfErrors.Visible = false;
                 m_grpBox_lb_ErrorsList.Visible = false;

@@ -108,6 +108,10 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_btnDetails);
             this.Controls.Add(this.m_btnOk);
             this.Location = new System.Drawing.Point(600, 200);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(453, 150);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(453, 150);
             this.Name = "ReportDialog";
             this.m_grpBox_lb_ErrorsList.ResumeLayout(false);
             this.ResumeLayout(false);
