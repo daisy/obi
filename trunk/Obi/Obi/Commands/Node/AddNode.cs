@@ -71,7 +71,7 @@ namespace Obi.Commands.Node
 
         public override void UnExecute()
         {
-            mNode.Detach();
+            if (mNode.IsRooted)  mNode.Detach();
             if (mNode is EmptyNode) View.UpdateBlocksLabelInStrip((SectionNode)mParent);
             base.UnExecute();
         }
