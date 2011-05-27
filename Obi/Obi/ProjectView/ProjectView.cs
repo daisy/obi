@@ -883,7 +883,7 @@ namespace Obi.ProjectView
                     MessageBox.Show ( Localizer.Message ( "Operation_Cancelled" ) + "\n" + string.Format ( Localizer.Message ( "ContentsHidden_PhrasesExceedMaxLimitPerSection" ), MaxVisibleBlocksCount ) );
                     return;
                     }
-
+                    if (Selection != null && Selection is TextSelection) Selection = new NodeSelection(Selection.Node, Selection.Control);
                 try
                     {
                     //mPresentation.Do ( mContentView.MergeSelectedStripWithNextCommand () );
@@ -1206,6 +1206,7 @@ namespace Obi.ProjectView
                         mContentView.NewPresentation ();
                         mTransportBar.NewPresentation ();
                         mMetadataView.NewPresentation ();
+                        if (mContentView.ActiveStrip != null && this.Selection == null) mTOCView.HighlightNodeWithoutSelection = mContentView.ActiveStrip.Node;
                         }
                     }
                 }
