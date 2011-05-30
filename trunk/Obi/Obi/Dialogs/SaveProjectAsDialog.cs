@@ -16,7 +16,8 @@ namespace Obi.Dialogs
         private string mNewProjectPath;       // new project path as selected by the user
         private string mOriginalProjectPath;  // original project path
         private bool mUserSetLocation;        // the location was changed manually by the user
-
+        private string mDir;
+        private string m_FullPath;
 
         /// <summary>
         /// Used by the designer.
@@ -35,11 +36,13 @@ namespace Obi.Dialogs
             : this()
         {
             mFilename = Path.GetFileName(path);
-            string dir = Path.GetDirectoryName(path);
+            mDir = Path.GetDirectoryName(path);
+          
             mOriginalProjectPath = path;
-            mNewDirectoryTextBox.Text = string.Format(Localizer.Message("save_as_new_directory_name"), dir);
-            mNewDirectoryTextBox.SelectionStart = 0;
-            mNewDirectoryTextBox.SelectionLength = mNewDirectoryTextBox.Text.Length;
+        //    mNewDirectoryTextBox.Text = string.Format(Localizer.Message("save_as_new_directory_name"), mDir);
+        //    mNewDirectoryTextBox.SelectionStart = 0;
+        //    mNewDirectoryTextBox.SelectionLength = mNewDirectoryTextBox.Text.Length;
+            m_ProjectNameTextBox.Text = mFilename;
             GenerateFileName();
         }
 
@@ -58,7 +61,8 @@ namespace Obi.Dialogs
         // Update the file box to generate a filename for the project
         private void GenerateFileName()
         {
-            if (!mUserSetLocation) mLocationTextBox.Text = Path.Combine(mNewDirectoryTextBox.Text, mFilename);
+            if (!mUserSetLocation) //mLocationTextBox.Text = Path.Combine(mNewDirectoryTextBox.Text, mFilename);
+                mLocationTextBox.Text = string.Format(Localizer.Message("save_as_new_directory_name"), mDir);
         }
 
 
@@ -66,6 +70,7 @@ namespace Obi.Dialogs
         private void mSelectButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
+            
             dialog.AddExtension = true;
             try
             {
@@ -73,44 +78,58 @@ namespace Obi.Dialogs
             }
             catch (Exception) {}
             dialog.DefaultExt = Localizer.Message("obi_filter");
-            if (dialog.ShowDialog () == DialogResult.OK && ObiForm.CheckProjectPath_Safe(dialog.FileName, true))
+            
+            if (dialog.ShowDialog () == DialogResult.OK )
             {
-                mLocationTextBox.Text = dialog.FileName;
-                mNewDirectoryTextBox.TextChanged -= new EventHandler ( mNewDirectoryTextBox_TextChanged );
-                mNewDirectoryTextBox.Text = Directory.GetParent ( mLocationTextBox.Text ).FullName;
-                mNewDirectoryTextBox.TextChanged += new EventHandler ( mNewDirectoryTextBox_TextChanged );
+                m_FullPath = Path.GetFullPath(dialog.FileName);
+                if (Path.GetFullPath(Path.GetDirectoryName(m_FullPath)) ==
+                    Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
+                {
+                    MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
+                    return;
+                }
+                if(ObiForm.CheckProjectPath_Safe(dialog.FileName, true))
+                {
+                    mLocationTextBox.Text = Path.GetDirectoryName(dialog.FileName);
+               // mLocationTextBox.Text = dialog.FileName;        
+               // mNewDirectoryTextBox.TextChanged -= new EventHandler ( mNewDirectoryTextBox_TextChanged );
+               // mNewDirectoryTextBox.Text = Directory.GetParent ( mLocationTextBox.Text ).FullName;
+               // mNewDirectoryTextBox.TextChanged += new EventHandler ( mNewDirectoryTextBox_TextChanged );
                 mUserSetLocation = true;
-                mNewDirectoryTextBox.ReadOnly = true;
+               // mNewDirectoryTextBox.ReadOnly = true;
+          //      mLocationTextBox.Text = Path.GetFullPath(string.Format(Localizer.Message("save_as_new_directory_name"), mDir));
+                m_ProjectNameTextBox.Text = Path.GetFileName(dialog.FileName);
+                }                
             }
         }
 
         // Validate the chosen location before closing
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            string newPath = mLocationTextBox.Text;
+            //string newPath = mLocationTextBox.Text;
             try
             {
                 // Must not save in same directory
-                if (Path.GetFullPath(Path.GetDirectoryName(newPath)) ==
+                if (Path.GetFullPath(Path.GetDirectoryName(m_FullPath)) ==
                     Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
                 {
                     MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
                     mCanClose = false;
                 }
                 // The selected location must be suitable
-                else if (!ObiForm.CheckProjectPath(newPath, true))
+                else if (!ObiForm.CheckProjectPath(m_FullPath, true))
                 {
                     mCanClose = false;
                 }
                 else
                 {
-                    mNewProjectPath = newPath;
+                    mNewProjectPath = m_FullPath;
                     mCanClose = true;
                 }
             }
             catch (Exception x)
             {
-                MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), newPath, x.Message),
+                MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), m_FullPath, x.Message),
                     Localizer.Message("cannot_use_project_path_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mCanClose = false;
@@ -130,7 +149,7 @@ namespace Obi.Dialogs
         // Update location on the fly when the target directory changes
         private void mNewDirectoryTextBox_TextChanged(object sender, EventArgs e) 
             {
-                        GenerateFileName(); 
+                      //  GenerateFileName(); 
             }
     }
 }
