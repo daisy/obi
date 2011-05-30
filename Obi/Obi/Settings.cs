@@ -60,14 +60,8 @@ namespace Obi
         public bool RetainInitialSilenceInPhraseDetection;
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
-
-        /// <summary>
-        /// Read the settings from the settings file; missing values are replaced with defaults.
-        /// </summary>
-        /// <remarks>Errors are silently ignored and default settings are returned.</remarks>
-        public static Settings GetSettings()
+        private static void InitializeDefaultSettings(Settings settings)
         {
-            Settings settings = new Settings();
             settings.AudioChannels = 1;
             settings.AudioClues = false;
             settings.AudioScale = 0.01f;
@@ -108,6 +102,27 @@ namespace Obi
             settings.Export_BitRateMP3 = 64;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
+        }
+
+        /// <summary>
+        /// Creates a settings object having default values
+        /// </summary>
+        /// <returns></returns>
+        public static Settings GetDefaultSettings()
+        {
+            Settings settings = new Settings();
+            InitializeDefaultSettings(settings);
+            return settings;
+        }
+
+        /// <summary>
+        /// Read the settings from the settings file; missing values are replaced with defaults.
+        /// </summary>
+        /// <remarks>Errors are silently ignored and default settings are returned.</remarks>
+        public static Settings GetSettings()
+        {
+            Settings settings = new Settings();
+            InitializeDefaultSettings(settings);
 
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForDomain();
             try
