@@ -46,24 +46,25 @@ namespace Obi.Dialogs
             this.mSelectButton.Margin = new System.Windows.Forms.Padding(4);
             this.mSelectButton.Name = "mSelectButton";
             this.mSelectButton.Size = new System.Drawing.Size(100, 28);
-            this.mSelectButton.TabIndex = 4;
+            this.mSelectButton.TabIndex = 2;
             this.mSelectButton.Text = "&Select";
             this.mSelectButton.UseVisualStyleBackColor = true;
             this.mSelectButton.Click += new System.EventHandler(this.mSelectButton_Click);
             // 
             // m_lblParentDirectoryPath
             // 
+            this.m_lblParentDirectoryPath.AccessibleName = "Location";
             this.m_lblParentDirectoryPath.AutoSize = true;
             this.m_lblParentDirectoryPath.Location = new System.Drawing.Point(87, 20);
             this.m_lblParentDirectoryPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
             this.m_lblParentDirectoryPath.Size = new System.Drawing.Size(62, 16);
-            this.m_lblParentDirectoryPath.TabIndex = 2;
+            this.m_lblParentDirectoryPath.TabIndex = 0;
             this.m_lblParentDirectoryPath.Text = "&Location:";
             // 
             // mLocationTextBox
             // 
-            this.mLocationTextBox.AccessibleName = "Location";
+            this.mLocationTextBox.AccessibleName = "";
             this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -71,7 +72,7 @@ namespace Obi.Dialogs
             this.mLocationTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.mLocationTextBox.Name = "mLocationTextBox";
             this.mLocationTextBox.Size = new System.Drawing.Size(320, 22);
-            this.mLocationTextBox.TabIndex = 3;
+            this.mLocationTextBox.TabIndex = 1;
             // 
             // mOKButton
             // 
@@ -120,16 +121,16 @@ namespace Obi.Dialogs
             this.m_ProjectNameTextBox.Name = "m_ProjectNameTextBox";
             this.m_ProjectNameTextBox.ReadOnly = true;
             this.m_ProjectNameTextBox.Size = new System.Drawing.Size(137, 22);
-            this.m_ProjectNameTextBox.TabIndex = 8;
+            this.m_ProjectNameTextBox.TabIndex = 4;
             // 
             // m_lbl_ProjectName
             // 
             this.m_lbl_ProjectName.AutoSize = true;
-            this.m_lbl_ProjectName.Location = new System.Drawing.Point(59, 57);
+            this.m_lbl_ProjectName.Location = new System.Drawing.Point(39, 57);
             this.m_lbl_ProjectName.Name = "m_lbl_ProjectName";
-            this.m_lbl_ProjectName.Size = new System.Drawing.Size(90, 16);
-            this.m_lbl_ProjectName.TabIndex = 9;
-            this.m_lbl_ProjectName.Text = "Project name:";
+            this.m_lbl_ProjectName.Size = new System.Drawing.Size(110, 16);
+            this.m_lbl_ProjectName.TabIndex = 3;
+            this.m_lbl_ProjectName.Text = "Pro&ject file name:";
             // 
             // SaveProjectAsDialog
             // 
