@@ -96,7 +96,15 @@ namespace Obi
             if (selection is AudioSelection)
             {
                 AudioSelection s = (AudioSelection)selection;
-                mPlaybackStartTime = s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime;
+                if (s.AudioRange != null)
+                {
+                    mPlaybackStartTime = s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime;
+                }
+                else
+                {
+                    mPlaybackStartTime = 0;
+                    Console.WriteLine ("Audio range is null so starting playback from 0 Time") ;
+                }
                 // if a range, should have an end time as well
             }
         }
