@@ -1023,7 +1023,7 @@ namespace Obi.ProjectView
         // Play the current playlist from the current selection.
         private void PlayCurrentPlaylistFromSelection()
         {
-            if (mView.Selection is AudioSelection)
+            if (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null )
             {
                 if (!((AudioSelection)mView.Selection).AudioRange.HasCursor && mCurrentPlaylist != mMasterPlaylist)
                 {
