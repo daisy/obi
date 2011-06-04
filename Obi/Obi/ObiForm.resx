@@ -404,23 +404,32 @@
   <data name="mFindPreviousToolStripMenuItem.Text" xml:space="preserve">
     <value>Find pre&amp;vious</value>
   </data>
+  <data name="mEdit_BookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Bookmark</value>
+  </data>
+  <data name="mEdit_AssignBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Set as bookmark</value>
+  </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="mEdit_AssignBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set bookmark</value>
+    <value>Set as &amp;bookmark</value>
+  </data>
+  <data name="mEdit_GotoBookmarkToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Goto bookmark</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="mEdit_GotoBookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Goto bookmark</value>
+    <value>Goto bookmar&amp;k</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 22</value>
   </data>
   <data name="mEdit_BookmarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bookmark</value>
+    <value>Book&amp;mark</value>
   </data>
   <data name="mEditToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -1681,7 +1690,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.31895, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.35290, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
