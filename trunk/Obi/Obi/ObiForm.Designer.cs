@@ -417,22 +417,22 @@ namespace Obi
             // 
             // mEdit_BookmarkToolStripMenuItem
             // 
+            resources.ApplyResources(this.mEdit_BookmarkToolStripMenuItem, "mEdit_BookmarkToolStripMenuItem");
             this.mEdit_BookmarkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mEdit_AssignBookmarkToolStripMenuItem,
             this.mEdit_GotoBookmarkToolStripMenuItem});
             this.mEdit_BookmarkToolStripMenuItem.Name = "mEdit_BookmarkToolStripMenuItem";
-            resources.ApplyResources(this.mEdit_BookmarkToolStripMenuItem, "mEdit_BookmarkToolStripMenuItem");
             // 
             // mEdit_AssignBookmarkToolStripMenuItem
             // 
-            this.mEdit_AssignBookmarkToolStripMenuItem.Name = "mEdit_AssignBookmarkToolStripMenuItem";
             resources.ApplyResources(this.mEdit_AssignBookmarkToolStripMenuItem, "mEdit_AssignBookmarkToolStripMenuItem");
+            this.mEdit_AssignBookmarkToolStripMenuItem.Name = "mEdit_AssignBookmarkToolStripMenuItem";
             this.mEdit_AssignBookmarkToolStripMenuItem.Click += new System.EventHandler(this.mEdit_AssignBookmarkToolStripMenuItem_Click);
             // 
             // mEdit_GotoBookmarkToolStripMenuItem
             // 
-            this.mEdit_GotoBookmarkToolStripMenuItem.Name = "mEdit_GotoBookmarkToolStripMenuItem";
             resources.ApplyResources(this.mEdit_GotoBookmarkToolStripMenuItem, "mEdit_GotoBookmarkToolStripMenuItem");
+            this.mEdit_GotoBookmarkToolStripMenuItem.Name = "mEdit_GotoBookmarkToolStripMenuItem";
             this.mEdit_GotoBookmarkToolStripMenuItem.Click += new System.EventHandler(this.mEdit_GotoBookmarkToolStripMenuItem_Click);
             // 
             // mViewToolStripMenuItem
