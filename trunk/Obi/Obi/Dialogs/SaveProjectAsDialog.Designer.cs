@@ -42,7 +42,7 @@ namespace Obi.Dialogs
             // 
             this.mSelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mSelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mSelectButton.Location = new System.Drawing.Point(493, 14);
+            this.mSelectButton.Location = new System.Drawing.Point(455, 18);
             this.mSelectButton.Margin = new System.Windows.Forms.Padding(4);
             this.mSelectButton.Name = "mSelectButton";
             this.mSelectButton.Size = new System.Drawing.Size(100, 28);
@@ -55,7 +55,7 @@ namespace Obi.Dialogs
             // 
             this.m_lblParentDirectoryPath.AccessibleName = "Location";
             this.m_lblParentDirectoryPath.AutoSize = true;
-            this.m_lblParentDirectoryPath.Location = new System.Drawing.Point(87, 20);
+            this.m_lblParentDirectoryPath.Location = new System.Drawing.Point(60, 24);
             this.m_lblParentDirectoryPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.m_lblParentDirectoryPath.Name = "m_lblParentDirectoryPath";
             this.m_lblParentDirectoryPath.Size = new System.Drawing.Size(62, 16);
@@ -64,14 +64,14 @@ namespace Obi.Dialogs
             // 
             // mLocationTextBox
             // 
-            this.mLocationTextBox.AccessibleName = "";
+            this.mLocationTextBox.AccessibleName = global::Obi.messages.phrase_extra_Plain;
             this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mLocationTextBox.Location = new System.Drawing.Point(157, 18);
+            this.mLocationTextBox.Location = new System.Drawing.Point(130, 22);
             this.mLocationTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.mLocationTextBox.Name = "mLocationTextBox";
-            this.mLocationTextBox.Size = new System.Drawing.Size(320, 22);
+            this.mLocationTextBox.Size = new System.Drawing.Size(308, 22);
             this.mLocationTextBox.TabIndex = 1;
             // 
             // mOKButton
@@ -79,7 +79,7 @@ namespace Obi.Dialogs
             this.mOKButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.mOKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mOKButton.Location = new System.Drawing.Point(195, 134);
+            this.mOKButton.Location = new System.Drawing.Point(151, 134);
             this.mOKButton.Margin = new System.Windows.Forms.Padding(4);
             this.mOKButton.Name = "mOKButton";
             this.mOKButton.Size = new System.Drawing.Size(100, 28);
@@ -93,7 +93,7 @@ namespace Obi.Dialogs
             this.mCancelButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.mCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.mCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mCancelButton.Location = new System.Drawing.Point(312, 134);
+            this.mCancelButton.Location = new System.Drawing.Point(282, 134);
             this.mCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.mCancelButton.Name = "mCancelButton";
             this.mCancelButton.Size = new System.Drawing.Size(100, 28);
@@ -117,16 +117,17 @@ namespace Obi.Dialogs
             // 
             // m_ProjectNameTextBox
             // 
-            this.m_ProjectNameTextBox.Location = new System.Drawing.Point(157, 57);
+            this.m_ProjectNameTextBox.Location = new System.Drawing.Point(130, 57);
             this.m_ProjectNameTextBox.Name = "m_ProjectNameTextBox";
             this.m_ProjectNameTextBox.ReadOnly = true;
             this.m_ProjectNameTextBox.Size = new System.Drawing.Size(137, 22);
             this.m_ProjectNameTextBox.TabIndex = 4;
+            this.m_ProjectNameTextBox.Text = "project.obi";
             // 
             // m_lbl_ProjectName
             // 
             this.m_lbl_ProjectName.AutoSize = true;
-            this.m_lbl_ProjectName.Location = new System.Drawing.Point(39, 57);
+            this.m_lbl_ProjectName.Location = new System.Drawing.Point(12, 60);
             this.m_lbl_ProjectName.Name = "m_lbl_ProjectName";
             this.m_lbl_ProjectName.Size = new System.Drawing.Size(110, 16);
             this.m_lbl_ProjectName.TabIndex = 3;
@@ -138,7 +139,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.ClientSize = new System.Drawing.Size(606, 187);
+            this.ClientSize = new System.Drawing.Size(594, 187);
             this.ControlBox = false;
             this.Controls.Add(this.m_lbl_ProjectName);
             this.Controls.Add(this.m_ProjectNameTextBox);
