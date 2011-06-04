@@ -69,67 +69,70 @@ namespace Obi.Dialogs
         // Browse to a new location.
         private void mSelectButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
+            //  SaveFileDialog dialog = new SaveFileDialog();
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
             
-            dialog.AddExtension = true;
+        //    dialog.AddExtension = true;
             try
             {
-                dialog.FileName = Path.GetFullPath(mLocationTextBox.Text);
+          //      dialog.FileName = Path.GetFullPath(mLocationTextBox.Text);
+                dialog.SelectedPath = Path.GetFullPath(mLocationTextBox.Text);        
             }
             catch (Exception) {}
-            dialog.DefaultExt = Localizer.Message("obi_filter");
+        //    dialog.DefaultExt = Localizer.Message("obi_filter");
             
             if (dialog.ShowDialog () == DialogResult.OK )
             {
-                m_FullPath = Path.GetFullPath(dialog.FileName);
-                if (Path.GetFullPath(Path.GetDirectoryName(m_FullPath)) ==
+                if (Path.GetFullPath(Path.GetDirectoryName(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text))) ==
                     Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
                 {
                     MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
                     return;
                 }
-                if(ObiForm.CheckProjectPath_Safe(dialog.FileName, true))
+                if (ObiForm.CheckProjectPath_Safe(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text), true))
                 {
-                    mLocationTextBox.Text = Path.GetDirectoryName(dialog.FileName);
-               // mLocationTextBox.Text = dialog.FileName;        
-               // mNewDirectoryTextBox.TextChanged -= new EventHandler ( mNewDirectoryTextBox_TextChanged );
-               // mNewDirectoryTextBox.Text = Directory.GetParent ( mLocationTextBox.Text ).FullName;
-               // mNewDirectoryTextBox.TextChanged += new EventHandler ( mNewDirectoryTextBox_TextChanged );
-                mUserSetLocation = true;
-               // mNewDirectoryTextBox.ReadOnly = true;
-          //      mLocationTextBox.Text = Path.GetFullPath(string.Format(Localizer.Message("save_as_new_directory_name"), mDir));
-                m_ProjectNameTextBox.Text = Path.GetFileName(dialog.FileName);
-                }                
+                    mLocationTextBox.Text = dialog.SelectedPath;
+                    mUserSetLocation = true;
+
+                    // mLocationTextBox.Text = Path.GetDirectoryName(dialog.FileName);
+                    // mLocationTextBox.Text = dialog.FileName;        
+                    // mNewDirectoryTextBox.TextChanged -= new EventHandler ( mNewDirectoryTextBox_TextChanged );
+                    // mNewDirectoryTextBox.Text = Directory.GetParent ( mLocationTextBox.Text ).FullName;
+                    // mNewDirectoryTextBox.TextChanged += new EventHandler ( mNewDirectoryTextBox_TextChanged );               
+                    // mNewDirectoryTextBox.ReadOnly = true;
+                    // mLocationTextBox.Text = Path.GetFullPath(string.Format(Localizer.Message("save_as_new_directory_name"), mDir));
+                    //  m_ProjectNameTextBox.Text = "project.obi";
+                }                 
             }
         }
 
         // Validate the chosen location before closing
         private void mOKButton_Click(object sender, EventArgs e)
         {
-            //string newPath = mLocationTextBox.Text;
+            string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text);
             try
-            {
+            {                
                 // Must not save in same directory
-                if (Path.GetFullPath(Path.GetDirectoryName(m_FullPath)) ==
+                if (Path.GetFullPath(Path.GetDirectoryName(newPath)) ==
                     Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
                 {
                     MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
                     mCanClose = false;
                 }
                 // The selected location must be suitable
-                else if (!ObiForm.CheckProjectPath(m_FullPath, true))
+                else if (!ObiForm.CheckProjectPath(newPath, true))
                 {
                     mCanClose = false;
                 }
                 else
                 {
-                    mNewProjectPath = m_FullPath;
+                    mNewProjectPath = newPath;
                     mCanClose = true;
                 }
             }
             catch (Exception x)
             {
-                MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), m_FullPath, x.Message),
+                MessageBox.Show(string.Format(Localizer.Message("cannot_use_project_path"), newPath, x.Message),
                     Localizer.Message("cannot_use_project_path_caption"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mCanClose = false;
