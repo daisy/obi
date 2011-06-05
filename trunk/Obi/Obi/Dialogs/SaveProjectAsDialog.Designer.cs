@@ -64,7 +64,7 @@ namespace Obi.Dialogs
             // 
             // mLocationTextBox
             // 
-            this.mLocationTextBox.AccessibleName = global::Obi.messages.phrase_extra_Plain;
+            this.mLocationTextBox.AccessibleName = global::Obi.messages.Executing__0_;
             this.mLocationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.mLocationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -119,7 +119,6 @@ namespace Obi.Dialogs
             // 
             this.m_ProjectNameTextBox.Location = new System.Drawing.Point(130, 57);
             this.m_ProjectNameTextBox.Name = "m_ProjectNameTextBox";
-            this.m_ProjectNameTextBox.ReadOnly = true;
             this.m_ProjectNameTextBox.Size = new System.Drawing.Size(137, 22);
             this.m_ProjectNameTextBox.TabIndex = 4;
             this.m_ProjectNameTextBox.Text = "project.obi";
