@@ -2094,7 +2094,7 @@ namespace Obi
             Status("Opening project " + path);//todo localize
             this.Cursor = Cursors.WaitCursor;
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("OpenProject_progress_dialog_title"),
-                                   delegate(Dialogs.ProgressDialog progress1)
+                                   delegate()
                                    {
                                        mSession.Open(path);  
                                    });
