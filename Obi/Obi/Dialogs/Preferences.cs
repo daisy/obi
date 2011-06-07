@@ -73,6 +73,8 @@ namespace Obi.Dialogs
             AudioRecorder recorder = mTransportBar.Recorder;
             string defaultInputName = "";
             string defaultOutputName = "";
+            mInputDeviceCombo.Items.Clear();
+            mOutputDeviceCombo.Items.Clear();
            // mInputDeviceCombo.DataSource = recorder.InputDevices; 
            // mInputDeviceCombo.SelectedIndex = recorder.InputDevices.IndexOf ( recorder.InputDevice ); 
             foreach (InputDevice input in recorder.InputDevices)

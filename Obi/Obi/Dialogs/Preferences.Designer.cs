@@ -83,7 +83,7 @@ namespace Obi.Dialogs
             this.m_cbShortcutKeys = new System.Windows.Forms.ComboBox();
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.m_ResetButton = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
@@ -518,12 +518,12 @@ namespace Obi.Dialogs
             this.m_grpBoxChkBoxListView.Name = "m_grpBoxChkBoxListView";
             this.m_grpBoxChkBoxListView.TabStop = false;
             // 
-            // button1
+            // m_ResetButton
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.m_ResetButton, "m_ResetButton");
+            this.m_ResetButton.Name = "m_ResetButton";
+            this.m_ResetButton.UseVisualStyleBackColor = true;
+            this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // Preferences
             // 
@@ -531,7 +531,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.mCancelButton;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.m_ResetButton);
             this.Controls.Add(this.m_grpBoxChkBoxListView);
             this.Controls.Add(this.m_CheckBoxListView);
             this.Controls.Add(this.mTab);
@@ -614,6 +614,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label mlbOperation;
         private System.Windows.Forms.ListView m_CheckBoxListView;
         private System.Windows.Forms.GroupBox m_grpBoxChkBoxListView;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button m_ResetButton;
     }
 }
