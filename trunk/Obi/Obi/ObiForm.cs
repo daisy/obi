@@ -24,6 +24,7 @@ namespace Obi
         private Obi.UserControls.RecordingToolBarForm mRecordingToolBarForm;
         private Session mSession;                // current work session
         private Settings mSettings;              // application settings
+        private Settings m_DefaultSettings;
         private KeyboardShortcuts_Settings m_KeyboardShortcuts;// keyboard shortcuts used by application
         private Dialogs.ShowSource mSourceView;  // maintain a single "source view" dialog
         private PipelineInterface.PipelineInfo mPipelineInfo; // instance for easy access to pipeline information
@@ -47,7 +48,8 @@ namespace Obi
             mShowWelcomWindow = true;
             InitializeObi ();
             if (ShouldOpenLastProject) OpenProject_Safe ( mSettings.LastOpenProject );
-            m_IsSaveActive = false;            
+            m_IsSaveActive = false;
+            m_DefaultSettings = Settings.GetDefaultSettings();
             }
 
         /// <summary>
@@ -59,7 +61,7 @@ namespace Obi
             InitializeObi ();
             OpenProject_Safe ( path );
             m_IsSaveActive = false;
-            
+            m_DefaultSettings = Settings.GetDefaultSettings();
             }
 
 #endregion
@@ -1595,7 +1597,7 @@ namespace Obi
             {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
 
-            Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar );
+            Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar, m_DefaultSettings );
             prefs.ShowDialog ();
             Ready ();
             }
