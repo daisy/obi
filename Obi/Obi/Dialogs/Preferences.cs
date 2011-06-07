@@ -34,7 +34,7 @@ namespace Obi.Dialogs
         /// <summary>
         /// Initialize the preferences with the user settings.
         /// </summary>
-        public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar )
+        public Preferences ( ObiForm form, Settings settings, ObiPresentation presentation, ProjectView.TransportBar transportbar, Settings defaultSettings)
             {
             InitializeComponent ();
             mForm = form;
@@ -48,7 +48,7 @@ namespace Obi.Dialogs
             InitializeKeyboardShortcutsTab();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
-            m_DefaultSettings = Settings.GetDefaultSettings();
+            m_DefaultSettings = defaultSettings;
             }
 
         // Initialize the project tab
@@ -84,7 +84,8 @@ namespace Obi.Dialogs
                     defaultInputName = input.Name;            
             }
             if (mSettings.LastInputDevice == "")
-                mInputDeviceCombo.SelectedItem = defaultInputName;
+                mInputDeviceCombo.SelectedIndex = 0;
+            //  mInputDeviceCombo.SelectedItem = defaultInputName;
             else
                 mInputDeviceCombo.SelectedIndex = mInputDeviceCombo.Items.IndexOf(mSettings.LastInputDevice);
             
@@ -100,7 +101,8 @@ namespace Obi.Dialogs
                     defaultOutputName = output.Name;
             }
             if (mSettings.LastOutputDevice == "")
-                mOutputDeviceCombo.SelectedItem = defaultOutputName;
+                mOutputDeviceCombo.SelectedIndex = 0;
+                //mOutputDeviceCombo.SelectedItem = defaultOutputName;
             else
             mOutputDeviceCombo.SelectedIndex = mOutputDeviceCombo.Items.IndexOf(mSettings.LastOutputDevice);
 
@@ -650,6 +652,8 @@ namespace Obi.Dialogs
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
+                m_cbOperation.SelectedIndex = -1;
+                m_OperationDurationUpDown.Value = 0;
                 InitializeAudioTab();
             }
             else if (mTab.SelectedTab == mUserProfileTab)  // Default settings for User Profile tab
@@ -667,8 +671,6 @@ namespace Obi.Dialogs
                  InitializeKeyboardShortcutsTab();
                 // Not required it already has reset button.
             }
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
