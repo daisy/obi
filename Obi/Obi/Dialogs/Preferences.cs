@@ -652,9 +652,10 @@ namespace Obi.Dialogs
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
+                InitializeAudioTab();
                 m_cbOperation.SelectedIndex = -1;
                 m_OperationDurationUpDown.Value = 0;
-                InitializeAudioTab();
+                
             }
             else if (mTab.SelectedTab == mUserProfileTab)  // Default settings for User Profile tab
             {
