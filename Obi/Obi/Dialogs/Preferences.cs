@@ -29,6 +29,7 @@ namespace Obi.Dialogs
         private bool m_OpenLastProject;
         private bool m_IsComplete = false;
         private string m_lblShortcutKeys_text ; //workaround for screen reader response, will be removed in future
+        private Settings m_DefaultSettings;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -47,6 +48,7 @@ namespace Obi.Dialogs
             InitializeKeyboardShortcutsTab();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
+            m_DefaultSettings = Settings.GetDefaultSettings();
             }
 
         // Initialize the project tab
@@ -621,6 +623,55 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
+        }
+        private void ResetPreferences()
+        {
+            if (mTab.SelectedTab == mProjectTab)// Default settings for Project tab
+            {
+                mSettings.DefaultPath = m_DefaultSettings.DefaultPath;
+                mSettings.PipelineScriptsPath = m_DefaultSettings.PipelineScriptsPath;
+                mSettings.OpenLastProject = m_DefaultSettings.OpenLastProject;
+                mSettings.AutoSave_RecordingEnd = m_DefaultSettings.AutoSave_RecordingEnd;
+                mSettings.OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.OpenBookmarkNodeOnReopeningProject;
+                InitializeProjectTab();
+            }
+            else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab
+            {
+                mSettings.LastInputDevice = m_DefaultSettings.LastInputDevice;
+                mSettings.LastOutputDevice = m_DefaultSettings.LastOutputDevice;
+                mSettings.SampleRate = m_DefaultSettings.SampleRate;
+                mSettings.AudioChannels = m_DefaultSettings.AudioChannels;
+                mSettings.NoiseLevel = m_DefaultSettings.NoiseLevel;
+                mSettings.AudioClues = m_DefaultSettings.AudioClues;
+                mSettings.RetainInitialSilenceInPhraseDetection = m_DefaultSettings.RetainInitialSilenceInPhraseDetection;
+                //If operation is empty then nothing will b selected.
+                mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
+                mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
+                mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
+                InitializeAudioTab();
+            }
+            else if (mTab.SelectedTab == mUserProfileTab)  // Default settings for User Profile tab
+            {
+                mSettings.UserProfile = m_DefaultSettings.UserProfile;
+                InitializeProfileTab();
+            }
+            else if (mTab.SelectedTab == mKeyboardShortcutTab)   // Default settings for keyboard Shortcuts tab
+            {
+                 mForm.LoadDefaultKeyboardShortcuts();
+                 m_KeyboardShortcuts = mForm.KeyboardShortcuts;
+            
+                 m_lvShortcutKeysList.Items.Clear();
+                 LoadListviewAccordingToComboboxSelection();
+                 InitializeKeyboardShortcutsTab();
+                // Not required it already has reset button.
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ResetPreferences();
         }
         }
     }
