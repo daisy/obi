@@ -202,6 +202,15 @@ Oh well.</value>
     <value>&amp;Undo</value>
     <comment>Command</comment>
   </data>
+  <data name="no_device_found_caption" xml:space="preserve">
+    <value>No audio devices found</value>
+    <comment>Error dialog</comment>
+  </data>
+  <data name="no_device_found_text" xml:space="preserve">
+    <value>Could not select an audio input and output device.
+    Please check if DirectX 9c is properly installed.</value>
+    <comment>Error dialog</comment>
+  </data>
   <data name="no_output_device_caption" xml:space="preserve">
     <value>No audio output device found</value>
     <comment>Error dialog</comment>
@@ -227,7 +236,7 @@ Oh well.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="no_input_device_text" xml:space="preserve">
-    <value>Could not select and audio input device: none found.</value>
+    <value>Could not select an audio input device: none found.</value>
     <comment>Error dialog</comment>
   </data>
   <data name="record" xml:space="preserve">

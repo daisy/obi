@@ -2877,6 +2877,25 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No audio devices found.
+        /// </summary>
+        internal static string no_device_found_caption {
+            get {
+                return ResourceManager.GetString("no_device_found_caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not select an audio input and output device.
+        ///    Please check if DirectX 9c is properly installed..
+        /// </summary>
+        internal static string no_device_found_text {
+            get {
+                return ResourceManager.GetString("no_device_found_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No headings (h1, h2, etc.) were found in the XHTML document..
         /// </summary>
         internal static string no_headings_found {
@@ -2895,7 +2914,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not select and audio input device: none found..
+        ///   Looks up a localized string similar to Could not select an audio input device: none found..
         /// </summary>
         internal static string no_input_device_text {
             get {
