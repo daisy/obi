@@ -2136,13 +2136,13 @@
     <value>Flat</value>
   </data>
   <data name="m_ResetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 343</value>
+    <value>277, 343</value>
   </data>
   <data name="m_ResetButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 31</value>
   </data>
   <data name="m_ResetButton.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>14</value>
   </data>
   <data name="m_ResetButton.Text" xml:space="preserve">
     <value>&amp;Reset</value>
