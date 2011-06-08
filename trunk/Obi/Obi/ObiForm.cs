@@ -34,6 +34,8 @@ namespace Obi
         private bool m_IsAutoSaveActive;
         private bool m_CanAutoSave = true;
         private bool m_IsStatusBarEnabled; //@singleSection: allow disabling status bar for things like long operations
+        private bool m_InputDeviceFound = true;
+        private bool m_OutputDevicefound = true;
         
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
@@ -2439,6 +2441,7 @@ namespace Obi
                 }
             catch (Exception)
                 {
+                    m_OutputDevicefound = false;
                 MessageBox.Show ( Localizer.Message ( "no_output_device_text" ), Localizer.Message ( "no_output_device_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
                 Application.Exit ();
@@ -2449,10 +2452,16 @@ namespace Obi
                 }
             catch (Exception)
                 {
+                    m_InputDeviceFound = false;
                 MessageBox.Show ( Localizer.Message ( "no_input_device_text" ), Localizer.Message ( "no_input_device_caption" ),
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
                 Application.Exit ();
                 }
+            if (!m_InputDeviceFound && !m_OutputDevicefound)
+            {
+                MessageBox.Show(Localizer.Message("no_device_found_text"), Localizer.Message("no_device_found_caption"),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             if (mSettings.ObiFormSize.Width == 0 || mSettings.ObiFormSize.Height == 0)
                 {
                 mSettings.ObiFormSize = Size;
