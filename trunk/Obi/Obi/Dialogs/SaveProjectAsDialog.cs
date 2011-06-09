@@ -18,7 +18,7 @@ namespace Obi.Dialogs
         private bool mUserSetLocation;        // the location was changed manually by the user
         private string mDir;
         private string m_FullPath;
-
+        private bool m_PathChecked = false;
         /// <summary>
         /// Used by the designer.
         /// </summary>
@@ -99,6 +99,7 @@ namespace Obi.Dialogs
                 }
                 if (ObiForm.CheckProjectPath_Safe(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text), true))
                 {
+                    m_PathChecked = true; 
                     mLocationTextBox.Text = dialog.SelectedPath;
                     mUserSetLocation = true;
 
@@ -139,7 +140,7 @@ namespace Obi.Dialogs
                     }
 
                     // The selected location must be suitable
-                    else if (!ObiForm.CheckProjectPath(newPath, true))
+                    else if (!m_PathChecked && !ObiForm.CheckProjectPath(newPath, true))
                     {
                         mCanClose = false;
                     }
