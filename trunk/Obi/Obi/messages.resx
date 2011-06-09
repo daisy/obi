@@ -1878,4 +1878,7 @@ Error text: {1}</value>
   <data name="AudioFileImport_ProcessingFiles" xml:space="preserve">
     <value>Processing audio files for import</value>
   </data>
+  <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
+    <value>Cannot save the file in location: {0}. Please choose another location.</value>
+  </data>
 </root>
