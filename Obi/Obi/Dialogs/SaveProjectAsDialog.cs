@@ -71,7 +71,7 @@ namespace Obi.Dialogs
         {
             //  SaveFileDialog dialog = new SaveFileDialog();
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            
+            string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
         //    dialog.AddExtension = true;
             try
             {
@@ -88,6 +88,14 @@ namespace Obi.Dialogs
                 {
                     MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
                     return;
+                }
+                foreach (string drive in logicalDrives)
+                {
+                    if ((dialog.SelectedPath == drive) || (dialog.SelectedPath == Environment.GetFolderPath(Environment.SpecialFolder.Desktop)) || (dialog.SelectedPath == Environment.GetFolderPath(Environment.SpecialFolder.MyComputer) || (dialog.SelectedPath == Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))))
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("SaveAs_cannot_save_in_root"), dialog.SelectedPath));
+                        return;
+                    }
                 }
                 if (ObiForm.CheckProjectPath_Safe(Path.Combine(dialog.SelectedPath, m_ProjectNameTextBox.Text), true))
                 {
@@ -111,24 +119,36 @@ namespace Obi.Dialogs
         {
             string newPath = Path.Combine(mLocationTextBox.Text, m_ProjectNameTextBox.Text);
             try
-            {                
-                // Must not save in same directory
+            {
+                string[] logicalDrives = System.IO.Directory.GetLogicalDrives();
+                foreach (string drive in logicalDrives)
+                {
+                    if ((mLocationTextBox.Text == drive) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.Desktop)) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyComputer) || (mLocationTextBox.Text == Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))))
+                    {
+                        MessageBox.Show(string.Format(Localizer.Message("SaveAs_cannot_save_in_root"), mLocationTextBox.Text));
+                        mCanClose = false;
+                        return;
+                    }
+                    // Must not save in same directory                    
+                }
                 if (Path.GetFullPath(Path.GetDirectoryName(newPath)) ==
-                    Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
-                {
-                    MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
-                    mCanClose = false;
-                }
-                // The selected location must be suitable
-                else if (!ObiForm.CheckProjectPath(newPath, true))
-                {
-                    mCanClose = false;
-                }
-                else
-                {
-                    mNewProjectPath = newPath;
-                    mCanClose = true;
-                }
+                        Path.GetFullPath(Path.GetDirectoryName(mOriginalProjectPath)))
+                    {
+                        MessageBox.Show(Localizer.Message("save_as_error_same_directory"));
+                        mCanClose = false;
+                    }
+
+                    // The selected location must be suitable
+                    else if (!ObiForm.CheckProjectPath(newPath, true))
+                    {
+                        mCanClose = false;
+                    }
+                    else
+                    {
+                        mNewProjectPath = newPath;
+                        mCanClose = true;
+                    }
+                
             }
             catch (Exception x)
             {
