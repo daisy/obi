@@ -959,6 +959,7 @@ namespace Obi
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load ( object sender, EventArgs e )
             {
+                if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
         
             UpdateKeyboardFocusForSelection();            
