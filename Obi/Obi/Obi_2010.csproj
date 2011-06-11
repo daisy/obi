@@ -161,6 +161,12 @@
     <Compile Include="Dialogs\GoToPageOrPhrase.designer.cs">
       <DependentUpon>GoToPageOrPhrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\MultipleOptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MultipleOptionDialog.Designer.cs">
+      <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,12 @@
     </Compile>
     <Compile Include="Dialogs\ProjectProperties.Designer.cs">
       <DependentUpon>ProjectProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReportDialog.Designer.cs">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SaveProjectAsDialog.cs">
       <SubType>Form</SubType>
@@ -458,6 +470,9 @@
       <DependentUpon>Waveform.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\MultipleOptionDialog.resx">
+      <DependentUpon>MultipleOptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewProject.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewProject.cs</DependentUpon>
@@ -465,6 +480,9 @@
     <EmbeddedResource Include="Dialogs\Preferences.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReportDialog.resx">
+      <DependentUpon>ReportDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="messages.resx">
       <SubType>Designer</SubType>
