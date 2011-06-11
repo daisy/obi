@@ -273,14 +273,14 @@ namespace Obi
 
             //sdk2
             //mProject.openXUK ( new Uri ( path ) );
-            System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
+            //System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+            //stopWatch.Start();
             OpenXukAction action = new OpenXukAction(mProject, new Uri(path));
             action.ShortDescription = "DUMMY";
             action.LongDescription = "DUMMY";
-            action.Execute();
-            stopWatch.Stop();
-            Console.WriteLine("Time taken for xuk-in in milliseconds " + stopWatch.ElapsedMilliseconds);
+            action.DoWork();
+            //stopWatch.Stop();
+            //Console.WriteLine("Time taken for xuk-in in milliseconds " + stopWatch.ElapsedMilliseconds);
             //Presentation = mProject.Presentations.Get(0);
 
             mPath = path;
@@ -360,7 +360,7 @@ namespace Obi
                     urakawa.xuk.SaveXukAction save = new urakawa.xuk.SaveXukAction(mProject, mProject, new Uri(path));
                     save.Finished += new EventHandler<urakawa.events.progress.FinishedEventArgs>
         (delegate(object sender, urakawa.events.progress.FinishedEventArgs e) { wh.Set(); });
-                save.Execute ();
+                save.DoWork();
                 wh.WaitOne ();
                 stopWatch.Stop();
                 Console.WriteLine("Time consumed in saving (in milliseconds) " + stopWatch.ElapsedMilliseconds);
