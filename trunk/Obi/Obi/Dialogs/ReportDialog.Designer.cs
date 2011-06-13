@@ -94,6 +94,7 @@ namespace Obi.Dialogs
             this.m_txtBoxPath.Location = new System.Drawing.Point(19, 25);
             this.m_txtBoxPath.Multiline = true;
             this.m_txtBoxPath.Name = "m_txtBoxPath";
+            this.m_txtBoxPath.ReadOnly = true;
             this.m_txtBoxPath.Size = new System.Drawing.Size(400, 35);
             this.m_txtBoxPath.TabIndex = 0;
             // 
