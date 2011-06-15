@@ -1137,6 +1137,7 @@ namespace Obi.ProjectView
         // Pause recording
         private void PauseRecording()
         {
+            bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
         mVUMeterPanel.BeepEnable = false;
 
         try
@@ -1157,7 +1158,7 @@ namespace Obi.ProjectView
             //Workaround to force phrases to show if they become invisible on stopping recording
             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
             mResumeRecordingPhrase = (PhraseNode)mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1);
-            if( mResumeRecordingPhrase != null )  mView.SelectFromTransportBar ( mResumeRecordingPhrase, null );
+            if(!wasMonitoring &&  mResumeRecordingPhrase != null )  mView.SelectFromTransportBar ( mResumeRecordingPhrase, null );
             mRecordingSession = null;
             UpdateTimeDisplay();
 
@@ -2233,6 +2234,7 @@ namespace Obi.ProjectView
                 (mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ||
                 mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording))
             {
+                bool wasMonitoring = mRecordingSession.AudioRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring;
                 mVUMeterPanel.BeepEnable = false;
 
                 try
@@ -2253,7 +2255,7 @@ namespace Obi.ProjectView
                             mView.PostRecording_RecreateInvisibleRecordingPhrases(mRecordingSection, mRecordingInitPhraseIndex, mRecordingSession.RecordedAudio.Count);
                         }
                     EmptyNode lastRecordedPhrase = mRecordingSection.PhraseChildCount >0? mRecordingSection.PhraseChild(mRecordingInitPhraseIndex + mRecordingSession.RecordedAudio.Count - 1):null;
-                    if (lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
+                    if (!wasMonitoring && lastRecordedPhrase != null && lastRecordedPhrase.IsRooted) mView.SelectFromTransportBar ( lastRecordedPhrase, null );
                     }
                 catch (System.Exception ex)
                     {
@@ -2264,11 +2266,7 @@ UpdateButtons();
                 mRecordingSession = null;
                 mResumeRecordingPhrase = null;
 
-                // save optionally
-                //SaveWhenRecordingEnds ();//@singleSection
-
-                // make phrase blocks invisible if these exceeded max visible phrase blocks limit during recording
-                //mView.MakeOldStripsBlocksInvisible ( true); // @phraseLimit @singleSection: legacy code commented
+                
             }
         else if (mResumeRecordingPhrase != null)
             {
