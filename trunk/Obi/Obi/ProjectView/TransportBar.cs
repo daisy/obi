@@ -2040,12 +2040,13 @@ namespace Obi.ProjectView
                 if (time >= 0.0 && time < mCurrentPlaylist.CurrentPhrase.Duration)
                 {
                     // Move selection to audio cursor, stop, and nudge the selection.
+                    PhraseNode currentlyPlayingNode = mCurrentPlaylist.CurrentPhrase;
                     Stop();
 
                     if (mCurrentPlaylist is PreviewPlaylist)
                         ((PreviewPlaylist)mCurrentPlaylist).TriggerEndOfPreviewPlaylist ( time);
 
-                    mView.SelectedBlockNode = mCurrentPlaylist.CurrentPhrase;
+                    mView.SelectedBlockNode = currentlyPlayingNode;
                     mView.Selection = new AudioSelection((PhraseNode)mView.Selection.Node, mView.Selection.Control,
                         new AudioRange(time));
 
