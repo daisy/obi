@@ -167,6 +167,15 @@
   <data name="mFile_OpenProjectMenuItem.Text" xml:space="preserve">
     <value>&amp;Open project</value>
   </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.AccessibleName" xml:space="preserve">
+    <value>Restore from backup</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 22</value>
+  </data>
+  <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Restore from &amp;backup</value>
+  </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>Close project Ctrl+W</value>
   </data>
@@ -1690,7 +1699,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.35290, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.42551, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1988,6 +1997,12 @@
     <value>mFile_OpenProjectMenuItem</value>
   </data>
   <data name="&gt;&gt;mFile_OpenProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromBackupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
