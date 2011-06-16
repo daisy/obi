@@ -18,6 +18,7 @@ namespace Obi
     public class Settings
     {
         public bool AllowOverwrite;            // allow/disallow overwriting audio when recording
+        public bool PreviewBeforeRecording; //plays a bit of audio before starting recording.
         public int AudioChannels;              // number of channels for recording
         public bool AudioClues;                // use audio clues (or not.)
         public float AudioScale;               // scale of audio in waveform views
@@ -66,6 +67,7 @@ namespace Obi
             settings.AudioClues = false;
             settings.AudioScale = 0.01f;
             settings.AllowOverwrite = false;
+            settings.PreviewBeforeRecording = false;
             settings.BitDepth = 16;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();

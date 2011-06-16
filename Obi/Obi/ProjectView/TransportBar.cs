@@ -2208,6 +2208,39 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly()
         {
+            if (mView.ObiForm.Settings.PreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
+                && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+            {
+                System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
+                worker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
+                {
+                    Preview(Upto, UseAudioCursor);
+                    int interval = 50;
+                    for (int i = 0; i < (PreviewDuration * 2) / interval; i++)
+                    {
+                        if (mCurrentPlaylist is PreviewPlaylist && mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Paused)
+                        {
+                            //System.Media.SystemSounds.Asterisk.Play();
+                            Console.WriteLine(i);
+                            break;
+                        }
+                        Thread.Sleep(interval);
+                    }
+                });
+                worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+                {
+                    StartRecordingDirectly_Internal();
+                });
+                worker.RunWorkerAsync();
+            }
+            else
+            {
+                StartRecordingDirectly_Internal();
+            }
+        }
+
+        private void StartRecordingDirectly_Internal()
+    {
             if (mRecordingSession == null
                 && mCurrentPlaylist.Audioplayer.CurrentState != AudioLib.AudioPlayer.State.Playing
                 &&    !IsMetadataSelected &&  ( mView.Selection == null || !(mView.Selection is TextSelection)))
