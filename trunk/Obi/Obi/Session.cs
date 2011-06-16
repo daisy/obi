@@ -105,6 +105,7 @@ namespace Obi
         /// </summary>
         public string UndoLabel { get { return Presentation.UndoRedoManager.UndoShortDescription; } }
 
+        public string BackUpPath { get { return m_BackupDirPath; } }
 
         /// <summary>
         /// Close the last project.
@@ -463,7 +464,6 @@ namespace Obi
                         {
                         File.Delete ( backupPath );
                         }
-
                     File.Move ( m_BackupProjectFilePath_temp, backupPath );
                     
                     return backupPath;

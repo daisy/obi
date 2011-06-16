@@ -41,6 +41,7 @@ namespace Obi
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
         private bool m_IsCancelBtnPressed = false;
+        private bool m_IsRestoreCalled = false;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -2101,7 +2102,18 @@ namespace Obi
             Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("OpenProject_progress_dialog_title"),
                                    delegate()
                                    {
-                                       mSession.Open(path);  
+                                       mSession.Open(path);
+                                       try
+                                       {
+                                           if (m_IsRestoreCalled)
+                                               File.Delete(path + ".lock");
+                                       }
+                                       catch (Exception e)
+                                       {
+                                           MessageBox.Show(e.ToString());
+                                       }
+
+
                                    });
             progress.ShowDialog();
             if (progress.Exception != null)
@@ -3184,6 +3196,24 @@ namespace Obi
         private void mEdit_AssignBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CheckForSelectedNodeInBookmark();
+        }
+
+        private void m_RestoreFromBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_IsRestoreCalled = true;
+            string[] paths = Directory.GetFiles(mSession.BackUpPath);
+            string backupPath = "";
+            foreach (string path in paths)
+            {
+                if (Path.GetExtension(path) == ".obi")
+                    backupPath = path;
+            }
+
+            string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
+            if (File.Exists(pathForNewFile))
+                File.Delete(pathForNewFile);             
+            File.Copy(backupPath, pathForNewFile);
+            OpenProject_Safe(pathForNewFile);
         }
     }
     }

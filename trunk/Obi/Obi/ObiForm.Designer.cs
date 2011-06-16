@@ -34,6 +34,7 @@ namespace Obi
             this.mFile_NewProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RestoreFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_CloseProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -213,6 +214,7 @@ namespace Obi
             this.mFile_NewProjectMenuItem,
             this.mFile_NewProjectFromImportMenuItem,
             this.mFile_OpenProjectMenuItem,
+            this.m_RestoreFromBackupToolStripMenuItem,
             this.mFile_CloseProjectMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
@@ -240,6 +242,12 @@ namespace Obi
             resources.ApplyResources(this.mFile_OpenProjectMenuItem, "mFile_OpenProjectMenuItem");
             this.mFile_OpenProjectMenuItem.Name = "mFile_OpenProjectMenuItem";
             this.mFile_OpenProjectMenuItem.Click += new System.EventHandler(this.File_OpenProjectMenuItem_Click);
+            // 
+            // m_RestoreFromBackupToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_RestoreFromBackupToolStripMenuItem, "m_RestoreFromBackupToolStripMenuItem");
+            this.m_RestoreFromBackupToolStripMenuItem.Name = "m_RestoreFromBackupToolStripMenuItem";
+            this.m_RestoreFromBackupToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromBackupToolStripMenuItem_Click);
             // 
             // mFile_CloseProjectMenuItem
             // 
@@ -1500,6 +1508,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_BookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_AssignBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_RestoreFromBackupToolStripMenuItem;
     }
 }
 
