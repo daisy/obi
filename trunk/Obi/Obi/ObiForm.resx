@@ -174,7 +174,7 @@
     <value>281, 22</value>
   </data>
   <data name="m_RestoreFromBackupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Restore from &amp;backup</value>
+    <value>Restore from backup</value>
   </data>
   <data name="mFile_CloseProjectMenuItem.AccessibleName" xml:space="preserve">
     <value>Close project Ctrl+W</value>
@@ -1699,7 +1699,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.42551, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.34460, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>

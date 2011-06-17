@@ -2103,17 +2103,6 @@ namespace Obi
                                    delegate()
                                    {
                                        mSession.Open(path);
-                                       try
-                                       {
-                                           if (m_IsRestoreCalled)
-                                               File.Delete(path + ".lock");
-                                       }
-                                       catch (Exception e)
-                                       {
-                                           MessageBox.Show(e.ToString());
-                                       }
-
-
                                    });
             progress.ShowDialog();
             if (progress.Exception != null)
@@ -3201,19 +3190,33 @@ namespace Obi
         private void m_RestoreFromBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             m_IsRestoreCalled = true;
-            string[] paths = Directory.GetFiles(mSession.BackUpPath);
-            string backupPath = "";
-            foreach (string path in paths)
+            if (m_RestoreFromBackupToolStripMenuItem.Text == "Restore from backup")
             {
-                if (Path.GetExtension(path) == ".obi")
-                    backupPath = path;
+                m_RestoreFromBackupToolStripMenuItem.Text = "Restore from project";
+               
+                string[] paths = Directory.GetFiles(mSession.BackUpPath);
+                string backupPath = "";
+                foreach (string path in paths)
+                {
+                    if (Path.GetExtension(path) == ".obi")
+                        backupPath = path;
+                }
+
+                string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
+                if (File.Exists(pathForNewFile))
+                    File.Delete(pathForNewFile);
+                File.Copy(backupPath, pathForNewFile);
+                if(DidCloseProject())
+                   OpenProject_Safe(pathForNewFile);               
             }
 
-            string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
-            if (File.Exists(pathForNewFile))
-                File.Delete(pathForNewFile);             
-            File.Copy(backupPath, pathForNewFile);
-            OpenProject_Safe(pathForNewFile);
+            else if (m_RestoreFromBackupToolStripMenuItem.Text == "Restore from project")
+            {
+                string newPath = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "project.obi");
+                m_RestoreFromBackupToolStripMenuItem.Text = "Restore from backup";
+                if (DidCloseProject() )
+                    OpenProject_Safe(newPath);                
+            }
         }
     }
     }
