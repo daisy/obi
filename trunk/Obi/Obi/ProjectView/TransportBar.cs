@@ -2209,7 +2209,7 @@ namespace Obi.ProjectView
         public void StartRecordingDirectly()
         {
             if (mView.ObiForm.Settings.PreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
-                && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+                && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection )))
             {
                 System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
                 worker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
