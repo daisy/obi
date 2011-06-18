@@ -150,6 +150,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_statusStripForMergeSection);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SelectMergeSectionRange";
             this.Text = "Select section to merge";
             this.m_statusStripForMergeSection.ResumeLayout(false);

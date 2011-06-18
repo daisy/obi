@@ -116,6 +116,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_rdb_SaveProjectOnly);
             this.Controls.Add(this.m_rdb_SaveBookmarkAndProject);
             this.Controls.Add(this.m_lbl_ChooseOption);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximumSize = new System.Drawing.Size(309, 211);
             this.MinimumSize = new System.Drawing.Size(309, 211);
             this.Name = "MultipleOptionDialog";

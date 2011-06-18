@@ -208,6 +208,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_grpSelectRange);
             this.Controls.Add(this.m_grpListOfSections);
             this.Controls.Add(this.m_btn_OK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SelectPhraseDetectionSections";
             this.Text = "Select phrase detection sections";
             this.m_grpListOfSections.ResumeLayout(false);
