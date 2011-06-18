@@ -53,7 +53,7 @@ namespace Obi.Dialogs
             this.m_rdb_SaveBookmarkAndProject.Size = new System.Drawing.Size(158, 17);
             this.m_rdb_SaveBookmarkAndProject.TabIndex = 1;
             this.m_rdb_SaveBookmarkAndProject.TabStop = true;
-            this.m_rdb_SaveBookmarkAndProject.Text = "Save Bookmark and Project";
+            this.m_rdb_SaveBookmarkAndProject.Text = "Save &Bookmark and Project";
             this.m_rdb_SaveBookmarkAndProject.UseVisualStyleBackColor = true;
             this.m_rdb_SaveBookmarkAndProject.CheckedChanged += new System.EventHandler(this.m_rdb_SaveBookmarkAndProject_CheckedChanged);
             // 
@@ -65,7 +65,7 @@ namespace Obi.Dialogs
             this.m_rdb_SaveProjectOnly.Size = new System.Drawing.Size(110, 17);
             this.m_rdb_SaveProjectOnly.TabIndex = 3;
             this.m_rdb_SaveProjectOnly.TabStop = true;
-            this.m_rdb_SaveProjectOnly.Text = "Save Project Only";
+            this.m_rdb_SaveProjectOnly.Text = "Save P&roject Only";
             this.m_rdb_SaveProjectOnly.UseVisualStyleBackColor = true;
             this.m_rdb_SaveProjectOnly.CheckedChanged += new System.EventHandler(this.m_rdb_SaveProjectOnly_CheckedChanged);
             // 
@@ -77,7 +77,7 @@ namespace Obi.Dialogs
             this.m_rdb_DiscardBoth.Size = new System.Drawing.Size(85, 17);
             this.m_rdb_DiscardBoth.TabIndex = 4;
             this.m_rdb_DiscardBoth.TabStop = true;
-            this.m_rdb_DiscardBoth.Text = "Discard both";
+            this.m_rdb_DiscardBoth.Text = "&Discard both";
             this.m_rdb_DiscardBoth.UseVisualStyleBackColor = true;
             this.m_rdb_DiscardBoth.CheckedChanged += new System.EventHandler(this.m_rdb_DiscardBoth_CheckedChanged);
             // 
@@ -105,8 +105,10 @@ namespace Obi.Dialogs
             // 
             // MultipleOptionDialog
             // 
+            this.AcceptButton = this.m_btn_OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.m_btn_Cancel;
             this.ClientSize = new System.Drawing.Size(293, 175);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
