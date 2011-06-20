@@ -42,6 +42,7 @@ namespace Obi
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
         private bool m_IsCancelBtnPressed = false;
         private bool m_IsRestoreCalled = false;
+        private string m_OriginalPath = "";
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -3189,34 +3190,32 @@ namespace Obi
 
         private void m_RestoreFromBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_IsRestoreCalled = true;
-            if (m_RestoreFromBackupToolStripMenuItem.Text == "Restore from backup")
+            m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
+            m_RestoreFromBackupToolStripMenuItem.Enabled = false;
+            m_OriginalPath = mSession.Path;
+            string[] paths = Directory.GetFiles(mSession.BackUpPath);
+            string backupPath = "";
+            foreach (string path in paths)
             {
-                m_RestoreFromBackupToolStripMenuItem.Text = "Restore from project";
-               
-                string[] paths = Directory.GetFiles(mSession.BackUpPath);
-                string backupPath = "";
-                foreach (string path in paths)
-                {
-                    if (Path.GetExtension(path) == ".obi")
-                        backupPath = path;
-                }
-
-                string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
-                if (File.Exists(pathForNewFile))
-                    File.Delete(pathForNewFile);
-                File.Copy(backupPath, pathForNewFile);
-                if(DidCloseProject())
-                   OpenProject_Safe(pathForNewFile);               
+                if (Path.GetExtension(path) == ".obi") backupPath = path;
             }
-
-            else if (m_RestoreFromBackupToolStripMenuItem.Text == "Restore from project")
-            {
-                string newPath = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "project.obi");
-                m_RestoreFromBackupToolStripMenuItem.Text = "Restore from backup";
-                if (DidCloseProject() )
-                    OpenProject_Safe(newPath);                
-            }
+            string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
+            if (File.Exists(pathForNewFile))
+                File.Delete(pathForNewFile);
+            File.Copy(backupPath, pathForNewFile);
+            if (DidCloseProject()) OpenProject_Safe(pathForNewFile); 
+                          
         }
+
+        private void m_RestoreFromOriginalProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
+            m_RestoreFromBackupToolStripMenuItem.Enabled = true;
+
+            if (DidCloseProject()) OpenProject_Safe(m_OriginalPath);
+            m_OriginalPath = null;
+        }
+
+       
     }
     }

@@ -187,6 +187,7 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.m_RestoreFromOriginalProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -215,6 +216,7 @@ namespace Obi
             this.mFile_NewProjectFromImportMenuItem,
             this.mFile_OpenProjectMenuItem,
             this.m_RestoreFromBackupToolStripMenuItem,
+            this.m_RestoreFromOriginalProjectToolStripMenuItem,
             this.mFile_CloseProjectMenuItem,
             this.toolStripSeparator9,
             this.mFile_SaveProjectMenuItem,
@@ -1310,6 +1312,12 @@ namespace Obi
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // m_RestoreFromOriginalProjectToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_RestoreFromOriginalProjectToolStripMenuItem, "m_RestoreFromOriginalProjectToolStripMenuItem");
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Name = "m_RestoreFromOriginalProjectToolStripMenuItem";
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromOriginalProjectToolStripMenuItem_Click);
+            // 
             // mProjectView
             // 
             this.mProjectView.BackColor = System.Drawing.SystemColors.Control;
@@ -1509,6 +1517,7 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mEdit_AssignBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_RestoreFromBackupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_RestoreFromOriginalProjectToolStripMenuItem;
     }
 }
 
