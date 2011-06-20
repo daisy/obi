@@ -651,7 +651,7 @@ namespace Obi.ProjectView
         private void mCloseButton_Click(object sender, EventArgs e)
         {
             mProjectView.FindInTextVisible = false;
-            mProjectView.ObiForm.Status(mProjectView.Selection.ToString());
+            mProjectView.ObiForm.Status(mProjectView.Selection!= null ? mProjectView.Selection.ToString(): "");
         }
 
         private void FindInText_FontChanged(object sender, EventArgs e)
