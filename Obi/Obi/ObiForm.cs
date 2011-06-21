@@ -41,8 +41,8 @@ namespace Obi
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
         private bool m_IsCancelBtnPressed = false;
-        private bool m_IsRestoreCalled = false;
-        private string m_OriginalPath = "";
+        private string m_RestoreProjectFilePath= null;
+        private string m_OriginalPath = null;
 
         /// <summary>
         /// Initialize a new form and open the last project if set in the preferences.
@@ -488,7 +488,14 @@ namespace Obi
                 m_IsSaveActive = true;
                 if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop ();
 
-                mSession.Save ();
+                if ((!FreezeChangesFromProjectRestore() ?? true))
+                {
+                    m_IsSaveActive = false;
+                    return;
+                }
+                
+                    mSession.Save();
+                
 
                 mStatusLabel.Text = Localizer.Message ( "Status_ProjectSaved" );
                 // reset the  auto save timer
@@ -634,6 +641,8 @@ namespace Obi
         // If a project is open and unsaved, ask about what to do.
         private bool DidCloseProject ()
             {
+            
+            if ( !(FreezeChangesFromProjectRestore()?? true) ) return false;
                 CheckForBookmarkNode(); 
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
           /*  if (!mSession.CanClose)
@@ -3193,17 +3202,23 @@ namespace Obi
             m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
             m_RestoreFromBackupToolStripMenuItem.Enabled = false;
             m_OriginalPath = mSession.Path;
-            string[] paths = Directory.GetFiles(mSession.BackUpPath);
-            string backupPath = "";
-            foreach (string path in paths)
+            
+            string backupPath = mSession.BackUpPath;
+
+            if (!File.Exists(backupPath))
             {
-                if (Path.GetExtension(path) == ".obi") backupPath = path;
+                MessageBox.Show("Unable to restore. No backup file found at :" + "\n" + backupPath);
+                return;
             }
-            string pathForNewFile = Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
-            if (File.Exists(pathForNewFile))
-                File.Delete(pathForNewFile);
-            File.Copy(backupPath, pathForNewFile);
-            if (DidCloseProject()) OpenProject_Safe(pathForNewFile); 
+            m_RestoreProjectFilePath= Path.Combine(Directory.GetParent(mSession.Path).ToString(), "Restored Project.obi");
+            if (File.Exists(m_RestoreProjectFilePath))
+                File.Delete(m_RestoreProjectFilePath);
+            File.Copy(backupPath, m_RestoreProjectFilePath);
+            if (DidCloseProject()) 
+            {
+                OpenProject_Safe(m_RestoreProjectFilePath);
+                ProjectHasChanged(1);
+            }
                           
         }
 
@@ -3212,8 +3227,43 @@ namespace Obi
             m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
             m_RestoreFromBackupToolStripMenuItem.Enabled = true;
 
-            if (DidCloseProject()) OpenProject_Safe(m_OriginalPath);
-            m_OriginalPath = null;
+            mSession.Close();
+            
+                OpenProject_Safe(m_OriginalPath);
+                if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
+                m_RestoreProjectFilePath = null;    
+                m_OriginalPath = null;
+            
+            
+        }
+
+        private bool? FreezeChangesFromProjectRestore()
+        {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
+
+            if (!String.IsNullOrEmpty(m_RestoreProjectFilePath)
+                && mSession.Path == m_RestoreProjectFilePath)
+            {
+                if (MessageBox.Show("This operation will save the current state of project. You will not be able to reinstate the original project after this.", "Information", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    mSession.Save(m_OriginalPath);
+                    mSession.Close();
+                                            OpenProject_Safe(m_OriginalPath);
+                        m_OriginalPath = null;
+                        if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
+                        m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
+                        m_RestoreFromBackupToolStripMenuItem.Enabled = true;
+                        m_RestoreProjectFilePath = null;
+                        return true;
+                    
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return null;
         }
 
        

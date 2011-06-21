@@ -105,7 +105,14 @@ namespace Obi
         /// </summary>
         public string UndoLabel { get { return Presentation.UndoRedoManager.UndoShortDescription; } }
 
-        public string BackUpPath { get { return m_BackupDirPath; } }
+        public string BackUpPath
+        {
+            get
+            {
+                return System.IO.Path.Combine(m_BackupDirPath,
+System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
+            }
+        }
 
         /// <summary>
         /// Close the last project.
@@ -271,7 +278,7 @@ namespace Obi
             //mProject.setDataModelFactory ( mDataModelFactory );
             mProject.dataIsMissing += new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
 
-
+            long memoryBefore = System.GC.GetTotalMemory(true);
             //sdk2
             //mProject.openXUK ( new Uri ( path ) );
             //System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
@@ -283,7 +290,9 @@ namespace Obi
             //stopWatch.Stop();
             //Console.WriteLine("Time taken for xuk-in in milliseconds " + stopWatch.ElapsedMilliseconds);
             //Presentation = mProject.Presentations.Get(0);
-
+            long memoryAfter =  System.GC.GetTotalMemory(true);
+                long memoryDiff = memoryBefore - memoryAfter;
+                Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
             mPath = path;
             GetLock ( mPath );
             Presentation.Initialize ( this );
