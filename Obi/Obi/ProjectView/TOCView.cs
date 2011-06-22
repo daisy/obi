@@ -198,7 +198,7 @@ namespace Obi.ProjectView
 
         private void RepaintHighlightNodeWithoutSelection ()
         {
-            if (m_HighlightedSectionNodeWithoutSelection != null
+            if (mProjectView.Presentation != null &&  m_HighlightedSectionNodeWithoutSelection != null
                 && mProjectView.Presentation.RootNode != m_HighlightedSectionNodeWithoutSelection.Presentation.RootNode)
                 m_HighlightedSectionNodeWithoutSelection = null;
             if (m_HighlightedSectionNodeWithoutSelection != null )
