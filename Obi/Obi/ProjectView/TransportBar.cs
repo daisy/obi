@@ -639,7 +639,11 @@ namespace Obi.ProjectView
 
                 if (StateChanged != null) StateChanged(this, e);
 
-                if (m_IsPreviewing) PostPreviewRestore();
+                if (m_IsPreviewing)
+                {
+                    if (mState == State.Paused) mView.UpdateCursorPosition(((PreviewPlaylist)mCurrentPlaylist).RevertTime);
+                    PostPreviewRestore();
+                }
             }
         }
 
