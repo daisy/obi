@@ -88,6 +88,9 @@ namespace Obi.Dialogs
             this.Controls.Add(this.m_OKBtn);
             this.Controls.Add(this.m_radBtnDaisy202);
             this.Controls.Add(this.m_radBtnDaisy3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "chooseDaisy3orDaisy202";
             this.Text = "DAISY Standard Selection";
             this.ResumeLayout(false);

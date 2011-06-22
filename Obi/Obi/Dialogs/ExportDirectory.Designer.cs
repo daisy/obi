@@ -125,6 +125,7 @@ namespace Obi.Dialogs
             this.Controls.Add(this.mSelectButton);
             this.Controls.Add(this.mPathTextBox);
             this.Controls.Add(this.m_lblDirectoryPath);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ExportDirectory";

@@ -83,8 +83,10 @@ namespace Obi.Dialogs
             // 
             // EmptySection
             // 
+            this.AcceptButton = this.mContinueButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.mCancelButton;
             this.ClientSize = new System.Drawing.Size(389, 198);
             this.ControlBox = false;
             this.Controls.Add(this.mKeepWarningCheckbox);
