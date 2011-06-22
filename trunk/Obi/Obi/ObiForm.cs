@@ -190,6 +190,7 @@ namespace Obi
             mFile_NewProjectFromImportMenuItem.Enabled = true;
             mFile_OpenProjectMenuItem.Enabled = true;
             mFile_CloseProjectMenuItem.Enabled = mSession.HasProject;
+            m_RestoreFromBackupToolStripMenuItem.Enabled = !m_RestoreFromOriginalProjectToolStripMenuItem.Enabled;
             mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
             mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
             mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
@@ -3199,6 +3200,7 @@ namespace Obi
 
         private void m_RestoreFromBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
             m_RestoreFromBackupToolStripMenuItem.Enabled = false;
             m_OriginalPath = mSession.Path;
@@ -3224,6 +3226,7 @@ namespace Obi
 
         private void m_RestoreFromOriginalProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
             m_RestoreFromBackupToolStripMenuItem.Enabled = true;
 
