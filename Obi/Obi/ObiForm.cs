@@ -758,7 +758,7 @@ namespace Obi
                     FileDataProvider fileDataProvider = dataProvider as FileDataProvider;
                     if (fileDataProvider == null) continue;
 
-                    listOfDataProviderFiles.Add(fileDataProvider.DataFileRelativePath);
+                    listOfDataProviderFiles.Add(Path.GetFileName( fileDataProvider.DataFileRelativePath));
                 }
                                 
 
