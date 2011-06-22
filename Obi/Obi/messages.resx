@@ -1881,4 +1881,19 @@ Error text: {1}</value>
   <data name="SaveAs_cannot_save_in_root" xml:space="preserve">
     <value>Cannot save the file in location: {0}. Please choose another location.</value>
   </data>
+  <data name="backup_file_missing" xml:space="preserve">
+    <value>Unable to restore. No backup file found at :</value>
+  </data>
+  <data name="information_caption" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="restored_project_name" xml:space="preserve">
+    <value>Restored Project.obi</value>
+  </data>
+  <data name="save_current_state" xml:space="preserve">
+    <value>"This operation will save the current state of project. You will not be able to reinstate the original project after this.</value>
+  </data>
+  <data name="open_from_backup_file" xml:space="preserve">
+    <value>The project will open from backup file. Do you wish to continue?</value>
+  </data>
 </root>

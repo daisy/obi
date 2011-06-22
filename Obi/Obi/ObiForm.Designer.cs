@@ -35,6 +35,7 @@ namespace Obi
             this.mFile_NewProjectFromImportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_OpenProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_RestoreFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_RestoreFromOriginalProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mFile_CloseProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mFile_SaveProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,7 +188,6 @@ namespace Obi
             this.mStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mStatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.m_RestoreFromOriginalProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mProjectView = new Obi.ProjectView.ProjectView();
             this.mMenuStrip.SuspendLayout();
             this.mStatusStrip.SuspendLayout();
@@ -250,6 +250,12 @@ namespace Obi
             resources.ApplyResources(this.m_RestoreFromBackupToolStripMenuItem, "m_RestoreFromBackupToolStripMenuItem");
             this.m_RestoreFromBackupToolStripMenuItem.Name = "m_RestoreFromBackupToolStripMenuItem";
             this.m_RestoreFromBackupToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromBackupToolStripMenuItem_Click);
+            // 
+            // m_RestoreFromOriginalProjectToolStripMenuItem
+            // 
+            resources.ApplyResources(this.m_RestoreFromOriginalProjectToolStripMenuItem, "m_RestoreFromOriginalProjectToolStripMenuItem");
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Name = "m_RestoreFromOriginalProjectToolStripMenuItem";
+            this.m_RestoreFromOriginalProjectToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromOriginalProjectToolStripMenuItem_Click);
             // 
             // mFile_CloseProjectMenuItem
             // 
@@ -1311,12 +1317,6 @@ namespace Obi
             this.mStatusProgressBar.Name = "mStatusProgressBar";
             resources.ApplyResources(this.mStatusProgressBar, "mStatusProgressBar");
             this.mStatusProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            // 
-            // m_RestoreFromOriginalProjectToolStripMenuItem
-            // 
-            resources.ApplyResources(this.m_RestoreFromOriginalProjectToolStripMenuItem, "m_RestoreFromOriginalProjectToolStripMenuItem");
-            this.m_RestoreFromOriginalProjectToolStripMenuItem.Name = "m_RestoreFromOriginalProjectToolStripMenuItem";
-            this.m_RestoreFromOriginalProjectToolStripMenuItem.Click += new System.EventHandler(this.m_RestoreFromOriginalProjectToolStripMenuItem_Click);
             // 
             // mProjectView
             // 
