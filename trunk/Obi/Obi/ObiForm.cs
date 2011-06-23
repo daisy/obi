@@ -190,8 +190,16 @@ namespace Obi
             mFile_NewProjectFromImportMenuItem.Enabled = true;
             mFile_OpenProjectMenuItem.Enabled = true;
             mFile_CloseProjectMenuItem.Enabled = mSession.HasProject;
-        //    m_RestoreFromBackupToolStripMenuItem.Enabled = !m_RestoreFromOriginalProjectToolStripMenuItem.Enabled;      
-            m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;            
+            if (m_OriginalPath == null)
+            {
+                m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
+                m_RestoreFromBackupToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
+                m_RestoreFromBackupToolStripMenuItem.Visible = false;
+            }
             mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
             mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
             mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
@@ -3226,13 +3234,12 @@ namespace Obi
                 if (File.Exists(m_RestoreProjectFilePath))
                     File.Delete(m_RestoreProjectFilePath);
                 File.Copy(backupPath, m_RestoreProjectFilePath);
-                
+
                 if (DidCloseProject())
                 {
                     OpenProject_Safe(m_RestoreProjectFilePath);
                     ProjectHasChanged(1);
                 }
-                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
                 m_RestoreFromBackupToolStripMenuItem.Visible = false;
             }
@@ -3242,13 +3249,15 @@ namespace Obi
 
         private void RestoreProjectFromMainProject()
         {
+           
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
             OpenProject_Safe(m_OriginalPath);
             if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
+
             m_RestoreProjectFilePath = null;
             m_OriginalPath = null;
-            m_RestoreFromBackupToolStripMenuItem.Enabled = true;
+
             m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
             m_RestoreFromBackupToolStripMenuItem.Visible = true;
         }
@@ -3256,29 +3265,24 @@ namespace Obi
         private bool? FreezeChangesFromProjectRestore()
         {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
-
+            
             if (!String.IsNullOrEmpty(m_RestoreProjectFilePath)
                 && mSession.Path == m_RestoreProjectFilePath)
             {
                 if (MessageBox.Show(Localizer.Message("save_current_state"), Localizer.Message("information_caption"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-
+                    
                     mSession.Save(m_OriginalPath);
                     mSession.Close();
-                                            OpenProject_Safe(m_OriginalPath);
-                        m_OriginalPath = null;
-                        if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
-                       // m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
-                       // m_RestoreFromBackupToolStripMenuItem.Enabled = true;
-
-                        if (m_RestoreFromOriginalProjectToolStripMenuItem.Visible == false)
-                            m_RestoreFromBackupToolStripMenuItem.Visible = true;
-                        else
-                            m_RestoreFromBackupToolStripMenuItem.Visible = false;
-                        
-                        m_RestoreProjectFilePath = null;
-                        return true;
+                    OpenProject_Safe(m_OriginalPath);
                     
+                    m_OriginalPath = null;
+                    if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
+
+                    m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
+                    m_RestoreFromBackupToolStripMenuItem.Visible = true;
+                    m_RestoreProjectFilePath = null;
+                    return true;                    
                 }
                 else
                 {
