@@ -1895,11 +1895,12 @@ namespace Obi.ProjectView
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
                     {
-                    Commands.Command addSectionCmd = new Commands.Node.AddSectionNode ( this, mTOCView, phrase_SectionNameMap[phraseNodes[i]] );
+                    Commands.Command addSectionCmd = new Commands.Node.AddSectionNode ( this, mTOCView, null);
                     addSectionCmd.UpdateSelection = true;
                     command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd );
                     newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
                     phraseInsertIndex = 0;
+                    command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.RenameSection ( this, newSectionNode, phrase_SectionNameMap[phraseNodes[i]]  ));
                     }
 
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
