@@ -490,7 +490,8 @@ namespace Obi
                 m_IsSaveActive = true;
                 if (mProjectView.TransportBar.IsPlayerActive || mProjectView.TransportBar.IsRecorderActive) mProjectView.TransportBar.Stop ();
 
-                if ((!FreezeChangesFromProjectRestore() ?? true))
+                // Freeze restore should return only if the function do not return null
+                if (FreezeChangesFromProjectRestore() != null)
                 {
                     m_IsSaveActive = false;
                     return;
