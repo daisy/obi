@@ -573,7 +573,7 @@ namespace Obi.ProjectView
 
                 return foundNode;
                 }
-
+            mProjectView.ObiForm.Status(Localizer.Message("not_found_in_text"));
             return null;
             }
             
@@ -644,6 +644,7 @@ namespace Obi.ProjectView
                 
                 return foundSectionNode;
                 }
+                mProjectView.ObiForm.Status(Localizer.Message("not_found_in_text"));
             return null;
             }
         
