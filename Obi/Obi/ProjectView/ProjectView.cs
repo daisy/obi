@@ -1761,6 +1761,7 @@ namespace Obi.ProjectView
                 string[] paths = SelectFilesToImport ();
                 if (paths != null)
                     {
+                    for ( int i = 0 ; i < paths.Length; i++ ) MessageBox.Show (System.IO.Path.GetFileName ( paths[i]));
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
                             ObiForm.Settings.MaxPhraseDurationMinutes );
@@ -1968,7 +1969,7 @@ namespace Obi.ProjectView
 
         public void ClearRoleOfSelectedPhrase ()
             {
-            PhraseNode node = SelectedNodeAs<PhraseNode> ();
+            EmptyNode node = SelectedNodeAs<EmptyNode> ();
             if (node != null)
                 {
                 if (node.Role_ != EmptyNode.Role.Silence)
