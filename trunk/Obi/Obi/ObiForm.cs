@@ -190,6 +190,7 @@ namespace Obi
             mFile_NewProjectFromImportMenuItem.Enabled = true;
             mFile_OpenProjectMenuItem.Enabled = true;
             mFile_CloseProjectMenuItem.Enabled = mSession.HasProject;
+            m_RestoreFromBackupToolStripMenuItem.Enabled = mSession.HasProject;
             if (m_OriginalPath == null)
             {
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
@@ -688,9 +689,9 @@ namespace Obi
             else 
                 IsBookmarkChanged = true;
             }
-           
             if (mProjectView.Presentation != null && mProjectView.Selection != null && IsBookmarkChanged)
             {
+                
                 if (!mSession.CanClose)
                 {
                     /*DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3158,7 +3159,7 @@ namespace Obi
                 ((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode = newBookMarkedNode;
              
                 if (mSession.CanSave == false)
-                {            
+                {
                     mSession.PresentationHasChanged(1);
                     mSession.ForceSave();
                 }
