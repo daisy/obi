@@ -826,6 +826,10 @@ namespace Obi
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
                     mSession.ForceSave ();
+
+                    m_IsAutoSaveActive = true;
+                    SaveToBackup();
+                    m_IsAutoSaveActive = false;
                     }
                 catch (Exception e)
                     {
