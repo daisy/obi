@@ -3221,6 +3221,7 @@ namespace Obi
 
         private void RestoreProjectFromBackup()
         {
+            
             if ((MessageBox.Show(Localizer.Message("open_from_backup_file"), Localizer.Message("information_caption"), MessageBoxButtons.YesNo) == DialogResult.Yes))
             {
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
@@ -3243,6 +3244,7 @@ namespace Obi
                 }
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
                 m_RestoreFromBackupToolStripMenuItem.Visible = false;
+                mTools_CleanUnreferencedAudioMenuItem.Enabled = false;
             }
             else
                 return;
@@ -3250,7 +3252,7 @@ namespace Obi
 
         private void RestoreProjectFromMainProject()
         {
-           
+            
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
             OpenProject_Safe(m_OriginalPath);
@@ -3258,7 +3260,7 @@ namespace Obi
 
             m_RestoreProjectFilePath = null;
             m_OriginalPath = null;
-
+            mTools_CleanUnreferencedAudioMenuItem.Enabled = true;
             m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
             m_RestoreFromBackupToolStripMenuItem.Visible = true;
         }
@@ -3283,6 +3285,7 @@ namespace Obi
                     m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
                     m_RestoreFromBackupToolStripMenuItem.Visible = true;
                     m_RestoreProjectFilePath = null;
+                    mTools_CleanUnreferencedAudioMenuItem.Enabled = true;
                     return true;                    
                 }
                 else
