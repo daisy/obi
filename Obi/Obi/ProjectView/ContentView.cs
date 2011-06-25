@@ -932,6 +932,7 @@ namespace Obi.ProjectView
                 add.UpdateSelection = false;
                 add.ProgressPercentage = 0;
                 command.ChildCommands.Insert (command.ChildCommands.Count,  add );
+                if (!section.Used) command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.ToggleNodeUsed(mProjectView,sibling));
 
                 // Change parents of children to insert the section at the right position in strip order
                 for (int i = section.SectionChildCount - 1; i >= 0; --i)
