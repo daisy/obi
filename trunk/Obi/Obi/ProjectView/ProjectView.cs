@@ -2167,44 +2167,18 @@ namespace Obi.ProjectView
                     {/* do nothing */ }
                     else
                         {
+                        // before deleting first node, delete second node so that delete is in order else it will create problem in undo
+                            if (secondNode != null)
+                            {
+                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
+                                listOfNodesToMerge.Insert(0, secondNode);
+                                secondNode = null;
+                            }
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, firstNode, false ) );
                         //Console.WriteLine ( "deleting in merge " + firstNode );
                         }
                     }
     
-                /*
-                EmptyNode node = section.PhraseChild ( i );
-                EmptyNode next = section.PhraseChild ( i+1 );
-                if (node is PhraseNode
-                    || (!(node is PhraseNode) && !(next is PhraseNode)) )
-                    {
-                    if (next.Role_ == EmptyNode.Role.Heading)
-                        {
-                        phraseRole = next;
-                                                }
-                    
-                                        if (next is PhraseNode)
-                        {
-                        Commands.Command mergeCmd = new Commands.Node.MergeAudio ( this, (PhraseNode)node, (PhraseNode)next );
-                        mergeCmd.UpdateSelection = false;
-                        if (i == startIndex || progressPercent > 98) progressPercent = 98;
-                        if ((i - startIndex) % progressInterval == 0) mergeCmd.ProgressPercentage = progressPercent += 2;
-                        command.ChildCommands.Insert(command.ChildCommands.Count, mergeCmd);
-                        }
-                    else
-                        {
-                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, next,false ) );
-                        }
-                    }
-                else
-                    {
-                                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, node, false ) );
-                    }
-
-                //urakawa.command.Command mergeCommand = Obi.Commands.Node.MergeAudio.GetMergeCommand( this, section.PhraseChild ( i ), section.PhraseChild ( i+1 ));
-                
-                //command.ChildCommands.Insert(command.ChildCommands.Count, mergeCommand);
-                 */ 
                 }
                 PhraseNode tempNode = mPresentation.CreatePhraseNode();
                 if (listOfNodesToMerge.Count > 0)
