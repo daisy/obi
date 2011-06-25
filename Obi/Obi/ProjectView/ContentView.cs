@@ -4533,7 +4533,9 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
             Context_AddSectionMenuItem.Enabled = mProjectView.CanAddSection;
             Context_InsertSectionMenuItem.Enabled = mProjectView.CanInsertSection;
             Context_SplitSectionMenuItem.Enabled = CanSplitStrip && !mProjectView.TransportBar.IsRecorderActive;
-            Context_MergeSectionWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            //Context_MergeSectionWithNextMenuItem.Enabled = mProjectView.CanMergeStripWithNext;             
+            Context_MergeSectionMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
+            MessageBox.Show(mProjectView.CanMergeStripWithNext.ToString());
             Context_AddBlankPhraseMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
             Context_AddEmptyPagesMenuItem.Enabled = mProjectView.CanAddEmptyBlock && !mProjectView.TransportBar.IsRecorderActive;
             Context_ImportAudioFilesMenuItem.Enabled = mProjectView.CanImportPhrases;
@@ -5013,6 +5015,16 @@ Block lastBlock = ActiveStrip.LastBlock ;
         private void exportAudioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mProjectView.ExportAudioOfSelectedNode();
+        }
+
+        private void Context_MergeSectionWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeStrips();
+        }
+
+        private void Context_MergeMultipleSectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mProjectView.MergeMultipleSections();
         }
 
         //@ShowSingleSection
