@@ -51,7 +51,7 @@ namespace Obi
             {
             mShowWelcomWindow = true;
             InitializeObi ();
-            if (ShouldOpenLastProject) OpenProject_Safe ( mSettings.LastOpenProject );
+            
             m_IsSaveActive = false;
             m_DefaultSettings = Settings.GetDefaultSettings();
             }
@@ -987,6 +987,7 @@ namespace Obi
         private void ObiForm_Load ( object sender, EventArgs e )
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
+                if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject);
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
         
             UpdateKeyboardFocusForSelection();            
@@ -2247,6 +2248,7 @@ namespace Obi
                     {
                         mPeakMeter = null;
                         mShowPeakMeterMenuItem.Checked = false;
+                        if (this.WindowState == FormWindowState.Normal) this.Size = mSettings.ObiFormSize;
                     } );
                 if (this.WindowState != FormWindowState.Minimized)
                     {
