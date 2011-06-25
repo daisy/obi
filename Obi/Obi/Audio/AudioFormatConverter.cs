@@ -71,6 +71,11 @@ namespace Obi.Audio
                     AudioLibPCMFormat pcmFormat = new AudioLibPCMFormat((ushort)channels, (uint)samplingRate, (ushort)bitDepth);
                     convertedFile = audioConverter.UnCompressMp3File(filePath, directoryPath, pcmFormat);
                 }
+                else
+                {
+                    MessageBox.Show(string.Format(Localizer.Message("AudioFormatConverter_Error_FileExtentionNodSupported"), filePath), Localizer.Message("Caption_Error"));
+                    return null;
+                }
                 // rename converted file to original file if names are different
                 if (Path.GetFileName(filePath) != Path.GetFileName(convertedFile))
                 {

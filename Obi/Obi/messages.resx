@@ -1896,4 +1896,7 @@ Error text: {1}</value>
   <data name="open_from_backup_file" xml:space="preserve">
     <value>The project will open from backup file. Do you wish to continue?</value>
   </data>
+  <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
+    <value>audio format not recognized. Only .wav and .mp3 files are supported. Skipping import of {0}</value>
+  </data>
 </root>
