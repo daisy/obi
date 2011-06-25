@@ -685,12 +685,42 @@ namespace Obi.ProjectView
                 {
                     // handle selection to avoid exception if selected node is deleted
                     int sectionPosition = -1;
+                    
                     if (GetSelectedPhraseSection != null && (!GetSelectedPhraseSection.Used))
                     {
                         sectionPosition = GetSelectedPhraseSection.Position;
                         Selection = null;
                     }
 
+                    // update selection if unused phrase is selected as it will be deleted
+                    if (Selection != null && Selection.Node is EmptyNode && !((EmptyNode)Selection.Node).Used && GetSelectedPhraseSection.Used) 
+                    {
+                        EmptyNode currentlySelectedEmptyNode = (EmptyNode)Selection.Node ;
+                        SectionNode currentlySelectedSection = currentlySelectedEmptyNode.ParentAs<SectionNode> ();
+                        
+                        ObiNode newSelectionNode = null ;
+                        for (int i = currentlySelectedEmptyNode.Index; i < currentlySelectedSection.PhraseChildCount ; i++)
+                        {
+                            if (currentlySelectedSection.PhraseChild(i).Used)
+                            {
+                                newSelectionNode = currentlySelectedSection.PhraseChild(i);
+                                break;
+                            }
+                        }
+                        if (currentlySelectedEmptyNode == null)
+                        {
+                            for (int i = currentlySelectedEmptyNode.Index; i >= 0; i--)
+                            {
+                                if (currentlySelectedSection.PhraseChild(i).Used)
+                                {
+                                    newSelectionNode = currentlySelectedSection.PhraseChild(i);
+                                    break;
+                                }
+                            }
+                        }
+                        if (newSelectionNode == null) newSelectionNode = currentlySelectedSection;
+                        if (newSelectionNode != null) Selection = new NodeSelection(newSelectionNode, mContentView);
+                    }
                     CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
                     // Collect silence node deletion commands separately in case the user wants to keep them.
                     List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
