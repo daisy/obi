@@ -152,9 +152,11 @@ namespace Obi.Dialogs
         //    mAudioCluesCheckBox.Checked = mSettings.AudioClues;
             if (this.mTab.SelectedTab == mAudioTab)
             {
+                m_IsComplete = false;
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.PreviewBeforeRecording;
+                m_IsComplete = true;
             }
             }
 
