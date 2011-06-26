@@ -972,6 +972,7 @@ namespace Obi.ProjectView
             }
             else if (node != null)
             {
+                if (!node.IsRooted) return;
                 mLocalPlaylist = new Playlist(mPlayer, mView.Selection , mPlayQAPlaylist);
                 SetPlaylistEvents(mLocalPlaylist);
                 mCurrentPlaylist = mLocalPlaylist;
