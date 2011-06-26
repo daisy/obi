@@ -923,7 +923,10 @@ namespace Obi.ProjectView
                 SectionNode section = node.ParentAs<SectionNode> ();
                 command = mProjectView.Presentation.CommandFactory.CreateCompositeCommand ();
                 command.ShortDescription = Localizer.Message ( "split_section" ) ;
-                command.ChildCommands.Insert (command.ChildCommands.Count,  new Commands.UpdateSelection ( mProjectView, new NodeSelection ( node, this ) ) );
+
+                Commands.UpdateSelection initialSelection = new Commands.UpdateSelection ( mProjectView, new NodeSelection ( node, this ) ) ;
+                initialSelection.RefreshSelectionForUnexecute = true;
+                command.ChildCommands.Insert (command.ChildCommands.Count, initialSelection );
                 // Add a sibling with a new label
                 SectionNode sibling = mProjectView.Presentation.CreateSectionNode ();
                 sibling.Label = section.Label + "*";
