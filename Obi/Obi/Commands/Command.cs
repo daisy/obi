@@ -164,13 +164,20 @@ namespace Obi.Commands
     public class UpdateSelection : Command
     {
         private NodeSelection mSelectionAfter;
+        private bool m_RefreshSelectionForUnexecute;
 
         public UpdateSelection(ProjectView.ProjectView view, NodeSelection selection)
             : base(view)
         {
             mSelectionAfter = selection;
+            m_RefreshSelectionForUnexecute = false;
         }
 
+        public bool RefreshSelectionForUnexecute
+        {
+            get { return m_RefreshSelectionForUnexecute; }
+            set { m_RefreshSelectionForUnexecute = value; }
+        }
         public override bool CanExecute { get { return true; } }
 
         public override void Execute()
@@ -184,9 +191,20 @@ namespace Obi.Commands
             if (mSelectionAfter == null
                 || (mSelectionAfter.Node != null && mSelectionAfter.Node.IsRooted))
                 {
-                base.UnExecute ();
+                if (!UpdateRefreshedSelection () )  base.UnExecute ();
                 }
             }
+        private bool UpdateRefreshedSelection()
+        {
+            if (ProgressPercentage >= 0) View.TriggerProgressChangedEvent("command", 100 - ProgressPercentage);//@singleSection
+            if (UpdateSelection && m_RefreshSelectionForUnexecute && SelectionBefore != null)
+            {
+                View.Selection = new NodeSelection(SelectionBefore.Node, SelectionBefore.Control);
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }
