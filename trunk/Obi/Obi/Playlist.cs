@@ -1153,7 +1153,22 @@ namespace Obi
             }
         }
 
-
+        public void SanitizePlaylist()
+        {
+            for (int i = 0; i < mPhrases.Count; i++)
+            {
+                EmptyNode currentlyActivePhrase = CurrentPhrase ;
+                if ( !mPhrases[i].IsRooted 
+                    || !(mPhrases[i] is PhraseNode ))
+                {
+                    mPhrases.Remove (mPhrases[i]) ;
+                    if (currentlyActivePhrase == mPhrases[i])
+                    {
+                        if (i > 0) mCurrentPhraseIndex = i - 1;
+                    }
+                }
+            }
+        }
 
 
     }
