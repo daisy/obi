@@ -702,6 +702,8 @@ namespace Obi
                     }
                     if (resultBookmark == DialogResult.No)
                         m_ShouldBookmark = false;*/
+                    if (mProjectView.TransportBar.IsActive)
+                        mProjectView.TransportBar.Stop();
                     Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(IsBookmarkChanged, !mSession.CanClose);
                     resultBookmark.ShowDialog();
                     if (resultBookmark.DialogResult == DialogResult.Cancel)
