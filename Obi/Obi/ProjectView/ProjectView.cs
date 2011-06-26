@@ -2163,7 +2163,10 @@ namespace Obi.ProjectView
                     }
                 }
             //MessageBox.Show ( nodeToSelect.ToString () );
-            command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection ( this, new NodeSelection ( nodeToSelect != null ? nodeToSelect : section.PhraseChild ( startIndex ), Selection.Control ) ) );
+
+            Commands.UpdateSelection initialSelection = new Commands.UpdateSelection ( this, new NodeSelection ( nodeToSelect != null ? nodeToSelect : section.PhraseChild ( startIndex ), Selection.Control ) ) ;
+            initialSelection.RefreshSelectionForUnexecute = true ;
+            command.ChildCommands.Insert(command.ChildCommands.Count,initialSelection );
             
             EmptyNode phraseRole = null;
             
