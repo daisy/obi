@@ -827,11 +827,16 @@ namespace Obi
                      if(cleaner != null )  cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog ();
                     if (progress.Exception != null) throw progress.Exception;
+
+                    if (!m_IsAutoSaveActive)
+                    {
+                        if (!mSession.CanSave) mSession.PresentationHasChanged(1);
+                        m_IsAutoSaveActive = true;
+                        SaveToBackup();
+                        m_IsAutoSaveActive = false;
+                    }
                     mSession.ForceSave ();
 
-                    m_IsAutoSaveActive = true;
-                    SaveToBackup();
-                    m_IsAutoSaveActive = false;
                     }
                 catch (Exception e)
                     {
