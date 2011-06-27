@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.ComponentModel;
 using urakawa.core;
 using urakawa.data;
 using PipelineInterface;
@@ -1008,18 +1009,27 @@ namespace Obi
             if (mProjectView != null && mProjectView.Selection != null)
             {
                 System.ComponentModel.BackgroundWorker moveFocusToSelectionBkWorker = new System.ComponentModel.BackgroundWorker();
-                moveFocusToSelectionBkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate
-                {
-                    bool statusOfSelectionChangedPlaybackEnabled =  mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
-                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
-                    mProjectView.Selection = new NodeSelection(mProjectView.Selection.Node, mProjectView.Selection.Control);
-                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = statusOfSelectionChangedPlaybackEnabled;
-                });
+                moveFocusToSelectionBkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(moveFocusToSelectionBkWorker_RunWorkerCompleted);
+                
                 moveFocusToSelectionBkWorker.RunWorkerAsync();
             }
         }
 
-        
+        public void moveFocusToSelectionBkWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new RunWorkerCompletedEventHandler(moveFocusToSelectionBkWorker_RunWorkerCompleted), sender, e) ;
+            }
+            else
+            {
+                bool statusOfSelectionChangedPlaybackEnabled = mProjectView.TransportBar.SelectionChangedPlaybackEnabled;
+                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = false;
+                mProjectView.Selection = new NodeSelection(mProjectView.Selection.Node, mProjectView.Selection.Control);
+                mProjectView.TransportBar.SelectionChangedPlaybackEnabled = statusOfSelectionChangedPlaybackEnabled;
+            }
+        }
+
         // Show the welcome dialog
         private void ShowWelcomeDialog ()
             {
