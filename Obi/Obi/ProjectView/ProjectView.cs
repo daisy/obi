@@ -1791,7 +1791,7 @@ namespace Obi.ProjectView
                 string[] paths = SelectFilesToImport ();
                 if (paths != null)
                     {
-                    for ( int i = 0 ; i < paths.Length; i++ ) MessageBox.Show (System.IO.Path.GetFileName ( paths[i]));
+                    
                     Dialogs.ImportFileSplitSize dialog =
                         new Dialogs.ImportFileSplitSize ( ObiForm.Settings.SplitPhrasesOnImport,
                             ObiForm.Settings.MaxPhraseDurationMinutes );
