@@ -156,7 +156,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.PreviewBeforeRecording;
+                m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
                 m_IsComplete = true;
+
             }
             }
 
@@ -571,6 +573,7 @@ namespace Obi.Dialogs
                 mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
                 mSettings.RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
                 mSettings.PreviewBeforeRecording = m_CheckBoxListView.Items[2].Checked;
+                mSettings.AllowOverwrite = m_CheckBoxListView.Items[3].Checked;
             }
         }
 
@@ -582,16 +585,18 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(267, 60);
+                m_CheckBoxListView.Size = new Size(320, 60);
                 m_CheckBoxListView.Location = new Point(185, 269);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
                 m_CheckBoxListView.Items.Add("Preview Before Recording");
-                m_grpBoxChkBoxListView.Size = new Size(390, 70);
+                m_CheckBoxListView.Items.Add("Allow overwrite");
+                m_grpBoxChkBoxListView.Size = new Size(450, 70);
                 m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.PreviewBeforeRecording;
+                m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -655,6 +660,7 @@ namespace Obi.Dialogs
                 mSettings.AudioClues = m_DefaultSettings.AudioClues;                
                 mSettings.RetainInitialSilenceInPhraseDetection = m_DefaultSettings.RetainInitialSilenceInPhraseDetection;
                 mSettings.PreviewBeforeRecording = m_DefaultSettings.PreviewBeforeRecording;
+                mSettings.AllowOverwrite = m_DefaultSettings.AllowOverwrite;
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
