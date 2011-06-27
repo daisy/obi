@@ -248,7 +248,14 @@ namespace Obi
         {
             get
             {
-                if (mPlayer.CurrentAudioPCMFormat == null || mPlayer.CurrentBytePosition == 0) return 0;
+                
+                    if (mPlayer.CurrentAudioPCMFormat == null || mPlayer.CurrentBytePosition == 0)
+                    {
+                        // work around for limitation in new player that do not allow setting of pause time after stop
+                        if (State == AudioPlayer.State.Paused && this is PreviewPlaylist)  return ((PreviewPlaylist)this).RevertTime;
+
+                        return 0;
+                    }
                 return (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) / Time.TIME_UNIT;
             }
             set
