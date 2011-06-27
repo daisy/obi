@@ -695,7 +695,7 @@ namespace Obi.Dialogs
             
                  m_lvShortcutKeysList.Items.Clear();
                  LoadListviewAccordingToComboboxSelection();
-                 InitializeKeyboardShortcutsTab();
+                 //InitializeKeyboardShortcutsTab();
                 // Not required it already has reset button.
             }
         }
