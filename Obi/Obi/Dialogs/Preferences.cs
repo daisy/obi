@@ -408,16 +408,27 @@ namespace Obi.Dialogs
             {
                 m_txtShortcutKeys.Text = m_CapturedKey.ToString();
                 m_txtShortcutKeys.SelectAll();
+                if (e.KeyData == Keys.Enter)
+                {
+                    AssignKeyboardShortcut();
+                    e.Handled = true;
+                }
             }
         }
 
         private void m_txtShortcutKeys_Enter(object sender, EventArgs e)
         {
             m_txtShortcutKeys.SelectAll();
+            this.AcceptButton = null;
         }
         
         private void m_btnAssign_Click(object sender, EventArgs e)
         {
+            AssignKeyboardShortcut();
+        }
+
+        private void AssignKeyboardShortcut ()
+    {
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0 && m_CapturedKey != Keys.None)
             {
                 if( m_KeyboardShortcuts.IsDuplicate(m_CapturedKey))
@@ -638,7 +649,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = false;
                 m_grpBoxChkBoxListView.Visible = false;
             }
+            if (!m_txtShortcutKeys.Focused) this.AcceptButton = mOKButton;
         }
+
         private void ResetPreferences()
         {
             if (mTab.SelectedTab == mProjectTab)// Default settings for Project tab
@@ -690,6 +703,11 @@ namespace Obi.Dialogs
         private void button1_Click(object sender, EventArgs e)
         {
             ResetPreferences();
+        }
+
+        private void m_txtShortcutKeys_Leave(object sender, EventArgs e)
+        {
+            this.AcceptButton = mOKButton;
         }
         }
     }
