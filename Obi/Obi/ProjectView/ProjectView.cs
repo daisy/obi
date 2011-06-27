@@ -3308,7 +3308,12 @@ namespace Obi.ProjectView
             if (!CanExportSelectedNodeAudio) return;
             string audioFileExportDirectory = ObiForm.ExportAudioDirectory;
             ObiNode nodeSelected = this.Selection.Node;
-            if (nodeSelected.Duration == 0)
+            double durationOfSelection = nodeSelected is PhraseNode ? nodeSelected.Duration : 0;
+            if (nodeSelected is SectionNode)
+            {
+                for (int i = 0; i < ((SectionNode)nodeSelected).PhraseChildCount; i++) durationOfSelection += ((SectionNode)nodeSelected).PhraseChild(i).Duration;
+            }
+            if (durationOfSelection == 0)
             {
                 MessageBox.Show(Localizer.Message("no_audio"));
                 return;
