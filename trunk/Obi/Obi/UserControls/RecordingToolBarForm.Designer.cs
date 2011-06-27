@@ -167,6 +167,7 @@ namespace Obi.UserControls
             this.m_recordingToolBarNextSectionBtn.Name = "m_recordingToolBarNextSectionBtn";
             this.m_recordingToolBarNextSectionBtn.Size = new System.Drawing.Size(32, 32);
             this.m_recordingToolBarNextSectionBtn.Text = "Goto Next S&ection";
+            this.m_recordingToolBarNextSectionBtn.ToolTipText = "Goto Next Section";
             this.m_recordingToolBarNextSectionBtn.Click += new System.EventHandler(this.m_recordingToolBarNextSectionBtn_Click);
             // 
             // m_TODOBtn
