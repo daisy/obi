@@ -1277,6 +1277,7 @@ namespace Obi
             // 
             resources.ApplyResources(this.mHelp_newFeaturestoolStripMenuItem, "mHelp_newFeaturestoolStripMenuItem");
             this.mHelp_newFeaturestoolStripMenuItem.Name = "mHelp_newFeaturestoolStripMenuItem";
+            this.mHelp_newFeaturestoolStripMenuItem.Visible = false;
             this.mHelp_newFeaturestoolStripMenuItem.Click += new System.EventHandler(this.mHelp_newFeaturestoolStripMenuItem_Click);
             // 
             // mHelp_ContentsMenuItem
