@@ -485,6 +485,7 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.m_txtShortcutKeys, "m_txtShortcutKeys");
             this.m_txtShortcutKeys.Name = "m_txtShortcutKeys";
             this.m_txtShortcutKeys.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyDown);
+            this.m_txtShortcutKeys.Leave += new System.EventHandler(this.m_txtShortcutKeys_Leave);
             this.m_txtShortcutKeys.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_txtShortcutKeys_KeyUp);
             this.m_txtShortcutKeys.Enter += new System.EventHandler(this.m_txtShortcutKeys_Enter);
             // 
