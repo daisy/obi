@@ -179,10 +179,6 @@
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.AccessibleName" xml:space="preserve">
     <value>Restore from original project</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="m_RestoreFromOriginalProjectToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>281, 22</value>
   </data>
@@ -235,10 +231,10 @@
     <value>278, 6</value>
   </data>
   <data name="openrecentSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>116, 6</value>
   </data>
   <data name="mFile_ClearListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>119, 22</value>
   </data>
   <data name="mFile_ClearListMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear list</value>
@@ -534,6 +530,7 @@
   <data name="mFocusOnStripsViewToolStripMenuItem.Text" xml:space="preserve">
     <value>Focus on co&amp;ntent view</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mFocusOnStripsViewToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1711,7 +1708,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.898, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.32026, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1984,9 +1981,6 @@
         CjyAD09DwA9QRcAfbGngHyBQ8H9MSf//Ii0=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Obi</value>
   </data>
@@ -2018,6 +2012,12 @@
     <value>m_RestoreFromBackupToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;m_RestoreFromBackupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
+    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mFile_CloseProjectMenuItem.Name" xml:space="preserve">
@@ -2925,12 +2925,6 @@
   </data>
   <data name="&gt;&gt;mStatusProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Name" xml:space="preserve">
-    <value>m_RestoreFromOriginalProjectToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_RestoreFromOriginalProjectToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ObiForm</value>
