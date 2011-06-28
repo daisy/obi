@@ -289,7 +289,7 @@ namespace Obi
                     
                     Obi.ImportExport.DAISY3_ObiImport.getTitleFromOpfFile(path, ref title, ref dtbUid);
                 }
-                if(strExtension == ".xhtml" || strExtension == ".html")
+                if(strExtension == ".xhtml" || strExtension == ".html" || strExtension == ".htm")
                     title = ImportExport.ImportStructure.GrabTitle ( new Uri ( path ));
                 else if (strExtension == ".xml")
                     title = ImportExport.DAISY3_ObiImport.getTitleFromDtBookFile(path);
@@ -325,7 +325,7 @@ namespace Obi
                             {
                                 //CreateNewProject(dialog.Path, dialog.Title, false, dialog.ID);
                                 //(new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
-                                isProjectCreated = ImportStructureFromXHtml (dialog.Path, dialog.Title, dialog.ID);
+                                isProjectCreated = ImportStructureFromXHtml (dialog.Path , dialog.Title, dialog.ID, path);
                             }
                             if (!isProjectCreated) return false;
 
@@ -381,17 +381,31 @@ namespace Obi
             return !import.RequestCancellation;
         }
 
-        private bool ImportStructureFromXHtml(string path, string title, string id)
+        private bool ImportStructureFromXHtml(string path, string title, string id, string xhtmlPath)
         {
             ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                     delegate(ProgressDialog progress1)
                     {
-            CreateNewProject(path, title, false, id);
-            (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(path, mSession.Presentation);
+                        ImportStructureFromXHtml_ThreadSafe(path, title, id, xhtmlPath);
         });
             progress.ShowDialog();
             if (progress.Exception != null) throw progress.Exception;
             return true;
+        }
+
+        private delegate void ImportStructureFromXHtml_Delegate(string path, string title, string id, string xhtmlPath);
+
+        private void ImportStructureFromXHtml_ThreadSafe(string path, string title, string id, string xhtmlPath)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new ImportStructureFromXHtml_Delegate(ImportStructureFromXHtml_ThreadSafe), path, title, id, xhtmlPath);
+            }
+            else
+            {
+                CreateNewProject(path, title, false, id);
+                (new Obi.ImportExport.ImportStructure()).ImportFromXHTML(xhtmlPath, mSession.Presentation);
+            }
         }
 
         // Open a new project after showing a file open dialog.
