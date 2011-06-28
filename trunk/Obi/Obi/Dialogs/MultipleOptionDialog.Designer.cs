@@ -50,10 +50,10 @@ namespace Obi.Dialogs
             this.m_rdb_SaveBookmarkAndProject.AutoSize = true;
             this.m_rdb_SaveBookmarkAndProject.Location = new System.Drawing.Point(45, 51);
             this.m_rdb_SaveBookmarkAndProject.Name = "m_rdb_SaveBookmarkAndProject";
-            this.m_rdb_SaveBookmarkAndProject.Size = new System.Drawing.Size(158, 17);
+            this.m_rdb_SaveBookmarkAndProject.Size = new System.Drawing.Size(238, 17);
             this.m_rdb_SaveBookmarkAndProject.TabIndex = 1;
             this.m_rdb_SaveBookmarkAndProject.TabStop = true;
-            this.m_rdb_SaveBookmarkAndProject.Text = "Save &Bookmark and Project";
+            this.m_rdb_SaveBookmarkAndProject.Text = "Save project and selected item as &bookmark ";
             this.m_rdb_SaveBookmarkAndProject.UseVisualStyleBackColor = true;
             this.m_rdb_SaveBookmarkAndProject.CheckedChanged += new System.EventHandler(this.m_rdb_SaveBookmarkAndProject_CheckedChanged);
             // 
@@ -62,10 +62,10 @@ namespace Obi.Dialogs
             this.m_rdb_SaveProjectOnly.AutoSize = true;
             this.m_rdb_SaveProjectOnly.Location = new System.Drawing.Point(45, 74);
             this.m_rdb_SaveProjectOnly.Name = "m_rdb_SaveProjectOnly";
-            this.m_rdb_SaveProjectOnly.Size = new System.Drawing.Size(110, 17);
+            this.m_rdb_SaveProjectOnly.Size = new System.Drawing.Size(107, 17);
             this.m_rdb_SaveProjectOnly.TabIndex = 3;
             this.m_rdb_SaveProjectOnly.TabStop = true;
-            this.m_rdb_SaveProjectOnly.Text = "Save P&roject Only";
+            this.m_rdb_SaveProjectOnly.Text = "Save p&roject only";
             this.m_rdb_SaveProjectOnly.UseVisualStyleBackColor = true;
             this.m_rdb_SaveProjectOnly.CheckedChanged += new System.EventHandler(this.m_rdb_SaveProjectOnly_CheckedChanged);
             // 
@@ -109,7 +109,7 @@ namespace Obi.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.m_btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(293, 175);
+            this.ClientSize = new System.Drawing.Size(303, 185);
             this.Controls.Add(this.m_btn_Cancel);
             this.Controls.Add(this.m_btn_OK);
             this.Controls.Add(this.m_rdb_DiscardBoth);
@@ -120,7 +120,7 @@ namespace Obi.Dialogs
             this.MaximumSize = new System.Drawing.Size(309, 211);
             this.MinimumSize = new System.Drawing.Size(309, 211);
             this.Name = "MultipleOptionDialog";
-            this.Text = "MultipleOptionDialog";
+            this.Text = "Multiple Option Dialog";
             this.ResumeLayout(false);
             this.PerformLayout();
 
