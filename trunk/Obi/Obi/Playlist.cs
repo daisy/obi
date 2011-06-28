@@ -869,14 +869,14 @@ namespace Obi
             {
                 AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
                 mPlaylistState = AudioPlayer.State.Stopped;
-                mPlayer.PlaybackFwdRwdRate = 0;
+                //mPlayer.PlaybackFwdRwdRate = 0; //moved after stop
                 mCurrentPhraseIndex = 0;
                 mElapsedTime = 0.0;
 
                 mPlayer.AudioPlaybackFinished -= new AudioPlayer.AudioPlaybackFinishHandler(Playlist_MoveToNextPhrase);
 
                 mPlayer.Stop();
-                
+                mPlayer.PlaybackFwdRwdRate = 0;
                 if (StateChanged != null) StateChanged(this, evargs);
             }
         }
