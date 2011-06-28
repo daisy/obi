@@ -382,6 +382,11 @@ namespace Obi.Dialogs
 
         private void m_lvShortcutKeysList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ShowSelectedShortcutKeyInKeyboardShortcutTextbox();
+        }
+
+        private void ShowSelectedShortcutKeyInKeyboardShortcutTextbox ()
+    {
             if (m_lvShortcutKeysList.SelectedIndices.Count > 0 && m_lvShortcutKeysList.SelectedIndices[0] >= 0)
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
@@ -434,6 +439,8 @@ namespace Obi.Dialogs
                 if( m_KeyboardShortcuts.IsDuplicate(m_CapturedKey))
                 {
                     MessageBox.Show(Localizer.Message("KeyboardShortcut_DuplicateMessage"), Localizer.Message ("Caption_Error"));
+                    m_CapturedKey = Keys.None;
+                    ShowSelectedShortcutKeyInKeyboardShortcutTextbox();
                     m_txtShortcutKeys.Focus();
                     return;
                 }
@@ -461,6 +468,8 @@ namespace Obi.Dialogs
                 catch (System.Exception ex)
                 {
                     MessageBox.Show(string.Format ( Localizer.Message ( "Preference_InvalidKeyExceptionMsg" ), "\n\n",ex.ToString()),"Invalid Key Pressed",MessageBoxButtons.OK,MessageBoxIcon.Error );
+                    m_CapturedKey = Keys.None;
+                    ShowSelectedShortcutKeyInKeyboardShortcutTextbox();
                     m_txtShortcutKeys.Focus();
                     return false;
                 }
