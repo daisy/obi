@@ -195,12 +195,16 @@ namespace Obi
             if (m_OriginalPath == null)
             {
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
+                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
                 m_RestoreFromBackupToolStripMenuItem.Visible = true;
+                m_RestoreFromBackupToolStripMenuItem.Enabled = true;
             }
             else
             {
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
+                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
                 m_RestoreFromBackupToolStripMenuItem.Visible = false;
+                m_RestoreFromBackupToolStripMenuItem.Enabled = false;
             }
             mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
             mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
@@ -3280,7 +3284,9 @@ namespace Obi
                     ProjectHasChanged(1);
                 }
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
+                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
                 m_RestoreFromBackupToolStripMenuItem.Visible = false;
+                m_RestoreFromBackupToolStripMenuItem.Enabled = false;
                 mTools_CleanUnreferencedAudioMenuItem.Enabled = false;
             }
             else
@@ -3299,7 +3305,9 @@ namespace Obi
             m_OriginalPath = null;
             mTools_CleanUnreferencedAudioMenuItem.Enabled = true;
             m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
+            m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false;
             m_RestoreFromBackupToolStripMenuItem.Visible = true;
+            m_RestoreFromBackupToolStripMenuItem.Enabled = true;
         }
 
         private bool? FreezeChangesFromProjectRestore()
@@ -3320,7 +3328,9 @@ namespace Obi
                     if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
 
                     m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
+                    m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = false; 
                     m_RestoreFromBackupToolStripMenuItem.Visible = true;
+                    m_RestoreFromBackupToolStripMenuItem.Enabled = true;
                     m_RestoreProjectFilePath = null;
                     mTools_CleanUnreferencedAudioMenuItem.Enabled = true;
                     return true;                    
