@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0881A388C0AE4CA8AE4525FE9018FA26"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0C27CA3D3D864B00BA4211B71F13C912"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,12 +41,6 @@
         {
         "MsmKey" = "8:_0DD587BFF14019D3D55831A3B7744199"
         "OwnerKey" = "8:_848E4111CBDD421E86CA3F513CA40E8F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_107E7ECA5D174D3D95B956192E1C1BAD"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -291,12 +279,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2C8F68CC12A45DC89B4C4205FC2929C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B502D953544F854B822418E34D69D42C"
         "OwnerKey" = "8:_30750626AD8CE68E027DDD2BA8FD014C"
         "MsmSig" = "8:_UNDEFINED"
@@ -311,12 +293,6 @@
         {
         "MsmKey" = "8:_B502D953544F854B822418E34D69D42C"
         "OwnerKey" = "8:_5D74C0D378D74D17BD753426073D0BF5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B60AE3840FDA4A02B5CCA8DBBC7C88C1"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -370,12 +346,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D8D84DB8CB9E4AF390D6AF810CE6D609"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DA5712D63DF74D5E8CB889B58D749E2C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -448,12 +418,6 @@
         "Entry"
         {
         "MsmKey" = "8:_F0FCCB29F40E4974AE3C93D5A59B3A60"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F55035D1FEAD4E9BAFD48E881AB690E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -784,26 +748,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0881A388C0AE4CA8AE4525FE9018FA26"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\ncx.xslt"
-            "TargetName" = "8:ncx.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C27CA3D3D864B00BA4211B71F13C912"
             {
             "SourcePath" = "8:..\\..\\..\\..\\urakawa-sdk\\trunk\\csharp\\daisy\\tpbnarrator.res"
@@ -853,26 +797,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_107E7ECA5D174D3D95B956192E1C1BAD"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\Z.xslt"
-            "TargetName" = "8:Z.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_108B34500EE74A668BFA6AA5EF98EF7C"
@@ -1507,26 +1431,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2C8F68CC12A45DC89B4C4205FC2929C"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\filter.xslt"
-            "TargetName" = "8:filter.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B502D953544F854B822418E34D69D42C"
             {
             "AssemblyRegister" = "3:1"
@@ -1556,26 +1460,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B60AE3840FDA4A02B5CCA8DBBC7C88C1"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\package.xslt"
-            "TargetName" = "8:package.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD186E9E0B444AE8A01E6763C42B2219"
@@ -1709,31 +1593,11 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DA5712D63DF74D5E8CB889B58D749E2C"
-            {
-            "SourcePath" = "8:..\\Obi\\Obi 2.0 Alpha-New features help.htm"
-            "TargetName" = "8:Obi 2.0 Alpha-New features help.htm"
-            "Tag" = "8:"
-            "Folder" = "8:_4D3BED1A25304BAD92EA81B4D13F5EF1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DDACB71873D34E10AD85A172C194282D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:InstallerFileOperations, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_DDACB71873D34E10AD85A172C194282D"
@@ -1902,26 +1766,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F55035D1FEAD4E9BAFD48E881AB690E0"
-            {
-            "SourcePath" = "8:..\\Obi\\bin\\x86\\Debug\\Export\\smil.xslt"
-            "TargetName" = "8:smil.xslt"
-            "Tag" = "8:"
-            "Folder" = "8:_49D619D5B2BA490E997ED649933DD3C6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -1994,17 +1838,6 @@
                         {
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_49D619D5B2BA490E997ED649933DD3C6"
-                    {
-                    "Name" = "8:Export"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_77474AB183904A5BA9432BFCF5A9930F"
-                        "Folders"
-                        {
-                        }
-                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_C8760030D802432CB54734FC2FD0E73A"
                     {
                     "Name" = "8:hi"
@@ -2058,19 +1891,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Obi 2.0 alpha"
-        "ProductCode" = "8:{5C3E11A6-530E-46B1-94F9-373071B1C62E}"
-        "PackageCode" = "8:{E93081DD-7824-4BE0-A422-FA1DB45B5439}"
+        "ProductName" = "8:Obi 2.0 beta"
+        "ProductCode" = "8:{048793D9-6DB1-43D9-972D-5D2E0123AA1D}"
+        "PackageCode" = "8:{DC794495-2EE7-4EFA-B1B6-A0608B503D14}"
         "UpgradeCode" = "8:{358C2C3A-3686-4461-A8BA-9D766218CC5E}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.6.1"
+        "ProductVersion" = "8:1.7.1"
         "Manufacturer" = "8:The Urakawa Project"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.daisy.org/forums/obi"
-        "Title" = "8:Obi 2.0 alpha"
+        "Title" = "8:Obi 2.0 beta"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Obi development Team"
         "Keywords" = "8:"
@@ -2181,7 +2014,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0F34FEE7392245ED8C33C78EB0D2823B"
             {
-            "Name" = "8:Obi 2.0 alpha"
+            "Name" = "8:Obi 2.0 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -2209,7 +2042,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C26CA4074EF24904B9E49A74044A43B0"
             {
-            "Name" = "8:Obi 2.0 alpha"
+            "Name" = "8:Obi 2.0 beta"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
