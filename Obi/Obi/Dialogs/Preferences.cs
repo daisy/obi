@@ -610,7 +610,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
                 m_CheckBoxListView.Items.Add("Preview Before Recording");
-                m_CheckBoxListView.Items.Add("Allow overwrite");
+                m_CheckBoxListView.Items.Add("Allow overwrite while recording");
                 m_grpBoxChkBoxListView.Size = new Size(450, 70);
                 m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
