@@ -32,4 +32,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.7.1.*")]
 
 // There is a warning about this but it is harmless (1607)
-[assembly: AssemblyInformationalVersion("2.0 alpha")]
+[assembly: AssemblyInformationalVersion("2.0 beta")]
