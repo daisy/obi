@@ -191,7 +191,7 @@ namespace Obi
             mFile_NewProjectFromImportMenuItem.Enabled = true;
             mFile_OpenProjectMenuItem.Enabled = true;
             mFile_CloseProjectMenuItem.Enabled = mSession.HasProject;
-            m_RestoreFromBackupToolStripMenuItem.Enabled = mSession.HasProject;
+           // MessageBox.Show(mSession.HasProject.ToString());
             if (m_OriginalPath == null)
             {
                 m_RestoreFromOriginalProjectToolStripMenuItem.Visible = false;
@@ -206,6 +206,8 @@ namespace Obi
                 m_RestoreFromBackupToolStripMenuItem.Visible = false;
                 m_RestoreFromBackupToolStripMenuItem.Enabled = false;
             }
+
+            m_RestoreFromBackupToolStripMenuItem.Enabled = mSession.HasProject;
             mFile_SaveProjectMenuItem.Enabled = mSession.CanSave;
             mFile_SaveProjectAsMenuItem.Enabled = mSession.HasProject;
             mFile_RecentProjectMenuItem.Enabled = mSettings.RecentProjects.Count > 0;
