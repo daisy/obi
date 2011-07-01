@@ -1746,8 +1746,7 @@ namespace Obi
                                     mSession.Presentation, exportPath, dialog.EncodeToMP3, AudioLib.SampleRate.Hz44100, audioFileSectionLevel);
                             }
                             DAISYExport.BitRate_Mp3 = dialog.BitRate;
-
-                        Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , chooseDialog.chooseOption.ToString()));
+                        Status(String.Format(Localizer.Message("ObiFormStatusMsg_ExportingProject") , exportPath));
                                                 
                         ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "export_progress_dialog_title" ),
                             delegate (ProgressDialog progress1 )
