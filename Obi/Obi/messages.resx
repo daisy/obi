@@ -1379,7 +1379,7 @@ Error text: {1}</value>
     <value>File is exported at : </value>
   </data>
   <data name="ObiFormStatusMsg_ExportingProject" xml:space="preserve">
-    <value>Exporting project to... </value>
+    <value>Exporting project to {0}</value>
   </data>
   <data name="EachLevel" xml:space="preserve">
     <value>Each level</value>
