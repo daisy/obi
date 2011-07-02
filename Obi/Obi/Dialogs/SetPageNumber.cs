@@ -69,13 +69,14 @@ namespace Obi.Dialogs
             {
             
                 int num = EmptyNode.SafeParsePageNumber ( mNumberBox.Text );
+                int numberOfPages = EmptyNode.SafeParsePageNumber(mNumberOfPagesBox.Text);
             // apply a check if dialog is being used for go to page
                 if (m_GoToPage && num == 0 && mPageKindComboBox.SelectedIndex < 2)
                     {
                     MessageBox.Show ( Localizer.Message ( "PageNumber_ReEnterValidNumber") );
                     return;
                     }
-                if ((num == 0 && mPageKindComboBox.SelectedIndex < 2))
+                    if ((num == 0 && mPageKindComboBox.SelectedIndex < 2) || numberOfPages < 1)
                     //|| (num > 0 && mPageKindComboBox.SelectedIndex == 2)) // message should not appear for assigning special pages.
                     {
                        if (MessageBox.Show(Localizer.Message("PageDialog_InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
