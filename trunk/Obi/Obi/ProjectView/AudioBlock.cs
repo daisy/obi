@@ -127,6 +127,7 @@ namespace Obi.ProjectView
         {
             base.SetZoomFactorAndHeight(zoom, height);
             mRecordingLabel.Font = new Font(Font.FontFamily, zoom * mBaseFontSize);
+            mRecordingLabel.Location = new Point(0, mLabel.Height + mLabel.Location.Y);
             SetWaveform(mNode as PhraseNode);
         }
 
