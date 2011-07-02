@@ -1334,7 +1334,7 @@ namespace Obi
             mMergeSectionWithNextToolStripMenuItem.Enabled = mProjectView.CanMergeStripWithNext;
             mSectionIsUsedToolStripMenuItem.Enabled = mProjectView.CanSetSectionUsedStatus;
             mSectionIsUsedToolStripMenuItem.CheckedChanged -= new System.EventHandler ( mSectionIsUsedToolStripMenuItem_CheckedChanged );
-            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused;
+            mSectionIsUsedToolStripMenuItem.Checked = mProjectView.CanMarkSectionUnused || mProjectView.CanMarkStripUnused;
             mSectionIsUsedToolStripMenuItem.CheckedChanged += new System.EventHandler ( mSectionIsUsedToolStripMenuItem_CheckedChanged );
             }
 
