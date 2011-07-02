@@ -1662,6 +1662,7 @@ namespace Obi.ProjectView
         public bool CanShowSectionPropertiesDialog { get { return Selection != null && Selection.Node is SectionNode && Presentation != null && Presentation.FirstSection != null; } } // quick fix of inserting first section check to avoid a crash
 
         public bool CanMarkSectionUnused { get { return mTOCView.CanSetSectionUsedStatus && mSelection.Node.Used; } }
+        public bool CanMarkStripUnused { get { return mContentView.CanSetStripUsedStatus && mSelection.Node.Used; } }
         public bool CanMergeBlockWithNext { get { return mContentView.CanMergeBlockWithNext; } }
         public bool CanMergePhraseWithFollowingPhrasesInSection { get { return CanMergeBlockWithNext; } }
         public bool CanSplitPhrase { get { return mTransportBar.CanSplitPhrase; } }
