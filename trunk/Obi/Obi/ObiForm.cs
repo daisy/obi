@@ -2254,7 +2254,8 @@ namespace Obi
         {
             if (mRecordingToolBarForm == null)
             {
-                mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView.TransportBar);
+            //    mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView.TransportBar);
+                mRecordingToolBarForm = new Obi.UserControls.RecordingToolBarForm(mProjectView);
                 mRecordingToolBarForm.FormClosed += new FormClosedEventHandler(delegate(object sender, FormClosedEventArgs e)
                     {
                         mRecordingToolBarForm = null;

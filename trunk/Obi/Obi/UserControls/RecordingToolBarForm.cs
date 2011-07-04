@@ -34,11 +34,12 @@ namespace Obi.UserControls
             m_PlayImg = Image.FromStream(playStr);        
         }
             
-        public RecordingToolBarForm(ProjectView.TransportBar transportBar):this  ()
+        public RecordingToolBarForm(ProjectView.ProjectView projectView):this  ()
         {
-            m_TransportBar = transportBar;
+            m_TransportBar = projectView.TransportBar;
             m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
+            projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 UpdateButtons();
@@ -54,6 +55,9 @@ namespace Obi.UserControls
             UpdateStatus();
             UpdateButtons();
         }
+
+        public void projectview_Selection_Changed(object sender, EventArgs e)
+        { UpdateButtons(); }
 
         public void m_TransportBar_EnabledChanged(object sender, EventArgs e)
         {
@@ -77,8 +81,7 @@ namespace Obi.UserControls
         m_TimeCounter = 0;
         if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
            timer1.Start();
-        else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)
-            timer1.Stop();
+        else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)            timer1.Stop();
             UpdateStatus();
             UpdateButtons();           
         }
@@ -87,7 +90,8 @@ namespace Obi.UserControls
         {
             m_recordingToolBarPlayBtn.Enabled = !m_TransportBar.IsRecorderActive;
             m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
-            m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) ;
+            m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
+            m_recordingGoToNextPhraseBtn.Enabled = m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop && (m_TransportBar.IsPlayerActive || m_TransportBar.IsRecorderActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring));
             m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.CanNavigateNextPage;
             m_recordingToolBarPrePhraseBtn.Enabled = m_TransportBar.CanNavigatePrevPhrase;
             m_recordingGoToNextPhraseBtn.Enabled = m_TransportBar.CanNavigateNextPhrase;
@@ -132,7 +136,7 @@ namespace Obi.UserControls
         {
             m_TimeCounter = 0;
             if(m_TransportBar.CanStop)
-            m_TransportBar.Stop();
+                m_TransportBar.Stop();
             if (m_TransportBar.CurrentPlaylist.CurrentTimeInAsset == 0 &&
                 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording) &&
                 !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing) &&
