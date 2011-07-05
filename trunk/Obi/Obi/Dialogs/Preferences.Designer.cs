@@ -40,20 +40,20 @@ namespace Obi.Dialogs
             this.mOutputDeviceCombo = new System.Windows.Forms.ComboBox();
             this.mTab = new System.Windows.Forms.TabControl();
             this.mProjectTab = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.m_lblImportTolerance = new System.Windows.Forms.Label();
+            this.m_NumImportTolerance = new System.Windows.Forms.NumericUpDown();
             this.m_ChkAutoSaveInterval = new System.Windows.Forms.CheckBox();
-            this.mChkAutoSaveOnRecordingEnd = new System.Windows.Forms.CheckBox();
             this.MnumAutoSaveInterval = new System.Windows.Forms.NumericUpDown();
             this.mPipelineTextbox = new System.Windows.Forms.TextBox();
             this.mPipelineBrowseButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.mLastOpenCheckBox = new System.Windows.Forms.CheckBox();
             this.mAudioTab = new System.Windows.Forms.TabPage();
             this.m_OperationDurationUpDown = new System.Windows.Forms.NumericUpDown();
             this.m_cbOperation = new System.Windows.Forms.ComboBox();
             this.mlbOperation = new System.Windows.Forms.Label();
             this.mNoiseLevelComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.mAudioCluesCheckBox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mChannelsTextbox = new System.Windows.Forms.TextBox();
             this.mSampleRateTextbox = new System.Windows.Forms.TextBox();
@@ -86,6 +86,7 @@ namespace Obi.Dialogs
             this.m_ResetButton = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).BeginInit();
             this.mAudioTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_OperationDurationUpDown)).BeginInit();
@@ -165,13 +166,14 @@ namespace Obi.Dialogs
             // 
             // mProjectTab
             // 
+            this.mProjectTab.Controls.Add(this.label10);
+            this.mProjectTab.Controls.Add(this.m_lblImportTolerance);
+            this.mProjectTab.Controls.Add(this.m_NumImportTolerance);
             this.mProjectTab.Controls.Add(this.m_ChkAutoSaveInterval);
-            this.mProjectTab.Controls.Add(this.mChkAutoSaveOnRecordingEnd);
             this.mProjectTab.Controls.Add(this.MnumAutoSaveInterval);
             this.mProjectTab.Controls.Add(this.mPipelineTextbox);
             this.mProjectTab.Controls.Add(this.mPipelineBrowseButton);
             this.mProjectTab.Controls.Add(this.label9);
-            this.mProjectTab.Controls.Add(this.mLastOpenCheckBox);
             this.mProjectTab.Controls.Add(this.label2);
             this.mProjectTab.Controls.Add(this.mBrowseButton);
             this.mProjectTab.Controls.Add(this.mDirectoryTextbox);
@@ -179,18 +181,37 @@ namespace Obi.Dialogs
             this.mProjectTab.Name = "mProjectTab";
             this.mProjectTab.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // m_lblImportTolerance
+            // 
+            resources.ApplyResources(this.m_lblImportTolerance, "m_lblImportTolerance");
+            this.m_lblImportTolerance.Name = "m_lblImportTolerance";
+            // 
+            // m_NumImportTolerance
+            // 
+            this.m_NumImportTolerance.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.m_NumImportTolerance, "m_NumImportTolerance");
+            this.m_NumImportTolerance.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.m_NumImportTolerance.Name = "m_NumImportTolerance";
+            // 
             // m_ChkAutoSaveInterval
             // 
             resources.ApplyResources(this.m_ChkAutoSaveInterval, "m_ChkAutoSaveInterval");
             this.m_ChkAutoSaveInterval.Name = "m_ChkAutoSaveInterval";
             this.m_ChkAutoSaveInterval.UseVisualStyleBackColor = true;
             this.m_ChkAutoSaveInterval.CheckStateChanged += new System.EventHandler(this.m_ChkAutoSaveInterval_CheckStateChanged);
-            // 
-            // mChkAutoSaveOnRecordingEnd
-            // 
-            resources.ApplyResources(this.mChkAutoSaveOnRecordingEnd, "mChkAutoSaveOnRecordingEnd");
-            this.mChkAutoSaveOnRecordingEnd.Name = "mChkAutoSaveOnRecordingEnd";
-            this.mChkAutoSaveOnRecordingEnd.UseVisualStyleBackColor = true;
             // 
             // MnumAutoSaveInterval
             // 
@@ -230,12 +251,6 @@ namespace Obi.Dialogs
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // mLastOpenCheckBox
-            // 
-            resources.ApplyResources(this.mLastOpenCheckBox, "mLastOpenCheckBox");
-            this.mLastOpenCheckBox.Name = "mLastOpenCheckBox";
-            this.mLastOpenCheckBox.UseVisualStyleBackColor = true;
-            // 
             // mAudioTab
             // 
             this.mAudioTab.Controls.Add(this.m_OperationDurationUpDown);
@@ -243,7 +258,6 @@ namespace Obi.Dialogs
             this.mAudioTab.Controls.Add(this.mlbOperation);
             this.mAudioTab.Controls.Add(this.mNoiseLevelComboBox);
             this.mAudioTab.Controls.Add(this.label8);
-            this.mAudioTab.Controls.Add(this.mAudioCluesCheckBox);
             this.mAudioTab.Controls.Add(this.label3);
             this.mAudioTab.Controls.Add(this.mChannelsTextbox);
             this.mAudioTab.Controls.Add(this.mSampleRateTextbox);
@@ -306,12 +320,6 @@ namespace Obi.Dialogs
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            // 
-            // mAudioCluesCheckBox
-            // 
-            resources.ApplyResources(this.mAudioCluesCheckBox, "mAudioCluesCheckBox");
-            this.mAudioCluesCheckBox.Name = "mAudioCluesCheckBox";
-            this.mAudioCluesCheckBox.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -547,6 +555,7 @@ namespace Obi.Dialogs
             this.mTab.ResumeLayout(false);
             this.mProjectTab.ResumeLayout(false);
             this.mProjectTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MnumAutoSaveInterval)).EndInit();
             this.mAudioTab.ResumeLayout(false);
             this.mAudioTab.PerformLayout();
@@ -578,7 +587,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox mSampleRateCombo;
         private System.Windows.Forms.ComboBox mChannelsCombo;
         private System.Windows.Forms.Label labelChannels;
-        private System.Windows.Forms.CheckBox mLastOpenCheckBox;
         private System.Windows.Forms.TextBox mChannelsTextbox;
         private System.Windows.Forms.TextBox mSampleRateTextbox;
         private System.Windows.Forms.TabPage mUserProfileTab;
@@ -590,14 +598,12 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ComboBox mCultureBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox mAudioCluesCheckBox;
         private System.Windows.Forms.ComboBox mNoiseLevelComboBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button mPipelineBrowseButton;
         private System.Windows.Forms.TextBox mPipelineTextbox;
         private System.Windows.Forms.NumericUpDown MnumAutoSaveInterval;
-        private System.Windows.Forms.CheckBox mChkAutoSaveOnRecordingEnd;
         private System.Windows.Forms.CheckBox m_ChkAutoSaveInterval;
         private System.Windows.Forms.TabPage mKeyboardShortcutTab;
         private System.Windows.Forms.ComboBox m_cbShortcutKeys;
@@ -617,5 +623,8 @@ namespace Obi.Dialogs
         private System.Windows.Forms.ListView m_CheckBoxListView;
         private System.Windows.Forms.GroupBox m_grpBoxChkBoxListView;
         private System.Windows.Forms.Button m_ResetButton;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label m_lblImportTolerance;
+        private System.Windows.Forms.NumericUpDown m_NumImportTolerance;
     }
 }
