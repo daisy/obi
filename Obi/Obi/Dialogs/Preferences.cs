@@ -65,6 +65,8 @@ namespace Obi.Dialogs
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
           //  mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
             mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
+            m_NumImportTolerance.Value = (decimal) mSettings.ImportToleranceMs;
+
             }
 
         // Initialize audio tab
@@ -279,6 +281,7 @@ namespace Obi.Dialogs
             try
                 {
                 mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
+                mSettings.ImportToleranceMs = (int) m_NumImportTolerance.Value;
                 }
             catch (System.Exception ex)
                 {
@@ -605,13 +608,13 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(320, 60);
+                m_CheckBoxListView.Size = new Size(340, 60);
                 m_CheckBoxListView.Location = new Point(185, 269);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
                 m_CheckBoxListView.Items.Add("Preview Before Recording");
                 m_CheckBoxListView.Items.Add("Allow overwrite while recording");
-                m_grpBoxChkBoxListView.Size = new Size(450, 70);
+                m_grpBoxChkBoxListView.Size = new Size(470, 70);
                 m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
@@ -624,9 +627,9 @@ namespace Obi.Dialogs
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(283, 80);
-                m_CheckBoxListView.Location = new Point(195, 220);
+                m_CheckBoxListView.Location = new Point(195, 240);
                 m_grpBoxChkBoxListView.Size = new Size(380, 106);
-                m_grpBoxChkBoxListView.Location = new Point(115, 200);
+                m_grpBoxChkBoxListView.Location = new Point(115, 220);
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
                 m_CheckBoxListView.Items.Add("Select bookmark when project reopens");
@@ -687,6 +690,7 @@ namespace Obi.Dialogs
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
+                mSettings.ImportToleranceMs = m_DefaultSettings.ImportToleranceMs;
                 InitializeAudioTab();
                 m_cbOperation.SelectedIndex = -1;
                 m_OperationDurationUpDown.Value = 0;
