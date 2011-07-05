@@ -702,15 +702,7 @@ namespace Obi
         private void CheckForBookmarkNode()
         {
             m_IsCancelBtnPressed = false;
-            bool IsBookmarkChanged = false;
-            if (mProjectView.Presentation != null && mProjectView.Selection != null)
-            {
-            if((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node)
-                IsBookmarkChanged = false;
-            else 
-                IsBookmarkChanged = true;
-            }
-            if (mProjectView.Presentation != null && mProjectView.Selection != null && IsBookmarkChanged)
+            if (mProjectView.Presentation != null && mProjectView.Selection != null && !((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node))
             {
                 
                 if (!mSession.CanClose)
@@ -725,7 +717,7 @@ namespace Obi
                         m_ShouldBookmark = false;*/
                     if (mProjectView.TransportBar.IsActive)
                         mProjectView.TransportBar.Stop();
-                    Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(IsBookmarkChanged, !mSession.CanClose);
+                    Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(!((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node), !mSession.CanClose);
                     resultBookmark.ShowDialog();
                     if (resultBookmark.DialogResult == DialogResult.Cancel)
                     {
