@@ -702,9 +702,9 @@ namespace Obi
         private void CheckForBookmarkNode()
         {
             m_IsCancelBtnPressed = false;
-            if (mProjectView.Presentation != null && mProjectView.Selection != null && !((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node))
-            {
-                
+           //if (mProjectView.Presentation != null && mProjectView.Selection != null && !((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node))
+            if (mProjectView.Presentation != null && mProjectView.Selection != null)
+            { 
                 if (!mSession.CanClose)
                 {
                     /*DialogResult resultBookmark = MessageBox.Show(Localizer.Message("SaveSelectedNodeAsBookmark"), Localizer.Message("bookmark_closed_project_caption"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -3277,11 +3277,13 @@ namespace Obi
                     OpenProject_Safe(m_RestoreProjectFilePath);
                     ProjectHasChanged(1);
                 }
-                m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
-                m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
-                m_RestoreFromBackupToolStripMenuItem.Visible = false;
-                m_RestoreFromBackupToolStripMenuItem.Enabled = false;
-                mTools_CleanUnreferencedAudioMenuItem.Enabled = false;
+                if (!m_IsCancelBtnPressed)
+                {   m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
+                    m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
+                    m_RestoreFromBackupToolStripMenuItem.Visible = false;
+                    m_RestoreFromBackupToolStripMenuItem.Enabled = false;
+                    mTools_CleanUnreferencedAudioMenuItem.Enabled = false;
+                }
             }
             else
                 return;

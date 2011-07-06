@@ -19,12 +19,12 @@ namespace Obi.Dialogs
         {
             InitializeComponent();
         }
-        public MultipleOptionDialog(bool IsprojectUnsaved, bool IsBookmarkDifferent)
+        public MultipleOptionDialog(bool IsBookmarkDifferent, bool IsprojectUnsaved)
             : this()
         {
             m_rdb_DiscardBoth.Enabled = IsprojectUnsaved || IsBookmarkDifferent;
             m_rdb_SaveBookmarkAndProject.Enabled = IsBookmarkDifferent && IsprojectUnsaved;
-            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved && IsBookmarkDifferent;            
+            m_rdb_SaveProjectOnly.Enabled = IsprojectUnsaved;            
         }
 
         public bool IsSaveBothChecked
