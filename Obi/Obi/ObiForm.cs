@@ -356,7 +356,7 @@ namespace Obi
 
             importDTBPath = System.IO.Path.GetFullPath(importDTBPath);
             mSession.CreateNewPresentationInBackend(outputPath, title, createTitleSection, id, mSettings, true);
-            ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(mSession, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
+            ImportExport.DAISY3_ObiImport import = new Obi.ImportExport.DAISY3_ObiImport(mSession,mSettings, importDTBPath, System.IO.Path.GetDirectoryName(outputPath), false, AudioLib.SampleRate.Hz44100);
             ProgressDialog progress = new ProgressDialog(Localizer.Message("import_progress_dialog_title"),
                     delegate(ProgressDialog progress1)
                     {
