@@ -1390,6 +1390,10 @@ namespace Obi.ProjectView
                 {
                 this.Controls.Remove ( m_BackgroundBlockLayout );
                 m_BackgroundBlockLayout.Dispose ();
+                Console.WriteLine("Background layout memory before collection :" + (System.GC.GetTotalMemory(false)  / (1024 * 1024)).ToString());
+                System.GC.Collect();
+                Console.WriteLine("Background layout memory after collection :" + (System.GC.GetTotalMemory (false) / (1024 * 1024)).ToString());
+                
                 }
             m_BackgroundBlockLayout = mBlockLayout;
             m_BackgroundBlockLayout.Location = new Point ( this.Location.X, Convert.ToInt32( m_BackgroundBlockLayout.Height * -1.2 ));
