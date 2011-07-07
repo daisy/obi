@@ -3276,9 +3276,7 @@ namespace Obi
                 {
                     OpenProject_Safe(m_RestoreProjectFilePath);
                     ProjectHasChanged(1);
-                }
-                if (!m_IsCancelBtnPressed)
-                {   m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
+                    m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
                     m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
                     m_RestoreFromBackupToolStripMenuItem.Visible = false;
                     m_RestoreFromBackupToolStripMenuItem.Enabled = false;
