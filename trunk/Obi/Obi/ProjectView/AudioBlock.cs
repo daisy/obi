@@ -26,6 +26,7 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             InitializeComponent();
+            base.Disposed += new EventHandler( Block_Disposed);
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShiftKeyPressed = false;
@@ -44,7 +45,7 @@ namespace Obi.ProjectView
         // Resize the block to fit both the whole waveform and its label.
         private void SetWaveform(PhraseNode node)
         {
-            if (node != null)
+            if (node != null && mWaveform != null)
             {
                 if (node.Audio.Duration.AsTimeSpan.TotalMilliseconds > 0.0)
                 {
@@ -70,7 +71,7 @@ namespace Obi.ProjectView
         /// <summary>
         /// Update the playback cursor time, and return its (horizontal) position in the waveform.
         /// </summary>
-        public int UpdateCursorTime(double time) { return mWaveform.SetCursorTime(time); }
+        public int UpdateCursorTime(double time) { return mWaveform != null ? mWaveform.SetCursorTime(time): 0; }
 
         /// <summary>
         /// True if selection in the waveform is enabled.
@@ -85,15 +86,15 @@ namespace Obi.ProjectView
             get { return base.Highlighted; }
             set
             {
-                if (!value) mWaveform.Deselect();
-                base.Highlighted = value && mWaveform.Selection == null;
+                if (!value && mWaveform != null) mWaveform.Deselect();
+                base.Highlighted = value &&  mWaveform != null  && mWaveform.Selection == null;
                 if (base.Highlighted) PrioritizeRendering(BLOCK_SELECTED_PRIORITY);
             }
         }
 
         public void PrioritizeRendering(int priority)
         {
-            ContentView.RenderWaveform(mWaveform, priority);
+            if ( mWaveform != null )  ContentView.RenderWaveform(mWaveform, priority);
         }
 
         /// <summary>
@@ -101,7 +102,7 @@ namespace Obi.ProjectView
         /// </summary>
         public override void SetSelectionFromContentView(NodeSelection selection)
         {
-            if (selection != null) mWaveform.Selection = selection is AudioSelection ? ((AudioSelection)selection).AudioRange : null;
+            if (selection != null && mWaveform != null) mWaveform.Selection = selection is AudioSelection ? ((AudioSelection)selection).AudioRange : null;
             base.SetSelectionFromContentView(selection);
         }
 
@@ -250,10 +251,20 @@ namespace Obi.ProjectView
 
         public void InitCursor(double time)
         {
-            mWaveform.InitCursor(time);
-            Strip.ContentView.ScrollControlIntoView(this);
+            if (mWaveform != null)
+            {
+                mWaveform.InitCursor(time);
+                Strip.ContentView.ScrollControlIntoView(this);
+            }
         }
 
-        public void ClearCursor() { mWaveform.ClearCursor(); }
+        public void ClearCursor() { if ( mWaveform != null )  mWaveform.ClearCursor(); }
+
+        private void Block_Disposed(object sender, EventArgs e)
+        {
+            if (mWaveform != null && !mWaveform.IsDisposed) mWaveform.Dispose();
+            mWaveform = null;
+        }
+
     }
 }

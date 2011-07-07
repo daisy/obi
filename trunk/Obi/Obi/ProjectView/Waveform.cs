@@ -29,6 +29,7 @@ namespace Obi.ProjectView
         public Waveform()
         {
             InitializeComponent();
+            this.Disposed += new EventHandler(Waveform_Disposed);
             DoubleBuffered = true;
             mBitmap = null;
             mBitmap_Highlighted = null;
@@ -495,5 +496,17 @@ namespace Obi.ProjectView
         {
             return (int)Math.Round(time / Media.AudioDuration.AsTimeSpan.TotalMilliseconds * Width);
         }
+
+        private void Waveform_Disposed(object sender, EventArgs e)
+        {
+            if (mBitmap != null) mBitmap.Dispose();
+            mBitmap = null;
+            if (mBitmap_Highlighted != null) mBitmap_Highlighted.Dispose();
+            mBitmap_Highlighted = null;
+
+        }
+
+
+
     }
 }
