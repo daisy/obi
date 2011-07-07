@@ -65,7 +65,7 @@ namespace Obi.Dialogs
             MnumAutoSaveInterval.Enabled = m_ChkAutoSaveInterval.Checked;
           //  mChkAutoSaveOnRecordingEnd.Checked = mSettings.AutoSave_RecordingEnd;
             mPipelineTextbox.Text = mSettings.PipelineScriptsPath;
-            m_NumImportTolerance.Value = (decimal) mSettings.ImportToleranceMs;
+            m_NumImportTolerance.Value = (decimal) mSettings.ImportToleranceForAudioInMs;
 
             }
 
@@ -281,7 +281,7 @@ namespace Obi.Dialogs
             try
                 {
                 mSettings.AutoSaveTimeInterval = Convert.ToInt32 ( MnumAutoSaveInterval.Value * 60000 );
-                mSettings.ImportToleranceMs = (int) m_NumImportTolerance.Value;
+                mSettings.ImportToleranceForAudioInMs = (int) m_NumImportTolerance.Value;
                 }
             catch (System.Exception ex)
                 {
@@ -690,7 +690,7 @@ namespace Obi.Dialogs
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
-                mSettings.ImportToleranceMs = m_DefaultSettings.ImportToleranceMs;
+                mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
                 InitializeAudioTab();
                 m_cbOperation.SelectedIndex = -1;
                 m_OperationDurationUpDown.Value = 0;

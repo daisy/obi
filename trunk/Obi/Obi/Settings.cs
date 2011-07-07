@@ -59,7 +59,8 @@ namespace Obi
         public bool OpenBookmarkNodeOnReopeningProject;
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
-        public int ImportToleranceMs;
+        public int ImportToleranceForAudioInMs;
+
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
         private static void InitializeDefaultSettings(Settings settings)
@@ -105,7 +106,7 @@ namespace Obi
             settings.Export_BitRateMP3 = 64;
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
-            settings.ImportToleranceMs = 250;
+            settings.ImportToleranceForAudioInMs = 100;
         }
 
         /// <summary>

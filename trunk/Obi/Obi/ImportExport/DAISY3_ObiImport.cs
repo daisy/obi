@@ -22,15 +22,17 @@ namespace Obi.ImportExport
     {
         private ObiPresentation m_Presentation;
         private Session m_Session;
+        private Settings m_Settings;
         private urakawa.metadata.Metadata m_TitleMetadata;
         private urakawa.metadata.Metadata m_IdentifierMetadata;
         private List<EmptyNode> m_PhrasesWithTruncatedAudio ;
         private List<string> m_ErrorsList;
 
-        public DAISY3_ObiImport(Session session, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
+        public DAISY3_ObiImport(Session session,Settings settings, string bookfile, string outDir, bool skipACM, SampleRate audioProjectSampleRate)
             : base(bookfile, outDir, skipACM, audioProjectSampleRate)
         {
             m_Session = session;
+            m_Settings = settings;
             XukPath = Path.Combine(m_outDirectory, "project.obi");
             if ( System.IO.Path.GetExtension(bookfile).ToLower() == ".opf")     this.AudioNCXImport = true;
             
@@ -754,7 +756,8 @@ ExternalFiles.ExternalFileData dtdEfd = presentation.ExternalFilesDataFactory.Cr
                         isClipEndError = true;
                     }//-3
                     // to do: add obi specific code here
-                    if (diff > 100 && treeNode != null )
+                    //if (diff > 100 && treeNode != null )
+                    if (diff > m_Settings.ImportToleranceForAudioInMs && treeNode != null)
                     {
                         EmptyNode eNode = (EmptyNode)treeNode;
                         eNode.TODO = true;
