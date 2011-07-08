@@ -26,7 +26,7 @@ namespace Obi.ProjectView
             : base(node, strip)
         {
             InitializeComponent();
-            base.Disposed += new EventHandler( Block_Disposed);
+            
             SetWaveform(Node as PhraseNode);
             node.NodeAudioChanged += new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             mShiftKeyPressed = false;
@@ -260,10 +260,12 @@ namespace Obi.ProjectView
 
         public void ClearCursor() { if ( mWaveform != null )  mWaveform.ClearCursor(); }
 
-        private void Block_Disposed(object sender, EventArgs e)
+        protected override void Block_Disposed(object sender, EventArgs e)
         {
+            if (mNode != null  && mNode is PhraseNode)  ((PhraseNode) mNode).NodeAudioChanged -= new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);
             if (mWaveform != null && !mWaveform.IsDisposed) mWaveform.Dispose();
             mWaveform = null;
+            base.Block_Disposed(sender, e);
         }
 
     }

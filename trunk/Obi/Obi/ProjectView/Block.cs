@@ -28,6 +28,7 @@ namespace Obi.ProjectView
             mNode = node;
             mParentContainer = parent;
             mHighlighted = false;
+            this.Disposed += new EventHandler(Block_Disposed);
             node.ChangedRole += new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
             node.ChangedPageNumber += new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
             node.ChangedTODOStatus += new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
@@ -257,6 +258,18 @@ namespace Obi.ProjectView
             }
 
         public void DestroyBlockHandle () { base.DestroyHandle (); }
+
+        protected virtual void Block_Disposed(object sender, EventArgs e)
+        {
+            if (mNode != null)
+            {
+                mNode.ChangedRole -= new EmptyNode.ChangedRoleEventHandler(Node_ChangedKind);
+                mNode.ChangedPageNumber -= new NodeEventHandler<EmptyNode>(Node_ChangedPageNumber);
+                mNode.ChangedTODOStatus -= new NodeEventHandler<EmptyNode>(Node_ChangedTODOStatus);
+                ((ObiPresentation)mNode.Presentation).UsedStatusChanged -= new NodeEventHandler<ObiNode>(Presentation_UsedStatusChanged);
+                
+            }
+        }
 
     }
 }
