@@ -105,6 +105,7 @@ namespace Obi.ProjectView
                                 Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
                                 
                                 System.GC.GetTotalMemory(true);
+                                
                                 System.GC.WaitForFullGCComplete(500);
                                 float availableRAM = ramPerformanceCounter.NextValue();
                                 Console.WriteLine("RAM after collection " + availableRAM.ToString());
@@ -499,6 +500,7 @@ namespace Obi.ProjectView
 
         private void Waveform_Disposed(object sender, EventArgs e)
         {
+            if (Audio != null ) Audio.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
             if (mBitmap != null) mBitmap.Dispose();
             mBitmap = null;
             if (mBitmap_Highlighted != null) mBitmap_Highlighted.Dispose();

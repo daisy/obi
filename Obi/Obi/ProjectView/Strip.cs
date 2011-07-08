@@ -26,6 +26,7 @@ namespace Obi.ProjectView
         public Strip()
         {
             InitializeComponent();
+            this.Disposed += new EventHandler(Strip_Disposed);
             mBlockLayoutBaseHeight = mBlockLayout.Height;
             mBlockHeight = 0;
             mLabel.Editable = false;
@@ -46,7 +47,7 @@ namespace Obi.ProjectView
             mNode = node;
             Label = mNode.Label;
             mContentView = parent;
-            mContentView.SizeChanged += new EventHandler(delegate(object sender, EventArgs e) { Resize_View(); });
+            mContentView.SizeChanged += new EventHandler(Resize_View);
             ZoomFactor = mContentView.ZoomFactor;
             AudioScale = mContentView.AudioScale;
             UpdateColors();
@@ -1079,6 +1080,8 @@ namespace Obi.ProjectView
             }
         }
 
+        private void Resize_View(object sender, EventArgs e) { Resize_View(); }
+
         // Set verbose accessible name for the strip 
         public void SetAccessibleName()
         {
@@ -1511,5 +1514,11 @@ namespace Obi.ProjectView
             {
             this.DestroyHandle ();
             }
+
+        private void Strip_Disposed(object sender, EventArgs e)
+        {
+            if (mContentView != null )  mContentView.SizeChanged -= new EventHandler(Resize_View);
+        }
+
     }
 }
