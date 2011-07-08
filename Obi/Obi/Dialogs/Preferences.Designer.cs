@@ -194,7 +194,7 @@ namespace Obi.Dialogs
             // m_NumImportTolerance
             // 
             this.m_NumImportTolerance.Increment = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});

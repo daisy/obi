@@ -100,6 +100,7 @@ namespace Obi.Dialogs
             // 
             // ReportDialog
             // 
+            this.AcceptButton = this.m_btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(437, 114);
