@@ -41,7 +41,7 @@ namespace Obi
         private static readonly float ZOOM_FACTOR_INCREMENT = 1.2f;   // zoom factor increment (zoom in/out)
         private static readonly float DEFAULT_ZOOM_FACTOR_HC = 1.2f;  // default zoom factor (high contrast mode)
         private static readonly float AUDIO_SCALE_INCREMENT = 1.2f;   // audio scale increment (audio zoom in/out)
-        private bool m_IsCancelBtnPressed = false;
+        
         private string m_RestoreProjectFilePath= null;
         private string m_OriginalPath = null;
 
@@ -676,7 +676,7 @@ namespace Obi
             {
             
             if ( !(FreezeChangesFromProjectRestore()?? true) ) return false;
-                CheckForBookmarkNode(); 
+            if (!SaveProjectAndBookmarkOptionally()) return false;
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
           /*  if (!mSession.CanClose)
                {
@@ -694,14 +694,18 @@ namespace Obi
                       
                 }*/
 
-            if (m_IsCancelBtnPressed) return false;            
+            
             mSession.Close ();
             return true;
            }
 
-        private void CheckForBookmarkNode()
-        {
-            m_IsCancelBtnPressed = false;
+        /// <summary>
+        /// presents multiple option dialog box for providing various options for saving project and bookmark.
+        /// returns false if process is cancelled by user
+        /// </summary>
+        /// <returns></returns>
+        private bool SaveProjectAndBookmarkOptionally()
+        {   
            //if (mProjectView.Presentation != null && mProjectView.Selection != null && !((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node))
             if (mProjectView.Presentation != null && mProjectView.Selection != null)
             { 
@@ -714,15 +718,15 @@ namespace Obi
                         m_ShouldBookmark = true;
                     }
                     if (resultBookmark == DialogResult.No)
-                        m_ShouldBookmark = false;*/
+                        m_ShouldBookmark = false;
+                     */
                     if (mProjectView.TransportBar.IsActive)
                         mProjectView.TransportBar.Stop();
                     Dialogs.MultipleOptionDialog resultBookmark = new MultipleOptionDialog(!((((ObiRootNode)mProjectView.Presentation.RootNode).BookmarkNode) == mProjectView.Selection.Node), !mSession.CanClose);
                     resultBookmark.ShowDialog();
                     if (resultBookmark.DialogResult == DialogResult.Cancel)
                     {
-                        m_IsCancelBtnPressed = true;
-                        return;
+                        return false;
                     }
                     if (resultBookmark.IsSaveBothChecked)
                     {
@@ -730,13 +734,16 @@ namespace Obi
                         mSession.ForceSave();
                     }
                     else if (resultBookmark.IsSaveProjectChecked)
+                    {
                         mSession.Save();
+                    }
                     else if (resultBookmark.IsDiscardBothChecked)
                     { }
                 }
                 else
                     CheckForSelectedNodeInBookmark();
-            }            
+            }
+            return true;
         }
 
         // Clean unwanted audio from the project.
@@ -2104,7 +2111,7 @@ namespace Obi
         // Open the project at the given path; warn the user on error.
         private void OpenProject_Safe ( string path )
         {
-            CheckForBookmarkNode();
+            
             try
                 {
                     
@@ -3262,7 +3269,8 @@ namespace Obi
                 if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
                 m_OriginalPath = mSession.Path;
                 string backupPath = mSession.BackUpPath;
-                if (!File.Exists(backupPath))
+                if (string.IsNullOrEmpty(backupPath)  ||
+                    !File.Exists(backupPath))
                 {
                     MessageBox.Show((Localizer.Message("backup_file_missing") + "\n" + backupPath));
                     return;
@@ -3281,6 +3289,11 @@ namespace Obi
                     m_RestoreFromBackupToolStripMenuItem.Visible = false;
                     m_RestoreFromBackupToolStripMenuItem.Enabled = false;
                     mTools_CleanUnreferencedAudioMenuItem.Enabled = false;
+                }
+                else
+                {
+                    //if existing project could not be closed then delete the restore file just created.
+                    if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
                 }
             }
             else
