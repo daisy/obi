@@ -12,7 +12,7 @@ namespace Obi.Dialogs
     {
         private PageNumber mInitialNumber;
         private int mNumberOfPages;
-        protected bool m_GoToPage;
+        protected bool m_GoToPage; 
 
         public SetPageNumber(PageNumber number, bool renumber, bool canSetNumberOfPages): this()
         {
@@ -76,11 +76,11 @@ namespace Obi.Dialogs
                     MessageBox.Show ( Localizer.Message ( "PageNumber_ReEnterValidNumber") );
                     return;
                     }
-                    if ((num == 0 && mPageKindComboBox.SelectedIndex < 2) || numberOfPages < 1)
+                    if ((num == 0 && mPageKindComboBox.SelectedIndex < 2) || (!m_GoToPage && numberOfPages < 1))
                     //|| (num > 0 && mPageKindComboBox.SelectedIndex == 2)) // message should not appear for assigning special pages.
                     {
-                       if (MessageBox.Show(Localizer.Message("PageDialog_InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
-                          return;
+                        if (MessageBox.Show(Localizer.Message("PageDialog_InvalidInput"), Localizer.Message("Caption_Error"), MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.OK)
+                           return;
                     }
                 
 
