@@ -250,25 +250,28 @@ namespace Obi.ProjectView
                         if (m_CancelRendering) break;
                         int read = au.Read(bytes, 0, bytesPerPixel);
                         Buffer.BlockCopy(bytes, 0, samples, 0, read);
-                        Pen channel1Pen = highlighted ?(Pen) settings.WaveformHighlightedPen.Clone () :
-                            channels == 1 ? (Pen) settings.WaveformMonoPen.Clone() : (Pen) settings.WaveformChannel1Pen.Clone ();
+                        Pen channel1Pen = highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() :
+                            channels == 1 ? (Pen)settings.WaveformMonoPen.Clone() : (Pen)settings.WaveformChannel1Pen.Clone();
                         DrawChannel(g, channel1Pen,
                             samples, x, read, frameSize, 0, channels);
                         channel1Pen.Dispose();
                         if (channels == 2)
                         {
-                            Pen channel2Pen = highlighted ? (Pen) settings.WaveformHighlightedPen.Clone() : (Pen) settings.WaveformChannel2Pen.Clone ();
+                            Pen channel2Pen = highlighted ? (Pen)settings.WaveformHighlightedPen.Clone() : (Pen)settings.WaveformChannel2Pen.Clone();
                             DrawChannel(g,
-                            channel2Pen ,
+                            channel2Pen,
                             samples, x, read, frameSize, 1, channels);
                             channel2Pen.Dispose();
                         }
-                        
+
                     }
+                    if (au != null) au.Close();
+                    au = null;
                 }
                 finally
                 {
-                    au.Close();
+                    if (au != null) au.Close();
+                    au = null;
                 }
             }
         }
