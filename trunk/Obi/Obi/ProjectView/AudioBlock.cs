@@ -149,17 +149,15 @@ namespace Obi.ProjectView
         // Fill (current) width of the waveform.
         protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
 
+        public readonly int MaxWaveformWidth = 32600;
         // Width that the waveform has by default.
         protected int WaveformDefaultWidth
         {
             get
             {
-                long time = (long)((PhraseNode)Node).Audio.Duration.AsTimeSpan.TotalMilliseconds;
-                // originally, 1 second should has width of 10 pixels
-                //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
-                int w = time == 0.0 ? LabelFullWidth : (int)Math.Round ( time * AudioScale * 1.2f);//@singleSection: updated
+                int w = ComputeWaveformDefaultWidth();
                 // workaround to prevent visibility problem in block layout, waveform should remain below blocklayout width of 32768
-                if (w > 32600) 
+                if (w > MaxWaveformWidth) 
                     {
                     w = 32600;
                     }
@@ -167,6 +165,14 @@ namespace Obi.ProjectView
             }
         }
 
+        public int ComputeWaveformDefaultWidth()
+        {
+            long time = (long)((PhraseNode)Node).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+            // originally, 1 second should has width of 10 pixels
+            //int w =  time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale);//@singleSection: original
+            int w = time == 0.0 ? LabelFullWidth : (int)Math.Round(time * AudioScale * 1.2f);//@singleSection: updated
+            return w;
+        }
 
         // Clicking selects at that point (see mouse up/down)
         private void mWaveform_Click(object sender, EventArgs e)
