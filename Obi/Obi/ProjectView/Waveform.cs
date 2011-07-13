@@ -53,18 +53,18 @@ namespace Obi.ProjectView
         {
             set
             {
-                if (mBlock != value)
+                //if (mBlock != value)
                 {
                     if (mBlock != null)
                     {
                         //Audio.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
-                        ((PhraseNode)mBlock.Node).NodeAudioChanged -= new NodeEventHandler<PhraseNode>(Audio_changed);
+                        
                     }
                     mBlock = value;
                     if (mBlock != null)
                     {
                         //
-                        ((PhraseNode)mBlock.Node).NodeAudioChanged += new NodeEventHandler<PhraseNode>(Audio_changed);
+                        
                         RequestRendering();
                     }
                 }
@@ -73,7 +73,7 @@ namespace Obi.ProjectView
 
         // Request a new rendering when audio has changed.
         //private void Audio_changed(object sender, urakawa.events.DataModelChangedEventArgs e) { RequestRendering(); }
-        private void Audio_changed(object sender, NodeEventArgs<PhraseNode> e) { RequestRendering(); }
+        //private void Audio_changed(object sender, NodeEventArgs<PhraseNode> e) { RequestRendering(); }
 
         public bool CancelRendering
         {
@@ -518,7 +518,7 @@ namespace Obi.ProjectView
         private void Waveform_Disposed(object sender, EventArgs e)
         {
             //if (Audio != null ) Audio.Changed -= new EventHandler<urakawa.events.DataModelChangedEventArgs>(Audio_changed);
-            if (mBlock != null) ((PhraseNode)mBlock.Node).NodeAudioChanged -= new NodeEventHandler<PhraseNode>(Audio_changed);
+            
             if (mBitmap != null) mBitmap.Dispose();
             mBitmap = null;
             if (mBitmap_Highlighted != null) mBitmap_Highlighted.Dispose();
