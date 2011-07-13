@@ -80,6 +80,17 @@ namespace Obi.ProjectView
 
         public bool IsRenderingWaveform { get { return m_IsRenderingWaveform; } }
 
+        private int Width_Expected
+        {
+            get
+            {
+                if (mBlock == null) return Width;
+                if (Width == mBlock.MaxWaveformWidth) return mBlock.ComputeWaveformDefaultWidth();
+
+                return Width;
+            }
+        }
+
         /// <summary>
         /// Render the waveform graphically then display it. Return the background worker doing the job.
         /// </summary>
@@ -238,7 +249,7 @@ namespace Obi.ProjectView
                 ushort channels = format.NumberOfChannels;
                 ushort frameSize = format.BlockAlign;
                 long pcmLength = Media.PCMFormat.Data.ConvertTimeToBytes(Media.AudioDuration.AsLocalUnits);
-                int samplesPerPixel = (int)Math.Ceiling(pcmLength / (float)frameSize / Width * channels);
+                int samplesPerPixel = (int)Math.Ceiling(pcmLength / (float)frameSize / Width_Expected * channels);
                 int bytesPerPixel = samplesPerPixel * frameSize / channels;
                 byte[] bytes = new byte[bytesPerPixel];
                 short[] samples = new short[samplesPerPixel];
@@ -492,13 +503,13 @@ namespace Obi.ProjectView
         // Convert a pixel position into a time (in ms.)
         private double TimeFromX(int x)
         {
-            return x * Media.AudioDuration.AsTimeSpan.TotalMilliseconds / Width;
+            return x * Media.AudioDuration.AsTimeSpan.TotalMilliseconds / Width_Expected;
         }
 
         // Convert a time (in ms) to a pixel position.
         private int XFromTime(double time)
         {
-            return (int)Math.Round(time / Media.AudioDuration.AsTimeSpan.TotalMilliseconds * Width);
+            return (int)Math.Round(time / Media.AudioDuration.AsTimeSpan.TotalMilliseconds * Width_Expected);
         }
 
         private void Waveform_Disposed(object sender, EventArgs e)
