@@ -149,7 +149,7 @@ namespace Obi.ProjectView
         // Fill (current) width of the waveform.
         protected int WaveformFullWidth { get { return mWaveform == null ? 0 : mWaveform.Margin.Left + mWaveform.Width + mWaveform.Margin.Right; } }
 
-        public readonly int MaxWaveformWidth = 32600;
+        public readonly int MaxWaveformWidth = 32700;
         // Width that the waveform has by default.
         protected int WaveformDefaultWidth
         {
