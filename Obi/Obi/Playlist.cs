@@ -548,15 +548,14 @@ namespace Obi
         // Remove a node and all of its contents from the playlist
         private void RemoveNode(urakawa.core.TreeNode node)
         {
-            System.Media.SystemSounds.Asterisk.Play();
-            Console.WriteLine("Preparing to remove node");
+            
             int updateTimeFrom = mPhrases.Count;
             node.AcceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && mPhrases.Contains((PhraseNode)n))
                     {
-                        System.Media.SystemSounds.Asterisk.Play();
+                        
                         int index = mPhrases.IndexOf((PhraseNode)n);
                         if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
                         Console.WriteLine("removing phrases ");
