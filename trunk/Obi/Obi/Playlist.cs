@@ -141,14 +141,23 @@ namespace Obi
         public PhraseNode NextPage(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) + 1;
-            for (; index < mPhrases.Count && mPhrases[index].Role_ != EmptyNode.Role.Page; ++index) { }
+            for (; index < mPhrases.Count && (mPhrases[index].Role_ != EmptyNode.Role.Page || !mPhrases[index].IsRooted) ; ++index) { }
             return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
         }
 
         public PhraseNode NextPhrase(PhraseNode node)
         {
+            
             int index = mPhrases.IndexOf(node) + 1;
-            return index < mPhrases.Count ? mPhrases[index] : null;
+            Console.WriteLine("navigating to next phrase " + index + " : " + mPhrases.Count);
+            PhraseNode n = index < mPhrases.Count ? mPhrases[index] : null;
+            if (n != null &&  !n.IsRooted)
+            {
+                SanitizePlaylist();
+                n = index < mPhrases.Count ? mPhrases[index] : null;
+            }
+
+            return n ;
         }
 
         public PhraseNode NextSection(PhraseNode node)
@@ -156,7 +165,7 @@ namespace Obi
             int index = mPhrases.IndexOf(node);
             if (node != null)
             {
-                for (; index < mPhrases.Count && mPhrases[index].AncestorAs<SectionNode>() == node.AncestorAs<SectionNode>(); ++index) { }
+                for (; index < mPhrases.Count && (mPhrases[index].AncestorAs<SectionNode>() == node.AncestorAs<SectionNode>() || !mPhrases[index].IsRooted) ; ++index) { }
             }
             return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
         }
@@ -164,14 +173,21 @@ namespace Obi
         public PhraseNode PrevPage(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) - 1;
-            for (; index >= 0 && mPhrases[index].Role_ != EmptyNode.Role.Page; --index) { }
+            for (; index >= 0 && (mPhrases[index].Role_ != EmptyNode.Role.Page || !mPhrases[index].IsRooted) ; --index) { }
             return index >= 0 ? mPhrases[index] : null;
         }
 
         public PhraseNode PrevPhrase(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node) - 1;
-            return index >= 0 ? mPhrases[index] : null;
+            PhraseNode n =  index >= 0 ? mPhrases[index] : null;
+            if (n != null && !n.IsRooted)
+            {
+                SanitizePlaylist();
+                index = mPhrases.IndexOf(node) - 1;
+                n = index >= 0 ? mPhrases[index] : null;
+            }
+            return n ;
         }
 
 
@@ -184,7 +200,7 @@ namespace Obi
                 if (index >= 0)
                 {
                     SectionNode prev = mPhrases[index].AncestorAs<SectionNode>();
-                    for (; index >= 0 && mPhrases[index].AncestorAs<SectionNode>() == prev; --index) { }
+                    for (; index >= 0 && (mPhrases[index].AncestorAs<SectionNode>() == prev ||  !mPhrases[index].IsRooted) ; --index) { }
                     ++index;
                 }
             }
@@ -507,6 +523,7 @@ namespace Obi
             }
             else if (e is ObjectRemovedEventArgs<urakawa.core.TreeNode>)
             {
+                
                 RemoveNode(((ObjectRemovedEventArgs<urakawa.core.TreeNode>)e).m_RemovedObject);
             }
         }
@@ -531,14 +548,18 @@ namespace Obi
         // Remove a node and all of its contents from the playlist
         private void RemoveNode(urakawa.core.TreeNode node)
         {
+            System.Media.SystemSounds.Asterisk.Play();
+            Console.WriteLine("Preparing to remove node");
             int updateTimeFrom = mPhrases.Count;
             node.AcceptDepthFirst(
                 delegate(urakawa.core.TreeNode n)
                 {
                     if (n is PhraseNode && mPhrases.Contains((PhraseNode)n))
                     {
+                        System.Media.SystemSounds.Asterisk.Play();
                         int index = mPhrases.IndexOf((PhraseNode)n);
                         if (updateTimeFrom == mPhrases.Count) updateTimeFrom = index == 0 ? 1 : index;
+                        Console.WriteLine("removing phrases ");
                         mPhrases.RemoveAt(index);
                         if (index < mStartTimes.Count - 1) mStartTimes.RemoveAt(index + 1);
                         mTotalTime -= ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds ;
@@ -1169,9 +1190,9 @@ namespace Obi
                     || !(mPhrases[i] is PhraseNode ))
                 {
                     mPhrases.Remove (mPhrases[i]) ;
-                    if (currentlyActivePhrase == mPhrases[i])
+                    if (mCurrentPhraseIndex > 0 &&  mCurrentPhraseIndex  > i)
                     {
-                        if (i > 0) mCurrentPhraseIndex = i - 1;
+                        mCurrentPhraseIndex-- ;
                     }
                 }
             }
