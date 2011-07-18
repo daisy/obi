@@ -782,6 +782,7 @@ namespace Obi
                     Dialogs.ProgressDialog progress = new ProgressDialog ( Localizer.Message ( "cleaning_up" ),
                         delegate ()
                             {
+                                m_CanAutoSave = false;
                                 //mSession.Presentation.cleanup();
                                 cleaner.Cleanup();
 
@@ -841,11 +842,12 @@ namespace Obi
                                     Directory.Delete(deletedDataFolderPath);
                                 }
                 }
-
+                
                                 //DeleteExtraFiles ();
                             } );
                      if(cleaner != null )  cleaner.ProgressChangedEvent += new System.ComponentModel.ProgressChangedEventHandler(progress.UpdateProgressBar);
                     progress.ShowDialog ();
+                    m_CanAutoSave = true;
                     if (progress.Exception != null) throw progress.Exception;
 
                     if (!m_IsAutoSaveActive)
@@ -862,6 +864,7 @@ namespace Obi
                     {
                     MessageBox.Show ( String.Format ( Localizer.Message ( "clean_failed_text" ), e.Message ),
                         Localizer.Message ( "clean_failed_caption" ), MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    m_CanAutoSave = true;
                     }
                     mProjectView.WaveformRendering_PauseOrResume(false);
                 }
@@ -2037,8 +2040,10 @@ namespace Obi
 
         private void mAutoSaveTimer_Tick ( object sender, EventArgs e )
             {
+                if (!mSettings.AutoSaveTimeIntervalEnabled) return;
+
             if (!m_CanAutoSave 
-                && mSettings.AutoSaveTimeIntervalEnabled && mSession.CanSave)//@singleSection
+                 && mSession.CanSave)//@singleSection
                 {
                 //keep on checking after interval of 5 seconds if CanAutoSave is true
                 mAutoSaveTimer.Interval = 5000;
