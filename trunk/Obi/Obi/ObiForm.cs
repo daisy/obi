@@ -1004,12 +1004,20 @@ namespace Obi
                 }
             }
 
+        private delegate void ShowLimitedPhrasesShownStatusMessage_Delegate ();
         private void ShowLimitedPhrasesShownStatusMessage()
         {
+            if ( InvokeRequired )
+            {
+                Invoke ( new ShowLimitedPhrasesShownStatusMessage_Delegate ( ShowLimitedPhrasesShownStatusMessage )) ;
+            }
+            else
+            {
             if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
             {
                 string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
                 Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
+            }
             }
         }
 
