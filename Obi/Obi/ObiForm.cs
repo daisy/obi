@@ -1005,21 +1005,26 @@ namespace Obi
             }
 
         private delegate void ShowLimitedPhrasesShownStatusMessage_Delegate ();
-        private void ShowLimitedPhrasesShownStatusMessage()
+        private void ShowLimitedPhrasesShownStatusMessage_Safe()
         {
             if ( InvokeRequired )
             {
-                Invoke ( new ShowLimitedPhrasesShownStatusMessage_Delegate ( ShowLimitedPhrasesShownStatusMessage )) ;
+                Invoke ( new ShowLimitedPhrasesShownStatusMessage_Delegate ( ShowLimitedPhrasesShownStatusMessage_Safe )) ;
             }
             else
             {
+                ShowLimitedPhrasesShownStatusMessage ();
+            }
+        }
+
+        private void ShowLimitedPhrasesShownStatusMessage()
+        {
             if (mProjectView.IsLimitedPhraseBlocksCreatedAfterCommand())
             {
                 string selectionString = mProjectView.Selection != null ? mProjectView.Selection.Node.ToString() : "";
                 Status(string.Format(Localizer.Message("StatusBar_LimitedPhrasesShown"), selectionString));
             }
-            }
-        }
+}
 
         // Show welcome dialog first, unless the user has chosen
         private void ObiForm_Load ( object sender, EventArgs e )
@@ -2155,7 +2160,7 @@ namespace Obi
                                 }
                                 
                                 OpenProject(path);
-                                if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage();
+                                if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage_Safe();
                             }
             catch (Exception e)
                 {
