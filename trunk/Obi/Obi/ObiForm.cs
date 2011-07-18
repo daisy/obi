@@ -64,7 +64,7 @@ namespace Obi
             {
             mShowWelcomWindow = false;
             InitializeObi ();
-            OpenProject_Safe ( path );
+            OpenProject_Safe ( path, null );
             m_IsSaveActive = false;
             m_DefaultSettings = Settings.GetDefaultSettings();
             }
@@ -421,7 +421,7 @@ namespace Obi
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Filter = Localizer.Message ( "obi_filter" );
             dialog.InitialDirectory = mSettings.DefaultPath;
-            if (dialog.ShowDialog () == DialogResult.OK && DidCloseProject ()) OpenProject_Safe ( dialog.FileName );
+            if (dialog.ShowDialog () == DialogResult.OK && DidCloseProject ()) OpenProject_Safe ( dialog.FileName, null );
             }
 
         // Clear the list of recently opened files (prompt the user first.)
@@ -1030,7 +1030,7 @@ namespace Obi
         private void ObiForm_Load ( object sender, EventArgs e )
             {
                 if (!m_InputDeviceFound && !m_OutputDevicefound) this.Close();
-                if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject);
+                if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
         
             UpdateKeyboardFocusForSelection();            
@@ -1082,7 +1082,7 @@ namespace Obi
             Open ();
             break;
             case WelcomeDialog.Option.OpenLastProject:
-            OpenProject_Safe(mSettings.LastOpenProject);
+            OpenProject_Safe(mSettings.LastOpenProject, null);
             break;
             case WelcomeDialog.Option.ViewHelp:
             ShowHelpFile ();
@@ -1900,7 +1900,19 @@ namespace Obi
         #endregion
 
 
+        private delegate void Status_Delegate(string message);
+        public void Status_Safe(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Status_Delegate(Status_Safe), message);
+            }
+            else
+            {
+                Status(message);
+            }
 
+        }
 
 
         /// <summary>
@@ -1941,7 +1953,7 @@ namespace Obi
         /// Try to open a project from a XUK file.
         /// Actually open it only if a possible current project could be closed properly.
         /// </summary>
-        private void CloseAndOpenProject ( string path ) { if (DidCloseProject ()) OpenProject_Safe ( path ); }
+        private void CloseAndOpenProject ( string path ) { if (DidCloseProject ()) OpenProject_Safe ( path , null); }
 
         // Try to create a new project with the given title at the given path.
         private void CreateNewProject ( string path, string title, bool createTitleSection, string id )
@@ -2127,7 +2139,7 @@ namespace Obi
 
 
         // Open the project at the given path; warn the user on error.
-        private void OpenProject_Safe ( string path )
+        private void OpenProject_Safe ( string path, string progressTitle )
         {
             
             try
@@ -2159,7 +2171,7 @@ namespace Obi
                                     }
                                 }
                                 
-                                OpenProject(path);
+                                OpenProject(path, progressTitle);
                                 if (mProjectView.Presentation != null) ShowLimitedPhrasesShownStatusMessage_Safe();
                             }
             catch (Exception e)
@@ -2174,12 +2186,14 @@ namespace Obi
             }
 
         // Unsafe version of open project
-        private void OpenProject ( string path )
+        private void OpenProject(string path, string progressTitle)
             {
             m_IsStatusBarEnabled = true;
-            Status("Opening project " + path);//todo localize
+            Status_Safe("Opening project " + path);//todo localize
+
+            if ( string.IsNullOrEmpty(progressTitle )) progressTitle = Localizer.Message("OpenProject_progress_dialog_title") ;
             this.Cursor = Cursors.WaitCursor;
-            Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(Localizer.Message("OpenProject_progress_dialog_title"),
+            Obi.Dialogs.ProgressDialog progress = new Obi.Dialogs.ProgressDialog(progressTitle,
                                    delegate()
                                    {
                                        mSession.Open(path);
@@ -3300,7 +3314,7 @@ namespace Obi
 
                 if (DidCloseProject())
                 {
-                    OpenProject_Safe(m_RestoreProjectFilePath);
+                    OpenProject_Safe(m_RestoreProjectFilePath, "Opening from backup file");
                     ProjectHasChanged(1);
                     m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
                     m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
@@ -3323,7 +3337,7 @@ namespace Obi
             
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
-            OpenProject_Safe(m_OriginalPath);
+            OpenProject_Safe(m_OriginalPath, "Loading original project");
             if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
 
             m_RestoreProjectFilePath = null;
@@ -3347,7 +3361,7 @@ namespace Obi
                     
                     mSession.Save(m_OriginalPath);
                     mSession.Close();
-                    OpenProject_Safe(m_OriginalPath);
+                    OpenProject_Safe(m_OriginalPath, "Saving restored project");
                     
                     m_OriginalPath = null;
                     if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
