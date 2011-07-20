@@ -266,6 +266,23 @@ namespace Obi.ProjectView
 
         public void ClearCursor() { if ( mWaveform != null )  mWaveform.ClearCursor(); }
 
+
+        public void GetLocationXForAudioCursorAndSelection(out int audioCursorPosition, out int selectionStartPosition, out int selectionEndPosition)
+        {
+            audioCursorPosition = selectionStartPosition = selectionEndPosition = -1;
+            if (mWaveform != null)
+            {
+                audioCursorPosition = mWaveform.Location.X + mWaveform.CursorPosition;
+                if (mWaveform.Selection != null)
+                {
+                    selectionStartPosition = mWaveform.Selection.HasCursor ? mWaveform.SelectionPointPosition + mWaveform.Location.X : mWaveform.InitialSelectionPosition + mWaveform.Location.X;
+                    selectionEndPosition = mWaveform.Selection.HasCursor ? -1 : mWaveform.FinalSelectionPosition + mWaveform.Location.X;
+                }
+            }
+            //Console.WriteLine(audioCursorPosition + " : " + selectionStartPosition + " : " + selectionEndPosition);
+        }
+
+
         protected override void Block_Disposed(object sender, EventArgs e)
         {
             if (mNode != null  && mNode is PhraseNode)  ((PhraseNode) mNode).NodeAudioChanged -= new NodeEventHandler<PhraseNode>(node_NodeAudioChanged);

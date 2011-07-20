@@ -805,7 +805,7 @@ namespace Obi.ProjectView
                 int top = location.Y - c.Margin.Top;
                 if (top < stripLabelOffset) top = stripLabelOffset;//@singleSection
                 int bottom = location.Y + c.Height + c.Margin.Bottom;
-                int left = location.X - c.Margin.Left;
+                int left = location.X - c.Margin.Left + GetSelectionOrAudioCursorLocationX (c);
                 int right = location.X + c.Width + c.Margin.Right;
                 // Four corners relative to the current strips panel location
                 int t = top + mStripsPanel.Location.Y;
@@ -864,6 +864,32 @@ namespace Obi.ProjectView
                 mEnableScrolling = true;
                 }
             }
+
+        private int GetSelectionOrAudioCursorLocationX(Control c)
+        {
+            if (c != null && c is AudioBlock)
+            {
+                AudioBlock block = (AudioBlock)c;
+                int audioCursorPosition;
+                int selectionBeginPosition;
+                int selectionEndPosition;
+                block.GetLocationXForAudioCursorAndSelection(out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
+
+                if (audioCursorPosition == -1 && selectionBeginPosition > 0 )
+                {
+                    return selectionBeginPosition;
+                    }
+                    else if (audioCursorPosition > 0 && selectionBeginPosition == -1 )
+                    {
+                        return audioCursorPosition;
+                    }
+                    else if (audioCursorPosition > 0 && selectionBeginPosition > 0)
+                    {
+                        return audioCursorPosition < selectionBeginPosition ? audioCursorPosition : selectionBeginPosition;
+                    }
+            }
+            return 0;
+        }
 
         public void SelectNextPhrase ( ObiNode node )
             {
