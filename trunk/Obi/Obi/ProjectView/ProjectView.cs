@@ -1169,7 +1169,14 @@ namespace Obi.ProjectView
                 if (mClipboard != null && mClipboard.Node is EmptyNode && GetSelectedPhraseSection != null && GetSelectedPhraseSection.PhraseChildCount >= MaxVisibleBlocksCount) // @phraseLimit
                     return;
 
-                if (mTransportBar.IsPlayerActive) mTransportBar.Stop ();
+                if (mClipboard is AudioClipboard )
+                {
+                    if(TransportBar.CurrentState == TransportBar.State.Playing ) TransportBar.Pause();
+                }
+                else if (mTransportBar.IsPlayerActive)
+                {
+                    mTransportBar.Stop();
+                }
                 bool PlaySelectionFlagStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 mTransportBar.SelectionChangedPlaybackEnabled = false;
                 try
