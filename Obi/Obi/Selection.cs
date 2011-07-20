@@ -151,8 +151,21 @@ namespace Obi
             CompositeCommand p = view.Presentation.CreateCompositeCommand(Localizer.Message("paste_audio"));
             p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
             if (Node is EmptyNode)
-            {
-                p.ChildCommands.Insert(p.ChildCommands.Count , Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
+            {   
+                if (view.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
+                {   
+                    CompositeCommand splitCmd = Commands.Node.SplitAudio.GetSplitCommand ( view ) ;
+                     PhraseNode nodeAfter =  Commands.Node.SplitAudio.GetSplitNode (splitCmd);
+                    p.ChildCommands.Insert(p.ChildCommands.Count, splitCmd);
+                    p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
+                    p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, nodeAfter));
+                    p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection (view, new AudioSelection ((PhraseNode) Node,Control  ,new AudioRange (view.TransportBar.SplitBeginTime, view.TransportBar.SplitBeginTime + phrase.Duration) )) );
+                    
+                }
+                else
+                {
+                    p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
+                }
             }
             return p;
         }
