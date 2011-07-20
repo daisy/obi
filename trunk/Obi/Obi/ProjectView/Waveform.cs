@@ -475,9 +475,9 @@ namespace Obi.ProjectView
         }
 
         // Get the position in pixels of the cursor (during playback only.)
-        private int CursorPosition
+        public int CursorPosition
         {
-            get { return XFromTime(mCursor.CursorTime); }
+            get { return mCursor != null ? XFromTime(mCursor.CursorTime) : -1; }
         }
 
 
