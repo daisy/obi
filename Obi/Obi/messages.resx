@@ -1891,12 +1891,27 @@ Error text: {1}</value>
     <value>Restored Project.obi</value>
   </data>
   <data name="save_current_state" xml:space="preserve">
-    <value>"This operation will save the current state of project. You will not be able to reinstate the original project after this.</value>
+    <value>This operation will save the current state of project. You will not be able to reinstate the original project after this.</value>
   </data>
   <data name="open_from_backup_file" xml:space="preserve">
     <value>The project will open from backup file. Do you wish to continue?</value>
   </data>
   <data name="AudioFormatConverter_Error_FileExtentionNodSupported" xml:space="preserve">
     <value>audio format not recognized. Only .wav and .mp3 files are supported. Skipping import of {0}</value>
+  </data>
+  <data name="Load_Original_Project" xml:space="preserve">
+    <value>Loading original project</value>
+  </data>
+  <data name="Open_Backup_file" xml:space="preserve">
+    <value>Opening from backup file</value>
+  </data>
+  <data name="Save_Restore_Project" xml:space="preserve">
+    <value>Saving restored project</value>
+  </data>
+  <data name="error_in_opening" xml:space="preserve">
+    <value>Error in opening</value>
+  </data>
+  <data name="opening_project" xml:space="preserve">
+    <value>Opening project</value>
   </data>
 </root>

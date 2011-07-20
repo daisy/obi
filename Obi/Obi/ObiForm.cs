@@ -784,8 +784,12 @@ namespace Obi
                             {
                                 m_CanAutoSave = false;
                                 //mSession.Presentation.cleanup();
-                                cleaner.Cleanup();
-
+                                try
+                                {
+                                    cleaner.Cleanup();
+                                }
+                                catch (Exception e)
+                                { MessageBox.Show(e.ToString()); }
                                 List<string> listOfDataProviderFiles = new List<string>();
                                 foreach (DataProvider dataProvider in mSession.Presentation.DataProviderManager.ManagedObjects.ContentsAs_Enumerable)
                 {
@@ -2189,7 +2193,7 @@ namespace Obi
         private void OpenProject(string path, string progressTitle)
             {
             m_IsStatusBarEnabled = true;
-            Status_Safe("Opening project " + path);//todo localize
+            Status_Safe(Localizer.Message("opening_project") + path);//todo localize
 
             if ( string.IsNullOrEmpty(progressTitle )) progressTitle = Localizer.Message("OpenProject_progress_dialog_title") ;
             this.Cursor = Cursors.WaitCursor;
@@ -2201,7 +2205,7 @@ namespace Obi
             progress.ShowDialog();
             if (progress.Exception != null)
             {
-                Status("Error in opening"); //todo localize
+                Status(Localizer.Message("error_in_opening")); //todo localize
                 throw progress.Exception;
             }
             AddRecentProject ( path );
@@ -3314,7 +3318,7 @@ namespace Obi
 
                 if (DidCloseProject())
                 {
-                    OpenProject_Safe(m_RestoreProjectFilePath, "Opening from backup file");
+                    OpenProject_Safe(m_RestoreProjectFilePath, Localizer.Message("Open_Backup_file"));
                     ProjectHasChanged(1);
                     m_RestoreFromOriginalProjectToolStripMenuItem.Visible = true;
                     m_RestoreFromOriginalProjectToolStripMenuItem.Enabled = true;
@@ -3337,7 +3341,7 @@ namespace Obi
             
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop();
             mSession.Close();
-            OpenProject_Safe(m_OriginalPath, "Loading original project");
+            OpenProject_Safe(m_OriginalPath, Localizer.Message("Load_Original_Project"));
             if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);
 
             m_RestoreProjectFilePath = null;
@@ -3361,7 +3365,7 @@ namespace Obi
                     
                     mSession.Save(m_OriginalPath);
                     mSession.Close();
-                    OpenProject_Safe(m_OriginalPath, "Saving restored project");
+                    OpenProject_Safe(m_OriginalPath, Localizer.Message("Save_Restore_Project"));
                     
                     m_OriginalPath = null;
                     if (File.Exists(m_RestoreProjectFilePath)) File.Delete(m_RestoreProjectFilePath);

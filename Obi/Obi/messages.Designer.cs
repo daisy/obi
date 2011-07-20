@@ -1351,6 +1351,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error in opening.
+        /// </summary>
+        internal static string error_in_opening {
+            get {
+                return ResourceManager.GetString("error_in_opening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create metadata item.
         /// </summary>
         internal static string error_metadata_name_caption {
@@ -2343,6 +2352,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading original project.
+        /// </summary>
+        internal static string Load_Original_Project {
+            get {
+                return ResourceManager.GetString("Load_Original_Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File location error.
         /// </summary>
         internal static string location_error {
@@ -3175,6 +3193,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opening from backup file.
+        /// </summary>
+        internal static string Open_Backup_file {
+            get {
+                return ResourceManager.GetString("Open_Backup_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The project will open from backup file. Do you wish to continue?.
         /// </summary>
         internal static string open_from_backup_file {
@@ -3216,6 +3243,15 @@ namespace Obi {
         internal static string OpenError_UseCleanUp {
             get {
                 return ResourceManager.GetString("OpenError_UseCleanUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening project.
+        /// </summary>
+        internal static string opening_project {
+            get {
+                return ResourceManager.GetString("opening_project", resourceCulture);
             }
         }
         
@@ -4057,11 +4093,20 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;This operation will save the current state of project. You will not be able to reinstate the original project after this..
+        ///   Looks up a localized string similar to This operation will save the current state of project. You will not be able to reinstate the original project after this..
         /// </summary>
         internal static string save_current_state {
             get {
                 return ResourceManager.GetString("save_current_state", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving restored project.
+        /// </summary>
+        internal static string Save_Restore_Project {
+            get {
+                return ResourceManager.GetString("Save_Restore_Project", resourceCulture);
             }
         }
         
