@@ -153,14 +153,17 @@ namespace Obi
             if (Node is EmptyNode)
             {   
                 if (view.TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Paused)
-                {   
+                {
+                    Command pasteCommand = new Commands.Audio.Paste(view, view.TransportBar.SplitBeginTime);
+                    p.ChildCommands.Insert(p.ChildCommands.Count, pasteCommand);
+                    /*
                     CompositeCommand splitCmd = Commands.Node.SplitAudio.GetSplitCommand ( view ) ;
                      PhraseNode nodeAfter =  Commands.Node.SplitAudio.GetSplitNode (splitCmd);
                     p.ChildCommands.Insert(p.ChildCommands.Count, splitCmd);
                     p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
                     p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, nodeAfter));
                     p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection (view, new AudioSelection ((PhraseNode) Node,Control  ,new AudioRange (view.TransportBar.SplitBeginTime, view.TransportBar.SplitBeginTime + phrase.Duration) )) );
-                    
+                    */
                 }
                 else
                 {

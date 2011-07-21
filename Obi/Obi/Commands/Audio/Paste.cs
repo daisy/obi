@@ -58,6 +58,42 @@ namespace Obi.Commands.Audio
             SetDescriptions(Localizer.Message("paste_audio"));
         }
 
+        public Paste(ProjectView.ProjectView view, double pasteTime)
+            : base(view)
+        {
+            mNode = view.SelectedNodeAs<PhraseNode>();
+            //AudioSelection selection = (AudioSelection)view.Selection;
+            mMediaBefore = mNode.Audio.Copy();
+            mMediaAfter = mMediaBefore.Copy();
+            urakawa.media.data.audio.ManagedAudioMedia copy;
+            if (view.Clipboard is AudioClipboard)
+            {
+                AudioClipboard clipboard = (AudioClipboard)view.Clipboard;
+
+                copy = view.Presentation.MediaFactory.CreateManagedAudioMedia();
+                WavAudioMediaData mediaData = ((WavAudioMediaData)((PhraseNode)clipboard.Node).Audio.AudioMediaData).Copy(
+                    new Time((long)(clipboard.AudioRange.SelectionBeginTime * Time.TIME_UNIT)),
+                    new Time((long)(clipboard.AudioRange.SelectionEndTime * Time.TIME_UNIT))
+                    );
+                copy.AudioMediaData = mediaData;
+
+            }
+            else
+            {
+                copy = ((PhraseNode)view.Clipboard.Node).Audio.Copy();
+            }
+            urakawa.media.data.audio.ManagedAudioMedia after;
+            
+                after = mMediaAfter.Split(new Time((long)(pasteTime * Time.TIME_UNIT)));
+            
+            double begin = mMediaAfter.Duration.AsTimeSpan.TotalMilliseconds;
+            mSelectionAfter = new AudioSelection(mNode, view.Selection.Control,
+                new AudioRange(begin, begin + copy.Duration.AsTimeSpan.TotalMilliseconds));
+            mMediaAfter.AudioMediaData.MergeWith(copy.AudioMediaData);
+            mMediaAfter.AudioMediaData.MergeWith(after.AudioMediaData);
+            SetDescriptions(Localizer.Message("paste_audio"));
+        }
+
         public override IEnumerable<MediaData> UsedMediaData
         {
             get
