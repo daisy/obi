@@ -801,12 +801,16 @@ namespace Obi.ProjectView
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
                     Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
+                    int audioCursorPosition;
+                    int selectionBeginPosition;
+                    int selectionEndPosition;
+
                 // Compute the four corners of the control, including margins
                 int top = location.Y - c.Margin.Top;
                 if (top < stripLabelOffset) top = stripLabelOffset;//@singleSection
                 int bottom = location.Y + c.Height + c.Margin.Bottom;
-                int left = location.X - c.Margin.Left + GetSelectionOrAudioCursorLocationX (c);
-                int right = location.X + c.Width + c.Margin.Right;
+                int left = location.X - c.Margin.Left + GetSelectionOrAudioCursorLocationX (c, out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
+                int right =selectionEndPosition > 0? location.X + selectionEndPosition: location.X + c.Width + c.Margin.Right;
                 // Four corners relative to the current strips panel location
                 int t = top + mStripsPanel.Location.Y;
                 int b = bottom + mStripsPanel.Location.Y;
@@ -865,14 +869,15 @@ namespace Obi.ProjectView
                 }
             }
 
-        private int GetSelectionOrAudioCursorLocationX(Control c)
+        private int GetSelectionOrAudioCursorLocationX(Control c, out int audioCursorPosition, out int selectionBeginPosition, out int selectionEndPosition)
         {
+            audioCursorPosition = -1;
+            selectionBeginPosition = -1;
+            selectionEndPosition = -1;
             if (c != null && c is AudioBlock)
             {
                 AudioBlock block = (AudioBlock)c;
-                int audioCursorPosition;
-                int selectionBeginPosition;
-                int selectionEndPosition;
+                
                 block.GetLocationXForAudioCursorAndSelection(out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
 
                 if (audioCursorPosition == -1 && selectionBeginPosition > 0 )
