@@ -159,7 +159,7 @@ namespace Obi.ProjectView
                 // workaround to prevent visibility problem in block layout, waveform should remain below blocklayout width of 32768
                 if (w > MaxWaveformWidth) 
                     {
-                    w = 32600;
+                    w = MaxWaveformWidth;
                     }
                 return w;
             }
