@@ -281,6 +281,11 @@ namespace Obi.ProjectView
                     }
                     if (au != null) au.Close();
                     au = null;
+
+                    if (mBlock.MaxWaveformWidth == Width && Width < Width_Expected)
+                    {
+                        DrawWaveformBreakMark(g, settings);
+                    }
                 }
                 finally
                 {
@@ -289,7 +294,22 @@ namespace Obi.ProjectView
                 }
             }
         }
-        
+
+        public void DrawWaveformBreakMark(Graphics g, ColorSettings settings)
+        {
+            if (mBlock == null || Width < mBlock.MaxWaveformWidth) return;
+
+            float percent = (8 * 100) / 200;
+            int curveWidth = (int)((percent * Height) / 100);
+            int width = Width - curveWidth;
+
+                Pen penCurrent = new Pen(Color.Blue);
+                penCurrent.Width = 2.0F;
+                Point[] pt = { new Point(width - curveWidth,0), new Point(width - (2 * curveWidth), Height / 4), new Point(width - curveWidth, Height / 2), new Point(width - curveWidth, Height / 2), new Point(width, (3 * Height) / 4), new Point(width - curveWidth, Height) };
+                g.DrawCurve(penCurrent, pt);
+            
+        }
+
         // Repaint the waveform bitmap.
         protected override void OnPaint(PaintEventArgs pe)
         {
