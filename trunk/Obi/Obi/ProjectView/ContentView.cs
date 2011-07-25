@@ -4934,7 +4934,10 @@ Block lastBlock = ActiveStrip.LastBlock ;
                     mStripsPanel.Location = new Point(mStripsPanel.Location.X, ActiveStrip.BlocksLayoutTopPosition * -1);
                 }
                 */
-                CreateLimitedBlocksInStrip(ActiveStrip, null);
+            if (CreateLimitedBlocksInStrip(ActiveStrip, null))
+            {
+                UpdateVerticalScrolPanelButtons();
+            }
             }
             
             
