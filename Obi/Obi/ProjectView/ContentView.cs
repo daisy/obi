@@ -1670,6 +1670,7 @@ return CreateBlocksInStrip ( s != null ? s : null ); // uncomment this for resto
                                     }//-4
                                 currentNode = currentNode.FollowingNode;
                                 }//-3
+                            SelectPreviouslySelectedEmptyNodeForScrollSelectionChange(stripControl, false);
                             mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
                             }//-2
 
