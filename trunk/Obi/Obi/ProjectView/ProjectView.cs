@@ -968,9 +968,15 @@ namespace Obi.ProjectView
                     CompositeCommand deleteCommand = this.Presentation.CommandFactory.CreateCompositeCommand ();
                     command.ShortDescription =  delete.ShortDescription;
                     for (int i = 0; i < next.SectionChildCount; ++i)
-                        {
-                        deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
-                        }
+                    {
+                        //deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
+                        // above line replaced by following 5 lines.
+                        Commands.Node.Delete deleteChildSection = new Obi.Commands.Node.Delete(this, next.SectionChild(i), false);
+                        deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, deleteChildSection);
+                        int insertIndex = next.Index < section.SectionChildCount? next.Index : section.SectionChildCount ;
+                        Commands.Node.AddNode insert = new Obi.Commands.Node.AddNode(this, next.SectionChild(i), section, insertIndex);
+                        deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, insert);
+                    }
                     delete.ProgressPercentage = 100;
                     deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, delete );
                     command.ChildCommands.Insert(command.ChildCommands.Count, deleteCommand );//
