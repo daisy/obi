@@ -1002,6 +1002,7 @@ namespace Obi.ProjectView
             if (mWrap)
             {
                 Resize_Wrap();
+                ApplyFlowBreaks();
             }
             else
             {
@@ -1509,6 +1510,41 @@ namespace Obi.ProjectView
             return null;
 
             }
+
+
+            private bool m_IsFlowBreakMarked = false;
+            private void ApplyFlowBreaks()
+            {
+                
+                if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
+                {
+                    int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
+                    if (!m_IsFlowBreakMarked && Width < boundaryWidth) return;    
+                    foreach (Control c in mBlockLayout.Controls)
+                    {
+                        if (c is Block)
+                        {
+                            bool isMarkedOnCurrentControl = false;
+                            if (m_IsFlowBreakMarked)
+                            {
+                                isMarkedOnCurrentControl = mBlockLayout.GetFlowBreak(c);
+                                if (isMarkedOnCurrentControl && c.Location.X <= boundaryWidth)
+                                {
+                                    mBlockLayout.SetFlowBreak(c, false);
+                                    m_IsFlowBreakMarked = false;
+                                }
+                            }
+                            if ((c.Location.X > boundaryWidth || c.Width > boundaryWidth)&& !isMarkedOnCurrentControl)
+                            {
+                                mBlockLayout.SetFlowBreak(c, true);
+                                m_IsFlowBreakMarked = true;
+                            }
+                        }
+                    }
+
+                }
+            }
+
 
         public void DestroyStripHandle ()
             {
