@@ -1002,7 +1002,7 @@ namespace Obi.ProjectView
             if (mWrap)
             {
                 Resize_Wrap();
-                ApplyFlowBreaks();
+                
             }
             else
             {
@@ -1054,6 +1054,7 @@ namespace Obi.ProjectView
                 mBlockLayout.MaximumSize =
                     new Size(Math.Max(BlockLayoutMinimumWidth, Math.Min(BlockLayoutFullWidth, width_fit)), 0);
                 Size = new Size(WidthForContents, HeightForContents);
+                ApplyFlowBreaks();
             }
             else
             {
