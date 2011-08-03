@@ -548,12 +548,14 @@ namespace Obi.ProjectView
         }
 
         private void Waveform_MouseHover(object sender, EventArgs e)
-        {
-            Point cursorPos = this.PointToClient(Cursor.Position);
+        {            
             if (Width < mBlock.MaxWaveformWidth)
                 return;
+            Point cursorPos = this.PointToClient(Cursor.Position);            
             if (cursorPos.X < this.Width - 100)
             {
+                if (newTooltip.GetToolTip(this) == "")
+                   return;                
                 newTooltip.SetToolTip(this, "");
                 return;
             }
