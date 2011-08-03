@@ -20,6 +20,7 @@ namespace Obi.ProjectView
         private AudioRange mSelection;       // selection in the waveform
         private bool m_CancelRendering;
         private bool m_IsRenderingWaveform;
+        private ToolTip newTooltip = new ToolTip();
 
         private System.Threading.Mutex mPaintMutex ; // for forcing mutual exclusion in on paint event
 
@@ -544,6 +545,21 @@ namespace Obi.ProjectView
             if (mBitmap_Highlighted != null) mBitmap_Highlighted.Dispose();
             mBitmap_Highlighted = null;
 
+        }
+
+        private void Waveform_MouseHover(object sender, EventArgs e)
+        {
+            Point cursorPos = this.PointToClient(Cursor.Position);
+            if (Width < mBlock.MaxWaveformWidth)
+                return;
+            if (cursorPos.X < this.Width - 100)
+            {
+                newTooltip.SetToolTip(this, "");
+                return;
+            }
+            int time = (int)TimeFromX(mBlock.MaxWaveformWidth) / 1000;
+            if (cursorPos.X <= this.Width && cursorPos.X >= this.Width - 100)
+                newTooltip.SetToolTip(this, String.Format(Localizer.Message("waveform_is_truncated"), time));
         }
 
 
