@@ -4627,6 +4627,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The waveform is truncated at {0}s.
+        /// </summary>
+        internal static string waveform_is_truncated {
+            get {
+                return ResourceManager.GetString("waveform_is_truncated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading elements are in the wrong order..
         /// </summary>
         internal static string wrong_heading_order {
