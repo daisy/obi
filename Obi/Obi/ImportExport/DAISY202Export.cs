@@ -51,8 +51,8 @@ namespace Obi.ImportExport
 
         public override void ConfigureAudioFileDelegates()
         {
-            triggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
-            skipDelegate = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
+            m_TriggerDelegate = delegate(urakawa.core.TreeNode node) { return node is SectionNode && ((SectionNode)node).Level <= m_AudioFileSectionLevel; };
+            m_SkipDelegate = delegate(urakawa.core.TreeNode node) { return !((ObiNode)node).Used; };
         }
 
 
