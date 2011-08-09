@@ -1910,7 +1910,7 @@ namespace Obi.ProjectView
         {
             if (CanRewind)
             {
-                if (mState == State.Stopped) PlayOrResume();
+                if (mState == State.Stopped || mState == State.Paused) PlayOrResume();
                 mCurrentPlaylist.Rewind();
 
                 if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
