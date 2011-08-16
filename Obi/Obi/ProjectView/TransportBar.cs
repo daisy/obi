@@ -136,9 +136,9 @@ namespace Obi.ProjectView
         public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
-        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring ) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive; } } // @phraseLimit
+        public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive; } } // @phraseLimit
         public bool CanResumePlayback { get { return Enabled && mState == State.Paused   &&   !mView.IsContentViewScrollActive; } }
-        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   mState != State.Playing && !mView.IsContentViewScrollActive; } }
+        public bool CanResumeRecording { get { return Enabled && mResumeRecordingPhrase != null && mResumeRecordingPhrase.IsRooted    &&   (mState != State.Playing  ||   (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) )&& !mView.IsContentViewScrollActive; } }
         public bool CanRewind { get { return Enabled && (IsPlayerActive || CanPlay) ; } }
         public bool CanStop { get { return Enabled && (mState != State.Stopped || mView.Selection != null); } }
 
@@ -1255,6 +1255,8 @@ namespace Obi.ProjectView
         {
                     if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
+
+                        if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
             {
             try
                 {
@@ -1290,6 +1292,7 @@ namespace Obi.ProjectView
         // Setup recording and start recording or monitoring
         private void SetupRecording(bool recording, SectionNode afterSection)
         {
+            
         if (mRecorder != null && mRecorder.CurrentState == AudioLib.AudioRecorder.State.Stopped)
                         {
             urakawa.command.CompositeCommand command = CreateRecordingCommand ();
@@ -1336,8 +1339,21 @@ namespace Obi.ProjectView
                     {
                     mView.SelectPhraseInContentView ( mResumeRecordingPhrase );
                     }
-                
-                command.ChildCommands.Insert (command.ChildCommands.Count, new Commands.UpdateSelection ( mView, new NodeSelection ( selectionNode, mView.Selection.Control ) ) );
+                    
+                    if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor
+                        &&    ( CurrentState == State.Paused || (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
+                        
+                        double replaceStartTime = (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )? ((AudioSelection)mView.Selection).AudioRange.CursorTime :
+                            CurrentPlaylist.CurrentTimeInAsset;
+                        mView.Selection = new AudioSelection((PhraseNode) selectionNode, mView.Selection.Control, new AudioRange(replaceStartTime, selectionNode.Duration) );
+                        
+                    }
+                    else
+                    {
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
+                    }
                 }
                 else if (selectionNode == null && mView.GetSelectedPhraseSection == null)//also saving null selection
                 {
@@ -2213,7 +2229,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void StartRecordingDirectly()
         {
-            if (mView.ObiForm.Settings.PreviewBeforeRecording && mView.ObiForm.Settings.AllowOverwrite
+            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
+            if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
                 && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection )))
             {
                 System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
