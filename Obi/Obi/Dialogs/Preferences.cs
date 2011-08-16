@@ -160,6 +160,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[4].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectly;
                 m_IsComplete = true;
 
             }
@@ -599,6 +600,7 @@ namespace Obi.Dialogs
                 mSettings.Recording_PreviewBeforeStarting = m_CheckBoxListView.Items[2].Checked;
                 mSettings.AllowOverwrite = m_CheckBoxListView.Items[3].Checked;
                 mSettings.Recording_ReplaceAfterCursor= m_CheckBoxListView.Items[4].Checked;
+                mSettings.RecordDirectly = m_CheckBoxListView.Items[5].Checked;
             }
         }
 
@@ -617,6 +619,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add("Preview Before Recording");
                 m_CheckBoxListView.Items.Add("Allow overwrite while recording");
                 m_CheckBoxListView.Items.Add("Record while replacing audio after cursor position");
+                m_CheckBoxListView.Items.Add("Record directly from transport bar");
                 m_grpBoxChkBoxListView.Size = new Size(470, 70);
                 m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
@@ -624,6 +627,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[4].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectly;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -691,6 +695,7 @@ namespace Obi.Dialogs
                 mSettings.Recording_PreviewBeforeStarting = m_DefaultSettings.Recording_PreviewBeforeStarting;
                 mSettings.AllowOverwrite = m_DefaultSettings.AllowOverwrite;
                 mSettings.Recording_ReplaceAfterCursor= m_DefaultSettings.Recording_ReplaceAfterCursor;
+                mSettings.RecordDirectly = m_DefaultSettings.RecordDirectly;
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
