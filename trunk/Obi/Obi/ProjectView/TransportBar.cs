@@ -760,8 +760,9 @@ namespace Obi.ProjectView
                 mPlayButton.Enabled = CanPlay || CanResumePlayback;
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
+                bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
                 mRecordButton.AccessibleName = Localizer.Message(
-                    mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring
+                    (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || (recordDirectly && CurrentState != State.Recording))
                         ? "start_recording"
                         : "start_monitoring"
                     );
@@ -1246,7 +1247,22 @@ namespace Obi.ProjectView
 
         // Record
 
-        private void mRecordButton_Click(object sender, EventArgs e) { Record(); }
+        private void mRecordButton_Click(object sender, EventArgs e) { Record_Button(); }
+
+        /// <summary>
+        /// allows direct recording when record directly preferences is checked else it goes through monitoring first
+        /// </summary>
+        public void Record_Button()
+        {
+            if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton)
+            {
+                StartRecordingDirectly();
+            }
+            else
+            {
+                Record();
+            }
+        }
 
         /// <summary>
         /// Start monitoring (if stopped) or recording (if monitoring)
