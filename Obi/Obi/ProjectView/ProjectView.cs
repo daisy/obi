@@ -3151,112 +3151,171 @@ namespace Obi.ProjectView
         /// <summary>
         /// searches page number or phrase index entered in dialog box and highlight it in content view
         /// </summary>
-        public void GoToPageOrPhrase ()
+        public void GoToPageOrPhrase()
+        {
+            if (mPresentation.FirstSection == null) return;
+            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase(GetSelectedPhraseSection != null ? GetSelectedPhraseSection.PhraseChildCount : mPresentation.FirstSection.PhraseChildCount);
+            AudioSelection sel;
+            if (GoToDialog.ShowDialog() == DialogResult.OK)
             {
-                if (mPresentation.FirstSection == null) return;
-            Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase (GetSelectedPhraseSection != null? GetSelectedPhraseSection.PhraseChildCount: mPresentation.FirstSection.PhraseChildCount);
-            if (GoToDialog.ShowDialog () == DialogResult.OK)
-                {
                 if (GoToDialog.Number != null)
-                    {
+                {
                     int pageNumber = GoToDialog.Number.Number;
                     PageKind kind = GoToDialog.Number.Kind;
                     EmptyNode node = null;
                     EmptyNode firstSpecialPageMatch = null; // holds first match of special page
 
                     //flag to indicate if iterations has passed through selected node.   is true if iteration is moved ahead of selected node
-                    bool isAfterSelection =( Selection == null || ( Selection != null && Presentation.FirstSection == Selection.Node)) ? true : false; 
+                    bool isAfterSelection = (Selection == null || (Selection != null && Presentation.FirstSection == Selection.Node)) ? true : false;
 
                     for (ObiNode n = ((ObiRootNode)Presentation.RootNode).FirstLeaf; n != null; n = n.FollowingNode)
-                        {
+                    {
                         if (n is EmptyNode)
-                            {
+                        {
                             EmptyNode testNode = (EmptyNode)n;
                             if (testNode.Role_ == EmptyNode.Role.Page
                                 && testNode.PageNumber.Kind == kind)
-                                {
+                            {
                                 // test special pages and other pages separately
                                 if (testNode.PageNumber.Kind == PageKind.Special)
-                                    {
+                                {
                                     if (testNode.PageNumber.ArabicNumberOrLabel == GoToDialog.Number.ArabicNumberOrLabel)
-                                        {
-                                        if ( firstSpecialPageMatch == null )  firstSpecialPageMatch = testNode;
+                                    {
+                                        if (firstSpecialPageMatch == null) firstSpecialPageMatch = testNode;
 
-                                        if (Selection != null 
-                                            && isAfterSelection )
-                                            {
+                                        if (Selection != null
+                                            && isAfterSelection)
+                                        {
                                             node = testNode;
                                             break;
-                                            }
                                         }
                                     }
+                                }
                                 else if (testNode.PageNumber.Number == pageNumber) // if not special compare int number
-                                    {
+                                {
                                     node = testNode;
                                     break;
-                                    }
-
                                 }
+
                             }
+                        }
                         // check if iterations has passed selected node
                         if (Selection != null &&
                             Selection.Node == n)
-                            {
+                        {
                             isAfterSelection = true;
-                            }
                         }
+                    }
 
                     // check if special page is null
                     if (kind == PageKind.Special
                         && node == null && firstSpecialPageMatch != null)
-                        {
+                    {
                         node = firstSpecialPageMatch;
-                        }
+                    }
 
                     if (node != null)
-                        {
+                    {
                         //@singleSection
                         //Selection = new NodeSelection ( node, mContentView );
-                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
-                        mContentView.SelectPhraseBlockOrStrip ( node );
-                        }
-                    else
-                        {
-                            MessageBox.Show(Localizer.Message("GoToPageorPhrase_PageDonotExist"));
-                        }
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause();
+                        mContentView.SelectPhraseBlockOrStrip(node);
                     }
-                else if (GoToDialog.PhraseIndex != null)
+                    else
                     {
+                        MessageBox.Show(Localizer.Message("GoToPageorPhrase_PageDonotExist"));
+                    }
+                }
+                else if (GoToDialog.PhraseIndex != null)
+                {
                     int phraseIndex = (int)GoToDialog.PhraseIndex - 1;
-                    SectionNode section = GetSelectedPhraseSection != null ? GetSelectedPhraseSection : 
+                    SectionNode section = GetSelectedPhraseSection != null ? GetSelectedPhraseSection :
                         mContentView.ActiveStrip != null ? mContentView.ActiveStrip.Node ://@singleSection
                         mPresentation.FirstSection;
-                    
+
                     if (section != null && section.PhraseChildCount > 0)
-                        {
+                    {
                         if (phraseIndex >= section.PhraseChildCount)
-                            {
+                        {
                             // for message box display, phrase index should start from 1 so it should be incremented for display.
-                            if (MessageBox.Show ( string.Format ( Localizer.Message ( "GoToPageOrPhrase_MoreThanPhraseCount" ), (phraseIndex + 1).ToString (), (section.PhraseChildCount).ToString () ),
-    "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes)
-                                {
+                            if (MessageBox.Show(string.Format(Localizer.Message("GoToPageOrPhrase_MoreThanPhraseCount"), (phraseIndex + 1).ToString(), (section.PhraseChildCount).ToString()),
+    "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                            {
                                 phraseIndex = section.PhraseChildCount - 1;
-                                }
-                            else
-                                {
-                                return;
-                                }
                             }
+                            else
+                            {
+                                return;
+                            }
+                        }
                         //@singleSection
                         //Selection = new NodeSelection ( section.PhraseChild ( phraseIndex ), mContentView );
-                        if (TransportBar.IsPlayerActive) TransportBar.Pause ();
-                        mContentView.SelectPhraseBlockOrStrip ( section.PhraseChild ( phraseIndex ) );
-                        } // section null check ends
+                        if (TransportBar.IsPlayerActive) TransportBar.Pause();
+                        mContentView.SelectPhraseBlockOrStrip(section.PhraseChild(phraseIndex));
+                    } // section null check ends
+                }
+                else if (GoToDialog.TimeInSeconds != null)
+                {
+                    if (Selection != null)
+                    {
+                        ObiNode nodeSel = null;
+                        PhraseNode phrNode = null;
+                        double time = 0;
+
+                        if (GoToDialog.SelectedIndex == 0)
+                        {
+
+                            if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode)
+                            {
+                                MessageBox.Show("Please select a phrase");
+                                return;
+                            }
+                            else
+                            {
+                                if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds * 1000)
+                                    sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds * 1000));
+                                else
+                                {
+                                    MessageBox.Show("The time exceeds the duration of the phrase");
+                                    return;
+                                }
+                            }
+                            
+                        }
+                        else
+                        {
+                            if (this.Selection.Node is SectionNode || this.Selection is StripIndexSelection)
+                                nodeSel = this.Selection.Node;
+                            else if (this.Selection.Node is EmptyNode || this.Selection.Node is PhraseNode)
+                                nodeSel = this.Selection.Node.ParentAs<SectionNode>();
+                            if (nodeSel.Duration < GoToDialog.TimeInSeconds * 1000)
+                            {
+                                MessageBox.Show("The time exceeds the duration of the section");
+                                return;
+                            }
+                            for (int i = 0; i < nodeSel.PhraseChildCount; i++)
+                            {
+                                if (time < GoToDialog.TimeInSeconds * 1000)
+                                {
+                                    time = nodeSel.PhraseChild(i).Duration + time;
+                                    phrNode = (PhraseNode)nodeSel.PhraseChild(i);
+                                }
+                                else
+                                    break;
+                            }
+                            mContentView.SelectPhraseBlockOrStrip(phrNode);
+                            sel = new AudioSelection((PhraseNode)phrNode, mContentView, new AudioRange(GoToDialog.TimeInSeconds * 1000 - (time - phrNode.Duration)));
+                        }
+                        this.Selection = sel;
                     }
-
-
+                    else
+                    {
+                        MessageBox.Show("Please select some phrase or section");
+                        return;
+                    }
                 } // dialog OK check ends
             }
+        }
 
 
         //@singleSection

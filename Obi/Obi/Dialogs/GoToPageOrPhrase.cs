@@ -22,21 +22,25 @@ namespace Obi.Dialogs
             base.m_GoToPage = true; // To do: remove all go to page dependency from parent set page form
             base.Text = Localizer.Message ( "GoToPageOrPhrase_Title" );
             base.label2.Visible = false;
-            base.label1.Location = new Point ( 50, 75 );
-            base.label3.Location = new Point ( 50, 110 );
-            base.mNumberBox.Location = new Point ( 150, 75 );
-            mPhraseIndexComboBox.Location = new Point(150, 75);
-            base.mPageKindComboBox.Location = new Point ( 150, 108 );
+            base.label1.Location = new Point ( 50, 93 );
+            base.label3.Location = new Point ( 50, 125 );
+            base.mNumberBox.Location = new Point ( 150, 90 );
+            mPhraseIndexComboBox.Location = new Point(150, 90);
+            base.mPageKindComboBox.Location = new Point ( 150, 120 );
             base.Size = new Size ( 370, 210 );
             base.mNumberOfPagesBox.Visible = false;
             base.mRenumber.Visible = false;
             base.mPageKindComboBox.SelectedIndex = 1;
-            m_btnOk.Location = new Point ( 70, 140 );
-            base.mCancelButton.Location = new Point ( 200, 140 );
+            m_btnOk.Location = new Point ( 70, 150 );
+            base.mCancelButton.Location = new Point ( 200, 150 );
             m_radPhrase.Location = new Point ( 50, 20 );
             m_radPage.Location = new Point ( 180, 20 );
+            m_radTime.Location = new Point(50, 45);
             m_radPhrase.TabIndex = 1;
             m_radPage.TabIndex = 1;
+            m_cb_TimeInPhraseOrSection.Location = new Point(150, 88);
+            m_txtBox_TimeInSeconds.Location = new Point(150, 120);
+            m_lbl_Seconds.Location = new Point(255, 123);
             base.mOKButton.Visible = false;
             base.label1.TabIndex = 2;
             base.mNumberBox.TabIndex = 3;
@@ -92,6 +96,31 @@ namespace Obi.Dialogs
                 }
             }
 
+        public double TimeInSeconds
+        {
+            
+            get 
+            {
+                double time = 0;
+                if (m_radTime.Checked)
+                   double.TryParse(m_txtBox_TimeInSeconds.Text, out time);
+                return time;                
+            }            
+        }
+
+        public int SelectedIndex
+        {
+            get
+            {    
+                int i;
+                if (m_cb_TimeInPhraseOrSection.SelectedIndex == 0)
+                    i = 0;
+                else
+                    i = 1;
+                return i;
+            }
+        }
+
         private void m_btnOk_Click ( object sender, EventArgs e )
             {
             int phraseIndex = 0;
@@ -116,9 +145,22 @@ namespace Obi.Dialogs
                     Close ();
                     }
                 }
-            else
+                else if (m_radTime.Checked)
                 {
-                base.mOKButton_Click ( sender, e );
+                    if (TimeInSeconds < 1)
+                    {
+                        MessageBox.Show(Localizer.Message("InvalidInput"));
+                        return;
+                    }
+                    else                   
+                    {
+                    DialogResult = DialogResult.OK;
+                    Close ();
+                    }
+                }
+                else
+                {
+                    base.mOKButton_Click(sender, e);
                 }
             }
 
@@ -126,12 +168,18 @@ namespace Obi.Dialogs
             {
             if (m_radPage.Checked)
                 {
+                    base.label1.Visible = true;
+                    base.label1.Location = new Point(50, 93);
                 base.label1.Text = Localizer.Message("GoToPageOrPhrase_PageNumberLabel") ;
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = true;
                 mNumberBox.Visible = true;
                 mPhraseIndexComboBox.Visible = false;
                 base.mPageKindComboBox.Visible = true;
+                m_cb_TimeInPhraseOrSection.Visible = false;
+                m_lbl_Seconds.Visible = false;
+                m_txtBox_TimeInSeconds.Visible = false;
+                m_lbl_Time.Visible = false; 
                                 }
             }
 
@@ -139,12 +187,18 @@ namespace Obi.Dialogs
             {
             if (m_radPhrase.Checked)
                 {
+                    base.label1.Visible = true;
+                    base.label1.Location = new Point(50, 93);
                 base.label1.Text = Localizer.Message ( "GoToPageOrPhrase_PhraseIndexLabel" ) ;
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = false;
                 base.mPageKindComboBox.Visible = false;
                 mNumberBox.Visible = false;
                 mPhraseIndexComboBox.Visible = true;
+                m_cb_TimeInPhraseOrSection.Visible = false;
+                m_lbl_Seconds.Visible = false;
+                m_txtBox_TimeInSeconds.Visible = false;
+                m_lbl_Time.Visible = false; 
                                 }
             }
 
@@ -170,6 +224,23 @@ namespace Obi.Dialogs
                 }
                 return phraseIndex;
             }
+
+        private void m_radTime_CheckedChanged(object sender, EventArgs e)
+        {
+            m_lbl_Time.Visible = true;
+            base.label1.Text = Localizer.Message("GoToPageOrPhrase_Time");
+            base.label1.Location = new Point(90, 90);
+            m_lbl_Time.Location = new Point(100, 120);
+            base.mNumberBox.AccessibleName = base.label1.Text.Replace("&", "");
+            base.label3.Visible = false;
+            base.mPageKindComboBox.Visible = false;
+            mNumberBox.Visible = false;
+            mPhraseIndexComboBox.Visible = false;
+            base.mPageKindComboBox.Visible = false;
+            m_txtBox_TimeInSeconds.Visible = true;
+            m_lbl_Seconds.Visible = true;
+            m_cb_TimeInPhraseOrSection.Visible = true;
+        }
            // mPhraseIndexComboBox.SelectedIndex = -1;
             
         }

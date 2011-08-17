@@ -1917,4 +1917,7 @@ Error text: {1}</value>
   <data name="waveform_is_truncated" xml:space="preserve">
     <value>The waveform is truncated at {0}s</value>
   </data>
+  <data name="GoToPageOrPhrase_Time" xml:space="preserve">
+    <value>Time in:</value>
+  </data>
 </root>
