@@ -15,16 +15,16 @@ namespace Obi.UserControls
     public partial class RecordingToolBarForm : Form
     {
         ProjectView.TransportBar m_TransportBar;
+        ProjectView.ProjectView m_ProjectView;
         private Image m_PauseImg;
         private Image m_PlayImg;
         private int m_TimeCounter;
         private int m_Count = 0;
-        private string m_strStatus = "";      
-
-
+        private string m_strStatus = "";
+        
         public RecordingToolBarForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream pauseStr = null;
             Stream playStr = null;
@@ -37,6 +37,7 @@ namespace Obi.UserControls
         public RecordingToolBarForm(ProjectView.ProjectView projectView):this  ()
         {
             m_TransportBar = projectView.TransportBar;
+            m_ProjectView = projectView;
             m_TransportBar.StateChanged += new AudioLib.AudioPlayer.StateChangedHandler(State_Changed_Player);
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
@@ -111,7 +112,8 @@ namespace Obi.UserControls
                 m_recordingToolBarRecordingBtn.AccessibleName = "Monitoring";
                 m_recordingToolBarPlayBtn.Image = m_PlayImg;
             }
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+            
+            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring ||(m_ProjectView.ObiForm.Settings.RecordDirectlyWithRecordButton  && m_TransportBar.CurrentState != Obi.ProjectView.TransportBar.State.Recording))
             {
                 m_recordingToolBarRecordingBtn.AccessibleName = "Recording";
             }
@@ -152,7 +154,7 @@ namespace Obi.UserControls
         {
             m_strStatus = "";
             if(m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording)
-             m_TransportBar.Record();
+             m_TransportBar.Record_Button();
                    
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 m_StatusLabel.Text = Localizer.Message("monitoring_short");          
