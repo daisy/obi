@@ -20,6 +20,7 @@ namespace Obi
         public bool AllowOverwrite;            // allow/disallow overwriting audio when recording
         public bool Recording_PreviewBeforeStarting; //plays a bit of audio before starting recording.
         public bool Recording_ReplaceAfterCursor; // replaces the audio after cursor position with new recording
+        public bool RecordDirectlyWithRecordButton; // Directly start recording on clicking record button bypassing monitoring
         public int AudioChannels;              // number of channels for recording
         public bool AudioClues;                // use audio clues (or not.)
         public float AudioScale;               // scale of audio in waveform views
@@ -72,6 +73,7 @@ namespace Obi
             settings.AllowOverwrite = false;
             settings.Recording_PreviewBeforeStarting = false;
             settings.Recording_ReplaceAfterCursor = false;
+            settings.RecordDirectlyWithRecordButton = false;
             settings.BitDepth = 16;
             settings.ColorSettings = ColorSettings.DefaultColorSettings();
             settings.ColorSettingsHC = ColorSettings.DefaultColorSettingsHC();
