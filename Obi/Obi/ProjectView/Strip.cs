@@ -1516,36 +1516,96 @@ namespace Obi.ProjectView
             private bool m_IsFlowBreakMarked = false;
             private void ApplyFlowBreaks()
             {
+                Console.WriteLine("width of strip " + Width);
                 
                 if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
                 {
                     int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
-                    if (!m_IsFlowBreakMarked && Width < boundaryWidth) return;    
+                    Console.WriteLine("boundary width " + boundaryWidth);
+                    if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
+
+                    int firstBlockX = -1;
+                    Point previousMarkedBlockLocation =  new Point (0,0);
                     foreach (Control c in mBlockLayout.Controls)
                     {
                         if (c is Block)
-                        {
+                        {//2
+                            //Console.WriteLine("block " + mBlockLayout.Controls.IndexOf(c));
+                            if (firstBlockX < 0) firstBlockX = c.Location.X;
+
                             bool isMarkedOnCurrentControl = false;
                             if (m_IsFlowBreakMarked)
-                            {
+                            {//3
                                 isMarkedOnCurrentControl = mBlockLayout.GetFlowBreak(c);
-                                if (isMarkedOnCurrentControl && c.Location.X <= boundaryWidth)
-                                {
-                                    mBlockLayout.SetFlowBreak(c, false);
-                                    m_IsFlowBreakMarked = false;
-                                }
-                            }
-                            if ((c.Location.X > boundaryWidth || c.Width > boundaryWidth)&& !isMarkedOnCurrentControl)
-                            {
+
+                                if (isMarkedOnCurrentControl)
+                                {//4
+                                    Console.WriteLine("marked on " + c.Location);
+                                    if (c.Location.X <= boundaryWidth || Width <= boundaryWidth)
+                                    {//5
+                                        mBlockLayout.SetFlowBreak(c, false);
+                                        isMarkedOnCurrentControl = false;
+                                        m_IsFlowBreakMarked = false;
+                                        Console.WriteLine("removing flow break mark in " + c.Location);
+                                    }//-5
+                                    else
+                                    {//5
+                                        m_IsFlowBreakMarked = true;
+                                        isMarkedOnCurrentControl = true;
+                                        Console.WriteLine("leaving flow break for " + c.Location);
+                                    }//-5
+                                }//-4
+                            }//--3
+                            //Console.WriteLine(Width + " : " + boundaryWidth);
+                            if (Width > boundaryWidth
+                                && !isMarkedOnCurrentControl
+                                && ((c.Location.X > boundaryWidth || (c.Width > boundaryWidth && c.Location.X > firstBlockX))
+                                                                || (previousMarkedBlockLocation.Y == c.Location.Y && previousMarkedBlockLocation.X - c.Location.X > boundaryWidth)))
+                            {//3
                                 mBlockLayout.SetFlowBreak(c, true);
                                 m_IsFlowBreakMarked = true;
-                            }
-                        }
-                    }
+                                isMarkedOnCurrentControl = true;
+                                Console.WriteLine("position of block " + c.Location.X);
+                            }//-3
+                            else if (isMarkedOnCurrentControl)
+                            {//3
+                                Console.WriteLine("position of block - existing mark " + c.Location.X);
+                                m_IsFlowBreakMarked = true;
+                            }//-3
+                            if (isMarkedOnCurrentControl) previousMarkedBlockLocation = new Point(c.Location.X, c.Location.Y);
 
+                            if (!m_IsFlowBreakMarked && mBlockLayout.GetFlowBreak(c))
+                            {//3
+                                if (Width <= boundaryWidth)
+                                {//4
+                                    mBlockLayout.SetFlowBreak(c, false);
+                                    Console.WriteLine("removing mark on left over " + c.Location);
+                                }//-4
+                                else
+                                {//4
+                                    m_IsFlowBreakMarked = true;
+                                }//-4
+                            }    //-3
+                        }//-2
+                        
+                    }
                 }
             }
 
+        public void VerifyFlowBreak()
+        {
+            bool isMarked = false;
+            foreach (Control c in mBlockLayout.Controls)
+            {
+                if (c is Block &&  mBlockLayout.GetFlowBreak(c))
+                {
+                    Console.WriteLine("verification : is marked on " + c.Location);
+                    isMarked = true;
+                }
+            }
+            
+            MessageBox.Show ("New line mark on blocks = " + isMarked.ToString ()) ; 
+        }
 
         public void DestroyStripHandle ()
             {
