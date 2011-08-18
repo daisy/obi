@@ -1520,6 +1520,20 @@ namespace Obi.ProjectView
                 
                 if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
                 {
+                    if (!mContentView.Settings.LeftAlignPhrasesInContentView)
+                    {
+                        if (m_IsFlowBreakMarked)
+                        {
+                            foreach (Control c in mBlockLayout.Controls)
+                            {
+                                if (mBlockLayout.GetFlowBreak(c)) mBlockLayout.SetFlowBreak(c, false);
+                                
+                            }
+                            m_IsFlowBreakMarked = false;
+                        }
+                        return;
+                    }
+
                     int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                     Console.WriteLine("boundary width " + boundaryWidth);
                     if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
@@ -1574,7 +1588,8 @@ namespace Obi.ProjectView
                             }//-3
                             if (isMarkedOnCurrentControl) previousMarkedBlockLocation = new Point(c.Location.X, c.Location.Y);
 
-                            if (!m_IsFlowBreakMarked && mBlockLayout.GetFlowBreak(c))
+                            if (!m_IsFlowBreakMarked 
+                                && (isMarkedOnCurrentControl || mBlockLayout.GetFlowBreak(c)))
                             {//3
                                 if (Width <= boundaryWidth)
                                 {//4
