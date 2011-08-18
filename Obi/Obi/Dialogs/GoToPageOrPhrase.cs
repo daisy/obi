@@ -104,7 +104,7 @@ namespace Obi.Dialogs
                 double time = 0;
                 if (m_radTime.Checked)
                    double.TryParse(m_txtBox_TimeInSeconds.Text, out time);
-                return time;                
+                return time * 1000;                
             }            
         }
 
