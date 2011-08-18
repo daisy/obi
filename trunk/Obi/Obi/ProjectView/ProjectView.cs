@@ -3155,7 +3155,7 @@ namespace Obi.ProjectView
         {
             if (mPresentation.FirstSection == null) return;
             Dialogs.GoToPageOrPhrase GoToDialog = new Obi.Dialogs.GoToPageOrPhrase(GetSelectedPhraseSection != null ? GetSelectedPhraseSection.PhraseChildCount : mPresentation.FirstSection.PhraseChildCount);
-            AudioSelection sel;
+            
             if (GoToDialog.ShowDialog() == DialogResult.OK)
             {
                 if (GoToDialog.Number != null)
@@ -3256,6 +3256,7 @@ namespace Obi.ProjectView
                 }
                 else if (GoToDialog.TimeInSeconds != null)
                 {
+                    AudioSelection sel = null;
                     if (Selection != null)
                     {
                         ObiNode nodeSel = null;
@@ -3264,23 +3265,15 @@ namespace Obi.ProjectView
 
                         if (GoToDialog.SelectedIndex == 0)
                         {
-
                             if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode)
-                            {
                                 MessageBox.Show("Please select a phrase");
-                                return;
-                            }
                             else
                             {
-                                if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds * 1000)
-                                    sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds * 1000));
+                                if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds)
+                                    sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds));
                                 else
-                                {
                                     MessageBox.Show("The time exceeds the duration of the phrase");
-                                    return;
-                                }
-                            }
-                            
+                            }                            
                         }
                         else
                         {
@@ -3288,14 +3281,12 @@ namespace Obi.ProjectView
                                 nodeSel = this.Selection.Node;
                             else if (this.Selection.Node is EmptyNode || this.Selection.Node is PhraseNode)
                                 nodeSel = this.Selection.Node.ParentAs<SectionNode>();
-                            if (nodeSel.Duration < GoToDialog.TimeInSeconds * 1000)
-                            {
+                            if (nodeSel.Duration < GoToDialog.TimeInSeconds)
                                 MessageBox.Show("The time exceeds the duration of the section");
-                                return;
-                            }
+                            
                             for (int i = 0; i < nodeSel.PhraseChildCount; i++)
                             {
-                                if (time < GoToDialog.TimeInSeconds * 1000)
+                                if (time < GoToDialog.TimeInSeconds)
                                 {
                                     time = nodeSel.PhraseChild(i).Duration + time;
                                     phrNode = (PhraseNode)nodeSel.PhraseChild(i);
@@ -3304,15 +3295,12 @@ namespace Obi.ProjectView
                                     break;
                             }
                             mContentView.SelectPhraseBlockOrStrip(phrNode);
-                            sel = new AudioSelection((PhraseNode)phrNode, mContentView, new AudioRange(GoToDialog.TimeInSeconds * 1000 - (time - phrNode.Duration)));
+                            sel = new AudioSelection((PhraseNode)phrNode, mContentView, new AudioRange(GoToDialog.TimeInSeconds - (time - phrNode.Duration)));
                         }
                         this.Selection = sel;
                     }
                     else
-                    {
-                        MessageBox.Show("Please select some phrase or section");
-                        return;
-                    }
+                        MessageBox.Show("Please select some phrase or section");                      
                 } // dialog OK check ends
             }
         }
