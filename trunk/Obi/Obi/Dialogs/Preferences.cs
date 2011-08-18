@@ -158,8 +158,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
-                m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
-                m_CheckBoxListView.Items[4].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 m_IsComplete = true;
 
@@ -592,14 +592,15 @@ namespace Obi.Dialogs
                 mSettings.OpenLastProject = m_CheckBoxListView.Items[0].Checked;
                 mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
+                mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
                 mSettings.AudioClues = m_CheckBoxListView.Items[0].Checked;
                 mSettings.RetainInitialSilenceInPhraseDetection = m_CheckBoxListView.Items[1].Checked;
                 mSettings.Recording_PreviewBeforeStarting = m_CheckBoxListView.Items[2].Checked;
-                mSettings.AllowOverwrite = m_CheckBoxListView.Items[3].Checked;
-                mSettings.Recording_ReplaceAfterCursor= m_CheckBoxListView.Items[4].Checked;
+                mSettings.Recording_ReplaceAfterCursor = m_CheckBoxListView.Items[3].Checked;
+                mSettings.AllowOverwrite = m_CheckBoxListView.Items[4].Checked;                
                 mSettings.RecordDirectlyWithRecordButton = m_CheckBoxListView.Items[5].Checked;
             }
         }
@@ -616,17 +617,17 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Location = new Point(185, 269);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
-                m_CheckBoxListView.Items.Add("Preview Before Recording");
-                m_CheckBoxListView.Items.Add("Allow overwrite while recording");
+                m_CheckBoxListView.Items.Add("Preview Before Recording");                
                 m_CheckBoxListView.Items.Add("Record while replacing audio after cursor position");
+                m_CheckBoxListView.Items.Add("Allow overwrite while recording");
                 m_CheckBoxListView.Items.Add("Record directly from transport bar");
                 m_grpBoxChkBoxListView.Size = new Size(470, 70);
                 m_grpBoxChkBoxListView.Location = new Point(75, 259);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
-                m_CheckBoxListView.Items[3].Checked = mSettings.AllowOverwrite;
-                m_CheckBoxListView.Items[4].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
+                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite || m_CheckBoxListView.Items[3].Checked || m_CheckBoxListView.Items[2].Checked;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
@@ -641,11 +642,12 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add("Open last project");
                 m_CheckBoxListView.Items.Add("Auto save when recording ends");
                 m_CheckBoxListView.Items.Add("Select bookmark when project reopens");
+                m_CheckBoxListView.Items.Add("Left align phrases in content view");
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
                 m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
-
+                m_CheckBoxListView.Items[3].Checked = mSettings.LeftAlignPhrasesInContentView;
             }
             m_IsComplete = true;
         }
@@ -681,6 +683,7 @@ namespace Obi.Dialogs
                 mSettings.OpenLastProject = m_DefaultSettings.OpenLastProject;
                 mSettings.AutoSave_RecordingEnd = m_DefaultSettings.AutoSave_RecordingEnd;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.OpenBookmarkNodeOnReopeningProject;
+                mSettings.LeftAlignPhrasesInContentView = m_DefaultSettings.LeftAlignPhrasesInContentView;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

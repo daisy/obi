@@ -62,6 +62,8 @@ namespace Obi
         public int[] BookMarkNodeHierarchy;
         public bool RetainInitialSilenceInPhraseDetection;
         public int ImportToleranceForAudioInMs;
+        public bool RecordDirectly;
+        public bool LeftAlignPhrasesInContentView;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -111,6 +113,8 @@ namespace Obi
             settings.OpenBookmarkNodeOnReopeningProject = false;
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.ImportToleranceForAudioInMs = 100;
+            settings.RecordDirectly = false;
+            settings.LeftAlignPhrasesInContentView = false;
         }
 
         /// <summary>
