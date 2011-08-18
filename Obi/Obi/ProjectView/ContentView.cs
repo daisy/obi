@@ -5065,6 +5065,8 @@ Block lastBlock = ActiveStrip.LastBlock ;
             mProjectView.MergeMultipleSections();
         }
 
+        public Settings Settings { get { return mProjectView.ObiForm.Settings; } }
+
         //@ShowSingleSection
         /*
     /// <summary>
@@ -5080,7 +5082,13 @@ Block lastBlock = ActiveStrip.LastBlock ;
             }
         }
         */
-
+        public void VerifyFlowBreakMarks()
+        {
+            if (ActiveStrip != null)
+            {
+                ActiveStrip.VerifyFlowBreak();
+            }
+        }
 
         }
 

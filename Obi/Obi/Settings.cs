@@ -114,7 +114,7 @@ namespace Obi
             settings.RetainInitialSilenceInPhraseDetection = true;
             settings.ImportToleranceForAudioInMs = 100;
             settings.RecordDirectly = false;
-            settings.LeftAlignPhrasesInContentView = false;
+            settings.LeftAlignPhrasesInContentView = true;
         }
 
         /// <summary>
