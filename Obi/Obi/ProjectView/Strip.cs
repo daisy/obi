@@ -1055,6 +1055,7 @@ namespace Obi.ProjectView
                     new Size(Math.Max(BlockLayoutMinimumWidth, Math.Min(BlockLayoutFullWidth, width_fit)), 0);
                 Size = new Size(WidthForContents, HeightForContents);
                 ApplyFlowBreaks();
+
             }
             else
             {
@@ -1534,7 +1535,7 @@ namespace Obi.ProjectView
                         return;
                     }
 
-                    int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
+int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                     Console.WriteLine("boundary width " + boundaryWidth);
                     if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
 
@@ -1603,7 +1604,8 @@ namespace Obi.ProjectView
                             }    //-3
                         }//-2
                         
-                    }
+                    }// end foreach
+                    if (this.Width < mBlockLayout.Width || this.Height < mBlockLayout.Height) Size = new Size(WidthForContents, HeightForContents);
                 }
             }
 
