@@ -47,7 +47,7 @@ namespace Obi.Dialogs
             base.mPageKindComboBox.TabIndex = 4;
             m_btnOk.TabIndex = 5;
             base.mCancelButton.TabIndex = 6;
-
+            m_cb_TimeInPhraseOrSection.SelectedIndex = 0;
             m_PhraseCount = sectionPhraseCount;
             for (int i = 1; i <= (m_PhraseCount/125); i++)
             {
