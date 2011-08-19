@@ -134,7 +134,7 @@ namespace Obi.Dialogs
                 this.m_radTime.Location = new System.Drawing.Point(42, 40);
                 this.m_radTime.Name = "m_radTime";
                 this.m_radTime.Size = new System.Drawing.Size(57, 20);
-                this.m_radTime.TabIndex = 2;
+                this.m_radTime.TabIndex = 1;
                 this.m_radTime.TabStop = true;
                 this.m_radTime.Text = "Time";
                 this.m_radTime.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@ namespace Obi.Dialogs
                 this.mPhraseIndexComboBox.FormattingEnabled = true;
                 this.mPhraseIndexComboBox.Location = new System.Drawing.Point(189, 130);
                 this.mPhraseIndexComboBox.Name = "mPhraseIndexComboBox";
-                this.mPhraseIndexComboBox.Size = new System.Drawing.Size(121, 24);
+                this.mPhraseIndexComboBox.Size = new System.Drawing.Size(100, 24);
                 this.mPhraseIndexComboBox.TabIndex = 4;
                 this.mPhraseIndexComboBox.Visible = false;
                 // 
