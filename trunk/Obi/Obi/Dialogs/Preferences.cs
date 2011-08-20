@@ -48,7 +48,7 @@ namespace Obi.Dialogs
             InitializeKeyboardShortcutsTab();
             m_IsKeyboardShortcutChanged = false;
             this.m_CheckBoxListView.BringToFront();
-            m_DefaultSettings = defaultSettings;
+            m_DefaultSettings = defaultSettings;            
             }
 
         // Initialize the project tab
@@ -613,8 +613,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(340, 60);
-                m_CheckBoxListView.Location = new Point(185, 269);
+                m_CheckBoxListView.Size = new Size(340, 57);
+                m_CheckBoxListView.Location = new Point(185, 289);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
                 m_CheckBoxListView.Items.Add("Preview Before Recording");                
@@ -622,13 +622,17 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add("Allow overwrite while recording");
                 m_CheckBoxListView.Items.Add("Record directly from transport bar");
                 m_grpBoxChkBoxListView.Size = new Size(470, 70);
-                m_grpBoxChkBoxListView.Location = new Point(75, 259);
+                m_grpBoxChkBoxListView.Location = new Point(75, 280);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite || m_CheckBoxListView.Items[3].Checked || m_CheckBoxListView.Items[2].Checked;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
+                if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
+                    m_btn_AdvancedRecording.Text = "Normal Recording";
+                else
+                    m_btn_AdvancedRecording.Text = "Advanced Recording";
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -734,6 +738,25 @@ namespace Obi.Dialogs
         private void m_txtShortcutKeys_Leave(object sender, EventArgs e)
         {
             this.AcceptButton = mOKButton;
+        }
+
+        private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
+        {
+            if (m_btn_AdvancedRecording.Text == "Advanced Recording")
+            {
+                m_CheckBoxListView.Items[2].Checked = true;
+                m_CheckBoxListView.Items[3].Checked = true;
+                m_CheckBoxListView.Items[4].Checked = true;
+                m_btn_AdvancedRecording.Text = "Normal Recording";
+            }
+            else if (m_btn_AdvancedRecording.Text == "Normal Recording")
+            {
+                m_CheckBoxListView.Items[2].Checked = false;
+                m_CheckBoxListView.Items[3].Checked = false;
+                m_CheckBoxListView.Items[4].Checked = false;
+                m_btn_AdvancedRecording.Text = "Advanced Recording";
+            }
+
         }
         }
     }
