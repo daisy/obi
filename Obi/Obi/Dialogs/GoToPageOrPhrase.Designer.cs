@@ -121,9 +121,9 @@ namespace Obi.Dialogs
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radTime);
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radPhrase);
                 this.m_grpSearchPagePhrase.Controls.Add(this.m_radPage);
-                this.m_grpSearchPagePhrase.Location = new System.Drawing.Point(37, 12);
+                this.m_grpSearchPagePhrase.Location = new System.Drawing.Point(49, 6);
                 this.m_grpSearchPagePhrase.Name = "m_grpSearchPagePhrase";
-                this.m_grpSearchPagePhrase.Size = new System.Drawing.Size(298, 68);
+                this.m_grpSearchPagePhrase.Size = new System.Drawing.Size(286, 81);
                 this.m_grpSearchPagePhrase.TabIndex = 0;
                 this.m_grpSearchPagePhrase.TabStop = false;
                 this.m_grpSearchPagePhrase.Text = "GoTo Page or Phrase";
@@ -162,7 +162,7 @@ namespace Obi.Dialogs
                 // 
                 // m_txtBox_TimeInSeconds
                 // 
-                this.m_txtBox_TimeInSeconds.AccessibleName = "Time";
+                this.m_txtBox_TimeInSeconds.AccessibleName = "Time in seconds";
                 this.m_txtBox_TimeInSeconds.Location = new System.Drawing.Point(188, 131);
                 this.m_txtBox_TimeInSeconds.Name = "m_txtBox_TimeInSeconds";
                 this.m_txtBox_TimeInSeconds.Size = new System.Drawing.Size(100, 22);
@@ -195,16 +195,16 @@ namespace Obi.Dialogs
                 this.Controls.Add(this.m_lbl_Seconds);
                 this.Controls.Add(this.m_txtBox_TimeInSeconds);
                 this.Controls.Add(this.m_btnOk);
-                this.Controls.Add(this.m_grpSearchPagePhrase);
                 this.Controls.Add(this.mPhraseIndexComboBox);
                 this.Controls.Add(this.m_cb_TimeInPhraseOrSection);
                 this.Controls.Add(this.m_lbl_Time);
+                this.Controls.Add(this.m_grpSearchPagePhrase);
                 this.Name = "GoToPageOrPhrase";
                 this.Text = "GoToPageOrPhrase";
+                this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Time, 0);
                 this.Controls.SetChildIndex(this.m_cb_TimeInPhraseOrSection, 0);
                 this.Controls.SetChildIndex(this.mPhraseIndexComboBox, 0);
-                this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.mPageKindComboBox, 0);
                 this.Controls.SetChildIndex(this.m_btnOk, 0);
                 this.Controls.SetChildIndex(this.m_txtBox_TimeInSeconds, 0);
