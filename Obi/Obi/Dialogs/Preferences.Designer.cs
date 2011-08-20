@@ -84,6 +84,7 @@ namespace Obi.Dialogs
             this.m_CheckBoxListView = new System.Windows.Forms.ListView();
             this.m_grpBoxChkBoxListView = new System.Windows.Forms.GroupBox();
             this.m_ResetButton = new System.Windows.Forms.Button();
+            this.m_btn_AdvancedRecording = new System.Windows.Forms.Button();
             this.mTab.SuspendLayout();
             this.mProjectTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_NumImportTolerance)).BeginInit();
@@ -253,6 +254,7 @@ namespace Obi.Dialogs
             // 
             // mAudioTab
             // 
+            this.mAudioTab.Controls.Add(this.m_btn_AdvancedRecording);
             this.mAudioTab.Controls.Add(this.m_OperationDurationUpDown);
             this.mAudioTab.Controls.Add(this.m_cbOperation);
             this.mAudioTab.Controls.Add(this.mlbOperation);
@@ -534,6 +536,13 @@ namespace Obi.Dialogs
             this.m_ResetButton.UseVisualStyleBackColor = true;
             this.m_ResetButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // m_btn_AdvancedRecording
+            // 
+            resources.ApplyResources(this.m_btn_AdvancedRecording, "m_btn_AdvancedRecording");
+            this.m_btn_AdvancedRecording.Name = "m_btn_AdvancedRecording";
+            this.m_btn_AdvancedRecording.UseVisualStyleBackColor = true;
+            this.m_btn_AdvancedRecording.Click += new System.EventHandler(this.m_btn_AdvancedRecording_Click);
+            // 
             // Preferences
             // 
             this.AcceptButton = this.mOKButton;
@@ -626,5 +635,6 @@ namespace Obi.Dialogs
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label m_lblImportTolerance;
         private System.Windows.Forms.NumericUpDown m_NumImportTolerance;
+        private System.Windows.Forms.Button m_btn_AdvancedRecording;
     }
 }
