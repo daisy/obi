@@ -22,10 +22,10 @@ namespace Obi.Dialogs
             base.m_GoToPage = true; // To do: remove all go to page dependency from parent set page form
             base.Text = Localizer.Message ( "GoToPageOrPhrase_Title" );
             base.label2.Visible = false;
-            base.label1.Location = new Point ( 50, 93 );
+            base.label1.Location = new Point ( 50, 96 );
             base.label3.Location = new Point ( 50, 125 );
-            base.mNumberBox.Location = new Point ( 150, 90 );
-            mPhraseIndexComboBox.Location = new Point(150, 90);
+            base.mNumberBox.Location = new Point ( 150, 93 );
+            mPhraseIndexComboBox.Location = new Point(150, 93);
             base.mPageKindComboBox.Location = new Point ( 150, 120 );
             base.Size = new Size ( 370, 210 );
             base.mNumberOfPagesBox.Visible = false;
@@ -33,12 +33,12 @@ namespace Obi.Dialogs
             base.mPageKindComboBox.SelectedIndex = 1;
             m_btnOk.Location = new Point ( 70, 150 );
             base.mCancelButton.Location = new Point ( 200, 150 );
-            m_radPhrase.Location = new Point ( 50, 20 );
-            m_radPage.Location = new Point ( 180, 20 );
-            m_radTime.Location = new Point(50, 45);
+            m_radPhrase.Location = new Point ( 10, 18 );
+            m_radPage.Location = new Point ( 10, 38 );
+            m_radTime.Location = new Point( 10, 58);
             m_radPhrase.TabIndex = 1;
             m_radPage.TabIndex = 1;
-            m_cb_TimeInPhraseOrSection.Location = new Point(150, 88);
+            m_cb_TimeInPhraseOrSection.Location = new Point(150, 91);
             m_txtBox_TimeInSeconds.Location = new Point(150, 120);
             m_lbl_Seconds.Location = new Point(255, 123);
             base.mOKButton.Visible = false;
@@ -169,7 +169,7 @@ namespace Obi.Dialogs
             if (m_radPage.Checked)
                 {
                     base.label1.Visible = true;
-                    base.label1.Location = new Point(50, 93);
+                    base.label1.Location = new Point(50, 96);
                 base.label1.Text = Localizer.Message("GoToPageOrPhrase_PageNumberLabel") ;
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = true;
@@ -188,7 +188,7 @@ namespace Obi.Dialogs
             if (m_radPhrase.Checked)
                 {
                     base.label1.Visible = true;
-                    base.label1.Location = new Point(50, 93);
+                    base.label1.Location = new Point(50, 96);
                 base.label1.Text = Localizer.Message ( "GoToPageOrPhrase_PhraseIndexLabel" ) ;
                 base.mNumberBox.AccessibleName = base.label1.Text.Replace ("&", "") ;
                 base.label3.Visible = false;
@@ -229,7 +229,7 @@ namespace Obi.Dialogs
         {
             m_lbl_Time.Visible = true;
             base.label1.Text = Localizer.Message("GoToPageOrPhrase_Time");
-            base.label1.Location = new Point(90, 90);
+            base.label1.Location = new Point(90, 93);
             m_lbl_Time.Location = new Point(100, 120);
             base.mNumberBox.AccessibleName = base.label1.Text.Replace("&", "");
             base.label3.Visible = false;
