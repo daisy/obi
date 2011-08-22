@@ -1555,19 +1555,19 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
 
                                 if (isMarkedOnCurrentControl)
                                 {//4
-                                    Console.WriteLine("marked on " + c.Location);
+                                    //Console.WriteLine("marked on " + c.Location);
                                     if (c.Location.X <= boundaryWidth || Width <= boundaryWidth)
                                     {//5
                                         mBlockLayout.SetFlowBreak(c, false);
                                         isMarkedOnCurrentControl = false;
                                         m_IsFlowBreakMarked = false;
-                                        Console.WriteLine("removing flow break mark in " + c.Location);
+                                        //Console.WriteLine("removing flow break mark in " + c.Location);
                                     }//-5
                                     else
                                     {//5
                                         m_IsFlowBreakMarked = true;
                                         isMarkedOnCurrentControl = true;
-                                        Console.WriteLine("leaving flow break for " + c.Location);
+                                        //Console.WriteLine("leaving flow break for " + c.Location);
                                     }//-5
                                 }//-4
                             }//--3
@@ -1580,11 +1580,11 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                                 mBlockLayout.SetFlowBreak(c, true);
                                 m_IsFlowBreakMarked = true;
                                 isMarkedOnCurrentControl = true;
-                                Console.WriteLine("position of block " + c.Location.X);
+                                //Console.WriteLine("position of block " + c.Location.X);
                             }//-3
                             else if (isMarkedOnCurrentControl)
                             {//3
-                                Console.WriteLine("position of block - existing mark " + c.Location.X);
+                                //Console.WriteLine("position of block - existing mark " + c.Location.X);
                                 m_IsFlowBreakMarked = true;
                             }//-3
                             if (isMarkedOnCurrentControl) previousMarkedBlockLocation = new Point(c.Location.X, c.Location.Y);
@@ -1595,7 +1595,7 @@ int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
                                 if (Width <= boundaryWidth)
                                 {//4
                                     mBlockLayout.SetFlowBreak(c, false);
-                                    Console.WriteLine("removing mark on left over " + c.Location);
+                                    //Console.WriteLine("removing mark on left over " + c.Location);
                                 }//-4
                                 else
                                 {//4
