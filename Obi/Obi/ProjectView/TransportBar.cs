@@ -90,6 +90,7 @@ namespace Obi.ProjectView
         private static readonly int ELAPSED_INDEX = 0;
         private static readonly int ELAPSED_TOTAL_INDEX = 1;
         private static readonly int REMAIN_INDEX = 2;
+        private readonly List<string> m_DisplayComboBoxItems;
 
 
         // Pass the state change and playback rate change events from the playlist
@@ -122,6 +123,8 @@ namespace Obi.ProjectView
             mSelectionChangedPlayEnable = true;
             AddTransportBarAccessibleName();
             m_PlayOnSelectionChangedMutex = new Mutex ();
+            m_DisplayComboBoxItems = new List<string>();
+            for (int i = 0; i < mDisplayBox.Items.Count; i++) m_DisplayComboBoxItems.Add(mDisplayBox.Items[i].ToString());
         }
 
         /// <summary>
@@ -728,6 +731,23 @@ namespace Obi.ProjectView
             mState = mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring ? State.Monitoring :
                 mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording ? State.Recording : State.Stopped;
             UpdateButtons();
+            
+            int selectedIndex = mDisplayBox.SelectedIndex;
+            if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Recording)
+            {
+                m_RecordingElapsedTime_Book = -1;
+                mDisplayBox.Items.Clear () ;
+                for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
+                mDisplayBox.SelectedIndex = selectedIndex > -1 ? selectedIndex: 0;
+            }
+            else
+            {
+                mDisplayBox.Items.Clear();
+                for (int i = 0; i < 2; i++ ) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
+                mDisplayBox.SelectedIndex = (selectedIndex < mDisplayBox.Items.Count) ? selectedIndex
+                    : 0;    
+            }
+            
             UpdateTimeDisplay();
         }
 
@@ -808,8 +828,14 @@ namespace Obi.ProjectView
                         (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecordingSession.AudioRecorder.CurrentDurationBytePosition) /
                         Time.TIME_UNIT;
 
-                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
-                     mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                     //mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
+                     //mDisplayBox.SelectedIndex = ELAPSED_INDEX;
+                     mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
+                         mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
+                             timeOfAssetMilliseconds :
+                         mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
+                           RecordingTimeElapsedTotal  : 0.0);
+
                  }
                  else if (mState == State.Stopped)
                  {
@@ -828,6 +854,36 @@ namespace Obi.ProjectView
                  }
              }
          }
+
+         private double m_RecordingElapsedTime_Book = -1;
+         public double RecordingTimeElapsedTotal
+         {
+             get
+            {
+                if (m_RecordingElapsedTime_Book < 0) CalculateTimeElapsed();
+
+                return m_RecordingElapsedTime_Book +  (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                          Time.TIME_UNIT;
+            }
+        }
+
+             private void CalculateTimeElapsed()
+        {
+                 if ( mRecordingPhrase == null ) return ;
+            mView.Presentation.RootNode.AcceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is PhraseNode && n.Children.Count == 0)
+                        {
+                            m_RecordingElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                        }
+                        if (n == mRecordingPhrase)
+                            return false;
+                        else
+                        return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
+        }
 
 
         // Play/Resume playback
