@@ -610,22 +610,22 @@ namespace Obi.Dialogs
             m_IsComplete = false;
             m_CheckBoxListView.Columns.Clear();
             m_CheckBoxListView.HeaderStyle = ColumnHeaderStyle.None;
-            m_CheckBoxListView.Columns.Add("", m_CheckBoxListView.Size.Width, HorizontalAlignment.Left);
+            m_CheckBoxListView.Columns.Add("", 317, HorizontalAlignment.Left);
             if (this.mTab.SelectedTab == this.mAudioTab)
             {
                 m_CheckBoxListView.Visible = true;
                 m_grpBoxChkBoxListView.Visible = true;
                 m_CheckBoxListView.Items.Clear();
-                m_CheckBoxListView.Size = new Size(340, 73);
-                m_CheckBoxListView.Location = new Point(80, 272);
+                m_CheckBoxListView.Size = new Size(338, 69);
+                m_CheckBoxListView.Location = new Point(93, 276);
                 m_CheckBoxListView.Items.Add("Audio clues");
                 m_CheckBoxListView.Items.Add("Retain Initial Silence");
                 m_CheckBoxListView.Items.Add("Preview Before Recording");                
                 m_CheckBoxListView.Items.Add("Record while replacing audio after cursor position");
                 m_CheckBoxListView.Items.Add("Allow overwrite while recording");
                 m_CheckBoxListView.Items.Add("Record directly from transport bar");
-                m_grpBoxChkBoxListView.Size = new Size(350, 97);
-                m_grpBoxChkBoxListView.Location = new Point(75, 255);
+                m_grpBoxChkBoxListView.Size = new Size(352, 97);
+                m_grpBoxChkBoxListView.Location = new Point(85, 255);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
@@ -634,9 +634,9 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 
                 if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
-                    m_btn_AdvancedRecording.Text = "Normal Recording";
+                    m_btn_AdvancedRecording.Text = "Normal Recording Mode";
                 else
-                    m_btn_AdvancedRecording.Text = "Advanced Recording";
+                    m_btn_AdvancedRecording.Text = "Advanced Recording Mode";
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -747,19 +747,19 @@ namespace Obi.Dialogs
 
         private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
         {
-            if (m_btn_AdvancedRecording.Text == "Advanced Recording")
+            if (m_btn_AdvancedRecording.Text == "Advanced Recording Mode")
             {
                 m_CheckBoxListView.Items[2].Checked = true;
                 m_CheckBoxListView.Items[3].Checked = true;
                 m_CheckBoxListView.Items[4].Checked = true;
-                m_btn_AdvancedRecording.Text = "Normal Recording";
+                m_btn_AdvancedRecording.Text = "Normal Recording Mode";
             }
-            else if (m_btn_AdvancedRecording.Text == "Normal Recording")
+            else if (m_btn_AdvancedRecording.Text == "Normal Recording Mode")
             {
                 m_CheckBoxListView.Items[2].Checked = false;
                 m_CheckBoxListView.Items[3].Checked = false;
                 m_CheckBoxListView.Items[4].Checked = false;
-                m_btn_AdvancedRecording.Text = "Advanced Recording";
+                m_btn_AdvancedRecording.Text = "Advanced Recording Mode";
             }
 
         }
