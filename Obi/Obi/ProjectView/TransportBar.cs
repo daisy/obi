@@ -5,6 +5,8 @@ using System.Threading;
 using urakawa.core;
 using urakawa.command;
 using urakawa.media.timing;
+using System.Drawing;
+using System.Resources;
 
 namespace Obi.ProjectView
 {
@@ -35,6 +37,9 @@ namespace Obi.ProjectView
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
         private Playlist mQAMasterPlaylist;          // QA master playlist (all used phrases in the project)
         private Playlist mLocalPlaylist;             // local playlist (only selected; may be null) TO BE REMOVED
+
+        Bitmap m_monitorButtonImage;
+        Bitmap m_recordButtonImage;
 
         #region CAN WE REMOVE THIS?
 
@@ -765,6 +770,10 @@ namespace Obi.ProjectView
         private delegate void UpdateButtons_Delegate();
         private void UpdateButtons()
         {
+            ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
+            m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
+            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
+
             if (this.InvokeRequired)
             {
                 this.Invoke(new UpdateButtons_Delegate(UpdateButtons));
@@ -781,6 +790,16 @@ namespace Obi.ProjectView
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
+                if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly)
+                {
+                    mRecordButton.Image = m_recordButtonImage;
+                    mRecordButton.Invalidate();
+                }
+                else
+                {
+                    mRecordButton.Image = m_monitorButtonImage;
+                    mRecordButton.Invalidate();
+                }
                 mRecordButton.AccessibleName = Localizer.Message(
                     (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || (recordDirectly && CurrentState != State.Recording))
                         ? "start_recording"
