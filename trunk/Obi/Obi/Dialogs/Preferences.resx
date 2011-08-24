@@ -1014,6 +1014,30 @@
   <data name="&gt;&gt;mAudioTab.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="m_btn_AdvancedRecording.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 250</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 23</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
+    <value>Advanced Recording</value>
+  </data>
+  <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
+    <value>m_btn_AdvancedRecording</value>
+  </data>
+  <data name="&gt;&gt;m_btn_AdvancedRecording.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_btn_AdvancedRecording.Parent" xml:space="preserve">
+    <value>mAudioTab</value>
+  </data>
+  <data name="&gt;&gt;m_btn_AdvancedRecording.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="m_OperationDurationUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>335, 153</value>
   </data>
@@ -1471,7 +1495,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="mUserProfileTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 287</value>
+    <value>616, 311</value>
   </data>
   <data name="mUserProfileTab.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1798,7 +1822,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="mKeyboardShortcutTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 287</value>
+    <value>616, 311</value>
   </data>
   <data name="mKeyboardShortcutTab.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -2148,30 +2172,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_ResetButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 213</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 23</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>Advanced Recording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
-    <value>m_btn_AdvancedRecording</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.Parent" xml:space="preserve">
-    <value>mAudioTab</value>
-  </data>
-  <data name="&gt;&gt;m_btn_AdvancedRecording.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
