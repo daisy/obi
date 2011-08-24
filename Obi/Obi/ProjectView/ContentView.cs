@@ -3752,10 +3752,17 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 }
 
                 ISelectableInContentView item = PlaybackBlock != null ? mPlaybackBlock : mSelectedItem;
-                if (item == null) return false;
-
+                if (item == null)
+                {
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+                    return false;
+                }
                 Strip strip = StripFor(item);
-                if (strip == null) return false;
+                if (strip == null)
+                {
+                    mProjectView.TransportBar.SelectionChangedPlaybackEnabled = SelectionChangedPlaybackEnabledStatus;
+                    return false;
+                }
 
                 int nodeIndexOfStripToSelect = -1;
                 if (mProjectView.Selection != null && mProjectView.Selection is StripIndexSelection && strip.OffsetForFirstPhrase > 0
