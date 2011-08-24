@@ -1983,7 +1983,7 @@ namespace Obi.ProjectView
         {
             if (CanFastForward)
             {
-                if (mState == State.Stopped) PlayOrResume();
+                if (mState == State.Stopped || mState == State.Paused) PlayOrResume();
                 mCurrentPlaylist.FastForward();
 
                 if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
