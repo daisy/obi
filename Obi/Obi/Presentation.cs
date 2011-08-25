@@ -136,8 +136,9 @@ namespace Obi
         {
             get
             {
-                SectionNode last = ((ObiRootNode)RootNode).SectionChildCount > 0 ? ((ObiRootNode)RootNode).SectionChild(-1) : null;
-                while (last != null && last.SectionChildCount > 0) last = last.SectionChild(-1);
+                ObiRootNode obiRootNode = (ObiRootNode)RootNode;
+                SectionNode last = obiRootNode.SectionChildCount > 0 ? obiRootNode.SectionChild(obiRootNode.SectionChildCount - 1) : null;
+                while (last != null && last.SectionChildCount > 0) last = last.SectionChild(last.SectionChildCount - 1);
                 return last;
             }
         }
