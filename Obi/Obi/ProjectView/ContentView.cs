@@ -428,6 +428,12 @@ namespace Obi.ProjectView
                 }
                 
             }
+            if ( e.Command is CompositeCommand && mProjectView.Selection == null && ActiveStrip == null
+                &&  e.Command.ShortDescription == Localizer.Message("recording_command") )
+            {
+                SectionNode sectionLast = mProjectView.Presentation.LastSection ;
+                if ( sectionLast != null ) CreateStripForAddedSectionNode(sectionLast, false) ;
+            }
             UpdateVerticalScrolPanelButtons();
         }
 
