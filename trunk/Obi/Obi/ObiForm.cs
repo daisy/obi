@@ -1687,6 +1687,7 @@ namespace Obi
             Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar, m_DefaultSettings );
             prefs.ShowDialog ();
             Ready ();
+            mProjectView.TransportBar.UpdateButtons();
             }
 
         private void mTools_ExportAsDAISYMenuItem_Click ( object sender, EventArgs e ) { ExportProject (); }
@@ -2580,7 +2581,7 @@ namespace Obi
             mPlayOnNavigateToolStripMenuItem.Checked = mSettings.PlayOnNavigate;
             // Colors
             mSettings.ColorSettings.CreateBrushesAndPens ();
-           
+            mProjectView.TransportBar.UpdateButtons();
             }
 
        internal void InitializeKeyboardShortcuts( bool isFirstTime)
