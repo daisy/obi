@@ -130,6 +130,10 @@ namespace Obi.ProjectView
             m_PlayOnSelectionChangedMutex = new Mutex ();
             m_DisplayComboBoxItems = new List<string>();
             for (int i = 0; i < mDisplayBox.Items.Count; i++) m_DisplayComboBoxItems.Add(mDisplayBox.Items[i].ToString());
+            
+            ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
+            m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
+            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
         }
 
         /// <summary>
@@ -768,12 +772,8 @@ namespace Obi.ProjectView
         // Update visibility and enabledness of buttons depending on the state of the recorder
         
         private delegate void UpdateButtons_Delegate();
-        private void UpdateButtons()
-        {
-            ResourceManager resourceManager = new ResourceManager("Obi.ProjectView.TransportBar", GetType().Assembly);
-            m_monitorButtonImage = (Bitmap)resourceManager.GetObject("media-monitor.png");
-            m_recordButtonImage = (Bitmap)resourceManager.GetObject("mRecordButton.Image");
-
+        public void UpdateButtons()
+        {         
             if (this.InvokeRequired)
             {
                 this.Invoke(new UpdateButtons_Delegate(UpdateButtons));
