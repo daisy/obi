@@ -790,7 +790,7 @@ namespace Obi.ProjectView
                 mFastPlayRateCombobox.Enabled = !IsRecorderActive;
                 mRecordButton.Enabled = CanRecord || CanResumeRecording;
                 bool recordDirectly = (mView.ObiForm  != null && mView.ObiForm.Settings.RecordDirectlyWithRecordButton) ? true : false;
-                if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly)
+                if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring || recordDirectly || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording || CanResumeRecording)
                 {
                     mRecordButton.Image = m_recordButtonImage;
                     mRecordButton.Invalidate();
@@ -1204,7 +1204,7 @@ namespace Obi.ProjectView
                 if (mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording
                     || mRecorder.CurrentState == AudioLib.AudioRecorder.State.Monitoring)
                 {
-                    PauseRecording();
+                    PauseRecording();                    
                 }
                 else if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
                 {
