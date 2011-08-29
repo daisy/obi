@@ -523,8 +523,8 @@ namespace Obi.Dialogs
             // 
             // m_CheckBoxListView
             // 
-            this.m_CheckBoxListView.CheckBoxes = true;
             resources.ApplyResources(this.m_CheckBoxListView, "m_CheckBoxListView");
+            this.m_CheckBoxListView.CheckBoxes = true;
             this.m_CheckBoxListView.Name = "m_CheckBoxListView";
             this.m_CheckBoxListView.UseCompatibleStateImageBehavior = false;
             this.m_CheckBoxListView.View = System.Windows.Forms.View.List;
