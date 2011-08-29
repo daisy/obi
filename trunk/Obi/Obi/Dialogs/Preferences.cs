@@ -583,6 +583,11 @@ namespace Obi.Dialogs
                 return;
             else
                 UpdateBoolSettings();
+            if (mTab.SelectedTab == mAudioTab)
+            {
+                if (m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked)
+                    m_CheckBoxListView.Items[4].Checked = true;
+            }
         }
         public void UpdateBoolSettings()
         {
@@ -630,7 +635,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[1].Checked = mSettings.RetainInitialSilenceInPhraseDetection;
                 m_CheckBoxListView.Items[2].Checked = mSettings.Recording_PreviewBeforeStarting;
                 m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
-                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite || m_CheckBoxListView.Items[3].Checked || m_CheckBoxListView.Items[2].Checked;
+                m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 
                 if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
