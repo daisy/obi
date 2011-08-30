@@ -594,7 +594,9 @@ namespace Obi.ProjectView
         // Update the time display immediatly when the display mode changes.
         private void mDisplayBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            mDisplayBox.Tag = null;
             UpdateTimeDisplay();
+            
         }
 
         // Periodically update the time display and the audio cursor.
@@ -835,6 +837,17 @@ namespace Obi.ProjectView
              }
              else
              {
+                 int selectedIndex = mDisplayBox.SelectedIndex;
+                 if (mDisplayBox.DroppedDown)
+                 {
+                     if ( mDisplayBox.Tag != null ) 
+                     {
+                         int index = -1;
+                     int.TryParse ( mDisplayBox.Tag.ToString (),out index ) ;
+                         if ( index >= 0) selectedIndex = index ;
+                     }
+                 }
+                 
                  if (mState == State.Monitoring)
                  {
                      mTimeDisplayBox.Text = "--:--:--";
@@ -850,9 +863,9 @@ namespace Obi.ProjectView
                      //mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(timeOfAssetMilliseconds);
                      //mDisplayBox.SelectedIndex = ELAPSED_INDEX;
                      mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
-                         mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
+                         selectedIndex == ELAPSED_INDEX ?
                              timeOfAssetMilliseconds :
-                         mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
+                         selectedIndex  == ELAPSED_TOTAL_INDEX ?
                            RecordingTimeElapsedTotal  : 0.0);
 
                  }
@@ -863,11 +876,11 @@ namespace Obi.ProjectView
                  else
                  {
                      mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
-                         mDisplayBox.SelectedIndex == ELAPSED_INDEX ?
+                         selectedIndex  == ELAPSED_INDEX ?
                              mCurrentPlaylist.CurrentTimeInAsset :
-                         mDisplayBox.SelectedIndex == ELAPSED_TOTAL_INDEX ?
+                         selectedIndex  == ELAPSED_TOTAL_INDEX ?
                              mCurrentPlaylist.CurrentTime :
-                         mDisplayBox.SelectedIndex == REMAIN_INDEX ?
+                         selectedIndex  == REMAIN_INDEX ?
                              mCurrentPlaylist.RemainingTimeInAsset :
                              mCurrentPlaylist.RemainingTime);
                  }
@@ -2715,6 +2728,11 @@ UpdateButtons();
             {
             UpdateButtons ();
             }
+
+        private void mDisplayBox_DropDown(object sender, EventArgs e)
+        {
+            mDisplayBox.Tag = mDisplayBox.SelectedIndex;
+        }
 
 
     }
