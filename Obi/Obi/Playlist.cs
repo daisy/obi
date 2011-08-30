@@ -708,8 +708,8 @@ namespace Obi
             {
                 //mPlayer.CurrentTimePosition
                 double currentTimePosition =
-                      (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
-                      Time.TIME_UNIT;
+                      mPlayer.CurrentAudioPCMFormat != null?  (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
+                      Time.TIME_UNIT: 0;
 
                 return mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds - currentTimePosition;
             }
