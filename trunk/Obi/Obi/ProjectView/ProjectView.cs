@@ -3257,7 +3257,7 @@ namespace Obi.ProjectView
                 else if (GoToDialog.TimeInSeconds != null)
                 {
                     AudioSelection sel = null;
-                    if (Selection != null)
+                    if (Selection != null && Selection.Node.PhraseChildCount >= 1)
                     {
                         ObiNode nodeSel = null;
                         PhraseNode phrNode = null;
@@ -3273,7 +3273,7 @@ namespace Obi.ProjectView
                                     sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds));
                                 else
                                     MessageBox.Show("The time exceeds the duration of the phrase");
-                            }                            
+                            }
                         }
                         else
                         {
@@ -3283,7 +3283,7 @@ namespace Obi.ProjectView
                                 nodeSel = this.Selection.Node.ParentAs<SectionNode>();
                             if (nodeSel.Duration < GoToDialog.TimeInSeconds)
                                 MessageBox.Show("The time exceeds the duration of the section");
-                            
+
                             for (int i = 0; i < nodeSel.PhraseChildCount; i++)
                             {
                                 if (time < GoToDialog.TimeInSeconds)
@@ -3300,7 +3300,12 @@ namespace Obi.ProjectView
                         this.Selection = sel;
                     }
                     else
-                        MessageBox.Show("Please select some phrase or section");                      
+                    {
+                        if (Selection == null)
+                            MessageBox.Show("Please select some phrase or section");
+                        else if (Selection.Node.PhraseChildCount < 1)
+                            MessageBox.Show("There are no phrases in this section");
+                    }
                 } // dialog OK check ends
             }
         }
