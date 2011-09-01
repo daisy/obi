@@ -284,12 +284,12 @@ namespace Obi.Dialogs
             // 
             // m_OperationDurationUpDown
             // 
+            resources.ApplyResources(this.m_OperationDurationUpDown, "m_OperationDurationUpDown");
             this.m_OperationDurationUpDown.Increment = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            resources.ApplyResources(this.m_OperationDurationUpDown, "m_OperationDurationUpDown");
             this.m_OperationDurationUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -316,8 +316,8 @@ namespace Obi.Dialogs
             // 
             // mNoiseLevelComboBox
             // 
-            this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.mNoiseLevelComboBox, "mNoiseLevelComboBox");
+            this.mNoiseLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mNoiseLevelComboBox.FormattingEnabled = true;
             this.mNoiseLevelComboBox.Items.AddRange(new object[] {
             resources.GetString("mNoiseLevelComboBox.Items"),
