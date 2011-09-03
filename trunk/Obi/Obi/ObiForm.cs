@@ -1410,7 +1410,7 @@ namespace Obi
             mPhrases_AssignRole_PageMenuItem.Enabled = mProjectView.CanAssignARole;
             mPhrases_AssignRole_SilenceMenuItem.Enabled = mProjectView.CanAssignSilenceRole;
             mPhrases_AssignRole_NewCustomRoleMenuItem.Enabled = mProjectView.CanAssignARole;
-            m_GoToPageToolStrip.Enabled = mSession.Presentation != null;
+            m_GoToPageToolStrip.Enabled = mSession.Presentation != null && ! mProjectView.TransportBar.IsRecorderActive;
             UpdateAudioSelectionBlockMenuItems ();
             }
 
