@@ -2041,13 +2041,18 @@ namespace Obi.ProjectView
             {
             bool wasPlaying = TransportBar.CurrentState == TransportBar.State.Playing;
             if (TransportBar.CurrentState == TransportBar.State.Playing && !PauseAndCreatePlayingSection()) return;
-                   
+            if (TransportBar.PlaybackPhrase != null && TransportBar.CurrentPlaylist.PlaybackRate != 0)
+            {
+                if (TransportBar.PlaybackPhrase.Duration < TransportBar.SplitBeginTime)
+                   return;
+            } 
             if (CanSplitPhrase)
                 {
                 bool playbackOnSelectionChangeStatus = TransportBar.SelectionChangedPlaybackEnabled;
                 TransportBar.SelectionChangedPlaybackEnabled = false;
                 try
                     {
+                                             
                     CompositeCommand command = null;
                     command = Commands.Node.SplitAudio.GetSplitCommand ( this );
                     if (command != null) mPresentation.Do ( command );
