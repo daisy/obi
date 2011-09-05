@@ -3262,7 +3262,7 @@ namespace Obi.ProjectView
                 else if (GoToDialog.TimeInSeconds != null)
                 {
                     AudioSelection sel = null;
-                    if (Selection != null && Selection.Node.PhraseChildCount >= 1)
+                    if (Selection != null)
                     {
                         ObiNode nodeSel = null;
                         PhraseNode phrNode = null;
@@ -3271,27 +3271,33 @@ namespace Obi.ProjectView
                         if (GoToDialog.SelectedIndex == 0)
                         {
                             if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode)
-                                MessageBox.Show("Please select a phrase");
+                                MessageBox.Show(Localizer.Message("select_phrase"));
                             else
                             {
                                 if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds)
                                     sel = new AudioSelection((PhraseNode)this.Selection.Node, mContentView, new AudioRange(GoToDialog.TimeInSeconds));
                                 else
-                                    MessageBox.Show("The time exceeds the duration of the phrase");
+                                {
+                                    MessageBox.Show(Localizer.Message("time_exceeds_duration_phrase"));
+                                    return;
+                                }
                             }
                         }
                         else
                         {
-                            if (this.Selection.Node is SectionNode || this.Selection is StripIndexSelection)
+                            if ((this.Selection.Node is SectionNode || this.Selection is StripIndexSelection) &&  Selection.Node.PhraseChildCount >= 1)
                                 nodeSel = this.Selection.Node;
                             else if (this.Selection.Node is EmptyNode || this.Selection.Node is PhraseNode)
                                 nodeSel = this.Selection.Node.ParentAs<SectionNode>();
                             if (nodeSel.Duration < GoToDialog.TimeInSeconds)
-                                MessageBox.Show("The time exceeds the duration of the section");
+                            {
+                                MessageBox.Show(Localizer.Message("time_exceeds_duration_section"));
+                                return;
+                            }
 
                             for (int i = 0; i < nodeSel.PhraseChildCount; i++)
                             {
-                                if (time < GoToDialog.TimeInSeconds)
+                                if (time < GoToDialog.TimeInSeconds && nodeSel.PhraseChild(i) is PhraseNode)
                                 {
                                     time = nodeSel.PhraseChild(i).Duration + time;
                                     phrNode = (PhraseNode)nodeSel.PhraseChild(i);
@@ -3307,9 +3313,9 @@ namespace Obi.ProjectView
                     else
                     {
                         if (Selection == null)
-                            MessageBox.Show("Please select some phrase or section");
-                        else if (Selection.Node.PhraseChildCount < 1)
-                            MessageBox.Show("There are no phrases in this section");
+                            MessageBox.Show(Localizer.Message("select_phrase_or_section"));
+                        else if (Selection.Node is SectionNode &&  Selection.Node.PhraseChildCount < 1)
+                            MessageBox.Show(Localizer.Message("no_phrases_in_section"));
                     }
                 } // dialog OK check ends
             }

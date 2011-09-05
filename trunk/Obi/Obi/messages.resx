@@ -1920,4 +1920,19 @@ Error text: {1}</value>
   <data name="GoToPageOrPhrase_Time" xml:space="preserve">
     <value>Time in:</value>
   </data>
+  <data name="no_phrases_in_section" xml:space="preserve">
+    <value>There are no phrases in this section</value>
+  </data>
+  <data name="select_phrase" xml:space="preserve">
+    <value>Please select a phrase</value>
+  </data>
+  <data name="select_phrase_or_section" xml:space="preserve">
+    <value>Please select some phrase or section</value>
+  </data>
+  <data name="time_exceeds_duration_phrase" xml:space="preserve">
+    <value>The time exceeds the duration of the phrase</value>
+  </data>
+  <data name="time_exceeds_duration_section" xml:space="preserve">
+    <value>The time exceeds the duration of the section</value>
+  </data>
 </root>
