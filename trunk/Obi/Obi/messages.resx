@@ -288,7 +288,7 @@ Oh well.</value>
     <comment>Preferences</comment>
   </data>
   <data name="playback_rate" xml:space="preserve">
-    <value>Playback rate x{0}</value>
+    <value>Playback rate x{0} in {1}</value>
     <comment>Status message</comment>
   </data>
   <data name="Recording" xml:space="preserve">
