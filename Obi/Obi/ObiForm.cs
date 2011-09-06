@@ -2473,7 +2473,7 @@ namespace Obi
                 if (mProjectView.Selection != null && mProjectView.Selection.Node.PhraseChildCount < 1)
                 { }
                 else
-            Status ( String.Format ( Localizer.Message ( "playback_rate" ), mProjectView.TransportBar.CurrentPlaylist.PlaybackRate ) );
+            Status ( String.Format ( Localizer.Message ( "playback_rate" ), mProjectView.TransportBar.CurrentPlaylist.PlaybackRate, mProjectView.TransportBar.PlaybackPhrase.Parent ) );
             }
 
 

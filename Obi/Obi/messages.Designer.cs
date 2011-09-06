@@ -3634,7 +3634,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Playback rate x{0}.
+        ///   Looks up a localized string similar to Playback rate x{0} in {1}.
         /// </summary>
         internal static string playback_rate {
             get {
