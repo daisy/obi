@@ -1344,7 +1344,7 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record_Button()
         {
-            if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton)
+            if (mView.ObiForm.Settings.RecordDirectlyWithRecordButton && CurrentState != State.Monitoring) //if monitoring go through the traditional way
             {
                 StartRecordingDirectly();
             }
@@ -2238,13 +2238,15 @@ namespace Obi.ProjectView
                                     if (mState == State.Stopped && !s.AudioRange.HasCursor    &&  !useSelection) 
                                         return false ;
 
-                                    double time = from ? (s.AudioRange.HasCursor || !useSelection? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime) :
-                        (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
+                                    double time = (s.AudioRange.HasCursor || !useSelection ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime);
+                        
 
 
                     if (mState == State.Playing || mState == State.Paused ) Stop ();
                     CreateLocalPlaylistForPreview ( (PhraseNode)s.Node, time, true );
-                    
+
+                    time = from ? (s.AudioRange.HasCursor || !useSelection ? s.AudioRange.CursorTime : s.AudioRange.SelectionBeginTime) :
+                        (s.AudioRange.HasCursor ? s.AudioRange.CursorTime : s.AudioRange.SelectionEndTime) - PreviewDuration;
                     PlayPreview((PhraseNode)s.Node, time, PreviewDuration, from);
                     return true;
                 }
