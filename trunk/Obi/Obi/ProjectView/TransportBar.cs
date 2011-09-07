@@ -145,7 +145,7 @@ namespace Obi.ProjectView
         public bool CanMarkCustomClass { get { return Enabled && mView.CanMarkPhrase; } }
         public bool CanNavigatePrevPage { get { return Enabled && !m_IsProjectEmpty && ( IsPlayerActive || CanPlay ) ; } }
         public bool CanNavigatePrevSection { get { return Enabled && !m_IsProjectEmpty && (IsPlayerActive || CanPlay) ; } }
-        public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording); } }
+        public bool CanPause { get { return Enabled && (mState == State.Playing || mState == State.Recording) ; } }
         public bool CanPausePlayback { get { return Enabled && mState == State.Playing; } }
         public bool CanPlay { get { return Enabled && mState == State.Stopped && !m_IsProjectEmpty && !mView.IsContentViewScrollActive; } }
         public bool CanRecord { get { return Enabled &&( mState == State.Stopped || mState == State.Paused ||  mState == State.Monitoring  ||  (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing)) &&  mView.IsPhraseCountWithinLimit && !mView.IsContentViewScrollActive; } } // @phraseLimit
@@ -1205,6 +1205,8 @@ namespace Obi.ProjectView
         /// </summary>
         public void Pause()
         {
+            if (m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy) return ;
+
             if (CanPause)
             {
                             if (m_IsPreviewing)
@@ -1448,7 +1450,7 @@ namespace Obi.ProjectView
                         &&    ( CurrentState == State.Paused || (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
                     {
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
-                        
+                        //MessageBox.Show("recording selection update");   
                         double replaceStartTime = (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )? ((AudioSelection)mView.Selection).AudioRange.CursorTime :
                             CurrentPlaylist.CurrentTimeInAsset;
                         mView.Selection = new AudioSelection((PhraseNode) selectionNode, mView.Selection.Control, new AudioRange(replaceStartTime, selectionNode.Duration) );
@@ -1532,6 +1534,7 @@ namespace Obi.ProjectView
                 if (overwrite && (mState == State.Paused ||
                     mView.Selection is AudioSelection ))
                 {
+                    //MessageBox.Show(SplitBeginTime.ToString () + " , selection time"+ ((mView.Selection != null && mView.Selection is AudioSelection)? ((AudioSelection)mView.Selection).AudioRange.CursorTime.ToString () : ""  ));
                     // TODO: we cannot record from pause at the moment; maybe that's not so bad actually.
                 CompositeCommand SplitCommand = Commands.Node.SplitAudio.GetSplitCommand ( mView );
                                     if ( SplitCommand != null )  command.ChildCommands.Insert(command.ChildCommands.Count, SplitCommand);
@@ -2328,17 +2331,26 @@ namespace Obi.ProjectView
 
 
 
+        System.ComponentModel.BackgroundWorker m_PreviewBeforeRecordingWorker = null;
         /// <summary>
         /// Start recording directly without going through listening
         /// </summary>
         public void StartRecordingDirectly()
         {
+            if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
+                && m_PreviewBeforeRecordingWorker != null && m_PreviewBeforeRecordingWorker.IsBusy)
+            {
+                return;
+            }
+
             if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
+
             if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
                 && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection )))
             {
-                System.ComponentModel.BackgroundWorker worker = new System.ComponentModel.BackgroundWorker();
-                worker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
+                
+                m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
+                m_PreviewBeforeRecordingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(delegate(object sender, System.ComponentModel.DoWorkEventArgs e)
                 {
                     Preview(Upto, UseAudioCursor);
                     int interval = 50;
@@ -2353,11 +2365,11 @@ namespace Obi.ProjectView
                         Thread.Sleep(interval);
                     }
                 });
-                worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+                m_PreviewBeforeRecordingWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(delegate(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
                 {
-                    StartRecordingDirectly_Internal();
+                    if ( CurrentState == State.Paused )  StartRecordingDirectly_Internal();
                 });
-                worker.RunWorkerAsync();
+                m_PreviewBeforeRecordingWorker.RunWorkerAsync();
             }
             else
             {
