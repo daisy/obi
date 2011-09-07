@@ -2526,6 +2526,7 @@ UpdateButtons();
         private bool m_SkipPlayOnNavigateForSection = false;
         private void PlaybackOnSelectionChange ()
         {
+            if (IsRecorderActive) return;
             if (m_SkipPlayOnNavigateForSection && (mView.Selection == null || mView.Selection.Node is SectionNode))
             {
                 m_SkipPlayOnNavigateForSection = false;
