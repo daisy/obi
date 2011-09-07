@@ -152,6 +152,7 @@ namespace Obi.Dialogs
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Low ? 0 :
                 mSettings.NoiseLevel == AudioLib.VuMeter.NoiseLevelSelection.Medium ? 1 : 2;
         //    mAudioCluesCheckBox.Checked = mSettings.AudioClues;
+            m_cbOperation.SelectedIndex = 0;
             if (this.mTab.SelectedTab == mAudioTab)
             {
                 m_IsComplete = false;
@@ -585,7 +586,7 @@ namespace Obi.Dialogs
                 UpdateBoolSettings();
             if (mTab.SelectedTab == mAudioTab)
             {
-                if (m_CheckBoxListView.Items[2].Checked || m_CheckBoxListView.Items[3].Checked)
+                if (m_CheckBoxListView.Items[3].Checked)
                     m_CheckBoxListView.Items[4].Checked = true;
                /* if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Enabled = false;
