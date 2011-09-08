@@ -1584,6 +1584,9 @@ namespace Obi.ProjectView
                 {
                     phrase.CopyAttributes(emptyNode);
                     phrase.Used = emptyNode.Used;
+                    Commands.UpdateSelection updateSelection = new Commands.UpdateSelection(mView,new NodeSelection (emptyNode, mView.Selection.Control));
+                    updateSelection.RefreshSelectionForUnexecute = true;
+                    command.ChildCommands.Insert(command.ChildCommands.Count, updateSelection);
                     command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(mView, emptyNode));
                     command.ChildCommands.Insert(command.ChildCommands.Count, add);
                 }
