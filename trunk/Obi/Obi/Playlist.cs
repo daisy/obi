@@ -163,11 +163,14 @@ namespace Obi
         public PhraseNode NextSection(PhraseNode node)
         {
             int index = mPhrases.IndexOf(node);
+            PhraseNode firstPhrase = null;
             if (node != null)
             {
                 for (; index < mPhrases.Count && (mPhrases[index].AncestorAs<SectionNode>() == node.AncestorAs<SectionNode>() || !mPhrases[index].IsRooted) ; ++index) { }
             }
-            return index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
+            firstPhrase = index >= 0 && index < mPhrases.Count ? mPhrases[index] : null;
+            if (firstPhrase != null && !firstPhrase.IsRooted) firstPhrase = null;
+            return firstPhrase;
         }
 
         public PhraseNode PrevPage(PhraseNode node)
