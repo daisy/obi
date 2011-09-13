@@ -1185,7 +1185,18 @@ namespace Obi.ProjectView
                 // ensure visibility of selected node
                 if (mProjectView != null &&  mProjectView.Selection != null && (mProjectView.Selection is StripIndexSelection || mProjectView.Selection.Node is EmptyNode))
                     {
-                    Block currentlySelectedBlock = FindBlock ( mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection : (EmptyNode) mProjectView.Selection.Node );
+                    EmptyNode currentlySelectedEmptyNode = mProjectView.Selection is StripIndexSelection && ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection != null? ((StripIndexSelection)mProjectView.Selection).EmptyNodeForSelection :
+                        mProjectView.Selection.Node is EmptyNode ? (EmptyNode)mProjectView.Selection.Node : null;
+
+                    Block currentlySelectedBlock = null;
+                    if (currentlySelectedEmptyNode == null && mProjectView.Selection is StripIndexSelection && currentlyActiveStrip != null)
+                    {
+                        currentlySelectedBlock = currentlyActiveStrip.BlockBefore(mSelectedItem);
+                    }
+                    else
+                    {
+                        currentlySelectedBlock = FindBlock(currentlySelectedEmptyNode) ;
+                    }
                     if (currentlySelectedBlock != null) EnsureControlVisible ( currentlySelectedBlock );
                     }
                 }
