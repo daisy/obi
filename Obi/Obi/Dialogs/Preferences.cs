@@ -628,12 +628,12 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Clear();
                 m_CheckBoxListView.Size = new Size(338, 69);
                 m_CheckBoxListView.Location = new Point(93, 276);
-                m_CheckBoxListView.Items.Add("Audio clues");
-                m_CheckBoxListView.Items.Add("Retain Initial Silence");
-                m_CheckBoxListView.Items.Add("Preview Before Recording");
-                m_CheckBoxListView.Items.Add("Start recording from cursor erasing the following audio");
-                m_CheckBoxListView.Items.Add("Allow overwrite while recording");
-                m_CheckBoxListView.Items.Add("Record directly from transport bar");
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AudioClues"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RetainInitialSilence"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_PreviewBeforeRecording"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_StartRecordingFromCursor"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AllowOverwrite"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RecordDirectlyFromTransportBar"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 255);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
@@ -643,10 +643,10 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
                 
-                if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
-                    m_btn_AdvancedRecording.Text = "Uncheck advanced options";
+                if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
+                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
                 else
-                    m_btn_AdvancedRecording.Text = "Check advanced options";
+                    m_btn_AdvancedRecording.Text = "Enable advanced recording";
             }
             if (this.mTab.SelectedTab == this.mProjectTab)
             {
@@ -657,10 +657,10 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Location = new Point(85, 240);
                 m_grpBoxChkBoxListView.Size = new Size(375, 126);
                 m_grpBoxChkBoxListView.Location = new Point(75, 220);
-                m_CheckBoxListView.Items.Add("Open last project");
-                m_CheckBoxListView.Items.Add("Auto save when recording ends");
-                m_CheckBoxListView.Items.Add("Select bookmark when project reopens");
-                m_CheckBoxListView.Items.Add("Fix content view width");
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OpenLastProject"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));
 
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
@@ -757,25 +757,23 @@ namespace Obi.Dialogs
 
         private void m_btn_AdvancedRecording_Click(object sender, EventArgs e)
         {
-            if (m_btn_AdvancedRecording.Text == "Check advanced options")
+            if (m_btn_AdvancedRecording.Text == "Enable advanced recording")
             {
-                if (MessageBox.Show("This will allow overwrite while recording. Do you want to proceed?", "Advance recording mode", MessageBoxButtons.YesNo,
+                if (MessageBox.Show("Allow overwrite and Start recording from cursor erasing the following audio checkboxes will be checked. Do you want to proceed?", "Advance recording mode", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    m_CheckBoxListView.Items[2].Checked = true;
                     m_CheckBoxListView.Items[3].Checked = true;
                     m_CheckBoxListView.Items[4].Checked = true;
-                    m_btn_AdvancedRecording.Text = "Uncheck advanced options";
+                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
                 }
                 else
                     return;
             }
-            else if (m_btn_AdvancedRecording.Text == "Uncheck advanced options")
+            else if (m_btn_AdvancedRecording.Text == "Disable advanced recording")
             {
-                m_CheckBoxListView.Items[2].Checked = false;
                 m_CheckBoxListView.Items[3].Checked = false;
                 m_CheckBoxListView.Items[4].Checked = false;
-                m_btn_AdvancedRecording.Text = "Check advanced options";
+                m_btn_AdvancedRecording.Text = "Enable advanced recording";
             }
         }
         }

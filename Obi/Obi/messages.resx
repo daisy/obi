@@ -1935,4 +1935,34 @@ Error text: {1}</value>
   <data name="time_exceeds_duration_section" xml:space="preserve">
     <value>The time exceeds the duration of the section</value>
   </data>
+  <data name="AudioTab_AllowOverwrite" xml:space="preserve">
+    <value>Allow overwrite while recording</value>
+  </data>
+  <data name="AudioTab_AudioClues" xml:space="preserve">
+    <value>Audio clues</value>
+  </data>
+  <data name="AudioTab_PreviewBeforeRecording" xml:space="preserve">
+    <value>Preview before recording</value>
+  </data>
+  <data name="AudioTab_RecordDirectlyFromTransportBar" xml:space="preserve">
+    <value>Record directly from transport bar</value>
+  </data>
+  <data name="AudioTab_RetainInitialSilence" xml:space="preserve">
+    <value>Retain initial silence while phrase detection</value>
+  </data>
+  <data name="AudioTab_StartRecordingFromCursor" xml:space="preserve">
+    <value>Start recording from cursor erasing the following audio</value>
+  </data>
+  <data name="ProjectTab_AutoSaveWhenRecordingEnds" xml:space="preserve">
+    <value>Auto save when recording ends</value>
+  </data>
+  <data name="ProjectTab_FixContentViewWidth" xml:space="preserve">
+    <value>Fix content view width</value>
+  </data>
+  <data name="ProjectTab_OpenLastProject" xml:space="preserve">
+    <value>Open last project</value>
+  </data>
+  <data name="ProjectTab_SelectBookmark" xml:space="preserve">
+    <value>Select bookmark when project reopens</value>
+  </data>
 </root>

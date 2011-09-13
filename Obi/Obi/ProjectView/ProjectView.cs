@@ -3273,7 +3273,10 @@ namespace Obi.ProjectView
                         if (GoToDialog.SelectedIndex == 0)
                         {
                             if (this.Selection.Node is StripIndexSelection || this.Selection.Node is SectionNode)
+                            {
                                 MessageBox.Show(Localizer.Message("select_phrase"));
+                                return;
+                            }
                             else
                             {
                                 if (this.Selection.Node.Duration > GoToDialog.TimeInSeconds)
@@ -3318,6 +3321,7 @@ namespace Obi.ProjectView
                             MessageBox.Show(Localizer.Message("select_phrase_or_section"));
                         else if (Selection.Node is SectionNode &&  Selection.Node.PhraseChildCount < 1)
                             MessageBox.Show(Localizer.Message("no_phrases_in_section"));
+                       
                     }
                 } // dialog OK check ends
             }
