@@ -196,6 +196,60 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow overwrite while recording.
+        /// </summary>
+        internal static string AudioTab_AllowOverwrite {
+            get {
+                return ResourceManager.GetString("AudioTab_AllowOverwrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio clues.
+        /// </summary>
+        internal static string AudioTab_AudioClues {
+            get {
+                return ResourceManager.GetString("AudioTab_AudioClues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview before recording.
+        /// </summary>
+        internal static string AudioTab_PreviewBeforeRecording {
+            get {
+                return ResourceManager.GetString("AudioTab_PreviewBeforeRecording", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record directly from transport bar.
+        /// </summary>
+        internal static string AudioTab_RecordDirectlyFromTransportBar {
+            get {
+                return ResourceManager.GetString("AudioTab_RecordDirectlyFromTransportBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retain initial silence while phrase detection.
+        /// </summary>
+        internal static string AudioTab_RetainInitialSilence {
+            get {
+                return ResourceManager.GetString("AudioTab_RetainInitialSilence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start recording from cursor erasing the following audio.
+        /// </summary>
+        internal static string AudioTab_StartRecordingFromCursor {
+            get {
+                return ResourceManager.GetString("AudioTab_StartRecordingFromCursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error in saving to backup file! If this message comes again and again, you may disable auto save from preferences and report this bugg..
         /// </summary>
         internal static string AutoSave_Error {
@@ -3711,6 +3765,42 @@ namespace Obi {
         internal static string project_locked {
             get {
                 return ResourceManager.GetString("project_locked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto save when recording ends.
+        /// </summary>
+        internal static string ProjectTab_AutoSaveWhenRecordingEnds {
+            get {
+                return ResourceManager.GetString("ProjectTab_AutoSaveWhenRecordingEnds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix content view width.
+        /// </summary>
+        internal static string ProjectTab_FixContentViewWidth {
+            get {
+                return ResourceManager.GetString("ProjectTab_FixContentViewWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open last project.
+        /// </summary>
+        internal static string ProjectTab_OpenLastProject {
+            get {
+                return ResourceManager.GetString("ProjectTab_OpenLastProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select bookmark when project reopens.
+        /// </summary>
+        internal static string ProjectTab_SelectBookmark {
+            get {
+                return ResourceManager.GetString("ProjectTab_SelectBookmark", resourceCulture);
             }
         }
         

@@ -667,13 +667,13 @@
     <value>422, 248</value>
   </data>
   <data name="m_btn_AdvancedRecording.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
+    <value>187, 26</value>
   </data>
   <data name="m_btn_AdvancedRecording.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="m_btn_AdvancedRecording.Text" xml:space="preserve">
-    <value>Check advanced options</value>
+    <value>Enable advanced recording</value>
   </data>
   <data name="&gt;&gt;m_btn_AdvancedRecording.Name" xml:space="preserve">
     <value>m_btn_AdvancedRecording</value>
@@ -1694,6 +1694,9 @@
   <data name="&gt;&gt;m_ResetButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1982,6 +1985,12 @@
   </data>
   <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Preferences</value>
