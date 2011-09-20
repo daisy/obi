@@ -3659,8 +3659,11 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                         m_KeysMillisecond = DateTime.Now.Second;
                         m_PrevKey = key;
                         Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
-                        System.GC.GetTotalMemory(true);
-                        System.GC.WaitForFullGCComplete(500);
+                        if (Settings != null  &&  Settings.OptimizeMemory)
+                        {
+                            System.GC.GetTotalMemory(true);
+                            System.GC.WaitForFullGCComplete(500);
+                        }
                         System.Media.SystemSounds.Beep.Play();
                         return true;
                     }
