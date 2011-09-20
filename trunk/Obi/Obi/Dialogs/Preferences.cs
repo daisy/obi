@@ -603,6 +603,7 @@ namespace Obi.Dialogs
                 mSettings.AutoSave_RecordingEnd = m_CheckBoxListView.Items[1].Checked;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_CheckBoxListView.Items[2].Checked;
                 mSettings.LeftAlignPhrasesInContentView = m_CheckBoxListView.Items[3].Checked;
+                mSettings.OptimizeMemory = m_CheckBoxListView.Items[4].Checked;
             }
             if (mTab.SelectedTab == mAudioTab)
             {
@@ -661,11 +662,12 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_AutoSaveWhenRecordingEnds"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_SelectBookmark"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_FixContentViewWidth"));
-
+                m_CheckBoxListView.Items.Add(Localizer.Message("ProjectTab_OptimizeMemory"));
                 m_CheckBoxListView.Items[0].Checked = mSettings.OpenLastProject;
                 m_CheckBoxListView.Items[1].Checked = mSettings.AutoSave_RecordingEnd;
                 m_CheckBoxListView.Items[2].Checked = mSettings.OpenBookmarkNodeOnReopeningProject;
                 m_CheckBoxListView.Items[3].Checked = mSettings.LeftAlignPhrasesInContentView;
+                m_CheckBoxListView.Items[4].Checked = mSettings.OptimizeMemory;
             }
             m_CheckBoxListView.View = View.Details;
             m_IsComplete = true;
@@ -703,6 +705,7 @@ namespace Obi.Dialogs
                 mSettings.AutoSave_RecordingEnd = m_DefaultSettings.AutoSave_RecordingEnd;
                 mSettings.OpenBookmarkNodeOnReopeningProject = m_DefaultSettings.OpenBookmarkNodeOnReopeningProject;
                 mSettings.LeftAlignPhrasesInContentView = m_DefaultSettings.LeftAlignPhrasesInContentView;
+                mSettings.OptimizeMemory = m_DefaultSettings.OptimizeMemory;
                 InitializeProjectTab();
             }
             else if (mTab.SelectedTab == mAudioTab) // Default settings for Audio tab

@@ -3796,6 +3796,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Optimize memory.
+        /// </summary>
+        internal static string ProjectTab_OptimizeMemory {
+            get {
+                return ResourceManager.GetString("ProjectTab_OptimizeMemory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select bookmark when project reopens.
         /// </summary>
         internal static string ProjectTab_SelectBookmark {
