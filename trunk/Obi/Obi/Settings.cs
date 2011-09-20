@@ -116,7 +116,7 @@ namespace Obi
             settings.ImportToleranceForAudioInMs = 100;
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
-            settings.OptimizeMemory = false;
+            settings.OptimizeMemory = true;
         }
 
         /// <summary>
