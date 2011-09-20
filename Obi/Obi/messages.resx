@@ -1965,4 +1965,7 @@ Error text: {1}</value>
   <data name="ProjectTab_SelectBookmark" xml:space="preserve">
     <value>Select bookmark when project reopens</value>
   </data>
+  <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
+    <value>Optimize memory</value>
+  </data>
 </root>
