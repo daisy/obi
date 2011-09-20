@@ -278,7 +278,7 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //mProject.setDataModelFactory ( mDataModelFactory );
             mProject.dataIsMissing += new EventHandler<urakawa.events.media.data.DataIsMissingEventArgs> ( OnDataIsMissing );
 
-            long memoryBefore = System.GC.GetTotalMemory(true);
+            //long memoryBefore = System.GC.GetTotalMemory(true);
             //sdk2
             //mProject.openXUK ( new Uri ( path ) );
             //System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
@@ -290,9 +290,9 @@ System.IO.Path.GetFileName(m_BackupProjectFilePath_temp));
             //stopWatch.Stop();
             //Console.WriteLine("Time taken for xuk-in in milliseconds " + stopWatch.ElapsedMilliseconds);
             //Presentation = mProject.Presentations.Get(0);
-            long memoryAfter =  System.GC.GetTotalMemory(true);
-                long memoryDiff = memoryBefore - memoryAfter;
-                Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
+            //long memoryAfter =  System.GC.GetTotalMemory(true);
+                //long memoryDiff = memoryBefore - memoryAfter;
+                //Console.WriteLine("opening project memory differenc is " + (memoryDiff / 1024));
             mPath = path;
             GetLock ( mPath );
             Presentation.Initialize ( this );

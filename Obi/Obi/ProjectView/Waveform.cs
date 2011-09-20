@@ -118,10 +118,14 @@ namespace Obi.ProjectView
                             if (ramPerformanceCounter.NextValue() < 100)
                             {
                                 Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
-                                
-                                System.GC.GetTotalMemory(true);
-                                
-                                System.GC.WaitForFullGCComplete(500);
+
+                                if (mBlock.Strip.ContentView.Settings != null
+                                    && mBlock.Strip.ContentView.Settings.OptimizeMemory)
+                                {
+                                    System.GC.GetTotalMemory(true);
+
+                                    System.GC.WaitForFullGCComplete(500);
+                                }
                                 float availableRAM = ramPerformanceCounter.NextValue();
                                 Console.WriteLine("RAM after collection " + availableRAM.ToString());
                             }
