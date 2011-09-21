@@ -3796,7 +3796,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Optimize memory.
+        ///   Looks up a localized string similar to Optimize memory utilization.
         /// </summary>
         internal static string ProjectTab_OptimizeMemory {
             get {
