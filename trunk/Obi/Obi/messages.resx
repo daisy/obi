@@ -1966,6 +1966,6 @@ Error text: {1}</value>
     <value>Select bookmark when project reopens</value>
   </data>
   <data name="ProjectTab_OptimizeMemory" xml:space="preserve">
-    <value>Optimize memory</value>
+    <value>Optimize memory utilization</value>
   </data>
 </root>
