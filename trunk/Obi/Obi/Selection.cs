@@ -162,7 +162,14 @@ namespace Obi
                     PhraseNode phrase = view.Presentation.CreatePhraseNode(media);
                     p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.Node.AddNode(view, phrase, ParentForNewNode(phrase), IndexForNewNode(phrase)));
                     p.ChildCommands.Insert(p.ChildCommands.Count, Commands.Node.MergeAudio.GetMergeCommand(view, (EmptyNode)Node, phrase));
-                    p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection(view, new AudioSelection((PhraseNode)Node, Control, new AudioRange(Node.Duration, Node.Duration + phrase.Duration))));
+                    if (Node is PhraseNode)
+                    {
+                        p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection(view, new AudioSelection((PhraseNode)Node, Control, new AudioRange(Node.Duration, Node.Duration + phrase.Duration))));
+                    }
+                    else if (Node is EmptyNode)
+                    {
+                        p.ChildCommands.Insert(p.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(Node, Control)));
+                    }
                 }
             }
             else
