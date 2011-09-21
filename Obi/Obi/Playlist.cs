@@ -1023,9 +1023,10 @@ namespace Obi
         {
             if (mPhrases.Count > 0)
             {
-                double currentTimePosition =
+                double currentTimePosition = mPlayer.CurrentAudioPCMFormat != null?
                      (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
-                     Time.TIME_UNIT;
+                     Time.TIME_UNIT:
+                     0;
 
                 double currentTime = mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing ? currentTimePosition : 0.0;
                 NavigateToPhrase(mCurrentPhraseIndex -
