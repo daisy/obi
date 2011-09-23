@@ -281,7 +281,7 @@ RenameProjectFilesAfterOperation();
                     newMetadata.AppendChild(newMetadataAttribute);
 
                     XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Name", metadataItem.Attributes.GetNamedItem("name").Value);
-                    XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Value", metadataItem.Attributes.GetNamedItem("content").Value);
+                    XmlDocumentHelper.CreateAppendXmlAttribute(destXmlDoc, newMetadataAttribute, "Value", metadataItem.Attributes.GetNamedItem("content") != null?metadataItem.Attributes.GetNamedItem("content").Value: "NA" );
                 }
             }
 
