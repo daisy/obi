@@ -313,10 +313,7 @@ namespace Obi.ProjectView
             this.mDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mDisplayBox.FormattingEnabled = true;
             this.mDisplayBox.Items.AddRange(new object[] {
-            "elapsed",
-            "elapsed (total)",
-            "remaining",
-            "remaining (total)"});
+            global::Obi.messages.phrase_extra_Plain});
             this.mDisplayBox.Location = new System.Drawing.Point(548, 5);
             this.mDisplayBox.Name = "mDisplayBox";
             this.mDisplayBox.Size = new System.Drawing.Size(116, 24);

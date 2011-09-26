@@ -31,7 +31,8 @@ namespace Obi.ProjectView
         
         private State mState;                        // transport bar state (composite of player/recorder states)
         private bool m_CanMoveSelectionToPlaybackPhrase = true;//@singleSection
-
+        private List<string> m_RecordingElapsedRemainingList = new List<string>();
+        private List<string> m_PlayingElapsedRemainingList = new List<string>();
         // Playlists
         private Playlist mCurrentPlaylist;           // playlist currently playing, null when not playing
         private Playlist mMasterPlaylist;            // master playlist (all phrases in the project)
@@ -93,7 +94,9 @@ namespace Obi.ProjectView
 
         // Constants from the display combo box
         private static readonly int ELAPSED_INDEX = 0;
-        private static readonly int ELAPSED_TOTAL_INDEX = 1;
+        private static readonly int ELAPSED_SECTION = 1;
+        private static int ELAPSED_TOTAL_INDEX = 1;
+        private static int ELAPSED_TOTAL_RECORDING_INDEX = 2;
         private static readonly int REMAIN_INDEX = 2;
         private readonly List<string> m_DisplayComboBoxItems;
 
@@ -121,6 +124,14 @@ namespace Obi.ProjectView
             mView = null;
             InitAudio();
             InitPlaylists();
+            m_RecordingElapsedRemainingList.Add("elapsed");
+            m_RecordingElapsedRemainingList.Add("elapsed section");
+            m_RecordingElapsedRemainingList.Add("elapsed total");
+            m_PlayingElapsedRemainingList.Add("elapsed phrase");
+            m_PlayingElapsedRemainingList.Add("elapsed total");
+            m_PlayingElapsedRemainingList.Add("remaining");
+            m_PlayingElapsedRemainingList.Add("remaining total");
+            mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
@@ -749,13 +760,15 @@ namespace Obi.ProjectView
             {
                 m_RecordingElapsedTime_Book = -1;
                 mDisplayBox.Items.Clear () ;
-                for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
+                mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
+              //  for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 mDisplayBox.SelectedIndex = selectedIndex > -1 ? selectedIndex: 0;
             }
             else
             {
                 mDisplayBox.Items.Clear();
-                for (int i = 0; i < 2; i++ ) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
+                mDisplayBox.Items.AddRange(new object[] { "elapsed", "elapsed section", "elapsed total"});
+               // for (int i = 0; i < 2; i++ ) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 mDisplayBox.SelectedIndex = (selectedIndex < mDisplayBox.Items.Count) ? selectedIndex
                     : 0;    
             }
@@ -866,7 +879,9 @@ namespace Obi.ProjectView
                      mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
                          selectedIndex == ELAPSED_INDEX ?
                              timeOfAssetMilliseconds :
-                         selectedIndex  == ELAPSED_TOTAL_INDEX ?
+                         selectedIndex == ELAPSED_SECTION?
+                         0:
+                         selectedIndex  == ELAPSED_TOTAL_RECORDING_INDEX ?
                            RecordingTimeElapsedTotal  : 0.0);
 
                  }
