@@ -759,6 +759,7 @@ namespace Obi.ProjectView
             if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Recording)
             {
                 m_RecordingElapsedTime_Book = -1;
+                m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
                 mDisplayBox.Items.Clear () ;
                 mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
               //  for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
@@ -880,7 +881,7 @@ namespace Obi.ProjectView
                          selectedIndex == ELAPSED_INDEX ?
                              timeOfAssetMilliseconds :
                          selectedIndex == ELAPSED_SECTION?
-                         0:
+                         RecordingTimeElapsedSection:
                          selectedIndex  == ELAPSED_TOTAL_RECORDING_INDEX ?
                            RecordingTimeElapsedTotal  : 0.0);
 
@@ -933,6 +934,35 @@ namespace Obi.ProjectView
                     delegate(urakawa.core.TreeNode n) { });
         }
 
+        private double m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
+        public double RecordingTimeElapsedSection
+        {
+            get
+            {
+                if (m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase < 0) CalculateTimeElapsedInSection();
+
+                return m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase + (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                          Time.TIME_UNIT;
+            }
+        }
+
+        private void CalculateTimeElapsedInSection()
+        {
+            if (mRecordingPhrase == null) return;
+            mRecordingPhrase.ParentAs<SectionNode>().AcceptDepthFirst(
+                    delegate(urakawa.core.TreeNode n)
+                    {
+                        if (n is PhraseNode && n.Children.Count == 0)
+                        {
+                            m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                        }
+                        if (n == mRecordingPhrase)
+                            return false;
+                        else
+                            return true;
+                    },
+                    delegate(urakawa.core.TreeNode n) { });
+        }
 
         // Play/Resume playback
 
