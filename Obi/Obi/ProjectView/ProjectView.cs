@@ -1369,6 +1369,7 @@ namespace Obi.ProjectView
                                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AssignRole ( this, (PhraseNode)n, EmptyNode.Role.Plain ) );
                                 //command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.UnsetNodeAsHeadingPhrase(this, (PhraseNode)n));
                                 }
+                                if (n is EmptyNode && !((EmptyNode)n).Used && ((EmptyNode)n).Role_ == EmptyNode.Role.Silence) return true;
                             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.ToggleNodeUsed ( this, (ObiNode)n ) );
                             }
                         return true;
@@ -3385,6 +3386,14 @@ namespace Obi.ProjectView
             {
             mContentView.DisableScrolling ();
             }
+
+        public void ClearContentView()
+        {
+            if (mContentView.ActiveStrip != null)
+            {
+                mContentView.RemoveBlocksInStrip(mContentView.ActiveStrip.Node);
+            }
+        }
 
         public void ExportAudioOfSelectedNode()
         {
