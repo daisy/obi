@@ -1405,8 +1405,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-            if (mView.Selection is TextSelection)
+            if (mView.Selection is TextSelection || IsMetadataSelected)
                 return;
+
             if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
 
