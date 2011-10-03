@@ -13,7 +13,7 @@ namespace Obi.Dialogs
         List<SectionNode> m_SectionList = null;
         List<SectionNode> m_SelectedSectionList = new List<SectionNode>();
         List<List<int>> m_ListOfContinuousItems = new List<List<int>>();
-       
+        List<SectionNode> listOfLargestNumberOfSections = new List<SectionNode>();
         List<int> m_RemainingIndexes = new List<int>();
         private int m_SelectedIndex;
         private bool m_IsDeselected = false;
@@ -257,6 +257,7 @@ namespace Obi.Dialogs
             }
             if (totalPhraseCount > 7000)
             MessageBox.Show(String.Format("Total phrase count for all the sections is more than 7000. Only sections till section {0} will be merged.", m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count -1].Label));
+        m_StatusLabelForMergeSection.Text = String.Format("Merging sections from {0} to {1} ", m_SectionList[0].Label, m_SectionList[m_lb_listofSectionsToMerge.SelectedItems.Count - 1].Label);
         
         }
     }
