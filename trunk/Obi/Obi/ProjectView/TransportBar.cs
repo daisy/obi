@@ -1405,7 +1405,9 @@ namespace Obi.ProjectView
         /// </summary>
         public void Record()
         {
-                    if (mView.Presentation != null&& mState != State.Playing
+            if (mView.Selection is TextSelection)
+                return;
+            if (mView.Presentation != null&& mState != State.Playing
                         &&    !IsMetadataSelected && ( mView.Selection == null || !(mView.Selection is TextSelection)))
 
                         if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
