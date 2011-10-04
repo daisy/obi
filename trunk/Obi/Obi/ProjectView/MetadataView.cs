@@ -506,7 +506,7 @@ namespace Obi.ProjectView
 
         private void CommitValues ()
             {
-            if (mSelection != null)
+                if (mSelection != null && !String.IsNullOrEmpty(mNameTextbox.Text))
                 {
                 if (GetTextFromContentTextbox () != "")
                     {
