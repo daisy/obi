@@ -1941,10 +1941,20 @@ namespace Obi.ProjectView
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
                     {
-                    Commands.Command addSectionCmd = new Commands.Node.AddSectionNode ( this, mTOCView, null);
-                    addSectionCmd.UpdateSelection = true;
-                    command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd );
-                    newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+                        if (i == phraseNodes.Count - 1 && Selection != null
+                            && Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount == 0)
+                        {
+                            // do not add the section instead add phrase to selected section.
+                            newSectionNode = (SectionNode)Selection.Node;
+                        }
+                        else
+                        {
+                            // create a new section and add phrase to it
+                            Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
+                            addSectionCmd.UpdateSelection = true;
+                            command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
+                            newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
+                        }
                     phraseInsertIndex = 0;
                     command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.RenameSection ( this, newSectionNode, phrase_SectionNameMap[phraseNodes[i]]  ));
                     }
