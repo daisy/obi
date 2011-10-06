@@ -295,7 +295,17 @@ namespace Obi.Dialogs
             0,
             0,
             0});
+            this.m_OperationDurationUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.m_OperationDurationUpDown.Name = "m_OperationDurationUpDown";
+            this.m_OperationDurationUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.m_OperationDurationUpDown.ValueChanged += new System.EventHandler(this.m_OperationDurationUpDown_ValueChanged);
             // 
             // m_cbOperation

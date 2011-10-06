@@ -588,6 +588,10 @@ namespace Obi.Dialogs
             {
                 if (m_CheckBoxListView.Items[3].Checked)
                     m_CheckBoxListView.Items[4].Checked = true;
+                if (m_CheckBoxListView.Items[3].Checked == false)
+                    m_btn_AdvancedRecording.Text = "Enable advanced recording";
+                else
+                    m_btn_AdvancedRecording.Text = "Disable advanced recording";
                /* if (m_CheckBoxListView.Items[2].Checked && m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Enabled = false;
                 else
@@ -727,9 +731,8 @@ namespace Obi.Dialogs
                 mSettings.ElapseBackTimeInMilliseconds = m_DefaultSettings.ElapseBackTimeInMilliseconds;
                 mSettings.ImportToleranceForAudioInMs = m_DefaultSettings.ImportToleranceForAudioInMs;
                 InitializeAudioTab();
-                m_cbOperation.SelectedIndex = -1;
-                m_OperationDurationUpDown.Value = 0;
-                
+                m_cbOperation.SelectedIndex = 0;
+                m_OperationDurationUpDown.Value = 200;                
             }
             else if (mTab.SelectedTab == mUserProfileTab)  // Default settings for User Profile tab
             {
