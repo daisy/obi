@@ -598,6 +598,7 @@ namespace Obi
         {
             System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
+            if (mCurrentPhraseIndex < mPhrases.Count && !mPhrases[mCurrentPhraseIndex].IsRooted) SanitizePlaylist();
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             int mode = mPlayer.PlaybackFwdRwdRate;
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
