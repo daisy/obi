@@ -1803,7 +1803,8 @@ namespace Obi.ProjectView
                 {
                 if (TransportBar.CurrentState == TransportBar.State.Playing) TransportBar.Stop ();
 
-                string[] paths = SelectFilesToImport ();
+                List<string> paths = SelectFilesToImport ();
+                
                 if (paths != null)
                     {
                     
@@ -1819,7 +1820,10 @@ namespace Obi.ProjectView
                          // convert from minutes to milliseconds
                         double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60000.0);
                        // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
-                        List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Length );
+
+                        // to do: add chedk box in dialog and use a flag for using the following sort
+                        paths.Sort();
+                        List<PhraseNode> phraseNodes = new List<PhraseNode> ( paths.Count );
                         Dictionary<PhraseNode, string> phrase_SectionNameMap = new Dictionary<PhraseNode, string> (); // used for importing sections
                         Dialogs.ProgressDialog progress =
                             new Dialogs.ProgressDialog ( Localizer.Message ( "import_audio_progress_dialog_title" ),
@@ -1978,7 +1982,7 @@ namespace Obi.ProjectView
         /// Bring up the file chooser to select audio files to import and return new phrase nodes for the selected files,
         /// or null if nothing was selected.
         /// </summary>
-        private string[] SelectFilesToImport ()
+        private List<string> SelectFilesToImport ()
             {
             OpenFileDialog dialog = new OpenFileDialog ();
             dialog.Multiselect = true;
@@ -1994,7 +1998,10 @@ namespace Obi.ProjectView
                 progress.OperationCancelled += new Obi.Dialogs.OperationCancelledHandler(delegate(object sender, EventArgs e) { Audio.AudioFormatConverter.IsRequestCancellation = true; });
                 progress.ShowDialog();
                 if (progress.Exception != null) throw progress.Exception;
-                return audioFilesList;
+
+                List<string> filesList = new List<string>();
+                foreach (string s in audioFilesList) filesList.Add(s);
+                return filesList;
             }
             else
             {
