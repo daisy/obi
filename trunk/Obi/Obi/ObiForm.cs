@@ -760,6 +760,9 @@ namespace Obi
                 //return;
             //}
             mProjectView.WaveformRendering_PauseOrResume(true);
+
+            mProjectView.ClearContentView();
+            //return;
             DialogResult result = MessageBox.Show ( Localizer.Message ( "clean_save_text" ),
                 Localizer.Message ( "clean_save_caption" ),
                 MessageBoxButtons.OKCancel,
@@ -1037,7 +1040,8 @@ namespace Obi
                 if (ShouldOpenLastProject) OpenProject_Safe(mSettings.LastOpenProject, null);
             if (!ShouldOpenLastProject && mShowWelcomWindow) ShowWelcomeDialog ();
         
-            UpdateKeyboardFocusForSelection();            
+            UpdateKeyboardFocusForSelection();
+            if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
             }
 
 
@@ -2502,6 +2506,7 @@ namespace Obi
             if (mProjectView != null && mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Stop ();
             if (DidCloseProject ())
                 {
+                    mSettings.ShowGraphicalPeakMeterAtStartup = mPeakMeter != null;
                 try
                     {
                     mSettings.SaveSettings ();
