@@ -1934,29 +1934,34 @@ namespace Obi.ProjectView
             if (Selection != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(Selection.Node, Selection.Control)));
             SectionNode newSectionNode = null;
             int phraseInsertIndex = 0;
-
+            
             m_DisableSectionSelection = false;
             if (GetSelectedPhraseSection != null && (Selection.Node is EmptyNode || Selection is StripIndexSelection)) Selection = new NodeSelection(GetSelectedPhraseSection, mContentView);
+
+            if (Selection != null && Selection.Node is SectionNode
+                && ((SectionNode)Selection.Node).PhraseChildCount == 0 && phraseNodes.Count > 0)
+            {
+                newSectionNode = (SectionNode)Selection.Node;
+                phraseInsertIndex = 0;
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, phrase_SectionNameMap[phraseNodes[0]]));
+                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[0], newSectionNode, phraseInsertIndex));
+                phraseNodes.RemoveAt(0);
+            }
+
             for (int i = phraseNodes.Count-1; i >= 0; i--)
                 {
                 if (phrase_SectionNameMap.ContainsKey ( phraseNodes[i] ))
                     {
-                        if (i == phraseNodes.Count - 1 && Selection != null
-                            && Selection.Node is SectionNode && ((SectionNode)Selection.Node).PhraseChildCount == 0)
-                        {
-                            // do not add the section instead add phrase to selected section.
-                            newSectionNode = (SectionNode)Selection.Node;
-                        }
-                        else
-                        {
+                        
                             // create a new section and add phrase to it
                             Commands.Command addSectionCmd = new Commands.Node.AddSectionNode(this, mTOCView, null);
                             addSectionCmd.UpdateSelection = true;
                             command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
                             newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
-                        }
+                        
                     phraseInsertIndex = 0;
                     command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.RenameSection ( this, newSectionNode, phrase_SectionNameMap[phraseNodes[i]]  ));
+                    //MessageBox.Show(phrase_SectionNameMap[phraseNodes[i]]);
                     }
 
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
