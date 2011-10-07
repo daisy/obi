@@ -338,7 +338,10 @@ namespace Obi.Dialogs
                 mSettings.SampleRate = Convert.ToInt32 ( mSampleRateCombo.SelectedItem );
                 if (mPresentation != null)
                     {
-                    mPresentation.UpdatePresentationAudioProperties ( mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate );
+                        if (!mPresentation.UpdatePresentationAudioProperties(mSettings.AudioChannels, mSettings.BitDepth, mSettings.SampleRate))
+                        {
+                            MessageBox.Show (Localizer.Message("Preferences_UnableToUpdateProjectAudioFormat"), Localizer.Message("Caption_Error") ,MessageBoxButtons.OK , MessageBoxIcon.Error );
+                        }
                     }
                 }
 
