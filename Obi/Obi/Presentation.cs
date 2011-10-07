@@ -711,13 +711,10 @@ namespace Obi
             try
             {
                 //sdk2
-                urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)channels, (uint)sampleRate, (ushort)channels);
+                urakawa.media.data.audio.PCMFormatInfo defaultPCMFormat = new urakawa.media.data.audio.PCMFormatInfo ((ushort)channels, (uint)sampleRate, (ushort)bitDepth);
                 MediaDataManager.DefaultPCMFormat = defaultPCMFormat;
                 MediaDataManager.EnforceSinglePCMFormat = true;
-                //DataManager.setDefaultNumberOfChannels((ushort)channels);
-                //DataManager.setDefaultBitDepth((ushort)bitDepth);
-                //DataManager.setDefaultSampleRate((uint)sampleRate);
-                //DataManager.setEnforceSinglePCMFormat(true);
+                
                 return true;
             }
             catch
