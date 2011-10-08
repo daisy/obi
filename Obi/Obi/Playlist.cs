@@ -1198,6 +1198,10 @@ namespace Obi
                     {
                         mCurrentPhraseIndex-- ;
                     }
+                    else if (mCurrentPhraseIndex >= mPhrases.Count)
+                    {
+                        mCurrentPhraseIndex= mPhrases.Count - 1;
+                    }
                 }
             }
         }
