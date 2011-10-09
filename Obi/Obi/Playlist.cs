@@ -466,6 +466,7 @@ namespace Obi
         // Play the current phrase
         private void PlayCurrentPhrase()
         {
+            if (mPhrases.Count == 0) return;
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlayer.CurrentState);
             if (mPhrases[mCurrentPhraseIndex].Audio.Duration.AsTimeSpan.TotalMilliseconds == 0)
             {
@@ -596,9 +597,11 @@ namespace Obi
         // Skip to the beginning of a phrase at a given index, provided that it is in the playlist range.
         private void SkipToPhrase(int index)
         {
+            if (mPhrases.Count == 0) return;
             System.Diagnostics.Debug.Assert(index >= 0 && index < mPhrases.Count, "Phrase index out of range!");
             mCurrentPhraseIndex = index;
             if (mCurrentPhraseIndex < mPhrases.Count && !mPhrases[mCurrentPhraseIndex].IsRooted) SanitizePlaylist();
+            if (mPhrases.Count == 0) return;
             mElapsedTime = mStartTimes[mCurrentPhraseIndex];
             int mode = mPlayer.PlaybackFwdRwdRate;
             if (MovedToPhrase != null) MovedToPhrase(this, new Events.Node.PhraseNodeEventArgs(this, mPhrases[mCurrentPhraseIndex]));
