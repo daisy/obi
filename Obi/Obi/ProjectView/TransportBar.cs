@@ -2071,7 +2071,7 @@ namespace Obi.ProjectView
             if (CanFastForward)
             {
                 if (mState == State.Stopped || mState == State.Paused) PlayOrResume();
-                mCurrentPlaylist.FastForward();
+                if (mCurrentPlaylist.CurrentPhrase != null) mCurrentPlaylist.FastForward(); // explicit care required for zero phrase playlist to prevent setting of fwd/rwd rate without playback
 
                 if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
                     mDisplayTimer.Start ();
@@ -2086,7 +2086,7 @@ namespace Obi.ProjectView
             if (CanRewind)
             {
                 if (mState == State.Stopped || mState == State.Paused) PlayOrResume();
-                mCurrentPlaylist.Rewind();
+                if (mCurrentPlaylist.CurrentPhrase != null) mCurrentPlaylist.Rewind(); // explicit care required for zero phrase playlist because it will set the fwd/rwd rate
 
                 if (mCurrentPlaylist.State == AudioLib.AudioPlayer.State.Playing)
                     mDisplayTimer.Start ();
