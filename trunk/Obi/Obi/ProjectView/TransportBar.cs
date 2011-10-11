@@ -2397,7 +2397,11 @@ namespace Obi.ProjectView
                 return;
             }
 
-            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing) Pause();
+            if (mView.ObiForm.Settings.Recording_ReplaceAfterCursor && CurrentState == State.Playing)
+            {
+                Pause();
+                if (mView.Selection == null || !(mView.Selection.Node is EmptyNode) || mView.Selection.Node != mCurrentPlaylist.CurrentPhrase) return;
+            }
 
             if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
                 && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection )))
