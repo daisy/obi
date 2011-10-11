@@ -761,8 +761,7 @@ namespace Obi
             //}
             mProjectView.WaveformRendering_PauseOrResume(true);
 
-            mProjectView.ClearContentView();
-            //return;
+//return;
             DialogResult result = MessageBox.Show ( Localizer.Message ( "clean_save_text" ),
                 Localizer.Message ( "clean_save_caption" ),
                 MessageBoxButtons.OKCancel,
