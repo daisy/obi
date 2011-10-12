@@ -1519,7 +1519,7 @@ namespace Obi.ProjectView
             private bool m_IsFlowBreakMarked = false;
             private void ApplyFlowBreaks()
             {
-                Console.WriteLine("width of strip " + Width);
+                //Console.WriteLine("width of strip " + Width);
                 
                 if (mBlockLayout != null && mBlockLayout.WrapContents && mBlockLayout.Controls.Count > 1)
                 {
@@ -1538,7 +1538,7 @@ namespace Obi.ProjectView
                     }
 
 int boundaryWidth = mContentView.ClientRectangle.Width - Margin.Horizontal;
-                    Console.WriteLine("boundary width " + boundaryWidth);
+                    //Console.WriteLine("boundary width " + boundaryWidth);
                     if (!m_IsFlowBreakMarked && Width <= boundaryWidth) return;
 
                     int firstBlockX = -1;
