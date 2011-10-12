@@ -85,6 +85,7 @@ namespace Obi
 
             mIsQAPlaylist = IsQAPlaylist;
             mPlayer = player;
+            mPlayer.PlaybackFwdRwdRate = 0;
             Reset(LocalPlaylist);
             if (selection.Control is Obi.ProjectView.TOCView)
             {
@@ -123,6 +124,7 @@ namespace Obi
             resetEndOfAudioTimer();
 
             mPlayer = player;
+            mPlayer.PlaybackFwdRwdRate = 0;
             mIsQAPlaylist = IsQaPlaylist;
             Reset(LocalPlaylist);
             AddPhraseNodes(node);
