@@ -293,7 +293,7 @@ namespace Obi.ProjectView
                 return IsPlayerActive
                     && !(mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ?
                     mCurrentPlaylist.CurrentTimeInAsset :
-                    mView.Selection is AudioSelection ?
+                    mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange  != null?
                         ((AudioSelection)mView.Selection).AudioRange.HasCursor ?
                             ((AudioSelection)mView.Selection).AudioRange.CursorTime :
                             ((AudioSelection)mView.Selection).AudioRange.SelectionBeginTime :
