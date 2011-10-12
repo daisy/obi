@@ -905,7 +905,7 @@ namespace Obi
 
                 mPlayer.Stop();
                 mPlayer.PlaybackFwdRwdRate = 0;
-                mPlaybackRate = 0;
+                //mPlaybackRate = 0;
                 if (StateChanged != null) StateChanged(this, evargs);
             }
         }
