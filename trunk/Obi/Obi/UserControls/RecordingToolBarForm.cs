@@ -42,7 +42,7 @@ namespace Obi.UserControls
             m_TransportBar.Recorder.StateChanged += new AudioLib.AudioRecorder.StateChangedHandler(State_Changed_Recorder);
             projectView.SelectionChanged += new EventHandler(projectview_Selection_Changed);
             m_TransportBar.EnabledChanged += new EventHandler(m_TransportBar_EnabledChanged);
-            if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
+           // if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring)
                 UpdateButtons();
         }
 
@@ -65,6 +65,7 @@ namespace Obi.UserControls
             this.Enabled = m_TransportBar.Enabled;
             if (!this.Enabled)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), "");
+            m_StatusLabel.Text = "";
         }
 
         private delegate void State_Changed_Recorder_Delegate();
@@ -90,7 +91,8 @@ namespace Obi.UserControls
         private void UpdateButtons()
         {
             m_recordingToolBarPlayBtn.Enabled = !m_TransportBar.IsRecorderActive;
-            m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
+          //  m_recordingToolBarRecordingBtn.Enabled = m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
+            m_recordingToolBarRecordingBtn.Enabled = (m_TransportBar.CanRecord || m_TransportBar.CanResumeRecording || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped)) && m_ProjectView.Selection != null;
             m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop || !(m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Stopped);
             m_recordingGoToNextPhraseBtn.Enabled = m_recordingToolBarStopBtn.Enabled = m_TransportBar.CanStop && (m_TransportBar.IsPlayerActive || m_TransportBar.IsRecorderActive || (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring));
             m_recordingToolBarNextPageBtn.Enabled = m_TransportBar.CanNavigateNextPage;
@@ -99,7 +101,7 @@ namespace Obi.UserControls
             m_recordingToolBarNextSectionBtn.Enabled = m_TransportBar.CanNavigateNextSection;
             if ((m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Recording || m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Monitoring) && m_TransportBar.RecordingSection != null)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.RecordingSection.Label.ToString());
-            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing && m_TransportBar.PlaybackPhrase != null)
+            else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing && m_TransportBar.PlaybackPhrase != null && m_TransportBar.PlaybackPhrase.IsRooted)
                 this.Text = String.Format(Localizer.Message("RecToolbar_Title"), m_TransportBar.PlaybackPhrase.ParentAs<SectionNode>().Label.ToString());               
             if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
@@ -255,6 +257,7 @@ namespace Obi.UserControls
             }
             else if (m_TransportBar.CurrentState == Obi.ProjectView.TransportBar.State.Playing)
             {
+                Console.WriteLine(m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString());
                 m_StatusLabel.Text = String.Format(Localizer.Message("RecordingToolBar_StatusPlaying"),
                     m_TransportBar.CurrentPlaylist.CurrentPhrase.ToString(),
                     format(m_TransportBar.CurrentPlaylist.CurrentTimeInAsset));
