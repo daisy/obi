@@ -1041,6 +1041,22 @@ namespace Obi
         
             UpdateKeyboardFocusForSelection();
             if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
+
+            if (mSettings.OptimizeMemory)
+            {
+                try
+                {
+                    GC.GetTotalMemory(false);
+                    GC.WaitForFullGCComplete(200);
+                    Console.WriteLine("Memory optimization is working");
+                }
+                catch (System.Exception)
+                {
+                    mSettings.OptimizeMemory = false;
+                    MessageBox.Show("Memory optimization is not supported on this machine. It will be disabled");
+                }
+            }
+
             }
 
 
@@ -1149,9 +1165,11 @@ namespace Obi
         private void Session_ProjectOpened ( object sender, EventArgs e )
             {
             GotNewPresentation ();
-            Status ( String.Format ( Localizer.Message ( "opened_project" ), mSession.Presentation.Title ) );
+            //Status ( String.Format ( Localizer.Message ( "opened_project" ), mSession.Presentation.Title ) );
+            Status_Safe(String.Format(Localizer.Message("opened_project"), mSession.Presentation.Title));
             }
 
+    
         private void Session_ProjectSaved ( object sender, EventArgs e )
             {
             UpdateObi ();
