@@ -591,7 +591,8 @@ namespace Obi.Dialogs
             {
                 if (m_CheckBoxListView.Items[3].Checked)
                     m_CheckBoxListView.Items[4].Checked = true;
-                if (m_CheckBoxListView.Items[3].Checked == false)
+                
+                if (m_CheckBoxListView.Items[3].Checked == false || m_CheckBoxListView.Items[5].Checked == false)
                     m_btn_AdvancedRecording.Text = "Enable advanced recording";
                 else
                     m_btn_AdvancedRecording.Text = "Disable advanced recording";
@@ -768,11 +769,12 @@ namespace Obi.Dialogs
         {
             if (m_btn_AdvancedRecording.Text == "Enable advanced recording")
             {
-                if (MessageBox.Show("Allow overwrite and Start recording from cursor erasing the following audio checkboxes will be checked. Do you want to proceed?", "Advance recording mode", MessageBoxButtons.YesNo,
+                if (MessageBox.Show("Allow overwrite, Start recording from cursor erasing the following audio and Record directly from transport bar checkboxes will be checked. Do you want to proceed?", "Advance recording mode", MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     m_CheckBoxListView.Items[3].Checked = true;
                     m_CheckBoxListView.Items[4].Checked = true;
+                    m_CheckBoxListView.Items[5].Checked = true;
                     m_btn_AdvancedRecording.Text = "Disable advanced recording";
                 }
                 else
@@ -782,6 +784,7 @@ namespace Obi.Dialogs
             {
                 m_CheckBoxListView.Items[3].Checked = false;
                 m_CheckBoxListView.Items[4].Checked = false;
+                m_CheckBoxListView.Items[5].Checked = false;
                 m_btn_AdvancedRecording.Text = "Enable advanced recording";
             }
         }
