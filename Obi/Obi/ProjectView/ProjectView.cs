@@ -967,7 +967,7 @@ namespace Obi.ProjectView
                     {
                     CompositeCommand deleteCommand = this.Presentation.CommandFactory.CreateCompositeCommand ();
                     command.ShortDescription =  delete.ShortDescription;
-                    for (int i = 0; i < next.SectionChildCount; ++i)
+                    for (int i = next.SectionChildCount-1 ; i >= 0 ; --i)
                     {
                         //deleteCommand.ChildCommands.Insert(deleteCommand.ChildCommands.Count, new Commands.TOC.MoveSectionOut ( this, next.SectionChild ( i ) ) );
                         // above line replaced by following 5 lines.
