@@ -61,7 +61,7 @@ namespace Obi.UserControls
             this.m_TODOBtn});
             this.recordingToolBarToolStrip.Location = new System.Drawing.Point(0, 0);
             this.recordingToolBarToolStrip.Name = "recordingToolBarToolStrip";
-            this.recordingToolBarToolStrip.Size = new System.Drawing.Size(350, 50);
+            this.recordingToolBarToolStrip.Size = new System.Drawing.Size(369, 50);
             this.recordingToolBarToolStrip.TabIndex = 0;
             this.recordingToolBarToolStrip.TabStop = true;
             this.recordingToolBarToolStrip.Text = "toolStrip1";
@@ -191,7 +191,7 @@ namespace Obi.UserControls
             this.m_StatusLabel});
             this.m_statusStrip.Location = new System.Drawing.Point(0, 62);
             this.m_statusStrip.Name = "m_statusStrip";
-            this.m_statusStrip.Size = new System.Drawing.Size(350, 22);
+            this.m_statusStrip.Size = new System.Drawing.Size(369, 22);
             this.m_statusStrip.TabIndex = 1;
             this.m_statusStrip.Text = "statusStrip1";
             // 
@@ -212,7 +212,7 @@ namespace Obi.UserControls
             // 
             // RecordingToolBarForm
             // 
-            this.ClientSize = new System.Drawing.Size(350, 84);
+            this.ClientSize = new System.Drawing.Size(369, 84);
             this.Controls.Add(this.m_statusStrip);
             this.Controls.Add(this.recordingToolBarToolStrip);
             this.MaximizeBox = false;
