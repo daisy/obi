@@ -69,6 +69,7 @@ namespace Obi
             mPlayer = player;
             mIsQAPlaylist = IsQAPlaylist;
             Reset(MasterPlaylist );
+            mPlayer.PlaybackFwdRwdRate = 0;
         }
 
         /// <summary>
@@ -904,6 +905,7 @@ namespace Obi
 
                 mPlayer.Stop();
                 mPlayer.PlaybackFwdRwdRate = 0;
+                mPlaybackRate = 0;
                 if (StateChanged != null) StateChanged(this, evargs);
             }
         }
