@@ -291,7 +291,7 @@ namespace Obi.ProjectView
             get
             {
                 return IsPlayerActive
-                    && !(mView.Selection is AudioSelection && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ?
+                    && !(mView.Selection is AudioSelection && (((AudioSelection)mView.Selection).AudioRange != null   && !((AudioSelection)mView.Selection).AudioRange.HasCursor) ) ?
                     mCurrentPlaylist.CurrentTimeInAsset :
                     mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange  != null?
                         ((AudioSelection)mView.Selection).AudioRange.HasCursor ?
@@ -310,8 +310,8 @@ namespace Obi.ProjectView
             get
             {
                 return mPlayer.CurrentState != AudioLib.AudioPlayer.State.Playing &&
-                    mView.Selection is AudioSelection &&
-                    !((AudioSelection)mView.Selection).AudioRange.HasCursor ?
+                    mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange != null
+                    && !((AudioSelection)mView.Selection).AudioRange.HasCursor ?
                     ((AudioSelection)mView.Selection).AudioRange.SelectionEndTime : 0.0;
             }
         }

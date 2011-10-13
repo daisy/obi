@@ -55,7 +55,7 @@ namespace Obi.Commands.Node
                     if (begin > 0.0)
                     {
                         split = AppendSplitCommandWithProperties(view, command, phrase, begin,
-                            view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor);
+                            view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null && !((AudioSelection)view.Selection).AudioRange.HasCursor);
                         after = split.NodeAfter;
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(view, new NodeSelection(after, view.Selection.Control)));//@singleSection:moved from last of function
 
@@ -121,7 +121,7 @@ namespace Obi.Commands.Node
                         view.Presentation.CreateCompositeCommand(Localizer.Message("split_phrase"));
                     if (end > 0.0) AppendSplitCommandWithProperties(view, command, phrase, end, false);
                     if (begin > 0.0) AppendSplitCommandWithProperties(view, command, phrase, begin,
-       view.Selection is AudioSelection && !((AudioSelection)view.Selection).AudioRange.HasCursor && phrase.Role_ != EmptyNode.Role.Silence );
+view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange != null  && !((AudioSelection)view.Selection).AudioRange.HasCursor && phrase.Role_ != EmptyNode.Role.Silence);
                     if (command.ChildCommands.Count > 0) return command;
                 }
             }
