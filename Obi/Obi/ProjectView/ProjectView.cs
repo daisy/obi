@@ -723,36 +723,50 @@ namespace Obi.ProjectView
                     }
                     CompositeCommand command = mPresentation.CreateCompositeCommand(Localizer.Message("delete_unused"));
                     // Collect silence node deletion commands separately in case the user wants to keep them.
-                    List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
+                    //List<urakawa.command.Command> silence = new List<urakawa.command.Command>();
+                    bool? deleteSilence = null;
                     mPresentation.RootNode.AcceptDepthFirst(
                         delegate(urakawa.core.TreeNode node)
                         {
                             if (node is ObiNode && !((ObiNode)node).Used)
                             {
+                                
+                                if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence )
+                                {
+                                    if (deleteSilence == null)
+                                    {
+                                        if (MessageBox.Show(Localizer.Message("delete_silence_phrases"),
+                            Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            deleteSilence = true;
+                                        }
+                                        else
+                                        {
+                                            deleteSilence = false;
+                                        }
+                                    } // one time deleteSilence flag assignment done
+                                    if (deleteSilence == false) return true;
+                                } // silence stuff ends
+                                
                                 Commands.Node.Delete delete = new Commands.Node.Delete(this, (ObiNode)node, false);
                                 if (Selection == null || Selection.Node == node) delete.UpdateSelection = true; // temp fix, if selection is null, delete updates afterDeleteSelection to null to avoid selecting something through some event.
-                                if (node is PhraseNode && ((PhraseNode)node).Role_ == EmptyNode.Role.Silence)
-                                {
-                                    silence.Add(delete);
-                                }
-                                else
-                                {
                                     command.ChildCommands.Insert(0, delete);
-                                }
-                                return false;
-                            }
+                                    return false;
+                                } //unused obi node check ends
+                                
                             return true;
                         }, delegate(urakawa.core.TreeNode node) { }
                     );
-                    if (silence.Count > 0)
-                    {
-                        if (MessageBox.Show(Localizer.Message("delete_silence_phrases"),
-                            Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            foreach (urakawa.command.Command c in silence) command.ChildCommands.Insert(command.ChildCommands.Count, c);
-                        }
-                    }
+                    //if (silence.Count > 0)
+                    //{
+                        //if (MessageBox.Show(Localizer.Message("delete_silence_phrases"),
+                            //Localizer.Message("delete_silence_phrases_caption"), MessageBoxButtons.YesNo,
+                            //MessageBoxIcon.Question) == DialogResult.Yes)
+                        //{
+                            //foreach (urakawa.command.Command c in silence) command.ChildCommands.Insert(command.ChildCommands.Count, c);
+                        //}
+                    //}
 
                     //if (Selection != null && mTOCView.ContainsFocus) Selection = null;
                     if (command.ChildCommands.Count > 0) mPresentation.Do(command);
