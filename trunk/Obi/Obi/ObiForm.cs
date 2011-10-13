@@ -1803,7 +1803,11 @@ namespace Obi
                         progress.ShowDialog ();
                         if (progress.Exception != null) throw progress.Exception;
 
-                        if (DAISYExport.RequestCancellation) return;
+                        if (DAISYExport.RequestCancellation)
+                        {
+                            mProjectView.TransportBar.Enabled = true;
+                            return;
+                        }
                         if ( exportPath != null )  
                             mProjectView.SetExportPathMetadata ( chooseDialog.chooseOption,
                                 exportPath,
