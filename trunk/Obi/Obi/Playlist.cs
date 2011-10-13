@@ -1213,6 +1213,14 @@ namespace Obi
             }
         }
 
+        public void ForcedStopForError()
+        {
+            AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlaylistState);
+
+            mPlayer.Stop();
+            mPlaylistState = AudioPlayer.State.Stopped;
+            if (StateChanged != null && mPlaylistState  != evargs.OldState) StateChanged(this, evargs);
+        }
 
     }
 

@@ -980,6 +980,7 @@ namespace Obi.ProjectView
                 }
             catch (System.Exception ex)
                 {
+                    if (mCurrentPlaylist != null) mCurrentPlaylist.ForcedStopForError();
                 MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
                 }
             }
@@ -1067,6 +1068,7 @@ namespace Obi.ProjectView
                 }
             catch ( System.Exception ex )
                 {
+                    if (mCurrentPlaylist != null) mCurrentPlaylist.ForcedStopForError();
                 MessageBox.Show ( string.Format ( Localizer.Message ( "TransportBar_PlayerExceptionMsg" ), "\n\n", ex.ToString () ) );
                 }
             }
