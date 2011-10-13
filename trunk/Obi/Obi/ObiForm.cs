@@ -3389,7 +3389,7 @@ namespace Obi
             if (!String.IsNullOrEmpty(m_RestoreProjectFilePath)
                 && mSession.Path == m_RestoreProjectFilePath)
             {
-                if (MessageBox.Show(Localizer.Message("save_current_state"), Localizer.Message("information_caption"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Localizer.Message("save_current_state"), "Save current state?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     
                     mSession.Save(m_OriginalPath);
