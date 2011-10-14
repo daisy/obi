@@ -1041,22 +1041,7 @@ namespace Obi
         
             UpdateKeyboardFocusForSelection();
             if (mSettings.ShowGraphicalPeakMeterAtStartup) ShowPeakMeter();
-
-            if (mSettings.OptimizeMemory)
-            {
-                try
-                {
-                    GC.GetTotalMemory(false);
-                    GC.WaitForFullGCComplete(200);
-                    Console.WriteLine("Memory optimization is working");
-                }
-                catch (System.Exception)
-                {
-                    mSettings.OptimizeMemory = false;
-                    MessageBox.Show("Memory optimization is not supported on this machine. It will be disabled");
-                }
-            }
-
+            
             }
 
 
