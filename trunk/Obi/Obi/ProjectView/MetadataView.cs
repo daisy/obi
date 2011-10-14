@@ -526,6 +526,7 @@ namespace Obi.ProjectView
                             return;
                             }
                         }
+                    if (mSelection == null) return;
                     CompositeCommand command =
                         mView.Presentation.CreateCompositeCommand ( Localizer.Message ( "modify_metadata_entry" ) );
                     if (entry.NameContentAttribute.Name != mNameTextbox.Text)
