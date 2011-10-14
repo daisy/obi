@@ -752,12 +752,23 @@ namespace Obi
         public void Resume()
         {
             System.Diagnostics.Debug.Assert(mPlaylistState == AudioPlayer.State.Paused, "Only resume from paused state.");
-            mPlaylistState = AudioPlayer.State.Playing;
-            mPlayer.Resume();
-            // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
-            if (StateChanged != null)
+            
+            if (PlaybackRate != 0)
             {
-                StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
+                double time = CurrentTimeInAsset;
+                mPlayer.PlaybackFwdRwdRate = mPlaybackRate = 0;
+                Play(time);
+            }
+            else
+            {
+                mPlaylistState = AudioPlayer.State.Playing;
+                mPlayer.Resume();
+            
+            // TODO: mPlayer.Play(mPhrases[mCurrentPhraseIndex].Asset, mPausePosition);
+                if (StateChanged != null)
+                {
+                    StateChanged(this, new AudioLib.AudioPlayer.StateChangedEventArgs(AudioPlayer.State.Paused));
+                }
             }
         }
 
@@ -1215,6 +1226,7 @@ namespace Obi
 
         public void ForcedStopForError()
         {
+            Console.WriteLine(mPlayer.ErrorMessage);
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlaylistState);
 
             mPlayer.Stop();
