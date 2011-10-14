@@ -2406,7 +2406,7 @@ namespace Obi.ProjectView
             }
 
             if (mView.ObiForm.Settings.Recording_PreviewBeforeStarting && mView.ObiForm.Settings.AllowOverwrite
-                && (CurrentState == State.Paused || (mView.Selection!= null && mView.Selection is AudioSelection )))
+                && ((CurrentState == State.Paused &&  !(mView.Selection is AudioSelection)) || (mView.Selection!= null && mView.Selection is AudioSelection  &&  ((AudioSelection)mView.Selection).AudioRange.HasCursor )))
             {
                 
                 m_PreviewBeforeRecordingWorker = new System.ComponentModel.BackgroundWorker();
