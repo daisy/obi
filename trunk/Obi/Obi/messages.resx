@@ -1971,4 +1971,7 @@ Error text: {1}</value>
   <data name="Preferences_UnableToUpdateProjectAudioFormat" xml:space="preserve">
     <value>Unable to update audio format of the current project</value>
   </data>
+  <data name="AudioTab_Limit max phrase duration to 50 minutes" xml:space="preserve">
+    <value>Limit max phrase duration to 50 minutes</value>
+  </data>
 </root>
