@@ -214,6 +214,15 @@ namespace Obi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Limit max phrase duration to 50 minutes.
+        /// </summary>
+        internal static string AudioTab_Limit_max_phrase_duration_to_50_minutes {
+            get {
+                return ResourceManager.GetString("AudioTab_Limit max phrase duration to 50 minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview before recording.
         /// </summary>
         internal static string AudioTab_PreviewBeforeRecording {

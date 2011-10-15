@@ -162,6 +162,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
+                m_CheckBoxListView.Items[6].Checked = mSettings.LimitPhraseDuration;
                 m_IsComplete = true;
 
             }
@@ -327,6 +328,7 @@ namespace Obi.Dialogs
               //  mSettings.LastOutputDevice = ((OutputDevice)mOutputDeviceCombo.SelectedItem).Name;
                
                 }
+                
          /*   catch (System.Exception ex)
                 {
                 MessageBox.Show ( ex.ToString () );
@@ -344,7 +346,7 @@ namespace Obi.Dialogs
                         }
                     }
                 }
-
+            mSettings.MaxAllowedPhraseDurationInMinutes = (uint)(m_CheckBoxListView.Items[6].Checked ? 50 : 180);
             mSettings.NoiseLevel = mNoiseLevelComboBox.SelectedIndex == 0 ? AudioLib.VuMeter.NoiseLevelSelection.Low :
                 mNoiseLevelComboBox.SelectedIndex == 1 ? AudioLib.VuMeter.NoiseLevelSelection.Medium : AudioLib.VuMeter.NoiseLevelSelection.High;
                      
@@ -358,7 +360,7 @@ namespace Obi.Dialogs
                 {
                 MessageBox.Show ( ex.ToString () );
                 return false;
-                }
+                }                
             return true;
             }
 
@@ -621,6 +623,7 @@ namespace Obi.Dialogs
                 mSettings.Recording_ReplaceAfterCursor = m_CheckBoxListView.Items[3].Checked;
                 mSettings.AllowOverwrite = m_CheckBoxListView.Items[4].Checked;                
                 mSettings.RecordDirectlyWithRecordButton = m_CheckBoxListView.Items[5].Checked;
+                mSettings.LimitPhraseDuration = m_CheckBoxListView.Items[6].Checked;
             }
         }
 
@@ -643,6 +646,7 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_StartRecordingFromCursor"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_AllowOverwrite"));
                 m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_RecordDirectlyFromTransportBar"));
+                m_CheckBoxListView.Items.Add(Localizer.Message("AudioTab_Limit max phrase duration to 50 minutes"));
                 m_grpBoxChkBoxListView.Size = new Size(352, 97);
                 m_grpBoxChkBoxListView.Location = new Point(85, 255);
                 m_CheckBoxListView.Items[0].Checked = mSettings.AudioClues;
@@ -651,7 +655,8 @@ namespace Obi.Dialogs
                 m_CheckBoxListView.Items[3].Checked = mSettings.Recording_ReplaceAfterCursor;
                 m_CheckBoxListView.Items[4].Checked = mSettings.AllowOverwrite;
                 m_CheckBoxListView.Items[5].Checked = mSettings.RecordDirectlyWithRecordButton;
-                
+                m_CheckBoxListView.Items[6].Checked = mSettings.LimitPhraseDuration;
+
                 if (m_CheckBoxListView.Items[3].Checked && m_CheckBoxListView.Items[4].Checked)
                     m_btn_AdvancedRecording.Text = "Disable advanced recording";
                 else
@@ -729,6 +734,7 @@ namespace Obi.Dialogs
                 mSettings.AllowOverwrite = m_DefaultSettings.AllowOverwrite;
                 mSettings.Recording_ReplaceAfterCursor= m_DefaultSettings.Recording_ReplaceAfterCursor;
                 mSettings.RecordDirectlyWithRecordButton = m_DefaultSettings.RecordDirectlyWithRecordButton;
+                mSettings.LimitPhraseDuration = m_DefaultSettings.LimitPhraseDuration;
                 //If operation is empty then nothing will b selected.
                 mSettings.NudgeTimeMs = m_DefaultSettings.NudgeTimeMs;
                 mSettings.PreviewDuration = m_DefaultSettings.PreviewDuration;
