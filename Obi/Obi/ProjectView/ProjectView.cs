@@ -1832,7 +1832,7 @@ namespace Obi.ProjectView
                         ObiForm.Settings.SplitPhrasesOnImport = dialog.SplitPhrases;
                         bool createSectionForEachPhrase = dialog.createSectionForEachPhrase;
                          // convert from minutes to milliseconds
-                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60000.0);
+                        double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : (ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60000.0);
                        // double durationMs = dialog.SplitPhrases ? dialog.MaxPhraseDurationMinutes * 60000.0 : 0.0;
 
                         // to do: add chedk box in dialog and use a flag for using the following sort
@@ -1850,7 +1850,7 @@ namespace Obi.ProjectView
                                             {
                                             phrases = mPresentation.CreatePhraseNodeList ( path, durationMs );
                                             if (!dialog.SplitPhrases  && phrases.Count > 1)
-                                                MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));                                                                                                                 
+                                                MessageBox.Show(String.Format(Localizer.Message("Import_Phrase_SizeLimit"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));                                                                                                                 
                                             }
                                         catch (System.Exception ex)
                                             {
@@ -2129,9 +2129,9 @@ namespace Obi.ProjectView
                         Selection = new NodeSelection ( mContentView.PlaybackBlock.Node, mContentView );                       
                         }
                         duration = Selection.Node.Duration + Selection.Node.FollowingNode.Duration;
-                        if (duration > Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60 * 1000)
+                        if (duration > ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60 * 1000)
                         {
-                            MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));
+                            MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
                             return;
                         }
                     mPresentation.UndoRedoManager.Execute ( Commands.Node.MergeAudio.GetMergeCommand ( this ) );
@@ -2177,9 +2177,9 @@ namespace Obi.ProjectView
                     {
                     durationSum += section.PhraseChild (i).Duration;
                     }
-                    if (durationSum > Settings.GetSettings().MaxAllowedPhraseDurationInMinutes * 60 * 1000)
+                    if (durationSum > ObiForm.Settings.MaxAllowedPhraseDurationInMinutes * 60 * 1000)
                     {
-                        MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), Settings.GetSettings().MaxAllowedPhraseDurationInMinutes));
+                        MessageBox.Show(string.Format(Localizer.Message("MergePhrases_SizeLimitMessage"), ObiForm.Settings.MaxAllowedPhraseDurationInMinutes));
                     return;
                     }
 
