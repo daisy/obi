@@ -1689,11 +1689,12 @@ namespace Obi
         private void mTools_PreferencesMenuItem_Click ( object sender, EventArgs e )
             {
             if (mProjectView.TransportBar.IsActive) mProjectView.TransportBar.Pause ();
-
+            bool isLeftAlignPhrasesInContentView  = mSettings.LeftAlignPhrasesInContentView;
             Dialogs.Preferences prefs = new Dialogs.Preferences ( this, mSettings, mSession.Presentation, mProjectView.TransportBar, m_DefaultSettings );
             prefs.ShowDialog ();
             Ready ();
             mProjectView.TransportBar.UpdateButtons();
+            if (isLeftAlignPhrasesInContentView != mSettings.LeftAlignPhrasesInContentView) UpdateZoomFactor();
             }
 
         private void mTools_ExportAsDAISYMenuItem_Click ( object sender, EventArgs e ) { ExportProject (); }
