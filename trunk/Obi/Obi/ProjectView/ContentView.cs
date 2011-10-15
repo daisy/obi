@@ -810,12 +810,20 @@ namespace Obi.ProjectView
                     int audioCursorPosition;
                     int selectionBeginPosition;
                     int selectionEndPosition;
+                    int cursorPosition = GetSelectionOrAudioCursorLocationX(c, out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
 
                 // Compute the four corners of the control, including margins
                 int top = location.Y - c.Margin.Top;
                 if (top < stripLabelOffset) top = stripLabelOffset;//@singleSection
                 int bottom = location.Y + c.Height + c.Margin.Bottom;
-                int left = location.X - c.Margin.Left + GetSelectionOrAudioCursorLocationX (c, out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
+                //int left = location.X - c.Margin.Left + GetSelectionOrAudioCursorLocationX (c, out audioCursorPosition, out selectionBeginPosition, out selectionEndPosition);
+                int left = location.X - c.Margin.Left ;
+                // following if block added on oct 15, 2011
+                if (cursorPosition > 0 && selectionEndPosition <= 0)
+                {
+                    int cursorPosContentView = left + cursorPosition;
+                    if (cursorPosContentView < 0 || cursorPosContentView > verticalScrollToolStripContainer1.Location.X) left = cursorPosContentView;
+                }
                 int right =selectionEndPosition > 0? location.X + selectionEndPosition: location.X + c.Width + c.Margin.Right;
                 // Four corners relative to the current strips panel location
                 int t = top + mStripsPanel.Location.Y;
@@ -833,6 +841,7 @@ namespace Obi.ProjectView
                 //int vw = VisibleWidth - mVScrollBar.Width; //@singleSection: original, replaced by following
                 int vw = verticalScrollToolStripContainer1.Location.X; //@singleSection : new
 
+                
                 // Vertical scrolling
                 if (t < 0 || (b > vh && h > vh))
                     {
