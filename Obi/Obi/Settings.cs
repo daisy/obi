@@ -66,7 +66,6 @@ namespace Obi
         public bool RecordDirectly;
         public bool LeftAlignPhrasesInContentView;
         public bool OptimizeMemory;
-        public bool LimitPhraseDuration;
 
         private static readonly string SETTINGS_FILE_NAME = "obi_settings.xml";
 
@@ -120,7 +119,6 @@ namespace Obi
             settings.RecordDirectly = false;
             settings.LeftAlignPhrasesInContentView = true;
             settings.OptimizeMemory = true;
-            settings.LimitPhraseDuration = true;
         }
 
         /// <summary>
