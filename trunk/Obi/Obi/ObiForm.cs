@@ -2333,7 +2333,7 @@ namespace Obi
                     {
                         mPeakMeter = null;
                         mShowPeakMeterMenuItem.Checked = false;
-                        if (this.WindowState == FormWindowState.Normal) this.Size = mSettings.ObiFormSize;
+                        if (this.WindowState == FormWindowState.Normal || this.WindowState == FormWindowState.Minimized) this.Size = mSettings.ObiFormSize;
                     } );
                 if (this.WindowState != FormWindowState.Minimized)
                     {
