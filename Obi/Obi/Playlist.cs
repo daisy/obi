@@ -1186,11 +1186,15 @@ namespace Obi
                 mPlayer.Pause();
                 mPlayer.FastPlayFactor = 1;
                 CurrentTimeInAsset = currentTimePosition - LapseBackTime;
+                // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
+                if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = currentTimePosition - LapseBackTime;
             }
             else
             {
                 mPlayer.Pause();
                 CurrentTimeInAsset = 10;
+                // set revert time of preview playlist, to do: this should become part of CurrentTimeOfAsset finally.
+                if (this is PreviewPlaylist) ((PreviewPlaylist)this).RevertTime = 10;
                 mPlayer.FastPlayFactor = 1;
             }
             //Console.WriteLine("paused time " + mPlayer.CurrentTimePosition);
@@ -1261,7 +1265,29 @@ namespace Obi
             mRevertTime = revertTime;
         }
 
-        public double RevertTime { get { return mRevertTime; } }
+        public double RevertTime 
+        { 
+            get 
+            { 
+                return mRevertTime; 
+            }
+            set
+            {
+                if (mPhrases.Count == 0) return;
+                if (value < 0)
+                {
+                    mRevertTime = 0;
+                }
+                else if (value > mPhrases[mCurrentPhraseIndex].Duration - 100)
+                {
+                    mRevertTime = mRevertTime = mPhrases[mCurrentPhraseIndex].Duration - 100;
+                }
+                else
+                {
+                    mRevertTime = value;
+                }
+            }
+        }
 
         public override void Pause()
             {
