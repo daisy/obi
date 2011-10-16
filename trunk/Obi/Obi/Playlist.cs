@@ -1175,9 +1175,9 @@ namespace Obi
 
         public void FastPlayNormaliseWithLapseBack(double LapseBackTime)
         {
-            double currentTimePosition =
-                     (double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
-                     Time.TIME_UNIT;
+            double currentTimePosition = CurrentTimeInAsset;
+                     //(double)mPlayer.CurrentAudioPCMFormat.ConvertBytesToTime(mPlayer.CurrentBytePosition) /
+                     //Time.TIME_UNIT;
 
             bool wasPaused = State == AudioPlayer.State.Paused;
             //Console.WriteLine("paused time before " + mPlayer.CurrentTimePosition);
