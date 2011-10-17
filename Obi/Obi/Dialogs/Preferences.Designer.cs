@@ -476,6 +476,7 @@ namespace Obi.Dialogs
             this.m_lvShortcutKeysList.Name = "m_lvShortcutKeysList";
             this.m_lvShortcutKeysList.UseCompatibleStateImageBehavior = false;
             this.m_lvShortcutKeysList.View = System.Windows.Forms.View.Details;
+            this.m_lvShortcutKeysList.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.m_lvShortcutKeysList_ItemMouseHover);
             this.m_lvShortcutKeysList.SelectedIndexChanged += new System.EventHandler(this.m_lvShortcutKeysList_SelectedIndexChanged);
             // 
             // columnHeader1
