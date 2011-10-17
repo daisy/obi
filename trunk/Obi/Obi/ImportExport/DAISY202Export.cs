@@ -32,7 +32,8 @@ namespace Obi.ImportExport
         private Time m_SmilElapseTime;
         private Dictionary<string, string> m_SmilFile_TitleMap;
         private Dictionary<SectionNode, EmptyNode> m_NextSectionPageAdjustmentDictionary;
-        private int m_AudioFileSectionLevel;        
+        private int m_AudioFileSectionLevel;
+        private EmptyNode m_FirstPageNumberedPhraseOfFirstSection;
         //private bool m_EncodeToMP3;
         //private int m_BitRate_Mp3;
 
@@ -59,6 +60,7 @@ namespace Obi.ImportExport
         private List<SectionNode> GetSectionsList(urakawa.core.TreeNode rNode) //sdk2 :used treenode instead of rootnode
             {
             List<SectionNode> sectionsList = new List<SectionNode> ();
+            m_FirstPageNumberedPhraseOfFirstSection = null;
             rNode.AcceptDepthFirst (
                     delegate ( urakawa.core.TreeNode n )
                         {
@@ -72,7 +74,9 @@ namespace Obi.ImportExport
                             else if ( n is EmptyNode && ((EmptyNode)n).Used 
                             && ((EmptyNode)n).Index == 0 && ((EmptyNode)n).Role_ == EmptyNode.Role.Page )
                         {   
-                                if ( sectionsList.Count > 2) m_NextSectionPageAdjustmentDictionary[sectionsList[sectionsList.Count-2]] = (EmptyNode)n ;
+                                if ( sectionsList.Count >= 2) m_NextSectionPageAdjustmentDictionary[sectionsList[sectionsList.Count-2]] = (EmptyNode)n ;
+                                if (sectionsList.Count == 1) m_FirstPageNumberedPhraseOfFirstSection = (EmptyNode)n;
+                                
                             }
                         return true;
                         },
@@ -239,11 +243,19 @@ namespace Obi.ImportExport
             bool isFirstPhrase = true;
             EmptyNode adjustedPageNode = m_NextSectionPageAdjustmentDictionary[section];
             bool isPreviousNodeEmptyPage = false;
-
+            
             for (int i = 0; i < section.PhraseChildCount || adjustedPageNode != null; i++)
                 {
                     EmptyNode phrase = null;
-                    if (i < section.PhraseChildCount )
+                //first handle the first phrase of the project if it is also the page
+                // in such a case i=0 will be skipped being page, second phrase is exported and then first page is inserted to i=2 
+                    if (i == 2 && m_FirstPageNumberedPhraseOfFirstSection != null)
+                    {
+                        phrase = m_FirstPageNumberedPhraseOfFirstSection;
+                        m_FirstPageNumberedPhraseOfFirstSection = null;
+                        --i;
+                    }
+                    else if (i < section.PhraseChildCount  ) 
                     {
                         phrase = section.PhraseChild(i);
                     }
