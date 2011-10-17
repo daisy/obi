@@ -402,6 +402,7 @@ namespace Obi.Dialogs
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
                 m_txtShortcutKeys.Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
+                m_txtShortcutKeys.AccessibleName = string.Format(Localizer.Message("KeyboardShortcuts_TextboxAccessibleName"), desc);
             }
         }
 
@@ -510,6 +511,7 @@ namespace Obi.Dialogs
         private void LoadListviewAccordingToComboboxSelection ()
         {
             string[] tempArray = new string[2];
+            m_txtShortcutKeys.AccessibleName = string.Format(Localizer.Message("KeyboardShortcuts_TextboxAccessibleName"), "" );
 
             if ( m_cbShortcutKeys.SelectedIndex == 0 )
             {
