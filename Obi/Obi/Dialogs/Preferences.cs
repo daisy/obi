@@ -30,6 +30,7 @@ namespace Obi.Dialogs
         private bool m_IsComplete = false;
         private string m_lblShortcutKeys_text ; //workaround for screen reader response, will be removed in future
         private Settings m_DefaultSettings;
+        private Dictionary <string,string> m_KeyboardShortcutReadableNamesMap = new Dictionary<string,string> () ;
 
         /// <summary>
         /// Initialize the preferences with the user settings.
@@ -179,6 +180,10 @@ namespace Obi.Dialogs
 
         private void InitializeKeyboardShortcutsTab()
         {
+            m_KeyboardShortcutReadableNamesMap.Clear () ;
+            m_KeyboardShortcutReadableNamesMap.Add ("Selected item", "Apply phrase detection on selected item") ;
+            m_KeyboardShortcutReadableNamesMap.Add ("Multiple sections", "Apply phrase detection on multiple sections") ;
+
             m_cbShortcutKeys.SelectedIndex = 0;
         //    m_lvShortcutKeysList.Clear();
             string[] tempArray = new string[2];
@@ -402,7 +407,7 @@ namespace Obi.Dialogs
             {
                 string desc = m_lvShortcutKeysList.Items[m_lvShortcutKeysList.SelectedIndices[0]].Text;
                 m_txtShortcutKeys.Text = m_KeyboardShortcuts.KeyboardShortcutsDescription[desc].Value.ToString();
-                m_txtShortcutKeys.AccessibleName = string.Format(Localizer.Message("KeyboardShortcuts_TextboxAccessibleName"), desc);
+                m_txtShortcutKeys.AccessibleName = string.Format(Localizer.Message("KeyboardShortcuts_TextboxAccessibleName"),m_KeyboardShortcutReadableNamesMap.ContainsKey (desc)? m_KeyboardShortcutReadableNamesMap[desc]: desc );
             }
         }
 
