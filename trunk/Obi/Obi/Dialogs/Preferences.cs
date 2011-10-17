@@ -802,5 +802,16 @@ namespace Obi.Dialogs
                 m_btn_AdvancedRecording.Text = "Enable advanced recording";
             }
         }
+
+        private void m_lvShortcutKeysList_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            string desc = e.Item.Text;
+            if (!string.IsNullOrEmpty(desc))
+            {
+                e.Item.ToolTipText = m_KeyboardShortcutReadableNamesMap.ContainsKey(desc) ?
+                    m_KeyboardShortcutReadableNamesMap[desc] :
+                    desc;
+            }
+        }
         }
     }
