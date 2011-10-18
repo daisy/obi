@@ -74,7 +74,7 @@ namespace Obi
         public KeyboardShortcut ContentView_ScrollDown_LargeIncrementWithSelection = new KeyboardShortcut(Keys.PageDown, "KeyS_ScrollDown_LargeIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollUp_LargeIncrementWithSelection = new KeyboardShortcut(Keys.PageUp, "KeyS_ScrollUp_LargeIncrementWithSelection");
         public KeyboardShortcut ContentView_ScrollDown_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Down, "KeyS_ScrollUp_SmallIncrementWithSelection");
-        public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Up, "KeyS_ScrollDown_SmallIncrementWithSelection");
+        public KeyboardShortcut ContentView_ScrollUp_SmallIncrementWithSelection = new KeyboardShortcut(Keys.Up, );
 
         //project view shortcuts
         public KeyboardShortcut ProjectView_MoveToNextViewClockwise = new KeyboardShortcut(Keys.Control | Keys.Tab, "KeyS_MoveToNextViewClockwise");
