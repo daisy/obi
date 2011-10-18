@@ -1666,7 +1666,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to page or phrase.
+        ///   Looks up a localized string similar to Go to....
         /// </summary>
         internal static string GoToPageOrPhrase_Title {
             get {

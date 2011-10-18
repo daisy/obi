@@ -126,7 +126,7 @@ namespace Obi.Dialogs
                 this.m_grpSearchPagePhrase.Size = new System.Drawing.Size(286, 81);
                 this.m_grpSearchPagePhrase.TabIndex = 0;
                 this.m_grpSearchPagePhrase.TabStop = false;
-                this.m_grpSearchPagePhrase.Text = "GoTo Page or Phrase";
+                this.m_grpSearchPagePhrase.Text = "Go to ";
                 // 
                 // m_radTime
                 // 
@@ -200,7 +200,7 @@ namespace Obi.Dialogs
                 this.Controls.Add(this.m_lbl_Time);
                 this.Controls.Add(this.m_grpSearchPagePhrase);
                 this.Name = "GoToPageOrPhrase";
-                this.Text = "GoToPageOrPhrase";
+                this.Text = "Go to...";
                 this.Controls.SetChildIndex(this.m_grpSearchPagePhrase, 0);
                 this.Controls.SetChildIndex(this.m_lbl_Time, 0);
                 this.Controls.SetChildIndex(this.m_cb_TimeInPhraseOrSection, 0);
