@@ -2243,7 +2243,7 @@ namespace Obi.ProjectView
                     if (secondNode != null)
                         {
                             command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
-                            listOfNodesToMerge.Insert(0, secondNode);
+                            if(!listOfNodesToMerge.Contains(secondNode) ) listOfNodesToMerge.Insert(0, secondNode);
                             
                         if (i == startIndex || progressPercent > 98) progressPercent = 98;
                         
@@ -2257,11 +2257,17 @@ namespace Obi.ProjectView
                     else
                         {
                         // before deleting first node, delete second node so that delete is in order else it will create problem in undo
-                            if (secondNode != null)
+                            if (secondNode != null )
                             {
-                                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
-                                listOfNodesToMerge.Insert(0, secondNode);
-                                secondNode = null;
+
+
+                                if (nodeToSelect != secondNode)
+                                {
+                                    if (!listOfNodesToMerge.Contains(secondNode)) listOfNodesToMerge.Insert(0, secondNode);
+                                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(this, secondNode, false));
+                                    secondNode = null;
+                                }
+                                
                             }
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete ( this, firstNode, false ) );
                         //Console.WriteLine ( "deleting in merge " + firstNode );
