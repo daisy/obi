@@ -1578,15 +1578,6 @@
   <data name="mToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Tools</value>
   </data>
-  <data name="mHelp_newFeaturestoolStripMenuItem.AccessibleName" xml:space="preserve">
-    <value>New Features (Webpage)</value>
-  </data>
-  <data name="mHelp_newFeaturestoolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
-  </data>
-  <data name="mHelp_newFeaturestoolStripMenuItem.Text" xml:space="preserve">
-    <value>New Features (Webpage)</value>
-  </data>
   <data name="mHelp_ContentsMenuItem.AccessibleName" xml:space="preserve">
     <value>Contents F1</value>
   </data>
@@ -1594,7 +1585,7 @@
     <value>F1</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="mHelp_ContentsMenuItem.Text" xml:space="preserve">
     <value>&amp;Contents</value>
@@ -1602,17 +1593,14 @@
   <data name="mHelp_ReportBugMenuItem.AccessibleName" xml:space="preserve">
     <value>Online resources / Issue tracker Ctrl+Alt+R</value>
   </data>
-  <data name="mHelp_ReportBugMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Alt+R</value>
-  </data>
   <data name="mHelp_ReportBugMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="mHelp_ReportBugMenuItem.Text" xml:space="preserve">
     <value>Online &amp;resources / Issue tracker</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 22</value>
+    <value>238, 22</value>
   </data>
   <data name="aboutObiToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About Obi</value>
@@ -1708,7 +1696,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.6.1.32026, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.7.1.43184, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2888,12 +2876,6 @@
     <value>mHelpToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;mHelpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mHelp_newFeaturestoolStripMenuItem.Name" xml:space="preserve">
-    <value>mHelp_newFeaturestoolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mHelp_newFeaturestoolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mHelp_ContentsMenuItem.Name" xml:space="preserve">

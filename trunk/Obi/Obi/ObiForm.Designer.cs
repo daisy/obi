@@ -181,7 +181,6 @@ namespace Obi
             this.mTools_CleanUnreferencedAudioMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.mHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mHelp_newFeaturestoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ContentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mHelp_ReportBugMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutObiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1266,19 +1265,11 @@ namespace Obi
             // mHelpToolStripMenuItem
             // 
             this.mHelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mHelp_newFeaturestoolStripMenuItem,
             this.mHelp_ContentsMenuItem,
             this.mHelp_ReportBugMenuItem,
             this.aboutObiToolStripMenuItem});
             this.mHelpToolStripMenuItem.Name = "mHelpToolStripMenuItem";
             resources.ApplyResources(this.mHelpToolStripMenuItem, "mHelpToolStripMenuItem");
-            // 
-            // mHelp_newFeaturestoolStripMenuItem
-            // 
-            resources.ApplyResources(this.mHelp_newFeaturestoolStripMenuItem, "mHelp_newFeaturestoolStripMenuItem");
-            this.mHelp_newFeaturestoolStripMenuItem.Name = "mHelp_newFeaturestoolStripMenuItem";
-            this.mHelp_newFeaturestoolStripMenuItem.Visible = false;
-            this.mHelp_newFeaturestoolStripMenuItem.Click += new System.EventHandler(this.mHelp_newFeaturestoolStripMenuItem_Click);
             // 
             // mHelp_ContentsMenuItem
             // 
@@ -1513,7 +1504,6 @@ namespace Obi
         private System.Windows.Forms.ToolStripMenuItem mergeMultipleSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mTools_ExportSelectedAudioMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mView_RefreshContentViewMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mHelp_newFeaturestoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_BookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_AssignBookmarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mEdit_GotoBookmarkToolStripMenuItem;
