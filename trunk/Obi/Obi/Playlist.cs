@@ -1230,7 +1230,7 @@ namespace Obi
 
         public void ForcedStopForError()
         {
-            Console.WriteLine(mPlayer.ErrorMessage);
+            
             AudioLib.AudioPlayer.StateChangedEventArgs evargs = new AudioLib.AudioPlayer.StateChangedEventArgs(mPlaylistState);
 
             mPlayer.Stop();
