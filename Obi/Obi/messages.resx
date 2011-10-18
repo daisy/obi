@@ -1648,7 +1648,7 @@ Error text: {1}</value>
     <value>Fast play normalize with elapse back</value>
   </data>
   <data name="KeyS_FastPlayRateNormilize" xml:space="preserve">
-    <value>Fast play rate normilize</value>
+    <value>Fast play rate normalize</value>
   </data>
   <data name="KeyS_FastPlayStepDown" xml:space="preserve">
     <value>Fast play step down</value>
