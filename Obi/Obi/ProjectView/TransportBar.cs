@@ -2175,7 +2175,7 @@ namespace Obi.ProjectView
         {
             double elapseBackInterval = mView.ObiForm.Settings.ElapseBackTimeInMilliseconds;
             // work around to handle special nudge condition of preview: this should be implemented universally after 2.0 release
-            if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist) Stop();
+            if (mCurrentPlaylist != null && mView.Selection is AudioSelection && mCurrentPlaylist is PreviewPlaylist && CurrentState == State.Paused) Stop();
             if (IsPlayerActive)
             {
                 mCurrentPlaylist.FastPlayNormaliseWithLapseBack(elapseBackInterval);
