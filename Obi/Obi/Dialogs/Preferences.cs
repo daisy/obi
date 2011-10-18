@@ -183,7 +183,7 @@ namespace Obi.Dialogs
             m_KeyboardShortcutReadableNamesMap.Clear () ;
             m_KeyboardShortcutReadableNamesMap.Add ("Selected item", "Apply phrase detection on selected item") ;
             m_KeyboardShortcutReadableNamesMap.Add ("Multiple sections", "Apply phrase detection on multiple sections") ;
-
+            m_KeyboardShortcutReadableNamesMap.Add("Page / Phrase/ Time", "Go to Page/Phrase/Time");
             m_cbShortcutKeys.SelectedIndex = 0;
         //    m_lvShortcutKeysList.Clear();
             string[] tempArray = new string[2];
