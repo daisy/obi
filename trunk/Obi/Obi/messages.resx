@@ -1702,25 +1702,25 @@ Error text: {1}</value>
     <value>Select complete waveform of phrase</value>
   </data>
   <data name="KeyS_SelectFirstPhraseInStrip" xml:space="preserve">
-    <value>Select first phrase in strip</value>
+    <value>Select first phrase in section</value>
   </data>
   <data name="KeyS_SelectFirstStrip" xml:space="preserve">
-    <value>Select first strip</value>
+    <value>Select first Section in content view</value>
   </data>
   <data name="KeyS_SelectFollowingPhrase" xml:space="preserve">
     <value>Select following phrase</value>
   </data>
   <data name="KeyS_SelectFollowingStrip" xml:space="preserve">
-    <value>Select following strip</value>
+    <value>Select following section in content view</value>
   </data>
   <data name="KeyS_SelectFollowingStripCursor" xml:space="preserve">
-    <value>Move strip cursor ahead and backward</value>
+    <value>Move strip cursor ahead</value>
   </data>
   <data name="KeyS_SelectLastPhraseInStrip" xml:space="preserve">
-    <value>Select last phrase in strip</value>
+    <value>Select last phrase in section</value>
   </data>
   <data name="KeyS_SelectLastStrip" xml:space="preserve">
-    <value>Select last strip</value>
+    <value>Select last section in content view</value>
   </data>
   <data name="KeyS_SelectNextEmptyPhrase" xml:space="preserve">
     <value>Select next empty phrase</value>
@@ -1741,7 +1741,7 @@ Error text: {1}</value>
     <value>Select preceding special role phrase</value>
   </data>
   <data name="KeyS_SelectPrecedingStrip" xml:space="preserve">
-    <value>Select preceding strip</value>
+    <value>Select preceding section in content view</value>
   </data>
   <data name="KeyS_SelectPrecedingStripCursor" xml:space="preserve">
     <value>Move strip cursor backward</value>

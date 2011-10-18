@@ -2100,7 +2100,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select first phrase in strip.
+        ///   Looks up a localized string similar to Select first phrase in section.
         /// </summary>
         internal static string KeyS_SelectFirstPhraseInStrip {
             get {
@@ -2109,7 +2109,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select first strip.
+        ///   Looks up a localized string similar to Select first Section in content view.
         /// </summary>
         internal static string KeyS_SelectFirstStrip {
             get {
@@ -2127,7 +2127,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select following strip.
+        ///   Looks up a localized string similar to Select following section in content view.
         /// </summary>
         internal static string KeyS_SelectFollowingStrip {
             get {
@@ -2136,7 +2136,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Move strip cursor ahead and backward.
+        ///   Looks up a localized string similar to Move strip cursor ahead.
         /// </summary>
         internal static string KeyS_SelectFollowingStripCursor {
             get {
@@ -2145,7 +2145,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select last phrase in strip.
+        ///   Looks up a localized string similar to Select last phrase in section.
         /// </summary>
         internal static string KeyS_SelectLastPhraseInStrip {
             get {
@@ -2154,7 +2154,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select last strip.
+        ///   Looks up a localized string similar to Select last section in content view.
         /// </summary>
         internal static string KeyS_SelectLastStrip {
             get {
@@ -2217,7 +2217,7 @@ namespace Obi {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select preceding strip.
+        ///   Looks up a localized string similar to Select preceding section in content view.
         /// </summary>
         internal static string KeyS_SelectPrecedingStrip {
             get {
