@@ -126,12 +126,12 @@ namespace Obi.ProjectView
             InitPlaylists();
             m_RecordingElapsedRemainingList.Add("elapsed");
             m_RecordingElapsedRemainingList.Add("elapsed in section");
-            m_RecordingElapsedRemainingList.Add("elapsed total");
+            m_RecordingElapsedRemainingList.Add("elapsed in project");
             m_PlayingElapsedRemainingList.Add("elapsed in phrase");
             m_PlayingElapsedRemainingList.Add("elapsed total");
             m_PlayingElapsedRemainingList.Add("remaining in phrase");
             m_PlayingElapsedRemainingList.Add("remaining total");
-            mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
+            mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
             mFastPlayRateCombobox.SelectedIndex = 0;
@@ -761,14 +761,14 @@ namespace Obi.ProjectView
                 m_RecordingElapsedTime_Book = -1;
                 m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
                 mDisplayBox.Items.Clear () ;
-                mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
+                mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
               //  for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 mDisplayBox.SelectedIndex = selectedIndex > -1 ? selectedIndex: 0;
             }
             else
             {
                 mDisplayBox.Items.Clear();
-                mDisplayBox.Items.AddRange(new object[] { "elapsed", "elapsed section", "elapsed total"});
+                mDisplayBox.Items.AddRange(m_RecordingElapsedRemainingList.ToArray () );
                // for (int i = 0; i < 2; i++ ) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 mDisplayBox.SelectedIndex = (selectedIndex < mDisplayBox.Items.Count) ? selectedIndex
                     : 0;    
