@@ -125,11 +125,11 @@ namespace Obi.ProjectView
             InitAudio();
             InitPlaylists();
             m_RecordingElapsedRemainingList.Add("elapsed");
-            m_RecordingElapsedRemainingList.Add("elapsed section");
+            m_RecordingElapsedRemainingList.Add("elapsed in section");
             m_RecordingElapsedRemainingList.Add("elapsed total");
-            m_PlayingElapsedRemainingList.Add("elapsed phrase");
+            m_PlayingElapsedRemainingList.Add("elapsed in phrase");
             m_PlayingElapsedRemainingList.Add("elapsed total");
-            m_PlayingElapsedRemainingList.Add("remaining");
+            m_PlayingElapsedRemainingList.Add("remaining in phrase");
             m_PlayingElapsedRemainingList.Add("remaining total");
             mDisplayBox.Items.AddRange(new object[] { "elapsed phrase", "elapsed total", "remaining", "remaining total" });
             mDisplayBox.SelectedIndex = 0;
