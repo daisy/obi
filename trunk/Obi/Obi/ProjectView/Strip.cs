@@ -450,7 +450,7 @@ namespace Obi.ProjectView
                 StripCursor cursor = AddCursorAtBlockLayoutIndex ( 0 );
 
                 m_OffsetForFirstPhrase = node.Index;//@singleSection
-                Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
+                //Console.WriteLine ( "Offset of strip at 0 blocks is " + m_OffsetForFirstPhrase );
                 }
 
             Block block = node is PhraseNode ? new AudioBlock ( (PhraseNode)node, this ) : new Block ( node, this );
@@ -958,7 +958,7 @@ namespace Obi.ProjectView
                                         //Console.WriteLine ( "Phrase index : " + lastBlockIndex + " Strip height scale: " + sizeMultiplier );
                     }
                 }
-            Console.WriteLine ( "block layout height " + this.Size.ToString()); 
+            //Console.WriteLine ( "block layout height " + this.Size.ToString()); 
                 // If there are no contents, still show space for the block layout
                 return mBlockLayout.Location.Y + Math.Max(mBlockHeight,mBlockLayout.Height*2  ) +
                     mBlockLayout.Margin.Bottom + BorderHeight;
@@ -1510,7 +1510,7 @@ namespace Obi.ProjectView
                 int blockHeight = nextLine ? currentBlock.Height : Convert.ToInt32 (currentBlock.Height * 1.2) * -1 ;
                 return FindBlockAtLocationInStrip ( currentBlock.Location.Y + mBlockLayout.Location.Y + blockHeight);
                 }
-            Console.WriteLine ( " returning null " );
+            //Console.WriteLine ( " returning null " );
             return null;
 
             }

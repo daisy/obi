@@ -805,7 +805,7 @@ namespace Obi.ProjectView
                         c is Block? ((Block)c).Strip:
                         ((StripCursor)c).Strip;
                     if (c_Strip.OffsetForFirstPhrase > 0) stripLabelOffset = c_Strip.BlocksLayoutTopPosition;
-                    Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
+                    //Console.WriteLine ( "adjusting cordinates : " + stripLabelOffset );
                     }
                     int audioCursorPosition;
                     int selectionBeginPosition;
@@ -3661,13 +3661,13 @@ if (thresholdAboveLastNode >= stripControl.Node.PhraseChildCount) thresholdAbove
                 {
                     System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
 
-                    Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
+                    //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
                     if (ramPerformanceCounter.NextValue() < 100
                         && Math.Abs(DateTime.Now.Second - m_KeysMillisecond) < 2)
                     {
                         m_KeysMillisecond = DateTime.Now.Second;
                         m_PrevKey = key;
-                        Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
+                        //Console.WriteLine("count " + m_KeyRepeatCount + " : " + m_KeysMillisecond);
                         if (Settings != null  &&  Settings.OptimizeMemory)
                         {
                             System.GC.GetTotalMemory(true);
