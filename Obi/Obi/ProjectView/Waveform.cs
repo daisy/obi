@@ -117,7 +117,7 @@ namespace Obi.ProjectView
                             System.Diagnostics.PerformanceCounter ramPerformanceCounter = new System.Diagnostics.PerformanceCounter("Memory", "Available MBytes");
                             if (ramPerformanceCounter.NextValue() < 100)
                             {
-                                Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
+                                //Console.WriteLine("RAM near overload " + ramPerformanceCounter.NextValue().ToString());
 
                                 if (mBlock.Strip.ContentView.Settings != null
                                     && mBlock.Strip.ContentView.Settings.OptimizeMemory)
