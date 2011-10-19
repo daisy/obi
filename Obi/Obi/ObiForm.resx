@@ -696,6 +696,9 @@
   <data name="mView_RefreshContentViewMenuItem.Text" xml:space="preserve">
     <value>Refresh Content View(Debug)</value>
   </data>
+  <data name="mView_RefreshContentViewMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 6</value>
   </data>
@@ -1696,7 +1699,7 @@
     <value>mProjectView</value>
   </data>
   <data name="&gt;&gt;mProjectView.Type" xml:space="preserve">
-    <value>Obi.ProjectView.ProjectView, Obi, Version=1.7.1.22585, Culture=neutral, PublicKeyToken=null</value>
+    <value>Obi.ProjectView.ProjectView, Obi, Version=1.7.1.32950, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;mProjectView.Parent" xml:space="preserve">
     <value>$this</value>
