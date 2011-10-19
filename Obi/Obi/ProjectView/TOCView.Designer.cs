@@ -35,6 +35,8 @@ namespace Obi.ProjectView
             this.Context_AddSubsectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_InsertSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_MergeSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergeSectionWithNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Context_MergeMultipleSectionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_RenameSectionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_DecreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Context_IncreaseSectionLevelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +55,7 @@ namespace Obi.ProjectView
             // 
             // mContextMenuStrip
             // 
+            this.mContextMenuStrip.AllowDrop = true;
             this.mContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Context_ShowContentsMenuItem,
             this.Context_AddSectionMenuItem,
@@ -107,10 +110,30 @@ namespace Obi.ProjectView
             // 
             // Context_MergeSectionMenuItem
             // 
+            this.Context_MergeSectionMenuItem.AccessibleName = "Merge Section";
+            this.Context_MergeSectionMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Context_MergeSectionWithNextMenuItem,
+            this.Context_MergeMultipleSectionsMenuItem});
             this.Context_MergeSectionMenuItem.Name = "Context_MergeSectionMenuItem";
             this.Context_MergeSectionMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.Context_MergeSectionMenuItem.Text = "Mer&ge section with next";
-            this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionMenuItem_Click);
+            this.Context_MergeSectionMenuItem.Text = "Mer&ge section";
+            this.Context_MergeSectionMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
+            // 
+            // Context_MergeSectionWithNextMenuItem
+            // 
+            this.Context_MergeSectionWithNextMenuItem.AccessibleName = "Merge Section with next";
+            this.Context_MergeSectionWithNextMenuItem.Name = "Context_MergeSectionWithNextMenuItem";
+            this.Context_MergeSectionWithNextMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.Context_MergeSectionWithNextMenuItem.Text = "Me&rge Section with next";
+            this.Context_MergeSectionWithNextMenuItem.Click += new System.EventHandler(this.Context_MergeSectionWithNextMenuItem_Click);
+            // 
+            // Context_MergeMultipleSectionsMenuItem
+            // 
+            this.Context_MergeMultipleSectionsMenuItem.AccessibleName = "Merge multiple section";
+            this.Context_MergeMultipleSectionsMenuItem.Name = "Context_MergeMultipleSectionsMenuItem";
+            this.Context_MergeMultipleSectionsMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.Context_MergeMultipleSectionsMenuItem.Text = "Merge m&ultiple section";
+            this.Context_MergeMultipleSectionsMenuItem.Click += new System.EventHandler(this.Context_MergeMultipleSectionsMenuItem_Click);
             // 
             // Context_RenameSectionMenuItem
             // 
@@ -244,5 +267,7 @@ namespace Obi.ProjectView
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem Context_PropertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergeSectionWithNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Context_MergeMultipleSectionsMenuItem;
     }
 }

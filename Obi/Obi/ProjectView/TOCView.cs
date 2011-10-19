@@ -520,6 +520,11 @@ namespace Obi.ProjectView
         private void Context_PropertiesMenuItem_Click(object sender, EventArgs e) { mProjectView.ShowSectionPropertiesDialog(); }
 
         private void Context_MergeSectionMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+
+        private void Context_MergeSectionWithNextMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeStrips(); }
+
+        private void Context_MergeMultipleSectionsMenuItem_Click(object sender, EventArgs e) { mProjectView.MergeMultipleSections(); }
+
         // Reflect changes in the presentation (added or deleted nodes)
         private void Presentation_changed(object sender, urakawa.events.DataModelChangedEventArgs e)
         {
