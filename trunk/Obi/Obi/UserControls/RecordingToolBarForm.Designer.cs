@@ -215,6 +215,7 @@ namespace Obi.UserControls
             this.ClientSize = new System.Drawing.Size(369, 84);
             this.Controls.Add(this.m_statusStrip);
             this.Controls.Add(this.recordingToolBarToolStrip);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RecordingToolBarForm";
             this.Text = "Obi recorder bar";
