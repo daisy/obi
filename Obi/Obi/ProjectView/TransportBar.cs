@@ -758,27 +758,35 @@ namespace Obi.ProjectView
                 mRecorder.CurrentState == AudioLib.AudioRecorder.State.Recording ? State.Recording : State.Stopped;
             UpdateButtons();
             
-            int selectedIndex = mDisplayBox.SelectedIndex;
+            //int selectedIndex = mDisplayBox.SelectedIndex;
+            if (mDisplayBox.Items.Count == m_RecordingElapsedRemainingList.Count)
+            {
+                m_RecorderTimeComboIndex = mDisplayBox.SelectedIndex;
+            }
+            else if (mDisplayBox.Items.Count == m_PlayingElapsedRemainingList.Count)
+            {
+                // following string indicate monitoring: rapid fix
+                if ( mTimeDisplayBox.Text != "--:--:--") m_PlayerTimeComboIndex = mDisplayBox.SelectedIndex;
+            }
             if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Recording)
             {
                 m_RecordingElapsedTime_Book = -1;
                 m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
-
-                if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Monitoring) m_PlayerTimeComboIndex = mDisplayBox.SelectedIndex;
+   
                 mDisplayBox.Items.Clear () ;
                 mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
               //  for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 //mDisplayBox.SelectedIndex = selectedIndex > -1 ? selectedIndex: 0;
-                mDisplayBox.SelectedIndex = m_RecorderTimeComboIndex > -1 && m_RecorderTimeComboIndex < mDisplayBox.Items.Count? m_RecorderTimeComboIndex: 0;
+                mDisplayBox.SelectedIndex = m_PlayerTimeComboIndex > -1 && m_PlayerTimeComboIndex < mDisplayBox.Items.Count ? m_PlayerTimeComboIndex : 0;
             }
             else
             {
-                m_RecorderTimeComboIndex = mDisplayBox.SelectedIndex;
+                
                 mDisplayBox.Items.Clear();
                 mDisplayBox.Items.AddRange(m_RecordingElapsedRemainingList.ToArray () );
                // for (int i = 0; i < 2; i++ ) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
                 //mDisplayBox.SelectedIndex = (selectedIndex < mDisplayBox.Items.Count) ? selectedIndex
-                mDisplayBox.SelectedIndex = (m_PlayerTimeComboIndex >= 0 &&  m_PlayerTimeComboIndex < mDisplayBox.Items.Count) ? m_PlayerTimeComboIndex
+                mDisplayBox.SelectedIndex = (m_RecorderTimeComboIndex>= 0 &&  m_RecorderTimeComboIndex < mDisplayBox.Items.Count) ? m_RecorderTimeComboIndex
                     : 0;    
             }
             
