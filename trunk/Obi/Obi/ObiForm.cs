@@ -2052,13 +2052,15 @@ namespace Obi
                 InitializeColorSettings ();
                 InitializeAutoSaveTimer ();
 
-                if (Directory.Exists ( mSettings.PipelineScriptsPath ))
-                    {
-                    mPipelineInfo = new PipelineInterface.PipelineInfo ( mSettings.PipelineScriptsPath );
-                    PopulatePipelineScriptsInToolsMenu ();
-                    }
+                if (Directory.Exists(mSettings.PipelineScriptsPath))
+                {
+                    mPipelineInfo = new PipelineInterface.PipelineInfo(mSettings.PipelineScriptsPath);
+                    PopulatePipelineScriptsInToolsMenu();
+                }
                 else
-                    MessageBox.Show ( string.Format ( Localizer.Message ( "ObiForm_PipelineNotFound" ), mSettings.PipelineScriptsPath ) );
+                {
+                    if (!ExtractPipelineLite ())  MessageBox.Show(string.Format(Localizer.Message("ObiForm_PipelineNotFound"), mSettings.PipelineScriptsPath));
+                }
                 Ready ();
                 }
             catch (Exception e)
@@ -2124,6 +2126,43 @@ namespace Obi
                 mAutoSaveTimer.Start ();
                 }
             }
+
+        private bool ExtractPipelineLite()
+        {
+            string directoryPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            string pipelineCabFile = "Pipeline-lite.cab";
+            
+            if (File.Exists(Path.Combine(directoryPath, pipelineCabFile))
+                            && File.Exists ( Path.Combine ( directoryPath, "CABARC.EXE" ) )
+                && File.Exists ( Path.Combine ( directoryPath, "CABINET.DLL" ) ))
+                {
+                    try
+                    {
+                        string pipelineLitePath = Path.Combine(directoryPath, "Pipeline-lite");
+                        if (Directory.Exists(pipelineLitePath)) Directory.Delete(pipelineLitePath, true);
+
+                        Process extractProcess = new Process();
+                        extractProcess.StartInfo.WorkingDirectory = directoryPath;
+                        extractProcess.StartInfo.FileName = Path.Combine(directoryPath, "CABARC.EXE");
+                        extractProcess.StartInfo.Arguments = "-p x " + pipelineCabFile;
+                        extractProcess.StartInfo.UseShellExecute = false;
+                        extractProcess.StartInfo.CreateNoWindow = true;
+                        extractProcess.Start();
+                        extractProcess.WaitForExit();
+                        
+                        if (Directory.Exists(pipelineLitePath) && Directory.GetFiles(pipelineLitePath, "*.*").Length > 0) return true;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show ( "Pipeline-lite could not be installed. Please install by yourself after installation is complete." , "Warning");
+            }
+            return false;
+        }
 
         private void PopulatePipelineScriptsInToolsMenu ()
             {
