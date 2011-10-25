@@ -1978,14 +1978,22 @@ namespace Obi.ProjectView
                             command.ChildCommands.Insert(command.ChildCommands.Count, addSectionCmd);
                             newSectionNode = ((Commands.Node.AddSectionNode)addSectionCmd).NewSection;
                         
-                    phraseInsertIndex = 0;
+                    
                     command.ChildCommands.Insert(command.ChildCommands.Count,new Commands.Node.RenameSection ( this, newSectionNode, phrase_SectionNameMap[phraseNodes[i]]  ));
+
+                    phraseInsertIndex = 0;
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[i], newSectionNode, phraseInsertIndex));
+
+                    for (int j = i +1 ; 
+                        j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey ( phraseNodes[j]); 
+                        j++ )
+                    {
+                        phraseInsertIndex++ ;
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[j], newSectionNode, phraseInsertIndex));
+                    }
                     //MessageBox.Show(phrase_SectionNameMap[phraseNodes[i]]);
                     }
-
-                command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode ( this, phraseNodes[i], newSectionNode,phraseInsertIndex  ) );
-                ++phraseInsertIndex;
-                }
+}
                 if (newSectionNode != null) command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(this, new NodeSelection(newSectionNode, mContentView)));
             return command;
             }
