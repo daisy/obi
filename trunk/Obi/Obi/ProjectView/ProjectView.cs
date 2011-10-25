@@ -1040,7 +1040,8 @@ namespace Obi.ProjectView
 
                     List<EmptyNode> phraseList = new List<EmptyNode>();
 
-                    for (int i = 0; i < selectedSections.Count; i++)
+                    //for (int i = 0; i < selectedSections.Count; i++)
+                    for (int i = selectedSections.Count-1 ; i >= 0; i--)
                     {
                         for (int j = selectedSections[i].PhraseChildCount-1 ; j >= 0 ; j--)
                         {
