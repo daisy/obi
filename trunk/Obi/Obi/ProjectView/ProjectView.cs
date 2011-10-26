@@ -1965,6 +1965,14 @@ namespace Obi.ProjectView
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.RenameSection(this, newSectionNode, phrase_SectionNameMap[phraseNodes[0]]));
                 command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[0], newSectionNode, phraseInsertIndex));
                 phraseNodes.RemoveAt(0);
+
+for (int j = 0;
+                        j < phraseNodes.Count && !phrase_SectionNameMap.ContainsKey(phraseNodes[j]);
+                        j++)
+                {
+                    phraseInsertIndex++;
+                    command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(this, phraseNodes[j], newSectionNode, phraseInsertIndex));
+                }
             }
 
             for (int i = phraseNodes.Count-1; i >= 0; i--)
