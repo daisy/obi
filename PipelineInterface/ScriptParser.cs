@@ -6,7 +6,7 @@ using System.Xml.XPath;
 using System.IO;
 using System.Diagnostics;
 
-namespace Obi.PipelineInterface
+namespace PipelineInterface
 {
     // a common class for manipulating pipeline script files
     // Only this class interacts with physical script files

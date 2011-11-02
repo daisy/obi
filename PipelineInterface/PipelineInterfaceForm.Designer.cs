@@ -1,4 +1,4 @@
-namespace Obi.PipelineInterface
+namespace PipelineInterface
 {
     partial class PipelineInterfaceForm
     {
