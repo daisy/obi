@@ -191,7 +191,20 @@ view.Selection is AudioSelection && ((AudioSelection)view.Selection).AudioRange 
                 command.ChildCommands.Insert(command.ChildCommands.Count, deleteCmd);//@singleSection: moved delete command last for improve undo selection
 
                 if (Obi.Audio.PhraseDetection.CancelOperation) break;
-                 
+                // skip to next indexes if the two consequtive phrases in phrase list are not consequitive according to phrase index in the parent section
+                if (j < phraseNodesList.Count - 1
+                    && phrase.Index + 1 < phraseNodesList[j + 1].Index)
+                {
+                    EmptyNode empty = null;
+                    for (int i = phrase.Index + 1; i < phraseNodesList[j + 1].Index; ++i)
+                    {
+                        empty = phrase.ParentAs<SectionNode>().PhraseChild(i);
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.Delete(view, empty, false));
+                        command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.Node.AddNode(view, empty, parent, index, false));
+                        index++;
+                    }
+                    //index = index + (phraseNodesList[j + 1].Index - (phrase.Index + 1));
+                }     
                 view.TriggerProgressChangedEvent(Localizer.Message("phrase_detection"), (100 * j) / phraseNodesList.Count);
                 
                 }
