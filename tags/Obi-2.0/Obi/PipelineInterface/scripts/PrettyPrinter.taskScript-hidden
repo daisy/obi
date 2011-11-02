@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE taskScript>
+<taskScript version="2.0" name="PrettyPrinter">
+	<nicename>Pretty Printer</nicename>
+	<description>Pretty print XML members in filesets</description>
+   	<documentation uri="../../../doc/scripts/PrettyPrinter.html"/>
+     <comment>
+	     Commandline template:
+	        ${workspace_loc}/dmfc/scripts/manipulation/simple/PrettyPrinter.taskScript
+			--input=${workspace_loc}/pipeline_testsuite/testdata/input/dtb/d202/dontworrybehappy/ncc.html
+			--output=${workspace_loc}/pipeline_testsuite/testdata/output/PrettyPrinter1
+	     
+     </comment>
+			
+	<parameter name="input" value="" required="true">
+		<nicename>Input file</nicename>
+		<description>Select the input manifest file (NCC, OPF, etc)</description>
+		<datatype>
+			<file mime="application/xml" type="input"/>
+		</datatype>
+	</parameter>
+
+	<parameter name="output" value="" required="true"> <!-- value="$parent{input} -->
+		<nicename>Output directory</nicename>
+		<description>Select the output directory</description>
+		<datatype>
+			<directory type="output"/>
+		</datatype>
+	</parameter>
+					
+	<parameter name="linebreakType" value="DOS" required="false">
+			<nicename>Linebreak type</nicename>
+			<description>Select the type of linebreaks to use</description>
+			<datatype>
+				<enum>
+					<item nicename="DOS" value="DOS"/>
+					<item nicename="UNIX" value="UNIX"/>
+				</enum>
+			</datatype>
+	</parameter>					
+															
+	<task name="int_daisy_prettyPrinter" interactive="false">
+		<parameter>
+			<name>input</name>
+			<value>${input}</value>
+		</parameter>
+
+		<parameter>
+			<name>output</name>
+			<value>${output}</value>
+		</parameter>
+
+		<parameter>
+			<name>linebreak</name>
+			<value>${linebreakType}</value>
+		</parameter>
+				
+	</task>
+
+
+</taskScript>
