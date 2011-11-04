@@ -95,9 +95,11 @@ namespace Obi.ProjectView
         // Constants from the display combo box
         private static readonly int ELAPSED_INDEX = 0;
         private static readonly int ELAPSED_SECTION = 1;
-        private static int ELAPSED_TOTAL_INDEX = 1;
+       // private static readonly int ELAPSED_SELECTION = 2;
+        private static int ELAPSED_TOTAL_INDEX = 2;
         private static int ELAPSED_TOTAL_RECORDING_INDEX = 2;
-        private static readonly int REMAIN_INDEX = 2;
+        private static int REMAINING_IN_SECTION = 4;
+        private static readonly int REMAIN_INDEX = 3;
         private readonly List<string> m_DisplayComboBoxItems;
 
 
@@ -128,9 +130,11 @@ namespace Obi.ProjectView
             m_RecordingElapsedRemainingList.Add("elapsed in section");
             m_RecordingElapsedRemainingList.Add("elapsed in project");
             m_PlayingElapsedRemainingList.Add("elapsed in phrase");
-            m_PlayingElapsedRemainingList.Add("elapsed total");
+            m_PlayingElapsedRemainingList.Add("elapsed in section");
+            m_PlayingElapsedRemainingList.Add("elapsed in selection");
             m_PlayingElapsedRemainingList.Add("remaining in phrase");
-            m_PlayingElapsedRemainingList.Add("remaining total");
+            m_PlayingElapsedRemainingList.Add("remaining in section");
+            m_PlayingElapsedRemainingList.Add("remaining in selection");
             mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
@@ -255,6 +259,28 @@ namespace Obi.ProjectView
                 }
             }
 
+        public double ElapsedTimeInSection
+        {
+            get 
+            {
+                PhraseNode phrNode = mCurrentPlaylist.CurrentPhrase;
+                ObiNode nodeSel = phrNode.ParentAs<SectionNode>();
+                double time = 0;
+                for (int i = 0; i < nodeSel.PhraseChildCount; i++)
+                {
+                    if (nodeSel.PhraseChild(i) != mCurrentPlaylist.CurrentPhrase && nodeSel.PhraseChild(i) is PhraseNode)
+                        time = nodeSel.PhraseChild(i).Duration + time;
+                    else
+                        break;                    
+                }
+                return time + mCurrentPlaylist.CurrentTimeInAsset;
+            }
+        }
+
+        public double RemainingTimeInSection
+        {
+            get { return mCurrentPlaylist.CurrentSection.Duration - ElapsedTimeInSection;  }
+        }
 
         /// <summary>
         /// Set color settings for the transport bar.
@@ -911,11 +937,16 @@ namespace Obi.ProjectView
                      mTimeDisplayBox.Text = FormatDuration_hh_mm_ss(
                          selectedIndex  == ELAPSED_INDEX ?
                              mCurrentPlaylist.CurrentTimeInAsset :
+                         selectedIndex  == ELAPSED_SECTION ?
+                             ElapsedTimeInSection:
                          selectedIndex  == ELAPSED_TOTAL_INDEX ?
                              mCurrentPlaylist.CurrentTime :
                          selectedIndex  == REMAIN_INDEX ?
                              mCurrentPlaylist.RemainingTimeInAsset :
-                             mCurrentPlaylist.RemainingTime);
+                         selectedIndex == REMAINING_IN_SECTION?                         
+                         RemainingTimeInSection:
+                         mCurrentPlaylist.RemainingTime
+                             );
                  }
              }
          }
