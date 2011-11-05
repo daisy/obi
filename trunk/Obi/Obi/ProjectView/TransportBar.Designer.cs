@@ -319,7 +319,7 @@ namespace Obi.ProjectView
             "remaining (total)"});
             this.mDisplayBox.Location = new System.Drawing.Point(548, 5);
             this.mDisplayBox.Name = "mDisplayBox";
-            this.mDisplayBox.Size = new System.Drawing.Size(116, 24);
+            this.mDisplayBox.Size = new System.Drawing.Size(155, 24);
             this.mDisplayBox.TabIndex = 14;
             this.mDisplayBox.SelectionChangeCommitted += new System.EventHandler(this.mDisplayBox_SelectionChangeCommitted);
             this.mDisplayBox.SelectedIndexChanged += new System.EventHandler(this.mDisplayBox_SelectedIndexChanged);
@@ -339,7 +339,7 @@ namespace Obi.ProjectView
             "1.5",
             "1.75",
             "2"});
-            this.mFastPlayRateCombobox.Location = new System.Drawing.Point(670, 5);
+            this.mFastPlayRateCombobox.Location = new System.Drawing.Point(709, 5);
             this.mFastPlayRateCombobox.Name = "mFastPlayRateCombobox";
             this.mFastPlayRateCombobox.Size = new System.Drawing.Size(62, 24);
             this.mFastPlayRateCombobox.TabIndex = 15;
@@ -350,7 +350,7 @@ namespace Obi.ProjectView
             this.mVUMeterPanel.BackColor = System.Drawing.Color.Transparent;
             this.mVUMeterPanel.BeepEnable = false;
             this.mVUMeterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mVUMeterPanel.Location = new System.Drawing.Point(740, 2);
+            this.mVUMeterPanel.Location = new System.Drawing.Point(781, 2);
             this.mVUMeterPanel.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.mVUMeterPanel.Name = "mVUMeterPanel";
             this.mVUMeterPanel.ShowMaxMinValues = false;
@@ -382,7 +382,7 @@ namespace Obi.ProjectView
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TransportBar";
-            this.Size = new System.Drawing.Size(948, 32);
+            this.Size = new System.Drawing.Size(993, 32);
             this.Leave += new System.EventHandler(this.TransportBar_Leave);
             this.Enter += new System.EventHandler(this.TransportBar_Enter);
             this.ResumeLayout(false);
