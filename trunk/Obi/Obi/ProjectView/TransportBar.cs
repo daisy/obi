@@ -1567,8 +1567,9 @@ namespace Obi.ProjectView
                     {
                         command.ChildCommands.Insert(command.ChildCommands.Count, new Commands.UpdateSelection(mView, new NodeSelection(selectionNode, mView.Selection.Control)));
                         //MessageBox.Show("recording selection update");   
-                        double replaceStartTime = (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )? ((AudioSelection)mView.Selection).AudioRange.CursorTime :
-                            CurrentPlaylist.CurrentTimeInAsset;
+                        double replaceStartTime = IsPlayerActive ? CurrentPlaylist.CurrentTimeInAsset:
+                            (mView.Selection is AudioSelection && ((AudioSelection)mView.Selection).AudioRange.HasCursor )? ((AudioSelection)mView.Selection).AudioRange.CursorTime: 0 ;
+
                         mView.Selection = new AudioSelection((PhraseNode) selectionNode, mView.Selection.Control, new AudioRange(replaceStartTime, selectionNode.Duration) );
                         
                     }
