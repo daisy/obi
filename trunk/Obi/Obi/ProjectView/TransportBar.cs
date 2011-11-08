@@ -676,6 +676,8 @@ namespace Obi.ProjectView
             {
                 mState = mPlayer.CurrentState == AudioLib.AudioPlayer.State.Paused ? State.Paused :
                    mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing ? State.Playing : State.Stopped;
+
+                m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = -1;
                 if (mState == State.Playing || mState == State.Recording)
                 {
                     mDisplayTimer.Start();
@@ -797,7 +799,7 @@ namespace Obi.ProjectView
             if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Recording)
             {
                 m_RecordingElapsedTime_Book = -1;
-                m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
+                m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = -1;
    
                 mDisplayBox.Items.Clear () ;
                 mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
@@ -938,7 +940,7 @@ namespace Obi.ProjectView
                          selectedIndex  == ELAPSED_INDEX ?
                              mCurrentPlaylist.CurrentTimeInAsset :
                          selectedIndex  == ELAPSED_SECTION ?
-                             ElapsedTimeInSection:
+                             PlaybackTimeElapsedSection :
                          selectedIndex  == ELAPSED_TOTAL_INDEX ?
                              mCurrentPlaylist.CurrentTime :
                          selectedIndex  == REMAIN_INDEX ?
@@ -981,29 +983,45 @@ namespace Obi.ProjectView
                     delegate(urakawa.core.TreeNode n) { });
         }
 
-        private double m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase = -1;
+        private double m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = -1;
         public double RecordingTimeElapsedSection
         {
             get
             {
-                if (m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase < 0) CalculateTimeElapsedInSection();
+                if (m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase < 0) CalculateTimeElapsedInSection();
 
-                return m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase + (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                return m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase + (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
                           Time.TIME_UNIT;
             }
         }
 
+        public double PlaybackTimeElapsedSection
+        {
+            get
+            {
+                if (m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase < 0) CalculateTimeElapsedInSection();
+
+                return m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase + mCurrentPlaylist.CurrentTimeInAsset;
+            }
+        }
+
+
         private void CalculateTimeElapsedInSection()
         {
-            if (mRecordingPhrase == null) return;
-            mRecordingPhrase.ParentAs<SectionNode>().AcceptDepthFirst(
+            if (CurrentState == State.Recording && mRecordingPhrase == null) return;
+            if (IsPlayerActive && PlaybackPhrase == null) return;
+
+            SectionNode section = CurrentState == State.Recording ? mRecordingPhrase.ParentAs<SectionNode>() :
+                PlaybackPhrase.ParentAs<SectionNode>();
+            section.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
                         if (n is PhraseNode && n.Children.Count == 0)
                         {
-                            m_RecordingElapsedTime_FromSectionToFirstRecordingPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
                         }
-                        if (n == mRecordingPhrase)
+                        if ((CurrentState == State.Recording &&  n == mRecordingPhrase)
+                            || (IsPlayerActive && n == PlaybackPhrase ))
                             return false;
                         else
                             return true;
