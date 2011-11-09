@@ -968,16 +968,21 @@ namespace Obi.ProjectView
              private void CalculateTimeElapsed()
         {
                  if ( mRecordingPhrase == null ) return ;
+
+                 bool foundPhrase = false;
             mView.Presentation.RootNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
+                        if (n == mRecordingPhrase || foundPhrase)
+                        {
+                            foundPhrase = true;
+                            return false;
+                        }
                         if (n is PhraseNode && n.Children.Count == 0)
                         {
                             m_RecordingElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
                         }
-                        if (n == mRecordingPhrase)
-                            return false;
-                        else
+                        
                         return true;
                     },
                     delegate(urakawa.core.TreeNode n) { });
