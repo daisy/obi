@@ -1010,23 +1010,25 @@ namespace Obi.ProjectView
         {
             if (CurrentState == State.Recording && mRecordingPhrase == null) return;
             if (IsPlayerActive && PlaybackPhrase == null) return;
-
+            
+            m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = 0;
             SectionNode section = CurrentState == State.Recording ? mRecordingPhrase.ParentAs<SectionNode>() :
                 PlaybackPhrase.ParentAs<SectionNode>();
-            section.AcceptDepthFirst(
-                    delegate(urakawa.core.TreeNode n)
-                    {
-                        if (n is PhraseNode && n.Children.Count == 0)
-                        {
-                            m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
-                        }
-                        if ((CurrentState == State.Recording &&  n == mRecordingPhrase)
-                            || (IsPlayerActive && n == PlaybackPhrase ))
-                            return false;
-                        else
-                            return true;
-                    },
-                    delegate(urakawa.core.TreeNode n) { });
+
+            for (int i = 0; i < section.PhraseChildCount; ++i)
+            {
+                EmptyNode n = section.PhraseChild(i);
+                if ((CurrentState == State.Recording && n == mRecordingPhrase)
+                    || (IsPlayerActive && n == PlaybackPhrase))
+                {
+                    return;
+                }
+                if (n is PhraseNode && n.Children.Count == 0)
+                {
+                    m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                }
+            }
+
         }
 
         // Play/Resume playback
