@@ -98,8 +98,8 @@ namespace Obi.ProjectView
        // private static readonly int ELAPSED_SELECTION = 2;
         private static int ELAPSED_TOTAL_INDEX = 2;
         private static int ELAPSED_TOTAL_RECORDING_INDEX = 2;
-        private static int REMAINING_IN_SECTION = 4;
-        private static readonly int REMAIN_INDEX = 3;
+       // private static int REMAINING_IN_SECTION = 4;
+      //  private static readonly int REMAIN_INDEX = 3;
         private readonly List<string> m_DisplayComboBoxItems;
 
 
@@ -131,10 +131,10 @@ namespace Obi.ProjectView
             m_RecordingElapsedRemainingList.Add("elapsed in project");
             m_PlayingElapsedRemainingList.Add("elapsed in phrase");
             m_PlayingElapsedRemainingList.Add("elapsed in section");
-            m_PlayingElapsedRemainingList.Add("elapsed in selection");
+            m_PlayingElapsedRemainingList.Add("elapsed in project");
             m_PlayingElapsedRemainingList.Add("remaining in phrase");
-            m_PlayingElapsedRemainingList.Add("remaining in section");
-            m_PlayingElapsedRemainingList.Add("remaining in selection");
+          //  m_PlayingElapsedRemainingList.Add("remaining in section");
+          //  m_PlayingElapsedRemainingList.Add("remaining in selection");
             mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
@@ -678,6 +678,7 @@ namespace Obi.ProjectView
                    mPlayer.CurrentState == AudioLib.AudioPlayer.State.Playing ? State.Playing : State.Stopped;
 
                 m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = -1;
+                m_ElapsedTime_Book = -1;
                 if (mState == State.Playing || mState == State.Recording)
                 {
                     mDisplayTimer.Start();
@@ -798,9 +799,9 @@ namespace Obi.ProjectView
             }
             if (mRecorder.CurrentState != AudioLib.AudioRecorder.State.Recording)
             {
-                m_RecordingElapsedTime_Book = -1;
+                m_ElapsedTime_Book = -1;
                 m_ElapsedTime_FromSectionToFirstRecordingPhraseOrPlaybackPhrase = -1;
-   
+                
                 mDisplayBox.Items.Clear () ;
                 mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
               //  for (int i = 0; i < m_DisplayComboBoxItems.Count; i++) mDisplayBox.Items.Add(m_DisplayComboBoxItems[i]);
@@ -874,7 +875,7 @@ namespace Obi.ProjectView
                 mToDo_CustomClassMarkButton.Enabled = mView.CanSetTODOStatus;
             }
         }
-
+        
         private static string FormatDuration_hh_mm_ss(double durationMs)
         {
             double seconds = durationMs / 1000.0;
@@ -942,45 +943,60 @@ namespace Obi.ProjectView
                          selectedIndex  == ELAPSED_SECTION ?
                              PlaybackTimeElapsedSection :
                          selectedIndex  == ELAPSED_TOTAL_INDEX ?
-                             mCurrentPlaylist.CurrentTime :
-                         selectedIndex  == REMAIN_INDEX ?
-                             mCurrentPlaylist.RemainingTimeInAsset :
-                         selectedIndex == REMAINING_IN_SECTION?                         
+                           //  mCurrentPlaylist.CurrentTime :
+                           PlayingTimeElapsedTotal:
+                       //  selectedIndex  == REMAIN_INDEX ?
+                             mCurrentPlaylist.RemainingTimeInAsset 
+                       /*  selectedIndex == REMAINING_IN_SECTION?                         
                          RemainingTimeInSection:
-                         mCurrentPlaylist.RemainingTime
+                         mCurrentPlaylist.RemainingTime*/
                              );
                  }
              }
          }
 
-         private double m_RecordingElapsedTime_Book = -1;
+         private double m_ElapsedTime_Book = -1;
          public double RecordingTimeElapsedTotal
          {
              get
             {
-                if (m_RecordingElapsedTime_Book < 0) CalculateTimeElapsed();
+                if (m_ElapsedTime_Book < 0) CalculateTimeElapsed_Book();
 
-                return m_RecordingElapsedTime_Book +  (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
+                return m_ElapsedTime_Book +  (double)mRecordingSession.AudioRecorder.RecordingPCMFormat.ConvertBytesToTime(mRecorder.CurrentDurationBytePosition) /
                           Time.TIME_UNIT;
             }
         }
 
-             private void CalculateTimeElapsed()
+        public double PlayingTimeElapsedTotal
         {
-                 if ( mRecordingPhrase == null ) return ;
+            get
+            {
+                if (m_ElapsedTime_Book < 0) CalculateTimeElapsed_Book();
+                return m_ElapsedTime_Book + mCurrentPlaylist.CurrentTimeInAsset;
+            }
+        }
+
+
+             private void CalculateTimeElapsed_Book()
+        {
+                 if (CurrentState == State.Recording &&   mRecordingPhrase == null ) return ;
+                 if (IsPlayerActive && PlaybackPhrase == null) return;
+                 m_ElapsedTime_Book = 0;
 
                  bool foundPhrase = false;
             mView.Presentation.RootNode.AcceptDepthFirst(
                     delegate(urakawa.core.TreeNode n)
                     {
-                        if (n == mRecordingPhrase || foundPhrase)
+                        if ((CurrentState == State.Recording &&  n == mRecordingPhrase )
+                            ||    ( IsPlayerActive && n == PlaybackPhrase)
+                            || foundPhrase)
                         {
                             foundPhrase = true;
                             return false;
                         }
                         if (n is PhraseNode && n.Children.Count == 0)
                         {
-                            m_RecordingElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
+                            m_ElapsedTime_Book += ((PhraseNode)n).Audio.Duration.AsTimeSpan.TotalMilliseconds;
                         }
                         
                         return true;
