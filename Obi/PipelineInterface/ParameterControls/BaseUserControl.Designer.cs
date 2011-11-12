@@ -1,4 +1,4 @@
-namespace PipelineInterface.ParameterControls
+namespace Obi.PipelineInterface.ParameterControls
 {
     partial class BaseUserControl
     {

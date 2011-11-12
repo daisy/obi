@@ -1,4 +1,4 @@
-namespace Obi.PipelineInterface.ParameterControls
+namespace PipelineInterface.ParameterControls
 {
     partial class EnumControl
     {

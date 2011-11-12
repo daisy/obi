@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Xml;
 
-namespace Obi.PipelineInterface.DataTypes
+namespace PipelineInterface.DataTypes
 {
         class PathDataType
     {
