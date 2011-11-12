@@ -99,7 +99,7 @@ namespace Obi.ProjectView
         private static int ELAPSED_TOTAL_INDEX = 2;
         private static int ELAPSED_TOTAL_RECORDING_INDEX = 2;
        // private static int REMAINING_IN_SECTION = 4;
-      //  private static readonly int REMAIN_INDEX = 3;
+        private static readonly int REMAIN_INDEX = 3;
         private readonly List<string> m_DisplayComboBoxItems;
 
 
@@ -134,7 +134,7 @@ namespace Obi.ProjectView
             m_PlayingElapsedRemainingList.Add("elapsed in project");
             m_PlayingElapsedRemainingList.Add("remaining in phrase");
           //  m_PlayingElapsedRemainingList.Add("remaining in section");
-          //  m_PlayingElapsedRemainingList.Add("remaining in selection");
+            m_PlayingElapsedRemainingList.Add("remaining in selection");
             mDisplayBox.Items.AddRange(m_PlayingElapsedRemainingList.ToArray ());
             mDisplayBox.SelectedIndex = 0;
             mTimeDisplayBox.AccessibleName = mDisplayBox.SelectedItem.ToString();
@@ -945,11 +945,11 @@ namespace Obi.ProjectView
                          selectedIndex  == ELAPSED_TOTAL_INDEX ?
                            //  mCurrentPlaylist.CurrentTime :
                            PlayingTimeElapsedTotal:
-                       //  selectedIndex  == REMAIN_INDEX ?
-                             mCurrentPlaylist.RemainingTimeInAsset 
-                       /*  selectedIndex == REMAINING_IN_SECTION?                         
-                         RemainingTimeInSection:
-                         mCurrentPlaylist.RemainingTime*/
+                         selectedIndex  == REMAIN_INDEX ?
+                         mCurrentPlaylist.RemainingTimeInAsset: 
+                       //  selectedIndex == REMAINING_IN_SECTION?                         
+                       //  RemainingTimeInSection:
+                         mCurrentPlaylist.RemainingTime
                              );
                  }
              }
